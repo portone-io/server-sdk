@@ -40,6 +40,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./javascript/docs
+          destination_dir: js
   check:
     name: Check
     runs-on: ubuntu-latest
