@@ -54,6 +54,9 @@ export type Operations = {
 	 *
 	 * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
 	 *
+	 * @param billingKey
+	 * 조회할 빌링키
+	 *
 	 * @throws {@link Errors.BillingKeyNotFoundError} 빌링키가 존재하지 않는 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -67,6 +70,9 @@ export type Operations = {
 	 * 빌링키 삭제
 	 *
 	 * 빌링키를 삭제합니다.
+	 *
+	 * @param billingKey
+	 * 삭제할 빌링키
 	 *
 	 * @throws {@link Errors.BillingKeyAlreadyDeletedError} 빌링키가 이미 삭제된 경우
 	 * @throws {@link Errors.BillingKeyNotFoundError} 빌링키가 존재하지 않는 경우

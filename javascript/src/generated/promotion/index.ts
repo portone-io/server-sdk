@@ -15,6 +15,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 프로모션을 조회합니다.
 	 *
+	 * @param promotionId
+	 * 조회할 프로모션 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PromotionNotFoundError} 프로모션이 존재하지 않는 경우

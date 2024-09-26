@@ -223,8 +223,9 @@ async function getCryptoKeyFromSecret(secret: string | Uint8Array) {
 		throw new InvalidInputError("`secret` 파라미터의 타입이 잘못되었습니다.");
 	}
 
-	if (rawSecret.length === 0)
+	if (rawSecret.length === 0) {
 		throw new InvalidInputError("시크릿은 비어 있을 수 없습니다.");
+	}
 
 	const cryptoKey = await crypto.subtle.importKey(
 		"raw",

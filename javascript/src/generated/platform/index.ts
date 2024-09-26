@@ -326,6 +326,8 @@ export type Operations = {
 	 * 고객사의 플랫폼 정보를 조회합니다.
 	 * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 	 *
+	 *
+	 *
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -355,6 +357,11 @@ export type Operations = {
 	/**
 	 * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 	 *
+	 * @param isArchived
+	 * 보관 조회 여부
+	 *
+	 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -371,6 +378,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
 	 *
+	 * @param id
+	 * 할인 분담 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformDiscountSharePolicyNotFoundError} PlatformDiscountSharePolicyNotFoundError
@@ -383,6 +393,13 @@ export type Operations = {
 	) => Promise<PlatformDiscountSharePolicy>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
+	 *
+	 * @param id
+	 * 할인 분담 정책 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -403,6 +420,13 @@ export type Operations = {
 	) => Promise<ReschedulePlatformDiscountSharePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
+	 *
+	 * @param id
+	 * 할인 분담 정책 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -425,6 +449,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
 	 *
+	 * @param id
+	 * 할인 분담 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformDiscountSharePolicyNotFoundError} PlatformDiscountSharePolicyNotFoundError
@@ -438,6 +465,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 	 *
+	 * @param id
+	 * 추가 수수료 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -449,6 +479,13 @@ export type Operations = {
 		id: string,
 	) => Promise<PlatformAdditionalFeePolicy>
 	/**
+	 * @param id
+	 * 추가 수수료 정책 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -468,6 +505,13 @@ export type Operations = {
 	) => Promise<ReschedulePlatformAdditionalFeePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
+	 *
+	 * @param id
+	 * 추가 수수료 정책 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -491,6 +535,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
 	 *
+	 * @param id
+	 * 추가 수수료 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -503,6 +550,11 @@ export type Operations = {
 	) => Promise<CancelPlatformAdditionalFeePolicyScheduleResponse>
 	/**
 	 * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
+	 *
+	 * @param isArchived
+	 * 보관 조회 여부
+	 *
+	 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -520,6 +572,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
 	 *
+	 * @param id
+	 * 파트너 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -532,6 +587,13 @@ export type Operations = {
 	) => Promise<PlatformPartner>
 	/**
 	 * 주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
+	 *
+	 * @param id
+	 * 파트너 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -553,6 +615,13 @@ export type Operations = {
 	) => Promise<ReschedulePlatformPartnerResponse>
 	/**
 	 * 주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
+	 *
+	 * @param id
+	 * 파트너 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -582,6 +651,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
 	 *
+	 * @param id
+	 * 파트너 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -593,6 +665,13 @@ export type Operations = {
 		id: string,
 	) => Promise<CancelPlatformPartnerScheduleResponse>
 	/**
+	 * @param filter
+	 *
+	 * @param update
+	 *
+	 * @param appliedAt
+	 *
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformArchivedPartnersCannotBeScheduledError} 보관된 파트너들을 예약 업데이트하려고 하는 경우
@@ -611,6 +690,9 @@ export type Operations = {
 	/**
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 	 *
+	 * @param id
+	 * 계약 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError
@@ -623,6 +705,13 @@ export type Operations = {
 	) => Promise<PlatformContract>
 	/**
 	 * 주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
+	 *
+	 * @param id
+	 * 계약 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError
@@ -642,6 +731,13 @@ export type Operations = {
 	) => Promise<ReschedulePlatformContractResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
+	 *
+	 * @param id
+	 * 계약 아이디
+	 * @param update
+	 * 반영할 업데이트 내용
+	 * @param appliedAt
+	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformArchivedContractError} 보관된 계약을 업데이트하려고 하는 경우
@@ -663,6 +759,9 @@ export type Operations = {
 	) => Promise<SchedulePlatformContractResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
+	 *
+	 * @param id
+	 * 계약 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우

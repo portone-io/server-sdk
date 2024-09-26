@@ -131,6 +131,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
 	 *
+	 * @param id
+	 * 조회할 할인 분담 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformDiscountSharePolicyNotFoundError} PlatformDiscountSharePolicyNotFoundError
@@ -175,6 +178,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
 	 *
+	 * @param id
+	 * 할인 분담 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError} 예약된 업데이트가 있는 할인 분담 정책을 보관하려고 하는 경우
@@ -190,6 +196,9 @@ export type Operations = {
 	 * 할인 분담 정책 복원
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
+	 *
+	 * @param id
+	 * 할인 분담 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -253,6 +262,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.
 	 *
+	 * @param id
+	 * 조회할 추가 수수료 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -294,6 +306,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
 	 *
+	 * @param id
+	 * 추가 수수료 정책 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -309,6 +324,9 @@ export type Operations = {
 	 * 추가 수수료 정책 복원
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
+	 *
+	 * @param id
+	 * 추가 수수료 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -376,6 +394,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 계약을 조회합니다.
 	 *
+	 * @param id
+	 * 조회할 계약 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError
@@ -421,6 +442,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 계약을 보관합니다.
 	 *
+	 * @param id
+	 * 계약 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformCannotArchiveScheduledContractError} 예약된 업데이트가 있는 계약을 보관하려고 하는 경우
@@ -436,6 +460,9 @@ export type Operations = {
 	 * 계약 복원
 	 *
 	 * 주어진 아이디에 대응되는 계약을 복원합니다.
+	 *
+	 * @param id
+	 * 계약 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우

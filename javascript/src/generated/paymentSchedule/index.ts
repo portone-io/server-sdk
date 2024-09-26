@@ -39,6 +39,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 결제 예약 건을 조회합니다.
 	 *
+	 * @param paymentScheduleId
+	 * 조회할 결제 예약 건 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentScheduleNotFoundError} 결제 예약건이 존재하지 않는 경우
@@ -102,6 +105,13 @@ export type Operations = {
 	 * 결제 예약
 	 *
 	 * 결제를 예약합니다.
+	 *
+	 * @param paymentId
+	 * 결제 건 아이디
+	 * @param payment
+	 * 빌링키 결제 입력 정보
+	 * @param timeToPay
+	 * 결제 예정 시점
 	 *
 	 * @throws {@link Errors.AlreadyPaidOrWaitingError} 결제가 이미 완료되었거나 대기중인 경우
 	 * @throws {@link Errors.BillingKeyAlreadyDeletedError} 빌링키가 이미 삭제된 경우

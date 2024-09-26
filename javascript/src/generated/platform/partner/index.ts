@@ -130,6 +130,9 @@ export type Operations = {
 	 *
 	 * 파트너 객체를 조회합니다.
 	 *
+	 * @param id
+	 * 조회하고 싶은 파트너 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -185,6 +188,9 @@ export type Operations = {
 	 *
 	 * 새로운 파트너를 다건 생성합니다.
 	 *
+	 * @param partners
+	 * 생성할 파트너 리스트 정보
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractsNotFoundError} PlatformContractsNotFoundError
@@ -204,6 +210,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 파트너를 보관합니다.
 	 *
+	 * @param id
+	 * 파트너 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformCannotArchiveScheduledPartnerError} 예약된 업데이트가 있는 파트너를 보관하려고 하는 경우
@@ -219,6 +228,9 @@ export type Operations = {
 	 * 파트너 복원
 	 *
 	 * 주어진 아이디에 대응되는 파트너를 복원합니다.
+	 *
+	 * @param id
+	 * 파트너 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우

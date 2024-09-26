@@ -138,6 +138,13 @@ export type Operations = {
 	 *
 	 * 포트원 B2B 서비스에 연동된 사업자를 조회합니다.
 	 *
+	 * @param brn
+	 * 사업자등록번호
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 *
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
 	 * @throws {@link Errors.B2bMemberCompanyNotFoundError} 연동 사업자가 존재하지 않는 경우
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
@@ -191,6 +198,15 @@ export type Operations = {
 	 *
 	 * 포트원 B2B 서비스에 사업자를 연동합니다.
 	 *
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 * @param company
+	 * 사업자 정보
+	 * @param contact
+	 * 담당자 정보
+	 *
 	 * @throws {@link Errors.B2bCompanyAlreadyRegisteredError} 사업자가 이미 연동되어 있는 경우
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
 	 * @throws {@link Errors.B2bIdAlreadyExistsError} ID가 이미 사용중인 경우
@@ -214,6 +230,15 @@ export type Operations = {
 	 * 담당자 조회
 	 *
 	 * 연동 사업자에 등록된 담당자를 조회합니다.
+	 *
+	 * @param brn
+	 * 사업자등록번호
+	 * @param contactId
+	 * 담당자 ID
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
 	 *
 	 * @throws {@link Errors.B2bContactNotFoundError} 담당자가 존재하지 않는 경우
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
@@ -273,6 +298,13 @@ export type Operations = {
 	 *
 	 * 연동 사업자의 인증서를 등록하기 위한 URL을 조회합니다.
 	 *
+	 * @param brn
+	 * 사업자등록번호
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 *
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
 	 * @throws {@link Errors.B2bMemberCompanyNotFoundError} 연동 사업자가 존재하지 않는 경우
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
@@ -293,6 +325,13 @@ export type Operations = {
 	 * 인증서 조회
 	 *
 	 * 연동 사업자의 인증서를 조회합니다.
+	 *
+	 * @param brn
+	 * 사업자등록번호
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
 	 *
 	 * @throws {@link Errors.B2bCertificateUnregisteredError} 인증서가 등록되어 있지 않은 경우
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
@@ -316,6 +355,13 @@ export type Operations = {
 	 *
 	 * 담당자 ID가 이미 사용중인지 확인합니다.
 	 *
+	 * @param contactId
+	 * 담당자 ID
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 *
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -335,6 +381,15 @@ export type Operations = {
 	 * 예금주 조회
 	 *
 	 * 원하는 계좌의 예금주를 조회합니다.
+	 *
+	 * @param bank
+	 * 은행
+	 * @param accountNumber
+	 * '-'를 제외한 계좌 번호
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
 	 *
 	 * @throws {@link Errors.B2bBankAccountNotFoundError} 계좌가 존재하지 않는 경우
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
@@ -364,6 +419,13 @@ export type Operations = {
 	 * 사업자 상태 조회
 	 *
 	 * 원하는 사업자의 상태를 조회합니다. 포트원 B2B 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.
+	 *
+	 * @param brn
+	 * 사업자등록번호
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
 	 *
 	 * @throws {@link Errors.B2bCompanyNotFoundError} 사업자가 존재하지 않는 경우
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
@@ -762,6 +824,13 @@ export type Operations = {
 	 *
 	 * 세금계산서 임시 저장을 요청합니다.
 	 *
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 * @param taxInvoice
+	 * 세금계산서 생성 요청 정보
+	 *
 	 * @throws {@link Errors.B2bExternalServiceError} 외부 서비스에서 에러가 발생한 경우
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.B2bRecipientNotFoundError} 공급받는자가 존재하지 않은 경우
@@ -818,6 +887,13 @@ export type Operations = {
 	 * 세금계산서 파일 업로드 링크 생성
 	 *
 	 * 세금계산서의 첨부파일를 업로드할 링크를 생성합니다.
+	 *
+	 * @param test
+	 * 테스트 모드 여부
+	 *
+	 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+	 * @param fileName
+	 * 파일 이름
 	 *
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우

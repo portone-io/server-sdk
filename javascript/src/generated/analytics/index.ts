@@ -101,6 +101,23 @@ export type Operations = {
 	/**
 	 * 고객사의 결제 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 결제 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -137,6 +154,23 @@ export type Operations = {
 	) => Promise<AnalyticsPaymentChart>
 	/**
 	 * 고객사의 결제 현황 인사이트를 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timezoneHourOffset
+	 * 타임존 시간 오프셋
+	 *
+	 * 입력된 시간 오프셋 기준으로 일, 주, 월이 집계 됩니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -176,6 +210,23 @@ export type Operations = {
 	/**
 	 * 고객사의 평균 거래액 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 평균 거래액 현황의 시작 시간
+	 * @param until
+	 * 조회할 평균 거래액 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 평균 거래액 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -213,6 +264,19 @@ export type Operations = {
 	/**
 	 * 고객사의 결제수단 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 결제수단 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제수단 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -243,6 +307,23 @@ export type Operations = {
 	) => Promise<AnalyticsPaymentMethodChart>
 	/**
 	 * 고객사의 결제수단 트렌드를 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 결제수단 트렌드의 시작 시간
+	 * @param until
+	 * 조회할 결제수단 트렌드의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 결제 결제수단 트렌드 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -281,6 +362,23 @@ export type Operations = {
 	/**
 	 * 고객사의 카드결제 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 카드결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 카드결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 카드결제 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -317,6 +415,27 @@ export type Operations = {
 	) => Promise<AnalyticsCardChart>
 	/**
 	 * 고객사의 카드사별 결제 현황을 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 카드사별 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 카드사별 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 카드사별 결제 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 * @param cardCompanies
+	 * 조회할 카드사
+	 * @param excludesFromRemainders
+	 * 나머지 집계에 포함되지 않을 카드사
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -359,6 +478,23 @@ export type Operations = {
 	/**
 	 * 고객사의 간편결제 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 간편결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 간편결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 간편결제 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -395,6 +531,27 @@ export type Operations = {
 	) => Promise<AnalyticsEasyPayChart>
 	/**
 	 * 고객사의 간편결제사별 결제 현황을 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 간편결제사별 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 간편결제사별 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 간편결제사별 결제 현황 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 * @param easyPayProviders
+	 * 조회할 간편결제사
+	 * @param excludesFromRemainders
+	 * 나머지 집계에 포함되지 않을 간편결제사
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -437,6 +594,19 @@ export type Operations = {
 	/**
 	 * 고객사의 결제대행사 현황을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 결제대행사 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제대행사 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -467,6 +637,25 @@ export type Operations = {
 	) => Promise<AnalyticsPgCompanyChart>
 	/**
 	 * 고객사의 결제대행사별 거래 추이를 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 결제대행사별 거래 추이의 시작 시간
+	 * @param until
+	 * 조회할 결제대행사별 거래 추이의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 * @param excludeCancelled
+	 * 결제취소건 제외 여부
+	 *
+	 * true 이면 결제취소내역은 응답에 포함 및 반영되지 않습니다. false 또는 값을 명시하지 않은 경우 결제취소내역이 응답에 반영됩니다.
+	 * @param timeGranularity
+	 * 결제 결제대행사별 거래 추이 조회 단위
+	 *
+	 * 시간별, 월별 단위만 지원됩니다.
+	 * @param pgCompanies
+	 * 조회할 결제대행사
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -507,6 +696,8 @@ export type Operations = {
 	/**
 	 * 고객사의 해외 결제 사용 여부를 조회합니다.
 	 *
+	 *
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
 	 */
@@ -514,6 +705,15 @@ export type Operations = {
 	) => Promise<AnalyticsOverseasPaymentUsage>
 	/**
 	 * 고객사의 환불율을 조회합니다.
+	 *
+	 * @param from
+	 * 환불율 조회 기간의 시작 시간
+	 * @param until
+	 * 환불율 조회 기간의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -540,6 +740,15 @@ export type Operations = {
 	/**
 	 * 고객사의 결제상태 이력 집계를 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -564,6 +773,15 @@ export type Operations = {
 	) => Promise<AnalyticsPaymentStatusChart>
 	/**
 	 * 고객사의 결제수단별 결제전환율을 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -590,6 +808,15 @@ export type Operations = {
 	/**
 	 * 고객사의 PG사별 결제전환율을 조회합니다.
 	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
@@ -614,6 +841,15 @@ export type Operations = {
 	) => Promise<AnalyticsPaymentStatusByPgCompanyChart>
 	/**
 	 * 고객사의 결제환경별 결제전환율을 조회합니다.
+	 *
+	 * @param from
+	 * 조회할 결제 현황의 시작 시간
+	 * @param until
+	 * 조회할 결제 현황의 끝 시간
+	 * @param currency
+	 * 조회할 결제 통화
+	 *
+	 * 입력된 통화로 발생한 결제내역만 응답에 포함됩니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우

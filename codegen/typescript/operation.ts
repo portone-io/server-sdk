@@ -17,20 +17,6 @@ export function writeOperation(
   crossRef: Set<string>,
 ) {
   const errors = fetchErrors(operation, entityMap)
-  const description = [operation.description?.trimEnd() ?? ""].concat(
-    errors.map(({ name }) => {
-      const error = entityMap.get(name)
-      if (!error) {
-        throw new Error("unrecognized error variant", { cause: { operation } })
-      }
-      return `@throws {@link Errors.${name}} ${error.title ?? ""}`
-    }).join("\n"),
-  ).join("\n\n")
-  writeDescription(typeWriter, description)
-  typeWriter.writeLine(`${operation.id}: (`)
-  implWriter.writeLine(`${operation.id}: async (`)
-  typeWriter.indent()
-  implWriter.indent()
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
   const params = operation.params.path.concat(operation.params.query).concat(
     requestBody,
@@ -41,6 +27,31 @@ export function writeOperation(
   )
   const isStructured = optionalCount >= 2
   const isStructureOptional = params.every(({ required }) => !required)
+  const paramDescription = isStructured ? [] : params.map((property) => {
+    const block = ([] as string[]).concat(property.title ?? []).concat(
+      property.description ?? [],
+    ).join("\n\n")
+    return `@param ${property.name}\n${block}`
+  }).join("\n")
+  const errorDescription = errors.map(({ name }) => {
+    const error = entityMap.get(name)
+    if (!error) {
+      throw new Error("unrecognized error variant", { cause: { operation } })
+    }
+    return `@throws {@link Errors.${name}} ${error.title ?? ""}`
+  }).join("\n")
+  const description = ([] as string[]).concat(
+    operation.description?.trimEnd() ?? [],
+  ).concat(
+    paramDescription,
+  ).concat(
+    errorDescription,
+  ).join("\n\n")
+  writeDescription(typeWriter, description)
+  typeWriter.writeLine(`${operation.id}: (`)
+  implWriter.writeLine(`${operation.id}: async (`)
+  typeWriter.indent()
+  implWriter.indent()
   const addCrossRef = (name: string) => {
     crossRef.add(name)
     return name

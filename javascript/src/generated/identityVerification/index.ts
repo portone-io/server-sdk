@@ -35,6 +35,9 @@ export type Operations = {
 	 *
 	 * 주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
 	 *
+	 * @param identityVerificationId
+	 * 조회할 본인인증 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationNotFoundError} 요청된 본인인증 건이 존재하지 않는 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -81,6 +84,13 @@ export type Operations = {
 	 *
 	 * 요청된 본인인증에 대한 확인을 진행합니다.
 	 *
+	 * @param identityVerificationId
+	 * 본인인증 아이디
+	 * @param otp
+	 * OTP (One-Time Password)
+	 *
+	 * SMS 방식에서만 사용됩니다.
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationAlreadyVerifiedError} 본인인증 건이 이미 인증 완료된 상태인 경우
 	 * @throws {@link Errors.IdentityVerificationNotFoundError} 요청된 본인인증 건이 존재하지 않는 경우
@@ -103,6 +113,9 @@ export type Operations = {
 	 * SMS 본인인증 요청 재전송
 	 *
 	 * SMS 본인인증 요청을 재전송합니다.
+	 *
+	 * @param identityVerificationId
+	 * 본인인증 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationAlreadyVerifiedError} 본인인증 건이 이미 인증 완료된 상태인 경우

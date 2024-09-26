@@ -125,6 +125,9 @@ export type Operations = {
 	 *
 	 * 정산건을 조회합니다.
 	 *
+	 * @param id
+	 * 조회하고 싶은 정산건 아이디
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -139,6 +142,9 @@ export type Operations = {
 	 * 정산건 삭제
 	 *
 	 * scheduled, in_process 상태의 정산건만 삭제가능합니다.
+	 *
+	 * @param id
+	 * 정산건 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
