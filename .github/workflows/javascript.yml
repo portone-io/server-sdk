@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'javascript/**'
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -13,6 +14,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    environment: NPM
     defaults:
       run:
         working-directory: ./javascript
@@ -23,12 +25,17 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          package_json_file: ./javascript/package.json
+          
       - name: Setup Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+          cache-dependency-path: ./javascript/pnpm-lock.yaml
 
       - name: Install Dependencies
         run: pnpm install
@@ -37,7 +44,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm run publish
+          cwd: ./javascript
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
