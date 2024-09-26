@@ -1,4 +1,4 @@
-import { Definition } from "../parser/definition.ts"
+import type { Definition } from "../parser/definition.ts"
 
 export function intoInlineTypeName(definition: Definition): string {
   switch (definition.type) {
@@ -18,7 +18,7 @@ export function intoInlineTypeName(definition: Definition): string {
     case "enum":
       return definition.variants.map(({ value }) => `"${value}"`).join(" | ")
     case "array":
-      return intoInlineTypeName(definition.item) + "[]"
+      return `${intoInlineTypeName(definition.item)}[]`
     case "object":
       throw new Error("unsupported inline type", { cause: { definition } })
     default:
