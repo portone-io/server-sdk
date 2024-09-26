@@ -1,0 +1,26 @@
+diff --git a/dist/changesets-cli.cjs.js b/dist/changesets-cli.cjs.js
+index e0310aa6f311fa88592fd0bdf5c1c892a10dccc2..d5c57f229231b8cb89c37fadf5b9165424b349ae 100644
+--- a/dist/changesets-cli.cjs.js
++++ b/dist/changesets-cli.cjs.js
+@@ -839,6 +839,8 @@ async function internalPublish(pkgName, opts, twoFactorState) {
+       }
+ 
+       logger.error(`an error occurred while publishing ${pkgName}: ${json.error.code}`, json.error.summary, json.error.detail ? "\n" + json.error.detail : "");
++      logger.error(stderr.toString());
++      logger.error(stdout.toString());
+     }
+ 
+     logger.error(stderr.toString() || stdout.toString());
+diff --git a/dist/changesets-cli.esm.js b/dist/changesets-cli.esm.js
+index be26e5d6f0b46bc0a48476af1ecbbf58c54aea85..8d3488038b78bcf0fa5551f10d75c10ca10aa29e 100644
+--- a/dist/changesets-cli.esm.js
++++ b/dist/changesets-cli.esm.js
+@@ -800,6 +800,8 @@ async function internalPublish(pkgName, opts, twoFactorState) {
+       }
+ 
+       error(`an error occurred while publishing ${pkgName}: ${json.error.code}`, json.error.summary, json.error.detail ? "\n" + json.error.detail : "");
++      error(stderr.toString());
++      error(stdout.toString());
+     }
+ 
+     error(stderr.toString() || stdout.toString());

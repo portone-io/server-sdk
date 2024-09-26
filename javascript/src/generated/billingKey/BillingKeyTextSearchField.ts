@@ -1,0 +1,13 @@
+/** 통합검색 항목 */
+export type BillingKeyTextSearchField =
+	| "CUSTOMER_EMAIL"
+	| "USER_AGENT"
+	| "CUSTOMER_ADDRESS"
+	| "CARD_BIN"
+	| "CHANNEL_GROUP_NAME"
+	| "PG_MERCHANT_ID"
+	| "CUSTOMER_PHONE_NUMBER"
+	| "CUSTOMER_ZIPCODE"
+	| "CUSTOMER_NAME"
+	| "CARD_NUMBER"
+	| "BILLING_KEY"

@@ -1,0 +1,179 @@
+{
+  "name": "@portone/server-sdk",
+  "type": "module",
+  "version": "0.2.2-alpha.11",
+  "description": "PortOne JavaScript SDK for server-side usage",
+  "keywords": [
+    "PortOne",
+    "payment",
+    "포트원",
+    "결제 연동"
+  ],
+  "author": {
+    "name": "portone-dx",
+    "email": "support@portone.io"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "imports": {
+    "#generated/*": "./src/generated/*"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./analytics": "./src/generated/analytics/index.ts",
+    "./auth": "./src/generated/auth/index.ts",
+    "./b2b": "./src/generated/b2b/index.ts",
+    "./billingKey": "./src/generated/billingKey/index.ts",
+    "./cashReceipt": "./src/generated/cashReceipt/index.ts",
+    "./common": "./src/generated/common/index.ts",
+    "./identityVerification": "./src/generated/identityVerification/index.ts",
+    "./payment": "./src/generated/payment/index.ts",
+    "./paymentSchedule": "./src/generated/paymentSchedule/index.ts",
+    "./pgSpecific": "./src/generated/pgSpecific/index.ts",
+    "./platform": "./src/generated/platform/index.ts",
+    "./platform/account": "./src/generated/platform/account/index.ts",
+    "./platform/accountTransfer": "./src/generated/platform/accountTransfer/index.ts",
+    "./platform/bulkPayout": "./src/generated/platform/bulkPayout/index.ts",
+    "./platform/partner": "./src/generated/platform/partner/index.ts",
+    "./platform/partnerSettlement": "./src/generated/platform/partnerSettlement/index.ts",
+    "./platform/payout": "./src/generated/platform/payout/index.ts",
+    "./platform/policy": "./src/generated/platform/policy/index.ts",
+    "./platform/transfer": "./src/generated/platform/transfer/index.ts",
+    "./promotion": "./src/generated/promotion/index.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
+      },
+      "./analytics": {
+        "types": "./dist/generated/analytics/index.d.ts",
+        "require": "./dist/generated/analytics/index.cjs",
+        "module": "./dist/generated/analytics/index.mjs"
+      },
+      "./auth": {
+        "types": "./dist/generated/auth/index.d.ts",
+        "require": "./dist/generated/auth/index.cjs",
+        "module": "./dist/generated/auth/index.mjs"
+      },
+      "./b2b": {
+        "types": "./dist/generated/b2b/index.d.ts",
+        "require": "./dist/generated/b2b/index.cjs",
+        "module": "./dist/generated/b2b/index.mjs"
+      },
+      "./billingKey": {
+        "types": "./dist/generated/billingKey/index.d.ts",
+        "require": "./dist/generated/billingKey/index.cjs",
+        "module": "./dist/generated/billingKey/index.mjs"
+      },
+      "./cashReceipt": {
+        "types": "./dist/generated/cashReceipt/index.d.ts",
+        "require": "./dist/generated/cashReceipt/index.cjs",
+        "module": "./dist/generated/cashReceipt/index.mjs"
+      },
+      "./common": {
+        "types": "./dist/generated/common/index.d.ts",
+        "require": "./dist/generated/common/index.cjs",
+        "module": "./dist/generated/common/index.mjs"
+      },
+      "./identityVerification": {
+        "types": "./dist/generated/identityVerification/index.d.ts",
+        "require": "./dist/generated/identityVerification/index.cjs",
+        "module": "./dist/generated/identityVerification/index.mjs"
+      },
+      "./payment": {
+        "types": "./dist/generated/payment/index.d.ts",
+        "require": "./dist/generated/payment/index.cjs",
+        "module": "./dist/generated/payment/index.mjs"
+      },
+      "./paymentSchedule": {
+        "types": "./dist/generated/paymentSchedule/index.d.ts",
+        "require": "./dist/generated/paymentSchedule/index.cjs",
+        "module": "./dist/generated/paymentSchedule/index.mjs"
+      },
+      "./pgSpecific": {
+        "types": "./dist/generated/pgSpecific/index.d.ts",
+        "require": "./dist/generated/pgSpecific/index.cjs",
+        "module": "./dist/generated/pgSpecific/index.mjs"
+      },
+      "./platform": {
+        "types": "./dist/generated/platform/index.d.ts",
+        "require": "./dist/generated/platform/index.cjs",
+        "module": "./dist/generated/platform/index.mjs"
+      },
+      "./platform/account": {
+        "types": "./dist/generated/platform/account/index.d.ts",
+        "require": "./dist/generated/platform/account/index.cjs",
+        "module": "./dist/generated/platform/account/index.mjs"
+      },
+      "./platform/accountTransfer": {
+        "types": "./dist/generated/platform/accountTransfer/index.d.ts",
+        "require": "./dist/generated/platform/accountTransfer/index.cjs",
+        "module": "./dist/generated/platform/accountTransfer/index.mjs"
+      },
+      "./platform/bulkPayout": {
+        "types": "./dist/generated/platform/bulkPayout/index.d.ts",
+        "require": "./dist/generated/platform/bulkPayout/index.cjs",
+        "module": "./dist/generated/platform/bulkPayout/index.mjs"
+      },
+      "./platform/partner": {
+        "types": "./dist/generated/platform/partner/index.d.ts",
+        "require": "./dist/generated/platform/partner/index.cjs",
+        "module": "./dist/generated/platform/partner/index.mjs"
+      },
+      "./platform/partnerSettlement": {
+        "types": "./dist/generated/platform/partnerSettlement/index.d.ts",
+        "require": "./dist/generated/platform/partnerSettlement/index.cjs",
+        "module": "./dist/generated/platform/partnerSettlement/index.mjs"
+      },
+      "./platform/payout": {
+        "types": "./dist/generated/platform/payout/index.d.ts",
+        "require": "./dist/generated/platform/payout/index.cjs",
+        "module": "./dist/generated/platform/payout/index.mjs"
+      },
+      "./platform/policy": {
+        "types": "./dist/generated/platform/policy/index.d.ts",
+        "require": "./dist/generated/platform/policy/index.cjs",
+        "module": "./dist/generated/platform/policy/index.mjs"
+      },
+      "./platform/transfer": {
+        "types": "./dist/generated/platform/transfer/index.d.ts",
+        "require": "./dist/generated/platform/transfer/index.cjs",
+        "module": "./dist/generated/platform/transfer/index.mjs"
+      },
+      "./promotion": {
+        "types": "./dist/generated/promotion/index.d.ts",
+        "require": "./dist/generated/promotion/index.cjs",
+        "module": "./dist/generated/promotion/index.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "format": "biome format --write .",
+    "build": "unbuild",
+    "test:dev": "vitest --ui --typecheck",
+    "test": "vitest run --typecheck",
+    "prepublish": "pnpm build && sed -i \"s/VERSION_PLACEHOLDER/$(jq -r .version package.json)/\" jsr.json",
+    "publish": "jsr publish --allow-dirty"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "@expo/spawn-async": "^1.7.2",
+    "@types/node": "^20.16.5",
+    "@vitest/ui": "^2.0.5",
+    "changeset": "^0.2.6",
+    "jsr": "^0.13.2",
+    "typedoc": "^0.26.7",
+    "typescript": "^5.6.2",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.0.5"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "license": "(Apache-2.0 OR MIT)"
+}

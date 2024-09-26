@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@portone/server-sdk": "0.2.1"
+  },
+  "changesets": [
+    "late-singers-beam",
+    "sweet-rocks-fetch",
+    "tall-fireants-approve",
+    "tough-lamps-drop"
+  ]
+}

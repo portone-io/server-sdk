@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "codegen",
+			"path": "codegen"
+		},
+		{
+			"name": "javascript",
+			"path": "javascript"
+		},
+		{
+			"path": ".github"
+		}
+	],
+	"settings": {}
+}

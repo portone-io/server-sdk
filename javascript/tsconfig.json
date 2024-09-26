@@ -1,0 +1,18 @@
+{
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"target": "ES2022",
+		"baseUrl": ".",
+		"module": "Preserve",
+		"moduleResolution": "Bundler",
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"verbatimModuleSyntax": true,
+		"paths": {
+			"#generated/*": ["src/generated/*"]
+		}
+	}
+}

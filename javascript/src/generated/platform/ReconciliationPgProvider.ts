@@ -1,0 +1,13 @@
+export type ReconciliationPgProvider =
+	| "PAYCO"
+	| "NAVERPAY"
+	| "HECTO"
+	| "TOSSPAY"
+	| "INICIS"
+	| "UPLUS"
+	| "DANAL"
+	| "NICEPAY"
+	| "TOSSPAYMENTS"
+	| "KAKAOPAY"
+	| "KCP"
+	| "EXIMBAY"

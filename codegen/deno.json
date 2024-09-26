@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "zod": "https://deno.land/x/zod/mod.ts",
+    "@std/path": "jsr:@std/path",
+    "@std/fs": "jsr:@std/fs",
+    "@std/text": "jsr:@std/text"
+  },
+  "fmt": {
+    "indentWidth": 2,
+    "semiColons": false,
+    "useTabs": false
+  }
+}

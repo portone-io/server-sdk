@@ -1,0 +1,8 @@
+export type * from "./GetPlatformPayoutsBody"
+export type * from "./GetPlatformPayoutsError"
+export type * from "./GetPlatformPayoutsResponse"
+export type * from "./PlatformPayout"
+export type * from "./PlatformPayoutAccount"
+export type * from "./PlatformPayoutFilterInput"
+export type * from "./PlatformPayoutFilterInputCriteria"
+export type * from "./PlatformPayoutStatus"
