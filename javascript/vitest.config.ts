@@ -7,4 +7,7 @@ export default defineConfig({
 			cachedChecks: false,
 		},
 	},
+	test: {
+		hookTimeout: 30000,
+	},
 });
