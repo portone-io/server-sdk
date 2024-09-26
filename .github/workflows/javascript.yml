@@ -5,14 +5,90 @@ on:
     branches:
       - main
     paths:
-      - 'javascript/**'
+      - "javascript/**"
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  docs:
+    name: Publish API reference
+    needs: [check, test]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./javascript
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          package_json_file: ./javascript/package.json
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: ./javascript/pnpm-lock.yaml
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run typedoc
+        run: pnpm typedoc
+      - name: Deploy on GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./javascript/docs
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./javascript
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          package_json_file: ./javascript/package.json
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: ./javascript/pnpm-lock.yaml
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run biome check
+        run: pnpm biome check
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./javascript
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          package_json_file: ./javascript/package.json
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: ./javascript/pnpm-lock.yaml
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run tests
+        run: pnpm test
   release:
     name: Release
+    needs: [check, test]
     runs-on: ubuntu-latest
     environment: NPM
     defaults:
@@ -29,7 +105,7 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           package_json_file: ./javascript/package.json
-          
+
       - name: Setup Node.js 20.x
         uses: actions/setup-node@v4
         with:

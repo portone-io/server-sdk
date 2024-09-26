@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
-import { defineBuildConfig, MkdistBuildEntry } from "unbuild";
-import tsConfig from "./tsconfig.json";
+import { type MkdistBuildEntry, defineBuildConfig } from "unbuild";
 import packageJson from "./package.json";
+import tsConfig from "./tsconfig.json";
 
 export default defineBuildConfig({
 	entries: (["esm", "cjs"] as const).map(
