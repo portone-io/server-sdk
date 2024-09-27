@@ -1,7 +1,7 @@
 {
   "name": "@portone/server-sdk",
   "type": "module",
-  "version": "0.2.2-alpha.11",
+  "version": "0.3.0-alpha.1",
   "description": "PortOne JavaScript SDK for server-side usage",
   "keywords": [
     "PortOne",

@@ -5,6 +5,7 @@
     "@portone/server-sdk": "0.2.1"
   },
   "changesets": [
+    "grumpy-beans-shave",
     "late-singers-beam",
     "sweet-rocks-fetch",
     "tall-fireants-approve",
