@@ -1,11 +1,5 @@
 # @portone/server-sdk
 
-## 0.3.0-alpha.1
-
-### Minor Changes
-
-- 44f02e9: API 생성 코드 재작성
-
 ## 0.2.2-alpha.1
 
 ### Patch Changes
