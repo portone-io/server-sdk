@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'codegen/**'
+      - '.github/workflows/codegen.yml'
 
 jobs:
   check:

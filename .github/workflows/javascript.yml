@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - "javascript/**"
-  workflow_dispatch:
+      - ".github/workflows/javascript.yml"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -96,6 +96,7 @@ jobs:
       run:
         working-directory: ./javascript
     permissions:
+      pull-requests: write
       contents: write
       id-token: write
     steps:
