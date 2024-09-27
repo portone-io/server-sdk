@@ -1,6 +1,6 @@
 # @portone/server-sdk
 
-## 0.3.0-alpha.12
+## 0.3.0-alpha.1
 
 ### Minor Changes
 
