@@ -2,6 +2,7 @@ import type { GetKakaopayPaymentOrderError } from "#generated/pgSpecific/GetKaka
 import type { GetKakaopayPaymentOrderResponse } from "#generated/pgSpecific/GetKakaopayPaymentOrderResponse"
 import * as Errors from "#generated/errors"
 export type { GetKakaopayPaymentOrderResponse } from "./GetKakaopayPaymentOrderResponse"
+/** @ignore */
 export function PgSpecificClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PgSpecificClient {
 	return {
 		getKakaopayPaymentOrder: async (

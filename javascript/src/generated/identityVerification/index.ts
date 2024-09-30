@@ -25,6 +25,7 @@ export type { SendIdentityVerificationBody } from "./SendIdentityVerificationBod
 export type { SendIdentityVerificationBodyCustomer } from "./SendIdentityVerificationBodyCustomer"
 export type { SendIdentityVerificationResponse } from "./SendIdentityVerificationResponse"
 export type { VerifiedIdentityVerification } from "./VerifiedIdentityVerification"
+/** @ignore */
 export function IdentityVerificationClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): IdentityVerificationClient {
 	return {
 		getIdentityVerification: async (

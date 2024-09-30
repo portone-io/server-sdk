@@ -8,6 +8,7 @@ export type { PromotionCardCompany } from "./PromotionCardCompany"
 export type { PromotionDiscount } from "./PromotionDiscount"
 export type { PromotionPercentDiscount } from "./PromotionPercentDiscount"
 export type { PromotionStatus } from "./PromotionStatus"
+/** @ignore */
 export function PromotionClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PromotionClient {
 	return {
 		getPromotion: async (

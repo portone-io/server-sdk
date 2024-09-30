@@ -14,6 +14,7 @@ export type { PlatformPartnerSettlementFilterKeywordInput } from "./PlatformPart
 export type { PlatformPartnerSettlementStatus } from "./PlatformPartnerSettlementStatus"
 export type { PlatformPartnerSettlementStatusStats } from "./PlatformPartnerSettlementStatusStats"
 export type { PlatformPartnerSettlementType } from "./PlatformPartnerSettlementType"
+/** @ignore */
 export function PartnerSettlementClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PartnerSettlementClient {
 	return {
 		getPlatformPartnerSettlements: async (

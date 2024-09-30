@@ -10,6 +10,7 @@ export type { PlatformPayoutAccount } from "./PlatformPayoutAccount"
 export type { PlatformPayoutFilterInput } from "./PlatformPayoutFilterInput"
 export type { PlatformPayoutFilterInputCriteria } from "./PlatformPayoutFilterInputCriteria"
 export type { PlatformPayoutStatus } from "./PlatformPayoutStatus"
+/** @ignore */
 export function PayoutClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PayoutClient {
 	return {
 		getPlatformPayouts: async (

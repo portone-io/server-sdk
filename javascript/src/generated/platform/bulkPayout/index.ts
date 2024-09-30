@@ -11,6 +11,7 @@ export type { PlatformBulkPayoutFilterInputCriteria } from "./PlatformBulkPayout
 export type { PlatformBulkPayoutStats } from "./PlatformBulkPayoutStats"
 export type { PlatformBulkPayoutStatus } from "./PlatformBulkPayoutStatus"
 export type { PlatformBulkPayoutStatusStats } from "./PlatformBulkPayoutStatusStats"
+/** @ignore */
 export function BulkPayoutClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): BulkPayoutClient {
 	return {
 		getPlatformBulkPayouts: async (

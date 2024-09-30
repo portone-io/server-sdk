@@ -46,6 +46,7 @@ export type { IssueBillingKeyResponse } from "./IssueBillingKeyResponse"
 export type { IssuedBillingKeyInfo } from "./IssuedBillingKeyInfo"
 export type { IssuedPgBillingKeyIssueResponse } from "./IssuedPgBillingKeyIssueResponse"
 export type { PgBillingKeyIssueResponse } from "./PgBillingKeyIssueResponse"
+/** @ignore */
 export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): BillingKeyClient {
 	return {
 		getBillingKeyInfo: async (

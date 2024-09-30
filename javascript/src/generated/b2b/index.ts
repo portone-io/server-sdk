@@ -106,6 +106,7 @@ export type { UpdateB2bMemberCompanyBody } from "./UpdateB2bMemberCompanyBody"
 export type { UpdateB2bMemberCompanyContactBody } from "./UpdateB2bMemberCompanyContactBody"
 export type { UpdateB2bMemberCompanyContactResponse } from "./UpdateB2bMemberCompanyContactResponse"
 export type { UpdateB2bMemberCompanyResponse } from "./UpdateB2bMemberCompanyResponse"
+/** @ignore */
 export function B2BClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): B2BClient {
 	return {
 		getB2bMemberCompany: async (

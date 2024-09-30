@@ -7,6 +7,7 @@ export type { LoginViaApiSecretBody } from "./LoginViaApiSecretBody"
 export type { LoginViaApiSecretResponse } from "./LoginViaApiSecretResponse"
 export type { RefreshTokenBody } from "./RefreshTokenBody"
 export type { RefreshTokenResponse } from "./RefreshTokenResponse"
+/** @ignore */
 export function AuthClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AuthClient {
 	return {
 		loginViaApiSecret: async (

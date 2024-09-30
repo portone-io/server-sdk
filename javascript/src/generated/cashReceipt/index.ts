@@ -19,6 +19,7 @@ export type { IssueCashReceiptCustomerInput } from "./IssueCashReceiptCustomerIn
 export type { IssueCashReceiptResponse } from "./IssueCashReceiptResponse"
 export type { IssueFailedCashReceipt } from "./IssueFailedCashReceipt"
 export type { IssuedCashReceipt } from "./IssuedCashReceipt"
+/** @ignore */
 export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): CashReceiptClient {
 	return {
 		getCashReceiptByPaymentId: async (

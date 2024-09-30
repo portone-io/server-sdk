@@ -38,6 +38,7 @@ export type { GetPlatformPartnersBody } from "./GetPlatformPartnersBody"
 export type { GetPlatformPartnersResponse } from "./GetPlatformPartnersResponse"
 export type { RecoverPlatformPartnerResponse } from "./RecoverPlatformPartnerResponse"
 export type { UpdatePlatformPartnerResponse } from "./UpdatePlatformPartnerResponse"
+/** @ignore */
 export function PartnerClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PartnerClient {
 	return {
 		getPlatformPartners: async (

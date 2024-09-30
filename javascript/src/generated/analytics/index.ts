@@ -97,6 +97,7 @@ export type { GetAnalyticsPaymentStatusByPgCompanyChartBody } from "./GetAnalyti
 export type { GetAnalyticsPaymentStatusChartBody } from "./GetAnalyticsPaymentStatusChartBody"
 export type { GetAnalyticsPgCompanyChartBody } from "./GetAnalyticsPgCompanyChartBody"
 export type { GetAnalyticsPgCompanyTrendChartBody } from "./GetAnalyticsPgCompanyTrendChartBody"
+/** @ignore */
 export function AnalyticsClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AnalyticsClient {
 	return {
 		getAnalyticsPaymentChart: async (

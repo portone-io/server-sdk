@@ -38,6 +38,7 @@ export type { SelectedChannelType } from "./SelectedChannelType"
 export type { SeparatedAddress } from "./SeparatedAddress"
 export type { SeparatedAddressInput } from "./SeparatedAddressInput"
 export type { SortOrder } from "./SortOrder"
+/** @ignore */
 export function CommonClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): CommonClient {
 	return {
 	}

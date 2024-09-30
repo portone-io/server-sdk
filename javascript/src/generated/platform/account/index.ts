@@ -3,6 +3,7 @@ import type { GetPlatformAccountHolderError } from "#generated/platform/account/
 import type { PlatformAccountHolder } from "#generated/platform/account/PlatformAccountHolder"
 import * as Errors from "#generated/errors"
 export type { PlatformAccountHolder } from "./PlatformAccountHolder"
+/** @ignore */
 export function AccountClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AccountClient {
 	return {
 		getPlatformAccountHolder: async (

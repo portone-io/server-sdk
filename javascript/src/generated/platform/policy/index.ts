@@ -70,6 +70,7 @@ export type { RecoverPlatformDiscountSharePolicyResponse } from "./RecoverPlatfo
 export type { UpdatePlatformAdditionalFeePolicyResponse } from "./UpdatePlatformAdditionalFeePolicyResponse"
 export type { UpdatePlatformContractResponse } from "./UpdatePlatformContractResponse"
 export type { UpdatePlatformDiscountSharePolicyResponse } from "./UpdatePlatformDiscountSharePolicyResponse"
+/** @ignore */
 export function PolicyClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PolicyClient {
 	return {
 		getPlatformDiscountSharePolicies: async (

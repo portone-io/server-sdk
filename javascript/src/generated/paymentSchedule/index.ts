@@ -29,6 +29,7 @@ export type { RevokedPaymentSchedule } from "./RevokedPaymentSchedule"
 export type { ScheduledPaymentSchedule } from "./ScheduledPaymentSchedule"
 export type { StartedPaymentSchedule } from "./StartedPaymentSchedule"
 export type { SucceededPaymentSchedule } from "./SucceededPaymentSchedule"
+/** @ignore */
 export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentScheduleClient {
 	return {
 		getPaymentSchedule: async (

@@ -340,6 +340,7 @@ function writeClientObject(
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
     operations.length > 0 || subpackages.length > 0
   )
+  implWriter.writeLine("/** @ignore */")
   implWriter.writeLine(
     `export function ${
       toPascalCase(pack.category)

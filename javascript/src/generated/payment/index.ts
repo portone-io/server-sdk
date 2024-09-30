@@ -133,6 +133,7 @@ export type { ResendWebhookBody } from "./ResendWebhookBody"
 export type { ResendWebhookResponse } from "./ResendWebhookResponse"
 export type { SucceededPaymentCancellation } from "./SucceededPaymentCancellation"
 export type { VirtualAccountIssuedPayment } from "./VirtualAccountIssuedPayment"
+/** @ignore */
 export function PaymentClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentClient {
 	return {
 		preRegisterPayment: async (

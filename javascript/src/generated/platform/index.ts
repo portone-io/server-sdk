@@ -166,6 +166,7 @@ export type * as Payout from "./payout"
 export type * as BulkPayout from "./bulkPayout"
 export type * as Account from "./account"
 export type * as AccountTransfer from "./accountTransfer"
+/** @ignore */
 export function PlatformClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PlatformClient {
 	return {
 		getPlatform: async (

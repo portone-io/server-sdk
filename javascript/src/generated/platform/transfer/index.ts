@@ -91,6 +91,7 @@ export type { PlatformTransferSummaryPortOnePayment } from "./PlatformTransferSu
 export type { PlatformTransferType } from "./PlatformTransferType"
 export type { PlatformUserDefinedPropertyKeyValue } from "./PlatformUserDefinedPropertyKeyValue"
 export type { TransferParameters } from "./TransferParameters"
+/** @ignore */
 export function TransferClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): TransferClient {
 	return {
 		getPlatformTransfer: async (

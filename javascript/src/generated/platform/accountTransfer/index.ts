@@ -11,6 +11,7 @@ export type { PlatformAccountTransferType } from "./PlatformAccountTransferType"
 export type { PlatformDepositAccountTransfer } from "./PlatformDepositAccountTransfer"
 export type { PlatformPartnerPayoutAccountTransfer } from "./PlatformPartnerPayoutAccountTransfer"
 export type { PlatformRemitAccountTransfer } from "./PlatformRemitAccountTransfer"
+/** @ignore */
 export function AccountTransferClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AccountTransferClient {
 	return {
 		getPlatformAccountTransfers: async (
