@@ -14,13 +14,18 @@ import { writeOperation } from "./operation.ts"
  */
 export function generateProject(projectRoot: string, pack: Package): string[] {
   const srcPath = path.join(projectRoot, "src/generated")
+  fs.ensureDirSync(srcPath)
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
+  const oneOfErrors = new Set<string>()
+  const variantErrors = new Set<string>()
+  collectErrors(pack, entityMap, oneOfErrors, variantErrors)
+  generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
   generateEntityDirectory(srcPath, pack, categoryMap)
   generateClient(srcPath, pack)
-  generateErrors(srcPath, pack, categoryMap, entityMap)
   generateIndex(srcPath, pack)
-  generateCategoryIndex(srcPath, pack, categoryMap, entityMap)
+  const omitEntities = oneOfErrors.union(variantErrors)
+  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities)
   const entrypoints = [...new Set(categoryMap.values())].map((category) =>
     category.replace(".", "/")
   )
@@ -34,7 +39,8 @@ function generateIndex(srcPath: string, pack: Package) {
   writer.writeLine(`export * from "./client"`)
   for (const subpackage of pack.subpackages) {
     writer.writeLine(
-      `export * as ${toPascalCase(subpackage.category)
+      `export * as ${
+        toPascalCase(subpackage.category)
       } from "./${subpackage.category}"`,
     )
   }
@@ -64,11 +70,10 @@ export class UnknownError extends PortOneError {
 
 function generateErrors(
   srcPath: string,
-  pack: Package,
+  errors: string[],
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
 ) {
-  const errors = collectErrors(pack)
   const writer = Writer()
   const crossRef = new Set<string>()
   for (const error of errors) {
@@ -195,15 +200,45 @@ function generateErrors(
   Deno.writeTextFileSync(errorPath, writer.content)
 }
 
-function collectErrors(pack: Package, errors: string[] = []): string[] {
-  for (const entity of pack.entities) {
-    if (!entity.name.endsWith("Error") || entity.type !== "object") continue
-    errors.push(entity.name)
+function collectErrors(
+  pack: Package,
+  entityMap: Map<string, Definition>,
+  oneOfErrors: Set<string>,
+  variantErrors: Set<string>,
+) {
+  for (const operation of pack.operations) {
+    oneOfErrors.add(operation.errors)
+    const errorEntity = entityMap.get(operation.errors)
+    if (!errorEntity) {
+      throw new Error("unrecognized error", { cause: { operation } })
+    }
+    switch (errorEntity.type) {
+      case "object":
+        variantErrors.add(errorEntity.name)
+        break
+      case "oneOf":
+        for (const variant of errorEntity.variants) {
+          variantErrors.add(variant.name)
+        }
+        break
+      case "string":
+      case "number":
+      case "boolean":
+      case "ref":
+      case "discriminant":
+      case "enum":
+      case "array":
+      case "integer":
+        continue
+      default:
+        throw new Error("unrecognized error type", {
+          cause: { error: errorEntity },
+        })
+    }
   }
   for (const subpackage of pack.subpackages) {
-    collectErrors(subpackage, errors)
+    collectErrors(subpackage, entityMap, oneOfErrors, variantErrors)
   }
-  return errors
 }
 
 const PortOneClientInit = `
@@ -271,7 +306,11 @@ function writeRootClientObject(
     operations.length > 0 || subpackages.length > 0
   )
   for (const subpackage of subpackages) {
-    writer.writeLine(`${subpackage.category}: ${toPascalCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client(secret, userAgent, baseUrl, storeId),`)
+    writer.writeLine(
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client(secret, userAgent, baseUrl, storeId),`,
+    )
   }
   writer.outdent()
   writer.writeLine("}")
@@ -282,7 +321,9 @@ function writeRootClientObject(
   writer.indent()
   for (const subpackage of subpackages) {
     writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client`,
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
     )
   }
   writer.outdent()
@@ -295,11 +336,17 @@ function writeClientObject(
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
 ) {
-  const typeWriter = Writer();
+  const typeWriter = Writer()
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
     operations.length > 0 || subpackages.length > 0
   )
-  implWriter.writeLine(`export function ${toPascalCase(pack.category)}Client(secret: string, userAgent: string, baseUrl?: string, storeId?: string): ${toPascalCase(pack.category)}Client {`)
+  implWriter.writeLine(
+    `export function ${
+      toPascalCase(pack.category)
+    }Client(secret: string, userAgent: string, baseUrl?: string, storeId?: string): ${
+      toPascalCase(pack.category)
+    }Client {`,
+  )
   implWriter.indent()
   implWriter.writeLine("return {")
   implWriter.indent()
@@ -316,10 +363,14 @@ function writeClientObject(
   }
   for (const subpackage of subpackages) {
     implWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client(secret, userAgent, baseUrl, storeId),`,
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client(secret, userAgent, baseUrl, storeId),`,
     )
     typeWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client`,
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
     )
   }
   typeWriter.outdent()
@@ -328,8 +379,9 @@ function writeClientObject(
   implWriter.writeLine("}")
   implWriter.outdent()
   implWriter.writeLine("}")
-  for (const line of typeWriter.content.split("\n"))
+  for (const line of typeWriter.content.split("\n")) {
     implWriter.writeLine(line)
+  }
 }
 
 function generateEntityDirectory(
@@ -353,19 +405,27 @@ function generateCategoryIndex(
   pack: Package,
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
+  omitEntities: Set<string>,
 ) {
   const crossRef = new Set<string>()
   const writer = Writer()
   for (const entity of pack.entities) {
-    if (entity.name.endsWith("Error")) continue;
+    if (omitEntities.has(entity.name)) continue
     writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
   }
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
     fs.ensureDirSync(subPath)
-    generateCategoryIndex(subPath, subpackage, categoryMap, entityMap)
+    generateCategoryIndex(
+      subPath,
+      subpackage,
+      categoryMap,
+      entityMap,
+      omitEntities,
+    )
     writer.writeLine(
-      `export type * as ${toPascalCase(subpackage.category)
+      `export type * as ${
+        toPascalCase(subpackage.category)
       } from "./${subpackage.category}"`,
     )
   }
@@ -373,14 +433,23 @@ function generateCategoryIndex(
   const sortedRef = [...crossRef].toSorted()
   const importWriter = Writer()
   for (const ref of sortedRef) {
-    const category = categoryMap.get(ref);
-    if (!category)
+    const category = categoryMap.get(ref)
+    if (!category) {
       throw new Error("unrecognized category", { cause: { ref } })
-    importWriter.writeLine(`import type { ${ref} } from "#generated/${category.split('.').join("/")}/${ref}"`)
+    }
+    importWriter.writeLine(
+      `import type { ${ref} } from "#generated/${
+        category.split(".").join("/")
+      }/${ref}"`,
+    )
   }
   importWriter.writeLine(`import * as Errors from "#generated/errors"`)
   for (const subpackage of pack.subpackages) {
-    importWriter.writeLine(`import * as ${toPascalCase(subpackage.category)} from "./${subpackage.category}"`)
+    importWriter.writeLine(
+      `import * as ${
+        toPascalCase(subpackage.category)
+      } from "./${subpackage.category}"`,
+    )
   }
   if (pack.category !== "root") {
     const indexPath = path.join(packagePath, "index.ts")

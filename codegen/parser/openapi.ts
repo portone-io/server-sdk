@@ -83,10 +83,23 @@ export function packageSchema(): Package {
     }
   }
 
+  for (const [name, definition] of Object.entries(OpenAPI.components.schemas)) {
+    definitionUsages.set(name, {
+      definition: parseDefinition(name, definition),
+      categories: new Set(),
+    })
+  }
+
   const shakeOperation = (
     operation: Operation,
   ) => {
     const { category, params, response, errors } = operation
+    for (const property of params.path) {
+      shakeDefinition(category, property)
+    }
+    for (const property of params.query) {
+      shakeDefinition(category, property)
+    }
     if (params.body) {
       shakeDefinition(category, params.body)
     }
@@ -111,13 +124,6 @@ export function packageSchema(): Package {
       usage.categories.add(category)
       shakeDefinition(category, usage.definition)
     }
-  }
-
-  for (const [name, definition] of Object.entries(OpenAPI.components.schemas)) {
-    definitionUsages.set(name, {
-      definition: parseDefinition(name, definition),
-      categories: new Set(),
-    })
   }
   for (const { definition } of definitionUsages.values()) {
     if (definition.type === "oneOf") {
@@ -187,6 +193,7 @@ export function packageSchema(): Package {
   }
   for (const { definition, categories } of definitionUsages.values()) {
     const categoryList = [...categories].map(normalizeCategory)
+    if (categoryList.length === 0) continue
     const category = categoryList.length === 1
       ? categoryList[0]
       : categoryList.every((category) => category.startsWith("platform"))
