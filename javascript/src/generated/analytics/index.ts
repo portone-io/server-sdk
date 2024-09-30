@@ -1,79 +1,3 @@
-export type * from "./AnalyticsAverageAmountChart"
-export type * from "./AnalyticsAverageAmountChartStat"
-export type * from "./AnalyticsAverageAmountChartSummary"
-export type * from "./AnalyticsCancellationRate"
-export type * from "./AnalyticsCardChart"
-export type * from "./AnalyticsCardChartStat"
-export type * from "./AnalyticsCardCompanyChart"
-export type * from "./AnalyticsCardCompanyChartRemainderStat"
-export type * from "./AnalyticsCardCompanyChartStat"
-export type * from "./AnalyticsCardCompanyChartSummary"
-export type * from "./AnalyticsEasyPayChart"
-export type * from "./AnalyticsEasyPayChartStat"
-export type * from "./AnalyticsEasyPayProviderChart"
-export type * from "./AnalyticsEasyPayProviderChartRemainderStat"
-export type * from "./AnalyticsEasyPayProviderChartStat"
-export type * from "./AnalyticsEasyPayProviderChartSummary"
-export type * from "./AnalyticsOverseasPaymentUsage"
-export type * from "./AnalyticsPaymentChart"
-export type * from "./AnalyticsPaymentChartInsight"
-export type * from "./AnalyticsPaymentChartStat"
-export type * from "./AnalyticsPaymentMethodChart"
-export type * from "./AnalyticsPaymentMethodChartStat"
-export type * from "./AnalyticsPaymentMethodTrendChart"
-export type * from "./AnalyticsPaymentMethodTrendChartStat"
-export type * from "./AnalyticsPaymentStatusByPaymentClientChart"
-export type * from "./AnalyticsPaymentStatusByPaymentClientChartStat"
-export type * from "./AnalyticsPaymentStatusByPaymentMethodChart"
-export type * from "./AnalyticsPaymentStatusByPaymentMethodChartStat"
-export type * from "./AnalyticsPaymentStatusByPgCompanyChart"
-export type * from "./AnalyticsPaymentStatusByPgCompanyChartStat"
-export type * from "./AnalyticsPaymentStatusChart"
-export type * from "./AnalyticsPaymentStatusChartStat"
-export type * from "./AnalyticsPgCompanyChart"
-export type * from "./AnalyticsPgCompanyChartStat"
-export type * from "./AnalyticsPgCompanyTrendChart"
-export type * from "./AnalyticsPgCompanyTrendChartStat"
-export type * from "./AnalyticsTimeGranularity"
-export type * from "./AnalyticsTimeGranularityDay"
-export type * from "./AnalyticsTimeGranularityHour"
-export type * from "./AnalyticsTimeGranularityMinute"
-export type * from "./AnalyticsTimeGranularityMonth"
-export type * from "./AnalyticsTimeGranularityWeek"
-export type * from "./CardCompany"
-export type * from "./GetAnalyticsAverageAmountChartBody"
-export type * from "./GetAnalyticsCancellationRateBody"
-export type * from "./GetAnalyticsCancellationRateError"
-export type * from "./GetAnalyticsCardChartBody"
-export type * from "./GetAnalyticsCardChartError"
-export type * from "./GetAnalyticsCardCompanyChartBody"
-export type * from "./GetAnalyticsCardCompanyChartError"
-export type * from "./GetAnalyticsEasyPayChartBody"
-export type * from "./GetAnalyticsEasyPayChartError"
-export type * from "./GetAnalyticsEasyPayProviderChartBody"
-export type * from "./GetAnalyticsEasyPayProviderChartError"
-export type * from "./GetAnalyticsOverseasPaymentUsageError"
-export type * from "./GetAnalyticsPaymentChartBody"
-export type * from "./GetAnalyticsPaymentChartError"
-export type * from "./GetAnalyticsPaymentChartInsightBody"
-export type * from "./GetAnalyticsPaymentChartInsightError"
-export type * from "./GetAnalyticsPaymentMethodChartBody"
-export type * from "./GetAnalyticsPaymentMethodTrendChartBody"
-export type * from "./GetAnalyticsPaymentStatusByPaymentClientChartBody"
-export type * from "./GetAnalyticsPaymentStatusByPaymentMethodChartBody"
-export type * from "./GetAnalyticsPaymentStatusByPgCompanyChartBody"
-export type * from "./GetAnalyticsPaymentStatusChartBody"
-export type * from "./GetAnalyticsPgCompanyChartBody"
-export type * from "./GetAnalyticsPgCompanyTrendChartBody"
-export type * from "./GetAverageAmountChartError"
-export type * from "./GetPaymentMethodChartError"
-export type * from "./GetPaymentMethodTrendChartError"
-export type * from "./GetPaymentStatusByPaymentClientChartError"
-export type * from "./GetPaymentStatusByPaymentMethodChartError"
-export type * from "./GetPaymentStatusByPgCompanyChartError"
-export type * from "./GetPaymentStatusChartError"
-export type * from "./GetPgCompanyChartError"
-export type * from "./GetPgCompanyTrendChartError"
 import type { AnalyticsAverageAmountChart } from "#generated/analytics/AnalyticsAverageAmountChart"
 import type { AnalyticsCancellationRate } from "#generated/analytics/AnalyticsCancellationRate"
 import type { AnalyticsCardChart } from "#generated/analytics/AnalyticsCardChart"
@@ -95,9 +19,787 @@ import type { AnalyticsTimeGranularity } from "#generated/analytics/AnalyticsTim
 import type { CardCompany } from "#generated/analytics/CardCompany"
 import type { Currency } from "#generated/common/Currency"
 import type { EasyPayProvider } from "#generated/common/EasyPayProvider"
+import type { GetAnalyticsCancellationRateError } from "#generated/analytics/GetAnalyticsCancellationRateError"
+import type { GetAnalyticsCardChartError } from "#generated/analytics/GetAnalyticsCardChartError"
+import type { GetAnalyticsCardCompanyChartError } from "#generated/analytics/GetAnalyticsCardCompanyChartError"
+import type { GetAnalyticsEasyPayChartError } from "#generated/analytics/GetAnalyticsEasyPayChartError"
+import type { GetAnalyticsEasyPayProviderChartError } from "#generated/analytics/GetAnalyticsEasyPayProviderChartError"
+import type { GetAnalyticsOverseasPaymentUsageError } from "#generated/analytics/GetAnalyticsOverseasPaymentUsageError"
+import type { GetAnalyticsPaymentChartError } from "#generated/analytics/GetAnalyticsPaymentChartError"
+import type { GetAnalyticsPaymentChartInsightError } from "#generated/analytics/GetAnalyticsPaymentChartInsightError"
+import type { GetAverageAmountChartError } from "#generated/analytics/GetAverageAmountChartError"
+import type { GetPaymentMethodChartError } from "#generated/analytics/GetPaymentMethodChartError"
+import type { GetPaymentMethodTrendChartError } from "#generated/analytics/GetPaymentMethodTrendChartError"
+import type { GetPaymentStatusByPaymentClientChartError } from "#generated/analytics/GetPaymentStatusByPaymentClientChartError"
+import type { GetPaymentStatusByPaymentMethodChartError } from "#generated/analytics/GetPaymentStatusByPaymentMethodChartError"
+import type { GetPaymentStatusByPgCompanyChartError } from "#generated/analytics/GetPaymentStatusByPgCompanyChartError"
+import type { GetPaymentStatusChartError } from "#generated/analytics/GetPaymentStatusChartError"
+import type { GetPgCompanyChartError } from "#generated/analytics/GetPgCompanyChartError"
+import type { GetPgCompanyTrendChartError } from "#generated/analytics/GetPgCompanyTrendChartError"
 import type { PgCompany } from "#generated/common/PgCompany"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { AnalyticsAverageAmountChart } from "./AnalyticsAverageAmountChart"
+export type { AnalyticsAverageAmountChartStat } from "./AnalyticsAverageAmountChartStat"
+export type { AnalyticsAverageAmountChartSummary } from "./AnalyticsAverageAmountChartSummary"
+export type { AnalyticsCancellationRate } from "./AnalyticsCancellationRate"
+export type { AnalyticsCardChart } from "./AnalyticsCardChart"
+export type { AnalyticsCardChartStat } from "./AnalyticsCardChartStat"
+export type { AnalyticsCardCompanyChart } from "./AnalyticsCardCompanyChart"
+export type { AnalyticsCardCompanyChartRemainderStat } from "./AnalyticsCardCompanyChartRemainderStat"
+export type { AnalyticsCardCompanyChartStat } from "./AnalyticsCardCompanyChartStat"
+export type { AnalyticsCardCompanyChartSummary } from "./AnalyticsCardCompanyChartSummary"
+export type { AnalyticsEasyPayChart } from "./AnalyticsEasyPayChart"
+export type { AnalyticsEasyPayChartStat } from "./AnalyticsEasyPayChartStat"
+export type { AnalyticsEasyPayProviderChart } from "./AnalyticsEasyPayProviderChart"
+export type { AnalyticsEasyPayProviderChartRemainderStat } from "./AnalyticsEasyPayProviderChartRemainderStat"
+export type { AnalyticsEasyPayProviderChartStat } from "./AnalyticsEasyPayProviderChartStat"
+export type { AnalyticsEasyPayProviderChartSummary } from "./AnalyticsEasyPayProviderChartSummary"
+export type { AnalyticsOverseasPaymentUsage } from "./AnalyticsOverseasPaymentUsage"
+export type { AnalyticsPaymentChart } from "./AnalyticsPaymentChart"
+export type { AnalyticsPaymentChartInsight } from "./AnalyticsPaymentChartInsight"
+export type { AnalyticsPaymentChartStat } from "./AnalyticsPaymentChartStat"
+export type { AnalyticsPaymentMethodChart } from "./AnalyticsPaymentMethodChart"
+export type { AnalyticsPaymentMethodChartStat } from "./AnalyticsPaymentMethodChartStat"
+export type { AnalyticsPaymentMethodTrendChart } from "./AnalyticsPaymentMethodTrendChart"
+export type { AnalyticsPaymentMethodTrendChartStat } from "./AnalyticsPaymentMethodTrendChartStat"
+export type { AnalyticsPaymentStatusByPaymentClientChart } from "./AnalyticsPaymentStatusByPaymentClientChart"
+export type { AnalyticsPaymentStatusByPaymentClientChartStat } from "./AnalyticsPaymentStatusByPaymentClientChartStat"
+export type { AnalyticsPaymentStatusByPaymentMethodChart } from "./AnalyticsPaymentStatusByPaymentMethodChart"
+export type { AnalyticsPaymentStatusByPaymentMethodChartStat } from "./AnalyticsPaymentStatusByPaymentMethodChartStat"
+export type { AnalyticsPaymentStatusByPgCompanyChart } from "./AnalyticsPaymentStatusByPgCompanyChart"
+export type { AnalyticsPaymentStatusByPgCompanyChartStat } from "./AnalyticsPaymentStatusByPgCompanyChartStat"
+export type { AnalyticsPaymentStatusChart } from "./AnalyticsPaymentStatusChart"
+export type { AnalyticsPaymentStatusChartStat } from "./AnalyticsPaymentStatusChartStat"
+export type { AnalyticsPgCompanyChart } from "./AnalyticsPgCompanyChart"
+export type { AnalyticsPgCompanyChartStat } from "./AnalyticsPgCompanyChartStat"
+export type { AnalyticsPgCompanyTrendChart } from "./AnalyticsPgCompanyTrendChart"
+export type { AnalyticsPgCompanyTrendChartStat } from "./AnalyticsPgCompanyTrendChartStat"
+export type { AnalyticsTimeGranularity } from "./AnalyticsTimeGranularity"
+export type { AnalyticsTimeGranularityDay } from "./AnalyticsTimeGranularityDay"
+export type { AnalyticsTimeGranularityHour } from "./AnalyticsTimeGranularityHour"
+export type { AnalyticsTimeGranularityMinute } from "./AnalyticsTimeGranularityMinute"
+export type { AnalyticsTimeGranularityMonth } from "./AnalyticsTimeGranularityMonth"
+export type { AnalyticsTimeGranularityWeek } from "./AnalyticsTimeGranularityWeek"
+export type { CardCompany } from "./CardCompany"
+export type { GetAnalyticsAverageAmountChartBody } from "./GetAnalyticsAverageAmountChartBody"
+export type { GetAnalyticsCancellationRateBody } from "./GetAnalyticsCancellationRateBody"
+export type { GetAnalyticsCardChartBody } from "./GetAnalyticsCardChartBody"
+export type { GetAnalyticsCardCompanyChartBody } from "./GetAnalyticsCardCompanyChartBody"
+export type { GetAnalyticsEasyPayChartBody } from "./GetAnalyticsEasyPayChartBody"
+export type { GetAnalyticsEasyPayProviderChartBody } from "./GetAnalyticsEasyPayProviderChartBody"
+export type { GetAnalyticsPaymentChartBody } from "./GetAnalyticsPaymentChartBody"
+export type { GetAnalyticsPaymentChartInsightBody } from "./GetAnalyticsPaymentChartInsightBody"
+export type { GetAnalyticsPaymentMethodChartBody } from "./GetAnalyticsPaymentMethodChartBody"
+export type { GetAnalyticsPaymentMethodTrendChartBody } from "./GetAnalyticsPaymentMethodTrendChartBody"
+export type { GetAnalyticsPaymentStatusByPaymentClientChartBody } from "./GetAnalyticsPaymentStatusByPaymentClientChartBody"
+export type { GetAnalyticsPaymentStatusByPaymentMethodChartBody } from "./GetAnalyticsPaymentStatusByPaymentMethodChartBody"
+export type { GetAnalyticsPaymentStatusByPgCompanyChartBody } from "./GetAnalyticsPaymentStatusByPgCompanyChartBody"
+export type { GetAnalyticsPaymentStatusChartBody } from "./GetAnalyticsPaymentStatusChartBody"
+export type { GetAnalyticsPgCompanyChartBody } from "./GetAnalyticsPgCompanyChartBody"
+export type { GetAnalyticsPgCompanyTrendChartBody } from "./GetAnalyticsPgCompanyTrendChartBody"
+export function AnalyticsClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AnalyticsClient {
+	return {
+		getAnalyticsPaymentChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			timeGranularity: AnalyticsTimeGranularity,
+			excludeCancelled?: boolean,
+		): Promise<AnalyticsPaymentChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsPaymentChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsPaymentChartInsight: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			timezoneHourOffset: number,
+			excludeCancelled?: boolean,
+		): Promise<AnalyticsPaymentChartInsight> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timezoneHourOffset,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-insight?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsPaymentChartInsightError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAverageAmountChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+		): Promise<AnalyticsAverageAmountChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/average-amount?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAverageAmountChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentMethodChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+		): Promise<AnalyticsPaymentMethodChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-method?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentMethodChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentMethodTrendChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+		): Promise<AnalyticsPaymentMethodTrendChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-method-trend?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentMethodTrendChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsCardChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+		): Promise<AnalyticsCardChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/card?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsCardChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsCardCompanyChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+			cardCompanies: CardCompany[],
+			excludesFromRemainders: CardCompany[],
+		): Promise<AnalyticsCardCompanyChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+				cardCompanies,
+				excludesFromRemainders,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/card-company?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsCardCompanyChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsEasyPayChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+		): Promise<AnalyticsEasyPayChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/easy-pay?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsEasyPayChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsEasyPayProviderChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+			easyPayProviders: EasyPayProvider[],
+			excludesFromRemainders: EasyPayProvider[],
+		): Promise<AnalyticsEasyPayProviderChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+				easyPayProviders,
+				excludesFromRemainders,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/easy-pay-provider?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsEasyPayProviderChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPgCompanyChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+		): Promise<AnalyticsPgCompanyChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/pg-company?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPgCompanyChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPgCompanyTrendChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+			excludeCancelled: boolean,
+			timeGranularity: AnalyticsTimeGranularity,
+			pgCompanies: PgCompany[],
+		): Promise<AnalyticsPgCompanyTrendChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+				excludeCancelled,
+				timeGranularity,
+				pgCompanies,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/pg-company-trend?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPgCompanyTrendChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsOverseasPaymentUsage: async (
+		): Promise<AnalyticsOverseasPaymentUsage> => {
+			const response = await fetch(
+				new URL("/analytics/overseas-payment-usage", baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsOverseasPaymentUsageError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAnalyticsCancellationRate: async (
+			from: string,
+			until: string,
+			currency: Currency,
+		): Promise<AnalyticsCancellationRate> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/cancellation-rate?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAnalyticsCancellationRateError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentStatusChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+		): Promise<AnalyticsPaymentStatusChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-status?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentStatusChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentStatusByPaymentMethodChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+		): Promise<AnalyticsPaymentStatusByPaymentMethodChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-status/by-method?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentStatusByPaymentMethodChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentStatusByPgCompanyChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+		): Promise<AnalyticsPaymentStatusByPgCompanyChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-status/by-pg-company?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentStatusByPgCompanyChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentStatusByPaymentClientChart: async (
+			from: string,
+			until: string,
+			currency: Currency,
+		): Promise<AnalyticsPaymentStatusByPaymentClientChart> => {
+			const requestBody = JSON.stringify({
+				from,
+				until,
+				currency,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/analytics/charts/payment-status/by-payment-client?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentStatusByPaymentClientChartError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type AnalyticsClient = {
 	/**
 	 * 고객사의 결제 현황을 조회합니다.
 	 *
@@ -874,3 +1576,4 @@ export type Operations = {
 		currency: Currency,
 	) => Promise<AnalyticsPaymentStatusByPaymentClientChart>
 }
+

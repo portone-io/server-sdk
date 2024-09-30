@@ -14,12 +14,18 @@ import { writeOperation } from "./operation.ts"
  */
 export function generateProject(projectRoot: string, pack: Package): string[] {
   const srcPath = path.join(projectRoot, "src/generated")
+  fs.ensureDirSync(srcPath)
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
+  const oneOfErrors = new Set<string>()
+  const variantErrors = new Set<string>()
+  collectErrors(pack, entityMap, oneOfErrors, variantErrors)
+  generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
   generateEntityDirectory(srcPath, pack, categoryMap)
-  generateClient(srcPath, pack, categoryMap, entityMap)
-  generateErrors(srcPath, pack, categoryMap, entityMap)
+  generateClient(srcPath, pack)
   generateIndex(srcPath, pack)
+  const omitEntities = oneOfErrors.union(variantErrors)
+  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities)
   const entrypoints = [...new Set(categoryMap.values())].map((category) =>
     category.replace(".", "/")
   )
@@ -64,11 +70,10 @@ export class UnknownError extends PortOneError {
 
 function generateErrors(
   srcPath: string,
-  pack: Package,
+  errors: string[],
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
 ) {
-  const errors = collectErrors(pack)
   const writer = Writer()
   const crossRef = new Set<string>()
   for (const error of errors) {
@@ -173,6 +178,7 @@ function generateErrors(
       writer.writeLine(`readonly ${name}: ${intoInlineTypeName(property)}`)
     }
     writer.writeLine("")
+    writer.writeLine("/** @ignore */")
     writer.writeLine(`constructor(error: Internal${error}) {`)
     writer.indent()
     if (definition.properties.some(({ name }) => name === "message")) {
@@ -194,15 +200,45 @@ function generateErrors(
   Deno.writeTextFileSync(errorPath, writer.content)
 }
 
-function collectErrors(pack: Package, errors: string[] = []): string[] {
-  for (const entity of pack.entities) {
-    if (!entity.name.endsWith("Error") || entity.type !== "object") continue
-    errors.push(entity.name)
+function collectErrors(
+  pack: Package,
+  entityMap: Map<string, Definition>,
+  oneOfErrors: Set<string>,
+  variantErrors: Set<string>,
+) {
+  for (const operation of pack.operations) {
+    oneOfErrors.add(operation.errors)
+    const errorEntity = entityMap.get(operation.errors)
+    if (!errorEntity) {
+      throw new Error("unrecognized error", { cause: { operation } })
+    }
+    switch (errorEntity.type) {
+      case "object":
+        variantErrors.add(errorEntity.name)
+        break
+      case "oneOf":
+        for (const variant of errorEntity.variants) {
+          variantErrors.add(variant.name)
+        }
+        break
+      case "string":
+      case "number":
+      case "boolean":
+      case "ref":
+      case "discriminant":
+      case "enum":
+      case "array":
+      case "integer":
+        continue
+      default:
+        throw new Error("unrecognized error type", {
+          cause: { error: errorEntity },
+        })
+    }
   }
   for (const subpackage of pack.subpackages) {
-    collectErrors(subpackage, errors)
+    collectErrors(subpackage, entityMap, oneOfErrors, variantErrors)
   }
-  return errors
 }
 
 const PortOneClientInit = `
@@ -222,8 +258,6 @@ export type PortOneClientInit = {
 function generateClient(
   srcPath: string,
   pack: Package,
-  categoryMap: Map<string, string>,
-  entityMap: Map<string, Definition>,
 ) {
   const typeWriter = Writer()
   const writer = Writer()
@@ -233,13 +267,13 @@ function generateClient(
       .toSorted()
   ) {
     writer.writeLine(
-      `import type * as ${toPascalCase(subpackage)} from "./${subpackage}"`,
+      `import * as ${toPascalCase(subpackage)} from "./${subpackage}"`,
     )
   }
   for (const line of PortOneClientInit.split("\n")) {
     writer.writeLine(line)
   }
-  writeRootClientObject(srcPath, writer, pack, categoryMap, entityMap)
+  writeRootClientObject(writer, pack)
   const operationPath = path.join(srcPath, "client.ts")
   Deno.writeTextFileSync(operationPath, writer.content + typeWriter.content)
 }
@@ -256,11 +290,8 @@ export function PortOneClient(
 ): PortOneClient {`
 
 function writeRootClientObject(
-  srcPath: string,
   writer: Writer,
   pack: Package,
-  categoryMap: Map<string, string>,
-  entityMap: Map<string, Definition>,
 ) {
   for (const line of PortOneClientHead.split("\n")) {
     writer.writeLine(line)
@@ -275,17 +306,11 @@ function writeRootClientObject(
     operations.length > 0 || subpackages.length > 0
   )
   for (const subpackage of subpackages) {
-    writer.writeLine(`${subpackage.category}: {`)
-    writer.indent()
-    writeClientObject(
-      srcPath,
-      writer,
-      subpackage,
-      categoryMap,
-      entityMap,
+    writer.writeLine(
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client(secret, userAgent, baseUrl, storeId),`,
     )
-    writer.outdent()
-    writer.writeLine("},")
   }
   writer.outdent()
   writer.writeLine("}")
@@ -296,7 +321,9 @@ function writeRootClientObject(
   writer.indent()
   for (const subpackage of subpackages) {
     writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.Operations`,
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
     )
   }
   writer.outdent()
@@ -304,71 +331,56 @@ function writeRootClientObject(
 }
 
 function writeClientObject(
-  parentPath: string,
   implWriter: Writer,
   pack: Package,
-  categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
+  crossRef: Set<string>,
 ) {
-  const currentPath = path.join(parentPath, pack.category)
-  const indexPath = path.join(currentPath, "index.ts")
   const typeWriter = Writer()
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
     operations.length > 0 || subpackages.length > 0
   )
-  typeWriter.writeLine("")
-  typeWriter.writeLine("export type Operations = {")
+  implWriter.writeLine(
+    `export function ${
+      toPascalCase(pack.category)
+    }Client(secret: string, userAgent: string, baseUrl?: string, storeId?: string): ${
+      toPascalCase(pack.category)
+    }Client {`,
+  )
+  implWriter.indent()
+  implWriter.writeLine("return {")
+  implWriter.indent()
+  typeWriter.writeLine(`export type ${toPascalCase(pack.category)}Client = {`)
   typeWriter.indent()
-  const crossRef = new Set<string>()
   for (const operation of pack.operations) {
     writeOperation(
       implWriter,
       typeWriter,
       operation,
-      categoryMap,
       entityMap,
       crossRef,
     )
   }
   for (const subpackage of subpackages) {
+    implWriter.writeLine(
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client(secret, userAgent, baseUrl, storeId),`,
+    )
     typeWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.Operations`,
+      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
     )
   }
   typeWriter.outdent()
   typeWriter.writeLine("}")
-  const sortedRef = [...crossRef]
-  sortedRef.sort()
-  const imports = sortedRef.map((ref) => {
-    const path = categoryMap.get(ref)
-    if (!path) {
-      throw new Error("unrecognized reference", { cause: { ref } })
-    }
-    return `import type { ${ref} } from "#generated/${
-      path.replace(".", "/")
-    }/${ref}"`
-  }).concat(
-    subpackages.map(({ category }) =>
-      `import type * as ${toPascalCase(category)} from "./${category}"`
-    ),
-  ).join("\n")
-  Deno.writeTextFileSync(
-    indexPath,
-    `${imports}\n${typeWriter.content}`,
-    { append: true },
-  )
-  for (const subpackage of subpackages) {
-    implWriter.writeLine(`${subpackage.category}: {`)
-    implWriter.indent()
-    writeClientObject(
-      currentPath,
-      implWriter,
-      subpackage,
-      categoryMap,
-      entityMap,
-    )
-    implWriter.outdent()
-    implWriter.writeLine("},")
+  implWriter.outdent()
+  implWriter.writeLine("}")
+  implWriter.outdent()
+  implWriter.writeLine("}")
+  for (const line of typeWriter.content.split("\n")) {
+    implWriter.writeLine(line)
   }
 }
 
@@ -377,25 +389,71 @@ function generateEntityDirectory(
   pack: Package,
   categoryMap: Map<string, string>,
 ) {
-  const indexWriter = Writer()
   for (const entity of pack.entities) {
     const entityPath = path.join(packagePath, `${entity.name}.ts`)
-    indexWriter.writeLine(`export type * from "./${entity.name}"`)
     Deno.writeTextFileSync(entityPath, generateEntity(categoryMap, entity))
   }
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
     fs.ensureDirSync(subPath)
     generateEntityDirectory(subPath, subpackage, categoryMap)
-    indexWriter.writeLine(
+  }
+}
+
+function generateCategoryIndex(
+  packagePath: string,
+  pack: Package,
+  categoryMap: Map<string, string>,
+  entityMap: Map<string, Definition>,
+  omitEntities: Set<string>,
+) {
+  const crossRef = new Set<string>()
+  const writer = Writer()
+  for (const entity of pack.entities) {
+    if (omitEntities.has(entity.name)) continue
+    writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
+  }
+  for (const subpackage of pack.subpackages) {
+    const subPath = path.join(packagePath, subpackage.category)
+    fs.ensureDirSync(subPath)
+    generateCategoryIndex(
+      subPath,
+      subpackage,
+      categoryMap,
+      entityMap,
+      omitEntities,
+    )
+    writer.writeLine(
       `export type * as ${
         toPascalCase(subpackage.category)
       } from "./${subpackage.category}"`,
     )
   }
-  const indexPath = path.join(packagePath, "index.ts")
+  writeClientObject(writer, pack, entityMap, crossRef)
+  const sortedRef = [...crossRef].toSorted()
+  const importWriter = Writer()
+  for (const ref of sortedRef) {
+    const category = categoryMap.get(ref)
+    if (!category) {
+      throw new Error("unrecognized category", { cause: { ref } })
+    }
+    importWriter.writeLine(
+      `import type { ${ref} } from "#generated/${
+        category.split(".").join("/")
+      }/${ref}"`,
+    )
+  }
+  importWriter.writeLine(`import * as Errors from "#generated/errors"`)
+  for (const subpackage of pack.subpackages) {
+    importWriter.writeLine(
+      `import * as ${
+        toPascalCase(subpackage.category)
+      } from "./${subpackage.category}"`,
+    )
+  }
   if (pack.category !== "root") {
-    Deno.writeTextFileSync(indexPath, indexWriter.content)
+    const indexPath = path.join(packagePath, "index.ts")
+    Deno.writeTextFileSync(indexPath, importWriter.content + writer.content)
   }
 }
 

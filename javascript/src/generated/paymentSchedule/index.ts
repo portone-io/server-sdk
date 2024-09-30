@@ -1,39 +1,213 @@
-export type * from "./AlreadyPaidOrWaitingError"
-export type * from "./CreatePaymentScheduleBody"
-export type * from "./CreatePaymentScheduleError"
-export type * from "./CreatePaymentScheduleResponse"
-export type * from "./FailedPaymentSchedule"
-export type * from "./GetPaymentScheduleError"
-export type * from "./GetPaymentSchedulesBody"
-export type * from "./GetPaymentSchedulesError"
-export type * from "./GetPaymentSchedulesResponse"
-export type * from "./PaymentSchedule"
-export type * from "./PaymentScheduleAlreadyProcessedError"
-export type * from "./PaymentScheduleAlreadyRevokedError"
-export type * from "./PaymentScheduleFilterInput"
-export type * from "./PaymentScheduleNotFoundError"
-export type * from "./PaymentScheduleSortBy"
-export type * from "./PaymentScheduleSortInput"
-export type * from "./PaymentScheduleStatus"
-export type * from "./PaymentScheduleSummary"
-export type * from "./PendingPaymentSchedule"
-export type * from "./RevokePaymentSchedulesBody"
-export type * from "./RevokePaymentSchedulesError"
-export type * from "./RevokePaymentSchedulesResponse"
-export type * from "./RevokedPaymentSchedule"
-export type * from "./ScheduledPaymentSchedule"
-export type * from "./StartedPaymentSchedule"
-export type * from "./SucceededPaymentSchedule"
 import type { BillingKeyPaymentInput } from "#generated/common/BillingKeyPaymentInput"
+import type { CreatePaymentScheduleError } from "#generated/paymentSchedule/CreatePaymentScheduleError"
 import type { CreatePaymentScheduleResponse } from "#generated/paymentSchedule/CreatePaymentScheduleResponse"
+import type { GetPaymentScheduleError } from "#generated/paymentSchedule/GetPaymentScheduleError"
+import type { GetPaymentSchedulesError } from "#generated/paymentSchedule/GetPaymentSchedulesError"
 import type { GetPaymentSchedulesResponse } from "#generated/paymentSchedule/GetPaymentSchedulesResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PaymentSchedule } from "#generated/paymentSchedule/PaymentSchedule"
 import type { PaymentScheduleFilterInput } from "#generated/paymentSchedule/PaymentScheduleFilterInput"
 import type { PaymentScheduleSortInput } from "#generated/paymentSchedule/PaymentScheduleSortInput"
+import type { RevokePaymentSchedulesError } from "#generated/paymentSchedule/RevokePaymentSchedulesError"
 import type { RevokePaymentSchedulesResponse } from "#generated/paymentSchedule/RevokePaymentSchedulesResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { CreatePaymentScheduleBody } from "./CreatePaymentScheduleBody"
+export type { CreatePaymentScheduleResponse } from "./CreatePaymentScheduleResponse"
+export type { FailedPaymentSchedule } from "./FailedPaymentSchedule"
+export type { GetPaymentSchedulesBody } from "./GetPaymentSchedulesBody"
+export type { GetPaymentSchedulesResponse } from "./GetPaymentSchedulesResponse"
+export type { PaymentSchedule } from "./PaymentSchedule"
+export type { PaymentScheduleFilterInput } from "./PaymentScheduleFilterInput"
+export type { PaymentScheduleSortBy } from "./PaymentScheduleSortBy"
+export type { PaymentScheduleSortInput } from "./PaymentScheduleSortInput"
+export type { PaymentScheduleStatus } from "./PaymentScheduleStatus"
+export type { PaymentScheduleSummary } from "./PaymentScheduleSummary"
+export type { PendingPaymentSchedule } from "./PendingPaymentSchedule"
+export type { RevokePaymentSchedulesBody } from "./RevokePaymentSchedulesBody"
+export type { RevokePaymentSchedulesResponse } from "./RevokePaymentSchedulesResponse"
+export type { RevokedPaymentSchedule } from "./RevokedPaymentSchedule"
+export type { ScheduledPaymentSchedule } from "./ScheduledPaymentSchedule"
+export type { StartedPaymentSchedule } from "./StartedPaymentSchedule"
+export type { SucceededPaymentSchedule } from "./SucceededPaymentSchedule"
+export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentScheduleClient {
+	return {
+		getPaymentSchedule: async (
+			paymentScheduleId: string,
+		): Promise<PaymentSchedule> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payment-schedules/${paymentScheduleId}?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_SCHEDULE_NOT_FOUND":
+					throw new Errors.PaymentScheduleNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPaymentSchedules: async (
+			options?: {
+				page?: PageInput,
+				sort?: PaymentScheduleSortInput,
+				filter?: PaymentScheduleFilterInput,
+			}
+		): Promise<GetPaymentSchedulesResponse> => {
+			const page = options?.page
+			const sort = options?.sort
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				sort,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payment-schedules?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentSchedulesError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		revokePaymentSchedules: async (
+			options?: {
+				billingKey?: string,
+				scheduleIds?: string[],
+			}
+		): Promise<RevokePaymentSchedulesResponse> => {
+			const billingKey = options?.billingKey
+			const scheduleIds = options?.scheduleIds
+			const requestBody = JSON.stringify({
+				storeId,
+				billingKey,
+				scheduleIds,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payment-schedules?${query}`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RevokePaymentSchedulesError = await response.json()
+				switch (errorResponse.type) {
+				case "BILLING_KEY_ALREADY_DELETED":
+					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
+				case "BILLING_KEY_NOT_FOUND":
+					throw new Errors.BillingKeyNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_PROCESSED":
+					throw new Errors.PaymentScheduleAlreadyProcessedError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_REVOKED":
+					throw new Errors.PaymentScheduleAlreadyRevokedError(errorResponse)
+				case "PAYMENT_SCHEDULE_NOT_FOUND":
+					throw new Errors.PaymentScheduleNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPaymentSchedule: async (
+			paymentId: string,
+			payment: BillingKeyPaymentInput,
+			timeToPay: string,
+		): Promise<CreatePaymentScheduleResponse> => {
+			const requestBody = JSON.stringify({
+				payment,
+				timeToPay,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/schedule`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePaymentScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "ALREADY_PAID_OR_WAITING":
+					throw new Errors.AlreadyPaidOrWaitingError(errorResponse)
+				case "BILLING_KEY_ALREADY_DELETED":
+					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
+				case "BILLING_KEY_NOT_FOUND":
+					throw new Errors.BillingKeyNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
+				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
+					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PaymentScheduleClient = {
 	/**
 	 * 결제 예약 단건 조회
 	 *
@@ -134,3 +308,4 @@ export type Operations = {
 		timeToPay: string,
 	) => Promise<CreatePaymentScheduleResponse>
 }
+

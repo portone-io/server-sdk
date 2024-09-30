@@ -1,137 +1,29 @@
-export type * from "./AlreadyPaidError"
-export type * from "./ApplyEscrowLogisticsError"
-export type * from "./ApplyEscrowLogisticsResponse"
-export type * from "./BeforeRegisteredPaymentEscrow"
-export type * from "./BillingKeyPaymentSummary"
-export type * from "./CancelAmountExceedsCancellableAmountError"
-export type * from "./CancelPaymentBody"
-export type * from "./CancelPaymentBodyRefundAccount"
-export type * from "./CancelPaymentError"
-export type * from "./CancelPaymentResponse"
-export type * from "./CancelRequester"
-export type * from "./CancelTaxAmountExceedsCancellableTaxAmountError"
-export type * from "./CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError"
-export type * from "./CancellableAmountConsistencyBrokenError"
-export type * from "./CancelledPayment"
-export type * from "./CancelledPaymentCashReceipt"
-export type * from "./CancelledPaymentEscrow"
-export type * from "./CloseVirtualAccountError"
-export type * from "./CloseVirtualAccountResponse"
-export type * from "./ConfirmEscrowBody"
-export type * from "./ConfirmEscrowError"
-export type * from "./ConfirmEscrowResponse"
-export type * from "./ConfirmedPaymentEscrow"
-export type * from "./DeliveredPaymentEscrow"
-export type * from "./DiscountAmountExceedsTotalAmountError"
-export type * from "./FailedPayment"
-export type * from "./FailedPaymentCancellation"
-export type * from "./GetAllPaymentsByCursorBody"
-export type * from "./GetAllPaymentsByCursorResponse"
-export type * from "./GetAllPaymentsError"
-export type * from "./GetPaymentError"
-export type * from "./GetPaymentsBody"
-export type * from "./GetPaymentsError"
-export type * from "./GetPaymentsResponse"
-export type * from "./InstantPaymentInput"
-export type * from "./InstantPaymentMethodInput"
-export type * from "./InstantPaymentMethodInputCard"
-export type * from "./InstantPaymentMethodInputVirtualAccount"
-export type * from "./InstantPaymentMethodInputVirtualAccountCashReceiptInfo"
-export type * from "./InstantPaymentMethodInputVirtualAccountExpiry"
-export type * from "./InstantPaymentMethodInputVirtualAccountOption"
-export type * from "./InstantPaymentMethodInputVirtualAccountOptionFixed"
-export type * from "./InstantPaymentMethodInputVirtualAccountOptionType"
-export type * from "./InstantPaymentSummary"
-export type * from "./IssuedPaymentCashReceipt"
-export type * from "./ModifyEscrowLogisticsBody"
-export type * from "./ModifyEscrowLogisticsError"
-export type * from "./ModifyEscrowLogisticsResponse"
-export type * from "./PaidPayment"
-export type * from "./PartialCancelledPayment"
-export type * from "./PayInstantlyError"
-export type * from "./PayInstantlyResponse"
-export type * from "./PayPendingPayment"
-export type * from "./PayWithBillingKeyError"
-export type * from "./PayWithBillingKeyResponse"
-export type * from "./Payment"
-export type * from "./PaymentAlreadyCancelledError"
-export type * from "./PaymentAmount"
-export type * from "./PaymentCancellation"
-export type * from "./PaymentCashReceipt"
-export type * from "./PaymentCashReceiptStatus"
-export type * from "./PaymentEscrow"
-export type * from "./PaymentEscrowReceiverInput"
-export type * from "./PaymentEscrowSenderInput"
-export type * from "./PaymentFailure"
-export type * from "./PaymentFilterInput"
-export type * from "./PaymentFilterInputEscrowStatus"
-export type * from "./PaymentInstallment"
-export type * from "./PaymentLogistics"
-export type * from "./PaymentLogisticsCompany"
-export type * from "./PaymentMethod"
-export type * from "./PaymentMethodCard"
-export type * from "./PaymentMethodEasyPay"
-export type * from "./PaymentMethodEasyPayMethod"
-export type * from "./PaymentMethodEasyPayMethodCharge"
-export type * from "./PaymentMethodGiftCertificate"
-export type * from "./PaymentMethodGiftCertificateType"
-export type * from "./PaymentMethodMobile"
-export type * from "./PaymentMethodTransfer"
-export type * from "./PaymentMethodVirtualAccount"
-export type * from "./PaymentMethodVirtualAccountRefundStatus"
-export type * from "./PaymentMethodVirtualAccountType"
-export type * from "./PaymentNotFoundError"
-export type * from "./PaymentNotPaidError"
-export type * from "./PaymentNotWaitingForDepositError"
-export type * from "./PaymentSortBy"
-export type * from "./PaymentTextSearch"
-export type * from "./PaymentTextSearchField"
-export type * from "./PaymentTimestampType"
-export type * from "./PaymentWebhook"
-export type * from "./PaymentWebhookPaymentStatus"
-export type * from "./PaymentWebhookRequest"
-export type * from "./PaymentWebhookResponse"
-export type * from "./PaymentWebhookStatus"
-export type * from "./PaymentWebhookTrigger"
-export type * from "./PaymentWithCursor"
-export type * from "./PreRegisterPaymentBody"
-export type * from "./PreRegisterPaymentError"
-export type * from "./PreRegisterPaymentResponse"
-export type * from "./PromotionPayMethodDoesNotMatchError"
-export type * from "./ReadyPayment"
-export type * from "./RegisterEscrowLogisticsBody"
-export type * from "./RegisterStoreReceiptBody"
-export type * from "./RegisterStoreReceiptBodyItem"
-export type * from "./RegisterStoreReceiptError"
-export type * from "./RegisterStoreReceiptResponse"
-export type * from "./RegisteredPaymentEscrow"
-export type * from "./RejectConfirmedPaymentEscrow"
-export type * from "./RejectedPaymentEscrow"
-export type * from "./RemainedAmountLessThanPromotionMinPaymentAmountError"
-export type * from "./RequestedPaymentCancellation"
-export type * from "./ResendWebhookBody"
-export type * from "./ResendWebhookError"
-export type * from "./ResendWebhookResponse"
-export type * from "./SucceededPaymentCancellation"
-export type * from "./SumOfPartsExceedsCancelAmountError"
-export type * from "./VirtualAccountIssuedPayment"
-export type * from "./WebhookNotFoundError"
+import type { ApplyEscrowLogisticsError } from "#generated/payment/ApplyEscrowLogisticsError"
 import type { ApplyEscrowLogisticsResponse } from "#generated/payment/ApplyEscrowLogisticsResponse"
 import type { CancelPaymentBodyRefundAccount } from "#generated/payment/CancelPaymentBodyRefundAccount"
+import type { CancelPaymentError } from "#generated/payment/CancelPaymentError"
 import type { CancelPaymentResponse } from "#generated/payment/CancelPaymentResponse"
 import type { CancelRequester } from "#generated/payment/CancelRequester"
 import type { CashReceiptInput } from "#generated/common/CashReceiptInput"
+import type { CloseVirtualAccountError } from "#generated/payment/CloseVirtualAccountError"
 import type { CloseVirtualAccountResponse } from "#generated/payment/CloseVirtualAccountResponse"
+import type { ConfirmEscrowError } from "#generated/payment/ConfirmEscrowError"
 import type { ConfirmEscrowResponse } from "#generated/payment/ConfirmEscrowResponse"
 import type { Country } from "#generated/common/Country"
 import type { Currency } from "#generated/common/Currency"
 import type { CustomerInput } from "#generated/common/CustomerInput"
 import type { GetAllPaymentsByCursorResponse } from "#generated/payment/GetAllPaymentsByCursorResponse"
+import type { GetAllPaymentsError } from "#generated/payment/GetAllPaymentsError"
+import type { GetPaymentError } from "#generated/payment/GetPaymentError"
+import type { GetPaymentsError } from "#generated/payment/GetPaymentsError"
 import type { GetPaymentsResponse } from "#generated/payment/GetPaymentsResponse"
 import type { InstantPaymentMethodInput } from "#generated/payment/InstantPaymentMethodInput"
+import type { ModifyEscrowLogisticsError } from "#generated/payment/ModifyEscrowLogisticsError"
 import type { ModifyEscrowLogisticsResponse } from "#generated/payment/ModifyEscrowLogisticsResponse"
 import type { PageInput } from "#generated/common/PageInput"
+import type { PayInstantlyError } from "#generated/payment/PayInstantlyError"
 import type { PayInstantlyResponse } from "#generated/payment/PayInstantlyResponse"
+import type { PayWithBillingKeyError } from "#generated/payment/PayWithBillingKeyError"
 import type { PayWithBillingKeyResponse } from "#generated/payment/PayWithBillingKeyResponse"
 import type { Payment } from "#generated/payment/Payment"
 import type { PaymentAmountInput } from "#generated/common/PaymentAmountInput"
@@ -141,13 +33,833 @@ import type { PaymentFilterInput } from "#generated/payment/PaymentFilterInput"
 import type { PaymentLogistics } from "#generated/payment/PaymentLogistics"
 import type { PaymentProduct } from "#generated/common/PaymentProduct"
 import type { PaymentProductType } from "#generated/common/PaymentProductType"
+import type { PreRegisterPaymentError } from "#generated/payment/PreRegisterPaymentError"
 import type { PreRegisterPaymentResponse } from "#generated/payment/PreRegisterPaymentResponse"
 import type { RegisterStoreReceiptBodyItem } from "#generated/payment/RegisterStoreReceiptBodyItem"
+import type { RegisterStoreReceiptError } from "#generated/payment/RegisterStoreReceiptError"
 import type { RegisterStoreReceiptResponse } from "#generated/payment/RegisterStoreReceiptResponse"
+import type { ResendWebhookError } from "#generated/payment/ResendWebhookError"
 import type { ResendWebhookResponse } from "#generated/payment/ResendWebhookResponse"
 import type { SeparatedAddressInput } from "#generated/common/SeparatedAddressInput"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { ApplyEscrowLogisticsResponse } from "./ApplyEscrowLogisticsResponse"
+export type { BeforeRegisteredPaymentEscrow } from "./BeforeRegisteredPaymentEscrow"
+export type { BillingKeyPaymentSummary } from "./BillingKeyPaymentSummary"
+export type { CancelPaymentBody } from "./CancelPaymentBody"
+export type { CancelPaymentBodyRefundAccount } from "./CancelPaymentBodyRefundAccount"
+export type { CancelPaymentResponse } from "./CancelPaymentResponse"
+export type { CancelRequester } from "./CancelRequester"
+export type { CancelledPayment } from "./CancelledPayment"
+export type { CancelledPaymentCashReceipt } from "./CancelledPaymentCashReceipt"
+export type { CancelledPaymentEscrow } from "./CancelledPaymentEscrow"
+export type { CloseVirtualAccountResponse } from "./CloseVirtualAccountResponse"
+export type { ConfirmEscrowBody } from "./ConfirmEscrowBody"
+export type { ConfirmEscrowResponse } from "./ConfirmEscrowResponse"
+export type { ConfirmedPaymentEscrow } from "./ConfirmedPaymentEscrow"
+export type { DeliveredPaymentEscrow } from "./DeliveredPaymentEscrow"
+export type { FailedPayment } from "./FailedPayment"
+export type { FailedPaymentCancellation } from "./FailedPaymentCancellation"
+export type { GetAllPaymentsByCursorBody } from "./GetAllPaymentsByCursorBody"
+export type { GetAllPaymentsByCursorResponse } from "./GetAllPaymentsByCursorResponse"
+export type { GetPaymentsBody } from "./GetPaymentsBody"
+export type { GetPaymentsResponse } from "./GetPaymentsResponse"
+export type { InstantPaymentInput } from "./InstantPaymentInput"
+export type { InstantPaymentMethodInput } from "./InstantPaymentMethodInput"
+export type { InstantPaymentMethodInputCard } from "./InstantPaymentMethodInputCard"
+export type { InstantPaymentMethodInputVirtualAccount } from "./InstantPaymentMethodInputVirtualAccount"
+export type { InstantPaymentMethodInputVirtualAccountCashReceiptInfo } from "./InstantPaymentMethodInputVirtualAccountCashReceiptInfo"
+export type { InstantPaymentMethodInputVirtualAccountExpiry } from "./InstantPaymentMethodInputVirtualAccountExpiry"
+export type { InstantPaymentMethodInputVirtualAccountOption } from "./InstantPaymentMethodInputVirtualAccountOption"
+export type { InstantPaymentMethodInputVirtualAccountOptionFixed } from "./InstantPaymentMethodInputVirtualAccountOptionFixed"
+export type { InstantPaymentMethodInputVirtualAccountOptionType } from "./InstantPaymentMethodInputVirtualAccountOptionType"
+export type { InstantPaymentSummary } from "./InstantPaymentSummary"
+export type { IssuedPaymentCashReceipt } from "./IssuedPaymentCashReceipt"
+export type { ModifyEscrowLogisticsBody } from "./ModifyEscrowLogisticsBody"
+export type { ModifyEscrowLogisticsResponse } from "./ModifyEscrowLogisticsResponse"
+export type { PaidPayment } from "./PaidPayment"
+export type { PartialCancelledPayment } from "./PartialCancelledPayment"
+export type { PayInstantlyResponse } from "./PayInstantlyResponse"
+export type { PayPendingPayment } from "./PayPendingPayment"
+export type { PayWithBillingKeyResponse } from "./PayWithBillingKeyResponse"
+export type { Payment } from "./Payment"
+export type { PaymentAmount } from "./PaymentAmount"
+export type { PaymentCancellation } from "./PaymentCancellation"
+export type { PaymentCashReceipt } from "./PaymentCashReceipt"
+export type { PaymentCashReceiptStatus } from "./PaymentCashReceiptStatus"
+export type { PaymentEscrow } from "./PaymentEscrow"
+export type { PaymentEscrowReceiverInput } from "./PaymentEscrowReceiverInput"
+export type { PaymentEscrowSenderInput } from "./PaymentEscrowSenderInput"
+export type { PaymentFailure } from "./PaymentFailure"
+export type { PaymentFilterInput } from "./PaymentFilterInput"
+export type { PaymentFilterInputEscrowStatus } from "./PaymentFilterInputEscrowStatus"
+export type { PaymentInstallment } from "./PaymentInstallment"
+export type { PaymentLogistics } from "./PaymentLogistics"
+export type { PaymentLogisticsCompany } from "./PaymentLogisticsCompany"
+export type { PaymentMethod } from "./PaymentMethod"
+export type { PaymentMethodCard } from "./PaymentMethodCard"
+export type { PaymentMethodEasyPay } from "./PaymentMethodEasyPay"
+export type { PaymentMethodEasyPayMethod } from "./PaymentMethodEasyPayMethod"
+export type { PaymentMethodEasyPayMethodCharge } from "./PaymentMethodEasyPayMethodCharge"
+export type { PaymentMethodGiftCertificate } from "./PaymentMethodGiftCertificate"
+export type { PaymentMethodGiftCertificateType } from "./PaymentMethodGiftCertificateType"
+export type { PaymentMethodMobile } from "./PaymentMethodMobile"
+export type { PaymentMethodTransfer } from "./PaymentMethodTransfer"
+export type { PaymentMethodVirtualAccount } from "./PaymentMethodVirtualAccount"
+export type { PaymentMethodVirtualAccountRefundStatus } from "./PaymentMethodVirtualAccountRefundStatus"
+export type { PaymentMethodVirtualAccountType } from "./PaymentMethodVirtualAccountType"
+export type { PaymentSortBy } from "./PaymentSortBy"
+export type { PaymentTextSearch } from "./PaymentTextSearch"
+export type { PaymentTextSearchField } from "./PaymentTextSearchField"
+export type { PaymentTimestampType } from "./PaymentTimestampType"
+export type { PaymentWebhook } from "./PaymentWebhook"
+export type { PaymentWebhookPaymentStatus } from "./PaymentWebhookPaymentStatus"
+export type { PaymentWebhookRequest } from "./PaymentWebhookRequest"
+export type { PaymentWebhookResponse } from "./PaymentWebhookResponse"
+export type { PaymentWebhookStatus } from "./PaymentWebhookStatus"
+export type { PaymentWebhookTrigger } from "./PaymentWebhookTrigger"
+export type { PaymentWithCursor } from "./PaymentWithCursor"
+export type { PreRegisterPaymentBody } from "./PreRegisterPaymentBody"
+export type { PreRegisterPaymentResponse } from "./PreRegisterPaymentResponse"
+export type { ReadyPayment } from "./ReadyPayment"
+export type { RegisterEscrowLogisticsBody } from "./RegisterEscrowLogisticsBody"
+export type { RegisterStoreReceiptBody } from "./RegisterStoreReceiptBody"
+export type { RegisterStoreReceiptBodyItem } from "./RegisterStoreReceiptBodyItem"
+export type { RegisterStoreReceiptResponse } from "./RegisterStoreReceiptResponse"
+export type { RegisteredPaymentEscrow } from "./RegisteredPaymentEscrow"
+export type { RejectConfirmedPaymentEscrow } from "./RejectConfirmedPaymentEscrow"
+export type { RejectedPaymentEscrow } from "./RejectedPaymentEscrow"
+export type { RequestedPaymentCancellation } from "./RequestedPaymentCancellation"
+export type { ResendWebhookBody } from "./ResendWebhookBody"
+export type { ResendWebhookResponse } from "./ResendWebhookResponse"
+export type { SucceededPaymentCancellation } from "./SucceededPaymentCancellation"
+export type { VirtualAccountIssuedPayment } from "./VirtualAccountIssuedPayment"
+export function PaymentClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentClient {
+	return {
+		preRegisterPayment: async (
+			options: {
+				paymentId: string,
+				totalAmount?: number,
+				taxFreeAmount?: number,
+				currency?: Currency,
+			}
+		): Promise<PreRegisterPaymentResponse> => {
+			const {
+				paymentId,
+				totalAmount,
+				taxFreeAmount,
+				currency,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				totalAmount,
+				taxFreeAmount,
+				currency,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/pre-register`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: PreRegisterPaymentError = await response.json()
+				switch (errorResponse.type) {
+				case "ALREADY_PAID":
+					throw new Errors.AlreadyPaidError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPayment: async (
+			paymentId: string,
+		): Promise<Payment> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${paymentId}?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPayments: async (
+			options?: {
+				page?: PageInput,
+				filter?: PaymentFilterInput,
+			}
+		): Promise<GetPaymentsResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPaymentsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getAllPaymentsByCursor: async (
+			options?: {
+				from?: string,
+				until?: string,
+				cursor?: string,
+				size?: number,
+			}
+		): Promise<GetAllPaymentsByCursorResponse> => {
+			const from = options?.from
+			const until = options?.until
+			const cursor = options?.cursor
+			const size = options?.size
+			const requestBody = JSON.stringify({
+				storeId,
+				from,
+				until,
+				cursor,
+				size,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments-by-cursor?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetAllPaymentsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelPayment: async (
+			options: {
+				paymentId: string,
+				amount?: number,
+				taxFreeAmount?: number,
+				vatAmount?: number,
+				reason: string,
+				requester?: CancelRequester,
+				currentCancellableAmount?: number,
+				refundAccount?: CancelPaymentBodyRefundAccount,
+			}
+		): Promise<CancelPaymentResponse> => {
+			const {
+				paymentId,
+				amount,
+				taxFreeAmount,
+				vatAmount,
+				reason,
+				requester,
+				currentCancellableAmount,
+				refundAccount,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				amount,
+				taxFreeAmount,
+				vatAmount,
+				reason,
+				requester,
+				currentCancellableAmount,
+				refundAccount,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/cancel`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelPaymentError = await response.json()
+				switch (errorResponse.type) {
+				case "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
+					throw new Errors.CancellableAmountConsistencyBrokenError(errorResponse)
+				case "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
+					throw new Errors.CancelAmountExceedsCancellableAmountError(errorResponse)
+				case "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
+					throw new Errors.CancelTaxAmountExceedsCancellableTaxAmountError(errorResponse)
+				case "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
+					throw new Errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_ALREADY_CANCELLED":
+					throw new Errors.PaymentAlreadyCancelledError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_PAID":
+					throw new Errors.PaymentNotPaidError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
+					throw new Errors.RemainedAmountLessThanPromotionMinPaymentAmountError(errorResponse)
+				case "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
+					throw new Errors.SumOfPartsExceedsCancelAmountError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		payWithBillingKey: async (
+			options: {
+				paymentId: string,
+				billingKey: string,
+				channelKey?: string,
+				orderName: string,
+				customer?: CustomerInput,
+				customData?: string,
+				amount: PaymentAmountInput,
+				currency: Currency,
+				installmentMonth?: number,
+				useFreeInterestFromMerchant?: boolean,
+				useCardPoint?: boolean,
+				cashReceipt?: CashReceiptInput,
+				country?: Country,
+				noticeUrls?: string[],
+				products?: PaymentProduct[],
+				productCount?: number,
+				productType?: PaymentProductType,
+				shippingAddress?: SeparatedAddressInput,
+				promotionId?: string,
+				bypass?: object,
+			}
+		): Promise<PayWithBillingKeyResponse> => {
+			const {
+				paymentId,
+				billingKey,
+				channelKey,
+				orderName,
+				customer,
+				customData,
+				amount,
+				currency,
+				installmentMonth,
+				useFreeInterestFromMerchant,
+				useCardPoint,
+				cashReceipt,
+				country,
+				noticeUrls,
+				products,
+				productCount,
+				productType,
+				shippingAddress,
+				promotionId,
+				bypass,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				billingKey,
+				channelKey,
+				orderName,
+				customer,
+				customData,
+				amount,
+				currency,
+				installmentMonth,
+				useFreeInterestFromMerchant,
+				useCardPoint,
+				cashReceipt,
+				country,
+				noticeUrls,
+				products,
+				productCount,
+				productType,
+				shippingAddress,
+				promotionId,
+				bypass,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/billing-key`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: PayWithBillingKeyError = await response.json()
+				switch (errorResponse.type) {
+				case "ALREADY_PAID":
+					throw new Errors.AlreadyPaidError(errorResponse)
+				case "BILLING_KEY_ALREADY_DELETED":
+					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
+				case "BILLING_KEY_NOT_FOUND":
+					throw new Errors.BillingKeyNotFoundError(errorResponse)
+				case "CHANNEL_NOT_FOUND":
+					throw new Errors.ChannelNotFoundError(errorResponse)
+				case "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
+					throw new Errors.DiscountAmountExceedsTotalAmountError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
+					throw new Errors.PromotionPayMethodDoesNotMatchError(errorResponse)
+				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
+					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		payInstantly: async (
+			options: {
+				paymentId: string,
+				channelKey?: string,
+				channelGroupId?: string,
+				method: InstantPaymentMethodInput,
+				orderName: string,
+				isCulturalExpense?: boolean,
+				isEscrow?: boolean,
+				customer?: CustomerInput,
+				customData?: string,
+				amount: PaymentAmountInput,
+				currency: Currency,
+				country?: Country,
+				noticeUrls?: string[],
+				products?: PaymentProduct[],
+				productCount?: number,
+				productType?: PaymentProductType,
+				shippingAddress?: SeparatedAddressInput,
+				promotionId?: string,
+			}
+		): Promise<PayInstantlyResponse> => {
+			const {
+				paymentId,
+				channelKey,
+				channelGroupId,
+				method,
+				orderName,
+				isCulturalExpense,
+				isEscrow,
+				customer,
+				customData,
+				amount,
+				currency,
+				country,
+				noticeUrls,
+				products,
+				productCount,
+				productType,
+				shippingAddress,
+				promotionId,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				channelKey,
+				channelGroupId,
+				method,
+				orderName,
+				isCulturalExpense,
+				isEscrow,
+				customer,
+				customData,
+				amount,
+				currency,
+				country,
+				noticeUrls,
+				products,
+				productCount,
+				productType,
+				shippingAddress,
+				promotionId,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/instant`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: PayInstantlyError = await response.json()
+				switch (errorResponse.type) {
+				case "ALREADY_PAID":
+					throw new Errors.AlreadyPaidError(errorResponse)
+				case "CHANNEL_NOT_FOUND":
+					throw new Errors.ChannelNotFoundError(errorResponse)
+				case "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
+					throw new Errors.DiscountAmountExceedsTotalAmountError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
+					throw new Errors.PromotionPayMethodDoesNotMatchError(errorResponse)
+				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
+					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		closeVirtualAccount: async (
+			paymentId: string,
+		): Promise<CloseVirtualAccountResponse> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/virtual-account/close?${query}`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CloseVirtualAccountError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
+					throw new Errors.PaymentNotWaitingForDepositError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		applyEscrowLogistics: async (
+			options: {
+				paymentId: string,
+				sender?: PaymentEscrowSenderInput,
+				receiver?: PaymentEscrowReceiverInput,
+				logistics: PaymentLogistics,
+				sendEmail?: boolean,
+				products?: PaymentProduct[],
+			}
+		): Promise<ApplyEscrowLogisticsResponse> => {
+			const {
+				paymentId,
+				sender,
+				receiver,
+				logistics,
+				sendEmail,
+				products,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				sender,
+				receiver,
+				logistics,
+				sendEmail,
+				products,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/escrow/logistics`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ApplyEscrowLogisticsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_PAID":
+					throw new Errors.PaymentNotPaidError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		modifyEscrowLogistics: async (
+			options: {
+				paymentId: string,
+				sender?: PaymentEscrowSenderInput,
+				receiver?: PaymentEscrowReceiverInput,
+				logistics: PaymentLogistics,
+				sendEmail?: boolean,
+				products?: PaymentProduct[],
+			}
+		): Promise<ModifyEscrowLogisticsResponse> => {
+			const {
+				paymentId,
+				sender,
+				receiver,
+				logistics,
+				sendEmail,
+				products,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				sender,
+				receiver,
+				logistics,
+				sendEmail,
+				products,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/escrow/logistics`, baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ModifyEscrowLogisticsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_PAID":
+					throw new Errors.PaymentNotPaidError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		confirmEscrow: async (
+			paymentId: string,
+			fromStore?: boolean,
+		): Promise<ConfirmEscrowResponse> => {
+			const requestBody = JSON.stringify({
+				storeId,
+				fromStore,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/escrow/complete`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ConfirmEscrowError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_PAID":
+					throw new Errors.PaymentNotPaidError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		resendWebhook: async (
+			paymentId: string,
+			webhookId?: string,
+		): Promise<ResendWebhookResponse> => {
+			const requestBody = JSON.stringify({
+				storeId,
+				webhookId,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/resend-webhook`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ResendWebhookError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				case "WEBHOOK_NOT_FOUND":
+					throw new Errors.WebhookNotFoundError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		registerStoreReceipt: async (
+			paymentId: string,
+			items: RegisterStoreReceiptBodyItem[],
+		): Promise<RegisterStoreReceiptResponse> => {
+			const requestBody = JSON.stringify({
+				items,
+				storeId,
+			})
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/register-store-receipt`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RegisterStoreReceiptError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_NOT_FOUND":
+					throw new Errors.PaymentNotFoundError(errorResponse)
+				case "PAYMENT_NOT_PAID":
+					throw new Errors.PaymentNotPaidError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PaymentClient = {
 	/**
 	 * 결제 정보 사전 등록
 	 *
@@ -658,3 +1370,4 @@ export type Operations = {
 		items: RegisterStoreReceiptBodyItem[],
 	) => Promise<RegisterStoreReceiptResponse>
 }
+

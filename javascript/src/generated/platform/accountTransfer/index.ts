@@ -1,17 +1,67 @@
-export type * from "./GetAccountTransfersBody"
-export type * from "./GetPlatformAccountTransfersError"
-export type * from "./GetPlatformAccountTransfersResponse"
-export type * from "./PlatformAccountTransfer"
-export type * from "./PlatformAccountTransferFilter"
-export type * from "./PlatformAccountTransferType"
-export type * from "./PlatformDepositAccountTransfer"
-export type * from "./PlatformPartnerPayoutAccountTransfer"
-export type * from "./PlatformRemitAccountTransfer"
+import type { GetPlatformAccountTransfersError } from "#generated/platform/accountTransfer/GetPlatformAccountTransfersError"
 import type { GetPlatformAccountTransfersResponse } from "#generated/platform/accountTransfer/GetPlatformAccountTransfersResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformAccountTransferFilter } from "#generated/platform/accountTransfer/PlatformAccountTransferFilter"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { GetAccountTransfersBody } from "./GetAccountTransfersBody"
+export type { GetPlatformAccountTransfersResponse } from "./GetPlatformAccountTransfersResponse"
+export type { PlatformAccountTransfer } from "./PlatformAccountTransfer"
+export type { PlatformAccountTransferFilter } from "./PlatformAccountTransferFilter"
+export type { PlatformAccountTransferType } from "./PlatformAccountTransferType"
+export type { PlatformDepositAccountTransfer } from "./PlatformDepositAccountTransfer"
+export type { PlatformPartnerPayoutAccountTransfer } from "./PlatformPartnerPayoutAccountTransfer"
+export type { PlatformRemitAccountTransfer } from "./PlatformRemitAccountTransfer"
+export function AccountTransferClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AccountTransferClient {
+	return {
+		getPlatformAccountTransfers: async (
+			options?: {
+				isForTest?: boolean,
+				page?: PageInput,
+				filter?: PlatformAccountTransferFilter,
+			}
+		): Promise<GetPlatformAccountTransfersResponse> => {
+			const isForTest = options?.isForTest
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				isForTest,
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/account-transfers?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformAccountTransfersError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type AccountTransferClient = {
 	/**
 	 * 이체 내역 다건 조회
 	 *
@@ -30,3 +80,4 @@ export type Operations = {
 		}
 	) => Promise<GetPlatformAccountTransfersResponse>
 }
+

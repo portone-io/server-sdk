@@ -1,8 +1,44 @@
-export type * from "./GetKakaopayPaymentOrderError"
-export type * from "./GetKakaopayPaymentOrderResponse"
+import type { GetKakaopayPaymentOrderError } from "#generated/pgSpecific/GetKakaopayPaymentOrderError"
 import type { GetKakaopayPaymentOrderResponse } from "#generated/pgSpecific/GetKakaopayPaymentOrderResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { GetKakaopayPaymentOrderResponse } from "./GetKakaopayPaymentOrderResponse"
+export function PgSpecificClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PgSpecificClient {
+	return {
+		getKakaopayPaymentOrder: async (
+			pgTxId: string,
+			channelKey: string,
+		): Promise<GetKakaopayPaymentOrderResponse> => {
+			const query = [
+				["pgTxId", pgTxId],
+				["channelKey", channelKey],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/kakaopay/payment/order?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetKakaopayPaymentOrderError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PgSpecificClient = {
 	/**
 	 * 카카오페이 주문 조회 API
 	 *
@@ -24,3 +60,4 @@ export type Operations = {
 		channelKey: string,
 	) => Promise<GetKakaopayPaymentOrderResponse>
 }
+

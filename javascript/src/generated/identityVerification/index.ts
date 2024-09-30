@@ -1,35 +1,214 @@
-export type * from "./ConfirmIdentityVerificationBody"
-export type * from "./ConfirmIdentityVerificationError"
-export type * from "./ConfirmIdentityVerificationResponse"
-export type * from "./FailedIdentityVerification"
-export type * from "./GetIdentityVerificationError"
-export type * from "./IdentityVerification"
-export type * from "./IdentityVerificationAlreadySentError"
-export type * from "./IdentityVerificationAlreadyVerifiedError"
-export type * from "./IdentityVerificationFailure"
-export type * from "./IdentityVerificationMethod"
-export type * from "./IdentityVerificationNotFoundError"
-export type * from "./IdentityVerificationNotSentError"
-export type * from "./IdentityVerificationOperator"
-export type * from "./IdentityVerificationRequestedCustomer"
-export type * from "./IdentityVerificationVerifiedCustomer"
-export type * from "./ReadyIdentityVerification"
-export type * from "./ResendIdentityVerificationError"
-export type * from "./ResendIdentityVerificationResponse"
-export type * from "./SendIdentityVerificationBody"
-export type * from "./SendIdentityVerificationBodyCustomer"
-export type * from "./SendIdentityVerificationError"
-export type * from "./SendIdentityVerificationResponse"
-export type * from "./VerifiedIdentityVerification"
+import type { ConfirmIdentityVerificationError } from "#generated/identityVerification/ConfirmIdentityVerificationError"
 import type { ConfirmIdentityVerificationResponse } from "#generated/identityVerification/ConfirmIdentityVerificationResponse"
+import type { GetIdentityVerificationError } from "#generated/identityVerification/GetIdentityVerificationError"
 import type { IdentityVerification } from "#generated/identityVerification/IdentityVerification"
 import type { IdentityVerificationMethod } from "#generated/identityVerification/IdentityVerificationMethod"
 import type { IdentityVerificationOperator } from "#generated/identityVerification/IdentityVerificationOperator"
+import type { ResendIdentityVerificationError } from "#generated/identityVerification/ResendIdentityVerificationError"
 import type { ResendIdentityVerificationResponse } from "#generated/identityVerification/ResendIdentityVerificationResponse"
 import type { SendIdentityVerificationBodyCustomer } from "#generated/identityVerification/SendIdentityVerificationBodyCustomer"
+import type { SendIdentityVerificationError } from "#generated/identityVerification/SendIdentityVerificationError"
 import type { SendIdentityVerificationResponse } from "#generated/identityVerification/SendIdentityVerificationResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { ConfirmIdentityVerificationBody } from "./ConfirmIdentityVerificationBody"
+export type { ConfirmIdentityVerificationResponse } from "./ConfirmIdentityVerificationResponse"
+export type { FailedIdentityVerification } from "./FailedIdentityVerification"
+export type { IdentityVerification } from "./IdentityVerification"
+export type { IdentityVerificationFailure } from "./IdentityVerificationFailure"
+export type { IdentityVerificationMethod } from "./IdentityVerificationMethod"
+export type { IdentityVerificationOperator } from "./IdentityVerificationOperator"
+export type { IdentityVerificationRequestedCustomer } from "./IdentityVerificationRequestedCustomer"
+export type { IdentityVerificationVerifiedCustomer } from "./IdentityVerificationVerifiedCustomer"
+export type { ReadyIdentityVerification } from "./ReadyIdentityVerification"
+export type { ResendIdentityVerificationResponse } from "./ResendIdentityVerificationResponse"
+export type { SendIdentityVerificationBody } from "./SendIdentityVerificationBody"
+export type { SendIdentityVerificationBodyCustomer } from "./SendIdentityVerificationBodyCustomer"
+export type { SendIdentityVerificationResponse } from "./SendIdentityVerificationResponse"
+export type { VerifiedIdentityVerification } from "./VerifiedIdentityVerification"
+export function IdentityVerificationClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): IdentityVerificationClient {
+	return {
+		getIdentityVerification: async (
+			identityVerificationId: string,
+		): Promise<IdentityVerification> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/identity-verifications/${identityVerificationId}?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetIdentityVerificationError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_FOUND":
+					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		sendIdentityVerification: async (
+			options: {
+				identityVerificationId: string,
+				channelKey: string,
+				customer: SendIdentityVerificationBodyCustomer,
+				customData?: string,
+				bypass?: object,
+				operator: IdentityVerificationOperator,
+				method: IdentityVerificationMethod,
+			}
+		): Promise<SendIdentityVerificationResponse> => {
+			const {
+				identityVerificationId,
+				channelKey,
+				customer,
+				customData,
+				bypass,
+				operator,
+				method,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				channelKey,
+				customer,
+				customData,
+				bypass,
+				operator,
+				method,
+			})
+			const response = await fetch(
+				new URL(`/identity-verifications/${identityVerificationId}/send`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: SendIdentityVerificationError = await response.json()
+				switch (errorResponse.type) {
+				case "CHANNEL_NOT_FOUND":
+					throw new Errors.ChannelNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "IDENTITY_VERIFICATION_ALREADY_SENT":
+					throw new Errors.IdentityVerificationAlreadySentError(errorResponse)
+				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
+					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_FOUND":
+					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		confirmIdentityVerification: async (
+			identityVerificationId: string,
+			otp?: string,
+		): Promise<ConfirmIdentityVerificationResponse> => {
+			const requestBody = JSON.stringify({
+				storeId,
+				otp,
+			})
+			const response = await fetch(
+				new URL(`/identity-verifications/${identityVerificationId}/confirm`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ConfirmIdentityVerificationError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
+					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_FOUND":
+					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_SENT":
+					throw new Errors.IdentityVerificationNotSentError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		resendIdentityVerification: async (
+			identityVerificationId: string,
+		): Promise<ResendIdentityVerificationResponse> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/identity-verifications/${identityVerificationId}/resend?${query}`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ResendIdentityVerificationError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
+					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_FOUND":
+					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
+				case "IDENTITY_VERIFICATION_NOT_SENT":
+					throw new Errors.IdentityVerificationNotSentError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type IdentityVerificationClient = {
 	/**
 	 * 본인인증 단건 조회
 	 *
@@ -130,3 +309,4 @@ export type Operations = {
 		identityVerificationId: string,
 	) => Promise<ResendIdentityVerificationResponse>
 }
+

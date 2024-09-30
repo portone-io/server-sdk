@@ -52,102 +52,109 @@
       "./analytics": {
         "types": "./dist/generated/analytics/index.d.ts",
         "require": "./dist/generated/analytics/index.cjs",
-        "module": "./dist/generated/analytics/index.mjs"
+        "import": "./dist/generated/analytics/index.mjs"
       },
       "./auth": {
         "types": "./dist/generated/auth/index.d.ts",
         "require": "./dist/generated/auth/index.cjs",
-        "module": "./dist/generated/auth/index.mjs"
+        "import": "./dist/generated/auth/index.mjs"
       },
       "./b2b": {
         "types": "./dist/generated/b2b/index.d.ts",
         "require": "./dist/generated/b2b/index.cjs",
-        "module": "./dist/generated/b2b/index.mjs"
+        "import": "./dist/generated/b2b/index.mjs"
       },
       "./billingKey": {
         "types": "./dist/generated/billingKey/index.d.ts",
         "require": "./dist/generated/billingKey/index.cjs",
-        "module": "./dist/generated/billingKey/index.mjs"
+        "import": "./dist/generated/billingKey/index.mjs"
       },
       "./cashReceipt": {
         "types": "./dist/generated/cashReceipt/index.d.ts",
         "require": "./dist/generated/cashReceipt/index.cjs",
-        "module": "./dist/generated/cashReceipt/index.mjs"
+        "import": "./dist/generated/cashReceipt/index.mjs"
       },
       "./common": {
         "types": "./dist/generated/common/index.d.ts",
         "require": "./dist/generated/common/index.cjs",
-        "module": "./dist/generated/common/index.mjs"
+        "import": "./dist/generated/common/index.mjs"
       },
       "./identityVerification": {
         "types": "./dist/generated/identityVerification/index.d.ts",
         "require": "./dist/generated/identityVerification/index.cjs",
-        "module": "./dist/generated/identityVerification/index.mjs"
+        "import": "./dist/generated/identityVerification/index.mjs"
       },
       "./payment": {
         "types": "./dist/generated/payment/index.d.ts",
         "require": "./dist/generated/payment/index.cjs",
-        "module": "./dist/generated/payment/index.mjs"
+        "import": "./dist/generated/payment/index.mjs"
       },
       "./paymentSchedule": {
         "types": "./dist/generated/paymentSchedule/index.d.ts",
         "require": "./dist/generated/paymentSchedule/index.cjs",
-        "module": "./dist/generated/paymentSchedule/index.mjs"
+        "import": "./dist/generated/paymentSchedule/index.mjs"
       },
       "./pgSpecific": {
         "types": "./dist/generated/pgSpecific/index.d.ts",
         "require": "./dist/generated/pgSpecific/index.cjs",
-        "module": "./dist/generated/pgSpecific/index.mjs"
+        "import": "./dist/generated/pgSpecific/index.mjs"
       },
       "./platform": {
         "types": "./dist/generated/platform/index.d.ts",
         "require": "./dist/generated/platform/index.cjs",
-        "module": "./dist/generated/platform/index.mjs"
+        "import": "./dist/generated/platform/index.mjs"
       },
       "./platform/account": {
         "types": "./dist/generated/platform/account/index.d.ts",
         "require": "./dist/generated/platform/account/index.cjs",
-        "module": "./dist/generated/platform/account/index.mjs"
+        "import": "./dist/generated/platform/account/index.mjs"
       },
       "./platform/accountTransfer": {
         "types": "./dist/generated/platform/accountTransfer/index.d.ts",
         "require": "./dist/generated/platform/accountTransfer/index.cjs",
-        "module": "./dist/generated/platform/accountTransfer/index.mjs"
+        "import": "./dist/generated/platform/accountTransfer/index.mjs"
       },
       "./platform/bulkPayout": {
         "types": "./dist/generated/platform/bulkPayout/index.d.ts",
         "require": "./dist/generated/platform/bulkPayout/index.cjs",
-        "module": "./dist/generated/platform/bulkPayout/index.mjs"
+        "import": "./dist/generated/platform/bulkPayout/index.mjs"
       },
       "./platform/partner": {
         "types": "./dist/generated/platform/partner/index.d.ts",
         "require": "./dist/generated/platform/partner/index.cjs",
-        "module": "./dist/generated/platform/partner/index.mjs"
+        "import": "./dist/generated/platform/partner/index.mjs"
       },
       "./platform/partnerSettlement": {
         "types": "./dist/generated/platform/partnerSettlement/index.d.ts",
         "require": "./dist/generated/platform/partnerSettlement/index.cjs",
-        "module": "./dist/generated/platform/partnerSettlement/index.mjs"
+        "import": "./dist/generated/platform/partnerSettlement/index.mjs"
       },
       "./platform/payout": {
         "types": "./dist/generated/platform/payout/index.d.ts",
         "require": "./dist/generated/platform/payout/index.cjs",
-        "module": "./dist/generated/platform/payout/index.mjs"
+        "import": "./dist/generated/platform/payout/index.mjs"
       },
       "./platform/policy": {
         "types": "./dist/generated/platform/policy/index.d.ts",
         "require": "./dist/generated/platform/policy/index.cjs",
-        "module": "./dist/generated/platform/policy/index.mjs"
+        "import": "./dist/generated/platform/policy/index.mjs"
       },
       "./platform/transfer": {
         "types": "./dist/generated/platform/transfer/index.d.ts",
         "require": "./dist/generated/platform/transfer/index.cjs",
-        "module": "./dist/generated/platform/transfer/index.mjs"
+        "import": "./dist/generated/platform/transfer/index.mjs"
       },
       "./promotion": {
         "types": "./dist/generated/promotion/index.d.ts",
         "require": "./dist/generated/promotion/index.cjs",
-        "module": "./dist/generated/promotion/index.mjs"
+        "import": "./dist/generated/promotion/index.mjs"
+      }
+    },
+    "imports": {
+      "#generated/*": {
+        "types": "./dist/generated/*.d.ts",
+        "require": "./dist/generated/*.cjs",
+        "import": "./dist/generated/*.mjs"
       }
     }
   },

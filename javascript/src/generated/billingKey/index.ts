@@ -1,54 +1,239 @@
-export type * from "./BillingKeyFailure"
-export type * from "./BillingKeyFilterInput"
-export type * from "./BillingKeyInfo"
-export type * from "./BillingKeyInfoSummary"
-export type * from "./BillingKeyNotIssuedError"
-export type * from "./BillingKeyPaymentMethod"
-export type * from "./BillingKeyPaymentMethodCard"
-export type * from "./BillingKeyPaymentMethodEasyPay"
-export type * from "./BillingKeyPaymentMethodEasyPayCharge"
-export type * from "./BillingKeyPaymentMethodEasyPayMethod"
-export type * from "./BillingKeyPaymentMethodMobile"
-export type * from "./BillingKeyPaymentMethodPaypal"
-export type * from "./BillingKeyPaymentMethodTransfer"
-export type * from "./BillingKeyPaymentMethodType"
-export type * from "./BillingKeySortBy"
-export type * from "./BillingKeySortInput"
-export type * from "./BillingKeyStatus"
-export type * from "./BillingKeyTextSearch"
-export type * from "./BillingKeyTextSearchField"
-export type * from "./BillingKeyTimeRangeField"
-export type * from "./ChannelSpecificError"
-export type * from "./ChannelSpecificFailure"
-export type * from "./ChannelSpecificFailureInvalidRequest"
-export type * from "./ChannelSpecificFailurePgProvider"
-export type * from "./DeleteBillingKeyError"
-export type * from "./DeleteBillingKeyResponse"
-export type * from "./DeletedBillingKeyInfo"
-export type * from "./FailedPgBillingKeyIssueResponse"
-export type * from "./GetBillingKeyInfoError"
-export type * from "./GetBillingKeyInfosBody"
-export type * from "./GetBillingKeyInfosError"
-export type * from "./GetBillingKeyInfosResponse"
-export type * from "./InstantBillingKeyPaymentMethodInput"
-export type * from "./InstantBillingKeyPaymentMethodInputCard"
-export type * from "./IssueBillingKeyBody"
-export type * from "./IssueBillingKeyError"
-export type * from "./IssueBillingKeyResponse"
-export type * from "./IssuedBillingKeyInfo"
-export type * from "./IssuedPgBillingKeyIssueResponse"
-export type * from "./PgBillingKeyIssueResponse"
 import type { BillingKeyFilterInput } from "#generated/billingKey/BillingKeyFilterInput"
 import type { BillingKeyInfo } from "#generated/billingKey/BillingKeyInfo"
 import type { BillingKeySortInput } from "#generated/billingKey/BillingKeySortInput"
 import type { CustomerInput } from "#generated/common/CustomerInput"
+import type { DeleteBillingKeyError } from "#generated/billingKey/DeleteBillingKeyError"
 import type { DeleteBillingKeyResponse } from "#generated/billingKey/DeleteBillingKeyResponse"
+import type { GetBillingKeyInfoError } from "#generated/billingKey/GetBillingKeyInfoError"
+import type { GetBillingKeyInfosError } from "#generated/billingKey/GetBillingKeyInfosError"
 import type { GetBillingKeyInfosResponse } from "#generated/billingKey/GetBillingKeyInfosResponse"
 import type { InstantBillingKeyPaymentMethodInput } from "#generated/billingKey/InstantBillingKeyPaymentMethodInput"
+import type { IssueBillingKeyError } from "#generated/billingKey/IssueBillingKeyError"
 import type { IssueBillingKeyResponse } from "#generated/billingKey/IssueBillingKeyResponse"
 import type { PageInput } from "#generated/common/PageInput"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { BillingKeyFailure } from "./BillingKeyFailure"
+export type { BillingKeyFilterInput } from "./BillingKeyFilterInput"
+export type { BillingKeyInfo } from "./BillingKeyInfo"
+export type { BillingKeyInfoSummary } from "./BillingKeyInfoSummary"
+export type { BillingKeyPaymentMethod } from "./BillingKeyPaymentMethod"
+export type { BillingKeyPaymentMethodCard } from "./BillingKeyPaymentMethodCard"
+export type { BillingKeyPaymentMethodEasyPay } from "./BillingKeyPaymentMethodEasyPay"
+export type { BillingKeyPaymentMethodEasyPayCharge } from "./BillingKeyPaymentMethodEasyPayCharge"
+export type { BillingKeyPaymentMethodEasyPayMethod } from "./BillingKeyPaymentMethodEasyPayMethod"
+export type { BillingKeyPaymentMethodMobile } from "./BillingKeyPaymentMethodMobile"
+export type { BillingKeyPaymentMethodPaypal } from "./BillingKeyPaymentMethodPaypal"
+export type { BillingKeyPaymentMethodTransfer } from "./BillingKeyPaymentMethodTransfer"
+export type { BillingKeyPaymentMethodType } from "./BillingKeyPaymentMethodType"
+export type { BillingKeySortBy } from "./BillingKeySortBy"
+export type { BillingKeySortInput } from "./BillingKeySortInput"
+export type { BillingKeyStatus } from "./BillingKeyStatus"
+export type { BillingKeyTextSearch } from "./BillingKeyTextSearch"
+export type { BillingKeyTextSearchField } from "./BillingKeyTextSearchField"
+export type { BillingKeyTimeRangeField } from "./BillingKeyTimeRangeField"
+export type { ChannelSpecificFailure } from "./ChannelSpecificFailure"
+export type { ChannelSpecificFailureInvalidRequest } from "./ChannelSpecificFailureInvalidRequest"
+export type { ChannelSpecificFailurePgProvider } from "./ChannelSpecificFailurePgProvider"
+export type { DeleteBillingKeyResponse } from "./DeleteBillingKeyResponse"
+export type { DeletedBillingKeyInfo } from "./DeletedBillingKeyInfo"
+export type { FailedPgBillingKeyIssueResponse } from "./FailedPgBillingKeyIssueResponse"
+export type { GetBillingKeyInfosBody } from "./GetBillingKeyInfosBody"
+export type { GetBillingKeyInfosResponse } from "./GetBillingKeyInfosResponse"
+export type { InstantBillingKeyPaymentMethodInput } from "./InstantBillingKeyPaymentMethodInput"
+export type { InstantBillingKeyPaymentMethodInputCard } from "./InstantBillingKeyPaymentMethodInputCard"
+export type { IssueBillingKeyBody } from "./IssueBillingKeyBody"
+export type { IssueBillingKeyResponse } from "./IssueBillingKeyResponse"
+export type { IssuedBillingKeyInfo } from "./IssuedBillingKeyInfo"
+export type { IssuedPgBillingKeyIssueResponse } from "./IssuedPgBillingKeyIssueResponse"
+export type { PgBillingKeyIssueResponse } from "./PgBillingKeyIssueResponse"
+export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): BillingKeyClient {
+	return {
+		getBillingKeyInfo: async (
+			billingKey: string,
+		): Promise<BillingKeyInfo> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/billing-keys/${billingKey}?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetBillingKeyInfoError = await response.json()
+				switch (errorResponse.type) {
+				case "BILLING_KEY_NOT_FOUND":
+					throw new Errors.BillingKeyNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		deleteBillingKey: async (
+			billingKey: string,
+		): Promise<DeleteBillingKeyResponse> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/billing-keys/${billingKey}?${query}`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: DeleteBillingKeyError = await response.json()
+				switch (errorResponse.type) {
+				case "BILLING_KEY_ALREADY_DELETED":
+					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
+				case "BILLING_KEY_NOT_FOUND":
+					throw new Errors.BillingKeyNotFoundError(errorResponse)
+				case "BILLING_KEY_NOT_ISSUED":
+					throw new Errors.BillingKeyNotIssuedError(errorResponse)
+				case "CHANNEL_SPECIFIC":
+					throw new Errors.ChannelSpecificError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getBillingKeyInfos: async (
+			options?: {
+				page?: PageInput,
+				sort?: BillingKeySortInput,
+				filter?: BillingKeyFilterInput,
+			}
+		): Promise<GetBillingKeyInfosResponse> => {
+			const page = options?.page
+			const sort = options?.sort
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				sort,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/billing-keys?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetBillingKeyInfosError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		issueBillingKey: async (
+			options: {
+				method: InstantBillingKeyPaymentMethodInput,
+				channelKey?: string,
+				channelGroupId?: string,
+				customer?: CustomerInput,
+				customData?: string,
+				bypass?: object,
+				noticeUrls?: string[],
+			}
+		): Promise<IssueBillingKeyResponse> => {
+			const {
+				method,
+				channelKey,
+				channelGroupId,
+				customer,
+				customData,
+				bypass,
+				noticeUrls,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				method,
+				channelKey,
+				channelGroupId,
+				customer,
+				customData,
+				bypass,
+				noticeUrls,
+			})
+			const response = await fetch(
+				new URL("/billing-keys", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: IssueBillingKeyError = await response.json()
+				switch (errorResponse.type) {
+				case "CHANNEL_NOT_FOUND":
+					throw new Errors.ChannelNotFoundError(errorResponse)
+				case "CHANNEL_SPECIFIC":
+					throw new Errors.ChannelSpecificError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type BillingKeyClient = {
 	/**
 	 * 빌링키 단건 조회
 	 *
@@ -164,3 +349,4 @@ export type Operations = {
 		}
 	) => Promise<IssueBillingKeyResponse>
 }
+
