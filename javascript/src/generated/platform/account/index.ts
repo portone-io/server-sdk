@@ -1,12 +1,65 @@
-export type * from "./GetPlatformAccountHolderError"
-export type * from "./PlatformAccountHolder"
-export type * from "./PlatformExternalApiFailedError"
-export type * from "./PlatformExternalApiTemporarilyFailedError"
-export type * from "./PlatformNotSupportedBankError"
 import type { Bank } from "#generated/common/Bank"
+import type { GetPlatformAccountHolderError } from "#generated/platform/account/GetPlatformAccountHolderError"
 import type { PlatformAccountHolder } from "#generated/platform/account/PlatformAccountHolder"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { PlatformAccountHolder } from "./PlatformAccountHolder"
+export function AccountClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AccountClient {
+	return {
+		getPlatformAccountHolder: async (
+			options: {
+				bank: Bank,
+				accountNumber: string,
+				birthdate?: string,
+				businessRegistrationNumber?: string,
+			}
+		): Promise<PlatformAccountHolder> => {
+			const {
+				bank,
+				accountNumber,
+				birthdate,
+				businessRegistrationNumber,
+			} = options
+			const query = [
+				["birthdate", birthdate],
+				["businessRegistrationNumber", businessRegistrationNumber],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/bank-accounts/${bank}/{accountNumber}/holder?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformAccountHolderError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_EXTERNAL_API_FAILED":
+					throw new Errors.PlatformExternalApiFailedError(errorResponse)
+				case "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED":
+					throw new Errors.PlatformExternalApiTemporarilyFailedError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_NOT_SUPPORTED_BANK":
+					throw new Errors.PlatformNotSupportedBankError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type AccountClient = {
 	/**
 	 * 예금주 조회
 	 *
@@ -41,3 +94,4 @@ export type Operations = {
 		}
 	) => Promise<PlatformAccountHolder>
 }
+

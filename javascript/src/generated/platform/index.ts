@@ -1,291 +1,18 @@
-export type * from "./AmountExceededType"
-export type * from "./Analytics"
-export type * from "./ApprovePlatformPartnerBody"
-export type * from "./ApprovePlatformPartnerError"
-export type * from "./ApprovePlatformPartnerResponse"
-export type * from "./B2bSearchDateType"
-export type * from "./CancelPlatformAdditionalFeePolicyScheduleError"
-export type * from "./CancelPlatformAdditionalFeePolicyScheduleResponse"
-export type * from "./CancelPlatformContractScheduleError"
-export type * from "./CancelPlatformContractScheduleResponse"
-export type * from "./CancelPlatformDiscountSharePolicyScheduleError"
-export type * from "./CancelPlatformDiscountSharePolicyScheduleResponse"
-export type * from "./CancelPlatformPartnerScheduleError"
-export type * from "./CancelPlatformPartnerScheduleResponse"
-export type * from "./Carrier"
-export type * from "./Channel"
-export type * from "./ChannelType"
-export type * from "./CursorPageInfo"
-export type * from "./DateRange"
-export type * from "./DownloadPaymentsExcelBody"
-export type * from "./DownloadPaymentsExcelFilter"
-export type * from "./DownloadPlatformBulkPayoutsSheetBody"
-export type * from "./DownloadPlatformBulkPayoutsSheetError"
-export type * from "./DownloadPlatformPartnerSettlementSheetBody"
-export type * from "./DownloadPlatformPartnerSettlementSheetError"
-export type * from "./DownloadPlatformPayoutsSheetBody"
-export type * from "./DownloadPlatformPayoutsSheetError"
-export type * from "./DownloadPromotionsExcelBody"
-export type * from "./GetMerchantError"
-export type * from "./GetPaymentReconciliationSettlementSummariesBody"
-export type * from "./GetPaymentReconciliationSettlementSummariesError"
-export type * from "./GetPaymentReconciliationSettlementSummariesResponse"
-export type * from "./GetPaymentReconciliationSettlementSummaryExcelFileBody"
-export type * from "./GetPaymentReconciliationSettlementSummaryExcelFileError"
-export type * from "./GetPaymentReconciliationSettlementVatReferenceExcelFileBody"
-export type * from "./GetPaymentReconciliationSettlementVatReferenceExcelFileError"
-export type * from "./GetPaymentReconciliationTransactionSummariesBody"
-export type * from "./GetPaymentReconciliationTransactionSummariesError"
-export type * from "./GetPaymentReconciliationTransactionSummariesResponse"
-export type * from "./GetPaymentReconciliationTransactionSummaryExcelFileBody"
-export type * from "./GetPaymentReconciliationTransactionSummaryExcelFileError"
-export type * from "./GetPaymentReconciliationsBody"
-export type * from "./GetPaymentReconciliationsError"
-export type * from "./GetPaymentReconciliationsExcelFileBody"
-export type * from "./GetPaymentReconciliationsExcelFileError"
-export type * from "./GetPaymentReconciliationsResponse"
-export type * from "./GetPlatformAdditionalFeePolicyScheduleError"
-export type * from "./GetPlatformBulkPayoutError"
-export type * from "./GetPlatformBulkPayoutPartnerSettlementsBody"
-export type * from "./GetPlatformBulkPayoutPartnerSettlementsError"
-export type * from "./GetPlatformBulkPayoutPartnerSettlementsResponse"
-export type * from "./GetPlatformContractScheduleError"
-export type * from "./GetPlatformDiscountSharePolicyFilterOptionsError"
-export type * from "./GetPlatformDiscountSharePolicyScheduleError"
-export type * from "./GetPlatformError"
-export type * from "./GetPlatformHolidaysError"
-export type * from "./GetPlatformHolidaysResponse"
-export type * from "./GetPlatformPartnerDashboardBody"
-export type * from "./GetPlatformPartnerDashboardError"
-export type * from "./GetPlatformPartnerFilterOptionsError"
-export type * from "./GetPlatformPartnerScheduleError"
-export type * from "./GetPlatformPartnerSettlementCurrenciesBody"
-export type * from "./GetPlatformPartnerSettlementCurrenciesError"
-export type * from "./GetPlatformPartnerSettlementCurrenciesResponse"
-export type * from "./GetPlatformPartnerSettlementDashboardBody"
-export type * from "./GetPlatformPartnerSettlementDashboardError"
-export type * from "./GetPlatformPartnerSettlementDatesBody"
-export type * from "./GetPlatformPartnerSettlementDatesError"
-export type * from "./GetPlatformPartnerSettlementDatesResponse"
-export type * from "./GetPlatformPayableSettlementDatesError"
-export type * from "./GetPlatformPayableSettlementDatesResponse"
-export type * from "./GetPlatformPayoutError"
-export type * from "./GetPlatformTransferDashboardBody"
-export type * from "./GetPlatformTransferDashboardError"
-export type * from "./GetPlatformTransferFilterOptionsError"
-export type * from "./GetV2SupportedChannelsError"
-export type * from "./GetV2SupportedChannelsResponse"
-export type * from "./GiftCertificateType"
-export type * from "./LoginViaApiKeyBody"
-export type * from "./LoginViaApiKeyError"
-export type * from "./LoginViaApiKeyResponse"
-export type * from "./Merchant"
-export type * from "./MonthDay"
-export type * from "./PaymentReconciliation"
-export type * from "./PaymentReconciliationActionType"
-export type * from "./PaymentReconciliationColumn"
-export type * from "./PaymentReconciliationExcelFileFilterInput"
-export type * from "./PaymentReconciliationIncomparable"
-export type * from "./PaymentReconciliationMatched"
-export type * from "./PaymentReconciliationNotCollected"
-export type * from "./PaymentReconciliationNotMatched"
-export type * from "./PaymentReconciliationNotMatchedReason"
-export type * from "./PaymentReconciliationOrderInput"
-export type * from "./PaymentReconciliationSearchConditionInput"
-export type * from "./PaymentReconciliationSettlementSummary"
-export type * from "./PaymentReconciliationSettlementSummaryAggregate"
-export type * from "./PaymentReconciliationSettlementSummaryColumn"
-export type * from "./PaymentReconciliationSettlementSummaryDetail"
-export type * from "./PaymentReconciliationSettlementSummaryExcelFileFilterInput"
-export type * from "./PaymentReconciliationSettlementSummaryFilterInput"
-export type * from "./PaymentReconciliationSettlementSummaryWithCursor"
-export type * from "./PaymentReconciliationStatus"
-export type * from "./PaymentReconciliationTransactionSummary"
-export type * from "./PaymentReconciliationTransactionSummaryAggregate"
-export type * from "./PaymentReconciliationTransactionSummaryColumn"
-export type * from "./PaymentReconciliationTransactionSummaryDetail"
-export type * from "./PaymentReconciliationTransactionSummaryExcelFilterInput"
-export type * from "./PaymentReconciliationTransactionSummaryWithCursor"
-export type * from "./PaymentReconciliationWithCursor"
-export type * from "./PaymentsExcelDownloadError"
-export type * from "./Platform"
-export type * from "./PlatformAccount"
-export type * from "./PlatformAccountStatus"
-export type * from "./PlatformAccountVerificationAlreadyUsedError"
-export type * from "./PlatformAccountVerificationFailedError"
-export type * from "./PlatformAccountVerificationNotFoundError"
-export type * from "./PlatformAdditionalFeePolicy"
-export type * from "./PlatformAdditionalFeePolicyNotFoundError"
-export type * from "./PlatformAdditionalFeePolicyScheduleAlreadyExistsError"
-export type * from "./PlatformArchivedAdditionalFeePolicyError"
-export type * from "./PlatformArchivedContractError"
-export type * from "./PlatformArchivedPartnerError"
-export type * from "./PlatformArchivedPartnersCannotBeScheduledError"
-export type * from "./PlatformBulkPayoutNotFoundError"
-export type * from "./PlatformBulkPayoutPartnerSettlement"
-export type * from "./PlatformBulkPayoutPartnerSettlementsFilterInput"
-export type * from "./PlatformBulkPayoutsSheetField"
-export type * from "./PlatformContact"
-export type * from "./PlatformContract"
-export type * from "./PlatformContractNotFoundError"
-export type * from "./PlatformContractScheduleAlreadyExistsError"
-export type * from "./PlatformCurrencyNotSupportedError"
-export type * from "./PlatformDiscountSharePolicy"
-export type * from "./PlatformDiscountSharePolicyFilterOptions"
-export type * from "./PlatformDiscountSharePolicyNotFoundError"
-export type * from "./PlatformDiscountSharePolicyScheduleAlreadyExistsError"
-export type * from "./PlatformFee"
-export type * from "./PlatformFeeInput"
-export type * from "./PlatformFixedAmountFee"
-export type * from "./PlatformFixedRateFee"
-export type * from "./PlatformHoliday"
-export type * from "./PlatformInsufficientDataToChangePartnerTypeError"
-export type * from "./PlatformInvalidSettlementFormulaError"
-export type * from "./PlatformNonUpdatableStatusError"
-export type * from "./PlatformNotEnabledError"
-export type * from "./PlatformOrderSettlementAmount"
-export type * from "./PlatformPartner"
-export type * from "./PlatformPartnerBusinessStatus"
-export type * from "./PlatformPartnerContractSummary"
-export type * from "./PlatformPartnerDashboard"
-export type * from "./PlatformPartnerDashboardCount"
-export type * from "./PlatformPartnerFilterInput"
-export type * from "./PlatformPartnerFilterInputKeyword"
-export type * from "./PlatformPartnerFilterOptions"
-export type * from "./PlatformPartnerNotFoundError"
-export type * from "./PlatformPartnerScheduleAlreadyExistsError"
-export type * from "./PlatformPartnerSchedulesAlreadyExistError"
-export type * from "./PlatformPartnerSettlementDashboard"
-export type * from "./PlatformPartnerSettlementDashboardCurrencyStat"
-export type * from "./PlatformPartnerSettlementNotFoundError"
-export type * from "./PlatformPartnerSettlementSheetField"
-export type * from "./PlatformPartnerStatus"
-export type * from "./PlatformPartnerTaxationType"
-export type * from "./PlatformPartnerType"
-export type * from "./PlatformPartnerTypeBusiness"
-export type * from "./PlatformPartnerTypeNonWhtPayer"
-export type * from "./PlatformPartnerTypeWhtPayer"
-export type * from "./PlatformPayer"
-export type * from "./PlatformPaymentChannel"
-export type * from "./PlatformPayoutMethod"
-export type * from "./PlatformPayoutNotFoundError"
-export type * from "./PlatformPayoutStatusStats"
-export type * from "./PlatformPayoutsSheetField"
-export type * from "./PlatformProperties"
-export type * from "./PlatformRoundType"
-export type * from "./PlatformSettlementCycle"
-export type * from "./PlatformSettlementCycleDatePolicy"
-export type * from "./PlatformSettlementCycleInput"
-export type * from "./PlatformSettlementCycleMethod"
-export type * from "./PlatformSettlementCycleMethodDaily"
-export type * from "./PlatformSettlementCycleMethodDailyInput"
-export type * from "./PlatformSettlementCycleMethodInput"
-export type * from "./PlatformSettlementCycleMethodManualDates"
-export type * from "./PlatformSettlementCycleMethodManualDatesInput"
-export type * from "./PlatformSettlementCycleMethodMonthly"
-export type * from "./PlatformSettlementCycleMethodMonthlyInput"
-export type * from "./PlatformSettlementCycleMethodWeekly"
-export type * from "./PlatformSettlementCycleMethodWeeklyInput"
-export type * from "./PlatformSettlementFormula"
-export type * from "./PlatformSettlementFormulaError"
-export type * from "./PlatformSettlementFormulaInvalidFunction"
-export type * from "./PlatformSettlementFormulaInvalidOperator"
-export type * from "./PlatformSettlementFormulaInvalidSyntax"
-export type * from "./PlatformSettlementFormulaInvalidVariable"
-export type * from "./PlatformSettlementFormulaPosition"
-export type * from "./PlatformSettlementFormulaUnexpectedFunctionArguments"
-export type * from "./PlatformSettlementFormulaUnknownError"
-export type * from "./PlatformSettlementFormulaUnsupportedVariable"
-export type * from "./PlatformSettlementRule"
-export type * from "./PlatformTransferDashboard"
-export type * from "./PlatformTransferFilterOptions"
-export type * from "./PlatformUserDefinedPropertyNotFoundError"
-export type * from "./PlatformUserDefinedPropertyValue"
-export type * from "./PromotionTimeRangeField"
-export type * from "./PromotionsExcelDownloadError"
-export type * from "./ReconciliationDateConditionInput"
-export type * from "./ReconciliationEasyPayMethod"
-export type * from "./ReconciliationEasyPayProvider"
-export type * from "./ReconciliationPaymentMethod"
-export type * from "./ReconciliationPaymentMethodArs"
-export type * from "./ReconciliationPaymentMethodCard"
-export type * from "./ReconciliationPaymentMethodCharge"
-export type * from "./ReconciliationPaymentMethodEasyPay"
-export type * from "./ReconciliationPaymentMethodEtc"
-export type * from "./ReconciliationPaymentMethodGiftCertificate"
-export type * from "./ReconciliationPaymentMethodMobile"
-export type * from "./ReconciliationPaymentMethodTransfer"
-export type * from "./ReconciliationPaymentMethodType"
-export type * from "./ReconciliationPaymentMethodVirtualAccount"
-export type * from "./ReconciliationPgProvider"
-export type * from "./ReconciliationPgSpecifier"
-export type * from "./RejectPlatformPartnerBody"
-export type * from "./RejectPlatformPartnerError"
-export type * from "./RejectPlatformPartnerResponse"
-export type * from "./RescheduleAdditionalFeePolicyError"
-export type * from "./RescheduleContractError"
-export type * from "./RescheduleDiscountSharePolicyError"
-export type * from "./ReschedulePartnerError"
-export type * from "./ReschedulePlatformAdditionalFeePolicyBody"
-export type * from "./ReschedulePlatformAdditionalFeePolicyResponse"
-export type * from "./ReschedulePlatformContractBody"
-export type * from "./ReschedulePlatformContractResponse"
-export type * from "./ReschedulePlatformDiscountSharePolicyBody"
-export type * from "./ReschedulePlatformDiscountSharePolicyResponse"
-export type * from "./ReschedulePlatformPartnerBody"
-export type * from "./ReschedulePlatformPartnerResponse"
-export type * from "./ScheduleAdditionalFeePolicyError"
-export type * from "./ScheduleContractError"
-export type * from "./ScheduleDiscountSharePolicyError"
-export type * from "./SchedulePartnerError"
-export type * from "./SchedulePlatformAdditionalFeePolicyBody"
-export type * from "./SchedulePlatformAdditionalFeePolicyResponse"
-export type * from "./SchedulePlatformContractBody"
-export type * from "./SchedulePlatformContractResponse"
-export type * from "./SchedulePlatformDiscountSharePolicyBody"
-export type * from "./SchedulePlatformDiscountSharePolicyResponse"
-export type * from "./SchedulePlatformPartnerBody"
-export type * from "./SchedulePlatformPartnerResponse"
-export type * from "./SchedulePlatformPartnersBody"
-export type * from "./SchedulePlatformPartnersBodyUpdate"
-export type * from "./SchedulePlatformPartnersBodyUpdateAccount"
-export type * from "./SchedulePlatformPartnersBodyUpdateContact"
-export type * from "./SchedulePlatformPartnersBodyUpdateType"
-export type * from "./SchedulePlatformPartnersBodyUpdateTypeBusiness"
-export type * from "./SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer"
-export type * from "./SchedulePlatformPartnersBodyUpdateTypeWhtPayer"
-export type * from "./SchedulePlatformPartnersError"
-export type * from "./SchedulePlatformPartnersResponse"
-export type * from "./Settlement"
-export type * from "./UpdatePlatformAdditionalFeePolicyBody"
-export type * from "./UpdatePlatformBody"
-export type * from "./UpdatePlatformBodySettlementFormula"
-export type * from "./UpdatePlatformBodySettlementRule"
-export type * from "./UpdatePlatformContractBody"
-export type * from "./UpdatePlatformDiscountSharePolicyBody"
-export type * from "./UpdatePlatformError"
-export type * from "./UpdatePlatformPartnerBody"
-export type * from "./UpdatePlatformPartnerBodyAccount"
-export type * from "./UpdatePlatformPartnerBodyContact"
-export type * from "./UpdatePlatformPartnerBodyType"
-export type * from "./UpdatePlatformPartnerBodyTypeBusiness"
-export type * from "./UpdatePlatformPartnerBodyTypeNonWhtPayer"
-export type * from "./UpdatePlatformPartnerBodyTypeWhtPayer"
-export type * from "./UpdatePlatformPartnerSettlementStatusBody"
-export type * from "./UpdatePlatformPartnerSettlementStatusResponse"
-export type * from "./UpdatePlatformResponse"
-export type * as Policy from "./policy"
-export type * as Partner from "./partner"
-export type * as Transfer from "./transfer"
-export type * as PartnerSettlement from "./partnerSettlement"
-export type * as Payout from "./payout"
-export type * as BulkPayout from "./bulkPayout"
-export type * as Account from "./account"
-export type * as AccountTransfer from "./accountTransfer"
+import type { CancelPlatformAdditionalFeePolicyScheduleError } from "#generated/platform/CancelPlatformAdditionalFeePolicyScheduleError"
 import type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "#generated/platform/CancelPlatformAdditionalFeePolicyScheduleResponse"
+import type { CancelPlatformContractScheduleError } from "#generated/platform/CancelPlatformContractScheduleError"
 import type { CancelPlatformContractScheduleResponse } from "#generated/platform/CancelPlatformContractScheduleResponse"
+import type { CancelPlatformDiscountSharePolicyScheduleError } from "#generated/platform/CancelPlatformDiscountSharePolicyScheduleError"
 import type { CancelPlatformDiscountSharePolicyScheduleResponse } from "#generated/platform/CancelPlatformDiscountSharePolicyScheduleResponse"
+import type { CancelPlatformPartnerScheduleError } from "#generated/platform/CancelPlatformPartnerScheduleError"
 import type { CancelPlatformPartnerScheduleResponse } from "#generated/platform/CancelPlatformPartnerScheduleResponse"
+import type { GetPlatformAdditionalFeePolicyScheduleError } from "#generated/platform/GetPlatformAdditionalFeePolicyScheduleError"
+import type { GetPlatformContractScheduleError } from "#generated/platform/GetPlatformContractScheduleError"
+import type { GetPlatformDiscountSharePolicyFilterOptionsError } from "#generated/platform/GetPlatformDiscountSharePolicyFilterOptionsError"
+import type { GetPlatformDiscountSharePolicyScheduleError } from "#generated/platform/GetPlatformDiscountSharePolicyScheduleError"
+import type { GetPlatformError } from "#generated/platform/GetPlatformError"
+import type { GetPlatformPartnerFilterOptionsError } from "#generated/platform/GetPlatformPartnerFilterOptionsError"
+import type { GetPlatformPartnerScheduleError } from "#generated/platform/GetPlatformPartnerScheduleError"
 import type { Platform } from "#generated/platform/Platform"
 import type { PlatformAdditionalFeePolicy } from "#generated/platform/PlatformAdditionalFeePolicy"
 import type { PlatformContract } from "#generated/platform/PlatformContract"
@@ -295,33 +22,1022 @@ import type { PlatformPartner } from "#generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "#generated/platform/PlatformPartnerFilterInput"
 import type { PlatformPartnerFilterOptions } from "#generated/platform/PlatformPartnerFilterOptions"
 import type { PlatformRoundType } from "#generated/platform/PlatformRoundType"
+import type { RescheduleAdditionalFeePolicyError } from "#generated/platform/RescheduleAdditionalFeePolicyError"
+import type { RescheduleContractError } from "#generated/platform/RescheduleContractError"
+import type { RescheduleDiscountSharePolicyError } from "#generated/platform/RescheduleDiscountSharePolicyError"
+import type { ReschedulePartnerError } from "#generated/platform/ReschedulePartnerError"
 import type { ReschedulePlatformAdditionalFeePolicyResponse } from "#generated/platform/ReschedulePlatformAdditionalFeePolicyResponse"
 import type { ReschedulePlatformContractResponse } from "#generated/platform/ReschedulePlatformContractResponse"
 import type { ReschedulePlatformDiscountSharePolicyResponse } from "#generated/platform/ReschedulePlatformDiscountSharePolicyResponse"
 import type { ReschedulePlatformPartnerResponse } from "#generated/platform/ReschedulePlatformPartnerResponse"
+import type { ScheduleAdditionalFeePolicyError } from "#generated/platform/ScheduleAdditionalFeePolicyError"
+import type { ScheduleContractError } from "#generated/platform/ScheduleContractError"
+import type { ScheduleDiscountSharePolicyError } from "#generated/platform/ScheduleDiscountSharePolicyError"
+import type { SchedulePartnerError } from "#generated/platform/SchedulePartnerError"
 import type { SchedulePlatformAdditionalFeePolicyResponse } from "#generated/platform/SchedulePlatformAdditionalFeePolicyResponse"
 import type { SchedulePlatformContractResponse } from "#generated/platform/SchedulePlatformContractResponse"
 import type { SchedulePlatformDiscountSharePolicyResponse } from "#generated/platform/SchedulePlatformDiscountSharePolicyResponse"
 import type { SchedulePlatformPartnerResponse } from "#generated/platform/SchedulePlatformPartnerResponse"
 import type { SchedulePlatformPartnersBodyUpdate } from "#generated/platform/SchedulePlatformPartnersBodyUpdate"
+import type { SchedulePlatformPartnersError } from "#generated/platform/SchedulePlatformPartnersError"
 import type { SchedulePlatformPartnersResponse } from "#generated/platform/SchedulePlatformPartnersResponse"
 import type { UpdatePlatformAdditionalFeePolicyBody } from "#generated/platform/UpdatePlatformAdditionalFeePolicyBody"
 import type { UpdatePlatformBodySettlementFormula } from "#generated/platform/UpdatePlatformBodySettlementFormula"
 import type { UpdatePlatformBodySettlementRule } from "#generated/platform/UpdatePlatformBodySettlementRule"
 import type { UpdatePlatformContractBody } from "#generated/platform/UpdatePlatformContractBody"
 import type { UpdatePlatformDiscountSharePolicyBody } from "#generated/platform/UpdatePlatformDiscountSharePolicyBody"
+import type { UpdatePlatformError } from "#generated/platform/UpdatePlatformError"
 import type { UpdatePlatformPartnerBody } from "#generated/platform/UpdatePlatformPartnerBody"
 import type { UpdatePlatformResponse } from "#generated/platform/UpdatePlatformResponse"
-import type * as Policy from "./policy"
-import type * as Partner from "./partner"
-import type * as Transfer from "./transfer"
-import type * as PartnerSettlement from "./partnerSettlement"
-import type * as Payout from "./payout"
-import type * as BulkPayout from "./bulkPayout"
-import type * as Account from "./account"
-import type * as AccountTransfer from "./accountTransfer"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+import * as Policy from "./policy"
+import * as Partner from "./partner"
+import * as Transfer from "./transfer"
+import * as PartnerSettlement from "./partnerSettlement"
+import * as Payout from "./payout"
+import * as BulkPayout from "./bulkPayout"
+import * as Account from "./account"
+import * as AccountTransfer from "./accountTransfer"
+export type { AmountExceededType } from "./AmountExceededType"
+export type { Analytics } from "./Analytics"
+export type { ApprovePlatformPartnerBody } from "./ApprovePlatformPartnerBody"
+export type { ApprovePlatformPartnerResponse } from "./ApprovePlatformPartnerResponse"
+export type { B2bSearchDateType } from "./B2bSearchDateType"
+export type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "./CancelPlatformAdditionalFeePolicyScheduleResponse"
+export type { CancelPlatformContractScheduleResponse } from "./CancelPlatformContractScheduleResponse"
+export type { CancelPlatformDiscountSharePolicyScheduleResponse } from "./CancelPlatformDiscountSharePolicyScheduleResponse"
+export type { CancelPlatformPartnerScheduleResponse } from "./CancelPlatformPartnerScheduleResponse"
+export type { Carrier } from "./Carrier"
+export type { Channel } from "./Channel"
+export type { ChannelType } from "./ChannelType"
+export type { CursorPageInfo } from "./CursorPageInfo"
+export type { DateRange } from "./DateRange"
+export type { DownloadPaymentsExcelBody } from "./DownloadPaymentsExcelBody"
+export type { DownloadPaymentsExcelFilter } from "./DownloadPaymentsExcelFilter"
+export type { DownloadPlatformBulkPayoutsSheetBody } from "./DownloadPlatformBulkPayoutsSheetBody"
+export type { DownloadPlatformPartnerSettlementSheetBody } from "./DownloadPlatformPartnerSettlementSheetBody"
+export type { DownloadPlatformPayoutsSheetBody } from "./DownloadPlatformPayoutsSheetBody"
+export type { DownloadPromotionsExcelBody } from "./DownloadPromotionsExcelBody"
+export type { GetPaymentReconciliationSettlementSummariesBody } from "./GetPaymentReconciliationSettlementSummariesBody"
+export type { GetPaymentReconciliationSettlementSummariesResponse } from "./GetPaymentReconciliationSettlementSummariesResponse"
+export type { GetPaymentReconciliationSettlementSummaryExcelFileBody } from "./GetPaymentReconciliationSettlementSummaryExcelFileBody"
+export type { GetPaymentReconciliationSettlementVatReferenceExcelFileBody } from "./GetPaymentReconciliationSettlementVatReferenceExcelFileBody"
+export type { GetPaymentReconciliationTransactionSummariesBody } from "./GetPaymentReconciliationTransactionSummariesBody"
+export type { GetPaymentReconciliationTransactionSummariesResponse } from "./GetPaymentReconciliationTransactionSummariesResponse"
+export type { GetPaymentReconciliationTransactionSummaryExcelFileBody } from "./GetPaymentReconciliationTransactionSummaryExcelFileBody"
+export type { GetPaymentReconciliationsBody } from "./GetPaymentReconciliationsBody"
+export type { GetPaymentReconciliationsExcelFileBody } from "./GetPaymentReconciliationsExcelFileBody"
+export type { GetPaymentReconciliationsResponse } from "./GetPaymentReconciliationsResponse"
+export type { GetPlatformBulkPayoutPartnerSettlementsBody } from "./GetPlatformBulkPayoutPartnerSettlementsBody"
+export type { GetPlatformBulkPayoutPartnerSettlementsResponse } from "./GetPlatformBulkPayoutPartnerSettlementsResponse"
+export type { GetPlatformHolidaysResponse } from "./GetPlatformHolidaysResponse"
+export type { GetPlatformPartnerDashboardBody } from "./GetPlatformPartnerDashboardBody"
+export type { GetPlatformPartnerSettlementCurrenciesBody } from "./GetPlatformPartnerSettlementCurrenciesBody"
+export type { GetPlatformPartnerSettlementCurrenciesResponse } from "./GetPlatformPartnerSettlementCurrenciesResponse"
+export type { GetPlatformPartnerSettlementDashboardBody } from "./GetPlatformPartnerSettlementDashboardBody"
+export type { GetPlatformPartnerSettlementDatesBody } from "./GetPlatformPartnerSettlementDatesBody"
+export type { GetPlatformPartnerSettlementDatesResponse } from "./GetPlatformPartnerSettlementDatesResponse"
+export type { GetPlatformPayableSettlementDatesResponse } from "./GetPlatformPayableSettlementDatesResponse"
+export type { GetPlatformTransferDashboardBody } from "./GetPlatformTransferDashboardBody"
+export type { GetV2SupportedChannelsResponse } from "./GetV2SupportedChannelsResponse"
+export type { GiftCertificateType } from "./GiftCertificateType"
+export type { LoginViaApiKeyBody } from "./LoginViaApiKeyBody"
+export type { LoginViaApiKeyResponse } from "./LoginViaApiKeyResponse"
+export type { Merchant } from "./Merchant"
+export type { MonthDay } from "./MonthDay"
+export type { PaymentReconciliation } from "./PaymentReconciliation"
+export type { PaymentReconciliationActionType } from "./PaymentReconciliationActionType"
+export type { PaymentReconciliationColumn } from "./PaymentReconciliationColumn"
+export type { PaymentReconciliationExcelFileFilterInput } from "./PaymentReconciliationExcelFileFilterInput"
+export type { PaymentReconciliationIncomparable } from "./PaymentReconciliationIncomparable"
+export type { PaymentReconciliationMatched } from "./PaymentReconciliationMatched"
+export type { PaymentReconciliationNotCollected } from "./PaymentReconciliationNotCollected"
+export type { PaymentReconciliationNotMatched } from "./PaymentReconciliationNotMatched"
+export type { PaymentReconciliationNotMatchedReason } from "./PaymentReconciliationNotMatchedReason"
+export type { PaymentReconciliationOrderInput } from "./PaymentReconciliationOrderInput"
+export type { PaymentReconciliationSearchConditionInput } from "./PaymentReconciliationSearchConditionInput"
+export type { PaymentReconciliationSettlementSummary } from "./PaymentReconciliationSettlementSummary"
+export type { PaymentReconciliationSettlementSummaryAggregate } from "./PaymentReconciliationSettlementSummaryAggregate"
+export type { PaymentReconciliationSettlementSummaryColumn } from "./PaymentReconciliationSettlementSummaryColumn"
+export type { PaymentReconciliationSettlementSummaryDetail } from "./PaymentReconciliationSettlementSummaryDetail"
+export type { PaymentReconciliationSettlementSummaryExcelFileFilterInput } from "./PaymentReconciliationSettlementSummaryExcelFileFilterInput"
+export type { PaymentReconciliationSettlementSummaryFilterInput } from "./PaymentReconciliationSettlementSummaryFilterInput"
+export type { PaymentReconciliationSettlementSummaryWithCursor } from "./PaymentReconciliationSettlementSummaryWithCursor"
+export type { PaymentReconciliationStatus } from "./PaymentReconciliationStatus"
+export type { PaymentReconciliationTransactionSummary } from "./PaymentReconciliationTransactionSummary"
+export type { PaymentReconciliationTransactionSummaryAggregate } from "./PaymentReconciliationTransactionSummaryAggregate"
+export type { PaymentReconciliationTransactionSummaryColumn } from "./PaymentReconciliationTransactionSummaryColumn"
+export type { PaymentReconciliationTransactionSummaryDetail } from "./PaymentReconciliationTransactionSummaryDetail"
+export type { PaymentReconciliationTransactionSummaryExcelFilterInput } from "./PaymentReconciliationTransactionSummaryExcelFilterInput"
+export type { PaymentReconciliationTransactionSummaryWithCursor } from "./PaymentReconciliationTransactionSummaryWithCursor"
+export type { PaymentReconciliationWithCursor } from "./PaymentReconciliationWithCursor"
+export type { Platform } from "./Platform"
+export type { PlatformAccount } from "./PlatformAccount"
+export type { PlatformAccountStatus } from "./PlatformAccountStatus"
+export type { PlatformAdditionalFeePolicy } from "./PlatformAdditionalFeePolicy"
+export type { PlatformBulkPayoutPartnerSettlement } from "./PlatformBulkPayoutPartnerSettlement"
+export type { PlatformBulkPayoutPartnerSettlementsFilterInput } from "./PlatformBulkPayoutPartnerSettlementsFilterInput"
+export type { PlatformBulkPayoutsSheetField } from "./PlatformBulkPayoutsSheetField"
+export type { PlatformContact } from "./PlatformContact"
+export type { PlatformContract } from "./PlatformContract"
+export type { PlatformDiscountSharePolicy } from "./PlatformDiscountSharePolicy"
+export type { PlatformDiscountSharePolicyFilterOptions } from "./PlatformDiscountSharePolicyFilterOptions"
+export type { PlatformFee } from "./PlatformFee"
+export type { PlatformFeeInput } from "./PlatformFeeInput"
+export type { PlatformFixedAmountFee } from "./PlatformFixedAmountFee"
+export type { PlatformFixedRateFee } from "./PlatformFixedRateFee"
+export type { PlatformHoliday } from "./PlatformHoliday"
+export type { PlatformOrderSettlementAmount } from "./PlatformOrderSettlementAmount"
+export type { PlatformPartner } from "./PlatformPartner"
+export type { PlatformPartnerBusinessStatus } from "./PlatformPartnerBusinessStatus"
+export type { PlatformPartnerContractSummary } from "./PlatformPartnerContractSummary"
+export type { PlatformPartnerDashboard } from "./PlatformPartnerDashboard"
+export type { PlatformPartnerDashboardCount } from "./PlatformPartnerDashboardCount"
+export type { PlatformPartnerFilterInput } from "./PlatformPartnerFilterInput"
+export type { PlatformPartnerFilterInputKeyword } from "./PlatformPartnerFilterInputKeyword"
+export type { PlatformPartnerFilterOptions } from "./PlatformPartnerFilterOptions"
+export type { PlatformPartnerSettlementDashboard } from "./PlatformPartnerSettlementDashboard"
+export type { PlatformPartnerSettlementDashboardCurrencyStat } from "./PlatformPartnerSettlementDashboardCurrencyStat"
+export type { PlatformPartnerSettlementSheetField } from "./PlatformPartnerSettlementSheetField"
+export type { PlatformPartnerStatus } from "./PlatformPartnerStatus"
+export type { PlatformPartnerTaxationType } from "./PlatformPartnerTaxationType"
+export type { PlatformPartnerType } from "./PlatformPartnerType"
+export type { PlatformPartnerTypeBusiness } from "./PlatformPartnerTypeBusiness"
+export type { PlatformPartnerTypeNonWhtPayer } from "./PlatformPartnerTypeNonWhtPayer"
+export type { PlatformPartnerTypeWhtPayer } from "./PlatformPartnerTypeWhtPayer"
+export type { PlatformPayer } from "./PlatformPayer"
+export type { PlatformPaymentChannel } from "./PlatformPaymentChannel"
+export type { PlatformPayoutMethod } from "./PlatformPayoutMethod"
+export type { PlatformPayoutStatusStats } from "./PlatformPayoutStatusStats"
+export type { PlatformPayoutsSheetField } from "./PlatformPayoutsSheetField"
+export type { PlatformProperties } from "./PlatformProperties"
+export type { PlatformRoundType } from "./PlatformRoundType"
+export type { PlatformSettlementCycle } from "./PlatformSettlementCycle"
+export type { PlatformSettlementCycleDatePolicy } from "./PlatformSettlementCycleDatePolicy"
+export type { PlatformSettlementCycleInput } from "./PlatformSettlementCycleInput"
+export type { PlatformSettlementCycleMethod } from "./PlatformSettlementCycleMethod"
+export type { PlatformSettlementCycleMethodDaily } from "./PlatformSettlementCycleMethodDaily"
+export type { PlatformSettlementCycleMethodDailyInput } from "./PlatformSettlementCycleMethodDailyInput"
+export type { PlatformSettlementCycleMethodInput } from "./PlatformSettlementCycleMethodInput"
+export type { PlatformSettlementCycleMethodManualDates } from "./PlatformSettlementCycleMethodManualDates"
+export type { PlatformSettlementCycleMethodManualDatesInput } from "./PlatformSettlementCycleMethodManualDatesInput"
+export type { PlatformSettlementCycleMethodMonthly } from "./PlatformSettlementCycleMethodMonthly"
+export type { PlatformSettlementCycleMethodMonthlyInput } from "./PlatformSettlementCycleMethodMonthlyInput"
+export type { PlatformSettlementCycleMethodWeekly } from "./PlatformSettlementCycleMethodWeekly"
+export type { PlatformSettlementCycleMethodWeeklyInput } from "./PlatformSettlementCycleMethodWeeklyInput"
+export type { PlatformSettlementFormula } from "./PlatformSettlementFormula"
+export type { PlatformSettlementFormulaInvalidFunction } from "./PlatformSettlementFormulaInvalidFunction"
+export type { PlatformSettlementFormulaInvalidOperator } from "./PlatformSettlementFormulaInvalidOperator"
+export type { PlatformSettlementFormulaInvalidSyntax } from "./PlatformSettlementFormulaInvalidSyntax"
+export type { PlatformSettlementFormulaInvalidVariable } from "./PlatformSettlementFormulaInvalidVariable"
+export type { PlatformSettlementFormulaPosition } from "./PlatformSettlementFormulaPosition"
+export type { PlatformSettlementFormulaUnexpectedFunctionArguments } from "./PlatformSettlementFormulaUnexpectedFunctionArguments"
+export type { PlatformSettlementFormulaUnsupportedVariable } from "./PlatformSettlementFormulaUnsupportedVariable"
+export type { PlatformSettlementRule } from "./PlatformSettlementRule"
+export type { PlatformTransferDashboard } from "./PlatformTransferDashboard"
+export type { PlatformTransferFilterOptions } from "./PlatformTransferFilterOptions"
+export type { PlatformUserDefinedPropertyValue } from "./PlatformUserDefinedPropertyValue"
+export type { PromotionTimeRangeField } from "./PromotionTimeRangeField"
+export type { ReconciliationDateConditionInput } from "./ReconciliationDateConditionInput"
+export type { ReconciliationEasyPayMethod } from "./ReconciliationEasyPayMethod"
+export type { ReconciliationEasyPayProvider } from "./ReconciliationEasyPayProvider"
+export type { ReconciliationPaymentMethod } from "./ReconciliationPaymentMethod"
+export type { ReconciliationPaymentMethodArs } from "./ReconciliationPaymentMethodArs"
+export type { ReconciliationPaymentMethodCard } from "./ReconciliationPaymentMethodCard"
+export type { ReconciliationPaymentMethodCharge } from "./ReconciliationPaymentMethodCharge"
+export type { ReconciliationPaymentMethodEasyPay } from "./ReconciliationPaymentMethodEasyPay"
+export type { ReconciliationPaymentMethodEtc } from "./ReconciliationPaymentMethodEtc"
+export type { ReconciliationPaymentMethodGiftCertificate } from "./ReconciliationPaymentMethodGiftCertificate"
+export type { ReconciliationPaymentMethodMobile } from "./ReconciliationPaymentMethodMobile"
+export type { ReconciliationPaymentMethodTransfer } from "./ReconciliationPaymentMethodTransfer"
+export type { ReconciliationPaymentMethodType } from "./ReconciliationPaymentMethodType"
+export type { ReconciliationPaymentMethodVirtualAccount } from "./ReconciliationPaymentMethodVirtualAccount"
+export type { ReconciliationPgProvider } from "./ReconciliationPgProvider"
+export type { ReconciliationPgSpecifier } from "./ReconciliationPgSpecifier"
+export type { RejectPlatformPartnerBody } from "./RejectPlatformPartnerBody"
+export type { RejectPlatformPartnerResponse } from "./RejectPlatformPartnerResponse"
+export type { ReschedulePlatformAdditionalFeePolicyBody } from "./ReschedulePlatformAdditionalFeePolicyBody"
+export type { ReschedulePlatformAdditionalFeePolicyResponse } from "./ReschedulePlatformAdditionalFeePolicyResponse"
+export type { ReschedulePlatformContractBody } from "./ReschedulePlatformContractBody"
+export type { ReschedulePlatformContractResponse } from "./ReschedulePlatformContractResponse"
+export type { ReschedulePlatformDiscountSharePolicyBody } from "./ReschedulePlatformDiscountSharePolicyBody"
+export type { ReschedulePlatformDiscountSharePolicyResponse } from "./ReschedulePlatformDiscountSharePolicyResponse"
+export type { ReschedulePlatformPartnerBody } from "./ReschedulePlatformPartnerBody"
+export type { ReschedulePlatformPartnerResponse } from "./ReschedulePlatformPartnerResponse"
+export type { SchedulePlatformAdditionalFeePolicyBody } from "./SchedulePlatformAdditionalFeePolicyBody"
+export type { SchedulePlatformAdditionalFeePolicyResponse } from "./SchedulePlatformAdditionalFeePolicyResponse"
+export type { SchedulePlatformContractBody } from "./SchedulePlatformContractBody"
+export type { SchedulePlatformContractResponse } from "./SchedulePlatformContractResponse"
+export type { SchedulePlatformDiscountSharePolicyBody } from "./SchedulePlatformDiscountSharePolicyBody"
+export type { SchedulePlatformDiscountSharePolicyResponse } from "./SchedulePlatformDiscountSharePolicyResponse"
+export type { SchedulePlatformPartnerBody } from "./SchedulePlatformPartnerBody"
+export type { SchedulePlatformPartnerResponse } from "./SchedulePlatformPartnerResponse"
+export type { SchedulePlatformPartnersBody } from "./SchedulePlatformPartnersBody"
+export type { SchedulePlatformPartnersBodyUpdate } from "./SchedulePlatformPartnersBodyUpdate"
+export type { SchedulePlatformPartnersBodyUpdateAccount } from "./SchedulePlatformPartnersBodyUpdateAccount"
+export type { SchedulePlatformPartnersBodyUpdateContact } from "./SchedulePlatformPartnersBodyUpdateContact"
+export type { SchedulePlatformPartnersBodyUpdateType } from "./SchedulePlatformPartnersBodyUpdateType"
+export type { SchedulePlatformPartnersBodyUpdateTypeBusiness } from "./SchedulePlatformPartnersBodyUpdateTypeBusiness"
+export type { SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer } from "./SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer"
+export type { SchedulePlatformPartnersBodyUpdateTypeWhtPayer } from "./SchedulePlatformPartnersBodyUpdateTypeWhtPayer"
+export type { SchedulePlatformPartnersResponse } from "./SchedulePlatformPartnersResponse"
+export type { Settlement } from "./Settlement"
+export type { UpdatePlatformAdditionalFeePolicyBody } from "./UpdatePlatformAdditionalFeePolicyBody"
+export type { UpdatePlatformBody } from "./UpdatePlatformBody"
+export type { UpdatePlatformBodySettlementFormula } from "./UpdatePlatformBodySettlementFormula"
+export type { UpdatePlatformBodySettlementRule } from "./UpdatePlatformBodySettlementRule"
+export type { UpdatePlatformContractBody } from "./UpdatePlatformContractBody"
+export type { UpdatePlatformDiscountSharePolicyBody } from "./UpdatePlatformDiscountSharePolicyBody"
+export type { UpdatePlatformPartnerBody } from "./UpdatePlatformPartnerBody"
+export type { UpdatePlatformPartnerBodyAccount } from "./UpdatePlatformPartnerBodyAccount"
+export type { UpdatePlatformPartnerBodyContact } from "./UpdatePlatformPartnerBodyContact"
+export type { UpdatePlatformPartnerBodyType } from "./UpdatePlatformPartnerBodyType"
+export type { UpdatePlatformPartnerBodyTypeBusiness } from "./UpdatePlatformPartnerBodyTypeBusiness"
+export type { UpdatePlatformPartnerBodyTypeNonWhtPayer } from "./UpdatePlatformPartnerBodyTypeNonWhtPayer"
+export type { UpdatePlatformPartnerBodyTypeWhtPayer } from "./UpdatePlatformPartnerBodyTypeWhtPayer"
+export type { UpdatePlatformPartnerSettlementStatusBody } from "./UpdatePlatformPartnerSettlementStatusBody"
+export type { UpdatePlatformPartnerSettlementStatusResponse } from "./UpdatePlatformPartnerSettlementStatusResponse"
+export type { UpdatePlatformResponse } from "./UpdatePlatformResponse"
+export type * as Policy from "./policy"
+export type * as Partner from "./partner"
+export type * as Transfer from "./transfer"
+export type * as PartnerSettlement from "./partnerSettlement"
+export type * as Payout from "./payout"
+export type * as BulkPayout from "./bulkPayout"
+export type * as Account from "./account"
+export type * as AccountTransfer from "./accountTransfer"
+export function PlatformClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PlatformClient {
+	return {
+		getPlatform: async (
+		): Promise<Platform> => {
+			const response = await fetch(
+				new URL("/platform", baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		updatePlatform: async (
+			options?: {
+				roundType?: PlatformRoundType,
+				settlementFormula?: UpdatePlatformBodySettlementFormula,
+				settlementRule?: UpdatePlatformBodySettlementRule,
+			}
+		): Promise<UpdatePlatformResponse> => {
+			const roundType = options?.roundType
+			const settlementFormula = options?.settlementFormula
+			const settlementRule = options?.settlementRule
+			const requestBody = JSON.stringify({
+				roundType,
+				settlementFormula,
+				settlementRule,
+			})
+			const response = await fetch(
+				new URL("/platform", baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: UpdatePlatformError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_INVALID_SETTLEMENT_FORMULA":
+					throw new Errors.PlatformInvalidSettlementFormulaError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicyFilterOptions: async (
+			isArchived?: boolean,
+		): Promise<PlatformDiscountSharePolicyFilterOptions> => {
+			const query = [
+				["isArchived", isArchived],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/discount-share-policy-filter-options?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformDiscountSharePolicyFilterOptionsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicySchedule: async (
+			id: string,
+		): Promise<PlatformDiscountSharePolicy> => {
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformDiscountSharePolicyScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		rescheduleDiscountSharePolicy: async (
+			id: string,
+			update: UpdatePlatformDiscountSharePolicyBody,
+			appliedAt: string,
+		): Promise<ReschedulePlatformDiscountSharePolicyResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				{
+					method: "put",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RescheduleDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		scheduleDiscountSharePolicy: async (
+			id: string,
+			update: UpdatePlatformDiscountSharePolicyBody,
+			appliedAt: string,
+		): Promise<SchedulePlatformDiscountSharePolicyResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ScheduleDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelPlatformDiscountSharePolicySchedule: async (
+			id: string,
+		): Promise<CancelPlatformDiscountSharePolicyScheduleResponse> => {
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelPlatformDiscountSharePolicyScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformAdditionalFeePolicySchedule: async (
+			id: string,
+		): Promise<PlatformAdditionalFeePolicy> => {
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformAdditionalFeePolicyScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		rescheduleAdditionalFeePolicy: async (
+			id: string,
+			update: UpdatePlatformAdditionalFeePolicyBody,
+			appliedAt: string,
+		): Promise<ReschedulePlatformAdditionalFeePolicyResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				{
+					method: "put",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RescheduleAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		scheduleAdditionalFeePolicy: async (
+			id: string,
+			update: UpdatePlatformAdditionalFeePolicyBody,
+			appliedAt: string,
+		): Promise<SchedulePlatformAdditionalFeePolicyResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ScheduleAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(errorResponse)
+				case "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
+					throw new Errors.PlatformArchivedAdditionalFeePolicyError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelPlatformAdditionalFeePolicySchedule: async (
+			id: string,
+		): Promise<CancelPlatformAdditionalFeePolicyScheduleResponse> => {
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelPlatformAdditionalFeePolicyScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformPartnerFilterOptions: async (
+			isArchived?: boolean,
+		): Promise<PlatformPartnerFilterOptions> => {
+			const query = [
+				["isArchived", isArchived],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partner-filter-options?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPartnerFilterOptionsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformPartnerSchedule: async (
+			id: string,
+		): Promise<PlatformPartner> => {
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPartnerScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		reschedulePartner: async (
+			id: string,
+			update: UpdatePlatformPartnerBody,
+			appliedAt: string,
+		): Promise<ReschedulePlatformPartnerResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				{
+					method: "put",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ReschedulePartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		schedulePartner: async (
+			id: string,
+			update: UpdatePlatformPartnerBody,
+			appliedAt: string,
+		): Promise<SchedulePlatformPartnerResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: SchedulePartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
+					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
+					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
+					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
+				case "PLATFORM_ARCHIVED_PARTNER":
+					throw new Errors.PlatformArchivedPartnerError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
+					throw new Errors.PlatformInsufficientDataToChangePartnerTypeError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PlatformPartnerScheduleAlreadyExistsError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelPlatformPartnerSchedule: async (
+			id: string,
+		): Promise<CancelPlatformPartnerScheduleResponse> => {
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelPlatformPartnerScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		schedulePlatformPartners: async (
+			update: SchedulePlatformPartnersBodyUpdate,
+			appliedAt: string,
+			filter?: PlatformPartnerFilterInput,
+		): Promise<SchedulePlatformPartnersResponse> => {
+			const requestBody = JSON.stringify({
+				filter,
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL("/platform/partners/schedule", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: SchedulePlatformPartnersError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED":
+					throw new Errors.PlatformArchivedPartnersCannotBeScheduledError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST":
+					throw new Errors.PlatformPartnerSchedulesAlreadyExistError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformContractSchedule: async (
+			id: string,
+		): Promise<PlatformContract> => {
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformContractScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		rescheduleContract: async (
+			id: string,
+			update: UpdatePlatformContractBody,
+			appliedAt: string,
+		): Promise<ReschedulePlatformContractResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				{
+					method: "put",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RescheduleContractError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		scheduleContract: async (
+			id: string,
+			update: UpdatePlatformContractBody,
+			appliedAt: string,
+		): Promise<SchedulePlatformContractResponse> => {
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ScheduleContractError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ARCHIVED_CONTRACT":
+					throw new Errors.PlatformArchivedContractError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PlatformContractScheduleAlreadyExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelPlatformContractSchedule: async (
+			id: string,
+		): Promise<CancelPlatformContractScheduleResponse> => {
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelPlatformContractScheduleError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		policy: Policy.PolicyClient(secret, userAgent, baseUrl, storeId),
+		partner: Partner.PartnerClient(secret, userAgent, baseUrl, storeId),
+		transfer: Transfer.TransferClient(secret, userAgent, baseUrl, storeId),
+		partnerSettlement: PartnerSettlement.PartnerSettlementClient(secret, userAgent, baseUrl, storeId),
+		payout: Payout.PayoutClient(secret, userAgent, baseUrl, storeId),
+		bulkPayout: BulkPayout.BulkPayoutClient(secret, userAgent, baseUrl, storeId),
+		account: Account.AccountClient(secret, userAgent, baseUrl, storeId),
+		accountTransfer: AccountTransfer.AccountTransferClient(secret, userAgent, baseUrl, storeId),
+	}
+}
+export type PlatformClient = {
 	/**
 	 * 고객사의 플랫폼 정보를 조회합니다.
 	 * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
@@ -773,12 +1489,13 @@ export type Operations = {
 		/** 계약 아이디 */
 		id: string,
 	) => Promise<CancelPlatformContractScheduleResponse>
-	policy: Policy.Operations
-	partner: Partner.Operations
-	transfer: Transfer.Operations
-	partnerSettlement: PartnerSettlement.Operations
-	payout: Payout.Operations
-	bulkPayout: BulkPayout.Operations
-	account: Account.Operations
-	accountTransfer: AccountTransfer.Operations
+	policy: Policy.PolicyClient
+	partner: Partner.PartnerClient
+	transfer: Transfer.TransferClient
+	partnerSettlement: PartnerSettlement.PartnerSettlementClient
+	payout: Payout.PayoutClient
+	bulkPayout: BulkPayout.BulkPayoutClient
+	account: Account.AccountClient
+	accountTransfer: AccountTransfer.AccountTransferClient
 }
+

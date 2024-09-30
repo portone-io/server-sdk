@@ -1,28 +1,168 @@
-export type * from "./CancelCashReceiptError"
-export type * from "./CancelCashReceiptResponse"
-export type * from "./CancelledCashReceipt"
-export type * from "./CashReceipt"
-export type * from "./CashReceiptAlreadyIssuedError"
-export type * from "./CashReceiptNotFoundError"
-export type * from "./CashReceiptNotIssuedError"
-export type * from "./CashReceiptSummary"
-export type * from "./GetCashReceiptError"
-export type * from "./IssueCashReceiptBody"
-export type * from "./IssueCashReceiptCustomerInput"
-export type * from "./IssueCashReceiptError"
-export type * from "./IssueCashReceiptResponse"
-export type * from "./IssueFailedCashReceipt"
-export type * from "./IssuedCashReceipt"
+import type { CancelCashReceiptError } from "#generated/cashReceipt/CancelCashReceiptError"
 import type { CancelCashReceiptResponse } from "#generated/cashReceipt/CancelCashReceiptResponse"
 import type { CashReceipt } from "#generated/cashReceipt/CashReceipt"
 import type { CashReceiptType } from "#generated/common/CashReceiptType"
 import type { Currency } from "#generated/common/Currency"
+import type { GetCashReceiptError } from "#generated/cashReceipt/GetCashReceiptError"
 import type { IssueCashReceiptCustomerInput } from "#generated/cashReceipt/IssueCashReceiptCustomerInput"
+import type { IssueCashReceiptError } from "#generated/cashReceipt/IssueCashReceiptError"
 import type { IssueCashReceiptResponse } from "#generated/cashReceipt/IssueCashReceiptResponse"
 import type { PaymentAmountInput } from "#generated/common/PaymentAmountInput"
 import type { PaymentProductType } from "#generated/common/PaymentProductType"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { CancelCashReceiptResponse } from "./CancelCashReceiptResponse"
+export type { CancelledCashReceipt } from "./CancelledCashReceipt"
+export type { CashReceipt } from "./CashReceipt"
+export type { CashReceiptSummary } from "./CashReceiptSummary"
+export type { IssueCashReceiptBody } from "./IssueCashReceiptBody"
+export type { IssueCashReceiptCustomerInput } from "./IssueCashReceiptCustomerInput"
+export type { IssueCashReceiptResponse } from "./IssueCashReceiptResponse"
+export type { IssueFailedCashReceipt } from "./IssueFailedCashReceipt"
+export type { IssuedCashReceipt } from "./IssuedCashReceipt"
+export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): CashReceiptClient {
+	return {
+		getCashReceiptByPaymentId: async (
+			paymentId: string,
+		): Promise<CashReceipt> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/cash-receipt?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetCashReceiptError = await response.json()
+				switch (errorResponse.type) {
+				case "CASH_RECEIPT_NOT_FOUND":
+					throw new Errors.CashReceiptNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		issueCashReceipt: async (
+			options: {
+				paymentId: string,
+				channelKey: string,
+				type: CashReceiptType,
+				orderName: string,
+				currency: Currency,
+				amount: PaymentAmountInput,
+				productType?: PaymentProductType,
+				customer: IssueCashReceiptCustomerInput,
+				paidAt?: string,
+			}
+		): Promise<IssueCashReceiptResponse> => {
+			const {
+				paymentId,
+				channelKey,
+				type,
+				orderName,
+				currency,
+				amount,
+				productType,
+				customer,
+				paidAt,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId,
+				paymentId,
+				channelKey,
+				type,
+				orderName,
+				currency,
+				amount,
+				productType,
+				customer,
+				paidAt,
+			})
+			const response = await fetch(
+				new URL("/cash-receipts", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: IssueCashReceiptError = await response.json()
+				switch (errorResponse.type) {
+				case "CASH_RECEIPT_ALREADY_ISSUED":
+					throw new Errors.CashReceiptAlreadyIssuedError(errorResponse)
+				case "CHANNEL_NOT_FOUND":
+					throw new Errors.ChannelNotFoundError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		cancelCashReceiptByPaymentId: async (
+			paymentId: string,
+		): Promise<CancelCashReceiptResponse> => {
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${paymentId}/cash-receipt/cancel?${query}`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CancelCashReceiptError = await response.json()
+				switch (errorResponse.type) {
+				case "CASH_RECEIPT_NOT_FOUND":
+					throw new Errors.CashReceiptNotFoundError(errorResponse)
+				case "CASH_RECEIPT_NOT_ISSUED":
+					throw new Errors.CashReceiptNotIssuedError(errorResponse)
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PG_PROVIDER":
+					throw new Errors.PgProviderError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type CashReceiptClient = {
 	/**
 	 * 현금 영수증 단건 조회
 	 *
@@ -101,3 +241,4 @@ export type Operations = {
 		paymentId: string,
 	) => Promise<CancelCashReceiptResponse>
 }
+

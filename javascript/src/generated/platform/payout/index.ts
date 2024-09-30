@@ -1,16 +1,66 @@
-export type * from "./GetPlatformPayoutsBody"
-export type * from "./GetPlatformPayoutsError"
-export type * from "./GetPlatformPayoutsResponse"
-export type * from "./PlatformPayout"
-export type * from "./PlatformPayoutAccount"
-export type * from "./PlatformPayoutFilterInput"
-export type * from "./PlatformPayoutFilterInputCriteria"
-export type * from "./PlatformPayoutStatus"
+import type { GetPlatformPayoutsError } from "#generated/platform/payout/GetPlatformPayoutsError"
 import type { GetPlatformPayoutsResponse } from "#generated/platform/payout/GetPlatformPayoutsResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformPayoutFilterInput } from "#generated/platform/payout/PlatformPayoutFilterInput"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { GetPlatformPayoutsBody } from "./GetPlatformPayoutsBody"
+export type { GetPlatformPayoutsResponse } from "./GetPlatformPayoutsResponse"
+export type { PlatformPayout } from "./PlatformPayout"
+export type { PlatformPayoutAccount } from "./PlatformPayoutAccount"
+export type { PlatformPayoutFilterInput } from "./PlatformPayoutFilterInput"
+export type { PlatformPayoutFilterInputCriteria } from "./PlatformPayoutFilterInputCriteria"
+export type { PlatformPayoutStatus } from "./PlatformPayoutStatus"
+export function PayoutClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PayoutClient {
+	return {
+		getPlatformPayouts: async (
+			options?: {
+				isForTest?: boolean,
+				page?: PageInput,
+				filter?: PlatformPayoutFilterInput,
+			}
+		): Promise<GetPlatformPayoutsResponse> => {
+			const isForTest = options?.isForTest
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				isForTest,
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/payouts?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPayoutsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PayoutClient = {
 	/**
 	 * 지급 내역 다건 조회
 	 *
@@ -29,3 +79,4 @@ export type Operations = {
 		}
 	) => Promise<GetPlatformPayoutsResponse>
 }
+

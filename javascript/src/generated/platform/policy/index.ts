@@ -1,65 +1,24 @@
-export type * from "./ArchivePlatformAdditionalFeePolicyError"
-export type * from "./ArchivePlatformAdditionalFeePolicyResponse"
-export type * from "./ArchivePlatformContractError"
-export type * from "./ArchivePlatformContractResponse"
-export type * from "./ArchivePlatformDiscountSharePolicyError"
-export type * from "./ArchivePlatformDiscountSharePolicyResponse"
-export type * from "./CreatePlatformAdditionalFeePolicyBody"
-export type * from "./CreatePlatformAdditionalFeePolicyError"
-export type * from "./CreatePlatformAdditionalFeePolicyResponse"
-export type * from "./CreatePlatformContractBody"
-export type * from "./CreatePlatformContractError"
-export type * from "./CreatePlatformContractResponse"
-export type * from "./CreatePlatformDiscountSharePolicyBody"
-export type * from "./CreatePlatformDiscountSharePolicyError"
-export type * from "./CreatePlatformDiscountSharePolicyResponse"
-export type * from "./GetPlatformAdditionalFeePoliciesBody"
-export type * from "./GetPlatformAdditionalFeePoliciesError"
-export type * from "./GetPlatformAdditionalFeePoliciesResponse"
-export type * from "./GetPlatformAdditionalFeePolicyError"
-export type * from "./GetPlatformContractError"
-export type * from "./GetPlatformContractsBody"
-export type * from "./GetPlatformContractsError"
-export type * from "./GetPlatformContractsResponse"
-export type * from "./GetPlatformDiscountSharePoliciesBody"
-export type * from "./GetPlatformDiscountSharePoliciesError"
-export type * from "./GetPlatformDiscountSharePoliciesResponse"
-export type * from "./GetPlatformDiscountSharePolicyError"
-export type * from "./PlatformAdditionalFeePolicyAlreadyExistsError"
-export type * from "./PlatformAdditionalFeePolicyFilterInput"
-export type * from "./PlatformAdditionalFeePolicyFilterInputKeyword"
-export type * from "./PlatformArchivedDiscountSharePolicyError"
-export type * from "./PlatformCannotArchiveScheduledAdditionalFeePolicyError"
-export type * from "./PlatformCannotArchiveScheduledContractError"
-export type * from "./PlatformCannotArchiveScheduledDiscountSharePolicyError"
-export type * from "./PlatformContractAlreadyExistsError"
-export type * from "./PlatformContractFilterInput"
-export type * from "./PlatformContractFilterInputKeyword"
-export type * from "./PlatformDiscountSharePolicyAlreadyExistsError"
-export type * from "./PlatformDiscountSharePolicyFilterInput"
-export type * from "./PlatformDiscountSharePolicyFilterInputKeyword"
-export type * from "./PlatformSettlementCycleType"
-export type * from "./RecoverPlatformAdditionalFeePolicyError"
-export type * from "./RecoverPlatformAdditionalFeePolicyResponse"
-export type * from "./RecoverPlatformContractError"
-export type * from "./RecoverPlatformContractResponse"
-export type * from "./RecoverPlatformDiscountSharePolicyError"
-export type * from "./RecoverPlatformDiscountSharePolicyResponse"
-export type * from "./UpdatePlatformAdditionalFeePolicyError"
-export type * from "./UpdatePlatformAdditionalFeePolicyResponse"
-export type * from "./UpdatePlatformContractError"
-export type * from "./UpdatePlatformContractResponse"
-export type * from "./UpdatePlatformDiscountSharePolicyError"
-export type * from "./UpdatePlatformDiscountSharePolicyResponse"
+import type { ArchivePlatformAdditionalFeePolicyError } from "#generated/platform/policy/ArchivePlatformAdditionalFeePolicyError"
 import type { ArchivePlatformAdditionalFeePolicyResponse } from "#generated/platform/policy/ArchivePlatformAdditionalFeePolicyResponse"
+import type { ArchivePlatformContractError } from "#generated/platform/policy/ArchivePlatformContractError"
 import type { ArchivePlatformContractResponse } from "#generated/platform/policy/ArchivePlatformContractResponse"
+import type { ArchivePlatformDiscountSharePolicyError } from "#generated/platform/policy/ArchivePlatformDiscountSharePolicyError"
 import type { ArchivePlatformDiscountSharePolicyResponse } from "#generated/platform/policy/ArchivePlatformDiscountSharePolicyResponse"
+import type { CreatePlatformAdditionalFeePolicyError } from "#generated/platform/policy/CreatePlatformAdditionalFeePolicyError"
 import type { CreatePlatformAdditionalFeePolicyResponse } from "#generated/platform/policy/CreatePlatformAdditionalFeePolicyResponse"
+import type { CreatePlatformContractError } from "#generated/platform/policy/CreatePlatformContractError"
 import type { CreatePlatformContractResponse } from "#generated/platform/policy/CreatePlatformContractResponse"
+import type { CreatePlatformDiscountSharePolicyError } from "#generated/platform/policy/CreatePlatformDiscountSharePolicyError"
 import type { CreatePlatformDiscountSharePolicyResponse } from "#generated/platform/policy/CreatePlatformDiscountSharePolicyResponse"
+import type { GetPlatformAdditionalFeePoliciesError } from "#generated/platform/policy/GetPlatformAdditionalFeePoliciesError"
 import type { GetPlatformAdditionalFeePoliciesResponse } from "#generated/platform/policy/GetPlatformAdditionalFeePoliciesResponse"
+import type { GetPlatformAdditionalFeePolicyError } from "#generated/platform/policy/GetPlatformAdditionalFeePolicyError"
+import type { GetPlatformContractError } from "#generated/platform/policy/GetPlatformContractError"
+import type { GetPlatformContractsError } from "#generated/platform/policy/GetPlatformContractsError"
 import type { GetPlatformContractsResponse } from "#generated/platform/policy/GetPlatformContractsResponse"
+import type { GetPlatformDiscountSharePoliciesError } from "#generated/platform/policy/GetPlatformDiscountSharePoliciesError"
 import type { GetPlatformDiscountSharePoliciesResponse } from "#generated/platform/policy/GetPlatformDiscountSharePoliciesResponse"
+import type { GetPlatformDiscountSharePolicyError } from "#generated/platform/policy/GetPlatformDiscountSharePolicyError"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformAdditionalFeePolicy } from "#generated/platform/PlatformAdditionalFeePolicy"
 import type { PlatformAdditionalFeePolicyFilterInput } from "#generated/platform/policy/PlatformAdditionalFeePolicyFilterInput"
@@ -70,14 +29,787 @@ import type { PlatformDiscountSharePolicyFilterInput } from "#generated/platform
 import type { PlatformFeeInput } from "#generated/platform/PlatformFeeInput"
 import type { PlatformPayer } from "#generated/platform/PlatformPayer"
 import type { PlatformSettlementCycleInput } from "#generated/platform/PlatformSettlementCycleInput"
+import type { RecoverPlatformAdditionalFeePolicyError } from "#generated/platform/policy/RecoverPlatformAdditionalFeePolicyError"
 import type { RecoverPlatformAdditionalFeePolicyResponse } from "#generated/platform/policy/RecoverPlatformAdditionalFeePolicyResponse"
+import type { RecoverPlatformContractError } from "#generated/platform/policy/RecoverPlatformContractError"
 import type { RecoverPlatformContractResponse } from "#generated/platform/policy/RecoverPlatformContractResponse"
+import type { RecoverPlatformDiscountSharePolicyError } from "#generated/platform/policy/RecoverPlatformDiscountSharePolicyError"
 import type { RecoverPlatformDiscountSharePolicyResponse } from "#generated/platform/policy/RecoverPlatformDiscountSharePolicyResponse"
+import type { UpdatePlatformAdditionalFeePolicyError } from "#generated/platform/policy/UpdatePlatformAdditionalFeePolicyError"
 import type { UpdatePlatformAdditionalFeePolicyResponse } from "#generated/platform/policy/UpdatePlatformAdditionalFeePolicyResponse"
+import type { UpdatePlatformContractError } from "#generated/platform/policy/UpdatePlatformContractError"
 import type { UpdatePlatformContractResponse } from "#generated/platform/policy/UpdatePlatformContractResponse"
+import type { UpdatePlatformDiscountSharePolicyError } from "#generated/platform/policy/UpdatePlatformDiscountSharePolicyError"
 import type { UpdatePlatformDiscountSharePolicyResponse } from "#generated/platform/policy/UpdatePlatformDiscountSharePolicyResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { ArchivePlatformAdditionalFeePolicyResponse } from "./ArchivePlatformAdditionalFeePolicyResponse"
+export type { ArchivePlatformContractResponse } from "./ArchivePlatformContractResponse"
+export type { ArchivePlatformDiscountSharePolicyResponse } from "./ArchivePlatformDiscountSharePolicyResponse"
+export type { CreatePlatformAdditionalFeePolicyBody } from "./CreatePlatformAdditionalFeePolicyBody"
+export type { CreatePlatformAdditionalFeePolicyResponse } from "./CreatePlatformAdditionalFeePolicyResponse"
+export type { CreatePlatformContractBody } from "./CreatePlatformContractBody"
+export type { CreatePlatformContractResponse } from "./CreatePlatformContractResponse"
+export type { CreatePlatformDiscountSharePolicyBody } from "./CreatePlatformDiscountSharePolicyBody"
+export type { CreatePlatformDiscountSharePolicyResponse } from "./CreatePlatformDiscountSharePolicyResponse"
+export type { GetPlatformAdditionalFeePoliciesBody } from "./GetPlatformAdditionalFeePoliciesBody"
+export type { GetPlatformAdditionalFeePoliciesResponse } from "./GetPlatformAdditionalFeePoliciesResponse"
+export type { GetPlatformContractsBody } from "./GetPlatformContractsBody"
+export type { GetPlatformContractsResponse } from "./GetPlatformContractsResponse"
+export type { GetPlatformDiscountSharePoliciesBody } from "./GetPlatformDiscountSharePoliciesBody"
+export type { GetPlatformDiscountSharePoliciesResponse } from "./GetPlatformDiscountSharePoliciesResponse"
+export type { PlatformAdditionalFeePolicyFilterInput } from "./PlatformAdditionalFeePolicyFilterInput"
+export type { PlatformAdditionalFeePolicyFilterInputKeyword } from "./PlatformAdditionalFeePolicyFilterInputKeyword"
+export type { PlatformContractFilterInput } from "./PlatformContractFilterInput"
+export type { PlatformContractFilterInputKeyword } from "./PlatformContractFilterInputKeyword"
+export type { PlatformDiscountSharePolicyFilterInput } from "./PlatformDiscountSharePolicyFilterInput"
+export type { PlatformDiscountSharePolicyFilterInputKeyword } from "./PlatformDiscountSharePolicyFilterInputKeyword"
+export type { PlatformSettlementCycleType } from "./PlatformSettlementCycleType"
+export type { RecoverPlatformAdditionalFeePolicyResponse } from "./RecoverPlatformAdditionalFeePolicyResponse"
+export type { RecoverPlatformContractResponse } from "./RecoverPlatformContractResponse"
+export type { RecoverPlatformDiscountSharePolicyResponse } from "./RecoverPlatformDiscountSharePolicyResponse"
+export type { UpdatePlatformAdditionalFeePolicyResponse } from "./UpdatePlatformAdditionalFeePolicyResponse"
+export type { UpdatePlatformContractResponse } from "./UpdatePlatformContractResponse"
+export type { UpdatePlatformDiscountSharePolicyResponse } from "./UpdatePlatformDiscountSharePolicyResponse"
+export function PolicyClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PolicyClient {
+	return {
+		getPlatformDiscountSharePolicies: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformDiscountSharePolicyFilterInput,
+			}
+		): Promise<GetPlatformDiscountSharePoliciesResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformDiscountSharePoliciesError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformDiscountSharePolicy: async (
+			options: {
+				id?: string,
+				name: string,
+				partnerShareRate: number,
+				memo?: string,
+			}
+		): Promise<CreatePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			} = options
+			const requestBody = JSON.stringify({
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			})
+			const response = await fetch(
+				new URL("/platform/discount-share-policies", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS":
+					throw new Errors.PlatformDiscountSharePolicyAlreadyExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicy: async (
+			id: string,
+		): Promise<PlatformDiscountSharePolicy> => {
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		updatePlatformDiscountSharePolicy: async (
+			options: {
+				id: string,
+				name?: string,
+				partnerShareRate?: number,
+				memo?: string,
+			}
+		): Promise<UpdatePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			} = options
+			const requestBody = JSON.stringify({
+				name,
+				partnerShareRate,
+				memo,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}`, baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: UpdatePlatformDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
+					throw new Errors.PlatformArchivedDiscountSharePolicyError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		archivePlatformDiscountSharePolicy: async (
+			id: string,
+		): Promise<ArchivePlatformDiscountSharePolicyResponse> => {
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/archive`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ArchivePlatformDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY":
+					throw new Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		recoverPlatformDiscountSharePolicy: async (
+			id: string,
+		): Promise<RecoverPlatformDiscountSharePolicyResponse> => {
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${id}/recover`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RecoverPlatformDiscountSharePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformAdditionalFeePolicies: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformAdditionalFeePolicyFilterInput,
+			}
+		): Promise<GetPlatformAdditionalFeePoliciesResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformAdditionalFeePoliciesError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformAdditionalFeePolicy: async (
+			options: {
+				id?: string,
+				name: string,
+				fee: PlatformFeeInput,
+				memo?: string,
+				vatPayer: PlatformPayer,
+			}
+		): Promise<CreatePlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+				name,
+				fee,
+				memo,
+				vatPayer,
+			} = options
+			const requestBody = JSON.stringify({
+				id,
+				name,
+				fee,
+				memo,
+				vatPayer,
+			})
+			const response = await fetch(
+				new URL("/platform/additional-fee-policies", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
+					throw new Errors.PlatformAdditionalFeePolicyAlreadyExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformAdditionalFeePolicy: async (
+			id: string,
+		): Promise<PlatformAdditionalFeePolicy> => {
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		updatePlatformAdditionalFeePolicy: async (
+			options: {
+				id: string,
+				fee?: PlatformFeeInput,
+				name?: string,
+				memo?: string,
+				vatPayer?: PlatformPayer,
+			}
+		): Promise<UpdatePlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+				fee,
+				name,
+				memo,
+				vatPayer,
+			} = options
+			const requestBody = JSON.stringify({
+				fee,
+				name,
+				memo,
+				vatPayer,
+			})
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}`, baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: UpdatePlatformAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
+					throw new Errors.PlatformArchivedAdditionalFeePolicyError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		archivePlatformAdditionalFeePolicy: async (
+			id: string,
+		): Promise<ArchivePlatformAdditionalFeePolicyResponse> => {
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/archive`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ArchivePlatformAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY":
+					throw new Errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		recoverPlatformAdditionalFeePolicy: async (
+			id: string,
+		): Promise<RecoverPlatformAdditionalFeePolicyResponse> => {
+			const response = await fetch(
+				new URL(`/platform/additional-fee-policies/${id}/recover`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RecoverPlatformAdditionalFeePolicyError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformContracts: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformContractFilterInput,
+			}
+		): Promise<GetPlatformContractsResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/contracts?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformContractsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformContract: async (
+			options: {
+				id?: string,
+				name: string,
+				memo?: string,
+				platformFee: PlatformFeeInput,
+				settlementCycle: PlatformSettlementCycleInput,
+				platformFeeVatPayer: PlatformPayer,
+				subtractPaymentVatAmount: boolean,
+			}
+		): Promise<CreatePlatformContractResponse> => {
+			const {
+				id,
+				name,
+				memo,
+				platformFee,
+				settlementCycle,
+				platformFeeVatPayer,
+				subtractPaymentVatAmount,
+			} = options
+			const requestBody = JSON.stringify({
+				id,
+				name,
+				memo,
+				platformFee,
+				settlementCycle,
+				platformFeeVatPayer,
+				subtractPaymentVatAmount,
+			})
+			const response = await fetch(
+				new URL("/platform/contracts", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformContractError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_ALREADY_EXISTS":
+					throw new Errors.PlatformContractAlreadyExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformContract: async (
+			id: string,
+		): Promise<PlatformContract> => {
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformContractError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		updatePlatformContract: async (
+			options: {
+				id: string,
+				name?: string,
+				memo?: string,
+				platformFee?: PlatformFeeInput,
+				settlementCycle?: PlatformSettlementCycleInput,
+				platformFeeVatPayer?: PlatformPayer,
+				subtractPaymentVatAmount?: boolean,
+			}
+		): Promise<UpdatePlatformContractResponse> => {
+			const {
+				id,
+				name,
+				memo,
+				platformFee,
+				settlementCycle,
+				platformFeeVatPayer,
+				subtractPaymentVatAmount,
+			} = options
+			const requestBody = JSON.stringify({
+				name,
+				memo,
+				platformFee,
+				settlementCycle,
+				platformFeeVatPayer,
+				subtractPaymentVatAmount,
+			})
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}`, baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: UpdatePlatformContractError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ARCHIVED_CONTRACT":
+					throw new Errors.PlatformArchivedContractError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		archivePlatformContract: async (
+			id: string,
+		): Promise<ArchivePlatformContractResponse> => {
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/archive`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ArchivePlatformContractError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT":
+					throw new Errors.PlatformCannotArchiveScheduledContractError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		recoverPlatformContract: async (
+			id: string,
+		): Promise<RecoverPlatformContractResponse> => {
+			const response = await fetch(
+				new URL(`/platform/contracts/${id}/recover`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RecoverPlatformContractError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PolicyClient = {
 	/**
 	 * 할인 분담 정책 다건 조회
 	 *
@@ -475,3 +1207,4 @@ export type Operations = {
 		id: string,
 	) => Promise<RecoverPlatformContractResponse>
 }
+

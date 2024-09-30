@@ -1,49 +1,382 @@
-export type * from "./ArchivePlatformPartnerError"
-export type * from "./ArchivePlatformPartnerResponse"
-export type * from "./CreatePlatformPartnerBody"
-export type * from "./CreatePlatformPartnerBodyAccount"
-export type * from "./CreatePlatformPartnerBodyContact"
-export type * from "./CreatePlatformPartnerBodyType"
-export type * from "./CreatePlatformPartnerBodyTypeBusiness"
-export type * from "./CreatePlatformPartnerBodyTypeNonWhtPayer"
-export type * from "./CreatePlatformPartnerBodyTypeWhtPayer"
-export type * from "./CreatePlatformPartnerError"
-export type * from "./CreatePlatformPartnerResponse"
-export type * from "./CreatePlatformPartnersBody"
-export type * from "./CreatePlatformPartnersError"
-export type * from "./CreatePlatformPartnersResponse"
-export type * from "./GetPlatformPartnerError"
-export type * from "./GetPlatformPartnersBody"
-export type * from "./GetPlatformPartnersError"
-export type * from "./GetPlatformPartnersResponse"
-export type * from "./PlatformCannotArchiveScheduledPartnerError"
-export type * from "./PlatformContractsNotFoundError"
-export type * from "./PlatformPartnerIdAlreadyExistsError"
-export type * from "./PlatformPartnerIdsAlreadyExistError"
-export type * from "./PlatformPartnerIdsDuplicatedError"
-export type * from "./RecoverPlatformPartnerError"
-export type * from "./RecoverPlatformPartnerResponse"
-export type * from "./UpdatePlatformPartnerError"
-export type * from "./UpdatePlatformPartnerResponse"
+import type { ArchivePlatformPartnerError } from "#generated/platform/partner/ArchivePlatformPartnerError"
 import type { ArchivePlatformPartnerResponse } from "#generated/platform/partner/ArchivePlatformPartnerResponse"
 import type { CreatePlatformPartnerBody } from "#generated/platform/partner/CreatePlatformPartnerBody"
 import type { CreatePlatformPartnerBodyAccount } from "#generated/platform/partner/CreatePlatformPartnerBodyAccount"
 import type { CreatePlatformPartnerBodyContact } from "#generated/platform/partner/CreatePlatformPartnerBodyContact"
 import type { CreatePlatformPartnerBodyType } from "#generated/platform/partner/CreatePlatformPartnerBodyType"
+import type { CreatePlatformPartnerError } from "#generated/platform/partner/CreatePlatformPartnerError"
 import type { CreatePlatformPartnerResponse } from "#generated/platform/partner/CreatePlatformPartnerResponse"
+import type { CreatePlatformPartnersError } from "#generated/platform/partner/CreatePlatformPartnersError"
 import type { CreatePlatformPartnersResponse } from "#generated/platform/partner/CreatePlatformPartnersResponse"
+import type { GetPlatformPartnerError } from "#generated/platform/partner/GetPlatformPartnerError"
+import type { GetPlatformPartnersError } from "#generated/platform/partner/GetPlatformPartnersError"
 import type { GetPlatformPartnersResponse } from "#generated/platform/partner/GetPlatformPartnersResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformPartner } from "#generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "#generated/platform/PlatformPartnerFilterInput"
 import type { PlatformProperties } from "#generated/platform/PlatformProperties"
+import type { RecoverPlatformPartnerError } from "#generated/platform/partner/RecoverPlatformPartnerError"
 import type { RecoverPlatformPartnerResponse } from "#generated/platform/partner/RecoverPlatformPartnerResponse"
 import type { UpdatePlatformPartnerBodyAccount } from "#generated/platform/UpdatePlatformPartnerBodyAccount"
 import type { UpdatePlatformPartnerBodyContact } from "#generated/platform/UpdatePlatformPartnerBodyContact"
 import type { UpdatePlatformPartnerBodyType } from "#generated/platform/UpdatePlatformPartnerBodyType"
+import type { UpdatePlatformPartnerError } from "#generated/platform/partner/UpdatePlatformPartnerError"
 import type { UpdatePlatformPartnerResponse } from "#generated/platform/partner/UpdatePlatformPartnerResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { ArchivePlatformPartnerResponse } from "./ArchivePlatformPartnerResponse"
+export type { CreatePlatformPartnerBody } from "./CreatePlatformPartnerBody"
+export type { CreatePlatformPartnerBodyAccount } from "./CreatePlatformPartnerBodyAccount"
+export type { CreatePlatformPartnerBodyContact } from "./CreatePlatformPartnerBodyContact"
+export type { CreatePlatformPartnerBodyType } from "./CreatePlatformPartnerBodyType"
+export type { CreatePlatformPartnerBodyTypeBusiness } from "./CreatePlatformPartnerBodyTypeBusiness"
+export type { CreatePlatformPartnerBodyTypeNonWhtPayer } from "./CreatePlatformPartnerBodyTypeNonWhtPayer"
+export type { CreatePlatformPartnerBodyTypeWhtPayer } from "./CreatePlatformPartnerBodyTypeWhtPayer"
+export type { CreatePlatformPartnerResponse } from "./CreatePlatformPartnerResponse"
+export type { CreatePlatformPartnersBody } from "./CreatePlatformPartnersBody"
+export type { CreatePlatformPartnersResponse } from "./CreatePlatformPartnersResponse"
+export type { GetPlatformPartnersBody } from "./GetPlatformPartnersBody"
+export type { GetPlatformPartnersResponse } from "./GetPlatformPartnersResponse"
+export type { RecoverPlatformPartnerResponse } from "./RecoverPlatformPartnerResponse"
+export type { UpdatePlatformPartnerResponse } from "./UpdatePlatformPartnerResponse"
+export function PartnerClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PartnerClient {
+	return {
+		getPlatformPartners: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformPartnerFilterInput,
+			}
+		): Promise<GetPlatformPartnersResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPartnersError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformPartner: async (
+			options: {
+				id?: string,
+				name: string,
+				contact: CreatePlatformPartnerBodyContact,
+				account: CreatePlatformPartnerBodyAccount,
+				defaultContractId: string,
+				memo?: string,
+				tags: string[],
+				type: CreatePlatformPartnerBodyType,
+				userDefinedProperties?: PlatformProperties,
+			}
+		): Promise<CreatePlatformPartnerResponse> => {
+			const {
+				id,
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				id,
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			})
+			const response = await fetch(
+				new URL("/platform/partners", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformPartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
+					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
+					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
+					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
+					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_ID_ALREADY_EXISTS":
+					throw new Errors.PlatformPartnerIdAlreadyExistsError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformPartner: async (
+			id: string,
+		): Promise<PlatformPartner> => {
+			const response = await fetch(
+				new URL(`/platform/partners/${id}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		updatePlatformPartner: async (
+			options: {
+				id: string,
+				name?: string,
+				contact?: UpdatePlatformPartnerBodyContact,
+				account?: UpdatePlatformPartnerBodyAccount,
+				defaultContractId?: string,
+				memo?: string,
+				tags?: string[],
+				type?: UpdatePlatformPartnerBodyType,
+				userDefinedProperties?: PlatformProperties,
+			}
+		): Promise<UpdatePlatformPartnerResponse> => {
+			const {
+				id,
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			})
+			const response = await fetch(
+				new URL(`/platform/partners/${id}`, baseUrl),
+				{
+					method: "patch",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: UpdatePlatformPartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
+					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
+					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
+				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
+					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
+				case "PLATFORM_ARCHIVED_PARTNER":
+					throw new Errors.PlatformArchivedPartnerError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
+					throw new Errors.PlatformInsufficientDataToChangePartnerTypeError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformPartners: async (
+			partners: CreatePlatformPartnerBody[],
+		): Promise<CreatePlatformPartnersResponse> => {
+			const requestBody = JSON.stringify({
+				partners,
+			})
+			const response = await fetch(
+				new URL("/platform/partners/batch", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformPartnersError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CONTRACTS_NOT_FOUND":
+					throw new Errors.PlatformContractsNotFoundError(errorResponse)
+				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
+					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_IDS_ALREADY_EXISTS":
+					throw new Errors.PlatformPartnerIdsAlreadyExistError(errorResponse)
+				case "PLATFORM_PARTNER_IDS_DUPLICATED":
+					throw new Errors.PlatformPartnerIdsDuplicatedError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		archivePlatformPartner: async (
+			id: string,
+		): Promise<ArchivePlatformPartnerResponse> => {
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/archive`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: ArchivePlatformPartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_PARTNER":
+					throw new Errors.PlatformCannotArchiveScheduledPartnerError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		recoverPlatformPartner: async (
+			id: string,
+		): Promise<RecoverPlatformPartnerResponse> => {
+			const response = await fetch(
+				new URL(`/platform/partners/${id}/recover`, baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RecoverPlatformPartnerError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PartnerClient = {
 	/**
 	 * 파트너 다건 조회
 	 *
@@ -243,3 +576,4 @@ export type Operations = {
 		id: string,
 	) => Promise<RecoverPlatformPartnerResponse>
 }
+

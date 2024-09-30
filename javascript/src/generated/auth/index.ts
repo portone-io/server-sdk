@@ -1,13 +1,75 @@
-export type * from "./LoginViaApiSecretBody"
-export type * from "./LoginViaApiSecretError"
-export type * from "./LoginViaApiSecretResponse"
-export type * from "./RefreshTokenBody"
-export type * from "./RefreshTokenError"
-export type * from "./RefreshTokenResponse"
+import type { LoginViaApiSecretError } from "#generated/auth/LoginViaApiSecretError"
 import type { LoginViaApiSecretResponse } from "#generated/auth/LoginViaApiSecretResponse"
+import type { RefreshTokenError } from "#generated/auth/RefreshTokenError"
 import type { RefreshTokenResponse } from "#generated/auth/RefreshTokenResponse"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { LoginViaApiSecretBody } from "./LoginViaApiSecretBody"
+export type { LoginViaApiSecretResponse } from "./LoginViaApiSecretResponse"
+export type { RefreshTokenBody } from "./RefreshTokenBody"
+export type { RefreshTokenResponse } from "./RefreshTokenResponse"
+export function AuthClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AuthClient {
+	return {
+		loginViaApiSecret: async (
+			apiSecret: string,
+		): Promise<LoginViaApiSecretResponse> => {
+			const requestBody = JSON.stringify({
+				apiSecret,
+			})
+			const response = await fetch(
+				new URL("/login/api-secret", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: LoginViaApiSecretError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		refreshToken: async (
+			refreshToken: string,
+		): Promise<RefreshTokenResponse> => {
+			const requestBody = JSON.stringify({
+				refreshToken,
+			})
+			const response = await fetch(
+				new URL("/token/refresh", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: RefreshTokenError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type AuthClient = {
 	/**
 	 * API secret 를 사용한 토큰 발급
 	 *
@@ -39,3 +101,4 @@ export type Operations = {
 		refreshToken: string,
 	) => Promise<RefreshTokenResponse>
 }
+

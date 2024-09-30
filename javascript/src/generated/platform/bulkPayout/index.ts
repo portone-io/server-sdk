@@ -1,17 +1,67 @@
-export type * from "./GetPlatformBulkPayoutsBody"
-export type * from "./GetPlatformBulkPayoutsError"
-export type * from "./GetPlatformBulkPayoutsResponse"
-export type * from "./PlatformBulkPayout"
-export type * from "./PlatformBulkPayoutFilterInput"
-export type * from "./PlatformBulkPayoutFilterInputCriteria"
-export type * from "./PlatformBulkPayoutStats"
-export type * from "./PlatformBulkPayoutStatus"
-export type * from "./PlatformBulkPayoutStatusStats"
+import type { GetPlatformBulkPayoutsError } from "#generated/platform/bulkPayout/GetPlatformBulkPayoutsError"
 import type { GetPlatformBulkPayoutsResponse } from "#generated/platform/bulkPayout/GetPlatformBulkPayoutsResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformBulkPayoutFilterInput } from "#generated/platform/bulkPayout/PlatformBulkPayoutFilterInput"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { GetPlatformBulkPayoutsBody } from "./GetPlatformBulkPayoutsBody"
+export type { GetPlatformBulkPayoutsResponse } from "./GetPlatformBulkPayoutsResponse"
+export type { PlatformBulkPayout } from "./PlatformBulkPayout"
+export type { PlatformBulkPayoutFilterInput } from "./PlatformBulkPayoutFilterInput"
+export type { PlatformBulkPayoutFilterInputCriteria } from "./PlatformBulkPayoutFilterInputCriteria"
+export type { PlatformBulkPayoutStats } from "./PlatformBulkPayoutStats"
+export type { PlatformBulkPayoutStatus } from "./PlatformBulkPayoutStatus"
+export type { PlatformBulkPayoutStatusStats } from "./PlatformBulkPayoutStatusStats"
+export function BulkPayoutClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): BulkPayoutClient {
+	return {
+		getPlatformBulkPayouts: async (
+			options?: {
+				isForTest?: boolean,
+				page?: PageInput,
+				filter?: PlatformBulkPayoutFilterInput,
+			}
+		): Promise<GetPlatformBulkPayoutsResponse> => {
+			const isForTest = options?.isForTest
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				isForTest,
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/bulk-payouts?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformBulkPayoutsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type BulkPayoutClient = {
 	/**
 	 * 일괄 지급 내역 다건 조회
 	 *
@@ -30,3 +80,4 @@ export type Operations = {
 		}
 	) => Promise<GetPlatformBulkPayoutsResponse>
 }
+

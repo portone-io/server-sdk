@@ -1,15 +1,47 @@
-export type * from "./CardPromotion"
-export type * from "./GetPromotionError"
-export type * from "./Promotion"
-export type * from "./PromotionAmountDiscount"
-export type * from "./PromotionCardCompany"
-export type * from "./PromotionDiscount"
-export type * from "./PromotionNotFoundError"
-export type * from "./PromotionPercentDiscount"
-export type * from "./PromotionStatus"
+import type { GetPromotionError } from "#generated/promotion/GetPromotionError"
 import type { Promotion } from "#generated/promotion/Promotion"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { CardPromotion } from "./CardPromotion"
+export type { Promotion } from "./Promotion"
+export type { PromotionAmountDiscount } from "./PromotionAmountDiscount"
+export type { PromotionCardCompany } from "./PromotionCardCompany"
+export type { PromotionDiscount } from "./PromotionDiscount"
+export type { PromotionPercentDiscount } from "./PromotionPercentDiscount"
+export type { PromotionStatus } from "./PromotionStatus"
+export function PromotionClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PromotionClient {
+	return {
+		getPromotion: async (
+			promotionId: string,
+		): Promise<Promotion> => {
+			const response = await fetch(
+				new URL(`/promotions/${promotionId}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPromotionError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PROMOTION_NOT_FOUND":
+					throw new Errors.PromotionNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PromotionClient = {
 	/**
 	 * 프로모션 단건 조회
 	 *
@@ -28,3 +60,4 @@ export type Operations = {
 		promotionId: string,
 	) => Promise<Promotion>
 }
+

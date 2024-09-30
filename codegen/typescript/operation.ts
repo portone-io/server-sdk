@@ -1,4 +1,3 @@
-import { toPascalCase } from "@std/text"
 import type { Writer } from "../common/writer.ts"
 import type {
   Definition,
@@ -12,7 +11,6 @@ export function writeOperation(
   implWriter: Writer,
   typeWriter: Writer,
   operation: Operation,
-  categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
 ) {
@@ -52,39 +50,35 @@ export function writeOperation(
   implWriter.writeLine(`${operation.id}: async (`)
   typeWriter.indent()
   implWriter.indent()
-  const addCrossRef = (name: string) => {
-    crossRef.add(name)
-    return name
-  }
-  const qualifyRef = (name: string) => qualifyName(name, categoryMap)
   if (isStructured) {
     writeStructuredParameters(
       typeWriter,
       params,
       isStructureOptional,
       true,
-      addCrossRef,
+      crossRef,
     )
     writeStructuredParameters(
       implWriter,
       params,
       isStructureOptional,
       false,
-      qualifyRef,
+      crossRef,
     )
   } else {
-    writeInlineParameters(typeWriter, params, true, addCrossRef)
-    writeInlineParameters(implWriter, params, false, qualifyRef)
+    writeInlineParameters(typeWriter, params, true, crossRef)
+    writeInlineParameters(implWriter, params, false, crossRef)
   }
   typeWriter.outdent()
   implWriter.outdent()
   switch (operation.response?.type) {
     case "application/json":
+      crossRef.add(operation.response.schema)
       implWriter.writeLine(
-        `): Promise<${qualifyRef(operation.response.schema)}> => {`,
+        `): Promise<${operation.response.schema}> => {`,
       )
       typeWriter.writeLine(
-        `) => Promise<${addCrossRef(operation.response.schema)}>`,
+        `) => Promise<${operation.response.schema}>`,
       )
       break
     case "text/csv":
@@ -168,10 +162,9 @@ export function writeOperation(
   implWriter.writeLine(")")
   implWriter.writeLine("if (!response.ok) {")
   implWriter.indent()
+  crossRef.add(operation.errors)
   implWriter.writeLine(
-    `const errorResponse: ${
-      qualifyName(operation.errors, categoryMap)
-    } = await response.json()`,
+    `const errorResponse: ${operation.errors} = await response.json()`,
   )
   implWriter.writeLine("switch (errorResponse.type) {")
   implWriter.indent()
@@ -305,12 +298,12 @@ function writeStructuredParameters(
   params: Property[],
   optional: boolean,
   withComment: boolean,
-  referenceHook: (name: string) => string,
+  crossRef: Set<string>,
 ) {
   const name = optional ? "options?" : "options"
   writer.writeLine(`${name}: {`)
   writer.indent()
-  writePropertyList(writer, params, withComment, referenceHook)
+  writePropertyList(writer, params, withComment, crossRef)
   writer.outdent()
   writer.writeLine("}")
 }
@@ -319,7 +312,7 @@ function writeInlineParameters(
   writer: Writer,
   params: Property[],
   withComment: boolean,
-  referenceHook: (name: string) => string,
+  crossRef: Set<string>,
 ) {
   const required = params.filter((property) => property.required)
   const optional = params.filter((property) => !property.required)
@@ -327,7 +320,7 @@ function writeInlineParameters(
     writer,
     required.concat(optional),
     withComment,
-    referenceHook,
+    crossRef,
   )
 }
 
@@ -335,7 +328,7 @@ function writePropertyList(
   writer: Writer,
   properties: Property[],
   withComment: boolean,
-  referenceHook: (name: string) => string,
+  crossRef: Set<string>,
 ) {
   for (const property of properties) {
     if (withComment) {
@@ -355,8 +348,9 @@ function writePropertyList(
         writer.writeLine(`${name}: number,`)
         break
       case "ref":
+        crossRef.add(property.value)
         writer.writeLine(
-          `${name}: ${referenceHook(property.value)},`,
+          `${name}: ${property.value},`,
         )
         break
       case "array":
@@ -370,8 +364,9 @@ function writePropertyList(
             writer.writeLine(`${name}: number[],`)
             break
           case "ref":
+            crossRef.add(property.item.value)
             writer.writeLine(
-              `${name}: ${referenceHook(property.item.value)}[],`,
+              `${name}: ${property.item.value}[], `,
             )
             break
           case "object":
@@ -393,7 +388,7 @@ function writePropertyList(
             cause: { property },
           })
         }
-        writer.writeLine(`${name}: object,`)
+        writer.writeLine(`${name}: object, `)
         break
       case "oneOf":
       case "discriminant":
@@ -405,12 +400,4 @@ function writePropertyList(
         throw new Error("unrecognized property type", { cause: { property } })
     }
   }
-}
-
-function qualifyName(name: string, categoryMap: Map<string, string>) {
-  const category = categoryMap.get(name)
-  if (!category) {
-    throw new Error("unqualifiable name", { cause: { name } })
-  }
-  return `${category.split(".").map(toPascalCase).join(".")}.${name}`
 }

@@ -162,6 +162,7 @@ export class UnknownError extends PortOneError {
 export class PlatformAccountVerificationAlreadyUsedError extends PortOneError {
 	readonly _tag = "PortOnePlatformAccountVerificationAlreadyUsedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAccountVerificationAlreadyUsedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAccountVerificationAlreadyUsedError.prototype)
@@ -173,6 +174,7 @@ export class PlatformAccountVerificationAlreadyUsedError extends PortOneError {
 export class PlatformAccountVerificationFailedError extends PortOneError {
 	readonly _tag = "PortOnePlatformAccountVerificationFailedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAccountVerificationFailedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAccountVerificationFailedError.prototype)
@@ -184,6 +186,7 @@ export class PlatformAccountVerificationFailedError extends PortOneError {
 export class PlatformAccountVerificationNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformAccountVerificationNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAccountVerificationNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAccountVerificationNotFoundError.prototype)
@@ -194,6 +197,7 @@ export class PlatformAccountVerificationNotFoundError extends PortOneError {
 export class PlatformAdditionalFeePolicyNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformAdditionalFeePolicyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAdditionalFeePolicyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAdditionalFeePolicyNotFoundError.prototype)
@@ -204,6 +208,7 @@ export class PlatformAdditionalFeePolicyNotFoundError extends PortOneError {
 export class PlatformAdditionalFeePolicyScheduleAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformAdditionalFeePolicyScheduleAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAdditionalFeePolicyScheduleAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAdditionalFeePolicyScheduleAlreadyExistsError.prototype)
@@ -215,6 +220,7 @@ export class PlatformAdditionalFeePolicyScheduleAlreadyExistsError extends PortO
 export class PlatformArchivedAdditionalFeePolicyError extends PortOneError {
 	readonly _tag = "PortOnePlatformArchivedAdditionalFeePolicyError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformArchivedAdditionalFeePolicyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformArchivedAdditionalFeePolicyError.prototype)
@@ -226,6 +232,7 @@ export class PlatformArchivedAdditionalFeePolicyError extends PortOneError {
 export class PlatformArchivedContractError extends PortOneError {
 	readonly _tag = "PortOnePlatformArchivedContractError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformArchivedContractError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformArchivedContractError.prototype)
@@ -237,6 +244,7 @@ export class PlatformArchivedContractError extends PortOneError {
 export class PlatformArchivedPartnerError extends PortOneError {
 	readonly _tag = "PortOnePlatformArchivedPartnerError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformArchivedPartnerError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformArchivedPartnerError.prototype)
@@ -248,6 +256,7 @@ export class PlatformArchivedPartnerError extends PortOneError {
 export class PlatformArchivedPartnersCannotBeScheduledError extends PortOneError {
 	readonly _tag = "PortOnePlatformArchivedPartnersCannotBeScheduledError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformArchivedPartnersCannotBeScheduledError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformArchivedPartnersCannotBeScheduledError.prototype)
@@ -259,6 +268,7 @@ export class PlatformArchivedPartnersCannotBeScheduledError extends PortOneError
 export class PlatformBulkPayoutNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformBulkPayoutNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformBulkPayoutNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformBulkPayoutNotFoundError.prototype)
@@ -269,6 +279,7 @@ export class PlatformBulkPayoutNotFoundError extends PortOneError {
 export class PlatformContractNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformContractNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformContractNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformContractNotFoundError.prototype)
@@ -279,6 +290,7 @@ export class PlatformContractNotFoundError extends PortOneError {
 export class PlatformContractScheduleAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformContractScheduleAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformContractScheduleAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformContractScheduleAlreadyExistsError.prototype)
@@ -290,6 +302,7 @@ export class PlatformContractScheduleAlreadyExistsError extends PortOneError {
 export class PlatformCurrencyNotSupportedError extends PortOneError {
 	readonly _tag = "PortOnePlatformCurrencyNotSupportedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCurrencyNotSupportedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCurrencyNotSupportedError.prototype)
@@ -300,6 +313,7 @@ export class PlatformCurrencyNotSupportedError extends PortOneError {
 export class PlatformDiscountSharePolicyNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformDiscountSharePolicyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformDiscountSharePolicyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformDiscountSharePolicyNotFoundError.prototype)
@@ -310,6 +324,7 @@ export class PlatformDiscountSharePolicyNotFoundError extends PortOneError {
 export class PlatformDiscountSharePolicyScheduleAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformDiscountSharePolicyScheduleAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformDiscountSharePolicyScheduleAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformDiscountSharePolicyScheduleAlreadyExistsError.prototype)
@@ -321,6 +336,7 @@ export class PlatformDiscountSharePolicyScheduleAlreadyExistsError extends PortO
 export class PlatformInsufficientDataToChangePartnerTypeError extends PortOneError {
 	readonly _tag = "PortOnePlatformInsufficientDataToChangePartnerTypeError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformInsufficientDataToChangePartnerTypeError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformInsufficientDataToChangePartnerTypeError.prototype)
@@ -334,6 +350,7 @@ export class PlatformInvalidSettlementFormulaError extends PortOneError {
 	readonly discountShare?: PlatformSettlementFormulaError
 	readonly additionalFee?: PlatformSettlementFormulaError
 
+	/** @ignore */
 	constructor(error: InternalPlatformInvalidSettlementFormulaError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformInvalidSettlementFormulaError.prototype)
@@ -348,6 +365,7 @@ export class PlatformInvalidSettlementFormulaError extends PortOneError {
 export class PlatformNonUpdatableStatusError extends PortOneError {
 	readonly _tag = "PortOnePlatformNonUpdatableStatusError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformNonUpdatableStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformNonUpdatableStatusError.prototype)
@@ -359,6 +377,7 @@ export class PlatformNonUpdatableStatusError extends PortOneError {
 export class PlatformNotEnabledError extends PortOneError {
 	readonly _tag = "PortOnePlatformNotEnabledError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformNotEnabledError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformNotEnabledError.prototype)
@@ -369,6 +388,7 @@ export class PlatformNotEnabledError extends PortOneError {
 export class PlatformPartnerNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformPartnerNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerNotFoundError.prototype)
@@ -379,6 +399,7 @@ export class PlatformPartnerNotFoundError extends PortOneError {
 export class PlatformPartnerScheduleAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformPartnerScheduleAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerScheduleAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerScheduleAlreadyExistsError.prototype)
@@ -391,6 +412,7 @@ export class PlatformPartnerSchedulesAlreadyExistError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerSchedulesAlreadyExistError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerSchedulesAlreadyExistError.prototype)
@@ -404,6 +426,7 @@ export class PlatformPartnerSchedulesAlreadyExistError extends PortOneError {
 export class PlatformPartnerSettlementNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformPartnerSettlementNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerSettlementNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerSettlementNotFoundError.prototype)
@@ -414,6 +437,7 @@ export class PlatformPartnerSettlementNotFoundError extends PortOneError {
 export class PlatformPayoutNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformPayoutNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPayoutNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPayoutNotFoundError.prototype)
@@ -424,6 +448,7 @@ export class PlatformPayoutNotFoundError extends PortOneError {
 export class PlatformSettlementFormulaUnknownError extends PortOneError {
 	readonly _tag = "PortOnePlatformSettlementFormulaUnknownError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementFormulaUnknownError) {
 		super()
 		Object.setPrototypeOf(this, PlatformSettlementFormulaUnknownError.prototype)
@@ -435,6 +460,7 @@ export class PlatformSettlementFormulaUnknownError extends PortOneError {
 export class PlatformUserDefinedPropertyNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformUserDefinedPropertyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformUserDefinedPropertyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformUserDefinedPropertyNotFoundError.prototype)
@@ -445,6 +471,7 @@ export class PlatformUserDefinedPropertyNotFoundError extends PortOneError {
 export class PlatformAdditionalFeePolicyAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformAdditionalFeePolicyAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformAdditionalFeePolicyAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAdditionalFeePolicyAlreadyExistsError.prototype)
@@ -456,6 +483,7 @@ export class PlatformAdditionalFeePolicyAlreadyExistsError extends PortOneError 
 export class PlatformArchivedDiscountSharePolicyError extends PortOneError {
 	readonly _tag = "PortOnePlatformArchivedDiscountSharePolicyError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformArchivedDiscountSharePolicyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformArchivedDiscountSharePolicyError.prototype)
@@ -467,6 +495,7 @@ export class PlatformArchivedDiscountSharePolicyError extends PortOneError {
 export class PlatformCannotArchiveScheduledAdditionalFeePolicyError extends PortOneError {
 	readonly _tag = "PortOnePlatformCannotArchiveScheduledAdditionalFeePolicyError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCannotArchiveScheduledAdditionalFeePolicyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCannotArchiveScheduledAdditionalFeePolicyError.prototype)
@@ -478,6 +507,7 @@ export class PlatformCannotArchiveScheduledAdditionalFeePolicyError extends Port
 export class PlatformCannotArchiveScheduledContractError extends PortOneError {
 	readonly _tag = "PortOnePlatformCannotArchiveScheduledContractError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCannotArchiveScheduledContractError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCannotArchiveScheduledContractError.prototype)
@@ -489,6 +519,7 @@ export class PlatformCannotArchiveScheduledContractError extends PortOneError {
 export class PlatformCannotArchiveScheduledDiscountSharePolicyError extends PortOneError {
 	readonly _tag = "PortOnePlatformCannotArchiveScheduledDiscountSharePolicyError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCannotArchiveScheduledDiscountSharePolicyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCannotArchiveScheduledDiscountSharePolicyError.prototype)
@@ -499,6 +530,7 @@ export class PlatformCannotArchiveScheduledDiscountSharePolicyError extends Port
 export class PlatformContractAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformContractAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformContractAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformContractAlreadyExistsError.prototype)
@@ -509,6 +541,7 @@ export class PlatformContractAlreadyExistsError extends PortOneError {
 export class PlatformDiscountSharePolicyAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformDiscountSharePolicyAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformDiscountSharePolicyAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformDiscountSharePolicyAlreadyExistsError.prototype)
@@ -520,6 +553,7 @@ export class PlatformDiscountSharePolicyAlreadyExistsError extends PortOneError 
 export class PlatformCannotArchiveScheduledPartnerError extends PortOneError {
 	readonly _tag = "PortOnePlatformCannotArchiveScheduledPartnerError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCannotArchiveScheduledPartnerError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCannotArchiveScheduledPartnerError.prototype)
@@ -532,6 +566,7 @@ export class PlatformContractsNotFoundError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformContractsNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformContractsNotFoundError.prototype)
@@ -544,6 +579,7 @@ export class PlatformContractsNotFoundError extends PortOneError {
 export class PlatformPartnerIdAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformPartnerIdAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerIdAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerIdAlreadyExistsError.prototype)
@@ -556,6 +592,7 @@ export class PlatformPartnerIdsAlreadyExistError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerIdsAlreadyExistError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerIdsAlreadyExistError.prototype)
@@ -570,6 +607,7 @@ export class PlatformPartnerIdsDuplicatedError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformPartnerIdsDuplicatedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPartnerIdsDuplicatedError.prototype)
@@ -584,6 +622,7 @@ export class PlatformAdditionalFeePoliciesNotFoundError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformAdditionalFeePoliciesNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAdditionalFeePoliciesNotFoundError.prototype)
@@ -600,6 +639,7 @@ export class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismat
 	readonly feeCurrency: Currency
 	readonly settlementCurrency: Currency
 
+	/** @ignore */
 	constructor(error: InternalPlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError.prototype)
@@ -614,6 +654,7 @@ export class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismat
 export class PlatformCancelOrderTransfersExistsError extends PortOneError {
 	readonly _tag = "PortOnePlatformCancelOrderTransfersExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancelOrderTransfersExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancelOrderTransfersExistsError.prototype)
@@ -628,6 +669,7 @@ export class PlatformCancellableAmountExceededError extends PortOneError {
 	readonly requestAmount: number
 	readonly amountType: PlatformCancellableAmountType
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellableAmountExceededError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellableAmountExceededError.prototype)
@@ -646,6 +688,7 @@ export class PlatformCancellableDiscountAmountExceededError extends PortOneError
 	readonly requestAmount: number
 	readonly productId?: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellableDiscountAmountExceededError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellableDiscountAmountExceededError.prototype)
@@ -666,6 +709,7 @@ export class PlatformCancellableDiscountTaxFreeAmountExceededError extends PortO
 	readonly requestAmount: number
 	readonly productId?: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellableDiscountTaxFreeAmountExceededError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellableDiscountTaxFreeAmountExceededError.prototype)
@@ -683,6 +727,7 @@ export class PlatformCancellableProductQuantityExceededError extends PortOneErro
 	readonly productId: string
 	readonly cancellableQuantity: number
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellableProductQuantityExceededError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellableProductQuantityExceededError.prototype)
@@ -695,6 +740,7 @@ export class PlatformCancellableProductQuantityExceededError extends PortOneErro
 export class PlatformCancellationAndPaymentTypeMismatchedError extends PortOneError {
 	readonly _tag = "PortOnePlatformCancellationAndPaymentTypeMismatchedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellationAndPaymentTypeMismatchedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellationAndPaymentTypeMismatchedError.prototype)
@@ -705,6 +751,7 @@ export class PlatformCancellationAndPaymentTypeMismatchedError extends PortOneEr
 export class PlatformCancellationNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformCancellationNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCancellationNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCancellationNotFoundError.prototype)
@@ -716,6 +763,7 @@ export class PlatformCancellationNotFoundError extends PortOneError {
 export class PlatformCannotSpecifyTransferError extends PortOneError {
 	readonly _tag = "PortOnePlatformCannotSpecifyTransferError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformCannotSpecifyTransferError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformCannotSpecifyTransferError.prototype)
@@ -730,6 +778,7 @@ export class PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrency
 	readonly feeCurrency: Currency
 	readonly settlementCurrency: Currency
 
+	/** @ignore */
 	constructor(error: InternalPlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError.prototype)
@@ -746,6 +795,7 @@ export class PlatformDiscountSharePoliciesNotFoundError extends PortOneError {
 	readonly ids: string[]
 	readonly graphqlIds: string[]
 
+	/** @ignore */
 	constructor(error: InternalPlatformDiscountSharePoliciesNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformDiscountSharePoliciesNotFoundError.prototype)
@@ -760,6 +810,7 @@ export class PlatformDiscountSharePolicyIdDuplicatedError extends PortOneError {
 	readonly id: string
 	readonly graphqlId: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformDiscountSharePolicyIdDuplicatedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformDiscountSharePolicyIdDuplicatedError.prototype)
@@ -772,6 +823,7 @@ export class PlatformDiscountSharePolicyIdDuplicatedError extends PortOneError {
 export class PlatformOrderDetailMismatchedError extends PortOneError {
 	readonly _tag = "PortOnePlatformOrderDetailMismatchedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformOrderDetailMismatchedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformOrderDetailMismatchedError.prototype)
@@ -782,6 +834,7 @@ export class PlatformOrderDetailMismatchedError extends PortOneError {
 export class PlatformOrderTransferAlreadyCancelledError extends PortOneError {
 	readonly _tag = "PortOnePlatformOrderTransferAlreadyCancelledError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformOrderTransferAlreadyCancelledError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformOrderTransferAlreadyCancelledError.prototype)
@@ -792,6 +845,7 @@ export class PlatformOrderTransferAlreadyCancelledError extends PortOneError {
 export class PlatformPaymentNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformPaymentNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformPaymentNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformPaymentNotFoundError.prototype)
@@ -803,6 +857,7 @@ export class PlatformProductIdDuplicatedError extends PortOneError {
 	readonly _tag = "PortOnePlatformProductIdDuplicatedError"
 	readonly id: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformProductIdDuplicatedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformProductIdDuplicatedError.prototype)
@@ -815,6 +870,7 @@ export class PlatformProductIdNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformProductIdNotFoundError"
 	readonly id: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformProductIdNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformProductIdNotFoundError.prototype)
@@ -830,6 +886,7 @@ export class PlatformSettlementAmountExceededError extends PortOneError {
 	readonly requestedAmount: number
 	readonly allowedAmount: number
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementAmountExceededError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementAmountExceededError.prototype)
@@ -848,6 +905,7 @@ export class PlatformSettlementCancelAmountExceededPortOneCancelError extends Po
 	readonly portOneCancelAmount: number
 	readonly amountType: PlatformPortOnePaymentCancelAmountType
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementCancelAmountExceededPortOneCancelError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementCancelAmountExceededPortOneCancelError.prototype)
@@ -863,6 +921,7 @@ export class PlatformSettlementCancelAmountExceededPortOneCancelError extends Po
 export class PlatformSettlementParameterNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformSettlementParameterNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementParameterNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementParameterNotFoundError.prototype)
@@ -877,6 +936,7 @@ export class PlatformSettlementPaymentAmountExceededPortOnePaymentError extends 
 	readonly requestSettlementPaymentAmount: number
 	readonly portOnePaymentAmount: number
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementPaymentAmountExceededPortOnePaymentError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementPaymentAmountExceededPortOnePaymentError.prototype)
@@ -894,6 +954,7 @@ export class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError ex
 	readonly requestSettlementSupplyWithVatAmount: number
 	readonly portOneSupplyWithVatAmount: number
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError.prototype)
@@ -911,6 +972,7 @@ export class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError extends 
 	readonly requestSettlementTaxFreeAmount: number
 	readonly portOneTaxFreeAmount: number
 
+	/** @ignore */
 	constructor(error: InternalPlatformSettlementTaxFreeAmountExceededPortOnePaymentError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformSettlementTaxFreeAmountExceededPortOnePaymentError.prototype)
@@ -926,6 +988,7 @@ export class PlatformTransferAlreadyExistsError extends PortOneError {
 	readonly transferId: string
 	readonly transferGraphqlId: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformTransferAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformTransferAlreadyExistsError.prototype)
@@ -941,6 +1004,7 @@ export class PlatformTransferDiscountSharePolicyNotFoundError extends PortOneErr
 	readonly discountSharePolicyGraphqlId: string
 	readonly productId?: string
 
+	/** @ignore */
 	constructor(error: InternalPlatformTransferDiscountSharePolicyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformTransferDiscountSharePolicyNotFoundError.prototype)
@@ -954,6 +1018,7 @@ export class PlatformTransferDiscountSharePolicyNotFoundError extends PortOneErr
 export class PlatformTransferNonDeletableStatusError extends PortOneError {
 	readonly _tag = "PortOnePlatformTransferNonDeletableStatusError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformTransferNonDeletableStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformTransferNonDeletableStatusError.prototype)
@@ -964,6 +1029,7 @@ export class PlatformTransferNonDeletableStatusError extends PortOneError {
 export class PlatformTransferNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePlatformTransferNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformTransferNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformTransferNotFoundError.prototype)
@@ -975,6 +1041,7 @@ export class PlatformTransferNotFoundError extends PortOneError {
 export class PlatformExternalApiFailedError extends PortOneError {
 	readonly _tag = "PortOnePlatformExternalApiFailedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformExternalApiFailedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformExternalApiFailedError.prototype)
@@ -986,6 +1053,7 @@ export class PlatformExternalApiFailedError extends PortOneError {
 export class PlatformExternalApiTemporarilyFailedError extends PortOneError {
 	readonly _tag = "PortOnePlatformExternalApiTemporarilyFailedError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformExternalApiTemporarilyFailedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformExternalApiTemporarilyFailedError.prototype)
@@ -997,6 +1065,7 @@ export class PlatformExternalApiTemporarilyFailedError extends PortOneError {
 export class PlatformNotSupportedBankError extends PortOneError {
 	readonly _tag = "PortOnePlatformNotSupportedBankError"
 
+	/** @ignore */
 	constructor(error: InternalPlatformNotSupportedBankError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PlatformNotSupportedBankError.prototype)
@@ -1008,6 +1077,7 @@ export class PlatformNotSupportedBankError extends PortOneError {
 export class IdentityVerificationAlreadySentError extends PortOneError {
 	readonly _tag = "PortOneIdentityVerificationAlreadySentError"
 
+	/** @ignore */
 	constructor(error: InternalIdentityVerificationAlreadySentError) {
 		super(error.message)
 		Object.setPrototypeOf(this, IdentityVerificationAlreadySentError.prototype)
@@ -1019,6 +1089,7 @@ export class IdentityVerificationAlreadySentError extends PortOneError {
 export class IdentityVerificationAlreadyVerifiedError extends PortOneError {
 	readonly _tag = "PortOneIdentityVerificationAlreadyVerifiedError"
 
+	/** @ignore */
 	constructor(error: InternalIdentityVerificationAlreadyVerifiedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, IdentityVerificationAlreadyVerifiedError.prototype)
@@ -1030,6 +1101,7 @@ export class IdentityVerificationAlreadyVerifiedError extends PortOneError {
 export class IdentityVerificationNotFoundError extends PortOneError {
 	readonly _tag = "PortOneIdentityVerificationNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalIdentityVerificationNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, IdentityVerificationNotFoundError.prototype)
@@ -1041,6 +1113,7 @@ export class IdentityVerificationNotFoundError extends PortOneError {
 export class IdentityVerificationNotSentError extends PortOneError {
 	readonly _tag = "PortOneIdentityVerificationNotSentError"
 
+	/** @ignore */
 	constructor(error: InternalIdentityVerificationNotSentError) {
 		super(error.message)
 		Object.setPrototypeOf(this, IdentityVerificationNotSentError.prototype)
@@ -1052,6 +1125,7 @@ export class IdentityVerificationNotSentError extends PortOneError {
 export class AlreadyPaidError extends PortOneError {
 	readonly _tag = "PortOneAlreadyPaidError"
 
+	/** @ignore */
 	constructor(error: InternalAlreadyPaidError) {
 		super(error.message)
 		Object.setPrototypeOf(this, AlreadyPaidError.prototype)
@@ -1063,6 +1137,7 @@ export class AlreadyPaidError extends PortOneError {
 export class CancelAmountExceedsCancellableAmountError extends PortOneError {
 	readonly _tag = "PortOneCancelAmountExceedsCancellableAmountError"
 
+	/** @ignore */
 	constructor(error: InternalCancelAmountExceedsCancellableAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CancelAmountExceedsCancellableAmountError.prototype)
@@ -1074,6 +1149,7 @@ export class CancelAmountExceedsCancellableAmountError extends PortOneError {
 export class CancelTaxAmountExceedsCancellableTaxAmountError extends PortOneError {
 	readonly _tag = "PortOneCancelTaxAmountExceedsCancellableTaxAmountError"
 
+	/** @ignore */
 	constructor(error: InternalCancelTaxAmountExceedsCancellableTaxAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CancelTaxAmountExceedsCancellableTaxAmountError.prototype)
@@ -1085,6 +1161,7 @@ export class CancelTaxAmountExceedsCancellableTaxAmountError extends PortOneErro
 export class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError extends PortOneError {
 	readonly _tag = "PortOneCancelTaxFreeAmountExceedsCancellableTaxFreeAmountError"
 
+	/** @ignore */
 	constructor(error: InternalCancelTaxFreeAmountExceedsCancellableTaxFreeAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError.prototype)
@@ -1096,6 +1173,7 @@ export class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError extends Por
 export class CancellableAmountConsistencyBrokenError extends PortOneError {
 	readonly _tag = "PortOneCancellableAmountConsistencyBrokenError"
 
+	/** @ignore */
 	constructor(error: InternalCancellableAmountConsistencyBrokenError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CancellableAmountConsistencyBrokenError.prototype)
@@ -1107,6 +1185,7 @@ export class CancellableAmountConsistencyBrokenError extends PortOneError {
 export class DiscountAmountExceedsTotalAmountError extends PortOneError {
 	readonly _tag = "PortOneDiscountAmountExceedsTotalAmountError"
 
+	/** @ignore */
 	constructor(error: InternalDiscountAmountExceedsTotalAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, DiscountAmountExceedsTotalAmountError.prototype)
@@ -1118,6 +1197,7 @@ export class DiscountAmountExceedsTotalAmountError extends PortOneError {
 export class PaymentAlreadyCancelledError extends PortOneError {
 	readonly _tag = "PortOnePaymentAlreadyCancelledError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentAlreadyCancelledError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentAlreadyCancelledError.prototype)
@@ -1129,6 +1209,7 @@ export class PaymentAlreadyCancelledError extends PortOneError {
 export class PaymentNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePaymentNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentNotFoundError.prototype)
@@ -1140,6 +1221,7 @@ export class PaymentNotFoundError extends PortOneError {
 export class PaymentNotPaidError extends PortOneError {
 	readonly _tag = "PortOnePaymentNotPaidError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentNotPaidError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentNotPaidError.prototype)
@@ -1151,6 +1233,7 @@ export class PaymentNotPaidError extends PortOneError {
 export class PaymentNotWaitingForDepositError extends PortOneError {
 	readonly _tag = "PortOnePaymentNotWaitingForDepositError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentNotWaitingForDepositError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentNotWaitingForDepositError.prototype)
@@ -1162,6 +1245,7 @@ export class PaymentNotWaitingForDepositError extends PortOneError {
 export class PromotionPayMethodDoesNotMatchError extends PortOneError {
 	readonly _tag = "PortOnePromotionPayMethodDoesNotMatchError"
 
+	/** @ignore */
 	constructor(error: InternalPromotionPayMethodDoesNotMatchError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PromotionPayMethodDoesNotMatchError.prototype)
@@ -1173,6 +1257,7 @@ export class PromotionPayMethodDoesNotMatchError extends PortOneError {
 export class RemainedAmountLessThanPromotionMinPaymentAmountError extends PortOneError {
 	readonly _tag = "PortOneRemainedAmountLessThanPromotionMinPaymentAmountError"
 
+	/** @ignore */
 	constructor(error: InternalRemainedAmountLessThanPromotionMinPaymentAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, RemainedAmountLessThanPromotionMinPaymentAmountError.prototype)
@@ -1184,6 +1269,7 @@ export class RemainedAmountLessThanPromotionMinPaymentAmountError extends PortOn
 export class SumOfPartsExceedsCancelAmountError extends PortOneError {
 	readonly _tag = "PortOneSumOfPartsExceedsCancelAmountError"
 
+	/** @ignore */
 	constructor(error: InternalSumOfPartsExceedsCancelAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, SumOfPartsExceedsCancelAmountError.prototype)
@@ -1195,6 +1281,7 @@ export class SumOfPartsExceedsCancelAmountError extends PortOneError {
 export class WebhookNotFoundError extends PortOneError {
 	readonly _tag = "PortOneWebhookNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalWebhookNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, WebhookNotFoundError.prototype)
@@ -1205,6 +1292,7 @@ export class WebhookNotFoundError extends PortOneError {
 export class BillingKeyNotIssuedError extends PortOneError {
 	readonly _tag = "PortOneBillingKeyNotIssuedError"
 
+	/** @ignore */
 	constructor(error: InternalBillingKeyNotIssuedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, BillingKeyNotIssuedError.prototype)
@@ -1218,6 +1306,7 @@ export class ChannelSpecificError extends PortOneError {
 	readonly failures: ChannelSpecificFailure[]
 	readonly succeededChannels: SelectedChannel[]
 
+	/** @ignore */
 	constructor(error: InternalChannelSpecificError) {
 		super(error.message)
 		Object.setPrototypeOf(this, ChannelSpecificError.prototype)
@@ -1231,6 +1320,7 @@ export class ChannelSpecificError extends PortOneError {
 export class CashReceiptAlreadyIssuedError extends PortOneError {
 	readonly _tag = "PortOneCashReceiptAlreadyIssuedError"
 
+	/** @ignore */
 	constructor(error: InternalCashReceiptAlreadyIssuedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CashReceiptAlreadyIssuedError.prototype)
@@ -1242,6 +1332,7 @@ export class CashReceiptAlreadyIssuedError extends PortOneError {
 export class CashReceiptNotFoundError extends PortOneError {
 	readonly _tag = "PortOneCashReceiptNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalCashReceiptNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CashReceiptNotFoundError.prototype)
@@ -1253,6 +1344,7 @@ export class CashReceiptNotFoundError extends PortOneError {
 export class CashReceiptNotIssuedError extends PortOneError {
 	readonly _tag = "PortOneCashReceiptNotIssuedError"
 
+	/** @ignore */
 	constructor(error: InternalCashReceiptNotIssuedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, CashReceiptNotIssuedError.prototype)
@@ -1264,6 +1356,7 @@ export class CashReceiptNotIssuedError extends PortOneError {
 export class AlreadyPaidOrWaitingError extends PortOneError {
 	readonly _tag = "PortOneAlreadyPaidOrWaitingError"
 
+	/** @ignore */
 	constructor(error: InternalAlreadyPaidOrWaitingError) {
 		super(error.message)
 		Object.setPrototypeOf(this, AlreadyPaidOrWaitingError.prototype)
@@ -1275,6 +1368,7 @@ export class AlreadyPaidOrWaitingError extends PortOneError {
 export class PaymentScheduleAlreadyProcessedError extends PortOneError {
 	readonly _tag = "PortOnePaymentScheduleAlreadyProcessedError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentScheduleAlreadyProcessedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentScheduleAlreadyProcessedError.prototype)
@@ -1286,6 +1380,7 @@ export class PaymentScheduleAlreadyProcessedError extends PortOneError {
 export class PaymentScheduleAlreadyRevokedError extends PortOneError {
 	readonly _tag = "PortOnePaymentScheduleAlreadyRevokedError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentScheduleAlreadyRevokedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentScheduleAlreadyRevokedError.prototype)
@@ -1297,6 +1392,7 @@ export class PaymentScheduleAlreadyRevokedError extends PortOneError {
 export class PaymentScheduleNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePaymentScheduleNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentScheduleNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentScheduleNotFoundError.prototype)
@@ -1308,6 +1404,7 @@ export class PaymentScheduleNotFoundError extends PortOneError {
 export class B2bBankAccountNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bBankAccountNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bBankAccountNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bBankAccountNotFoundError.prototype)
@@ -1319,6 +1416,7 @@ export class B2bBankAccountNotFoundError extends PortOneError {
 export class B2bCertificateUnregisteredError extends PortOneError {
 	readonly _tag = "PortOneB2bCertificateUnregisteredError"
 
+	/** @ignore */
 	constructor(error: InternalB2bCertificateUnregisteredError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bCertificateUnregisteredError.prototype)
@@ -1330,6 +1428,7 @@ export class B2bCertificateUnregisteredError extends PortOneError {
 export class B2bCompanyAlreadyRegisteredError extends PortOneError {
 	readonly _tag = "PortOneB2bCompanyAlreadyRegisteredError"
 
+	/** @ignore */
 	constructor(error: InternalB2bCompanyAlreadyRegisteredError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bCompanyAlreadyRegisteredError.prototype)
@@ -1341,6 +1440,7 @@ export class B2bCompanyAlreadyRegisteredError extends PortOneError {
 export class B2bCompanyNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bCompanyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bCompanyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bCompanyNotFoundError.prototype)
@@ -1352,6 +1452,7 @@ export class B2bCompanyNotFoundError extends PortOneError {
 export class B2bContactNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bContactNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bContactNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bContactNotFoundError.prototype)
@@ -1363,6 +1464,7 @@ export class B2bContactNotFoundError extends PortOneError {
 export class B2bExternalServiceError extends PortOneError {
 	readonly _tag = "PortOneB2bExternalServiceError"
 
+	/** @ignore */
 	constructor(error: InternalB2bExternalServiceError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bExternalServiceError.prototype)
@@ -1374,6 +1476,7 @@ export class B2bExternalServiceError extends PortOneError {
 export class B2bFileNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bFileNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bFileNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bFileNotFoundError.prototype)
@@ -1385,6 +1488,7 @@ export class B2bFileNotFoundError extends PortOneError {
 export class B2bFinancialSystemCommunicationError extends PortOneError {
 	readonly _tag = "PortOneB2bFinancialSystemCommunicationError"
 
+	/** @ignore */
 	constructor(error: InternalB2bFinancialSystemCommunicationError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bFinancialSystemCommunicationError.prototype)
@@ -1396,6 +1500,7 @@ export class B2bFinancialSystemCommunicationError extends PortOneError {
 export class B2bFinancialSystemFailureError extends PortOneError {
 	readonly _tag = "PortOneB2bFinancialSystemFailureError"
 
+	/** @ignore */
 	constructor(error: InternalB2bFinancialSystemFailureError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bFinancialSystemFailureError.prototype)
@@ -1407,6 +1512,7 @@ export class B2bFinancialSystemFailureError extends PortOneError {
 export class B2bFinancialSystemUnderMaintenanceError extends PortOneError {
 	readonly _tag = "PortOneB2bFinancialSystemUnderMaintenanceError"
 
+	/** @ignore */
 	constructor(error: InternalB2bFinancialSystemUnderMaintenanceError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bFinancialSystemUnderMaintenanceError.prototype)
@@ -1418,6 +1524,7 @@ export class B2bFinancialSystemUnderMaintenanceError extends PortOneError {
 export class B2bForeignExchangeAccountError extends PortOneError {
 	readonly _tag = "PortOneB2bForeignExchangeAccountError"
 
+	/** @ignore */
 	constructor(error: InternalB2bForeignExchangeAccountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bForeignExchangeAccountError.prototype)
@@ -1429,6 +1536,7 @@ export class B2bForeignExchangeAccountError extends PortOneError {
 export class B2bHometaxUnderMaintenanceError extends PortOneError {
 	readonly _tag = "PortOneB2bHometaxUnderMaintenanceError"
 
+	/** @ignore */
 	constructor(error: InternalB2bHometaxUnderMaintenanceError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bHometaxUnderMaintenanceError.prototype)
@@ -1440,6 +1548,7 @@ export class B2bHometaxUnderMaintenanceError extends PortOneError {
 export class B2bIdAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOneB2bIdAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalB2bIdAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bIdAlreadyExistsError.prototype)
@@ -1451,6 +1560,7 @@ export class B2bIdAlreadyExistsError extends PortOneError {
 export class B2bMemberCompanyNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bMemberCompanyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bMemberCompanyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bMemberCompanyNotFoundError.prototype)
@@ -1462,6 +1572,7 @@ export class B2bMemberCompanyNotFoundError extends PortOneError {
 export class B2bNotEnabledError extends PortOneError {
 	readonly _tag = "PortOneB2bNotEnabledError"
 
+	/** @ignore */
 	constructor(error: InternalB2bNotEnabledError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bNotEnabledError.prototype)
@@ -1473,6 +1584,7 @@ export class B2bNotEnabledError extends PortOneError {
 export class B2bRecipientNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bRecipientNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bRecipientNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bRecipientNotFoundError.prototype)
@@ -1484,6 +1596,7 @@ export class B2bRecipientNotFoundError extends PortOneError {
 export class B2bRegularMaintenanceTimeError extends PortOneError {
 	readonly _tag = "PortOneB2bRegularMaintenanceTimeError"
 
+	/** @ignore */
 	constructor(error: InternalB2bRegularMaintenanceTimeError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bRegularMaintenanceTimeError.prototype)
@@ -1495,6 +1608,7 @@ export class B2bRegularMaintenanceTimeError extends PortOneError {
 export class B2bSupplierNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bSupplierNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bSupplierNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bSupplierNotFoundError.prototype)
@@ -1506,6 +1620,7 @@ export class B2bSupplierNotFoundError extends PortOneError {
 export class B2bSuspendedAccountError extends PortOneError {
 	readonly _tag = "PortOneB2bSuspendedAccountError"
 
+	/** @ignore */
 	constructor(error: InternalB2bSuspendedAccountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bSuspendedAccountError.prototype)
@@ -1517,6 +1632,7 @@ export class B2bSuspendedAccountError extends PortOneError {
 export class B2bTaxInvoiceAttachmentNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceAttachmentNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceAttachmentNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceAttachmentNotFoundError.prototype)
@@ -1528,6 +1644,7 @@ export class B2bTaxInvoiceAttachmentNotFoundError extends PortOneError {
 export class B2bTaxInvoiceNoRecipientDocumentKeyError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNoRecipientDocumentKeyError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNoRecipientDocumentKeyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNoRecipientDocumentKeyError.prototype)
@@ -1539,6 +1656,7 @@ export class B2bTaxInvoiceNoRecipientDocumentKeyError extends PortOneError {
 export class B2bTaxInvoiceNoSupplierDocumentKeyError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNoSupplierDocumentKeyError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNoSupplierDocumentKeyError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNoSupplierDocumentKeyError.prototype)
@@ -1554,6 +1672,7 @@ export class B2bTaxInvoiceNoSupplierDocumentKeyError extends PortOneError {
 export class B2bTaxInvoiceNonDeletableStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNonDeletableStatusError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNonDeletableStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNonDeletableStatusError.prototype)
@@ -1565,6 +1684,7 @@ export class B2bTaxInvoiceNonDeletableStatusError extends PortOneError {
 export class B2bTaxInvoiceNotFoundError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNotFoundError.prototype)
@@ -1576,6 +1696,7 @@ export class B2bTaxInvoiceNotFoundError extends PortOneError {
 export class B2bTaxInvoiceNotIssuedStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNotIssuedStatusError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNotIssuedStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNotIssuedStatusError.prototype)
@@ -1587,6 +1708,7 @@ export class B2bTaxInvoiceNotIssuedStatusError extends PortOneError {
 export class B2bTaxInvoiceNotRegisteredStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNotRegisteredStatusError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNotRegisteredStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNotRegisteredStatusError.prototype)
@@ -1598,6 +1720,7 @@ export class B2bTaxInvoiceNotRegisteredStatusError extends PortOneError {
 export class B2bTaxInvoiceNotRequestedStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNotRequestedStatusError"
 
+	/** @ignore */
 	constructor(error: InternalB2bTaxInvoiceNotRequestedStatusError) {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNotRequestedStatusError.prototype)
@@ -1609,6 +1732,7 @@ export class B2bTaxInvoiceNotRequestedStatusError extends PortOneError {
 export class PromotionNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePromotionNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalPromotionNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PromotionNotFoundError.prototype)
@@ -1620,6 +1744,7 @@ export class PromotionNotFoundError extends PortOneError {
 export class BillingKeyAlreadyDeletedError extends PortOneError {
 	readonly _tag = "PortOneBillingKeyAlreadyDeletedError"
 
+	/** @ignore */
 	constructor(error: InternalBillingKeyAlreadyDeletedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, BillingKeyAlreadyDeletedError.prototype)
@@ -1631,6 +1756,7 @@ export class BillingKeyAlreadyDeletedError extends PortOneError {
 export class BillingKeyNotFoundError extends PortOneError {
 	readonly _tag = "PortOneBillingKeyNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalBillingKeyNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, BillingKeyNotFoundError.prototype)
@@ -1642,6 +1768,7 @@ export class BillingKeyNotFoundError extends PortOneError {
 export class ChannelNotFoundError extends PortOneError {
 	readonly _tag = "PortOneChannelNotFoundError"
 
+	/** @ignore */
 	constructor(error: InternalChannelNotFoundError) {
 		super(error.message)
 		Object.setPrototypeOf(this, ChannelNotFoundError.prototype)
@@ -1653,6 +1780,7 @@ export class ChannelNotFoundError extends PortOneError {
 export class ForbiddenError extends PortOneError {
 	readonly _tag = "PortOneForbiddenError"
 
+	/** @ignore */
 	constructor(error: InternalForbiddenError) {
 		super(error.message)
 		Object.setPrototypeOf(this, ForbiddenError.prototype)
@@ -1668,6 +1796,7 @@ export class ForbiddenError extends PortOneError {
 export class InvalidRequestError extends PortOneError {
 	readonly _tag = "PortOneInvalidRequestError"
 
+	/** @ignore */
 	constructor(error: InternalInvalidRequestError) {
 		super(error.message)
 		Object.setPrototypeOf(this, InvalidRequestError.prototype)
@@ -1679,6 +1808,7 @@ export class InvalidRequestError extends PortOneError {
 export class PaymentScheduleAlreadyExistsError extends PortOneError {
 	readonly _tag = "PortOnePaymentScheduleAlreadyExistsError"
 
+	/** @ignore */
 	constructor(error: InternalPaymentScheduleAlreadyExistsError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PaymentScheduleAlreadyExistsError.prototype)
@@ -1692,6 +1822,7 @@ export class PgProviderError extends PortOneError {
 	readonly pgCode: string
 	readonly pgMessage: string
 
+	/** @ignore */
 	constructor(error: InternalPgProviderError) {
 		super(error.message)
 		Object.setPrototypeOf(this, PgProviderError.prototype)
@@ -1705,6 +1836,7 @@ export class PgProviderError extends PortOneError {
 export class SumOfPartsExceedsTotalAmountError extends PortOneError {
 	readonly _tag = "PortOneSumOfPartsExceedsTotalAmountError"
 
+	/** @ignore */
 	constructor(error: InternalSumOfPartsExceedsTotalAmountError) {
 		super(error.message)
 		Object.setPrototypeOf(this, SumOfPartsExceedsTotalAmountError.prototype)
@@ -1716,6 +1848,7 @@ export class SumOfPartsExceedsTotalAmountError extends PortOneError {
 export class UnauthorizedError extends PortOneError {
 	readonly _tag = "PortOneUnauthorizedError"
 
+	/** @ignore */
 	constructor(error: InternalUnauthorizedError) {
 		super(error.message)
 		Object.setPrototypeOf(this, UnauthorizedError.prototype)

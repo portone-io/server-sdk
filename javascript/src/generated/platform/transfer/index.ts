@@ -1,116 +1,21 @@
-export type * from "./CreateManualTransferResponse"
-export type * from "./CreateOrderCancelTransferResponse"
-export type * from "./CreateOrderTransferResponse"
-export type * from "./CreatePlatformManualTransferBody"
-export type * from "./CreatePlatformManualTransferError"
-export type * from "./CreatePlatformOrderCancelTransferBody"
-export type * from "./CreatePlatformOrderCancelTransferBodyDiscount"
-export type * from "./CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
-export type * from "./CreatePlatformOrderCancelTransferBodyOrderDetail"
-export type * from "./CreatePlatformOrderCancelTransferBodyOrderDetailAll"
-export type * from "./CreatePlatformOrderCancelTransferBodyOrderLine"
-export type * from "./CreatePlatformOrderCancelTransferError"
-export type * from "./CreatePlatformOrderTransferBody"
-export type * from "./CreatePlatformOrderTransferBodyAdditionalFee"
-export type * from "./CreatePlatformOrderTransferBodyDiscount"
-export type * from "./CreatePlatformOrderTransferBodyExternalPaymentDetail"
-export type * from "./CreatePlatformOrderTransferBodyOrderDetail"
-export type * from "./CreatePlatformOrderTransferBodyOrderLine"
-export type * from "./CreatePlatformOrderTransferBodyProduct"
-export type * from "./CreatePlatformOrderTransferError"
-export type * from "./DeletePlatformTransferError"
-export type * from "./DeletePlatformTransferResponse"
-export type * from "./DownloadPlatformTransferSheetBody"
-export type * from "./DownloadPlatformTransferSheetError"
-export type * from "./EasyPayMethodType"
-export type * from "./GetPlatformTransferError"
-export type * from "./GetPlatformTransferSummariesBody"
-export type * from "./GetPlatformTransferSummariesError"
-export type * from "./GetPlatformTransferSummariesResponse"
-export type * from "./PlatformAdditionalFeePoliciesNotFoundError"
-export type * from "./PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError"
-export type * from "./PlatformCancelOrderTransfersExistsError"
-export type * from "./PlatformCancellableAmountExceededError"
-export type * from "./PlatformCancellableAmountType"
-export type * from "./PlatformCancellableDiscountAmountExceededError"
-export type * from "./PlatformCancellableDiscountTaxFreeAmountExceededError"
-export type * from "./PlatformCancellableProductQuantityExceededError"
-export type * from "./PlatformCancellationAndPaymentTypeMismatchedError"
-export type * from "./PlatformCancellationNotFoundError"
-export type * from "./PlatformCannotSpecifyTransferError"
-export type * from "./PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError"
-export type * from "./PlatformDiscountSharePoliciesNotFoundError"
-export type * from "./PlatformDiscountSharePolicyIdDuplicatedError"
-export type * from "./PlatformExternalPayment"
-export type * from "./PlatformManualTransfer"
-export type * from "./PlatformManualTransferSummary"
-export type * from "./PlatformOrderCancelTransfer"
-export type * from "./PlatformOrderCancelTransferSummary"
-export type * from "./PlatformOrderDetailMismatchedError"
-export type * from "./PlatformOrderTransfer"
-export type * from "./PlatformOrderTransferAdditionalFee"
-export type * from "./PlatformOrderTransferAlreadyCancelledError"
-export type * from "./PlatformOrderTransferCancellation"
-export type * from "./PlatformOrderTransferDiscount"
-export type * from "./PlatformOrderTransferOrderLine"
-export type * from "./PlatformOrderTransferProduct"
-export type * from "./PlatformOrderTransferSummary"
-export type * from "./PlatformPayment"
-export type * from "./PlatformPaymentMethod"
-export type * from "./PlatformPaymentMethodCard"
-export type * from "./PlatformPaymentMethodCardInput"
-export type * from "./PlatformPaymentMethodEasyPay"
-export type * from "./PlatformPaymentMethodEasyPayInput"
-export type * from "./PlatformPaymentMethodGiftCertificate"
-export type * from "./PlatformPaymentMethodGiftCertificateInput"
-export type * from "./PlatformPaymentMethodInput"
-export type * from "./PlatformPaymentMethodMobile"
-export type * from "./PlatformPaymentMethodMobileInput"
-export type * from "./PlatformPaymentMethodTransfer"
-export type * from "./PlatformPaymentMethodTransferInput"
-export type * from "./PlatformPaymentMethodVirtualAccount"
-export type * from "./PlatformPaymentMethodVirtualAccountInput"
-export type * from "./PlatformPaymentNotFoundError"
-export type * from "./PlatformPortOnePayment"
-export type * from "./PlatformPortOnePaymentCancelAmountType"
-export type * from "./PlatformProductIdDuplicatedError"
-export type * from "./PlatformProductIdNotFoundError"
-export type * from "./PlatformSettlementAmountExceededError"
-export type * from "./PlatformSettlementCancelAmountExceededPortOneCancelError"
-export type * from "./PlatformSettlementParameterNotFoundError"
-export type * from "./PlatformSettlementParameterValue"
-export type * from "./PlatformSettlementPaymentAmountExceededPortOnePaymentError"
-export type * from "./PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError"
-export type * from "./PlatformSettlementTaxFreeAmountExceededPortOnePaymentError"
-export type * from "./PlatformTransfer"
-export type * from "./PlatformTransferAlreadyExistsError"
-export type * from "./PlatformTransferDiscountSharePolicyNotFoundError"
-export type * from "./PlatformTransferFilterInput"
-export type * from "./PlatformTransferFilterInputKeyword"
-export type * from "./PlatformTransferNonDeletableStatusError"
-export type * from "./PlatformTransferNotFoundError"
-export type * from "./PlatformTransferSheetField"
-export type * from "./PlatformTransferStatus"
-export type * from "./PlatformTransferSummary"
-export type * from "./PlatformTransferSummaryExternalPayment"
-export type * from "./PlatformTransferSummaryPartner"
-export type * from "./PlatformTransferSummaryPartnerType"
-export type * from "./PlatformTransferSummaryPayment"
-export type * from "./PlatformTransferSummaryPortOnePayment"
-export type * from "./PlatformTransferType"
-export type * from "./PlatformUserDefinedPropertyKeyValue"
-export type * from "./TransferParameters"
 import type { CreateManualTransferResponse } from "#generated/platform/transfer/CreateManualTransferResponse"
 import type { CreateOrderCancelTransferResponse } from "#generated/platform/transfer/CreateOrderCancelTransferResponse"
 import type { CreateOrderTransferResponse } from "#generated/platform/transfer/CreateOrderTransferResponse"
+import type { CreatePlatformManualTransferError } from "#generated/platform/transfer/CreatePlatformManualTransferError"
 import type { CreatePlatformOrderCancelTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
 import type { CreatePlatformOrderCancelTransferBodyExternalCancellationDetail } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
 import type { CreatePlatformOrderCancelTransferBodyOrderDetail } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetail"
+import type { CreatePlatformOrderCancelTransferError } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferError"
 import type { CreatePlatformOrderTransferBodyAdditionalFee } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
 import type { CreatePlatformOrderTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyDiscount"
 import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyExternalPaymentDetail"
 import type { CreatePlatformOrderTransferBodyOrderDetail } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
+import type { CreatePlatformOrderTransferError } from "#generated/platform/transfer/CreatePlatformOrderTransferError"
+import type { DeletePlatformTransferError } from "#generated/platform/transfer/DeletePlatformTransferError"
 import type { DeletePlatformTransferResponse } from "#generated/platform/transfer/DeletePlatformTransferResponse"
+import type { DownloadPlatformTransferSheetError } from "#generated/platform/transfer/DownloadPlatformTransferSheetError"
+import type { GetPlatformTransferError } from "#generated/platform/transfer/GetPlatformTransferError"
+import type { GetPlatformTransferSummariesError } from "#generated/platform/transfer/GetPlatformTransferSummariesError"
 import type { GetPlatformTransferSummariesResponse } from "#generated/platform/transfer/GetPlatformTransferSummariesResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformTransfer } from "#generated/platform/transfer/PlatformTransfer"
@@ -118,8 +23,505 @@ import type { PlatformTransferFilterInput } from "#generated/platform/transfer/P
 import type { PlatformTransferSheetField } from "#generated/platform/transfer/PlatformTransferSheetField"
 import type { PlatformUserDefinedPropertyKeyValue } from "#generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
 import type { TransferParameters } from "#generated/platform/transfer/TransferParameters"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { CreateManualTransferResponse } from "./CreateManualTransferResponse"
+export type { CreateOrderCancelTransferResponse } from "./CreateOrderCancelTransferResponse"
+export type { CreateOrderTransferResponse } from "./CreateOrderTransferResponse"
+export type { CreatePlatformManualTransferBody } from "./CreatePlatformManualTransferBody"
+export type { CreatePlatformOrderCancelTransferBody } from "./CreatePlatformOrderCancelTransferBody"
+export type { CreatePlatformOrderCancelTransferBodyDiscount } from "./CreatePlatformOrderCancelTransferBodyDiscount"
+export type { CreatePlatformOrderCancelTransferBodyExternalCancellationDetail } from "./CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
+export type { CreatePlatformOrderCancelTransferBodyOrderDetail } from "./CreatePlatformOrderCancelTransferBodyOrderDetail"
+export type { CreatePlatformOrderCancelTransferBodyOrderDetailAll } from "./CreatePlatformOrderCancelTransferBodyOrderDetailAll"
+export type { CreatePlatformOrderCancelTransferBodyOrderLine } from "./CreatePlatformOrderCancelTransferBodyOrderLine"
+export type { CreatePlatformOrderTransferBody } from "./CreatePlatformOrderTransferBody"
+export type { CreatePlatformOrderTransferBodyAdditionalFee } from "./CreatePlatformOrderTransferBodyAdditionalFee"
+export type { CreatePlatformOrderTransferBodyDiscount } from "./CreatePlatformOrderTransferBodyDiscount"
+export type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "./CreatePlatformOrderTransferBodyExternalPaymentDetail"
+export type { CreatePlatformOrderTransferBodyOrderDetail } from "./CreatePlatformOrderTransferBodyOrderDetail"
+export type { CreatePlatformOrderTransferBodyOrderLine } from "./CreatePlatformOrderTransferBodyOrderLine"
+export type { CreatePlatformOrderTransferBodyProduct } from "./CreatePlatformOrderTransferBodyProduct"
+export type { DeletePlatformTransferResponse } from "./DeletePlatformTransferResponse"
+export type { DownloadPlatformTransferSheetBody } from "./DownloadPlatformTransferSheetBody"
+export type { EasyPayMethodType } from "./EasyPayMethodType"
+export type { GetPlatformTransferSummariesBody } from "./GetPlatformTransferSummariesBody"
+export type { GetPlatformTransferSummariesResponse } from "./GetPlatformTransferSummariesResponse"
+export type { PlatformCancellableAmountType } from "./PlatformCancellableAmountType"
+export type { PlatformExternalPayment } from "./PlatformExternalPayment"
+export type { PlatformManualTransfer } from "./PlatformManualTransfer"
+export type { PlatformManualTransferSummary } from "./PlatformManualTransferSummary"
+export type { PlatformOrderCancelTransfer } from "./PlatformOrderCancelTransfer"
+export type { PlatformOrderCancelTransferSummary } from "./PlatformOrderCancelTransferSummary"
+export type { PlatformOrderTransfer } from "./PlatformOrderTransfer"
+export type { PlatformOrderTransferAdditionalFee } from "./PlatformOrderTransferAdditionalFee"
+export type { PlatformOrderTransferCancellation } from "./PlatformOrderTransferCancellation"
+export type { PlatformOrderTransferDiscount } from "./PlatformOrderTransferDiscount"
+export type { PlatformOrderTransferOrderLine } from "./PlatformOrderTransferOrderLine"
+export type { PlatformOrderTransferProduct } from "./PlatformOrderTransferProduct"
+export type { PlatformOrderTransferSummary } from "./PlatformOrderTransferSummary"
+export type { PlatformPayment } from "./PlatformPayment"
+export type { PlatformPaymentMethod } from "./PlatformPaymentMethod"
+export type { PlatformPaymentMethodCard } from "./PlatformPaymentMethodCard"
+export type { PlatformPaymentMethodCardInput } from "./PlatformPaymentMethodCardInput"
+export type { PlatformPaymentMethodEasyPay } from "./PlatformPaymentMethodEasyPay"
+export type { PlatformPaymentMethodEasyPayInput } from "./PlatformPaymentMethodEasyPayInput"
+export type { PlatformPaymentMethodGiftCertificate } from "./PlatformPaymentMethodGiftCertificate"
+export type { PlatformPaymentMethodGiftCertificateInput } from "./PlatformPaymentMethodGiftCertificateInput"
+export type { PlatformPaymentMethodInput } from "./PlatformPaymentMethodInput"
+export type { PlatformPaymentMethodMobile } from "./PlatformPaymentMethodMobile"
+export type { PlatformPaymentMethodMobileInput } from "./PlatformPaymentMethodMobileInput"
+export type { PlatformPaymentMethodTransfer } from "./PlatformPaymentMethodTransfer"
+export type { PlatformPaymentMethodTransferInput } from "./PlatformPaymentMethodTransferInput"
+export type { PlatformPaymentMethodVirtualAccount } from "./PlatformPaymentMethodVirtualAccount"
+export type { PlatformPaymentMethodVirtualAccountInput } from "./PlatformPaymentMethodVirtualAccountInput"
+export type { PlatformPortOnePayment } from "./PlatformPortOnePayment"
+export type { PlatformPortOnePaymentCancelAmountType } from "./PlatformPortOnePaymentCancelAmountType"
+export type { PlatformSettlementParameterValue } from "./PlatformSettlementParameterValue"
+export type { PlatformTransfer } from "./PlatformTransfer"
+export type { PlatformTransferFilterInput } from "./PlatformTransferFilterInput"
+export type { PlatformTransferFilterInputKeyword } from "./PlatformTransferFilterInputKeyword"
+export type { PlatformTransferSheetField } from "./PlatformTransferSheetField"
+export type { PlatformTransferStatus } from "./PlatformTransferStatus"
+export type { PlatformTransferSummary } from "./PlatformTransferSummary"
+export type { PlatformTransferSummaryExternalPayment } from "./PlatformTransferSummaryExternalPayment"
+export type { PlatformTransferSummaryPartner } from "./PlatformTransferSummaryPartner"
+export type { PlatformTransferSummaryPartnerType } from "./PlatformTransferSummaryPartnerType"
+export type { PlatformTransferSummaryPayment } from "./PlatformTransferSummaryPayment"
+export type { PlatformTransferSummaryPortOnePayment } from "./PlatformTransferSummaryPortOnePayment"
+export type { PlatformTransferType } from "./PlatformTransferType"
+export type { PlatformUserDefinedPropertyKeyValue } from "./PlatformUserDefinedPropertyKeyValue"
+export type { TransferParameters } from "./TransferParameters"
+export function TransferClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): TransferClient {
+	return {
+		getPlatformTransfer: async (
+			id: string,
+		): Promise<PlatformTransfer> => {
+			const response = await fetch(
+				new URL(`/platform/transfers/${id}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformTransferError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_TRANSFER_NOT_FOUND":
+					throw new Errors.PlatformTransferNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		deletePlatformTransfer: async (
+			id: string,
+		): Promise<DeletePlatformTransferResponse> => {
+			const response = await fetch(
+				new URL(`/platform/transfers/${id}`, baseUrl),
+				{
+					method: "delete",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: DeletePlatformTransferError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS":
+					throw new Errors.PlatformCancelOrderTransfersExistsError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_TRANSFER_NON_DELETABLE_STATUS":
+					throw new Errors.PlatformTransferNonDeletableStatusError(errorResponse)
+				case "PLATFORM_TRANSFER_NOT_FOUND":
+					throw new Errors.PlatformTransferNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		getPlatformTransferSummaries: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformTransferFilterInput,
+			}
+		): Promise<GetPlatformTransferSummariesResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/transfer-summaries?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformTransferSummariesError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformOrderTransfer: async (
+			options: {
+				partnerId: string,
+				contractId?: string,
+				memo?: string,
+				paymentId: string,
+				orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
+				taxFreeAmount?: number,
+				settlementStartDate?: string,
+				discounts: CreatePlatformOrderTransferBodyDiscount[],
+				additionalFees: CreatePlatformOrderTransferBodyAdditionalFee[],
+				externalPaymentDetail?: CreatePlatformOrderTransferBodyExternalPaymentDetail,
+				isForTest?: boolean,
+				parameters?: TransferParameters,
+				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			}
+		): Promise<CreateOrderTransferResponse> => {
+			const {
+				partnerId,
+				contractId,
+				memo,
+				paymentId,
+				orderDetail,
+				taxFreeAmount,
+				settlementStartDate,
+				discounts,
+				additionalFees,
+				externalPaymentDetail,
+				isForTest,
+				parameters,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				partnerId,
+				contractId,
+				memo,
+				paymentId,
+				orderDetail,
+				taxFreeAmount,
+				settlementStartDate,
+				discounts,
+				additionalFees,
+				externalPaymentDetail,
+				isForTest,
+				parameters,
+				userDefinedProperties,
+			})
+			const response = await fetch(
+				new URL("/platform/transfers/order", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformOrderTransferError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FEE_POLICIES_NOT_FOUND":
+					throw new Errors.PlatformAdditionalFeePoliciesNotFoundError(errorResponse)
+				case "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
+					throw new Errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(errorResponse)
+				case "PLATFORM_CONTRACT_NOT_FOUND":
+					throw new Errors.PlatformContractNotFoundError(errorResponse)
+				case "PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
+					throw new Errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(errorResponse)
+				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
+					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICIES_NOT_FOUND":
+					throw new Errors.PlatformDiscountSharePoliciesNotFoundError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "PLATFORM_PAYMENT_NOT_FOUND":
+					throw new Errors.PlatformPaymentNotFoundError(errorResponse)
+				case "PLATFORM_PRODUCT_ID_DUPLICATED":
+					throw new Errors.PlatformProductIdDuplicatedError(errorResponse)
+				case "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
+					throw new Errors.PlatformSettlementAmountExceededError(errorResponse)
+				case "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND":
+					throw new Errors.PlatformSettlementParameterNotFoundError(errorResponse)
+				case "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
+					throw new Errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(errorResponse)
+				case "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
+					throw new Errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(errorResponse)
+				case "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
+					throw new Errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(errorResponse)
+				case "PLATFORM_TRANSFER_ALREADY_EXISTS":
+					throw new Errors.PlatformTransferAlreadyExistsError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformOrderCancelTransfer: async (
+			options: {
+				partnerId?: string,
+				paymentId?: string,
+				transferId?: string,
+				cancellationId: string,
+				memo?: string,
+				orderDetail?: CreatePlatformOrderCancelTransferBodyOrderDetail,
+				taxFreeAmount?: number,
+				discounts: CreatePlatformOrderCancelTransferBodyDiscount[],
+				settlementStartDate?: string,
+				externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
+				isForTest?: boolean,
+				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			}
+		): Promise<CreateOrderCancelTransferResponse> => {
+			const {
+				partnerId,
+				paymentId,
+				transferId,
+				cancellationId,
+				memo,
+				orderDetail,
+				taxFreeAmount,
+				discounts,
+				settlementStartDate,
+				externalCancellationDetail,
+				isForTest,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				partnerId,
+				paymentId,
+				transferId,
+				cancellationId,
+				memo,
+				orderDetail,
+				taxFreeAmount,
+				discounts,
+				settlementStartDate,
+				externalCancellationDetail,
+				isForTest,
+				userDefinedProperties,
+			})
+			const response = await fetch(
+				new URL("/platform/transfers/order-cancel", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformOrderCancelTransferError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED":
+					throw new Errors.PlatformCancellableAmountExceededError(errorResponse)
+				case "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED":
+					throw new Errors.PlatformCancellableDiscountAmountExceededError(errorResponse)
+				case "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED":
+					throw new Errors.PlatformCancellableDiscountTaxFreeAmountExceededError(errorResponse)
+				case "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED":
+					throw new Errors.PlatformCancellableProductQuantityExceededError(errorResponse)
+				case "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED":
+					throw new Errors.PlatformCancellationAndPaymentTypeMismatchedError(errorResponse)
+				case "PLATFORM_CANCELLATION_NOT_FOUND":
+					throw new Errors.PlatformCancellationNotFoundError(errorResponse)
+				case "PLATFORM_CANNOT_SPECIFY_TRANSFER":
+					throw new Errors.PlatformCannotSpecifyTransferError(errorResponse)
+				case "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED":
+					throw new Errors.PlatformDiscountSharePolicyIdDuplicatedError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_ORDER_DETAIL_MISMATCHED":
+					throw new Errors.PlatformOrderDetailMismatchedError(errorResponse)
+				case "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED":
+					throw new Errors.PlatformOrderTransferAlreadyCancelledError(errorResponse)
+				case "PLATFORM_PAYMENT_NOT_FOUND":
+					throw new Errors.PlatformPaymentNotFoundError(errorResponse)
+				case "PLATFORM_PRODUCT_ID_DUPLICATED":
+					throw new Errors.PlatformProductIdDuplicatedError(errorResponse)
+				case "PLATFORM_PRODUCT_ID_NOT_FOUND":
+					throw new Errors.PlatformProductIdNotFoundError(errorResponse)
+				case "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
+					throw new Errors.PlatformSettlementAmountExceededError(errorResponse)
+				case "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL":
+					throw new Errors.PlatformSettlementCancelAmountExceededPortOneCancelError(errorResponse)
+				case "PLATFORM_TRANSFER_ALREADY_EXISTS":
+					throw new Errors.PlatformTransferAlreadyExistsError(errorResponse)
+				case "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+					throw new Errors.PlatformTransferDiscountSharePolicyNotFoundError(errorResponse)
+				case "PLATFORM_TRANSFER_NOT_FOUND":
+					throw new Errors.PlatformTransferNotFoundError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		createPlatformManualTransfer: async (
+			options: {
+				partnerId: string,
+				memo?: string,
+				settlementAmount: number,
+				settlementDate: string,
+				isForTest?: boolean,
+				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			}
+		): Promise<CreateManualTransferResponse> => {
+			const {
+				partnerId,
+				memo,
+				settlementAmount,
+				settlementDate,
+				isForTest,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				partnerId,
+				memo,
+				settlementAmount,
+				settlementDate,
+				isForTest,
+				userDefinedProperties,
+			})
+			const response = await fetch(
+				new URL("/platform/transfers/manual", baseUrl),
+				{
+					method: "post",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: CreatePlatformManualTransferError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "PLATFORM_PARTNER_NOT_FOUND":
+					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
+				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+		downloadPlatformTransferSheet: async (
+			options?: {
+				filter?: PlatformTransferFilterInput,
+				fields?: PlatformTransferSheetField[],
+				transferUserDefinedPropertyKeys?: string[],
+				partnerUserDefinedPropertyKeys?: string[],
+			}
+		): Promise<string> => {
+			const filter = options?.filter
+			const fields = options?.fields
+			const transferUserDefinedPropertyKeys = options?.transferUserDefinedPropertyKeys
+			const partnerUserDefinedPropertyKeys = options?.partnerUserDefinedPropertyKeys
+			const requestBody = JSON.stringify({
+				filter,
+				fields,
+				transferUserDefinedPropertyKeys,
+				partnerUserDefinedPropertyKeys,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/transfer-summaries/sheet-file?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: DownloadPlatformTransferSheetError = await response.json()
+				switch (errorResponse.type) {
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.text()
+		},
+	}
+}
+export type TransferClient = {
 	/**
 	 * 정산건 조회
 	 *
@@ -384,3 +786,4 @@ export type Operations = {
 		}
 	) => Promise<string>
 }
+

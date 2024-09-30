@@ -1,20 +1,70 @@
-export type * from "./GetPlatformPartnerSettlementsBody"
-export type * from "./GetPlatformPartnerSettlementsError"
-export type * from "./GetPlatformPartnerSettlementsResponse"
-export type * from "./PlatformPartnerManualSettlement"
-export type * from "./PlatformPartnerOrderCancelSettlement"
-export type * from "./PlatformPartnerOrderSettlement"
-export type * from "./PlatformPartnerSettlement"
-export type * from "./PlatformPartnerSettlementFilterInput"
-export type * from "./PlatformPartnerSettlementFilterKeywordInput"
-export type * from "./PlatformPartnerSettlementStatus"
-export type * from "./PlatformPartnerSettlementStatusStats"
-export type * from "./PlatformPartnerSettlementType"
+import type { GetPlatformPartnerSettlementsError } from "#generated/platform/partnerSettlement/GetPlatformPartnerSettlementsError"
 import type { GetPlatformPartnerSettlementsResponse } from "#generated/platform/partnerSettlement/GetPlatformPartnerSettlementsResponse"
 import type { PageInput } from "#generated/common/PageInput"
 import type { PlatformPartnerSettlementFilterInput } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementFilterInput"
-
-export type Operations = {
+import * as Errors from "#generated/errors"
+export type { GetPlatformPartnerSettlementsBody } from "./GetPlatformPartnerSettlementsBody"
+export type { GetPlatformPartnerSettlementsResponse } from "./GetPlatformPartnerSettlementsResponse"
+export type { PlatformPartnerManualSettlement } from "./PlatformPartnerManualSettlement"
+export type { PlatformPartnerOrderCancelSettlement } from "./PlatformPartnerOrderCancelSettlement"
+export type { PlatformPartnerOrderSettlement } from "./PlatformPartnerOrderSettlement"
+export type { PlatformPartnerSettlement } from "./PlatformPartnerSettlement"
+export type { PlatformPartnerSettlementFilterInput } from "./PlatformPartnerSettlementFilterInput"
+export type { PlatformPartnerSettlementFilterKeywordInput } from "./PlatformPartnerSettlementFilterKeywordInput"
+export type { PlatformPartnerSettlementStatus } from "./PlatformPartnerSettlementStatus"
+export type { PlatformPartnerSettlementStatusStats } from "./PlatformPartnerSettlementStatusStats"
+export type { PlatformPartnerSettlementType } from "./PlatformPartnerSettlementType"
+export function PartnerSettlementClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PartnerSettlementClient {
+	return {
+		getPlatformPartnerSettlements: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformPartnerSettlementFilterInput,
+				isForTest?: boolean,
+			}
+		): Promise<GetPlatformPartnerSettlementsResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const isForTest = options?.isForTest
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+				isForTest,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partner-settlements?${query}`, baseUrl),
+				{
+					method: "get",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": userAgent,
+					},
+				},
+			)
+			if (!response.ok) {
+				const errorResponse: GetPlatformPartnerSettlementsError = await response.json()
+				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
+				case "INVALID_REQUEST":
+					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_NOT_ENABLED":
+					throw new Errors.PlatformNotEnabledError(errorResponse)
+				case "UNAUTHORIZED":
+					throw new Errors.UnauthorizedError(errorResponse)
+				}
+				throw new Errors.UnknownError(errorResponse)
+			}
+			return response.json()
+		},
+	}
+}
+export type PartnerSettlementClient = {
 	/**
 	 * 정산 내역 다건 조회
 	 *
@@ -35,3 +85,4 @@ export type Operations = {
 		}
 	) => Promise<GetPlatformPartnerSettlementsResponse>
 }
+
