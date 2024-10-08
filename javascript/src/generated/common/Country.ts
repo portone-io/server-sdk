@@ -1,500 +1,500 @@
 /** 국가 */
 export type Country =
-	/** Cabo Verde */
-	| "CV"
-	/** Morocco */
-	| "MA"
-	/** Angola */
-	| "AO"
-	/** Viet Nam */
-	| "VN"
-	/** India */
-	| "IN"
-	/** Kuwait */
-	| "KW"
-	/** Mali */
-	| "ML"
-	/** Indonesia */
-	| "ID"
-	/** Jersey */
-	| "JE"
-	/** Heard Island and McDonald Islands */
-	| "HM"
-	/** Egypt */
-	| "EG"
-	/** Bulgaria */
-	| "BG"
-	/** Singapore */
-	| "SG"
-	/** El Salvador */
-	| "SV"
-	/** Bangladesh */
-	| "BD"
-	/** Turks and Caicos Islands (the) */
-	| "TC"
-	/** Thailand */
-	| "TH"
-	/** Austria */
-	| "AT"
-	/** Equatorial Guinea */
-	| "GQ"
-	/** Türkiye */
-	| "TR"
-	/** Haiti */
-	| "HT"
-	/** United States Minor Outlying Islands (the) */
-	| "UM"
-	/** Marshall Islands (the) */
-	| "MH"
-	/** Malaysia */
-	| "MY"
-	/** Russian Federation (the) */
-	| "RU"
-	/** Nicaragua */
-	| "NI"
-	/** Belize */
-	| "BZ"
-	/** Korea (the Democratic People's Republic of) */
-	| "KP"
-	/** Venezuela (Bolivarian Republic of) */
-	| "VE"
-	/** Israel */
-	| "IL"
-	/** Grenada */
-	| "GD"
-	/** Gibraltar */
-	| "GI"
-	/** Tunisia */
-	| "TN"
-	/** Dominica */
-	| "DM"
-	/** Macao */
-	| "MO"
-	/** Puerto Rico */
-	| "PR"
-	/** Norfolk Island */
-	| "NF"
-	/** Taiwan (Province of China) */
-	| "TW"
-	/** Saint Kitts and Nevis */
-	| "KN"
-	/** Philippines (the) */
-	| "PH"
-	/** Wallis and Futuna */
-	| "WF"
-	/** Jordan */
-	| "JO"
-	/** Montenegro */
-	| "ME"
-	/** Spain */
-	| "ES"
-	/** Azerbaijan */
-	| "AZ"
-	/** Mauritania */
-	| "MR"
-	/** San Marino */
-	| "SM"
-	/** Saint Barthélemy */
-	| "BL"
-	/** Pakistan */
-	| "PK"
-	/** New Zealand */
-	| "NZ"
-	/** Guadeloupe */
-	| "GP"
-	/** Namibia */
-	| "NA"
-	/** Jamaica */
-	| "JM"
-	/** Åland Islands */
-	| "AX"
-	/** Cameroon */
-	| "CM"
-	/** United States of America (the) */
-	| "US"
-	/** Guam */
-	| "GU"
-	/** Solomon Islands */
-	| "SB"
-	/** Maldives */
-	| "MV"
-	/** Slovenia */
-	| "SI"
-	/** Curaçao */
-	| "CW"
-	/** Bahrain */
-	| "BH"
-	/** Virgin Islands (British) */
-	| "VG"
-	/** Hong Kong */
-	| "HK"
-	/** Sudan (the) */
-	| "SD"
 	/** Andorra */
 	| "AD"
-	/** Romania */
-	| "RO"
-	/** Luxembourg */
-	| "LU"
-	/** Saint Vincent and the Grenadines */
-	| "VC"
-	/** Faroe Islands (the) */
-	| "FO"
-	/** Greenland */
-	| "GL"
-	/** Botswana */
-	| "BW"
-	/** Central African Republic (the) */
-	| "CF"
-	/** Côte d'Ivoire */
-	| "CI"
-	/** Kyrgyzstan */
-	| "KG"
-	/** Bouvet Island */
-	| "BV"
-	/** Cayman Islands (the) */
-	| "KY"
-	/** Libya */
-	| "LY"
-	/** Myanmar */
-	| "MM"
-	/** Mozambique */
-	| "MZ"
-	/** Iran (Islamic Republic of) */
-	| "IR"
-	/** Western Sahara */
-	| "EH"
-	/** Iraq */
-	| "IQ"
-	/** Barbados */
-	| "BB"
-	/** Eswatini */
-	| "SZ"
-	/** Ireland */
-	| "IE"
-	/** Falkland Islands (the) [Malvinas] */
-	| "FK"
-	/** Nepal */
-	| "NP"
-	/** Belgium */
-	| "BE"
-	/** Australia */
-	| "AU"
-	/** Tanzania, the United Republic of */
-	| "TZ"
-	/** Uruguay */
-	| "UY"
-	/** Saudi Arabia */
-	| "SA"
-	/** Zimbabwe */
-	| "ZW"
-	/** Moldova (the Republic of) */
-	| "MD"
-	/** Hungary */
-	| "HU"
-	/** Papua New Guinea */
-	| "PG"
-	/** Afghanistan */
-	| "AF"
-	/** Mauritius */
-	| "MU"
-	/** Sierra Leone */
-	| "SL"
-	/** Guatemala */
-	| "GT"
-	/** Bolivia (Plurinational State of) */
-	| "BO"
-	/** Turkmenistan */
-	| "TM"
-	/** Niger (the) */
-	| "NE"
-	/** Chile */
-	| "CL"
-	/** Finland */
-	| "FI"
-	/** Mongolia */
-	| "MN"
-	/** Norway */
-	| "NO"
-	/** Guernsey */
-	| "GG"
-	/** Estonia */
-	| "EE"
-	/** Comoros (the) */
-	| "KM"
-	/** Lithuania */
-	| "LT"
-	/** Eritrea */
-	| "ER"
-	/** Saint Helena, Ascension and Tristan da Cunha */
-	| "SH"
-	/** Syrian Arab Republic (the) */
-	| "SY"
-	/** Saint Lucia */
-	| "LC"
-	/** Cocos (Keeling) Islands (the) */
-	| "CC"
-	/** Poland */
-	| "PL"
-	/** Switzerland */
-	| "CH"
-	/** Sao Tome and Principe */
-	| "ST"
-	/** Nigeria */
-	| "NG"
-	/** French Southern Territories (the) */
-	| "TF"
-	/** Kiribati */
-	| "KI"
-	/** Latvia */
-	| "LV"
-	/** Uganda */
-	| "UG"
-	/** Cyprus */
-	| "CY"
-	/** Malawi */
-	| "MW"
-	/** Congo (the) */
-	| "CG"
-	/** Saint Martin (French part) */
-	| "MF"
-	/** Saint Pierre and Miquelon */
-	| "PM"
-	/** Iceland */
-	| "IS"
-	/** Burundi */
-	| "BI"
-	/** Tokelau */
-	| "TK"
-	/** Sweden */
-	| "SE"
 	/** United Arab Emirates (the) */
 	| "AE"
-	/** Kazakhstan */
-	| "KZ"
-	/** Lebanon */
-	| "LB"
-	/** Argentina */
-	| "AR"
-	/** South Georgia and the South Sandwich Islands */
-	| "GS"
-	/** Burkina Faso */
-	| "BF"
-	/** Djibouti */
-	| "DJ"
-	/** Bosnia and Herzegovina */
-	| "BA"
-	/** Svalbard and Jan Mayen */
-	| "SJ"
-	/** France */
-	| "FR"
-	/** Gambia (the) */
-	| "GM"
-	/** Croatia */
-	| "HR"
-	/** Bahamas (the) */
-	| "BS"
-	/** Serbia */
-	| "RS"
-	/** Samoa */
-	| "WS"
-	/** United Kingdom of Great Britain and Northern Ireland (the) */
-	| "GB"
-	/** Lesotho */
-	| "LS"
-	/** Uzbekistan */
-	| "UZ"
-	/** French Polynesia */
-	| "PF"
+	/** Afghanistan */
+	| "AF"
 	/** Antigua and Barbuda */
 	| "AG"
-	/** Guinea-Bissau */
-	| "GW"
-	/** Fiji */
-	| "FJ"
-	/** Colombia */
-	| "CO"
-	/** Zambia */
-	| "ZM"
-	/** Antarctica */
-	| "AQ"
-	/** French Guiana */
-	| "GF"
-	/** Niue */
-	| "NU"
-	/** Brunei Darussalam */
-	| "BN"
-	/** Rwanda */
-	| "RW"
-	/** Portugal */
-	| "PT"
-	/** Somalia */
-	| "SO"
-	/** Malta */
-	| "MT"
-	/** Palau */
-	| "PW"
-	/** Cambodia */
-	| "KH"
-	/** Sint Maarten (Dutch part) */
-	| "SX"
-	/** Tajikistan */
-	| "TJ"
-	/** Korea (the Republic of) */
-	| "KR"
-	/** South Sudan */
-	| "SS"
-	/** Paraguay */
-	| "PY"
-	/** Armenia */
-	| "AM"
-	/** Monaco */
-	| "MC"
-	/** Christmas Island */
-	| "CX"
-	/** Trinidad and Tobago */
-	| "TT"
-	/** Ukraine */
-	| "UA"
-	/** Liechtenstein */
-	| "LI"
-	/** Brazil */
-	| "BR"
-	/** Panama */
-	| "PA"
-	/** Martinique */
-	| "MQ"
-	/** Nauru */
-	| "NR"
-	/** Pitcairn */
-	| "PN"
-	/** Gabon */
-	| "GA"
-	/** Togo */
-	| "TG"
-	/** Micronesia (Federated States of) */
-	| "FM"
-	/** Guinea */
-	| "GN"
-	/** Mayotte */
-	| "YT"
-	/** Congo (the Democratic Republic of the) */
-	| "CD"
-	/** Madagascar */
-	| "MG"
 	/** Anguilla */
 	| "AI"
-	/** Yemen */
-	| "YE"
-	/** Honduras */
-	| "HN"
-	/** Italy */
-	| "IT"
-	/** Réunion */
-	| "RE"
-	/** Dominican Republic (the) */
-	| "DO"
-	/** British Indian Ocean Territory (the) */
-	| "IO"
-	/** Greece */
-	| "GR"
-	/** American Samoa */
-	| "AS"
-	/** South Africa */
-	| "ZA"
-	/** Guyana */
-	| "GY"
-	/** Belarus */
-	| "BY"
-	/** Sri Lanka */
-	| "LK"
-	/** Bhutan */
-	| "BT"
-	/** Oman */
-	| "OM"
-	/** Cook Islands (the) */
-	| "CK"
-	/** Kenya */
-	| "KE"
-	/** Czechia */
-	| "CZ"
-	/** Ghana */
-	| "GH"
-	/** Mexico */
-	| "MX"
-	/** Slovakia */
-	| "SK"
-	/** North Macedonia */
-	| "MK"
-	/** Algeria */
-	| "DZ"
-	/** Qatar */
-	| "QA"
-	/** Cuba */
-	| "CU"
-	/** Benin */
-	| "BJ"
-	/** Lao People's Democratic Republic (the) */
-	| "LA"
-	/** Timor-Leste */
-	| "TL"
-	/** Denmark */
-	| "DK"
-	/** Virgin Islands (U.S.) */
-	| "VI"
-	/** Netherlands (Kingdom of the) */
-	| "NL"
-	/** Canada */
-	| "CA"
-	/** Bermuda */
-	| "BM"
-	/** Japan */
-	| "JP"
-	/** Aruba */
-	| "AW"
-	/** Tonga */
-	| "TO"
-	/** China */
-	| "CN"
-	/** Vanuatu */
-	| "VU"
 	/** Albania */
 	| "AL"
-	/** Ethiopia */
-	| "ET"
-	/** Isle of Man */
-	| "IM"
-	/** Senegal */
-	| "SN"
-	/** Peru */
-	| "PE"
+	/** Armenia */
+	| "AM"
+	/** Angola */
+	| "AO"
+	/** Antarctica */
+	| "AQ"
+	/** Argentina */
+	| "AR"
+	/** American Samoa */
+	| "AS"
+	/** Austria */
+	| "AT"
+	/** Australia */
+	| "AU"
+	/** Aruba */
+	| "AW"
+	/** Åland Islands */
+	| "AX"
+	/** Azerbaijan */
+	| "AZ"
+	/** Bosnia and Herzegovina */
+	| "BA"
+	/** Barbados */
+	| "BB"
+	/** Bangladesh */
+	| "BD"
+	/** Belgium */
+	| "BE"
+	/** Burkina Faso */
+	| "BF"
+	/** Bulgaria */
+	| "BG"
+	/** Bahrain */
+	| "BH"
+	/** Burundi */
+	| "BI"
+	/** Benin */
+	| "BJ"
+	/** Saint Barthélemy */
+	| "BL"
+	/** Bermuda */
+	| "BM"
+	/** Brunei Darussalam */
+	| "BN"
+	/** Bolivia (Plurinational State of) */
+	| "BO"
 	/** Bonaire, Sint Eustatius and Saba */
 	| "BQ"
-	/** New Caledonia */
-	| "NC"
-	/** Northern Mariana Islands (the) */
-	| "MP"
-	/** Georgia */
-	| "GE"
+	/** Brazil */
+	| "BR"
+	/** Bahamas (the) */
+	| "BS"
+	/** Bhutan */
+	| "BT"
+	/** Bouvet Island */
+	| "BV"
+	/** Botswana */
+	| "BW"
+	/** Belarus */
+	| "BY"
+	/** Belize */
+	| "BZ"
+	/** Canada */
+	| "CA"
+	/** Cocos (Keeling) Islands (the) */
+	| "CC"
+	/** Congo (the Democratic Republic of the) */
+	| "CD"
+	/** Central African Republic (the) */
+	| "CF"
+	/** Congo (the) */
+	| "CG"
+	/** Switzerland */
+	| "CH"
+	/** Côte d'Ivoire */
+	| "CI"
+	/** Cook Islands (the) */
+	| "CK"
+	/** Chile */
+	| "CL"
+	/** Cameroon */
+	| "CM"
+	/** China */
+	| "CN"
+	/** Colombia */
+	| "CO"
 	/** Costa Rica */
 	| "CR"
-	/** Holy See (the) */
-	| "VA"
-	/** Palestine, State of */
-	| "PS"
-	/** Ecuador */
-	| "EC"
-	/** Tuvalu */
-	| "TV"
-	/** Liberia */
-	| "LR"
-	/** Montserrat */
-	| "MS"
-	/** Chad */
-	| "TD"
-	/** Seychelles */
-	| "SC"
+	/** Cuba */
+	| "CU"
+	/** Cabo Verde */
+	| "CV"
+	/** Curaçao */
+	| "CW"
+	/** Christmas Island */
+	| "CX"
+	/** Cyprus */
+	| "CY"
+	/** Czechia */
+	| "CZ"
 	/** Germany */
 	| "DE"
+	/** Djibouti */
+	| "DJ"
+	/** Denmark */
+	| "DK"
+	/** Dominica */
+	| "DM"
+	/** Dominican Republic (the) */
+	| "DO"
+	/** Algeria */
+	| "DZ"
+	/** Ecuador */
+	| "EC"
+	/** Estonia */
+	| "EE"
+	/** Egypt */
+	| "EG"
+	/** Western Sahara */
+	| "EH"
+	/** Eritrea */
+	| "ER"
+	/** Spain */
+	| "ES"
+	/** Ethiopia */
+	| "ET"
+	/** Finland */
+	| "FI"
+	/** Fiji */
+	| "FJ"
+	/** Falkland Islands (the) [Malvinas] */
+	| "FK"
+	/** Micronesia (Federated States of) */
+	| "FM"
+	/** Faroe Islands (the) */
+	| "FO"
+	/** France */
+	| "FR"
+	/** Gabon */
+	| "GA"
+	/** United Kingdom of Great Britain and Northern Ireland (the) */
+	| "GB"
+	/** Grenada */
+	| "GD"
+	/** Georgia */
+	| "GE"
+	/** French Guiana */
+	| "GF"
+	/** Guernsey */
+	| "GG"
+	/** Ghana */
+	| "GH"
+	/** Gibraltar */
+	| "GI"
+	/** Greenland */
+	| "GL"
+	/** Gambia (the) */
+	| "GM"
+	/** Guinea */
+	| "GN"
+	/** Guadeloupe */
+	| "GP"
+	/** Equatorial Guinea */
+	| "GQ"
+	/** Greece */
+	| "GR"
+	/** South Georgia and the South Sandwich Islands */
+	| "GS"
+	/** Guatemala */
+	| "GT"
+	/** Guam */
+	| "GU"
+	/** Guinea-Bissau */
+	| "GW"
+	/** Guyana */
+	| "GY"
+	/** Hong Kong */
+	| "HK"
+	/** Heard Island and McDonald Islands */
+	| "HM"
+	/** Honduras */
+	| "HN"
+	/** Croatia */
+	| "HR"
+	/** Haiti */
+	| "HT"
+	/** Hungary */
+	| "HU"
+	/** Indonesia */
+	| "ID"
+	/** Ireland */
+	| "IE"
+	/** Israel */
+	| "IL"
+	/** Isle of Man */
+	| "IM"
+	/** India */
+	| "IN"
+	/** British Indian Ocean Territory (the) */
+	| "IO"
+	/** Iraq */
+	| "IQ"
+	/** Iran (Islamic Republic of) */
+	| "IR"
+	/** Iceland */
+	| "IS"
+	/** Italy */
+	| "IT"
+	/** Jersey */
+	| "JE"
+	/** Jamaica */
+	| "JM"
+	/** Jordan */
+	| "JO"
+	/** Japan */
+	| "JP"
+	/** Kenya */
+	| "KE"
+	/** Kyrgyzstan */
+	| "KG"
+	/** Cambodia */
+	| "KH"
+	/** Kiribati */
+	| "KI"
+	/** Comoros (the) */
+	| "KM"
+	/** Saint Kitts and Nevis */
+	| "KN"
+	/** Korea (the Democratic People's Republic of) */
+	| "KP"
+	/** Korea (the Republic of) */
+	| "KR"
+	/** Kuwait */
+	| "KW"
+	/** Cayman Islands (the) */
+	| "KY"
+	/** Kazakhstan */
+	| "KZ"
+	/** Lao People's Democratic Republic (the) */
+	| "LA"
+	/** Lebanon */
+	| "LB"
+	/** Saint Lucia */
+	| "LC"
+	/** Liechtenstein */
+	| "LI"
+	/** Sri Lanka */
+	| "LK"
+	/** Liberia */
+	| "LR"
+	/** Lesotho */
+	| "LS"
+	/** Lithuania */
+	| "LT"
+	/** Luxembourg */
+	| "LU"
+	/** Latvia */
+	| "LV"
+	/** Libya */
+	| "LY"
+	/** Morocco */
+	| "MA"
+	/** Monaco */
+	| "MC"
+	/** Moldova (the Republic of) */
+	| "MD"
+	/** Montenegro */
+	| "ME"
+	/** Saint Martin (French part) */
+	| "MF"
+	/** Madagascar */
+	| "MG"
+	/** Marshall Islands (the) */
+	| "MH"
+	/** North Macedonia */
+	| "MK"
+	/** Mali */
+	| "ML"
+	/** Myanmar */
+	| "MM"
+	/** Mongolia */
+	| "MN"
+	/** Macao */
+	| "MO"
+	/** Northern Mariana Islands (the) */
+	| "MP"
+	/** Martinique */
+	| "MQ"
+	/** Mauritania */
+	| "MR"
+	/** Montserrat */
+	| "MS"
+	/** Malta */
+	| "MT"
+	/** Mauritius */
+	| "MU"
+	/** Maldives */
+	| "MV"
+	/** Malawi */
+	| "MW"
+	/** Mexico */
+	| "MX"
+	/** Malaysia */
+	| "MY"
+	/** Mozambique */
+	| "MZ"
+	/** Namibia */
+	| "NA"
+	/** New Caledonia */
+	| "NC"
+	/** Niger (the) */
+	| "NE"
+	/** Norfolk Island */
+	| "NF"
+	/** Nigeria */
+	| "NG"
+	/** Nicaragua */
+	| "NI"
+	/** Netherlands (Kingdom of the) */
+	| "NL"
+	/** Norway */
+	| "NO"
+	/** Nepal */
+	| "NP"
+	/** Nauru */
+	| "NR"
+	/** Niue */
+	| "NU"
+	/** New Zealand */
+	| "NZ"
+	/** Oman */
+	| "OM"
+	/** Panama */
+	| "PA"
+	/** Peru */
+	| "PE"
+	/** French Polynesia */
+	| "PF"
+	/** Papua New Guinea */
+	| "PG"
+	/** Philippines (the) */
+	| "PH"
+	/** Pakistan */
+	| "PK"
+	/** Poland */
+	| "PL"
+	/** Saint Pierre and Miquelon */
+	| "PM"
+	/** Pitcairn */
+	| "PN"
+	/** Puerto Rico */
+	| "PR"
+	/** Palestine, State of */
+	| "PS"
+	/** Portugal */
+	| "PT"
+	/** Palau */
+	| "PW"
+	/** Paraguay */
+	| "PY"
+	/** Qatar */
+	| "QA"
+	/** Réunion */
+	| "RE"
+	/** Romania */
+	| "RO"
+	/** Serbia */
+	| "RS"
+	/** Russian Federation (the) */
+	| "RU"
+	/** Rwanda */
+	| "RW"
+	/** Saudi Arabia */
+	| "SA"
+	/** Solomon Islands */
+	| "SB"
+	/** Seychelles */
+	| "SC"
+	/** Sudan (the) */
+	| "SD"
+	/** Sweden */
+	| "SE"
+	/** Singapore */
+	| "SG"
+	/** Saint Helena, Ascension and Tristan da Cunha */
+	| "SH"
+	/** Slovenia */
+	| "SI"
+	/** Svalbard and Jan Mayen */
+	| "SJ"
+	/** Slovakia */
+	| "SK"
+	/** Sierra Leone */
+	| "SL"
+	/** San Marino */
+	| "SM"
+	/** Senegal */
+	| "SN"
+	/** Somalia */
+	| "SO"
 	/** Suriname */
 	| "SR"
+	/** South Sudan */
+	| "SS"
+	/** Sao Tome and Principe */
+	| "ST"
+	/** El Salvador */
+	| "SV"
+	/** Sint Maarten (Dutch part) */
+	| "SX"
+	/** Syrian Arab Republic (the) */
+	| "SY"
+	/** Eswatini */
+	| "SZ"
+	/** Turks and Caicos Islands (the) */
+	| "TC"
+	/** Chad */
+	| "TD"
+	/** French Southern Territories (the) */
+	| "TF"
+	/** Togo */
+	| "TG"
+	/** Thailand */
+	| "TH"
+	/** Tajikistan */
+	| "TJ"
+	/** Tokelau */
+	| "TK"
+	/** Timor-Leste */
+	| "TL"
+	/** Turkmenistan */
+	| "TM"
+	/** Tunisia */
+	| "TN"
+	/** Tonga */
+	| "TO"
+	/** Türkiye */
+	| "TR"
+	/** Trinidad and Tobago */
+	| "TT"
+	/** Tuvalu */
+	| "TV"
+	/** Taiwan (Province of China) */
+	| "TW"
+	/** Tanzania, the United Republic of */
+	| "TZ"
+	/** Ukraine */
+	| "UA"
+	/** Uganda */
+	| "UG"
+	/** United States Minor Outlying Islands (the) */
+	| "UM"
+	/** United States of America (the) */
+	| "US"
+	/** Uruguay */
+	| "UY"
+	/** Uzbekistan */
+	| "UZ"
+	/** Holy See (the) */
+	| "VA"
+	/** Saint Vincent and the Grenadines */
+	| "VC"
+	/** Venezuela (Bolivarian Republic of) */
+	| "VE"
+	/** Virgin Islands (British) */
+	| "VG"
+	/** Virgin Islands (U.S.) */
+	| "VI"
+	/** Viet Nam */
+	| "VN"
+	/** Vanuatu */
+	| "VU"
+	/** Wallis and Futuna */
+	| "WF"
+	/** Samoa */
+	| "WS"
+	/** Yemen */
+	| "YE"
+	/** Mayotte */
+	| "YT"
+	/** South Africa */
+	| "ZA"
+	/** Zambia */
+	| "ZM"
+	/** Zimbabwe */
+	| "ZW"

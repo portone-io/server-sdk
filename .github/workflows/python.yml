@@ -1,0 +1,83 @@
+name: Python SDK
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "python/**"
+      - ".github/workflows/python.yml"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  docs:
+    name: Publish API reference
+    needs: [check]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./python
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - uses: yezz123/setup-uv@v4
+      - name: Install Dependencies
+        run: uv sync
+      - name: Run sphinx
+        run: uv run make html
+        working-directory: ./python/docs
+      - name: Deploy on GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./python/docs/_build/html
+          destination_dir: py
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./python
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - uses: yezz123/setup-uv@v4
+      - name: Install Dependencies
+        run: uv sync
+      - name: Run ruff check
+        run: uv run ruff check
+  release:
+    name: Release
+    if: ${{ startsWith(github.ref, 'refs/tags/server-sdk-py') }}
+    needs: [check]
+    runs-on: ubuntu-latest
+    environment:
+      name: PyPI
+      url: https://pypi.org/p/portone-server-sdk
+    permissions:
+      id-token: write
+    defaults:
+      run:
+        working-directory: ./python
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - uses: yezz123/setup-uv@v4
+      - name: Install Dependencies
+        run: uv sync
+      - name: Replace version placeholder
+        run: sed -i "s/__USER_AGENT__/$(grep version pyproject.toml | cut -d'"' -f 2)/" src/portone_server_sdk/_generated/client.py
+      - name: Build distribution
+        run: uv build
+      - name: Build distribution
+        run: uv publish

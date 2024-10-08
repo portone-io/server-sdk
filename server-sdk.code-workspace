@@ -10,6 +10,9 @@
 		},
 		{
 			"path": ".github"
+		},
+		{
+			"path": "python"
 		}
 	],
 	"settings": {}

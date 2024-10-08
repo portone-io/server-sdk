@@ -1,9 +1,9 @@
 /** 카드 브랜드 */
 export type CardBrand =
+	| "LOCAL"
+	| "MASTER"
+	| "UNIONPAY"
 	| "VISA"
 	| "JCB"
-	| "DINERS"
-	| "MASTER"
-	| "LOCAL"
 	| "AMEX"
-	| "UNIONPAY"
+	| "DINERS"

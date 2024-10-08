@@ -1,3 +1,4 @@
+import { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 
 export function intoInlineTypeName(definition: Definition): string {
@@ -24,4 +25,8 @@ export function intoInlineTypeName(definition: Definition): string {
     default:
       throw new Error("unrecognized definition type", { cause: { definition } })
   }
+}
+
+export function TypescriptWriter() {
+  return Writer("\t")
 }

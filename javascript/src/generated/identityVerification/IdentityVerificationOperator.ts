@@ -4,11 +4,11 @@ export type IdentityVerificationOperator =
 	| "SKT"
 	/** KT */
 	| "KT"
+	/** LGU */
+	| "LGU"
+	/** SKT 알뜰폰 */
+	| "SKT_MVNO"
 	/** KT 알뜰폰 */
 	| "KT_MVNO"
 	/** LGU 알뜰폰 */
 	| "LGU_MVNO"
-	/** SKT 알뜰폰 */
-	| "SKT_MVNO"
-	/** LGU */
-	| "LGU"

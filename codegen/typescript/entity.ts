@@ -1,13 +1,13 @@
 import { Definition } from "../parser/definition.ts"
+import { TypescriptWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
-import { Writer } from "../common/writer.ts"
 
 export function generateEntity(
   categoryMap: Map<string, string>,
   definition: Definition,
 ): string {
   const crossRef = new Set<string>()
-  const writer = Writer()
+  const writer = TypescriptWriter()
   writeDescription(
     writer,
     annotateDescription(definition.description ?? "", definition),

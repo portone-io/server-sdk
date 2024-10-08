@@ -4,7 +4,7 @@ import { toPascalCase } from "@std/text"
 import { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
-import { intoInlineTypeName } from "./common.ts"
+import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
@@ -34,7 +34,7 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
 }
 
 function generateIndex(srcPath: string, pack: Package) {
-  const writer = Writer()
+  const writer = TypescriptWriter()
   writer.writeLine(`export * as Errors from "./errors"`)
   writer.writeLine(`export * from "./client"`)
   for (const subpackage of pack.subpackages) {
@@ -74,7 +74,7 @@ function generateErrors(
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
 ) {
-  const writer = Writer()
+  const writer = TypescriptWriter()
   const crossRef = new Set<string>()
   for (const error of errors) {
     const path = categoryMap.get(error)?.replace(".", "/")
@@ -259,8 +259,8 @@ function generateClient(
   srcPath: string,
   pack: Package,
 ) {
-  const typeWriter = Writer()
-  const writer = Writer()
+  const typeWriter = TypescriptWriter()
+  const writer = TypescriptWriter()
   writer.writeLine(`import * as Errors from "./errors"`)
   for (
     const subpackage of pack.subpackages.map(({ category }) => category)
@@ -336,7 +336,7 @@ function writeClientObject(
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
 ) {
-  const typeWriter = Writer()
+  const typeWriter = TypescriptWriter()
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
     operations.length > 0 || subpackages.length > 0
   )
@@ -409,7 +409,7 @@ function generateCategoryIndex(
   omitEntities: Set<string>,
 ) {
   const crossRef = new Set<string>()
-  const writer = Writer()
+  const writer = TypescriptWriter()
   for (const entity of pack.entities) {
     if (omitEntities.has(entity.name)) continue
     writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
@@ -432,7 +432,7 @@ function generateCategoryIndex(
   }
   writeClientObject(writer, pack, entityMap, crossRef)
   const sortedRef = [...crossRef].toSorted()
-  const importWriter = Writer()
+  const importWriter = TypescriptWriter()
   for (const ref of sortedRef) {
     const category = categoryMap.get(ref)
     if (!category) {

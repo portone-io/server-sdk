@@ -1,0 +1,43 @@
+import type { Writer } from "../common/writer.ts"
+import type { Definition } from "../parser/definition.ts"
+
+export function writeDescription(writer: Writer, description: string | null) {
+  const trimmed = (description ?? "").trim()
+  if (trimmed.length === 0) return
+  const lines = trimmed.split("\n")
+  let first = true
+  for (const line of lines) {
+    if (first) {
+      first = false
+      writer.writeLine(`"""${line}`)
+    } else {
+      writer.writeLine(`${line}`)
+    }
+  }
+  writer.writeLine(`"""`)
+}
+
+export function annotateDescription(
+  description: string,
+  definition: Definition,
+): string | null {
+  if ("format" in definition) {
+    switch (definition.format) {
+      case null:
+      case "double":
+        return description
+      case "date-time":
+        return [description?.trimEnd() ?? []].flat().concat(
+          `(RFC 3339 date-time)`,
+        ).join("\n")
+      case "int32":
+      case "int64":
+        return [description?.trimEnd() ?? []].flat().concat(
+          `(${definition.format})`,
+        ).join("\n")
+      default:
+        throw new Error("unrecognized type format", { cause: { definition } })
+    }
+  }
+  return description
+}

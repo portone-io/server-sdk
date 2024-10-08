@@ -1,9 +1,10 @@
 {
   "imports": {
-    "zod": "https://deno.land/x/zod/mod.ts",
-    "@std/path": "jsr:@std/path",
+    "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.7",
     "@std/fs": "jsr:@std/fs",
-    "@std/text": "jsr:@std/text"
+    "@std/path": "jsr:@std/path",
+    "@std/text": "jsr:@std/text",
+    "zod": "https://deno.land/x/zod/mod.ts"
   },
   "fmt": {
     "indentWidth": 2,

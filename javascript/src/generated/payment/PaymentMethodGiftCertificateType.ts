@@ -1,7 +1,7 @@
 /** 상품권 종류 */
 export type PaymentMethodGiftCertificateType =
-	| "SMART_MUNSANG"
-	| "CULTUREGIFT"
 	| "BOOKNLIFE"
+	| "SMART_MUNSANG"
 	| "CULTURELAND"
 	| "HAPPYMONEY"
+	| "CULTUREGIFT"

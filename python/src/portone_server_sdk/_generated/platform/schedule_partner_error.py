@@ -1,0 +1,102 @@
+from __future__ import annotations
+from typing import Any, Optional, Union
+from portone_server_sdk._generated.common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
+from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from portone_server_sdk._generated.platform.platform_account_verification_already_used_error import PlatformAccountVerificationAlreadyUsedError, _deserialize_platform_account_verification_already_used_error, _serialize_platform_account_verification_already_used_error
+from portone_server_sdk._generated.platform.platform_account_verification_failed_error import PlatformAccountVerificationFailedError, _deserialize_platform_account_verification_failed_error, _serialize_platform_account_verification_failed_error
+from portone_server_sdk._generated.platform.platform_account_verification_not_found_error import PlatformAccountVerificationNotFoundError, _deserialize_platform_account_verification_not_found_error, _serialize_platform_account_verification_not_found_error
+from portone_server_sdk._generated.platform.platform_archived_partner_error import PlatformArchivedPartnerError, _deserialize_platform_archived_partner_error, _serialize_platform_archived_partner_error
+from portone_server_sdk._generated.platform.platform_contract_not_found_error import PlatformContractNotFoundError, _deserialize_platform_contract_not_found_error, _serialize_platform_contract_not_found_error
+from portone_server_sdk._generated.platform.platform_insufficient_data_to_change_partner_type_error import PlatformInsufficientDataToChangePartnerTypeError, _deserialize_platform_insufficient_data_to_change_partner_type_error, _serialize_platform_insufficient_data_to_change_partner_type_error
+from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
+from portone_server_sdk._generated.platform.platform_partner_not_found_error import PlatformPartnerNotFoundError, _deserialize_platform_partner_not_found_error, _serialize_platform_partner_not_found_error
+from portone_server_sdk._generated.platform.platform_partner_schedule_already_exists_error import PlatformPartnerScheduleAlreadyExistsError, _deserialize_platform_partner_schedule_already_exists_error, _serialize_platform_partner_schedule_already_exists_error
+from portone_server_sdk._generated.platform.platform_user_defined_property_not_found_error import PlatformUserDefinedPropertyNotFoundError, _deserialize_platform_user_defined_property_not_found_error, _serialize_platform_user_defined_property_not_found_error
+from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+
+SchedulePartnerError = Union[ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformContractNotFoundError, PlatformInsufficientDataToChangePartnerTypeError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError]
+
+
+def _serialize_schedule_partner_error(obj: SchedulePartnerError) -> Any:
+    if obj.type == "FORBIDDEN":
+        return _serialize_forbidden_error(obj)
+    if obj.type == "INVALID_REQUEST":
+        return _serialize_invalid_request_error(obj)
+    if obj.type == "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
+        return _serialize_platform_account_verification_already_used_error(obj)
+    if obj.type == "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
+        return _serialize_platform_account_verification_failed_error(obj)
+    if obj.type == "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
+        return _serialize_platform_account_verification_not_found_error(obj)
+    if obj.type == "PLATFORM_ARCHIVED_PARTNER":
+        return _serialize_platform_archived_partner_error(obj)
+    if obj.type == "PLATFORM_CONTRACT_NOT_FOUND":
+        return _serialize_platform_contract_not_found_error(obj)
+    if obj.type == "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
+        return _serialize_platform_insufficient_data_to_change_partner_type_error(obj)
+    if obj.type == "PLATFORM_NOT_ENABLED":
+        return _serialize_platform_not_enabled_error(obj)
+    if obj.type == "PLATFORM_PARTNER_NOT_FOUND":
+        return _serialize_platform_partner_not_found_error(obj)
+    if obj.type == "PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS":
+        return _serialize_platform_partner_schedule_already_exists_error(obj)
+    if obj.type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+        return _serialize_platform_user_defined_property_not_found_error(obj)
+    if obj.type == "UNAUTHORIZED":
+        return _serialize_unauthorized_error(obj)
+
+
+def _deserialize_schedule_partner_error(obj: Any) -> SchedulePartnerError:
+    try:
+        return _deserialize_forbidden_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_invalid_request_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_account_verification_already_used_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_account_verification_failed_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_account_verification_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_archived_partner_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_contract_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_insufficient_data_to_change_partner_type_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_not_enabled_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_partner_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_partner_schedule_already_exists_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_user_defined_property_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_unauthorized_error(obj)
+    except Exception:
+        pass
+    raise ValueError(f"{repr(obj)} is not SchedulePartnerError")

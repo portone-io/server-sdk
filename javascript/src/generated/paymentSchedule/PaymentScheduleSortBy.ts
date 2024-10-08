@@ -6,5 +6,3 @@ export type PaymentScheduleSortBy =
 	| "TIME_TO_PAY"
 	/** 예약 결제 시도(성공 / 실패) 시각 */
 	| "COMPLETED_AT"
-	/** 결제 시도 또는 예정 시각. 해지 건은 해지 시각. */
-	| "STATUS_TIMESTAMP"

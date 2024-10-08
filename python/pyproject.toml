@@ -1,0 +1,40 @@
+[project]
+name = "portone-server-sdk"
+version = "0.2.0"
+description = "PortOne Python SDK for server-side usage"
+authors = [
+    { name = "portone", email = "tech.support@portone.io" },
+    { name = "kiwiyou", email = "kiwiyou@portone.io" },
+]
+dependencies = ["httpx>=0.27.0"]
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.urls]
+Documentation = "https://portone-io.github.io/server-sdk/py"
+Repository = "https://github.com/portone-io/server-sdk/tree/main/python"
+Issues = "https://github.com/portone-io/server-sdk/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+exclude = ["/docs"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/portone_server_sdk"]
+
+[tool.uv]
+dev-dependencies = [
+    "pyright>=1.1.383",
+    "ruff>=0.6.9",
+    "sphinx>=7.4.7",
+    "sphinx-book-theme>=1.1.3",
+]
+
+[tool.ruff]
+exclude = ["src/portone_server_sdk/_generated"]

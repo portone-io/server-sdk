@@ -1,9 +1,9 @@
 /** 요일 */
 export type DayOfWeek =
-	| "TUE"
-	| "THU"
-	| "SAT"
-	| "MON"
 	| "SUN"
+	| "MON"
+	| "TUE"
 	| "WED"
+	| "THU"
 	| "FRI"
+	| "SAT"

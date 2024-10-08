@@ -1,4 +1,4 @@
-export function Writer() {
+export function Writer(indent: string) {
   return {
     content: "",
     level: 0,
@@ -9,7 +9,7 @@ export function Writer() {
       this.level -= 1
     },
     writeLine(line: string) {
-      this.content += ("\t".repeat(this.level) + line).trimEnd()
+      this.content += (indent.repeat(this.level) + line).trimEnd()
       this.content += "\n"
     },
   }

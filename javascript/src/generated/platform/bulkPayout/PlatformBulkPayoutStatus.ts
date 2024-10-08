@@ -1,7 +1,7 @@
 export type PlatformBulkPayoutStatus =
-	| "STOPPED"
-	| "PREPARED"
-	| "CANCELLED"
-	| "COMPLETED"
 	| "PREPARING"
+	| "PREPARED"
 	| "ONGOING"
+	| "CANCELLED"
+	| "STOPPED"
+	| "COMPLETED"

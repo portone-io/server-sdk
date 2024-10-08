@@ -278,11 +278,11 @@ function writeQuery(writer: Writer, query: Property[]): boolean {
   return true
 }
 
-const PATH_PLACEHOLDER = /\{[^\}]+\}/
+const PATH_PLACEHOLDER = /\{[^\}]+\}/g
 function makePathInterpolation(path: string, hasQuery: boolean) {
   const queryInterpolation = "?${query}"
   if (path.match(PATH_PLACEHOLDER)) {
-    const interpolation = path.replace(
+    const interpolation = path.replaceAll(
       PATH_PLACEHOLDER,
       (placeholder) => `$${placeholder}`,
     )

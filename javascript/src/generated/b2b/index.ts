@@ -261,7 +261,7 @@ export function B2BClient(secret: string, userAgent: string, baseUrl?: string, s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b-preview/member-companies/${brn}/contacts/{contactId}?${query}`, baseUrl),
+				new URL(`/b2b-preview/member-companies/${brn}/contacts/${contactId}?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -322,7 +322,7 @@ export function B2BClient(secret: string, userAgent: string, baseUrl?: string, s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b-preview/member-companies/${brn}/contacts/{contactId}?${query}`, baseUrl),
+				new URL(`/b2b-preview/member-companies/${brn}/contacts/${contactId}?${query}`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -475,7 +475,7 @@ export function B2BClient(secret: string, userAgent: string, baseUrl?: string, s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b-preview/bank-accounts/${bank}/{accountNumber}/holder?${query}`, baseUrl),
+				new URL(`/b2b-preview/bank-accounts/${bank}/${accountNumber}/holder?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -1423,7 +1423,7 @@ export function B2BClient(secret: string, userAgent: string, baseUrl?: string, s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b-preview/tax-invoices/${documentKey}/attachments/{attachmentId}?${query}`, baseUrl),
+				new URL(`/b2b-preview/tax-invoices/${documentKey}/attachments/${attachmentId}?${query}`, baseUrl),
 				{
 					method: "delete",
 					headers: {

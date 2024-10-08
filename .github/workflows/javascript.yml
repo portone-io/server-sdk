@@ -91,7 +91,9 @@ jobs:
     name: Release
     needs: [check, test]
     runs-on: ubuntu-latest
-    environment: NPM
+    environment:
+      name: NPM
+      url: https://www.npmjs.com/package/@portone/server-sdk
     defaults:
       run:
         working-directory: ./javascript
