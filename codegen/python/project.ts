@@ -91,8 +91,10 @@ function generateCategoryIndex(
       throw new Error("unrecognized category", { cause: { ref } })
     }
     importWriter.writeLine(
-      `from portone_server_sdk._generated.${category.split(".").map(toSnakeCase).join(".")
-      }.${toSnakeCase(ref)} import ${ref}, _deserialize_${toSnakeCase(ref)
+      `from portone_server_sdk._generated.${
+        category.split(".").map(toSnakeCase).join(".")
+      }.${toSnakeCase(ref)} import ${ref}, _deserialize_${
+        toSnakeCase(ref)
       }, _serialize_${toSnakeCase(ref)}`,
     )
   }
@@ -102,7 +104,8 @@ function generateCategoryIndex(
         subpackage.operations.length > 0 || subpackage.subpackages.length > 0
       ) {
         importWriter.writeLine(
-          `from .${toSnakeCase(subpackage.category)} import ${toPascalCase(subpackage.category)
+          `from .${toSnakeCase(subpackage.category)} import ${
+            toPascalCase(subpackage.category)
           }Client`,
         )
       }
@@ -128,10 +131,11 @@ function generateCategoryIndex(
       throw new Error("unrecognized category", { cause: { ref: entity.name } })
     }
     publicWriter.writeLine(
-      `from portone_server_sdk._generated.${category.split(".").map(toSnakeCase).join(".")
+      `from portone_server_sdk._generated.${
+        category.split(".").map(toSnakeCase).join(".")
       }.${toSnakeCase(entity.name)} import ${entity.name}`,
     )
-    if (entity.type !== 'object') {
+    if (entity.type !== "object") {
       aliases.push(entity.name)
     }
     all.push(entity.name)
@@ -177,7 +181,8 @@ function writeClientObject(
   implWriter.writeLine("_client: AsyncClient")
   for (const subpackage of subpackages) {
     implWriter.writeLine(
-      `${toSnakeCase(subpackage.category)}: ${toPascalCase(subpackage.category)
+      `${toSnakeCase(subpackage.category)}: ${
+        toPascalCase(subpackage.category)
       }Client`,
     )
   }
@@ -193,7 +198,8 @@ function writeClientObject(
   implWriter.writeLine("self._client = AsyncClient()")
   for (const subpackage of subpackages) {
     implWriter.writeLine(
-      `self.${toSnakeCase(subpackage.category)} = ${toPascalCase(subpackage.category)
+      `self.${toSnakeCase(subpackage.category)} = ${
+        toPascalCase(subpackage.category)
       }Client(secret, user_agent, base_url, store_id)`,
     )
   }
@@ -349,7 +355,8 @@ function generateErrors(
       }
     }
     writer.writeLine(
-      `from portone_server_sdk._generated.${path}.${toSnakeCase(error)
+      `from portone_server_sdk._generated.${path}.${
+        toSnakeCase(error)
       } import ${error} as Internal${error}`,
     )
   }
@@ -362,7 +369,8 @@ function generateErrors(
       })
     }
     writer.writeLine(
-      `from portone_server_sdk._generated.${path}.${toSnakeCase(ref)
+      `from portone_server_sdk._generated.${path}.${
+        toSnakeCase(ref)
       } import ${ref}`,
     )
   }
@@ -439,7 +447,8 @@ function generateClient(
   for (const subpackage of pack.subpackages) {
     if (subpackage.operations.length > 0 || subpackage.subpackages.length > 0) {
       writer.writeLine(
-        `from .${toSnakeCase(subpackage.category)} import ${toPascalCase(subpackage.category)
+        `from .${toSnakeCase(subpackage.category)} import ${
+          toPascalCase(subpackage.category)
         }Client`,
       )
     }
@@ -476,7 +485,8 @@ function writeRootClientObject(
   )
   for (const subpackage of subpackages) {
     writer.writeLine(
-      `${toSnakeCase(subpackage.category)}: ${toPascalCase(subpackage.category)
+      `${toSnakeCase(subpackage.category)}: ${
+        toPascalCase(subpackage.category)
       }Client`,
     )
   }
@@ -486,7 +496,8 @@ function writeRootClientObject(
   writer.indent()
   for (const subpackage of subpackages) {
     writer.writeLine(
-      `self.${toSnakeCase(subpackage.category)} = ${toPascalCase(subpackage.category)
+      `self.${toSnakeCase(subpackage.category)} = ${
+        toPascalCase(subpackage.category)
       }Client(secret, user_agent, base_url, store_id)`,
     )
   }

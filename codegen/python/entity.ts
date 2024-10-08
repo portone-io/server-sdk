@@ -10,7 +10,11 @@ export function generateEntity(
   definition: Definition,
 ) {
   const crossRef = new Set<string>()
-  const std = new Set<string>(["__future__.annotations", "typing.Any", "typing.Optional"])
+  const std = new Set<string>([
+    "__future__.annotations",
+    "typing.Any",
+    "typing.Optional",
+  ])
   const writer = PythonWriter()
   const name = definition.name
   switch (definition.type) {
@@ -188,7 +192,7 @@ export function generateEntity(
       throw new Error("unrecognized definition type", { cause: { definition } })
   }
   const sortedStd = [...std].toSorted()
-  const stdGroups: { moduleName: string, names: string[] }[] = []
+  const stdGroups: { moduleName: string; names: string[] }[] = []
   for (const std of sortedStd) {
     const dot = std.lastIndexOf(".")
     const moduleName = std.slice(0, dot)
@@ -203,7 +207,9 @@ export function generateEntity(
       lastModule.names.push(name)
     }
   }
-  const stdImports = stdGroups.map(({ moduleName, names }) => `from ${moduleName} import ${names.join(", ")}`)
+  const stdImports = stdGroups.map(({ moduleName, names }) =>
+    `from ${moduleName} import ${names.join(", ")}`
+  )
   const sortedRef = [...crossRef].toSorted()
   const refImports = sortedRef.map((ref) => {
     const path = categoryMap.get(ref)?.split(".").map((name) =>
@@ -212,9 +218,11 @@ export function generateEntity(
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }
-    return `from portone_server_sdk._generated.${path}.${toSnakeCase(ref)
-      } import ${ref}, _deserialize_${toSnakeCase(ref)}, _serialize_${toSnakeCase(ref)
-      }`
+    return `from portone_server_sdk._generated.${path}.${
+      toSnakeCase(ref)
+    } import ${ref}, _deserialize_${toSnakeCase(ref)}, _serialize_${
+      toSnakeCase(ref)
+    }`
   })
   const imports = stdImports.concat(
     definition.type === "object"
@@ -238,7 +246,8 @@ function generateDeserializeEntity(
 ) {
   const writer = PythonWriter()
   writer.writeLine(
-    `def _deserialize_${toSnakeCase(definition.name)
+    `def _deserialize_${
+      toSnakeCase(definition.name)
     }(obj: Any) -> ${definition.name}:`,
   )
   writer.indent()
@@ -273,12 +282,14 @@ function generateDeserializeEntity(
           })
         }
         writer.writeLine(
-          `additional = _deserialize_${toSnakeCase(definition.additionalProperties)
+          `additional = _deserialize_${
+            toSnakeCase(definition.additionalProperties)
           }(obj)`,
         )
         for (const property of additionalDefinition.properties) {
           writer.writeLine(
-            `${filterName(property.name)} = additional.${filterName(property.name)
+            `${filterName(property.name)} = additional.${
+              filterName(property.name)
             }`,
           )
           allProperties.push(filterName(property.name))
@@ -300,7 +311,9 @@ function generateDeserializeEntity(
           case "discriminant":
             writer.writeLine(`if ${name} != "${property.value}":`)
             writer.indent()
-            writer.writeLine(`raise ValueError(f"{repr(${name})} is not '${property.value}'")`)
+            writer.writeLine(
+              `raise ValueError(f"{repr(${name})} is not '${property.value}'")`,
+            )
             writer.outdent()
             break
           case "string":
@@ -339,7 +352,8 @@ function generateDeserializeEntity(
                 break
               case "ref":
                 writer.writeLine(
-                  `item = _deserialize_${toSnakeCase(property.item.value)
+                  `item = _deserialize_${
+                    toSnakeCase(property.item.value)
                   }(item)`,
                 )
                 writer.writeLine(`${name}[i] = item`)
@@ -393,7 +407,9 @@ function generateDeserializeEntity(
         writer.writeLine("pass")
         writer.outdent()
       }
-      writer.writeLine(`raise ValueError(f"{repr(obj)} is not ${definition.name}")`)
+      writer.writeLine(
+        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
+      )
       break
     }
     case "enum": {
@@ -401,7 +417,9 @@ function generateDeserializeEntity(
         .join(", ")
       writer.writeLine(`if obj not in [${variants}]:`)
       writer.indent()
-      writer.writeLine(`raise ValueError(f"{repr(obj)} is not ${definition.name}")`)
+      writer.writeLine(
+        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
+      )
       writer.outdent()
       writer.writeLine("return obj")
       break
@@ -423,7 +441,8 @@ function generateDeserializeEntity(
 function generateSerializeEntity(definition: Definition) {
   const writer = PythonWriter()
   writer.writeLine(
-    `def _serialize_${toSnakeCase(definition.name)
+    `def _serialize_${
+      toSnakeCase(definition.name)
     }(obj: ${definition.name}) -> Any:`,
   )
   writer.indent()
@@ -434,7 +453,8 @@ function generateSerializeEntity(definition: Definition) {
     case "object": {
       if (definition.additionalProperties) {
         writer.writeLine(
-          `entity = _serialize_${toSnakeCase(definition.additionalProperties)
+          `entity = _serialize_${
+            toSnakeCase(definition.additionalProperties)
           }(obj)`,
         )
       } else {
@@ -460,7 +480,8 @@ function generateSerializeEntity(definition: Definition) {
             break
           case "ref":
             writer.writeLine(
-              `entity["${property.name}"] = _serialize_${toSnakeCase(property.value)
+              `entity["${property.name}"] = _serialize_${
+                toSnakeCase(property.value)
               }(obj.${name})`,
             )
             break
@@ -474,7 +495,8 @@ function generateSerializeEntity(definition: Definition) {
                 break
               case "ref":
                 writer.writeLine(
-                  `entity["${property.name}"] = list(map(_serialize_${toSnakeCase(property.item.value)
+                  `entity["${property.name}"] = list(map(_serialize_${
+                    toSnakeCase(property.item.value)
                   }, obj.${name}))`,
                 )
                 break
