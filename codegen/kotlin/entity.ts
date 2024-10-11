@@ -47,9 +47,9 @@ export function generateEntity(
           case "string":
             writeDescription(writer, description)
             if (property.format === "date-time") {
-                writer.writeLine(`${val}: ${wrapOptional("Instant")},`)
-                crossRef.add("kotlinx.datetime.Instant")
-                break
+              writer.writeLine(`${val}: ${wrapOptional("Instant")},`)
+              crossRef.add("kotlinx.datetime.Instant")
+              break
             }
             writer.writeLine(`${val}: ${wrapOptional("String")},`)
             crossRef.add("kotlin.String")
@@ -89,12 +89,12 @@ export function generateEntity(
           case "array":
             writeDescription(writer, description)
             switch (property.item.type) {
-                case "string":
-                    crossRef.add("kotlin.Array")
-                    if (property.item.format === "date-time") {
-                    writer.writeLine(`${val}: ${wrapOptional("Array<Instant>")},`)
-                    crossRef.add("kotlinx.datetime.Instant")
-                    break
+              case "string":
+                crossRef.add("kotlin.Array")
+                if (property.item.format === "date-time") {
+                  writer.writeLine(`${val}: ${wrapOptional("Array<Instant>")},`)
+                  crossRef.add("kotlinx.datetime.Instant")
+                  break
                 }
                 writer.writeLine(`${val}: ${wrapOptional("Array<String>")},`)
                 crossRef.add("kotlin.String")
@@ -215,9 +215,9 @@ export function generateEntity(
           case "string":
             writeDescription(writer, description)
             if (property.format === "date-time") {
-                writer.writeLine(`${val}: ${wrapOpetional("Instant")},`)
-                crossRef.add("kotlinx.datetime.Instant")
-                break
+              writer.writeLine(`${val}: ${wrapOpetional("Instant")},`)
+              crossRef.add("kotlinx.datetime.Instant")
+              break
             }
             writer.writeLine(`${val}: ${wrapOpetional("String")}`)
             crossRef.add("kotlin.String")
@@ -258,11 +258,13 @@ export function generateEntity(
             writeDescription(writer, description)
             switch (property.item.type) {
               case "string":
-                  crossRef.add("kotlin.Array")
+                crossRef.add("kotlin.Array")
                 if (property.item.format === "date-time") {
-                    writer.writeLine(`${val}: ${wrapOpetional("Array<Instant>")},`)
-                    crossRef.add("kotlinx.datetime.Instant")
-                    break
+                  writer.writeLine(
+                    `${val}: ${wrapOpetional("Array<Instant>")},`,
+                  )
+                  crossRef.add("kotlinx.datetime.Instant")
+                  break
                 }
                 writer.writeLine(`${val}: ${wrapOpetional("Array<String>")}`)
                 crossRef.add("kotlin.String")

@@ -4,7 +4,14 @@ import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import { Definition } from "../parser/definition.ts"
 import { Package } from "../parser/openapi.ts"
-import { filterName, KotlinWriter, makeOverridesMap, Override, toException, toPackageCase } from "./common.ts"
+import {
+  filterName,
+  KotlinWriter,
+  makeOverridesMap,
+  Override,
+  toException,
+  toPackageCase,
+} from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
@@ -28,26 +35,39 @@ export function generateProject(projectRoot: string, pack: Package) {
     overridesMap,
   )
   generateRootClient(packagePath, pack, entityMap, categoryMap)
-  generateExceptions(packagePath, [...variantErrors].toSorted(), entityMap, categoryMap)
+  generateExceptions(
+    packagePath,
+    [...variantErrors].toSorted(),
+    entityMap,
+    categoryMap,
+  )
 }
 
-function generateExceptions(packagePath: string, errors: string[], entityMap: Map<string, Definition>, categoryMap: Map<string, string>) {
+function generateExceptions(
+  packagePath: string,
+  errors: string[],
+  entityMap: Map<string, Definition>,
+  categoryMap: Map<string, string>,
+) {
   const errorPath = path.join(packagePath, "errors")
   fs.ensureDirSync(errorPath)
   for (const error of errors) {
     const writer = KotlinWriter()
     const category = categoryMap.get(error)
-    if (!category)
+    if (!category) {
       throw new Error("unrecognized error ref", { cause: { ref: error } })
+    }
     const crossRef = new Set([
       "java.lang.Exception",
-      `io.portone.sdk.server.${toPackageCase(category)}.${error}`
+      `io.portone.sdk.server.${toPackageCase(category)}.${error}`,
     ])
     const definition = entityMap.get(error)
-    if (!definition)
+    if (!definition) {
       throw new Error("unrecognized error reference", { cause: { ref: error } })
-    if (definition.type !== 'object')
+    }
+    if (definition.type !== "object") {
       throw new Error("unsupported error type", { cause: { definition } })
+    }
     writer.writeLine("")
     writeDescription(writer, definition.description)
     writer.writeLine(`public class ${toException(error)}(`)
@@ -57,7 +77,7 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
     writer.writeLine(") : Exception(cause.message) {")
     writer.indent()
     for (const property of definition.properties) {
-      if (property.name === 'type' || property.name === 'message') continue
+      if (property.name === "type" || property.name === "message") continue
       const description = ([] as string[]).concat(property.title ?? [])
         .concat(property.description ?? []).join("\n\n")
       const name = filterName(property.name)
@@ -67,32 +87,60 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
         case "string":
           writeDescription(writer, property.description)
           if (property.format === "date-time") {
-            writer.writeLine(`public val ${name}: ${wrapOptional("Instant")} = cause.${property.name},`)
+            writer.writeLine(
+              `public val ${name}: ${
+                wrapOptional("Instant")
+              } = cause.${property.name},`,
+            )
             crossRef.add("kotlinx.datetime.Instant")
             break
           }
-          writer.writeLine(`public val ${name}: ${wrapOptional("String")} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional("String")
+            } = cause.${property.name},`,
+          )
           crossRef.add("kotlin.String")
           break
         case "boolean":
           writeDescription(writer, description)
-          writer.writeLine(`public val ${name}: ${wrapOptional("Boolean")} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional("Boolean")
+            } = cause.${property.name},`,
+          )
           break
         case "number":
           writeDescription(writer, description)
-          writer.writeLine(`public val ${name}: ${wrapOptional("Double")} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional("Double")
+            } = cause.${property.name},`,
+          )
           break
         case "integer":
           writeDescription(writer, description)
           if (property.format === "int64") {
-            writer.writeLine(`public val ${name}: ${wrapOptional("Long")} = cause.${property.name},`)
+            writer.writeLine(
+              `public val ${name}: ${
+                wrapOptional("Long")
+              } = cause.${property.name},`,
+            )
             break
           }
-          writer.writeLine(`public val ${name}: ${wrapOptional("Int")} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional("Int")
+            } = cause.${property.name},`,
+          )
           break
         case "ref": {
           writeDescription(writer, description)
-          writer.writeLine(`public val ${name}: ${wrapOptional(property.value)} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional(property.value)
+            } = cause.${property.name},`,
+          )
           const category = categoryMap.get(property.value)
           if (!category) {
             throw new Error("unrecognized cross reference", {
@@ -100,7 +148,8 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
             })
           }
           crossRef.add(
-            `io.portone.sdk.server.${toPackageCase(category)
+            `io.portone.sdk.server.${
+              toPackageCase(category)
             }.${property.value}`,
           )
           break
@@ -111,33 +160,59 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
             case "string":
               crossRef.add("kotlin.Array")
               if (property.item.format === "date-time") {
-                writer.writeLine(`public val ${name}: ${wrapOptional("Array<Instant>")} = cause.${property.name},`)
+                writer.writeLine(
+                  `public val ${name}: ${
+                    wrapOptional("Array<Instant>")
+                  } = cause.${property.name},`,
+                )
                 crossRef.add("kotlinx.datetime.Instant")
                 break
               }
-              writer.writeLine(`public val ${name}: ${wrapOptional("Array<String>")} = cause.${property.name},`)
+              writer.writeLine(
+                `public val ${name}: ${
+                  wrapOptional("Array<String>")
+                } = cause.${property.name},`,
+              )
               crossRef.add("kotlin.String")
               break
             case "boolean":
-              writer.writeLine(`public val ${name}: ${wrapOptional("BooleanArray")} = cause.${property.name},`)
+              writer.writeLine(
+                `public val ${name}: ${
+                  wrapOptional("BooleanArray")
+                } = cause.${property.name},`,
+              )
               crossRef.add("kotlin.BooleanArray")
               break
             case "number":
-              writer.writeLine(`public val ${name}: ${wrapOptional("DoubleArray")} = cause.${property.name},`)
+              writer.writeLine(
+                `public val ${name}: ${
+                  wrapOptional("DoubleArray")
+                } = cause.${property.name},`,
+              )
               crossRef.add("kotlin.DoubleArray")
               break
             case "integer":
               if (property.item.format === "int64") {
-                writer.writeLine(`public val ${name}: ${wrapOptional("LongArray")} = cause.${property.name},`)
+                writer.writeLine(
+                  `public val ${name}: ${
+                    wrapOptional("LongArray")
+                  } = cause.${property.name},`,
+                )
                 crossRef.add("kotlin.LongArray")
                 break
               }
-              writer.writeLine(`public val ${name}: ${wrapOptional("IntArray")} = cause.${property.name},`)
+              writer.writeLine(
+                `public val ${name}: ${
+                  wrapOptional("IntArray")
+                } = cause.${property.name},`,
+              )
               crossRef.add("kotlin.IntArray")
               break
             case "ref": {
               writer.writeLine(
-                `public val ${name}: ${wrapOptional(`Array<${property.item.value}>`)} = cause.${property.name},`,
+                `public val ${name}: ${
+                  wrapOptional(`Array<${property.item.value}>`)
+                } = cause.${property.name},`,
               )
               const category = categoryMap.get(property.item.value)
               if (!category) {
@@ -146,7 +221,8 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
                 })
               }
               crossRef.add(
-                `io.portone.sdk.server.${toPackageCase(category)
+                `io.portone.sdk.server.${
+                  toPackageCase(category)
                 }.${property.item.value}`,
               )
               break
@@ -172,7 +248,11 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
               { cause: { definition } },
             )
           }
-          writer.writeLine(`public val ${name}: ${wrapOptional("JsonObject")} = cause.${property.name},`)
+          writer.writeLine(
+            `public val ${name}: ${
+              wrapOptional("JsonObject")
+            } = cause.${property.name},`,
+          )
           crossRef.add("kotlinx.serialization.json.JsonObject")
           break
         case "discriminant":
@@ -185,8 +265,15 @@ function generateExceptions(packagePath: string, errors: string[], entityMap: Ma
     }
     writer.outdent()
     writer.writeLine("}")
-    const content = ["package io.portone.sdk.server.errors", [...crossRef].toSorted().map((ref) => `import ${ref}`).join("\n"), writer.content].join("\n\n")
-    Deno.writeTextFileSync(path.join(errorPath, `${toException(error)}.kt`), content)
+    const content = [
+      "package io.portone.sdk.server.errors",
+      [...crossRef].toSorted().map((ref) => `import ${ref}`).join("\n"),
+      writer.content,
+    ].join("\n\n")
+    Deno.writeTextFileSync(
+      path.join(errorPath, `${toException(error)}.kt`),
+      content,
+    )
   }
 }
 
@@ -200,7 +287,12 @@ public class PortOneClient(
 
   private val json: Json = Json { ignoreUnknownKeys = true }
 `
-function generateRootClient(packagePath: string, pack: Package, entityMap: Map<string, Definition>, categoryMap: Map<string, string>) {
+function generateRootClient(
+  packagePath: string,
+  pack: Package,
+  entityMap: Map<string, Definition>,
+  categoryMap: Map<string, string>,
+) {
   const writer = KotlinWriter()
   writer.writeLine("package io.portone.sdk.server")
   writer.writeLine("")
@@ -210,17 +302,35 @@ function generateRootClient(packagePath: string, pack: Package, entityMap: Map<s
     "java.io.Closeable",
   ])
   for (const subpackage of pack.subpackages) {
-    crossRef.add(`io.portone.sdk.server.${toPackageCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client`)
+    crossRef.add(
+      `io.portone.sdk.server.${toPackageCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
+    )
   }
-  for (const ref of [...crossRef].toSorted())
+  for (const ref of [...crossRef].toSorted()) {
     writer.writeLine(`import ${ref}`)
+  }
   writer.writeLine("")
-  for (const line of PortOneClientHeader.split("\n"))
+  for (const line of PortOneClientHeader.split("\n")) {
     writer.writeLine(line)
+  }
   writer.indent()
   for (const subpackage of pack.subpackages) {
-    writer.writeLine(`public val ${subpackage.category}: ${toPascalCase(subpackage.category)}Client = ${toPascalCase(subpackage.category)}Client(apiSecret, storeId, apiBase)`)
-    generateClient("io.portone.sdk.server", path.join(packagePath, toPackageCase(subpackage.category)), subpackage, entityMap, categoryMap)
+    writer.writeLine(
+      `public val ${subpackage.category}: ${
+        toPascalCase(subpackage.category)
+      }Client = ${
+        toPascalCase(subpackage.category)
+      }Client(apiSecret, storeId, apiBase)`,
+    )
+    generateClient(
+      "io.portone.sdk.server",
+      path.join(packagePath, toPackageCase(subpackage.category)),
+      subpackage,
+      entityMap,
+      categoryMap,
+    )
   }
   writer.writeLine("override fun close() {")
   writer.indent()
@@ -236,7 +346,13 @@ function generateRootClient(packagePath: string, pack: Package, entityMap: Map<s
   Deno.writeTextFileSync(clientPath, writer.content)
 }
 
-function generateClient(hierarchy: string, packagePath: string, pack: Package, entityMap: Map<string, Definition>, categoryMap: Map<string, string>) {
+function generateClient(
+  hierarchy: string,
+  packagePath: string,
+  pack: Package,
+  entityMap: Map<string, Definition>,
+  categoryMap: Map<string, string>,
+) {
   const crossRef = new Set([
     "io.ktor.client.HttpClient",
     "kotlinx.serialization.json.Json",
@@ -257,11 +373,29 @@ function generateClient(hierarchy: string, packagePath: string, pack: Package, e
   for (const operation of pack.operations) {
     writeOperation(writer, operation, entityMap, categoryMap, crossRef)
   }
-  const subpackages = pack.subpackages.filter(({ subpackages, operations }) => subpackages.length > 0 || operations.length > 0);
+  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
+    subpackages.length > 0 || operations.length > 0
+  )
   for (const subpackage of subpackages) {
-    writer.writeLine(`public val ${subpackage.category}: ${toPascalCase(subpackage.category)}Client = ${toPascalCase(subpackage.category)}Client(apiSecret, storeId, apiBase)`)
-    crossRef.add(`${hierarchy}.${toPackageCase(subpackage.category)}.${toPascalCase(subpackage.category)}Client`)
-    generateClient(`${hierarchy}.${toPackageCase(subpackage.category)}`, path.join(packagePath, toPackageCase(subpackage.category)), subpackage, entityMap, categoryMap)
+    writer.writeLine(
+      `public val ${subpackage.category}: ${
+        toPascalCase(subpackage.category)
+      }Client = ${
+        toPascalCase(subpackage.category)
+      }Client(apiSecret, storeId, apiBase)`,
+    )
+    crossRef.add(
+      `${hierarchy}.${toPackageCase(subpackage.category)}.${
+        toPascalCase(subpackage.category)
+      }Client`,
+    )
+    generateClient(
+      `${hierarchy}.${toPackageCase(subpackage.category)}`,
+      path.join(packagePath, toPackageCase(subpackage.category)),
+      subpackage,
+      entityMap,
+      categoryMap,
+    )
   }
   writer.writeLine("override fun close() {")
   writer.indent()
@@ -273,9 +407,14 @@ function generateClient(hierarchy: string, packagePath: string, pack: Package, e
   writer.writeLine("}")
   writer.outdent()
   writer.writeLine("}")
-  const imports = [...crossRef].toSorted().map((ref) => `import ${ref}`).join("\n")
+  const imports = [...crossRef].toSorted().map((ref) => `import ${ref}`).join(
+    "\n",
+  )
   const content = [`package ${hierarchy}`, imports, writer.content].join("\n\n")
-  Deno.writeTextFileSync(path.join(packagePath, `${toPascalCase(pack.category)}Client.kt`), content)
+  Deno.writeTextFileSync(
+    path.join(packagePath, `${toPascalCase(pack.category)}Client.kt`),
+    content,
+  )
 }
 
 function generateEntityDirectory(
