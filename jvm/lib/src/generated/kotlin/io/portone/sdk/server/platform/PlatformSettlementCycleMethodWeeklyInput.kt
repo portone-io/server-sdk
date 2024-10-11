@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PlatformSettlementCycleMethodWeeklyInput(
   /** 요일 */
-  val daysOfWeek: Array<DayOfWeek>,
+  val daysOfWeek: List<DayOfWeek>,
 )

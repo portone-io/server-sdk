@@ -16,7 +16,7 @@ public data class IssuedPgBillingKeyIssueResponse(
    *
    * 빌링키 발급을 시도한 채널입니다.
    */
-  val channel: SelectedChannel,
+  override val channel: SelectedChannel,
   /** PG사 거래 아이디 */
   val pgTxId: String? = null,
   /**

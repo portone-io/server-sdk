@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND")
 public data class PlatformSettlementParameterNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderTransferError

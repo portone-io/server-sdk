@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 /** 고객사의 PG사 별 결제 상태 차트 정보 */
 @Serializable
 public data class AnalyticsPaymentStatusByPgCompanyChart(
-  val stats: Array<AnalyticsPaymentStatusByPgCompanyChartStat>,
+  val stats: List<AnalyticsPaymentStatusByPgCompanyChartStat>,
 )

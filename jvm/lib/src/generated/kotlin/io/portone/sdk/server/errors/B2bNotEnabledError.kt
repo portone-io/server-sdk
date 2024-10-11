@@ -35,7 +35,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("B2B_NOT_ENABLED")
 public data class B2bNotEnabledError(
-  val message: String? = null,
+  override val message: String? = null,
 ): AttachB2bTaxInvoiceFileError,
   CancelB2bTaxInvoiceIssuanceError,
   CancelB2bTaxInvoiceRequestError,

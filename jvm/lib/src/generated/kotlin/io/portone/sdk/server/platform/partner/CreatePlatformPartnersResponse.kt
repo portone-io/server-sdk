@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class CreatePlatformPartnersResponse(
   /** 생성된 파트너 리스트 */
-  val partners: Array<PlatformPartner>,
+  val partners: List<PlatformPartner>,
 )

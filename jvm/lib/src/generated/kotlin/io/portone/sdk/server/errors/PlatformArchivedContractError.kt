@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ARCHIVED_CONTRACT")
 public data class PlatformArchivedContractError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ScheduleContractError,
   UpdatePlatformContractError

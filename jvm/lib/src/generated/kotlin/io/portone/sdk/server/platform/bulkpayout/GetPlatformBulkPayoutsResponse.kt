@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class GetPlatformBulkPayoutsResponse(
-  val items: Array<PlatformBulkPayout>,
+  val items: List<PlatformBulkPayout>,
   val page: PageInfo,
   val counts: PlatformBulkPayoutStatusStats,
 )

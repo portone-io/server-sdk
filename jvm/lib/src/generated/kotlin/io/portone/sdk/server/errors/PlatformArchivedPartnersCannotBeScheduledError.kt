@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED")
 public data class PlatformArchivedPartnersCannotBeScheduledError(
-  val message: String? = null,
+  override val message: String? = null,
 ): SchedulePlatformPartnersError

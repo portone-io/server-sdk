@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPlatformContractsResponse(
   /** 조회된 계약 리스트 */
-  val items: Array<PlatformContract>,
+  val items: List<PlatformContract>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

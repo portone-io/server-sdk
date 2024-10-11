@@ -25,7 +25,7 @@ import kotlinx.serialization.Serializable
 public data class PgProviderError(
   val pgCode: String,
   val pgMessage: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   CancelCashReceiptError,
   CancelPaymentError,

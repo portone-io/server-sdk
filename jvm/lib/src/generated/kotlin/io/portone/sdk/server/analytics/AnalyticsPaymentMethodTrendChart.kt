@@ -11,5 +11,5 @@ public data class AnalyticsPaymentMethodTrendChart(
    *
    * (timestamp, paymentMethod) 를 기준으로 오름차순 정렬되어 주어집니다.
    */
-  val stats: Array<AnalyticsPaymentMethodTrendChartStat>,
+  val stats: List<AnalyticsPaymentMethodTrendChartStat>,
 )

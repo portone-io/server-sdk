@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS")
 public data class PlatformContractScheduleAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ScheduleContractError

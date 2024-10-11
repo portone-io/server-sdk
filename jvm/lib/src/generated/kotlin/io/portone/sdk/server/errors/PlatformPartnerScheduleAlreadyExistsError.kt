@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS")
 public data class PlatformPartnerScheduleAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): SchedulePartnerError

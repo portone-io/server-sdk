@@ -21,7 +21,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CONTRACT_NOT_FOUND")
 public data class PlatformContractNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformContractError,
   CancelPlatformContractScheduleError,
   CreatePlatformOrderTransferError,

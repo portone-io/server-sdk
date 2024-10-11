@@ -5,6 +5,7 @@ import io.portone.sdk.server.platform.PlatformContact
 import io.portone.sdk.server.platform.PlatformPartnerStatus
 import io.portone.sdk.server.platform.PlatformPartnerType
 import io.portone.sdk.server.platform.PlatformProperties
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.Array
 import kotlin.String
@@ -32,13 +33,13 @@ public data class PlatformPartner(
   /** 파트너에 설정된 기본 계약 아이디 */
   val defaultContractId: String,
   /** 파트너의 태그 리스트 */
-  val tags: Array<String>,
+  val tags: List<String>,
   /** 파트너 유형별 정보 */
   val type: PlatformPartnerType,
   /** 보관 여부 */
   val isArchived: Boolean,
   /** 변경 적용 시점 */
-  val appliedAt: Instant,
+  val appliedAt: @Serializable(InstantSerializer::class) Instant,
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties,
   /** 파트너에 대한 메모 */

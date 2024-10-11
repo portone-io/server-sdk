@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PARTNER_ID_ALREADY_EXISTS")
 public data class PlatformPartnerIdAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformPartnerError

@@ -4,6 +4,7 @@ import io.portone.sdk.server.b2b.B2bCompanyStateBusinessStatus
 import io.portone.sdk.server.b2b.B2bTaxInvoicePurposeType
 import io.portone.sdk.server.b2b.B2bTaxInvoiceStatus
 import io.portone.sdk.server.b2b.B2bTaxType
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -30,7 +31,7 @@ public data class B2bTaxInvoiceSummary(
   /** 상태 */
   val status: B2bTaxInvoiceStatus,
   /** 상태 변경 일시 */
-  val statusUpdatedAt: Instant,
+  val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 공급자 문서번호 */
   val supplierDocumentKey: String? = null,
   /** 공급받는자 문서번호 */
@@ -44,9 +45,9 @@ public data class B2bTaxInvoiceSummary(
    */
   val recipientClosedSuspendedDate: String? = null,
   /** 발행 일시 */
-  val issuedAt: Instant? = null,
+  val issuedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 개봉 일시 */
-  val openedAt: Instant? = null,
+  val openedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 국세청 승인번호
    *
@@ -56,9 +57,9 @@ public data class B2bTaxInvoiceSummary(
   /** 국세청 전송 결과 */
   val ntsResult: String? = null,
   /** 국세청 전송 일시 */
-  val ntsSentAt: Instant? = null,
+  val ntsSentAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 국세청 결과 수신 일시 */
-  val ntsResultReceivedAt: Instant? = null,
+  val ntsResultReceivedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 국세청 결과 코드
    *

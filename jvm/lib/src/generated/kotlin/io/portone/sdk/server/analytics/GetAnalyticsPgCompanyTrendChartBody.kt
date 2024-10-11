@@ -3,6 +3,7 @@ package io.portone.sdk.server.analytics
 import io.portone.sdk.server.analytics.AnalyticsTimeGranularity
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PgCompany
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -10,9 +11,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetAnalyticsPgCompanyTrendChartBody(
   /** 조회할 결제대행사별 거래 추이의 시작 시간 */
-  val `from`: Instant,
+  val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 결제대행사별 거래 추이의 끝 시간 */
-  val until: Instant,
+  val until: @Serializable(InstantSerializer::class) Instant,
   /**
    * 조회할 결제 통화
    *
@@ -32,5 +33,5 @@ public data class GetAnalyticsPgCompanyTrendChartBody(
    */
   val timeGranularity: AnalyticsTimeGranularity,
   /** 조회할 결제대행사 */
-  val pgCompanies: Array<PgCompany>,
+  val pgCompanies: List<PgCompany>,
 )

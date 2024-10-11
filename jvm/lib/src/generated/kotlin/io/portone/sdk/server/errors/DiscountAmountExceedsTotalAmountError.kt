@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT")
 public data class DiscountAmountExceedsTotalAmountError(
-  val message: String? = null,
+  override val message: String? = null,
 ): PayInstantlyError,
   PayWithBillingKeyError

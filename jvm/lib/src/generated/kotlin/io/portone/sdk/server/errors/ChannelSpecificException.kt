@@ -10,7 +10,7 @@ import java.lang.Exception
 public class ChannelSpecificException(
   cause: ChannelSpecificError
 ) : Exception(cause.message) {
-  public val failures: Array<ChannelSpecificFailure> = cause.failures
+  public val failures: List<ChannelSpecificFailure> = cause.failures
   /** (결제, 본인인증 등에) 선택된 채널 정보 */
-  public val succeededChannels: Array<SelectedChannel> = cause.succeededChannels
+  public val succeededChannels: List<SelectedChannel> = cause.succeededChannels
 }

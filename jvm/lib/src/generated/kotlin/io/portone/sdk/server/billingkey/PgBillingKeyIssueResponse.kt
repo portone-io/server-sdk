@@ -1,5 +1,6 @@
 package io.portone.sdk.server.billingkey
 
+import io.portone.sdk.server.common.SelectedChannel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 
@@ -7,4 +8,10 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PgBillingKeyIssueResponse {
+  /**
+   * 채널
+   *
+   * 빌링키 발급을 시도한 채널입니다.
+   */
+  public val channel: SelectedChannel
 }

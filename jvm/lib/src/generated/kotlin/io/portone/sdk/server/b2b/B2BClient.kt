@@ -209,7 +209,7 @@ public class B2BClient(
       json.decodeFromString<B2bMemberCompany>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -299,7 +299,7 @@ public class B2BClient(
       json.decodeFromString<UpdateB2bMemberCompanyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -383,7 +383,7 @@ public class B2BClient(
       json.decodeFromString<RegisterB2bMemberCompanyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -457,7 +457,7 @@ public class B2BClient(
       json.decodeFromString<B2bCompanyContact>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -551,7 +551,7 @@ public class B2BClient(
       json.decodeFromString<UpdateB2bMemberCompanyContactResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -624,7 +624,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bCertificateRegistrationUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -694,7 +694,7 @@ public class B2BClient(
       json.decodeFromString<B2bCertificate>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -761,7 +761,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bContactIdExistenceResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -844,7 +844,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bBankAccountHolderResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -915,7 +915,7 @@ public class B2BClient(
       json.decodeFromString<B2bCompanyState>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -994,7 +994,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1073,7 +1073,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1242,7 +1242,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1337,7 +1337,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1427,7 +1427,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1521,7 +1521,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1621,7 +1621,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bTaxInvoicesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1711,7 +1711,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bTaxInvoicePopupUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1792,7 +1792,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bTaxInvoicePrintUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1872,7 +1872,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bTaxInvoicePdfDownloadUrlResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1949,7 +1949,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -2040,7 +2040,7 @@ public class B2BClient(
       json.decodeFromString<B2bTaxInvoice>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -2112,7 +2112,7 @@ public class B2BClient(
       json.decodeFromString<CreateB2bTaxInvoiceFileUploadLinkResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -2278,7 +2278,7 @@ public class B2BClient(
       json.decodeFromString<GetB2bTaxInvoiceAttachmentsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

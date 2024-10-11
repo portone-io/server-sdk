@@ -3,6 +3,7 @@ package io.portone.sdk.server.platform.bulkpayout
 import io.portone.sdk.server.platform.PlatformPayoutMethod
 import io.portone.sdk.server.platform.bulkpayout.PlatformBulkPayoutStats
 import io.portone.sdk.server.platform.bulkpayout.PlatformBulkPayoutStatus
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -19,7 +20,7 @@ public data class PlatformBulkPayout(
   val totalPayoutAmount: Long,
   val status: PlatformBulkPayoutStatus,
   val payoutStats: PlatformBulkPayoutStats,
-  val statusUpdatedAt: Instant,
-  val createdAt: Instant,
-  val updatedAt: Instant,
+  val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
+  val createdAt: @Serializable(InstantSerializer::class) Instant,
+  val updatedAt: @Serializable(InstantSerializer::class) Instant,
 )

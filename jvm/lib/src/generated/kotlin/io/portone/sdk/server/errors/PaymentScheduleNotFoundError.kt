@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_SCHEDULE_NOT_FOUND")
 public data class PaymentScheduleNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetPaymentScheduleError,
   RevokePaymentSchedulesError

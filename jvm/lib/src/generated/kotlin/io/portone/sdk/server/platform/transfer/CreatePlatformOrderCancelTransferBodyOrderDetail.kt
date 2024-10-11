@@ -14,7 +14,7 @@ public data class CreatePlatformOrderCancelTransferBodyOrderDetail(
   /** 주문 취소 금액 */
   val orderAmount: Long? = null,
   /** 주문 취소 항목 리스트 */
-  val orderLines: Array<CreatePlatformOrderCancelTransferBodyOrderLine>? = null,
+  val orderLines: List<CreatePlatformOrderCancelTransferBodyOrderLine>? = null,
   /** 전체 금액 취소 */
   val all: CreatePlatformOrderCancelTransferBodyOrderDetailAll? = null,
 )

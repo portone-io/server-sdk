@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_PRODUCT_ID_DUPLICATED")
 public data class PlatformProductIdDuplicatedError(
   val id: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError,
   CreatePlatformOrderTransferError

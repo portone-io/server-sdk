@@ -19,9 +19,9 @@ public data class CreatePlatformOrderTransferBody(
   /** 주문 정보 */
   val orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
   /** 할인 정보 */
-  val discounts: Array<CreatePlatformOrderTransferBodyDiscount>,
+  val discounts: List<CreatePlatformOrderTransferBodyDiscount>,
   /** 추가 수수료 정보 */
-  val additionalFees: Array<CreatePlatformOrderTransferBodyAdditionalFee>,
+  val additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
   /**
    * 계약 아이디
    *
@@ -57,5 +57,5 @@ public data class CreatePlatformOrderTransferBody(
   /** 정산 파라미터 (실험기능) */
   val parameters: TransferParameters? = null,
   /** 사용자 정의 속성 */
-  val userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+  val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )

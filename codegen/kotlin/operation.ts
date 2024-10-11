@@ -177,12 +177,7 @@ export function writeOperation(
   crossRef.add("io.ktor.http.appendPathSegments")
   writer.writeLine(`appendPathSegments(${path})`)
   for (const property of operation.params.query) {
-    if (property.name === "requestBody") {
-      crossRef.add("kotlinx.serialization.encodeToString")
-      writer.writeLine(
-        `parameters.append("requestBody", json.encodeToString(requestBody))`,
-      )
-    } else if (property.required) {
+    if (property.required) {
       writer.writeLine(
         `parameters.append("${property.name}", ${property.name}.toString())`,
       )
@@ -191,6 +186,12 @@ export function writeOperation(
         `if (${property.name} != null) parameters.append("${property.name}", ${property.name}.toString())`,
       )
     }
+  }
+  if (operation.params.body && !canHaveBody) {
+    crossRef.add("kotlinx.serialization.encodeToString")
+    writer.writeLine(
+      `parameters.append("requestBody", json.encodeToString(requestBody))`,
+    )
   }
   writer.outdent()
   writer.writeLine("}")
@@ -282,7 +283,9 @@ export function writeOperation(
       writer.writeLine("}")
       writer.writeLine("catch (_: Exception) {")
       writer.indent()
-      writer.writeLine(`throw UnknownError("Unknown API response: $httpBody")`)
+      writer.writeLine(
+        `throw UnknownException("Unknown API response: $httpBody")`,
+      )
       writer.outdent()
       writer.writeLine("}")
       break
@@ -406,11 +409,11 @@ function writePropertyList(
           case "string":
             crossRef.add("kotlin.Array")
             if (property.item.format === "date-time") {
-              writer.writeLine(`${name}: ${wrapOptional("Array<Instant>")},`)
+              writer.writeLine(`${name}: ${wrapOptional("List<Instant>")},`)
               crossRef.add("java.time.Instant")
               break
             }
-            writer.writeLine(`${name}: ${wrapOptional("Array<String>")},`)
+            writer.writeLine(`${name}: ${wrapOptional("List<String>")},`)
             crossRef.add("kotlin.String")
             break
           case "boolean":
@@ -432,7 +435,7 @@ function writePropertyList(
             break
           case "ref": {
             writer.writeLine(
-              `${name}: ${wrapOptional(`Array<${property.item.value}>`)},`,
+              `${name}: ${wrapOptional(`List<${property.item.value}>`)},`,
             )
             const category = categoryMap.get(property.item.value)
             if (!category) {

@@ -4,6 +4,7 @@ import io.portone.sdk.server.cashreceipt.CashReceipt
 import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.SelectedChannel
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,11 +15,11 @@ import kotlinx.serialization.Serializable
 @SerialName("CANCELLED")
 public data class CancelledCashReceipt(
   /** 고객사 아이디 */
-  val merchantId: String,
+  override val merchantId: String,
   /** 상점 아이디 */
-  val storeId: String,
+  override val storeId: String,
   /** 결제 건 아이디 */
-  val paymentId: String,
+  override val paymentId: String,
   /** 현금영수증 발급에 사용된 채널 */
   val channel: SelectedChannel,
   /** 결제 금액 */
@@ -26,15 +27,15 @@ public data class CancelledCashReceipt(
   /** 통화 */
   val currency: Currency,
   /** 주문명 */
-  val orderName: String,
+  override val orderName: String,
   /** 수동 발급 여부 */
-  val isManual: Boolean,
+  override val isManual: Boolean,
   /** 승인번호 */
   val issueNumber: String,
   /** 발급 시점 */
-  val issuedAt: Instant,
+  val issuedAt: @Serializable(InstantSerializer::class) Instant,
   /** 취소 시점 */
-  val cancelledAt: Instant,
+  val cancelledAt: @Serializable(InstantSerializer::class) Instant,
   /** 면세액 */
   val taxFreeAmount: Long? = null,
   /** 부가세액 */

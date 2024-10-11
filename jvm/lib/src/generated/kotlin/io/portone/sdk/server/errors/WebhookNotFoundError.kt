@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("WEBHOOK_NOT_FOUND")
 public data class WebhookNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ResendWebhookError

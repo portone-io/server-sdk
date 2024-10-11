@@ -11,11 +11,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PlatformPayoutFilterInput(
   val criteria: PlatformPayoutFilterInputCriteria,
-  val statuses: Array<PlatformPayoutStatus>? = null,
-  val partnerIds: Array<String>? = null,
+  val statuses: List<PlatformPayoutStatus>? = null,
+  val partnerIds: List<String>? = null,
   /** 은행 */
-  val payoutAccountBanks: Array<Bank>? = null,
-  val partnerTags: Array<String>? = null,
+  val payoutAccountBanks: List<Bank>? = null,
+  val partnerTags: List<String>? = null,
   /** 통화 단위 */
-  val payoutCurrencies: Array<Currency>? = null,
+  val payoutCurrencies: List<Currency>? = null,
 )

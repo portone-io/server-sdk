@@ -121,7 +121,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<PaymentSchedule>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -168,6 +168,7 @@ public class PaymentScheduleClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("payment-schedules")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -194,7 +195,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<GetPaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -230,7 +231,7 @@ public class PaymentScheduleClient(
   @JvmName("revokePaymentSchedulesSuspend")
   public suspend fun revokePaymentSchedules(
     billingKey: String? = null,
-    scheduleIds: Array<String>? = null,
+    scheduleIds: List<String>? = null,
   ): RevokePaymentSchedulesResponse {
     val requestBody = RevokePaymentSchedulesBody(
       storeId = storeId,
@@ -240,6 +241,7 @@ public class PaymentScheduleClient(
     val httpResponse = client.delete(apiBase) {
       url {
         appendPathSegments("payment-schedules")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -271,7 +273,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<RevokePaymentSchedulesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -279,7 +281,7 @@ public class PaymentScheduleClient(
   @JvmName("revokePaymentSchedules")
   public suspend fun revokePaymentSchedulesFuture(
     billingKey: String? = null,
-    scheduleIds: Array<String>? = null,
+    scheduleIds: List<String>? = null,
   ): CompletableFuture<RevokePaymentSchedulesResponse> = GlobalScope.future { revokePaymentSchedules(billingKey, scheduleIds) }
 
 
@@ -351,7 +353,7 @@ public class PaymentScheduleClient(
       json.decodeFromString<CreatePaymentScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

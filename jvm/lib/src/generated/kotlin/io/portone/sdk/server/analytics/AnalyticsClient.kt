@@ -78,6 +78,7 @@ import java.time.Instant
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 public class AnalyticsClient(
@@ -132,6 +133,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -158,7 +160,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -216,6 +218,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-insight")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -242,7 +245,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentChartInsight>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -300,6 +303,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "average-amount")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -326,7 +330,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsAverageAmountChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -378,6 +382,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-method")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -404,7 +409,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentMethodChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -461,6 +466,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-method-trend")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -487,7 +493,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentMethodTrendChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -545,6 +551,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "card")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -571,7 +578,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsCardChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -622,8 +629,8 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    cardCompanies: Array<CardCompany>,
-    excludesFromRemainders: Array<CardCompany>,
+    cardCompanies: List<CardCompany>,
+    excludesFromRemainders: List<CardCompany>,
   ): AnalyticsCardCompanyChart {
     val requestBody = GetAnalyticsCardCompanyChartBody(
       from = from,
@@ -637,6 +644,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "card-company")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -663,7 +671,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsCardCompanyChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -675,8 +683,8 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    cardCompanies: Array<CardCompany>,
-    excludesFromRemainders: Array<CardCompany>,
+    cardCompanies: List<CardCompany>,
+    excludesFromRemainders: List<CardCompany>,
   ): CompletableFuture<AnalyticsCardCompanyChart> = GlobalScope.future { getAnalyticsCardCompanyChart(from, until, currency, excludeCancelled, timeGranularity, cardCompanies, excludesFromRemainders) }
 
 
@@ -723,6 +731,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "easy-pay")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -749,7 +758,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsEasyPayChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -800,8 +809,8 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    easyPayProviders: Array<EasyPayProvider>,
-    excludesFromRemainders: Array<EasyPayProvider>,
+    easyPayProviders: List<EasyPayProvider>,
+    excludesFromRemainders: List<EasyPayProvider>,
   ): AnalyticsEasyPayProviderChart {
     val requestBody = GetAnalyticsEasyPayProviderChartBody(
       from = from,
@@ -815,6 +824,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "easy-pay-provider")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -841,7 +851,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsEasyPayProviderChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -853,8 +863,8 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    easyPayProviders: Array<EasyPayProvider>,
-    excludesFromRemainders: Array<EasyPayProvider>,
+    easyPayProviders: List<EasyPayProvider>,
+    excludesFromRemainders: List<EasyPayProvider>,
   ): CompletableFuture<AnalyticsEasyPayProviderChart> = GlobalScope.future { getAnalyticsEasyPayProviderChart(from, until, currency, excludeCancelled, timeGranularity, easyPayProviders, excludesFromRemainders) }
 
 
@@ -895,6 +905,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "pg-company")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -921,7 +932,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPgCompanyChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -969,7 +980,7 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    pgCompanies: Array<PgCompany>,
+    pgCompanies: List<PgCompany>,
   ): AnalyticsPgCompanyTrendChart {
     val requestBody = GetAnalyticsPgCompanyTrendChartBody(
       from = from,
@@ -982,6 +993,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "pg-company-trend")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1008,7 +1020,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPgCompanyTrendChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1020,7 +1032,7 @@ public class AnalyticsClient(
     currency: Currency,
     excludeCancelled: Boolean,
     timeGranularity: AnalyticsTimeGranularity,
-    pgCompanies: Array<PgCompany>,
+    pgCompanies: List<PgCompany>,
   ): CompletableFuture<AnalyticsPgCompanyTrendChart> = GlobalScope.future { getPgCompanyTrendChart(from, until, currency, excludeCancelled, timeGranularity, pgCompanies) }
 
 
@@ -1064,7 +1076,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsOverseasPaymentUsage>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1105,6 +1117,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "cancellation-rate")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1131,7 +1144,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsCancellationRate>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1175,6 +1188,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-status")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1201,7 +1215,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentStatusChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1245,6 +1259,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-status", "by-method")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1271,7 +1286,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentStatusByPaymentMethodChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1315,6 +1330,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-status", "by-pg-company")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1341,7 +1357,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentStatusByPgCompanyChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1385,6 +1401,7 @@ public class AnalyticsClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("analytics", "charts", "payment-status", "by-payment-client")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1411,7 +1428,7 @@ public class AnalyticsClient(
       json.decodeFromString<AnalyticsPaymentStatusByPaymentClientChart>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

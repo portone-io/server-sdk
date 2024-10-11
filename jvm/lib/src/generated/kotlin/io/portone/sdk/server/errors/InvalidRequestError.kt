@@ -145,7 +145,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("INVALID_REQUEST")
 public data class InvalidRequestError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,
   ArchivePlatformContractError,

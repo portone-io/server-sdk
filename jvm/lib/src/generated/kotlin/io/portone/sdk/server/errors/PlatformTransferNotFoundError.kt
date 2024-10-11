@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_TRANSFER_NOT_FOUND")
 public data class PlatformTransferNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError,
   DeletePlatformTransferError,
   GetPlatformTransferError

@@ -84,7 +84,14 @@ export function generateEntity(
           case "string":
             writeDescription(writer, description)
             if (property.format === "date-time") {
-              writer.writeLine(`${val}: ${wrapOptional("Instant")},`)
+              writer.writeLine(
+                `${val}: @Serializable(InstantSerializer::class) ${
+                  wrapOptional("Instant")
+                },`,
+              )
+              crossRef.add(
+                "io.portone.sdk.server.serializers.InstantSerializer",
+              )
               crossRef.add("java.time.Instant")
               break
             }
@@ -129,11 +136,11 @@ export function generateEntity(
               case "string":
                 crossRef.add("kotlin.Array")
                 if (property.item.format === "date-time") {
-                  writer.writeLine(`${val}: ${wrapOptional("Array<Instant>")},`)
+                  writer.writeLine(`${val}: ${wrapOptional("List<Instant>")},`)
                   crossRef.add("java.time.Instant")
                   break
                 }
-                writer.writeLine(`${val}: ${wrapOptional("Array<String>")},`)
+                writer.writeLine(`${val}: ${wrapOptional("List<String>")},`)
                 crossRef.add("kotlin.String")
                 break
               case "boolean":
@@ -155,7 +162,7 @@ export function generateEntity(
                 break
               case "ref": {
                 writer.writeLine(
-                  `${val}: ${wrapOptional(`Array<${property.item.value}>`)},`,
+                  `${val}: ${wrapOptional(`List<${property.item.value}>`)},`,
                 )
                 const category = categoryMap.get(property.item.value)
                 if (!category) {
@@ -302,12 +309,12 @@ export function generateEntity(
                 crossRef.add("kotlin.Array")
                 if (property.item.format === "date-time") {
                   writer.writeLine(
-                    `${val}: ${wrapOpetional("Array<Instant>")}`,
+                    `${val}: ${wrapOpetional("List<Instant>")}`,
                   )
                   crossRef.add("java.time.Instant")
                   break
                 }
-                writer.writeLine(`${val}: ${wrapOpetional("Array<String>")}`)
+                writer.writeLine(`${val}: ${wrapOpetional("List<String>")}`)
                 crossRef.add("kotlin.String")
                 break
               case "boolean":
@@ -329,7 +336,7 @@ export function generateEntity(
                 break
               case "ref": {
                 writer.writeLine(
-                  `${val}: ${wrapOpetional(`Array<${property.item.value}>`)}`,
+                  `${val}: ${wrapOpetional(`List<${property.item.value}>`)}`,
                 )
                 const category = categoryMap.get(property.item.value)
                 if (!category) {

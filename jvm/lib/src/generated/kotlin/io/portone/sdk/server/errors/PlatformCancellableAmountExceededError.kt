@@ -13,5 +13,5 @@ public data class PlatformCancellableAmountExceededError(
   val cancellableAmount: Long,
   val requestAmount: Long,
   val amountType: PlatformCancellableAmountType,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("IDENTITY_VERIFICATION_NOT_FOUND")
 public data class IdentityVerificationNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ConfirmIdentityVerificationError,
   GetIdentityVerificationError,
   ResendIdentityVerificationError,

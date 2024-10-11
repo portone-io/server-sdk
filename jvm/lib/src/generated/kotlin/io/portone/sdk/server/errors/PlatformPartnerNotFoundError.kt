@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PARTNER_NOT_FOUND")
 public data class PlatformPartnerNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformPartnerError,
   CancelPlatformPartnerScheduleError,
   CreatePlatformManualTransferError,

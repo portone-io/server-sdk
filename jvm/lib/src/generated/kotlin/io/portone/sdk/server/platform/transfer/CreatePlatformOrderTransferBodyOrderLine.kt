@@ -13,7 +13,7 @@ public data class CreatePlatformOrderTransferBodyOrderLine(
   /** 상품 수량 */
   val quantity: Int,
   /** 상품 할인 정보 */
-  val discounts: Array<CreatePlatformOrderTransferBodyDiscount>,
+  val discounts: List<CreatePlatformOrderTransferBodyDiscount>,
   /** 상품 추가 수수료 정보 */
-  val additionalFees: Array<CreatePlatformOrderTransferBodyAdditionalFee>,
+  val additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
 )

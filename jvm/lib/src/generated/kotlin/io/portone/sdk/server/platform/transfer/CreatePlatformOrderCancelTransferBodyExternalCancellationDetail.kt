@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform.transfer
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -7,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class CreatePlatformOrderCancelTransferBodyExternalCancellationDetail(
   /** 취소 일시 */
-  val cancelledAt: Instant? = null,
+  val cancelledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )

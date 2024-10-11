@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetBillingKeyInfosResponse(
   /** 조회된 빌링키 리스트 */
-  val items: Array<BillingKeyInfo>,
+  val items: List<BillingKeyInfo>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

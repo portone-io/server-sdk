@@ -29,6 +29,7 @@ import java.io.Closeable
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 public class PartnerSettlementClient(
@@ -72,6 +73,7 @@ public class PartnerSettlementClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("platform", "partner-settlements")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -99,7 +101,7 @@ public class PartnerSettlementClient(
       json.decodeFromString<GetPlatformPartnerSettlementsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class CreatePlatformPartnersBody(
   /** 생성할 파트너 리스트 정보 */
-  val partners: Array<CreatePlatformPartnerBody>,
+  val partners: List<CreatePlatformPartnerBody>,
 )

@@ -1,6 +1,7 @@
 package io.portone.sdk.server.paymentschedule
 
 import io.portone.sdk.server.paymentschedule.PaymentScheduleStatus
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -21,17 +22,17 @@ public data class PaymentScheduleFilterInput(
    *
    * 값을 입력하지 않으면 파라미터 end의 90일 전으로 설정됩니다.
    */
-  val `from`: Instant? = null,
+  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 예정 시점 조건 범위의 끝
    *
    * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
    */
-  val until: Instant? = null,
+  val until: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 예약 건 상태 리스트
    *
    * 값을 입력하지 않으면 상태 필터링이 적용되지 않습니다.
    */
-  val status: Array<PaymentScheduleStatus>? = null,
+  val status: List<PaymentScheduleStatus>? = null,
 )

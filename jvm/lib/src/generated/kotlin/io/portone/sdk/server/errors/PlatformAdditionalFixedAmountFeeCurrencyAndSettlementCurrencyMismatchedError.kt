@@ -13,5 +13,5 @@ public data class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyM
   val graphqlId: String,
   val feeCurrency: Currency,
   val settlementCurrency: Currency,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderTransferError

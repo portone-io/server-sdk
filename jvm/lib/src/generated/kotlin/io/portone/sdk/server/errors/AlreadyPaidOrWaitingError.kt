@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("ALREADY_PAID_OR_WAITING")
 public data class AlreadyPaidOrWaitingError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePaymentScheduleError

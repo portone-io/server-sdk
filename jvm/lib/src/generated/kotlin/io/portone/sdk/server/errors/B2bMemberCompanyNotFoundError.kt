@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("B2B_MEMBER_COMPANY_NOT_FOUND")
 public data class B2bMemberCompanyNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bCertificateError,
   GetB2bCertificateRegistrationUrlError,
   GetB2bMemberCompanyContactError,

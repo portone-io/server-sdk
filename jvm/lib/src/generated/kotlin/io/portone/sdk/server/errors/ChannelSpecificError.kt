@@ -12,9 +12,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CHANNEL_SPECIFIC")
 public data class ChannelSpecificError(
-  val failures: Array<ChannelSpecificFailure>,
+  val failures: List<ChannelSpecificFailure>,
   /** (결제, 본인인증 등에) 선택된 채널 정보 */
-  val succeededChannels: Array<SelectedChannel>,
-  val message: String? = null,
+  val succeededChannels: List<SelectedChannel>,
+  override val message: String? = null,
 ): DeleteBillingKeyError,
   IssueBillingKeyError

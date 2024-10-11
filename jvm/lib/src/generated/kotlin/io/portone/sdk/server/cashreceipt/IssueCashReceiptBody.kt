@@ -5,6 +5,7 @@ import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProductType
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -39,5 +40,5 @@ public data class IssueCashReceiptBody(
   /** 상품 유형 */
   val productType: PaymentProductType? = null,
   /** 결제 일자 */
-  val paidAt: Instant? = null,
+  val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
 )

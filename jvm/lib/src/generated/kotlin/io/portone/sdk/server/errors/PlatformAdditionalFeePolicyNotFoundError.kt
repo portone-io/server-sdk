@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND")
 public data class PlatformAdditionalFeePolicyNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformAdditionalFeePolicyError,
   CancelPlatformAdditionalFeePolicyScheduleError,
   GetPlatformAdditionalFeePolicyError,

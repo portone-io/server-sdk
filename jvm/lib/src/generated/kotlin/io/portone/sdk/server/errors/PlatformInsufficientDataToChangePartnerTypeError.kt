@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE")
 public data class PlatformInsufficientDataToChangePartnerTypeError(
-  val message: String? = null,
+  override val message: String? = null,
 ): SchedulePartnerError,
   UpdatePlatformPartnerError

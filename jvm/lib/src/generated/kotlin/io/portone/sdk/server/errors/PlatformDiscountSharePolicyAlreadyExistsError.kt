@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS")
 public data class PlatformDiscountSharePolicyAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformDiscountSharePolicyError

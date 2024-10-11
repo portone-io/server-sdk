@@ -4,6 +4,7 @@ import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.payment.PaymentMethod
 import io.portone.sdk.server.payment.PaymentMethodVirtualAccountRefundStatus
 import io.portone.sdk.server.payment.PaymentMethodVirtualAccountType
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -24,9 +25,9 @@ public data class PaymentMethodVirtualAccount(
   /** 송금인(입금자) */
   val remitterName: String? = null,
   /** 입금만료시점 */
-  val expiredAt: Instant? = null,
+  val expiredAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 계좌발급시점 */
-  val issuedAt: Instant? = null,
+  val issuedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 가상계좌 결제가 환불 단계일 때의 환불 상태 */
   val refundStatus: PaymentMethodVirtualAccountRefundStatus? = null,
 ): PaymentMethod

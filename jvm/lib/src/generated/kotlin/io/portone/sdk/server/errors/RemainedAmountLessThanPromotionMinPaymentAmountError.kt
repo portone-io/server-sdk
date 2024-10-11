@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT")
 public data class RemainedAmountLessThanPromotionMinPaymentAmountError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelPaymentError

@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PlatformPartnerFilterOptions(
   /** 조회된 태그 리스트 */
-  val tags: Array<String>,
+  val tags: List<String>,
   /** 조회된 파트너 계약 요약 정보 리스트 */
-  val contractSummary: Array<PlatformPartnerContractSummary>,
+  val contractSummary: List<PlatformPartnerContractSummary>,
 )

@@ -1,5 +1,6 @@
 package io.portone.sdk.server.b2b
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -12,5 +13,5 @@ public data class B2bTaxInvoiceAttachment(
   /** 첨부 파일명 */
   val name: String,
   /** 첨부 일시 */
-  val attachedAt: Instant,
+  val attachedAt: @Serializable(InstantSerializer::class) Instant,
 )

@@ -13,5 +13,5 @@ public data class CreatePlatformOrderTransferBodyOrderDetail(
   /** 주문 금액 */
   val orderAmount: Long? = null,
   /** 주문 항목 리스트 */
-  val orderLines: Array<CreatePlatformOrderTransferBodyOrderLine>? = null,
+  val orderLines: List<CreatePlatformOrderTransferBodyOrderLine>? = null,
 )

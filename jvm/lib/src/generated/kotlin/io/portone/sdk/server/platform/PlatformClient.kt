@@ -194,7 +194,7 @@ public class PlatformClient(
       json.decodeFromString<Platform>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -266,7 +266,7 @@ public class PlatformClient(
       json.decodeFromString<UpdatePlatformResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -328,7 +328,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformDiscountSharePolicyFilterOptions>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -387,7 +387,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -458,7 +458,7 @@ public class PlatformClient(
       json.decodeFromString<ReschedulePlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -533,7 +533,7 @@ public class PlatformClient(
       json.decodeFromString<SchedulePlatformDiscountSharePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -594,7 +594,7 @@ public class PlatformClient(
       json.decodeFromString<CancelPlatformDiscountSharePolicyScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -653,7 +653,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -722,7 +722,7 @@ public class PlatformClient(
       json.decodeFromString<ReschedulePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -799,7 +799,7 @@ public class PlatformClient(
       json.decodeFromString<SchedulePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -860,7 +860,7 @@ public class PlatformClient(
       json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -920,7 +920,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformPartnerFilterOptions>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -979,7 +979,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformPartner>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1052,7 +1052,7 @@ public class PlatformClient(
       json.decodeFromString<ReschedulePlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1141,7 +1141,7 @@ public class PlatformClient(
       json.decodeFromString<SchedulePlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1202,7 +1202,7 @@ public class PlatformClient(
       json.decodeFromString<CancelPlatformPartnerScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1278,7 +1278,7 @@ public class PlatformClient(
       json.decodeFromString<SchedulePlatformPartnersResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1339,7 +1339,7 @@ public class PlatformClient(
       json.decodeFromString<PlatformContract>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1408,7 +1408,7 @@ public class PlatformClient(
       json.decodeFromString<ReschedulePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1483,7 +1483,7 @@ public class PlatformClient(
       json.decodeFromString<SchedulePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1544,7 +1544,7 @@ public class PlatformClient(
       json.decodeFromString<CancelPlatformContractScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

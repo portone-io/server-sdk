@@ -108,7 +108,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("FORBIDDEN")
 public data class ForbiddenError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,
   ArchivePlatformContractError,

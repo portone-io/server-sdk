@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPlatformPartnerSettlementsResponse(
   /** 조회된 정산내역 리스트 */
-  val items: Array<PlatformPartnerSettlement>,
+  val items: List<PlatformPartnerSettlement>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
   /** 정산내역 상태 별 갯수 */

@@ -12,5 +12,5 @@ public data class PlatformSettlementPaymentAmountExceededPortOnePaymentError(
   val registeredSettlementPaymentAmount: Long,
   val requestSettlementPaymentAmount: Long,
   val portOnePaymentAmount: Long,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderTransferError

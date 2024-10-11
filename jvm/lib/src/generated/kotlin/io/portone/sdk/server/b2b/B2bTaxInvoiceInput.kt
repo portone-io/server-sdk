@@ -52,7 +52,7 @@ public data class B2bTaxInvoiceInput(
    *
    * 최대 3개
    */
-  val remarks: Array<String>? = null,
+  val remarks: List<String>? = null,
   /**
    * 공급자 문서번호
    *
@@ -78,11 +78,11 @@ public data class B2bTaxInvoiceInput(
    *
    * 최대 99개
    */
-  val items: Array<B2bTaxInvoiceItem>? = null,
+  val items: List<B2bTaxInvoiceItem>? = null,
   /**
    * 추가 담당자
    *
    * 최대 3개
    */
-  val contacts: Array<B2bTaxInvoiceAdditionalContact>? = null,
+  val contacts: List<B2bTaxInvoiceAdditionalContact>? = null,
 )

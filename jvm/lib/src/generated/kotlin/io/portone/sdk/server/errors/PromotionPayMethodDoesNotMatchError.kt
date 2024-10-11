@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PROMOTION_PAY_METHOD_DOES_NOT_MATCH")
 public data class PromotionPayMethodDoesNotMatchError(
-  val message: String? = null,
+  override val message: String? = null,
 ): PayInstantlyError,
   PayWithBillingKeyError

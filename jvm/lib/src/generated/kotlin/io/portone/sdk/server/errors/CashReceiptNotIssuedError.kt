@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CASH_RECEIPT_NOT_ISSUED")
 public data class CashReceiptNotIssuedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelCashReceiptError

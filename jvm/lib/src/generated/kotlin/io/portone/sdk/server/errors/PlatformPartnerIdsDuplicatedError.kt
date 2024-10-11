@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PARTNER_IDS_DUPLICATED")
 public data class PlatformPartnerIdsDuplicatedError(
-  val ids: Array<String>,
-  val graphqlIds: Array<String>,
-  val message: String? = null,
+  val ids: List<String>,
+  val graphqlIds: List<String>,
+  override val message: String? = null,
 ): CreatePlatformPartnersError

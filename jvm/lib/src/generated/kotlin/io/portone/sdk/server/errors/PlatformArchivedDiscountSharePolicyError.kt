@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY")
 public data class PlatformArchivedDiscountSharePolicyError(
-  val message: String? = null,
+  override val message: String? = null,
 ): UpdatePlatformDiscountSharePolicyError

@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -18,13 +19,13 @@ public data class GetAllPaymentsByCursorBody(
    *
    * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
    */
-  val `from`: Instant? = null,
+  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 건 생성시점 범위 조건의 끝
    *
    * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
    */
-  val until: Instant? = null,
+  val until: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 커서
    *

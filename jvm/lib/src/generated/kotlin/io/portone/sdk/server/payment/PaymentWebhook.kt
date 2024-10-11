@@ -5,6 +5,7 @@ import io.portone.sdk.server.payment.PaymentWebhookRequest
 import io.portone.sdk.server.payment.PaymentWebhookResponse
 import io.portone.sdk.server.payment.PaymentWebhookStatus
 import io.portone.sdk.server.payment.PaymentWebhookTrigger
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -45,5 +46,5 @@ public data class PaymentWebhook(
   /** 웹훅 응답 정보 */
   val response: PaymentWebhookResponse? = null,
   /** 웹훅 처리 시작 시점 */
-  val triggeredAt: Instant? = null,
+  val triggeredAt: @Serializable(InstantSerializer::class) Instant? = null,
 )

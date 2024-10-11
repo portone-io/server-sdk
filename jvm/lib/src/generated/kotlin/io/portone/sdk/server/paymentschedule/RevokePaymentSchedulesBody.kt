@@ -24,5 +24,5 @@ public data class RevokePaymentSchedulesBody(
   /** 빌링키 */
   val billingKey: String? = null,
   /** 결제 예약 건 아이디 목록 */
-  val scheduleIds: Array<String>? = null,
+  val scheduleIds: List<String>? = null,
 )

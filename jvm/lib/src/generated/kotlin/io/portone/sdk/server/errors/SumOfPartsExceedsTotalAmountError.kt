@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT")
 public data class SumOfPartsExceedsTotalAmountError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePaymentScheduleError,
   PayInstantlyError,
   PayWithBillingKeyError

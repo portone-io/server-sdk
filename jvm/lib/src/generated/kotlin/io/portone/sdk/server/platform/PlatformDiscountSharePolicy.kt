@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -25,7 +26,7 @@ public data class PlatformDiscountSharePolicy(
   /** 보관 여부 */
   val isArchived: Boolean,
   /** 변경 적용 시점 */
-  val appliedAt: Instant,
+  val appliedAt: @Serializable(InstantSerializer::class) Instant,
   /** 해당 할인 분담에 대한 메모 */
   val memo: String? = null,
 )

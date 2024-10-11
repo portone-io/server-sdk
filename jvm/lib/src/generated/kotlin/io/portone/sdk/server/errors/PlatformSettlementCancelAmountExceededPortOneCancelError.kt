@@ -14,5 +14,5 @@ public data class PlatformSettlementCancelAmountExceededPortOneCancelError(
   val requestSettlementCancelAmount: Long,
   val portOneCancelAmount: Long,
   val amountType: PlatformPortOnePaymentCancelAmountType,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

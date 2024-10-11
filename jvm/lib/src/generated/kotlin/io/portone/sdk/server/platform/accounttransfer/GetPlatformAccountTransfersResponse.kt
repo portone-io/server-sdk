@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPlatformAccountTransfersResponse(
   /** 조회된 이체내역 리스트 */
-  val items: Array<PlatformAccountTransfer>,
+  val items: List<PlatformAccountTransfer>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

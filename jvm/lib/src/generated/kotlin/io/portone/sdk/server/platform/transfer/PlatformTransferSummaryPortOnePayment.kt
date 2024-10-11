@@ -10,8 +10,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PORT_ONE")
 public data class PlatformTransferSummaryPortOnePayment(
-  val id: String,
+  override val id: String,
   val orderName: String,
-  val currency: Currency,
-  val methodType: PaymentMethodType? = null,
+  override val currency: Currency,
+  override val methodType: PaymentMethodType? = null,
 ): PlatformTransferSummaryPayment

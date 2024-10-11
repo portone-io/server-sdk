@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPaymentsResponse(
   /** 조회된 결제 건 리스트 */
-  val items: Array<Payment>,
+  val items: List<Payment>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

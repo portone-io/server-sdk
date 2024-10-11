@@ -1,5 +1,6 @@
 package io.portone.sdk.server.billingkey
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -8,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class BillingKeyFailure(
   /** 실패 시점 */
-  val failedAt: Instant,
+  val failedAt: @Serializable(InstantSerializer::class) Instant,
   /** 실패 사유 */
   val message: String? = null,
   /** PG사 실패 코드 */

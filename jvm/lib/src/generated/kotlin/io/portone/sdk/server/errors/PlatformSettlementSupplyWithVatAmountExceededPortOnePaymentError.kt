@@ -12,5 +12,5 @@ public data class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentErr
   val registeredSettlementSupplyWithVatAmount: Long,
   val requestSettlementSupplyWithVatAmount: Long,
   val portOneSupplyWithVatAmount: Long,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderTransferError

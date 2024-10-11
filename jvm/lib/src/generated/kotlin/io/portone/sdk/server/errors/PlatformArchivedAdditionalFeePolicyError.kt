@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY")
 public data class PlatformArchivedAdditionalFeePolicyError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ScheduleAdditionalFeePolicyError,
   UpdatePlatformAdditionalFeePolicyError

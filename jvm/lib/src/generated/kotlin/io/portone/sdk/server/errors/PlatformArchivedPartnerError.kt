@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ARCHIVED_PARTNER")
 public data class PlatformArchivedPartnerError(
-  val message: String? = null,
+  override val message: String? = null,
 ): SchedulePartnerError,
   UpdatePlatformPartnerError

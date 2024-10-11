@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPlatformDiscountSharePoliciesResponse(
   /** 조회된 할인 분담 정책 리스트 */
-  val items: Array<PlatformDiscountSharePolicy>,
+  val items: List<PlatformDiscountSharePolicy>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

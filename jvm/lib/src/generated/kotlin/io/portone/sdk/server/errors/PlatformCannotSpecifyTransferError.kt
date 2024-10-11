@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANNOT_SPECIFY_TRANSFER")
 public data class PlatformCannotSpecifyTransferError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

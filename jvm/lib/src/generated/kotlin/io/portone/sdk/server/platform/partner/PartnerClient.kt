@@ -125,6 +125,7 @@ public class PartnerClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("platform", "partners")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -152,7 +153,7 @@ public class PartnerClient(
       json.decodeFromString<GetPlatformPartnersResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -221,7 +222,7 @@ public class PartnerClient(
     account: CreatePlatformPartnerBodyAccount,
     defaultContractId: String,
     memo: String? = null,
-    tags: Array<String>,
+    tags: List<String>,
     type: CreatePlatformPartnerBodyType,
     userDefinedProperties: PlatformProperties? = null,
   ): CreatePlatformPartnerResponse {
@@ -275,7 +276,7 @@ public class PartnerClient(
       json.decodeFromString<CreatePlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -288,7 +289,7 @@ public class PartnerClient(
     account: CreatePlatformPartnerBodyAccount,
     defaultContractId: String,
     memo: String? = null,
-    tags: Array<String>,
+    tags: List<String>,
     type: CreatePlatformPartnerBodyType,
     userDefinedProperties: PlatformProperties? = null,
   ): CompletableFuture<CreatePlatformPartnerResponse> = GlobalScope.future { createPlatformPartner(id, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
@@ -344,7 +345,7 @@ public class PartnerClient(
       json.decodeFromString<PlatformPartner>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -401,7 +402,7 @@ public class PartnerClient(
     account: UpdatePlatformPartnerBodyAccount? = null,
     defaultContractId: String? = null,
     memo: String? = null,
-    tags: Array<String>? = null,
+    tags: List<String>? = null,
     type: UpdatePlatformPartnerBodyType? = null,
     userDefinedProperties: PlatformProperties? = null,
   ): UpdatePlatformPartnerResponse {
@@ -455,7 +456,7 @@ public class PartnerClient(
       json.decodeFromString<UpdatePlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -468,7 +469,7 @@ public class PartnerClient(
     account: UpdatePlatformPartnerBodyAccount? = null,
     defaultContractId: String? = null,
     memo: String? = null,
-    tags: Array<String>? = null,
+    tags: List<String>? = null,
     type: UpdatePlatformPartnerBodyType? = null,
     userDefinedProperties: PlatformProperties? = null,
   ): CompletableFuture<UpdatePlatformPartnerResponse> = GlobalScope.future { updatePlatformPartner(id, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
@@ -495,7 +496,7 @@ public class PartnerClient(
    */
   @JvmName("createPlatformPartnersSuspend")
   public suspend fun createPlatformPartners(
-    partners: Array<CreatePlatformPartnerBody>,
+    partners: List<CreatePlatformPartnerBody>,
   ): CreatePlatformPartnersResponse {
     val requestBody = CreatePlatformPartnersBody(
       partners = partners,
@@ -537,14 +538,14 @@ public class PartnerClient(
       json.decodeFromString<CreatePlatformPartnersResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
   /** @suppress */
   @JvmName("createPlatformPartners")
   public suspend fun createPlatformPartnersFuture(
-    partners: Array<CreatePlatformPartnerBody>,
+    partners: List<CreatePlatformPartnerBody>,
   ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(partners) }
 
 
@@ -600,7 +601,7 @@ public class PartnerClient(
       json.decodeFromString<ArchivePlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -661,7 +662,7 @@ public class PartnerClient(
       json.decodeFromString<RecoverPlatformPartnerResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

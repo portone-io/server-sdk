@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CONTRACT_ALREADY_EXISTS")
 public data class PlatformContractAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformContractError

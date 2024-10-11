@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS")
 public data class PlatformCancelOrderTransfersExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): DeletePlatformTransferError

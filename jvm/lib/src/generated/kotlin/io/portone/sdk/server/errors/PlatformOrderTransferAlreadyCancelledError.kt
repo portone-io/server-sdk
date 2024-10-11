@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED")
 public data class PlatformOrderTransferAlreadyCancelledError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

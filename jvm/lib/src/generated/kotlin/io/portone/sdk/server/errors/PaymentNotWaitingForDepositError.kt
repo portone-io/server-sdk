@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_NOT_WAITING_FOR_DEPOSIT")
 public data class PaymentNotWaitingForDepositError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CloseVirtualAccountError

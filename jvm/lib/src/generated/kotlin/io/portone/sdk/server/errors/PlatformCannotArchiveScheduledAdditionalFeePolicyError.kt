@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY")
 public data class PlatformCannotArchiveScheduledAdditionalFeePolicyError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformAdditionalFeePolicyError

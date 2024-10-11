@@ -3,6 +3,7 @@ package io.portone.sdk.server.analytics
 import io.portone.sdk.server.analytics.AnalyticsTimeGranularity
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.EasyPayProvider
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -10,9 +11,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetAnalyticsEasyPayProviderChartBody(
   /** 조회할 간편결제사별 결제 현황의 시작 시간 */
-  val `from`: Instant,
+  val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 간편결제사별 결제 현황의 끝 시간 */
-  val until: Instant,
+  val until: @Serializable(InstantSerializer::class) Instant,
   /**
    * 조회할 결제 통화
    *
@@ -32,7 +33,7 @@ public data class GetAnalyticsEasyPayProviderChartBody(
    */
   val timeGranularity: AnalyticsTimeGranularity,
   /** 조회할 간편결제사 */
-  val easyPayProviders: Array<EasyPayProvider>,
+  val easyPayProviders: List<EasyPayProvider>,
   /** 나머지 집계에 포함되지 않을 간편결제사 */
-  val excludesFromRemainders: Array<EasyPayProvider>,
+  val excludesFromRemainders: List<EasyPayProvider>,
 )

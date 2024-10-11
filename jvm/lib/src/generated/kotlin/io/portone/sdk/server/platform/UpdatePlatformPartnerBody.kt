@@ -26,7 +26,7 @@ public data class UpdatePlatformPartnerBody(
   /** 파트너에 대한 메모 */
   val memo: String? = null,
   /** 파트너의 태그 리스트 */
-  val tags: Array<String>? = null,
+  val tags: List<String>? = null,
   /** 파트너 유형별 정보 */
   val type: UpdatePlatformPartnerBodyType? = null,
   /** 사용자 정의 속성 */

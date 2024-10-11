@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class GetPlatformTransferSummariesResponse(
-  val transferSummaries: Array<PlatformTransferSummary>,
+  val transferSummaries: List<PlatformTransferSummary>,
   val page: PageInfo,
 )

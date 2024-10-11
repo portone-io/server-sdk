@@ -13,5 +13,5 @@ public data class PlatformCancellableDiscountTaxFreeAmountExceededError(
   val cancellableAmount: Long,
   val requestAmount: Long,
   val productId: String? = null,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

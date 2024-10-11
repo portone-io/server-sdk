@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN")
 public data class CancellableAmountConsistencyBrokenError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelPaymentError

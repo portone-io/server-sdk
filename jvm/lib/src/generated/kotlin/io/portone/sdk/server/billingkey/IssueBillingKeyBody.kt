@@ -42,5 +42,5 @@ public data class IssueBillingKeyBody(
    * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
    * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
    */
-  val noticeUrls: Array<String>? = null,
+  val noticeUrls: List<String>? = null,
 )

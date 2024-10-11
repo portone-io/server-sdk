@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_PRODUCT_ID_NOT_FOUND")
 public data class PlatformProductIdNotFoundError(
   val id: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

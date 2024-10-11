@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetB2bTaxInvoicesResponse(
   /** 조회된 세금계산서 목록 */
-  val items: Array<B2bTaxInvoiceSummary>,
+  val items: List<B2bTaxInvoiceSummary>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 public data class PlatformDiscountSharePolicyIdDuplicatedError(
   val id: String,
   val graphqlId: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class PlatformBulkPayoutFilterInput(
-  val statuses: Array<PlatformBulkPayoutStatus>? = null,
-  val methods: Array<PlatformPayoutMethod>? = null,
+  val statuses: List<PlatformBulkPayoutStatus>? = null,
+  val methods: List<PlatformPayoutMethod>? = null,
   val criteria: PlatformBulkPayoutFilterInputCriteria? = null,
 )

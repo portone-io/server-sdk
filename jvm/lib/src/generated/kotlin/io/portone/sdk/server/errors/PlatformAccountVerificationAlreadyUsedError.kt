@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED")
 public data class PlatformAccountVerificationAlreadyUsedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformPartnerError,
   SchedulePartnerError,
   UpdatePlatformPartnerError

@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("BILLING_KEY_NOT_ISSUED")
 public data class BillingKeyNotIssuedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): DeleteBillingKeyError

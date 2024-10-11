@@ -110,7 +110,7 @@ public class CashReceiptClient(
       json.decodeFromString<CashReceipt>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -213,7 +213,7 @@ public class CashReceiptClient(
       json.decodeFromString<IssueCashReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -285,7 +285,7 @@ public class CashReceiptClient(
       json.decodeFromString<CancelCashReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

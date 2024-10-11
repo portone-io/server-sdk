@@ -1,5 +1,6 @@
 package io.portone.sdk.server.billingkey
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -7,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class DeleteBillingKeyResponse(
   /** 빌링키 삭제 완료 시점 */
-  val deletedAt: Instant,
+  val deletedAt: @Serializable(InstantSerializer::class) Instant,
 )

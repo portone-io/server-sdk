@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 public data class DownloadPlatformTransferSheetBody(
   val filter: PlatformTransferFilterInput? = null,
   /** 다운로드 할 시트 컬럼 */
-  val fields: Array<PlatformTransferSheetField>? = null,
-  val transferUserDefinedPropertyKeys: Array<String>? = null,
-  val partnerUserDefinedPropertyKeys: Array<String>? = null,
+  val fields: List<PlatformTransferSheetField>? = null,
+  val transferUserDefinedPropertyKeys: List<String>? = null,
+  val partnerUserDefinedPropertyKeys: List<String>? = null,
 )

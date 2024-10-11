@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_SCHEDULE_ALREADY_REVOKED")
 public data class PaymentScheduleAlreadyRevokedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): RevokePaymentSchedulesError

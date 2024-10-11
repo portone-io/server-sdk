@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class RegisterStoreReceiptBody(
   /** 하위 상점 거래 목록 */
-  val items: Array<RegisterStoreReceiptBodyItem>,
+  val items: List<RegisterStoreReceiptBodyItem>,
   /** 상점 아이디 */
   val storeId: String? = null,
 )

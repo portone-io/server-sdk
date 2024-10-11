@@ -1,5 +1,6 @@
 package io.portone.sdk.server.analytics
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -7,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class AnalyticsAverageAmountChartStat(
   /** 시점 */
-  val timestamp: Instant,
+  val timestamp: @Serializable(InstantSerializer::class) Instant,
   /** 건별 평균 거래액 */
   val paymentAverageAmount: Long,
   /** 고객 당 평균 거래액 */

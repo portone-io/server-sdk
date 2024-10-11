@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST")
 public data class PlatformPartnerSchedulesAlreadyExistError(
-  val ids: Array<String>,
-  val graphqlIds: Array<String>,
-  val message: String? = null,
+  val ids: List<String>,
+  val graphqlIds: List<String>,
+  override val message: String? = null,
 ): SchedulePlatformPartnersError

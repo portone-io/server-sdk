@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_NOT_SUPPORTED_BANK")
 public data class PlatformNotSupportedBankError(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetPlatformAccountHolderError

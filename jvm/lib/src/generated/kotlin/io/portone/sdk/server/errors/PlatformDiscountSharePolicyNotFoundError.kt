@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND")
 public data class PlatformDiscountSharePolicyNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformDiscountSharePolicyError,
   CancelPlatformDiscountSharePolicyScheduleError,
   GetPlatformDiscountSharePolicyError,

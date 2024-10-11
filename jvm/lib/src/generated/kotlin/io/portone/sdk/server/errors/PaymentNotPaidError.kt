@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_NOT_PAID")
 public data class PaymentNotPaidError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   CancelPaymentError,
   ConfirmEscrowError,

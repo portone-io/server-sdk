@@ -14,19 +14,19 @@ public data class PlatformContractFilterInput(
    *
    * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 수수료 부담 주체를 가진 계약만 조회합니다.
    */
-  val platformFeePayers: Array<PlatformPayer>? = null,
+  val platformFeePayers: List<PlatformPayer>? = null,
   /**
    * 플랫폼 정산 주기 계산 방식
    *
    * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 주기 계산 방식을 가진 계약만 조회합니다.
    */
-  val cycleTypes: Array<PlatformSettlementCycleType>? = null,
+  val cycleTypes: List<PlatformSettlementCycleType>? = null,
   /**
    * 플랫폼 정산 기준일
    *
    * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 기준일을 가진 계약만 조회합니다.
    */
-  val datePolicies: Array<PlatformSettlementCycleDatePolicy>? = null,
+  val datePolicies: List<PlatformSettlementCycleDatePolicy>? = null,
   /**
    * 보관 조회 여부
    *

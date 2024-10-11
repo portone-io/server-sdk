@@ -10,8 +10,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("EXTERNAL")
 public data class PlatformTransferSummaryExternalPayment(
-  val id: String,
-  val currency: Currency,
+  override val id: String,
+  override val currency: Currency,
   val orderName: String? = null,
-  val methodType: PaymentMethodType? = null,
+  override val methodType: PaymentMethodType? = null,
 ): PlatformTransferSummaryPayment

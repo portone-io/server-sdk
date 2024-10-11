@@ -14,7 +14,7 @@ public data class PlatformSettlementAmountExceededError(
   val requestedAmount: Long,
   /** 초과한 금액 */
   val allowedAmount: Long,
-  val message: String? = null,
+  override val message: String? = null,
   /**
    * 상품 아이디
    *

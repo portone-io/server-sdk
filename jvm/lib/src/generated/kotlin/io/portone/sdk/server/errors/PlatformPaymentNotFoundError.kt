@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_PAYMENT_NOT_FOUND")
 public data class PlatformPaymentNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError,
   CreatePlatformOrderTransferError

@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY")
 public data class PlatformCannotArchiveScheduledDiscountSharePolicyError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformDiscountSharePolicyError

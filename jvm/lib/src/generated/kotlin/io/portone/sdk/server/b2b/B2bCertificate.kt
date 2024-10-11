@@ -1,6 +1,7 @@
 package io.portone.sdk.server.b2b
 
 import io.portone.sdk.server.b2b.B2bCertificateType
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -8,9 +9,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class B2bCertificate(
   /** 등록일시 */
-  val registeredAt: Instant,
+  val registeredAt: @Serializable(InstantSerializer::class) Instant,
   /** 만료일시 */
-  val expiredAt: Instant,
+  val expiredAt: @Serializable(InstantSerializer::class) Instant,
   /** 발행자명 */
   val issuerDn: String,
   /** 본인명 */

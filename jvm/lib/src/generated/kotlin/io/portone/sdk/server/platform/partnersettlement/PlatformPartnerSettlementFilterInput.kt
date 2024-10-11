@@ -10,15 +10,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class PlatformPartnerSettlementFilterInput(
-  val settlementDates: Array<String>? = null,
-  val contractIds: Array<String>? = null,
-  val partnerTags: Array<String>? = null,
+  val settlementDates: List<String>? = null,
+  val contractIds: List<String>? = null,
+  val partnerTags: List<String>? = null,
   /** 통화 단위 */
-  val settlementCurrencies: Array<Currency>? = null,
+  val settlementCurrencies: List<Currency>? = null,
   /** 정산 상태 */
-  val statuses: Array<PlatformPartnerSettlementStatus>? = null,
-  val partnerIds: Array<String>? = null,
+  val statuses: List<PlatformPartnerSettlementStatus>? = null,
+  val partnerIds: List<String>? = null,
   /** 정산 유형 */
-  val settlementTypes: Array<PlatformPartnerSettlementType>? = null,
+  val settlementTypes: List<PlatformPartnerSettlementType>? = null,
   val keyword: PlatformPartnerSettlementFilterKeywordInput? = null,
 )

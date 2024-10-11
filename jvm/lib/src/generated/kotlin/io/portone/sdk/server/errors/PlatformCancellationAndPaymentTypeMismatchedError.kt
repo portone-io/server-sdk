@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED")
 public data class PlatformCancellationAndPaymentTypeMismatchedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

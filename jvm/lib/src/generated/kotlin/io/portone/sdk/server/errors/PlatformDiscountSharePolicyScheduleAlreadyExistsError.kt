@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS")
 public data class PlatformDiscountSharePolicyScheduleAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ScheduleDiscountSharePolicyError

@@ -119,7 +119,7 @@ public class BillingKeyClient(
       json.decodeFromString<BillingKeyInfo>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -189,7 +189,7 @@ public class BillingKeyClient(
       json.decodeFromString<DeleteBillingKeyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -237,6 +237,7 @@ public class BillingKeyClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("billing-keys")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -263,7 +264,7 @@ public class BillingKeyClient(
       json.decodeFromString<GetBillingKeyInfosResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -320,7 +321,7 @@ public class BillingKeyClient(
     customer: CustomerInput? = null,
     customData: String? = null,
     bypass: JsonObject? = null,
-    noticeUrls: Array<String>? = null,
+    noticeUrls: List<String>? = null,
   ): IssueBillingKeyResponse {
     val requestBody = IssueBillingKeyBody(
       storeId = storeId,
@@ -366,7 +367,7 @@ public class BillingKeyClient(
       json.decodeFromString<IssueBillingKeyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -379,7 +380,7 @@ public class BillingKeyClient(
     customer: CustomerInput? = null,
     customData: String? = null,
     bypass: JsonObject? = null,
-    noticeUrls: Array<String>? = null,
+    noticeUrls: List<String>? = null,
   ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
 
   override fun close() {

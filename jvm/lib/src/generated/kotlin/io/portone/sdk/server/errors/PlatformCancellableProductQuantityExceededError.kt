@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 public data class PlatformCancellableProductQuantityExceededError(
   val productId: String,
   val cancellableQuantity: Long,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

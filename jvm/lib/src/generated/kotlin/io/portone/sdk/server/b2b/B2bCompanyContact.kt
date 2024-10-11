@@ -1,5 +1,6 @@
 package io.portone.sdk.server.b2b
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -19,7 +20,7 @@ public data class B2bCompanyContact(
   /** 담당자 이메일 */
   val email: String,
   /** 등록 일시 */
-  val registeredAt: Instant,
+  val registeredAt: @Serializable(InstantSerializer::class) Instant,
   /**
    * 관리자 여부
    *

@@ -142,7 +142,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("UNAUTHORIZED")
 public data class UnauthorizedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,
   ArchivePlatformContractError,

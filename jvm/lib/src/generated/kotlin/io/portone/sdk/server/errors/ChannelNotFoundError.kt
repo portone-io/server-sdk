@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CHANNEL_NOT_FOUND")
 public data class ChannelNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): IssueBillingKeyError,
   IssueCashReceiptError,
   PayInstantlyError,

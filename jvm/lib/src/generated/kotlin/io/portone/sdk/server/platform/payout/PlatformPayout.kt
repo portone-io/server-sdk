@@ -5,6 +5,7 @@ import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.PlatformPayoutMethod
 import io.portone.sdk.server.platform.payout.PlatformPayoutAccount
 import io.portone.sdk.server.platform.payout.PlatformPayoutStatus
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -16,7 +17,7 @@ public data class PlatformPayout(
   val graphqlId: String,
   val method: PlatformPayoutMethod,
   val status: PlatformPayoutStatus,
-  val statusUpdatedAt: Instant,
+  val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
   val partner: PlatformPartner,
   val account: PlatformPayoutAccount,
   val currency: Currency,
@@ -24,7 +25,7 @@ public data class PlatformPayout(
   val settlementAmount: Long,
   val incomeTaxAmount: Long,
   val localIncomeTaxAmount: Long,
-  val createdAt: Instant,
+  val createdAt: @Serializable(InstantSerializer::class) Instant,
   val memo: String? = null,
   val withdrawalMemo: String? = null,
   val depositMemo: String? = null,

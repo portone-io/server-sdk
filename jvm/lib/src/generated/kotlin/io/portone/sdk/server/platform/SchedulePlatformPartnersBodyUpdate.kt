@@ -16,6 +16,6 @@ public data class SchedulePlatformPartnersBodyUpdate(
   val account: SchedulePlatformPartnersBodyUpdateAccount? = null,
   val defaultContractId: String? = null,
   val memo: String? = null,
-  val tags: Array<String>? = null,
+  val tags: List<String>? = null,
   val userDefinedProperties: PlatformProperties? = null,
 )

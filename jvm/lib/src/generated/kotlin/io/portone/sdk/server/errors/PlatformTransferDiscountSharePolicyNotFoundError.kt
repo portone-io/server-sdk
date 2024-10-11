@@ -11,5 +11,5 @@ public data class PlatformTransferDiscountSharePolicyNotFoundError(
   val discountSharePolicyId: String,
   val discountSharePolicyGraphqlId: String,
   val productId: String? = null,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError

@@ -1,6 +1,7 @@
 package io.portone.sdk.server.analytics
 
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -8,9 +9,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetAnalyticsPaymentStatusByPaymentMethodChartBody(
   /** 조회할 결제 현황의 시작 시간 */
-  val `from`: Instant,
+  val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 결제 현황의 끝 시간 */
-  val until: Instant,
+  val until: @Serializable(InstantSerializer::class) Instant,
   /**
    * 조회할 결제 통화
    *

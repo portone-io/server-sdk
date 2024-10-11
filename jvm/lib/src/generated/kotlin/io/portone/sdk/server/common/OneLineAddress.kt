@@ -14,5 +14,5 @@ import kotlinx.serialization.Serializable
 @SerialName("ONE_LINE")
 public data class OneLineAddress(
   /** 주소 (한 줄) */
-  val oneLine: String,
+  override val oneLine: String,
 ): Address

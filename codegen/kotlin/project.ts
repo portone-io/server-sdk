@@ -168,7 +168,7 @@ function generateExceptions(
               if (property.item.format === "date-time") {
                 writer.writeLine(
                   `public val ${name}: ${
-                    wrapOptional("Array<Instant>")
+                    wrapOptional("List<Instant>")
                   } = cause.${property.name}`,
                 )
                 crossRef.add("java.time.Instant")
@@ -176,7 +176,7 @@ function generateExceptions(
               }
               writer.writeLine(
                 `public val ${name}: ${
-                  wrapOptional("Array<String>")
+                  wrapOptional("List<String>")
                 } = cause.${property.name}`,
               )
               crossRef.add("kotlin.String")
@@ -217,7 +217,7 @@ function generateExceptions(
             case "ref": {
               writer.writeLine(
                 `public val ${name}: ${
-                  wrapOptional(`Array<${property.item.value}>`)
+                  wrapOptional(`List<${property.item.value}>`)
                 } = cause.${property.name}`,
               )
               const category = categoryMap.get(property.item.value)
@@ -323,7 +323,10 @@ function generateRootClient(
     writer.writeLine(line)
   }
   writer.indent()
-  for (const subpackage of pack.subpackages) {
+  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
+    subpackages.length > 0 || operations.length > 0
+  )
+  for (const subpackage of subpackages) {
     writer.writeLine(
       `public val ${subpackage.category}: ${
         toPascalCase(subpackage.category)
@@ -341,7 +344,7 @@ function generateRootClient(
   }
   writer.writeLine("override fun close() {")
   writer.indent()
-  for (const subpackage of pack.subpackages) {
+  for (const subpackage of subpackages) {
     writer.writeLine(`${subpackage.category}.close()`)
   }
   writer.writeLine("client.close()")

@@ -29,6 +29,7 @@ import java.io.Closeable
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 public class BulkPayoutClient(
@@ -72,6 +73,7 @@ public class BulkPayoutClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("platform", "bulk-payouts")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -99,7 +101,7 @@ public class BulkPayoutClient(
       json.decodeFromString<GetPlatformBulkPayoutsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_ALREADY_CANCELLED")
 public data class PaymentAlreadyCancelledError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelPaymentError

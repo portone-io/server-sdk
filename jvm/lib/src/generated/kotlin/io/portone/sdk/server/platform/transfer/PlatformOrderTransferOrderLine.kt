@@ -14,9 +14,9 @@ public data class PlatformOrderTransferOrderLine(
   /** 상품 수량 */
   val quantity: Int,
   /** 상품 할인 정보 */
-  val discounts: Array<PlatformOrderTransferDiscount>,
+  val discounts: List<PlatformOrderTransferDiscount>,
   /** 상품 추가 수수료 정보 */
-  val additionalFees: Array<PlatformOrderTransferAdditionalFee>,
+  val additionalFees: List<PlatformOrderTransferAdditionalFee>,
   /** 상품 정산 금액 정보 */
   val amount: PlatformOrderSettlementAmount,
 )

@@ -19,6 +19,7 @@ import io.portone.sdk.server.payment.PaymentSortBy
 import io.portone.sdk.server.payment.PaymentTextSearch
 import io.portone.sdk.server.payment.PaymentTimestampType
 import io.portone.sdk.server.payment.PaymentWebhookStatus
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -41,31 +42,31 @@ public data class PaymentFilterInput(
    *
    * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
    */
-  val `from`: Instant? = null,
+  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 요청/상태 승인 시점 범위의 끝
    *
    * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
    */
-  val until: Instant? = null,
+  val until: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 상태 리스트
    *
    * 값을 입력하지 않으면 결제상태 필터링이 적용되지 않습니다.
    */
-  val status: Array<PaymentStatus>? = null,
+  val status: List<PaymentStatus>? = null,
   /**
    * 결제수단 리스트
    *
    * 값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
    */
-  val methods: Array<PaymentMethodType>? = null,
+  val methods: List<PaymentMethodType>? = null,
   /**
    * PG사 리스트
    *
    * 값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
    */
-  val pgProvider: Array<PgProvider>? = null,
+  val pgProvider: List<PgProvider>? = null,
   /** 테스트 결제 필터링 */
   val isTest: Boolean? = null,
   /** 결제 예약 건 필터링 */
@@ -103,5 +104,5 @@ public data class PaymentFilterInput(
   /** 현금영수증 취소 시간 범위 */
   val cashReceiptCancelledAtRange: DateTimeRange? = null,
   /** 통합 검색 리스트 필터 */
-  val textSearch: Array<PaymentTextSearch>? = null,
+  val textSearch: List<PaymentTextSearch>? = null,
 )

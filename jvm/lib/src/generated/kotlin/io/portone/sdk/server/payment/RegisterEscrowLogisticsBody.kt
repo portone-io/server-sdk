@@ -29,5 +29,5 @@ public data class RegisterEscrowLogisticsBody(
    */
   val sendEmail: Boolean? = null,
   /** 상품 정보 */
-  val products: Array<PaymentProduct>? = null,
+  val products: List<PaymentProduct>? = null,
 )

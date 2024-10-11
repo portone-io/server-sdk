@@ -14,6 +14,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("INVALID_REQUEST")
 public data class ChannelSpecificFailureInvalidRequest(
-  val channel: SelectedChannel,
-  val message: String? = null,
+  override val channel: SelectedChannel,
+  override val message: String? = null,
 ): ChannelSpecificFailure

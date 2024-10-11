@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PlatformAccountTransferFilter(
   /** 계좌 이체 유형 */
-  val types: Array<PlatformAccountTransferType>? = null,
+  val types: List<PlatformAccountTransferType>? = null,
 )

@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("MANUAL_DATES")
 public data class PlatformSettlementCycleMethodManualDates(
   /** 월 및 일자 정보 */
-  val dates: Array<MonthDay>,
+  val dates: List<MonthDay>,
 ): PlatformSettlementCycleMethod

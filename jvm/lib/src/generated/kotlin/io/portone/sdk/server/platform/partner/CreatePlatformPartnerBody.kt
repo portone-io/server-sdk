@@ -32,7 +32,7 @@ public data class CreatePlatformPartnerBody(
    *
    * 최대 10개까지 입력할 수 있습니다.
    */
-  val tags: Array<String>,
+  val tags: List<String>,
   /**
    * 파트너 유형별 추가 정보
    *

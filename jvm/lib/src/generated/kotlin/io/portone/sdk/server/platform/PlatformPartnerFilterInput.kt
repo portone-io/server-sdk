@@ -17,23 +17,23 @@ public data class PlatformPartnerFilterInput(
    */
   val isArchived: Boolean? = null,
   /** 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 태그를 하나 이상 가지는 파트너만 조회합니다. */
-  val tags: Array<String>? = null,
+  val tags: List<String>? = null,
   /**
    * 은행
    *
    * 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 계좌 은행을 가진 파트너만 조회합니다.
    */
-  val banks: Array<Bank>? = null,
+  val banks: List<Bank>? = null,
   /**
    * 통화 단위
    *
    * 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 계좌 통화를 가진 파트너만 조회합니다.
    */
-  val accountCurrencies: Array<Currency>? = null,
+  val accountCurrencies: List<Currency>? = null,
   /** 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 아이디를 가진 파트너만 조회합니다. */
-  val ids: Array<String>? = null,
+  val ids: List<String>? = null,
   /** 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 기본 계약 id를 가진 파트너만 조회합니다. */
-  val contractIds: Array<String>? = null,
+  val contractIds: List<String>? = null,
   /** 검색 키워드 */
   val keyword: PlatformPartnerFilterInputKeyword? = null,
 )

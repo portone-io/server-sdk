@@ -9,6 +9,6 @@ import kotlin.String
 public class PlatformPartnerIdsDuplicatedException(
   cause: PlatformPartnerIdsDuplicatedError
 ) : Exception(cause.message) {
-  public val ids: Array<String> = cause.ids
-  public val graphqlIds: Array<String> = cause.graphqlIds
+  public val ids: List<String> = cause.ids
+  public val graphqlIds: List<String> = cause.graphqlIds
 }

@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 /** 고객사의 평균 거래액 현황 조회 응답 */
 @Serializable
 public data class AnalyticsAverageAmountChart(
-  val stats: Array<AnalyticsAverageAmountChartStat>,
+  val stats: List<AnalyticsAverageAmountChartStat>,
   val summary: AnalyticsAverageAmountChartSummary,
 )

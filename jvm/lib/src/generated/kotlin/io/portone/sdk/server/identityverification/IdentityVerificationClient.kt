@@ -113,7 +113,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<IdentityVerification>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -209,7 +209,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<SendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -291,7 +291,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ConfirmIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -358,7 +358,7 @@ public class IdentityVerificationClient(
       json.decodeFromString<ResendIdentityVerificationResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

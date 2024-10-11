@@ -12,5 +12,5 @@ public data class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(
   val registeredSettlementTaxFreeAmount: Long,
   val requestSettlementTaxFreeAmount: Long,
   val portOneTaxFreeAmount: Long,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderTransferError

@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("WEEKLY")
 public data class PlatformSettlementCycleMethodWeekly(
   /** 요일 */
-  val daysOfWeek: Array<DayOfWeek>,
+  val daysOfWeek: List<DayOfWeek>,
 ): PlatformSettlementCycleMethod

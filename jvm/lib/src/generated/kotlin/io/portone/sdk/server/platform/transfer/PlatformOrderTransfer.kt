@@ -21,24 +21,24 @@ import kotlinx.serialization.Serializable
 @SerialName("ORDER")
 public data class PlatformOrderTransfer(
   /** 정산건 아이디 */
-  val id: String,
-  val graphqlId: String,
+  override val id: String,
+  override val graphqlId: String,
   /** 파트너 */
-  val partner: PlatformPartner,
+  override val partner: PlatformPartner,
   /** 정산 상태 */
-  val status: PlatformTransferStatus,
+  override val status: PlatformTransferStatus,
   /**
    * 정산 일
    *
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
    */
-  val settlementDate: String,
+  override val settlementDate: String,
   /** 정산 통화 */
-  val settlementCurrency: Currency,
+  override val settlementCurrency: Currency,
   /** 테스트 모드 여부 */
-  val isForTest: Boolean,
+  override val isForTest: Boolean,
   /** 사용자 정의 속성 */
-  val userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>,
+  override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 정산 금액 정보 */
   val amount: PlatformOrderSettlementAmount,
   /** 계약 */
@@ -52,15 +52,15 @@ public data class PlatformOrderTransfer(
    */
   val settlementStartDate: String,
   /** 주문 항목 리스트 */
-  val orderLines: Array<PlatformOrderTransferOrderLine>,
+  val orderLines: List<PlatformOrderTransferOrderLine>,
   /** 정산 금액 계산 시 사용된 추가 수수료 정보 */
-  val additionalFees: Array<PlatformOrderTransferAdditionalFee>,
+  val additionalFees: List<PlatformOrderTransferAdditionalFee>,
   /** 정산 금액 계산 시 사용된 할인 정보 */
-  val discounts: Array<PlatformOrderTransferDiscount>,
+  val discounts: List<PlatformOrderTransferDiscount>,
   /** 정산 파라미터 (실험기능) */
   val parameters: TransferParameters,
   /** 메모 */
-  val memo: String? = null,
-  val payoutId: String? = null,
-  val payoutGraphqlId: String? = null,
+  override val memo: String? = null,
+  override val payoutId: String? = null,
+  override val payoutGraphqlId: String? = null,
 ): PlatformTransfer

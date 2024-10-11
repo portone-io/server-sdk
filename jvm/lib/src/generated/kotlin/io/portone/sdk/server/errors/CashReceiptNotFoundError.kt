@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CASH_RECEIPT_NOT_FOUND")
 public data class CashReceiptNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelCashReceiptError,
   GetCashReceiptError

@@ -11,6 +11,6 @@ import kotlinx.serialization.Serializable
 public data class PlatformTransferAlreadyExistsError(
   val transferId: String,
   val transferGraphqlId: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformOrderCancelTransferError,
   CreatePlatformOrderTransferError

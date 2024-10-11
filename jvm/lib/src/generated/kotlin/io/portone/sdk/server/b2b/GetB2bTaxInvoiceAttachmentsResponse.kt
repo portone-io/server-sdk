@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetB2bTaxInvoiceAttachmentsResponse(
   /** 첨부파일 목록 */
-  val attachments: Array<B2bTaxInvoiceAttachment>,
+  val attachments: List<B2bTaxInvoiceAttachment>,
 )

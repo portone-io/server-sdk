@@ -38,7 +38,6 @@ public class PortOneClient(
   public val b2b: B2BClient = B2BClient(apiSecret, apiBase, storeId)
   public val pgSpecific: PgSpecificClient = PgSpecificClient(apiSecret, apiBase, storeId)
   public val promotion: PromotionClient = PromotionClient(apiSecret, apiBase, storeId)
-  public val common: CommonClient = CommonClient(apiSecret, apiBase, storeId)
   override fun close() {
     auth.close()
     platform.close()
@@ -51,7 +50,6 @@ public class PortOneClient(
     b2b.close()
     pgSpecific.close()
     promotion.close()
-    common.close()
     client.close()
   }
 }

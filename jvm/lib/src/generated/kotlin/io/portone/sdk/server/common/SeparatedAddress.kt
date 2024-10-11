@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
 @SerialName("SEPARATED")
 public data class SeparatedAddress(
   /** 주소 (한 줄) */
-  val oneLine: String,
+  override val oneLine: String,
   /** 상세 주소 1 */
   val addressLine1: String,
   /** 상세 주소 2 */

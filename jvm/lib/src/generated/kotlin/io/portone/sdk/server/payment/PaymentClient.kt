@@ -199,7 +199,7 @@ public class PaymentClient(
       json.decodeFromString<PreRegisterPaymentResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -262,7 +262,7 @@ public class PaymentClient(
       json.decodeFromString<Payment>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -304,6 +304,7 @@ public class PaymentClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("payments")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -330,7 +331,7 @@ public class PaymentClient(
       json.decodeFromString<GetPaymentsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -386,6 +387,7 @@ public class PaymentClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("payments-by-cursor")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -412,7 +414,7 @@ public class PaymentClient(
       json.decodeFromString<GetAllPaymentsByCursorResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -537,7 +539,7 @@ public class PaymentClient(
       json.decodeFromString<CancelPaymentResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -637,8 +639,8 @@ public class PaymentClient(
     useCardPoint: Boolean? = null,
     cashReceipt: CashReceiptInput? = null,
     country: Country? = null,
-    noticeUrls: Array<String>? = null,
-    products: Array<PaymentProduct>? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
     productCount: Int? = null,
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
@@ -706,7 +708,7 @@ public class PaymentClient(
       json.decodeFromString<PayWithBillingKeyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -726,8 +728,8 @@ public class PaymentClient(
     useCardPoint: Boolean? = null,
     cashReceipt: CashReceiptInput? = null,
     country: Country? = null,
-    noticeUrls: Array<String>? = null,
-    products: Array<PaymentProduct>? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
     productCount: Int? = null,
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
@@ -817,8 +819,8 @@ public class PaymentClient(
     amount: PaymentAmountInput,
     currency: Currency,
     country: Country? = null,
-    noticeUrls: Array<String>? = null,
-    products: Array<PaymentProduct>? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
     productCount: Int? = null,
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
@@ -881,7 +883,7 @@ public class PaymentClient(
       json.decodeFromString<PayInstantlyResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -900,8 +902,8 @@ public class PaymentClient(
     amount: PaymentAmountInput,
     currency: Currency,
     country: Country? = null,
-    noticeUrls: Array<String>? = null,
-    products: Array<PaymentProduct>? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
     productCount: Int? = null,
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
@@ -962,7 +964,7 @@ public class PaymentClient(
       json.decodeFromString<CloseVirtualAccountResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1008,7 +1010,7 @@ public class PaymentClient(
     receiver: PaymentEscrowReceiverInput? = null,
     logistics: PaymentLogistics,
     sendEmail: Boolean? = null,
-    products: Array<PaymentProduct>? = null,
+    products: List<PaymentProduct>? = null,
   ): ApplyEscrowLogisticsResponse {
     val requestBody = RegisterEscrowLogisticsBody(
       storeId = storeId,
@@ -1052,7 +1054,7 @@ public class PaymentClient(
       json.decodeFromString<ApplyEscrowLogisticsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1064,7 +1066,7 @@ public class PaymentClient(
     receiver: PaymentEscrowReceiverInput? = null,
     logistics: PaymentLogistics,
     sendEmail: Boolean? = null,
-    products: Array<PaymentProduct>? = null,
+    products: List<PaymentProduct>? = null,
   ): CompletableFuture<ApplyEscrowLogisticsResponse> = GlobalScope.future { applyEscrowLogistics(paymentId, sender, receiver, logistics, sendEmail, products) }
 
 
@@ -1103,7 +1105,7 @@ public class PaymentClient(
     receiver: PaymentEscrowReceiverInput? = null,
     logistics: PaymentLogistics,
     sendEmail: Boolean? = null,
-    products: Array<PaymentProduct>? = null,
+    products: List<PaymentProduct>? = null,
   ): ModifyEscrowLogisticsResponse {
     val requestBody = ModifyEscrowLogisticsBody(
       storeId = storeId,
@@ -1147,7 +1149,7 @@ public class PaymentClient(
       json.decodeFromString<ModifyEscrowLogisticsResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1159,7 +1161,7 @@ public class PaymentClient(
     receiver: PaymentEscrowReceiverInput? = null,
     logistics: PaymentLogistics,
     sendEmail: Boolean? = null,
-    products: Array<PaymentProduct>? = null,
+    products: List<PaymentProduct>? = null,
   ): CompletableFuture<ModifyEscrowLogisticsResponse> = GlobalScope.future { modifyEscrowLogistics(paymentId, sender, receiver, logistics, sendEmail, products) }
 
 
@@ -1227,7 +1229,7 @@ public class PaymentClient(
       json.decodeFromString<ConfirmEscrowResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1300,7 +1302,7 @@ public class PaymentClient(
       json.decodeFromString<ResendWebhookResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1335,7 +1337,7 @@ public class PaymentClient(
   @JvmName("registerStoreReceiptSuspend")
   public suspend fun registerStoreReceipt(
     paymentId: String,
-    items: Array<RegisterStoreReceiptBodyItem>,
+    items: List<RegisterStoreReceiptBodyItem>,
   ): RegisterStoreReceiptResponse {
     val requestBody = RegisterStoreReceiptBody(
       items = items,
@@ -1375,7 +1377,7 @@ public class PaymentClient(
       json.decodeFromString<RegisterStoreReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -1383,7 +1385,7 @@ public class PaymentClient(
   @JvmName("registerStoreReceipt")
   public suspend fun registerStoreReceiptFuture(
     paymentId: String,
-    items: Array<RegisterStoreReceiptBodyItem>,
+    items: List<RegisterStoreReceiptBodyItem>,
   ): CompletableFuture<RegisterStoreReceiptResponse> = GlobalScope.future { registerStoreReceipt(paymentId, items) }
 
   override fun close() {

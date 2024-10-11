@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND")
 public data class PlatformUserDefinedPropertyNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePlatformManualTransferError,
   CreatePlatformOrderCancelTransferError,
   CreatePlatformOrderTransferError,

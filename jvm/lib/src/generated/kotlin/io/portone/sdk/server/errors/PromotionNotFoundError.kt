@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PROMOTION_NOT_FOUND")
 public data class PromotionNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetPromotionError

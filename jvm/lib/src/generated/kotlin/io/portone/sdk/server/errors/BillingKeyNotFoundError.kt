@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("BILLING_KEY_NOT_FOUND")
 public data class BillingKeyNotFoundError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePaymentScheduleError,
   DeleteBillingKeyError,
   GetBillingKeyInfoError,

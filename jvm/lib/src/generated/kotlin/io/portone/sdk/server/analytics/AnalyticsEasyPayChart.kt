@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 /** 고객사의 간편결제 현황 차트 정보 */
 @Serializable
 public data class AnalyticsEasyPayChart(
-  val stats: Array<AnalyticsEasyPayChartStat>,
+  val stats: List<AnalyticsEasyPayChartStat>,
 )

@@ -12,5 +12,5 @@ public data class PlatformInvalidSettlementFormulaError(
   val platformFee: PlatformSettlementFormulaError? = null,
   val discountShare: PlatformSettlementFormulaError? = null,
   val additionalFee: PlatformSettlementFormulaError? = null,
-  val message: String? = null,
+  override val message: String? = null,
 ): UpdatePlatformError

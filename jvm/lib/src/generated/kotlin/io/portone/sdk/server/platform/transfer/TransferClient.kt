@@ -186,7 +186,7 @@ public class TransferClient(
       json.decodeFromString<PlatformTransfer>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -251,7 +251,7 @@ public class TransferClient(
       json.decodeFromString<DeletePlatformTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -290,6 +290,7 @@ public class TransferClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("platform", "transfer-summaries")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -317,7 +318,7 @@ public class TransferClient(
       json.decodeFromString<GetPlatformTransferSummariesResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -402,12 +403,12 @@ public class TransferClient(
     orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
     taxFreeAmount: Long? = null,
     settlementStartDate: String? = null,
-    discounts: Array<CreatePlatformOrderTransferBodyDiscount>,
-    additionalFees: Array<CreatePlatformOrderTransferBodyAdditionalFee>,
+    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
+    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
     externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
     isForTest: Boolean? = null,
     parameters: TransferParameters? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CreateOrderTransferResponse {
     val requestBody = CreatePlatformOrderTransferBody(
       partnerId = partnerId,
@@ -472,7 +473,7 @@ public class TransferClient(
       json.decodeFromString<CreateOrderTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -486,12 +487,12 @@ public class TransferClient(
     orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
     taxFreeAmount: Long? = null,
     settlementStartDate: String? = null,
-    discounts: Array<CreatePlatformOrderTransferBodyDiscount>,
-    additionalFees: Array<CreatePlatformOrderTransferBodyAdditionalFee>,
+    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
+    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
     externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
     isForTest: Boolean? = null,
     parameters: TransferParameters? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CompletableFuture<CreateOrderTransferResponse> = GlobalScope.future { createPlatformOrderTransfer(partnerId, contractId, memo, paymentId, orderDetail, taxFreeAmount, settlementStartDate, discounts, additionalFees, externalPaymentDetail, isForTest, parameters, userDefinedProperties) }
 
 
@@ -567,11 +568,11 @@ public class TransferClient(
     memo: String? = null,
     orderDetail: CreatePlatformOrderCancelTransferBodyOrderDetail? = null,
     taxFreeAmount: Long? = null,
-    discounts: Array<CreatePlatformOrderCancelTransferBodyDiscount>,
+    discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
     settlementStartDate: String? = null,
     externalCancellationDetail: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail? = null,
     isForTest: Boolean? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CreateOrderCancelTransferResponse {
     val requestBody = CreatePlatformOrderCancelTransferBody(
       partnerId = partnerId,
@@ -638,7 +639,7 @@ public class TransferClient(
       json.decodeFromString<CreateOrderCancelTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -652,11 +653,11 @@ public class TransferClient(
     memo: String? = null,
     orderDetail: CreatePlatformOrderCancelTransferBodyOrderDetail? = null,
     taxFreeAmount: Long? = null,
-    discounts: Array<CreatePlatformOrderCancelTransferBodyDiscount>,
+    discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
     settlementStartDate: String? = null,
     externalCancellationDetail: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail? = null,
     isForTest: Boolean? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CompletableFuture<CreateOrderCancelTransferResponse> = GlobalScope.future { createPlatformOrderCancelTransfer(partnerId, paymentId, transferId, cancellationId, memo, orderDetail, taxFreeAmount, discounts, settlementStartDate, externalCancellationDetail, isForTest, userDefinedProperties) }
 
 
@@ -697,7 +698,7 @@ public class TransferClient(
     settlementAmount: Long,
     settlementDate: String,
     isForTest: Boolean? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CreateManualTransferResponse {
     val requestBody = CreatePlatformManualTransferBody(
       partnerId = partnerId,
@@ -741,7 +742,7 @@ public class TransferClient(
       json.decodeFromString<CreateManualTransferResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -753,7 +754,7 @@ public class TransferClient(
     settlementAmount: Long,
     settlementDate: String,
     isForTest: Boolean? = null,
-    userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
   ): CompletableFuture<CreateManualTransferResponse> = GlobalScope.future { createPlatformManualTransfer(partnerId, memo, settlementAmount, settlementDate, isForTest, userDefinedProperties) }
 
 
@@ -778,9 +779,9 @@ public class TransferClient(
   @JvmName("downloadPlatformTransferSheetSuspend")
   public suspend fun downloadPlatformTransferSheet(
     filter: PlatformTransferFilterInput? = null,
-    fields: Array<PlatformTransferSheetField>? = null,
-    transferUserDefinedPropertyKeys: Array<String>? = null,
-    partnerUserDefinedPropertyKeys: Array<String>? = null,
+    fields: List<PlatformTransferSheetField>? = null,
+    transferUserDefinedPropertyKeys: List<String>? = null,
+    partnerUserDefinedPropertyKeys: List<String>? = null,
   ): String {
     val requestBody = DownloadPlatformTransferSheetBody(
       filter = filter,
@@ -791,6 +792,7 @@ public class TransferClient(
     val httpResponse = client.get(apiBase) {
       url {
         appendPathSegments("platform", "transfer-summaries", "sheet-file")
+        parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -818,9 +820,9 @@ public class TransferClient(
   @JvmName("downloadPlatformTransferSheet")
   public suspend fun downloadPlatformTransferSheetFuture(
     filter: PlatformTransferFilterInput? = null,
-    fields: Array<PlatformTransferSheetField>? = null,
-    transferUserDefinedPropertyKeys: Array<String>? = null,
-    partnerUserDefinedPropertyKeys: Array<String>? = null,
+    fields: List<PlatformTransferSheetField>? = null,
+    transferUserDefinedPropertyKeys: List<String>? = null,
+    partnerUserDefinedPropertyKeys: List<String>? = null,
   ): CompletableFuture<String> = GlobalScope.future { downloadPlatformTransferSheet(filter, fields, transferUserDefinedPropertyKeys, partnerUserDefinedPropertyKeys) }
 
   override fun close() {

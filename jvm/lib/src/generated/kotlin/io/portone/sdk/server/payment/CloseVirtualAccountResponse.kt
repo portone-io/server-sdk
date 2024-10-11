@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -7,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class CloseVirtualAccountResponse(
   /** 가상계좌 말소 시점 */
-  val closedAt: Instant,
+  val closedAt: @Serializable(InstantSerializer::class) Instant,
 )

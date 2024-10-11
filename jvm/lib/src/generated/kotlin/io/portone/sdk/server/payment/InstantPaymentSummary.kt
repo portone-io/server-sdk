@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -10,5 +11,5 @@ public data class InstantPaymentSummary(
   /** PG사 결제 아이디 */
   val pgTxId: String,
   /** 결제 완료 시점 */
-  val paidAt: Instant,
+  val paidAt: @Serializable(InstantSerializer::class) Instant,
 )

@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetAllPaymentsByCursorResponse(
   /** 조회된 결제 건 및 커서 정보 리스트 */
-  val items: Array<PaymentWithCursor>,
+  val items: List<PaymentWithCursor>,
 )

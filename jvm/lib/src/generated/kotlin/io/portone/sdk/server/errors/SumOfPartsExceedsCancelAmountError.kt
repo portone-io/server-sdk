@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT")
 public data class SumOfPartsExceedsCancelAmountError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelPaymentError

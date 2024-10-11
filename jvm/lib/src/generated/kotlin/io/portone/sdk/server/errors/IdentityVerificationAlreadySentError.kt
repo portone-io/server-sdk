@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("IDENTITY_VERIFICATION_ALREADY_SENT")
 public data class IdentityVerificationAlreadySentError(
-  val message: String? = null,
+  override val message: String? = null,
 ): SendIdentityVerificationError

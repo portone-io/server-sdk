@@ -18,7 +18,7 @@ public data class PlatformAdditionalFeePolicyFilterInput(
    *
    * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 부가세 부담 주체에 해당하는 추가 수수료 정책만 조회합니다.
    */
-  val vatPayers: Array<PlatformPayer>? = null,
+  val vatPayers: List<PlatformPayer>? = null,
   /** 검색 키워드 */
   val keyword: PlatformAdditionalFeePolicyFilterInputKeyword? = null,
 )

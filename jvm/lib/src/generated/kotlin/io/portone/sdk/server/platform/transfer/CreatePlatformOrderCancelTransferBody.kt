@@ -19,7 +19,7 @@ public data class CreatePlatformOrderCancelTransferBody(
   /** 취소 내역 아이디 */
   val cancellationId: String,
   /** 할인 정보 */
-  val discounts: Array<CreatePlatformOrderCancelTransferBodyDiscount>,
+  val discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
   /** 파트너 아이디 */
   val partnerId: String? = null,
   /** 결제 아이디 */
@@ -55,5 +55,5 @@ public data class CreatePlatformOrderCancelTransferBody(
    */
   val isForTest: Boolean? = null,
   /** 사용자 정의 속성 */
-  val userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+  val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )

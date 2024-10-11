@@ -8,6 +8,7 @@ import io.portone.sdk.server.common.PaymentClientType
 import io.portone.sdk.server.common.PgCompany
 import io.portone.sdk.server.common.PgProvider
 import io.portone.sdk.server.common.PortOneVersion
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.Array
 import kotlin.String
@@ -29,25 +30,25 @@ public data class BillingKeyFilterInput(
    *
    * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
    */
-  val `from`: Instant? = null,
+  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 조회 기준 시점 범위의 끝
    *
    * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
    */
-  val until: Instant? = null,
+  val until: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 빌링키 상태 리스트
    *
    * 값을 입력하지 않으면 빌링키 상태 필터링이 적용되지 않습니다.
    */
-  val status: Array<BillingKeyStatus>? = null,
+  val status: List<BillingKeyStatus>? = null,
   /**
    * 채널 그룹 아이디 리스트
    *
    * 값을 입력하지 않으면 스마트 라우팅 그룹 아이디 필터링이 적용되지 않습니다.
    */
-  val channelGroupIds: Array<String>? = null,
+  val channelGroupIds: List<String>? = null,
   /** 고객 ID */
   val customerId: String? = null,
   /** 플랫폼 유형 */
@@ -59,19 +60,19 @@ public data class BillingKeyFilterInput(
    *
    * 값을 입력하지 않으면 PG사 결제 모듈 필터링이 적용되지 않습니다.
    */
-  val pgProviders: Array<PgProvider>? = null,
+  val pgProviders: List<PgProvider>? = null,
   /**
    * PG사 리스트
    *
    * 값을 입력하지 않으면 PG사 필터링이 적용되지 않습니다.
    */
-  val pgCompanies: Array<PgCompany>? = null,
+  val pgCompanies: List<PgCompany>? = null,
   /**
    * 결제수단 리스트
    *
    * 값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
    */
-  val methods: Array<BillingKeyPaymentMethodType>? = null,
+  val methods: List<BillingKeyPaymentMethodType>? = null,
   /** 포트원 버전 */
   val version: PortOneVersion? = null,
 )

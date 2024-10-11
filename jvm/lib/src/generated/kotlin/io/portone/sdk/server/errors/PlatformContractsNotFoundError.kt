@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CONTRACTS_NOT_FOUND")
 public data class PlatformContractsNotFoundError(
-  val ids: Array<String>,
-  val graphqlIds: Array<String>,
-  val message: String? = null,
+  val ids: List<String>,
+  val graphqlIds: List<String>,
+  override val message: String? = null,
 ): CreatePlatformPartnersError

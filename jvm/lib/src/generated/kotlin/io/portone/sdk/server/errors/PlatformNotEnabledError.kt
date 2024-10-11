@@ -65,7 +65,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_NOT_ENABLED")
 public data class PlatformNotEnabledError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformAdditionalFeePolicyError,
   ArchivePlatformContractError,
   ArchivePlatformDiscountSharePolicyError,

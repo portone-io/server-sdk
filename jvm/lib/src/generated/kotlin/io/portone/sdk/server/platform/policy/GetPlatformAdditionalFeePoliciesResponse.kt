@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class GetPlatformAdditionalFeePoliciesResponse(
   /** 조회된 추가 수수료 정책 리스트 */
-  val items: Array<PlatformAdditionalFeePolicy>,
+  val items: List<PlatformAdditionalFeePolicy>,
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )

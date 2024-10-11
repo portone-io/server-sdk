@@ -10,8 +10,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PG_PROVIDER")
 public data class ChannelSpecificFailurePgProvider(
-  val channel: SelectedChannel,
+  override val channel: SelectedChannel,
   val pgCode: String,
   val pgMessage: String,
-  val message: String? = null,
+  override val message: String? = null,
 ): ChannelSpecificFailure

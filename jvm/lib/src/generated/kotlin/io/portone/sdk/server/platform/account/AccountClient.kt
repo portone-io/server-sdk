@@ -114,7 +114,7 @@ public class AccountClient(
       json.decodeFromString<PlatformAccountHolder>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

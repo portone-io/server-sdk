@@ -90,7 +90,7 @@ public class AuthClient(
       json.decodeFromString<LoginViaApiSecretResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 
@@ -150,7 +150,7 @@ public class AuthClient(
       json.decodeFromString<RefreshTokenResponse>(httpBody)
     }
     catch (_: Exception) {
-      throw UnknownError("Unknown API response: $httpBody")
+      throw UnknownException("Unknown API response: $httpBody")
     }
   }
 

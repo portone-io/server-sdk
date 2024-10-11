@@ -1,6 +1,7 @@
 package io.portone.sdk.server.analytics
 
 import io.portone.sdk.server.analytics.CardCompany
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -8,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class AnalyticsCardCompanyChartStat(
   /** 시점 */
-  val timestamp: Instant,
+  val timestamp: @Serializable(InstantSerializer::class) Instant,
   /** 카드사 */
   val cardCompany: CardCompany,
   /** 결제금액 */

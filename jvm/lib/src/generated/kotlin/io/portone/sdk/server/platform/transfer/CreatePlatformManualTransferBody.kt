@@ -26,5 +26,5 @@ public data class CreatePlatformManualTransferBody(
    */
   val isForTest: Boolean? = null,
   /** 사용자 정의 속성 */
-  val userDefinedProperties: Array<PlatformUserDefinedPropertyKeyValue>? = null,
+  val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )

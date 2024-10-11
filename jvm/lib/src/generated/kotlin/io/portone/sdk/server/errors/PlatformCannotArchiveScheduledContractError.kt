@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT")
 public data class PlatformCannotArchiveScheduledContractError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ArchivePlatformContractError

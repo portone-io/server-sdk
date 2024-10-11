@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
 
@@ -17,5 +18,5 @@ public data class InstantPaymentMethodInputVirtualAccountExpiry(
    */
   val validHours: Int? = null,
   /** 만료 시점 */
-  val dueDate: Instant? = null,
+  val dueDate: @Serializable(InstantSerializer::class) Instant? = null,
 )

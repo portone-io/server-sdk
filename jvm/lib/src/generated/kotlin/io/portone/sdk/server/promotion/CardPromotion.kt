@@ -5,6 +5,7 @@ import io.portone.sdk.server.promotion.Promotion
 import io.portone.sdk.server.promotion.PromotionCardCompany
 import io.portone.sdk.server.promotion.PromotionDiscount
 import io.portone.sdk.server.promotion.PromotionStatus
+import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -29,19 +30,19 @@ public data class CardPromotion(
   /** 금액 화폐 */
   override val currency: Currency,
   /** 프로모션 시작 시각 */
-  override val startAt: Instant,
+  override val startAt: @Serializable(InstantSerializer::class) Instant,
   /** 프로모션 종료 시각 */
-  override val endAt: Instant,
+  override val endAt: @Serializable(InstantSerializer::class) Instant,
   /** 프로모션 카드사 */
   override val cardCompany: PromotionCardCompany,
   /** 프로모션 상태 */
   override val status: PromotionStatus,
   /** 프로모션 생성 시각 */
-  override val createdAt: Instant,
+  override val createdAt: @Serializable(InstantSerializer::class) Instant,
   /** 최소 결제 금액 */
   override val minPaymentAmount: Long? = null,
   /** 최대 할인 금액 */
   override val maxDiscountAmount: Long? = null,
   /** 프로모션 중단 시각 */
-  override val terminatedAt: Instant? = null,
+  override val terminatedAt: @Serializable(InstantSerializer::class) Instant? = null,
 ): Promotion

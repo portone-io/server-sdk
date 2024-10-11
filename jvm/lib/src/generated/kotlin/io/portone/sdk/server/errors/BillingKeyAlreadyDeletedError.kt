@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("BILLING_KEY_ALREADY_DELETED")
 public data class BillingKeyAlreadyDeletedError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePaymentScheduleError,
   DeleteBillingKeyError,
   PayWithBillingKeyError,

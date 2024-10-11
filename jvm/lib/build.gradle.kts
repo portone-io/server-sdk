@@ -12,6 +12,7 @@ plugins {
     signing
 
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.binary.compatibility.validator)
     alias(libs.plugins.dokka)

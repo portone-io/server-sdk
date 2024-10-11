@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("IDENTITY_VERIFICATION_NOT_SENT")
 public data class IdentityVerificationNotSentError(
-  val message: String? = null,
+  override val message: String? = null,
 ): ConfirmIdentityVerificationError,
   ResendIdentityVerificationError

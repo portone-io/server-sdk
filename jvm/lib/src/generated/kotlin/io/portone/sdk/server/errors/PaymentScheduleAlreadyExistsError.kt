@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PAYMENT_SCHEDULE_ALREADY_EXISTS")
 public data class PaymentScheduleAlreadyExistsError(
-  val message: String? = null,
+  override val message: String? = null,
 ): CreatePaymentScheduleError,
   DeleteBillingKeyError
