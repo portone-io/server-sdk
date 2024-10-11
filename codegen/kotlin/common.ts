@@ -39,7 +39,12 @@ export function makeOverridesMap(
       if (entity?.type !== "object") {
         throw new Error("unsupported oneOf variant type", { cause: { entity } })
       }
-      return new Set(entity.properties.map(({ name }) => name))
+      return new Set(entity.properties.map((property) => ({
+        name: property.name,
+        required: property.required,
+        type: property.type,
+        ..."properties" in property ? { properties: property.properties } : {},
+      })))
     }).reduce((a, b) => a.intersection(b))
     for (const variant of entity.variants) {
       let overrides = overridesMap.get(variant.name)
@@ -51,10 +56,14 @@ export function makeOverridesMap(
         overridesMap.set(variant.name, overrides)
       }
       for (const property of intersection) {
-        overrides.properties.add(property)
+        overrides.properties.add(property.name)
       }
       overrides.from.add(entity.name)
     }
+    overridesMap.set(entity.name, {
+      properties: new Set([...intersection].map(({ name }) => name)),
+      from: new Set(entity.name),
+    })
   }
   for (const subpackage of pack.subpackages) {
     makeOverridesMap(subpackage, entityMap, overridesMap)

@@ -19,19 +19,56 @@ export function generateEntity(
   crossRef.add("kotlinx.serialization.Serializable")
   switch (definition.type) {
     case "object": {
-      const firstProperty = definition.properties[0]
+      let properties = definition.properties
+      if (definition.additionalProperties) {
+        const entity = entityMap.get(definition.additionalProperties)
+        if (!entity) {
+          throw new Error("unrecognized additionalProperties", {
+            cause: { ref: properties },
+          })
+        }
+        if (entity.type !== "object") {
+          throw new Error("unsupported additionalProperties type", {
+            cause: { entity },
+          })
+        }
+        properties = properties.concat(entity.properties)
+      }
+      const firstProperty = properties[0]
       if (firstProperty?.type === "discriminant") {
         writer.writeLine(`@SerialName("${firstProperty.value}")`)
         crossRef.add("kotlinx.serialization.SerialName")
       }
-      writer.writeLine(`public data class ${definition.name}(`)
-      writer.indent()
       const overrides = overridesMap.get(definition.name) ?? {
         properties: new Set(),
         from: new Set(),
       }
-      const required = definition.properties.filter(({ required }) => required)
-      const optional = definition.properties.filter(({ required }) => !required)
+      for (const name of overrides.from) {
+        const category = categoryMap.get(name)
+        if (!category) {
+          throw new Error("unrecognized error ref", { cause: { ref: name } })
+        }
+        crossRef.add(
+          `io.portone.sdk.server.${toPackageCase(category)}.${name}`,
+        )
+      }
+      const nonDiscriminant = properties.filter(({ type }) =>
+        type !== "discriminant"
+      )
+      if (nonDiscriminant.length === 0) {
+        const extend = [...overrides.from].toSorted()
+        const extendList = extend.length > 0 ? extend.join(", ") : null
+        writer.writeLine(
+          `public data object ${definition.name}${
+            extendList ? `: ${extendList}` : ""
+          }`,
+        )
+        break
+      }
+      writer.writeLine(`public data class ${definition.name}(`)
+      writer.indent()
+      const required = nonDiscriminant.filter(({ required }) => required)
+      const optional = nonDiscriminant.filter(({ required }) => !required)
       for (const property of required.concat(optional)) {
         const description = ([] as string[]).concat(property.title ?? [])
           .concat(property.description ?? []).join("\n\n")
@@ -48,7 +85,7 @@ export function generateEntity(
             writeDescription(writer, description)
             if (property.format === "date-time") {
               writer.writeLine(`${val}: ${wrapOptional("Instant")},`)
-              crossRef.add("kotlinx.datetime.Instant")
+              crossRef.add("java.time.Instant")
               break
             }
             writer.writeLine(`${val}: ${wrapOptional("String")},`)
@@ -93,7 +130,7 @@ export function generateEntity(
                 crossRef.add("kotlin.Array")
                 if (property.item.format === "date-time") {
                   writer.writeLine(`${val}: ${wrapOptional("Array<Instant>")},`)
-                  crossRef.add("kotlinx.datetime.Instant")
+                  crossRef.add("java.time.Instant")
                   break
                 }
                 writer.writeLine(`${val}: ${wrapOptional("Array<String>")},`)
@@ -165,19 +202,16 @@ export function generateEntity(
         }
       }
       writer.outdent()
-      const extend = [...overrides.from].concat(
-        definition.additionalProperties ?? [],
-      ).toSorted()
+      const extend = [...overrides.from].toSorted()
       if (extend.length > 0) {
-        const first = true
-        for (const name of extend) {
-          if (first) {
-            writer.writeLine(`): ${name},`)
+        extend.forEach((name, i) => {
+          const leading = i === 0 ? "): " : ""
+          const trailing = i === extend.length - 1 ? "" : ","
+          writer.writeLine(`${leading}${name}${trailing}`)
+          if (i === 0) {
             writer.indent()
-          } else {
-            writer.writeLine(`${name},`)
           }
-        }
+        })
         writer.outdent()
       } else {
         writer.writeLine(")")
@@ -191,22 +225,29 @@ export function generateEntity(
       crossRef.add("kotlinx.serialization.json.JsonClassDiscriminator")
       writer.writeLine(`public sealed interface ${definition.name} {`)
       writer.indent()
-      const intersection = definition.variants.map((variant) => {
-        const entity = entityMap.get(variant.name)
-        if (entity?.type !== "object") {
-          throw new Error("unsupported oneOf variant type", {
-            cause: { entity },
-          })
-        }
-        return entity.properties
-      }).reduce((a, b) =>
-        a.filter(({ name }) => b.some((property) => property.name === name))
+      const overrides = overridesMap.get(definition.name)
+      if (!overrides) {
+        throw new Error("unrecognized oneOf definition", {
+          cause: { definition },
+        })
+      }
+      const entity = entityMap.get(definition.variants[0].name)
+      if (!entity) {
+        throw new Error("unrecognized oneOf variant", {
+          cause: { ref: definition.variants[0].name },
+        })
+      }
+      if (entity.type !== "object") {
+        throw new Error("unsupported oneOf variant type", { cause: { entity } })
+      }
+      const intersection = entity.properties.filter(({ name }) =>
+        overrides.properties.has(name)
       )
       for (const property of intersection) {
         const description = ([] as string[]).concat(property.title ?? [])
           .concat(property.description ?? []).join("\n\n")
         const name = filterName(property.name)
-        const val = `val ${name}`
+        const val = `public val ${name}`
         const wrapOpetional = (type: string) =>
           property.required ? type : `${type}?`
         switch (property.type) {
@@ -215,8 +256,8 @@ export function generateEntity(
           case "string":
             writeDescription(writer, description)
             if (property.format === "date-time") {
-              writer.writeLine(`${val}: ${wrapOpetional("Instant")},`)
-              crossRef.add("kotlinx.datetime.Instant")
+              writer.writeLine(`${val}: ${wrapOpetional("Instant")}`)
+              crossRef.add("java.time.Instant")
               break
             }
             writer.writeLine(`${val}: ${wrapOpetional("String")}`)
@@ -261,9 +302,9 @@ export function generateEntity(
                 crossRef.add("kotlin.Array")
                 if (property.item.format === "date-time") {
                   writer.writeLine(
-                    `${val}: ${wrapOpetional("Array<Instant>")},`,
+                    `${val}: ${wrapOpetional("Array<Instant>")}`,
                   )
-                  crossRef.add("kotlinx.datetime.Instant")
+                  crossRef.add("java.time.Instant")
                   break
                 }
                 writer.writeLine(`${val}: ${wrapOpetional("Array<String>")}`)

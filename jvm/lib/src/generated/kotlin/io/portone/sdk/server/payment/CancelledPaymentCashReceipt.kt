@@ -1,0 +1,33 @@
+package io.portone.sdk.server.payment
+
+import io.portone.sdk.server.common.CashReceiptType
+import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.payment.PaymentCashReceipt
+import java.time.Instant
+import kotlin.String
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+/** 취소된 현금영수증 */
+@Serializable
+@SerialName("CANCELLED")
+public data class CancelledPaymentCashReceipt(
+  /** 승인 번호 */
+  val issueNumber: String,
+  /** 총 금액 */
+  val totalAmount: Long,
+  /** 통화 */
+  val currency: Currency,
+  /** 발급 시점 */
+  val issuedAt: Instant,
+  /** 취소 시점 */
+  val cancelledAt: Instant,
+  /** 현금영수증 유형 */
+  val type: CashReceiptType? = null,
+  /** PG사 영수증 발급 아이디 */
+  val pgReceiptId: String? = null,
+  /** 면세액 */
+  val taxFreeAmount: Long? = null,
+  /** 현금영수증 URL */
+  val url: String? = null,
+): PaymentCashReceipt

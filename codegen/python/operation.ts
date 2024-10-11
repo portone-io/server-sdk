@@ -244,9 +244,7 @@ function fetchBodyProperties(
     throw new Error("unsupported actual body type", { cause: { body } })
   }
   const properties = actualBody.properties
-  return body.required
-    ? properties
-    : properties.map((property) => ({ ...property, required: false }))
+  return properties
 }
 
 function writeRequestBody(writer: Writer, body: Property[]) {

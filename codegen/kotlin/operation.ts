@@ -20,18 +20,38 @@ export function writeOperation(
   let canHaveBody = false
   switch (operation.method) {
     case "get":
+      crossRef.add("io.ktor.client.request.`get`")
+      canHaveBody = false
+      break
     case "delete":
+      crossRef.add("io.ktor.client.request.delete")
       canHaveBody = false
       break
     case "post":
+      crossRef.add("io.ktor.client.request.post")
+      canHaveBody = true
+      break
     case "patch":
+      crossRef.add("io.ktor.client.request.patch")
+      canHaveBody = true
+      break
     case "put":
+      crossRef.add("io.ktor.client.request.put")
       canHaveBody = true
       break
     default:
       throw new Error("unrecognized operation method", { cause: { operation } })
   }
   const errors = fetchErrors(operation, entityMap)
+  for (const { name } of errors) {
+    const category = categoryMap.get(name)
+    if (!category) {
+      throw new Error("unrecognized error ref", { cause: { ref: name } })
+    }
+    const exception = toException(name)
+    crossRef.add(`io.portone.sdk.server.${toPackageCase(category)}.${name}`)
+    crossRef.add(`io.portone.sdk.server.errors.${exception}`)
+  }
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
   const params = operation.params.path.concat(operation.params.query).concat(
     requestBody,
@@ -51,6 +71,7 @@ export function writeOperation(
   }).concat("@throws UnknownException API 응답이 알 수 없는 형식인 경우").join(
     "\n",
   )
+  crossRef.add("io.portone.sdk.server.errors.UnknownException")
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
@@ -85,27 +106,33 @@ export function writeOperation(
           toPackageCase(category)
         }.${operation.response.schema}`,
       )
-      crossRef.add(`io.portone.sdk.server.${operation.response.schema}`)
       writer.writeLine(
         `): ${operation.response.schema} {`,
       )
       futureWriter.writeLine(
         `): CompletableFuture<${operation.response.schema}> = GlobalScope.future { ${operation.id}(${paramList}) }`,
       )
+      crossRef.add("java.util.concurrent.CompletableFuture")
+      crossRef.add("kotlinx.coroutines.GlobalScope")
+      crossRef.add("kotlinx.coroutines.future.future")
       break
     }
     case "text/csv":
       crossRef.add("kotlin.String")
       writer.writeLine("): String {")
       futureWriter.writeLine(
-        `): String = GlobalScope.future { ${operation.id}(${paramList}) }`,
+        `): CompletableFuture<String> = GlobalScope.future { ${operation.id}(${paramList}) }`,
       )
+      crossRef.add("kotlinx.coroutines.GlobalScope")
+      crossRef.add("kotlinx.coroutines.future.future")
       break
     case undefined:
       writer.writeLine(") {")
       futureWriter.writeLine(
-        `) = GlobalScope.future { ${operation.id}(${paramList}) }`,
+        `): CompletableFuture<Unit> = GlobalScope.future { ${operation.id}(${paramList}) }`,
       )
+      crossRef.add("kotlinx.coroutines.GlobalScope")
+      crossRef.add("kotlinx.coroutines.future.future")
       break
     default:
       throw new Error("unrecognized response type", {
@@ -119,6 +146,17 @@ export function writeOperation(
         cause: { definition: operation.params.body },
       })
     }
+    const category = categoryMap.get(operation.params.body.value)
+    if (!category) {
+      throw new Error("unrecognized request body ref", {
+        cause: { ref: operation.params.body.value },
+      })
+    }
+    crossRef.add(
+      `io.portone.sdk.server.${
+        toPackageCase(category)
+      }.${operation.params.body.value}`,
+    )
     writer.writeLine(`val requestBody = ${operation.params.body.value}(`)
     writer.indent()
     for (const property of requestBody) {
@@ -127,47 +165,57 @@ export function writeOperation(
     writer.outdent()
     writer.writeLine(")")
   }
-  writer.writeLine(`val httpResponse = client.get(apiBase) {`)
+  writer.writeLine(`val httpResponse = client.${operation.method}(apiBase) {`)
   writer.indent()
   writer.writeLine("url {")
   writer.indent()
   const path = operation.path.split("/").slice(1).map((segment) =>
     segment.startsWith("{") && segment.endsWith("}")
-      ? segment.slice(1, -1)
+      ? `${segment.slice(1, -1)}.toString()`
       : `"${segment}"`
   ).join(", ")
+  crossRef.add("io.ktor.http.appendPathSegments")
   writer.writeLine(`appendPathSegments(${path})`)
   for (const property of operation.params.query) {
     if (property.name === "requestBody") {
+      crossRef.add("kotlinx.serialization.encodeToString")
       writer.writeLine(
         `parameters.append("requestBody", json.encodeToString(requestBody))`,
       )
     } else if (property.required) {
       writer.writeLine(
-        `parameters.append("${property.name}", ${property.name})`,
+        `parameters.append("${property.name}", ${property.name}.toString())`,
       )
     } else {
       writer.writeLine(
-        `if (${property.name} != null) parameters.append("${property.name}", ${property.name})`,
+        `if (${property.name} != null) parameters.append("${property.name}", ${property.name}.toString())`,
       )
     }
   }
   writer.outdent()
   writer.writeLine("}")
+  crossRef.add("io.ktor.client.request.headers")
   writer.writeLine("headers {")
   writer.indent()
+  crossRef.add("io.ktor.http.HttpHeaders")
   writer.writeLine(`append(HttpHeaders.Authorization, "PortOne $apiSecret")`)
   writer.outdent()
   writer.writeLine("}")
   if (canHaveBody && operation.params.body) {
+    crossRef.add("io.ktor.http.contentType")
+    crossRef.add("io.ktor.http.ContentType")
     writer.writeLine("contentType(ContentType.Application.Json)")
   }
   switch (operation.response?.type) {
     case "application/json":
+      crossRef.add("io.ktor.client.request.accept")
+      crossRef.add("io.ktor.http.ContentType")
       writer.writeLine("accept(ContentType.Application.Json)")
       break
     case "text/csv":
-      writer.writeLine("accept(ContentType.Text.Csv)")
+      crossRef.add("io.ktor.client.request.accept")
+      crossRef.add("io.ktor.http.ContentType")
+      writer.writeLine("accept(ContentType.Text.CSV)")
       break
     case undefined:
       break
@@ -176,14 +224,33 @@ export function writeOperation(
         cause: { response: operation.response },
       })
   }
+  crossRef.add("io.ktor.http.userAgent")
+  crossRef.add("io.portone.sdk.server.USER_AGENT")
   writer.writeLine("userAgent(USER_AGENT)")
+  if (operation.params.body && canHaveBody) {
+    crossRef.add("io.ktor.client.request.setBody")
+    crossRef.add("kotlinx.serialization.encodeToString")
+    writer.writeLine("setBody(json.encodeToString(requestBody))")
+  }
   writer.outdent()
   writer.writeLine("}")
   writer.writeLine("if (httpResponse.status.value !in 200..299) {")
   writer.indent()
+  crossRef.add("io.ktor.client.call.body")
   writer.writeLine("val httpBody = httpResponse.body<String>()")
   writer.writeLine("val httpBodyDecoded = try {")
   writer.indent()
+  {
+    const category = categoryMap.get(operation.errors)
+    if (!category) {
+      throw new Error("unrecognized error ref", {
+        cause: { ref: operation.errors },
+      })
+    }
+    crossRef.add(
+      `io.portone.sdk.server.${toPackageCase(category)}.${operation.errors}`,
+    )
+  }
   writer.writeLine(`json.decodeFromString<${operation.errors}>(httpBody)`)
   writer.outdent()
   writer.writeLine("}")
@@ -283,9 +350,7 @@ function fetchBodyProperties(
     throw new Error("unsupported actual body type", { cause: { body } })
   }
   const properties = actualBody.properties
-  return body.required
-    ? properties
-    : properties.map((property) => ({ ...property, required: false }))
+  return properties
 }
 
 function writePropertyList(
@@ -301,11 +366,11 @@ function writePropertyList(
     switch (property.type) {
       case "string":
         if (property.format === "date-time") {
-          writer.writeLine(`${name}: ${wrapOptional("Instant")}`)
-          crossRef.add("kotlinx.datetime.Instant")
+          writer.writeLine(`${name}: ${wrapOptional("Instant")},`)
+          crossRef.add("java.time.Instant")
           break
         }
-        writer.writeLine(`${name}: ${wrapOptional("string")},`)
+        writer.writeLine(`${name}: ${wrapOptional("String")},`)
         crossRef.add("kotlin.String")
         break
       case "boolean":
@@ -342,7 +407,7 @@ function writePropertyList(
             crossRef.add("kotlin.Array")
             if (property.item.format === "date-time") {
               writer.writeLine(`${name}: ${wrapOptional("Array<Instant>")},`)
-              crossRef.add("kotlinx.datetime.Instant")
+              crossRef.add("java.time.Instant")
               break
             }
             writer.writeLine(`${name}: ${wrapOptional("Array<String>")},`)

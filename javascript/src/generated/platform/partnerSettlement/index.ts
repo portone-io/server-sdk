@@ -18,15 +18,10 @@ export type { PlatformPartnerSettlementType } from "./PlatformPartnerSettlementT
 export function PartnerSettlementClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PartnerSettlementClient {
 	return {
 		getPlatformPartnerSettlements: async (
-			options?: {
-				page?: PageInput,
-				filter?: PlatformPartnerSettlementFilterInput,
-				isForTest?: boolean,
-			}
+			filter: PlatformPartnerSettlementFilterInput,
+			isForTest: boolean,
+			page?: PageInput,
 		): Promise<GetPlatformPartnerSettlementsResponse> => {
-			const page = options?.page
-			const filter = options?.filter
-			const isForTest = options?.isForTest
 			const requestBody = JSON.stringify({
 				page,
 				filter,
@@ -71,6 +66,13 @@ export type PartnerSettlementClient = {
 	 *
 	 * 여러 정산 내역을 조회합니다.
 	 *
+	 * @param page
+	 * 요청할 페이지 정보
+	 * @param filter
+	 * 조회할 정산내역 조건 필터
+	 * @param isForTest
+	 *
+	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -78,13 +80,11 @@ export type PartnerSettlementClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartnerSettlements: (
-		options?: {
-			/** 요청할 페이지 정보 */
-			page?: PageInput,
-			/** 조회할 정산내역 조건 필터 */
-			filter?: PlatformPartnerSettlementFilterInput,
-			isForTest?: boolean,
-		}
+		/** 조회할 정산내역 조건 필터 */
+		filter: PlatformPartnerSettlementFilterInput,
+		isForTest: boolean,
+		/** 요청할 페이지 정보 */
+		page?: PageInput,
 	) => Promise<GetPlatformPartnerSettlementsResponse>
 }
 
