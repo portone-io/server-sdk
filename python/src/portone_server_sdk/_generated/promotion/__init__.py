@@ -47,6 +47,7 @@ class PromotionClient:
                 프로모션이 존재하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -97,6 +98,7 @@ class PromotionClient:
                 프로모션이 존재하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(

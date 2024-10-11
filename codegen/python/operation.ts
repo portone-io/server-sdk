@@ -98,6 +98,7 @@ export function writeOperation(
     }
     errorWriter.outdent()
   }
+  errorWriter.writeLine("UnknownError: API 응답이 알 수 없는 형식인 경우")
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
@@ -243,9 +244,7 @@ function fetchBodyProperties(
     throw new Error("unsupported actual body type", { cause: { body } })
   }
   const properties = actualBody.properties
-  return body.required
-    ? properties
-    : properties.map((property) => ({ ...property, required: false }))
+  return properties
 }
 
 function writeRequestBody(writer: Writer, body: Property[]) {

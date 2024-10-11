@@ -70,6 +70,7 @@ class AccountClient:
                 지원하지 않는 은행인 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if birthdate is not None:
@@ -149,6 +150,7 @@ class AccountClient:
                 지원하지 않는 은행인 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if birthdate is not None:

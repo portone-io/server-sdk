@@ -176,6 +176,7 @@ export type CashReceiptClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getCashReceiptByPaymentId: (
 		/** 결제 건 아이디 */
@@ -192,6 +193,7 @@ export type CashReceiptClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	issueCashReceipt: (
 		options: {
@@ -236,6 +238,7 @@ export type CashReceiptClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelCashReceiptByPaymentId: (
 		/** 결제 건 아이디 */

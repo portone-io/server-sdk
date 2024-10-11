@@ -1473,6 +1473,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bMemberCompany: (
 		/** 사업자등록번호 */
@@ -1493,6 +1494,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	updateB2bMemberCompany: (
 		options: {
@@ -1536,6 +1538,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	registerB2bMemberCompany: (
 		/** 사업자 정보 */
@@ -1569,6 +1572,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bMemberCompanyContact: (
 		/** 사업자등록번호 */
@@ -1593,6 +1597,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	updateB2bMemberCompanyContact: (
 		options: {
@@ -1633,6 +1638,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bCertificateRegistrationUrl: (
 		/** 사업자등록번호 */
@@ -1662,6 +1668,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bCertificate: (
 		/** 사업자등록번호 */
@@ -1689,6 +1696,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bContactIdExistence: (
 		/** 담당자 ID */
@@ -1725,6 +1733,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bSuspendedAccountError} 정지 계좌인 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bBankAccountHolder: (
 		/** 은행 */
@@ -1756,6 +1765,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bCompanyState: (
 		/** 사업자등록번호 */
@@ -1778,6 +1788,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bSupplierNotFoundError} 공급자가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	requestB2bTaxInvoiceReverseIssuance: (
 		options: {
@@ -1803,6 +1814,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoice: (
 		options: {
@@ -1835,6 +1847,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	deleteB2bTaxInvoice: (
 		options: {
@@ -1867,6 +1880,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotRequestedStatusError} 세금계산서가 역발행 대기 상태가 아닌 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	issueB2bTaxInvoice: (
 		options: {
@@ -1904,6 +1918,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNoRecipientDocumentKeyError} 세금계산서에 공급받는자 문서 번호가 기입되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelB2bTaxInvoiceRequest: (
 		options: {
@@ -1937,6 +1952,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotIssuedStatusError} 세금계산서가 발행된(ISSUED) 상태가 아닌 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelB2bTaxInvoiceIssuance: (
 		options: {
@@ -1972,6 +1988,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNoSupplierDocumentKeyError} 세금계산서에 공급자 문서 번호가 기입되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	refuseB2bTaxInvoiceRequest: (
 		options: {
@@ -2004,6 +2021,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoices: (
 		options: {
@@ -2053,6 +2071,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoicePopupUrl: (
 		options: {
@@ -2090,6 +2109,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoicePrintUrl: (
 		options: {
@@ -2121,6 +2141,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoicePdfDownloadUrl: (
 		options: {
@@ -2160,6 +2181,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bSupplierNotFoundError} 공급자가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	requestB2bTaxInvoiceRegister: (
 		/** 세금계산서 생성 요청 정보 */
@@ -2183,6 +2205,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNoRecipientDocumentKeyError} 세금계산서에 공급받는자 문서 번호가 기입되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	requestB2bTaxInvoice: (
 		options: {
@@ -2221,6 +2244,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bNotEnabledError} B2B 기능이 활성화되지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createB2bTaxInvoiceFileUploadLink: (
 		/** 파일 이름 */
@@ -2244,6 +2268,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotRegisteredStatusError} 세금계산서가 임시저장 상태가 아닌 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	attachB2bTaxInvoiceFile: (
 		options: {
@@ -2281,6 +2306,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotFoundError} 세금계산서가 존재하지 않은 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getB2bTaxInvoiceAttachments: (
 		options: {
@@ -2314,6 +2340,7 @@ export type B2BClient = {
 	 * @throws {@link Errors.B2bTaxInvoiceNotRegisteredStatusError} 세금계산서가 임시저장 상태가 아닌 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	deleteB2bTaxInvoiceAttachment: (
 		options: {

@@ -536,6 +536,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.PlatformTransferNotFoundError} PlatformTransferNotFoundError
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformTransfer: (
 		/** 조회하고 싶은 정산건 아이디 */
@@ -556,6 +557,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.PlatformTransferNonDeletableStatusError} PlatformTransferNonDeletableStatusError
 	 * @throws {@link Errors.PlatformTransferNotFoundError} PlatformTransferNotFoundError
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	deletePlatformTransfer: (
 		/** 정산건 아이디 */
@@ -570,6 +572,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformTransferSummaries: (
 		options?: {
@@ -604,6 +607,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.PlatformTransferAlreadyExistsError} PlatformTransferAlreadyExistsError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformOrderTransfer: (
 		options: {
@@ -684,6 +688,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.PlatformTransferNotFoundError} PlatformTransferNotFoundError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformOrderCancelTransfer: (
 		options: {
@@ -741,6 +746,7 @@ export type TransferClient = {
 	 * @throws {@link Errors.PlatformPartnerNotFoundError} PlatformPartnerNotFoundError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformManualTransfer: (
 		options: {
@@ -776,6 +782,7 @@ export type TransferClient = {
 	 *
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	downloadPlatformTransferSheet: (
 		options?: {

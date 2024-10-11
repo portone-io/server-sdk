@@ -100,6 +100,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -161,6 +162,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -235,6 +237,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -319,6 +322,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -395,6 +399,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["company"] = _serialize_b2b_member_company(company),
@@ -467,6 +472,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["company"] = _serialize_b2b_member_company(company),
@@ -539,6 +545,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -607,6 +614,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -687,6 +695,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if password is not None:
@@ -777,6 +786,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if password is not None:
@@ -850,6 +860,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -911,6 +922,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -974,6 +986,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1039,6 +1052,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1100,6 +1114,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if contact_id is not None:
@@ -1159,6 +1174,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if contact_id is not None:
@@ -1235,6 +1251,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1323,6 +1340,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1398,6 +1416,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1463,6 +1482,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if test is not None:
@@ -1531,6 +1551,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["taxInvoice"] = _serialize_b2b_tax_invoice_input(tax_invoice),
@@ -1604,6 +1625,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["taxInvoice"] = _serialize_b2b_tax_invoice_input(tax_invoice),
@@ -1680,6 +1702,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -1753,6 +1776,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -1830,6 +1854,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -1908,6 +1933,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -1990,6 +2016,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2079,6 +2106,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2167,6 +2195,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2255,6 +2284,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2339,6 +2369,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2419,6 +2450,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2503,6 +2535,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2591,6 +2624,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -2686,6 +2720,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -2781,6 +2816,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -2867,6 +2903,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -2947,6 +2984,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3022,6 +3060,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3095,6 +3134,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3168,6 +3208,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3241,6 +3282,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3308,6 +3350,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["taxInvoice"] = _serialize_b2b_tax_invoice_input(tax_invoice),
@@ -3376,6 +3419,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["taxInvoice"] = _serialize_b2b_tax_invoice_input(tax_invoice),
@@ -3457,6 +3501,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -3545,6 +3590,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -3614,6 +3660,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["fileName"] = file_name,
@@ -3670,6 +3717,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["fileName"] = file_name,
@@ -3747,6 +3795,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -3835,6 +3884,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["brn"] = brn,
@@ -3914,6 +3964,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -3987,6 +4038,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -4067,6 +4119,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:
@@ -4150,6 +4203,7 @@ class B2BClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if brn is not None:

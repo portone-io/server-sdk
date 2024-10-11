@@ -13,6 +13,9 @@
 		},
 		{
 			"path": "python"
+		},
+		{
+			"path": "jvm"
 		}
 	],
 	"settings": {}

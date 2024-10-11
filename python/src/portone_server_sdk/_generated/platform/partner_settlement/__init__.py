@@ -28,8 +28,8 @@ class PartnerSettlementClient:
         self,
         *,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformPartnerSettlementFilterInput] = None,
-        is_for_test: Optional[bool] = None,
+        filter: PlatformPartnerSettlementFilterInput,
+        is_for_test: bool,
     ) -> GetPlatformPartnerSettlementsResponse:
         """정산 내역 다건 조회
 
@@ -38,9 +38,9 @@ class PartnerSettlementClient:
         Args:
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformPartnerSettlementFilterInput, optional):
+            filter (PlatformPartnerSettlementFilterInput):
                 조회할 정산내역 조건 필터
-            is_for_test (bool, optional):
+            is_for_test (bool):
 
 
 
@@ -55,14 +55,13 @@ class PartnerSettlementClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page),
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
-        if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
+        request_body["isForTest"] = is_for_test,
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -92,8 +91,8 @@ class PartnerSettlementClient:
         self,
         *,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformPartnerSettlementFilterInput] = None,
-        is_for_test: Optional[bool] = None,
+        filter: PlatformPartnerSettlementFilterInput,
+        is_for_test: bool,
     ) -> GetPlatformPartnerSettlementsResponse:
         """정산 내역 다건 조회
 
@@ -102,9 +101,9 @@ class PartnerSettlementClient:
         Args:
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformPartnerSettlementFilterInput, optional):
+            filter (PlatformPartnerSettlementFilterInput):
                 조회할 정산내역 조건 필터
-            is_for_test (bool, optional):
+            is_for_test (bool):
 
 
 
@@ -119,14 +118,13 @@ class PartnerSettlementClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page),
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
-        if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
+        request_body["isForTest"] = is_for_test,
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(

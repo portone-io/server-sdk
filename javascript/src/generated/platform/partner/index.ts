@@ -387,6 +387,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartners: (
 		options?: {
@@ -412,6 +413,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformPartnerIdAlreadyExistsError} PlatformPartnerIdAlreadyExistsError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformPartner: (
 		options: {
@@ -472,6 +474,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.PlatformPartnerNotFoundError} PlatformPartnerNotFoundError
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartner: (
 		/** 조회하고 싶은 파트너 아이디 */
@@ -494,6 +497,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformPartnerNotFoundError} PlatformPartnerNotFoundError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	updatePlatformPartner: (
 		options: {
@@ -534,6 +538,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformPartnerIdsDuplicatedError} PlatformPartnerIdsDuplicatedError
 	 * @throws {@link Errors.PlatformUserDefinedPropertyNotFoundError} 사용자 정의 속성이 존재 하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformPartners: (
 		/** 생성할 파트너 리스트 정보 */
@@ -553,6 +558,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.PlatformPartnerNotFoundError} PlatformPartnerNotFoundError
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	archivePlatformPartner: (
 		/** 파트너 아이디 */
@@ -571,6 +577,7 @@ export type PartnerClient = {
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.PlatformPartnerNotFoundError} PlatformPartnerNotFoundError
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	recoverPlatformPartner: (
 		/** 파트너 아이디 */

@@ -870,6 +870,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	preRegisterPayment: (
 		options: {
@@ -901,6 +902,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPayment: (
 		/** 조회할 결제 아이디 */
@@ -914,6 +916,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPayments: (
 		options?: {
@@ -939,6 +942,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getAllPaymentsByCursor: (
 		options?: {
@@ -989,6 +993,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.RemainedAmountLessThanPromotionMinPaymentAmountError} 부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsCancelAmountError} 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelPayment: (
 		options: {
@@ -1054,6 +1059,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	payWithBillingKey: (
 		options: {
@@ -1133,6 +1139,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	payInstantly: (
 		options: {
@@ -1217,6 +1224,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotWaitingForDepositError} 결제 건이 입금 대기 상태가 아닌 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	closeVirtualAccount: (
 		/** 결제 건 아이디 */
@@ -1233,6 +1241,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotPaidError} 결제가 완료되지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	applyEscrowLogistics: (
 		options: {
@@ -1265,6 +1274,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotPaidError} 결제가 완료되지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	modifyEscrowLogistics: (
 		options: {
@@ -1305,6 +1315,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotPaidError} 결제가 완료되지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	confirmEscrow: (
 		/** 결제 건 아이디 */
@@ -1334,6 +1345,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
 	 * @throws {@link Errors.WebhookNotFoundError} 웹훅 내역이 존재하지 않는 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	resendWebhook: (
 		/** 결제 건 아이디 */
@@ -1363,6 +1375,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.PaymentNotPaidError} 결제가 완료되지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	registerStoreReceipt: (
 		/** 등록할 하위 상점 결제 건 아이디 */

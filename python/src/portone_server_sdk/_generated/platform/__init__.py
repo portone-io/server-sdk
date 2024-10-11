@@ -109,6 +109,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -147,6 +148,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -201,6 +203,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if round_type is not None:
@@ -267,6 +270,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if round_type is not None:
@@ -327,6 +331,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if is_archived is not None:
@@ -379,6 +384,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if is_archived is not None:
@@ -430,6 +436,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -481,6 +488,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -538,6 +546,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
@@ -599,6 +608,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
@@ -661,6 +671,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
@@ -725,6 +736,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
@@ -782,6 +794,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -833,6 +846,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -884,6 +898,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -935,6 +950,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -990,6 +1006,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
@@ -1049,6 +1066,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
@@ -1113,6 +1131,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
@@ -1181,6 +1200,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
@@ -1240,6 +1260,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1291,6 +1312,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1343,6 +1365,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if is_archived is not None:
@@ -1395,6 +1418,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if is_archived is not None:
@@ -1446,6 +1470,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1497,6 +1522,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1555,6 +1581,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update),
@@ -1619,6 +1646,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update),
@@ -1696,6 +1724,7 @@ class PlatformClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update),
@@ -1787,6 +1816,7 @@ class PlatformClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update),
@@ -1858,6 +1888,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1909,6 +1940,7 @@ class PlatformClient:
             PlatformPartnerNotFoundError: PlatformPartnerNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1969,6 +2001,7 @@ class PlatformClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if filter is not None:
@@ -2041,6 +2074,7 @@ class PlatformClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if filter is not None:
@@ -2104,6 +2138,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -2155,6 +2190,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -2210,6 +2246,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update),
@@ -2267,6 +2304,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update),
@@ -2327,6 +2365,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update),
@@ -2391,6 +2430,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update),
@@ -2448,6 +2488,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -2499,6 +2540,7 @@ class PlatformClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
