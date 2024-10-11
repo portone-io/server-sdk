@@ -14061,3 +14061,23 @@ public final class io/portone/sdk/server/promotion/PromotionStatus : java/lang/E
 	public static fun values ()[Lio/portone/sdk/server/promotion/PromotionStatus;
 }
 
+public final class io/portone/sdk/server/webhook/WebhookVerificationException : java/lang/Exception {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookVerificationException$Companion;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookVerificationException$Companion {
+}
+
+public final class io/portone/sdk/server/webhook/WebhookVerifier {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookVerifier$Companion;
+	public static final field HEADER_ID Ljava/lang/String;
+	public static final field HEADER_SIGNATURE Ljava/lang/String;
+	public static final field HEADER_TIMESTAMP Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> ([B)V
+	public final fun verify (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class io/portone/sdk/server/webhook/WebhookVerifier$Companion {
+}
+

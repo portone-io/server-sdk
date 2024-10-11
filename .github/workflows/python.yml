@@ -55,7 +55,7 @@ jobs:
         run: uv run ruff check
   release:
     name: Release
-    if: ${{ startsWith(github.ref, 'refs/tags/server-sdk-py') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/py-v') }}
     needs: [check]
     runs-on: ubuntu-latest
     environment:
