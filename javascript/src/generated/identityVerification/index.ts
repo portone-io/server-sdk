@@ -222,6 +222,7 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.IdentityVerificationNotFoundError} 요청된 본인인증 건이 존재하지 않는 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getIdentityVerification: (
 		/** 조회할 본인인증 아이디 */
@@ -240,6 +241,7 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	sendIdentityVerification: (
 		options: {
@@ -278,6 +280,7 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	confirmIdentityVerification: (
 		/** 본인인증 아이디 */
@@ -304,6 +307,7 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
+	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	resendIdentityVerification: (
 		/** 본인인증 아이디 */

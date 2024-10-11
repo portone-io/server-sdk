@@ -1,5 +1,6 @@
 import { Command } from "@cliffy/command"
 import * as path from "@std/path"
+import * as kotlin from "./kotlin/project.ts"
 import { packageSchema } from "./parser/openapi.ts"
 import * as python from "./python/project.ts"
 import { updatePackageJson } from "./typescript/packaging.ts"
@@ -28,6 +29,14 @@ if (import.meta.main) {
         case "py": {
           const pyRoot = path.fromFileUrl(import.meta.resolve("../python"))
           python.generateProject(pyRoot, packages)
+          break
+        }
+        case "jvm":
+        case "java":
+        case "kotlin":
+        case "kt": {
+          const kotlinRoot = path.fromFileUrl(import.meta.resolve("../jvm"))
+          kotlin.generateProject(kotlinRoot, packages)
           break
         }
         default:

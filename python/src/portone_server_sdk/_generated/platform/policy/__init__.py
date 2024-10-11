@@ -86,6 +86,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -145,6 +146,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -213,6 +215,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -285,6 +288,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -346,6 +350,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -399,6 +404,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -465,6 +471,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -541,6 +548,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -606,6 +614,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -663,6 +672,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -718,6 +728,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -771,6 +782,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -826,6 +838,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -885,6 +898,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -956,6 +970,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -1032,6 +1047,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -1094,6 +1110,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1147,6 +1164,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1214,6 +1232,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if fee is not None:
@@ -1293,6 +1312,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if fee is not None:
@@ -1360,6 +1380,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1417,6 +1438,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1472,6 +1494,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1525,6 +1548,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1580,6 +1604,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -1639,6 +1664,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -1716,6 +1742,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -1800,6 +1827,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if id is not None:
@@ -1864,6 +1892,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -1917,6 +1946,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -1990,6 +2020,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -2079,6 +2110,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if name is not None:
@@ -2150,6 +2182,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -2207,6 +2240,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -2262,6 +2296,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -2315,6 +2350,7 @@ class PolicyClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(

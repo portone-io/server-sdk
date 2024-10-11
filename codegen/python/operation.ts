@@ -67,8 +67,7 @@ export function writeOperation(
       ).join("\n\n").split("\n")
       const optionalMark = param.required ? "" : `, optional`
       paramWriter.writeLine(
-        `${filterName(param.name)} (${
-          intoInlineTypeName(param)
+        `${filterName(param.name)} (${intoInlineTypeName(param)
         }${optionalMark}):`,
       )
       paramWriter.indent()
@@ -98,6 +97,7 @@ export function writeOperation(
     }
     errorWriter.outdent()
   }
+  errorWriter.writeLine("UnknownError: API 응답이 알 수 없는 형식인 경우")
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
@@ -165,8 +165,7 @@ export function writeOperation(
     writer.writeLine(`if error_type == "${variant.value}":`)
     writer.indent()
     writer.writeLine(
-      `raise errors.${variant.name}(_serialize_${
-        toSnakeCase(variant.name)
+      `raise errors.${variant.name}(_serialize_${toSnakeCase(variant.name)
       }(error_response))`,
     )
     writer.outdent()
@@ -179,8 +178,7 @@ export function writeOperation(
   switch (operation.response?.type) {
     case "application/json":
       writer.writeLine(
-        `return _deserialize_${
-          toSnakeCase(operation.response.schema)
+        `return _deserialize_${toSnakeCase(operation.response.schema)
         }(response.json())`,
       )
       break
@@ -261,8 +259,7 @@ function writeRequestBody(writer: Writer, body: Property[]) {
     }
     if (property.type === "ref") {
       writer.writeLine(
-        `request_body["${property.name}"] = _serialize_${
-          toSnakeCase(property.value)
+        `request_body["${property.name}"] = _serialize_${toSnakeCase(property.value)
         }(${name}),`,
       )
     } else {

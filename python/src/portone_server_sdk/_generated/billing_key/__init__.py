@@ -61,6 +61,7 @@ class BillingKeyClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if self._store_id is not None:
@@ -113,6 +114,7 @@ class BillingKeyClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if self._store_id is not None:
@@ -174,6 +176,7 @@ class BillingKeyClient:
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if self._store_id is not None:
@@ -245,6 +248,7 @@ class BillingKeyClient:
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         if self._store_id is not None:
@@ -317,6 +321,7 @@ class BillingKeyClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -383,6 +388,7 @@ class BillingKeyClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -469,6 +475,7 @@ class BillingKeyClient:
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -570,6 +577,7 @@ class BillingKeyClient:
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if self._store_id is not None:

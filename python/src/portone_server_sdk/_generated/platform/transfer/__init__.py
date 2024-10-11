@@ -97,6 +97,7 @@ class TransferClient:
             PlatformTransferNotFoundError: PlatformTransferNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -150,6 +151,7 @@ class TransferClient:
             PlatformTransferNotFoundError: PlatformTransferNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -205,6 +207,7 @@ class TransferClient:
             PlatformTransferNotFoundError: PlatformTransferNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = httpx.request(
@@ -264,6 +267,7 @@ class TransferClient:
             PlatformTransferNotFoundError: PlatformTransferNotFoundError
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         query = []
         response = await self._client.request(
@@ -323,6 +327,7 @@ class TransferClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -382,6 +387,7 @@ class TransferClient:
                 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if page is not None:
@@ -507,6 +513,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["partnerId"] = partner_id,
@@ -681,6 +688,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["partnerId"] = partner_id,
@@ -851,6 +859,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if partner_id is not None:
@@ -1028,6 +1037,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if partner_id is not None:
@@ -1162,6 +1172,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["partnerId"] = partner_id,
@@ -1249,6 +1260,7 @@ class TransferClient:
                 사용자 정의 속성이 존재 하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         request_body["partnerId"] = partner_id,
@@ -1319,6 +1331,7 @@ class TransferClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if filter is not None:
@@ -1380,6 +1393,7 @@ class TransferClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
                 인증 정보가 올바르지 않은 경우
+            UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
         if filter is not None:
