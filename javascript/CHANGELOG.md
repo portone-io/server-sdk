@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.4.0
+
+### Minor Changes
+
+- dc93552: 의존성 최신화
+
+### Patch Changes
+
+- 3807981: jsr.io 배포
+
 ## 0.3.3-alpha.0
 
 ### Patch Changes
