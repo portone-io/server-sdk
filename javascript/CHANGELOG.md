@@ -1,5 +1,20 @@
 # @portone/server-sdk
 
+## 0.3.0
+
+### Minor Changes
+
+- 44f02e9: API 생성 코드 재작성
+- 67cf90d: Operation 정의 이동
+- 3f9e1c6: API 스키마 변경
+
+### Patch Changes
+
+- aef9e86: jsr 배포 누락 수정
+- aef9e86: Deploy to jsr.io
+- aef9e86: 잘못된 schema 타입 import 수정
+- aef9e86: 의존성 업데이트
+
 ## 0.3.0-alpha.0
 
 ### Minor Changes
