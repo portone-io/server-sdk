@@ -12,7 +12,7 @@
 		"skipLibCheck": true,
 		"verbatimModuleSyntax": true,
 		"paths": {
-			"#generated/*": ["src/generated/*"]
+			"@portone/server-sdk/*": ["src/*"]
 		}
 	}
 }

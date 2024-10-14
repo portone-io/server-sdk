@@ -5,7 +5,7 @@ import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
-import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
+import { TypescriptWriter, intoInlineTypeName } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
@@ -26,7 +26,7 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   generateClient(srcPath, pack)
   generateIndex(srcPath, pack)
   const omitEntities = oneOfErrors.union(variantErrors)
-  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities)
+  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities, 0)
   const entrypoints = [...new Set(categoryMap.values())].map((category) =>
     category.replace(".", "/")
   )
@@ -139,7 +139,7 @@ function generateErrors(
       }
     }
     writer.writeLine(
-      `import type { ${error} as Internal${error} } from "#generated/${path}/${error}"`,
+      `import type { ${error} as Internal${error} } from "./${path}/${error}"`,
     )
   }
   const sortedRef = [...crossRef]
@@ -151,7 +151,9 @@ function generateErrors(
         cause: { ref },
       })
     }
-    writer.writeLine(`import type { ${ref} } from "#generated/${path}/${ref}"`)
+    writer.writeLine(
+      `import type { ${ref} } from "./${path}/${ref}"`,
+    )
   }
   for (const line of PortOneError.split("\n")) {
     writer.writeLine(line)
@@ -408,6 +410,7 @@ function generateCategoryIndex(
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
   omitEntities: Set<string>,
+  depth: number,
 ) {
   const crossRef = new Set<string>()
   const writer = TypescriptWriter()
@@ -424,6 +427,7 @@ function generateCategoryIndex(
       categoryMap,
       entityMap,
       omitEntities,
+      depth + 1,
     )
     writer.writeLine(
       `export type * as ${
@@ -440,12 +444,14 @@ function generateCategoryIndex(
       throw new Error("unrecognized category", { cause: { ref } })
     }
     importWriter.writeLine(
-      `import type { ${ref} } from "#generated/${
+      `import type { ${ref} } from "${"../".repeat(depth)}/${
         category.split(".").join("/")
       }/${ref}"`,
     )
   }
-  importWriter.writeLine(`import * as Errors from "#generated/errors"`)
+  importWriter.writeLine(
+    `import * as Errors from "${"../".repeat(depth)}/errors"`,
+  )
   for (const subpackage of pack.subpackages) {
     importWriter.writeLine(
       `import * as ${

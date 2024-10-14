@@ -1,7 +1,7 @@
-import type { Bank } from "#generated/common/Bank"
-import type { GetPlatformAccountHolderError } from "#generated/platform/account/GetPlatformAccountHolderError"
-import type { PlatformAccountHolder } from "#generated/platform/account/PlatformAccountHolder"
-import * as Errors from "#generated/errors"
+import type { Bank } from "../..//common/Bank"
+import type { GetPlatformAccountHolderError } from "../..//platform/account/GetPlatformAccountHolderError"
+import type { PlatformAccountHolder } from "../..//platform/account/PlatformAccountHolder"
+import * as Errors from "../..//errors"
 export type { PlatformAccountHolder } from "./PlatformAccountHolder"
 /** @ignore */
 export function AccountClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): AccountClient {

@@ -1,6 +1,6 @@
-import type { GetKakaopayPaymentOrderError } from "#generated/pgSpecific/GetKakaopayPaymentOrderError"
-import type { GetKakaopayPaymentOrderResponse } from "#generated/pgSpecific/GetKakaopayPaymentOrderResponse"
-import * as Errors from "#generated/errors"
+import type { GetKakaopayPaymentOrderError } from "..//pgSpecific/GetKakaopayPaymentOrderError"
+import type { GetKakaopayPaymentOrderResponse } from "..//pgSpecific/GetKakaopayPaymentOrderResponse"
+import * as Errors from "..//errors"
 export type { GetKakaopayPaymentOrderResponse } from "./GetKakaopayPaymentOrderResponse"
 /** @ignore */
 export function PgSpecificClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PgSpecificClient {

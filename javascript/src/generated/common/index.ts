@@ -1,4 +1,4 @@
-import * as Errors from "#generated/errors"
+import * as Errors from "..//errors"
 export type { Address } from "./Address"
 export type { Bank } from "./Bank"
 export type { BillingKeyPaymentInput } from "./BillingKeyPaymentInput"

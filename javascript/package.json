@@ -16,9 +16,6 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "imports": {
-    "#generated/*": "./src/generated/*.ts"
-  },
   "exports": {
     ".": "./src/index.ts",
     "./analytics": "./src/generated/analytics/index.ts",
@@ -183,5 +180,8 @@
   ],
   "sideEffects": false,
   "license": "(Apache-2.0 OR MIT)",
-  "packageManager": "pnpm@9.11.0"
+  "packageManager": "pnpm@9.11.0",
+  "imports": {
+    "#generated/*": "./src/generated/*.ts"
+  }
 }
