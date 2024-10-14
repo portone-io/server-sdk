@@ -73,6 +73,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -121,18 +123,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Tag current version
-        run: git tag "js-v$(jq -r '.version' package.json)"
-
-      - name: Push tag to the repo
-        run: git push --tags
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           cwd: ./javascript
-          publish: pnpm publish
+          publish: git tag "js-v$(jq -r '.version' package.json)" && git push --tags && pnpm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

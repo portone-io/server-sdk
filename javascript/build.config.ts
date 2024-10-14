@@ -24,7 +24,12 @@ export default defineBuildConfig({
 	),
 	hooks: {
 		"mkdist:entry:build": async (_ctx, _entry, output) => {
-			const rev = await new Promise<string>((resolve, reject) => childProcess.exec("git describe --dirty --tags --match js-v* --first-parent", (error, stdout) => error ? reject(error) : resolve(stdout)))
+			const rev = await new Promise<string>((resolve, reject) =>
+				childProcess.exec(
+					"git describe --dirty --tags --match js-v* --first-parent",
+					(error, stdout) => (error ? reject(error) : resolve(stdout)),
+				),
+			);
 			const userAgent = `portone-server-sdk-js/${rev.trim()}`;
 			await Promise.all(
 				output.writtenFiles.map(async (file) => {
