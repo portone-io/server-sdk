@@ -20,7 +20,7 @@
     "#generated/*": "./src/generated/*"
   },
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./src",
     "./analytics": "./src/generated/analytics/index.ts",
     "./auth": "./src/generated/auth/index.ts",
     "./b2b": "./src/generated/b2b/index.ts",
@@ -44,9 +44,11 @@
   },
   "publishConfig": {
     "exports": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
+      ".": {
+        "types": "./dist",
+        "require": "./dist",
+        "import": "./dist"
+      },
       "./analytics": {
         "types": "./dist/generated/analytics/index.d.ts",
         "require": "./dist/generated/analytics/index.cjs",
@@ -161,7 +163,7 @@
     "build": "unbuild",
     "test:dev": "vitest --ui --typecheck",
     "test": "vitest run --typecheck",
-    "prepublish": "pnpm build && sed -i \"s/VERSION_PLACEHOLDER/$(jq -r .version package.json)/\" jsr.json",
+    "prepublish": "git tag \"js-v$(jq -r .version package.json)\" && git push --tags && pnpm build && sed -i \"s/VERSION_PLACEHOLDER/$(jq -r .version package.json)/\" jsr.json",
     "publish": "jsr publish --allow-dirty"
   },
   "devDependencies": {
