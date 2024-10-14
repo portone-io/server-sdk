@@ -157,12 +157,15 @@
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.billing_key.html">portone_server_sdk.billing_key</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.cash_receipt.html">portone_server_sdk.cash_receipt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.payment.html">portone_server_sdk.payment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.payment_schedule.html">portone_server_sdk.payment_schedule</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="_toctree/portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="_toctree/portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
@@ -175,7 +178,6 @@
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.promotion.html">portone_server_sdk.promotion</a></li>
 </ul>
 
     </div>
@@ -313,16 +315,6 @@ document.write(`
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="_toctree/portone_server_sdk.billing_key.html#module-portone_server_sdk.billing_key"><code class="xref">portone_server_sdk.billing_key</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="_toctree/portone_server_sdk.cash_receipt.html#module-portone_server_sdk.cash_receipt"><code class="xref">portone_server_sdk.cash_receipt</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
        <a href="_toctree/portone_server_sdk.common.html#module-portone_server_sdk.common"><code class="xref">portone_server_sdk.common</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
@@ -343,7 +335,22 @@ document.write(`
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="_toctree/portone_server_sdk.payment_schedule.html#module-portone_server_sdk.payment_schedule"><code class="xref">portone_server_sdk.payment_schedule</code></a></td><td>
+       <a href="_toctree/portone_server_sdk.payment.billing_key.html#module-portone_server_sdk.payment.billing_key"><code class="xref">portone_server_sdk.payment.billing_key</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="_toctree/portone_server_sdk.payment.cash_receipt.html#module-portone_server_sdk.payment.cash_receipt"><code class="xref">portone_server_sdk.payment.cash_receipt</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="_toctree/portone_server_sdk.payment.payment_schedule.html#module-portone_server_sdk.payment.payment_schedule"><code class="xref">portone_server_sdk.payment.payment_schedule</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="_toctree/portone_server_sdk.payment.promotion.html#module-portone_server_sdk.payment.promotion"><code class="xref">portone_server_sdk.payment.promotion</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -394,11 +401,6 @@ document.write(`
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="_toctree/portone_server_sdk.platform.transfer.html#module-portone_server_sdk.platform.transfer"><code class="xref">portone_server_sdk.platform.transfer</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="_toctree/portone_server_sdk.promotion.html#module-portone_server_sdk.promotion"><code class="xref">portone_server_sdk.promotion</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>

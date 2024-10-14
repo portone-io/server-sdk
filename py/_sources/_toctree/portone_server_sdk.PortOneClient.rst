@@ -27,12 +27,8 @@
       ~PortOneClient.platform
       ~PortOneClient.identity_verification
       ~PortOneClient.payment
-      ~PortOneClient.billing_key
-      ~PortOneClient.cash_receipt
-      ~PortOneClient.payment_schedule
       ~PortOneClient.analytics
       ~PortOneClient.b2b
       ~PortOneClient.pg_specific
-      ~PortOneClient.promotion
    
    

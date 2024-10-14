@@ -1,7 +1,7 @@
-﻿portone\_server\_sdk.billing\_key
-=================================
+portone\_server\_sdk.payment.billing\_key
+=========================================
 
-.. automodule:: portone_server_sdk.billing_key
+.. automodule:: portone_server_sdk.payment.billing_key
 
    
    .. rubric:: Classes

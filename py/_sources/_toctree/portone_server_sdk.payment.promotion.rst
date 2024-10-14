@@ -1,7 +1,7 @@
-﻿portone\_server\_sdk.promotion
-==============================
+portone\_server\_sdk.payment.promotion
+======================================
 
-.. automodule:: portone_server_sdk.promotion
+.. automodule:: portone_server_sdk.payment.promotion
 
    
    .. rubric:: Classes

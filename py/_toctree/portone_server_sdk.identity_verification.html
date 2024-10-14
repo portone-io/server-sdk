@@ -155,12 +155,15 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.billing_key.html">portone_server_sdk.billing_key</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.cash_receipt.html">portone_server_sdk.cash_receipt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.identity_verification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment_schedule.html">portone_server_sdk.payment_schedule</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
@@ -173,7 +176,6 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.promotion.html">portone_server_sdk.promotion</a></li>
 </ul>
 
     </div>
@@ -1024,6 +1026,8 @@ KG이니시스: 제공하지 않습니다.</p>
     요청된 입력 정보가 유효하지 않은 경우
     
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.MaxTransactionCountReachedError" title="portone_server_sdk.errors.MaxTransactionCountReachedError"><strong>MaxTransactionCountReachedError</strong></a> – 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+    결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PgProviderError" title="portone_server_sdk.errors.PgProviderError"><strong>PgProviderError</strong></a> – PG사에서 오류를 전달한 경우
     PG사에서 오류를 전달한 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
@@ -1067,6 +1071,8 @@ KG이니시스: 제공하지 않습니다.</p>
     요청된 입력 정보가 유효하지 않은 경우
     
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.MaxTransactionCountReachedError" title="portone_server_sdk.errors.MaxTransactionCountReachedError"><strong>MaxTransactionCountReachedError</strong></a> – 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+    결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PgProviderError" title="portone_server_sdk.errors.PgProviderError"><strong>PgProviderError</strong></a> – PG사에서 오류를 전달한 경우
     PG사에서 오류를 전달한 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우

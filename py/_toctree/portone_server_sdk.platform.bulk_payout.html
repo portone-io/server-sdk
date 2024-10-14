@@ -155,12 +155,15 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.billing_key.html">portone_server_sdk.billing_key</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.cash_receipt.html">portone_server_sdk.cash_receipt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment_schedule.html">portone_server_sdk.payment_schedule</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
@@ -173,7 +176,6 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.promotion.html">portone_server_sdk.promotion</a></li>
 </ul>
 
     </div>
@@ -347,6 +349,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.status_updated_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.created_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.scheduled_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutFilterInput</span></code></a><ul class="nav section-nav flex-column">
@@ -366,6 +369,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.scheduled"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.scheduled</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.preparing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.preparing</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.prepared"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.prepared</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.ongoing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.ongoing</span></code></a></li>
@@ -504,7 +508,7 @@ document.write(`
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.status">
-<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.status" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.status" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -530,6 +534,12 @@ document.write(`
 <dd><p>(RFC 3339 date-time)</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.scheduled_at">
+<span class="sig-name descname"><span class="pre">scheduled_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.scheduled_at" title="Link to this definition">#</a></dt>
+<dd><p>(RFC 3339 date-time)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -537,7 +547,7 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_payout.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkPayoutFilterInput</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput" title="Link to this definition">#</a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput.statuses">
-<span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput.statuses" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput.statuses" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -586,6 +596,12 @@ document.write(`
 <dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_payout.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkPayoutStatusStats</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats" title="Link to this definition">#</a></dt>
 <dd><dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.scheduled">
+<span class="sig-name descname"><span class="pre">scheduled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.scheduled" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.preparing">
 <span class="sig-name descname"><span class="pre">preparing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.preparing" title="Link to this definition">#</a></dt>
 <dd><p>(int64)</p>
@@ -762,6 +778,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.status_updated_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.created_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayout.scheduled_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutFilterInput</span></code></a><ul class="nav section-nav flex-column">
@@ -781,6 +798,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.scheduled"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.scheduled</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.preparing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.preparing</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.prepared"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.prepared</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.ongoing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkPayoutStatusStats.ongoing</span></code></a></li>

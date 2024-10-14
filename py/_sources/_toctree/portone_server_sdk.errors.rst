@@ -56,6 +56,8 @@
       IdentityVerificationNotFoundError
       IdentityVerificationNotSentError
       InvalidRequestError
+      MaxTransactionCountReachedError
+      MaxWebhookRetryCountReachedError
       PaymentAlreadyCancelledError
       PaymentNotFoundError
       PaymentNotPaidError

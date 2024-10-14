@@ -155,12 +155,15 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.billing_key.html">portone_server_sdk.billing_key</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.cash_receipt.html">portone_server_sdk.cash_receipt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.payment_schedule.html">portone_server_sdk.payment_schedule</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
@@ -173,7 +176,6 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.promotion.html">portone_server_sdk.promotion</a></li>
 </ul>
 
     </div>
@@ -610,6 +612,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.args"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.with_traceback"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.message"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.args"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.message"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.args"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.message"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.PaymentAlreadyCancelledError"><code class="docutils literal notranslate"><span class="pre">PaymentAlreadyCancelledError</span></code></a><ul class="nav section-nav flex-column">
@@ -1329,6 +1343,12 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidRequestError</span></code></a></p></td>
 <td><p>요청된 입력 정보가 유효하지 않은 경우</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.MaxTransactionCountReachedError" title="portone_server_sdk.errors.MaxTransactionCountReachedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError</span></code></a></p></td>
+<td><p>결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError" title="portone_server_sdk.errors.MaxWebhookRetryCountReachedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError</span></code></a></p></td>
+<td><p>동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.PaymentAlreadyCancelledError" title="portone_server_sdk.errors.PaymentAlreadyCancelledError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentAlreadyCancelledError</span></code></a></p></td>
 <td><p>결제가 이미 취소된 경우</p></td>
@@ -2690,6 +2710,52 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.InvalidRequestError.message">
 <span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.InvalidRequestError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxTransactionCountReachedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">MaxTransactionCountReachedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.MaxTransactionCountReachedError" title="Link to this definition">#</a></dt>
+<dd><p>결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxTransactionCountReachedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxTransactionCountReachedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxTransactionCountReachedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxWebhookRetryCountReachedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">MaxWebhookRetryCountReachedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError" title="Link to this definition">#</a></dt>
+<dd><p>동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxWebhookRetryCountReachedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxWebhookRetryCountReachedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.MaxWebhookRetryCountReachedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.message" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -5208,6 +5274,18 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.args"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.with_traceback"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.InvalidRequestError.message"><code class="docutils literal notranslate"><span class="pre">InvalidRequestError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.args"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxTransactionCountReachedError.message"><code class="docutils literal notranslate"><span class="pre">MaxTransactionCountReachedError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.args"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.message"><code class="docutils literal notranslate"><span class="pre">MaxWebhookRetryCountReachedError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.PaymentAlreadyCancelledError"><code class="docutils literal notranslate"><span class="pre">PaymentAlreadyCancelledError</span></code></a><ul class="nav section-nav flex-column">

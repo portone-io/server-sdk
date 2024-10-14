@@ -1,7 +1,7 @@
-﻿portone\_server\_sdk.cash\_receipt
-==================================
+portone\_server\_sdk.payment.cash\_receipt
+==========================================
 
-.. automodule:: portone_server_sdk.cash_receipt
+.. automodule:: portone_server_sdk.payment.cash_receipt
 
    
    .. rubric:: Classes

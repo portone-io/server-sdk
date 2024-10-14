@@ -1,7 +1,7 @@
-﻿portone\_server\_sdk.payment\_schedule
-======================================
+portone\_server\_sdk.payment.payment\_schedule
+==============================================
 
-.. automodule:: portone_server_sdk.payment_schedule
+.. automodule:: portone_server_sdk.payment.payment_schedule
 
    
    .. rubric:: Classes
