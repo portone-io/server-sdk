@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.3.1
+
+### Patch Changes
+
+- 8bc9980: import 오류 수정
+
 ## 0.3.0
 
 ### Minor Changes
