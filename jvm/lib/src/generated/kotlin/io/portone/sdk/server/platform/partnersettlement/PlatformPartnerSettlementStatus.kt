@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 /** 정산 상태 */
 @Serializable
 public enum class PlatformPartnerSettlementStatus {
+  /** 지급 예약 */
+  PAYOUT_SCHEDULED,
   /** 지급 예정 */
   PAYOUT_PREPARED,
   /** 지급 보류 */

@@ -22,4 +22,5 @@ public enum class EasyPayProvider {
   KB_APP,
   ALIPAY,
   HYPHEN,
+  TMONEY,
 }

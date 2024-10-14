@@ -1,9 +1,9 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.billingkey.ChannelSpecificFailure
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.errors.DeleteBillingKeyError
 import io.portone.sdk.server.errors.IssueBillingKeyError
+import io.portone.sdk.server.payment.billingkey.ChannelSpecificFailure
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

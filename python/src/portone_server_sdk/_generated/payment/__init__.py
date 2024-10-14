@@ -27,6 +27,8 @@ from portone_server_sdk._generated.payment.get_all_payments_by_cursor_response i
 from portone_server_sdk._generated.payment.get_payments_response import GetPaymentsResponse, _deserialize_get_payments_response, _serialize_get_payments_response
 from portone_server_sdk._generated.payment.instant_payment_method_input import InstantPaymentMethodInput, _deserialize_instant_payment_method_input, _serialize_instant_payment_method_input
 from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from portone_server_sdk._generated.common.max_transaction_count_reached_error import MaxTransactionCountReachedError, _deserialize_max_transaction_count_reached_error, _serialize_max_transaction_count_reached_error
+from portone_server_sdk._generated.payment.max_webhook_retry_count_reached_error import MaxWebhookRetryCountReachedError, _deserialize_max_webhook_retry_count_reached_error, _serialize_max_webhook_retry_count_reached_error
 from portone_server_sdk._generated.payment.modify_escrow_logistics_response import ModifyEscrowLogisticsResponse, _deserialize_modify_escrow_logistics_response, _serialize_modify_escrow_logistics_response
 from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from portone_server_sdk._generated.payment.pay_instantly_response import PayInstantlyResponse, _deserialize_pay_instantly_response, _serialize_pay_instantly_response
@@ -55,6 +57,10 @@ from portone_server_sdk._generated.payment.sum_of_parts_exceeds_cancel_amount_er
 from portone_server_sdk._generated.common.sum_of_parts_exceeds_total_amount_error import SumOfPartsExceedsTotalAmountError, _deserialize_sum_of_parts_exceeds_total_amount_error, _serialize_sum_of_parts_exceeds_total_amount_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 from portone_server_sdk._generated.payment.webhook_not_found_error import WebhookNotFoundError, _deserialize_webhook_not_found_error, _serialize_webhook_not_found_error
+from .billing_key import BillingKeyClient
+from .cash_receipt import CashReceiptClient
+from .payment_schedule import PaymentScheduleClient
+from .promotion import PromotionClient
 from portone_server_sdk._generated import errors
 class PaymentClient:
     _secret: str
@@ -62,6 +68,10 @@ class PaymentClient:
     _base_url: str
     _store_id: Optional[str]
     _client: AsyncClient
+    billing_key: BillingKeyClient
+    cash_receipt: CashReceiptClient
+    payment_schedule: PaymentScheduleClient
+    promotion: PromotionClient
 
     def __init__(self, secret: str, user_agent: str, base_url: str, store_id: Optional[str]):
         self._secret = secret
@@ -69,6 +79,10 @@ class PaymentClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
+        self.billing_key = BillingKeyClient(secret, user_agent, base_url, store_id)
+        self.cash_receipt = CashReceiptClient(secret, user_agent, base_url, store_id)
+        self.payment_schedule = PaymentScheduleClient(secret, user_agent, base_url, store_id)
+        self.promotion = PromotionClient(secret, user_agent, base_url, store_id)
     def pre_register_payment(
         self,
         *,
@@ -957,6 +971,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1032,6 +1048,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1139,6 +1157,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1214,6 +1234,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1317,6 +1339,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1384,6 +1408,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1487,6 +1513,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1554,6 +1582,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -2211,6 +2241,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxWebhookRetryCountReachedError: 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
+                동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
             PaymentNotFoundError: 결제 건이 존재하지 않는 경우
                 결제 건이 존재하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -2242,6 +2274,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
+                raise errors.MaxWebhookRetryCountReachedError(_serialize_max_webhook_retry_count_reached_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
                 raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
@@ -2277,6 +2311,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxWebhookRetryCountReachedError: 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
+                동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
             PaymentNotFoundError: 결제 건이 존재하지 않는 경우
                 결제 건이 존재하지 않는 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -2308,6 +2344,8 @@ class PaymentClient:
                 raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
+                raise errors.MaxWebhookRetryCountReachedError(_serialize_max_webhook_retry_count_reached_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
                 raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":

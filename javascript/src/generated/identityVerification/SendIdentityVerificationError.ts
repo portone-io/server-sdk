@@ -4,6 +4,7 @@ import type { IdentityVerificationAlreadySentError } from "#generated/identityVe
 import type { IdentityVerificationAlreadyVerifiedError } from "#generated/identityVerification/IdentityVerificationAlreadyVerifiedError"
 import type { IdentityVerificationNotFoundError } from "#generated/identityVerification/IdentityVerificationNotFoundError"
 import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
+import type { MaxTransactionCountReachedError } from "#generated/common/MaxTransactionCountReachedError"
 import type { PgProviderError } from "#generated/common/PgProviderError"
 import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
 
@@ -14,5 +15,6 @@ export type SendIdentityVerificationError =
 	| IdentityVerificationAlreadyVerifiedError
 	| IdentityVerificationNotFoundError
 	| InvalidRequestError
+	| MaxTransactionCountReachedError
 	| PgProviderError
 	| UnauthorizedError

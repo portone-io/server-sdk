@@ -28,4 +28,6 @@ export type PlatformPayout = {
 	depositMemo?: string
 	/** (RFC 3339 date-time) */
 	createdAt: string
+	/** (RFC 3339 date-time) */
+	scheduledAt?: string
 }

@@ -1,8 +1,8 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.billingkey.ChannelSpecificFailure
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.errors.ChannelSpecificError
+import io.portone.sdk.server.payment.billingkey.ChannelSpecificFailure
 import java.lang.Exception
 
 

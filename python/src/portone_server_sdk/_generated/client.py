@@ -5,13 +5,9 @@ from .auth import AuthClient
 from .platform import PlatformClient
 from .identity_verification import IdentityVerificationClient
 from .payment import PaymentClient
-from .billing_key import BillingKeyClient
-from .cash_receipt import CashReceiptClient
-from .payment_schedule import PaymentScheduleClient
 from .analytics import AnalyticsClient
 from .b2b import B2BClient
 from .pg_specific import PgSpecificClient
-from .promotion import PromotionClient
 
 class PortOneClient:
     _secret: str
@@ -23,13 +19,9 @@ class PortOneClient:
     platform: PlatformClient
     identity_verification: IdentityVerificationClient
     payment: PaymentClient
-    billing_key: BillingKeyClient
-    cash_receipt: CashReceiptClient
-    payment_schedule: PaymentScheduleClient
     analytics: AnalyticsClient
     b2b: B2BClient
     pg_specific: PgSpecificClient
-    promotion: PromotionClient
 
     def __init__(self, *, secret: str, store_id: Optional[str] = None, base_url: str = "https://api.portone.io") -> None:
         """API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
@@ -43,10 +35,6 @@ class PortOneClient:
         self.platform = PlatformClient(secret, user_agent, base_url, store_id)
         self.identity_verification = IdentityVerificationClient(secret, user_agent, base_url, store_id)
         self.payment = PaymentClient(secret, user_agent, base_url, store_id)
-        self.billing_key = BillingKeyClient(secret, user_agent, base_url, store_id)
-        self.cash_receipt = CashReceiptClient(secret, user_agent, base_url, store_id)
-        self.payment_schedule = PaymentScheduleClient(secret, user_agent, base_url, store_id)
         self.analytics = AnalyticsClient(secret, user_agent, base_url, store_id)
         self.b2b = B2BClient(secret, user_agent, base_url, store_id)
         self.pg_specific = PgSpecificClient(secret, user_agent, base_url, store_id)
-        self.promotion = PromotionClient(secret, user_agent, base_url, store_id)

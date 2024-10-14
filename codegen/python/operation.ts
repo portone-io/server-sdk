@@ -1,4 +1,4 @@
-import { Writer } from "../common/writer.ts"
+import type { Writer } from "../common/writer.ts"
 import type {
   Definition,
   OneOfVariant,

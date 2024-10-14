@@ -14,6 +14,7 @@ from portone_server_sdk._generated.identity_verification.identity_verification_n
 from portone_server_sdk._generated.identity_verification.identity_verification_not_sent_error import IdentityVerificationNotSentError, _deserialize_identity_verification_not_sent_error, _serialize_identity_verification_not_sent_error
 from portone_server_sdk._generated.identity_verification.identity_verification_operator import IdentityVerificationOperator, _deserialize_identity_verification_operator, _serialize_identity_verification_operator
 from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from portone_server_sdk._generated.common.max_transaction_count_reached_error import MaxTransactionCountReachedError, _deserialize_max_transaction_count_reached_error, _serialize_max_transaction_count_reached_error
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.identity_verification.resend_identity_verification_response import ResendIdentityVerificationResponse, _deserialize_resend_identity_verification_response, _serialize_resend_identity_verification_response
 from portone_server_sdk._generated.identity_verification.send_identity_verification_body_customer import SendIdentityVerificationBodyCustomer, _deserialize_send_identity_verification_body_customer, _serialize_send_identity_verification_body_customer
@@ -186,6 +187,8 @@ class IdentityVerificationClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -229,6 +232,8 @@ class IdentityVerificationClient:
                 raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
@@ -283,6 +288,8 @@ class IdentityVerificationClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+                결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -326,6 +333,8 @@ class IdentityVerificationClient:
                 raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
+                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":

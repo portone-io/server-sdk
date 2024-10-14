@@ -1,6 +1,6 @@
 import { toSnakeCase as toSnakeCaseDeno } from "@std/text"
 import { Writer } from "../common/writer.ts"
-import { Definition } from "../parser/definition.ts"
+import type { Definition } from "../parser/definition.ts"
 
 export function intoInlineTypeName(definition: Definition): string {
   switch (definition.type) {

@@ -1,5 +1,7 @@
 export type PlatformBulkPayoutStatusStats = {
 	/** (int64) */
+	scheduled: number
+	/** (int64) */
 	preparing: number
 	/** (int64) */
 	prepared: number

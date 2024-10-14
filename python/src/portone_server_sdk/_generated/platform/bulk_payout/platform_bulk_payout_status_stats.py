@@ -4,6 +4,9 @@ from dataclasses import dataclass, field
 
 @dataclass
 class PlatformBulkPayoutStatusStats:
+    scheduled: int
+    """(int64)
+    """
     preparing: int
     """(int64)
     """
@@ -26,6 +29,7 @@ class PlatformBulkPayoutStatusStats:
 
 def _serialize_platform_bulk_payout_status_stats(obj: PlatformBulkPayoutStatusStats) -> Any:
     entity = {}
+    entity["scheduled"] = obj.scheduled
     entity["preparing"] = obj.preparing
     entity["prepared"] = obj.prepared
     entity["ongoing"] = obj.ongoing
@@ -38,6 +42,11 @@ def _serialize_platform_bulk_payout_status_stats(obj: PlatformBulkPayoutStatusSt
 def _deserialize_platform_bulk_payout_status_stats(obj: Any) -> PlatformBulkPayoutStatusStats:
     if not isinstance(obj, dict):
         raise ValueError(f"{repr(obj)} is not dict")
+    if "scheduled" not in obj:
+        raise KeyError(f"'scheduled' is not in {obj}")
+    scheduled = obj["scheduled"]
+    if not isinstance(scheduled, int):
+        raise ValueError(f"{repr(scheduled)} is not int")
     if "preparing" not in obj:
         raise KeyError(f"'preparing' is not in {obj}")
     preparing = obj["preparing"]
@@ -68,4 +77,4 @@ def _deserialize_platform_bulk_payout_status_stats(obj: Any) -> PlatformBulkPayo
     completed = obj["completed"]
     if not isinstance(completed, int):
         raise ValueError(f"{repr(completed)} is not int")
-    return PlatformBulkPayoutStatusStats(preparing, prepared, ongoing, stopped, cancelled, completed)
+    return PlatformBulkPayoutStatusStats(scheduled, preparing, prepared, ongoing, stopped, cancelled, completed)

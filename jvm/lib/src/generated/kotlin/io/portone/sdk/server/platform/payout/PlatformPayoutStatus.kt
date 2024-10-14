@@ -10,4 +10,5 @@ public enum class PlatformPayoutStatus {
   PROCESSING,
   SUCCEEDED,
   FAILED,
+  SCHEDULED,
 }

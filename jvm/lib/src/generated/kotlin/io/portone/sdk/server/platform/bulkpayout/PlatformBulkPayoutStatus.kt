@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public enum class PlatformBulkPayoutStatus {
+  SCHEDULED,
   PREPARING,
   PREPARED,
   ONGOING,

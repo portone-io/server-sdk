@@ -10,4 +10,5 @@ public data class PlatformPayoutStatusStats(
   val processing: Long,
   val succeeded: Long,
   val failed: Long,
+  val scheduled: Long,
 )

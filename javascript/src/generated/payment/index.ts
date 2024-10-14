@@ -42,6 +42,10 @@ import type { ResendWebhookError } from "#generated/payment/ResendWebhookError"
 import type { ResendWebhookResponse } from "#generated/payment/ResendWebhookResponse"
 import type { SeparatedAddressInput } from "#generated/common/SeparatedAddressInput"
 import * as Errors from "#generated/errors"
+import * as BillingKey from "./billingKey"
+import * as CashReceipt from "./cashReceipt"
+import * as PaymentSchedule from "./paymentSchedule"
+import * as Promotion from "./promotion"
 export type { ApplyEscrowLogisticsResponse } from "./ApplyEscrowLogisticsResponse"
 export type { BeforeRegisteredPaymentEscrow } from "./BeforeRegisteredPaymentEscrow"
 export type { BillingKeyPaymentSummary } from "./BillingKeyPaymentSummary"
@@ -133,6 +137,10 @@ export type { ResendWebhookBody } from "./ResendWebhookBody"
 export type { ResendWebhookResponse } from "./ResendWebhookResponse"
 export type { SucceededPaymentCancellation } from "./SucceededPaymentCancellation"
 export type { VirtualAccountIssuedPayment } from "./VirtualAccountIssuedPayment"
+export type * as BillingKey from "./billingKey"
+export type * as CashReceipt from "./cashReceipt"
+export type * as PaymentSchedule from "./paymentSchedule"
+export type * as Promotion from "./promotion"
 /** @ignore */
 export function PaymentClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentClient {
 	return {
@@ -479,6 +487,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
+				case "MAX_TRANSACTION_COUNT_REACHED":
+					throw new Errors.MaxTransactionCountReachedError(errorResponse)
 				case "PG_PROVIDER":
 					throw new Errors.PgProviderError(errorResponse)
 				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -578,6 +588,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
+				case "MAX_TRANSACTION_COUNT_REACHED":
+					throw new Errors.MaxTransactionCountReachedError(errorResponse)
 				case "PG_PROVIDER":
 					throw new Errors.PgProviderError(errorResponse)
 				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -808,6 +820,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
+				case "MAX_WEBHOOK_RETRY_COUNT_REACHED":
+					throw new Errors.MaxWebhookRetryCountReachedError(errorResponse)
 				case "PAYMENT_NOT_FOUND":
 					throw new Errors.PaymentNotFoundError(errorResponse)
 				case "UNAUTHORIZED":
@@ -858,6 +872,10 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			}
 			return response.json()
 		},
+		billingKey: BillingKey.BillingKeyClient(secret, userAgent, baseUrl, storeId),
+		cashReceipt: CashReceipt.CashReceiptClient(secret, userAgent, baseUrl, storeId),
+		paymentSchedule: PaymentSchedule.PaymentScheduleClient(secret, userAgent, baseUrl, storeId),
+		promotion: Promotion.PromotionClient(secret, userAgent, baseUrl, storeId),
 	}
 }
 export type PaymentClient = {
@@ -1055,6 +1073,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.DiscountAmountExceedsTotalAmountError} 프로모션 할인 금액이 결제 시도 금액 이상인 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
+	 * @throws {@link Errors.MaxTransactionCountReachedError} 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -1135,6 +1154,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.DiscountAmountExceedsTotalAmountError} 프로모션 할인 금액이 결제 시도 금액 이상인 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
+	 * @throws {@link Errors.MaxTransactionCountReachedError} 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -1342,6 +1362,7 @@ export type PaymentClient = {
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
+	 * @throws {@link Errors.MaxWebhookRetryCountReachedError} 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
 	 * @throws {@link Errors.WebhookNotFoundError} 웹훅 내역이 존재하지 않는 경우
@@ -1383,5 +1404,9 @@ export type PaymentClient = {
 		/** 하위 상점 거래 목록 */
 		items: RegisterStoreReceiptBodyItem[],
 	) => Promise<RegisterStoreReceiptResponse>
+	billingKey: BillingKey.BillingKeyClient
+	cashReceipt: CashReceipt.CashReceiptClient
+	paymentSchedule: PaymentSchedule.PaymentScheduleClient
+	promotion: Promotion.PromotionClient
 }
 

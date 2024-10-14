@@ -1,5 +1,5 @@
 import type { AlreadyPaidError as InternalAlreadyPaidError } from "#generated/payment/AlreadyPaidError"
-import type { AlreadyPaidOrWaitingError as InternalAlreadyPaidOrWaitingError } from "#generated/paymentSchedule/AlreadyPaidOrWaitingError"
+import type { AlreadyPaidOrWaitingError as InternalAlreadyPaidOrWaitingError } from "#generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
 import type { B2bBankAccountNotFoundError as InternalB2bBankAccountNotFoundError } from "#generated/b2b/B2bBankAccountNotFoundError"
 import type { B2bCertificateUnregisteredError as InternalB2bCertificateUnregisteredError } from "#generated/b2b/B2bCertificateUnregisteredError"
 import type { B2bCompanyAlreadyRegisteredError as InternalB2bCompanyAlreadyRegisteredError } from "#generated/b2b/B2bCompanyAlreadyRegisteredError"
@@ -29,16 +29,16 @@ import type { B2bTaxInvoiceNotRegisteredStatusError as InternalB2bTaxInvoiceNotR
 import type { B2bTaxInvoiceNotRequestedStatusError as InternalB2bTaxInvoiceNotRequestedStatusError } from "#generated/b2b/B2bTaxInvoiceNotRequestedStatusError"
 import type { BillingKeyAlreadyDeletedError as InternalBillingKeyAlreadyDeletedError } from "#generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyNotFoundError as InternalBillingKeyNotFoundError } from "#generated/common/BillingKeyNotFoundError"
-import type { BillingKeyNotIssuedError as InternalBillingKeyNotIssuedError } from "#generated/billingKey/BillingKeyNotIssuedError"
+import type { BillingKeyNotIssuedError as InternalBillingKeyNotIssuedError } from "#generated/payment/billingKey/BillingKeyNotIssuedError"
 import type { CancelAmountExceedsCancellableAmountError as InternalCancelAmountExceedsCancellableAmountError } from "#generated/payment/CancelAmountExceedsCancellableAmountError"
 import type { CancelTaxAmountExceedsCancellableTaxAmountError as InternalCancelTaxAmountExceedsCancellableTaxAmountError } from "#generated/payment/CancelTaxAmountExceedsCancellableTaxAmountError"
 import type { CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError as InternalCancelTaxFreeAmountExceedsCancellableTaxFreeAmountError } from "#generated/payment/CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError"
 import type { CancellableAmountConsistencyBrokenError as InternalCancellableAmountConsistencyBrokenError } from "#generated/payment/CancellableAmountConsistencyBrokenError"
-import type { CashReceiptAlreadyIssuedError as InternalCashReceiptAlreadyIssuedError } from "#generated/cashReceipt/CashReceiptAlreadyIssuedError"
-import type { CashReceiptNotFoundError as InternalCashReceiptNotFoundError } from "#generated/cashReceipt/CashReceiptNotFoundError"
-import type { CashReceiptNotIssuedError as InternalCashReceiptNotIssuedError } from "#generated/cashReceipt/CashReceiptNotIssuedError"
+import type { CashReceiptAlreadyIssuedError as InternalCashReceiptAlreadyIssuedError } from "#generated/payment/cashReceipt/CashReceiptAlreadyIssuedError"
+import type { CashReceiptNotFoundError as InternalCashReceiptNotFoundError } from "#generated/payment/cashReceipt/CashReceiptNotFoundError"
+import type { CashReceiptNotIssuedError as InternalCashReceiptNotIssuedError } from "#generated/payment/cashReceipt/CashReceiptNotIssuedError"
 import type { ChannelNotFoundError as InternalChannelNotFoundError } from "#generated/common/ChannelNotFoundError"
-import type { ChannelSpecificError as InternalChannelSpecificError } from "#generated/billingKey/ChannelSpecificError"
+import type { ChannelSpecificError as InternalChannelSpecificError } from "#generated/payment/billingKey/ChannelSpecificError"
 import type { DiscountAmountExceedsTotalAmountError as InternalDiscountAmountExceedsTotalAmountError } from "#generated/payment/DiscountAmountExceedsTotalAmountError"
 import type { ForbiddenError as InternalForbiddenError } from "#generated/common/ForbiddenError"
 import type { IdentityVerificationAlreadySentError as InternalIdentityVerificationAlreadySentError } from "#generated/identityVerification/IdentityVerificationAlreadySentError"
@@ -46,14 +46,16 @@ import type { IdentityVerificationAlreadyVerifiedError as InternalIdentityVerifi
 import type { IdentityVerificationNotFoundError as InternalIdentityVerificationNotFoundError } from "#generated/identityVerification/IdentityVerificationNotFoundError"
 import type { IdentityVerificationNotSentError as InternalIdentityVerificationNotSentError } from "#generated/identityVerification/IdentityVerificationNotSentError"
 import type { InvalidRequestError as InternalInvalidRequestError } from "#generated/common/InvalidRequestError"
+import type { MaxTransactionCountReachedError as InternalMaxTransactionCountReachedError } from "#generated/common/MaxTransactionCountReachedError"
+import type { MaxWebhookRetryCountReachedError as InternalMaxWebhookRetryCountReachedError } from "#generated/payment/MaxWebhookRetryCountReachedError"
 import type { PaymentAlreadyCancelledError as InternalPaymentAlreadyCancelledError } from "#generated/payment/PaymentAlreadyCancelledError"
 import type { PaymentNotFoundError as InternalPaymentNotFoundError } from "#generated/payment/PaymentNotFoundError"
 import type { PaymentNotPaidError as InternalPaymentNotPaidError } from "#generated/payment/PaymentNotPaidError"
 import type { PaymentNotWaitingForDepositError as InternalPaymentNotWaitingForDepositError } from "#generated/payment/PaymentNotWaitingForDepositError"
 import type { PaymentScheduleAlreadyExistsError as InternalPaymentScheduleAlreadyExistsError } from "#generated/common/PaymentScheduleAlreadyExistsError"
-import type { PaymentScheduleAlreadyProcessedError as InternalPaymentScheduleAlreadyProcessedError } from "#generated/paymentSchedule/PaymentScheduleAlreadyProcessedError"
-import type { PaymentScheduleAlreadyRevokedError as InternalPaymentScheduleAlreadyRevokedError } from "#generated/paymentSchedule/PaymentScheduleAlreadyRevokedError"
-import type { PaymentScheduleNotFoundError as InternalPaymentScheduleNotFoundError } from "#generated/paymentSchedule/PaymentScheduleNotFoundError"
+import type { PaymentScheduleAlreadyProcessedError as InternalPaymentScheduleAlreadyProcessedError } from "#generated/payment/paymentSchedule/PaymentScheduleAlreadyProcessedError"
+import type { PaymentScheduleAlreadyRevokedError as InternalPaymentScheduleAlreadyRevokedError } from "#generated/payment/paymentSchedule/PaymentScheduleAlreadyRevokedError"
+import type { PaymentScheduleNotFoundError as InternalPaymentScheduleNotFoundError } from "#generated/payment/paymentSchedule/PaymentScheduleNotFoundError"
 import type { PgProviderError as InternalPgProviderError } from "#generated/common/PgProviderError"
 import type { PlatformAccountVerificationAlreadyUsedError as InternalPlatformAccountVerificationAlreadyUsedError } from "#generated/platform/PlatformAccountVerificationAlreadyUsedError"
 import type { PlatformAccountVerificationFailedError as InternalPlatformAccountVerificationFailedError } from "#generated/platform/PlatformAccountVerificationFailedError"
@@ -119,14 +121,14 @@ import type { PlatformTransferDiscountSharePolicyNotFoundError as InternalPlatfo
 import type { PlatformTransferNonDeletableStatusError as InternalPlatformTransferNonDeletableStatusError } from "#generated/platform/transfer/PlatformTransferNonDeletableStatusError"
 import type { PlatformTransferNotFoundError as InternalPlatformTransferNotFoundError } from "#generated/platform/transfer/PlatformTransferNotFoundError"
 import type { PlatformUserDefinedPropertyNotFoundError as InternalPlatformUserDefinedPropertyNotFoundError } from "#generated/platform/PlatformUserDefinedPropertyNotFoundError"
-import type { PromotionNotFoundError as InternalPromotionNotFoundError } from "#generated/promotion/PromotionNotFoundError"
+import type { PromotionNotFoundError as InternalPromotionNotFoundError } from "#generated/payment/promotion/PromotionNotFoundError"
 import type { PromotionPayMethodDoesNotMatchError as InternalPromotionPayMethodDoesNotMatchError } from "#generated/payment/PromotionPayMethodDoesNotMatchError"
 import type { RemainedAmountLessThanPromotionMinPaymentAmountError as InternalRemainedAmountLessThanPromotionMinPaymentAmountError } from "#generated/payment/RemainedAmountLessThanPromotionMinPaymentAmountError"
 import type { SumOfPartsExceedsCancelAmountError as InternalSumOfPartsExceedsCancelAmountError } from "#generated/payment/SumOfPartsExceedsCancelAmountError"
 import type { SumOfPartsExceedsTotalAmountError as InternalSumOfPartsExceedsTotalAmountError } from "#generated/common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError as InternalUnauthorizedError } from "#generated/common/UnauthorizedError"
 import type { WebhookNotFoundError as InternalWebhookNotFoundError } from "#generated/payment/WebhookNotFoundError"
-import type { ChannelSpecificFailure } from "#generated/billingKey/ChannelSpecificFailure"
+import type { ChannelSpecificFailure } from "#generated/payment/billingKey/ChannelSpecificFailure"
 import type { SelectedChannel } from "#generated/common/SelectedChannel"
 import type { Currency } from "#generated/common/Currency"
 import type { PlatformCancellableAmountType } from "#generated/platform/transfer/PlatformCancellableAmountType"
@@ -737,6 +739,30 @@ export class InvalidRequestError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, InvalidRequestError.prototype)
 		this.name = "InvalidRequestError"
+	}
+}
+
+/** 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우 */
+export class MaxTransactionCountReachedError extends PortOneError {
+	readonly _tag = "PortOneMaxTransactionCountReachedError"
+
+	/** @ignore */
+	constructor(error: InternalMaxTransactionCountReachedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, MaxTransactionCountReachedError.prototype)
+		this.name = "MaxTransactionCountReachedError"
+	}
+}
+
+/** 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우 */
+export class MaxWebhookRetryCountReachedError extends PortOneError {
+	readonly _tag = "PortOneMaxWebhookRetryCountReachedError"
+
+	/** @ignore */
+	constructor(error: InternalMaxWebhookRetryCountReachedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, MaxWebhookRetryCountReachedError.prototype)
+		this.name = "MaxWebhookRetryCountReachedError"
 	}
 }
 

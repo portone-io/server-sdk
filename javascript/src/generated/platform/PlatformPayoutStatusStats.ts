@@ -11,4 +11,6 @@ export type PlatformPayoutStatusStats = {
 	succeeded: number
 	/** (int64) */
 	failed: number
+	/** (int64) */
+	scheduled: number
 }

@@ -2,9 +2,9 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import { Writer } from "../common/writer.ts"
-import { Definition } from "../parser/definition.ts"
-import { Package } from "../parser/openapi.ts"
+import type { Writer } from "../common/writer.ts"
+import type { Definition } from "../parser/definition.ts"
+import type { Package } from "../parser/openapi.ts"
 import {
   filterName,
   intoInlineTypeName,

@@ -4,6 +4,9 @@ from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPartnerSettlementStatusStats:
+    payout_scheduled: int
+    """(int64)
+    """
     payout_prepared: int
     """(int64)
     """
@@ -23,6 +26,7 @@ class PlatformPartnerSettlementStatusStats:
 
 def _serialize_platform_partner_settlement_status_stats(obj: PlatformPartnerSettlementStatusStats) -> Any:
     entity = {}
+    entity["payoutScheduled"] = obj.payout_scheduled
     entity["payoutPrepared"] = obj.payout_prepared
     entity["payoutWithheld"] = obj.payout_withheld
     entity["payoutFailed"] = obj.payout_failed
@@ -34,6 +38,11 @@ def _serialize_platform_partner_settlement_status_stats(obj: PlatformPartnerSett
 def _deserialize_platform_partner_settlement_status_stats(obj: Any) -> PlatformPartnerSettlementStatusStats:
     if not isinstance(obj, dict):
         raise ValueError(f"{repr(obj)} is not dict")
+    if "payoutScheduled" not in obj:
+        raise KeyError(f"'payoutScheduled' is not in {obj}")
+    payout_scheduled = obj["payoutScheduled"]
+    if not isinstance(payout_scheduled, int):
+        raise ValueError(f"{repr(payout_scheduled)} is not int")
     if "payoutPrepared" not in obj:
         raise KeyError(f"'payoutPrepared' is not in {obj}")
     payout_prepared = obj["payoutPrepared"]
@@ -59,4 +68,4 @@ def _deserialize_platform_partner_settlement_status_stats(obj: Any) -> PlatformP
     paid_out = obj["paidOut"]
     if not isinstance(paid_out, int):
         raise ValueError(f"{repr(paid_out)} is not int")
-    return PlatformPartnerSettlementStatusStats(payout_prepared, payout_withheld, payout_failed, in_payout, paid_out)
+    return PlatformPartnerSettlementStatusStats(payout_scheduled, payout_prepared, payout_withheld, payout_failed, in_payout, paid_out)

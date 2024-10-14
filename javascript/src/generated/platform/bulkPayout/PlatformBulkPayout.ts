@@ -20,4 +20,6 @@ export type PlatformBulkPayout = {
 	createdAt: string
 	/** (RFC 3339 date-time) */
 	updatedAt: string
+	/** (RFC 3339 date-time) */
+	scheduledAt?: string
 }

@@ -24,12 +24,13 @@
     "./analytics": "./src/generated/analytics/index.ts",
     "./auth": "./src/generated/auth/index.ts",
     "./b2b": "./src/generated/b2b/index.ts",
-    "./billingKey": "./src/generated/billingKey/index.ts",
-    "./cashReceipt": "./src/generated/cashReceipt/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
     "./payment": "./src/generated/payment/index.ts",
-    "./paymentSchedule": "./src/generated/paymentSchedule/index.ts",
+    "./payment/billingKey": "./src/generated/payment/billingKey/index.ts",
+    "./payment/cashReceipt": "./src/generated/payment/cashReceipt/index.ts",
+    "./payment/paymentSchedule": "./src/generated/payment/paymentSchedule/index.ts",
+    "./payment/promotion": "./src/generated/payment/promotion/index.ts",
     "./pgSpecific": "./src/generated/pgSpecific/index.ts",
     "./platform": "./src/generated/platform/index.ts",
     "./platform/account": "./src/generated/platform/account/index.ts",
@@ -39,16 +40,13 @@
     "./platform/partnerSettlement": "./src/generated/platform/partnerSettlement/index.ts",
     "./platform/payout": "./src/generated/platform/payout/index.ts",
     "./platform/policy": "./src/generated/platform/policy/index.ts",
-    "./platform/transfer": "./src/generated/platform/transfer/index.ts",
-    "./promotion": "./src/generated/promotion/index.ts"
+    "./platform/transfer": "./src/generated/platform/transfer/index.ts"
   },
   "publishConfig": {
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
-      },
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
       "./analytics": {
         "types": "./dist/generated/analytics/index.d.ts",
         "require": "./dist/generated/analytics/index.cjs",
@@ -63,16 +61,6 @@
         "types": "./dist/generated/b2b/index.d.ts",
         "require": "./dist/generated/b2b/index.cjs",
         "import": "./dist/generated/b2b/index.mjs"
-      },
-      "./billingKey": {
-        "types": "./dist/generated/billingKey/index.d.ts",
-        "require": "./dist/generated/billingKey/index.cjs",
-        "import": "./dist/generated/billingKey/index.mjs"
-      },
-      "./cashReceipt": {
-        "types": "./dist/generated/cashReceipt/index.d.ts",
-        "require": "./dist/generated/cashReceipt/index.cjs",
-        "import": "./dist/generated/cashReceipt/index.mjs"
       },
       "./common": {
         "types": "./dist/generated/common/index.d.ts",
@@ -89,10 +77,25 @@
         "require": "./dist/generated/payment/index.cjs",
         "import": "./dist/generated/payment/index.mjs"
       },
-      "./paymentSchedule": {
-        "types": "./dist/generated/paymentSchedule/index.d.ts",
-        "require": "./dist/generated/paymentSchedule/index.cjs",
-        "import": "./dist/generated/paymentSchedule/index.mjs"
+      "./payment/billingKey": {
+        "types": "./dist/generated/payment/billingKey/index.d.ts",
+        "require": "./dist/generated/payment/billingKey/index.cjs",
+        "import": "./dist/generated/payment/billingKey/index.mjs"
+      },
+      "./payment/cashReceipt": {
+        "types": "./dist/generated/payment/cashReceipt/index.d.ts",
+        "require": "./dist/generated/payment/cashReceipt/index.cjs",
+        "import": "./dist/generated/payment/cashReceipt/index.mjs"
+      },
+      "./payment/paymentSchedule": {
+        "types": "./dist/generated/payment/paymentSchedule/index.d.ts",
+        "require": "./dist/generated/payment/paymentSchedule/index.cjs",
+        "import": "./dist/generated/payment/paymentSchedule/index.mjs"
+      },
+      "./payment/promotion": {
+        "types": "./dist/generated/payment/promotion/index.d.ts",
+        "require": "./dist/generated/payment/promotion/index.cjs",
+        "import": "./dist/generated/payment/promotion/index.mjs"
       },
       "./pgSpecific": {
         "types": "./dist/generated/pgSpecific/index.d.ts",
@@ -143,11 +146,6 @@
         "types": "./dist/generated/platform/transfer/index.d.ts",
         "require": "./dist/generated/platform/transfer/index.cjs",
         "import": "./dist/generated/platform/transfer/index.mjs"
-      },
-      "./promotion": {
-        "types": "./dist/generated/promotion/index.d.ts",
-        "require": "./dist/generated/promotion/index.cjs",
-        "import": "./dist/generated/promotion/index.mjs"
       }
     },
     "imports": {

@@ -9,6 +9,14 @@ export function updatePackageJson(rootPath: string, entrypoints: string[]) {
       import: "./dist/generated/*.mjs",
     },
   }
+  json.exports = {
+    ".": "./src/index.ts",
+  }
+  json.publishConfig.exports = {
+    types: "./dist/index.d.ts",
+    require: "./dist/index.cjs",
+    import: "./dist/index.mjs",
+  }
   for (const entrypoint of entrypoints) {
     json.exports[`./${entrypoint}`] = `./src/generated/${entrypoint}/index.ts`
     json.publishConfig.exports[`./${entrypoint}`] = {

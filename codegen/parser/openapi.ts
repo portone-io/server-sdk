@@ -1,6 +1,6 @@
 import OpenAPI from "../openapi.json" with { type: "json" }
-import { Definition, parseDefinition } from "./definition.ts"
-import { Operation, parseOperation } from "./operation.ts"
+import { type Definition, parseDefinition } from "./definition.ts"
+import { type Operation, parseOperation } from "./operation.ts"
 
 type DefinitionUsage = {
   definition: Definition

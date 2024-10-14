@@ -2,13 +2,13 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import { Definition } from "../parser/definition.ts"
-import { Package } from "../parser/openapi.ts"
+import type { Definition } from "../parser/definition.ts"
+import type { Package } from "../parser/openapi.ts"
 import {
   filterName,
   KotlinWriter,
   makeOverridesMap,
-  Override,
+  type Override,
   toException,
   toPackageCase,
 } from "./common.ts"
@@ -308,7 +308,10 @@ function generateRootClient(
     "java.io.Closeable",
     "io.ktor.client.engine.okhttp.OkHttp",
   ])
-  for (const subpackage of pack.subpackages) {
+  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
+    subpackages.length > 0 || operations.length > 0
+  )
+  for (const subpackage of subpackages) {
     crossRef.add(
       `io.portone.sdk.server.${toPackageCase(subpackage.category)}.${
         toPascalCase(subpackage.category)
@@ -323,9 +326,6 @@ function generateRootClient(
     writer.writeLine(line)
   }
   writer.indent()
-  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
-    subpackages.length > 0 || operations.length > 0
-  )
   for (const subpackage of subpackages) {
     writer.writeLine(
       `public val ${subpackage.category}: ${

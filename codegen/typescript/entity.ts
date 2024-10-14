@@ -1,4 +1,4 @@
-import { Definition } from "../parser/definition.ts"
+import type { Definition } from "../parser/definition.ts"
 import { TypescriptWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 

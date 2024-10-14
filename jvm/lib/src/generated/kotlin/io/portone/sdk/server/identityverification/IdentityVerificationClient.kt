@@ -30,6 +30,8 @@ import io.portone.sdk.server.errors.IdentityVerificationNotSentError
 import io.portone.sdk.server.errors.IdentityVerificationNotSentException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
+import io.portone.sdk.server.errors.MaxTransactionCountReachedError
+import io.portone.sdk.server.errors.MaxTransactionCountReachedException
 import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.ResendIdentityVerificationError
@@ -150,6 +152,7 @@ public class IdentityVerificationClient(
    * @throws IdentityVerificationAlreadyVerifiedException 본인인증 건이 이미 인증 완료된 상태인 경우
    * @throws IdentityVerificationNotFoundException 요청된 본인인증 건이 존재하지 않는 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
+   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
    * @throws PgProviderException PG사에서 오류를 전달한 경우
    * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
    * @throws UnknownException API 응답이 알 수 없는 형식인 경우
@@ -200,6 +203,7 @@ public class IdentityVerificationClient(
         is IdentityVerificationAlreadyVerifiedError -> throw IdentityVerificationAlreadyVerifiedException(httpBodyDecoded)
         is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }

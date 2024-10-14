@@ -1,5 +1,7 @@
 export type PlatformPartnerSettlementStatusStats = {
 	/** (int64) */
+	payoutScheduled: number
+	/** (int64) */
 	payoutPrepared: number
 	/** (int64) */
 	payoutWithheld: number

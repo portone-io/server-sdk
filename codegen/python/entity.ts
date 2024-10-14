@@ -1,5 +1,5 @@
 import * as path from "@std/path"
-import { Definition } from "../parser/definition.ts"
+import type { Definition } from "../parser/definition.ts"
 import { filterName, PythonWriter, toSnakeCase } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 

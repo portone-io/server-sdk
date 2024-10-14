@@ -29,6 +29,9 @@ class PlatformBulkPayout:
     updated_at: str
     """(RFC 3339 date-time)
     """
+    scheduled_at: Optional[str]
+    """(RFC 3339 date-time)
+    """
 
 
 def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
@@ -45,6 +48,8 @@ def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
     entity["statusUpdatedAt"] = obj.status_updated_at
     entity["createdAt"] = obj.created_at
     entity["updatedAt"] = obj.updated_at
+    if obj.scheduled_at is not None:
+        entity["scheduledAt"] = obj.scheduled_at
     return entity
 
 
@@ -108,4 +113,10 @@ def _deserialize_platform_bulk_payout(obj: Any) -> PlatformBulkPayout:
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
         raise ValueError(f"{repr(updated_at)} is not str")
-    return PlatformBulkPayout(id, graphql_id, name, creator_id, method, are_payouts_generated, total_payout_amount, status, payout_stats, status_updated_at, created_at, updated_at)
+    if "scheduledAt" in obj:
+        scheduled_at = obj["scheduledAt"]
+        if not isinstance(scheduled_at, str):
+            raise ValueError(f"{repr(scheduled_at)} is not str")
+    else:
+        scheduled_at = None
+    return PlatformBulkPayout(id, graphql_id, name, creator_id, method, are_payouts_generated, total_payout_amount, status, payout_stats, status_updated_at, created_at, updated_at, scheduled_at)

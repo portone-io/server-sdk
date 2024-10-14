@@ -39,6 +39,9 @@ class PlatformPayout:
     memo: Optional[str]
     withdrawal_memo: Optional[str]
     deposit_memo: Optional[str]
+    scheduled_at: Optional[str]
+    """(RFC 3339 date-time)
+    """
 
 
 def _serialize_platform_payout(obj: PlatformPayout) -> Any:
@@ -62,6 +65,8 @@ def _serialize_platform_payout(obj: PlatformPayout) -> Any:
         entity["withdrawalMemo"] = obj.withdrawal_memo
     if obj.deposit_memo is not None:
         entity["depositMemo"] = obj.deposit_memo
+    if obj.scheduled_at is not None:
+        entity["scheduledAt"] = obj.scheduled_at
     return entity
 
 
@@ -146,4 +151,10 @@ def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
             raise ValueError(f"{repr(deposit_memo)} is not str")
     else:
         deposit_memo = None
-    return PlatformPayout(id, graphql_id, method, status, status_updated_at, partner, account, currency, amount, settlement_amount, income_tax_amount, local_income_tax_amount, created_at, memo, withdrawal_memo, deposit_memo)
+    if "scheduledAt" in obj:
+        scheduled_at = obj["scheduledAt"]
+        if not isinstance(scheduled_at, str):
+            raise ValueError(f"{repr(scheduled_at)} is not str")
+    else:
+        scheduled_at = None
+    return PlatformPayout(id, graphql_id, method, status, status_updated_at, partner, account, currency, amount, settlement_amount, income_tax_amount, local_income_tax_amount, created_at, memo, withdrawal_memo, deposit_memo, scheduled_at)

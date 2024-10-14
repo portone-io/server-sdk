@@ -17,3 +17,4 @@ export type EasyPayProvider =
 	| "KB_APP"
 	| "ALIPAY"
 	| "HYPHEN"
+	| "TMONEY"

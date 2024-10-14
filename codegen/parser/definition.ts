@@ -233,7 +233,7 @@ export function parseDefinition(name: string, definition: unknown): Definition {
   if (data.type === "string") {
     if ("enum" in data) {
       const portoneEnum = data["x-portone-enum"]
-      const variants = data["enum"].map((value) => ({
+      const variants = data.enum.map((value) => ({
         value,
         title: portoneEnum[value].title ?? null,
         description: portoneEnum[value].description ?? null,

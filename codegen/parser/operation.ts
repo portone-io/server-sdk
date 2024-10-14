@@ -1,6 +1,6 @@
 import { z } from "zod"
-import { parseDefinition, Property } from "./definition.ts"
 import { stripRefPrefix } from "./common.ts"
+import { parseDefinition, type Property } from "./definition.ts"
 
 const SimpleSchema = z.strictObject({
   type: z.string(),
@@ -27,11 +27,17 @@ const ContentSchema = z.strictObject({
   }),
 }))
 
+const QueryOrBodySchema = z.strictObject({
+  enabled: z.boolean(),
+  required: z.boolean(),
+})
+
 const ParameterSchema = z.strictObject({
   name: z.literal("requestBody"),
   in: z.literal("query"),
   required: z.boolean(),
   content: ContentSchema,
+  "x-portone-query-or-body": QueryOrBodySchema,
 }).or(z.strictObject({
   name: z.string(),
   in: z.enum(["path", "query"]),

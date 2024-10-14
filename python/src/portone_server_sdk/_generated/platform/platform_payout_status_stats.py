@@ -22,6 +22,9 @@ class PlatformPayoutStatusStats:
     failed: int
     """(int64)
     """
+    scheduled: int
+    """(int64)
+    """
 
 
 def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> Any:
@@ -32,6 +35,7 @@ def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> A
     entity["processing"] = obj.processing
     entity["succeeded"] = obj.succeeded
     entity["failed"] = obj.failed
+    entity["scheduled"] = obj.scheduled
     return entity
 
 
@@ -68,4 +72,9 @@ def _deserialize_platform_payout_status_stats(obj: Any) -> PlatformPayoutStatusS
     failed = obj["failed"]
     if not isinstance(failed, int):
         raise ValueError(f"{repr(failed)} is not int")
-    return PlatformPayoutStatusStats(prepared, cancelled, stopped, processing, succeeded, failed)
+    if "scheduled" not in obj:
+        raise KeyError(f"'scheduled' is not in {obj}")
+    scheduled = obj["scheduled"]
+    if not isinstance(scheduled, int):
+        raise ValueError(f"{repr(scheduled)} is not int")
+    return PlatformPayoutStatusStats(prepared, cancelled, stopped, processing, succeeded, failed, scheduled)

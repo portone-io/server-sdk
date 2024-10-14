@@ -54,6 +54,10 @@ import io.portone.sdk.server.errors.GetPaymentError
 import io.portone.sdk.server.errors.GetPaymentsError
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
+import io.portone.sdk.server.errors.MaxTransactionCountReachedError
+import io.portone.sdk.server.errors.MaxTransactionCountReachedException
+import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedError
+import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedException
 import io.portone.sdk.server.errors.ModifyEscrowLogisticsError
 import io.portone.sdk.server.errors.PayInstantlyError
 import io.portone.sdk.server.errors.PayWithBillingKeyError
@@ -114,6 +118,10 @@ import io.portone.sdk.server.payment.RegisterStoreReceiptBodyItem
 import io.portone.sdk.server.payment.RegisterStoreReceiptResponse
 import io.portone.sdk.server.payment.ResendWebhookBody
 import io.portone.sdk.server.payment.ResendWebhookResponse
+import io.portone.sdk.server.payment.billingkey.BillingKeyClient
+import io.portone.sdk.server.payment.cashreceipt.CashReceiptClient
+import io.portone.sdk.server.payment.paymentschedule.PaymentScheduleClient
+import io.portone.sdk.server.payment.promotion.PromotionClient
 import java.io.Closeable
 import java.time.Instant
 import java.util.concurrent.CompletableFuture
@@ -618,6 +626,7 @@ public class PaymentClient(
    * @throws DiscountAmountExceedsTotalAmountException 프로모션 할인 금액이 결제 시도 금액 이상인 경우
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
+   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
    * @throws PgProviderException PG사에서 오류를 전달한 경우
    * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
    * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -697,6 +706,7 @@ public class PaymentClient(
         is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
@@ -799,6 +809,7 @@ public class PaymentClient(
    * @throws DiscountAmountExceedsTotalAmountException 프로모션 할인 금액이 결제 시도 금액 이상인 경우
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
+   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
    * @throws PgProviderException PG사에서 오류를 전달한 경우
    * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
    * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -872,6 +883,7 @@ public class PaymentClient(
         is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
@@ -1255,6 +1267,7 @@ public class PaymentClient(
    *
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
+   * @throws MaxWebhookRetryCountReachedException 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
    * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
    * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
    * @throws WebhookNotFoundException 웹훅 내역이 존재하지 않는 경우
@@ -1292,6 +1305,7 @@ public class PaymentClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxWebhookRetryCountReachedError -> throw MaxWebhookRetryCountReachedException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
         is WebhookNotFoundError -> throw WebhookNotFoundException(httpBodyDecoded)
@@ -1388,7 +1402,15 @@ public class PaymentClient(
     items: List<RegisterStoreReceiptBodyItem>,
   ): CompletableFuture<RegisterStoreReceiptResponse> = GlobalScope.future { registerStoreReceipt(paymentId, items) }
 
+  public val billingKey: BillingKeyClient = BillingKeyClient(apiSecret, apiBase, storeId)
+  public val cashReceipt: CashReceiptClient = CashReceiptClient(apiSecret, apiBase, storeId)
+  public val paymentSchedule: PaymentScheduleClient = PaymentScheduleClient(apiSecret, apiBase, storeId)
+  public val promotion: PromotionClient = PromotionClient(apiSecret, apiBase, storeId)
   override fun close() {
+    billingKey.close()
+    cashReceipt.close()
+    paymentSchedule.close()
+    promotion.close()
     client.close()
   }
 }

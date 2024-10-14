@@ -29,4 +29,5 @@ public data class PlatformPayout(
   val memo: String? = null,
   val withdrawalMemo: String? = null,
   val depositMemo: String? = null,
+  val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
