@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.3.2
+
+### Patch Changes
+
+- b8be829: jsr.io 누락 수정
+
 ## 0.3.1
 
 ### Patch Changes
