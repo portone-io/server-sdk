@@ -164,14 +164,14 @@
     "publish": "jsr publish --allow-dirty"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.2",
-    "@changesets/cli": "^2.27.8",
+    "@biomejs/biome": "^1.9.3",
+    "@changesets/cli": "^2.27.9",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^20.16.9",
+    "@types/node": "^22.7.5",
     "@vitest/ui": "^2.1.1",
     "jsr": "^0.13.2",
-    "typedoc": "^0.26.7",
-    "typescript": "^5.6.2",
+    "typedoc": "^0.26.9",
+    "typescript": "^5.6.3",
     "unbuild": "^2.0.0",
     "vitest": "^2.1.1"
   },
