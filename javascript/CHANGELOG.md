@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.3.3-alpha.0
+
+### Patch Changes
+
+- 3807981: jsr.io 배포
+
 ## 0.3.2
 
 ### Patch Changes
