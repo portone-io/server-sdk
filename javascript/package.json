@@ -17,10 +17,10 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "imports": {
-    "#generated/*": "./src/generated/*"
+    "#generated/*": "./src/generated/*.ts"
   },
   "exports": {
-    ".": "./src",
+    ".": "./src/index.ts",
     "./analytics": "./src/generated/analytics/index.ts",
     "./auth": "./src/generated/auth/index.ts",
     "./b2b": "./src/generated/b2b/index.ts",
@@ -45,9 +45,9 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "types": "./dist",
-        "require": "./dist",
-        "import": "./dist"
+        "types": "./dist/index.d.ts",
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
       },
       "./analytics": {
         "types": "./dist/generated/analytics/index.d.ts",

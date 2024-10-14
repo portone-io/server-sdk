@@ -2,6 +2,9 @@ import * as path from "@std/path"
 export function updatePackageJson(rootPath: string, entrypoints: string[]) {
   const jsonPath = path.join(rootPath, "package.json")
   const json = JSON.parse(Deno.readTextFileSync(jsonPath))
+  json.imports = {
+    "#generated/*": "./src/generated/*.ts",
+  }
   json.publishConfig.imports = {
     "#generated/*": {
       types: "./dist/generated/*.d.ts",
@@ -10,13 +13,13 @@ export function updatePackageJson(rootPath: string, entrypoints: string[]) {
     },
   }
   json.exports = {
-    ".": "./src",
+    ".": "./src/index.ts",
   }
   json.publishConfig.exports = {
     ".": {
-      types: "./dist",
-      require: "./dist",
-      import: "./dist",
+      types: "./dist/index.d.ts",
+      require: "./dist/index.cjs",
+      import: "./dist/index.mjs",
     },
   }
   for (const entrypoint of entrypoints) {
