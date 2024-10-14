@@ -39,7 +39,7 @@ class ReadyIdentityVerification:
 
 def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "READY"
     entity["id"] = obj.id
     entity["requestedCustomer"] = _serialize_identity_verification_requested_customer(obj.requested_customer)
     entity["requestedAt"] = obj.requested_at

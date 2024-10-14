@@ -48,7 +48,7 @@ class PlatformManualTransfer:
 
 def _serialize_platform_manual_transfer(obj: PlatformManualTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MANUAL"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["partner"] = _serialize_platform_partner(obj.partner)

@@ -16,7 +16,7 @@ class ChannelSpecificFailurePgProvider:
 
 def _serialize_channel_specific_failure_pg_provider(obj: ChannelSpecificFailurePgProvider) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PG_PROVIDER"
     entity["channel"] = _serialize_selected_channel(obj.channel)
     entity["pgCode"] = obj.pg_code
     entity["pgMessage"] = obj.pg_message

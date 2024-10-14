@@ -40,7 +40,7 @@ class PaymentMethodVirtualAccount:
 
 def _serialize_payment_method_virtual_account(obj: PaymentMethodVirtualAccount) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PaymentMethodVirtualAccount"
     entity["accountNumber"] = obj.account_number
     if obj.bank is not None:
         entity["bank"] = _serialize_bank(obj.bank)

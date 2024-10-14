@@ -12,7 +12,7 @@ class PaymentNotPaidError:
 
 def _serialize_payment_not_paid_error(obj: PaymentNotPaidError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_NOT_PAID"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

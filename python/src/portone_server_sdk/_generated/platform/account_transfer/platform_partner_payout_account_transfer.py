@@ -67,7 +67,7 @@ class PlatformPartnerPayoutAccountTransfer:
 
 def _serialize_platform_partner_payout_account_transfer(obj: PlatformPartnerPayoutAccountTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PARTNER_PAYOUT"
     entity["id"] = obj.id
     entity["sequenceNumber"] = obj.sequence_number
     entity["currency"] = _serialize_currency(obj.currency)

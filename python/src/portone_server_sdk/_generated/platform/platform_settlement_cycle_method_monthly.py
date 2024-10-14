@@ -12,7 +12,7 @@ class PlatformSettlementCycleMethodMonthly:
 
 def _serialize_platform_settlement_cycle_method_monthly(obj: PlatformSettlementCycleMethodMonthly) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MONTHLY"
     entity["daysOfMonth"] = obj.days_of_month
     return entity
 

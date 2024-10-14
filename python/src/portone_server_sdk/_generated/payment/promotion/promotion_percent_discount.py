@@ -14,7 +14,7 @@ class PromotionPercentDiscount:
 
 def _serialize_promotion_percent_discount(obj: PromotionPercentDiscount) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PERCENT"
     entity["percent"] = obj.percent
     return entity
 

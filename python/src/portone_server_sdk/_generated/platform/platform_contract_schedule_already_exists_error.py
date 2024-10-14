@@ -10,7 +10,7 @@ class PlatformContractScheduleAlreadyExistsError:
 
 def _serialize_platform_contract_schedule_already_exists_error(obj: PlatformContractScheduleAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

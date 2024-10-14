@@ -48,7 +48,7 @@ class PlatformPartnerOrderCancelSettlement:
 
 def _serialize_platform_partner_order_cancel_settlement(obj: PlatformPartnerOrderCancelSettlement) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ORDER_CANCEL"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["partner"] = _serialize_platform_partner(obj.partner)

@@ -12,7 +12,7 @@ class B2bTaxInvoiceAttachmentNotFoundError:
 
 def _serialize_b2b_tax_invoice_attachment_not_found_error(obj: B2bTaxInvoiceAttachmentNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_TAX_INVOICE_ATTACHMENT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

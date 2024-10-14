@@ -12,7 +12,7 @@ class B2bForeignExchangeAccountError:
 
 def _serialize_b2b_foreign_exchange_account_error(obj: B2bForeignExchangeAccountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_FOREIGN_EXCHANGE_ACCOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

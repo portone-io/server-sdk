@@ -13,7 +13,7 @@ class BeforeRegisteredPaymentEscrow:
 
 def _serialize_before_registered_payment_escrow(obj: BeforeRegisteredPaymentEscrow) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "BEFORE_REGISTERED"
     return entity
 
 

@@ -12,7 +12,7 @@ class PlatformAccountVerificationFailedError:
 
 def _serialize_platform_account_verification_failed_error(obj: PlatformAccountVerificationFailedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ACCOUNT_VERIFICATION_FAILED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

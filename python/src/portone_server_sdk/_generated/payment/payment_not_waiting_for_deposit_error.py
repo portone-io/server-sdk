@@ -12,7 +12,7 @@ class PaymentNotWaitingForDepositError:
 
 def _serialize_payment_not_waiting_for_deposit_error(obj: PaymentNotWaitingForDepositError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_NOT_WAITING_FOR_DEPOSIT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

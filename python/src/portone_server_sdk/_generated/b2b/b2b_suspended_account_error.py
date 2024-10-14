@@ -12,7 +12,7 @@ class B2bSuspendedAccountError:
 
 def _serialize_b2b_suspended_account_error(obj: B2bSuspendedAccountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_SUSPENDED_ACCOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

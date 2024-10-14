@@ -10,7 +10,7 @@ class PlatformOrderDetailMismatchedError:
 
 def _serialize_platform_order_detail_mismatched_error(obj: PlatformOrderDetailMismatchedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ORDER_DETAIL_MISMATCHED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

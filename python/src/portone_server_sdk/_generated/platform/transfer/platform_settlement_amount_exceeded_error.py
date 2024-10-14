@@ -25,7 +25,7 @@ class PlatformSettlementAmountExceededError:
 
 def _serialize_platform_settlement_amount_exceeded_error(obj: PlatformSettlementAmountExceededError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED"
     entity["requestedAmount"] = obj.requested_amount
     entity["allowedAmount"] = obj.allowed_amount
     if obj.message is not None:

@@ -12,7 +12,7 @@ class PlatformCannotSpecifyTransferError:
 
 def _serialize_platform_cannot_specify_transfer_error(obj: PlatformCannotSpecifyTransferError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANNOT_SPECIFY_TRANSFER"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

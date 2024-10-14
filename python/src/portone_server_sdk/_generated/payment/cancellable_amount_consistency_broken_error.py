@@ -12,7 +12,7 @@ class CancellableAmountConsistencyBrokenError:
 
 def _serialize_cancellable_amount_consistency_broken_error(obj: CancellableAmountConsistencyBrokenError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

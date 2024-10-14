@@ -12,7 +12,7 @@ class IdentityVerificationNotFoundError:
 
 def _serialize_identity_verification_not_found_error(obj: IdentityVerificationNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "IDENTITY_VERIFICATION_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -133,7 +133,7 @@ class CancelledPayment:
 
 def _serialize_cancelled_payment(obj: CancelledPayment) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "CANCELLED"
     entity["id"] = obj.id
     entity["transactionId"] = obj.transaction_id
     entity["merchantId"] = obj.merchant_id

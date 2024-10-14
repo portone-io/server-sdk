@@ -12,7 +12,7 @@ class MaxTransactionCountReachedError:
 
 def _serialize_max_transaction_count_reached_error(obj: MaxTransactionCountReachedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MAX_TRANSACTION_COUNT_REACHED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class WebhookNotFoundError:
 
 def _serialize_webhook_not_found_error(obj: WebhookNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "WEBHOOK_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

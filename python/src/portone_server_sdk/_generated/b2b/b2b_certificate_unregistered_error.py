@@ -12,7 +12,7 @@ class B2bCertificateUnregisteredError:
 
 def _serialize_b2b_certificate_unregistered_error(obj: B2bCertificateUnregisteredError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_CERTIFICATE_UNREGISTERED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

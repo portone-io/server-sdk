@@ -12,7 +12,7 @@ class PromotionNotFoundError:
 
 def _serialize_promotion_not_found_error(obj: PromotionNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PROMOTION_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

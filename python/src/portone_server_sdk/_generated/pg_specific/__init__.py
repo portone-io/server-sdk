@@ -65,9 +65,9 @@ class PgSpecificClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_kakaopay_payment_order_response(response.json())
@@ -116,9 +116,9 @@ class PgSpecificClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_kakaopay_payment_order_response(response.json())

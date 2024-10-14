@@ -32,7 +32,7 @@ class IssueFailedCashReceipt:
 
 def _serialize_issue_failed_cash_receipt(obj: IssueFailedCashReceipt) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUE_FAILED"
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id
     entity["paymentId"] = obj.payment_id

@@ -37,7 +37,7 @@ class PlatformOrderTransferSummary:
 
 def _serialize_platform_order_transfer_summary(obj: PlatformOrderTransferSummary) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ORDER"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["storeId"] = obj.store_id

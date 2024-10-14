@@ -18,7 +18,7 @@ class PlatformSettlementFormulaUnexpectedFunctionArguments:
 
 def _serialize_platform_settlement_formula_unexpected_function_arguments(obj: PlatformSettlementFormulaUnexpectedFunctionArguments) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "UNEXPECTED_FUNCTION_ARGUMENTS"
     entity["functionName"] = obj.function_name
     entity["expectedCount"] = obj.expected_count
     entity["currentCount"] = obj.current_count

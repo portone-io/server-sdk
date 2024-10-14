@@ -12,7 +12,7 @@ class B2bTaxInvoiceNoSupplierDocumentKeyError:
 
 def _serialize_b2b_tax_invoice_no_supplier_document_key_error(obj: B2bTaxInvoiceNoSupplierDocumentKeyError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_TAX_INVOICE_NO_SUPPLIER_DOCUMENT_KEY"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

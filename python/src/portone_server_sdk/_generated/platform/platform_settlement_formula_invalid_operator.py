@@ -12,7 +12,7 @@ class PlatformSettlementFormulaInvalidOperator:
 
 def _serialize_platform_settlement_formula_invalid_operator(obj: PlatformSettlementFormulaInvalidOperator) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "INVALID_OPERATOR"
     entity["operator"] = obj.operator
     entity["position"] = _serialize_platform_settlement_formula_position(obj.position)
     return entity

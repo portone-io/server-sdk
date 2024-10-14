@@ -12,7 +12,7 @@ class B2bExternalServiceError:
 
 def _serialize_b2b_external_service_error(obj: B2bExternalServiceError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_EXTERNAL_SERVICE"
     entity["message"] = obj.message
     return entity
 

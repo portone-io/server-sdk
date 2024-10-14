@@ -11,7 +11,7 @@ class PlatformPaymentMethodMobile:
 
 def _serialize_platform_payment_method_mobile(obj: PlatformPaymentMethodMobile) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MOBILE"
     return entity
 
 

@@ -12,7 +12,7 @@ class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError:
 
 def _serialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(obj: CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

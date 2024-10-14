@@ -12,7 +12,7 @@ class PlatformCannotArchiveScheduledContractError:
 
 def _serialize_platform_cannot_archive_scheduled_contract_error(obj: PlatformCannotArchiveScheduledContractError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

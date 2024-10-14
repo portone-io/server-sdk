@@ -12,7 +12,7 @@ class SumOfPartsExceedsTotalAmountError:
 
 def _serialize_sum_of_parts_exceeds_total_amount_error(obj: SumOfPartsExceedsTotalAmountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

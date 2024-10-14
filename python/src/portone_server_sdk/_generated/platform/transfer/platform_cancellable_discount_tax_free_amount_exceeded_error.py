@@ -19,7 +19,7 @@ class PlatformCancellableDiscountTaxFreeAmountExceededError:
 
 def _serialize_platform_cancellable_discount_tax_free_amount_exceeded_error(obj: PlatformCancellableDiscountTaxFreeAmountExceededError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED"
     entity["discountSharePolicyId"] = obj.discount_share_policy_id
     entity["discountSharePolicyGraphqlId"] = obj.discount_share_policy_graphql_id
     entity["cancellableAmount"] = obj.cancellable_amount

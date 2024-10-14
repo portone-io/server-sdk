@@ -16,7 +16,7 @@ class ChannelSpecificFailureInvalidRequest:
 
 def _serialize_channel_specific_failure_invalid_request(obj: ChannelSpecificFailureInvalidRequest) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "INVALID_REQUEST"
     entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.message is not None:
         entity["message"] = obj.message

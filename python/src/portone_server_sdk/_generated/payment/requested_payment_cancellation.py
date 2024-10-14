@@ -46,7 +46,7 @@ class RequestedPaymentCancellation:
 
 def _serialize_requested_payment_cancellation(obj: RequestedPaymentCancellation) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "REQUESTED"
     entity["id"] = obj.id
     entity["totalAmount"] = obj.total_amount
     entity["taxFreeAmount"] = obj.tax_free_amount

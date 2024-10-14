@@ -87,7 +87,7 @@ class SucceededPaymentSchedule:
 
 def _serialize_succeeded_payment_schedule(obj: SucceededPaymentSchedule) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "SUCCEEDED"
     entity["id"] = obj.id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

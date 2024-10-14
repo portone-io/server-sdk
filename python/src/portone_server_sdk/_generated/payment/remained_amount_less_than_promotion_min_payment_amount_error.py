@@ -12,7 +12,7 @@ class RemainedAmountLessThanPromotionMinPaymentAmountError:
 
 def _serialize_remained_amount_less_than_promotion_min_payment_amount_error(obj: RemainedAmountLessThanPromotionMinPaymentAmountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

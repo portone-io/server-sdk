@@ -12,7 +12,7 @@ class PlatformInsufficientDataToChangePartnerTypeError:
 
 def _serialize_platform_insufficient_data_to_change_partner_type_error(obj: PlatformInsufficientDataToChangePartnerTypeError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

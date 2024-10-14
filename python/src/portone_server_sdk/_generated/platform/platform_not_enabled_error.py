@@ -12,7 +12,7 @@ class PlatformNotEnabledError:
 
 def _serialize_platform_not_enabled_error(obj: PlatformNotEnabledError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_NOT_ENABLED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

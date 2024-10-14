@@ -79,13 +79,13 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_NOT_FOUND":
-                raise errors.PaymentScheduleNotFoundError(_serialize_payment_schedule_not_found_error(error_response))
+                raise errors.PaymentScheduleNotFoundError(_deserialize_payment_schedule_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_payment_schedule(response.json())
@@ -132,13 +132,13 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_NOT_FOUND":
-                raise errors.PaymentScheduleNotFoundError(_serialize_payment_schedule_not_found_error(error_response))
+                raise errors.PaymentScheduleNotFoundError(_deserialize_payment_schedule_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_payment_schedule(response.json())
@@ -200,11 +200,11 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_payment_schedules_response(response.json())
@@ -266,11 +266,11 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_payment_schedules_response(response.json())
@@ -334,21 +334,21 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_PROCESSED":
-                raise errors.PaymentScheduleAlreadyProcessedError(_serialize_payment_schedule_already_processed_error(error_response))
+                raise errors.PaymentScheduleAlreadyProcessedError(_deserialize_payment_schedule_already_processed_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_REVOKED":
-                raise errors.PaymentScheduleAlreadyRevokedError(_serialize_payment_schedule_already_revoked_error(error_response))
+                raise errors.PaymentScheduleAlreadyRevokedError(_deserialize_payment_schedule_already_revoked_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_NOT_FOUND":
-                raise errors.PaymentScheduleNotFoundError(_serialize_payment_schedule_not_found_error(error_response))
+                raise errors.PaymentScheduleNotFoundError(_deserialize_payment_schedule_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_revoke_payment_schedules_response(response.json())
@@ -412,21 +412,21 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_PROCESSED":
-                raise errors.PaymentScheduleAlreadyProcessedError(_serialize_payment_schedule_already_processed_error(error_response))
+                raise errors.PaymentScheduleAlreadyProcessedError(_deserialize_payment_schedule_already_processed_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_REVOKED":
-                raise errors.PaymentScheduleAlreadyRevokedError(_serialize_payment_schedule_already_revoked_error(error_response))
+                raise errors.PaymentScheduleAlreadyRevokedError(_deserialize_payment_schedule_already_revoked_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_NOT_FOUND":
-                raise errors.PaymentScheduleNotFoundError(_serialize_payment_schedule_not_found_error(error_response))
+                raise errors.PaymentScheduleNotFoundError(_deserialize_payment_schedule_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_revoke_payment_schedules_response(response.json())
@@ -489,21 +489,21 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID_OR_WAITING":
-                raise errors.AlreadyPaidOrWaitingError(_serialize_already_paid_or_waiting_error(error_response))
+                raise errors.AlreadyPaidOrWaitingError(_deserialize_already_paid_or_waiting_error(error_response))
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_serialize_payment_schedule_already_exists_error(error_response))
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_create_payment_schedule_response(response.json())
@@ -566,21 +566,21 @@ class PaymentScheduleClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID_OR_WAITING":
-                raise errors.AlreadyPaidOrWaitingError(_serialize_already_paid_or_waiting_error(error_response))
+                raise errors.AlreadyPaidOrWaitingError(_deserialize_already_paid_or_waiting_error(error_response))
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_serialize_payment_schedule_already_exists_error(error_response))
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_create_payment_schedule_response(response.json())

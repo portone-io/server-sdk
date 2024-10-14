@@ -12,7 +12,7 @@ class PlatformAccountVerificationNotFoundError:
 
 def _serialize_platform_account_verification_not_found_error(obj: PlatformAccountVerificationNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

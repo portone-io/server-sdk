@@ -12,7 +12,7 @@ class B2bIdAlreadyExistsError:
 
 def _serialize_b2b_id_already_exists_error(obj: B2bIdAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_ID_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

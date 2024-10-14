@@ -11,7 +11,7 @@ class PlatformPaymentMethodVirtualAccount:
 
 def _serialize_platform_payment_method_virtual_account(obj: PlatformPaymentMethodVirtualAccount) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "VIRTUAL_ACCOUNT"
     return entity
 
 

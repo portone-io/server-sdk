@@ -15,7 +15,7 @@ class PaymentMethodTransfer:
 
 def _serialize_payment_method_transfer(obj: PaymentMethodTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PaymentMethodTransfer"
     if obj.bank is not None:
         entity["bank"] = _serialize_bank(obj.bank)
     return entity

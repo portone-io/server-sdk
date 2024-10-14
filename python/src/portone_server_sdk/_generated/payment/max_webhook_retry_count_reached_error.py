@@ -12,7 +12,7 @@ class MaxWebhookRetryCountReachedError:
 
 def _serialize_max_webhook_retry_count_reached_error(obj: MaxWebhookRetryCountReachedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MAX_WEBHOOK_RETRY_COUNT_REACHED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

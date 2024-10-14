@@ -29,7 +29,7 @@ class PlatformExternalPayment:
 
 def _serialize_platform_external_payment(obj: PlatformExternalPayment) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "EXTERNAL"
     entity["id"] = obj.id
     entity["currency"] = _serialize_currency(obj.currency)
     if obj.order_name is not None:

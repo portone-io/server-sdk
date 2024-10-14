@@ -49,7 +49,7 @@ class SucceededPaymentCancellation:
 
 def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "SUCCEEDED"
     entity["id"] = obj.id
     entity["totalAmount"] = obj.total_amount
     entity["taxFreeAmount"] = obj.tax_free_amount

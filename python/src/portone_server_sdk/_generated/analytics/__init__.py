@@ -105,11 +105,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_chart(response.json())
@@ -176,11 +176,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_chart(response.json())
@@ -247,11 +247,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_chart_insight(response.json())
@@ -318,11 +318,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_chart_insight(response.json())
@@ -388,11 +388,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_average_amount_chart(response.json())
@@ -458,11 +458,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_average_amount_chart(response.json())
@@ -522,11 +522,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_method_chart(response.json())
@@ -586,11 +586,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_method_chart(response.json())
@@ -656,11 +656,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_method_trend_chart(response.json())
@@ -726,11 +726,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_method_trend_chart(response.json())
@@ -796,11 +796,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_card_chart(response.json())
@@ -866,11 +866,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_card_chart(response.json())
@@ -944,11 +944,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_card_company_chart(response.json())
@@ -1022,11 +1022,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_card_company_chart(response.json())
@@ -1092,11 +1092,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_easy_pay_chart(response.json())
@@ -1162,11 +1162,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_easy_pay_chart(response.json())
@@ -1240,11 +1240,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_easy_pay_provider_chart(response.json())
@@ -1318,11 +1318,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_easy_pay_provider_chart(response.json())
@@ -1382,11 +1382,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_pg_company_chart(response.json())
@@ -1446,11 +1446,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_pg_company_chart(response.json())
@@ -1520,11 +1520,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_pg_company_trend_chart(response.json())
@@ -1594,11 +1594,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_pg_company_trend_chart(response.json())
@@ -1628,9 +1628,9 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_overseas_payment_usage(response.json())
@@ -1660,9 +1660,9 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_overseas_payment_usage(response.json())
@@ -1716,11 +1716,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_cancellation_rate(response.json())
@@ -1774,11 +1774,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_cancellation_rate(response.json())
@@ -1832,11 +1832,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_chart(response.json())
@@ -1890,11 +1890,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_chart(response.json())
@@ -1948,11 +1948,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_payment_method_chart(response.json())
@@ -2006,11 +2006,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_payment_method_chart(response.json())
@@ -2064,11 +2064,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_pg_company_chart(response.json())
@@ -2122,11 +2122,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_pg_company_chart(response.json())
@@ -2180,11 +2180,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_payment_client_chart(response.json())
@@ -2238,11 +2238,11 @@ class AnalyticsClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_analytics_payment_status_by_payment_client_chart(response.json())

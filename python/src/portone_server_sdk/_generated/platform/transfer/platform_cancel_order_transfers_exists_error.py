@@ -10,7 +10,7 @@ class PlatformCancelOrderTransfersExistsError:
 
 def _serialize_platform_cancel_order_transfers_exists_error(obj: PlatformCancelOrderTransfersExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

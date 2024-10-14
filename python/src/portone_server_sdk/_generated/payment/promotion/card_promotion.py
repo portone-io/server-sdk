@@ -70,7 +70,7 @@ class CardPromotion:
 
 def _serialize_card_promotion(obj: CardPromotion) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CARD"
     entity["id"] = obj.id
     entity["storeId"] = obj.store_id
     entity["name"] = obj.name

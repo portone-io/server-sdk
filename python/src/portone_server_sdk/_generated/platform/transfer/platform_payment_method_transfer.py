@@ -11,7 +11,7 @@ class PlatformPaymentMethodTransfer:
 
 def _serialize_platform_payment_method_transfer(obj: PlatformPaymentMethodTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "TRANSFER"
     return entity
 
 

@@ -12,7 +12,7 @@ class B2bNotEnabledError:
 
 def _serialize_b2b_not_enabled_error(obj: B2bNotEnabledError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_NOT_ENABLED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

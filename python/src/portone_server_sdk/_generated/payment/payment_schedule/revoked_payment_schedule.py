@@ -83,7 +83,7 @@ class RevokedPaymentSchedule:
 
 def _serialize_revoked_payment_schedule(obj: RevokedPaymentSchedule) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "REVOKED"
     entity["id"] = obj.id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

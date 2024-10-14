@@ -12,7 +12,7 @@ class B2bSupplierNotFoundError:
 
 def _serialize_b2b_supplier_not_found_error(obj: B2bSupplierNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_SUPPLIER_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

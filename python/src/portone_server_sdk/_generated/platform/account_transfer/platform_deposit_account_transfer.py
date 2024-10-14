@@ -37,7 +37,7 @@ class PlatformDepositAccountTransfer:
 
 def _serialize_platform_deposit_account_transfer(obj: PlatformDepositAccountTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "DEPOSIT"
     entity["id"] = obj.id
     entity["currency"] = _serialize_currency(obj.currency)
     entity["amount"] = obj.amount

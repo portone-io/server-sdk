@@ -109,7 +109,7 @@ class PayPendingPayment:
 
 def _serialize_pay_pending_payment(obj: PayPendingPayment) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "PAY_PENDING"
     entity["id"] = obj.id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

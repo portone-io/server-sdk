@@ -10,7 +10,7 @@ class BillingKeyNotIssuedError:
 
 def _serialize_billing_key_not_issued_error(obj: BillingKeyNotIssuedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BILLING_KEY_NOT_ISSUED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class PlatformSettlementFormulaInvalidFunction:
 
 def _serialize_platform_settlement_formula_invalid_function(obj: PlatformSettlementFormulaInvalidFunction) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "INVALID_FUNCTION"
     entity["name"] = obj.name
     entity["position"] = _serialize_platform_settlement_formula_position(obj.position)
     return entity

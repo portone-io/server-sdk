@@ -12,7 +12,7 @@ class B2bTaxInvoiceNotIssuedStatusError:
 
 def _serialize_b2b_tax_invoice_not_issued_status_error(obj: B2bTaxInvoiceNotIssuedStatusError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_TAX_INVOICE_NOT_ISSUED_STATUS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

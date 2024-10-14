@@ -15,7 +15,7 @@ class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedErr
 
 def _serialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(obj: PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["feeCurrency"] = _serialize_currency(obj.fee_currency)

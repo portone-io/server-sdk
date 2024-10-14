@@ -40,7 +40,7 @@ class PlatformPartnerManualSettlement:
 
 def _serialize_platform_partner_manual_settlement(obj: PlatformPartnerManualSettlement) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MANUAL"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["partner"] = _serialize_platform_partner(obj.partner)

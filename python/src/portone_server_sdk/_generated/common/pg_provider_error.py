@@ -14,7 +14,7 @@ class PgProviderError:
 
 def _serialize_pg_provider_error(obj: PgProviderError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PG_PROVIDER"
     entity["pgCode"] = obj.pg_code
     entity["pgMessage"] = obj.pg_message
     if obj.message is not None:

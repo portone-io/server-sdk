@@ -12,7 +12,7 @@ class B2bRegularMaintenanceTimeError:
 
 def _serialize_b2b_regular_maintenance_time_error(obj: B2bRegularMaintenanceTimeError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_REGULAR_MAINTENANCE_TIME"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

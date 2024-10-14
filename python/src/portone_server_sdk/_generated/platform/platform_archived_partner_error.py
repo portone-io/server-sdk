@@ -12,7 +12,7 @@ class PlatformArchivedPartnerError:
 
 def _serialize_platform_archived_partner_error(obj: PlatformArchivedPartnerError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ARCHIVED_PARTNER"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

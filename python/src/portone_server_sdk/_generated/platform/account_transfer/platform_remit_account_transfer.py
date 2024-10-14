@@ -58,7 +58,7 @@ class PlatformRemitAccountTransfer:
 
 def _serialize_platform_remit_account_transfer(obj: PlatformRemitAccountTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "REMIT"
     entity["id"] = obj.id
     entity["sequenceNumber"] = obj.sequence_number
     entity["currency"] = _serialize_currency(obj.currency)

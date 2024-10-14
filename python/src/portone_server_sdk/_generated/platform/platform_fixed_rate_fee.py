@@ -19,7 +19,7 @@ class PlatformFixedRateFee:
 
 def _serialize_platform_fixed_rate_fee(obj: PlatformFixedRateFee) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "FIXED_RATE"
     entity["rate"] = obj.rate
     return entity
 

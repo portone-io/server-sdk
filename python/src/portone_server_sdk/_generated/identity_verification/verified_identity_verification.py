@@ -49,7 +49,7 @@ class VerifiedIdentityVerification:
 
 def _serialize_verified_identity_verification(obj: VerifiedIdentityVerification) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "VERIFIED"
     entity["id"] = obj.id
     entity["verifiedCustomer"] = _serialize_identity_verification_verified_customer(obj.verified_customer)
     entity["requestedAt"] = obj.requested_at

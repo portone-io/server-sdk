@@ -35,7 +35,7 @@ class PlatformPortOnePayment:
 
 def _serialize_platform_port_one_payment(obj: PlatformPortOnePayment) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PORT_ONE"
     entity["id"] = obj.id
     entity["storeId"] = obj.store_id
     entity["channelKey"] = obj.channel_key

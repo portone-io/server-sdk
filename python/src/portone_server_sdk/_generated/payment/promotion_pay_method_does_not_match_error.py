@@ -12,7 +12,7 @@ class PromotionPayMethodDoesNotMatchError:
 
 def _serialize_promotion_pay_method_does_not_match_error(obj: PromotionPayMethodDoesNotMatchError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PROMOTION_PAY_METHOD_DOES_NOT_MATCH"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class PlatformSettlementParameterNotFoundError:
 
 def _serialize_platform_settlement_parameter_not_found_error(obj: PlatformSettlementParameterNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

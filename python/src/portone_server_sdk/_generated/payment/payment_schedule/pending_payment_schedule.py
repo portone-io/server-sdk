@@ -87,7 +87,7 @@ class PendingPaymentSchedule:
 
 def _serialize_pending_payment_schedule(obj: PendingPaymentSchedule) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "PENDING"
     entity["id"] = obj.id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

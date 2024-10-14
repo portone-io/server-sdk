@@ -14,7 +14,7 @@ class B2bTaxInvoiceNonDeletableStatusError:
 
 def _serialize_b2b_tax_invoice_non_deletable_status_error(obj: B2bTaxInvoiceNonDeletableStatusError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_TAX_INVOICE_NON_DELETABLE_STATUS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

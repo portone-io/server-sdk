@@ -12,7 +12,7 @@ class B2bRecipientNotFoundError:
 
 def _serialize_b2b_recipient_not_found_error(obj: B2bRecipientNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_RECIPIENT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

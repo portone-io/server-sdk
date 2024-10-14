@@ -12,7 +12,7 @@ class B2bContactNotFoundError:
 
 def _serialize_b2b_contact_not_found_error(obj: B2bContactNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_CONTACT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

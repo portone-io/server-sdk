@@ -14,7 +14,7 @@ class BillingKeyPaymentMethodMobile:
 
 def _serialize_billing_key_payment_method_mobile(obj: BillingKeyPaymentMethodMobile) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BillingKeyPaymentMethodMobile"
     if obj.phone_number is not None:
         entity["phoneNumber"] = obj.phone_number
     return entity

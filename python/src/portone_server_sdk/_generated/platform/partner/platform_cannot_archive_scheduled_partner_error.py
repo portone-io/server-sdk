@@ -12,7 +12,7 @@ class PlatformCannotArchiveScheduledPartnerError:
 
 def _serialize_platform_cannot_archive_scheduled_partner_error(obj: PlatformCannotArchiveScheduledPartnerError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_PARTNER"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

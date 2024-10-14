@@ -12,7 +12,7 @@ class B2bCompanyNotFoundError:
 
 def _serialize_b2b_company_not_found_error(obj: B2bCompanyNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_COMPANY_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

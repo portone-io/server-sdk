@@ -126,7 +126,7 @@ class B2bTaxInvoiceIssuanceCancelled:
 
 def _serialize_b2b_tax_invoice_issuance_cancelled(obj: B2bTaxInvoiceIssuanceCancelled) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUANCE_CANCELLED"
     entity["taxType"] = _serialize_b2b_tax_type(obj.tax_type)
     entity["writeDate"] = obj.write_date
     entity["purposeType"] = _serialize_b2b_tax_invoice_purpose_type(obj.purpose_type)

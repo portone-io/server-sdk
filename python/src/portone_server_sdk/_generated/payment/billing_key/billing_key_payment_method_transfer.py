@@ -18,7 +18,7 @@ class BillingKeyPaymentMethodTransfer:
 
 def _serialize_billing_key_payment_method_transfer(obj: BillingKeyPaymentMethodTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BillingKeyPaymentMethodTransfer"
     if obj.bank is not None:
         entity["bank"] = _serialize_bank(obj.bank)
     if obj.account_number is not None:

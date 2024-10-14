@@ -25,7 +25,7 @@ class PaymentMethodCard:
 
 def _serialize_payment_method_card(obj: PaymentMethodCard) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PaymentMethodCard"
     if obj.card is not None:
         entity["card"] = _serialize_card(obj.card)
     if obj.approval_number is not None:

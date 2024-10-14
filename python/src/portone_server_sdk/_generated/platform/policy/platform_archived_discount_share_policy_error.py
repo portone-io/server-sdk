@@ -12,7 +12,7 @@ class PlatformArchivedDiscountSharePolicyError:
 
 def _serialize_platform_archived_discount_share_policy_error(obj: PlatformArchivedDiscountSharePolicyError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

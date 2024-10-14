@@ -27,7 +27,7 @@ class RejectedPaymentEscrow:
 
 def _serialize_rejected_payment_escrow(obj: RejectedPaymentEscrow) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "REJECTED"
     entity["company"] = obj.company
     entity["invoiceNumber"] = obj.invoice_number
     if obj.sent_at is not None:

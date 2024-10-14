@@ -21,7 +21,7 @@ class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError:
 
 def _serialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(obj: PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"
     entity["registeredSettlementSupplyWithVatAmount"] = obj.registered_settlement_supply_with_vat_amount
     entity["requestSettlementSupplyWithVatAmount"] = obj.request_settlement_supply_with_vat_amount
     entity["portOneSupplyWithVatAmount"] = obj.port_one_supply_with_vat_amount

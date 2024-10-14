@@ -11,7 +11,7 @@ class PlatformProductIdDuplicatedError:
 
 def _serialize_platform_product_id_duplicated_error(obj: PlatformProductIdDuplicatedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PRODUCT_ID_DUPLICATED"
     entity["id"] = obj.id
     if obj.message is not None:
         entity["message"] = obj.message

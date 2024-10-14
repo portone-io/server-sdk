@@ -14,7 +14,7 @@ class InvalidRequestError:
 
 def _serialize_invalid_request_error(obj: InvalidRequestError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "INVALID_REQUEST"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

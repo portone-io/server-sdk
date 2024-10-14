@@ -46,7 +46,7 @@ class CancelledPaymentCashReceipt:
 
 def _serialize_cancelled_payment_cash_receipt(obj: CancelledPaymentCashReceipt) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "CANCELLED"
     entity["issueNumber"] = obj.issue_number
     entity["totalAmount"] = obj.total_amount
     entity["currency"] = _serialize_currency(obj.currency)

@@ -12,7 +12,7 @@ class IdentityVerificationAlreadySentError:
 
 def _serialize_identity_verification_already_sent_error(obj: IdentityVerificationAlreadySentError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "IDENTITY_VERIFICATION_ALREADY_SENT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

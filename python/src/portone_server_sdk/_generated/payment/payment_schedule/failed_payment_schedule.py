@@ -87,7 +87,7 @@ class FailedPaymentSchedule:
 
 def _serialize_failed_payment_schedule(obj: FailedPaymentSchedule) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "FAILED"
     entity["id"] = obj.id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

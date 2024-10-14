@@ -11,7 +11,7 @@ class PlatformPaymentMethodGiftCertificate:
 
 def _serialize_platform_payment_method_gift_certificate(obj: PlatformPaymentMethodGiftCertificate) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "GIFT_CERTIFICATE"
     return entity
 
 

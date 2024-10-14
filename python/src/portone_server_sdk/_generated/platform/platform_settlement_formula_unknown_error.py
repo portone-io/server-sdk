@@ -9,7 +9,7 @@ class PlatformSettlementFormulaUnknownError:
 
 def _serialize_platform_settlement_formula_unknown_error(obj: PlatformSettlementFormulaUnknownError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "UNKNOWN_ERROR"
     return entity
 
 

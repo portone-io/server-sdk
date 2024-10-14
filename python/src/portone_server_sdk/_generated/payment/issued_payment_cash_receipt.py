@@ -42,7 +42,7 @@ class IssuedPaymentCashReceipt:
 
 def _serialize_issued_payment_cash_receipt(obj: IssuedPaymentCashReceipt) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUED"
     entity["issueNumber"] = obj.issue_number
     entity["totalAmount"] = obj.total_amount
     entity["currency"] = _serialize_currency(obj.currency)

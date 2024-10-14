@@ -12,7 +12,7 @@ class PlatformDiscountSharePoliciesNotFoundError:
 
 def _serialize_platform_discount_share_policies_not_found_error(obj: PlatformDiscountSharePoliciesNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_DISCOUNT_SHARE_POLICIES_NOT_FOUND"
     entity["ids"] = obj.ids
     entity["graphqlIds"] = obj.graphql_ids
     if obj.message is not None:

@@ -10,7 +10,7 @@ class PlatformTransferNotFoundError:
 
 def _serialize_platform_transfer_not_found_error(obj: PlatformTransferNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_TRANSFER_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

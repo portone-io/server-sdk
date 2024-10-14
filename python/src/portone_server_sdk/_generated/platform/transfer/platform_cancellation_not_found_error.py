@@ -10,7 +10,7 @@ class PlatformCancellationNotFoundError:
 
 def _serialize_platform_cancellation_not_found_error(obj: PlatformCancellationNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCELLATION_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class PaymentNotFoundError:
 
 def _serialize_payment_not_found_error(obj: PaymentNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

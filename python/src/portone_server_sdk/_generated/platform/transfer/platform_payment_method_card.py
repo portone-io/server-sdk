@@ -11,7 +11,7 @@ class PlatformPaymentMethodCard:
 
 def _serialize_platform_payment_method_card(obj: PlatformPaymentMethodCard) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CARD"
     return entity
 
 

@@ -12,7 +12,7 @@ class PlatformArchivedAdditionalFeePolicyError:
 
 def _serialize_platform_archived_additional_fee_policy_error(obj: PlatformArchivedAdditionalFeePolicyError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

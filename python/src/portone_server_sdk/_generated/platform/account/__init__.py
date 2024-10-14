@@ -90,19 +90,19 @@ class AccountClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_EXTERNAL_API_FAILED":
-                raise errors.PlatformExternalApiFailedError(_serialize_platform_external_api_failed_error(error_response))
+                raise errors.PlatformExternalApiFailedError(_deserialize_platform_external_api_failed_error(error_response))
             if error_type == "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED":
-                raise errors.PlatformExternalApiTemporarilyFailedError(_serialize_platform_external_api_temporarily_failed_error(error_response))
+                raise errors.PlatformExternalApiTemporarilyFailedError(_deserialize_platform_external_api_temporarily_failed_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_NOT_SUPPORTED_BANK":
-                raise errors.PlatformNotSupportedBankError(_serialize_platform_not_supported_bank_error(error_response))
+                raise errors.PlatformNotSupportedBankError(_deserialize_platform_not_supported_bank_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_account_holder(response.json())
@@ -170,19 +170,19 @@ class AccountClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_EXTERNAL_API_FAILED":
-                raise errors.PlatformExternalApiFailedError(_serialize_platform_external_api_failed_error(error_response))
+                raise errors.PlatformExternalApiFailedError(_deserialize_platform_external_api_failed_error(error_response))
             if error_type == "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED":
-                raise errors.PlatformExternalApiTemporarilyFailedError(_serialize_platform_external_api_temporarily_failed_error(error_response))
+                raise errors.PlatformExternalApiTemporarilyFailedError(_deserialize_platform_external_api_temporarily_failed_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_NOT_SUPPORTED_BANK":
-                raise errors.PlatformNotSupportedBankError(_serialize_platform_not_supported_bank_error(error_response))
+                raise errors.PlatformNotSupportedBankError(_deserialize_platform_not_supported_bank_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_account_holder(response.json())

@@ -18,7 +18,7 @@ class PlatformPartnerTypeNonWhtPayer:
 
 def _serialize_platform_partner_type_non_wht_payer(obj: PlatformPartnerTypeNonWhtPayer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "NON_WHT_PAYER"
     if obj.birthdate is not None:
         entity["birthdate"] = obj.birthdate
     return entity

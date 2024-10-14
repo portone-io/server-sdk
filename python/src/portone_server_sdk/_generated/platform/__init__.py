@@ -125,11 +125,11 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform(response.json())
@@ -164,11 +164,11 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform(response.json())
@@ -227,15 +227,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_INVALID_SETTLEMENT_FORMULA":
-                raise errors.PlatformInvalidSettlementFormulaError(_serialize_platform_invalid_settlement_formula_error(error_response))
+                raise errors.PlatformInvalidSettlementFormulaError(_deserialize_platform_invalid_settlement_formula_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_platform_response(response.json())
@@ -294,15 +294,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_INVALID_SETTLEMENT_FORMULA":
-                raise errors.PlatformInvalidSettlementFormulaError(_serialize_platform_invalid_settlement_formula_error(error_response))
+                raise errors.PlatformInvalidSettlementFormulaError(_deserialize_platform_invalid_settlement_formula_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_platform_response(response.json())
@@ -349,13 +349,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy_filter_options(response.json())
@@ -402,13 +402,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy_filter_options(response.json())
@@ -452,15 +452,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy(response.json())
@@ -504,15 +504,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy(response.json())
@@ -566,15 +566,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_discount_share_policy_response(response.json())
@@ -628,15 +628,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_discount_share_policy_response(response.json())
@@ -691,17 +691,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(_serialize_platform_discount_share_policy_schedule_already_exists_error(error_response))
+                raise errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(_deserialize_platform_discount_share_policy_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_discount_share_policy_response(response.json())
@@ -756,17 +756,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(_serialize_platform_discount_share_policy_schedule_already_exists_error(error_response))
+                raise errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(_deserialize_platform_discount_share_policy_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_discount_share_policy_response(response.json())
@@ -810,15 +810,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_discount_share_policy_schedule_response(response.json())
@@ -862,15 +862,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_serialize_platform_discount_share_policy_not_found_error(error_response))
+                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_discount_share_policy_schedule_response(response.json())
@@ -914,15 +914,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_additional_fee_policy(response.json())
@@ -966,15 +966,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_additional_fee_policy(response.json())
@@ -1026,15 +1026,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
@@ -1086,15 +1086,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
@@ -1151,19 +1151,19 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(_serialize_platform_additional_fee_policy_schedule_already_exists_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(_deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformArchivedAdditionalFeePolicyError(_serialize_platform_archived_additional_fee_policy_error(error_response))
+                raise errors.PlatformArchivedAdditionalFeePolicyError(_deserialize_platform_archived_additional_fee_policy_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
@@ -1220,19 +1220,19 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(_serialize_platform_additional_fee_policy_schedule_already_exists_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(_deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformArchivedAdditionalFeePolicyError(_serialize_platform_archived_additional_fee_policy_error(error_response))
+                raise errors.PlatformArchivedAdditionalFeePolicyError(_deserialize_platform_archived_additional_fee_policy_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
@@ -1276,15 +1276,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
@@ -1328,15 +1328,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_serialize_platform_additional_fee_policy_not_found_error(error_response))
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
@@ -1383,13 +1383,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_partner_filter_options(response.json())
@@ -1436,13 +1436,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_partner_filter_options(response.json())
@@ -1486,15 +1486,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_partner(response.json())
@@ -1538,15 +1538,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_partner(response.json())
@@ -1601,17 +1601,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_partner_response(response.json())
@@ -1666,17 +1666,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_partner_response(response.json())
@@ -1744,31 +1744,31 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
-                raise errors.PlatformAccountVerificationAlreadyUsedError(_serialize_platform_account_verification_already_used_error(error_response))
+                raise errors.PlatformAccountVerificationAlreadyUsedError(_deserialize_platform_account_verification_already_used_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-                raise errors.PlatformAccountVerificationFailedError(_serialize_platform_account_verification_failed_error(error_response))
+                raise errors.PlatformAccountVerificationFailedError(_deserialize_platform_account_verification_failed_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
-                raise errors.PlatformAccountVerificationNotFoundError(_serialize_platform_account_verification_not_found_error(error_response))
+                raise errors.PlatformAccountVerificationNotFoundError(_deserialize_platform_account_verification_not_found_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_PARTNER":
-                raise errors.PlatformArchivedPartnerError(_serialize_platform_archived_partner_error(error_response))
+                raise errors.PlatformArchivedPartnerError(_deserialize_platform_archived_partner_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
-                raise errors.PlatformInsufficientDataToChangePartnerTypeError(_serialize_platform_insufficient_data_to_change_partner_type_error(error_response))
+                raise errors.PlatformInsufficientDataToChangePartnerTypeError(_deserialize_platform_insufficient_data_to_change_partner_type_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformPartnerScheduleAlreadyExistsError(_serialize_platform_partner_schedule_already_exists_error(error_response))
+                raise errors.PlatformPartnerScheduleAlreadyExistsError(_deserialize_platform_partner_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_serialize_platform_user_defined_property_not_found_error(error_response))
+                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_partner_response(response.json())
@@ -1836,31 +1836,31 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
-                raise errors.PlatformAccountVerificationAlreadyUsedError(_serialize_platform_account_verification_already_used_error(error_response))
+                raise errors.PlatformAccountVerificationAlreadyUsedError(_deserialize_platform_account_verification_already_used_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-                raise errors.PlatformAccountVerificationFailedError(_serialize_platform_account_verification_failed_error(error_response))
+                raise errors.PlatformAccountVerificationFailedError(_deserialize_platform_account_verification_failed_error(error_response))
             if error_type == "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
-                raise errors.PlatformAccountVerificationNotFoundError(_serialize_platform_account_verification_not_found_error(error_response))
+                raise errors.PlatformAccountVerificationNotFoundError(_deserialize_platform_account_verification_not_found_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_PARTNER":
-                raise errors.PlatformArchivedPartnerError(_serialize_platform_archived_partner_error(error_response))
+                raise errors.PlatformArchivedPartnerError(_deserialize_platform_archived_partner_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
-                raise errors.PlatformInsufficientDataToChangePartnerTypeError(_serialize_platform_insufficient_data_to_change_partner_type_error(error_response))
+                raise errors.PlatformInsufficientDataToChangePartnerTypeError(_deserialize_platform_insufficient_data_to_change_partner_type_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformPartnerScheduleAlreadyExistsError(_serialize_platform_partner_schedule_already_exists_error(error_response))
+                raise errors.PlatformPartnerScheduleAlreadyExistsError(_deserialize_platform_partner_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_serialize_platform_user_defined_property_not_found_error(error_response))
+                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_partner_response(response.json())
@@ -1904,15 +1904,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_partner_schedule_response(response.json())
@@ -1956,15 +1956,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_serialize_platform_partner_not_found_error(error_response))
+                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_partner_schedule_response(response.json())
@@ -2023,21 +2023,21 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED":
-                raise errors.PlatformArchivedPartnersCannotBeScheduledError(_serialize_platform_archived_partners_cannot_be_scheduled_error(error_response))
+                raise errors.PlatformArchivedPartnersCannotBeScheduledError(_deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST":
-                raise errors.PlatformPartnerSchedulesAlreadyExistError(_serialize_platform_partner_schedules_already_exist_error(error_response))
+                raise errors.PlatformPartnerSchedulesAlreadyExistError(_deserialize_platform_partner_schedules_already_exist_error(error_response))
             if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_serialize_platform_user_defined_property_not_found_error(error_response))
+                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_partners_response(response.json())
@@ -2096,21 +2096,21 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED":
-                raise errors.PlatformArchivedPartnersCannotBeScheduledError(_serialize_platform_archived_partners_cannot_be_scheduled_error(error_response))
+                raise errors.PlatformArchivedPartnersCannotBeScheduledError(_deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST":
-                raise errors.PlatformPartnerSchedulesAlreadyExistError(_serialize_platform_partner_schedules_already_exist_error(error_response))
+                raise errors.PlatformPartnerSchedulesAlreadyExistError(_deserialize_platform_partner_schedules_already_exist_error(error_response))
             if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_serialize_platform_user_defined_property_not_found_error(error_response))
+                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_partners_response(response.json())
@@ -2154,15 +2154,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_contract(response.json())
@@ -2206,15 +2206,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_platform_contract(response.json())
@@ -2266,13 +2266,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_contract_response(response.json())
@@ -2324,13 +2324,13 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_reschedule_platform_contract_response(response.json())
@@ -2385,17 +2385,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_CONTRACT":
-                raise errors.PlatformArchivedContractError(_serialize_platform_archived_contract_error(error_response))
+                raise errors.PlatformArchivedContractError(_deserialize_platform_archived_contract_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformContractScheduleAlreadyExistsError(_serialize_platform_contract_schedule_already_exists_error(error_response))
+                raise errors.PlatformContractScheduleAlreadyExistsError(_deserialize_platform_contract_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_contract_response(response.json())
@@ -2450,17 +2450,17 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_CONTRACT":
-                raise errors.PlatformArchivedContractError(_serialize_platform_archived_contract_error(error_response))
+                raise errors.PlatformArchivedContractError(_deserialize_platform_archived_contract_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PlatformContractScheduleAlreadyExistsError(_serialize_platform_contract_schedule_already_exists_error(error_response))
+                raise errors.PlatformContractScheduleAlreadyExistsError(_deserialize_platform_contract_schedule_already_exists_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_schedule_platform_contract_response(response.json())
@@ -2504,15 +2504,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_contract_schedule_response(response.json())
@@ -2556,15 +2556,15 @@ class PlatformClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_serialize_platform_contract_not_found_error(error_response))
+                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
             if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_serialize_platform_not_enabled_error(error_response))
+                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_platform_contract_schedule_response(response.json())

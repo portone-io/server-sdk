@@ -12,7 +12,7 @@ class PaymentScheduleAlreadyExistsError:
 
 def _serialize_payment_schedule_already_exists_error(obj: PaymentScheduleAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_SCHEDULE_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

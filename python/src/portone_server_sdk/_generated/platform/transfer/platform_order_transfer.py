@@ -77,7 +77,7 @@ class PlatformOrderTransfer:
 
 def _serialize_platform_order_transfer(obj: PlatformOrderTransfer) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ORDER"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["partner"] = _serialize_platform_partner(obj.partner)

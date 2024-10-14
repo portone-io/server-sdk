@@ -10,7 +10,7 @@ class PlatformPaymentNotFoundError:
 
 def _serialize_platform_payment_not_found_error(obj: PlatformPaymentNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PAYMENT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

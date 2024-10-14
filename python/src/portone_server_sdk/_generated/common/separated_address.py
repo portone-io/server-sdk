@@ -33,7 +33,7 @@ class SeparatedAddress:
 
 def _serialize_separated_address(obj: SeparatedAddress) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "SEPARATED"
     entity["oneLine"] = obj.one_line
     entity["addressLine1"] = obj.address_line_1
     entity["addressLine2"] = obj.address_line_2

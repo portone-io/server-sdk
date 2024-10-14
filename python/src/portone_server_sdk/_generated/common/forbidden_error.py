@@ -12,7 +12,7 @@ class ForbiddenError:
 
 def _serialize_forbidden_error(obj: ForbiddenError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "FORBIDDEN"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

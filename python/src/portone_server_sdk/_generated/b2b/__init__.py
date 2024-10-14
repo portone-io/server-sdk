@@ -118,15 +118,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_member_company(response.json())
@@ -180,15 +180,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_member_company(response.json())
@@ -267,13 +267,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_b2b_member_company_response(response.json())
@@ -352,13 +352,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_b2b_member_company_response(response.json())
@@ -421,17 +421,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_COMPANY_ALREADY_REGISTERED":
-                raise errors.B2bCompanyAlreadyRegisteredError(_serialize_b2b_company_already_registered_error(error_response))
+                raise errors.B2bCompanyAlreadyRegisteredError(_deserialize_b2b_company_already_registered_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_ID_ALREADY_EXISTS":
-                raise errors.B2bIdAlreadyExistsError(_serialize_b2b_id_already_exists_error(error_response))
+                raise errors.B2bIdAlreadyExistsError(_deserialize_b2b_id_already_exists_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_register_b2b_member_company_response(response.json())
@@ -494,17 +494,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_COMPANY_ALREADY_REGISTERED":
-                raise errors.B2bCompanyAlreadyRegisteredError(_serialize_b2b_company_already_registered_error(error_response))
+                raise errors.B2bCompanyAlreadyRegisteredError(_deserialize_b2b_company_already_registered_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_ID_ALREADY_EXISTS":
-                raise errors.B2bIdAlreadyExistsError(_serialize_b2b_id_already_exists_error(error_response))
+                raise errors.B2bIdAlreadyExistsError(_deserialize_b2b_id_already_exists_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_register_b2b_member_company_response(response.json())
@@ -563,17 +563,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CONTACT_NOT_FOUND":
-                raise errors.B2bContactNotFoundError(_serialize_b2b_contact_not_found_error(error_response))
+                raise errors.B2bContactNotFoundError(_deserialize_b2b_contact_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_company_contact(response.json())
@@ -632,17 +632,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CONTACT_NOT_FOUND":
-                raise errors.B2bContactNotFoundError(_serialize_b2b_contact_not_found_error(error_response))
+                raise errors.B2bContactNotFoundError(_deserialize_b2b_contact_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_company_contact(response.json())
@@ -723,17 +723,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CONTACT_NOT_FOUND":
-                raise errors.B2bContactNotFoundError(_serialize_b2b_contact_not_found_error(error_response))
+                raise errors.B2bContactNotFoundError(_deserialize_b2b_contact_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_b2b_member_company_contact_response(response.json())
@@ -814,17 +814,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CONTACT_NOT_FOUND":
-                raise errors.B2bContactNotFoundError(_serialize_b2b_contact_not_found_error(error_response))
+                raise errors.B2bContactNotFoundError(_deserialize_b2b_contact_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_update_b2b_member_company_contact_response(response.json())
@@ -878,15 +878,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_certificate_registration_url_response(response.json())
@@ -940,15 +940,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_certificate_registration_url_response(response.json())
@@ -1004,17 +1004,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CERTIFICATE_UNREGISTERED":
-                raise errors.B2bCertificateUnregisteredError(_serialize_b2b_certificate_unregistered_error(error_response))
+                raise errors.B2bCertificateUnregisteredError(_deserialize_b2b_certificate_unregistered_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_certificate(response.json())
@@ -1070,17 +1070,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_CERTIFICATE_UNREGISTERED":
-                raise errors.B2bCertificateUnregisteredError(_serialize_b2b_certificate_unregistered_error(error_response))
+                raise errors.B2bCertificateUnregisteredError(_deserialize_b2b_certificate_unregistered_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_MEMBER_COMPANY_NOT_FOUND":
-                raise errors.B2bMemberCompanyNotFoundError(_serialize_b2b_member_company_not_found_error(error_response))
+                raise errors.B2bMemberCompanyNotFoundError(_deserialize_b2b_member_company_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_certificate(response.json())
@@ -1134,13 +1134,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_contact_id_existence_response(response.json())
@@ -1194,13 +1194,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_contact_id_existence_response(response.json())
@@ -1269,27 +1269,27 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_BANK_ACCOUNT_NOT_FOUND":
-                raise errors.B2bBankAccountNotFoundError(_serialize_b2b_bank_account_not_found_error(error_response))
+                raise errors.B2bBankAccountNotFoundError(_deserialize_b2b_bank_account_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_COMMUNICATION":
-                raise errors.B2bFinancialSystemCommunicationError(_serialize_b2b_financial_system_communication_error(error_response))
+                raise errors.B2bFinancialSystemCommunicationError(_deserialize_b2b_financial_system_communication_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_FAILURE":
-                raise errors.B2bFinancialSystemFailureError(_serialize_b2b_financial_system_failure_error(error_response))
+                raise errors.B2bFinancialSystemFailureError(_deserialize_b2b_financial_system_failure_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_UNDER_MAINTENANCE":
-                raise errors.B2bFinancialSystemUnderMaintenanceError(_serialize_b2b_financial_system_under_maintenance_error(error_response))
+                raise errors.B2bFinancialSystemUnderMaintenanceError(_deserialize_b2b_financial_system_under_maintenance_error(error_response))
             if error_type == "B2B_FOREIGN_EXCHANGE_ACCOUNT":
-                raise errors.B2bForeignExchangeAccountError(_serialize_b2b_foreign_exchange_account_error(error_response))
+                raise errors.B2bForeignExchangeAccountError(_deserialize_b2b_foreign_exchange_account_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_REGULAR_MAINTENANCE_TIME":
-                raise errors.B2bRegularMaintenanceTimeError(_serialize_b2b_regular_maintenance_time_error(error_response))
+                raise errors.B2bRegularMaintenanceTimeError(_deserialize_b2b_regular_maintenance_time_error(error_response))
             if error_type == "B2B_SUSPENDED_ACCOUNT":
-                raise errors.B2bSuspendedAccountError(_serialize_b2b_suspended_account_error(error_response))
+                raise errors.B2bSuspendedAccountError(_deserialize_b2b_suspended_account_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_bank_account_holder_response(response.json())
@@ -1358,27 +1358,27 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_BANK_ACCOUNT_NOT_FOUND":
-                raise errors.B2bBankAccountNotFoundError(_serialize_b2b_bank_account_not_found_error(error_response))
+                raise errors.B2bBankAccountNotFoundError(_deserialize_b2b_bank_account_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_COMMUNICATION":
-                raise errors.B2bFinancialSystemCommunicationError(_serialize_b2b_financial_system_communication_error(error_response))
+                raise errors.B2bFinancialSystemCommunicationError(_deserialize_b2b_financial_system_communication_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_FAILURE":
-                raise errors.B2bFinancialSystemFailureError(_serialize_b2b_financial_system_failure_error(error_response))
+                raise errors.B2bFinancialSystemFailureError(_deserialize_b2b_financial_system_failure_error(error_response))
             if error_type == "B2B_FINANCIAL_SYSTEM_UNDER_MAINTENANCE":
-                raise errors.B2bFinancialSystemUnderMaintenanceError(_serialize_b2b_financial_system_under_maintenance_error(error_response))
+                raise errors.B2bFinancialSystemUnderMaintenanceError(_deserialize_b2b_financial_system_under_maintenance_error(error_response))
             if error_type == "B2B_FOREIGN_EXCHANGE_ACCOUNT":
-                raise errors.B2bForeignExchangeAccountError(_serialize_b2b_foreign_exchange_account_error(error_response))
+                raise errors.B2bForeignExchangeAccountError(_deserialize_b2b_foreign_exchange_account_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_REGULAR_MAINTENANCE_TIME":
-                raise errors.B2bRegularMaintenanceTimeError(_serialize_b2b_regular_maintenance_time_error(error_response))
+                raise errors.B2bRegularMaintenanceTimeError(_deserialize_b2b_regular_maintenance_time_error(error_response))
             if error_type == "B2B_SUSPENDED_ACCOUNT":
-                raise errors.B2bSuspendedAccountError(_serialize_b2b_suspended_account_error(error_response))
+                raise errors.B2bSuspendedAccountError(_deserialize_b2b_suspended_account_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_bank_account_holder_response(response.json())
@@ -1434,17 +1434,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_COMPANY_NOT_FOUND":
-                raise errors.B2bCompanyNotFoundError(_serialize_b2b_company_not_found_error(error_response))
+                raise errors.B2bCompanyNotFoundError(_deserialize_b2b_company_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_HOMETAX_UNDER_MAINTENANCE":
-                raise errors.B2bHometaxUnderMaintenanceError(_serialize_b2b_hometax_under_maintenance_error(error_response))
+                raise errors.B2bHometaxUnderMaintenanceError(_deserialize_b2b_hometax_under_maintenance_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_company_state(response.json())
@@ -1500,17 +1500,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_COMPANY_NOT_FOUND":
-                raise errors.B2bCompanyNotFoundError(_serialize_b2b_company_not_found_error(error_response))
+                raise errors.B2bCompanyNotFoundError(_deserialize_b2b_company_not_found_error(error_response))
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_HOMETAX_UNDER_MAINTENANCE":
-                raise errors.B2bHometaxUnderMaintenanceError(_serialize_b2b_hometax_under_maintenance_error(error_response))
+                raise errors.B2bHometaxUnderMaintenanceError(_deserialize_b2b_hometax_under_maintenance_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_company_state(response.json())
@@ -1574,17 +1574,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_RECIPIENT_NOT_FOUND":
-                raise errors.B2bRecipientNotFoundError(_serialize_b2b_recipient_not_found_error(error_response))
+                raise errors.B2bRecipientNotFoundError(_deserialize_b2b_recipient_not_found_error(error_response))
             if error_type == "B2B_SUPPLIER_NOT_FOUND":
-                raise errors.B2bSupplierNotFoundError(_serialize_b2b_supplier_not_found_error(error_response))
+                raise errors.B2bSupplierNotFoundError(_deserialize_b2b_supplier_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -1648,17 +1648,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_RECIPIENT_NOT_FOUND":
-                raise errors.B2bRecipientNotFoundError(_serialize_b2b_recipient_not_found_error(error_response))
+                raise errors.B2bRecipientNotFoundError(_deserialize_b2b_recipient_not_found_error(error_response))
             if error_type == "B2B_SUPPLIER_NOT_FOUND":
-                raise errors.B2bSupplierNotFoundError(_serialize_b2b_supplier_not_found_error(error_response))
+                raise errors.B2bSupplierNotFoundError(_deserialize_b2b_supplier_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -1724,15 +1724,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -1798,15 +1798,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -1876,17 +1876,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NON_DELETABLE_STATUS":
-                raise errors.B2bTaxInvoiceNonDeletableStatusError(_serialize_b2b_tax_invoice_non_deletable_status_error(error_response))
+                raise errors.B2bTaxInvoiceNonDeletableStatusError(_deserialize_b2b_tax_invoice_non_deletable_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
     async def delete_b2b_tax_invoice_async(
@@ -1955,17 +1955,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NON_DELETABLE_STATUS":
-                raise errors.B2bTaxInvoiceNonDeletableStatusError(_serialize_b2b_tax_invoice_non_deletable_status_error(error_response))
+                raise errors.B2bTaxInvoiceNonDeletableStatusError(_deserialize_b2b_tax_invoice_non_deletable_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
     def issue_b2b_tax_invoice(
@@ -2044,17 +2044,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2134,17 +2134,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2221,19 +2221,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_RECIPIENT_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_serialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_deserialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2310,19 +2310,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_RECIPIENT_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_serialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_deserialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2395,15 +2395,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_ISSUED_STATUS":
-                raise errors.B2bTaxInvoiceNotIssuedStatusError(_serialize_b2b_tax_invoice_not_issued_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotIssuedStatusError(_deserialize_b2b_tax_invoice_not_issued_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2476,15 +2476,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_ISSUED_STATUS":
-                raise errors.B2bTaxInvoiceNotIssuedStatusError(_serialize_b2b_tax_invoice_not_issued_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotIssuedStatusError(_deserialize_b2b_tax_invoice_not_issued_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2561,19 +2561,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_SUPPLIER_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoSupplierDocumentKeyError(_serialize_b2b_tax_invoice_no_supplier_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoSupplierDocumentKeyError(_deserialize_b2b_tax_invoice_no_supplier_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2650,19 +2650,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS":
-                raise errors.B2bTaxInvoiceNotRequestedStatusError(_serialize_b2b_tax_invoice_not_requested_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRequestedStatusError(_deserialize_b2b_tax_invoice_not_requested_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_SUPPLIER_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoSupplierDocumentKeyError(_serialize_b2b_tax_invoice_no_supplier_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoSupplierDocumentKeyError(_deserialize_b2b_tax_invoice_no_supplier_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -2752,13 +2752,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoices_response(response.json())
@@ -2848,13 +2848,13 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoices_response(response.json())
@@ -2927,15 +2927,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_popup_url_response(response.json())
@@ -3008,15 +3008,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_popup_url_response(response.json())
@@ -3082,15 +3082,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_print_url_response(response.json())
@@ -3156,15 +3156,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_print_url_response(response.json())
@@ -3230,15 +3230,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_pdf_download_url_response(response.json())
@@ -3304,15 +3304,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_pdf_download_url_response(response.json())
@@ -3371,17 +3371,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_RECIPIENT_NOT_FOUND":
-                raise errors.B2bRecipientNotFoundError(_serialize_b2b_recipient_not_found_error(error_response))
+                raise errors.B2bRecipientNotFoundError(_deserialize_b2b_recipient_not_found_error(error_response))
             if error_type == "B2B_SUPPLIER_NOT_FOUND":
-                raise errors.B2bSupplierNotFoundError(_serialize_b2b_supplier_not_found_error(error_response))
+                raise errors.B2bSupplierNotFoundError(_deserialize_b2b_supplier_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -3440,17 +3440,17 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_RECIPIENT_NOT_FOUND":
-                raise errors.B2bRecipientNotFoundError(_serialize_b2b_recipient_not_found_error(error_response))
+                raise errors.B2bRecipientNotFoundError(_deserialize_b2b_recipient_not_found_error(error_response))
             if error_type == "B2B_SUPPLIER_NOT_FOUND":
-                raise errors.B2bSupplierNotFoundError(_serialize_b2b_supplier_not_found_error(error_response))
+                raise errors.B2bSupplierNotFoundError(_deserialize_b2b_supplier_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -3527,19 +3527,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_RECIPIENT_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_serialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_deserialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -3616,19 +3616,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NO_RECIPIENT_DOCUMENT_KEY":
-                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_serialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
+                raise errors.B2bTaxInvoiceNoRecipientDocumentKeyError(_deserialize_b2b_tax_invoice_no_recipient_document_key_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_b2b_tax_invoice(response.json())
@@ -3681,11 +3681,11 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_create_b2b_tax_invoice_file_upload_link_response(response.json())
@@ -3738,11 +3738,11 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_create_b2b_tax_invoice_file_upload_link_response(response.json())
@@ -3820,19 +3820,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_FILE_NOT_FOUND":
-                raise errors.B2bFileNotFoundError(_serialize_b2b_file_not_found_error(error_response))
+                raise errors.B2bFileNotFoundError(_deserialize_b2b_file_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
     async def attach_b2b_tax_invoice_file_async(
@@ -3909,19 +3909,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_FILE_NOT_FOUND":
-                raise errors.B2bFileNotFoundError(_serialize_b2b_file_not_found_error(error_response))
+                raise errors.B2bFileNotFoundError(_deserialize_b2b_file_not_found_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
     def get_b2b_tax_invoice_attachments(
@@ -3986,15 +3986,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_attachments_response(response.json())
@@ -4060,15 +4060,15 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_b2b_tax_invoice_attachments_response(response.json())
@@ -4141,19 +4141,19 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_ATTACHMENT_NOT_FOUND":
-                raise errors.B2bTaxInvoiceAttachmentNotFoundError(_serialize_b2b_tax_invoice_attachment_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceAttachmentNotFoundError(_deserialize_b2b_tax_invoice_attachment_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
     async def delete_b2b_tax_invoice_attachment_async(
@@ -4225,18 +4225,18 @@ class B2BClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "B2B_EXTERNAL_SERVICE":
-                raise errors.B2bExternalServiceError(_serialize_b2b_external_service_error(error_response))
+                raise errors.B2bExternalServiceError(_deserialize_b2b_external_service_error(error_response))
             if error_type == "B2B_NOT_ENABLED":
-                raise errors.B2bNotEnabledError(_serialize_b2b_not_enabled_error(error_response))
+                raise errors.B2bNotEnabledError(_deserialize_b2b_not_enabled_error(error_response))
             if error_type == "B2B_TAX_INVOICE_ATTACHMENT_NOT_FOUND":
-                raise errors.B2bTaxInvoiceAttachmentNotFoundError(_serialize_b2b_tax_invoice_attachment_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceAttachmentNotFoundError(_deserialize_b2b_tax_invoice_attachment_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_FOUND":
-                raise errors.B2bTaxInvoiceNotFoundError(_serialize_b2b_tax_invoice_not_found_error(error_response))
+                raise errors.B2bTaxInvoiceNotFoundError(_deserialize_b2b_tax_invoice_not_found_error(error_response))
             if error_type == "B2B_TAX_INVOICE_NOT_REGISTERED_STATUS":
-                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_serialize_b2b_tax_invoice_not_registered_status_error(error_response))
+                raise errors.B2bTaxInvoiceNotRegisteredStatusError(_deserialize_b2b_tax_invoice_not_registered_status_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)

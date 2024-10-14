@@ -21,7 +21,7 @@ class FailedPgBillingKeyIssueResponse:
 
 def _serialize_failed_pg_billing_key_issue_response(obj: FailedPgBillingKeyIssueResponse) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "FAILED"
     entity["channel"] = _serialize_selected_channel(obj.channel)
     entity["failure"] = _serialize_billing_key_failure(obj.failure)
     return entity

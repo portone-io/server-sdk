@@ -12,7 +12,7 @@ class B2bBankAccountNotFoundError:
 
 def _serialize_b2b_bank_account_not_found_error(obj: B2bBankAccountNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_BANK_ACCOUNT_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

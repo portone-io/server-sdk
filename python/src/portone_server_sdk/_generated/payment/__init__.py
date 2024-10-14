@@ -143,13 +143,13 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pre_register_payment_response(response.json())
@@ -213,13 +213,13 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pre_register_payment_response(response.json())
@@ -266,13 +266,13 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_payment(response.json())
@@ -319,13 +319,13 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_payment(response.json())
@@ -381,11 +381,11 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_payments_response(response.json())
@@ -441,11 +441,11 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_payments_response(response.json())
@@ -517,11 +517,11 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_all_payments_by_cursor_response(response.json())
@@ -593,11 +593,11 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_all_payments_by_cursor_response(response.json())
@@ -710,31 +710,31 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-                raise errors.CancellableAmountConsistencyBrokenError(_serialize_cancellable_amount_consistency_broken_error(error_response))
+                raise errors.CancellableAmountConsistencyBrokenError(_deserialize_cancellable_amount_consistency_broken_error(error_response))
             if error_type == "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-                raise errors.CancelAmountExceedsCancellableAmountError(_serialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
+                raise errors.CancelAmountExceedsCancellableAmountError(_deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
             if error_type == "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
-                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_serialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
+                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
             if error_type == "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
-                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_serialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
+                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_ALREADY_CANCELLED":
-                raise errors.PaymentAlreadyCancelledError(_serialize_payment_already_cancelled_error(error_response))
+                raise errors.PaymentAlreadyCancelledError(_deserialize_payment_already_cancelled_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
-                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_serialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
+                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-                raise errors.SumOfPartsExceedsCancelAmountError(_serialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
+                raise errors.SumOfPartsExceedsCancelAmountError(_deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
@@ -847,31 +847,31 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-                raise errors.CancellableAmountConsistencyBrokenError(_serialize_cancellable_amount_consistency_broken_error(error_response))
+                raise errors.CancellableAmountConsistencyBrokenError(_deserialize_cancellable_amount_consistency_broken_error(error_response))
             if error_type == "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-                raise errors.CancelAmountExceedsCancellableAmountError(_serialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
+                raise errors.CancelAmountExceedsCancellableAmountError(_deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
             if error_type == "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
-                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_serialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
+                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
             if error_type == "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
-                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_serialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
+                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_ALREADY_CANCELLED":
-                raise errors.PaymentAlreadyCancelledError(_serialize_payment_already_cancelled_error(error_response))
+                raise errors.PaymentAlreadyCancelledError(_deserialize_payment_already_cancelled_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
-                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_serialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
+                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-                raise errors.SumOfPartsExceedsCancelAmountError(_serialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
+                raise errors.SumOfPartsExceedsCancelAmountError(_deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
@@ -1035,29 +1035,29 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_serialize_discount_amount_exceeds_total_amount_error(error_response))
+                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_serialize_promotion_pay_method_does_not_match_error(error_response))
+                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pay_with_billing_key_response(response.json())
@@ -1221,29 +1221,29 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_serialize_discount_amount_exceeds_total_amount_error(error_response))
+                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_serialize_promotion_pay_method_does_not_match_error(error_response))
+                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pay_with_billing_key_response(response.json())
@@ -1399,25 +1399,25 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_serialize_discount_amount_exceeds_total_amount_error(error_response))
+                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_serialize_promotion_pay_method_does_not_match_error(error_response))
+                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pay_instantly_response(response.json())
@@ -1573,25 +1573,25 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_serialize_already_paid_error(error_response))
+                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_serialize_discount_amount_exceeds_total_amount_error(error_response))
+                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_serialize_promotion_pay_method_does_not_match_error(error_response))
+                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
             if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_serialize_sum_of_parts_exceeds_total_amount_error(error_response))
+                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_pay_instantly_response(response.json())
@@ -1642,17 +1642,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-                raise errors.PaymentNotWaitingForDepositError(_serialize_payment_not_waiting_for_deposit_error(error_response))
+                raise errors.PaymentNotWaitingForDepositError(_deserialize_payment_not_waiting_for_deposit_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_close_virtual_account_response(response.json())
@@ -1703,17 +1703,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-                raise errors.PaymentNotWaitingForDepositError(_serialize_payment_not_waiting_for_deposit_error(error_response))
+                raise errors.PaymentNotWaitingForDepositError(_deserialize_payment_not_waiting_for_deposit_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_close_virtual_account_response(response.json())
@@ -1792,17 +1792,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_apply_escrow_logistics_response(response.json())
@@ -1881,17 +1881,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_apply_escrow_logistics_response(response.json())
@@ -1970,17 +1970,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_modify_escrow_logistics_response(response.json())
@@ -2059,17 +2059,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_modify_escrow_logistics_response(response.json())
@@ -2130,17 +2130,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_confirm_escrow_response(response.json())
@@ -2201,17 +2201,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_confirm_escrow_response(response.json())
@@ -2271,17 +2271,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-                raise errors.MaxWebhookRetryCountReachedError(_serialize_max_webhook_retry_count_reached_error(error_response))
+                raise errors.MaxWebhookRetryCountReachedError(_deserialize_max_webhook_retry_count_reached_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             if error_type == "WEBHOOK_NOT_FOUND":
-                raise errors.WebhookNotFoundError(_serialize_webhook_not_found_error(error_response))
+                raise errors.WebhookNotFoundError(_deserialize_webhook_not_found_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_resend_webhook_response(response.json())
@@ -2341,17 +2341,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-                raise errors.MaxWebhookRetryCountReachedError(_serialize_max_webhook_retry_count_reached_error(error_response))
+                raise errors.MaxWebhookRetryCountReachedError(_deserialize_max_webhook_retry_count_reached_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             if error_type == "WEBHOOK_NOT_FOUND":
-                raise errors.WebhookNotFoundError(_serialize_webhook_not_found_error(error_response))
+                raise errors.WebhookNotFoundError(_deserialize_webhook_not_found_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_resend_webhook_response(response.json())
@@ -2410,17 +2410,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_register_store_receipt_response(response.json())
@@ -2479,17 +2479,17 @@ class PaymentClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_serialize_payment_not_found_error(error_response))
+                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
             if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_serialize_payment_not_paid_error(error_response))
+                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_register_store_receipt_response(response.json())

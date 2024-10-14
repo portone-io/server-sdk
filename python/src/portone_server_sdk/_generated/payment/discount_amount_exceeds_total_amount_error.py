@@ -12,7 +12,7 @@ class DiscountAmountExceedsTotalAmountError:
 
 def _serialize_discount_amount_exceeds_total_amount_error(obj: DiscountAmountExceedsTotalAmountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

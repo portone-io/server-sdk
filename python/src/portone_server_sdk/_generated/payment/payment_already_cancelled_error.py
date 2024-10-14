@@ -12,7 +12,7 @@ class PaymentAlreadyCancelledError:
 
 def _serialize_payment_already_cancelled_error(obj: PaymentAlreadyCancelledError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_ALREADY_CANCELLED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

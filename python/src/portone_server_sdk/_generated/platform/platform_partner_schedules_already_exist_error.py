@@ -12,7 +12,7 @@ class PlatformPartnerSchedulesAlreadyExistError:
 
 def _serialize_platform_partner_schedules_already_exist_error(obj: PlatformPartnerSchedulesAlreadyExistError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST"
     entity["ids"] = obj.ids
     entity["graphqlIds"] = obj.graphql_ids
     if obj.message is not None:

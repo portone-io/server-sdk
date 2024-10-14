@@ -11,7 +11,7 @@ class PlatformProductIdNotFoundError:
 
 def _serialize_platform_product_id_not_found_error(obj: PlatformProductIdNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PRODUCT_ID_NOT_FOUND"
     entity["id"] = obj.id
     if obj.message is not None:
         entity["message"] = obj.message

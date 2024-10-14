@@ -43,7 +43,7 @@ class FailedIdentityVerification:
 
 def _serialize_failed_identity_verification(obj: FailedIdentityVerification) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "FAILED"
     entity["id"] = obj.id
     entity["requestedCustomer"] = _serialize_identity_verification_requested_customer(obj.requested_customer)
     entity["requestedAt"] = obj.requested_at

@@ -15,7 +15,7 @@ class PlatformSettlementCycleMethodManualDates:
 
 def _serialize_platform_settlement_cycle_method_manual_dates(obj: PlatformSettlementCycleMethodManualDates) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "MANUAL_DATES"
     entity["dates"] = list(map(_serialize_month_day, obj.dates))
     return entity
 

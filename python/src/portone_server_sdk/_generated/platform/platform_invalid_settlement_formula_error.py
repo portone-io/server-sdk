@@ -14,7 +14,7 @@ class PlatformInvalidSettlementFormulaError:
 
 def _serialize_platform_invalid_settlement_formula_error(obj: PlatformInvalidSettlementFormulaError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_INVALID_SETTLEMENT_FORMULA"
     if obj.platform_fee is not None:
         entity["platformFee"] = _serialize_platform_settlement_formula_error(obj.platform_fee)
     if obj.discount_share is not None:

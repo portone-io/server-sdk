@@ -69,7 +69,7 @@ class DeletedBillingKeyInfo:
 
 def _serialize_deleted_billing_key_info(obj: DeletedBillingKeyInfo) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "DELETED"
     entity["billingKey"] = obj.billing_key
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

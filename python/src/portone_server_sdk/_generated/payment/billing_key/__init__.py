@@ -79,13 +79,13 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_billing_key_info(response.json())
@@ -132,13 +132,13 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_billing_key_info(response.json())
@@ -194,23 +194,23 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "BILLING_KEY_NOT_ISSUED":
-                raise errors.BillingKeyNotIssuedError(_serialize_billing_key_not_issued_error(error_response))
+                raise errors.BillingKeyNotIssuedError(_deserialize_billing_key_not_issued_error(error_response))
             if error_type == "CHANNEL_SPECIFIC":
-                raise errors.ChannelSpecificError(_serialize_channel_specific_error(error_response))
+                raise errors.ChannelSpecificError(_deserialize_channel_specific_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_serialize_payment_schedule_already_exists_error(error_response))
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_delete_billing_key_response(response.json())
@@ -266,23 +266,23 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_serialize_billing_key_already_deleted_error(error_response))
+                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
             if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_serialize_billing_key_not_found_error(error_response))
+                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
             if error_type == "BILLING_KEY_NOT_ISSUED":
-                raise errors.BillingKeyNotIssuedError(_serialize_billing_key_not_issued_error(error_response))
+                raise errors.BillingKeyNotIssuedError(_deserialize_billing_key_not_issued_error(error_response))
             if error_type == "CHANNEL_SPECIFIC":
-                raise errors.ChannelSpecificError(_serialize_channel_specific_error(error_response))
+                raise errors.ChannelSpecificError(_deserialize_channel_specific_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_serialize_payment_schedule_already_exists_error(error_response))
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_delete_billing_key_response(response.json())
@@ -345,11 +345,11 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_billing_key_infos_response(response.json())
@@ -412,11 +412,11 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_get_billing_key_infos_response(response.json())
@@ -508,17 +508,17 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "CHANNEL_SPECIFIC":
-                raise errors.ChannelSpecificError(_serialize_channel_specific_error(error_response))
+                raise errors.ChannelSpecificError(_deserialize_channel_specific_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_issue_billing_key_response(response.json())
@@ -610,17 +610,17 @@ class BillingKeyClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "CHANNEL_SPECIFIC":
-                raise errors.ChannelSpecificError(_serialize_channel_specific_error(error_response))
+                raise errors.ChannelSpecificError(_deserialize_channel_specific_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_issue_billing_key_response(response.json())

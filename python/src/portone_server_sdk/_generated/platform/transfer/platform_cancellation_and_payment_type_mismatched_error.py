@@ -10,7 +10,7 @@ class PlatformCancellationAndPaymentTypeMismatchedError:
 
 def _serialize_platform_cancellation_and_payment_type_mismatched_error(obj: PlatformCancellationAndPaymentTypeMismatchedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

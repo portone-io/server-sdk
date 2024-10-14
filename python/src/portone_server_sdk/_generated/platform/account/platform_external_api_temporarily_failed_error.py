@@ -12,7 +12,7 @@ class PlatformExternalApiTemporarilyFailedError:
 
 def _serialize_platform_external_api_temporarily_failed_error(obj: PlatformExternalApiTemporarilyFailedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

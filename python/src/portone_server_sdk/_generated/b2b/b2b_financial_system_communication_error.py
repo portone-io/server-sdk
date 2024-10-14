@@ -12,7 +12,7 @@ class B2bFinancialSystemCommunicationError:
 
 def _serialize_b2b_financial_system_communication_error(obj: B2bFinancialSystemCommunicationError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_FINANCIAL_SYSTEM_COMMUNICATION"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

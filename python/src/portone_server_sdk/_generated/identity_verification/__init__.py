@@ -77,13 +77,13 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_identity_verification(response.json())
@@ -130,13 +130,13 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_identity_verification(response.json())
@@ -221,23 +221,23 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_SENT":
-                raise errors.IdentityVerificationAlreadySentError(_serialize_identity_verification_already_sent_error(error_response))
+                raise errors.IdentityVerificationAlreadySentError(_deserialize_identity_verification_already_sent_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_send_identity_verification_response(response.json())
@@ -322,23 +322,23 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_serialize_channel_not_found_error(error_response))
+                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_SENT":
-                raise errors.IdentityVerificationAlreadySentError(_serialize_identity_verification_already_sent_error(error_response))
+                raise errors.IdentityVerificationAlreadySentError(_deserialize_identity_verification_already_sent_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_serialize_max_transaction_count_reached_error(error_response))
+                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_send_identity_verification_response(response.json())
@@ -400,19 +400,19 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_SENT":
-                raise errors.IdentityVerificationNotSentError(_serialize_identity_verification_not_sent_error(error_response))
+                raise errors.IdentityVerificationNotSentError(_deserialize_identity_verification_not_sent_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_confirm_identity_verification_response(response.json())
@@ -474,19 +474,19 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_SENT":
-                raise errors.IdentityVerificationNotSentError(_serialize_identity_verification_not_sent_error(error_response))
+                raise errors.IdentityVerificationNotSentError(_deserialize_identity_verification_not_sent_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_confirm_identity_verification_response(response.json())
@@ -539,19 +539,19 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_SENT":
-                raise errors.IdentityVerificationNotSentError(_serialize_identity_verification_not_sent_error(error_response))
+                raise errors.IdentityVerificationNotSentError(_deserialize_identity_verification_not_sent_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_resend_identity_verification_response(response.json())
@@ -604,19 +604,19 @@ class IdentityVerificationClient:
             error_response = response.json()
             error_type = error_response["type"]
             if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_serialize_forbidden_error(error_response))
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-                raise errors.IdentityVerificationAlreadyVerifiedError(_serialize_identity_verification_already_verified_error(error_response))
+                raise errors.IdentityVerificationAlreadyVerifiedError(_deserialize_identity_verification_already_verified_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_FOUND":
-                raise errors.IdentityVerificationNotFoundError(_serialize_identity_verification_not_found_error(error_response))
+                raise errors.IdentityVerificationNotFoundError(_deserialize_identity_verification_not_found_error(error_response))
             if error_type == "IDENTITY_VERIFICATION_NOT_SENT":
-                raise errors.IdentityVerificationNotSentError(_serialize_identity_verification_not_sent_error(error_response))
+                raise errors.IdentityVerificationNotSentError(_deserialize_identity_verification_not_sent_error(error_response))
             if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_serialize_invalid_request_error(error_response))
+                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_serialize_pg_provider_error(error_response))
+                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_serialize_unauthorized_error(error_response))
+                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
             else:
                 raise errors.UnknownError(error_response)
         return _deserialize_resend_identity_verification_response(response.json())

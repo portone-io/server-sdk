@@ -12,7 +12,7 @@ class IdentityVerificationNotSentError:
 
 def _serialize_identity_verification_not_sent_error(obj: IdentityVerificationNotSentError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "IDENTITY_VERIFICATION_NOT_SENT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -19,7 +19,7 @@ class PaymentMethodEasyPay:
 
 def _serialize_payment_method_easy_pay(obj: PaymentMethodEasyPay) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PaymentMethodEasyPay"
     if obj.provider is not None:
         entity["provider"] = _serialize_easy_pay_provider(obj.provider)
     if obj.easy_pay_method is not None:

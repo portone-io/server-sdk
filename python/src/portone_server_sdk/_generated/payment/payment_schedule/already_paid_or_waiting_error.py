@@ -12,7 +12,7 @@ class AlreadyPaidOrWaitingError:
 
 def _serialize_already_paid_or_waiting_error(obj: AlreadyPaidOrWaitingError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ALREADY_PAID_OR_WAITING"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

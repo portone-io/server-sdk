@@ -65,7 +65,7 @@ class IssuedBillingKeyInfo:
 
 def _serialize_issued_billing_key_info(obj: IssuedBillingKeyInfo) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUED"
     entity["billingKey"] = obj.billing_key
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id

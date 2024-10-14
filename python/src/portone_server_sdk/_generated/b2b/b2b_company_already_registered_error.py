@@ -12,7 +12,7 @@ class B2bCompanyAlreadyRegisteredError:
 
 def _serialize_b2b_company_already_registered_error(obj: B2bCompanyAlreadyRegisteredError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_COMPANY_ALREADY_REGISTERED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

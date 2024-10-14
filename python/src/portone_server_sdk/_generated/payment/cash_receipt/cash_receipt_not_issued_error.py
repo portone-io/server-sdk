@@ -12,7 +12,7 @@ class CashReceiptNotIssuedError:
 
 def _serialize_cash_receipt_not_issued_error(obj: CashReceiptNotIssuedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CASH_RECEIPT_NOT_ISSUED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

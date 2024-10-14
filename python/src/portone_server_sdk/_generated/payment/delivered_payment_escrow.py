@@ -27,7 +27,7 @@ class DeliveredPaymentEscrow:
 
 def _serialize_delivered_payment_escrow(obj: DeliveredPaymentEscrow) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "DELIVERED"
     entity["company"] = obj.company
     entity["invoiceNumber"] = obj.invoice_number
     if obj.sent_at is not None:

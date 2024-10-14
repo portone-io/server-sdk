@@ -39,7 +39,7 @@ class PlatformPartnerTypeBusiness:
 
 def _serialize_platform_partner_type_business(obj: PlatformPartnerTypeBusiness) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BUSINESS"
     entity["companyName"] = obj.company_name
     entity["taxationType"] = _serialize_platform_partner_taxation_type(obj.taxation_type)
     entity["businessStatus"] = _serialize_platform_partner_business_status(obj.business_status)

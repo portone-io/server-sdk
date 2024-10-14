@@ -15,7 +15,7 @@ class PlatformSettlementCycleMethodWeekly:
 
 def _serialize_platform_settlement_cycle_method_weekly(obj: PlatformSettlementCycleMethodWeekly) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "WEEKLY"
     entity["daysOfWeek"] = list(map(_serialize_day_of_week, obj.days_of_week))
     return entity
 

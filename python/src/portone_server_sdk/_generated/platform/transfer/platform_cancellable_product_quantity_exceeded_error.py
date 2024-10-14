@@ -14,7 +14,7 @@ class PlatformCancellableProductQuantityExceededError:
 
 def _serialize_platform_cancellable_product_quantity_exceeded_error(obj: PlatformCancellableProductQuantityExceededError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED"
     entity["productId"] = obj.product_id
     entity["cancellableQuantity"] = obj.cancellable_quantity
     if obj.message is not None:

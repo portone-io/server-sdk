@@ -10,7 +10,7 @@ class PlatformDiscountSharePolicyScheduleAlreadyExistsError:
 
 def _serialize_platform_discount_share_policy_schedule_already_exists_error(obj: PlatformDiscountSharePolicyScheduleAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

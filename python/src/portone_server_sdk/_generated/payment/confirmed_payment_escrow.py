@@ -30,7 +30,7 @@ class ConfirmedPaymentEscrow:
 
 def _serialize_confirmed_payment_escrow(obj: ConfirmedPaymentEscrow) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "CONFIRMED"
     entity["company"] = obj.company
     entity["invoiceNumber"] = obj.invoice_number
     entity["isAutomaticallyConfirmed"] = obj.is_automatically_confirmed

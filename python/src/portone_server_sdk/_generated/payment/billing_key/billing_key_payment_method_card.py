@@ -15,7 +15,7 @@ class BillingKeyPaymentMethodCard:
 
 def _serialize_billing_key_payment_method_card(obj: BillingKeyPaymentMethodCard) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BillingKeyPaymentMethodCard"
     if obj.card is not None:
         entity["card"] = _serialize_card(obj.card)
     return entity

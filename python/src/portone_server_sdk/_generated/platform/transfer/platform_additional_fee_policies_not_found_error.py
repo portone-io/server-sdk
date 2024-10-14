@@ -12,7 +12,7 @@ class PlatformAdditionalFeePoliciesNotFoundError:
 
 def _serialize_platform_additional_fee_policies_not_found_error(obj: PlatformAdditionalFeePoliciesNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ADDITIONAL_FEE_POLICIES_NOT_FOUND"
     entity["ids"] = obj.ids
     entity["graphqlIds"] = obj.graphql_ids
     if obj.message is not None:

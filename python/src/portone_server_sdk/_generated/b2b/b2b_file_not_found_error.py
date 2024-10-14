@@ -12,7 +12,7 @@ class B2bFileNotFoundError:
 
 def _serialize_b2b_file_not_found_error(obj: B2bFileNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_FILE_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

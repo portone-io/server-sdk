@@ -470,8 +470,10 @@ function generateSerializeEntity(definition: Definition) {
           writer.indent()
         }
         switch (property.type) {
-          case "string":
           case "discriminant":
+            writer.writeLine(`entity["${property.name}"] = "${property.value}"`)
+            break
+          case "string":
           case "boolean":
           case "number":
           case "integer":

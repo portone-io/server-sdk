@@ -20,7 +20,7 @@ class PlatformCancellableAmountExceededError:
 
 def _serialize_platform_cancellable_amount_exceeded_error(obj: PlatformCancellableAmountExceededError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED"
     entity["cancellableAmount"] = obj.cancellable_amount
     entity["requestAmount"] = obj.request_amount
     entity["amountType"] = _serialize_platform_cancellable_amount_type(obj.amount_type)

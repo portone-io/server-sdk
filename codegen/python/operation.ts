@@ -65,7 +65,7 @@ export function writeOperation(
       const lines = ([] as string[]).concat(param.title ?? []).concat(
         param.description ?? [],
       ).join("\n\n").split("\n")
-      const optionalMark = param.required ? "" : `, optional`
+      const optionalMark = param.required ? "" : ", optional"
       paramWriter.writeLine(
         `${filterName(param.name)} (${
           intoInlineTypeName(param)
@@ -166,7 +166,7 @@ export function writeOperation(
     writer.writeLine(`if error_type == "${variant.value}":`)
     writer.indent()
     writer.writeLine(
-      `raise errors.${variant.name}(_serialize_${
+      `raise errors.${variant.name}(_deserialize_${
         toSnakeCase(variant.name)
       }(error_response))`,
     )
@@ -174,7 +174,7 @@ export function writeOperation(
   }
   writer.writeLine("else:")
   writer.indent()
-  writer.writeLine(`raise errors.UnknownError(error_response)`)
+  writer.writeLine("raise errors.UnknownError(error_response)")
   writer.outdent()
   writer.outdent()
   switch (operation.response?.type) {
@@ -339,16 +339,16 @@ function writePropertyList(
       case "array":
         switch (property.item.type) {
           case "string":
-            writer.writeLine(`${name}: ${toOptional(`list[str]`)},`)
+            writer.writeLine(`${name}: ${toOptional("list[str]")},`)
             break
           case "boolean":
-            writer.writeLine(`${name}: ${toOptional(`list[bool]`)},`)
+            writer.writeLine(`${name}: ${toOptional("list[bool]")},`)
             break
           case "number":
-            writer.writeLine(`${name}: ${toOptional(`list[float]`)},`)
+            writer.writeLine(`${name}: ${toOptional("list[float]")},`)
             break
           case "integer":
-            writer.writeLine(`${name}: ${toOptional(`list[int]`)},`)
+            writer.writeLine(`${name}: ${toOptional("list[int]")},`)
             break
           case "ref":
             crossRef.add(property.item.value)

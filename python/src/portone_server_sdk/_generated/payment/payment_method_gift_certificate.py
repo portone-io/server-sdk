@@ -18,7 +18,7 @@ class PaymentMethodGiftCertificate:
 
 def _serialize_payment_method_gift_certificate(obj: PaymentMethodGiftCertificate) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PaymentMethodGiftCertificate"
     entity["approvalNumber"] = obj.approval_number
     if obj.gift_certificate_type is not None:
         entity["giftCertificateType"] = _serialize_payment_method_gift_certificate_type(obj.gift_certificate_type)

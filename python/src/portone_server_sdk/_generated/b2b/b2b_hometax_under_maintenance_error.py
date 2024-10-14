@@ -12,7 +12,7 @@ class B2bHometaxUnderMaintenanceError:
 
 def _serialize_b2b_hometax_under_maintenance_error(obj: B2bHometaxUnderMaintenanceError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_HOMETAX_UNDER_MAINTENANCE"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

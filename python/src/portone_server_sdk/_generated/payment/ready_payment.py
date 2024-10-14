@@ -111,7 +111,7 @@ class ReadyPayment:
 
 def _serialize_ready_payment(obj: ReadyPayment) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "READY"
     entity["id"] = obj.id
     entity["transactionId"] = obj.transaction_id
     entity["merchantId"] = obj.merchant_id

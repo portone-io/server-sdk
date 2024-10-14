@@ -12,7 +12,7 @@ class BillingKeyAlreadyDeletedError:
 
 def _serialize_billing_key_already_deleted_error(obj: BillingKeyAlreadyDeletedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BILLING_KEY_ALREADY_DELETED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

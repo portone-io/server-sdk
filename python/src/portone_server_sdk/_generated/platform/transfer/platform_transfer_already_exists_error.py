@@ -12,7 +12,7 @@ class PlatformTransferAlreadyExistsError:
 
 def _serialize_platform_transfer_already_exists_error(obj: PlatformTransferAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_TRANSFER_ALREADY_EXISTS"
     entity["transferId"] = obj.transfer_id
     entity["transferGraphqlId"] = obj.transfer_graphql_id
     if obj.message is not None:

@@ -10,7 +10,7 @@ class PlatformTransferNonDeletableStatusError:
 
 def _serialize_platform_transfer_non_deletable_status_error(obj: PlatformTransferNonDeletableStatusError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_TRANSFER_NON_DELETABLE_STATUS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

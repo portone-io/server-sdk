@@ -10,7 +10,7 @@ class PlatformPartnerNotFoundError:
 
 def _serialize_platform_partner_not_found_error(obj: PlatformPartnerNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PARTNER_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

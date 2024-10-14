@@ -26,7 +26,7 @@ class IssuedPgBillingKeyIssueResponse:
 
 def _serialize_issued_pg_billing_key_issue_response(obj: IssuedPgBillingKeyIssueResponse) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ISSUED"
     entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.pg_tx_id is not None:
         entity["pgTxId"] = obj.pg_tx_id

@@ -21,7 +21,7 @@ class PlatformSettlementPaymentAmountExceededPortOnePaymentError:
 
 def _serialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(obj: PlatformSettlementPaymentAmountExceededPortOnePaymentError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"
     entity["registeredSettlementPaymentAmount"] = obj.registered_settlement_payment_amount
     entity["requestSettlementPaymentAmount"] = obj.request_settlement_payment_amount
     entity["portOnePaymentAmount"] = obj.port_one_payment_amount

@@ -16,7 +16,7 @@ class OneLineAddress:
 
 def _serialize_one_line_address(obj: OneLineAddress) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ONE_LINE"
     entity["oneLine"] = obj.one_line
     return entity
 

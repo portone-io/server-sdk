@@ -12,7 +12,7 @@ class CashReceiptAlreadyIssuedError:
 
 def _serialize_cash_receipt_already_issued_error(obj: CashReceiptAlreadyIssuedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CASH_RECEIPT_ALREADY_ISSUED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

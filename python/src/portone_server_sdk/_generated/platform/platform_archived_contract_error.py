@@ -12,7 +12,7 @@ class PlatformArchivedContractError:
 
 def _serialize_platform_archived_contract_error(obj: PlatformArchivedContractError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ARCHIVED_CONTRACT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

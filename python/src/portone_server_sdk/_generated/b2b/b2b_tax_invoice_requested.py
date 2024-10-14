@@ -108,7 +108,7 @@ class B2bTaxInvoiceRequested:
 
 def _serialize_b2b_tax_invoice_requested(obj: B2bTaxInvoiceRequested) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "REQUESTED"
     entity["taxType"] = _serialize_b2b_tax_type(obj.tax_type)
     entity["writeDate"] = obj.write_date
     entity["purposeType"] = _serialize_b2b_tax_invoice_purpose_type(obj.purpose_type)

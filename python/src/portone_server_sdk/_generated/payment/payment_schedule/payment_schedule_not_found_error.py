@@ -12,7 +12,7 @@ class PaymentScheduleNotFoundError:
 
 def _serialize_payment_schedule_not_found_error(obj: PaymentScheduleNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_SCHEDULE_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

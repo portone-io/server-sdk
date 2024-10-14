@@ -12,7 +12,7 @@ class BillingKeyNotFoundError:
 
 def _serialize_billing_key_not_found_error(obj: BillingKeyNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BILLING_KEY_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

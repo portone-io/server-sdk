@@ -12,7 +12,7 @@ class PlatformContractsNotFoundError:
 
 def _serialize_platform_contracts_not_found_error(obj: PlatformContractsNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CONTRACTS_NOT_FOUND"
     entity["ids"] = obj.ids
     entity["graphqlIds"] = obj.graphql_ids
     if obj.message is not None:

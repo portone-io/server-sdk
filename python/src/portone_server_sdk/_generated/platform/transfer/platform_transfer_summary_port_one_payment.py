@@ -15,7 +15,7 @@ class PlatformTransferSummaryPortOnePayment:
 
 def _serialize_platform_transfer_summary_port_one_payment(obj: PlatformTransferSummaryPortOnePayment) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PORT_ONE"
     entity["id"] = obj.id
     entity["orderName"] = obj.order_name
     entity["currency"] = _serialize_currency(obj.currency)

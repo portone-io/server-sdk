@@ -37,7 +37,7 @@ class PlatformOrderCancelTransferSummary:
 
 def _serialize_platform_order_cancel_transfer_summary(obj: PlatformOrderCancelTransferSummary) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "ORDER_CANCEL"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     entity["storeId"] = obj.store_id

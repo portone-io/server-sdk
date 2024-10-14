@@ -12,7 +12,7 @@ class PlatformPartnerIdsDuplicatedError:
 
 def _serialize_platform_partner_ids_duplicated_error(obj: PlatformPartnerIdsDuplicatedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PARTNER_IDS_DUPLICATED"
     entity["ids"] = obj.ids
     entity["graphqlIds"] = obj.graphql_ids
     if obj.message is not None:

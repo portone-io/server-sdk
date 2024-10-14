@@ -10,7 +10,7 @@ class PlatformAdditionalFeePolicyAlreadyExistsError:
 
 def _serialize_platform_additional_fee_policy_already_exists_error(obj: PlatformAdditionalFeePolicyAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

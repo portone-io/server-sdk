@@ -11,7 +11,7 @@ class BillingKeyPaymentMethodEasyPayCharge:
 
 def _serialize_billing_key_payment_method_easy_pay_charge(obj: BillingKeyPaymentMethodEasyPayCharge) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "BillingKeyPaymentMethodEasyPayCharge"
     return entity
 
 

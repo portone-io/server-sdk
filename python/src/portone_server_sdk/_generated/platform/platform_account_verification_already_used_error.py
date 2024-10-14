@@ -12,7 +12,7 @@ class PlatformAccountVerificationAlreadyUsedError:
 
 def _serialize_platform_account_verification_already_used_error(obj: PlatformAccountVerificationAlreadyUsedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class PlatformCannotArchiveScheduledAdditionalFeePolicyError:
 
 def _serialize_platform_cannot_archive_scheduled_additional_fee_policy_error(obj: PlatformCannotArchiveScheduledAdditionalFeePolicyError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

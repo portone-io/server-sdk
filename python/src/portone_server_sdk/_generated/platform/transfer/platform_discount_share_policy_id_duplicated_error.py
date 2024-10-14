@@ -12,7 +12,7 @@ class PlatformDiscountSharePolicyIdDuplicatedError:
 
 def _serialize_platform_discount_share_policy_id_duplicated_error(obj: PlatformDiscountSharePolicyIdDuplicatedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED"
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
     if obj.message is not None:

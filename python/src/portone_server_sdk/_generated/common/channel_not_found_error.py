@@ -12,7 +12,7 @@ class ChannelNotFoundError:
 
 def _serialize_channel_not_found_error(obj: ChannelNotFoundError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CHANNEL_NOT_FOUND"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

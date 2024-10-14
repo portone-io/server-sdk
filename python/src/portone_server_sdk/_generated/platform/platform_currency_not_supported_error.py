@@ -12,7 +12,7 @@ class PlatformCurrencyNotSupportedError:
 
 def _serialize_platform_currency_not_supported_error(obj: PlatformCurrencyNotSupportedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_CURRENCY_NOT_SUPPORTED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

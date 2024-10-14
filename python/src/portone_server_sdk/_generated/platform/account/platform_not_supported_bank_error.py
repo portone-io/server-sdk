@@ -12,7 +12,7 @@ class PlatformNotSupportedBankError:
 
 def _serialize_platform_not_supported_bank_error(obj: PlatformNotSupportedBankError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_NOT_SUPPORTED_BANK"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

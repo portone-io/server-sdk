@@ -10,7 +10,7 @@ class PlatformPartnerIdAlreadyExistsError:
 
 def _serialize_platform_partner_id_already_exists_error(obj: PlatformPartnerIdAlreadyExistsError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_PARTNER_ID_ALREADY_EXISTS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

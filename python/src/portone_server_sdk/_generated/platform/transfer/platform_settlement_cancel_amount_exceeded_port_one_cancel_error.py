@@ -23,7 +23,7 @@ class PlatformSettlementCancelAmountExceededPortOneCancelError:
 
 def _serialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(obj: PlatformSettlementCancelAmountExceededPortOneCancelError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL"
     entity["registeredSettlementCancelAmount"] = obj.registered_settlement_cancel_amount
     entity["requestSettlementCancelAmount"] = obj.request_settlement_cancel_amount
     entity["portOneCancelAmount"] = obj.port_one_cancel_amount

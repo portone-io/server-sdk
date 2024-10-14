@@ -18,7 +18,7 @@ class ChannelSpecificError:
 
 def _serialize_channel_specific_error(obj: ChannelSpecificError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CHANNEL_SPECIFIC"
     entity["failures"] = list(map(_serialize_channel_specific_failure, obj.failures))
     entity["succeededChannels"] = list(map(_serialize_selected_channel, obj.succeeded_channels))
     if obj.message is not None:

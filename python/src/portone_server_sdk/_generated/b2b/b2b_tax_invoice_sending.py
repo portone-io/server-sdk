@@ -121,7 +121,7 @@ class B2bTaxInvoiceSending:
 
 def _serialize_b2b_tax_invoice_sending(obj: B2bTaxInvoiceSending) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "SENDING"
     entity["taxType"] = _serialize_b2b_tax_type(obj.tax_type)
     entity["writeDate"] = obj.write_date
     entity["purposeType"] = _serialize_b2b_tax_invoice_purpose_type(obj.purpose_type)

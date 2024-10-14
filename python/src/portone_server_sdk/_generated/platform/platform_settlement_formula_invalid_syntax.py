@@ -12,7 +12,7 @@ class PlatformSettlementFormulaInvalidSyntax:
 
 def _serialize_platform_settlement_formula_invalid_syntax(obj: PlatformSettlementFormulaInvalidSyntax) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "INVALID_SYNTAX"
     entity["syntax"] = obj.syntax
     entity["position"] = _serialize_platform_settlement_formula_position(obj.position)
     return entity

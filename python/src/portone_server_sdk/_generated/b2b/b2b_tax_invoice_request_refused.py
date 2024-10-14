@@ -108,7 +108,7 @@ class B2bTaxInvoiceRequestRefused:
 
 def _serialize_b2b_tax_invoice_request_refused(obj: B2bTaxInvoiceRequestRefused) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUANCE_REFUSED"
     entity["taxType"] = _serialize_b2b_tax_type(obj.tax_type)
     entity["writeDate"] = obj.write_date
     entity["purposeType"] = _serialize_b2b_tax_invoice_purpose_type(obj.purpose_type)

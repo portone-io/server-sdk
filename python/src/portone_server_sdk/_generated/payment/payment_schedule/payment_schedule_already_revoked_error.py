@@ -12,7 +12,7 @@ class PaymentScheduleAlreadyRevokedError:
 
 def _serialize_payment_schedule_already_revoked_error(obj: PaymentScheduleAlreadyRevokedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_SCHEDULE_ALREADY_REVOKED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

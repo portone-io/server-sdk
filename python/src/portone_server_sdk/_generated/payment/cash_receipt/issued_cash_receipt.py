@@ -65,7 +65,7 @@ class IssuedCashReceipt:
 
 def _serialize_issued_cash_receipt(obj: IssuedCashReceipt) -> Any:
     entity = {}
-    entity["status"] = obj.status
+    entity["status"] = "ISSUED"
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id
     entity["paymentId"] = obj.payment_id

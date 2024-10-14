@@ -12,7 +12,7 @@ class CancelAmountExceedsCancellableAmountError:
 
 def _serialize_cancel_amount_exceeds_cancellable_amount_error(obj: CancelAmountExceedsCancellableAmountError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

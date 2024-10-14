@@ -12,7 +12,7 @@ class PaymentScheduleAlreadyProcessedError:
 
 def _serialize_payment_schedule_already_processed_error(obj: PaymentScheduleAlreadyProcessedError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PAYMENT_SCHEDULE_ALREADY_PROCESSED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

@@ -12,7 +12,7 @@ class B2bTaxInvoiceNotRequestedStatusError:
 
 def _serialize_b2b_tax_invoice_not_requested_status_error(obj: B2bTaxInvoiceNotRequestedStatusError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "B2B_TAX_INVOICE_NOT_REQUESTED_STATUS"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity

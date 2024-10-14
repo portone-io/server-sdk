@@ -11,7 +11,7 @@ class PlatformSettlementCycleMethodDaily:
 
 def _serialize_platform_settlement_cycle_method_daily(obj: PlatformSettlementCycleMethodDaily) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "DAILY"
     return entity
 
 

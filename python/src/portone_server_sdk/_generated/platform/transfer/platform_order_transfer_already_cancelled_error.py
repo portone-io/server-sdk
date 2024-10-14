@@ -10,7 +10,7 @@ class PlatformOrderTransferAlreadyCancelledError:
 
 def _serialize_platform_order_transfer_already_cancelled_error(obj: PlatformOrderTransferAlreadyCancelledError) -> Any:
     entity = {}
-    entity["type"] = obj.type
+    entity["type"] = "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED"
     if obj.message is not None:
         entity["message"] = obj.message
     return entity
