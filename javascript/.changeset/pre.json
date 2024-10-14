@@ -4,5 +4,7 @@
   "initialVersions": {
     "@portone/server-sdk": "0.3.2"
   },
-  "changesets": []
+  "changesets": [
+    "seven-steaks-roll"
+  ]
 }
