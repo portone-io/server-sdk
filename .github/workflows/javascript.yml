@@ -134,7 +134,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Send a Slack notification if a publish happens
-        if: steps.changesets.outputs.published == 'true'
+        if: ${{ steps.changesets.outputs.published == 'true' }}
         run: |
           export VERSION=$(jq -r '.[] | select(.name == "@portone/server-sdk") | .version' <<< '${{ steps.changesets.outputs.publishedPackages }}')
           curl -X POST -H 'Content-type: application/json'\
