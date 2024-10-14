@@ -2,11 +2,10 @@ name: Python SDK
 
 on:
   push:
-    branches:
-      - main
     paths:
       - "python/**"
       - ".github/workflows/python.yml"
+      - "codegen/openapi.json"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -15,6 +14,7 @@ jobs:
     name: Publish API reference
     needs: [check]
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
     defaults:
       run:
         working-directory: ./python
@@ -76,7 +76,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync
       - name: Replace version placeholder
-        run: sed -i "s/__USER_AGENT__/$(grep version pyproject.toml | cut -d'"' -f 2)/" src/portone_server_sdk/_generated/client.py
+        run: sed -i "s/__USER_AGENT__/$(git describe --dirty --tags --match py-v* --first-parent | cut -c 4-)/" src/portone_server_sdk/_generated/client.py
       - name: Build distribution
         run: uv build
       - name: Build distribution

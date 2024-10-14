@@ -2,11 +2,10 @@ name: JavaScript SDK
 
 on:
   push:
-    branches:
-      - main
     paths:
       - "javascript/**"
       - ".github/workflows/javascript.yml"
+      - "codegen/openapi.json"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -14,6 +13,7 @@ jobs:
   docs:
     name: Publish API reference
     needs: [check, test]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -90,6 +90,7 @@ jobs:
   release:
     name: Release
     needs: [check, test]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     environment:
       name: NPM
@@ -119,6 +120,12 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
+
+      - name: Tag current version
+        run: git tag "js-v$(jq -r '.version' package.json)"
+
+      - name: Push tag to the repo
+        run: git push --tags
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
