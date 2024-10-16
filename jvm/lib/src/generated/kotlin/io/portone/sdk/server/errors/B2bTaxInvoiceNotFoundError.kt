@@ -12,6 +12,7 @@ import io.portone.sdk.server.errors.GetB2bTaxInvoicePrintUrlError
 import io.portone.sdk.server.errors.IssueB2bTaxInvoiceError
 import io.portone.sdk.server.errors.RefuseB2bTaxInvoiceRequestError
 import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +20,8 @@ import kotlinx.serialization.Serializable
 /** 세금계산서가 존재하지 않은 경우 */
 @Serializable
 @SerialName("B2B_TAX_INVOICE_NOT_FOUND")
-public data class B2bTaxInvoiceNotFoundError(
+@ConsistentCopyVisibility
+public data class B2bTaxInvoiceNotFoundError internal constructor(
   val message: String? = null,
 ): AttachB2bTaxInvoiceFileError,
   CancelB2bTaxInvoiceRequestError,

@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 
 /** 현금영수증 발급 요청 양식 */
 @Serializable
-public data class IssueCashReceiptBody(
+internal data class IssueCashReceiptBody(
   /**
    * 결제 건 아이디
    *

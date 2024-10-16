@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 추가 수수료 정책 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetPlatformAdditionalFeePoliciesBody(
+internal data class GetPlatformAdditionalFeePoliciesBody(
   /** 요청할 페이지 정보 */
   val page: PageInput? = null,
   /** 조회할 추가 수수료 정책 조건 필터 */

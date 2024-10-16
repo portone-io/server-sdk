@@ -9,7 +9,7 @@ import kotlinx.serialization.json.JsonObject
 
 /** 빌링키 발급 요청 양식 */
 @Serializable
-public data class IssueBillingKeyBody(
+internal data class IssueBillingKeyBody(
   /** 빌링키 결제 수단 정보 */
   val method: InstantBillingKeyPaymentMethodInput,
   /**

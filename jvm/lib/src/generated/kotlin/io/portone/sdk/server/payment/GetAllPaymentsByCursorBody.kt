@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 결제 건 커서 기반 대용량 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAllPaymentsByCursorBody(
+internal data class GetAllPaymentsByCursorBody(
   /**
    * 상점 아이디
    *

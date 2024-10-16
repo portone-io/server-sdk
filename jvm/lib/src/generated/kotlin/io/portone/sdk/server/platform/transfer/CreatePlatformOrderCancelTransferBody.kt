@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
  * transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
  */
 @Serializable
-public data class CreatePlatformOrderCancelTransferBody(
+internal data class CreatePlatformOrderCancelTransferBody(
   /** 취소 내역 아이디 */
   val cancellationId: String,
   /** 할인 정보 */

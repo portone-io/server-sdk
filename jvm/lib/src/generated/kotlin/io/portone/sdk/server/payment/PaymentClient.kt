@@ -133,11 +133,11 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-public class PaymentClient(
+public class PaymentClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -1406,7 +1406,7 @@ public class PaymentClient(
   public val cashReceipt: CashReceiptClient = CashReceiptClient(apiSecret, apiBase, storeId)
   public val paymentSchedule: PaymentScheduleClient = PaymentScheduleClient(apiSecret, apiBase, storeId)
   public val promotion: PromotionClient = PromotionClient(apiSecret, apiBase, storeId)
-  override fun close() {
+  internal fun close() {
     billingKey.close()
     cashReceipt.close()
     paymentSchedule.close()

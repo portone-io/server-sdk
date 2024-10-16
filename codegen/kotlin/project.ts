@@ -24,6 +24,8 @@ export function generateProject(projectRoot: string, pack: Package) {
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
   const overridesMap = makeOverridesMap(pack, entityMap)
+  const bodies = collectBody(pack)
+  const internals = filterUsedAnotherPlace(pack, bodies)
   const oneOfErrors = new Set<string>()
   const variantErrors = new Set<string>()
   collectErrors(pack, entityMap, oneOfErrors, variantErrors)
@@ -45,6 +47,7 @@ export function generateProject(projectRoot: string, pack: Package) {
     categoryMap,
     overridesMap,
     errors,
+    internals,
   )
   generateRootClient(packagePath, pack, entityMap, categoryMap)
 }
@@ -370,13 +373,15 @@ function generateClient(
     "io.ktor.client.engine.okhttp.OkHttp",
   ])
   const writer = KotlinWriter()
-  writer.writeLine(`public class ${toPascalCase(pack.category)}Client(`)
+  writer.writeLine(
+    `public class ${toPascalCase(pack.category)}Client internal constructor(`,
+  )
   writer.indent()
   writer.writeLine("private val apiSecret: String,")
   writer.writeLine("private val apiBase: String,")
   writer.writeLine("private val storeId: String?,")
   writer.outdent()
-  writer.writeLine(") : Closeable {")
+  writer.writeLine(") {")
   writer.indent()
   writer.writeLine("private val client: HttpClient = HttpClient(OkHttp)")
   writer.writeLine("")
@@ -408,7 +413,7 @@ function generateClient(
       categoryMap,
     )
   }
-  writer.writeLine("override fun close() {")
+  writer.writeLine("internal fun close() {")
   writer.indent()
   for (const subpackage of subpackages) {
     writer.writeLine(`${subpackage.category}.close()`)
@@ -436,13 +441,23 @@ function generateEntityDirectory(
   categoryMap: Map<string, string>,
   overridesMap: Map<string, Override>,
   errors: Set<string>,
+  internals: Set<string>,
 ) {
   for (const entity of pack.entities) {
     if (errors.has(entity.name)) continue
     const entityPath = path.join(packagePath, `${entity.name}.kt`)
+    const visibility = internals.has(entity.name) ? "internal" : "public"
     Deno.writeTextFileSync(
       entityPath,
-      generateEntity(hierarchy, entityMap, categoryMap, entity, overridesMap),
+      generateEntity(
+        hierarchy,
+        entityMap,
+        categoryMap,
+        entity,
+        overridesMap,
+        visibility,
+        visibility,
+      ),
     )
   }
   if (pack.category === "root") {
@@ -460,6 +475,8 @@ function generateEntityDirectory(
           categoryMap,
           entity,
           overridesMap,
+          "public",
+          "internal",
         ),
       )
     }
@@ -475,8 +492,47 @@ function generateEntityDirectory(
       categoryMap,
       overridesMap,
       errors,
+      internals,
     )
   }
+}
+
+function collectBody(
+  pack: Package,
+  internals: Set<string> = new Set(),
+) {
+  for (const operation of pack.operations) {
+    const { body } = operation.params
+    if (!body) continue
+    if (body.type === "ref") {
+      internals.add(body.value)
+    }
+  }
+  for (const subpackage of pack.subpackages) {
+    collectBody(subpackage, internals)
+  }
+  return internals
+}
+
+function filterUsedAnotherPlace(
+  pack: Package,
+  entities: Set<string>,
+  filtered: Set<string> = entities,
+): Set<string> {
+  for (const entity of pack.entities) {
+    if (entity.type !== "object") continue
+    for (const property of entity.properties) {
+      if (property.type === "ref") {
+        filtered.delete(property.value)
+      } else if (property.type === "array" && property.item.type === "ref") {
+        filtered.delete(property.item.value)
+      }
+    }
+  }
+  for (const subpackage of pack.subpackages) {
+    filterUsedAnotherPlace(subpackage, entities, filtered)
+  }
+  return filtered
 }
 
 function collectErrors(

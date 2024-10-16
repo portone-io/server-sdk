@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * 조회 결과는 결제 예정 시점(timeToPay) 기준 최신 순으로 정렬됩니다.
  */
 @Serializable
-public data class GetPaymentSchedulesBody(
+internal data class GetPaymentSchedulesBody(
   /**
    * 요청할 페이지 정보
    *

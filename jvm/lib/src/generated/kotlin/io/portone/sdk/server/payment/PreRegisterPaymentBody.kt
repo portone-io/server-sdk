@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 결제 정보 사전 등록 입력 정보 */
 @Serializable
-public data class PreRegisterPaymentBody(
+internal data class PreRegisterPaymentBody(
   /**
    * 상점 아이디
    *

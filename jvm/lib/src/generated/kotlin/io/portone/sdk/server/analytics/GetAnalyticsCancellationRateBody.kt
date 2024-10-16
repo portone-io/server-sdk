@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 고객사의 환불율 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAnalyticsCancellationRateBody(
+internal data class GetAnalyticsCancellationRateBody(
   /** 환불율 조회 기간의 시작 시간 */
   val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 환불율 조회 기간의 끝 시간 */

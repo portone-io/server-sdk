@@ -9,7 +9,7 @@ import kotlinx.serialization.json.JsonObject
 
 /** 본인인증 요청을 위한 입력 정보 */
 @Serializable
-public data class SendIdentityVerificationBody(
+internal data class SendIdentityVerificationBody(
   /** 채널 키 */
   val channelKey: String,
   /** 고객 정보 */

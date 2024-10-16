@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 정산내역 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetPlatformPartnerSettlementsBody(
+internal data class GetPlatformPartnerSettlementsBody(
   /** 조회할 정산내역 조건 필터 */
   val filter: PlatformPartnerSettlementFilterInput,
   val isForTest: Boolean,

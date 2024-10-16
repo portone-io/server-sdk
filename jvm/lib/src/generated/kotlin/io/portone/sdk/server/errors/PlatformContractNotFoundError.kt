@@ -14,13 +14,15 @@ import io.portone.sdk.server.errors.SchedulePartnerError
 import io.portone.sdk.server.errors.SchedulePlatformPartnersError
 import io.portone.sdk.server.errors.UpdatePlatformContractError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PLATFORM_CONTRACT_NOT_FOUND")
-public data class PlatformContractNotFoundError(
+@ConsistentCopyVisibility
+public data class PlatformContractNotFoundError internal constructor(
   override val message: String? = null,
 ): ArchivePlatformContractError,
   CancelPlatformContractScheduleError,

@@ -133,6 +133,7 @@ import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
 import io.portone.sdk.server.errors.getB2bContactIdExistenceError
 import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -144,7 +145,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @SerialName("INVALID_REQUEST")
-public data class InvalidRequestError(
+@ConsistentCopyVisibility
+public data class InvalidRequestError internal constructor(
   override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,

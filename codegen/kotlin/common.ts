@@ -1,6 +1,6 @@
 import { Writer } from "../common/writer.ts"
-import { Definition } from "../parser/definition.ts"
-import { Package } from "../parser/openapi.ts"
+import type { Definition } from "../parser/definition.ts"
+import type { Package } from "../parser/openapi.ts"
 
 export function KotlinWriter() {
   return Writer(" ".repeat(2))

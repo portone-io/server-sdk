@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 /** 고객사의 평균 거래액 현황 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAnalyticsAverageAmountChartBody(
+internal data class GetAnalyticsAverageAmountChartBody(
   /** 조회할 평균 거래액 현황의 시작 시간 */
   val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 평균 거래액 현황의 끝 시간 */

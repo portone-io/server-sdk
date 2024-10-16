@@ -88,11 +88,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PartnerClient(
+public class PartnerClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -672,7 +672,7 @@ public class PartnerClient(
     id: String,
   ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

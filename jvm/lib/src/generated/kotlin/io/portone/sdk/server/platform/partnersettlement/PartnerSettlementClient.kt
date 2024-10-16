@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PartnerSettlementClient(
+public class PartnerSettlementClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -113,7 +113,7 @@ public class PartnerSettlementClient(
     isForTest: Boolean,
   ): CompletableFuture<GetPlatformPartnerSettlementsResponse> = GlobalScope.future { getPlatformPartnerSettlements(page, filter, isForTest) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

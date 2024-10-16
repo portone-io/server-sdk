@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** 에스크로 구매 확정 입력 정보 */
 @Serializable
-public data class ConfirmEscrowBody(
+internal data class ConfirmEscrowBody(
   /**
    * 상점 아이디
    *

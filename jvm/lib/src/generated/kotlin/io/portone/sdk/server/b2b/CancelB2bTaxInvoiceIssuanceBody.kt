@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 세금계산서 역발행 취소 정보 */
 @Serializable
-public data class CancelB2bTaxInvoiceIssuanceBody(
+internal data class CancelB2bTaxInvoiceIssuanceBody(
   /** 사업자등록번호 */
   val brn: String,
   /** 세금계산서 문서 번호 */

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 고객사의 결제수단 현황 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAnalyticsPaymentMethodChartBody(
+internal data class GetAnalyticsPaymentMethodChartBody(
   /** 조회할 결제수단 현황의 시작 시간 */
   val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 결제수단 현황의 끝 시간 */

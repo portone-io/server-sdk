@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 결제 취소 요청 입력 정보 */
 @Serializable
-public data class CancelPaymentBody(
+internal data class CancelPaymentBody(
   /** 취소 사유 */
   val reason: String,
   /**

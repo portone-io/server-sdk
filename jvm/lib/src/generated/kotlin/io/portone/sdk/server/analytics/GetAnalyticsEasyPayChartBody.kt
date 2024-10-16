@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 /** 고객사의 간편결제 현황 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAnalyticsEasyPayChartBody(
+internal data class GetAnalyticsEasyPayChartBody(
   /** 조회할 간편결제 현황의 시작 시간 */
   val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 간편결제 현황의 끝 시간 */

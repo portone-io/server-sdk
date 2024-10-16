@@ -1,5 +1,10 @@
-import { Definition } from "../parser/definition.ts"
-import { filterName, KotlinWriter, Override, toPackageCase } from "./common.ts"
+import type { Definition } from "../parser/definition.ts"
+import {
+  filterName,
+  KotlinWriter,
+  type Override,
+  toPackageCase,
+} from "./common.ts"
 import { writeDescription } from "./description.ts"
 
 export function generateEntity(
@@ -8,6 +13,8 @@ export function generateEntity(
   categoryMap: Map<string, string>,
   definition: Definition,
   overridesMap: Map<string, Override>,
+  visibility = "public",
+  constructorVisibility = "public",
 ): string {
   const crossRef = new Set<string>()
   const writer = KotlinWriter()
@@ -52,6 +59,10 @@ export function generateEntity(
           `io.portone.sdk.server.${toPackageCase(category)}.${name}`,
         )
       }
+      if (visibility !== constructorVisibility) {
+        writer.writeLine("@ConsistentCopyVisibility")
+        crossRef.add("kotlin.ConsistentCopyVisibility")
+      }
       const nonDiscriminant = properties.filter(({ type }) =>
         type !== "discriminant"
       )
@@ -59,13 +70,18 @@ export function generateEntity(
         const extend = [...overrides.from].toSorted()
         const extendList = extend.length > 0 ? extend.join(", ") : null
         writer.writeLine(
-          `public data object ${definition.name}${
+          `${visibility} data object ${definition.name}${
             extendList ? `: ${extendList}` : ""
           }`,
         )
         break
       }
-      writer.writeLine(`public data class ${definition.name}(`)
+      const constructor_ = visibility === constructorVisibility
+        ? ""
+        : ` ${constructorVisibility} constructor`
+      writer.writeLine(
+        `${visibility} data class ${definition.name}${constructor_}(`,
+      )
       writer.indent()
       const required = nonDiscriminant.filter(({ required }) => required)
       const optional = nonDiscriminant.filter(({ required }) => !required)

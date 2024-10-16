@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
 
 /** 수기 결제 요청 정보 */
 @Serializable
-public data class InstantPaymentInput(
+internal data class InstantPaymentInput(
   /** 결제수단 정보 */
   val method: InstantPaymentMethodInput,
   /** 주문명 */

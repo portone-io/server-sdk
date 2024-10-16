@@ -52,11 +52,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class CashReceiptClient(
+public class CashReceiptClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -295,7 +295,7 @@ public class CashReceiptClient(
     paymentId: String,
   ): CompletableFuture<CancelCashReceiptResponse> = GlobalScope.future { cancelCashReceiptByPaymentId(paymentId) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

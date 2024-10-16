@@ -15,6 +15,7 @@ import io.portone.sdk.server.errors.PayWithBillingKeyError
 import io.portone.sdk.server.errors.RegisterStoreReceiptError
 import io.portone.sdk.server.errors.ResendIdentityVerificationError
 import io.portone.sdk.server.errors.SendIdentityVerificationError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -22,7 +23,8 @@ import kotlinx.serialization.Serializable
 /** PG사에서 오류를 전달한 경우 */
 @Serializable
 @SerialName("PG_PROVIDER")
-public data class PgProviderError(
+@ConsistentCopyVisibility
+public data class PgProviderError internal constructor(
   val pgCode: String,
   val pgMessage: String,
   override val message: String? = null,

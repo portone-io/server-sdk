@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 빌링키 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetBillingKeyInfosBody(
+internal data class GetBillingKeyInfosBody(
   /**
    * 요청할 페이지 정보
    *

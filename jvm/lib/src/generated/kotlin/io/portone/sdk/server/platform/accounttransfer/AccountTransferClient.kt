@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class AccountTransferClient(
+public class AccountTransferClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -113,7 +113,7 @@ public class AccountTransferClient(
     filter: PlatformAccountTransferFilter? = null,
   ): CompletableFuture<GetPlatformAccountTransfersResponse> = GlobalScope.future { getPlatformAccountTransfers(isForTest, page, filter) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

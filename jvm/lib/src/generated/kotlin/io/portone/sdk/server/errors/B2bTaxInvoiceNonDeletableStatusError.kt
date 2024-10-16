@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import io.portone.sdk.server.errors.DeleteB2bTaxInvoiceError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,6 +13,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @SerialName("B2B_TAX_INVOICE_NON_DELETABLE_STATUS")
-public data class B2bTaxInvoiceNonDeletableStatusError(
+@ConsistentCopyVisibility
+public data class B2bTaxInvoiceNonDeletableStatusError internal constructor(
   val message: String? = null,
 ): DeleteB2bTaxInvoiceError

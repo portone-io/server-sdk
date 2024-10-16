@@ -134,6 +134,7 @@ import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
 import io.portone.sdk.server.errors.getB2bContactIdExistenceError
 import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -141,7 +142,8 @@ import kotlinx.serialization.Serializable
 /** 인증 정보가 올바르지 않은 경우 */
 @Serializable
 @SerialName("UNAUTHORIZED")
-public data class UnauthorizedError(
+@ConsistentCopyVisibility
+public data class UnauthorizedError internal constructor(
   override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,

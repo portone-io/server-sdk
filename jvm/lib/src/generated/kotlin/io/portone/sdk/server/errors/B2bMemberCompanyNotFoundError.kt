@@ -6,6 +6,7 @@ import io.portone.sdk.server.errors.GetB2bMemberCompanyContactError
 import io.portone.sdk.server.errors.GetB2bMemberCompanyError
 import io.portone.sdk.server.errors.UpdateB2bMemberCompanyContactError
 import io.portone.sdk.server.errors.UpdateB2bMemberCompanyError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -13,7 +14,8 @@ import kotlinx.serialization.Serializable
 /** 연동 사업자가 존재하지 않는 경우 */
 @Serializable
 @SerialName("B2B_MEMBER_COMPANY_NOT_FOUND")
-public data class B2bMemberCompanyNotFoundError(
+@ConsistentCopyVisibility
+public data class B2bMemberCompanyNotFoundError internal constructor(
   override val message: String? = null,
 ): GetB2bCertificateError,
   GetB2bCertificateRegistrationUrlError,

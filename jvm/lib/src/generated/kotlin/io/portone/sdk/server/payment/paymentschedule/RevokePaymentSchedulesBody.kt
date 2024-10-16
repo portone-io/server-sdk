@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  * 위 정책에 따라 선택된 결제 예약 건들 중 하나라도 취소에 실패할 경우, 모든 취소 요청이 실패합니다.
  */
 @Serializable
-public data class RevokePaymentSchedulesBody(
+internal data class RevokePaymentSchedulesBody(
   /**
    * 상점 아이디
    *

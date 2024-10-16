@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** API Secret 로그인을 위한 입력 정보 */
 @Serializable
-public data class LoginViaApiSecretBody(
+internal data class LoginViaApiSecretBody(
   /** 발급받은 API secret */
   val apiSecret: String,
 )

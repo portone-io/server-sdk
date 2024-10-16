@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 /** 계약 객체 생성을 위한 입력 정보 */
 @Serializable
-public data class CreatePlatformContractBody(
+internal data class CreatePlatformContractBody(
   /** 계약 이름 */
   val name: String,
   /** 중개수수료 */

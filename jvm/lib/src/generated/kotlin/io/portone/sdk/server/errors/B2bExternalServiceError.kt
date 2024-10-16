@@ -25,6 +25,7 @@ import io.portone.sdk.server.errors.RequestB2bTaxInvoiceReverseIssuanceError
 import io.portone.sdk.server.errors.UpdateB2bMemberCompanyContactError
 import io.portone.sdk.server.errors.getB2bContactIdExistenceError
 import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -32,7 +33,8 @@ import kotlinx.serialization.Serializable
 /** 외부 서비스에서 에러가 발생한 경우 */
 @Serializable
 @SerialName("B2B_EXTERNAL_SERVICE")
-public data class B2bExternalServiceError(
+@ConsistentCopyVisibility
+public data class B2bExternalServiceError internal constructor(
   val message: String,
 ): AttachB2bTaxInvoiceFileError,
   CancelB2bTaxInvoiceIssuanceError,

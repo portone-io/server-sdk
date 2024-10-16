@@ -5,7 +5,7 @@ import io.portone.sdk.server.platform.payout.PlatformPayoutFilterInput
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class GetPlatformPayoutsBody(
+internal data class GetPlatformPayoutsBody(
   val isForTest: Boolean? = null,
   val page: PageInput? = null,
   val filter: PlatformPayoutFilterInput? = null,

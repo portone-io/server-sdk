@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** 세금계산서 파일 업로드 링크 생성 */
 @Serializable
-public data class CreateB2bTaxInvoiceFileUploadLinkBody(
+internal data class CreateB2bTaxInvoiceFileUploadLinkBody(
   /** 파일 이름 */
   val fileName: String,
 )

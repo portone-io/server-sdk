@@ -5,7 +5,7 @@ import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferFil
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class GetAccountTransfersBody(
+internal data class GetAccountTransfersBody(
   val isForTest: Boolean? = null,
   val page: PageInput? = null,
   val filter: PlatformAccountTransferFilter? = null,

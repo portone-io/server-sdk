@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 정산건 요약 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetPlatformTransferSummariesBody(
+internal data class GetPlatformTransferSummariesBody(
   /** 요청할 페이지 정보 */
   val page: PageInput? = null,
   /** 조회할 정산건 조건 필터 */

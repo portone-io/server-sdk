@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 /** 고객사의 결제수단 트렌드 조회를 위한 입력 정보 */
 @Serializable
-public data class GetAnalyticsPaymentMethodTrendChartBody(
+internal data class GetAnalyticsPaymentMethodTrendChartBody(
   /** 조회할 결제수단 트렌드의 시작 시간 */
   val `from`: @Serializable(InstantSerializer::class) Instant,
   /** 조회할 결제수단 트렌드의 끝 시간 */

@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 수기 정산건 생성을 위한 입력 정보 */
 @Serializable
-public data class CreatePlatformManualTransferBody(
+internal data class CreatePlatformManualTransferBody(
   /** 파트너 아이디 */
   val partnerId: String,
   /** 정산 금액 */

@@ -29,11 +29,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import kotlinx.serialization.json.Json
 
-public class PromotionClient(
+public class PromotionClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -96,7 +96,7 @@ public class PromotionClient(
     promotionId: String,
   ): CompletableFuture<Promotion> = GlobalScope.future { getPromotion(promotionId) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

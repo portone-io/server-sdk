@@ -61,11 +61,11 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-public class BillingKeyClient(
+public class BillingKeyClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -383,7 +383,7 @@ public class BillingKeyClient(
     noticeUrls: List<String>? = null,
   ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** 웹훅 재발송을 위한 입력 정보 */
 @Serializable
-public data class ResendWebhookBody(
+internal data class ResendWebhookBody(
   /**
    * 상점 아이디
    *

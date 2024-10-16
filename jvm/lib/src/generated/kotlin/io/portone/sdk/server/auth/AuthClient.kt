@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class AuthClient(
+public class AuthClient internal constructor(
   private val apiSecret: String,
   private val apiBase: String,
   private val storeId: String?,
-) : Closeable {
+) {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -160,7 +160,7 @@ public class AuthClient(
     refreshToken: String,
   ): CompletableFuture<RefreshTokenResponse> = GlobalScope.future { refreshToken(refreshToken) }
 
-  override fun close() {
+  internal fun close() {
     client.close()
   }
 }

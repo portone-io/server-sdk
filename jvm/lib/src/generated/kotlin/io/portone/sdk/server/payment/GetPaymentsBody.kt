@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 결제 건 다건 조회를 위한 입력 정보 */
 @Serializable
-public data class GetPaymentsBody(
+internal data class GetPaymentsBody(
   /**
    * 요청할 페이지 정보
    *

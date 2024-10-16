@@ -5,7 +5,7 @@ import io.portone.sdk.server.platform.bulkpayout.PlatformBulkPayoutFilterInput
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class GetPlatformBulkPayoutsBody(
+internal data class GetPlatformBulkPayoutsBody(
   val isForTest: Boolean? = null,
   val page: PageInput? = null,
   val filter: PlatformBulkPayoutFilterInput? = null,

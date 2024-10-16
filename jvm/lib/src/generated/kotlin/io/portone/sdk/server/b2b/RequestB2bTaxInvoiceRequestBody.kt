@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 세금계산서 역발행 요청 정보 */
 @Serializable
-public data class RequestB2bTaxInvoiceRequestBody(
+internal data class RequestB2bTaxInvoiceRequestBody(
   /** 사업자등록번호 */
   val brn: String,
   /** 세금계산서 문서 번호 */

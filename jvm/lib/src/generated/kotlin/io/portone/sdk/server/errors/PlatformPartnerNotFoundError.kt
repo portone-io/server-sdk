@@ -10,13 +10,15 @@ import io.portone.sdk.server.errors.RecoverPlatformPartnerError
 import io.portone.sdk.server.errors.ReschedulePartnerError
 import io.portone.sdk.server.errors.SchedulePartnerError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PLATFORM_PARTNER_NOT_FOUND")
-public data class PlatformPartnerNotFoundError(
+@ConsistentCopyVisibility
+public data class PlatformPartnerNotFoundError internal constructor(
   override val message: String? = null,
 ): ArchivePlatformPartnerError,
   CancelPlatformPartnerScheduleError,

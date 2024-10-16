@@ -7,7 +7,7 @@ import kotlin.String
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class DownloadPlatformTransferSheetBody(
+internal data class DownloadPlatformTransferSheetBody(
   val filter: PlatformTransferFilterInput? = null,
   /** 다운로드 할 시트 컬럼 */
   val fields: List<PlatformTransferSheetField>? = null,

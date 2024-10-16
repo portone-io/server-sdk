@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** 담당자 정보 수정 요청 */
 @Serializable
-public data class UpdateB2bMemberCompanyContactBody(
+internal data class UpdateB2bMemberCompanyContactBody(
   /** 비밀번호 */
   val password: String? = null,
   /** 담당자 성명 */

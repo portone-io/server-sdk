@@ -100,6 +100,7 @@ import io.portone.sdk.server.errors.UpdatePlatformContractError
 import io.portone.sdk.server.errors.UpdatePlatformDiscountSharePolicyError
 import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -107,7 +108,8 @@ import kotlinx.serialization.Serializable
 /** 요청이 거절된 경우 */
 @Serializable
 @SerialName("FORBIDDEN")
-public data class ForbiddenError(
+@ConsistentCopyVisibility
+public data class ForbiddenError internal constructor(
   override val message: String? = null,
 ): ApplyEscrowLogisticsError,
   ArchivePlatformAdditionalFeePolicyError,

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 /** 추가 수수료 정책 생성을 위한 입력 정보 */
 @Serializable
-public data class CreatePlatformAdditionalFeePolicyBody(
+internal data class CreatePlatformAdditionalFeePolicyBody(
   /** 이름 */
   val name: String,
   /** 수수료 정보 */

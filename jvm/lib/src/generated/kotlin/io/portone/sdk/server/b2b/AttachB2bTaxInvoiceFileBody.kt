@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 /** 세금계산서 파일 첨부 정보 */
 @Serializable
-public data class AttachB2bTaxInvoiceFileBody(
+internal data class AttachB2bTaxInvoiceFileBody(
   /**
    * 사업자등록번호
    *

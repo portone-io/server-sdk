@@ -1,6 +1,10 @@
-import { Writer } from "../common/writer.ts"
-import { Definition, OneOfVariant, Property } from "../parser/definition.ts"
-import { Operation } from "../parser/operation.ts"
+import type { Writer } from "../common/writer.ts"
+import type {
+  Definition,
+  OneOfVariant,
+  Property,
+} from "../parser/definition.ts"
+import type { Operation } from "../parser/operation.ts"
 import {
   filterName,
   KotlinWriter,

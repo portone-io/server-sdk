@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 /** 본인인증 확인을 위한 입력 정보 */
 @Serializable
-public data class ConfirmIdentityVerificationBody(
+internal data class ConfirmIdentityVerificationBody(
   /**
    * 상점 아이디
    *

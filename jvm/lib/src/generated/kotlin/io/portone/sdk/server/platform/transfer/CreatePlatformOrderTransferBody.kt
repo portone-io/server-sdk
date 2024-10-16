@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 
 /** 주문 정산건 생성을 위한 입력 정보 */
 @Serializable
-public data class CreatePlatformOrderTransferBody(
+internal data class CreatePlatformOrderTransferBody(
   /** 파트너 아이디 */
   val partnerId: String,
   /** 결제 아이디 */

@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 
 /** 에스크로 배송 정보 등록 입력 정보 */
 @Serializable
-public data class RegisterEscrowLogisticsBody(
+internal data class RegisterEscrowLogisticsBody(
   /** 에스크로 물류 정보 */
   val logistics: PaymentLogistics,
   /**

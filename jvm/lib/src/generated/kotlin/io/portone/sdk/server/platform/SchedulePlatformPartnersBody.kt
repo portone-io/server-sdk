@@ -7,7 +7,7 @@ import java.time.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class SchedulePlatformPartnersBody(
+internal data class SchedulePlatformPartnersBody(
   val update: SchedulePlatformPartnersBodyUpdate,
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
   val filter: PlatformPartnerFilterInput? = null,

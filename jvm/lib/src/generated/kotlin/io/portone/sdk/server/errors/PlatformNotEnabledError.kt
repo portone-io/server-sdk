@@ -57,6 +57,7 @@ import io.portone.sdk.server.errors.UpdatePlatformContractError
 import io.portone.sdk.server.errors.UpdatePlatformDiscountSharePolicyError
 import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
+import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -64,7 +65,8 @@ import kotlinx.serialization.Serializable
 /** 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우 */
 @Serializable
 @SerialName("PLATFORM_NOT_ENABLED")
-public data class PlatformNotEnabledError(
+@ConsistentCopyVisibility
+public data class PlatformNotEnabledError internal constructor(
   override val message: String? = null,
 ): ArchivePlatformAdditionalFeePolicyError,
   ArchivePlatformContractError,
