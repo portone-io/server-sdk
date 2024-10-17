@@ -42,7 +42,6 @@ jobs:
     name: Publish API reference
     needs: [build, check]
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
     defaults:
       run:
         working-directory: ./jvm
