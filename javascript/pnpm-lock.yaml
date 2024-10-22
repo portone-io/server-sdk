@@ -28,7 +28,7 @@ importers:
         version: 0.13.2
       typedoc:
         specifier: ^0.26.9
-        version: 0.26.9(typescript@5.6.3)
+        version: 0.26.10(typescript@5.6.3)
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -1986,8 +1986,8 @@ packages:
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
 
-  typedoc@0.26.9:
-    resolution: {integrity: sha512-Rc7QpWL7EtmrT8yxV0GmhOR6xHgFnnhphbD9Suti3fz3um7ZOrou6q/g9d6+zC5PssTLZmjaW4Upmzv8T1rCcQ==}
+  typedoc@0.26.10:
+    resolution: {integrity: sha512-xLmVKJ8S21t+JeuQLNueebEuTVphx6IrP06CdV7+0WVflUSW3SPmR+h1fnWVdAR/FQePEgsSWCUHXqKKjzuUAw==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
@@ -3995,7 +3995,7 @@ snapshots:
 
   trim-lines@3.0.1: {}
 
-  typedoc@0.26.9(typescript@5.6.3):
+  typedoc@0.26.10(typescript@5.6.3):
     dependencies:
       lunr: 2.3.9
       markdown-it: 14.1.0
