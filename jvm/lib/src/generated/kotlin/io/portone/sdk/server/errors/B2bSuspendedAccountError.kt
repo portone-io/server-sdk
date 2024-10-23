@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_SUSPENDED_ACCOUNT")
 @ConsistentCopyVisibility
 public data class B2bSuspendedAccountError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bAccountHolderError

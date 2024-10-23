@@ -1,32 +1,38 @@
 import type { AlreadyPaidError as InternalAlreadyPaidError } from "./payment/AlreadyPaidError"
 import type { AlreadyPaidOrWaitingError as InternalAlreadyPaidOrWaitingError } from "./payment/paymentSchedule/AlreadyPaidOrWaitingError"
-import type { B2bBankAccountNotFoundError as InternalB2bBankAccountNotFoundError } from "./b2b/B2bBankAccountNotFoundError"
-import type { B2bCertificateUnregisteredError as InternalB2bCertificateUnregisteredError } from "./b2b/B2bCertificateUnregisteredError"
-import type { B2bCompanyAlreadyRegisteredError as InternalB2bCompanyAlreadyRegisteredError } from "./b2b/B2bCompanyAlreadyRegisteredError"
-import type { B2bCompanyNotFoundError as InternalB2bCompanyNotFoundError } from "./b2b/B2bCompanyNotFoundError"
-import type { B2bContactNotFoundError as InternalB2bContactNotFoundError } from "./b2b/B2bContactNotFoundError"
-import type { B2bExternalServiceError as InternalB2bExternalServiceError } from "./b2b/B2bExternalServiceError"
-import type { B2bFileNotFoundError as InternalB2bFileNotFoundError } from "./b2b/B2bFileNotFoundError"
-import type { B2bFinancialSystemCommunicationError as InternalB2bFinancialSystemCommunicationError } from "./b2b/B2bFinancialSystemCommunicationError"
-import type { B2bFinancialSystemFailureError as InternalB2bFinancialSystemFailureError } from "./b2b/B2bFinancialSystemFailureError"
-import type { B2bFinancialSystemUnderMaintenanceError as InternalB2bFinancialSystemUnderMaintenanceError } from "./b2b/B2bFinancialSystemUnderMaintenanceError"
-import type { B2bForeignExchangeAccountError as InternalB2bForeignExchangeAccountError } from "./b2b/B2bForeignExchangeAccountError"
-import type { B2bHometaxUnderMaintenanceError as InternalB2bHometaxUnderMaintenanceError } from "./b2b/B2bHometaxUnderMaintenanceError"
-import type { B2bIdAlreadyExistsError as InternalB2bIdAlreadyExistsError } from "./b2b/B2bIdAlreadyExistsError"
-import type { B2bMemberCompanyNotFoundError as InternalB2bMemberCompanyNotFoundError } from "./b2b/B2bMemberCompanyNotFoundError"
-import type { B2bNotEnabledError as InternalB2bNotEnabledError } from "./b2b/B2bNotEnabledError"
-import type { B2bRecipientNotFoundError as InternalB2bRecipientNotFoundError } from "./b2b/B2bRecipientNotFoundError"
-import type { B2bRegularMaintenanceTimeError as InternalB2bRegularMaintenanceTimeError } from "./b2b/B2bRegularMaintenanceTimeError"
-import type { B2bSupplierNotFoundError as InternalB2bSupplierNotFoundError } from "./b2b/B2bSupplierNotFoundError"
-import type { B2bSuspendedAccountError as InternalB2bSuspendedAccountError } from "./b2b/B2bSuspendedAccountError"
-import type { B2bTaxInvoiceAttachmentNotFoundError as InternalB2bTaxInvoiceAttachmentNotFoundError } from "./b2b/B2bTaxInvoiceAttachmentNotFoundError"
-import type { B2bTaxInvoiceNoRecipientDocumentKeyError as InternalB2bTaxInvoiceNoRecipientDocumentKeyError } from "./b2b/B2bTaxInvoiceNoRecipientDocumentKeyError"
-import type { B2bTaxInvoiceNoSupplierDocumentKeyError as InternalB2bTaxInvoiceNoSupplierDocumentKeyError } from "./b2b/B2bTaxInvoiceNoSupplierDocumentKeyError"
-import type { B2bTaxInvoiceNonDeletableStatusError as InternalB2bTaxInvoiceNonDeletableStatusError } from "./b2b/B2bTaxInvoiceNonDeletableStatusError"
-import type { B2bTaxInvoiceNotFoundError as InternalB2bTaxInvoiceNotFoundError } from "./b2b/B2bTaxInvoiceNotFoundError"
-import type { B2bTaxInvoiceNotIssuedStatusError as InternalB2bTaxInvoiceNotIssuedStatusError } from "./b2b/B2bTaxInvoiceNotIssuedStatusError"
-import type { B2bTaxInvoiceNotRegisteredStatusError as InternalB2bTaxInvoiceNotRegisteredStatusError } from "./b2b/B2bTaxInvoiceNotRegisteredStatusError"
-import type { B2bTaxInvoiceNotRequestedStatusError as InternalB2bTaxInvoiceNotRequestedStatusError } from "./b2b/B2bTaxInvoiceNotRequestedStatusError"
+import type { B2BCannotChangeTaxTypeError as InternalB2BCannotChangeTaxTypeError } from "./b2b/TaxInvoice/B2BCannotChangeTaxTypeError"
+import type { B2BTaxInvoiceStatusNotSendingCompletedError as InternalB2BTaxInvoiceStatusNotSendingCompletedError } from "./b2b/TaxInvoice/B2BTaxInvoiceStatusNotSendingCompletedError"
+import type { B2bBankAccountNotFoundError as InternalB2bBankAccountNotFoundError } from "./b2b/MemberCompany/B2bBankAccountNotFoundError"
+import type { B2bCertificateUnregisteredError as InternalB2bCertificateUnregisteredError } from "./b2b/MemberCompany/B2bCertificateUnregisteredError"
+import type { B2bCompanyAlreadyRegisteredError as InternalB2bCompanyAlreadyRegisteredError } from "./b2b/MemberCompany/B2bCompanyAlreadyRegisteredError"
+import type { B2bCompanyNotFoundError as InternalB2bCompanyNotFoundError } from "./b2b/MemberCompany/B2bCompanyNotFoundError"
+import type { B2bContactNotFoundError as InternalB2bContactNotFoundError } from "./b2b/Contact/B2bContactNotFoundError"
+import type { B2bExternalServiceError as InternalB2bExternalServiceError } from "./common/B2bExternalServiceError"
+import type { B2bFileNotFoundError as InternalB2bFileNotFoundError } from "./b2b/TaxInvoice/B2bFileNotFoundError"
+import type { B2bFinancialSystemCommunicationError as InternalB2bFinancialSystemCommunicationError } from "./b2b/MemberCompany/B2bFinancialSystemCommunicationError"
+import type { B2bFinancialSystemFailureError as InternalB2bFinancialSystemFailureError } from "./b2b/MemberCompany/B2bFinancialSystemFailureError"
+import type { B2bFinancialSystemUnderMaintenanceError as InternalB2bFinancialSystemUnderMaintenanceError } from "./b2b/MemberCompany/B2bFinancialSystemUnderMaintenanceError"
+import type { B2bForeignExchangeAccountError as InternalB2bForeignExchangeAccountError } from "./b2b/MemberCompany/B2bForeignExchangeAccountError"
+import type { B2bHometaxUnderMaintenanceError as InternalB2bHometaxUnderMaintenanceError } from "./b2b/MemberCompany/B2bHometaxUnderMaintenanceError"
+import type { B2bIdAlreadyExistsError as InternalB2bIdAlreadyExistsError } from "./common/B2bIdAlreadyExistsError"
+import type { B2bMemberCompanyNotFoundError as InternalB2bMemberCompanyNotFoundError } from "./common/B2bMemberCompanyNotFoundError"
+import type { B2bModificationNotProvidedError as InternalB2bModificationNotProvidedError } from "./b2b/TaxInvoice/B2bModificationNotProvidedError"
+import type { B2bNotEnabledError as InternalB2bNotEnabledError } from "./common/B2bNotEnabledError"
+import type { B2bOriginalTaxInvoiceNotFoundError as InternalB2bOriginalTaxInvoiceNotFoundError } from "./b2b/TaxInvoice/B2bOriginalTaxInvoiceNotFoundError"
+import type { B2bRecipientNotFoundError as InternalB2bRecipientNotFoundError } from "./b2b/TaxInvoice/B2bRecipientNotFoundError"
+import type { B2bRegularMaintenanceTimeError as InternalB2bRegularMaintenanceTimeError } from "./b2b/MemberCompany/B2bRegularMaintenanceTimeError"
+import type { B2bSupplierNotFoundError as InternalB2bSupplierNotFoundError } from "./b2b/TaxInvoice/B2bSupplierNotFoundError"
+import type { B2bSuspendedAccountError as InternalB2bSuspendedAccountError } from "./b2b/MemberCompany/B2bSuspendedAccountError"
+import type { B2bTaxInvoiceAttachmentNotFoundError as InternalB2bTaxInvoiceAttachmentNotFoundError } from "./b2b/TaxInvoice/B2bTaxInvoiceAttachmentNotFoundError"
+import type { B2bTaxInvoiceNoRecipientDocumentKeyError as InternalB2bTaxInvoiceNoRecipientDocumentKeyError } from "./b2b/TaxInvoice/B2bTaxInvoiceNoRecipientDocumentKeyError"
+import type { B2bTaxInvoiceNoSupplierDocumentKeyError as InternalB2bTaxInvoiceNoSupplierDocumentKeyError } from "./b2b/TaxInvoice/B2bTaxInvoiceNoSupplierDocumentKeyError"
+import type { B2bTaxInvoiceNonDeletableStatusError as InternalB2bTaxInvoiceNonDeletableStatusError } from "./b2b/TaxInvoice/B2bTaxInvoiceNonDeletableStatusError"
+import type { B2bTaxInvoiceNotDraftedStatusError as InternalB2bTaxInvoiceNotDraftedStatusError } from "./b2b/TaxInvoice/B2bTaxInvoiceNotDraftedStatusError"
+import type { B2bTaxInvoiceNotFoundError as InternalB2bTaxInvoiceNotFoundError } from "./b2b/TaxInvoice/B2bTaxInvoiceNotFoundError"
+import type { B2bTaxInvoiceNotIssuedStatusError as InternalB2bTaxInvoiceNotIssuedStatusError } from "./b2b/TaxInvoice/B2bTaxInvoiceNotIssuedStatusError"
+import type { B2bTaxInvoiceNotRequestedStatusError as InternalB2bTaxInvoiceNotRequestedStatusError } from "./b2b/TaxInvoice/B2bTaxInvoiceNotRequestedStatusError"
+import type { B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError as InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError } from "./b2b/TaxInvoice/B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"
+import type { B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError as InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError } from "./b2b/TaxInvoice/B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"
 import type { BillingKeyAlreadyDeletedError as InternalBillingKeyAlreadyDeletedError } from "./common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyNotFoundError as InternalBillingKeyNotFoundError } from "./common/BillingKeyNotFoundError"
 import type { BillingKeyNotIssuedError as InternalBillingKeyNotIssuedError } from "./payment/billingKey/BillingKeyNotIssuedError"
@@ -67,7 +73,7 @@ import type { PlatformAdditionalFeePolicyScheduleAlreadyExistsError as InternalP
 import type { PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError as InternalPlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError } from "./platform/transfer/PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError"
 import type { PlatformArchivedAdditionalFeePolicyError as InternalPlatformArchivedAdditionalFeePolicyError } from "./platform/PlatformArchivedAdditionalFeePolicyError"
 import type { PlatformArchivedContractError as InternalPlatformArchivedContractError } from "./platform/PlatformArchivedContractError"
-import type { PlatformArchivedDiscountSharePolicyError as InternalPlatformArchivedDiscountSharePolicyError } from "./platform/policy/PlatformArchivedDiscountSharePolicyError"
+import type { PlatformArchivedDiscountSharePolicyError as InternalPlatformArchivedDiscountSharePolicyError } from "./platform/PlatformArchivedDiscountSharePolicyError"
 import type { PlatformArchivedPartnerError as InternalPlatformArchivedPartnerError } from "./platform/PlatformArchivedPartnerError"
 import type { PlatformArchivedPartnersCannotBeScheduledError as InternalPlatformArchivedPartnersCannotBeScheduledError } from "./platform/PlatformArchivedPartnersCannotBeScheduledError"
 import type { PlatformCancelOrderTransfersExistsError as InternalPlatformCancelOrderTransfersExistsError } from "./platform/transfer/PlatformCancelOrderTransfersExistsError"
@@ -176,6 +182,30 @@ export class AlreadyPaidOrWaitingError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, AlreadyPaidOrWaitingError.prototype)
 		this.name = "AlreadyPaidOrWaitingError"
+	}
+}
+
+/** 세금계산서 과세 유형을 수정할 수 없는 경우 */
+export class B2BCannotChangeTaxTypeError extends PortOneError {
+	readonly _tag = "PortOneB2BCannotChangeTaxTypeError"
+
+	/** @ignore */
+	constructor(error: InternalB2BCannotChangeTaxTypeError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2BCannotChangeTaxTypeError.prototype)
+		this.name = "B2BCannotChangeTaxTypeError"
+	}
+}
+
+/** 원본 세금계산서가 전송완료 상태가 아닌 경우 */
+export class B2BTaxInvoiceStatusNotSendingCompletedError extends PortOneError {
+	readonly _tag = "PortOneB2BTaxInvoiceStatusNotSendingCompletedError"
+
+	/** @ignore */
+	constructor(error: InternalB2BTaxInvoiceStatusNotSendingCompletedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2BTaxInvoiceStatusNotSendingCompletedError.prototype)
+		this.name = "B2BTaxInvoiceStatusNotSendingCompletedError"
 	}
 }
 
@@ -347,6 +377,18 @@ export class B2bMemberCompanyNotFoundError extends PortOneError {
 	}
 }
 
+/** 세금계산서 수정 입력 정보를 찾을 수 없는 경우 */
+export class B2bModificationNotProvidedError extends PortOneError {
+	readonly _tag = "PortOneB2bModificationNotProvidedError"
+
+	/** @ignore */
+	constructor(error: InternalB2bModificationNotProvidedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2bModificationNotProvidedError.prototype)
+		this.name = "B2bModificationNotProvidedError"
+	}
+}
+
 /** B2B 기능이 활성화되지 않은 경우 */
 export class B2bNotEnabledError extends PortOneError {
 	readonly _tag = "PortOneB2bNotEnabledError"
@@ -356,6 +398,18 @@ export class B2bNotEnabledError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bNotEnabledError.prototype)
 		this.name = "B2bNotEnabledError"
+	}
+}
+
+/** 원본 세금계산서가 존재하지 않은 경우 */
+export class B2bOriginalTaxInvoiceNotFoundError extends PortOneError {
+	readonly _tag = "PortOneB2bOriginalTaxInvoiceNotFoundError"
+
+	/** @ignore */
+	constructor(error: InternalB2bOriginalTaxInvoiceNotFoundError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2bOriginalTaxInvoiceNotFoundError.prototype)
+		this.name = "B2bOriginalTaxInvoiceNotFoundError"
 	}
 }
 
@@ -446,7 +500,7 @@ export class B2bTaxInvoiceNoSupplierDocumentKeyError extends PortOneError {
 /**
  * 세금계산서가 삭제 가능한 상태가 아닌 경우
  *
- * 삭제 가능한 상태는 `REGISTERED`, `ISSUE_REFUSED`, `REQUEST_CANCELLED_BY_RECIPIENT`, `ISSUE_CANCELLED_BY_SUPPLIER`, `SENDING_FAILED` 입니다.
+ * 삭제 가능한 상태는 `DRAFTED`, `ISSUE_REFUSED`, `REQUEST_CANCELLED_BY_RECIPIENT`, `ISSUE_CANCELLED_BY_SUPPLIER`, `SENDING_FAILED` 입니다.
  */
 export class B2bTaxInvoiceNonDeletableStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNonDeletableStatusError"
@@ -456,6 +510,18 @@ export class B2bTaxInvoiceNonDeletableStatusError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNonDeletableStatusError.prototype)
 		this.name = "B2bTaxInvoiceNonDeletableStatusError"
+	}
+}
+
+/** 세금계산서가 임시저장 상태가 아닌 경우 */
+export class B2bTaxInvoiceNotDraftedStatusError extends PortOneError {
+	readonly _tag = "PortOneB2bTaxInvoiceNotDraftedStatusError"
+
+	/** @ignore */
+	constructor(error: InternalB2bTaxInvoiceNotDraftedStatusError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2bTaxInvoiceNotDraftedStatusError.prototype)
+		this.name = "B2bTaxInvoiceNotDraftedStatusError"
 	}
 }
 
@@ -483,18 +549,6 @@ export class B2bTaxInvoiceNotIssuedStatusError extends PortOneError {
 	}
 }
 
-/** 세금계산서가 임시저장 상태가 아닌 경우 */
-export class B2bTaxInvoiceNotRegisteredStatusError extends PortOneError {
-	readonly _tag = "PortOneB2bTaxInvoiceNotRegisteredStatusError"
-
-	/** @ignore */
-	constructor(error: InternalB2bTaxInvoiceNotRegisteredStatusError) {
-		super(error.message)
-		Object.setPrototypeOf(this, B2bTaxInvoiceNotRegisteredStatusError.prototype)
-		this.name = "B2bTaxInvoiceNotRegisteredStatusError"
-	}
-}
-
 /** 세금계산서가 역발행 대기 상태가 아닌 경우 */
 export class B2bTaxInvoiceNotRequestedStatusError extends PortOneError {
 	readonly _tag = "PortOneB2bTaxInvoiceNotRequestedStatusError"
@@ -504,6 +558,30 @@ export class B2bTaxInvoiceNotRequestedStatusError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, B2bTaxInvoiceNotRequestedStatusError.prototype)
 		this.name = "B2bTaxInvoiceNotRequestedStatusError"
+	}
+}
+
+/** 세금계산서에 공급 받는자 문서 번호가 이미 사용 중인 경우 */
+export class B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError extends PortOneError {
+	readonly _tag = "PortOneB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"
+
+	/** @ignore */
+	constructor(error: InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.prototype)
+		this.name = "B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"
+	}
+}
+
+/** 세금계산서에 공급자 문서 번호가 이미 사용 중인 경우 */
+export class B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError extends PortOneError {
+	readonly _tag = "PortOneB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"
+
+	/** @ignore */
+	constructor(error: InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.prototype)
+		this.name = "B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"
 	}
 }
 

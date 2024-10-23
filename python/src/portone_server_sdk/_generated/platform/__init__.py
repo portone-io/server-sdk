@@ -18,6 +18,7 @@ from portone_server_sdk._generated.platform.platform_additional_fee_policy_not_f
 from portone_server_sdk._generated.platform.platform_additional_fee_policy_schedule_already_exists_error import PlatformAdditionalFeePolicyScheduleAlreadyExistsError, _deserialize_platform_additional_fee_policy_schedule_already_exists_error, _serialize_platform_additional_fee_policy_schedule_already_exists_error
 from portone_server_sdk._generated.platform.platform_archived_additional_fee_policy_error import PlatformArchivedAdditionalFeePolicyError, _deserialize_platform_archived_additional_fee_policy_error, _serialize_platform_archived_additional_fee_policy_error
 from portone_server_sdk._generated.platform.platform_archived_contract_error import PlatformArchivedContractError, _deserialize_platform_archived_contract_error, _serialize_platform_archived_contract_error
+from portone_server_sdk._generated.platform.platform_archived_discount_share_policy_error import PlatformArchivedDiscountSharePolicyError, _deserialize_platform_archived_discount_share_policy_error, _serialize_platform_archived_discount_share_policy_error
 from portone_server_sdk._generated.platform.platform_archived_partner_error import PlatformArchivedPartnerError, _deserialize_platform_archived_partner_error, _serialize_platform_archived_partner_error
 from portone_server_sdk._generated.platform.platform_archived_partners_cannot_be_scheduled_error import PlatformArchivedPartnersCannotBeScheduledError, _deserialize_platform_archived_partners_cannot_be_scheduled_error, _serialize_platform_archived_partners_cannot_be_scheduled_error
 from portone_server_sdk._generated.platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
@@ -665,6 +666,8 @@ class PlatformClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            PlatformArchivedDiscountSharePolicyError: 보관된 할인 분담 정책을 업데이트하려고 하는 경우
+                보관된 할인 분담 정책을 업데이트하려고 하는 경우
             PlatformDiscountSharePolicyNotFoundError: PlatformDiscountSharePolicyNotFoundError
             PlatformDiscountSharePolicyScheduleAlreadyExistsError: PlatformDiscountSharePolicyScheduleAlreadyExistsError
             PlatformNotEnabledError: 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -694,6 +697,8 @@ class PlatformClient:
                 raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
+            if error_type == "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
+                raise errors.PlatformArchivedDiscountSharePolicyError(_deserialize_platform_archived_discount_share_policy_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
                 raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
@@ -730,6 +735,8 @@ class PlatformClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            PlatformArchivedDiscountSharePolicyError: 보관된 할인 분담 정책을 업데이트하려고 하는 경우
+                보관된 할인 분담 정책을 업데이트하려고 하는 경우
             PlatformDiscountSharePolicyNotFoundError: PlatformDiscountSharePolicyNotFoundError
             PlatformDiscountSharePolicyScheduleAlreadyExistsError: PlatformDiscountSharePolicyScheduleAlreadyExistsError
             PlatformNotEnabledError: 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -759,6 +766,8 @@ class PlatformClient:
                 raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
+            if error_type == "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
+                raise errors.PlatformArchivedDiscountSharePolicyError(_deserialize_platform_archived_discount_share_policy_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
                 raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
             if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
@@ -2237,6 +2246,8 @@ class PlatformClient:
 
 
         Raises:
+            ForbiddenError: 요청이 거절된 경우
+                요청이 거절된 경우
             InvalidRequestError: 요청된 입력 정보가 유효하지 않은 경우
                 요청된 입력 정보가 유효하지 않은 경우
 
@@ -2265,6 +2276,8 @@ class PlatformClient:
         if response.status_code != 200:
             error_response = response.json()
             error_type = error_response["type"]
+            if error_type == "FORBIDDEN":
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
@@ -2295,6 +2308,8 @@ class PlatformClient:
 
 
         Raises:
+            ForbiddenError: 요청이 거절된 경우
+                요청이 거절된 경우
             InvalidRequestError: 요청된 입력 정보가 유효하지 않은 경우
                 요청된 입력 정보가 유효하지 않은 경우
 
@@ -2323,6 +2338,8 @@ class PlatformClient:
         if response.status_code != 200:
             error_response = response.json()
             error_type = error_response["type"]
+            if error_type == "FORBIDDEN":
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
@@ -2353,6 +2370,8 @@ class PlatformClient:
 
 
         Raises:
+            ForbiddenError: 요청이 거절된 경우
+                요청이 거절된 경우
             InvalidRequestError: 요청된 입력 정보가 유효하지 않은 경우
                 요청된 입력 정보가 유효하지 않은 경우
 
@@ -2384,6 +2403,8 @@ class PlatformClient:
         if response.status_code != 200:
             error_response = response.json()
             error_type = error_response["type"]
+            if error_type == "FORBIDDEN":
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_CONTRACT":
@@ -2418,6 +2439,8 @@ class PlatformClient:
 
 
         Raises:
+            ForbiddenError: 요청이 거절된 경우
+                요청이 거절된 경우
             InvalidRequestError: 요청된 입력 정보가 유효하지 않은 경우
                 요청된 입력 정보가 유효하지 않은 경우
 
@@ -2449,6 +2472,8 @@ class PlatformClient:
         if response.status_code != 200:
             error_response = response.json()
             error_type = error_response["type"]
+            if error_type == "FORBIDDEN":
+                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
             if error_type == "INVALID_REQUEST":
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "PLATFORM_ARCHIVED_CONTRACT":

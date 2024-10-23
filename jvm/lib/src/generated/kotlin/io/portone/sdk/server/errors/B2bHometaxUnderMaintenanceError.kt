@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_HOMETAX_UNDER_MAINTENANCE")
 @ConsistentCopyVisibility
 public data class B2bHometaxUnderMaintenanceError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bCompanyStateError

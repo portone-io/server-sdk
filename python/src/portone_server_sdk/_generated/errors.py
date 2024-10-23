@@ -3,33 +3,39 @@ from dataclasses import InitVar, dataclass, field
 from typing import Optional
 from portone_server_sdk._generated.payment.already_paid_error import AlreadyPaidError as InternalAlreadyPaidError
 from portone_server_sdk._generated.payment.payment_schedule.already_paid_or_waiting_error import AlreadyPaidOrWaitingError as InternalAlreadyPaidOrWaitingError
-from portone_server_sdk._generated.b2b.b2b_bank_account_not_found_error import B2bBankAccountNotFoundError as InternalB2bBankAccountNotFoundError
-from portone_server_sdk._generated.b2b.b2b_certificate_unregistered_error import B2bCertificateUnregisteredError as InternalB2bCertificateUnregisteredError
-from portone_server_sdk._generated.b2b.b2b_company_already_registered_error import B2bCompanyAlreadyRegisteredError as InternalB2bCompanyAlreadyRegisteredError
-from portone_server_sdk._generated.b2b.b2b_company_not_found_error import B2bCompanyNotFoundError as InternalB2bCompanyNotFoundError
-from portone_server_sdk._generated.b2b.b2b_contact_not_found_error import B2bContactNotFoundError as InternalB2bContactNotFoundError
-from portone_server_sdk._generated.b2b.b2b_external_service_error import B2bExternalServiceError as InternalB2bExternalServiceError
-from portone_server_sdk._generated.b2b.b2b_file_not_found_error import B2bFileNotFoundError as InternalB2bFileNotFoundError
-from portone_server_sdk._generated.b2b.b2b_financial_system_communication_error import B2bFinancialSystemCommunicationError as InternalB2bFinancialSystemCommunicationError
-from portone_server_sdk._generated.b2b.b2b_financial_system_failure_error import B2bFinancialSystemFailureError as InternalB2bFinancialSystemFailureError
-from portone_server_sdk._generated.b2b.b2b_financial_system_under_maintenance_error import B2bFinancialSystemUnderMaintenanceError as InternalB2bFinancialSystemUnderMaintenanceError
-from portone_server_sdk._generated.b2b.b2b_foreign_exchange_account_error import B2bForeignExchangeAccountError as InternalB2bForeignExchangeAccountError
-from portone_server_sdk._generated.b2b.b2b_hometax_under_maintenance_error import B2bHometaxUnderMaintenanceError as InternalB2bHometaxUnderMaintenanceError
-from portone_server_sdk._generated.b2b.b2b_id_already_exists_error import B2bIdAlreadyExistsError as InternalB2bIdAlreadyExistsError
-from portone_server_sdk._generated.b2b.b2b_member_company_not_found_error import B2bMemberCompanyNotFoundError as InternalB2bMemberCompanyNotFoundError
-from portone_server_sdk._generated.b2b.b2b_not_enabled_error import B2bNotEnabledError as InternalB2bNotEnabledError
-from portone_server_sdk._generated.b2b.b2b_recipient_not_found_error import B2bRecipientNotFoundError as InternalB2bRecipientNotFoundError
-from portone_server_sdk._generated.b2b.b2b_regular_maintenance_time_error import B2bRegularMaintenanceTimeError as InternalB2bRegularMaintenanceTimeError
-from portone_server_sdk._generated.b2b.b2b_supplier_not_found_error import B2bSupplierNotFoundError as InternalB2bSupplierNotFoundError
-from portone_server_sdk._generated.b2b.b2b_suspended_account_error import B2bSuspendedAccountError as InternalB2bSuspendedAccountError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_attachment_not_found_error import B2bTaxInvoiceAttachmentNotFoundError as InternalB2bTaxInvoiceAttachmentNotFoundError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_no_recipient_document_key_error import B2bTaxInvoiceNoRecipientDocumentKeyError as InternalB2bTaxInvoiceNoRecipientDocumentKeyError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_no_supplier_document_key_error import B2bTaxInvoiceNoSupplierDocumentKeyError as InternalB2bTaxInvoiceNoSupplierDocumentKeyError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_non_deletable_status_error import B2bTaxInvoiceNonDeletableStatusError as InternalB2bTaxInvoiceNonDeletableStatusError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_not_found_error import B2bTaxInvoiceNotFoundError as InternalB2bTaxInvoiceNotFoundError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_not_issued_status_error import B2bTaxInvoiceNotIssuedStatusError as InternalB2bTaxInvoiceNotIssuedStatusError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_not_registered_status_error import B2bTaxInvoiceNotRegisteredStatusError as InternalB2bTaxInvoiceNotRegisteredStatusError
-from portone_server_sdk._generated.b2b.b2b_tax_invoice_not_requested_status_error import B2bTaxInvoiceNotRequestedStatusError as InternalB2bTaxInvoiceNotRequestedStatusError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_cannot_change_tax_type_error import B2BCannotChangeTaxTypeError as InternalB2BCannotChangeTaxTypeError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_status_not_sending_completed_error import B2BTaxInvoiceStatusNotSendingCompletedError as InternalB2BTaxInvoiceStatusNotSendingCompletedError
+from portone_server_sdk._generated.b2b.member_company.b2b_bank_account_not_found_error import B2bBankAccountNotFoundError as InternalB2bBankAccountNotFoundError
+from portone_server_sdk._generated.b2b.member_company.b2b_certificate_unregistered_error import B2bCertificateUnregisteredError as InternalB2bCertificateUnregisteredError
+from portone_server_sdk._generated.b2b.member_company.b2b_company_already_registered_error import B2bCompanyAlreadyRegisteredError as InternalB2bCompanyAlreadyRegisteredError
+from portone_server_sdk._generated.b2b.member_company.b2b_company_not_found_error import B2bCompanyNotFoundError as InternalB2bCompanyNotFoundError
+from portone_server_sdk._generated.b2b.contact.b2b_contact_not_found_error import B2bContactNotFoundError as InternalB2bContactNotFoundError
+from portone_server_sdk._generated.common.b2b_external_service_error import B2bExternalServiceError as InternalB2bExternalServiceError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_file_not_found_error import B2bFileNotFoundError as InternalB2bFileNotFoundError
+from portone_server_sdk._generated.b2b.member_company.b2b_financial_system_communication_error import B2bFinancialSystemCommunicationError as InternalB2bFinancialSystemCommunicationError
+from portone_server_sdk._generated.b2b.member_company.b2b_financial_system_failure_error import B2bFinancialSystemFailureError as InternalB2bFinancialSystemFailureError
+from portone_server_sdk._generated.b2b.member_company.b2b_financial_system_under_maintenance_error import B2bFinancialSystemUnderMaintenanceError as InternalB2bFinancialSystemUnderMaintenanceError
+from portone_server_sdk._generated.b2b.member_company.b2b_foreign_exchange_account_error import B2bForeignExchangeAccountError as InternalB2bForeignExchangeAccountError
+from portone_server_sdk._generated.b2b.member_company.b2b_hometax_under_maintenance_error import B2bHometaxUnderMaintenanceError as InternalB2bHometaxUnderMaintenanceError
+from portone_server_sdk._generated.common.b2b_id_already_exists_error import B2bIdAlreadyExistsError as InternalB2bIdAlreadyExistsError
+from portone_server_sdk._generated.common.b2b_member_company_not_found_error import B2bMemberCompanyNotFoundError as InternalB2bMemberCompanyNotFoundError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_modification_not_provided_error import B2bModificationNotProvidedError as InternalB2bModificationNotProvidedError
+from portone_server_sdk._generated.common.b2b_not_enabled_error import B2bNotEnabledError as InternalB2bNotEnabledError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_original_tax_invoice_not_found_error import B2bOriginalTaxInvoiceNotFoundError as InternalB2bOriginalTaxInvoiceNotFoundError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_recipient_not_found_error import B2bRecipientNotFoundError as InternalB2bRecipientNotFoundError
+from portone_server_sdk._generated.b2b.member_company.b2b_regular_maintenance_time_error import B2bRegularMaintenanceTimeError as InternalB2bRegularMaintenanceTimeError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_supplier_not_found_error import B2bSupplierNotFoundError as InternalB2bSupplierNotFoundError
+from portone_server_sdk._generated.b2b.member_company.b2b_suspended_account_error import B2bSuspendedAccountError as InternalB2bSuspendedAccountError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_attachment_not_found_error import B2bTaxInvoiceAttachmentNotFoundError as InternalB2bTaxInvoiceAttachmentNotFoundError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_no_recipient_document_key_error import B2bTaxInvoiceNoRecipientDocumentKeyError as InternalB2bTaxInvoiceNoRecipientDocumentKeyError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_no_supplier_document_key_error import B2bTaxInvoiceNoSupplierDocumentKeyError as InternalB2bTaxInvoiceNoSupplierDocumentKeyError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_non_deletable_status_error import B2bTaxInvoiceNonDeletableStatusError as InternalB2bTaxInvoiceNonDeletableStatusError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_not_drafted_status_error import B2bTaxInvoiceNotDraftedStatusError as InternalB2bTaxInvoiceNotDraftedStatusError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_not_found_error import B2bTaxInvoiceNotFoundError as InternalB2bTaxInvoiceNotFoundError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_not_issued_status_error import B2bTaxInvoiceNotIssuedStatusError as InternalB2bTaxInvoiceNotIssuedStatusError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_not_requested_status_error import B2bTaxInvoiceNotRequestedStatusError as InternalB2bTaxInvoiceNotRequestedStatusError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_recipient_document_key_already_used_error import B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError as InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError
+from portone_server_sdk._generated.b2b.tax_invoice.b2b_tax_invoice_supplier_document_key_already_used_error import B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError as InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError
 from portone_server_sdk._generated.common.billing_key_already_deleted_error import BillingKeyAlreadyDeletedError as InternalBillingKeyAlreadyDeletedError
 from portone_server_sdk._generated.common.billing_key_not_found_error import BillingKeyNotFoundError as InternalBillingKeyNotFoundError
 from portone_server_sdk._generated.payment.billing_key.billing_key_not_issued_error import BillingKeyNotIssuedError as InternalBillingKeyNotIssuedError
@@ -70,7 +76,7 @@ from portone_server_sdk._generated.platform.platform_additional_fee_policy_sched
 from portone_server_sdk._generated.platform.transfer.platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error import PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError as InternalPlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
 from portone_server_sdk._generated.platform.platform_archived_additional_fee_policy_error import PlatformArchivedAdditionalFeePolicyError as InternalPlatformArchivedAdditionalFeePolicyError
 from portone_server_sdk._generated.platform.platform_archived_contract_error import PlatformArchivedContractError as InternalPlatformArchivedContractError
-from portone_server_sdk._generated.platform.policy.platform_archived_discount_share_policy_error import PlatformArchivedDiscountSharePolicyError as InternalPlatformArchivedDiscountSharePolicyError
+from portone_server_sdk._generated.platform.platform_archived_discount_share_policy_error import PlatformArchivedDiscountSharePolicyError as InternalPlatformArchivedDiscountSharePolicyError
 from portone_server_sdk._generated.platform.platform_archived_partner_error import PlatformArchivedPartnerError as InternalPlatformArchivedPartnerError
 from portone_server_sdk._generated.platform.platform_archived_partners_cannot_be_scheduled_error import PlatformArchivedPartnersCannotBeScheduledError as InternalPlatformArchivedPartnersCannotBeScheduledError
 from portone_server_sdk._generated.platform.transfer.platform_cancel_order_transfers_exists_error import PlatformCancelOrderTransfersExistsError as InternalPlatformCancelOrderTransfersExistsError
@@ -168,6 +174,24 @@ class AlreadyPaidOrWaitingError(PortOneError):
     _error: InitVar[InternalAlreadyPaidOrWaitingError]
 
     def __post_init__(self, _error: InternalAlreadyPaidOrWaitingError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2BCannotChangeTaxTypeError(PortOneError):
+    """세금계산서 과세 유형을 수정할 수 없는 경우
+    """
+    _error: InitVar[InternalB2BCannotChangeTaxTypeError]
+
+    def __post_init__(self, _error: InternalB2BCannotChangeTaxTypeError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2BTaxInvoiceStatusNotSendingCompletedError(PortOneError):
+    """원본 세금계산서가 전송완료 상태가 아닌 경우
+    """
+    _error: InitVar[InternalB2BTaxInvoiceStatusNotSendingCompletedError]
+
+    def __post_init__(self, _error: InternalB2BTaxInvoiceStatusNotSendingCompletedError) -> None:
         self.message = _error.message
 
 @dataclass
@@ -297,12 +321,30 @@ class B2bMemberCompanyNotFoundError(PortOneError):
         self.message = _error.message
 
 @dataclass
+class B2bModificationNotProvidedError(PortOneError):
+    """세금계산서 수정 입력 정보를 찾을 수 없는 경우
+    """
+    _error: InitVar[InternalB2bModificationNotProvidedError]
+
+    def __post_init__(self, _error: InternalB2bModificationNotProvidedError) -> None:
+        self.message = _error.message
+
+@dataclass
 class B2bNotEnabledError(PortOneError):
     """B2B 기능이 활성화되지 않은 경우
     """
     _error: InitVar[InternalB2bNotEnabledError]
 
     def __post_init__(self, _error: InternalB2bNotEnabledError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2bOriginalTaxInvoiceNotFoundError(PortOneError):
+    """원본 세금계산서가 존재하지 않은 경우
+    """
+    _error: InitVar[InternalB2bOriginalTaxInvoiceNotFoundError]
+
+    def __post_init__(self, _error: InternalB2bOriginalTaxInvoiceNotFoundError) -> None:
         self.message = _error.message
 
 @dataclass
@@ -372,11 +414,20 @@ class B2bTaxInvoiceNoSupplierDocumentKeyError(PortOneError):
 class B2bTaxInvoiceNonDeletableStatusError(PortOneError):
     """세금계산서가 삭제 가능한 상태가 아닌 경우
 
-    삭제 가능한 상태는 `REGISTERED`, `ISSUE_REFUSED`, `REQUEST_CANCELLED_BY_RECIPIENT`, `ISSUE_CANCELLED_BY_SUPPLIER`, `SENDING_FAILED` 입니다.
+    삭제 가능한 상태는 `DRAFTED`, `ISSUE_REFUSED`, `REQUEST_CANCELLED_BY_RECIPIENT`, `ISSUE_CANCELLED_BY_SUPPLIER`, `SENDING_FAILED` 입니다.
     """
     _error: InitVar[InternalB2bTaxInvoiceNonDeletableStatusError]
 
     def __post_init__(self, _error: InternalB2bTaxInvoiceNonDeletableStatusError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2bTaxInvoiceNotDraftedStatusError(PortOneError):
+    """세금계산서가 임시저장 상태가 아닌 경우
+    """
+    _error: InitVar[InternalB2bTaxInvoiceNotDraftedStatusError]
+
+    def __post_init__(self, _error: InternalB2bTaxInvoiceNotDraftedStatusError) -> None:
         self.message = _error.message
 
 @dataclass
@@ -398,21 +449,30 @@ class B2bTaxInvoiceNotIssuedStatusError(PortOneError):
         self.message = _error.message
 
 @dataclass
-class B2bTaxInvoiceNotRegisteredStatusError(PortOneError):
-    """세금계산서가 임시저장 상태가 아닌 경우
-    """
-    _error: InitVar[InternalB2bTaxInvoiceNotRegisteredStatusError]
-
-    def __post_init__(self, _error: InternalB2bTaxInvoiceNotRegisteredStatusError) -> None:
-        self.message = _error.message
-
-@dataclass
 class B2bTaxInvoiceNotRequestedStatusError(PortOneError):
     """세금계산서가 역발행 대기 상태가 아닌 경우
     """
     _error: InitVar[InternalB2bTaxInvoiceNotRequestedStatusError]
 
     def __post_init__(self, _error: InternalB2bTaxInvoiceNotRequestedStatusError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError(PortOneError):
+    """세금계산서에 공급 받는자 문서 번호가 이미 사용 중인 경우
+    """
+    _error: InitVar[InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError]
+
+    def __post_init__(self, _error: InternalB2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError) -> None:
+        self.message = _error.message
+
+@dataclass
+class B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError(PortOneError):
+    """세금계산서에 공급자 문서 번호가 이미 사용 중인 경우
+    """
+    _error: InitVar[InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError]
+
+    def __post_init__(self, _error: InternalB2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError) -> None:
         self.message = _error.message
 
 @dataclass

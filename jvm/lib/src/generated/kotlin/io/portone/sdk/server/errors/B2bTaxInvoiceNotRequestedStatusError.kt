@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_TAX_INVOICE_NOT_REQUESTED_STATUS")
 @ConsistentCopyVisibility
 public data class B2bTaxInvoiceNotRequestedStatusError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelB2bTaxInvoiceRequestError,
   IssueB2bTaxInvoiceError,
   RefuseB2bTaxInvoiceRequestError

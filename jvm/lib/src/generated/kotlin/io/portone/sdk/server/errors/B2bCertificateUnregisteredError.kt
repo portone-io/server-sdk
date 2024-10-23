@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import io.portone.sdk.server.errors.GetB2bCertificateError
+import io.portone.sdk.server.errors.ValidateB2bCertificateError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +12,6 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_CERTIFICATE_UNREGISTERED")
 @ConsistentCopyVisibility
 public data class B2bCertificateUnregisteredError internal constructor(
-  val message: String? = null,
-): GetB2bCertificateError
+  override val message: String? = null,
+): GetB2bCertificateError,
+  ValidateB2bCertificateError

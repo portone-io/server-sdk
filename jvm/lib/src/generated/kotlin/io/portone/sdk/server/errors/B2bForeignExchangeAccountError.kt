@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_FOREIGN_EXCHANGE_ACCOUNT")
 @ConsistentCopyVisibility
 public data class B2bForeignExchangeAccountError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bAccountHolderError

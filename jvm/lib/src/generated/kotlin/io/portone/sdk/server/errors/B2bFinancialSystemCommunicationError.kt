@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_FINANCIAL_SYSTEM_COMMUNICATION")
 @ConsistentCopyVisibility
 public data class B2bFinancialSystemCommunicationError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bAccountHolderError

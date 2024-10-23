@@ -69,6 +69,8 @@ import io.portone.sdk.server.errors.PaymentNotPaidError
 import io.portone.sdk.server.errors.PaymentNotPaidException
 import io.portone.sdk.server.errors.PaymentNotWaitingForDepositError
 import io.portone.sdk.server.errors.PaymentNotWaitingForDepositException
+import io.portone.sdk.server.errors.PaymentScheduleAlreadyExistsError
+import io.portone.sdk.server.errors.PaymentScheduleAlreadyExistsException
 import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.PreRegisterPaymentError
@@ -627,6 +629,7 @@ public class PaymentClient internal constructor(
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
    * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
    * @throws PgProviderException PG사에서 오류를 전달한 경우
    * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
    * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -707,6 +710,7 @@ public class PaymentClient internal constructor(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
+        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
@@ -810,6 +814,7 @@ public class PaymentClient internal constructor(
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
    * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
    * @throws PgProviderException PG사에서 오류를 전달한 경우
    * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
    * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -884,6 +889,7 @@ public class PaymentClient internal constructor(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
+        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)

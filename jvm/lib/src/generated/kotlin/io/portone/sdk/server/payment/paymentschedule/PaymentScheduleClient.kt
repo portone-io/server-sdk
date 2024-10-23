@@ -212,6 +212,11 @@ public class PaymentScheduleClient internal constructor(
    * 결제 예약 취소
    *
    * 결제 예약 건을 취소합니다.
+   * billingKey, scheduleIds 중 하나 이상은 필수로 입력합니다.
+   * billingKey 만 입력된 경우 -> 해당 빌링키로 예약된 모든 결제 예약 건들이 취소됩니다.
+   * scheduleIds 만 입력된 경우 -> 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다.
+   * billingKey, scheduleIds 모두 입력된 경우 -> 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다. 단, 예약한 빌링키가 입력된 빌링키와 일치하지 않으면 실패합니다.
+   * 위 정책에 따라 선택된 결제 예약 건들 중 하나라도 취소에 실패할 경우, 모든 취소 요청이 실패합니다.
    *
    * @param billingKey
    * 빌링키

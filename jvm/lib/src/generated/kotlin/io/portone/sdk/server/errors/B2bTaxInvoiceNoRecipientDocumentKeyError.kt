@@ -12,6 +12,6 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_TAX_INVOICE_NO_RECIPIENT_DOCUMENT_KEY")
 @ConsistentCopyVisibility
 public data class B2bTaxInvoiceNoRecipientDocumentKeyError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): CancelB2bTaxInvoiceRequestError,
   requestB2bTaxInvoiceError

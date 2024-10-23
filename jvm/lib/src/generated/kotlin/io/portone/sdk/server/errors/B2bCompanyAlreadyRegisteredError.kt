@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_COMPANY_ALREADY_REGISTERED")
 @ConsistentCopyVisibility
 public data class B2bCompanyAlreadyRegisteredError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): RegisterB2bMemberCompanyError

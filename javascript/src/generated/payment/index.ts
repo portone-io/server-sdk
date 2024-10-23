@@ -489,6 +489,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.InvalidRequestError(errorResponse)
 				case "MAX_TRANSACTION_COUNT_REACHED":
 					throw new Errors.MaxTransactionCountReachedError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
 				case "PG_PROVIDER":
 					throw new Errors.PgProviderError(errorResponse)
 				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -590,6 +592,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.InvalidRequestError(errorResponse)
 				case "MAX_TRANSACTION_COUNT_REACHED":
 					throw new Errors.MaxTransactionCountReachedError(errorResponse)
+				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
 				case "PG_PROVIDER":
 					throw new Errors.PgProviderError(errorResponse)
 				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1074,6 +1078,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.MaxTransactionCountReachedError} 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+	 * @throws {@link Errors.PaymentScheduleAlreadyExistsError} 결제 예약건이 이미 존재하는 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
@@ -1155,6 +1160,7 @@ export type PaymentClient = {
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.MaxTransactionCountReachedError} 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+	 * @throws {@link Errors.PaymentScheduleAlreadyExistsError} 결제 예약건이 이미 존재하는 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
 	 * @throws {@link Errors.PromotionPayMethodDoesNotMatchError} 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
 	 * @throws {@link Errors.SumOfPartsExceedsTotalAmountError} 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우

@@ -369,6 +369,8 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
+				case "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
+					throw new Errors.PlatformArchivedDiscountSharePolicyError(errorResponse)
 				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
 					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
 				case "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
@@ -844,6 +846,8 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			if (!response.ok) {
 				const errorResponse: RescheduleContractError = await response.json()
 				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
 				case "PLATFORM_CONTRACT_NOT_FOUND":
@@ -880,6 +884,8 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			if (!response.ok) {
 				const errorResponse: ScheduleContractError = await response.json()
 				switch (errorResponse.type) {
+				case "FORBIDDEN":
+					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
 				case "PLATFORM_ARCHIVED_CONTRACT":
@@ -1052,6 +1058,7 @@ export type PlatformClient = {
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
+	 * @throws {@link Errors.PlatformArchivedDiscountSharePolicyError} 보관된 할인 분담 정책을 업데이트하려고 하는 경우
 	 * @throws {@link Errors.PlatformDiscountSharePolicyNotFoundError} PlatformDiscountSharePolicyNotFoundError
 	 * @throws {@link Errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError} PlatformDiscountSharePolicyScheduleAlreadyExistsError
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -1348,6 +1355,7 @@ export type PlatformClient = {
 	 * @param appliedAt
 	 * 업데이트 적용 시점
 	 *
+	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -1375,6 +1383,7 @@ export type PlatformClient = {
 	 * @param appliedAt
 	 * 업데이트 적용 시점
 	 *
+	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformArchivedContractError} 보관된 계약을 업데이트하려고 하는 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError

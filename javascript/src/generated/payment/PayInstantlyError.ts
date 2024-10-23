@@ -4,6 +4,7 @@ import type { DiscountAmountExceedsTotalAmountError } from "#generated/payment/D
 import type { ForbiddenError } from "#generated/common/ForbiddenError"
 import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
 import type { MaxTransactionCountReachedError } from "#generated/common/MaxTransactionCountReachedError"
+import type { PaymentScheduleAlreadyExistsError } from "#generated/common/PaymentScheduleAlreadyExistsError"
 import type { PgProviderError } from "#generated/common/PgProviderError"
 import type { PromotionPayMethodDoesNotMatchError } from "#generated/payment/PromotionPayMethodDoesNotMatchError"
 import type { SumOfPartsExceedsTotalAmountError } from "#generated/common/SumOfPartsExceedsTotalAmountError"
@@ -16,6 +17,7 @@ export type PayInstantlyError =
 	| ForbiddenError
 	| InvalidRequestError
 	| MaxTransactionCountReachedError
+	| PaymentScheduleAlreadyExistsError
 	| PgProviderError
 	| PromotionPayMethodDoesNotMatchError
 	| SumOfPartsExceedsTotalAmountError

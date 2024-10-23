@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_COMPANY_NOT_FOUND")
 @ConsistentCopyVisibility
 public data class B2bCompanyNotFoundError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bCompanyStateError

@@ -46,6 +46,8 @@ import io.portone.sdk.server.errors.PlatformArchivedAdditionalFeePolicyError
 import io.portone.sdk.server.errors.PlatformArchivedAdditionalFeePolicyException
 import io.portone.sdk.server.errors.PlatformArchivedContractError
 import io.portone.sdk.server.errors.PlatformArchivedContractException
+import io.portone.sdk.server.errors.PlatformArchivedDiscountSharePolicyError
+import io.portone.sdk.server.errors.PlatformArchivedDiscountSharePolicyException
 import io.portone.sdk.server.errors.PlatformArchivedPartnerError
 import io.portone.sdk.server.errors.PlatformArchivedPartnerException
 import io.portone.sdk.server.errors.PlatformArchivedPartnersCannotBeScheduledError
@@ -483,6 +485,7 @@ public class PlatformClient internal constructor(
    *
    * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
+   * @throws PlatformArchivedDiscountSharePolicyException 보관된 할인 분담 정책을 업데이트하려고 하는 경우
    * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
    * @throws PlatformDiscountSharePolicyScheduleAlreadyExistsException PlatformDiscountSharePolicyScheduleAlreadyExistsError
    * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -522,6 +525,7 @@ public class PlatformClient internal constructor(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedDiscountSharePolicyError -> throw PlatformArchivedDiscountSharePolicyException(httpBodyDecoded)
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformDiscountSharePolicyScheduleAlreadyExistsError -> throw PlatformDiscountSharePolicyScheduleAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
@@ -1360,6 +1364,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
+   * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
    * @throws PlatformContractNotFoundException PlatformContractNotFoundError
    * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -1397,6 +1402,7 @@ public class PlatformClient internal constructor(
         throw UnknownException("Unknown API error: $httpBody")
       }
       when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
@@ -1431,6 +1437,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
+   * @throws ForbiddenException 요청이 거절된 경우
    * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
    * @throws PlatformArchivedContractException 보관된 계약을 업데이트하려고 하는 경우
    * @throws PlatformContractNotFoundException PlatformContractNotFoundError
@@ -1470,6 +1477,7 @@ public class PlatformClient internal constructor(
         throw UnknownException("Unknown API error: $httpBody")
       }
       when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformArchivedContractError -> throw PlatformArchivedContractException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)

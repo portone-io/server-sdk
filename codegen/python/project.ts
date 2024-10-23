@@ -53,7 +53,7 @@ function generateCategoryIndex(
   omitEntities: Set<string>,
   hierarchy: string = "portone_server_sdk._generated",
 ) {
-  const hasClient = pack.operations.length > 0
+  const hasClient = pack.operations.length > 0 || pack.subpackages.length > 0
   const crossRef = new Set<string>()
   const writer = PythonWriter()
   for (const subpackage of pack.subpackages) {

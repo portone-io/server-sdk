@@ -3,14 +3,15 @@ package io.portone.sdk.server.errors
 import io.portone.sdk.server.errors.AttachB2bTaxInvoiceFileError
 import io.portone.sdk.server.errors.CancelB2bTaxInvoiceIssuanceError
 import io.portone.sdk.server.errors.CancelB2bTaxInvoiceRequestError
-import io.portone.sdk.server.errors.CreateB2bTaxInvoiceFileUploadLinkCreateError
+import io.portone.sdk.server.errors.CreateB2bFileUploadUrlError
 import io.portone.sdk.server.errors.DeleteB2bTaxInvoiceAttachmentError
 import io.portone.sdk.server.errors.DeleteB2bTaxInvoiceError
+import io.portone.sdk.server.errors.DraftB2bTaxInvoiceError
 import io.portone.sdk.server.errors.GetB2bAccountHolderError
 import io.portone.sdk.server.errors.GetB2bCertificateError
 import io.portone.sdk.server.errors.GetB2bCertificateRegistrationUrlError
 import io.portone.sdk.server.errors.GetB2bCompanyStateError
-import io.portone.sdk.server.errors.GetB2bMemberCompanyContactError
+import io.portone.sdk.server.errors.GetB2bContactError
 import io.portone.sdk.server.errors.GetB2bMemberCompanyError
 import io.portone.sdk.server.errors.GetB2bTaxInvoiceAttachmentsError
 import io.portone.sdk.server.errors.GetB2bTaxInvoiceError
@@ -21,10 +22,12 @@ import io.portone.sdk.server.errors.GetB2bTaxInvoicesError
 import io.portone.sdk.server.errors.IssueB2bTaxInvoiceError
 import io.portone.sdk.server.errors.RefuseB2bTaxInvoiceRequestError
 import io.portone.sdk.server.errors.RegisterB2bMemberCompanyError
-import io.portone.sdk.server.errors.RequestB2bTaxInvoiceRegisterError
 import io.portone.sdk.server.errors.RequestB2bTaxInvoiceReverseIssuanceError
-import io.portone.sdk.server.errors.UpdateB2bMemberCompanyContactError
+import io.portone.sdk.server.errors.SendToNtsB2bTaxInvoiceError
+import io.portone.sdk.server.errors.UpdateB2bContactError
 import io.portone.sdk.server.errors.UpdateB2bMemberCompanyError
+import io.portone.sdk.server.errors.UpdateB2bTaxInvoiceDraftError
+import io.portone.sdk.server.errors.ValidateB2bCertificateError
 import io.portone.sdk.server.errors.getB2bContactIdExistenceError
 import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
 import kotlin.ConsistentCopyVisibility
@@ -41,14 +44,15 @@ public data class B2bNotEnabledError internal constructor(
 ): AttachB2bTaxInvoiceFileError,
   CancelB2bTaxInvoiceIssuanceError,
   CancelB2bTaxInvoiceRequestError,
-  CreateB2bTaxInvoiceFileUploadLinkCreateError,
+  CreateB2bFileUploadUrlError,
   DeleteB2bTaxInvoiceAttachmentError,
   DeleteB2bTaxInvoiceError,
+  DraftB2bTaxInvoiceError,
   GetB2bAccountHolderError,
   GetB2bCertificateError,
   GetB2bCertificateRegistrationUrlError,
   GetB2bCompanyStateError,
-  GetB2bMemberCompanyContactError,
+  GetB2bContactError,
   GetB2bMemberCompanyError,
   GetB2bTaxInvoiceAttachmentsError,
   GetB2bTaxInvoiceError,
@@ -59,9 +63,11 @@ public data class B2bNotEnabledError internal constructor(
   IssueB2bTaxInvoiceError,
   RefuseB2bTaxInvoiceRequestError,
   RegisterB2bMemberCompanyError,
-  RequestB2bTaxInvoiceRegisterError,
   RequestB2bTaxInvoiceReverseIssuanceError,
-  UpdateB2bMemberCompanyContactError,
+  SendToNtsB2bTaxInvoiceError,
+  UpdateB2bContactError,
   UpdateB2bMemberCompanyError,
+  UpdateB2bTaxInvoiceDraftError,
+  ValidateB2bCertificateError,
   getB2bContactIdExistenceError,
   requestB2bTaxInvoiceError

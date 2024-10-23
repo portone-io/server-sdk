@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_FILE_NOT_FOUND")
 @ConsistentCopyVisibility
 public data class B2bFileNotFoundError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): AttachB2bTaxInvoiceFileError

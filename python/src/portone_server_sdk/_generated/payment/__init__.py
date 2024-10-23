@@ -45,6 +45,7 @@ from portone_server_sdk._generated.payment.payment_not_paid_error import Payment
 from portone_server_sdk._generated.payment.payment_not_waiting_for_deposit_error import PaymentNotWaitingForDepositError, _deserialize_payment_not_waiting_for_deposit_error, _serialize_payment_not_waiting_for_deposit_error
 from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from portone_server_sdk._generated.common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
+from portone_server_sdk._generated.common.payment_schedule_already_exists_error import PaymentScheduleAlreadyExistsError, _deserialize_payment_schedule_already_exists_error, _serialize_payment_schedule_already_exists_error
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.payment.pre_register_payment_response import PreRegisterPaymentResponse, _deserialize_pre_register_payment_response, _serialize_pre_register_payment_response
 from portone_server_sdk._generated.payment.promotion_pay_method_does_not_match_error import PromotionPayMethodDoesNotMatchError, _deserialize_promotion_pay_method_does_not_match_error, _serialize_promotion_pay_method_does_not_match_error
@@ -973,6 +974,8 @@ class PaymentClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
                 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+            PaymentScheduleAlreadyExistsError: 결제 예약건이 이미 존재하는 경우
+                결제 예약건이 이미 존재하는 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1050,6 +1053,8 @@ class PaymentClient:
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
                 raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
+            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1159,6 +1164,8 @@ class PaymentClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
                 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+            PaymentScheduleAlreadyExistsError: 결제 예약건이 이미 존재하는 경우
+                결제 예약건이 이미 존재하는 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1236,6 +1243,8 @@ class PaymentClient:
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
                 raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
+            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1341,6 +1350,8 @@ class PaymentClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
                 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+            PaymentScheduleAlreadyExistsError: 결제 예약건이 이미 존재하는 경우
+                결제 예약건이 이미 존재하는 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1410,6 +1421,8 @@ class PaymentClient:
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
                 raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
+            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
@@ -1515,6 +1528,8 @@ class PaymentClient:
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
             MaxTransactionCountReachedError: 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
                 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
+            PaymentScheduleAlreadyExistsError: 결제 예약건이 이미 존재하는 경우
+                결제 예약건이 이미 존재하는 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
             PromotionPayMethodDoesNotMatchError: 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
@@ -1584,6 +1599,8 @@ class PaymentClient:
                 raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
             if error_type == "MAX_TRANSACTION_COUNT_REACHED":
                 raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
+            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
             if error_type == "PG_PROVIDER":
                 raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
             if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":

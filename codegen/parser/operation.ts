@@ -37,7 +37,7 @@ const ParameterSchema = z.strictObject({
   in: z.literal("query"),
   required: z.boolean(),
   content: ContentSchema,
-  "x-portone-query-or-body": QueryOrBodySchema,
+  "x-portone-query-or-body": QueryOrBodySchema.optional(),
 }).or(z.strictObject({
   name: z.string(),
   in: z.enum(["path", "query"]),

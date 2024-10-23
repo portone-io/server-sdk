@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import io.portone.sdk.server.errors.CancelB2bTaxInvoiceIssuanceError
+import io.portone.sdk.server.errors.SendToNtsB2bTaxInvoiceError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +12,6 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_TAX_INVOICE_NOT_ISSUED_STATUS")
 @ConsistentCopyVisibility
 public data class B2bTaxInvoiceNotIssuedStatusError internal constructor(
-  val message: String? = null,
-): CancelB2bTaxInvoiceIssuanceError
+  override val message: String? = null,
+): CancelB2bTaxInvoiceIssuanceError,
+  SendToNtsB2bTaxInvoiceError

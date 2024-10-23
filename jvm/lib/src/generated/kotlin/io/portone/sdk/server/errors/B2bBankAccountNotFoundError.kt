@@ -11,5 +11,5 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_BANK_ACCOUNT_NOT_FOUND")
 @ConsistentCopyVisibility
 public data class B2bBankAccountNotFoundError internal constructor(
-  val message: String? = null,
+  override val message: String? = null,
 ): GetB2bAccountHolderError

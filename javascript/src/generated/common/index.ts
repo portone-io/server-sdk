@@ -1,5 +1,7 @@
 import * as Errors from "..//errors"
 export type { Address } from "./Address"
+export type { B2bCompanyContact } from "./B2bCompanyContact"
+export type { B2bCompanyStateBusinessStatus } from "./B2bCompanyStateBusinessStatus"
 export type { Bank } from "./Bank"
 export type { BillingKeyPaymentInput } from "./BillingKeyPaymentInput"
 export type { Card } from "./Card"
