@@ -154,7 +154,12 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.member_company.html">portone_server_sdk.b2b.member_company</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.contact.html">portone_server_sdk.b2b.contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -3746,6 +3751,8 @@ document.write(`
     요청된 입력 정보가 유효하지 않은 경우
     
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedDiscountSharePolicyError" title="portone_server_sdk.errors.PlatformArchivedDiscountSharePolicyError"><strong>PlatformArchivedDiscountSharePolicyError</strong></a> – 보관된 할인 분담 정책을 업데이트하려고 하는 경우
+    보관된 할인 분담 정책을 업데이트하려고 하는 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePolicyNotFoundError" title="portone_server_sdk.errors.PlatformDiscountSharePolicyNotFoundError"><strong>PlatformDiscountSharePolicyNotFoundError</strong></a> – PlatformDiscountSharePolicyNotFoundError</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError" title="portone_server_sdk.errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError"><strong>PlatformDiscountSharePolicyScheduleAlreadyExistsError</strong></a> – PlatformDiscountSharePolicyScheduleAlreadyExistsError</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError" title="portone_server_sdk.errors.PlatformNotEnabledError"><strong>PlatformNotEnabledError</strong></a> – 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -3778,6 +3785,8 @@ document.write(`
     요청된 입력 정보가 유효하지 않은 경우
     
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedDiscountSharePolicyError" title="portone_server_sdk.errors.PlatformArchivedDiscountSharePolicyError"><strong>PlatformArchivedDiscountSharePolicyError</strong></a> – 보관된 할인 분담 정책을 업데이트하려고 하는 경우
+    보관된 할인 분담 정책을 업데이트하려고 하는 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePolicyNotFoundError" title="portone_server_sdk.errors.PlatformDiscountSharePolicyNotFoundError"><strong>PlatformDiscountSharePolicyNotFoundError</strong></a> – PlatformDiscountSharePolicyNotFoundError</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError" title="portone_server_sdk.errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError"><strong>PlatformDiscountSharePolicyScheduleAlreadyExistsError</strong></a> – PlatformDiscountSharePolicyScheduleAlreadyExistsError</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError" title="portone_server_sdk.errors.PlatformNotEnabledError"><strong>PlatformNotEnabledError</strong></a> – 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -4536,6 +4545,8 @@ document.write(`
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
     요청된 입력 정보가 유효하지 않은 경우
     
@@ -4565,6 +4576,8 @@ document.write(`
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
     요청된 입력 정보가 유효하지 않은 경우
     
@@ -4594,6 +4607,8 @@ document.write(`
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
     요청된 입력 정보가 유효하지 않은 경우
     
@@ -4626,6 +4641,8 @@ document.write(`
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
 <li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
     요청된 입력 정보가 유효하지 않은 경우
     

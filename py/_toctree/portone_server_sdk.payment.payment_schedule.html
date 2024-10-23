@@ -154,7 +154,12 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.member_company.html">portone_server_sdk.b2b.member_company</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.contact.html">portone_server_sdk.b2b.contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -1042,11 +1047,6 @@ document.write(`
 <dt class="sig sig-object py" id="portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.payment_schedule.</span></span><span class="sig-name descname"><span class="pre">RevokePaymentSchedulesBody</span></span><a class="headerlink" href="#portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody" title="Link to this definition">#</a></dt>
 <dd><p>결제 예약 건 취소 요청 입력 정보</p>
-<p>billingKey, scheduleIds 중 하나 이상은 필수로 입력합니다.
-billingKey 만 입력된 경우 -&gt; 해당 빌링키로 예약된 모든 결제 예약 건들이 취소됩니다.
-scheduleIds 만 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다.
-billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다. 그리고 예약한 빌링키가 입력된 빌링키와 일치하는지 검증합니다.
-위 정책에 따라 선택된 결제 예약 건들 중 하나라도 취소에 실패할 경우, 모든 취소 요청이 실패합니다.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody.store_id">
 <span class="sig-name descname"><span class="pre">store_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody.store_id" title="Link to this definition">#</a></dt>
@@ -1772,7 +1772,12 @@ billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 �
 <dt class="sig sig-object py" id="portone_server_sdk.payment.payment_schedule.PaymentScheduleClient.revoke_payment_schedules">
 <span class="sig-name descname"><span class="pre">revoke_payment_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesResponse" title="portone_server_sdk._generated.payment.payment_schedule.revoke_payment_schedules_response.RevokePaymentSchedulesResponse"><span class="pre">RevokePaymentSchedulesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.payment.payment_schedule.PaymentScheduleClient.revoke_payment_schedules" title="Link to this definition">#</a></dt>
 <dd><p>결제 예약 취소</p>
-<p>결제 예약 건을 취소합니다.</p>
+<p>결제 예약 건을 취소합니다.
+billingKey, scheduleIds 중 하나 이상은 필수로 입력합니다.
+billingKey 만 입력된 경우 -&gt; 해당 빌링키로 예약된 모든 결제 예약 건들이 취소됩니다.
+scheduleIds 만 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다.
+billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다. 단, 예약한 빌링키가 입력된 빌링키와 일치하지 않으면 실패합니다.
+위 정책에 따라 선택된 결제 예약 건들 중 하나라도 취소에 실패할 경우, 모든 취소 요청이 실패합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1810,7 +1815,12 @@ billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 �
 <dt class="sig sig-object py" id="portone_server_sdk.payment.payment_schedule.PaymentScheduleClient.revoke_payment_schedules_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">revoke_payment_schedules_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesResponse" title="portone_server_sdk._generated.payment.payment_schedule.revoke_payment_schedules_response.RevokePaymentSchedulesResponse"><span class="pre">RevokePaymentSchedulesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.payment.payment_schedule.PaymentScheduleClient.revoke_payment_schedules_async" title="Link to this definition">#</a></dt>
 <dd><p>결제 예약 취소</p>
-<p>결제 예약 건을 취소합니다.</p>
+<p>결제 예약 건을 취소합니다.
+billingKey, scheduleIds 중 하나 이상은 필수로 입력합니다.
+billingKey 만 입력된 경우 -&gt; 해당 빌링키로 예약된 모든 결제 예약 건들이 취소됩니다.
+scheduleIds 만 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다.
+billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 건 아이디에 해당하는 예약 건들이 취소됩니다. 단, 예약한 빌링키가 입력된 빌링키와 일치하지 않으면 실패합니다.
+위 정책에 따라 선택된 결제 예약 건들 중 하나라도 취소에 실패할 경우, 모든 취소 요청이 실패합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

@@ -8,6 +8,7 @@
 
    .. autosummary::
    
+      B2bCompanyContact
       BillingKeyPaymentInput
       Card
       CardCredential

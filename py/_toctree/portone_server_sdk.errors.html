@@ -154,7 +154,12 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.member_company.html">portone_server_sdk.b2b.member_company</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.contact.html">portone_server_sdk.b2b.contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -336,6 +341,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.AlreadyPaidOrWaitingError.message"><code class="docutils literal notranslate"><span class="pre">AlreadyPaidOrWaitingError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.args"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.message"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.args"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.message"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError.with_traceback()</span></code></a></li>
@@ -420,10 +437,22 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bMemberCompanyNotFoundError.message"><code class="docutils literal notranslate"><span class="pre">B2bMemberCompanyNotFoundError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.args"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.message"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.args"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.message"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.message"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bRecipientNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bRecipientNotFoundError</span></code></a><ul class="nav section-nav flex-column">
@@ -474,6 +503,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNonDeletableStatusError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError.with_traceback()</span></code></a></li>
@@ -486,16 +521,22 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotIssuedStatusError.message</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.args</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.with_traceback()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.message</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.BillingKeyAlreadyDeletedError"><code class="docutils literal notranslate"><span class="pre">BillingKeyAlreadyDeletedError</span></code></a><ul class="nav section-nav flex-column">
@@ -1206,6 +1247,12 @@ document.write(`
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.AlreadyPaidOrWaitingError" title="portone_server_sdk.errors.AlreadyPaidOrWaitingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlreadyPaidOrWaitingError</span></code></a></p></td>
 <td><p>결제가 이미 완료되었거나 대기중인 경우</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError" title="portone_server_sdk.errors.B2BCannotChangeTaxTypeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError</span></code></a></p></td>
+<td><p>세금계산서 과세 유형을 수정할 수 없는 경우</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError" title="portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError</span></code></a></p></td>
+<td><p>원본 세금계산서가 전송완료 상태가 아닌 경우</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError" title="portone_server_sdk.errors.B2bBankAccountNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError</span></code></a></p></td>
 <td><p>계좌가 존재하지 않는 경우</p></td>
 </tr>
@@ -1248,8 +1295,14 @@ document.write(`
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bMemberCompanyNotFoundError" title="portone_server_sdk.errors.B2bMemberCompanyNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bMemberCompanyNotFoundError</span></code></a></p></td>
 <td><p>연동 사업자가 존재하지 않는 경우</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bNotEnabledError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bModificationNotProvidedError" title="portone_server_sdk.errors.B2bModificationNotProvidedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError</span></code></a></p></td>
+<td><p>세금계산서 수정 입력 정보를 찾을 수 없는 경우</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bNotEnabledError</span></code></a></p></td>
 <td><p>B2B 기능이 활성화되지 않은 경우</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError" title="portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError</span></code></a></p></td>
+<td><p>원본 세금계산서가 존재하지 않은 경우</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bRecipientNotFoundError" title="portone_server_sdk.errors.B2bRecipientNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bRecipientNotFoundError</span></code></a></p></td>
 <td><p>공급받는자가 존재하지 않은 경우</p></td>
@@ -1275,17 +1328,23 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNonDeletableStatusError</span></code></a></p></td>
 <td><p>세금계산서가 삭제 가능한 상태가 아닌 경우</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError" title="portone_server_sdk.errors.B2bTaxInvoiceNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError</span></code></a></p></td>
+<td><p>세금계산서가 임시저장 상태가 아닌 경우</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError" title="portone_server_sdk.errors.B2bTaxInvoiceNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError</span></code></a></p></td>
 <td><p>세금계산서가 존재하지 않은 경우</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotIssuedStatusError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotIssuedStatusError</span></code></a></p></td>
 <td><p>세금계산서가 발행된(ISSUED) 상태가 아닌 경우</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError</span></code></a></p></td>
-<td><p>세금계산서가 임시저장 상태가 아닌 경우</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError" title="portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError</span></code></a></p></td>
 <td><p>세금계산서가 역발행 대기 상태가 아닌 경우</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError" title="portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError</span></code></a></p></td>
+<td><p>세금계산서에 공급 받는자 문서 번호가 이미 사용 중인 경우</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError" title="portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError</span></code></a></p></td>
+<td><p>세금계산서에 공급자 문서 번호가 이미 사용 중인 경우</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.errors.BillingKeyAlreadyDeletedError" title="portone_server_sdk.errors.BillingKeyAlreadyDeletedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingKeyAlreadyDeletedError</span></code></a></p></td>
 <td><p>빌링키가 이미 삭제된 경우</p></td>
@@ -1646,6 +1705,52 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BCannotChangeTaxTypeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2BCannotChangeTaxTypeError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 과세 유형을 수정할 수 없는 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BCannotChangeTaxTypeError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BCannotChangeTaxTypeError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BCannotChangeTaxTypeError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError" title="Link to this definition">#</a></dt>
+<dd><p>원본 세금계산서가 전송완료 상태가 아닌 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bBankAccountNotFoundError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bBankAccountNotFoundError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError" title="Link to this definition">#</a></dt>
 <dd><p>계좌가 존재하지 않는 경우</p>
@@ -1968,6 +2073,29 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bModificationNotProvidedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bModificationNotProvidedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bModificationNotProvidedError" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 수정 입력 정보를 찾을 수 없는 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bModificationNotProvidedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bModificationNotProvidedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bModificationNotProvidedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bNotEnabledError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bNotEnabledError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bNotEnabledError" title="Link to this definition">#</a></dt>
 <dd><p>B2B 기능이 활성화되지 않은 경우</p>
@@ -1986,6 +2114,29 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bNotEnabledError.message">
 <span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bNotEnabledError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bOriginalTaxInvoiceNotFoundError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError" title="Link to this definition">#</a></dt>
+<dd><p>원본 세금계산서가 존재하지 않은 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.message" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2155,7 +2306,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceNonDeletableStatusError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError" title="Link to this definition">#</a></dt>
 <dd><p>세금계산서가 삭제 가능한 상태가 아닌 경우</p>
-<p>삭제 가능한 상태는 <cite>REGISTERED</cite>, <cite>ISSUE_REFUSED</cite>, <cite>REQUEST_CANCELLED_BY_RECIPIENT</cite>, <cite>ISSUE_CANCELLED_BY_SUPPLIER</cite>, <cite>SENDING_FAILED</cite> 입니다.</p>
+<p>삭제 가능한 상태는 <cite>DRAFTED</cite>, <cite>ISSUE_REFUSED</cite>, <cite>REQUEST_CANCELLED_BY_RECIPIENT</cite>, <cite>ISSUE_CANCELLED_BY_SUPPLIER</cite>, <cite>SENDING_FAILED</cite> 입니다.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.args">
 <span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.args" title="Link to this definition">#</a></dt>
@@ -2171,6 +2322,29 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.message">
 <span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceNotDraftedStatusError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서가 임시저장 상태가 아닌 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.message" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2222,29 +2396,6 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError" title="Link to this definition">#</a></dt>
-<dd><p>세금계산서가 임시저장 상태가 아닌 경우</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.args">
-<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.args" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.with_traceback">
-<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.with_traceback" title="Link to this definition">#</a></dt>
-<dd><p>Exception.with_traceback(tb) –
-set self.__traceback__ to tb and return self.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.message" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py exception">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceNotRequestedStatusError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError" title="Link to this definition">#</a></dt>
 <dd><p>세금계산서가 역발행 대기 상태가 아닌 경우</p>
@@ -2263,6 +2414,52 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.message">
 <span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서에 공급 받는자 문서 번호가 이미 사용 중인 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.errors.</span></span><span class="sig-name descname"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서에 공급자 문서 번호가 이미 사용 중인 경우</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4998,6 +5195,18 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.AlreadyPaidOrWaitingError.message"><code class="docutils literal notranslate"><span class="pre">AlreadyPaidOrWaitingError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.args"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BCannotChangeTaxTypeError.message"><code class="docutils literal notranslate"><span class="pre">B2BCannotChangeTaxTypeError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.args"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2BTaxInvoiceStatusNotSendingCompletedError.message"><code class="docutils literal notranslate"><span class="pre">B2BTaxInvoiceStatusNotSendingCompletedError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bBankAccountNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bBankAccountNotFoundError.with_traceback()</span></code></a></li>
@@ -5082,10 +5291,22 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bMemberCompanyNotFoundError.message"><code class="docutils literal notranslate"><span class="pre">B2bMemberCompanyNotFoundError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.args"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bModificationNotProvidedError.message"><code class="docutils literal notranslate"><span class="pre">B2bModificationNotProvidedError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.args"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bNotEnabledError.message"><code class="docutils literal notranslate"><span class="pre">B2bNotEnabledError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bOriginalTaxInvoiceNotFoundError.message"><code class="docutils literal notranslate"><span class="pre">B2bOriginalTaxInvoiceNotFoundError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bRecipientNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bRecipientNotFoundError</span></code></a><ul class="nav section-nav flex-column">
@@ -5136,6 +5357,12 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNonDeletableStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNonDeletableStatusError.message</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotDraftedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotDraftedStatusError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotFoundError.with_traceback()</span></code></a></li>
@@ -5148,16 +5375,22 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotIssuedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotIssuedStatusError.message</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.args</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.with_traceback()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRegisteredStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRegisteredStatusError.message</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.args</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.with_traceback()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceNotRequestedStatusError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceNotRequestedStatusError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message"><code class="docutils literal notranslate"><span class="pre">B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError.message</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.errors.BillingKeyAlreadyDeletedError"><code class="docutils literal notranslate"><span class="pre">BillingKeyAlreadyDeletedError</span></code></a><ul class="nav section-nav flex-column">

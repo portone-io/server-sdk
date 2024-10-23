@@ -10,6 +10,8 @@
    
       AlreadyPaidError
       AlreadyPaidOrWaitingError
+      B2BCannotChangeTaxTypeError
+      B2BTaxInvoiceStatusNotSendingCompletedError
       B2bBankAccountNotFoundError
       B2bCertificateUnregisteredError
       B2bCompanyAlreadyRegisteredError
@@ -24,7 +26,9 @@
       B2bHometaxUnderMaintenanceError
       B2bIdAlreadyExistsError
       B2bMemberCompanyNotFoundError
+      B2bModificationNotProvidedError
       B2bNotEnabledError
+      B2bOriginalTaxInvoiceNotFoundError
       B2bRecipientNotFoundError
       B2bRegularMaintenanceTimeError
       B2bSupplierNotFoundError
@@ -33,10 +37,12 @@
       B2bTaxInvoiceNoRecipientDocumentKeyError
       B2bTaxInvoiceNoSupplierDocumentKeyError
       B2bTaxInvoiceNonDeletableStatusError
+      B2bTaxInvoiceNotDraftedStatusError
       B2bTaxInvoiceNotFoundError
       B2bTaxInvoiceNotIssuedStatusError
-      B2bTaxInvoiceNotRegisteredStatusError
       B2bTaxInvoiceNotRequestedStatusError
+      B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError
+      B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError
       BillingKeyAlreadyDeletedError
       BillingKeyNotFoundError
       BillingKeyNotIssuedError

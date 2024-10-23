@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>portone_server_sdk.b2b.contact &#8212; portone-server-sdk  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.b2b.contact';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="portone_server_sdk.b2b.tax_invoice" href="portone_server_sdk.b2b.tax_invoice.html" />
+    <link rel="prev" title="portone_server_sdk.b2b.member_company" href="portone_server_sdk.b2b.member_company.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">portone-server-sdk  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.member_company.html">portone_server_sdk.b2b.member_company</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">portone_server_sdk.b2b.contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_toctree/portone_server_sdk.b2b.contact.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>portone_server_sdk.b2b.contact</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse"><code class="docutils literal notranslate"><span class="pre">GetB2bContactIdExistenceResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse.exists"><code class="docutils literal notranslate"><span class="pre">GetB2bContactIdExistenceResponse.exists</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.password"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.password</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.name"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.phone_number"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.phone_number</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.email"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.email</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse.contact"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactResponse.contact</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient"><code class="docutils literal notranslate"><span class="pre">ContactClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact"><code class="docutils literal notranslate"><span class="pre">ContactClient.update_b2b_contact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.update_b2b_contact_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_id_existence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_id_existence_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-portone_server_sdk.b2b.contact">
+<span id="portone-server-sdk-b2b-contact"></span><h1>portone_server_sdk.b2b.contact<a class="headerlink" href="#module-portone_server_sdk.b2b.contact" title="Link to this heading">#</a></h1>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse" title="portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetB2bContactIdExistenceResponse</span></code></a></p></td>
+<td><p>담당자 ID 존재 여부 응답 정보</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody" title="portone_server_sdk.b2b.contact.UpdateB2bContactBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateB2bContactBody</span></code></a></p></td>
+<td><p>담당자 정보 수정 요청</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse" title="portone_server_sdk.b2b.contact.UpdateB2bContactResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateB2bContactResponse</span></code></a></p></td>
+<td><p>담당자 정보 수정 응답</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.b2b.contact.ContactClient" title="portone_server_sdk.b2b.contact.ContactClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ContactClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.b2b.contact.</span></span><span class="sig-name descname"><span class="pre">GetB2bContactIdExistenceResponse</span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse" title="Link to this definition">#</a></dt>
+<dd><p>담당자 ID 존재 여부 응답 정보</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse.exists" title="Link to this definition">#</a></dt>
+<dd><p>존재 여부</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.b2b.contact.</span></span><span class="sig-name descname"><span class="pre">UpdateB2bContactBody</span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody" title="Link to this definition">#</a></dt>
+<dd><p>담당자 정보 수정 요청</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactBody.password">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.password" title="Link to this definition">#</a></dt>
+<dd><p>비밀번호</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactBody.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.name" title="Link to this definition">#</a></dt>
+<dd><p>담당자 성명</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactBody.phone_number">
+<span class="sig-name descname"><span class="pre">phone_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.phone_number" title="Link to this definition">#</a></dt>
+<dd><p>담당자 핸드폰 번호</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactBody.email">
+<span class="sig-name descname"><span class="pre">email</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.email" title="Link to this definition">#</a></dt>
+<dd><p>담당자 이메일</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.b2b.contact.</span></span><span class="sig-name descname"><span class="pre">UpdateB2bContactResponse</span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse" title="Link to this definition">#</a></dt>
+<dd><p>담당자 정보 수정 응답</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.UpdateB2bContactResponse.contact">
+<span class="sig-name descname"><span class="pre">contact</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.B2bCompanyContact" title="portone_server_sdk._generated.common.b2b_company_contact.B2bCompanyContact"><span class="pre">B2bCompanyContact</span></a></em><a class="headerlink" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse.contact" title="Link to this definition">#</a></dt>
+<dd><p>담당자 정보</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.b2b.contact.</span></span><span class="sig-name descname"><span class="pre">ContactClient</span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact">
+<span class="sig-name descname"><span class="pre">get_b2b_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.B2bCompanyContact" title="portone_server_sdk._generated.common.b2b_company_contact.B2bCompanyContact"><span class="pre">B2bCompanyContact</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact" title="Link to this definition">#</a></dt>
+<dd><p>담당자 조회</p>
+<p>연동 사업자에 등록된 담당자를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bContactNotFoundError" title="portone_server_sdk.errors.B2bContactNotFoundError"><strong>B2bContactNotFoundError</strong></a> – 담당자가 존재하지 않는 경우
+    담당자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bMemberCompanyNotFoundError" title="portone_server_sdk.errors.B2bMemberCompanyNotFoundError"><strong>B2bMemberCompanyNotFoundError</strong></a> – 연동 사업자가 존재하지 않는 경우
+    연동 사업자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_b2b_contact_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.B2bCompanyContact" title="portone_server_sdk._generated.common.b2b_company_contact.B2bCompanyContact"><span class="pre">B2bCompanyContact</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_async" title="Link to this definition">#</a></dt>
+<dd><p>담당자 조회</p>
+<p>연동 사업자에 등록된 담당자를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bContactNotFoundError" title="portone_server_sdk.errors.B2bContactNotFoundError"><strong>B2bContactNotFoundError</strong></a> – 담당자가 존재하지 않는 경우
+    담당자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bMemberCompanyNotFoundError" title="portone_server_sdk.errors.B2bMemberCompanyNotFoundError"><strong>B2bMemberCompanyNotFoundError</strong></a> – 연동 사업자가 존재하지 않는 경우
+    연동 사업자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact">
+<span class="sig-name descname"><span class="pre">update_b2b_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse" title="portone_server_sdk._generated.b2b.contact.update_b2b_contact_response.UpdateB2bContactResponse"><span class="pre">UpdateB2bContactResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact" title="Link to this definition">#</a></dt>
+<dd><p>담당자 정보 수정</p>
+<p>담당자 정보를 수정합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+<li><p><strong>password</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 비밀번호</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 성명</p></li>
+<li><p><strong>phone_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 핸드폰 번호</p></li>
+<li><p><strong>email</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 이메일</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bContactNotFoundError" title="portone_server_sdk.errors.B2bContactNotFoundError"><strong>B2bContactNotFoundError</strong></a> – 담당자가 존재하지 않는 경우
+    담당자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bMemberCompanyNotFoundError" title="portone_server_sdk.errors.B2bMemberCompanyNotFoundError"><strong>B2bMemberCompanyNotFoundError</strong></a> – 연동 사업자가 존재하지 않는 경우
+    연동 사업자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_b2b_contact_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse" title="portone_server_sdk._generated.b2b.contact.update_b2b_contact_response.UpdateB2bContactResponse"><span class="pre">UpdateB2bContactResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact_async" title="Link to this definition">#</a></dt>
+<dd><p>담당자 정보 수정</p>
+<p>담당자 정보를 수정합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+<li><p><strong>password</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 비밀번호</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 성명</p></li>
+<li><p><strong>phone_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 핸드폰 번호</p></li>
+<li><p><strong>email</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 담당자 이메일</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bContactNotFoundError" title="portone_server_sdk.errors.B2bContactNotFoundError"><strong>B2bContactNotFoundError</strong></a> – 담당자가 존재하지 않는 경우
+    담당자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bMemberCompanyNotFoundError" title="portone_server_sdk.errors.B2bMemberCompanyNotFoundError"><strong>B2bMemberCompanyNotFoundError</strong></a> – 연동 사업자가 존재하지 않는 경우
+    연동 사업자가 존재하지 않는 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence">
+<span class="sig-name descname"><span class="pre">get_b2b_contact_id_existence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse" title="portone_server_sdk._generated.b2b.contact.get_b2b_contact_id_existence_response.GetB2bContactIdExistenceResponse"><span class="pre">GetB2bContactIdExistenceResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence" title="Link to this definition">#</a></dt>
+<dd><p>담당자 ID 존재 여부 확인</p>
+<p>담당자 ID가 이미 사용중인지 확인합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_b2b_contact_id_existence_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse" title="portone_server_sdk._generated.b2b.contact.get_b2b_contact_id_existence_response.GetB2bContactIdExistenceResponse"><span class="pre">GetB2bContactIdExistenceResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence_async" title="Link to this definition">#</a></dt>
+<dd><p>담당자 ID 존재 여부 확인</p>
+<p>담당자 ID가 이미 사용중인지 확인합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 담당자 ID</p></li>
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError" title="portone_server_sdk.errors.B2bExternalServiceError"><strong>B2bExternalServiceError</strong></a> – 외부 서비스에서 에러가 발생한 경우
+    외부 서비스에서 에러가 발생한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError" title="portone_server_sdk.errors.B2bNotEnabledError"><strong>B2bNotEnabledError</strong></a> – B2B 기능이 활성화되지 않은 경우
+    B2B 기능이 활성화되지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.ForbiddenError" title="portone_server_sdk.errors.ForbiddenError"><strong>ForbiddenError</strong></a> – 요청이 거절된 경우
+    요청이 거절된 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
+    요청된 입력 정보가 유효하지 않은 경우
+    
+    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
+    인증 정보가 올바르지 않은 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portone_server_sdk.b2b.member_company.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">portone_server_sdk.b2b.member_company</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="portone_server_sdk.b2b.tax_invoice.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">portone_server_sdk.b2b.tax_invoice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse"><code class="docutils literal notranslate"><span class="pre">GetB2bContactIdExistenceResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.GetB2bContactIdExistenceResponse.exists"><code class="docutils literal notranslate"><span class="pre">GetB2bContactIdExistenceResponse.exists</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.password"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.password</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.name"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.phone_number"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.phone_number</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactBody.email"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactBody.email</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.UpdateB2bContactResponse.contact"><code class="docutils literal notranslate"><span class="pre">UpdateB2bContactResponse.contact</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient"><code class="docutils literal notranslate"><span class="pre">ContactClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact"><code class="docutils literal notranslate"><span class="pre">ContactClient.update_b2b_contact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.update_b2b_contact_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.update_b2b_contact_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_id_existence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.contact.ContactClient.get_b2b_contact_id_existence_async"><code class="docutils literal notranslate"><span class="pre">ContactClient.get_b2b_contact_id_existence_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By portone <tech.support@portone.io>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, PortOne.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
