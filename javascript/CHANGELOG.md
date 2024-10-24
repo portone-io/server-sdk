@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.6.1
+
+### Patch Changes
+
+- 686cbe9: workflow 수정
+
 ## 0.6.0
 
 ### Minor Changes
