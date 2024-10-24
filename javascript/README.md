@@ -2,6 +2,24 @@
 
 JavaScript 서버 환경에서 포트원 V2 결제 시스템에 연동하기 위한 SDK입니다.
 
+## 의존성
+
+Web Crypto API와 Fetch API를 사용합니다.
+
+- Node.js의 경우 v20 이상이 필요합니다.
+- 기타 위 표준 API를 지원하는 모든 자바스크립트 런타임에서 사용할 수 있습니다.
+
+# 설치
+
+![NPM Version](https://img.shields.io/npm/v/%40portone%2Fserver-sdk)
+![JSR Version](https://img.shields.io/jsr/v/%40portone/server-sdk)
+
+npm 혹은 jsr을 통해 설치합니다.
+
+```shell
+npm install --save @portone/server-sdk
+```
+
 ## 버전
 
 [유의적 버전 2.0.0](https://semver.org/spec/v2.0.0.html)을 사용합니다.
@@ -18,13 +36,6 @@ SDK를 프로덕션에서 사용할 수 있으며, 포트원은 관련 기술 �
 
 SDK의 버전을 업데이트한 경우 코드 호환성이 깨질 수 있습니다. 이 경우 코드 작업이
 필요합니다.
-
-## 의존성
-
-Web Crypto API와 Fetch API를 사용합니다.
-
-- Node.js의 경우 v20 이상이 필요합니다.
-- 기타 위 표준 API를 지원하는 모든 자바스크립트 런타임에서 사용할 수 있습니다.
 
 ## 기술 지원
 
