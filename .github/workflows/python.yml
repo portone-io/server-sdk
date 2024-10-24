@@ -81,3 +81,9 @@ jobs:
         run: uv build
       - name: Build distribution
         run: uv publish
+      - name: Send a Slack notification if a publish happens
+        run: |
+          export VERSION=$(cut -c '15-' <<< '${{ github.ref }}')
+          curl -X POST -H 'Content-type: application/json'\
+            --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"PyPI에 `portone-server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"PyPI 페이지 보기"},"value":"show_pypi_page","url":"https://pypi.org/project/portone-server-sdk/'"$VERSION"'","action_id":"show_pypi_page"}]}]}'\
+            ${{ secrets.SLACK_WEBHOOK_URL }}

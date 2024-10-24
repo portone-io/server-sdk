@@ -84,3 +84,9 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYPASSWORD }}
+      - name: Send a Slack notification if a publish happens
+        run: |
+          export VERSION=$(cut -c '16-' <<< '${{ github.ref }}')
+          curl -X POST -H 'Content-type: application/json'\
+            --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Maven Central에 `io.portone:server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"Maven 페이지 보기"},"value":"show_maven_page","url":"https://central.sonatype.com/artifact/io.portone/server-sdk/'"$VERSION"'","action_id":"show_maven_page"}]}]}'\
+            ${{ secrets.SLACK_WEBHOOK_URL }}
