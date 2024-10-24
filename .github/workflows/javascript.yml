@@ -136,7 +136,7 @@ jobs:
       - name: Send a Slack notification if a publish happens
         if: ${{ steps.changesets.outputs.hasChangesets == 'false' }}
         run: |
-          export VERSION=$(jq -r '.[] | select(.name == "@portone/server-sdk") | .version' <<< '${{ steps.changesets.outputs.publishedPackages }}')
+          export VERSION=$(jq -r '.version' package.json)
           curl -X POST -H 'Content-type: application/json'\
             --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"npm과 jsr에 `@portone/server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"npm 페이지 보기"},"value":"show_npm_page","url":"https://www.npmjs.com/package/@portone/server-sdk/v/'"$VERSION"'","action_id":"show_npm_page"},{"type":"button","text":{"type":"plain_text","text":"jsr 페이지 보기"},"value":"show_jsr_page","url":"https://jsr.io/@portone/server-sdk@'"$VERSION"'","action_id":"show_jsr_page"},{"type":"button","text":{"type":"plain_text","text":"체인지로그 보기"},"value":"show_changelog","url":"https://github.com/portone-io/server-sdk/blob/main/javascript/CHANGELOG.md","action_id":"show_changelog"}]}]}'\
             ${{ secrets.SLACK_WEBHOOK_URL }}
