@@ -1,8 +1,4 @@
 from portone_server_sdk._generated.common.address import Address
-from portone_server_sdk._generated.common.b2b_company_contact import B2bCompanyContact
-from portone_server_sdk._generated.common.b2b_company_state_business_status import (
-    B2bCompanyStateBusinessStatus,
-)
 from portone_server_sdk._generated.common.bank import Bank
 from portone_server_sdk._generated.common.billing_key_payment_input import (
     BillingKeyPaymentInput,
@@ -29,7 +25,6 @@ from portone_server_sdk._generated.common.customer_separated_name import (
     CustomerSeparatedName,
 )
 from portone_server_sdk._generated.common.date_time_range import DateTimeRange
-from portone_server_sdk._generated.common.day_of_week import DayOfWeek
 from portone_server_sdk._generated.common.easy_pay_provider import EasyPayProvider
 from portone_server_sdk._generated.common.gender import Gender
 from portone_server_sdk._generated.common.one_line_address import OneLineAddress
@@ -40,8 +35,6 @@ from portone_server_sdk._generated.common.payment_client_type import PaymentClie
 from portone_server_sdk._generated.common.payment_method_type import PaymentMethodType
 from portone_server_sdk._generated.common.payment_product import PaymentProduct
 from portone_server_sdk._generated.common.payment_product_type import PaymentProductType
-from portone_server_sdk._generated.common.payment_status import PaymentStatus
-from portone_server_sdk._generated.common.pg_company import PgCompany
 from portone_server_sdk._generated.common.pg_provider import PgProvider
 from portone_server_sdk._generated.common.port_one_version import PortOneVersion
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel
@@ -56,8 +49,6 @@ from portone_server_sdk._generated.common.sort_order import SortOrder
 
 __all__ = [
     "Address",
-    "B2bCompanyContact",
-    "B2bCompanyStateBusinessStatus",
     "Bank",
     "BillingKeyPaymentInput",
     "Card",
@@ -76,7 +67,6 @@ __all__ = [
     "CustomerNameInput",
     "CustomerSeparatedName",
     "DateTimeRange",
-    "DayOfWeek",
     "EasyPayProvider",
     "Gender",
     "OneLineAddress",
@@ -87,8 +77,6 @@ __all__ = [
     "PaymentMethodType",
     "PaymentProduct",
     "PaymentProductType",
-    "PaymentStatus",
-    "PgCompany",
     "PgProvider",
     "PortOneVersion",
     "SelectedChannel",

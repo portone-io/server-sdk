@@ -1,6 +1,6 @@
 package io.portone.sdk.server.platform
 
-import io.portone.sdk.server.common.DayOfWeek
+import io.portone.sdk.server.platform.DayOfWeek
 import io.portone.sdk.server.platform.PlatformSettlementCycleMethod
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

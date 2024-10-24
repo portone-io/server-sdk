@@ -100,6 +100,7 @@ from portone_server_sdk._generated.payment.billing_key.issued_pg_billing_key_iss
 from portone_server_sdk._generated.payment.billing_key.pg_billing_key_issue_response import (
     PgBillingKeyIssueResponse,
 )
+from portone_server_sdk._generated.payment.billing_key.pg_company import PgCompany
 from portone_server_sdk._generated.payment.billing_key import BillingKeyClient
 
 __all__ = [
@@ -137,5 +138,6 @@ __all__ = [
     "IssuedBillingKeyInfo",
     "IssuedPgBillingKeyIssueResponse",
     "PgBillingKeyIssueResponse",
+    "PgCompany",
     "BillingKeyClient",
 ]

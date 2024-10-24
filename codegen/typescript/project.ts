@@ -15,6 +15,7 @@ import { writeOperation } from "./operation.ts"
  */
 export function generateProject(projectRoot: string, pack: Package): string[] {
   const srcPath = path.join(projectRoot, "src/generated")
+  Deno.removeSync(srcPath, { recursive: true })
   fs.ensureDirSync(srcPath)
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)

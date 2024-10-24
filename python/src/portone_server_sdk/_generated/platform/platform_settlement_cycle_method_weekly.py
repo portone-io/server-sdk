@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.day_of_week import DayOfWeek, _deserialize_day_of_week, _serialize_day_of_week
+from portone_server_sdk._generated.platform.day_of_week import DayOfWeek, _deserialize_day_of_week, _serialize_day_of_week
 
 @dataclass
 class PlatformSettlementCycleMethodWeekly:

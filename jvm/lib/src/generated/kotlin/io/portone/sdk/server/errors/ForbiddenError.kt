@@ -5,9 +5,6 @@ import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.ArchivePlatformContractError
 import io.portone.sdk.server.errors.ArchivePlatformDiscountSharePolicyError
 import io.portone.sdk.server.errors.ArchivePlatformPartnerError
-import io.portone.sdk.server.errors.AttachB2bTaxInvoiceFileError
-import io.portone.sdk.server.errors.CancelB2bTaxInvoiceIssuanceError
-import io.portone.sdk.server.errors.CancelB2bTaxInvoiceRequestError
 import io.portone.sdk.server.errors.CancelCashReceiptError
 import io.portone.sdk.server.errors.CancelPaymentError
 import io.portone.sdk.server.errors.CancelPlatformAdditionalFeePolicyScheduleError
@@ -17,7 +14,6 @@ import io.portone.sdk.server.errors.CancelPlatformPartnerScheduleError
 import io.portone.sdk.server.errors.CloseVirtualAccountError
 import io.portone.sdk.server.errors.ConfirmEscrowError
 import io.portone.sdk.server.errors.ConfirmIdentityVerificationError
-import io.portone.sdk.server.errors.CreateB2bFileUploadUrlError
 import io.portone.sdk.server.errors.CreatePaymentScheduleError
 import io.portone.sdk.server.errors.CreatePlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.CreatePlatformContractError
@@ -27,49 +23,17 @@ import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import io.portone.sdk.server.errors.CreatePlatformOrderTransferError
 import io.portone.sdk.server.errors.CreatePlatformPartnerError
 import io.portone.sdk.server.errors.CreatePlatformPartnersError
-import io.portone.sdk.server.errors.DeleteB2bTaxInvoiceAttachmentError
-import io.portone.sdk.server.errors.DeleteB2bTaxInvoiceError
 import io.portone.sdk.server.errors.DeleteBillingKeyError
 import io.portone.sdk.server.errors.DeletePlatformTransferError
-import io.portone.sdk.server.errors.DraftB2bTaxInvoiceError
 import io.portone.sdk.server.errors.GetAllPaymentsError
-import io.portone.sdk.server.errors.GetAnalyticsCancellationRateError
-import io.portone.sdk.server.errors.GetAnalyticsCardChartError
-import io.portone.sdk.server.errors.GetAnalyticsCardCompanyChartError
-import io.portone.sdk.server.errors.GetAnalyticsEasyPayChartError
-import io.portone.sdk.server.errors.GetAnalyticsEasyPayProviderChartError
-import io.portone.sdk.server.errors.GetAnalyticsOverseasPaymentUsageError
-import io.portone.sdk.server.errors.GetAnalyticsPaymentChartError
-import io.portone.sdk.server.errors.GetAnalyticsPaymentChartInsightError
-import io.portone.sdk.server.errors.GetAverageAmountChartError
-import io.portone.sdk.server.errors.GetB2bAccountHolderError
-import io.portone.sdk.server.errors.GetB2bCertificateError
-import io.portone.sdk.server.errors.GetB2bCertificateRegistrationUrlError
-import io.portone.sdk.server.errors.GetB2bCompanyStateError
-import io.portone.sdk.server.errors.GetB2bContactError
-import io.portone.sdk.server.errors.GetB2bMemberCompanyError
-import io.portone.sdk.server.errors.GetB2bTaxInvoiceAttachmentsError
-import io.portone.sdk.server.errors.GetB2bTaxInvoiceError
-import io.portone.sdk.server.errors.GetB2bTaxInvoicePdfDownloadUrlError
-import io.portone.sdk.server.errors.GetB2bTaxInvoicePopupUrlError
-import io.portone.sdk.server.errors.GetB2bTaxInvoicePrintUrlError
-import io.portone.sdk.server.errors.GetB2bTaxInvoicesError
 import io.portone.sdk.server.errors.GetBillingKeyInfoError
 import io.portone.sdk.server.errors.GetBillingKeyInfosError
 import io.portone.sdk.server.errors.GetCashReceiptError
 import io.portone.sdk.server.errors.GetIdentityVerificationError
 import io.portone.sdk.server.errors.GetPaymentError
-import io.portone.sdk.server.errors.GetPaymentMethodChartError
-import io.portone.sdk.server.errors.GetPaymentMethodTrendChartError
 import io.portone.sdk.server.errors.GetPaymentScheduleError
 import io.portone.sdk.server.errors.GetPaymentSchedulesError
-import io.portone.sdk.server.errors.GetPaymentStatusByPaymentClientChartError
-import io.portone.sdk.server.errors.GetPaymentStatusByPaymentMethodChartError
-import io.portone.sdk.server.errors.GetPaymentStatusByPgCompanyChartError
-import io.portone.sdk.server.errors.GetPaymentStatusChartError
 import io.portone.sdk.server.errors.GetPaymentsError
-import io.portone.sdk.server.errors.GetPgCompanyChartError
-import io.portone.sdk.server.errors.GetPgCompanyTrendChartError
 import io.portone.sdk.server.errors.GetPlatformAccountHolderError
 import io.portone.sdk.server.errors.GetPlatformAccountTransfersError
 import io.portone.sdk.server.errors.GetPlatformAdditionalFeePoliciesError
@@ -92,7 +56,6 @@ import io.portone.sdk.server.errors.GetPlatformPayoutsError
 import io.portone.sdk.server.errors.GetPlatformTransferError
 import io.portone.sdk.server.errors.GetPlatformTransferSummariesError
 import io.portone.sdk.server.errors.GetPromotionError
-import io.portone.sdk.server.errors.IssueB2bTaxInvoiceError
 import io.portone.sdk.server.errors.IssueBillingKeyError
 import io.portone.sdk.server.errors.IssueCashReceiptError
 import io.portone.sdk.server.errors.ModifyEscrowLogisticsError
@@ -103,10 +66,7 @@ import io.portone.sdk.server.errors.RecoverPlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.RecoverPlatformContractError
 import io.portone.sdk.server.errors.RecoverPlatformDiscountSharePolicyError
 import io.portone.sdk.server.errors.RecoverPlatformPartnerError
-import io.portone.sdk.server.errors.RefuseB2bTaxInvoiceRequestError
-import io.portone.sdk.server.errors.RegisterB2bMemberCompanyError
 import io.portone.sdk.server.errors.RegisterStoreReceiptError
-import io.portone.sdk.server.errors.RequestB2bTaxInvoiceReverseIssuanceError
 import io.portone.sdk.server.errors.RescheduleAdditionalFeePolicyError
 import io.portone.sdk.server.errors.RescheduleContractError
 import io.portone.sdk.server.errors.RescheduleDiscountSharePolicyError
@@ -120,18 +80,11 @@ import io.portone.sdk.server.errors.ScheduleDiscountSharePolicyError
 import io.portone.sdk.server.errors.SchedulePartnerError
 import io.portone.sdk.server.errors.SchedulePlatformPartnersError
 import io.portone.sdk.server.errors.SendIdentityVerificationError
-import io.portone.sdk.server.errors.SendToNtsB2bTaxInvoiceError
-import io.portone.sdk.server.errors.UpdateB2bContactError
-import io.portone.sdk.server.errors.UpdateB2bMemberCompanyError
-import io.portone.sdk.server.errors.UpdateB2bTaxInvoiceDraftError
 import io.portone.sdk.server.errors.UpdatePlatformAdditionalFeePolicyError
 import io.portone.sdk.server.errors.UpdatePlatformContractError
 import io.portone.sdk.server.errors.UpdatePlatformDiscountSharePolicyError
 import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformPartnerError
-import io.portone.sdk.server.errors.ValidateB2bCertificateError
-import io.portone.sdk.server.errors.getB2bContactIdExistenceError
-import io.portone.sdk.server.errors.requestB2bTaxInvoiceError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -148,9 +101,6 @@ public data class ForbiddenError internal constructor(
   ArchivePlatformContractError,
   ArchivePlatformDiscountSharePolicyError,
   ArchivePlatformPartnerError,
-  AttachB2bTaxInvoiceFileError,
-  CancelB2bTaxInvoiceIssuanceError,
-  CancelB2bTaxInvoiceRequestError,
   CancelCashReceiptError,
   CancelPaymentError,
   CancelPlatformAdditionalFeePolicyScheduleError,
@@ -160,7 +110,6 @@ public data class ForbiddenError internal constructor(
   CloseVirtualAccountError,
   ConfirmEscrowError,
   ConfirmIdentityVerificationError,
-  CreateB2bFileUploadUrlError,
   CreatePaymentScheduleError,
   CreatePlatformAdditionalFeePolicyError,
   CreatePlatformContractError,
@@ -170,49 +119,17 @@ public data class ForbiddenError internal constructor(
   CreatePlatformOrderTransferError,
   CreatePlatformPartnerError,
   CreatePlatformPartnersError,
-  DeleteB2bTaxInvoiceAttachmentError,
-  DeleteB2bTaxInvoiceError,
   DeleteBillingKeyError,
   DeletePlatformTransferError,
-  DraftB2bTaxInvoiceError,
   GetAllPaymentsError,
-  GetAnalyticsCancellationRateError,
-  GetAnalyticsCardChartError,
-  GetAnalyticsCardCompanyChartError,
-  GetAnalyticsEasyPayChartError,
-  GetAnalyticsEasyPayProviderChartError,
-  GetAnalyticsOverseasPaymentUsageError,
-  GetAnalyticsPaymentChartError,
-  GetAnalyticsPaymentChartInsightError,
-  GetAverageAmountChartError,
-  GetB2bAccountHolderError,
-  GetB2bCertificateError,
-  GetB2bCertificateRegistrationUrlError,
-  GetB2bCompanyStateError,
-  GetB2bContactError,
-  GetB2bMemberCompanyError,
-  GetB2bTaxInvoiceAttachmentsError,
-  GetB2bTaxInvoiceError,
-  GetB2bTaxInvoicePdfDownloadUrlError,
-  GetB2bTaxInvoicePopupUrlError,
-  GetB2bTaxInvoicePrintUrlError,
-  GetB2bTaxInvoicesError,
   GetBillingKeyInfoError,
   GetBillingKeyInfosError,
   GetCashReceiptError,
   GetIdentityVerificationError,
   GetPaymentError,
-  GetPaymentMethodChartError,
-  GetPaymentMethodTrendChartError,
   GetPaymentScheduleError,
   GetPaymentSchedulesError,
-  GetPaymentStatusByPaymentClientChartError,
-  GetPaymentStatusByPaymentMethodChartError,
-  GetPaymentStatusByPgCompanyChartError,
-  GetPaymentStatusChartError,
   GetPaymentsError,
-  GetPgCompanyChartError,
-  GetPgCompanyTrendChartError,
   GetPlatformAccountHolderError,
   GetPlatformAccountTransfersError,
   GetPlatformAdditionalFeePoliciesError,
@@ -235,7 +152,6 @@ public data class ForbiddenError internal constructor(
   GetPlatformTransferError,
   GetPlatformTransferSummariesError,
   GetPromotionError,
-  IssueB2bTaxInvoiceError,
   IssueBillingKeyError,
   IssueCashReceiptError,
   ModifyEscrowLogisticsError,
@@ -246,10 +162,7 @@ public data class ForbiddenError internal constructor(
   RecoverPlatformContractError,
   RecoverPlatformDiscountSharePolicyError,
   RecoverPlatformPartnerError,
-  RefuseB2bTaxInvoiceRequestError,
-  RegisterB2bMemberCompanyError,
   RegisterStoreReceiptError,
-  RequestB2bTaxInvoiceReverseIssuanceError,
   RescheduleAdditionalFeePolicyError,
   RescheduleContractError,
   RescheduleDiscountSharePolicyError,
@@ -263,15 +176,8 @@ public data class ForbiddenError internal constructor(
   SchedulePartnerError,
   SchedulePlatformPartnersError,
   SendIdentityVerificationError,
-  SendToNtsB2bTaxInvoiceError,
-  UpdateB2bContactError,
-  UpdateB2bMemberCompanyError,
-  UpdateB2bTaxInvoiceDraftError,
   UpdatePlatformAdditionalFeePolicyError,
   UpdatePlatformContractError,
   UpdatePlatformDiscountSharePolicyError,
   UpdatePlatformError,
-  UpdatePlatformPartnerError,
-  ValidateB2bCertificateError,
-  getB2bContactIdExistenceError,
-  requestB2bTaxInvoiceError
+  UpdatePlatformPartnerError

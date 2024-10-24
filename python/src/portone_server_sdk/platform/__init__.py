@@ -19,6 +19,7 @@ from portone_server_sdk._generated.platform.cancel_platform_partner_schedule_res
     CancelPlatformPartnerScheduleResponse,
 )
 from portone_server_sdk._generated.platform.date_range import DateRange
+from portone_server_sdk._generated.platform.day_of_week import DayOfWeek
 from portone_server_sdk._generated.platform.month_day import MonthDay
 from portone_server_sdk._generated.platform.platform import Platform
 from portone_server_sdk._generated.platform.platform_account import PlatformAccount
@@ -300,6 +301,7 @@ __all__ = [
     "CancelPlatformDiscountSharePolicyScheduleResponse",
     "CancelPlatformPartnerScheduleResponse",
     "DateRange",
+    "DayOfWeek",
     "MonthDay",
     "Platform",
     "PlatformAccount",

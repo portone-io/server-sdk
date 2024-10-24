@@ -1,7 +1,5 @@
 import * as Errors from "./errors"
-import * as Analytics from "./analytics"
 import * as Auth from "./auth"
-import * as B2B from "./b2b"
 import * as Common from "./common"
 import * as IdentityVerification from "./identityVerification"
 import * as Payment from "./payment"
@@ -38,8 +36,6 @@ export function PortOneClient(
 		platform: Platform.PlatformClient(secret, userAgent, baseUrl, storeId),
 		identityVerification: IdentityVerification.IdentityVerificationClient(secret, userAgent, baseUrl, storeId),
 		payment: Payment.PaymentClient(secret, userAgent, baseUrl, storeId),
-		analytics: Analytics.AnalyticsClient(secret, userAgent, baseUrl, storeId),
-		b2b: B2B.B2BClient(secret, userAgent, baseUrl, storeId),
 		pgSpecific: PgSpecific.PgSpecificClient(secret, userAgent, baseUrl, storeId),
 	}
 }
@@ -49,7 +45,5 @@ export type PortOneClient = {
 	platform: Platform.PlatformClient
 	identityVerification: IdentityVerification.IdentityVerificationClient
 	payment: Payment.PaymentClient
-	analytics: Analytics.AnalyticsClient
-	b2b: B2B.B2BClient
 	pgSpecific: PgSpecific.PgSpecificClient
 }

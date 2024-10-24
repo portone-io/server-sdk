@@ -1,13 +1,13 @@
 package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.PaymentClientType
-import io.portone.sdk.server.common.PgCompany
 import io.portone.sdk.server.common.PgProvider
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethodType
 import io.portone.sdk.server.payment.billingkey.BillingKeyStatus
 import io.portone.sdk.server.payment.billingkey.BillingKeyTextSearch
 import io.portone.sdk.server.payment.billingkey.BillingKeyTimeRangeField
+import io.portone.sdk.server.payment.billingkey.PgCompany
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.Array

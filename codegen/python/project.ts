@@ -17,6 +17,7 @@ import { writeOperation } from "./operation.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const srcPath = path.join(projectRoot, "src/portone_server_sdk/_generated")
+  Deno.removeSync(srcPath, { recursive: true })
   const publicPath = path.join(projectRoot, "src/portone_server_sdk")
   fs.ensureDirSync(srcPath)
   const categoryMap = makeCategoryMap(pack)

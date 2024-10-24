@@ -3,7 +3,7 @@ import type { BillingKeyStatus } from "#generated/payment/billingKey/BillingKeyS
 import type { BillingKeyTextSearch } from "#generated/payment/billingKey/BillingKeyTextSearch"
 import type { BillingKeyTimeRangeField } from "#generated/payment/billingKey/BillingKeyTimeRangeField"
 import type { PaymentClientType } from "#generated/common/PaymentClientType"
-import type { PgCompany } from "#generated/common/PgCompany"
+import type { PgCompany } from "#generated/payment/billingKey/PgCompany"
 import type { PgProvider } from "#generated/common/PgProvider"
 import type { PortOneVersion } from "#generated/common/PortOneVersion"
 

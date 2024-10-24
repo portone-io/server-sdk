@@ -8,7 +8,6 @@ import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.DateTimeRange
 import io.portone.sdk.server.common.PaymentClientType
 import io.portone.sdk.server.common.PaymentMethodType
-import io.portone.sdk.server.common.PaymentStatus
 import io.portone.sdk.server.common.PgProvider
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SortOrder
@@ -16,6 +15,7 @@ import io.portone.sdk.server.payment.PaymentCashReceiptStatus
 import io.portone.sdk.server.payment.PaymentFilterInputEscrowStatus
 import io.portone.sdk.server.payment.PaymentMethodGiftCertificateType
 import io.portone.sdk.server.payment.PaymentSortBy
+import io.portone.sdk.server.payment.PaymentStatus
 import io.portone.sdk.server.payment.PaymentTextSearch
 import io.portone.sdk.server.payment.PaymentTimestampType
 import io.portone.sdk.server.payment.PaymentWebhookStatus

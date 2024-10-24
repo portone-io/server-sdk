@@ -63,6 +63,7 @@ export type { CancelPlatformContractScheduleResponse } from "./CancelPlatformCon
 export type { CancelPlatformDiscountSharePolicyScheduleResponse } from "./CancelPlatformDiscountSharePolicyScheduleResponse"
 export type { CancelPlatformPartnerScheduleResponse } from "./CancelPlatformPartnerScheduleResponse"
 export type { DateRange } from "./DateRange"
+export type { DayOfWeek } from "./DayOfWeek"
 export type { MonthDay } from "./MonthDay"
 export type { Platform } from "./Platform"
 export type { PlatformAccount } from "./PlatformAccount"

@@ -10,7 +10,7 @@ import type { PaymentFilterInputEscrowStatus } from "#generated/payment/PaymentF
 import type { PaymentMethodGiftCertificateType } from "#generated/payment/PaymentMethodGiftCertificateType"
 import type { PaymentMethodType } from "#generated/common/PaymentMethodType"
 import type { PaymentSortBy } from "#generated/payment/PaymentSortBy"
-import type { PaymentStatus } from "#generated/common/PaymentStatus"
+import type { PaymentStatus } from "#generated/payment/PaymentStatus"
 import type { PaymentTextSearch } from "#generated/payment/PaymentTextSearch"
 import type { PaymentTimestampType } from "#generated/payment/PaymentTimestampType"
 import type { PaymentWebhookStatus } from "#generated/payment/PaymentWebhookStatus"
