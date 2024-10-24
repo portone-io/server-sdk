@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.6.0
+
+### Minor Changes
+
+- 7955a39: API 업데이트
+
+### Patch Changes
+
+- 8be240c: README 수정
+
 ## 0.5.0
 
 ### Minor Changes
