@@ -29,7 +29,7 @@ language = "en"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_book_theme"
-html_static_path = ["_static"]
+html_static_path = []
 napoleon_preprocess_types = True
 autodoc_mock_imports = ["httpx"]
 autodoc_member_order = "bysource"

@@ -1,9 +1,7 @@
 from portone_server_sdk._generated.client import PortOneClient
 
 from . import (
-    analytics,
     auth,
-    b2b,
     common,
     errors,
     identity_verification,
@@ -14,9 +12,7 @@ from . import (
 )
 
 __all__ = [
-    "analytics",
     "auth",
-    "b2b",
     "common",
     "errors",
     "identity_verification",
