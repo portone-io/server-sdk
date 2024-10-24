@@ -43,8 +43,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.common';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.identity_verification" href="portone_server_sdk.identity_verification.html" />
-    <link rel="prev" title="portone_server_sdk.b2b.tax_invoice" href="portone_server_sdk.b2b.tax_invoice.html" />
+    <link rel="next" title="portone_server_sdk.errors" href="portone_server_sdk.errors.html" />
+    <link rel="prev" title="portone_server_sdk.auth" href="portone_server_sdk.auth.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,17 +150,9 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.analytics.html">portone_server_sdk.analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.member_company.html">portone_server_sdk.b2b.member_company</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.contact.html">portone_server_sdk.b2b.contact</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
@@ -181,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 </ul>
 
     </div>
@@ -329,15 +322,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.login_id"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.login_id</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.name"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.phone_number"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.phone_number</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.email"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.email</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.registered_at"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.registered_at</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.is_admin"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.is_admin</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput.billing_key"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput.billing_key</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput.order_name"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput.order_name</span></code></a></li>
@@ -506,111 +490,63 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.B2bCompanyContact" title="portone_server_sdk.common.B2bCompanyContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bCompanyContact</span></code></a></p></td>
-<td><p>담당자 정보</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.BillingKeyPaymentInput" title="portone_server_sdk.common.BillingKeyPaymentInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.BillingKeyPaymentInput" title="portone_server_sdk.common.BillingKeyPaymentInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code></a></p></td>
 <td><p>빌링키 결제 요청 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.Card" title="portone_server_sdk.common.Card"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Card</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.Card" title="portone_server_sdk.common.Card"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Card</span></code></a></p></td>
 <td><p>카드 상세 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.CardCredential" title="portone_server_sdk.common.CardCredential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CardCredential</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.CardCredential" title="portone_server_sdk.common.CardCredential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CardCredential</span></code></a></p></td>
 <td><p>카드 인증 관련 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.CashReceiptInput" title="portone_server_sdk.common.CashReceiptInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CashReceiptInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.CashReceiptInput" title="portone_server_sdk.common.CashReceiptInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CashReceiptInput</span></code></a></p></td>
 <td><p>현금영수증 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.ChannelGroupSummary" title="portone_server_sdk.common.ChannelGroupSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelGroupSummary</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.ChannelGroupSummary" title="portone_server_sdk.common.ChannelGroupSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelGroupSummary</span></code></a></p></td>
 <td><p>채널 그룹 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.Customer" title="portone_server_sdk.common.Customer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Customer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.Customer" title="portone_server_sdk.common.Customer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Customer</span></code></a></p></td>
 <td><p>고객 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerInput" title="portone_server_sdk.common.CustomerInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerInput" title="portone_server_sdk.common.CustomerInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerInput</span></code></a></p></td>
 <td><p>고객 정보 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerNameInput" title="portone_server_sdk.common.CustomerNameInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerNameInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerNameInput" title="portone_server_sdk.common.CustomerNameInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerNameInput</span></code></a></p></td>
 <td><p>고객 이름 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerSeparatedName" title="portone_server_sdk.common.CustomerSeparatedName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerSeparatedName</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.CustomerSeparatedName" title="portone_server_sdk.common.CustomerSeparatedName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomerSeparatedName</span></code></a></p></td>
 <td><p>고객 분리형 이름</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk.common.DateTimeRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateTimeRange</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk.common.DateTimeRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateTimeRange</span></code></a></p></td>
 <td><p>시간 범위</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.OneLineAddress" title="portone_server_sdk.common.OneLineAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneLineAddress</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.OneLineAddress" title="portone_server_sdk.common.OneLineAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneLineAddress</span></code></a></p></td>
 <td><p>한 줄 형식 주소</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.PageInfo" title="portone_server_sdk.common.PageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageInfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.PageInfo" title="portone_server_sdk.common.PageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageInfo</span></code></a></p></td>
 <td><p>반환된 페이지 결과 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.PageInput" title="portone_server_sdk.common.PageInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.PageInput" title="portone_server_sdk.common.PageInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageInput</span></code></a></p></td>
 <td><p>다건 조회 API 에 사용되는 페이지 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.PaymentAmountInput" title="portone_server_sdk.common.PaymentAmountInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentAmountInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.PaymentAmountInput" title="portone_server_sdk.common.PaymentAmountInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentAmountInput</span></code></a></p></td>
 <td><p>금액 세부 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.PaymentProduct" title="portone_server_sdk.common.PaymentProduct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentProduct</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.PaymentProduct" title="portone_server_sdk.common.PaymentProduct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentProduct</span></code></a></p></td>
 <td><p>상품 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.SelectedChannel" title="portone_server_sdk.common.SelectedChannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SelectedChannel</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.SelectedChannel" title="portone_server_sdk.common.SelectedChannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SelectedChannel</span></code></a></p></td>
 <td><p>(결제, 본인인증 등에) 선택된 채널 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.SeparatedAddress" title="portone_server_sdk.common.SeparatedAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SeparatedAddress</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.SeparatedAddress" title="portone_server_sdk.common.SeparatedAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SeparatedAddress</span></code></a></p></td>
 <td><p>분리 형식 주소</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.common.SeparatedAddressInput" title="portone_server_sdk.common.SeparatedAddressInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SeparatedAddressInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.common.SeparatedAddressInput" title="portone_server_sdk.common.SeparatedAddressInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SeparatedAddressInput</span></code></a></p></td>
 <td><p>분리 형식 주소 입력 정보</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.common.</span></span><span class="sig-name descname"><span class="pre">B2bCompanyContact</span></span><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact" title="Link to this definition">#</a></dt>
-<dd><p>담당자 정보</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.login_id">
-<span class="sig-name descname"><span class="pre">login_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.login_id" title="Link to this definition">#</a></dt>
-<dd><p>담당자 계정 ID</p>
-<p>팝빌 로그인 계정으로 사용됩니다.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.name" title="Link to this definition">#</a></dt>
-<dd><p>담당자 성명</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.phone_number">
-<span class="sig-name descname"><span class="pre">phone_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.phone_number" title="Link to this definition">#</a></dt>
-<dd><p>담당자 핸드폰 번호</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.email">
-<span class="sig-name descname"><span class="pre">email</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.email" title="Link to this definition">#</a></dt>
-<dd><p>담당자 이메일</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.registered_at">
-<span class="sig-name descname"><span class="pre">registered_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.registered_at" title="Link to this definition">#</a></dt>
-<dd><p>등록 일시
-(RFC 3339 date-time)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.common.B2bCompanyContact.is_admin">
-<span class="sig-name descname"><span class="pre">is_admin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#portone_server_sdk.common.B2bCompanyContact.is_admin" title="Link to this definition">#</a></dt>
-<dd><p>관리자 여부</p>
-<p>true일 경우 관리자 권한, false일 경우 일반 권한 담당자입니다.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="portone_server_sdk.common.BillingKeyPaymentInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.common.</span></span><span class="sig-name descname"><span class="pre">BillingKeyPaymentInput</span></span><a class="headerlink" href="#portone_server_sdk.common.BillingKeyPaymentInput" title="Link to this definition">#</a></dt>
@@ -1348,20 +1284,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.b2b.tax_invoice.html"
+       href="portone_server_sdk.auth.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.b2b.tax_invoice</p>
+        <p class="prev-next-title">portone_server_sdk.auth</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.identity_verification.html"
+       href="portone_server_sdk.errors.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.identity_verification</p>
+        <p class="prev-next-title">portone_server_sdk.errors</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1381,15 +1317,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.login_id"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.login_id</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.name"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.phone_number"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.phone_number</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.email"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.email</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.registered_at"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.registered_at</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.B2bCompanyContact.is_admin"><code class="docutils literal notranslate"><span class="pre">B2bCompanyContact.is_admin</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput.billing_key"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput.billing_key</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.BillingKeyPaymentInput.order_name"><code class="docutils literal notranslate"><span class="pre">BillingKeyPaymentInput.order_name</span></code></a></li>

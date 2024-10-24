@@ -10,39 +10,6 @@
    
       AlreadyPaidError
       AlreadyPaidOrWaitingError
-      B2BCannotChangeTaxTypeError
-      B2BTaxInvoiceStatusNotSendingCompletedError
-      B2bBankAccountNotFoundError
-      B2bCertificateUnregisteredError
-      B2bCompanyAlreadyRegisteredError
-      B2bCompanyNotFoundError
-      B2bContactNotFoundError
-      B2bExternalServiceError
-      B2bFileNotFoundError
-      B2bFinancialSystemCommunicationError
-      B2bFinancialSystemFailureError
-      B2bFinancialSystemUnderMaintenanceError
-      B2bForeignExchangeAccountError
-      B2bHometaxUnderMaintenanceError
-      B2bIdAlreadyExistsError
-      B2bMemberCompanyNotFoundError
-      B2bModificationNotProvidedError
-      B2bNotEnabledError
-      B2bOriginalTaxInvoiceNotFoundError
-      B2bRecipientNotFoundError
-      B2bRegularMaintenanceTimeError
-      B2bSupplierNotFoundError
-      B2bSuspendedAccountError
-      B2bTaxInvoiceAttachmentNotFoundError
-      B2bTaxInvoiceNoRecipientDocumentKeyError
-      B2bTaxInvoiceNoSupplierDocumentKeyError
-      B2bTaxInvoiceNonDeletableStatusError
-      B2bTaxInvoiceNotDraftedStatusError
-      B2bTaxInvoiceNotFoundError
-      B2bTaxInvoiceNotIssuedStatusError
-      B2bTaxInvoiceNotRequestedStatusError
-      B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError
-      B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError
       BillingKeyAlreadyDeletedError
       BillingKeyNotFoundError
       BillingKeyNotIssuedError
