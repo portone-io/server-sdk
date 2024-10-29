@@ -92,7 +92,7 @@ export function writeOperation(
   writer.indent()
   writePropertyList(writer, params, crossRef, categoryMap)
   writer.outdent()
-  futureWriter.writeLine(`public suspend fun ${operation.id}Future(`)
+  futureWriter.writeLine(`public fun ${operation.id}Future(`)
   futureWriter.indent()
   writePropertyList(futureWriter, params, crossRef, categoryMap)
   futureWriter.outdent()

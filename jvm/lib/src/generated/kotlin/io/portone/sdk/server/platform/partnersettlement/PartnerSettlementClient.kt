@@ -107,7 +107,7 @@ public class PartnerSettlementClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPartnerSettlements")
-  public suspend fun getPlatformPartnerSettlementsFuture(
+  public fun getPlatformPartnerSettlementsFuture(
     page: PageInput? = null,
     filter: PlatformPartnerSettlementFilterInput,
     isForTest: Boolean,

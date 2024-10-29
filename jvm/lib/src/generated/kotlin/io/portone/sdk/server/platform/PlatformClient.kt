@@ -202,7 +202,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatform")
-  public suspend fun getPlatformFuture(
+  public fun getPlatformFuture(
   ): CompletableFuture<Platform> = GlobalScope.future { getPlatform() }
 
 
@@ -274,7 +274,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("updatePlatform")
-  public suspend fun updatePlatformFuture(
+  public fun updatePlatformFuture(
     roundType: PlatformRoundType? = null,
     settlementFormula: UpdatePlatformBodySettlementFormula? = null,
     settlementRule: UpdatePlatformBodySettlementRule? = null,
@@ -336,7 +336,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformDiscountSharePolicyFilterOptions")
-  public suspend fun getPlatformDiscountSharePolicyFilterOptionsFuture(
+  public fun getPlatformDiscountSharePolicyFilterOptionsFuture(
     isArchived: Boolean? = null,
   ): CompletableFuture<PlatformDiscountSharePolicyFilterOptions> = GlobalScope.future { getPlatformDiscountSharePolicyFilterOptions(isArchived) }
 
@@ -395,7 +395,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformDiscountSharePolicySchedule")
-  public suspend fun getPlatformDiscountSharePolicyScheduleFuture(
+  public fun getPlatformDiscountSharePolicyScheduleFuture(
     id: String,
   ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicySchedule(id) }
 
@@ -466,7 +466,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("rescheduleDiscountSharePolicy")
-  public suspend fun rescheduleDiscountSharePolicyFuture(
+  public fun rescheduleDiscountSharePolicyFuture(
     id: String,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
@@ -543,7 +543,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("scheduleDiscountSharePolicy")
-  public suspend fun scheduleDiscountSharePolicyFuture(
+  public fun scheduleDiscountSharePolicyFuture(
     id: String,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
@@ -604,7 +604,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelPlatformDiscountSharePolicySchedule")
-  public suspend fun cancelPlatformDiscountSharePolicyScheduleFuture(
+  public fun cancelPlatformDiscountSharePolicyScheduleFuture(
     id: String,
   ): CompletableFuture<CancelPlatformDiscountSharePolicyScheduleResponse> = GlobalScope.future { cancelPlatformDiscountSharePolicySchedule(id) }
 
@@ -663,7 +663,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformAdditionalFeePolicySchedule")
-  public suspend fun getPlatformAdditionalFeePolicyScheduleFuture(
+  public fun getPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
   ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicySchedule(id) }
 
@@ -732,7 +732,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("rescheduleAdditionalFeePolicy")
-  public suspend fun rescheduleAdditionalFeePolicyFuture(
+  public fun rescheduleAdditionalFeePolicyFuture(
     id: String,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
@@ -809,7 +809,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("scheduleAdditionalFeePolicy")
-  public suspend fun scheduleAdditionalFeePolicyFuture(
+  public fun scheduleAdditionalFeePolicyFuture(
     id: String,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
@@ -870,7 +870,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelPlatformAdditionalFeePolicySchedule")
-  public suspend fun cancelPlatformAdditionalFeePolicyScheduleFuture(
+  public fun cancelPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
   ): CompletableFuture<CancelPlatformAdditionalFeePolicyScheduleResponse> = GlobalScope.future { cancelPlatformAdditionalFeePolicySchedule(id) }
 
@@ -930,7 +930,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPartnerFilterOptions")
-  public suspend fun getPlatformPartnerFilterOptionsFuture(
+  public fun getPlatformPartnerFilterOptionsFuture(
     isArchived: Boolean? = null,
   ): CompletableFuture<PlatformPartnerFilterOptions> = GlobalScope.future { getPlatformPartnerFilterOptions(isArchived) }
 
@@ -989,7 +989,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPartnerSchedule")
-  public suspend fun getPlatformPartnerScheduleFuture(
+  public fun getPlatformPartnerScheduleFuture(
     id: String,
   ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartnerSchedule(id) }
 
@@ -1062,7 +1062,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("reschedulePartner")
-  public suspend fun reschedulePartnerFuture(
+  public fun reschedulePartnerFuture(
     id: String,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
@@ -1151,7 +1151,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("schedulePartner")
-  public suspend fun schedulePartnerFuture(
+  public fun schedulePartnerFuture(
     id: String,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
@@ -1212,7 +1212,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelPlatformPartnerSchedule")
-  public suspend fun cancelPlatformPartnerScheduleFuture(
+  public fun cancelPlatformPartnerScheduleFuture(
     id: String,
   ): CompletableFuture<CancelPlatformPartnerScheduleResponse> = GlobalScope.future { cancelPlatformPartnerSchedule(id) }
 
@@ -1288,7 +1288,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("schedulePlatformPartners")
-  public suspend fun schedulePlatformPartnersFuture(
+  public fun schedulePlatformPartnersFuture(
     filter: PlatformPartnerFilterInput? = null,
     update: SchedulePlatformPartnersBodyUpdate,
     appliedAt: Instant,
@@ -1349,7 +1349,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformContractSchedule")
-  public suspend fun getPlatformContractScheduleFuture(
+  public fun getPlatformContractScheduleFuture(
     id: String,
   ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContractSchedule(id) }
 
@@ -1420,7 +1420,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("rescheduleContract")
-  public suspend fun rescheduleContractFuture(
+  public fun rescheduleContractFuture(
     id: String,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
@@ -1497,7 +1497,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("scheduleContract")
-  public suspend fun scheduleContractFuture(
+  public fun scheduleContractFuture(
     id: String,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
@@ -1558,7 +1558,7 @@ public class PlatformClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelPlatformContractSchedule")
-  public suspend fun cancelPlatformContractScheduleFuture(
+  public fun cancelPlatformContractScheduleFuture(
     id: String,
   ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id) }
 

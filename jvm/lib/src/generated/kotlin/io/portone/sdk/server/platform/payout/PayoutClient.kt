@@ -107,7 +107,7 @@ public class PayoutClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPayouts")
-  public suspend fun getPlatformPayoutsFuture(
+  public fun getPlatformPayoutsFuture(
     isForTest: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformPayoutFilterInput? = null,

@@ -116,7 +116,7 @@ public class CashReceiptClient internal constructor(
 
   /** @suppress */
   @JvmName("getCashReceiptByPaymentId")
-  public suspend fun getCashReceiptByPaymentIdFuture(
+  public fun getCashReceiptByPaymentIdFuture(
     paymentId: String,
   ): CompletableFuture<CashReceipt> = GlobalScope.future { getCashReceiptByPaymentId(paymentId) }
 
@@ -219,7 +219,7 @@ public class CashReceiptClient internal constructor(
 
   /** @suppress */
   @JvmName("issueCashReceipt")
-  public suspend fun issueCashReceiptFuture(
+  public fun issueCashReceiptFuture(
     paymentId: String,
     channelKey: String,
     type: CashReceiptType,
@@ -291,7 +291,7 @@ public class CashReceiptClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelCashReceiptByPaymentId")
-  public suspend fun cancelCashReceiptByPaymentIdFuture(
+  public fun cancelCashReceiptByPaymentIdFuture(
     paymentId: String,
   ): CompletableFuture<CancelCashReceiptResponse> = GlobalScope.future { cancelCashReceiptByPaymentId(paymentId) }
 

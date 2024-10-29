@@ -107,7 +107,7 @@ public class BulkPayoutClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformBulkPayouts")
-  public suspend fun getPlatformBulkPayoutsFuture(
+  public fun getPlatformBulkPayoutsFuture(
     isForTest: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformBulkPayoutFilterInput? = null,

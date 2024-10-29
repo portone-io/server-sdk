@@ -107,7 +107,7 @@ public class AccountTransferClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformAccountTransfers")
-  public suspend fun getPlatformAccountTransfersFuture(
+  public fun getPlatformAccountTransfersFuture(
     isForTest: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformAccountTransferFilter? = null,

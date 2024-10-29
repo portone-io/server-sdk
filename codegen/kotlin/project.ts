@@ -21,7 +21,9 @@ export function generateProject(projectRoot: string, pack: Package) {
     projectRoot,
     "lib/src/generated/kotlin/io/portone/sdk/server",
   )
-  Deno.removeSync(packagePath, { recursive: true })
+  if (fs.existsSync(packagePath)) {
+    Deno.removeSync(packagePath, { recursive: true })
+  }
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
   const overridesMap = makeOverridesMap(pack, entityMap)

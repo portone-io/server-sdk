@@ -192,7 +192,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformTransfer")
-  public suspend fun getPlatformTransferFuture(
+  public fun getPlatformTransferFuture(
     id: String,
   ): CompletableFuture<PlatformTransfer> = GlobalScope.future { getPlatformTransfer(id) }
 
@@ -257,7 +257,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("deletePlatformTransfer")
-  public suspend fun deletePlatformTransferFuture(
+  public fun deletePlatformTransferFuture(
     id: String,
   ): CompletableFuture<DeletePlatformTransferResponse> = GlobalScope.future { deletePlatformTransfer(id) }
 
@@ -324,7 +324,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformTransferSummaries")
-  public suspend fun getPlatformTransferSummariesFuture(
+  public fun getPlatformTransferSummariesFuture(
     page: PageInput? = null,
     filter: PlatformTransferFilterInput? = null,
   ): CompletableFuture<GetPlatformTransferSummariesResponse> = GlobalScope.future { getPlatformTransferSummaries(page, filter) }
@@ -479,7 +479,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformOrderTransfer")
-  public suspend fun createPlatformOrderTransferFuture(
+  public fun createPlatformOrderTransferFuture(
     partnerId: String,
     contractId: String? = null,
     memo: String? = null,
@@ -645,7 +645,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformOrderCancelTransfer")
-  public suspend fun createPlatformOrderCancelTransferFuture(
+  public fun createPlatformOrderCancelTransferFuture(
     partnerId: String? = null,
     paymentId: String? = null,
     transferId: String? = null,
@@ -748,7 +748,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformManualTransfer")
-  public suspend fun createPlatformManualTransferFuture(
+  public fun createPlatformManualTransferFuture(
     partnerId: String,
     memo: String? = null,
     settlementAmount: Long,
@@ -818,7 +818,7 @@ public class TransferClient internal constructor(
 
   /** @suppress */
   @JvmName("downloadPlatformTransferSheet")
-  public suspend fun downloadPlatformTransferSheetFuture(
+  public fun downloadPlatformTransferSheetFuture(
     filter: PlatformTransferFilterInput? = null,
     fields: List<PlatformTransferSheetField>? = null,
     transferUserDefinedPropertyKeys: List<String>? = null,

@@ -120,7 +120,7 @@ public class AccountClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformAccountHolder")
-  public suspend fun getPlatformAccountHolderFuture(
+  public fun getPlatformAccountHolderFuture(
     bank: Bank,
     accountNumber: String,
     birthdate: String? = null,
