@@ -96,7 +96,7 @@ public class AuthClient internal constructor(
 
   /** @suppress */
   @JvmName("loginViaApiSecret")
-  public suspend fun loginViaApiSecretFuture(
+  public fun loginViaApiSecretFuture(
     apiSecret: String,
   ): CompletableFuture<LoginViaApiSecretResponse> = GlobalScope.future { loginViaApiSecret(apiSecret) }
 
@@ -156,7 +156,7 @@ public class AuthClient internal constructor(
 
   /** @suppress */
   @JvmName("refreshToken")
-  public suspend fun refreshTokenFuture(
+  public fun refreshTokenFuture(
     refreshToken: String,
   ): CompletableFuture<RefreshTokenResponse> = GlobalScope.future { refreshToken(refreshToken) }
 

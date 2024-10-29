@@ -159,7 +159,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPartners")
-  public suspend fun getPlatformPartnersFuture(
+  public fun getPlatformPartnersFuture(
     page: PageInput? = null,
     filter: PlatformPartnerFilterInput? = null,
   ): CompletableFuture<GetPlatformPartnersResponse> = GlobalScope.future { getPlatformPartners(page, filter) }
@@ -282,7 +282,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformPartner")
-  public suspend fun createPlatformPartnerFuture(
+  public fun createPlatformPartnerFuture(
     id: String? = null,
     name: String,
     contact: CreatePlatformPartnerBodyContact,
@@ -351,7 +351,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformPartner")
-  public suspend fun getPlatformPartnerFuture(
+  public fun getPlatformPartnerFuture(
     id: String,
   ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartner(id) }
 
@@ -462,7 +462,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("updatePlatformPartner")
-  public suspend fun updatePlatformPartnerFuture(
+  public fun updatePlatformPartnerFuture(
     id: String,
     name: String? = null,
     contact: UpdatePlatformPartnerBodyContact? = null,
@@ -544,7 +544,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformPartners")
-  public suspend fun createPlatformPartnersFuture(
+  public fun createPlatformPartnersFuture(
     partners: List<CreatePlatformPartnerBody>,
   ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(partners) }
 
@@ -607,7 +607,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("archivePlatformPartner")
-  public suspend fun archivePlatformPartnerFuture(
+  public fun archivePlatformPartnerFuture(
     id: String,
   ): CompletableFuture<ArchivePlatformPartnerResponse> = GlobalScope.future { archivePlatformPartner(id) }
 
@@ -668,7 +668,7 @@ public class PartnerClient internal constructor(
 
   /** @suppress */
   @JvmName("recoverPlatformPartner")
-  public suspend fun recoverPlatformPartnerFuture(
+  public fun recoverPlatformPartnerFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
 

@@ -179,7 +179,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformDiscountSharePolicies")
-  public suspend fun getPlatformDiscountSharePoliciesFuture(
+  public fun getPlatformDiscountSharePoliciesFuture(
     page: PageInput? = null,
     filter: PlatformDiscountSharePolicyFilterInput? = null,
   ): CompletableFuture<GetPlatformDiscountSharePoliciesResponse> = GlobalScope.future { getPlatformDiscountSharePolicies(page, filter) }
@@ -260,7 +260,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformDiscountSharePolicy")
-  public suspend fun createPlatformDiscountSharePolicyFuture(
+  public fun createPlatformDiscountSharePolicyFuture(
     id: String? = null,
     name: String,
     partnerShareRate: Int,
@@ -324,7 +324,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformDiscountSharePolicy")
-  public suspend fun getPlatformDiscountSharePolicyFuture(
+  public fun getPlatformDiscountSharePolicyFuture(
     id: String,
   ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicy(id) }
 
@@ -405,7 +405,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("updatePlatformDiscountSharePolicy")
-  public suspend fun updatePlatformDiscountSharePolicyFuture(
+  public fun updatePlatformDiscountSharePolicyFuture(
     id: String,
     name: String? = null,
     partnerShareRate: Int? = null,
@@ -471,7 +471,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("archivePlatformDiscountSharePolicy")
-  public suspend fun archivePlatformDiscountSharePolicyFuture(
+  public fun archivePlatformDiscountSharePolicyFuture(
     id: String,
   ): CompletableFuture<ArchivePlatformDiscountSharePolicyResponse> = GlobalScope.future { archivePlatformDiscountSharePolicy(id) }
 
@@ -532,7 +532,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("recoverPlatformDiscountSharePolicy")
-  public suspend fun recoverPlatformDiscountSharePolicyFuture(
+  public fun recoverPlatformDiscountSharePolicyFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformDiscountSharePolicyResponse> = GlobalScope.future { recoverPlatformDiscountSharePolicy(id) }
 
@@ -599,7 +599,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformAdditionalFeePolicies")
-  public suspend fun getPlatformAdditionalFeePoliciesFuture(
+  public fun getPlatformAdditionalFeePoliciesFuture(
     page: PageInput? = null,
     filter: PlatformAdditionalFeePolicyFilterInput? = null,
   ): CompletableFuture<GetPlatformAdditionalFeePoliciesResponse> = GlobalScope.future { getPlatformAdditionalFeePolicies(page, filter) }
@@ -684,7 +684,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformAdditionalFeePolicy")
-  public suspend fun createPlatformAdditionalFeePolicyFuture(
+  public fun createPlatformAdditionalFeePolicyFuture(
     id: String? = null,
     name: String,
     fee: PlatformFeeInput,
@@ -749,7 +749,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformAdditionalFeePolicy")
-  public suspend fun getPlatformAdditionalFeePolicyFuture(
+  public fun getPlatformAdditionalFeePolicyFuture(
     id: String,
   ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicy(id) }
 
@@ -832,7 +832,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("updatePlatformAdditionalFeePolicy")
-  public suspend fun updatePlatformAdditionalFeePolicyFuture(
+  public fun updatePlatformAdditionalFeePolicyFuture(
     id: String,
     fee: PlatformFeeInput? = null,
     name: String? = null,
@@ -899,7 +899,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("archivePlatformAdditionalFeePolicy")
-  public suspend fun archivePlatformAdditionalFeePolicyFuture(
+  public fun archivePlatformAdditionalFeePolicyFuture(
     id: String,
   ): CompletableFuture<ArchivePlatformAdditionalFeePolicyResponse> = GlobalScope.future { archivePlatformAdditionalFeePolicy(id) }
 
@@ -960,7 +960,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("recoverPlatformAdditionalFeePolicy")
-  public suspend fun recoverPlatformAdditionalFeePolicyFuture(
+  public fun recoverPlatformAdditionalFeePolicyFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformAdditionalFeePolicyResponse> = GlobalScope.future { recoverPlatformAdditionalFeePolicy(id) }
 
@@ -1027,7 +1027,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformContracts")
-  public suspend fun getPlatformContractsFuture(
+  public fun getPlatformContractsFuture(
     page: PageInput? = null,
     filter: PlatformContractFilterInput? = null,
   ): CompletableFuture<GetPlatformContractsResponse> = GlobalScope.future { getPlatformContracts(page, filter) }
@@ -1120,7 +1120,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("createPlatformContract")
-  public suspend fun createPlatformContractFuture(
+  public fun createPlatformContractFuture(
     id: String? = null,
     name: String,
     memo: String? = null,
@@ -1187,7 +1187,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("getPlatformContract")
-  public suspend fun getPlatformContractFuture(
+  public fun getPlatformContractFuture(
     id: String,
   ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContract(id) }
 
@@ -1278,7 +1278,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("updatePlatformContract")
-  public suspend fun updatePlatformContractFuture(
+  public fun updatePlatformContractFuture(
     id: String,
     name: String? = null,
     memo: String? = null,
@@ -1347,7 +1347,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("archivePlatformContract")
-  public suspend fun archivePlatformContractFuture(
+  public fun archivePlatformContractFuture(
     id: String,
   ): CompletableFuture<ArchivePlatformContractResponse> = GlobalScope.future { archivePlatformContract(id) }
 
@@ -1408,7 +1408,7 @@ public class PolicyClient internal constructor(
 
   /** @suppress */
   @JvmName("recoverPlatformContract")
-  public suspend fun recoverPlatformContractFuture(
+  public fun recoverPlatformContractFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformContractResponse> = GlobalScope.future { recoverPlatformContract(id) }
 

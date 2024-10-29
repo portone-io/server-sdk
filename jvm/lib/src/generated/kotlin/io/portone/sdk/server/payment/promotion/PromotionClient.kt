@@ -92,7 +92,7 @@ public class PromotionClient internal constructor(
 
   /** @suppress */
   @JvmName("getPromotion")
-  public suspend fun getPromotionFuture(
+  public fun getPromotionFuture(
     promotionId: String,
   ): CompletableFuture<Promotion> = GlobalScope.future { getPromotion(promotionId) }
 

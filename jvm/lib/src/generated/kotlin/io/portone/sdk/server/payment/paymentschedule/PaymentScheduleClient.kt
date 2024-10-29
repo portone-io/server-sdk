@@ -127,7 +127,7 @@ public class PaymentScheduleClient internal constructor(
 
   /** @suppress */
   @JvmName("getPaymentSchedule")
-  public suspend fun getPaymentScheduleFuture(
+  public fun getPaymentScheduleFuture(
     paymentScheduleId: String,
   ): CompletableFuture<PaymentSchedule> = GlobalScope.future { getPaymentSchedule(paymentScheduleId) }
 
@@ -201,7 +201,7 @@ public class PaymentScheduleClient internal constructor(
 
   /** @suppress */
   @JvmName("getPaymentSchedules")
-  public suspend fun getPaymentSchedulesFuture(
+  public fun getPaymentSchedulesFuture(
     page: PageInput? = null,
     sort: PaymentScheduleSortInput? = null,
     filter: PaymentScheduleFilterInput? = null,
@@ -284,7 +284,7 @@ public class PaymentScheduleClient internal constructor(
 
   /** @suppress */
   @JvmName("revokePaymentSchedules")
-  public suspend fun revokePaymentSchedulesFuture(
+  public fun revokePaymentSchedulesFuture(
     billingKey: String? = null,
     scheduleIds: List<String>? = null,
   ): CompletableFuture<RevokePaymentSchedulesResponse> = GlobalScope.future { revokePaymentSchedules(billingKey, scheduleIds) }
@@ -364,7 +364,7 @@ public class PaymentScheduleClient internal constructor(
 
   /** @suppress */
   @JvmName("createPaymentSchedule")
-  public suspend fun createPaymentScheduleFuture(
+  public fun createPaymentScheduleFuture(
     paymentId: String,
     payment: BillingKeyPaymentInput,
     timeToPay: Instant,

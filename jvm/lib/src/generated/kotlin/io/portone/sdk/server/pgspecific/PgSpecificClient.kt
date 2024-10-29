@@ -90,7 +90,7 @@ public class PgSpecificClient internal constructor(
 
   /** @suppress */
   @JvmName("getKakaopayPaymentOrder")
-  public suspend fun getKakaopayPaymentOrderFuture(
+  public fun getKakaopayPaymentOrderFuture(
     pgTxId: String,
     channelKey: String,
   ): CompletableFuture<GetKakaopayPaymentOrderResponse> = GlobalScope.future { getKakaopayPaymentOrder(pgTxId, channelKey) }

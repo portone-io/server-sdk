@@ -121,7 +121,7 @@ public class IdentityVerificationClient internal constructor(
 
   /** @suppress */
   @JvmName("getIdentityVerification")
-  public suspend fun getIdentityVerificationFuture(
+  public fun getIdentityVerificationFuture(
     identityVerificationId: String,
   ): CompletableFuture<IdentityVerification> = GlobalScope.future { getIdentityVerification(identityVerificationId) }
 
@@ -219,7 +219,7 @@ public class IdentityVerificationClient internal constructor(
 
   /** @suppress */
   @JvmName("sendIdentityVerification")
-  public suspend fun sendIdentityVerificationFuture(
+  public fun sendIdentityVerificationFuture(
     identityVerificationId: String,
     channelKey: String,
     customer: SendIdentityVerificationBodyCustomer,
@@ -301,7 +301,7 @@ public class IdentityVerificationClient internal constructor(
 
   /** @suppress */
   @JvmName("confirmIdentityVerification")
-  public suspend fun confirmIdentityVerificationFuture(
+  public fun confirmIdentityVerificationFuture(
     identityVerificationId: String,
     otp: String? = null,
   ): CompletableFuture<ConfirmIdentityVerificationResponse> = GlobalScope.future { confirmIdentityVerification(identityVerificationId, otp) }
@@ -368,7 +368,7 @@ public class IdentityVerificationClient internal constructor(
 
   /** @suppress */
   @JvmName("resendIdentityVerification")
-  public suspend fun resendIdentityVerificationFuture(
+  public fun resendIdentityVerificationFuture(
     identityVerificationId: String,
   ): CompletableFuture<ResendIdentityVerificationResponse> = GlobalScope.future { resendIdentityVerification(identityVerificationId) }
 

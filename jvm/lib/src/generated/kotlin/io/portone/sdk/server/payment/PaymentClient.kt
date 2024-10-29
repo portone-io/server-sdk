@@ -215,7 +215,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("preRegisterPayment")
-  public suspend fun preRegisterPaymentFuture(
+  public fun preRegisterPaymentFuture(
     paymentId: String,
     totalAmount: Long? = null,
     taxFreeAmount: Long? = null,
@@ -278,7 +278,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("getPayment")
-  public suspend fun getPaymentFuture(
+  public fun getPaymentFuture(
     paymentId: String,
   ): CompletableFuture<Payment> = GlobalScope.future { getPayment(paymentId) }
 
@@ -347,7 +347,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("getPayments")
-  public suspend fun getPaymentsFuture(
+  public fun getPaymentsFuture(
     page: PageInput? = null,
     filter: PaymentFilterInput? = null,
   ): CompletableFuture<GetPaymentsResponse> = GlobalScope.future { getPayments(page, filter) }
@@ -430,7 +430,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("getAllPaymentsByCursor")
-  public suspend fun getAllPaymentsByCursorFuture(
+  public fun getAllPaymentsByCursorFuture(
     `from`: Instant? = null,
     until: Instant? = null,
     cursor: String? = null,
@@ -555,7 +555,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("cancelPayment")
-  public suspend fun cancelPaymentFuture(
+  public fun cancelPaymentFuture(
     paymentId: String,
     amount: Long? = null,
     taxFreeAmount: Long? = null,
@@ -728,7 +728,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("payWithBillingKey")
-  public suspend fun payWithBillingKeyFuture(
+  public fun payWithBillingKeyFuture(
     paymentId: String,
     billingKey: String,
     channelKey: String? = null,
@@ -907,7 +907,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("payInstantly")
-  public suspend fun payInstantlyFuture(
+  public fun payInstantlyFuture(
     paymentId: String,
     channelKey: String? = null,
     channelGroupId: String? = null,
@@ -988,7 +988,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("closeVirtualAccount")
-  public suspend fun closeVirtualAccountFuture(
+  public fun closeVirtualAccountFuture(
     paymentId: String,
   ): CompletableFuture<CloseVirtualAccountResponse> = GlobalScope.future { closeVirtualAccount(paymentId) }
 
@@ -1078,7 +1078,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("applyEscrowLogistics")
-  public suspend fun applyEscrowLogisticsFuture(
+  public fun applyEscrowLogisticsFuture(
     paymentId: String,
     sender: PaymentEscrowSenderInput? = null,
     receiver: PaymentEscrowReceiverInput? = null,
@@ -1173,7 +1173,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("modifyEscrowLogistics")
-  public suspend fun modifyEscrowLogisticsFuture(
+  public fun modifyEscrowLogisticsFuture(
     paymentId: String,
     sender: PaymentEscrowSenderInput? = null,
     receiver: PaymentEscrowReceiverInput? = null,
@@ -1253,7 +1253,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("confirmEscrow")
-  public suspend fun confirmEscrowFuture(
+  public fun confirmEscrowFuture(
     paymentId: String,
     fromStore: Boolean? = null,
   ): CompletableFuture<ConfirmEscrowResponse> = GlobalScope.future { confirmEscrow(paymentId, fromStore) }
@@ -1328,7 +1328,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("resendWebhook")
-  public suspend fun resendWebhookFuture(
+  public fun resendWebhookFuture(
     paymentId: String,
     webhookId: String? = null,
   ): CompletableFuture<ResendWebhookResponse> = GlobalScope.future { resendWebhook(paymentId, webhookId) }
@@ -1403,7 +1403,7 @@ public class PaymentClient internal constructor(
 
   /** @suppress */
   @JvmName("registerStoreReceipt")
-  public suspend fun registerStoreReceiptFuture(
+  public fun registerStoreReceiptFuture(
     paymentId: String,
     items: List<RegisterStoreReceiptBodyItem>,
   ): CompletableFuture<RegisterStoreReceiptResponse> = GlobalScope.future { registerStoreReceipt(paymentId, items) }

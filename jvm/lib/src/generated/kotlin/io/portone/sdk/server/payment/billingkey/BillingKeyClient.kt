@@ -125,7 +125,7 @@ public class BillingKeyClient internal constructor(
 
   /** @suppress */
   @JvmName("getBillingKeyInfo")
-  public suspend fun getBillingKeyInfoFuture(
+  public fun getBillingKeyInfoFuture(
     billingKey: String,
   ): CompletableFuture<BillingKeyInfo> = GlobalScope.future { getBillingKeyInfo(billingKey) }
 
@@ -195,7 +195,7 @@ public class BillingKeyClient internal constructor(
 
   /** @suppress */
   @JvmName("deleteBillingKey")
-  public suspend fun deleteBillingKeyFuture(
+  public fun deleteBillingKeyFuture(
     billingKey: String,
   ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey) }
 
@@ -270,7 +270,7 @@ public class BillingKeyClient internal constructor(
 
   /** @suppress */
   @JvmName("getBillingKeyInfos")
-  public suspend fun getBillingKeyInfosFuture(
+  public fun getBillingKeyInfosFuture(
     page: PageInput? = null,
     sort: BillingKeySortInput? = null,
     filter: BillingKeyFilterInput? = null,
@@ -373,7 +373,7 @@ public class BillingKeyClient internal constructor(
 
   /** @suppress */
   @JvmName("issueBillingKey")
-  public suspend fun issueBillingKeyFuture(
+  public fun issueBillingKeyFuture(
     method: InstantBillingKeyPaymentMethodInput,
     channelKey: String? = null,
     channelGroupId: String? = null,
