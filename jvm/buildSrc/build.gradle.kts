@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation("com.squareup:kotlinpoet-jvm:1.18.1")
+    implementation("com.squareup:kotlinpoet-jvm:2.0.0")
 }
 
 repositories {
