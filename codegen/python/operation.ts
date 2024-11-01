@@ -262,10 +262,10 @@ function writeRequestBody(writer: Writer, body: Property[]) {
       writer.writeLine(
         `request_body["${property.name}"] = _serialize_${
           toSnakeCase(property.value)
-        }(${name}),`,
+        }(${name})`,
       )
     } else {
-      writer.writeLine(`request_body["${property.name}"] = ${name},`)
+      writer.writeLine(`request_body["${property.name}"] = ${name}`)
     }
     if (!property.required) {
       writer.outdent()

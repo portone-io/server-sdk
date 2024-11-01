@@ -198,18 +198,18 @@ class CashReceiptClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["paymentId"] = payment_id,
-        request_body["channelKey"] = channel_key,
-        request_body["type"] = _serialize_cash_receipt_type(type),
-        request_body["orderName"] = order_name,
-        request_body["currency"] = _serialize_currency(currency),
-        request_body["amount"] = _serialize_payment_amount_input(amount),
+            request_body["storeId"] = self._store_id
+        request_body["paymentId"] = payment_id
+        request_body["channelKey"] = channel_key
+        request_body["type"] = _serialize_cash_receipt_type(type)
+        request_body["orderName"] = order_name
+        request_body["currency"] = _serialize_currency(currency)
+        request_body["amount"] = _serialize_payment_amount_input(amount)
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
-        request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
+        request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer)
         if paid_at is not None:
-            request_body["paidAt"] = paid_at,
+            request_body["paidAt"] = paid_at
         query = []
         response = httpx.request(
             "POST",
@@ -298,18 +298,18 @@ class CashReceiptClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["paymentId"] = payment_id,
-        request_body["channelKey"] = channel_key,
-        request_body["type"] = _serialize_cash_receipt_type(type),
-        request_body["orderName"] = order_name,
-        request_body["currency"] = _serialize_currency(currency),
-        request_body["amount"] = _serialize_payment_amount_input(amount),
+            request_body["storeId"] = self._store_id
+        request_body["paymentId"] = payment_id
+        request_body["channelKey"] = channel_key
+        request_body["type"] = _serialize_cash_receipt_type(type)
+        request_body["orderName"] = order_name
+        request_body["currency"] = _serialize_currency(currency)
+        request_body["amount"] = _serialize_payment_amount_input(amount)
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
-        request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
+        request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer)
         if paid_at is not None:
-            request_body["paidAt"] = paid_at,
+            request_body["paidAt"] = paid_at
         query = []
         response = await self._client.request(
             "POST",

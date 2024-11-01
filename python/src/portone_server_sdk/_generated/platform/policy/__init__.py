@@ -90,9 +90,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter),
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -150,9 +150,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter),
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -219,11 +219,11 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["partnerShareRate"] = partner_share_rate,
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         query = []
         response = httpx.request(
             "POST",
@@ -292,11 +292,11 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["partnerShareRate"] = partner_share_rate,
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         query = []
         response = await self._client.request(
             "POST",
@@ -475,11 +475,11 @@ class PolicyClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if partner_share_rate is not None:
-            request_body["partnerShareRate"] = partner_share_rate,
+            request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         query = []
         response = httpx.request(
             "PATCH",
@@ -552,11 +552,11 @@ class PolicyClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if partner_share_rate is not None:
-            request_body["partnerShareRate"] = partner_share_rate,
+            request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         query = []
         response = await self._client.request(
             "PATCH",
@@ -842,9 +842,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter),
+            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -902,9 +902,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter),
+            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -974,12 +974,12 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["fee"] = _serialize_platform_fee_input(fee),
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["fee"] = _serialize_platform_fee_input(fee)
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["vatPayer"] = _serialize_platform_payer(vat_payer),
+            request_body["memo"] = memo
+        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
         response = httpx.request(
             "POST",
@@ -1051,12 +1051,12 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["fee"] = _serialize_platform_fee_input(fee),
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["fee"] = _serialize_platform_fee_input(fee)
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["vatPayer"] = _serialize_platform_payer(vat_payer),
+            request_body["memo"] = memo
+        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
         response = await self._client.request(
             "POST",
@@ -1236,13 +1236,13 @@ class PolicyClient:
         """
         request_body = {}
         if fee is not None:
-            request_body["fee"] = _serialize_platform_fee_input(fee),
+            request_body["fee"] = _serialize_platform_fee_input(fee)
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if vat_payer is not None:
-            request_body["vatPayer"] = _serialize_platform_payer(vat_payer),
+            request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
         response = httpx.request(
             "PATCH",
@@ -1316,13 +1316,13 @@ class PolicyClient:
         """
         request_body = {}
         if fee is not None:
-            request_body["fee"] = _serialize_platform_fee_input(fee),
+            request_body["fee"] = _serialize_platform_fee_input(fee)
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if vat_payer is not None:
-            request_body["vatPayer"] = _serialize_platform_payer(vat_payer),
+            request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
         response = await self._client.request(
             "PATCH",
@@ -1608,9 +1608,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_contract_filter_input(filter),
+            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -1668,9 +1668,9 @@ class PolicyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_contract_filter_input(filter),
+            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -1746,14 +1746,14 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
+            request_body["id"] = id
+        request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee),
-        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle),
-        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer),
-        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount,
+            request_body["memo"] = memo
+        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
+        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
+        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
+        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
         response = httpx.request(
             "POST",
@@ -1831,14 +1831,14 @@ class PolicyClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
+            request_body["id"] = id
+        request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee),
-        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle),
-        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer),
-        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount,
+            request_body["memo"] = memo
+        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
+        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
+        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
+        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
         response = await self._client.request(
             "POST",
@@ -2024,17 +2024,17 @@ class PolicyClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if platform_fee is not None:
-            request_body["platformFee"] = _serialize_platform_fee_input(platform_fee),
+            request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
         if settlement_cycle is not None:
-            request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle),
+            request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
         if platform_fee_vat_payer is not None:
-            request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer),
+            request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
         if subtract_payment_vat_amount is not None:
-            request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount,
+            request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
         response = httpx.request(
             "PATCH",
@@ -2114,17 +2114,17 @@ class PolicyClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if platform_fee is not None:
-            request_body["platformFee"] = _serialize_platform_fee_input(platform_fee),
+            request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
         if settlement_cycle is not None:
-            request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle),
+            request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
         if platform_fee_vat_payer is not None:
-            request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer),
+            request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
         if subtract_payment_vat_amount is not None:
-            request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount,
+            request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
         response = await self._client.request(
             "PATCH",
