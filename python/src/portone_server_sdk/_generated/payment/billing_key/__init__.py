@@ -325,11 +325,11 @@ class BillingKeyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if sort is not None:
-            request_body["sort"] = _serialize_billing_key_sort_input(sort),
+            request_body["sort"] = _serialize_billing_key_sort_input(sort)
         if filter is not None:
-            request_body["filter"] = _serialize_billing_key_filter_input(filter),
+            request_body["filter"] = _serialize_billing_key_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -392,11 +392,11 @@ class BillingKeyClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if sort is not None:
-            request_body["sort"] = _serialize_billing_key_sort_input(sort),
+            request_body["sort"] = _serialize_billing_key_sort_input(sort)
         if filter is not None:
-            request_body["filter"] = _serialize_billing_key_filter_input(filter),
+            request_body["filter"] = _serialize_billing_key_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -479,20 +479,20 @@ class BillingKeyClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["method"] = _serialize_instant_billing_key_payment_method_input(method),
+            request_body["storeId"] = self._store_id
+        request_body["method"] = _serialize_instant_billing_key_payment_method_input(method)
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
+            request_body["channelKey"] = channel_key
         if channel_group_id is not None:
-            request_body["channelGroupId"] = channel_group_id,
+            request_body["channelGroupId"] = channel_group_id
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
+            request_body["customData"] = custom_data
         if bypass is not None:
-            request_body["bypass"] = bypass,
+            request_body["bypass"] = bypass
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         query = []
         response = httpx.request(
             "POST",
@@ -581,20 +581,20 @@ class BillingKeyClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["method"] = _serialize_instant_billing_key_payment_method_input(method),
+            request_body["storeId"] = self._store_id
+        request_body["method"] = _serialize_instant_billing_key_payment_method_input(method)
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
+            request_body["channelKey"] = channel_key
         if channel_group_id is not None:
-            request_body["channelGroupId"] = channel_group_id,
+            request_body["channelGroupId"] = channel_group_id
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
+            request_body["customData"] = custom_data
         if bypass is not None:
-            request_body["bypass"] = bypass,
+            request_body["bypass"] = bypass
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         query = []
         response = await self._client.request(
             "POST",

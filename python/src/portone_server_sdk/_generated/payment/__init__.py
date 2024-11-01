@@ -122,13 +122,13 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if total_amount is not None:
-            request_body["totalAmount"] = total_amount,
+            request_body["totalAmount"] = total_amount
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if currency is not None:
-            request_body["currency"] = _serialize_currency(currency),
+            request_body["currency"] = _serialize_currency(currency)
         query = []
         response = httpx.request(
             "POST",
@@ -192,13 +192,13 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if total_amount is not None:
-            request_body["totalAmount"] = total_amount,
+            request_body["totalAmount"] = total_amount
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if currency is not None:
-            request_body["currency"] = _serialize_currency(currency),
+            request_body["currency"] = _serialize_currency(currency)
         query = []
         response = await self._client.request(
             "POST",
@@ -364,9 +364,9 @@ class PaymentClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_payment_filter_input(filter),
+            request_body["filter"] = _serialize_payment_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -424,9 +424,9 @@ class PaymentClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_payment_filter_input(filter),
+            request_body["filter"] = _serialize_payment_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -494,15 +494,15 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if from_ is not None:
-            request_body["from"] = from_,
+            request_body["from"] = from_
         if until is not None:
-            request_body["until"] = until,
+            request_body["until"] = until
         if cursor is not None:
-            request_body["cursor"] = cursor,
+            request_body["cursor"] = cursor
         if size is not None:
-            request_body["size"] = size,
+            request_body["size"] = size
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -570,15 +570,15 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if from_ is not None:
-            request_body["from"] = from_,
+            request_body["from"] = from_
         if until is not None:
-            request_body["until"] = until,
+            request_body["until"] = until
         if cursor is not None:
-            request_body["cursor"] = cursor,
+            request_body["cursor"] = cursor
         if size is not None:
-            request_body["size"] = size,
+            request_body["size"] = size
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -682,20 +682,20 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if amount is not None:
-            request_body["amount"] = amount,
+            request_body["amount"] = amount
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if vat_amount is not None:
-            request_body["vatAmount"] = vat_amount,
-        request_body["reason"] = reason,
+            request_body["vatAmount"] = vat_amount
+        request_body["reason"] = reason
         if requester is not None:
-            request_body["requester"] = _serialize_cancel_requester(requester),
+            request_body["requester"] = _serialize_cancel_requester(requester)
         if current_cancellable_amount is not None:
-            request_body["currentCancellableAmount"] = current_cancellable_amount,
+            request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
-            request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account),
+            request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account)
         query = []
         response = httpx.request(
             "POST",
@@ -819,20 +819,20 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if amount is not None:
-            request_body["amount"] = amount,
+            request_body["amount"] = amount
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if vat_amount is not None:
-            request_body["vatAmount"] = vat_amount,
-        request_body["reason"] = reason,
+            request_body["vatAmount"] = vat_amount
+        request_body["reason"] = reason
         if requester is not None:
-            request_body["requester"] = _serialize_cancel_requester(requester),
+            request_body["requester"] = _serialize_cancel_requester(requester)
         if current_cancellable_amount is not None:
-            request_body["currentCancellableAmount"] = current_cancellable_amount,
+            request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
-            request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account),
+            request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account)
         query = []
         response = await self._client.request(
             "POST",
@@ -988,41 +988,41 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["billingKey"] = billing_key,
+            request_body["storeId"] = self._store_id
+        request_body["billingKey"] = billing_key
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
-        request_body["orderName"] = order_name,
+            request_body["channelKey"] = channel_key
+        request_body["orderName"] = order_name
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
-        request_body["amount"] = _serialize_payment_amount_input(amount),
-        request_body["currency"] = _serialize_currency(currency),
+            request_body["customData"] = custom_data
+        request_body["amount"] = _serialize_payment_amount_input(amount)
+        request_body["currency"] = _serialize_currency(currency)
         if installment_month is not None:
-            request_body["installmentMonth"] = installment_month,
+            request_body["installmentMonth"] = installment_month
         if use_free_interest_from_merchant is not None:
-            request_body["useFreeInterestFromMerchant"] = use_free_interest_from_merchant,
+            request_body["useFreeInterestFromMerchant"] = use_free_interest_from_merchant
         if use_card_point is not None:
-            request_body["useCardPoint"] = use_card_point,
+            request_body["useCardPoint"] = use_card_point
         if cash_receipt is not None:
-            request_body["cashReceipt"] = _serialize_cash_receipt_input(cash_receipt),
+            request_body["cashReceipt"] = _serialize_cash_receipt_input(cash_receipt)
         if country is not None:
-            request_body["country"] = _serialize_country(country),
+            request_body["country"] = _serialize_country(country)
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         if product_count is not None:
-            request_body["productCount"] = product_count,
+            request_body["productCount"] = product_count
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
         if shipping_address is not None:
-            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address),
+            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
-            request_body["promotionId"] = promotion_id,
+            request_body["promotionId"] = promotion_id
         if bypass is not None:
-            request_body["bypass"] = bypass,
+            request_body["bypass"] = bypass
         query = []
         response = httpx.request(
             "POST",
@@ -1178,41 +1178,41 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["billingKey"] = billing_key,
+            request_body["storeId"] = self._store_id
+        request_body["billingKey"] = billing_key
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
-        request_body["orderName"] = order_name,
+            request_body["channelKey"] = channel_key
+        request_body["orderName"] = order_name
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
-        request_body["amount"] = _serialize_payment_amount_input(amount),
-        request_body["currency"] = _serialize_currency(currency),
+            request_body["customData"] = custom_data
+        request_body["amount"] = _serialize_payment_amount_input(amount)
+        request_body["currency"] = _serialize_currency(currency)
         if installment_month is not None:
-            request_body["installmentMonth"] = installment_month,
+            request_body["installmentMonth"] = installment_month
         if use_free_interest_from_merchant is not None:
-            request_body["useFreeInterestFromMerchant"] = use_free_interest_from_merchant,
+            request_body["useFreeInterestFromMerchant"] = use_free_interest_from_merchant
         if use_card_point is not None:
-            request_body["useCardPoint"] = use_card_point,
+            request_body["useCardPoint"] = use_card_point
         if cash_receipt is not None:
-            request_body["cashReceipt"] = _serialize_cash_receipt_input(cash_receipt),
+            request_body["cashReceipt"] = _serialize_cash_receipt_input(cash_receipt)
         if country is not None:
-            request_body["country"] = _serialize_country(country),
+            request_body["country"] = _serialize_country(country)
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         if product_count is not None:
-            request_body["productCount"] = product_count,
+            request_body["productCount"] = product_count
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
         if shipping_address is not None:
-            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address),
+            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
-            request_body["promotionId"] = promotion_id,
+            request_body["promotionId"] = promotion_id
         if bypass is not None:
-            request_body["bypass"] = bypass,
+            request_body["bypass"] = bypass
         query = []
         response = await self._client.request(
             "POST",
@@ -1364,37 +1364,37 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
+            request_body["channelKey"] = channel_key
         if channel_group_id is not None:
-            request_body["channelGroupId"] = channel_group_id,
-        request_body["method"] = _serialize_instant_payment_method_input(method),
-        request_body["orderName"] = order_name,
+            request_body["channelGroupId"] = channel_group_id
+        request_body["method"] = _serialize_instant_payment_method_input(method)
+        request_body["orderName"] = order_name
         if is_cultural_expense is not None:
-            request_body["isCulturalExpense"] = is_cultural_expense,
+            request_body["isCulturalExpense"] = is_cultural_expense
         if is_escrow is not None:
-            request_body["isEscrow"] = is_escrow,
+            request_body["isEscrow"] = is_escrow
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
-        request_body["amount"] = _serialize_payment_amount_input(amount),
-        request_body["currency"] = _serialize_currency(currency),
+            request_body["customData"] = custom_data
+        request_body["amount"] = _serialize_payment_amount_input(amount)
+        request_body["currency"] = _serialize_currency(currency)
         if country is not None:
-            request_body["country"] = _serialize_country(country),
+            request_body["country"] = _serialize_country(country)
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         if product_count is not None:
-            request_body["productCount"] = product_count,
+            request_body["productCount"] = product_count
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
         if shipping_address is not None:
-            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address),
+            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
-            request_body["promotionId"] = promotion_id,
+            request_body["promotionId"] = promotion_id
         query = []
         response = httpx.request(
             "POST",
@@ -1542,37 +1542,37 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if channel_key is not None:
-            request_body["channelKey"] = channel_key,
+            request_body["channelKey"] = channel_key
         if channel_group_id is not None:
-            request_body["channelGroupId"] = channel_group_id,
-        request_body["method"] = _serialize_instant_payment_method_input(method),
-        request_body["orderName"] = order_name,
+            request_body["channelGroupId"] = channel_group_id
+        request_body["method"] = _serialize_instant_payment_method_input(method)
+        request_body["orderName"] = order_name
         if is_cultural_expense is not None:
-            request_body["isCulturalExpense"] = is_cultural_expense,
+            request_body["isCulturalExpense"] = is_cultural_expense
         if is_escrow is not None:
-            request_body["isEscrow"] = is_escrow,
+            request_body["isEscrow"] = is_escrow
         if customer is not None:
-            request_body["customer"] = _serialize_customer_input(customer),
+            request_body["customer"] = _serialize_customer_input(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
-        request_body["amount"] = _serialize_payment_amount_input(amount),
-        request_body["currency"] = _serialize_currency(currency),
+            request_body["customData"] = custom_data
+        request_body["amount"] = _serialize_payment_amount_input(amount)
+        request_body["currency"] = _serialize_currency(currency)
         if country is not None:
-            request_body["country"] = _serialize_country(country),
+            request_body["country"] = _serialize_country(country)
         if notice_urls is not None:
-            request_body["noticeUrls"] = notice_urls,
+            request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         if product_count is not None:
-            request_body["productCount"] = product_count,
+            request_body["productCount"] = product_count
         if product_type is not None:
-            request_body["productType"] = _serialize_payment_product_type(product_type),
+            request_body["productType"] = _serialize_payment_product_type(product_type)
         if shipping_address is not None:
-            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address),
+            request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
-            request_body["promotionId"] = promotion_id,
+            request_body["promotionId"] = promotion_id
         query = []
         response = await self._client.request(
             "POST",
@@ -1784,16 +1784,16 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if sender is not None:
-            request_body["sender"] = _serialize_payment_escrow_sender_input(sender),
+            request_body["sender"] = _serialize_payment_escrow_sender_input(sender)
         if receiver is not None:
-            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver),
-        request_body["logistics"] = _serialize_payment_logistics(logistics),
+            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver)
+        request_body["logistics"] = _serialize_payment_logistics(logistics)
         if send_email is not None:
-            request_body["sendEmail"] = send_email,
+            request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         query = []
         response = httpx.request(
             "POST",
@@ -1873,16 +1873,16 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if sender is not None:
-            request_body["sender"] = _serialize_payment_escrow_sender_input(sender),
+            request_body["sender"] = _serialize_payment_escrow_sender_input(sender)
         if receiver is not None:
-            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver),
-        request_body["logistics"] = _serialize_payment_logistics(logistics),
+            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver)
+        request_body["logistics"] = _serialize_payment_logistics(logistics)
         if send_email is not None:
-            request_body["sendEmail"] = send_email,
+            request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         query = []
         response = await self._client.request(
             "POST",
@@ -1962,16 +1962,16 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if sender is not None:
-            request_body["sender"] = _serialize_payment_escrow_sender_input(sender),
+            request_body["sender"] = _serialize_payment_escrow_sender_input(sender)
         if receiver is not None:
-            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver),
-        request_body["logistics"] = _serialize_payment_logistics(logistics),
+            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver)
+        request_body["logistics"] = _serialize_payment_logistics(logistics)
         if send_email is not None:
-            request_body["sendEmail"] = send_email,
+            request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         query = []
         response = httpx.request(
             "PATCH",
@@ -2051,16 +2051,16 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if sender is not None:
-            request_body["sender"] = _serialize_payment_escrow_sender_input(sender),
+            request_body["sender"] = _serialize_payment_escrow_sender_input(sender)
         if receiver is not None:
-            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver),
-        request_body["logistics"] = _serialize_payment_logistics(logistics),
+            request_body["receiver"] = _serialize_payment_escrow_receiver_input(receiver)
+        request_body["logistics"] = _serialize_payment_logistics(logistics)
         if send_email is not None:
-            request_body["sendEmail"] = send_email,
+            request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products,
+            request_body["products"] = products
         query = []
         response = await self._client.request(
             "PATCH",
@@ -2129,9 +2129,9 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if from_store is not None:
-            request_body["fromStore"] = from_store,
+            request_body["fromStore"] = from_store
         query = []
         response = httpx.request(
             "POST",
@@ -2200,9 +2200,9 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if from_store is not None:
-            request_body["fromStore"] = from_store,
+            request_body["fromStore"] = from_store
         query = []
         response = await self._client.request(
             "POST",
@@ -2270,9 +2270,9 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if webhook_id is not None:
-            request_body["webhookId"] = webhook_id,
+            request_body["webhookId"] = webhook_id
         query = []
         response = httpx.request(
             "POST",
@@ -2340,9 +2340,9 @@ class PaymentClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if webhook_id is not None:
-            request_body["webhookId"] = webhook_id,
+            request_body["webhookId"] = webhook_id
         query = []
         response = await self._client.request(
             "POST",
@@ -2409,9 +2409,9 @@ class PaymentClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["items"] = items,
+        request_body["items"] = items
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         query = []
         response = httpx.request(
             "POST",
@@ -2478,9 +2478,9 @@ class PaymentClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["items"] = items,
+        request_body["items"] = items
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         query = []
         response = await self._client.request(
             "POST",

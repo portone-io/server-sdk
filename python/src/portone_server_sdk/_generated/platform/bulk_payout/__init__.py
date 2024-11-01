@@ -59,11 +59,11 @@ class BulkPayoutClient:
         """
         request_body = {}
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_bulk_payout_filter_input(filter),
+            request_body["filter"] = _serialize_platform_bulk_payout_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -124,11 +124,11 @@ class BulkPayoutClient:
         """
         request_body = {}
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_bulk_payout_filter_input(filter),
+            request_body["filter"] = _serialize_platform_bulk_payout_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
