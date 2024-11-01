@@ -180,11 +180,11 @@ class PaymentScheduleClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if sort is not None:
-            request_body["sort"] = _serialize_payment_schedule_sort_input(sort),
+            request_body["sort"] = _serialize_payment_schedule_sort_input(sort)
         if filter is not None:
-            request_body["filter"] = _serialize_payment_schedule_filter_input(filter),
+            request_body["filter"] = _serialize_payment_schedule_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -246,11 +246,11 @@ class PaymentScheduleClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if sort is not None:
-            request_body["sort"] = _serialize_payment_schedule_sort_input(sort),
+            request_body["sort"] = _serialize_payment_schedule_sort_input(sort)
         if filter is not None:
-            request_body["filter"] = _serialize_payment_schedule_filter_input(filter),
+            request_body["filter"] = _serialize_payment_schedule_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -319,11 +319,11 @@ class PaymentScheduleClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if billing_key is not None:
-            request_body["billingKey"] = billing_key,
+            request_body["billingKey"] = billing_key
         if schedule_ids is not None:
-            request_body["scheduleIds"] = schedule_ids,
+            request_body["scheduleIds"] = schedule_ids
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -402,11 +402,11 @@ class PaymentScheduleClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if billing_key is not None:
-            request_body["billingKey"] = billing_key,
+            request_body["billingKey"] = billing_key
         if schedule_ids is not None:
-            request_body["scheduleIds"] = schedule_ids,
+            request_body["scheduleIds"] = schedule_ids
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -482,8 +482,8 @@ class PaymentScheduleClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["payment"] = _serialize_billing_key_payment_input(payment),
-        request_body["timeToPay"] = time_to_pay,
+        request_body["payment"] = _serialize_billing_key_payment_input(payment)
+        request_body["timeToPay"] = time_to_pay
         query = []
         response = httpx.request(
             "POST",
@@ -559,8 +559,8 @@ class PaymentScheduleClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["payment"] = _serialize_billing_key_payment_input(payment),
-        request_body["timeToPay"] = time_to_pay,
+        request_body["payment"] = _serialize_billing_key_payment_input(payment)
+        request_body["timeToPay"] = time_to_pay
         query = []
         response = await self._client.request(
             "POST",

@@ -208,11 +208,11 @@ class PlatformClient:
         """
         request_body = {}
         if round_type is not None:
-            request_body["roundType"] = _serialize_platform_round_type(round_type),
+            request_body["roundType"] = _serialize_platform_round_type(round_type)
         if settlement_formula is not None:
-            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula),
+            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula)
         if settlement_rule is not None:
-            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule),
+            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
         query = []
         response = httpx.request(
             "PATCH",
@@ -275,11 +275,11 @@ class PlatformClient:
         """
         request_body = {}
         if round_type is not None:
-            request_body["roundType"] = _serialize_platform_round_type(round_type),
+            request_body["roundType"] = _serialize_platform_round_type(round_type)
         if settlement_formula is not None:
-            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula),
+            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula)
         if settlement_rule is not None:
-            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule),
+            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
         query = []
         response = await self._client.request(
             "PATCH",
@@ -550,8 +550,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "PUT",
@@ -612,8 +612,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "PUT",
@@ -677,8 +677,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "POST",
@@ -746,8 +746,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "POST",
@@ -1018,8 +1018,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "PUT",
@@ -1078,8 +1078,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "PUT",
@@ -1143,8 +1143,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "POST",
@@ -1212,8 +1212,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "POST",
@@ -1593,8 +1593,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_partner_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_partner_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "PUT",
@@ -1658,8 +1658,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_partner_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_partner_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "PUT",
@@ -1736,8 +1736,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_partner_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_partner_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "POST",
@@ -1828,8 +1828,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_partner_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_partner_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "POST",
@@ -2014,9 +2014,9 @@ class PlatformClient:
         """
         request_body = {}
         if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter),
-        request_body["update"] = _serialize_schedule_platform_partners_body_update(update),
-        request_body["appliedAt"] = applied_at,
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "POST",
@@ -2087,9 +2087,9 @@ class PlatformClient:
         """
         request_body = {}
         if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter),
-        request_body["update"] = _serialize_schedule_platform_partners_body_update(update),
-        request_body["appliedAt"] = applied_at,
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "POST",
@@ -2260,8 +2260,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "PUT",
@@ -2322,8 +2322,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "PUT",
@@ -2387,8 +2387,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
             "POST",
@@ -2456,8 +2456,8 @@ class PlatformClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update),
-        request_body["appliedAt"] = applied_at,
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
             "POST",

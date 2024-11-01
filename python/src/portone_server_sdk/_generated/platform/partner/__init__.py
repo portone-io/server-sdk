@@ -84,9 +84,9 @@ class PartnerClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter),
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -144,9 +144,9 @@ class PartnerClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter),
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -249,17 +249,17 @@ class PartnerClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["contact"] = _serialize_create_platform_partner_body_contact(contact),
-        request_body["account"] = _serialize_create_platform_partner_body_account(account),
-        request_body["defaultContractId"] = default_contract_id,
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["contact"] = _serialize_create_platform_partner_body_contact(contact)
+        request_body["account"] = _serialize_create_platform_partner_body_account(account)
+        request_body["defaultContractId"] = default_contract_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["tags"] = tags,
-        request_body["type"] = _serialize_create_platform_partner_body_type(type),
+            request_body["memo"] = memo
+        request_body["tags"] = tags
+        request_body["type"] = _serialize_create_platform_partner_body_type(type)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties),
+            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
         response = httpx.request(
             "POST",
@@ -376,17 +376,17 @@ class PartnerClient:
         """
         request_body = {}
         if id is not None:
-            request_body["id"] = id,
-        request_body["name"] = name,
-        request_body["contact"] = _serialize_create_platform_partner_body_contact(contact),
-        request_body["account"] = _serialize_create_platform_partner_body_account(account),
-        request_body["defaultContractId"] = default_contract_id,
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["contact"] = _serialize_create_platform_partner_body_contact(contact)
+        request_body["account"] = _serialize_create_platform_partner_body_account(account)
+        request_body["defaultContractId"] = default_contract_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["tags"] = tags,
-        request_body["type"] = _serialize_create_platform_partner_body_type(type),
+            request_body["memo"] = memo
+        request_body["tags"] = tags
+        request_body["type"] = _serialize_create_platform_partner_body_type(type)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties),
+            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
         response = await self._client.request(
             "POST",
@@ -601,21 +601,21 @@ class PartnerClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if contact is not None:
-            request_body["contact"] = _serialize_update_platform_partner_body_contact(contact),
+            request_body["contact"] = _serialize_update_platform_partner_body_contact(contact)
         if account is not None:
-            request_body["account"] = _serialize_update_platform_partner_body_account(account),
+            request_body["account"] = _serialize_update_platform_partner_body_account(account)
         if default_contract_id is not None:
-            request_body["defaultContractId"] = default_contract_id,
+            request_body["defaultContractId"] = default_contract_id
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if tags is not None:
-            request_body["tags"] = tags,
+            request_body["tags"] = tags
         if type is not None:
-            request_body["type"] = _serialize_update_platform_partner_body_type(type),
+            request_body["type"] = _serialize_update_platform_partner_body_type(type)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties),
+            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
         response = httpx.request(
             "PATCH",
@@ -724,21 +724,21 @@ class PartnerClient:
         """
         request_body = {}
         if name is not None:
-            request_body["name"] = name,
+            request_body["name"] = name
         if contact is not None:
-            request_body["contact"] = _serialize_update_platform_partner_body_contact(contact),
+            request_body["contact"] = _serialize_update_platform_partner_body_contact(contact)
         if account is not None:
-            request_body["account"] = _serialize_update_platform_partner_body_account(account),
+            request_body["account"] = _serialize_update_platform_partner_body_account(account)
         if default_contract_id is not None:
-            request_body["defaultContractId"] = default_contract_id,
+            request_body["defaultContractId"] = default_contract_id
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if tags is not None:
-            request_body["tags"] = tags,
+            request_body["tags"] = tags
         if type is not None:
-            request_body["type"] = _serialize_update_platform_partner_body_type(type),
+            request_body["type"] = _serialize_update_platform_partner_body_type(type)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties),
+            request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
         response = await self._client.request(
             "PATCH",
@@ -815,7 +815,7 @@ class PartnerClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partners"] = partners,
+        request_body["partners"] = partners
         query = []
         response = httpx.request(
             "POST",
@@ -886,7 +886,7 @@ class PartnerClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partners"] = partners,
+        request_body["partners"] = partners
         query = []
         response = await self._client.request(
             "POST",

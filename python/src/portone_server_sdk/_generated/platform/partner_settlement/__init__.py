@@ -59,9 +59,9 @@ class PartnerSettlementClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
-        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
-        request_body["isForTest"] = is_for_test,
+            request_body["page"] = _serialize_page_input(page)
+        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter)
+        request_body["isForTest"] = is_for_test
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -122,9 +122,9 @@ class PartnerSettlementClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
-        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter),
-        request_body["isForTest"] = is_for_test,
+            request_body["page"] = _serialize_page_input(page)
+        request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter)
+        request_body["isForTest"] = is_for_test
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(

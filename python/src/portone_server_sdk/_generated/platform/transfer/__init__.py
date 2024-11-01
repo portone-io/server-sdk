@@ -331,9 +331,9 @@ class TransferClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_transfer_filter_input(filter),
+            request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -391,9 +391,9 @@ class TransferClient:
         """
         request_body = {}
         if page is not None:
-            request_body["page"] = _serialize_page_input(page),
+            request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_transfer_filter_input(filter),
+            request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(
@@ -516,27 +516,27 @@ class TransferClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partnerId"] = partner_id,
+        request_body["partnerId"] = partner_id
         if contract_id is not None:
-            request_body["contractId"] = contract_id,
+            request_body["contractId"] = contract_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["paymentId"] = payment_id,
-        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail),
+            request_body["memo"] = memo
+        request_body["paymentId"] = payment_id
+        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date,
-        request_body["discounts"] = discounts,
-        request_body["additionalFees"] = additional_fees,
+            request_body["settlementStartDate"] = settlement_start_date
+        request_body["discounts"] = discounts
+        request_body["additionalFees"] = additional_fees
         if external_payment_detail is not None:
-            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail),
+            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if parameters is not None:
-            request_body["parameters"] = _serialize_transfer_parameters(parameters),
+            request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = httpx.request(
             "POST",
@@ -691,27 +691,27 @@ class TransferClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partnerId"] = partner_id,
+        request_body["partnerId"] = partner_id
         if contract_id is not None:
-            request_body["contractId"] = contract_id,
+            request_body["contractId"] = contract_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["paymentId"] = payment_id,
-        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail),
+            request_body["memo"] = memo
+        request_body["paymentId"] = payment_id
+        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
+            request_body["taxFreeAmount"] = tax_free_amount
         if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date,
-        request_body["discounts"] = discounts,
-        request_body["additionalFees"] = additional_fees,
+            request_body["settlementStartDate"] = settlement_start_date
+        request_body["discounts"] = discounts
+        request_body["additionalFees"] = additional_fees
         if external_payment_detail is not None:
-            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail),
+            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if parameters is not None:
-            request_body["parameters"] = _serialize_transfer_parameters(parameters),
+            request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = await self._client.request(
             "POST",
@@ -863,27 +863,27 @@ class TransferClient:
         """
         request_body = {}
         if partner_id is not None:
-            request_body["partnerId"] = partner_id,
+            request_body["partnerId"] = partner_id
         if payment_id is not None:
-            request_body["paymentId"] = payment_id,
+            request_body["paymentId"] = payment_id
         if transfer_id is not None:
-            request_body["transferId"] = transfer_id,
-        request_body["cancellationId"] = cancellation_id,
+            request_body["transferId"] = transfer_id
+        request_body["cancellationId"] = cancellation_id
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if order_detail is not None:
-            request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail),
+            request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
-        request_body["discounts"] = discounts,
+            request_body["taxFreeAmount"] = tax_free_amount
+        request_body["discounts"] = discounts
         if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date,
+            request_body["settlementStartDate"] = settlement_start_date
         if external_cancellation_detail is not None:
-            request_body["externalCancellationDetail"] = _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(external_cancellation_detail),
+            request_body["externalCancellationDetail"] = _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(external_cancellation_detail)
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = httpx.request(
             "POST",
@@ -1041,27 +1041,27 @@ class TransferClient:
         """
         request_body = {}
         if partner_id is not None:
-            request_body["partnerId"] = partner_id,
+            request_body["partnerId"] = partner_id
         if payment_id is not None:
-            request_body["paymentId"] = payment_id,
+            request_body["paymentId"] = payment_id
         if transfer_id is not None:
-            request_body["transferId"] = transfer_id,
-        request_body["cancellationId"] = cancellation_id,
+            request_body["transferId"] = transfer_id
+        request_body["cancellationId"] = cancellation_id
         if memo is not None:
-            request_body["memo"] = memo,
+            request_body["memo"] = memo
         if order_detail is not None:
-            request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail),
+            request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount,
-        request_body["discounts"] = discounts,
+            request_body["taxFreeAmount"] = tax_free_amount
+        request_body["discounts"] = discounts
         if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date,
+            request_body["settlementStartDate"] = settlement_start_date
         if external_cancellation_detail is not None:
-            request_body["externalCancellationDetail"] = _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(external_cancellation_detail),
+            request_body["externalCancellationDetail"] = _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(external_cancellation_detail)
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = await self._client.request(
             "POST",
@@ -1175,15 +1175,15 @@ class TransferClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partnerId"] = partner_id,
+        request_body["partnerId"] = partner_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["settlementAmount"] = settlement_amount,
-        request_body["settlementDate"] = settlement_date,
+            request_body["memo"] = memo
+        request_body["settlementAmount"] = settlement_amount
+        request_body["settlementDate"] = settlement_date
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = httpx.request(
             "POST",
@@ -1263,15 +1263,15 @@ class TransferClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["partnerId"] = partner_id,
+        request_body["partnerId"] = partner_id
         if memo is not None:
-            request_body["memo"] = memo,
-        request_body["settlementAmount"] = settlement_amount,
-        request_body["settlementDate"] = settlement_date,
+            request_body["memo"] = memo
+        request_body["settlementAmount"] = settlement_amount
+        request_body["settlementDate"] = settlement_date
         if is_for_test is not None:
-            request_body["isForTest"] = is_for_test,
+            request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties,
+            request_body["userDefinedProperties"] = user_defined_properties
         query = []
         response = await self._client.request(
             "POST",
@@ -1335,13 +1335,13 @@ class TransferClient:
         """
         request_body = {}
         if filter is not None:
-            request_body["filter"] = _serialize_platform_transfer_filter_input(filter),
+            request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         if fields is not None:
-            request_body["fields"] = fields,
+            request_body["fields"] = fields
         if transfer_user_defined_property_keys is not None:
-            request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys,
+            request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys
         if partner_user_defined_property_keys is not None:
-            request_body["partnerUserDefinedPropertyKeys"] = partner_user_defined_property_keys,
+            request_body["partnerUserDefinedPropertyKeys"] = partner_user_defined_property_keys
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = httpx.request(
@@ -1397,13 +1397,13 @@ class TransferClient:
         """
         request_body = {}
         if filter is not None:
-            request_body["filter"] = _serialize_platform_transfer_filter_input(filter),
+            request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         if fields is not None:
-            request_body["fields"] = fields,
+            request_body["fields"] = fields
         if transfer_user_defined_property_keys is not None:
-            request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys,
+            request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys
         if partner_user_defined_property_keys is not None:
-            request_body["partnerUserDefinedPropertyKeys"] = partner_user_defined_property_keys,
+            request_body["partnerUserDefinedPropertyKeys"] = partner_user_defined_property_keys
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._client.request(

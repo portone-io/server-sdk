@@ -197,15 +197,15 @@ class IdentityVerificationClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["channelKey"] = channel_key,
-        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer),
+            request_body["storeId"] = self._store_id
+        request_body["channelKey"] = channel_key
+        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
+            request_body["customData"] = custom_data
         if bypass is not None:
-            request_body["bypass"] = bypass,
-        request_body["operator"] = _serialize_identity_verification_operator(operator),
-        request_body["method"] = _serialize_identity_verification_method(method),
+            request_body["bypass"] = bypass
+        request_body["operator"] = _serialize_identity_verification_operator(operator)
+        request_body["method"] = _serialize_identity_verification_method(method)
         query = []
         response = httpx.request(
             "POST",
@@ -298,15 +298,15 @@ class IdentityVerificationClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
-        request_body["channelKey"] = channel_key,
-        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer),
+            request_body["storeId"] = self._store_id
+        request_body["channelKey"] = channel_key
+        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
         if custom_data is not None:
-            request_body["customData"] = custom_data,
+            request_body["customData"] = custom_data
         if bypass is not None:
-            request_body["bypass"] = bypass,
-        request_body["operator"] = _serialize_identity_verification_operator(operator),
-        request_body["method"] = _serialize_identity_verification_method(method),
+            request_body["bypass"] = bypass
+        request_body["operator"] = _serialize_identity_verification_operator(operator)
+        request_body["method"] = _serialize_identity_verification_method(method)
         query = []
         response = await self._client.request(
             "POST",
@@ -382,9 +382,9 @@ class IdentityVerificationClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if otp is not None:
-            request_body["otp"] = otp,
+            request_body["otp"] = otp
         query = []
         response = httpx.request(
             "POST",
@@ -456,9 +456,9 @@ class IdentityVerificationClient:
         """
         request_body = {}
         if self._store_id is not None:
-            request_body["storeId"] = self._store_id,
+            request_body["storeId"] = self._store_id
         if otp is not None:
-            request_body["otp"] = otp,
+            request_body["otp"] = otp
         query = []
         response = await self._client.request(
             "POST",

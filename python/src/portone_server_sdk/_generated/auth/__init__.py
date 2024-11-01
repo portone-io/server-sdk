@@ -45,7 +45,7 @@ class AuthClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["apiSecret"] = api_secret,
+        request_body["apiSecret"] = api_secret
         query = []
         response = httpx.request(
             "POST",
@@ -91,7 +91,7 @@ class AuthClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["apiSecret"] = api_secret,
+        request_body["apiSecret"] = api_secret
         query = []
         response = await self._client.request(
             "POST",
@@ -137,7 +137,7 @@ class AuthClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["refreshToken"] = refresh_token,
+        request_body["refreshToken"] = refresh_token
         query = []
         response = httpx.request(
             "POST",
@@ -183,7 +183,7 @@ class AuthClient:
             UnknownError: API 응답이 알 수 없는 형식인 경우
         """
         request_body = {}
-        request_body["refreshToken"] = refresh_token,
+        request_body["refreshToken"] = refresh_token
         query = []
         response = await self._client.request(
             "POST",
