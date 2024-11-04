@@ -3,7 +3,7 @@ kotlin-test = "2.0.0"
 
 [libraries]
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.7.3" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version = "3.0.0"}
+ktor-client-core = { module = "io.ktor:ktor-client-core", version = "3.0.1"}
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version = "3.0.0" }
 
 [plugins]
