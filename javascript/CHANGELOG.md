@@ -1,5 +1,13 @@
 # @portone/server-sdk
 
+## 0.6.1
+
+### Patch Changes
+
+- 70e39a5: 의존성 업데이트
+- 686cbe9: workflow 수정
+- e30d7d7: Path Parameter에 URL Encoding 적용
+
 ## 0.6.0
 
 ### Minor Changes
