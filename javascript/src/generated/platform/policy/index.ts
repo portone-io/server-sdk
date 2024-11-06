@@ -169,7 +169,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<PlatformDiscountSharePolicy> => {
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -216,7 +216,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 				memo,
 			})
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -250,7 +250,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<ArchivePlatformDiscountSharePolicyResponse> => {
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/archive`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -283,7 +283,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<RecoverPlatformDiscountSharePolicyResponse> => {
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/recover`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -409,7 +409,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<PlatformAdditionalFeePolicy> => {
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -459,7 +459,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 				vatPayer,
 			})
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -493,7 +493,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<ArchivePlatformAdditionalFeePolicyResponse> => {
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/archive`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -526,7 +526,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<RecoverPlatformAdditionalFeePolicyResponse> => {
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/recover`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -658,7 +658,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<PlatformContract> => {
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -714,7 +714,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 				subtractPaymentVatAmount,
 			})
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -748,7 +748,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<ArchivePlatformContractResponse> => {
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/archive`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -781,7 +781,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			id: string,
 		): Promise<RecoverPlatformContractResponse> => {
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/recover`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
 					method: "post",
 					headers: {

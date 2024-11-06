@@ -44,6 +44,7 @@ from portone_server_sdk._generated.common.unauthorized_error import Unauthorized
 from portone_server_sdk._generated.platform.policy.update_platform_additional_fee_policy_response import UpdatePlatformAdditionalFeePolicyResponse, _deserialize_update_platform_additional_fee_policy_response, _serialize_update_platform_additional_fee_policy_response
 from portone_server_sdk._generated.platform.policy.update_platform_contract_response import UpdatePlatformContractResponse, _deserialize_update_platform_contract_response, _serialize_update_platform_contract_response
 from portone_server_sdk._generated.platform.policy.update_platform_discount_share_policy_response import UpdatePlatformDiscountSharePolicyResponse, _deserialize_update_platform_discount_share_policy_response, _serialize_update_platform_discount_share_policy_response
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class PolicyClient:
     _secret: str
@@ -355,7 +356,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{id}",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -409,7 +410,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{id}",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -483,7 +484,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{id}",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -560,7 +561,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{id}",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -619,7 +620,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/archive",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -677,7 +678,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/archive",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -733,7 +734,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/recover",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -787,7 +788,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/recover",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1115,7 +1116,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{id}",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1169,7 +1170,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{id}",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1246,7 +1247,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "PATCH",
-            f"{self._base_url}/platform/additional-fee-policies/{id}",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1326,7 +1327,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "PATCH",
-            f"{self._base_url}/platform/additional-fee-policies/{id}",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1385,7 +1386,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/archive",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1443,7 +1444,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/archive",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1499,7 +1500,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/recover",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1553,7 +1554,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/recover",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1897,7 +1898,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{id}",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1951,7 +1952,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{id}",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2038,7 +2039,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "PATCH",
-            f"{self._base_url}/platform/contracts/{id}",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2128,7 +2129,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "PATCH",
-            f"{self._base_url}/platform/contracts/{id}",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2187,7 +2188,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/archive",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2245,7 +2246,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/archive",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2301,7 +2302,7 @@ class PolicyClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/recover",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2355,7 +2356,7 @@ class PolicyClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/recover",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

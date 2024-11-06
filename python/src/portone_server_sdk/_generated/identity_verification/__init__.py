@@ -20,6 +20,7 @@ from portone_server_sdk._generated.identity_verification.resend_identity_verific
 from portone_server_sdk._generated.identity_verification.send_identity_verification_body_customer import SendIdentityVerificationBodyCustomer, _deserialize_send_identity_verification_body_customer, _serialize_send_identity_verification_body_customer
 from portone_server_sdk._generated.identity_verification.send_identity_verification_response import SendIdentityVerificationResponse, _deserialize_send_identity_verification_response, _serialize_send_identity_verification_response
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class IdentityVerificationClient:
     _secret: str
@@ -66,7 +67,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -119,7 +120,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -209,7 +210,7 @@ class IdentityVerificationClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/send",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -310,7 +311,7 @@ class IdentityVerificationClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/send",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -388,7 +389,7 @@ class IdentityVerificationClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/confirm",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -462,7 +463,7 @@ class IdentityVerificationClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/confirm",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -528,7 +529,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/resend",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/resend",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -593,7 +594,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{identity_verification_id}/resend",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/resend",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

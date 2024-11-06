@@ -15,7 +15,7 @@ export function PromotionClient(secret: string, userAgent: string, baseUrl?: str
 			promotionId: string,
 		): Promise<Promotion> => {
 			const response = await fetch(
-				new URL(`/promotions/${promotionId}`, baseUrl),
+				new URL(`/promotions/${encodeURIComponent(promotionId)}`, baseUrl),
 				{
 					method: "get",
 					headers: {

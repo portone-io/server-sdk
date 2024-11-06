@@ -31,7 +31,7 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/cash-receipt?${query}`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -132,7 +132,7 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/cash-receipt/cancel?${query}`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt/cancel?${query}`, baseUrl),
 				{
 					method: "post",
 					headers: {

@@ -57,6 +57,7 @@ from portone_server_sdk._generated.platform.transfer.platform_user_defined_prope
 from portone_server_sdk._generated.platform.platform_user_defined_property_not_found_error import PlatformUserDefinedPropertyNotFoundError, _deserialize_platform_user_defined_property_not_found_error, _serialize_platform_user_defined_property_not_found_error
 from portone_server_sdk._generated.platform.transfer.transfer_parameters import TransferParameters, _deserialize_transfer_parameters, _serialize_transfer_parameters
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class TransferClient:
     _secret: str
@@ -102,7 +103,7 @@ class TransferClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/transfers/{id}",
+            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -156,7 +157,7 @@ class TransferClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/transfers/{id}",
+            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -212,7 +213,7 @@ class TransferClient:
         query = []
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/platform/transfers/{id}",
+            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -272,7 +273,7 @@ class TransferClient:
         query = []
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/platform/transfers/{id}",
+            f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

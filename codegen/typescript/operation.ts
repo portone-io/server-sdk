@@ -284,7 +284,7 @@ function makePathInterpolation(path: string, hasQuery: boolean) {
   if (path.match(PATH_PLACEHOLDER)) {
     const interpolation = path.replaceAll(
       PATH_PLACEHOLDER,
-      (placeholder) => `$${placeholder}`,
+      (placeholder) => `\${encodeURIComponent(${placeholder.slice(1, -1)})}`,
     )
     return hasQuery
       ? `\`${interpolation}${queryInterpolation}\``

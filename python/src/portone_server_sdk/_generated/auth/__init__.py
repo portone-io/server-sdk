@@ -7,6 +7,7 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.auth.login_via_api_secret_response import LoginViaApiSecretResponse, _deserialize_login_via_api_secret_response, _serialize_login_via_api_secret_response
 from portone_server_sdk._generated.auth.refresh_token_response import RefreshTokenResponse, _deserialize_refresh_token_response, _serialize_refresh_token_response
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class AuthClient:
     _secret: str

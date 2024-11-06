@@ -8,6 +8,7 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.payment.promotion.promotion import Promotion, _deserialize_promotion, _serialize_promotion
 from portone_server_sdk._generated.payment.promotion.promotion_not_found_error import PromotionNotFoundError, _deserialize_promotion_not_found_error, _serialize_promotion_not_found_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class PromotionClient:
     _secret: str
@@ -52,7 +53,7 @@ class PromotionClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/promotions/{promotion_id}",
+            f"{self._base_url}/promotions/{quote(promotion_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -103,7 +104,7 @@ class PromotionClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/promotions/{promotion_id}",
+            f"{self._base_url}/promotions/{quote(promotion_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

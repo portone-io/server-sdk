@@ -37,7 +37,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/identity-verifications/${identityVerificationId}?${query}`, baseUrl),
+				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -92,7 +92,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 				method,
 			})
 			const response = await fetch(
-				new URL(`/identity-verifications/${identityVerificationId}/send`, baseUrl),
+				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/send`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -137,7 +137,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 				otp,
 			})
 			const response = await fetch(
-				new URL(`/identity-verifications/${identityVerificationId}/confirm`, baseUrl),
+				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/confirm`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -178,7 +178,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/identity-verifications/${identityVerificationId}/resend?${query}`, baseUrl),
+				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/resend?${query}`, baseUrl),
 				{
 					method: "post",
 					headers: {

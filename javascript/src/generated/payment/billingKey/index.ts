@@ -59,7 +59,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/billing-keys/${billingKey}?${query}`, baseUrl),
+				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -93,7 +93,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/billing-keys/${billingKey}?${query}`, baseUrl),
+				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
 				{
 					method: "delete",
 					headers: {

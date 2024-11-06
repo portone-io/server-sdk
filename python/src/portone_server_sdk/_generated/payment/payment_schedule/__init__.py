@@ -22,6 +22,7 @@ from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_sor
 from portone_server_sdk._generated.payment.payment_schedule.revoke_payment_schedules_response import RevokePaymentSchedulesResponse, _deserialize_revoke_payment_schedules_response, _serialize_revoke_payment_schedules_response
 from portone_server_sdk._generated.common.sum_of_parts_exceeds_total_amount_error import SumOfPartsExceedsTotalAmountError, _deserialize_sum_of_parts_exceeds_total_amount_error, _serialize_sum_of_parts_exceeds_total_amount_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class PaymentScheduleClient:
     _secret: str
@@ -68,7 +69,7 @@ class PaymentScheduleClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/payment-schedules/{payment_schedule_id}",
+            f"{self._base_url}/payment-schedules/{quote(payment_schedule_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -121,7 +122,7 @@ class PaymentScheduleClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/payment-schedules/{payment_schedule_id}",
+            f"{self._base_url}/payment-schedules/{quote(payment_schedule_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -487,7 +488,7 @@ class PaymentScheduleClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/schedule",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -564,7 +565,7 @@ class PaymentScheduleClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/schedule",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

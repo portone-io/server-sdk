@@ -6,6 +6,7 @@ from typing import Optional
 from portone_server_sdk._generated.pg_specific.get_kakaopay_payment_order_response import GetKakaopayPaymentOrderResponse, _deserialize_get_kakaopay_payment_order_response, _serialize_get_kakaopay_payment_order_response
 from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class PgSpecificClient:
     _secret: str

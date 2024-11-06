@@ -164,7 +164,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			id: string,
 		): Promise<PlatformPartner> => {
 			const response = await fetch(
-				new URL(`/platform/partners/${id}`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -226,7 +226,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 				userDefinedProperties,
 			})
 			const response = await fetch(
-				new URL(`/platform/partners/${id}`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -315,7 +315,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			id: string,
 		): Promise<ArchivePlatformPartnerResponse> => {
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/archive`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -348,7 +348,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			id: string,
 		): Promise<RecoverPlatformPartnerResponse> => {
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/recover`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
 					method: "post",
 					headers: {

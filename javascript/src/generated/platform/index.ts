@@ -278,7 +278,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<PlatformDiscountSharePolicy> => {
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -315,7 +315,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "put",
 					headers: {
@@ -353,7 +353,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -389,7 +389,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<CancelPlatformDiscountSharePolicyScheduleResponse> => {
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "delete",
 					headers: {
@@ -420,7 +420,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<PlatformAdditionalFeePolicy> => {
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -457,7 +457,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "put",
 					headers: {
@@ -495,7 +495,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -531,7 +531,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<CancelPlatformAdditionalFeePolicyScheduleResponse> => {
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${id}/schedule`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "delete",
 					headers: {
@@ -596,7 +596,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<PlatformPartner> => {
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -633,7 +633,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "put",
 					headers: {
@@ -673,7 +673,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -721,7 +721,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<CancelPlatformPartnerScheduleResponse> => {
 			const response = await fetch(
-				new URL(`/platform/partners/${id}/schedule`, baseUrl),
+				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "delete",
 					headers: {
@@ -797,7 +797,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<PlatformContract> => {
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -834,7 +834,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "put",
 					headers: {
@@ -872,7 +872,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 				appliedAt,
 			})
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -908,7 +908,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<CancelPlatformContractScheduleResponse> => {
 			const response = await fetch(
-				new URL(`/platform/contracts/${id}/schedule`, baseUrl),
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
 					method: "delete",
 					headers: {

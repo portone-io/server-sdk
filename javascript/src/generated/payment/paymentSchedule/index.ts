@@ -41,7 +41,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payment-schedules/${paymentScheduleId}?${query}`, baseUrl),
+				new URL(`/payment-schedules/${encodeURIComponent(paymentScheduleId)}?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -172,7 +172,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 				timeToPay,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/schedule`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/schedule`, baseUrl),
 				{
 					method: "post",
 					headers: {

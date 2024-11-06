@@ -19,6 +19,7 @@ from portone_server_sdk._generated.common.payment_amount_input import PaymentAmo
 from portone_server_sdk._generated.common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class CashReceiptClient:
     _secret: str
@@ -65,7 +66,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/payments/{payment_id}/cash-receipt",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -118,7 +119,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/payments/{payment_id}/cash-receipt",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -375,7 +376,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/cash-receipt/cancel",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -436,7 +437,7 @@ class CashReceiptClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/cash-receipt/cancel",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

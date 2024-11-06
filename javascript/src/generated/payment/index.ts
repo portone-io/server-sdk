@@ -166,7 +166,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				currency,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/pre-register`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/pre-register`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -201,7 +201,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${paymentId}?${query}`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -348,7 +348,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				refundAccount,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/cancel`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/cancel`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -461,7 +461,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				bypass,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/billing-key`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/billing-key`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -568,7 +568,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				promotionId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/instant`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/instant`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -617,7 +617,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/virtual-account/close?${query}`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/virtual-account/close?${query}`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -673,7 +673,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				products,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/escrow/logistics`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -730,7 +730,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				products,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/escrow/logistics`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
 				{
 					method: "patch",
 					headers: {
@@ -769,7 +769,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				fromStore,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/escrow/complete`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/complete`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -808,7 +808,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				webhookId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/resend-webhook`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/resend-webhook`, baseUrl),
 				{
 					method: "post",
 					headers: {
@@ -847,7 +847,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				storeId,
 			})
 			const response = await fetch(
-				new URL(`/payments/${paymentId}/register-store-receipt`, baseUrl),
+				new URL(`/payments/${encodeURIComponent(paymentId)}/register-store-receipt`, baseUrl),
 				{
 					method: "post",
 					headers: {

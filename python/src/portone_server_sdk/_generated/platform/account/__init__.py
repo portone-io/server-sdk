@@ -12,6 +12,7 @@ from portone_server_sdk._generated.platform.account.platform_external_api_tempor
 from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
 from portone_server_sdk._generated.platform.account.platform_not_supported_bank_error import PlatformNotSupportedBankError, _deserialize_platform_not_supported_bank_error, _serialize_platform_not_supported_bank_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class AccountClient:
     _secret: str
@@ -79,7 +80,7 @@ class AccountClient:
             query.append(("businessRegistrationNumber", business_registration_number))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/bank-accounts/{bank}/{account_number}/holder",
+            f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -159,7 +160,7 @@ class AccountClient:
             query.append(("businessRegistrationNumber", business_registration_number))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/bank-accounts/{bank}/{account_number}/holder",
+            f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

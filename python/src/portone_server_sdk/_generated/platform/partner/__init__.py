@@ -38,6 +38,7 @@ from portone_server_sdk._generated.platform.update_platform_partner_body_account
 from portone_server_sdk._generated.platform.update_platform_partner_body_contact import UpdatePlatformPartnerBodyContact, _deserialize_update_platform_partner_body_contact, _serialize_update_platform_partner_body_contact
 from portone_server_sdk._generated.platform.update_platform_partner_body_type import UpdatePlatformPartnerBodyType, _deserialize_update_platform_partner_body_type, _serialize_update_platform_partner_body_type
 from portone_server_sdk._generated.platform.partner.update_platform_partner_response import UpdatePlatformPartnerResponse, _deserialize_update_platform_partner_response, _serialize_update_platform_partner_response
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class PartnerClient:
     _secret: str
@@ -457,7 +458,7 @@ class PartnerClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/partners/{id}",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -511,7 +512,7 @@ class PartnerClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{id}",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -619,7 +620,7 @@ class PartnerClient:
         query = []
         response = httpx.request(
             "PATCH",
-            f"{self._base_url}/platform/partners/{id}",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -742,7 +743,7 @@ class PartnerClient:
         query = []
         response = await self._client.request(
             "PATCH",
-            f"{self._base_url}/platform/partners/{id}",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -955,7 +956,7 @@ class PartnerClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/archive",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1013,7 +1014,7 @@ class PartnerClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/archive",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1069,7 +1070,7 @@ class PartnerClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/recover",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1123,7 +1124,7 @@ class PartnerClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/recover",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

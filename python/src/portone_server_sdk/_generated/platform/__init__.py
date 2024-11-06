@@ -57,6 +57,7 @@ from portone_server_sdk._generated.platform.update_platform_contract_body import
 from portone_server_sdk._generated.platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
 from portone_server_sdk._generated.platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
 from portone_server_sdk._generated.platform.update_platform_response import UpdatePlatformResponse, _deserialize_update_platform_response, _serialize_update_platform_response
+from urllib.parse import quote
 from .policy import PolicyClient
 from .partner import PartnerClient
 from .transfer import TransferClient
@@ -442,7 +443,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -494,7 +495,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -555,7 +556,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "PUT",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -617,7 +618,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "PUT",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -682,7 +683,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -751,7 +752,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -808,7 +809,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -860,7 +861,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/platform/discount-share-policies/{id}/schedule",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -912,7 +913,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -964,7 +965,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1023,7 +1024,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1083,7 +1084,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1148,7 +1149,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1217,7 +1218,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1274,7 +1275,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1326,7 +1327,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{id}/schedule",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1484,7 +1485,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1536,7 +1537,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1598,7 +1599,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "PUT",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1663,7 +1664,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "PUT",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1741,7 +1742,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1833,7 +1834,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1902,7 +1903,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1954,7 +1955,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/platform/partners/{id}/schedule",
+            f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2152,7 +2153,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2204,7 +2205,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2265,7 +2266,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "PUT",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2327,7 +2328,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "PUT",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2392,7 +2393,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2461,7 +2462,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2518,7 +2519,7 @@ class PlatformClient:
         query = []
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2570,7 +2571,7 @@ class PlatformClient:
         query = []
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/platform/contracts/{id}/schedule",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

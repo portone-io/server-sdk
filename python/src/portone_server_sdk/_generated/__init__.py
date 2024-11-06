@@ -3,6 +3,7 @@ import httpx
 import json
 from httpx import AsyncClient
 from typing import Optional
+from urllib.parse import quote
 from .auth import AuthClient
 from .platform import PlatformClient
 from .identity_verification import IdentityVerificationClient

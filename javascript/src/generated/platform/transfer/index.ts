@@ -98,7 +98,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<PlatformTransfer> => {
 			const response = await fetch(
-				new URL(`/platform/transfers/${id}`, baseUrl),
+				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "get",
 					headers: {
@@ -129,7 +129,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			id: string,
 		): Promise<DeletePlatformTransferResponse> => {
 			const response = await fetch(
-				new URL(`/platform/transfers/${id}`, baseUrl),
+				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
 					method: "delete",
 					headers: {

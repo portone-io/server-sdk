@@ -297,7 +297,7 @@ const PATH_PLACEHOLDER = /\{[^\}]+\}/g
 function makePathInterpolation(path: string) {
   const interpolation = path.replaceAll(
     PATH_PLACEHOLDER,
-    (placeholder) => `{${toSnakeCase(placeholder)}}`,
+    (placeholder) => `{quote(${toSnakeCase(placeholder)}, safe='')}`,
   )
   return `f"{self._base_url}${interpolation}"`
 }

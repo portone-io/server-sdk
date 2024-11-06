@@ -101,6 +101,7 @@ function generateCategoryIndex(
     )
   }
   if (hasClient) {
+    importWriter.writeLine("from urllib.parse import quote")
     for (const subpackage of pack.subpackages) {
       if (
         subpackage.operations.length > 0 || subpackage.subpackages.length > 0

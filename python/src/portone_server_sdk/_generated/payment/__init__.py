@@ -58,6 +58,7 @@ from portone_server_sdk._generated.payment.sum_of_parts_exceeds_cancel_amount_er
 from portone_server_sdk._generated.common.sum_of_parts_exceeds_total_amount_error import SumOfPartsExceedsTotalAmountError, _deserialize_sum_of_parts_exceeds_total_amount_error, _serialize_sum_of_parts_exceeds_total_amount_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 from portone_server_sdk._generated.payment.webhook_not_found_error import WebhookNotFoundError, _deserialize_webhook_not_found_error, _serialize_webhook_not_found_error
+from urllib.parse import quote
 from .billing_key import BillingKeyClient
 from .cash_receipt import CashReceiptClient
 from .payment_schedule import PaymentScheduleClient
@@ -132,7 +133,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/pre-register",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/pre-register",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -202,7 +203,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/pre-register",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/pre-register",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -256,7 +257,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/payments/{payment_id}",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -309,7 +310,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/payments/{payment_id}",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -699,7 +700,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/cancel",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -836,7 +837,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/cancel",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancel",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1026,7 +1027,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/billing-key",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/billing-key",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1216,7 +1217,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/billing-key",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/billing-key",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1398,7 +1399,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/instant",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/instant",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1576,7 +1577,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/instant",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/instant",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1648,7 +1649,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/virtual-account/close",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/virtual-account/close",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1709,7 +1710,7 @@ class PaymentClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/virtual-account/close",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/virtual-account/close",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1797,7 +1798,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/escrow/logistics",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1886,7 +1887,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/escrow/logistics",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1975,7 +1976,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "PATCH",
-            f"{self._base_url}/payments/{payment_id}/escrow/logistics",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2064,7 +2065,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "PATCH",
-            f"{self._base_url}/payments/{payment_id}/escrow/logistics",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/logistics",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2135,7 +2136,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/escrow/complete",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/complete",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2206,7 +2207,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/escrow/complete",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/escrow/complete",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2276,7 +2277,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/resend-webhook",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/resend-webhook",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2346,7 +2347,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/resend-webhook",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/resend-webhook",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2415,7 +2416,7 @@ class PaymentClient:
         query = []
         response = httpx.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/register-store-receipt",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/register-store-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2484,7 +2485,7 @@ class PaymentClient:
         query = []
         response = await self._client.request(
             "POST",
-            f"{self._base_url}/payments/{payment_id}/register-store-receipt",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/register-store-receipt",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

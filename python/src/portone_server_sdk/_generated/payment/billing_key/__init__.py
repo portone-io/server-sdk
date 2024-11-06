@@ -22,6 +22,7 @@ from portone_server_sdk._generated.common.page_input import PageInput, _deserial
 from portone_server_sdk._generated.common.payment_schedule_already_exists_error import PaymentScheduleAlreadyExistsError, _deserialize_payment_schedule_already_exists_error, _serialize_payment_schedule_already_exists_error
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from urllib.parse import quote
 from portone_server_sdk._generated import errors
 class BillingKeyClient:
     _secret: str
@@ -68,7 +69,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/billing-keys/{billing_key}",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -121,7 +122,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/billing-keys/{billing_key}",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -183,7 +184,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = httpx.request(
             "DELETE",
-            f"{self._base_url}/billing-keys/{billing_key}",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -255,7 +256,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         response = await self._client.request(
             "DELETE",
-            f"{self._base_url}/billing-keys/{billing_key}",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

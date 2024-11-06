@@ -27,7 +27,7 @@ export function AccountClient(secret: string, userAgent: string, baseUrl?: strin
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/bank-accounts/${bank}/${accountNumber}/holder?${query}`, baseUrl),
+				new URL(`/platform/bank-accounts/${encodeURIComponent(bank)}/${encodeURIComponent(accountNumber)}/holder?${query}`, baseUrl),
 				{
 					method: "get",
 					headers: {
