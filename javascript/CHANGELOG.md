@@ -1,5 +1,12 @@
 # @portone/server-sdk
 
+## 0.6.2
+
+### Patch Changes
+
+- 5714216: Webhook 타입 추가
+- 5714216: #generated 경로 삭제
+
 ## 0.6.1
 
 ### Patch Changes
