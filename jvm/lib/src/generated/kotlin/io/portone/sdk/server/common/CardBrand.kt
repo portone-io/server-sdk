@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 /** 카드 브랜드 */
 @Serializable
 public enum class CardBrand {
-  LOCAL,
-  MASTER,
-  UNIONPAY,
-  VISA,
-  JCB,
-  AMEX,
-  DINERS,
+  Local,
+  Master,
+  Unionpay,
+  Visa,
+  Jcb,
+  Amex,
+  Diners,
 }

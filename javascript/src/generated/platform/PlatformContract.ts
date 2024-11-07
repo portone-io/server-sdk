@@ -1,6 +1,6 @@
-import type { PlatformFee } from "#generated/platform/PlatformFee"
-import type { PlatformPayer } from "#generated/platform/PlatformPayer"
-import type { PlatformSettlementCycle } from "#generated/platform/PlatformSettlementCycle"
+import type { PlatformFee } from "./../platform/PlatformFee"
+import type { PlatformPayer } from "./../platform/PlatformPayer"
+import type { PlatformSettlementCycle } from "./../platform/PlatformSettlementCycle"
 
 /**
  * 계약

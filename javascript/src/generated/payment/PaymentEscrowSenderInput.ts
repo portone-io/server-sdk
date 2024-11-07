@@ -1,4 +1,4 @@
-import type { SeparatedAddressInput } from "#generated/common/SeparatedAddressInput"
+import type { SeparatedAddressInput } from "./../common/SeparatedAddressInput"
 
 /** 에스크로 발송자 정보 */
 export type PaymentEscrowSenderInput = {

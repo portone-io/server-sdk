@@ -1,4 +1,4 @@
-import type { RegisterStoreReceiptBodyItem } from "#generated/payment/RegisterStoreReceiptBodyItem"
+import type { RegisterStoreReceiptBodyItem } from "./../payment/RegisterStoreReceiptBodyItem"
 
 /** 영수증 내 하위 상점 거래 등록 정보 */
 export type RegisterStoreReceiptBody = {

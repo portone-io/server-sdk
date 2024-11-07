@@ -1,7 +1,7 @@
-import type { PlatformContractFilterInputKeyword } from "#generated/platform/policy/PlatformContractFilterInputKeyword"
-import type { PlatformPayer } from "#generated/platform/PlatformPayer"
-import type { PlatformSettlementCycleDatePolicy } from "#generated/platform/PlatformSettlementCycleDatePolicy"
-import type { PlatformSettlementCycleType } from "#generated/platform/policy/PlatformSettlementCycleType"
+import type { PlatformContractFilterInputKeyword } from "./../../platform/policy/PlatformContractFilterInputKeyword"
+import type { PlatformPayer } from "./../../platform/PlatformPayer"
+import type { PlatformSettlementCycleDatePolicy } from "./../../platform/PlatformSettlementCycleDatePolicy"
+import type { PlatformSettlementCycleType } from "./../../platform/policy/PlatformSettlementCycleType"
 
 /** 계약 다건 조회를 위한 필터 조건 */
 export type PlatformContractFilterInput = {

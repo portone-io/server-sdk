@@ -1,5 +1,6 @@
 package io.portone.sdk.server.webhook
 
+import kotlinx.serialization.json.Json
 import java.security.MessageDigest
 import java.util.Base64
 import javax.crypto.Mac
@@ -36,6 +37,8 @@ import javax.crypto.spec.SecretKeySpec
  * ```
  */
 public class WebhookVerifier private constructor(private val secretKeySpec: SecretKeySpec) {
+    private val json = Json
+
     /**
      * Constructs the verifier with the secret key.
      *
@@ -76,7 +79,7 @@ public class WebhookVerifier private constructor(private val secretKeySpec: Secr
         msgId: String?,
         msgSignature: String?,
         msgTimestamp: String?,
-    ) {
+    ): WebhookRequest? {
         if (msgId == null || msgSignature == null || msgTimestamp == null) {
             throw WebhookVerificationException("Missing required headers")
         }
@@ -104,6 +107,11 @@ public class WebhookVerifier private constructor(private val secretKeySpec: Secr
             }
         ) {
             throw WebhookVerificationException("No matching signature found")
+        }
+        return try {
+            json.decodeFromString<WebhookRequest>(msgBody)
+        } catch (_: Exception) {
+            null
         }
     }
 

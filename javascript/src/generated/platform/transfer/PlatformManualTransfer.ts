@@ -1,7 +1,7 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPartner } from "#generated/platform/PlatformPartner"
-import type { PlatformTransferStatus } from "#generated/platform/transfer/PlatformTransferStatus"
-import type { PlatformUserDefinedPropertyKeyValue } from "#generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformPartner } from "./../../platform/PlatformPartner"
+import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
+import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 
 /** 수기 정산건 */
 export type PlatformManualTransfer = {

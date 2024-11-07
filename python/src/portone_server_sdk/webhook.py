@@ -1,10 +1,93 @@
 import codecs
 import hmac
+import json
 import time
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Literal, Optional, Union
 
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_deleted import (
+    WebhookBillingKeyRequestDeleted,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_deleted_data import (
+    WebhookBillingKeyRequestDeletedData,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_failed import (
+    WebhookBillingKeyRequestFailed,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_failed_data import (
+    WebhookBillingKeyRequestFailedData,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_issued import (
+    WebhookBillingKeyRequestIssued,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_issued_data import (
+    WebhookBillingKeyRequestIssuedData,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_ready import (
+    WebhookBillingKeyRequestReady,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_ready_data import (
+    WebhookBillingKeyRequestReadyData,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_updated import (
+    WebhookBillingKeyRequestUpdated,
+)
+from portone_server_sdk._generated.webhook.webhook_billing_key_request_updated_data import (
+    WebhookBillingKeyRequestUpdatedData,
+)
+from portone_server_sdk._generated.webhook.webhook_request import (
+    WebhookRequest,
+    _deserialize_webhook_request,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_cancel_pending import (
+    WebhookTransactionRequestCancelPending,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_cancel_pending_data import (
+    WebhookTransactionRequestCancelPendingData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_cancelled import (
+    WebhookTransactionRequestCancelled,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_cancelled_data import (
+    WebhookTransactionRequestCancelledData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_failed import (
+    WebhookTransactionRequestFailed,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_failed_data import (
+    WebhookTransactionRequestFailedData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_paid import (
+    WebhookTransactionRequestPaid,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_paid_data import (
+    WebhookTransactionRequestPaidData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_partial_cancelled import (
+    WebhookTransactionRequestPartialCancelled,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_partial_cancelled_data import (
+    WebhookTransactionRequestPartialCancelledData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_pay_pending import (
+    WebhookTransactionRequestPayPending,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_pay_pending_data import (
+    WebhookTransactionRequestPayPendingData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_ready import (
+    WebhookTransactionRequestReady,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_ready_data import (
+    WebhookTransactionRequestReadyData,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_virtual_account_issued import (
+    WebhookTransactionRequestVirtualAccountIssued,
+)
+from portone_server_sdk._generated.webhook.webhook_transaction_request_virtual_account_issued_data import (
+    WebhookTransactionRequestVirtualAccountIssuedData,
+)
 from portone_server_sdk.errors import PortOneError
 
 _required_headers = {
@@ -67,7 +150,7 @@ class InvalidInputError(PortOneError):
 
 def verify(
     secret: Union[str, bytes, bytearray], payload: str, headers: Mapping[str, str]
-) -> None:
+) -> Optional[WebhookRequest]:
     """웹훅 페이로드를 검증합니다.
 
     Args:
@@ -78,6 +161,9 @@ def verify(
     Raises:
         InvalidInputError: 입력받은 시크릿이 유효하지 않을 때 발생합니다.
         WebhookVerificationError: 웹훅 검증에 실패했을 때 발생합니다.
+
+    Returns:
+        검증된 웹훅 페이로드. 웹훅 형식이 올바르지 않을 경우 `None` 입니다.
     """
     for header_name in _required_headers:
         header_value = headers.get(header_name)
@@ -104,7 +190,10 @@ def verify(
             continue
 
         if hmac.compare_digest(signature_decoded, expected_signature):
-            return
+            try:
+                return _deserialize_webhook_request(json.loads(payload))
+            except ValueError:
+                return None
     raise WebhookVerificationError("NO_MATCHING_SIGNATURE")
 
 
@@ -159,4 +248,30 @@ __all__ = [
     "WebhookVerificationError",
     "InvalidInputError",
     "verify",
+    "WebhookBillingKeyRequestDeletedData",
+    "WebhookBillingKeyRequestDeleted",
+    "WebhookBillingKeyRequestFailedData",
+    "WebhookBillingKeyRequestFailed",
+    "WebhookBillingKeyRequestIssuedData",
+    "WebhookBillingKeyRequestIssued",
+    "WebhookBillingKeyRequestReadyData",
+    "WebhookBillingKeyRequestReady",
+    "WebhookBillingKeyRequestUpdatedData",
+    "WebhookBillingKeyRequestUpdated",
+    "WebhookTransactionRequestCancelPendingData",
+    "WebhookTransactionRequestCancelPending",
+    "WebhookTransactionRequestCancelledData",
+    "WebhookTransactionRequestCancelled",
+    "WebhookTransactionRequestFailedData",
+    "WebhookTransactionRequestFailed",
+    "WebhookTransactionRequestPaidData",
+    "WebhookTransactionRequestPaid",
+    "WebhookTransactionRequestPartialCancelledData",
+    "WebhookTransactionRequestPartialCancelled",
+    "WebhookTransactionRequestPayPendingData",
+    "WebhookTransactionRequestPayPending",
+    "WebhookTransactionRequestReadyData",
+    "WebhookTransactionRequestReady",
+    "WebhookTransactionRequestVirtualAccountIssuedData",
+    "WebhookTransactionRequestVirtualAccountIssued",
 ]

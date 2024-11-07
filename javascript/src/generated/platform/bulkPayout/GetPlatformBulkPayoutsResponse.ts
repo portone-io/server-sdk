@@ -1,6 +1,6 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformBulkPayout } from "#generated/platform/bulkPayout/PlatformBulkPayout"
-import type { PlatformBulkPayoutStatusStats } from "#generated/platform/bulkPayout/PlatformBulkPayoutStatusStats"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformBulkPayout } from "./../../platform/bulkPayout/PlatformBulkPayout"
+import type { PlatformBulkPayoutStatusStats } from "./../../platform/bulkPayout/PlatformBulkPayoutStatusStats"
 
 export type GetPlatformBulkPayoutsResponse = {
 	items: PlatformBulkPayout[]

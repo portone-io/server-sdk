@@ -1,5 +1,5 @@
-import type { PlatformSettlementCycleDatePolicy } from "#generated/platform/PlatformSettlementCycleDatePolicy"
-import type { PlatformSettlementCycleMethodInput } from "#generated/platform/PlatformSettlementCycleMethodInput"
+import type { PlatformSettlementCycleDatePolicy } from "./../platform/PlatformSettlementCycleDatePolicy"
+import type { PlatformSettlementCycleMethodInput } from "./../platform/PlatformSettlementCycleMethodInput"
 
 /** 플랫폼 정산 주기 입력 정보 */
 export type PlatformSettlementCycleInput = {

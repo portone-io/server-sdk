@@ -1,5 +1,5 @@
-import type { EasyPayMethodType } from "#generated/platform/transfer/EasyPayMethodType"
-import type { EasyPayProvider } from "#generated/common/EasyPayProvider"
+import type { EasyPayMethodType } from "./../../platform/transfer/EasyPayMethodType"
+import type { EasyPayProvider } from "./../../common/EasyPayProvider"
 
 /** 간편 결제 입력 정보 */
 export type PlatformPaymentMethodEasyPayInput = {

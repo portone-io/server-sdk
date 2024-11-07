@@ -1,5 +1,5 @@
-import type { IdentityVerificationVerifiedCustomer } from "#generated/identityVerification/IdentityVerificationVerifiedCustomer"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { IdentityVerificationVerifiedCustomer } from "./../identityVerification/IdentityVerificationVerifiedCustomer"
+import type { SelectedChannel } from "./../common/SelectedChannel"
 
 /** 완료된 본인인증 내역 */
 export type VerifiedIdentityVerification = {

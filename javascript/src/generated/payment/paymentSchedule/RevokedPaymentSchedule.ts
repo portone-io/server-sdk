@@ -1,6 +1,6 @@
-import type { Currency } from "#generated/common/Currency"
-import type { Customer } from "#generated/common/Customer"
-import type { PaymentProduct } from "#generated/common/PaymentProduct"
+import type { Currency } from "./../../common/Currency"
+import type { Customer } from "./../../common/Customer"
+import type { PaymentProduct } from "./../../common/PaymentProduct"
 
 /** 결제 예약 취소 상태 */
 export type RevokedPaymentSchedule = {

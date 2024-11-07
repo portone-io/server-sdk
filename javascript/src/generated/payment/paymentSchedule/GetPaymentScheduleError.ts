@@ -1,7 +1,7 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PaymentScheduleNotFoundError } from "#generated/payment/paymentSchedule/PaymentScheduleNotFoundError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PaymentScheduleNotFoundError } from "./../../payment/paymentSchedule/PaymentScheduleNotFoundError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type GetPaymentScheduleError =
 	| ForbiddenError

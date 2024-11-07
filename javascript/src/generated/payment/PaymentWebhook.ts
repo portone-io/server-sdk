@@ -1,8 +1,8 @@
-import type { PaymentWebhookPaymentStatus } from "#generated/payment/PaymentWebhookPaymentStatus"
-import type { PaymentWebhookRequest } from "#generated/payment/PaymentWebhookRequest"
-import type { PaymentWebhookResponse } from "#generated/payment/PaymentWebhookResponse"
-import type { PaymentWebhookStatus } from "#generated/payment/PaymentWebhookStatus"
-import type { PaymentWebhookTrigger } from "#generated/payment/PaymentWebhookTrigger"
+import type { PaymentWebhookPaymentStatus } from "./../payment/PaymentWebhookPaymentStatus"
+import type { PaymentWebhookRequest } from "./../payment/PaymentWebhookRequest"
+import type { PaymentWebhookResponse } from "./../payment/PaymentWebhookResponse"
+import type { PaymentWebhookStatus } from "./../payment/PaymentWebhookStatus"
+import type { PaymentWebhookTrigger } from "./../payment/PaymentWebhookTrigger"
 
 /** 성공 웹훅 내역 */
 export type PaymentWebhook = {

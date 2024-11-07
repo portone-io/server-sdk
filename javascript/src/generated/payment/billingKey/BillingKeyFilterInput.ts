@@ -1,11 +1,11 @@
-import type { BillingKeyPaymentMethodType } from "#generated/payment/billingKey/BillingKeyPaymentMethodType"
-import type { BillingKeyStatus } from "#generated/payment/billingKey/BillingKeyStatus"
-import type { BillingKeyTextSearch } from "#generated/payment/billingKey/BillingKeyTextSearch"
-import type { BillingKeyTimeRangeField } from "#generated/payment/billingKey/BillingKeyTimeRangeField"
-import type { PaymentClientType } from "#generated/common/PaymentClientType"
-import type { PgCompany } from "#generated/payment/billingKey/PgCompany"
-import type { PgProvider } from "#generated/common/PgProvider"
-import type { PortOneVersion } from "#generated/common/PortOneVersion"
+import type { BillingKeyPaymentMethodType } from "./../../payment/billingKey/BillingKeyPaymentMethodType"
+import type { BillingKeyStatus } from "./../../payment/billingKey/BillingKeyStatus"
+import type { BillingKeyTextSearch } from "./../../payment/billingKey/BillingKeyTextSearch"
+import type { BillingKeyTimeRangeField } from "./../../payment/billingKey/BillingKeyTimeRangeField"
+import type { PaymentClientType } from "./../../common/PaymentClientType"
+import type { PgCompany } from "./../../payment/billingKey/PgCompany"
+import type { PgProvider } from "./../../common/PgProvider"
+import type { PortOneVersion } from "./../../common/PortOneVersion"
 
 /** 빌링키 다건 조회를 위한 입력 정보 */
 export type BillingKeyFilterInput = {

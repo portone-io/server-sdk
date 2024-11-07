@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformAccountTransferType {
   /** 충전 */
-  DEPOSIT,
+  Deposit,
   /** 파트너 정산 송금 */
-  WITHDRAWAL_PARTNER_PAYOUT,
+  WithdrawalPartnerPayout,
   /** 송금 */
-  WITHDRAWAL_REMIT,
+  WithdrawalRemit,
 }

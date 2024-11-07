@@ -1,8 +1,8 @@
-import type { BillingKeyPaymentMethod } from "#generated/payment/billingKey/BillingKeyPaymentMethod"
-import type { ChannelGroupSummary } from "#generated/common/ChannelGroupSummary"
-import type { Customer } from "#generated/common/Customer"
-import type { PgBillingKeyIssueResponse } from "#generated/payment/billingKey/PgBillingKeyIssueResponse"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { BillingKeyPaymentMethod } from "./../../payment/billingKey/BillingKeyPaymentMethod"
+import type { ChannelGroupSummary } from "./../../common/ChannelGroupSummary"
+import type { Customer } from "./../../common/Customer"
+import type { PgBillingKeyIssueResponse } from "./../../payment/billingKey/PgBillingKeyIssueResponse"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /** 빌링키 발급 완료 상태 건 */
 export type IssuedBillingKeyInfo = {

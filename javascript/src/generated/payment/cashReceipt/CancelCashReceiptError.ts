@@ -1,9 +1,9 @@
-import type { CashReceiptNotFoundError } from "#generated/payment/cashReceipt/CashReceiptNotFoundError"
-import type { CashReceiptNotIssuedError } from "#generated/payment/cashReceipt/CashReceiptNotIssuedError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { CashReceiptNotFoundError } from "./../../payment/cashReceipt/CashReceiptNotFoundError"
+import type { CashReceiptNotIssuedError } from "./../../payment/cashReceipt/CashReceiptNotIssuedError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PgProviderError } from "./../../common/PgProviderError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type CancelCashReceiptError =
 	| CashReceiptNotFoundError

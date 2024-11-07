@@ -41,7 +41,9 @@ export function makeOverridesMap(
       }
       return new Set(
         entity.properties.map((property) =>
-          `${property.name}/${property.required}/${property.type}`
+          `${property.name}/${property.required}/${
+            property.type === "ref" ? property.value : property.type
+          }`
         ),
       )
     }).reduce((a, b) => a.intersection(b))

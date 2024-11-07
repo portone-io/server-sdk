@@ -1,5 +1,5 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPaymentMethod } from "#generated/platform/transfer/PlatformPaymentMethod"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformPaymentMethod } from "./../../platform/transfer/PlatformPaymentMethod"
 
 /** 외부 결제 정보 */
 export type PlatformExternalPayment = {

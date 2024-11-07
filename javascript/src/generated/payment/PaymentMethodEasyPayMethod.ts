@@ -1,6 +1,6 @@
-import type { PaymentMethodCard } from "#generated/payment/PaymentMethodCard"
-import type { PaymentMethodEasyPayMethodCharge } from "#generated/payment/PaymentMethodEasyPayMethodCharge"
-import type { PaymentMethodTransfer } from "#generated/payment/PaymentMethodTransfer"
+import type { PaymentMethodCard } from "./../payment/PaymentMethodCard"
+import type { PaymentMethodEasyPayMethodCharge } from "./../payment/PaymentMethodEasyPayMethodCharge"
+import type { PaymentMethodTransfer } from "./../payment/PaymentMethodTransfer"
 
 /** 간편 결제 수단 */
 export type PaymentMethodEasyPayMethod =

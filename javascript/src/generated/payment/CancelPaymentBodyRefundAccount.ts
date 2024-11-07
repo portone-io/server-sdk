@@ -1,4 +1,4 @@
-import type { Bank } from "#generated/common/Bank"
+import type { Bank } from "./../common/Bank"
 
 /** 고객 정보 입력 형식 */
 export type CancelPaymentBodyRefundAccount = {

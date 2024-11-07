@@ -1,12 +1,12 @@
-import type { ChannelNotFoundError } from "#generated/common/ChannelNotFoundError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { IdentityVerificationAlreadySentError } from "#generated/identityVerification/IdentityVerificationAlreadySentError"
-import type { IdentityVerificationAlreadyVerifiedError } from "#generated/identityVerification/IdentityVerificationAlreadyVerifiedError"
-import type { IdentityVerificationNotFoundError } from "#generated/identityVerification/IdentityVerificationNotFoundError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { MaxTransactionCountReachedError } from "#generated/common/MaxTransactionCountReachedError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ChannelNotFoundError } from "./../common/ChannelNotFoundError"
+import type { ForbiddenError } from "./../common/ForbiddenError"
+import type { IdentityVerificationAlreadySentError } from "./../identityVerification/IdentityVerificationAlreadySentError"
+import type { IdentityVerificationAlreadyVerifiedError } from "./../identityVerification/IdentityVerificationAlreadyVerifiedError"
+import type { IdentityVerificationNotFoundError } from "./../identityVerification/IdentityVerificationNotFoundError"
+import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { MaxTransactionCountReachedError } from "./../common/MaxTransactionCountReachedError"
+import type { PgProviderError } from "./../common/PgProviderError"
+import type { UnauthorizedError } from "./../common/UnauthorizedError"
 
 export type SendIdentityVerificationError =
 	| ChannelNotFoundError

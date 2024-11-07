@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformContract } from "#generated/platform/PlatformContract"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformContract } from "./../../platform/PlatformContract"
 
 /** 계약 다건 조회 성공 응답 */
 export type GetPlatformContractsResponse = {

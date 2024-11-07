@@ -1,5 +1,5 @@
-import type { Gender } from "#generated/common/Gender"
-import type { IdentityVerificationOperator } from "#generated/identityVerification/IdentityVerificationOperator"
+import type { Gender } from "./../common/Gender"
+import type { IdentityVerificationOperator } from "./../identityVerification/IdentityVerificationOperator"
 
 /** 인증된 고객 정보 */
 export type IdentityVerificationVerifiedCustomer = {

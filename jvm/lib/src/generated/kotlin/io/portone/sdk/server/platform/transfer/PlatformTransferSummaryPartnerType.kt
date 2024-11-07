@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformTransferSummaryPartnerType {
   /** 사업자 */
-  BUSINESS,
+  Business,
   /** 원천징수 대상자 */
-  WHT_PAYER,
+  WhtPayer,
   /** 원천징수 비대상자 */
-  NON_WHT_PAYER,
+  NonWhtPayer,
 }

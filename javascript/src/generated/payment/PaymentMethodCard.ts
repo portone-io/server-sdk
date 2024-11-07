@@ -1,5 +1,5 @@
-import type { Card } from "#generated/common/Card"
-import type { PaymentInstallment } from "#generated/payment/PaymentInstallment"
+import type { Card } from "./../common/Card"
+import type { PaymentInstallment } from "./../payment/PaymentInstallment"
 
 /** 결제수단 카드 정보 */
 export type PaymentMethodCard = {

@@ -1,10 +1,10 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PlatformAdditionalFeePolicyNotFoundError } from "#generated/platform/PlatformAdditionalFeePolicyNotFoundError"
-import type { PlatformAdditionalFeePolicyScheduleAlreadyExistsError } from "#generated/platform/PlatformAdditionalFeePolicyScheduleAlreadyExistsError"
-import type { PlatformArchivedAdditionalFeePolicyError } from "#generated/platform/PlatformArchivedAdditionalFeePolicyError"
-import type { PlatformNotEnabledError } from "#generated/platform/PlatformNotEnabledError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../common/ForbiddenError"
+import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { PlatformAdditionalFeePolicyNotFoundError } from "./../platform/PlatformAdditionalFeePolicyNotFoundError"
+import type { PlatformAdditionalFeePolicyScheduleAlreadyExistsError } from "./../platform/PlatformAdditionalFeePolicyScheduleAlreadyExistsError"
+import type { PlatformArchivedAdditionalFeePolicyError } from "./../platform/PlatformArchivedAdditionalFeePolicyError"
+import type { PlatformNotEnabledError } from "./../platform/PlatformNotEnabledError"
+import type { UnauthorizedError } from "./../common/UnauthorizedError"
 
 export type ScheduleAdditionalFeePolicyError =
 	| ForbiddenError

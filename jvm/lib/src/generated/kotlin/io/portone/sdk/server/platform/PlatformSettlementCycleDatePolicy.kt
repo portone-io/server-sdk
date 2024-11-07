@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformSettlementCycleDatePolicy {
   /** 공휴일 전 영업일 */
-  HOLIDAY_BEFORE,
+  HolidayBefore,
   /** 공휴일 후 영업일 */
-  HOLIDAY_AFTER,
+  HolidayAfter,
   /** 달력일 */
-  CALENDAR_DAY,
+  CalendarDay,
 }

@@ -1,6 +1,6 @@
-import type { PlatformManualTransferSummary } from "#generated/platform/transfer/PlatformManualTransferSummary"
-import type { PlatformOrderCancelTransferSummary } from "#generated/platform/transfer/PlatformOrderCancelTransferSummary"
-import type { PlatformOrderTransferSummary } from "#generated/platform/transfer/PlatformOrderTransferSummary"
+import type { PlatformManualTransferSummary } from "./../../platform/transfer/PlatformManualTransferSummary"
+import type { PlatformOrderCancelTransferSummary } from "./../../platform/transfer/PlatformOrderCancelTransferSummary"
+import type { PlatformOrderTransferSummary } from "./../../platform/transfer/PlatformOrderTransferSummary"
 
 export type PlatformTransferSummary =
 	| PlatformManualTransferSummary

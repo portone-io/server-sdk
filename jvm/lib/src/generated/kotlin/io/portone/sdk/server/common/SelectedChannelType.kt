@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class SelectedChannelType {
   /** 실 연동 채널 */
-  LIVE,
+  Live,
   /** 테스트 연동 채널 */
-  TEST,
+  Test,
 }

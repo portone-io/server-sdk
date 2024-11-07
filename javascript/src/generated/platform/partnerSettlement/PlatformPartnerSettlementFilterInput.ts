@@ -1,7 +1,7 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPartnerSettlementFilterKeywordInput } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementFilterKeywordInput"
-import type { PlatformPartnerSettlementStatus } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementStatus"
-import type { PlatformPartnerSettlementType } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementType"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformPartnerSettlementFilterKeywordInput } from "./../../platform/partnerSettlement/PlatformPartnerSettlementFilterKeywordInput"
+import type { PlatformPartnerSettlementStatus } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatus"
+import type { PlatformPartnerSettlementType } from "./../../platform/partnerSettlement/PlatformPartnerSettlementType"
 
 export type PlatformPartnerSettlementFilterInput = {
 	settlementDates?: string[]

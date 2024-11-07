@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentMethodVirtualAccountRefundStatus {
   /** 처리중 */
-  PENDING,
+  Pending,
   /** 부분 환불 실패 */
-  PARTIAL_REFUND_FAILED,
+  PartialRefundFailed,
   /** 환불 실패 */
-  FAILED,
+  Failed,
   /** 환불 완료 */
-  COMPLETED,
+  Completed,
 }

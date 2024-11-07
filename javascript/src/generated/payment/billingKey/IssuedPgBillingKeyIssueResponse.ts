@@ -1,5 +1,5 @@
-import type { BillingKeyPaymentMethod } from "#generated/payment/billingKey/BillingKeyPaymentMethod"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { BillingKeyPaymentMethod } from "./../../payment/billingKey/BillingKeyPaymentMethod"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /** 빌링키 발급 성공 채널 응답 */
 export type IssuedPgBillingKeyIssueResponse = {

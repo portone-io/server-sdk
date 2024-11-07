@@ -1,6 +1,6 @@
-import type { BillingKeyPaymentMethodCard } from "#generated/payment/billingKey/BillingKeyPaymentMethodCard"
-import type { BillingKeyPaymentMethodEasyPayCharge } from "#generated/payment/billingKey/BillingKeyPaymentMethodEasyPayCharge"
-import type { BillingKeyPaymentMethodTransfer } from "#generated/payment/billingKey/BillingKeyPaymentMethodTransfer"
+import type { BillingKeyPaymentMethodCard } from "./../../payment/billingKey/BillingKeyPaymentMethodCard"
+import type { BillingKeyPaymentMethodEasyPayCharge } from "./../../payment/billingKey/BillingKeyPaymentMethodEasyPayCharge"
+import type { BillingKeyPaymentMethodTransfer } from "./../../payment/billingKey/BillingKeyPaymentMethodTransfer"
 
 /** 간편 결제 수단 */
 export type BillingKeyPaymentMethodEasyPayMethod =

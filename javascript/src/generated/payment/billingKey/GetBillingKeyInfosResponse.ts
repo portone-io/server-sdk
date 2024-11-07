@@ -1,5 +1,5 @@
-import type { BillingKeyInfo } from "#generated/payment/billingKey/BillingKeyInfo"
-import type { PageInfo } from "#generated/common/PageInfo"
+import type { BillingKeyInfo } from "./../../payment/billingKey/BillingKeyInfo"
+import type { PageInfo } from "./../../common/PageInfo"
 
 /** 빌링키 다건 조회 성공 응답 정보 */
 export type GetBillingKeyInfosResponse = {

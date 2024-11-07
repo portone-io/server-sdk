@@ -1,4 +1,4 @@
-import type { Currency } from "#generated/common/Currency"
+import type { Currency } from "./../common/Currency"
 
 /** 하위 상점 거래 정보 */
 export type RegisterStoreReceiptBodyItem = {

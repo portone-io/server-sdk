@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformAccountTransfer } from "#generated/platform/accountTransfer/PlatformAccountTransfer"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformAccountTransfer } from "./../../platform/accountTransfer/PlatformAccountTransfer"
 
 /** 이체내역 다건 조회 성공 응답 정보 */
 export type GetPlatformAccountTransfersResponse = {

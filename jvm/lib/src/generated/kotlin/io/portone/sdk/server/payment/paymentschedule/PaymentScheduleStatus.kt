@@ -6,15 +6,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentScheduleStatus {
   /** 예약 완료 */
-  SCHEDULED,
+  Scheduled,
   /** 결제 시작 */
-  STARTED,
+  Started,
   /** 결제 성공 */
-  SUCCEEDED,
+  Succeeded,
   /** 결제 실패 */
-  FAILED,
+  Failed,
   /** 취소된 결제 예약 */
-  REVOKED,
+  Revoked,
   /** 결제 승인 대기 */
-  PENDING,
+  Pending,
 }

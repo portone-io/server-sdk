@@ -1,4 +1,4 @@
-import type { PlatformAccountTransferType } from "#generated/platform/accountTransfer/PlatformAccountTransferType"
+import type { PlatformAccountTransferType } from "./../../platform/accountTransfer/PlatformAccountTransferType"
 
 export type PlatformAccountTransferFilter = {
 	/** 계좌 이체 유형 */

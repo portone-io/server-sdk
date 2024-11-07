@@ -1,4 +1,4 @@
-import type { CardPromotion } from "#generated/payment/promotion/CardPromotion"
+import type { CardPromotion } from "./../../payment/promotion/CardPromotion"
 
 /** 프로모션 */
 export type Promotion =

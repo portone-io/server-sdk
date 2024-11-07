@@ -1,10 +1,10 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { IdentityVerificationAlreadyVerifiedError } from "#generated/identityVerification/IdentityVerificationAlreadyVerifiedError"
-import type { IdentityVerificationNotFoundError } from "#generated/identityVerification/IdentityVerificationNotFoundError"
-import type { IdentityVerificationNotSentError } from "#generated/identityVerification/IdentityVerificationNotSentError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../common/ForbiddenError"
+import type { IdentityVerificationAlreadyVerifiedError } from "./../identityVerification/IdentityVerificationAlreadyVerifiedError"
+import type { IdentityVerificationNotFoundError } from "./../identityVerification/IdentityVerificationNotFoundError"
+import type { IdentityVerificationNotSentError } from "./../identityVerification/IdentityVerificationNotSentError"
+import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { PgProviderError } from "./../common/PgProviderError"
+import type { UnauthorizedError } from "./../common/UnauthorizedError"
 
 export type ConfirmIdentityVerificationError =
 	| ForbiddenError

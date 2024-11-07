@@ -23,14 +23,15 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   const variantErrors = new Set<string>()
   collectErrors(pack, entityMap, oneOfErrors, variantErrors)
   generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
-  generateEntityDirectory(srcPath, pack, categoryMap)
+  generateEntityDirectory(srcPath, pack, categoryMap, ".")
   generateClient(srcPath, pack)
   generateIndex(srcPath, pack)
   const omitEntities = oneOfErrors.union(variantErrors)
   generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities, 0)
-  const entrypoints = [...new Set(categoryMap.values())].map((category) =>
-    category.replace(".", "/")
-  )
+  const ignoreEntrypoints = new Set(["webhook"])
+  const entrypoints = [
+    ...new Set(categoryMap.values()).difference(ignoreEntrypoints),
+  ].map((category) => category.replace(".", "/"))
   entrypoints.sort()
   return entrypoints
 }
@@ -393,15 +394,19 @@ function generateEntityDirectory(
   packagePath: string,
   pack: Package,
   categoryMap: Map<string, string>,
+  hierarchy: string,
 ) {
   for (const entity of pack.entities) {
     const entityPath = path.join(packagePath, `${entity.name}.ts`)
-    Deno.writeTextFileSync(entityPath, generateEntity(categoryMap, entity))
+    Deno.writeTextFileSync(
+      entityPath,
+      generateEntity(categoryMap, entity, hierarchy),
+    )
   }
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
     fs.ensureDirSync(subPath)
-    generateEntityDirectory(subPath, subpackage, categoryMap)
+    generateEntityDirectory(subPath, subpackage, categoryMap, hierarchy + "/..")
   }
 }
 
@@ -413,6 +418,7 @@ function generateCategoryIndex(
   omitEntities: Set<string>,
   depth: number,
 ) {
+  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
   const crossRef = new Set<string>()
   const writer = TypescriptWriter()
   for (const entity of pack.entities) {
@@ -436,7 +442,9 @@ function generateCategoryIndex(
       } from "./${subpackage.category}"`,
     )
   }
-  writeClientObject(writer, pack, entityMap, crossRef)
+  if (hasClient) {
+    writeClientObject(writer, pack, entityMap, crossRef)
+  }
   const sortedRef = [...crossRef].toSorted()
   const importWriter = TypescriptWriter()
   for (const ref of sortedRef) {
@@ -450,9 +458,11 @@ function generateCategoryIndex(
       }/${ref}"`,
     )
   }
-  importWriter.writeLine(
-    `import * as Errors from "${"../".repeat(depth)}/errors"`,
-  )
+  if (hasClient) {
+    importWriter.writeLine(
+      `import * as Errors from "${"../".repeat(depth)}/errors"`,
+    )
+  }
   for (const subpackage of pack.subpackages) {
     importWriter.writeLine(
       `import * as ${

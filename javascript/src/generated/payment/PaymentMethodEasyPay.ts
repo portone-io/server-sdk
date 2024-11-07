@@ -1,5 +1,5 @@
-import type { EasyPayProvider } from "#generated/common/EasyPayProvider"
-import type { PaymentMethodEasyPayMethod } from "#generated/payment/PaymentMethodEasyPayMethod"
+import type { EasyPayProvider } from "./../common/EasyPayProvider"
+import type { PaymentMethodEasyPayMethod } from "./../payment/PaymentMethodEasyPayMethod"
 
 /** 간편 결제 상세 정보 */
 export type PaymentMethodEasyPay = {

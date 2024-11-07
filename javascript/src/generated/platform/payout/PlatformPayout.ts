@@ -1,8 +1,8 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPartner } from "#generated/platform/PlatformPartner"
-import type { PlatformPayoutAccount } from "#generated/platform/payout/PlatformPayoutAccount"
-import type { PlatformPayoutMethod } from "#generated/platform/PlatformPayoutMethod"
-import type { PlatformPayoutStatus } from "#generated/platform/payout/PlatformPayoutStatus"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformPartner } from "./../../platform/PlatformPartner"
+import type { PlatformPayoutAccount } from "./../../platform/payout/PlatformPayoutAccount"
+import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
+import type { PlatformPayoutStatus } from "./../../platform/payout/PlatformPayoutStatus"
 
 export type PlatformPayout = {
 	/** 지급 고유 아이디 */

@@ -1,4 +1,4 @@
-import type { CreatePlatformOrderTransferBodyOrderLine } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyOrderLine"
+import type { CreatePlatformOrderTransferBodyOrderLine } from "./../../platform/transfer/CreatePlatformOrderTransferBodyOrderLine"
 
 /**
  * 주문 정보

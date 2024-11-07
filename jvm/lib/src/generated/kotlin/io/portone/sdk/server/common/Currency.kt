@@ -6,365 +6,365 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class Currency {
   /** 대한민국 원화 */
-  KRW,
+  Krw,
   /** 미국 달러 */
-  USD,
+  Usd,
   /** 일본 엔화 */
-  JPY,
+  Jpy,
   /** UAE Dirham */
-  AED,
+  Aed,
   /** Afghani */
-  AFN,
+  Afn,
   /** Lek */
-  ALL,
+  All,
   /** Armenian Dram */
-  AMD,
+  Amd,
   /** Netherlands Antillean Guilder */
-  ANG,
+  Ang,
   /** Kwanza */
-  AOA,
+  Aoa,
   /** Argentine Peso */
-  ARS,
+  Ars,
   /** Australian Dollar */
-  AUD,
+  Aud,
   /** Aruban Florin */
-  AWG,
+  Awg,
   /** Azerbaijan Manat */
-  AZN,
+  Azn,
   /** Convertible Mark */
-  BAM,
+  Bam,
   /** Barbados Dollar */
-  BBD,
+  Bbd,
   /** Taka */
-  BDT,
+  Bdt,
   /** Bulgarian Lev */
-  BGN,
+  Bgn,
   /** Bahraini Dinar */
-  BHD,
+  Bhd,
   /** Burundi Franc */
-  BIF,
+  Bif,
   /** Bermudian Dollar */
-  BMD,
+  Bmd,
   /** Brunei Dollar */
-  BND,
+  Bnd,
   /** Boliviano */
-  BOB,
+  Bob,
   /** Mvdol */
-  BOV,
+  Bov,
   /** Brazilian Real */
-  BRL,
+  Brl,
   /** Bahamian Dollar */
-  BSD,
+  Bsd,
   /** Ngultrum */
-  BTN,
+  Btn,
   /** Pula */
-  BWP,
+  Bwp,
   /** Belarusian Ruble */
-  BYN,
+  Byn,
   /** Belize Dollar */
-  BZD,
+  Bzd,
   /** Canadian Dollar */
-  CAD,
+  Cad,
   /** Congolese Franc */
-  CDF,
+  Cdf,
   /** WIR Euro */
-  CHE,
+  Che,
   /** Swiss Franc */
-  CHF,
+  Chf,
   /** WIR Franc */
-  CHW,
+  Chw,
   /** Unidad de Fomento */
-  CLF,
+  Clf,
   /** Chilean Peso */
-  CLP,
+  Clp,
   /** Yuan Renminbi */
-  CNY,
+  Cny,
   /** Colombian Peso */
-  COP,
+  Cop,
   /** Unidad de Valor Real */
-  COU,
+  Cou,
   /** Costa Rican Colon */
-  CRC,
+  Crc,
   /** Peso Convertible */
-  CUC,
+  Cuc,
   /** Cuban Peso */
-  CUP,
+  Cup,
   /** Cabo Verde Escudo */
-  CVE,
+  Cve,
   /** Czech Koruna */
-  CZK,
+  Czk,
   /** Djibouti Franc */
-  DJF,
+  Djf,
   /** Danish Krone */
-  DKK,
+  Dkk,
   /** Dominican Peso */
-  DOP,
+  Dop,
   /** Algerian Dinar */
-  DZD,
+  Dzd,
   /** Egyptian Pound */
-  EGP,
+  Egp,
   /** Nakfa */
-  ERN,
+  Ern,
   /** Ethiopian Birr */
-  ETB,
+  Etb,
   /** Euro */
-  EUR,
+  Eur,
   /** Fiji Dollar */
-  FJD,
+  Fjd,
   /** Falkland Islands Pound */
-  FKP,
+  Fkp,
   /** Pound Sterling */
-  GBP,
+  Gbp,
   /** Lari */
-  GEL,
+  Gel,
   /** Ghana Cedi */
-  GHS,
+  Ghs,
   /** Gibraltar Pound */
-  GIP,
+  Gip,
   /** Dalasi */
-  GMD,
+  Gmd,
   /** Guinean Franc */
-  GNF,
+  Gnf,
   /** Quetzal */
-  GTQ,
+  Gtq,
   /** Guyana Dollar */
-  GYD,
+  Gyd,
   /** Hong Kong Dollar */
-  HKD,
+  Hkd,
   /** Lempira */
-  HNL,
+  Hnl,
   /** Kuna (Replaced by EUR) */
-  HRK,
+  Hrk,
   /** Gourde */
-  HTG,
+  Htg,
   /** Forint */
-  HUF,
+  Huf,
   /** Rupiah */
-  IDR,
+  Idr,
   /** New Israeli Sheqel */
-  ILS,
+  Ils,
   /** Indian Rupee */
-  INR,
+  Inr,
   /** Iraqi Dinar */
-  IQD,
+  Iqd,
   /** Iranian Rial */
-  IRR,
+  Irr,
   /** Iceland Krona */
-  ISK,
+  Isk,
   /** Jamaican Dollar */
-  JMD,
+  Jmd,
   /** Jordanian Dinar */
-  JOD,
+  Jod,
   /** Kenyan Shilling */
-  KES,
+  Kes,
   /** Som */
-  KGS,
+  Kgs,
   /** Riel */
-  KHR,
+  Khr,
   /** Comorian Franc */
-  KMF,
+  Kmf,
   /** North Korean Won */
-  KPW,
+  Kpw,
   /** Kuwaiti Dinar */
-  KWD,
+  Kwd,
   /** Cayman Islands Dollar */
-  KYD,
+  Kyd,
   /** Tenge */
-  KZT,
+  Kzt,
   /** Lao Kip */
-  LAK,
+  Lak,
   /** Lebanese Pound */
-  LBP,
+  Lbp,
   /** Sri Lanka Rupee */
-  LKR,
+  Lkr,
   /** Liberian Dollar */
-  LRD,
+  Lrd,
   /** Loti */
-  LSL,
+  Lsl,
   /** Libyan Dinar */
-  LYD,
+  Lyd,
   /** Moroccan Dirham */
-  MAD,
+  Mad,
   /** Moldovan Leu */
-  MDL,
+  Mdl,
   /** Malagasy Ariary */
-  MGA,
+  Mga,
   /** Denar */
-  MKD,
+  Mkd,
   /** Kyat */
-  MMK,
+  Mmk,
   /** Tugrik */
-  MNT,
+  Mnt,
   /** Pataca */
-  MOP,
+  Mop,
   /** Ouguiya */
-  MRU,
+  Mru,
   /** Mauritius Rupee */
-  MUR,
+  Mur,
   /** Rufiyaa */
-  MVR,
+  Mvr,
   /** Malawi Kwacha */
-  MWK,
+  Mwk,
   /** Mexican Peso */
-  MXN,
+  Mxn,
   /** Mexican Unidad de Inversion (UDI) */
-  MXV,
+  Mxv,
   /** Malaysian Ringgit */
-  MYR,
+  Myr,
   /** Mozambique Metical */
-  MZN,
+  Mzn,
   /** Namibia Dollar */
-  NAD,
+  Nad,
   /** Naira */
-  NGN,
+  Ngn,
   /** Cordoba Oro */
-  NIO,
+  Nio,
   /** Norwegian Krone */
-  NOK,
+  Nok,
   /** Nepalese Rupee */
-  NPR,
+  Npr,
   /** New Zealand Dollar */
-  NZD,
+  Nzd,
   /** Rial Omani */
-  OMR,
+  Omr,
   /** Balboa */
-  PAB,
+  Pab,
   /** Sol */
-  PEN,
+  Pen,
   /** Kina */
-  PGK,
+  Pgk,
   /** Philippine Peso */
-  PHP,
+  Php,
   /** Pakistan Rupee */
-  PKR,
+  Pkr,
   /** Zloty */
-  PLN,
+  Pln,
   /** Guarani */
-  PYG,
+  Pyg,
   /** Qatari Rial */
-  QAR,
+  Qar,
   /** Romanian Leu */
-  RON,
+  Ron,
   /** Serbian Dinar */
-  RSD,
+  Rsd,
   /** Russian Ruble */
-  RUB,
+  Rub,
   /** Rwanda Franc */
-  RWF,
+  Rwf,
   /** Saudi Riyal */
-  SAR,
+  Sar,
   /** Solomon Islands Dollar */
-  SBD,
+  Sbd,
   /** Seychelles Rupee */
-  SCR,
+  Scr,
   /** Sudanese Pound */
-  SDG,
+  Sdg,
   /** Swedish Krona */
-  SEK,
+  Sek,
   /** Singapore Dollar */
-  SGD,
+  Sgd,
   /** Saint Helena Pound */
-  SHP,
+  Shp,
   /** Leone */
-  SLE,
+  Sle,
   /** Leone */
-  SLL,
+  Sll,
   /** Somali Shilling */
-  SOS,
+  Sos,
   /** Surinam Dollar */
-  SRD,
+  Srd,
   /** South Sudanese Pound */
-  SSP,
+  Ssp,
   /** Dobra */
-  STN,
+  Stn,
   /** El Salvador Colon */
-  SVC,
+  Svc,
   /** Syrian Pound */
-  SYP,
+  Syp,
   /** Lilangeni */
-  SZL,
+  Szl,
   /** Baht */
-  THB,
+  Thb,
   /** Somoni */
-  TJS,
+  Tjs,
   /** Turkmenistan New Manat */
-  TMT,
+  Tmt,
   /** Tunisian Dinar */
-  TND,
+  Tnd,
   /** Pa’anga */
-  TOP,
+  Top,
   /** Turkish Lira */
-  TRY,
+  Try,
   /** Trinidad and Tobago Dollar */
-  TTD,
+  Ttd,
   /** New Taiwan Dollar */
-  TWD,
+  Twd,
   /** Tanzanian Shilling */
-  TZS,
+  Tzs,
   /** Hryvnia */
-  UAH,
+  Uah,
   /** Uganda Shilling */
-  UGX,
+  Ugx,
   /** US Dollar (Next day) */
-  USN,
+  Usn,
   /** Uruguay Peso en Unidades Indexadas (UI) */
-  UYI,
+  Uyi,
   /** Peso Uruguayo */
-  UYU,
+  Uyu,
   /** Unidad Previsional */
-  UYW,
+  Uyw,
   /** Uzbekistan Sum */
-  UZS,
+  Uzs,
   /** Bolívar Soberano */
-  VED,
+  Ved,
   /** Bolívar Soberano */
-  VES,
+  Ves,
   /** Dong */
-  VND,
+  Vnd,
   /** Vatu */
-  VUV,
+  Vuv,
   /** Tala */
-  WST,
+  Wst,
   /** CFA Franc BEAC */
-  XAF,
+  Xaf,
   /** Silver */
-  XAG,
+  Xag,
   /** Gold */
-  XAU,
+  Xau,
   /** Bond Markets Unit European Composite Unit (EURCO) */
-  XBA,
+  Xba,
   /** Bond Markets Unit European Monetary Unit (E.M.U.-6) */
-  XBB,
+  Xbb,
   /** Bond Markets Unit European Unit of Account 9 (E.U.A.-9) */
-  XBC,
+  Xbc,
   /** Bond Markets Unit European Unit of Account 17 (E.U.A.-17) */
-  XBD,
+  Xbd,
   /** East Caribbean Dollar */
-  XCD,
+  Xcd,
   /** SDR (Special Drawing Right) */
-  XDR,
+  Xdr,
   /** CFA Franc BCEAO */
-  XOF,
+  Xof,
   /** Palladium */
-  XPD,
+  Xpd,
   /** CFP Franc */
-  XPF,
+  Xpf,
   /** Platinum */
-  XPT,
+  Xpt,
   /** Sucre */
-  XSU,
+  Xsu,
   /** Codes specifically reserved for testing purposes */
-  XTS,
+  Xts,
   /** ADB Unit of Account */
-  XUA,
+  Xua,
   /** The codes assigned for transactions where no currency is involved */
-  XXX,
+  Xxx,
   /** Yemeni Rial */
-  YER,
+  Yer,
   /** Rand */
-  ZAR,
+  Zar,
   /** Zambian Kwacha */
-  ZMW,
+  Zmw,
   /** Zimbabwe Dollar */
-  ZWL,
+  Zwl,
 }

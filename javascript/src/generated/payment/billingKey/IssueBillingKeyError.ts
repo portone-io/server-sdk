@@ -1,9 +1,9 @@
-import type { ChannelNotFoundError } from "#generated/common/ChannelNotFoundError"
-import type { ChannelSpecificError } from "#generated/payment/billingKey/ChannelSpecificError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ChannelNotFoundError } from "./../../common/ChannelNotFoundError"
+import type { ChannelSpecificError } from "./../../payment/billingKey/ChannelSpecificError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PgProviderError } from "./../../common/PgProviderError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type IssueBillingKeyError =
 	| ChannelNotFoundError

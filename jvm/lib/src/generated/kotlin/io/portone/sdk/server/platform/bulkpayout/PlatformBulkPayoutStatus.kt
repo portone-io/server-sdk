@@ -4,11 +4,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public enum class PlatformBulkPayoutStatus {
-  SCHEDULED,
-  PREPARING,
-  PREPARED,
-  ONGOING,
-  CANCELLED,
-  STOPPED,
-  COMPLETED,
+  Scheduled,
+  Preparing,
+  Prepared,
+  Ongoing,
+  Cancelled,
+  Stopped,
+  Completed,
 }

@@ -6,501 +6,501 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class Country {
   /** Andorra */
-  AD,
+  Ad,
   /** United Arab Emirates (the) */
-  AE,
+  Ae,
   /** Afghanistan */
-  AF,
+  Af,
   /** Antigua and Barbuda */
-  AG,
+  Ag,
   /** Anguilla */
-  AI,
+  Ai,
   /** Albania */
-  AL,
+  Al,
   /** Armenia */
-  AM,
+  Am,
   /** Angola */
-  AO,
+  Ao,
   /** Antarctica */
-  AQ,
+  Aq,
   /** Argentina */
-  AR,
+  Ar,
   /** American Samoa */
-  AS,
+  As,
   /** Austria */
-  AT,
+  At,
   /** Australia */
-  AU,
+  Au,
   /** Aruba */
-  AW,
+  Aw,
   /** Åland Islands */
-  AX,
+  Ax,
   /** Azerbaijan */
-  AZ,
+  Az,
   /** Bosnia and Herzegovina */
-  BA,
+  Ba,
   /** Barbados */
-  BB,
+  Bb,
   /** Bangladesh */
-  BD,
+  Bd,
   /** Belgium */
-  BE,
+  Be,
   /** Burkina Faso */
-  BF,
+  Bf,
   /** Bulgaria */
-  BG,
+  Bg,
   /** Bahrain */
-  BH,
+  Bh,
   /** Burundi */
-  BI,
+  Bi,
   /** Benin */
-  BJ,
+  Bj,
   /** Saint Barthélemy */
-  BL,
+  Bl,
   /** Bermuda */
-  BM,
+  Bm,
   /** Brunei Darussalam */
-  BN,
+  Bn,
   /** Bolivia (Plurinational State of) */
-  BO,
+  Bo,
   /** Bonaire, Sint Eustatius and Saba */
-  BQ,
+  Bq,
   /** Brazil */
-  BR,
+  Br,
   /** Bahamas (the) */
-  BS,
+  Bs,
   /** Bhutan */
-  BT,
+  Bt,
   /** Bouvet Island */
-  BV,
+  Bv,
   /** Botswana */
-  BW,
+  Bw,
   /** Belarus */
-  BY,
+  By,
   /** Belize */
-  BZ,
+  Bz,
   /** Canada */
-  CA,
+  Ca,
   /** Cocos (Keeling) Islands (the) */
-  CC,
+  Cc,
   /** Congo (the Democratic Republic of the) */
-  CD,
+  Cd,
   /** Central African Republic (the) */
-  CF,
+  Cf,
   /** Congo (the) */
-  CG,
+  Cg,
   /** Switzerland */
-  CH,
+  Ch,
   /** Côte d'Ivoire */
-  CI,
+  Ci,
   /** Cook Islands (the) */
-  CK,
+  Ck,
   /** Chile */
-  CL,
+  Cl,
   /** Cameroon */
-  CM,
+  Cm,
   /** China */
-  CN,
+  Cn,
   /** Colombia */
-  CO,
+  Co,
   /** Costa Rica */
-  CR,
+  Cr,
   /** Cuba */
-  CU,
+  Cu,
   /** Cabo Verde */
-  CV,
+  Cv,
   /** Curaçao */
-  CW,
+  Cw,
   /** Christmas Island */
-  CX,
+  Cx,
   /** Cyprus */
-  CY,
+  Cy,
   /** Czechia */
-  CZ,
+  Cz,
   /** Germany */
-  DE,
+  De,
   /** Djibouti */
-  DJ,
+  Dj,
   /** Denmark */
-  DK,
+  Dk,
   /** Dominica */
-  DM,
+  Dm,
   /** Dominican Republic (the) */
-  DO,
+  Do,
   /** Algeria */
-  DZ,
+  Dz,
   /** Ecuador */
-  EC,
+  Ec,
   /** Estonia */
-  EE,
+  Ee,
   /** Egypt */
-  EG,
+  Eg,
   /** Western Sahara */
-  EH,
+  Eh,
   /** Eritrea */
-  ER,
+  Er,
   /** Spain */
-  ES,
+  Es,
   /** Ethiopia */
-  ET,
+  Et,
   /** Finland */
-  FI,
+  Fi,
   /** Fiji */
-  FJ,
+  Fj,
   /** Falkland Islands (the) [Malvinas] */
-  FK,
+  Fk,
   /** Micronesia (Federated States of) */
-  FM,
+  Fm,
   /** Faroe Islands (the) */
-  FO,
+  Fo,
   /** France */
-  FR,
+  Fr,
   /** Gabon */
-  GA,
+  Ga,
   /** United Kingdom of Great Britain and Northern Ireland (the) */
-  GB,
+  Gb,
   /** Grenada */
-  GD,
+  Gd,
   /** Georgia */
-  GE,
+  Ge,
   /** French Guiana */
-  GF,
+  Gf,
   /** Guernsey */
-  GG,
+  Gg,
   /** Ghana */
-  GH,
+  Gh,
   /** Gibraltar */
-  GI,
+  Gi,
   /** Greenland */
-  GL,
+  Gl,
   /** Gambia (the) */
-  GM,
+  Gm,
   /** Guinea */
-  GN,
+  Gn,
   /** Guadeloupe */
-  GP,
+  Gp,
   /** Equatorial Guinea */
-  GQ,
+  Gq,
   /** Greece */
-  GR,
+  Gr,
   /** South Georgia and the South Sandwich Islands */
-  GS,
+  Gs,
   /** Guatemala */
-  GT,
+  Gt,
   /** Guam */
-  GU,
+  Gu,
   /** Guinea-Bissau */
-  GW,
+  Gw,
   /** Guyana */
-  GY,
+  Gy,
   /** Hong Kong */
-  HK,
+  Hk,
   /** Heard Island and McDonald Islands */
-  HM,
+  Hm,
   /** Honduras */
-  HN,
+  Hn,
   /** Croatia */
-  HR,
+  Hr,
   /** Haiti */
-  HT,
+  Ht,
   /** Hungary */
-  HU,
+  Hu,
   /** Indonesia */
-  ID,
+  Id,
   /** Ireland */
-  IE,
+  Ie,
   /** Israel */
-  IL,
+  Il,
   /** Isle of Man */
-  IM,
+  Im,
   /** India */
-  IN,
+  In,
   /** British Indian Ocean Territory (the) */
-  IO,
+  Io,
   /** Iraq */
-  IQ,
+  Iq,
   /** Iran (Islamic Republic of) */
-  IR,
+  Ir,
   /** Iceland */
-  IS,
+  Is,
   /** Italy */
-  IT,
+  It,
   /** Jersey */
-  JE,
+  Je,
   /** Jamaica */
-  JM,
+  Jm,
   /** Jordan */
-  JO,
+  Jo,
   /** Japan */
-  JP,
+  Jp,
   /** Kenya */
-  KE,
+  Ke,
   /** Kyrgyzstan */
-  KG,
+  Kg,
   /** Cambodia */
-  KH,
+  Kh,
   /** Kiribati */
-  KI,
+  Ki,
   /** Comoros (the) */
-  KM,
+  Km,
   /** Saint Kitts and Nevis */
-  KN,
+  Kn,
   /** Korea (the Democratic People's Republic of) */
-  KP,
+  Kp,
   /** Korea (the Republic of) */
-  KR,
+  Kr,
   /** Kuwait */
-  KW,
+  Kw,
   /** Cayman Islands (the) */
-  KY,
+  Ky,
   /** Kazakhstan */
-  KZ,
+  Kz,
   /** Lao People's Democratic Republic (the) */
-  LA,
+  La,
   /** Lebanon */
-  LB,
+  Lb,
   /** Saint Lucia */
-  LC,
+  Lc,
   /** Liechtenstein */
-  LI,
+  Li,
   /** Sri Lanka */
-  LK,
+  Lk,
   /** Liberia */
-  LR,
+  Lr,
   /** Lesotho */
-  LS,
+  Ls,
   /** Lithuania */
-  LT,
+  Lt,
   /** Luxembourg */
-  LU,
+  Lu,
   /** Latvia */
-  LV,
+  Lv,
   /** Libya */
-  LY,
+  Ly,
   /** Morocco */
-  MA,
+  Ma,
   /** Monaco */
-  MC,
+  Mc,
   /** Moldova (the Republic of) */
-  MD,
+  Md,
   /** Montenegro */
-  ME,
+  Me,
   /** Saint Martin (French part) */
-  MF,
+  Mf,
   /** Madagascar */
-  MG,
+  Mg,
   /** Marshall Islands (the) */
-  MH,
+  Mh,
   /** North Macedonia */
-  MK,
+  Mk,
   /** Mali */
-  ML,
+  Ml,
   /** Myanmar */
-  MM,
+  Mm,
   /** Mongolia */
-  MN,
+  Mn,
   /** Macao */
-  MO,
+  Mo,
   /** Northern Mariana Islands (the) */
-  MP,
+  Mp,
   /** Martinique */
-  MQ,
+  Mq,
   /** Mauritania */
-  MR,
+  Mr,
   /** Montserrat */
-  MS,
+  Ms,
   /** Malta */
-  MT,
+  Mt,
   /** Mauritius */
-  MU,
+  Mu,
   /** Maldives */
-  MV,
+  Mv,
   /** Malawi */
-  MW,
+  Mw,
   /** Mexico */
-  MX,
+  Mx,
   /** Malaysia */
-  MY,
+  My,
   /** Mozambique */
-  MZ,
+  Mz,
   /** Namibia */
-  NA,
+  Na,
   /** New Caledonia */
-  NC,
+  Nc,
   /** Niger (the) */
-  NE,
+  Ne,
   /** Norfolk Island */
-  NF,
+  Nf,
   /** Nigeria */
-  NG,
+  Ng,
   /** Nicaragua */
-  NI,
+  Ni,
   /** Netherlands (Kingdom of the) */
-  NL,
+  Nl,
   /** Norway */
-  NO,
+  No,
   /** Nepal */
-  NP,
+  Np,
   /** Nauru */
-  NR,
+  Nr,
   /** Niue */
-  NU,
+  Nu,
   /** New Zealand */
-  NZ,
+  Nz,
   /** Oman */
-  OM,
+  Om,
   /** Panama */
-  PA,
+  Pa,
   /** Peru */
-  PE,
+  Pe,
   /** French Polynesia */
-  PF,
+  Pf,
   /** Papua New Guinea */
-  PG,
+  Pg,
   /** Philippines (the) */
-  PH,
+  Ph,
   /** Pakistan */
-  PK,
+  Pk,
   /** Poland */
-  PL,
+  Pl,
   /** Saint Pierre and Miquelon */
-  PM,
+  Pm,
   /** Pitcairn */
-  PN,
+  Pn,
   /** Puerto Rico */
-  PR,
+  Pr,
   /** Palestine, State of */
-  PS,
+  Ps,
   /** Portugal */
-  PT,
+  Pt,
   /** Palau */
-  PW,
+  Pw,
   /** Paraguay */
-  PY,
+  Py,
   /** Qatar */
-  QA,
+  Qa,
   /** Réunion */
-  RE,
+  Re,
   /** Romania */
-  RO,
+  Ro,
   /** Serbia */
-  RS,
+  Rs,
   /** Russian Federation (the) */
-  RU,
+  Ru,
   /** Rwanda */
-  RW,
+  Rw,
   /** Saudi Arabia */
-  SA,
+  Sa,
   /** Solomon Islands */
-  SB,
+  Sb,
   /** Seychelles */
-  SC,
+  Sc,
   /** Sudan (the) */
-  SD,
+  Sd,
   /** Sweden */
-  SE,
+  Se,
   /** Singapore */
-  SG,
+  Sg,
   /** Saint Helena, Ascension and Tristan da Cunha */
-  SH,
+  Sh,
   /** Slovenia */
-  SI,
+  Si,
   /** Svalbard and Jan Mayen */
-  SJ,
+  Sj,
   /** Slovakia */
-  SK,
+  Sk,
   /** Sierra Leone */
-  SL,
+  Sl,
   /** San Marino */
-  SM,
+  Sm,
   /** Senegal */
-  SN,
+  Sn,
   /** Somalia */
-  SO,
+  So,
   /** Suriname */
-  SR,
+  Sr,
   /** South Sudan */
-  SS,
+  Ss,
   /** Sao Tome and Principe */
-  ST,
+  St,
   /** El Salvador */
-  SV,
+  Sv,
   /** Sint Maarten (Dutch part) */
-  SX,
+  Sx,
   /** Syrian Arab Republic (the) */
-  SY,
+  Sy,
   /** Eswatini */
-  SZ,
+  Sz,
   /** Turks and Caicos Islands (the) */
-  TC,
+  Tc,
   /** Chad */
-  TD,
+  Td,
   /** French Southern Territories (the) */
-  TF,
+  Tf,
   /** Togo */
-  TG,
+  Tg,
   /** Thailand */
-  TH,
+  Th,
   /** Tajikistan */
-  TJ,
+  Tj,
   /** Tokelau */
-  TK,
+  Tk,
   /** Timor-Leste */
-  TL,
+  Tl,
   /** Turkmenistan */
-  TM,
+  Tm,
   /** Tunisia */
-  TN,
+  Tn,
   /** Tonga */
-  TO,
+  To,
   /** Türkiye */
-  TR,
+  Tr,
   /** Trinidad and Tobago */
-  TT,
+  Tt,
   /** Tuvalu */
-  TV,
+  Tv,
   /** Taiwan (Province of China) */
-  TW,
+  Tw,
   /** Tanzania, the United Republic of */
-  TZ,
+  Tz,
   /** Ukraine */
-  UA,
+  Ua,
   /** Uganda */
-  UG,
+  Ug,
   /** United States Minor Outlying Islands (the) */
-  UM,
+  Um,
   /** United States of America (the) */
-  US,
+  Us,
   /** Uruguay */
-  UY,
+  Uy,
   /** Uzbekistan */
-  UZ,
+  Uz,
   /** Holy See (the) */
-  VA,
+  Va,
   /** Saint Vincent and the Grenadines */
-  VC,
+  Vc,
   /** Venezuela (Bolivarian Republic of) */
-  VE,
+  Ve,
   /** Virgin Islands (British) */
-  VG,
+  Vg,
   /** Virgin Islands (U.S.) */
-  VI,
+  Vi,
   /** Viet Nam */
-  VN,
+  Vn,
   /** Vanuatu */
-  VU,
+  Vu,
   /** Wallis and Futuna */
-  WF,
+  Wf,
   /** Samoa */
-  WS,
+  Ws,
   /** Yemen */
-  YE,
+  Ye,
   /** Mayotte */
-  YT,
+  Yt,
   /** South Africa */
-  ZA,
+  Za,
   /** Zambia */
-  ZM,
+  Zm,
   /** Zimbabwe */
-  ZW,
+  Zw,
 }

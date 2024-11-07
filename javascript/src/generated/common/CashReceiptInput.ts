@@ -1,4 +1,4 @@
-import type { CashReceiptInputType } from "#generated/common/CashReceiptInputType"
+import type { CashReceiptInputType } from "./../common/CashReceiptInputType"
 
 /** 현금영수증 입력 정보 */
 export type CashReceiptInput = {

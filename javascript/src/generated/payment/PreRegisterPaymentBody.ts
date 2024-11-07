@@ -1,4 +1,4 @@
-import type { Currency } from "#generated/common/Currency"
+import type { Currency } from "./../common/Currency"
 
 /** 결제 정보 사전 등록 입력 정보 */
 export type PreRegisterPaymentBody = {

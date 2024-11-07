@@ -1,9 +1,9 @@
-import type { PaymentMethodCard } from "#generated/payment/PaymentMethodCard"
-import type { PaymentMethodEasyPay } from "#generated/payment/PaymentMethodEasyPay"
-import type { PaymentMethodGiftCertificate } from "#generated/payment/PaymentMethodGiftCertificate"
-import type { PaymentMethodMobile } from "#generated/payment/PaymentMethodMobile"
-import type { PaymentMethodTransfer } from "#generated/payment/PaymentMethodTransfer"
-import type { PaymentMethodVirtualAccount } from "#generated/payment/PaymentMethodVirtualAccount"
+import type { PaymentMethodCard } from "./../payment/PaymentMethodCard"
+import type { PaymentMethodEasyPay } from "./../payment/PaymentMethodEasyPay"
+import type { PaymentMethodGiftCertificate } from "./../payment/PaymentMethodGiftCertificate"
+import type { PaymentMethodMobile } from "./../payment/PaymentMethodMobile"
+import type { PaymentMethodTransfer } from "./../payment/PaymentMethodTransfer"
+import type { PaymentMethodVirtualAccount } from "./../payment/PaymentMethodVirtualAccount"
 
 /** 결제수단 정보 */
 export type PaymentMethod =

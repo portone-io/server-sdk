@@ -1,11 +1,11 @@
-import type { BillingKeyAlreadyDeletedError } from "#generated/common/BillingKeyAlreadyDeletedError"
-import type { BillingKeyNotFoundError } from "#generated/common/BillingKeyNotFoundError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PaymentScheduleAlreadyProcessedError } from "#generated/payment/paymentSchedule/PaymentScheduleAlreadyProcessedError"
-import type { PaymentScheduleAlreadyRevokedError } from "#generated/payment/paymentSchedule/PaymentScheduleAlreadyRevokedError"
-import type { PaymentScheduleNotFoundError } from "#generated/payment/paymentSchedule/PaymentScheduleNotFoundError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { BillingKeyAlreadyDeletedError } from "./../../common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyNotFoundError } from "./../../common/BillingKeyNotFoundError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PaymentScheduleAlreadyProcessedError } from "./../../payment/paymentSchedule/PaymentScheduleAlreadyProcessedError"
+import type { PaymentScheduleAlreadyRevokedError } from "./../../payment/paymentSchedule/PaymentScheduleAlreadyRevokedError"
+import type { PaymentScheduleNotFoundError } from "./../../payment/paymentSchedule/PaymentScheduleNotFoundError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type RevokePaymentSchedulesError =
 	| BillingKeyAlreadyDeletedError

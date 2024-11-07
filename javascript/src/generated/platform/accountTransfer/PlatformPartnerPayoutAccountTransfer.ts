@@ -1,5 +1,5 @@
-import type { Bank } from "#generated/common/Bank"
-import type { Currency } from "#generated/common/Currency"
+import type { Bank } from "./../../common/Bank"
+import type { Currency } from "./../../common/Currency"
 
 export type PlatformPartnerPayoutAccountTransfer = {
 	/** 계좌 이체 유형 */

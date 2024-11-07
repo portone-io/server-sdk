@@ -1,4 +1,4 @@
-import type { UpdatePlatformPartnerBody } from "#generated/platform/UpdatePlatformPartnerBody"
+import type { UpdatePlatformPartnerBody } from "./../platform/UpdatePlatformPartnerBody"
 
 /** 파트너 예약 업데이트 재설정을 위한 입력 정보 */
 export type ReschedulePlatformPartnerBody = {

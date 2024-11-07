@@ -1,4 +1,4 @@
-import type { PlatformAdditionalFeePolicy } from "#generated/platform/PlatformAdditionalFeePolicy"
+import type { PlatformAdditionalFeePolicy } from "./../../platform/PlatformAdditionalFeePolicy"
 
 /** 추가 수수료 정책 복원 성공 응답 */
 export type RecoverPlatformAdditionalFeePolicyResponse = {

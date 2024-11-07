@@ -1,5 +1,5 @@
-import type { PlatformPartnerTaxationType } from "#generated/platform/PlatformPartnerTaxationType"
-import type { PlatformTransferSummaryPartnerType } from "#generated/platform/transfer/PlatformTransferSummaryPartnerType"
+import type { PlatformPartnerTaxationType } from "./../../platform/PlatformPartnerTaxationType"
+import type { PlatformTransferSummaryPartnerType } from "./../../platform/transfer/PlatformTransferSummaryPartnerType"
 
 export type PlatformTransferSummaryPartner = {
 	id: string

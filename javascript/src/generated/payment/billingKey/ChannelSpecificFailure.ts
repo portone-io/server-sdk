@@ -1,5 +1,5 @@
-import type { ChannelSpecificFailureInvalidRequest } from "#generated/payment/billingKey/ChannelSpecificFailureInvalidRequest"
-import type { ChannelSpecificFailurePgProvider } from "#generated/payment/billingKey/ChannelSpecificFailurePgProvider"
+import type { ChannelSpecificFailureInvalidRequest } from "./../../payment/billingKey/ChannelSpecificFailureInvalidRequest"
+import type { ChannelSpecificFailurePgProvider } from "./../../payment/billingKey/ChannelSpecificFailurePgProvider"
 
 export type ChannelSpecificFailure =
 	/** 요청된 입력 정보가 유효하지 않은 경우 */

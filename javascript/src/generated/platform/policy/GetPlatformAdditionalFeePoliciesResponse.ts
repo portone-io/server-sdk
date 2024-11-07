@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformAdditionalFeePolicy } from "#generated/platform/PlatformAdditionalFeePolicy"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformAdditionalFeePolicy } from "./../../platform/PlatformAdditionalFeePolicy"
 
 /** 추가 수수료 정책 다건 조회 성공 응답 정보 */
 export type GetPlatformAdditionalFeePoliciesResponse = {

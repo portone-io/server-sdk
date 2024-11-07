@@ -1,3 +1,4 @@
+import { webhookPackage } from "../common/webhook.ts"
 import OpenAPI from "../openapi.json" with { type: "json" }
 import { type Definition, parseDefinition } from "./definition.ts"
 import { type Operation, parseOperation } from "./operation.ts"
@@ -219,6 +220,7 @@ export function packageSchema(): Package {
     }
     pack.entities.push(definition)
   }
+  packages.push(webhookPackage)
   return sortPackages({
     category: "root",
     operations: [],

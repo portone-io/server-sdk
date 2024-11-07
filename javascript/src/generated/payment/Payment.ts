@@ -1,10 +1,10 @@
-import type { CancelledPayment } from "#generated/payment/CancelledPayment"
-import type { FailedPayment } from "#generated/payment/FailedPayment"
-import type { PaidPayment } from "#generated/payment/PaidPayment"
-import type { PartialCancelledPayment } from "#generated/payment/PartialCancelledPayment"
-import type { PayPendingPayment } from "#generated/payment/PayPendingPayment"
-import type { ReadyPayment } from "#generated/payment/ReadyPayment"
-import type { VirtualAccountIssuedPayment } from "#generated/payment/VirtualAccountIssuedPayment"
+import type { CancelledPayment } from "./../payment/CancelledPayment"
+import type { FailedPayment } from "./../payment/FailedPayment"
+import type { PaidPayment } from "./../payment/PaidPayment"
+import type { PartialCancelledPayment } from "./../payment/PartialCancelledPayment"
+import type { PayPendingPayment } from "./../payment/PayPendingPayment"
+import type { ReadyPayment } from "./../payment/ReadyPayment"
+import type { VirtualAccountIssuedPayment } from "./../payment/VirtualAccountIssuedPayment"
 
 /** 결제 건 */
 export type Payment =

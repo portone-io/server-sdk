@@ -1,7 +1,7 @@
-import type { PlatformOrderSettlementAmount } from "#generated/platform/PlatformOrderSettlementAmount"
-import type { PlatformOrderTransferAdditionalFee } from "#generated/platform/transfer/PlatformOrderTransferAdditionalFee"
-import type { PlatformOrderTransferDiscount } from "#generated/platform/transfer/PlatformOrderTransferDiscount"
-import type { PlatformOrderTransferProduct } from "#generated/platform/transfer/PlatformOrderTransferProduct"
+import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
+import type { PlatformOrderTransferAdditionalFee } from "./../../platform/transfer/PlatformOrderTransferAdditionalFee"
+import type { PlatformOrderTransferDiscount } from "./../../platform/transfer/PlatformOrderTransferDiscount"
+import type { PlatformOrderTransferProduct } from "./../../platform/transfer/PlatformOrderTransferProduct"
 
 /** 주문 항목 */
 export type PlatformOrderTransferOrderLine = {

@@ -1,4 +1,4 @@
-import type { PlatformOrderTransfer } from "#generated/platform/transfer/PlatformOrderTransfer"
+import type { PlatformOrderTransfer } from "./../../platform/transfer/PlatformOrderTransfer"
 
 export type CreateOrderTransferResponse = {
 	transfer: PlatformOrderTransfer

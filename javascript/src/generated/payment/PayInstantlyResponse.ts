@@ -1,4 +1,4 @@
-import type { InstantPaymentSummary } from "#generated/payment/InstantPaymentSummary"
+import type { InstantPaymentSummary } from "./../payment/InstantPaymentSummary"
 
 /** 수기 결제 성공 응답 */
 export type PayInstantlyResponse = {

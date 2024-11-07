@@ -6,159 +6,159 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class Bank {
   /** 한국은행 */
-  BANK_OF_KOREA,
+  BankOfKorea,
   /** 산업은행 */
-  KDB,
+  Kdb,
   /** 기업은행 */
-  IBK,
+  Ibk,
   /** 국민은행 */
-  KOOKMIN,
+  Kookmin,
   /** 수협은행 */
-  SUHYUP,
+  Suhyup,
   /** 수출입은행 */
-  KEXIM,
+  Kexim,
   /** NH농협은행 */
-  NONGHYUP,
+  Nonghyup,
   /** 지역농축협 */
-  LOCAL_NONGHYUP,
+  LocalNonghyup,
   /** 우리은행 */
-  WOORI,
+  Woori,
   /** SC제일은행 */
-  STANDARD_CHARTERED,
+  StandardChartered,
   /** 한국씨티은행 */
-  CITI,
+  Citi,
   /** 아이엠뱅크 */
-  DAEGU,
+  Daegu,
   /** 부산은행 */
-  BUSAN,
+  Busan,
   /** 광주은행 */
-  KWANGJU,
+  Kwangju,
   /** 제주은행 */
-  JEJU,
+  Jeju,
   /** 전북은행 */
-  JEONBUK,
+  Jeonbuk,
   /** 경남은행 */
-  KYONGNAM,
+  Kyongnam,
   /** 새마을금고 */
-  KFCC,
+  Kfcc,
   /** 신협 */
-  SHINHYUP,
+  Shinhyup,
   /** 저축은행 */
-  SAVINGS_BANK,
+  SavingsBank,
   /** 모간스탠리은행 */
-  MORGAN_STANLEY,
+  MorganStanley,
   /** HSBC은행 */
-  HSBC,
+  Hsbc,
   /** 도이치은행 */
-  DEUTSCHE,
+  Deutsche,
   /** 제이피모간체이스은행 */
-  JPMC,
+  Jpmc,
   /** 미즈호은행 */
-  MIZUHO,
+  Mizuho,
   /** 엠유에프지은행 */
-  MUFG,
+  Mufg,
   /** BOA은행 */
-  BANK_OF_AMERICA,
+  BankOfAmerica,
   /** 비엔피파리바은행 */
-  BNP_PARIBAS,
+  BnpParibas,
   /** 중국공상은행 */
-  ICBC,
+  Icbc,
   /** 중국은행 */
-  BANK_OF_CHINA,
+  BankOfChina,
   /** 산림조합중앙회 */
-  NFCF,
+  Nfcf,
   /** 대화은행 */
-  UOB,
+  Uob,
   /** 교통은행 */
-  BOCOM,
+  Bocom,
   /** 중국건설은행 */
-  CCB,
+  Ccb,
   /** 우체국 */
-  POST,
+  Post,
   /** 신용보증기금 */
-  KODIT,
+  Kodit,
   /** 기술보증기금 */
-  KIBO,
+  Kibo,
   /** 하나은행 */
-  HANA,
+  Hana,
   /** 신한은행 */
-  SHINHAN,
+  Shinhan,
   /** 케이뱅크 */
-  K_BANK,
+  KBank,
   /** 카카오뱅크 */
-  KAKAO,
+  Kakao,
   /** 토스뱅크 */
-  TOSS,
+  Toss,
   /** 기타 외국계은행(중국 농업은행 등) */
-  MISC_FOREIGN,
+  MiscForeign,
   /** 서울보증보험 */
-  SGI,
+  Sgi,
   /** 한국신용정보원 */
-  KCIS,
+  Kcis,
   /** 유안타증권 */
-  YUANTA_SECURITIES,
+  YuantaSecurities,
   /** KB증권 */
-  KB_SECURITIES,
+  KbSecurities,
   /** 상상인증권 */
-  SANGSANGIN_SECURITIES,
+  SangsanginSecurities,
   /** 한양증권 */
-  HANYANG_SECURITIES,
+  HanyangSecurities,
   /** 리딩투자증권 */
-  LEADING_SECURITIES,
+  LeadingSecurities,
   /** BNK투자증권 */
-  BNK_SECURITIES,
+  BnkSecurities,
   /** IBK투자증권 */
-  IBK_SECURITIES,
+  IbkSecurities,
   /** 다올투자증권 */
-  DAOL_SECURITIES,
+  DaolSecurities,
   /** 미래에셋증권 */
-  MIRAE_ASSET_SECURITIES,
+  MiraeAssetSecurities,
   /** 삼성증권 */
-  SAMSUNG_SECURITIES,
+  SamsungSecurities,
   /** 한국투자증권 */
-  KOREA_SECURITIES,
+  KoreaSecurities,
   /** NH투자증권 */
-  NH_SECURITIES,
+  NhSecurities,
   /** 교보증권 */
-  KYOBO_SECURITIES,
+  KyoboSecurities,
   /** 하이투자증권 */
-  HI_SECURITIES,
+  HiSecurities,
   /** 현대차증권 */
-  HYUNDAI_MOTOR_SECURITIES,
+  HyundaiMotorSecurities,
   /** 키움증권 */
-  KIWOOM_SECURITIES,
+  KiwoomSecurities,
   /** LS증권 */
-  EBEST_SECURITIES,
+  EbestSecurities,
   /** SK증권 */
-  SK_SECURITIES,
+  SkSecurities,
   /** 대신증권 */
-  DAISHIN_SECURITIES,
+  DaishinSecurities,
   /** 한화투자증권 */
-  HANHWA_SECURITIES,
+  HanhwaSecurities,
   /** 하나증권 */
-  HANA_SECURITIES,
+  HanaSecurities,
   /** 토스증권 */
-  TOSS_SECURITIES,
+  TossSecurities,
   /** 신한투자증권 */
-  SHINHAN_SECURITIES,
+  ShinhanSecurities,
   /** DB금융투자 */
-  DB_SECURITIES,
+  DbSecurities,
   /** 유진투자증권 */
-  EUGENE_SECURITIES,
+  EugeneSecurities,
   /** 메리츠증권 */
-  MERITZ_SECURITIES,
+  MeritzSecurities,
   /** 카카오페이증권 */
-  KAKAO_PAY_SECURITIES,
+  KakaoPaySecurities,
   /** 부국증권 */
-  BOOKOOK_SECURITIES,
+  BookookSecurities,
   /** 신영증권 */
-  SHINYOUNG_SECURITIES,
+  ShinyoungSecurities,
   /** 케이프투자증권 */
-  CAPE_SECURITIES,
+  CapeSecurities,
   /** 한국증권금융 */
-  KOREA_SECURITIES_FINANCE,
+  KoreaSecuritiesFinance,
   /** 한국포스증권 */
-  KOREA_FOSS_SECURITIES,
+  KoreaFossSecurities,
   /** 우리종합금융 */
-  WOORI_INVESTMENT_BANK,
+  WooriInvestmentBank,
 }

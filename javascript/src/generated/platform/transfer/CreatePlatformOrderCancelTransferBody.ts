@@ -1,7 +1,7 @@
-import type { CreatePlatformOrderCancelTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
-import type { CreatePlatformOrderCancelTransferBodyExternalCancellationDetail } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
-import type { CreatePlatformOrderCancelTransferBodyOrderDetail } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetail"
-import type { PlatformUserDefinedPropertyKeyValue } from "#generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
+import type { CreatePlatformOrderCancelTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
+import type { CreatePlatformOrderCancelTransferBodyExternalCancellationDetail } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
+import type { CreatePlatformOrderCancelTransferBodyOrderDetail } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetail"
+import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 
 /**
  * 주문 취소 정산 등록을 위한 입력 정보

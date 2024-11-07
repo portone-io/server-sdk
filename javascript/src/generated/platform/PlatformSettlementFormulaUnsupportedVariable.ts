@@ -1,4 +1,4 @@
-import type { PlatformSettlementFormulaPosition } from "#generated/platform/PlatformSettlementFormulaPosition"
+import type { PlatformSettlementFormulaPosition } from "./../platform/PlatformSettlementFormulaPosition"
 
 export type PlatformSettlementFormulaUnsupportedVariable = {
 	type: "UNSUPPORTED_VARIABLE"

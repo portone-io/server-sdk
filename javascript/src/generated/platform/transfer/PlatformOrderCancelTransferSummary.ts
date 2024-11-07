@@ -1,9 +1,9 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformOrderSettlementAmount } from "#generated/platform/PlatformOrderSettlementAmount"
-import type { PlatformTransferStatus } from "#generated/platform/transfer/PlatformTransferStatus"
-import type { PlatformTransferSummaryPartner } from "#generated/platform/transfer/PlatformTransferSummaryPartner"
-import type { PlatformTransferSummaryPayment } from "#generated/platform/transfer/PlatformTransferSummaryPayment"
-import type { PlatformUserDefinedPropertyKeyValue } from "#generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
+import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
+import type { PlatformTransferSummaryPartner } from "./../../platform/transfer/PlatformTransferSummaryPartner"
+import type { PlatformTransferSummaryPayment } from "./../../platform/transfer/PlatformTransferSummaryPayment"
+import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 
 export type PlatformOrderCancelTransferSummary = {
 	type: "ORDER_CANCEL"

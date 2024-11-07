@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformPartnerStatus {
   /** 승인 대기 중 */
-  PENDING,
+  Pending,
   /** 승인 완료 */
-  APPROVED,
+  Approved,
   /** 승인 거절 */
-  REJECTED,
+  Rejected,
 }

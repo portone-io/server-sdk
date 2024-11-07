@@ -1,5 +1,5 @@
-import type { OneLineAddress } from "#generated/common/OneLineAddress"
-import type { SeparatedAddress } from "#generated/common/SeparatedAddress"
+import type { OneLineAddress } from "./../common/OneLineAddress"
+import type { SeparatedAddress } from "./../common/SeparatedAddress"
 
 /**
  * 분리 형식 주소

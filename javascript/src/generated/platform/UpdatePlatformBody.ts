@@ -1,6 +1,6 @@
-import type { PlatformRoundType } from "#generated/platform/PlatformRoundType"
-import type { UpdatePlatformBodySettlementFormula } from "#generated/platform/UpdatePlatformBodySettlementFormula"
-import type { UpdatePlatformBodySettlementRule } from "#generated/platform/UpdatePlatformBodySettlementRule"
+import type { PlatformRoundType } from "./../platform/PlatformRoundType"
+import type { UpdatePlatformBodySettlementFormula } from "./../platform/UpdatePlatformBodySettlementFormula"
+import type { UpdatePlatformBodySettlementRule } from "./../platform/UpdatePlatformBodySettlementRule"
 
 /**
  * 플랫폼 업데이트를 위한 입력 정보

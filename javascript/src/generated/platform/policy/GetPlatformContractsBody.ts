@@ -1,5 +1,5 @@
-import type { PageInput } from "#generated/common/PageInput"
-import type { PlatformContractFilterInput } from "#generated/platform/policy/PlatformContractFilterInput"
+import type { PageInput } from "./../../common/PageInput"
+import type { PlatformContractFilterInput } from "./../../platform/policy/PlatformContractFilterInput"
 
 /** 계약 다건 조회를 위한 입력 정보 */
 export type GetPlatformContractsBody = {

@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class CashReceiptInputType {
   /** 소득공제용 */
-  PERSONAL,
+  Personal,
   /** 지출증빙용 */
-  CORPORATE,
+  Corporate,
   /**
    * 미발행
    *
    * PG사 설정에 따라 PG사가 자동으로 자진발급 처리할 수 있습니다.
    */
-  NO_RECEIPT,
+  NoReceipt,
 }

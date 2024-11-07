@@ -1,4 +1,4 @@
-import type { PlatformPartnerTaxationType } from "#generated/platform/PlatformPartnerTaxationType"
+import type { PlatformPartnerTaxationType } from "./../platform/PlatformPartnerTaxationType"
 
 export type UpdatePlatformPartnerBodyTypeBusiness = {
 	/** 상호명 */

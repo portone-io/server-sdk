@@ -5,6 +5,7 @@ import * as IdentityVerification from "./identityVerification"
 import * as Payment from "./payment"
 import * as PgSpecific from "./pgSpecific"
 import * as Platform from "./platform"
+import * as Webhook from "./webhook"
 
 export type PortOneClientInit = {
   /**

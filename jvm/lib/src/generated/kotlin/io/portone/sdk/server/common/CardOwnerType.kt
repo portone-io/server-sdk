@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class CardOwnerType {
   /** 개인 */
-  PERSONAL,
+  Personal,
   /** 법인 */
-  CORPORATE,
+  Corporate,
 }

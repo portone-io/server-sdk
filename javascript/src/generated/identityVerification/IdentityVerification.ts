@@ -1,6 +1,6 @@
-import type { FailedIdentityVerification } from "#generated/identityVerification/FailedIdentityVerification"
-import type { ReadyIdentityVerification } from "#generated/identityVerification/ReadyIdentityVerification"
-import type { VerifiedIdentityVerification } from "#generated/identityVerification/VerifiedIdentityVerification"
+import type { FailedIdentityVerification } from "./../identityVerification/FailedIdentityVerification"
+import type { ReadyIdentityVerification } from "./../identityVerification/ReadyIdentityVerification"
+import type { VerifiedIdentityVerification } from "./../identityVerification/VerifiedIdentityVerification"
 
 /** 본인인증 내역 */
 export type IdentityVerification =

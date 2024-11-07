@@ -1,7 +1,7 @@
-import type { PlatformProperties } from "#generated/platform/PlatformProperties"
-import type { SchedulePlatformPartnersBodyUpdateAccount } from "#generated/platform/SchedulePlatformPartnersBodyUpdateAccount"
-import type { SchedulePlatformPartnersBodyUpdateContact } from "#generated/platform/SchedulePlatformPartnersBodyUpdateContact"
-import type { SchedulePlatformPartnersBodyUpdateType } from "#generated/platform/SchedulePlatformPartnersBodyUpdateType"
+import type { PlatformProperties } from "./../platform/PlatformProperties"
+import type { SchedulePlatformPartnersBodyUpdateAccount } from "./../platform/SchedulePlatformPartnersBodyUpdateAccount"
+import type { SchedulePlatformPartnersBodyUpdateContact } from "./../platform/SchedulePlatformPartnersBodyUpdateContact"
+import type { SchedulePlatformPartnersBodyUpdateType } from "./../platform/SchedulePlatformPartnersBodyUpdateType"
 
 export type SchedulePlatformPartnersBodyUpdate = {
 	name?: string

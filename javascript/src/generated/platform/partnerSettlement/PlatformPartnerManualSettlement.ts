@@ -1,6 +1,6 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPartner } from "#generated/platform/PlatformPartner"
-import type { PlatformPartnerSettlementStatus } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementStatus"
+import type { Currency } from "./../../common/Currency"
+import type { PlatformPartner } from "./../../platform/PlatformPartner"
+import type { PlatformPartnerSettlementStatus } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatus"
 
 export type PlatformPartnerManualSettlement = {
 	type: "MANUAL"

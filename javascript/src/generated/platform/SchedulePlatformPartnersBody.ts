@@ -1,5 +1,5 @@
-import type { PlatformPartnerFilterInput } from "#generated/platform/PlatformPartnerFilterInput"
-import type { SchedulePlatformPartnersBodyUpdate } from "#generated/platform/SchedulePlatformPartnersBodyUpdate"
+import type { PlatformPartnerFilterInput } from "./../platform/PlatformPartnerFilterInput"
+import type { SchedulePlatformPartnersBodyUpdate } from "./../platform/SchedulePlatformPartnersBodyUpdate"
 
 export type SchedulePlatformPartnersBody = {
 	filter?: PlatformPartnerFilterInput

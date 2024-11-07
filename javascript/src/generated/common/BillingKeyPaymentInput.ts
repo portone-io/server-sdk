@@ -1,11 +1,11 @@
-import type { CashReceiptInput } from "#generated/common/CashReceiptInput"
-import type { Country } from "#generated/common/Country"
-import type { Currency } from "#generated/common/Currency"
-import type { CustomerInput } from "#generated/common/CustomerInput"
-import type { PaymentAmountInput } from "#generated/common/PaymentAmountInput"
-import type { PaymentProduct } from "#generated/common/PaymentProduct"
-import type { PaymentProductType } from "#generated/common/PaymentProductType"
-import type { SeparatedAddressInput } from "#generated/common/SeparatedAddressInput"
+import type { CashReceiptInput } from "./../common/CashReceiptInput"
+import type { Country } from "./../common/Country"
+import type { Currency } from "./../common/Currency"
+import type { CustomerInput } from "./../common/CustomerInput"
+import type { PaymentAmountInput } from "./../common/PaymentAmountInput"
+import type { PaymentProduct } from "./../common/PaymentProduct"
+import type { PaymentProductType } from "./../common/PaymentProductType"
+import type { SeparatedAddressInput } from "./../common/SeparatedAddressInput"
 
 /** 빌링키 결제 요청 입력 정보 */
 export type BillingKeyPaymentInput = {

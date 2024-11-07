@@ -1,6 +1,6 @@
-import type { CashReceiptType } from "#generated/common/CashReceiptType"
-import type { Currency } from "#generated/common/Currency"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { CashReceiptType } from "./../../common/CashReceiptType"
+import type { Currency } from "./../../common/Currency"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /** 발급 완료 */
 export type IssuedCashReceipt = {
