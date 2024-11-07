@@ -1,4 +1,4 @@
-import type { PaymentWebhook } from "#generated/payment/PaymentWebhook"
+import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 
 /** 웹훅 재발송 응답 정보 */
 export type ResendWebhookResponse = {

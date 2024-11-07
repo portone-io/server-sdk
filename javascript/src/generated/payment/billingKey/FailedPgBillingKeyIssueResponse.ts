@@ -1,5 +1,5 @@
-import type { BillingKeyFailure } from "#generated/payment/billingKey/BillingKeyFailure"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { BillingKeyFailure } from "./../../payment/billingKey/BillingKeyFailure"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /** 빌링키 발급 실패 채널 응답 */
 export type FailedPgBillingKeyIssueResponse = {

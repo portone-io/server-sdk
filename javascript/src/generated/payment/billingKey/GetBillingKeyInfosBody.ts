@@ -1,6 +1,6 @@
-import type { BillingKeyFilterInput } from "#generated/payment/billingKey/BillingKeyFilterInput"
-import type { BillingKeySortInput } from "#generated/payment/billingKey/BillingKeySortInput"
-import type { PageInput } from "#generated/common/PageInput"
+import type { BillingKeyFilterInput } from "./../../payment/billingKey/BillingKeyFilterInput"
+import type { BillingKeySortInput } from "./../../payment/billingKey/BillingKeySortInput"
+import type { PageInput } from "./../../common/PageInput"
 
 /** 빌링키 다건 조회를 위한 입력 정보 */
 export type GetBillingKeyInfosBody = {

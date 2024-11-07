@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 /** 웹훅 발송 시 결제 건 상태 */
 @Serializable
 public enum class PaymentWebhookPaymentStatus {
-  READY,
-  VIRTUAL_ACCOUNT_ISSUED,
-  PAID,
-  FAILED,
-  PARTIAL_CANCELLED,
-  CANCELLED,
-  PAY_PENDING,
+  Ready,
+  VirtualAccountIssued,
+  Paid,
+  Failed,
+  PartialCancelled,
+  Cancelled,
+  PayPending,
 }

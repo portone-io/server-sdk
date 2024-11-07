@@ -1,4 +1,4 @@
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /** 발급 실패 */
 export type IssueFailedCashReceipt = {

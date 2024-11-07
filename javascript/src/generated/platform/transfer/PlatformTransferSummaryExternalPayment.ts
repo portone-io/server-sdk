@@ -1,5 +1,5 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PaymentMethodType } from "#generated/common/PaymentMethodType"
+import type { Currency } from "./../../common/Currency"
+import type { PaymentMethodType } from "./../../common/PaymentMethodType"
 
 export type PlatformTransferSummaryExternalPayment = {
 	type: "EXTERNAL"

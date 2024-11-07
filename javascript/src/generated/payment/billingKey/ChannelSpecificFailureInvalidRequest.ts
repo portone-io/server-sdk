@@ -1,4 +1,4 @@
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 /**
  * 요청된 입력 정보가 유효하지 않은 경우

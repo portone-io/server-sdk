@@ -1,4 +1,4 @@
-import type { PaymentMethodGiftCertificateType } from "#generated/payment/PaymentMethodGiftCertificateType"
+import type { PaymentMethodGiftCertificateType } from "./../payment/PaymentMethodGiftCertificateType"
 
 /** 상품권 상세 정보 */
 export type PaymentMethodGiftCertificate = {

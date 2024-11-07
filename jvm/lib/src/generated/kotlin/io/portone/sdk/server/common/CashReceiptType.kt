@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class CashReceiptType {
   /** 소득공제용 */
-  PERSONAL,
+  Personal,
   /** 지출증빙용 */
-  CORPORATE,
+  Corporate,
 }

@@ -1,4 +1,4 @@
-import type { PlatformAdditionalFeePolicy } from "#generated/platform/PlatformAdditionalFeePolicy"
+import type { PlatformAdditionalFeePolicy } from "./../../platform/PlatformAdditionalFeePolicy"
 
 /** 추가 수수료 정보 */
 export type PlatformOrderTransferAdditionalFee = {

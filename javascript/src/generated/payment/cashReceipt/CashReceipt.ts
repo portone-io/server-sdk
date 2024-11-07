@@ -1,6 +1,6 @@
-import type { CancelledCashReceipt } from "#generated/payment/cashReceipt/CancelledCashReceipt"
-import type { IssueFailedCashReceipt } from "#generated/payment/cashReceipt/IssueFailedCashReceipt"
-import type { IssuedCashReceipt } from "#generated/payment/cashReceipt/IssuedCashReceipt"
+import type { CancelledCashReceipt } from "./../../payment/cashReceipt/CancelledCashReceipt"
+import type { IssueFailedCashReceipt } from "./../../payment/cashReceipt/IssueFailedCashReceipt"
+import type { IssuedCashReceipt } from "./../../payment/cashReceipt/IssuedCashReceipt"
 
 /** 현금영수증 내역 */
 export type CashReceipt =

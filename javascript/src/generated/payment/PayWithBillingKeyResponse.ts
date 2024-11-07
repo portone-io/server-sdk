@@ -1,4 +1,4 @@
-import type { BillingKeyPaymentSummary } from "#generated/payment/BillingKeyPaymentSummary"
+import type { BillingKeyPaymentSummary } from "./../payment/BillingKeyPaymentSummary"
 
 /** 빌링키 결제 성공 응답 */
 export type PayWithBillingKeyResponse = {

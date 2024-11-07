@@ -1,5 +1,5 @@
-import type { IdentityVerificationRequestedCustomer } from "#generated/identityVerification/IdentityVerificationRequestedCustomer"
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { IdentityVerificationRequestedCustomer } from "./../identityVerification/IdentityVerificationRequestedCustomer"
+import type { SelectedChannel } from "./../common/SelectedChannel"
 
 /** 준비 상태의 본인인증 내역 */
 export type ReadyIdentityVerification = {

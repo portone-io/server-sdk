@@ -5,10 +5,12 @@ const secret = "pzQGE83cSIRKM4/WH5QY+g==";
 
 const crypto = globalThis.crypto ?? (await import("node:crypto")).webcrypto;
 
+const testObject = { test: "test payload" };
+
 const makeWebhook = async (timestamp = Date.now()) => {
 	const timestampInSec = Math.floor(timestamp / 1000);
 	const id = "dummy-webhook-id";
-	const payload = JSON.stringify({ test: "test payload" });
+	const payload = JSON.stringify(testObject);
 
 	const encoder = new TextEncoder();
 	const toSign = encoder.encode(`${id}.${timestampInSec}.${payload}`);
@@ -45,7 +47,7 @@ describe("correct cases", () => {
 
 			await expect(
 				sdk.Webhook.verify(secret, testWebhook.payload, testWebhook.header),
-			).resolves.toBeUndefined();
+			).resolves.toMatchObject(testObject);
 		});
 
 		it("valid unbranded signature is valid", async () => {
@@ -59,7 +61,7 @@ describe("correct cases", () => {
 
 			await expect(
 				sdk.Webhook.verify(secret, testWebhook.payload, testWebhook.header),
-			).resolves.toBeUndefined();
+			).resolves.toMatchObject(testObject);
 		});
 
 		it("multiple signatures", async () => {
@@ -74,7 +76,7 @@ describe("correct cases", () => {
 
 			await expect(
 				sdk.Webhook.verify(secret, testWebhook.payload, testWebhook.header),
-			).resolves.toBeUndefined();
+			).resolves.toMatchObject(testObject);
 		});
 
 		it("handles both with and without signature prefix", async () => {
@@ -82,10 +84,7 @@ describe("correct cases", () => {
 
 			await expect(
 				sdk.Webhook.verify(secret, testPayload.payload, testPayload.header),
-			).resolves.toBeUndefined();
-			await expect(
-				sdk.Webhook.verify(secret, testPayload.payload, testPayload.header),
-			).resolves.toBeUndefined();
+			).resolves.toMatchObject(testObject);
 		});
 	});
 });

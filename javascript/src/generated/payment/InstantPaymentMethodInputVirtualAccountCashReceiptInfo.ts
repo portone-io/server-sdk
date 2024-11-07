@@ -1,4 +1,4 @@
-import type { CashReceiptInputType } from "#generated/common/CashReceiptInputType"
+import type { CashReceiptInputType } from "./../common/CashReceiptInputType"
 
 /** 가상계좌 결제 시 현금영수증 정보 */
 export type InstantPaymentMethodInputVirtualAccountCashReceiptInfo = {

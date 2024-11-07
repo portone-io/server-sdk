@@ -1,11 +1,11 @@
-import type { AlreadyPaidOrWaitingError } from "#generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
-import type { BillingKeyAlreadyDeletedError } from "#generated/common/BillingKeyAlreadyDeletedError"
-import type { BillingKeyNotFoundError } from "#generated/common/BillingKeyNotFoundError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PaymentScheduleAlreadyExistsError } from "#generated/common/PaymentScheduleAlreadyExistsError"
-import type { SumOfPartsExceedsTotalAmountError } from "#generated/common/SumOfPartsExceedsTotalAmountError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { AlreadyPaidOrWaitingError } from "./../../payment/paymentSchedule/AlreadyPaidOrWaitingError"
+import type { BillingKeyAlreadyDeletedError } from "./../../common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyNotFoundError } from "./../../common/BillingKeyNotFoundError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PaymentScheduleAlreadyExistsError } from "./../../common/PaymentScheduleAlreadyExistsError"
+import type { SumOfPartsExceedsTotalAmountError } from "./../../common/SumOfPartsExceedsTotalAmountError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type CreatePaymentScheduleError =
 	| AlreadyPaidOrWaitingError

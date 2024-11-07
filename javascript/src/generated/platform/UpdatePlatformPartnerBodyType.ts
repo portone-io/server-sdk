@@ -1,6 +1,6 @@
-import type { UpdatePlatformPartnerBodyTypeBusiness } from "#generated/platform/UpdatePlatformPartnerBodyTypeBusiness"
-import type { UpdatePlatformPartnerBodyTypeNonWhtPayer } from "#generated/platform/UpdatePlatformPartnerBodyTypeNonWhtPayer"
-import type { UpdatePlatformPartnerBodyTypeWhtPayer } from "#generated/platform/UpdatePlatformPartnerBodyTypeWhtPayer"
+import type { UpdatePlatformPartnerBodyTypeBusiness } from "./../platform/UpdatePlatformPartnerBodyTypeBusiness"
+import type { UpdatePlatformPartnerBodyTypeNonWhtPayer } from "./../platform/UpdatePlatformPartnerBodyTypeNonWhtPayer"
+import type { UpdatePlatformPartnerBodyTypeWhtPayer } from "./../platform/UpdatePlatformPartnerBodyTypeWhtPayer"
 
 /**
  * 파트너 업데이트를 위한 유형별 추가 정보

@@ -1,10 +1,10 @@
-import type { BeforeRegisteredPaymentEscrow } from "#generated/payment/BeforeRegisteredPaymentEscrow"
-import type { CancelledPaymentEscrow } from "#generated/payment/CancelledPaymentEscrow"
-import type { ConfirmedPaymentEscrow } from "#generated/payment/ConfirmedPaymentEscrow"
-import type { DeliveredPaymentEscrow } from "#generated/payment/DeliveredPaymentEscrow"
-import type { RegisteredPaymentEscrow } from "#generated/payment/RegisteredPaymentEscrow"
-import type { RejectConfirmedPaymentEscrow } from "#generated/payment/RejectConfirmedPaymentEscrow"
-import type { RejectedPaymentEscrow } from "#generated/payment/RejectedPaymentEscrow"
+import type { BeforeRegisteredPaymentEscrow } from "./../payment/BeforeRegisteredPaymentEscrow"
+import type { CancelledPaymentEscrow } from "./../payment/CancelledPaymentEscrow"
+import type { ConfirmedPaymentEscrow } from "./../payment/ConfirmedPaymentEscrow"
+import type { DeliveredPaymentEscrow } from "./../payment/DeliveredPaymentEscrow"
+import type { RegisteredPaymentEscrow } from "./../payment/RegisteredPaymentEscrow"
+import type { RejectConfirmedPaymentEscrow } from "./../payment/RejectConfirmedPaymentEscrow"
+import type { RejectedPaymentEscrow } from "./../payment/RejectedPaymentEscrow"
 
 /**
  * 에스크로 정보

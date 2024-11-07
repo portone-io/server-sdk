@@ -1,8 +1,8 @@
-import type { CashReceiptType } from "#generated/common/CashReceiptType"
-import type { Currency } from "#generated/common/Currency"
-import type { IssueCashReceiptCustomerInput } from "#generated/payment/cashReceipt/IssueCashReceiptCustomerInput"
-import type { PaymentAmountInput } from "#generated/common/PaymentAmountInput"
-import type { PaymentProductType } from "#generated/common/PaymentProductType"
+import type { CashReceiptType } from "./../../common/CashReceiptType"
+import type { Currency } from "./../../common/Currency"
+import type { IssueCashReceiptCustomerInput } from "./../../payment/cashReceipt/IssueCashReceiptCustomerInput"
+import type { PaymentAmountInput } from "./../../common/PaymentAmountInput"
+import type { PaymentProductType } from "./../../common/PaymentProductType"
 
 /** 현금영수증 발급 요청 양식 */
 export type IssueCashReceiptBody = {

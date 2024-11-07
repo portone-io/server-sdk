@@ -1,6 +1,6 @@
-import type { PlatformBulkPayoutStats } from "#generated/platform/bulkPayout/PlatformBulkPayoutStats"
-import type { PlatformBulkPayoutStatus } from "#generated/platform/bulkPayout/PlatformBulkPayoutStatus"
-import type { PlatformPayoutMethod } from "#generated/platform/PlatformPayoutMethod"
+import type { PlatformBulkPayoutStats } from "./../../platform/bulkPayout/PlatformBulkPayoutStats"
+import type { PlatformBulkPayoutStatus } from "./../../platform/bulkPayout/PlatformBulkPayoutStatus"
+import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
 
 export type PlatformBulkPayout = {
 	/** 일괄 지급 고유 아이디 */

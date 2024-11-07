@@ -1,8 +1,8 @@
-import type { PlatformAccount } from "#generated/platform/PlatformAccount"
-import type { PlatformContact } from "#generated/platform/PlatformContact"
-import type { PlatformPartnerStatus } from "#generated/platform/PlatformPartnerStatus"
-import type { PlatformPartnerType } from "#generated/platform/PlatformPartnerType"
-import type { PlatformProperties } from "#generated/platform/PlatformProperties"
+import type { PlatformAccount } from "./../platform/PlatformAccount"
+import type { PlatformContact } from "./../platform/PlatformContact"
+import type { PlatformPartnerStatus } from "./../platform/PlatformPartnerStatus"
+import type { PlatformPartnerType } from "./../platform/PlatformPartnerType"
+import type { PlatformProperties } from "./../platform/PlatformProperties"
 
 /**
  * 파트너

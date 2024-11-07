@@ -1,4 +1,4 @@
-import type { Currency } from "#generated/common/Currency"
+import type { Currency } from "./../../common/Currency"
 
 export type PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError = {
 	type: "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED"

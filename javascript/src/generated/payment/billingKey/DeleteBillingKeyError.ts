@@ -1,12 +1,12 @@
-import type { BillingKeyAlreadyDeletedError } from "#generated/common/BillingKeyAlreadyDeletedError"
-import type { BillingKeyNotFoundError } from "#generated/common/BillingKeyNotFoundError"
-import type { BillingKeyNotIssuedError } from "#generated/payment/billingKey/BillingKeyNotIssuedError"
-import type { ChannelSpecificError } from "#generated/payment/billingKey/ChannelSpecificError"
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PaymentScheduleAlreadyExistsError } from "#generated/common/PaymentScheduleAlreadyExistsError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { BillingKeyAlreadyDeletedError } from "./../../common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyNotFoundError } from "./../../common/BillingKeyNotFoundError"
+import type { BillingKeyNotIssuedError } from "./../../payment/billingKey/BillingKeyNotIssuedError"
+import type { ChannelSpecificError } from "./../../payment/billingKey/ChannelSpecificError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PaymentScheduleAlreadyExistsError } from "./../../common/PaymentScheduleAlreadyExistsError"
+import type { PgProviderError } from "./../../common/PgProviderError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type DeleteBillingKeyError =
 	| BillingKeyAlreadyDeletedError

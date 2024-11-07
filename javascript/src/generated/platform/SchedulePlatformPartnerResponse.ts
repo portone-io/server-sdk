@@ -1,4 +1,4 @@
-import type { PlatformPartner } from "#generated/platform/PlatformPartner"
+import type { PlatformPartner } from "./../platform/PlatformPartner"
 
 /** 파트너 업데이트 예약 성공 응답 */
 export type SchedulePlatformPartnerResponse = {

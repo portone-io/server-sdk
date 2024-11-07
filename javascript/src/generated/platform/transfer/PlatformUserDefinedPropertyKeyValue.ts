@@ -1,4 +1,4 @@
-import type { PlatformUserDefinedPropertyValue } from "#generated/platform/PlatformUserDefinedPropertyValue"
+import type { PlatformUserDefinedPropertyValue } from "./../../platform/PlatformUserDefinedPropertyValue"
 
 /** 사용자 정의 속성 */
 export type PlatformUserDefinedPropertyKeyValue = {

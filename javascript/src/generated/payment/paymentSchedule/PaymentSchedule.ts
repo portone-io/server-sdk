@@ -1,9 +1,9 @@
-import type { FailedPaymentSchedule } from "#generated/payment/paymentSchedule/FailedPaymentSchedule"
-import type { PendingPaymentSchedule } from "#generated/payment/paymentSchedule/PendingPaymentSchedule"
-import type { RevokedPaymentSchedule } from "#generated/payment/paymentSchedule/RevokedPaymentSchedule"
-import type { ScheduledPaymentSchedule } from "#generated/payment/paymentSchedule/ScheduledPaymentSchedule"
-import type { StartedPaymentSchedule } from "#generated/payment/paymentSchedule/StartedPaymentSchedule"
-import type { SucceededPaymentSchedule } from "#generated/payment/paymentSchedule/SucceededPaymentSchedule"
+import type { FailedPaymentSchedule } from "./../../payment/paymentSchedule/FailedPaymentSchedule"
+import type { PendingPaymentSchedule } from "./../../payment/paymentSchedule/PendingPaymentSchedule"
+import type { RevokedPaymentSchedule } from "./../../payment/paymentSchedule/RevokedPaymentSchedule"
+import type { ScheduledPaymentSchedule } from "./../../payment/paymentSchedule/ScheduledPaymentSchedule"
+import type { StartedPaymentSchedule } from "./../../payment/paymentSchedule/StartedPaymentSchedule"
+import type { SucceededPaymentSchedule } from "./../../payment/paymentSchedule/SucceededPaymentSchedule"
 
 /** 결제 예약 건 */
 export type PaymentSchedule =

@@ -2,16 +2,6 @@ import * as path from "@std/path"
 export function updatePackageJson(rootPath: string, entrypoints: string[]) {
   const jsonPath = path.join(rootPath, "package.json")
   const json = JSON.parse(Deno.readTextFileSync(jsonPath))
-  json.imports = {
-    "#generated/*": "./src/generated/*.ts",
-  }
-  json.publishConfig.imports = {
-    "#generated/*": {
-      types: "./dist/generated/*.d.ts",
-      require: "./dist/generated/*.cjs",
-      import: "./dist/generated/*.mjs",
-    },
-  }
   json.exports = {
     ".": "./src/index.ts",
   }

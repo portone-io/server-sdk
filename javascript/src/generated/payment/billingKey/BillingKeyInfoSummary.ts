@@ -1,4 +1,4 @@
-import type { SelectedChannel } from "#generated/common/SelectedChannel"
+import type { SelectedChannel } from "./../../common/SelectedChannel"
 
 export type BillingKeyInfoSummary = {
 	/** 발급된 빌링키 */

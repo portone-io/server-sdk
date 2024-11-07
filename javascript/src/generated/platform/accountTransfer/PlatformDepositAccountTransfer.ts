@@ -1,4 +1,4 @@
-import type { Currency } from "#generated/common/Currency"
+import type { Currency } from "./../../common/Currency"
 
 export type PlatformDepositAccountTransfer = {
 	/** 계좌 이체 유형 */

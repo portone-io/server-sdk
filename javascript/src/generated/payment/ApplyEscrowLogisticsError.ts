@@ -1,9 +1,9 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PaymentNotFoundError } from "#generated/payment/PaymentNotFoundError"
-import type { PaymentNotPaidError } from "#generated/payment/PaymentNotPaidError"
-import type { PgProviderError } from "#generated/common/PgProviderError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../common/ForbiddenError"
+import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { PaymentNotFoundError } from "./../payment/PaymentNotFoundError"
+import type { PaymentNotPaidError } from "./../payment/PaymentNotPaidError"
+import type { PgProviderError } from "./../common/PgProviderError"
+import type { UnauthorizedError } from "./../common/UnauthorizedError"
 
 export type ApplyEscrowLogisticsError =
 	| ForbiddenError

@@ -1,5 +1,5 @@
-import type { FailedPgBillingKeyIssueResponse } from "#generated/payment/billingKey/FailedPgBillingKeyIssueResponse"
-import type { IssuedPgBillingKeyIssueResponse } from "#generated/payment/billingKey/IssuedPgBillingKeyIssueResponse"
+import type { FailedPgBillingKeyIssueResponse } from "./../../payment/billingKey/FailedPgBillingKeyIssueResponse"
+import type { IssuedPgBillingKeyIssueResponse } from "./../../payment/billingKey/IssuedPgBillingKeyIssueResponse"
 
 /** 채널 별 빌링키 발급 응답 */
 export type PgBillingKeyIssueResponse =

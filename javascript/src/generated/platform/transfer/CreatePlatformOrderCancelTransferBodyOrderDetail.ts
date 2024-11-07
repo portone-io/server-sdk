@@ -1,5 +1,5 @@
-import type { CreatePlatformOrderCancelTransferBodyOrderDetailAll } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetailAll"
-import type { CreatePlatformOrderCancelTransferBodyOrderLine } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyOrderLine"
+import type { CreatePlatformOrderCancelTransferBodyOrderDetailAll } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetailAll"
+import type { CreatePlatformOrderCancelTransferBodyOrderLine } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyOrderLine"
 
 /**
  * 주문 취소 정보

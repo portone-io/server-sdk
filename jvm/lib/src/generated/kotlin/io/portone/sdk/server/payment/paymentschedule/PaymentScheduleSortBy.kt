@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentScheduleSortBy {
   /** 결제 예약 생성 시각 */
-  CREATED_AT,
+  CreatedAt,
   /** 결제 예정 시각 */
-  TIME_TO_PAY,
+  TimeToPay,
   /** 예약 결제 시도(성공 / 실패) 시각 */
-  COMPLETED_AT,
+  CompletedAt,
 }

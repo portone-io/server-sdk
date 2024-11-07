@@ -1,4 +1,4 @@
-import type { PlatformUserDefinedPropertyValue } from "#generated/platform/PlatformUserDefinedPropertyValue"
+import type { PlatformUserDefinedPropertyValue } from "./../platform/PlatformUserDefinedPropertyValue"
 
 export type PlatformProperties = {
 } & PlatformUserDefinedPropertyValue

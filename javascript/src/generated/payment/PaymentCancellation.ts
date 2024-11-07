@@ -1,6 +1,6 @@
-import type { FailedPaymentCancellation } from "#generated/payment/FailedPaymentCancellation"
-import type { RequestedPaymentCancellation } from "#generated/payment/RequestedPaymentCancellation"
-import type { SucceededPaymentCancellation } from "#generated/payment/SucceededPaymentCancellation"
+import type { FailedPaymentCancellation } from "./../payment/FailedPaymentCancellation"
+import type { RequestedPaymentCancellation } from "./../payment/RequestedPaymentCancellation"
+import type { SucceededPaymentCancellation } from "./../payment/SucceededPaymentCancellation"
 
 /** 결제 취소 내역 */
 export type PaymentCancellation =

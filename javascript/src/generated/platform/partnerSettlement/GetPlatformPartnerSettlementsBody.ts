@@ -1,5 +1,5 @@
-import type { PageInput } from "#generated/common/PageInput"
-import type { PlatformPartnerSettlementFilterInput } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementFilterInput"
+import type { PageInput } from "./../../common/PageInput"
+import type { PlatformPartnerSettlementFilterInput } from "./../../platform/partnerSettlement/PlatformPartnerSettlementFilterInput"
 
 /** 정산내역 다건 조회를 위한 입력 정보 */
 export type GetPlatformPartnerSettlementsBody = {

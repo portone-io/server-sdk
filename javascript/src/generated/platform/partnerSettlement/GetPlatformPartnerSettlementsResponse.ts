@@ -1,6 +1,6 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformPartnerSettlement } from "#generated/platform/partnerSettlement/PlatformPartnerSettlement"
-import type { PlatformPartnerSettlementStatusStats } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementStatusStats"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformPartnerSettlement } from "./../../platform/partnerSettlement/PlatformPartnerSettlement"
+import type { PlatformPartnerSettlementStatusStats } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatusStats"
 
 /** 정산내역 다건 조회 성공 응답 정보 */
 export type GetPlatformPartnerSettlementsResponse = {

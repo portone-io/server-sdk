@@ -1,7 +1,7 @@
-import type { PaymentEscrowReceiverInput } from "#generated/payment/PaymentEscrowReceiverInput"
-import type { PaymentEscrowSenderInput } from "#generated/payment/PaymentEscrowSenderInput"
-import type { PaymentLogistics } from "#generated/payment/PaymentLogistics"
-import type { PaymentProduct } from "#generated/common/PaymentProduct"
+import type { PaymentEscrowReceiverInput } from "./../payment/PaymentEscrowReceiverInput"
+import type { PaymentEscrowSenderInput } from "./../payment/PaymentEscrowSenderInput"
+import type { PaymentLogistics } from "./../payment/PaymentLogistics"
+import type { PaymentProduct } from "./../common/PaymentProduct"
 
 /** 에스크로 배송 정보 등록 입력 정보 */
 export type RegisterEscrowLogisticsBody = {

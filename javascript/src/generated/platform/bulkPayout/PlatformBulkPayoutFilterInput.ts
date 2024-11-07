@@ -1,6 +1,6 @@
-import type { PlatformBulkPayoutFilterInputCriteria } from "#generated/platform/bulkPayout/PlatformBulkPayoutFilterInputCriteria"
-import type { PlatformBulkPayoutStatus } from "#generated/platform/bulkPayout/PlatformBulkPayoutStatus"
-import type { PlatformPayoutMethod } from "#generated/platform/PlatformPayoutMethod"
+import type { PlatformBulkPayoutFilterInputCriteria } from "./../../platform/bulkPayout/PlatformBulkPayoutFilterInputCriteria"
+import type { PlatformBulkPayoutStatus } from "./../../platform/bulkPayout/PlatformBulkPayoutStatus"
+import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
 
 export type PlatformBulkPayoutFilterInput = {
 	statuses?: PlatformBulkPayoutStatus[]

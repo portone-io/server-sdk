@@ -1,6 +1,6 @@
-import type { PlatformManualTransfer } from "#generated/platform/transfer/PlatformManualTransfer"
-import type { PlatformOrderCancelTransfer } from "#generated/platform/transfer/PlatformOrderCancelTransfer"
-import type { PlatformOrderTransfer } from "#generated/platform/transfer/PlatformOrderTransfer"
+import type { PlatformManualTransfer } from "./../../platform/transfer/PlatformManualTransfer"
+import type { PlatformOrderCancelTransfer } from "./../../platform/transfer/PlatformOrderCancelTransfer"
+import type { PlatformOrderTransfer } from "./../../platform/transfer/PlatformOrderTransfer"
 
 /**
  * 정산건

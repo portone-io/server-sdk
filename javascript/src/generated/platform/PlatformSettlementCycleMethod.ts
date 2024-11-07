@@ -1,7 +1,7 @@
-import type { PlatformSettlementCycleMethodDaily } from "#generated/platform/PlatformSettlementCycleMethodDaily"
-import type { PlatformSettlementCycleMethodManualDates } from "#generated/platform/PlatformSettlementCycleMethodManualDates"
-import type { PlatformSettlementCycleMethodMonthly } from "#generated/platform/PlatformSettlementCycleMethodMonthly"
-import type { PlatformSettlementCycleMethodWeekly } from "#generated/platform/PlatformSettlementCycleMethodWeekly"
+import type { PlatformSettlementCycleMethodDaily } from "./../platform/PlatformSettlementCycleMethodDaily"
+import type { PlatformSettlementCycleMethodManualDates } from "./../platform/PlatformSettlementCycleMethodManualDates"
+import type { PlatformSettlementCycleMethodMonthly } from "./../platform/PlatformSettlementCycleMethodMonthly"
+import type { PlatformSettlementCycleMethodWeekly } from "./../platform/PlatformSettlementCycleMethodWeekly"
 
 /** 플랫폼 정산 주기 계산 방식 */
 export type PlatformSettlementCycleMethod =

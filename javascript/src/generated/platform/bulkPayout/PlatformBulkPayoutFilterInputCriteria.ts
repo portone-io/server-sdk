@@ -1,4 +1,4 @@
-import type { DateTimeRange } from "#generated/common/DateTimeRange"
+import type { DateTimeRange } from "./../../common/DateTimeRange"
 
 export type PlatformBulkPayoutFilterInputCriteria = {
 	timestampRange?: DateTimeRange

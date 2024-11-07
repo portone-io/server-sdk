@@ -1,6 +1,6 @@
-import type { IdentityVerificationMethod } from "#generated/identityVerification/IdentityVerificationMethod"
-import type { IdentityVerificationOperator } from "#generated/identityVerification/IdentityVerificationOperator"
-import type { SendIdentityVerificationBodyCustomer } from "#generated/identityVerification/SendIdentityVerificationBodyCustomer"
+import type { IdentityVerificationMethod } from "./../identityVerification/IdentityVerificationMethod"
+import type { IdentityVerificationOperator } from "./../identityVerification/IdentityVerificationOperator"
+import type { SendIdentityVerificationBodyCustomer } from "./../identityVerification/SendIdentityVerificationBodyCustomer"
 
 /** 본인인증 요청을 위한 입력 정보 */
 export type SendIdentityVerificationBody = {

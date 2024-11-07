@@ -1,4 +1,4 @@
-import type { PlatformDiscountSharePolicy } from "#generated/platform/PlatformDiscountSharePolicy"
+import type { PlatformDiscountSharePolicy } from "./../../platform/PlatformDiscountSharePolicy"
 
 /** 할인 정보 */
 export type PlatformOrderTransferDiscount = {

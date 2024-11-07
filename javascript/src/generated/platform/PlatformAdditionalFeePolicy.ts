@@ -1,5 +1,5 @@
-import type { PlatformFee } from "#generated/platform/PlatformFee"
-import type { PlatformPayer } from "#generated/platform/PlatformPayer"
+import type { PlatformFee } from "./../platform/PlatformFee"
+import type { PlatformPayer } from "./../platform/PlatformPayer"
 
 /**
  * 추가 수수료 정책

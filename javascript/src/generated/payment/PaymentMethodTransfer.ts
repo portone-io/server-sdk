@@ -1,4 +1,4 @@
-import type { Bank } from "#generated/common/Bank"
+import type { Bank } from "./../common/Bank"
 
 /** 계좌 이체 상세 정보 */
 export type PaymentMethodTransfer = {

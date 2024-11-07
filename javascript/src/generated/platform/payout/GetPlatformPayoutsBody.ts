@@ -1,5 +1,5 @@
-import type { PageInput } from "#generated/common/PageInput"
-import type { PlatformPayoutFilterInput } from "#generated/platform/payout/PlatformPayoutFilterInput"
+import type { PageInput } from "./../../common/PageInput"
+import type { PlatformPayoutFilterInput } from "./../../platform/payout/PlatformPayoutFilterInput"
 
 export type GetPlatformPayoutsBody = {
 	isForTest?: boolean

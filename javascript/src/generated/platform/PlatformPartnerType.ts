@@ -1,6 +1,6 @@
-import type { PlatformPartnerTypeBusiness } from "#generated/platform/PlatformPartnerTypeBusiness"
-import type { PlatformPartnerTypeNonWhtPayer } from "#generated/platform/PlatformPartnerTypeNonWhtPayer"
-import type { PlatformPartnerTypeWhtPayer } from "#generated/platform/PlatformPartnerTypeWhtPayer"
+import type { PlatformPartnerTypeBusiness } from "./../platform/PlatformPartnerTypeBusiness"
+import type { PlatformPartnerTypeNonWhtPayer } from "./../platform/PlatformPartnerTypeNonWhtPayer"
+import type { PlatformPartnerTypeWhtPayer } from "./../platform/PlatformPartnerTypeWhtPayer"
 
 /** 파트너 유형별 추가 정보 */
 export type PlatformPartnerType =

@@ -1,7 +1,7 @@
-import type { Currency } from "#generated/common/Currency"
-import type { PromotionCardCompany } from "#generated/payment/promotion/PromotionCardCompany"
-import type { PromotionDiscount } from "#generated/payment/promotion/PromotionDiscount"
-import type { PromotionStatus } from "#generated/payment/promotion/PromotionStatus"
+import type { Currency } from "./../../common/Currency"
+import type { PromotionCardCompany } from "./../../payment/promotion/PromotionCardCompany"
+import type { PromotionDiscount } from "./../../payment/promotion/PromotionDiscount"
+import type { PromotionStatus } from "./../../payment/promotion/PromotionStatus"
 
 /** 카드 프로모션 */
 export type CardPromotion = {

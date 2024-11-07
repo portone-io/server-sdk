@@ -1,6 +1,6 @@
-import type { PlatformPartnerManualSettlement } from "#generated/platform/partnerSettlement/PlatformPartnerManualSettlement"
-import type { PlatformPartnerOrderCancelSettlement } from "#generated/platform/partnerSettlement/PlatformPartnerOrderCancelSettlement"
-import type { PlatformPartnerOrderSettlement } from "#generated/platform/partnerSettlement/PlatformPartnerOrderSettlement"
+import type { PlatformPartnerManualSettlement } from "./../../platform/partnerSettlement/PlatformPartnerManualSettlement"
+import type { PlatformPartnerOrderCancelSettlement } from "./../../platform/partnerSettlement/PlatformPartnerOrderCancelSettlement"
+import type { PlatformPartnerOrderSettlement } from "./../../platform/partnerSettlement/PlatformPartnerOrderSettlement"
 
 export type PlatformPartnerSettlement =
 	| PlatformPartnerManualSettlement

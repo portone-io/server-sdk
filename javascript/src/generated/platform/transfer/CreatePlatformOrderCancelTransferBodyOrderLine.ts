@@ -1,4 +1,4 @@
-import type { CreatePlatformOrderCancelTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
+import type { CreatePlatformOrderCancelTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
 
 /** 주문 취소 항목 리스트 */
 export type CreatePlatformOrderCancelTransferBodyOrderLine = {

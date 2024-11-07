@@ -1,9 +1,9 @@
-import type { Currency } from "#generated/common/Currency"
-import type { DateRange } from "#generated/platform/DateRange"
-import type { PlatformContract } from "#generated/platform/PlatformContract"
-import type { PlatformOrderSettlementAmount } from "#generated/platform/PlatformOrderSettlementAmount"
-import type { PlatformPartner } from "#generated/platform/PlatformPartner"
-import type { PlatformPartnerSettlementStatus } from "#generated/platform/partnerSettlement/PlatformPartnerSettlementStatus"
+import type { Currency } from "./../../common/Currency"
+import type { DateRange } from "./../../platform/DateRange"
+import type { PlatformContract } from "./../../platform/PlatformContract"
+import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
+import type { PlatformPartner } from "./../../platform/PlatformPartner"
+import type { PlatformPartnerSettlementStatus } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatus"
 
 export type PlatformPartnerOrderCancelSettlement = {
 	type: "ORDER_CANCEL"

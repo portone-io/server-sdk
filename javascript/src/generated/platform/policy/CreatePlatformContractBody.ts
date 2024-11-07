@@ -1,6 +1,6 @@
-import type { PlatformFeeInput } from "#generated/platform/PlatformFeeInput"
-import type { PlatformPayer } from "#generated/platform/PlatformPayer"
-import type { PlatformSettlementCycleInput } from "#generated/platform/PlatformSettlementCycleInput"
+import type { PlatformFeeInput } from "./../../platform/PlatformFeeInput"
+import type { PlatformPayer } from "./../../platform/PlatformPayer"
+import type { PlatformSettlementCycleInput } from "./../../platform/PlatformSettlementCycleInput"
 
 /** 계약 객체 생성을 위한 입력 정보 */
 export type CreatePlatformContractBody = {

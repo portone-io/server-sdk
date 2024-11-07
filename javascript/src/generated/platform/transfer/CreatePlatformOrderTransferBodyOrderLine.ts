@@ -1,6 +1,6 @@
-import type { CreatePlatformOrderTransferBodyAdditionalFee } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
-import type { CreatePlatformOrderTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyDiscount"
-import type { CreatePlatformOrderTransferBodyProduct } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyProduct"
+import type { CreatePlatformOrderTransferBodyAdditionalFee } from "./../../platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
+import type { CreatePlatformOrderTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderTransferBodyDiscount"
+import type { CreatePlatformOrderTransferBodyProduct } from "./../../platform/transfer/CreatePlatformOrderTransferBodyProduct"
 
 /** 주문 항목 */
 export type CreatePlatformOrderTransferBodyOrderLine = {

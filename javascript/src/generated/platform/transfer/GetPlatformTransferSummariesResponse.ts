@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformTransferSummary } from "#generated/platform/transfer/PlatformTransferSummary"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformTransferSummary } from "./../../platform/transfer/PlatformTransferSummary"
 
 export type GetPlatformTransferSummariesResponse = {
 	transferSummaries: PlatformTransferSummary[]

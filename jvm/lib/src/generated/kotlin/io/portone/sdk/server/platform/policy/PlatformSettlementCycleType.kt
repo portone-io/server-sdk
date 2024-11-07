@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformSettlementCycleType {
   /** 매일 정산 */
-  DAILY,
+  Daily,
   /** 매주 정해진 요일에 정산 */
-  WEEKLY,
+  Weekly,
   /** 매월 정해진 날(일)에 정산 */
-  MONTHLY,
+  Monthly,
   /** 정해진 날짜(월, 일)에 정산 */
-  MANUAL_DATES,
+  ManualDates,
 }

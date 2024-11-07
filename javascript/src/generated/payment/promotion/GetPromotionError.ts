@@ -1,7 +1,7 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PromotionNotFoundError } from "#generated/payment/promotion/PromotionNotFoundError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PromotionNotFoundError } from "./../../payment/promotion/PromotionNotFoundError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type GetPromotionError =
 	| ForbiddenError

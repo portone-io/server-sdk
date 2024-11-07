@@ -1,5 +1,5 @@
-import type { DeletedBillingKeyInfo } from "#generated/payment/billingKey/DeletedBillingKeyInfo"
-import type { IssuedBillingKeyInfo } from "#generated/payment/billingKey/IssuedBillingKeyInfo"
+import type { DeletedBillingKeyInfo } from "./../../payment/billingKey/DeletedBillingKeyInfo"
+import type { IssuedBillingKeyInfo } from "./../../payment/billingKey/IssuedBillingKeyInfo"
 
 /** 빌링키 정보 */
 export type BillingKeyInfo =

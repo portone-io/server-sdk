@@ -1,5 +1,5 @@
-import type { PaymentLogisticsCompany } from "#generated/payment/PaymentLogisticsCompany"
-import type { SeparatedAddressInput } from "#generated/common/SeparatedAddressInput"
+import type { PaymentLogisticsCompany } from "./../payment/PaymentLogisticsCompany"
+import type { SeparatedAddressInput } from "./../common/SeparatedAddressInput"
 
 /** 배송정보 */
 export type PaymentLogistics = {

@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public enum class PlatformPayoutMethod {
-  DIRECT,
-  AGENCY,
+  Direct,
+  Agency,
 }

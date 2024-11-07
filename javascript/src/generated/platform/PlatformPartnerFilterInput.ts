@@ -1,6 +1,6 @@
-import type { Bank } from "#generated/common/Bank"
-import type { Currency } from "#generated/common/Currency"
-import type { PlatformPartnerFilterInputKeyword } from "#generated/platform/PlatformPartnerFilterInputKeyword"
+import type { Bank } from "./../common/Bank"
+import type { Currency } from "./../common/Currency"
+import type { PlatformPartnerFilterInputKeyword } from "./../platform/PlatformPartnerFilterInputKeyword"
 
 /** 파트너 필터 입력 정보 */
 export type PlatformPartnerFilterInput = {

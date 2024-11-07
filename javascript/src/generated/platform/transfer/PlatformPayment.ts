@@ -1,5 +1,5 @@
-import type { PlatformExternalPayment } from "#generated/platform/transfer/PlatformExternalPayment"
-import type { PlatformPortOnePayment } from "#generated/platform/transfer/PlatformPortOnePayment"
+import type { PlatformExternalPayment } from "./../../platform/transfer/PlatformExternalPayment"
+import type { PlatformPortOnePayment } from "./../../platform/transfer/PlatformPortOnePayment"
 
 /** 결제 정보 */
 export type PlatformPayment =

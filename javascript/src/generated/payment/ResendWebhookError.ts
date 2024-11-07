@@ -1,9 +1,9 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { MaxWebhookRetryCountReachedError } from "#generated/payment/MaxWebhookRetryCountReachedError"
-import type { PaymentNotFoundError } from "#generated/payment/PaymentNotFoundError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
-import type { WebhookNotFoundError } from "#generated/payment/WebhookNotFoundError"
+import type { ForbiddenError } from "./../common/ForbiddenError"
+import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { MaxWebhookRetryCountReachedError } from "./../payment/MaxWebhookRetryCountReachedError"
+import type { PaymentNotFoundError } from "./../payment/PaymentNotFoundError"
+import type { UnauthorizedError } from "./../common/UnauthorizedError"
+import type { WebhookNotFoundError } from "./../payment/WebhookNotFoundError"
 
 export type ResendWebhookError =
 	| ForbiddenError

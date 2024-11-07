@@ -1,10 +1,10 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PlatformExternalApiFailedError } from "#generated/platform/account/PlatformExternalApiFailedError"
-import type { PlatformExternalApiTemporarilyFailedError } from "#generated/platform/account/PlatformExternalApiTemporarilyFailedError"
-import type { PlatformNotEnabledError } from "#generated/platform/PlatformNotEnabledError"
-import type { PlatformNotSupportedBankError } from "#generated/platform/account/PlatformNotSupportedBankError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PlatformExternalApiFailedError } from "./../../platform/account/PlatformExternalApiFailedError"
+import type { PlatformExternalApiTemporarilyFailedError } from "./../../platform/account/PlatformExternalApiTemporarilyFailedError"
+import type { PlatformNotEnabledError } from "./../../platform/PlatformNotEnabledError"
+import type { PlatformNotSupportedBankError } from "./../../platform/account/PlatformNotSupportedBankError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type GetPlatformAccountHolderError =
 	| ForbiddenError

@@ -1,9 +1,9 @@
-import type { CreatePlatformOrderTransferBodyAdditionalFee } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
-import type { CreatePlatformOrderTransferBodyDiscount } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyDiscount"
-import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyExternalPaymentDetail"
-import type { CreatePlatformOrderTransferBodyOrderDetail } from "#generated/platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
-import type { PlatformUserDefinedPropertyKeyValue } from "#generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
-import type { TransferParameters } from "#generated/platform/transfer/TransferParameters"
+import type { CreatePlatformOrderTransferBodyAdditionalFee } from "./../../platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
+import type { CreatePlatformOrderTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderTransferBodyDiscount"
+import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "./../../platform/transfer/CreatePlatformOrderTransferBodyExternalPaymentDetail"
+import type { CreatePlatformOrderTransferBodyOrderDetail } from "./../../platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
+import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
+import type { TransferParameters } from "./../../platform/transfer/TransferParameters"
 
 /** 주문 정산건 생성을 위한 입력 정보 */
 export type CreatePlatformOrderTransferBody = {

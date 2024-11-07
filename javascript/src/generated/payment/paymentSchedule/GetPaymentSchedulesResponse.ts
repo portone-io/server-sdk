@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PaymentSchedule } from "#generated/payment/paymentSchedule/PaymentSchedule"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PaymentSchedule } from "./../../payment/paymentSchedule/PaymentSchedule"
 
 /** 결제 예약 다건 조회 성공 응답 정보 */
 export type GetPaymentSchedulesResponse = {

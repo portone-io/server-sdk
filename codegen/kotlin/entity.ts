@@ -1,3 +1,4 @@
+import { toPascalCase } from "@std/text"
 import type { Definition } from "../parser/definition.ts"
 import {
   filterName,
@@ -409,7 +410,7 @@ export function generateEntity(
         const mergedDescription = [title ?? []].concat([description ?? []])
           .flat().join("\n\n")
         writeDescription(writer, mergedDescription)
-        writer.writeLine(`${value},`)
+        writer.writeLine(`${toPascalCase(value)},`)
       }
       writer.outdent()
       writer.writeLine("}")

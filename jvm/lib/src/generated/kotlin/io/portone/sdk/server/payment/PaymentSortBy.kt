@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentSortBy {
   /** 결제 요청 시점 */
-  REQUESTED_AT,
+  RequestedAt,
   /** 상태 변경 시점 */
-  STATUS_CHANGED_AT,
+  StatusChangedAt,
 }

@@ -1,9 +1,9 @@
-import type { PlatformPaymentMethodCardInput } from "#generated/platform/transfer/PlatformPaymentMethodCardInput"
-import type { PlatformPaymentMethodEasyPayInput } from "#generated/platform/transfer/PlatformPaymentMethodEasyPayInput"
-import type { PlatformPaymentMethodGiftCertificateInput } from "#generated/platform/transfer/PlatformPaymentMethodGiftCertificateInput"
-import type { PlatformPaymentMethodMobileInput } from "#generated/platform/transfer/PlatformPaymentMethodMobileInput"
-import type { PlatformPaymentMethodTransferInput } from "#generated/platform/transfer/PlatformPaymentMethodTransferInput"
-import type { PlatformPaymentMethodVirtualAccountInput } from "#generated/platform/transfer/PlatformPaymentMethodVirtualAccountInput"
+import type { PlatformPaymentMethodCardInput } from "./../../platform/transfer/PlatformPaymentMethodCardInput"
+import type { PlatformPaymentMethodEasyPayInput } from "./../../platform/transfer/PlatformPaymentMethodEasyPayInput"
+import type { PlatformPaymentMethodGiftCertificateInput } from "./../../platform/transfer/PlatformPaymentMethodGiftCertificateInput"
+import type { PlatformPaymentMethodMobileInput } from "./../../platform/transfer/PlatformPaymentMethodMobileInput"
+import type { PlatformPaymentMethodTransferInput } from "./../../platform/transfer/PlatformPaymentMethodTransferInput"
+import type { PlatformPaymentMethodVirtualAccountInput } from "./../../platform/transfer/PlatformPaymentMethodVirtualAccountInput"
 
 /** 결제 수단 입력 정보 */
 export type PlatformPaymentMethodInput = {

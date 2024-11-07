@@ -1,5 +1,5 @@
-import type { PlatformFixedAmountFee } from "#generated/platform/PlatformFixedAmountFee"
-import type { PlatformFixedRateFee } from "#generated/platform/PlatformFixedRateFee"
+import type { PlatformFixedAmountFee } from "./../platform/PlatformFixedAmountFee"
+import type { PlatformFixedRateFee } from "./../platform/PlatformFixedRateFee"
 
 /** 플랫폼 중개수수료 정보 */
 export type PlatformFee =

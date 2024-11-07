@@ -1,4 +1,4 @@
-import type { PlatformContract } from "#generated/platform/PlatformContract"
+import type { PlatformContract } from "./../../platform/PlatformContract"
 
 /** 계약 객체 업데이트 성공 응답 */
 export type UpdatePlatformContractResponse = {

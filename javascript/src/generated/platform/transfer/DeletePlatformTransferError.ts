@@ -1,10 +1,10 @@
-import type { ForbiddenError } from "#generated/common/ForbiddenError"
-import type { InvalidRequestError } from "#generated/common/InvalidRequestError"
-import type { PlatformCancelOrderTransfersExistsError } from "#generated/platform/transfer/PlatformCancelOrderTransfersExistsError"
-import type { PlatformNotEnabledError } from "#generated/platform/PlatformNotEnabledError"
-import type { PlatformTransferNonDeletableStatusError } from "#generated/platform/transfer/PlatformTransferNonDeletableStatusError"
-import type { PlatformTransferNotFoundError } from "#generated/platform/transfer/PlatformTransferNotFoundError"
-import type { UnauthorizedError } from "#generated/common/UnauthorizedError"
+import type { ForbiddenError } from "./../../common/ForbiddenError"
+import type { InvalidRequestError } from "./../../common/InvalidRequestError"
+import type { PlatformCancelOrderTransfersExistsError } from "./../../platform/transfer/PlatformCancelOrderTransfersExistsError"
+import type { PlatformNotEnabledError } from "./../../platform/PlatformNotEnabledError"
+import type { PlatformTransferNonDeletableStatusError } from "./../../platform/transfer/PlatformTransferNonDeletableStatusError"
+import type { PlatformTransferNotFoundError } from "./../../platform/transfer/PlatformTransferNotFoundError"
+import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 
 export type DeletePlatformTransferError =
 	| ForbiddenError

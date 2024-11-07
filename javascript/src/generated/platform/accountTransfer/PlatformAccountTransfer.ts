@@ -1,6 +1,6 @@
-import type { PlatformDepositAccountTransfer } from "#generated/platform/accountTransfer/PlatformDepositAccountTransfer"
-import type { PlatformPartnerPayoutAccountTransfer } from "#generated/platform/accountTransfer/PlatformPartnerPayoutAccountTransfer"
-import type { PlatformRemitAccountTransfer } from "#generated/platform/accountTransfer/PlatformRemitAccountTransfer"
+import type { PlatformDepositAccountTransfer } from "./../../platform/accountTransfer/PlatformDepositAccountTransfer"
+import type { PlatformPartnerPayoutAccountTransfer } from "./../../platform/accountTransfer/PlatformPartnerPayoutAccountTransfer"
+import type { PlatformRemitAccountTransfer } from "./../../platform/accountTransfer/PlatformRemitAccountTransfer"
 
 /**
  * 계좌 이체

@@ -1,6 +1,6 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { PlatformPayout } from "#generated/platform/payout/PlatformPayout"
-import type { PlatformPayoutStatusStats } from "#generated/platform/PlatformPayoutStatusStats"
+import type { PageInfo } from "./../../common/PageInfo"
+import type { PlatformPayout } from "./../../platform/payout/PlatformPayout"
+import type { PlatformPayoutStatusStats } from "./../../platform/PlatformPayoutStatusStats"
 
 export type GetPlatformPayoutsResponse = {
 	items: PlatformPayout[]

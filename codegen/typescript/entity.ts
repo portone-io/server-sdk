@@ -5,6 +5,7 @@ import { annotateDescription, writeDescription } from "./description.ts"
 export function generateEntity(
   categoryMap: Map<string, string>,
   definition: Definition,
+  hierarchy: string,
 ): string {
   const crossRef = new Set<string>()
   const writer = TypescriptWriter()
@@ -131,7 +132,7 @@ export function generateEntity(
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }
-    return `import type { ${ref} } from "#generated/${path}/${ref}"`
+    return `import type { ${ref} } from "${hierarchy}/${path}/${ref}"`
   })
   const content = imports.length > 0
     ? `${imports.join("\n")}\n\n${writer.content}`

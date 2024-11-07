@@ -1,5 +1,5 @@
-import type { PlatformTransferFilterInput } from "#generated/platform/transfer/PlatformTransferFilterInput"
-import type { PlatformTransferSheetField } from "#generated/platform/transfer/PlatformTransferSheetField"
+import type { PlatformTransferFilterInput } from "./../../platform/transfer/PlatformTransferFilterInput"
+import type { PlatformTransferSheetField } from "./../../platform/transfer/PlatformTransferSheetField"
 
 export type DownloadPlatformTransferSheetBody = {
 	filter?: PlatformTransferFilterInput

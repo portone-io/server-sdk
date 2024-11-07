@@ -1,5 +1,5 @@
-import type { InstantPaymentMethodInputVirtualAccountOptionFixed } from "#generated/payment/InstantPaymentMethodInputVirtualAccountOptionFixed"
-import type { InstantPaymentMethodInputVirtualAccountOptionType } from "#generated/payment/InstantPaymentMethodInputVirtualAccountOptionType"
+import type { InstantPaymentMethodInputVirtualAccountOptionFixed } from "./../payment/InstantPaymentMethodInputVirtualAccountOptionFixed"
+import type { InstantPaymentMethodInputVirtualAccountOptionType } from "./../payment/InstantPaymentMethodInputVirtualAccountOptionType"
 
 /** 가상계좌 발급 방식 */
 export type InstantPaymentMethodInputVirtualAccountOption = {

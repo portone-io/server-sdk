@@ -1,5 +1,5 @@
-import type { CashReceiptType } from "#generated/common/CashReceiptType"
-import type { Currency } from "#generated/common/Currency"
+import type { CashReceiptType } from "./../common/CashReceiptType"
+import type { Currency } from "./../common/Currency"
 
 /** 발급 완료된 현금영수증 */
 export type IssuedPaymentCashReceipt = {

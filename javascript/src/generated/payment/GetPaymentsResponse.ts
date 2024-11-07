@@ -1,5 +1,5 @@
-import type { PageInfo } from "#generated/common/PageInfo"
-import type { Payment } from "#generated/payment/Payment"
+import type { PageInfo } from "./../common/PageInfo"
+import type { Payment } from "./../payment/Payment"
 
 /** 결제 건 다건 조회 성공 응답 정보 */
 export type GetPaymentsResponse = {

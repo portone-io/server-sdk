@@ -1,7 +1,7 @@
-import type { CreatePlatformPartnerBodyAccount } from "#generated/platform/partner/CreatePlatformPartnerBodyAccount"
-import type { CreatePlatformPartnerBodyContact } from "#generated/platform/partner/CreatePlatformPartnerBodyContact"
-import type { CreatePlatformPartnerBodyType } from "#generated/platform/partner/CreatePlatformPartnerBodyType"
-import type { PlatformProperties } from "#generated/platform/PlatformProperties"
+import type { CreatePlatformPartnerBodyAccount } from "./../../platform/partner/CreatePlatformPartnerBodyAccount"
+import type { CreatePlatformPartnerBodyContact } from "./../../platform/partner/CreatePlatformPartnerBodyContact"
+import type { CreatePlatformPartnerBodyType } from "./../../platform/partner/CreatePlatformPartnerBodyType"
+import type { PlatformProperties } from "./../../platform/PlatformProperties"
 
 /** 파트너 생성을 위한 입력 정보 */
 export type CreatePlatformPartnerBody = {

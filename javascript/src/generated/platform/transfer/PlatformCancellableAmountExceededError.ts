@@ -1,4 +1,4 @@
-import type { PlatformCancellableAmountType } from "#generated/platform/transfer/PlatformCancellableAmountType"
+import type { PlatformCancellableAmountType } from "./../../platform/transfer/PlatformCancellableAmountType"
 
 /** 취소 가능한 금액이 초과한 경우 */
 export type PlatformCancellableAmountExceededError = {

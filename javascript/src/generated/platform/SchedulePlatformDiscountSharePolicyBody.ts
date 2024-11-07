@@ -1,4 +1,4 @@
-import type { UpdatePlatformDiscountSharePolicyBody } from "#generated/platform/UpdatePlatformDiscountSharePolicyBody"
+import type { UpdatePlatformDiscountSharePolicyBody } from "./../platform/UpdatePlatformDiscountSharePolicyBody"
 
 /** 할인 분담 정책 업데이트 예약을 위한 입력 정보 */
 export type SchedulePlatformDiscountSharePolicyBody = {

@@ -149,7 +149,7 @@ function generateCategoryIndex(
     )
     all.push(`${toPascalCase(pack.category)}Client`)
   }
-  if (pack.category !== "root") {
+  if (pack.category !== "root" && pack.category !== "webhook") {
     publicWriter.writeLine("__all__ = [")
     publicWriter.indent()
     for (const item of all) {
