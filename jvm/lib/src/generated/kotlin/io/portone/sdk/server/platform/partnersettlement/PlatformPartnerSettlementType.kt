@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformPartnerSettlementType {
   /** 수동 정산 */
-  Manual,
+  MANUAL,
   /** 주문 정산 */
-  Order,
+  ORDER,
   /** 주문 취소 정산 */
-  OrderCancel,
+  ORDER_CANCEL,
 }

@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformTransferStatus {
   /** 정산 예약 */
-  Scheduled,
+  SCHEDULED,
   /** 정산 중 */
-  InProcess,
+  IN_PROCESS,
   /** 정산 완료 */
-  Settled,
+  SETTLED,
   /** 지급 중 */
-  InPayout,
+  IN_PAYOUT,
   /** 지급 완료 */
-  PaidOut,
+  PAID_OUT,
 }

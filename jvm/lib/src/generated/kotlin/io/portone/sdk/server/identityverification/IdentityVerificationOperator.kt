@@ -6,15 +6,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class IdentityVerificationOperator {
   /** SKT */
-  Skt,
+  SKT,
   /** KT */
-  Kt,
+  KT,
   /** LGU */
-  Lgu,
+  LGU,
   /** SKT 알뜰폰 */
-  SktMvno,
+  SKT_MVNO,
   /** KT 알뜰폰 */
-  KtMvno,
+  KT_MVNO,
   /** LGU 알뜰폰 */
-  LguMvno,
+  LGU_MVNO,
 }

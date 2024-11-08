@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformRoundType {
   /** 소수점 반올림 */
-  Off,
+  OFF,
   /** 소수점 내림 */
-  Down,
+  DOWN,
   /** 소수점 올림 */
-  Up,
+  UP,
 }

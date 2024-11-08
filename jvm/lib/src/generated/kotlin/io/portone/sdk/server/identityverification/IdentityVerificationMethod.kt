@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 /** 본인인증 방식 */
 @Serializable
 public enum class IdentityVerificationMethod {
-  Sms,
-  App,
+  SMS,
+  APP,
 }

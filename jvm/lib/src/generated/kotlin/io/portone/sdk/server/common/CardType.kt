@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class CardType {
   /** 신용카드 */
-  Credit,
+  CREDIT,
   /** 체크카드 */
-  Debit,
+  DEBIT,
   /** 기프트카드 */
-  Gift,
+  GIFT,
 }

@@ -6,15 +6,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformAccountStatus {
   /** 계좌 인증 중 */
-  Verifying,
+  VERIFYING,
   /** 계좌 인증 완료됨 */
-  Verified,
+  VERIFIED,
   /** 계좌 인증 실패함 */
-  VerifyFailed,
+  VERIFY_FAILED,
   /** 계좌 인증 안됨 */
-  NotVerified,
+  NOT_VERIFIED,
   /** 계좌 인증 만료됨 */
-  Expired,
+  EXPIRED,
   /** 알 수 없는 상태 */
-  Unknown,
+  UNKNOWN,
 }

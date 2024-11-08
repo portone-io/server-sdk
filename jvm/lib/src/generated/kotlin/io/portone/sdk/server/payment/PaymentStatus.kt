@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 /** 결제 건 상태 */
 @Serializable
 public enum class PaymentStatus {
-  Ready,
-  Pending,
-  VirtualAccountIssued,
-  Paid,
-  Failed,
-  PartialCancelled,
-  Cancelled,
+  READY,
+  PENDING,
+  VIRTUAL_ACCOUNT_ISSUED,
+  PAID,
+  FAILED,
+  PARTIAL_CANCELLED,
+  CANCELLED,
 }

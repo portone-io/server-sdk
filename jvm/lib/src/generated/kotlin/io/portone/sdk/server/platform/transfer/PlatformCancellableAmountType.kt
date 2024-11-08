@@ -10,7 +10,7 @@ public enum class PlatformCancellableAmountType {
    *
    * 공급가액과 부가세를 더한 금액입니다.
    */
-  SupplyWithVat,
+  SUPPLY_WITH_VAT,
   /** 면세 금액 */
-  TaxFree,
+  TAX_FREE,
 }

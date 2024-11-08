@@ -6,17 +6,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformPartnerBusinessStatus {
   /** 인증 되지 않음 */
-  NotVerified,
+  NOT_VERIFIED,
   /** 인증 실패 */
-  VerifyFailed,
+  VERIFY_FAILED,
   /** 대응되는 사업자 없음 */
-  NotFound,
+  NOT_FOUND,
   /** 인증 대기 중 */
-  Verifying,
+  VERIFYING,
   /** 사업 중 */
-  InBusiness,
+  IN_BUSINESS,
   /** 폐업 */
-  Closed,
+  CLOSED,
   /** 휴업 */
-  Suspended,
+  SUSPENDED,
 }

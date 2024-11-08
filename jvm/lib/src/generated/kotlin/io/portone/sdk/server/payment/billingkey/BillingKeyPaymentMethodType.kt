@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class BillingKeyPaymentMethodType {
   /** 카드 */
-  Card,
+  CARD,
   /** 모바일 */
-  Mobile,
+  MOBILE,
   /** 간편 결제 */
-  EasyPay,
+  EASY_PAY,
   /** 계좌 이체 */
-  Transfer,
+  TRANSFER,
 }

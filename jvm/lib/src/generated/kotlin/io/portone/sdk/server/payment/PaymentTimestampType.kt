@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentTimestampType {
   /** 결제 건 생성 시점 */
-  CreatedAt,
+  CREATED_AT,
   /** 상태 변경 시점 */
-  StatusChangedAt,
+  STATUS_CHANGED_AT,
 }

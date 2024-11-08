@@ -5,15 +5,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PromotionStatus {
   /** 예정됨 */
-  Scheduled,
+  SCHEDULED,
   /** 진행중 */
-  InProgress,
+  IN_PROGRESS,
   /** 일시 중지됨 */
-  Paused,
+  PAUSED,
   /** 예산 소진됨 */
-  BudgetExhausted,
+  BUDGET_EXHAUSTED,
   /** 중단됨 */
-  Terminated,
+  TERMINATED,
   /** 완료됨 */
-  Completed,
+  COMPLETED,
 }

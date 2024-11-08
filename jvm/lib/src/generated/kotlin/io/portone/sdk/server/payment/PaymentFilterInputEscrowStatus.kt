@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 /** 에스크로 상태 */
 @Serializable
 public enum class PaymentFilterInputEscrowStatus {
-  Registered,
-  Delivered,
-  Confirmed,
-  Rejected,
-  Cancelled,
-  RejectConfirmed,
+  REGISTERED,
+  DELIVERED,
+  CONFIRMED,
+  REJECTED,
+  CANCELLED,
+  REJECT_CONFIRMED,
 }

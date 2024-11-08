@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformPayer {
   /** 파트너가 부담하는 경우 */
-  Partner,
+  PARTNER,
   /** 고객사가 부담하는 경우 */
-  Merchant,
+  MERCHANT,
 }

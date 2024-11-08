@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public enum class PlatformTransferType {
-  Order,
-  OrderCancel,
-  Manual,
+  ORDER,
+  ORDER_CANCEL,
+  MANUAL,
 }

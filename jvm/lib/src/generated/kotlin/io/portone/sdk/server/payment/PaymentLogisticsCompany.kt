@@ -6,63 +6,63 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentLogisticsCompany {
   /** 롯데글로벌로지스 */
-  Lotte,
+  LOTTE,
   /** 로젠택배 */
-  Logen,
+  LOGEN,
   /** 동원로엑스 */
-  Dongwon,
+  DONGWON,
   /** 우체국택배 */
-  Post,
+  POST,
   /** 대한통운 */
-  Cj,
+  CJ,
   /** 한진택배 */
-  Hanjin,
+  HANJIN,
   /** 대신택배 */
-  Daesin,
+  DAESIN,
   /** 일양로지스 */
-  Ilyang,
+  ILYANG,
   /** 경동택배 */
-  Kyungdong,
+  KYUNGDONG,
   /** 천일택배 */
-  Chunil,
+  CHUNIL,
   /** 등기우편 */
-  PostRegistered,
+  POST_REGISTERED,
   /** GS네트웍스 */
-  Gs,
+  GS,
   /** 우리택배 */
-  Woori,
+  WOORI,
   /** 합동택배 */
-  Hapdong,
+  HAPDONG,
   /** FedEx */
-  Fedex,
+  FEDEX,
   /** UPS */
-  Ups,
+  UPS,
   /** GSM NtoN */
-  GsmNton,
+  GSM_NTON,
   /** 성원글로벌카고 */
-  Sungwon,
+  SUNGWON,
   /** LX판토스 */
-  LxPantos,
+  LX_PANTOS,
   /** ACI */
-  Aci,
+  ACI,
   /** CJ대한통운 국제특송 */
-  CjIntl,
+  CJ_INTL,
   /** USPS */
-  Usps,
+  USPS,
   /** EMS */
-  Ems,
+  EMS,
   /** DHL */
-  Dhl,
+  DHL,
   /** KGL네트웍스 */
-  Kgl,
+  KGL,
   /** 굿투럭 */
-  Goodstoluck,
+  GOODSTOLUCK,
   /** 건영택배 */
-  Kunyoung,
+  KUNYOUNG,
   /** SLX */
-  Slx,
+  SLX,
   /** SF Express */
-  Sf,
+  SF,
   /** 기타 */
-  Etc,
+  ETC,
 }

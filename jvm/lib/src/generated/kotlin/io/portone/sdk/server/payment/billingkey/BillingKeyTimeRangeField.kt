@@ -6,15 +6,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class BillingKeyTimeRangeField {
   /** 발급 요청 시각 */
-  RequestedAt,
+  REQUESTED_AT,
   /** 발급 완료 시각 */
-  IssuedAt,
+  ISSUED_AT,
   /** 삭제 완료 시각 */
-  DeletedAt,
+  DELETED_AT,
   /**
    * 상태 변경 시각
    *
    * 발급 완료 상태의 경우 ISSUED_AT, 삭제 완료 상태의 경우 DELETED_AT
    */
-  StatusTimestamp,
+  STATUS_TIMESTAMP,
 }

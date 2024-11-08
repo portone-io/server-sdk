@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PaymentMethodVirtualAccountType {
   /** 고정식 */
-  Fixed,
+  FIXED,
   /** 회전식 */
-  Normal,
+  NORMAL,
 }

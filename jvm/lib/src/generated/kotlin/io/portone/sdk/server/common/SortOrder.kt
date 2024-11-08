@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class SortOrder {
   /** 내림차순 */
-  Desc,
+  DESC,
   /** 오름차순 */
-  Asc,
+  ASC,
 }

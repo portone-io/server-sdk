@@ -6,21 +6,21 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PromotionCardCompany {
   /** 우리카드 */
-  WooriCard,
+  WOORI_CARD,
   /** BC카드 */
-  BcCard,
+  BC_CARD,
   /** 삼성카드 */
-  SamsungCard,
+  SAMSUNG_CARD,
   /** 신한카드 */
-  ShinhanCard,
+  SHINHAN_CARD,
   /** 현대카드 */
-  HyundaiCard,
+  HYUNDAI_CARD,
   /** 롯데카드 */
-  LotteCard,
+  LOTTE_CARD,
   /** NH카드 */
-  NhCard,
+  NH_CARD,
   /** 하나카드 */
-  HanaCard,
+  HANA_CARD,
   /** 국민카드 */
-  KookminCard,
+  KOOKMIN_CARD,
 }

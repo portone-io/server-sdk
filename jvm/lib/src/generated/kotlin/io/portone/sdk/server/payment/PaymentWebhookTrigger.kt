@@ -9,10 +9,10 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public enum class PaymentWebhookTrigger {
-  Manual,
-  VirtualAccountDeposit,
-  AsyncCancelApproved,
-  AsyncCancelFailed,
-  AsyncPayApproved,
-  AsyncPayFailed,
+  MANUAL,
+  VIRTUAL_ACCOUNT_DEPOSIT,
+  ASYNC_CANCEL_APPROVED,
+  ASYNC_CANCEL_FAILED,
+  ASYNC_PAY_APPROVED,
+  ASYNC_PAY_FAILED,
 }

@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class Gender {
   /** 남성 */
-  Male,
+  MALE,
   /** 여성 */
-  Female,
+  FEMALE,
   /** 그 외 성별 */
-  Other,
+  OTHER,
 }

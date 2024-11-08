@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 /** 요일 */
 @Serializable
 public enum class DayOfWeek {
-  Sun,
-  Mon,
-  Tue,
-  Wed,
-  Thu,
-  Fri,
-  Sat,
+  SUN,
+  MON,
+  TUE,
+  WED,
+  THU,
+  FRI,
+  SAT,
 }

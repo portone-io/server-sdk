@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public enum class PlatformPartnerTaxationType {
   /** 일반 과세 */
-  Normal,
+  NORMAL,
   /** 간이과세(세금계산서 발행) */
-  SimpleTaxInvoiceIssuer,
+  SIMPLE_TAX_INVOICE_ISSUER,
   /** 간이과세(세금계산서 미발행) */
-  Simple,
+  SIMPLE,
   /** 면세 */
-  TaxFree,
+  TAX_FREE,
 }
