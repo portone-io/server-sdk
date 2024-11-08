@@ -24,7 +24,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
-      - uses: yezz123/setup-uv@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
       - name: Install Dependencies
         run: uv sync
       - name: Run sphinx
@@ -48,7 +52,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
-      - uses: yezz123/setup-uv@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
       - name: Install Dependencies
         run: uv sync
       - name: Run ruff check
@@ -72,7 +80,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
-      - uses: yezz123/setup-uv@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
       - name: Install Dependencies
         run: uv sync
       - name: Replace version placeholder
