@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_CANNOT_SPECIFY_TRANSFER")
 @ConsistentCopyVisibility
 public data class PlatformCannotSpecifyTransferError internal constructor(
-  override val message: String? = null,
-): CreatePlatformOrderCancelTransferError
+  val message: String? = null,
+) : CreatePlatformOrderCancelTransferError

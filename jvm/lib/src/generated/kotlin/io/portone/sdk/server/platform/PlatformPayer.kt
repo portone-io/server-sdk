@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,9 +9,13 @@ import kotlinx.serialization.Serializable
  * 플랫폼에서 발생한 결제 수수료, 부가세 등 금액을 부담하는 주체를 나타냅니다.
  */
 @Serializable
-public enum class PlatformPayer {
+public sealed class PlatformPayer {
   /** 파트너가 부담하는 경우 */
-  PARTNER,
+  @SerialName("PARTNER")
+  public data object Partner : PlatformPayer()
   /** 고객사가 부담하는 경우 */
-  MERCHANT,
+  @SerialName("MERCHANT")
+  public data object Merchant : PlatformPayer()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PlatformPayer()
 }

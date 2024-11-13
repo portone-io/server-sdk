@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import io.portone.sdk.server.platform.transfer.PlatformCancellableAmountType
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
@@ -15,5 +14,5 @@ public data class PlatformCancellableAmountExceededError internal constructor(
   val cancellableAmount: Long,
   val requestAmount: Long,
   val amountType: PlatformCancellableAmountType,
-  override val message: String? = null,
-): CreatePlatformOrderCancelTransferError
+  val message: String? = null,
+) : CreatePlatformOrderCancelTransferError

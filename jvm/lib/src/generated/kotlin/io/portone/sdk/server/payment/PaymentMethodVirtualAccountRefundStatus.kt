@@ -1,16 +1,23 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 가상계좌 환불 상태 */
 @Serializable
-public enum class PaymentMethodVirtualAccountRefundStatus {
+public sealed class PaymentMethodVirtualAccountRefundStatus {
   /** 처리중 */
-  PENDING,
+  @SerialName("PENDING")
+  public data object Pending : PaymentMethodVirtualAccountRefundStatus()
   /** 부분 환불 실패 */
-  PARTIAL_REFUND_FAILED,
+  @SerialName("PARTIAL_REFUND_FAILED")
+  public data object PartialRefundFailed : PaymentMethodVirtualAccountRefundStatus()
   /** 환불 실패 */
-  FAILED,
+  @SerialName("FAILED")
+  public data object Failed : PaymentMethodVirtualAccountRefundStatus()
   /** 환불 완료 */
-  COMPLETED,
+  @SerialName("COMPLETED")
+  public data object Completed : PaymentMethodVirtualAccountRefundStatus()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PaymentMethodVirtualAccountRefundStatus()
 }

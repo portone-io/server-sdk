@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CloseVirtualAccountError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PAYMENT_NOT_WAITING_FOR_DEPOSIT")
 @ConsistentCopyVisibility
 public data class PaymentNotWaitingForDepositError internal constructor(
-  override val message: String? = null,
-): CloseVirtualAccountError
+  val message: String? = null,
+) : CloseVirtualAccountError

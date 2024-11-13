@@ -1,16 +1,23 @@
 package io.portone.sdk.server.platform
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 플랫폼 파트너 과세 유형 */
 @Serializable
-public enum class PlatformPartnerTaxationType {
+public sealed class PlatformPartnerTaxationType {
   /** 일반 과세 */
-  NORMAL,
+  @SerialName("NORMAL")
+  public data object Normal : PlatformPartnerTaxationType()
   /** 간이과세(세금계산서 발행) */
-  SIMPLE_TAX_INVOICE_ISSUER,
+  @SerialName("SIMPLE_TAX_INVOICE_ISSUER")
+  public data object SimpleTaxInvoiceIssuer : PlatformPartnerTaxationType()
   /** 간이과세(세금계산서 미발행) */
-  SIMPLE,
+  @SerialName("SIMPLE")
+  public data object Simple : PlatformPartnerTaxationType()
   /** 면세 */
-  TAX_FREE,
+  @SerialName("TAX_FREE")
+  public data object TaxFree : PlatformPartnerTaxationType()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PlatformPartnerTaxationType()
 }

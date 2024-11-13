@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.IssueCashReceiptError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("CASH_RECEIPT_ALREADY_ISSUED")
 @ConsistentCopyVisibility
 public data class CashReceiptAlreadyIssuedError internal constructor(
-  override val message: String? = null,
-): IssueCashReceiptError
+  val message: String? = null,
+) : IssueCashReceiptError

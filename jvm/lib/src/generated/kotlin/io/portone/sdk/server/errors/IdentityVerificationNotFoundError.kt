@@ -1,9 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ConfirmIdentityVerificationError
-import io.portone.sdk.server.errors.GetIdentityVerificationError
-import io.portone.sdk.server.errors.ResendIdentityVerificationError
-import io.portone.sdk.server.errors.SendIdentityVerificationError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,8 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("IDENTITY_VERIFICATION_NOT_FOUND")
 @ConsistentCopyVisibility
 public data class IdentityVerificationNotFoundError internal constructor(
-  override val message: String? = null,
-): ConfirmIdentityVerificationError,
-  GetIdentityVerificationError,
-  ResendIdentityVerificationError,
-  SendIdentityVerificationError
+  val message: String? = null,
+) : ConfirmIdentityVerificationError, GetIdentityVerificationError, ResendIdentityVerificationError, SendIdentityVerificationError

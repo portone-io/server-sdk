@@ -1,506 +1,758 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 국가 */
 @Serializable
-public enum class Country {
+public sealed class Country {
   /** Andorra */
-  AD,
+  @SerialName("AD")
+  public data object Ad : Country()
   /** United Arab Emirates (the) */
-  AE,
+  @SerialName("AE")
+  public data object Ae : Country()
   /** Afghanistan */
-  AF,
+  @SerialName("AF")
+  public data object Af : Country()
   /** Antigua and Barbuda */
-  AG,
+  @SerialName("AG")
+  public data object Ag : Country()
   /** Anguilla */
-  AI,
+  @SerialName("AI")
+  public data object Ai : Country()
   /** Albania */
-  AL,
+  @SerialName("AL")
+  public data object Al : Country()
   /** Armenia */
-  AM,
+  @SerialName("AM")
+  public data object Am : Country()
   /** Angola */
-  AO,
+  @SerialName("AO")
+  public data object Ao : Country()
   /** Antarctica */
-  AQ,
+  @SerialName("AQ")
+  public data object Aq : Country()
   /** Argentina */
-  AR,
+  @SerialName("AR")
+  public data object Ar : Country()
   /** American Samoa */
-  AS,
+  @SerialName("AS")
+  public data object As : Country()
   /** Austria */
-  AT,
+  @SerialName("AT")
+  public data object At : Country()
   /** Australia */
-  AU,
+  @SerialName("AU")
+  public data object Au : Country()
   /** Aruba */
-  AW,
+  @SerialName("AW")
+  public data object Aw : Country()
   /** Åland Islands */
-  AX,
+  @SerialName("AX")
+  public data object Ax : Country()
   /** Azerbaijan */
-  AZ,
+  @SerialName("AZ")
+  public data object Az : Country()
   /** Bosnia and Herzegovina */
-  BA,
+  @SerialName("BA")
+  public data object Ba : Country()
   /** Barbados */
-  BB,
+  @SerialName("BB")
+  public data object Bb : Country()
   /** Bangladesh */
-  BD,
+  @SerialName("BD")
+  public data object Bd : Country()
   /** Belgium */
-  BE,
+  @SerialName("BE")
+  public data object Be : Country()
   /** Burkina Faso */
-  BF,
+  @SerialName("BF")
+  public data object Bf : Country()
   /** Bulgaria */
-  BG,
+  @SerialName("BG")
+  public data object Bg : Country()
   /** Bahrain */
-  BH,
+  @SerialName("BH")
+  public data object Bh : Country()
   /** Burundi */
-  BI,
+  @SerialName("BI")
+  public data object Bi : Country()
   /** Benin */
-  BJ,
+  @SerialName("BJ")
+  public data object Bj : Country()
   /** Saint Barthélemy */
-  BL,
+  @SerialName("BL")
+  public data object Bl : Country()
   /** Bermuda */
-  BM,
+  @SerialName("BM")
+  public data object Bm : Country()
   /** Brunei Darussalam */
-  BN,
+  @SerialName("BN")
+  public data object Bn : Country()
   /** Bolivia (Plurinational State of) */
-  BO,
+  @SerialName("BO")
+  public data object Bo : Country()
   /** Bonaire, Sint Eustatius and Saba */
-  BQ,
+  @SerialName("BQ")
+  public data object Bq : Country()
   /** Brazil */
-  BR,
+  @SerialName("BR")
+  public data object Br : Country()
   /** Bahamas (the) */
-  BS,
+  @SerialName("BS")
+  public data object Bs : Country()
   /** Bhutan */
-  BT,
+  @SerialName("BT")
+  public data object Bt : Country()
   /** Bouvet Island */
-  BV,
+  @SerialName("BV")
+  public data object Bv : Country()
   /** Botswana */
-  BW,
+  @SerialName("BW")
+  public data object Bw : Country()
   /** Belarus */
-  BY,
+  @SerialName("BY")
+  public data object By : Country()
   /** Belize */
-  BZ,
+  @SerialName("BZ")
+  public data object Bz : Country()
   /** Canada */
-  CA,
+  @SerialName("CA")
+  public data object Ca : Country()
   /** Cocos (Keeling) Islands (the) */
-  CC,
+  @SerialName("CC")
+  public data object Cc : Country()
   /** Congo (the Democratic Republic of the) */
-  CD,
+  @SerialName("CD")
+  public data object Cd : Country()
   /** Central African Republic (the) */
-  CF,
+  @SerialName("CF")
+  public data object Cf : Country()
   /** Congo (the) */
-  CG,
+  @SerialName("CG")
+  public data object Cg : Country()
   /** Switzerland */
-  CH,
+  @SerialName("CH")
+  public data object Ch : Country()
   /** Côte d'Ivoire */
-  CI,
+  @SerialName("CI")
+  public data object Ci : Country()
   /** Cook Islands (the) */
-  CK,
+  @SerialName("CK")
+  public data object Ck : Country()
   /** Chile */
-  CL,
+  @SerialName("CL")
+  public data object Cl : Country()
   /** Cameroon */
-  CM,
+  @SerialName("CM")
+  public data object Cm : Country()
   /** China */
-  CN,
+  @SerialName("CN")
+  public data object Cn : Country()
   /** Colombia */
-  CO,
+  @SerialName("CO")
+  public data object Co : Country()
   /** Costa Rica */
-  CR,
+  @SerialName("CR")
+  public data object Cr : Country()
   /** Cuba */
-  CU,
+  @SerialName("CU")
+  public data object Cu : Country()
   /** Cabo Verde */
-  CV,
+  @SerialName("CV")
+  public data object Cv : Country()
   /** Curaçao */
-  CW,
+  @SerialName("CW")
+  public data object Cw : Country()
   /** Christmas Island */
-  CX,
+  @SerialName("CX")
+  public data object Cx : Country()
   /** Cyprus */
-  CY,
+  @SerialName("CY")
+  public data object Cy : Country()
   /** Czechia */
-  CZ,
+  @SerialName("CZ")
+  public data object Cz : Country()
   /** Germany */
-  DE,
+  @SerialName("DE")
+  public data object De : Country()
   /** Djibouti */
-  DJ,
+  @SerialName("DJ")
+  public data object Dj : Country()
   /** Denmark */
-  DK,
+  @SerialName("DK")
+  public data object Dk : Country()
   /** Dominica */
-  DM,
+  @SerialName("DM")
+  public data object Dm : Country()
   /** Dominican Republic (the) */
-  DO,
+  @SerialName("DO")
+  public data object Do : Country()
   /** Algeria */
-  DZ,
+  @SerialName("DZ")
+  public data object Dz : Country()
   /** Ecuador */
-  EC,
+  @SerialName("EC")
+  public data object Ec : Country()
   /** Estonia */
-  EE,
+  @SerialName("EE")
+  public data object Ee : Country()
   /** Egypt */
-  EG,
+  @SerialName("EG")
+  public data object Eg : Country()
   /** Western Sahara */
-  EH,
+  @SerialName("EH")
+  public data object Eh : Country()
   /** Eritrea */
-  ER,
+  @SerialName("ER")
+  public data object Er : Country()
   /** Spain */
-  ES,
+  @SerialName("ES")
+  public data object Es : Country()
   /** Ethiopia */
-  ET,
+  @SerialName("ET")
+  public data object Et : Country()
   /** Finland */
-  FI,
+  @SerialName("FI")
+  public data object Fi : Country()
   /** Fiji */
-  FJ,
+  @SerialName("FJ")
+  public data object Fj : Country()
   /** Falkland Islands (the) [Malvinas] */
-  FK,
+  @SerialName("FK")
+  public data object Fk : Country()
   /** Micronesia (Federated States of) */
-  FM,
+  @SerialName("FM")
+  public data object Fm : Country()
   /** Faroe Islands (the) */
-  FO,
+  @SerialName("FO")
+  public data object Fo : Country()
   /** France */
-  FR,
+  @SerialName("FR")
+  public data object Fr : Country()
   /** Gabon */
-  GA,
+  @SerialName("GA")
+  public data object Ga : Country()
   /** United Kingdom of Great Britain and Northern Ireland (the) */
-  GB,
+  @SerialName("GB")
+  public data object Gb : Country()
   /** Grenada */
-  GD,
+  @SerialName("GD")
+  public data object Gd : Country()
   /** Georgia */
-  GE,
+  @SerialName("GE")
+  public data object Ge : Country()
   /** French Guiana */
-  GF,
+  @SerialName("GF")
+  public data object Gf : Country()
   /** Guernsey */
-  GG,
+  @SerialName("GG")
+  public data object Gg : Country()
   /** Ghana */
-  GH,
+  @SerialName("GH")
+  public data object Gh : Country()
   /** Gibraltar */
-  GI,
+  @SerialName("GI")
+  public data object Gi : Country()
   /** Greenland */
-  GL,
+  @SerialName("GL")
+  public data object Gl : Country()
   /** Gambia (the) */
-  GM,
+  @SerialName("GM")
+  public data object Gm : Country()
   /** Guinea */
-  GN,
+  @SerialName("GN")
+  public data object Gn : Country()
   /** Guadeloupe */
-  GP,
+  @SerialName("GP")
+  public data object Gp : Country()
   /** Equatorial Guinea */
-  GQ,
+  @SerialName("GQ")
+  public data object Gq : Country()
   /** Greece */
-  GR,
+  @SerialName("GR")
+  public data object Gr : Country()
   /** South Georgia and the South Sandwich Islands */
-  GS,
+  @SerialName("GS")
+  public data object Gs : Country()
   /** Guatemala */
-  GT,
+  @SerialName("GT")
+  public data object Gt : Country()
   /** Guam */
-  GU,
+  @SerialName("GU")
+  public data object Gu : Country()
   /** Guinea-Bissau */
-  GW,
+  @SerialName("GW")
+  public data object Gw : Country()
   /** Guyana */
-  GY,
+  @SerialName("GY")
+  public data object Gy : Country()
   /** Hong Kong */
-  HK,
+  @SerialName("HK")
+  public data object Hk : Country()
   /** Heard Island and McDonald Islands */
-  HM,
+  @SerialName("HM")
+  public data object Hm : Country()
   /** Honduras */
-  HN,
+  @SerialName("HN")
+  public data object Hn : Country()
   /** Croatia */
-  HR,
+  @SerialName("HR")
+  public data object Hr : Country()
   /** Haiti */
-  HT,
+  @SerialName("HT")
+  public data object Ht : Country()
   /** Hungary */
-  HU,
+  @SerialName("HU")
+  public data object Hu : Country()
   /** Indonesia */
-  ID,
+  @SerialName("ID")
+  public data object Id : Country()
   /** Ireland */
-  IE,
+  @SerialName("IE")
+  public data object Ie : Country()
   /** Israel */
-  IL,
+  @SerialName("IL")
+  public data object Il : Country()
   /** Isle of Man */
-  IM,
+  @SerialName("IM")
+  public data object Im : Country()
   /** India */
-  IN,
+  @SerialName("IN")
+  public data object In : Country()
   /** British Indian Ocean Territory (the) */
-  IO,
+  @SerialName("IO")
+  public data object Io : Country()
   /** Iraq */
-  IQ,
+  @SerialName("IQ")
+  public data object Iq : Country()
   /** Iran (Islamic Republic of) */
-  IR,
+  @SerialName("IR")
+  public data object Ir : Country()
   /** Iceland */
-  IS,
+  @SerialName("IS")
+  public data object Is : Country()
   /** Italy */
-  IT,
+  @SerialName("IT")
+  public data object It : Country()
   /** Jersey */
-  JE,
+  @SerialName("JE")
+  public data object Je : Country()
   /** Jamaica */
-  JM,
+  @SerialName("JM")
+  public data object Jm : Country()
   /** Jordan */
-  JO,
+  @SerialName("JO")
+  public data object Jo : Country()
   /** Japan */
-  JP,
+  @SerialName("JP")
+  public data object Jp : Country()
   /** Kenya */
-  KE,
+  @SerialName("KE")
+  public data object Ke : Country()
   /** Kyrgyzstan */
-  KG,
+  @SerialName("KG")
+  public data object Kg : Country()
   /** Cambodia */
-  KH,
+  @SerialName("KH")
+  public data object Kh : Country()
   /** Kiribati */
-  KI,
+  @SerialName("KI")
+  public data object Ki : Country()
   /** Comoros (the) */
-  KM,
+  @SerialName("KM")
+  public data object Km : Country()
   /** Saint Kitts and Nevis */
-  KN,
+  @SerialName("KN")
+  public data object Kn : Country()
   /** Korea (the Democratic People's Republic of) */
-  KP,
+  @SerialName("KP")
+  public data object Kp : Country()
   /** Korea (the Republic of) */
-  KR,
+  @SerialName("KR")
+  public data object Kr : Country()
   /** Kuwait */
-  KW,
+  @SerialName("KW")
+  public data object Kw : Country()
   /** Cayman Islands (the) */
-  KY,
+  @SerialName("KY")
+  public data object Ky : Country()
   /** Kazakhstan */
-  KZ,
+  @SerialName("KZ")
+  public data object Kz : Country()
   /** Lao People's Democratic Republic (the) */
-  LA,
+  @SerialName("LA")
+  public data object La : Country()
   /** Lebanon */
-  LB,
+  @SerialName("LB")
+  public data object Lb : Country()
   /** Saint Lucia */
-  LC,
+  @SerialName("LC")
+  public data object Lc : Country()
   /** Liechtenstein */
-  LI,
+  @SerialName("LI")
+  public data object Li : Country()
   /** Sri Lanka */
-  LK,
+  @SerialName("LK")
+  public data object Lk : Country()
   /** Liberia */
-  LR,
+  @SerialName("LR")
+  public data object Lr : Country()
   /** Lesotho */
-  LS,
+  @SerialName("LS")
+  public data object Ls : Country()
   /** Lithuania */
-  LT,
+  @SerialName("LT")
+  public data object Lt : Country()
   /** Luxembourg */
-  LU,
+  @SerialName("LU")
+  public data object Lu : Country()
   /** Latvia */
-  LV,
+  @SerialName("LV")
+  public data object Lv : Country()
   /** Libya */
-  LY,
+  @SerialName("LY")
+  public data object Ly : Country()
   /** Morocco */
-  MA,
+  @SerialName("MA")
+  public data object Ma : Country()
   /** Monaco */
-  MC,
+  @SerialName("MC")
+  public data object Mc : Country()
   /** Moldova (the Republic of) */
-  MD,
+  @SerialName("MD")
+  public data object Md : Country()
   /** Montenegro */
-  ME,
+  @SerialName("ME")
+  public data object Me : Country()
   /** Saint Martin (French part) */
-  MF,
+  @SerialName("MF")
+  public data object Mf : Country()
   /** Madagascar */
-  MG,
+  @SerialName("MG")
+  public data object Mg : Country()
   /** Marshall Islands (the) */
-  MH,
+  @SerialName("MH")
+  public data object Mh : Country()
   /** North Macedonia */
-  MK,
+  @SerialName("MK")
+  public data object Mk : Country()
   /** Mali */
-  ML,
+  @SerialName("ML")
+  public data object Ml : Country()
   /** Myanmar */
-  MM,
+  @SerialName("MM")
+  public data object Mm : Country()
   /** Mongolia */
-  MN,
+  @SerialName("MN")
+  public data object Mn : Country()
   /** Macao */
-  MO,
+  @SerialName("MO")
+  public data object Mo : Country()
   /** Northern Mariana Islands (the) */
-  MP,
+  @SerialName("MP")
+  public data object Mp : Country()
   /** Martinique */
-  MQ,
+  @SerialName("MQ")
+  public data object Mq : Country()
   /** Mauritania */
-  MR,
+  @SerialName("MR")
+  public data object Mr : Country()
   /** Montserrat */
-  MS,
+  @SerialName("MS")
+  public data object Ms : Country()
   /** Malta */
-  MT,
+  @SerialName("MT")
+  public data object Mt : Country()
   /** Mauritius */
-  MU,
+  @SerialName("MU")
+  public data object Mu : Country()
   /** Maldives */
-  MV,
+  @SerialName("MV")
+  public data object Mv : Country()
   /** Malawi */
-  MW,
+  @SerialName("MW")
+  public data object Mw : Country()
   /** Mexico */
-  MX,
+  @SerialName("MX")
+  public data object Mx : Country()
   /** Malaysia */
-  MY,
+  @SerialName("MY")
+  public data object My : Country()
   /** Mozambique */
-  MZ,
+  @SerialName("MZ")
+  public data object Mz : Country()
   /** Namibia */
-  NA,
+  @SerialName("NA")
+  public data object Na : Country()
   /** New Caledonia */
-  NC,
+  @SerialName("NC")
+  public data object Nc : Country()
   /** Niger (the) */
-  NE,
+  @SerialName("NE")
+  public data object Ne : Country()
   /** Norfolk Island */
-  NF,
+  @SerialName("NF")
+  public data object Nf : Country()
   /** Nigeria */
-  NG,
+  @SerialName("NG")
+  public data object Ng : Country()
   /** Nicaragua */
-  NI,
+  @SerialName("NI")
+  public data object Ni : Country()
   /** Netherlands (Kingdom of the) */
-  NL,
+  @SerialName("NL")
+  public data object Nl : Country()
   /** Norway */
-  NO,
+  @SerialName("NO")
+  public data object No : Country()
   /** Nepal */
-  NP,
+  @SerialName("NP")
+  public data object Np : Country()
   /** Nauru */
-  NR,
+  @SerialName("NR")
+  public data object Nr : Country()
   /** Niue */
-  NU,
+  @SerialName("NU")
+  public data object Nu : Country()
   /** New Zealand */
-  NZ,
+  @SerialName("NZ")
+  public data object Nz : Country()
   /** Oman */
-  OM,
+  @SerialName("OM")
+  public data object Om : Country()
   /** Panama */
-  PA,
+  @SerialName("PA")
+  public data object Pa : Country()
   /** Peru */
-  PE,
+  @SerialName("PE")
+  public data object Pe : Country()
   /** French Polynesia */
-  PF,
+  @SerialName("PF")
+  public data object Pf : Country()
   /** Papua New Guinea */
-  PG,
+  @SerialName("PG")
+  public data object Pg : Country()
   /** Philippines (the) */
-  PH,
+  @SerialName("PH")
+  public data object Ph : Country()
   /** Pakistan */
-  PK,
+  @SerialName("PK")
+  public data object Pk : Country()
   /** Poland */
-  PL,
+  @SerialName("PL")
+  public data object Pl : Country()
   /** Saint Pierre and Miquelon */
-  PM,
+  @SerialName("PM")
+  public data object Pm : Country()
   /** Pitcairn */
-  PN,
+  @SerialName("PN")
+  public data object Pn : Country()
   /** Puerto Rico */
-  PR,
+  @SerialName("PR")
+  public data object Pr : Country()
   /** Palestine, State of */
-  PS,
+  @SerialName("PS")
+  public data object Ps : Country()
   /** Portugal */
-  PT,
+  @SerialName("PT")
+  public data object Pt : Country()
   /** Palau */
-  PW,
+  @SerialName("PW")
+  public data object Pw : Country()
   /** Paraguay */
-  PY,
+  @SerialName("PY")
+  public data object Py : Country()
   /** Qatar */
-  QA,
+  @SerialName("QA")
+  public data object Qa : Country()
   /** Réunion */
-  RE,
+  @SerialName("RE")
+  public data object Re : Country()
   /** Romania */
-  RO,
+  @SerialName("RO")
+  public data object Ro : Country()
   /** Serbia */
-  RS,
+  @SerialName("RS")
+  public data object Rs : Country()
   /** Russian Federation (the) */
-  RU,
+  @SerialName("RU")
+  public data object Ru : Country()
   /** Rwanda */
-  RW,
+  @SerialName("RW")
+  public data object Rw : Country()
   /** Saudi Arabia */
-  SA,
+  @SerialName("SA")
+  public data object Sa : Country()
   /** Solomon Islands */
-  SB,
+  @SerialName("SB")
+  public data object Sb : Country()
   /** Seychelles */
-  SC,
+  @SerialName("SC")
+  public data object Sc : Country()
   /** Sudan (the) */
-  SD,
+  @SerialName("SD")
+  public data object Sd : Country()
   /** Sweden */
-  SE,
+  @SerialName("SE")
+  public data object Se : Country()
   /** Singapore */
-  SG,
+  @SerialName("SG")
+  public data object Sg : Country()
   /** Saint Helena, Ascension and Tristan da Cunha */
-  SH,
+  @SerialName("SH")
+  public data object Sh : Country()
   /** Slovenia */
-  SI,
+  @SerialName("SI")
+  public data object Si : Country()
   /** Svalbard and Jan Mayen */
-  SJ,
+  @SerialName("SJ")
+  public data object Sj : Country()
   /** Slovakia */
-  SK,
+  @SerialName("SK")
+  public data object Sk : Country()
   /** Sierra Leone */
-  SL,
+  @SerialName("SL")
+  public data object Sl : Country()
   /** San Marino */
-  SM,
+  @SerialName("SM")
+  public data object Sm : Country()
   /** Senegal */
-  SN,
+  @SerialName("SN")
+  public data object Sn : Country()
   /** Somalia */
-  SO,
+  @SerialName("SO")
+  public data object So : Country()
   /** Suriname */
-  SR,
+  @SerialName("SR")
+  public data object Sr : Country()
   /** South Sudan */
-  SS,
+  @SerialName("SS")
+  public data object Ss : Country()
   /** Sao Tome and Principe */
-  ST,
+  @SerialName("ST")
+  public data object St : Country()
   /** El Salvador */
-  SV,
+  @SerialName("SV")
+  public data object Sv : Country()
   /** Sint Maarten (Dutch part) */
-  SX,
+  @SerialName("SX")
+  public data object Sx : Country()
   /** Syrian Arab Republic (the) */
-  SY,
+  @SerialName("SY")
+  public data object Sy : Country()
   /** Eswatini */
-  SZ,
+  @SerialName("SZ")
+  public data object Sz : Country()
   /** Turks and Caicos Islands (the) */
-  TC,
+  @SerialName("TC")
+  public data object Tc : Country()
   /** Chad */
-  TD,
+  @SerialName("TD")
+  public data object Td : Country()
   /** French Southern Territories (the) */
-  TF,
+  @SerialName("TF")
+  public data object Tf : Country()
   /** Togo */
-  TG,
+  @SerialName("TG")
+  public data object Tg : Country()
   /** Thailand */
-  TH,
+  @SerialName("TH")
+  public data object Th : Country()
   /** Tajikistan */
-  TJ,
+  @SerialName("TJ")
+  public data object Tj : Country()
   /** Tokelau */
-  TK,
+  @SerialName("TK")
+  public data object Tk : Country()
   /** Timor-Leste */
-  TL,
+  @SerialName("TL")
+  public data object Tl : Country()
   /** Turkmenistan */
-  TM,
+  @SerialName("TM")
+  public data object Tm : Country()
   /** Tunisia */
-  TN,
+  @SerialName("TN")
+  public data object Tn : Country()
   /** Tonga */
-  TO,
+  @SerialName("TO")
+  public data object To : Country()
   /** Türkiye */
-  TR,
+  @SerialName("TR")
+  public data object Tr : Country()
   /** Trinidad and Tobago */
-  TT,
+  @SerialName("TT")
+  public data object Tt : Country()
   /** Tuvalu */
-  TV,
+  @SerialName("TV")
+  public data object Tv : Country()
   /** Taiwan (Province of China) */
-  TW,
+  @SerialName("TW")
+  public data object Tw : Country()
   /** Tanzania, the United Republic of */
-  TZ,
+  @SerialName("TZ")
+  public data object Tz : Country()
   /** Ukraine */
-  UA,
+  @SerialName("UA")
+  public data object Ua : Country()
   /** Uganda */
-  UG,
+  @SerialName("UG")
+  public data object Ug : Country()
   /** United States Minor Outlying Islands (the) */
-  UM,
+  @SerialName("UM")
+  public data object Um : Country()
   /** United States of America (the) */
-  US,
+  @SerialName("US")
+  public data object Us : Country()
   /** Uruguay */
-  UY,
+  @SerialName("UY")
+  public data object Uy : Country()
   /** Uzbekistan */
-  UZ,
+  @SerialName("UZ")
+  public data object Uz : Country()
   /** Holy See (the) */
-  VA,
+  @SerialName("VA")
+  public data object Va : Country()
   /** Saint Vincent and the Grenadines */
-  VC,
+  @SerialName("VC")
+  public data object Vc : Country()
   /** Venezuela (Bolivarian Republic of) */
-  VE,
+  @SerialName("VE")
+  public data object Ve : Country()
   /** Virgin Islands (British) */
-  VG,
+  @SerialName("VG")
+  public data object Vg : Country()
   /** Virgin Islands (U.S.) */
-  VI,
+  @SerialName("VI")
+  public data object Vi : Country()
   /** Viet Nam */
-  VN,
+  @SerialName("VN")
+  public data object Vn : Country()
   /** Vanuatu */
-  VU,
+  @SerialName("VU")
+  public data object Vu : Country()
   /** Wallis and Futuna */
-  WF,
+  @SerialName("WF")
+  public data object Wf : Country()
   /** Samoa */
-  WS,
+  @SerialName("WS")
+  public data object Ws : Country()
   /** Yemen */
-  YE,
+  @SerialName("YE")
+  public data object Ye : Country()
   /** Mayotte */
-  YT,
+  @SerialName("YT")
+  public data object Yt : Country()
   /** South Africa */
-  ZA,
+  @SerialName("ZA")
+  public data object Za : Country()
   /** Zambia */
-  ZM,
+  @SerialName("ZM")
+  public data object Zm : Country()
   /** Zimbabwe */
-  ZW,
+  @SerialName("ZW")
+  public data object Zw : Country()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : Country()
 }

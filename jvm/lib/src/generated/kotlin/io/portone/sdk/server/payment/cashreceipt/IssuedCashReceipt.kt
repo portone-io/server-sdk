@@ -3,7 +3,6 @@ package io.portone.sdk.server.payment.cashreceipt
 import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.payment.cashreceipt.CashReceipt
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -15,11 +14,11 @@ import kotlinx.serialization.Serializable
 @SerialName("ISSUED")
 public data class IssuedCashReceipt(
   /** 고객사 아이디 */
-  override val merchantId: String,
+  val merchantId: String,
   /** 상점 아이디 */
-  override val storeId: String,
+  val storeId: String,
   /** 결제 건 아이디 */
-  override val paymentId: String,
+  val paymentId: String,
   /** 현금영수증 발급에 사용된 채널 */
   val channel: SelectedChannel,
   /** 결제 금액 */
@@ -27,9 +26,9 @@ public data class IssuedCashReceipt(
   /** 통화 */
   val currency: Currency,
   /** 주문명 */
-  override val orderName: String,
+  val orderName: String,
   /** 수동 발급 여부 */
-  override val isManual: Boolean,
+  val isManual: Boolean,
   /** 승인 번호 */
   val issueNumber: String,
   /** 발급 시점 */
@@ -44,4 +43,4 @@ public data class IssuedCashReceipt(
   val pgReceiptId: String? = null,
   /** 현금영수증 URL */
   val url: String? = null,
-): CashReceipt
+) : CashReceipt

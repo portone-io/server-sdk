@@ -1,6 +1,5 @@
 package io.portone.sdk.server.payment
 
-import io.portone.sdk.server.payment.PaymentMethod
 import io.portone.sdk.server.payment.PaymentMethodGiftCertificateType
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,4 +13,4 @@ public data class PaymentMethodGiftCertificate(
   val approvalNumber: String,
   /** 상품권 종류 */
   val giftCertificateType: PaymentMethodGiftCertificateType? = null,
-): PaymentMethod
+) : PaymentMethod

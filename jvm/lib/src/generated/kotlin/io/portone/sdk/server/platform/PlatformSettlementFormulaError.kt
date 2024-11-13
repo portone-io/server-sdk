@@ -6,4 +6,5 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PlatformSettlementFormulaError {
+  public data object Unrecognized : PlatformSettlementFormulaError
 }

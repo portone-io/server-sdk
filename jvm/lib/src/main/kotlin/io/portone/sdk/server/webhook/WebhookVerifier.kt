@@ -79,7 +79,7 @@ public class WebhookVerifier private constructor(private val secretKeySpec: Secr
         msgId: String?,
         msgSignature: String?,
         msgTimestamp: String?,
-    ): WebhookRequest? {
+    ): Webhook {
         if (msgId == null || msgSignature == null || msgTimestamp == null) {
             throw WebhookVerificationException("Missing required headers")
         }
@@ -109,9 +109,9 @@ public class WebhookVerifier private constructor(private val secretKeySpec: Secr
             throw WebhookVerificationException("No matching signature found")
         }
         return try {
-            json.decodeFromString<WebhookRequest>(msgBody)
+            json.decodeFromString<Webhook>(msgBody)
         } catch (_: Exception) {
-            null
+            Webhook.Unrecognized
         }
     }
 

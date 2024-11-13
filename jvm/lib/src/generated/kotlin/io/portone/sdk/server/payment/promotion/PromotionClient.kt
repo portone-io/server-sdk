@@ -79,6 +79,7 @@ public class PromotionClient internal constructor(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PromotionNotFoundError -> throw PromotionNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

@@ -1,8 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.PayInstantlyError
-import io.portone.sdk.server.errors.PayWithBillingKeyError
-import io.portone.sdk.server.errors.SendIdentityVerificationError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -13,7 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("MAX_TRANSACTION_COUNT_REACHED")
 @ConsistentCopyVisibility
 public data class MaxTransactionCountReachedError internal constructor(
-  override val message: String? = null,
-): PayInstantlyError,
-  PayWithBillingKeyError,
-  SendIdentityVerificationError
+  val message: String? = null,
+) : PayInstantlyError, PayWithBillingKeyError, SendIdentityVerificationError

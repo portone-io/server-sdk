@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,5 +13,5 @@ public data class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentErr
   val registeredSettlementSupplyWithVatAmount: Long,
   val requestSettlementSupplyWithVatAmount: Long,
   val portOneSupplyWithVatAmount: Long,
-  override val message: String? = null,
-): CreatePlatformOrderTransferError
+  val message: String? = null,
+) : CreatePlatformOrderTransferError

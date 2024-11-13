@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.SchedulePartnerError
-import io.portone.sdk.server.errors.UpdatePlatformPartnerError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -12,6 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE")
 @ConsistentCopyVisibility
 public data class PlatformInsufficientDataToChangePartnerTypeError internal constructor(
-  override val message: String? = null,
-): SchedulePartnerError,
-  UpdatePlatformPartnerError
+  val message: String? = null,
+) : SchedulePartnerError, UpdatePlatformPartnerError

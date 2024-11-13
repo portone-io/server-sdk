@@ -114,6 +114,7 @@ public class PaymentScheduleClient internal constructor(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PaymentScheduleNotFoundError -> throw PaymentScheduleNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -188,6 +189,7 @@ public class PaymentScheduleClient internal constructor(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -271,6 +273,7 @@ public class PaymentScheduleClient internal constructor(
         is PaymentScheduleAlreadyRevokedError -> throw PaymentScheduleAlreadyRevokedException(httpBodyDecoded)
         is PaymentScheduleNotFoundError -> throw PaymentScheduleNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -351,6 +354,7 @@ public class PaymentScheduleClient internal constructor(
         is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

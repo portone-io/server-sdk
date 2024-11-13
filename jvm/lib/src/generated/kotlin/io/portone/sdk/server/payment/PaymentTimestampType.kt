@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -15,9 +16,13 @@ import kotlinx.serialization.Serializable
  * 값을 입력하지 않으면 STATUS_CHANGED_AT 으로 자동 적용됩니다.
  */
 @Serializable
-public enum class PaymentTimestampType {
+public sealed class PaymentTimestampType {
   /** 결제 건 생성 시점 */
-  CREATED_AT,
+  @SerialName("CREATED_AT")
+  public data object CreatedAt : PaymentTimestampType()
   /** 상태 변경 시점 */
-  STATUS_CHANGED_AT,
+  @SerialName("STATUS_CHANGED_AT")
+  public data object StatusChangedAt : PaymentTimestampType()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PaymentTimestampType()
 }

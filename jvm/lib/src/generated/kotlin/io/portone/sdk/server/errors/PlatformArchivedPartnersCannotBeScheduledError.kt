@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.SchedulePlatformPartnersError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED")
 @ConsistentCopyVisibility
 public data class PlatformArchivedPartnersCannotBeScheduledError internal constructor(
-  override val message: String? = null,
-): SchedulePlatformPartnersError
+  val message: String? = null,
+) : SchedulePlatformPartnersError

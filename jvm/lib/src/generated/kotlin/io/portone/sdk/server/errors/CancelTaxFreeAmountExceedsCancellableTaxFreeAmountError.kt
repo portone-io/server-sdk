@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CancelPaymentError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT")
 @ConsistentCopyVisibility
 public data class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError internal constructor(
-  override val message: String? = null,
-): CancelPaymentError
+  val message: String? = null,
+) : CancelPaymentError

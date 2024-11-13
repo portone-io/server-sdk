@@ -1,38 +1,71 @@
 package io.portone.sdk.server.payment.billingkey
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** PG사 */
 @Serializable
-public enum class PgCompany {
-  INICIS,
-  NICE,
-  KCP,
-  DANAL,
-  TOSSPAYMENTS,
-  MOBILIANS,
-  KICC,
-  SMARTRO,
-  DAOU,
-  BLUEWALNUT,
-  PAYPAL,
-  ALIPAY,
-  EXIMBAY,
-  PAYMENTWALL,
-  SETTLE,
-  GALAXIA,
-  NAVERPAY,
-  KAKAOPAY,
-  SMILEPAY,
-  KAKAO,
-  TOSSPAY,
-  CHAI,
-  PAYCO,
-  PAYPLE,
-  SYRUP,
-  KSNET,
-  WELCOME,
-  JTNET,
-  KPN,
-  HYPHEN,
+public sealed class PgCompany {
+  @SerialName("INICIS")
+  public data object Inicis : PgCompany()
+  @SerialName("NICE")
+  public data object Nice : PgCompany()
+  @SerialName("KCP")
+  public data object Kcp : PgCompany()
+  @SerialName("DANAL")
+  public data object Danal : PgCompany()
+  @SerialName("TOSSPAYMENTS")
+  public data object Tosspayments : PgCompany()
+  @SerialName("MOBILIANS")
+  public data object Mobilians : PgCompany()
+  @SerialName("KICC")
+  public data object Kicc : PgCompany()
+  @SerialName("SMARTRO")
+  public data object Smartro : PgCompany()
+  @SerialName("DAOU")
+  public data object Daou : PgCompany()
+  @SerialName("BLUEWALNUT")
+  public data object Bluewalnut : PgCompany()
+  @SerialName("PAYPAL")
+  public data object Paypal : PgCompany()
+  @SerialName("ALIPAY")
+  public data object Alipay : PgCompany()
+  @SerialName("EXIMBAY")
+  public data object Eximbay : PgCompany()
+  @SerialName("PAYMENTWALL")
+  public data object Paymentwall : PgCompany()
+  @SerialName("SETTLE")
+  public data object Settle : PgCompany()
+  @SerialName("GALAXIA")
+  public data object Galaxia : PgCompany()
+  @SerialName("NAVERPAY")
+  public data object Naverpay : PgCompany()
+  @SerialName("KAKAOPAY")
+  public data object Kakaopay : PgCompany()
+  @SerialName("SMILEPAY")
+  public data object Smilepay : PgCompany()
+  @SerialName("KAKAO")
+  public data object Kakao : PgCompany()
+  @SerialName("TOSSPAY")
+  public data object Tosspay : PgCompany()
+  @SerialName("CHAI")
+  public data object Chai : PgCompany()
+  @SerialName("PAYCO")
+  public data object Payco : PgCompany()
+  @SerialName("PAYPLE")
+  public data object Payple : PgCompany()
+  @SerialName("SYRUP")
+  public data object Syrup : PgCompany()
+  @SerialName("KSNET")
+  public data object Ksnet : PgCompany()
+  @SerialName("WELCOME")
+  public data object Welcome : PgCompany()
+  @SerialName("JTNET")
+  public data object Jtnet : PgCompany()
+  @SerialName("KPN")
+  public data object Kpn : PgCompany()
+  @SerialName("HYPHEN")
+  public data object Hyphen : PgCompany()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PgCompany()
 }

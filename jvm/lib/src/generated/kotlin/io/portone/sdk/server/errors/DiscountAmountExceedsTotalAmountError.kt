@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.PayInstantlyError
-import io.portone.sdk.server.errors.PayWithBillingKeyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -12,6 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT")
 @ConsistentCopyVisibility
 public data class DiscountAmountExceedsTotalAmountError internal constructor(
-  override val message: String? = null,
-): PayInstantlyError,
-  PayWithBillingKeyError
+  val message: String? = null,
+) : PayInstantlyError, PayWithBillingKeyError

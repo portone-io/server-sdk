@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,5 +13,5 @@ public data class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError int
   val registeredSettlementTaxFreeAmount: Long,
   val requestSettlementTaxFreeAmount: Long,
   val portOneTaxFreeAmount: Long,
-  override val message: String? = null,
-): CreatePlatformOrderTransferError
+  val message: String? = null,
+) : CreatePlatformOrderTransferError

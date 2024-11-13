@@ -1,68 +1,101 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 물류 회사 */
 @Serializable
-public enum class PaymentLogisticsCompany {
+public sealed class PaymentLogisticsCompany {
   /** 롯데글로벌로지스 */
-  LOTTE,
+  @SerialName("LOTTE")
+  public data object Lotte : PaymentLogisticsCompany()
   /** 로젠택배 */
-  LOGEN,
+  @SerialName("LOGEN")
+  public data object Logen : PaymentLogisticsCompany()
   /** 동원로엑스 */
-  DONGWON,
+  @SerialName("DONGWON")
+  public data object Dongwon : PaymentLogisticsCompany()
   /** 우체국택배 */
-  POST,
+  @SerialName("POST")
+  public data object Post : PaymentLogisticsCompany()
   /** 대한통운 */
-  CJ,
+  @SerialName("CJ")
+  public data object Cj : PaymentLogisticsCompany()
   /** 한진택배 */
-  HANJIN,
+  @SerialName("HANJIN")
+  public data object Hanjin : PaymentLogisticsCompany()
   /** 대신택배 */
-  DAESIN,
+  @SerialName("DAESIN")
+  public data object Daesin : PaymentLogisticsCompany()
   /** 일양로지스 */
-  ILYANG,
+  @SerialName("ILYANG")
+  public data object Ilyang : PaymentLogisticsCompany()
   /** 경동택배 */
-  KYUNGDONG,
+  @SerialName("KYUNGDONG")
+  public data object Kyungdong : PaymentLogisticsCompany()
   /** 천일택배 */
-  CHUNIL,
+  @SerialName("CHUNIL")
+  public data object Chunil : PaymentLogisticsCompany()
   /** 등기우편 */
-  POST_REGISTERED,
+  @SerialName("POST_REGISTERED")
+  public data object PostRegistered : PaymentLogisticsCompany()
   /** GS네트웍스 */
-  GS,
+  @SerialName("GS")
+  public data object Gs : PaymentLogisticsCompany()
   /** 우리택배 */
-  WOORI,
+  @SerialName("WOORI")
+  public data object Woori : PaymentLogisticsCompany()
   /** 합동택배 */
-  HAPDONG,
+  @SerialName("HAPDONG")
+  public data object Hapdong : PaymentLogisticsCompany()
   /** FedEx */
-  FEDEX,
+  @SerialName("FEDEX")
+  public data object Fedex : PaymentLogisticsCompany()
   /** UPS */
-  UPS,
+  @SerialName("UPS")
+  public data object Ups : PaymentLogisticsCompany()
   /** GSM NtoN */
-  GSM_NTON,
+  @SerialName("GSM_NTON")
+  public data object GsmNton : PaymentLogisticsCompany()
   /** 성원글로벌카고 */
-  SUNGWON,
+  @SerialName("SUNGWON")
+  public data object Sungwon : PaymentLogisticsCompany()
   /** LX판토스 */
-  LX_PANTOS,
+  @SerialName("LX_PANTOS")
+  public data object LxPantos : PaymentLogisticsCompany()
   /** ACI */
-  ACI,
+  @SerialName("ACI")
+  public data object Aci : PaymentLogisticsCompany()
   /** CJ대한통운 국제특송 */
-  CJ_INTL,
+  @SerialName("CJ_INTL")
+  public data object CjIntl : PaymentLogisticsCompany()
   /** USPS */
-  USPS,
+  @SerialName("USPS")
+  public data object Usps : PaymentLogisticsCompany()
   /** EMS */
-  EMS,
+  @SerialName("EMS")
+  public data object Ems : PaymentLogisticsCompany()
   /** DHL */
-  DHL,
+  @SerialName("DHL")
+  public data object Dhl : PaymentLogisticsCompany()
   /** KGL네트웍스 */
-  KGL,
+  @SerialName("KGL")
+  public data object Kgl : PaymentLogisticsCompany()
   /** 굿투럭 */
-  GOODSTOLUCK,
+  @SerialName("GOODSTOLUCK")
+  public data object Goodstoluck : PaymentLogisticsCompany()
   /** 건영택배 */
-  KUNYOUNG,
+  @SerialName("KUNYOUNG")
+  public data object Kunyoung : PaymentLogisticsCompany()
   /** SLX */
-  SLX,
+  @SerialName("SLX")
+  public data object Slx : PaymentLogisticsCompany()
   /** SF Express */
-  SF,
+  @SerialName("SF")
+  public data object Sf : PaymentLogisticsCompany()
   /** 기타 */
-  ETC,
+  @SerialName("ETC")
+  public data object Etc : PaymentLogisticsCompany()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PaymentLogisticsCompany()
 }

@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @ConsistentCopyVisibility
 public data class PlatformProductIdNotFoundError internal constructor(
   val id: String,
-  override val message: String? = null,
-): CreatePlatformOrderCancelTransferError
+  val message: String? = null,
+) : CreatePlatformOrderCancelTransferError

@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ResendWebhookError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("MAX_WEBHOOK_RETRY_COUNT_REACHED")
 @ConsistentCopyVisibility
 public data class MaxWebhookRetryCountReachedError internal constructor(
-  override val message: String? = null,
-): ResendWebhookError
+  val message: String? = null,
+) : ResendWebhookError

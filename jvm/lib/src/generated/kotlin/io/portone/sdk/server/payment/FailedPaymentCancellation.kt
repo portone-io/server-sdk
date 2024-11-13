@@ -1,6 +1,5 @@
 package io.portone.sdk.server.payment
 
-import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -12,21 +11,21 @@ import kotlinx.serialization.Serializable
 @SerialName("FAILED")
 public data class FailedPaymentCancellation(
   /** 취소 내역 아이디 */
-  override val id: String,
+  val id: String,
   /** 취소 총 금액 */
-  override val totalAmount: Long,
+  val totalAmount: Long,
   /** 취소 금액 중 면세 금액 */
-  override val taxFreeAmount: Long,
+  val taxFreeAmount: Long,
   /** 취소 금액 중 부가세액 */
-  override val vatAmount: Long,
+  val vatAmount: Long,
   /** 취소 사유 */
-  override val reason: String,
+  val reason: String,
   /** 취소 요청 시점 */
-  override val requestedAt: @Serializable(InstantSerializer::class) Instant,
+  val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** PG사 결제 취소 내역 아이디 */
-  override val pgCancellationId: String? = null,
+  val pgCancellationId: String? = null,
   /** 적립형 포인트의 환불 금액 */
-  override val easyPayDiscountAmount: Long? = null,
+  val easyPayDiscountAmount: Long? = null,
   /** 취소 시점 */
-  override val cancelledAt: @Serializable(InstantSerializer::class) Instant? = null,
-): PaymentCancellation
+  val cancelledAt: @Serializable(InstantSerializer::class) Instant? = null,
+) : PaymentCancellation

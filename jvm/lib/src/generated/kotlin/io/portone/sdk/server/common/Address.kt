@@ -1,6 +1,5 @@
 package io.portone.sdk.server.common
 
-import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 
@@ -12,6 +11,5 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface Address {
-  /** 주소 (한 줄) */
-  public val oneLine: String
+  public data object Unrecognized : Address
 }

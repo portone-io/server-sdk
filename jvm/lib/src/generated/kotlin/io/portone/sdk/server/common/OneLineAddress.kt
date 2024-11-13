@@ -1,6 +1,5 @@
 package io.portone.sdk.server.common
 
-import io.portone.sdk.server.common.Address
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,5 +13,5 @@ import kotlinx.serialization.Serializable
 @SerialName("ONE_LINE")
 public data class OneLineAddress(
   /** 주소 (한 줄) */
-  override val oneLine: String,
-): Address
+  val oneLine: String,
+) : Address

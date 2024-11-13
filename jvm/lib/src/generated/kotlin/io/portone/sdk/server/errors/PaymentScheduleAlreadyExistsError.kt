@@ -1,9 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePaymentScheduleError
-import io.portone.sdk.server.errors.DeleteBillingKeyError
-import io.portone.sdk.server.errors.PayInstantlyError
-import io.portone.sdk.server.errors.PayWithBillingKeyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -14,8 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PAYMENT_SCHEDULE_ALREADY_EXISTS")
 @ConsistentCopyVisibility
 public data class PaymentScheduleAlreadyExistsError internal constructor(
-  override val message: String? = null,
-): CreatePaymentScheduleError,
-  DeleteBillingKeyError,
-  PayInstantlyError,
-  PayWithBillingKeyError
+  val message: String? = null,
+) : CreatePaymentScheduleError, DeleteBillingKeyError, PayInstantlyError, PayWithBillingKeyError

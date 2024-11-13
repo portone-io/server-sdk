@@ -1,6 +1,5 @@
 package io.portone.sdk.server.platform
 
-import io.portone.sdk.server.platform.PlatformPartnerType
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,4 +18,4 @@ public data class PlatformPartnerTypeWhtPayer(
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
    */
   val birthdate: String? = null,
-): PlatformPartnerType
+) : PlatformPartnerType

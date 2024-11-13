@@ -9,7 +9,6 @@ import io.portone.sdk.server.platform.transfer.PlatformOrderTransferCancellation
 import io.portone.sdk.server.platform.transfer.PlatformOrderTransferDiscount
 import io.portone.sdk.server.platform.transfer.PlatformOrderTransferOrderLine
 import io.portone.sdk.server.platform.transfer.PlatformPayment
-import io.portone.sdk.server.platform.transfer.PlatformTransfer
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyValue
 import io.portone.sdk.server.platform.transfer.TransferParameters
@@ -22,24 +21,24 @@ import kotlinx.serialization.Serializable
 @SerialName("ORDER_CANCEL")
 public data class PlatformOrderCancelTransfer(
   /** 정산건 아이디 */
-  override val id: String,
-  override val graphqlId: String,
+  val id: String,
+  val graphqlId: String,
   /** 파트너 */
-  override val partner: PlatformPartner,
+  val partner: PlatformPartner,
   /** 정산 상태 */
-  override val status: PlatformTransferStatus,
+  val status: PlatformTransferStatus,
   /**
    * 정산 일
    *
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
    */
-  override val settlementDate: String,
+  val settlementDate: String,
   /** 정산 통화 */
-  override val settlementCurrency: Currency,
+  val settlementCurrency: Currency,
   /** 테스트 모드 여부 */
-  override val isForTest: Boolean,
+  val isForTest: Boolean,
   /** 사용자 정의 속성 */
-  override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
+  val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 정산 금액 정보 */
   val amount: PlatformOrderSettlementAmount,
   /** 계약 */
@@ -63,7 +62,7 @@ public data class PlatformOrderCancelTransfer(
   /** 정산 파라미터 (실험기능) */
   val parameters: TransferParameters,
   /** 메모 */
-  override val memo: String? = null,
-  override val payoutId: String? = null,
-  override val payoutGraphqlId: String? = null,
-): PlatformTransfer
+  val memo: String? = null,
+  val payoutId: String? = null,
+  val payoutGraphqlId: String? = null,
+) : PlatformTransfer

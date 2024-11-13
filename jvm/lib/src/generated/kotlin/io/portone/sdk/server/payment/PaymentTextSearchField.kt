@@ -1,40 +1,75 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 통합검색 항목 */
 @Serializable
-public enum class PaymentTextSearchField {
-  ALL,
-  PAYMENT_ID,
-  TX_ID,
-  SCHEDULE_ID,
-  FAIL_REASON,
-  CARD_ISSUER,
-  CARD_ACQUIRER,
-  CARD_BIN,
-  CARD_NUMBER,
-  CARD_APPROVAL_NUMBER,
-  CARD_RECEIPT_NAME,
-  CARD_INSTALLMENT,
-  TRANS_BANK,
-  VIRTUAL_ACCOUNT_HOLDER_NAME,
-  VIRTUAL_ACCOUNT_BANK,
-  VIRTUAL_ACCOUNT_NUMBER,
-  PG_MERCHANT_ID,
-  PG_TX_ID,
-  PG_RECEIPT_ID,
-  RECEIPT_APPROVAL_NUMBER,
-  PG_CANCELLATION_ID,
-  CANCEL_REASON,
-  ORDER_NAME,
-  CUSTOMER_NAME,
-  CUSTOMER_EMAIL,
-  CUSTOMER_PHONE_NUMBER,
-  CUSTOMER_ADDRESS,
-  CUSTOMER_ZIPCODE,
-  USER_AGENT,
-  BILLING_KEY,
-  PROMOTION_ID,
-  GIFT_CERTIFICATION_APPROVAL_NUMBER,
+public sealed class PaymentTextSearchField {
+  @SerialName("ALL")
+  public data object All : PaymentTextSearchField()
+  @SerialName("PAYMENT_ID")
+  public data object PaymentId : PaymentTextSearchField()
+  @SerialName("TX_ID")
+  public data object TxId : PaymentTextSearchField()
+  @SerialName("SCHEDULE_ID")
+  public data object ScheduleId : PaymentTextSearchField()
+  @SerialName("FAIL_REASON")
+  public data object FailReason : PaymentTextSearchField()
+  @SerialName("CARD_ISSUER")
+  public data object CardIssuer : PaymentTextSearchField()
+  @SerialName("CARD_ACQUIRER")
+  public data object CardAcquirer : PaymentTextSearchField()
+  @SerialName("CARD_BIN")
+  public data object CardBin : PaymentTextSearchField()
+  @SerialName("CARD_NUMBER")
+  public data object CardNumber : PaymentTextSearchField()
+  @SerialName("CARD_APPROVAL_NUMBER")
+  public data object CardApprovalNumber : PaymentTextSearchField()
+  @SerialName("CARD_RECEIPT_NAME")
+  public data object CardReceiptName : PaymentTextSearchField()
+  @SerialName("CARD_INSTALLMENT")
+  public data object CardInstallment : PaymentTextSearchField()
+  @SerialName("TRANS_BANK")
+  public data object TransBank : PaymentTextSearchField()
+  @SerialName("VIRTUAL_ACCOUNT_HOLDER_NAME")
+  public data object VirtualAccountHolderName : PaymentTextSearchField()
+  @SerialName("VIRTUAL_ACCOUNT_BANK")
+  public data object VirtualAccountBank : PaymentTextSearchField()
+  @SerialName("VIRTUAL_ACCOUNT_NUMBER")
+  public data object VirtualAccountNumber : PaymentTextSearchField()
+  @SerialName("PG_MERCHANT_ID")
+  public data object PgMerchantId : PaymentTextSearchField()
+  @SerialName("PG_TX_ID")
+  public data object PgTxId : PaymentTextSearchField()
+  @SerialName("PG_RECEIPT_ID")
+  public data object PgReceiptId : PaymentTextSearchField()
+  @SerialName("RECEIPT_APPROVAL_NUMBER")
+  public data object ReceiptApprovalNumber : PaymentTextSearchField()
+  @SerialName("PG_CANCELLATION_ID")
+  public data object PgCancellationId : PaymentTextSearchField()
+  @SerialName("CANCEL_REASON")
+  public data object CancelReason : PaymentTextSearchField()
+  @SerialName("ORDER_NAME")
+  public data object OrderName : PaymentTextSearchField()
+  @SerialName("CUSTOMER_NAME")
+  public data object CustomerName : PaymentTextSearchField()
+  @SerialName("CUSTOMER_EMAIL")
+  public data object CustomerEmail : PaymentTextSearchField()
+  @SerialName("CUSTOMER_PHONE_NUMBER")
+  public data object CustomerPhoneNumber : PaymentTextSearchField()
+  @SerialName("CUSTOMER_ADDRESS")
+  public data object CustomerAddress : PaymentTextSearchField()
+  @SerialName("CUSTOMER_ZIPCODE")
+  public data object CustomerZipcode : PaymentTextSearchField()
+  @SerialName("USER_AGENT")
+  public data object UserAgent : PaymentTextSearchField()
+  @SerialName("BILLING_KEY")
+  public data object BillingKey : PaymentTextSearchField()
+  @SerialName("PROMOTION_ID")
+  public data object PromotionId : PaymentTextSearchField()
+  @SerialName("GIFT_CERTIFICATION_APPROVAL_NUMBER")
+  public data object GiftCertificationApprovalNumber : PaymentTextSearchField()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PaymentTextSearchField()
 }

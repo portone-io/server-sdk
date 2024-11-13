@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import io.portone.sdk.server.platform.transfer.PlatformPortOnePaymentCancelAmountType
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
@@ -16,5 +15,5 @@ public data class PlatformSettlementCancelAmountExceededPortOneCancelError inter
   val requestSettlementCancelAmount: Long,
   val portOneCancelAmount: Long,
   val amountType: PlatformPortOnePaymentCancelAmountType,
-  override val message: String? = null,
-): CreatePlatformOrderCancelTransferError
+  val message: String? = null,
+) : CreatePlatformOrderCancelTransferError

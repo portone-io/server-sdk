@@ -1,14 +1,20 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 성별 */
 @Serializable
-public enum class Gender {
+public sealed class Gender {
   /** 남성 */
-  MALE,
+  @SerialName("MALE")
+  public data object Male : Gender()
   /** 여성 */
-  FEMALE,
+  @SerialName("FEMALE")
+  public data object Female : Gender()
   /** 그 외 성별 */
-  OTHER,
+  @SerialName("OTHER")
+  public data object Other : Gender()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : Gender()
 }

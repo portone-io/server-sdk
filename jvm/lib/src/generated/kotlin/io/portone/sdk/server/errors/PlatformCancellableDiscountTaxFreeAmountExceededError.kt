@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -15,5 +14,5 @@ public data class PlatformCancellableDiscountTaxFreeAmountExceededError internal
   val cancellableAmount: Long,
   val requestAmount: Long,
   val productId: String? = null,
-  override val message: String? = null,
-): CreatePlatformOrderCancelTransferError
+  val message: String? = null,
+) : CreatePlatformOrderCancelTransferError

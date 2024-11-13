@@ -1,8 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePaymentScheduleError
-import io.portone.sdk.server.errors.PayInstantlyError
-import io.portone.sdk.server.errors.PayWithBillingKeyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -13,7 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT")
 @ConsistentCopyVisibility
 public data class SumOfPartsExceedsTotalAmountError internal constructor(
-  override val message: String? = null,
-): CreatePaymentScheduleError,
-  PayInstantlyError,
-  PayWithBillingKeyError
+  val message: String? = null,
+) : CreatePaymentScheduleError, PayInstantlyError, PayWithBillingKeyError

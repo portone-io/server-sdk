@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePlatformOrderCancelTransferError
-import io.portone.sdk.server.errors.CreatePlatformOrderTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -16,12 +14,11 @@ public data class PlatformSettlementAmountExceededError internal constructor(
   val requestedAmount: Long,
   /** 초과한 금액 */
   val allowedAmount: Long,
-  override val message: String? = null,
+  val message: String? = null,
   /**
    * 상품 아이디
    *
    * 주문 항목의 상품 아이디입니다.
    */
   val productId: String? = null,
-): CreatePlatformOrderCancelTransferError,
-  CreatePlatformOrderTransferError
+) : CreatePlatformOrderCancelTransferError, CreatePlatformOrderTransferError

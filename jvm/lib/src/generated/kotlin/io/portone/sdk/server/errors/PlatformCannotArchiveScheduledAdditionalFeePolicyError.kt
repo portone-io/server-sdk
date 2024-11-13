@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ArchivePlatformAdditionalFeePolicyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY")
 @ConsistentCopyVisibility
 public data class PlatformCannotArchiveScheduledAdditionalFeePolicyError internal constructor(
-  override val message: String? = null,
-): ArchivePlatformAdditionalFeePolicyError
+  val message: String? = null,
+) : ArchivePlatformAdditionalFeePolicyError

@@ -1,56 +1,107 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** PG사 결제 모듈 */
 @Serializable
-public enum class PgProvider {
-  HTML5_INICIS,
-  PAYPAL,
-  PAYPAL_V2,
-  INICIS,
-  DANAL,
-  NICE,
-  DANAL_TPAY,
-  JTNET,
-  UPLUS,
-  NAVERPAY,
-  KAKAO,
-  SETTLE,
-  KCP,
-  MOBILIANS,
-  KAKAOPAY,
-  NAVERCO,
-  SYRUP,
-  KICC,
-  EXIMBAY,
-  SMILEPAY,
-  PAYCO,
-  KCP_BILLING,
-  ALIPAY,
-  PAYPLE,
-  CHAI,
-  BLUEWALNUT,
-  SMARTRO,
-  SMARTRO_V2,
-  PAYMENTWALL,
-  TOSSPAYMENTS,
-  KCP_QUICK,
-  DAOU,
-  GALAXIA,
-  TOSSPAY,
-  KCP_DIRECT,
-  SETTLE_ACC,
-  SETTLE_FIRM,
-  INICIS_UNIFIED,
-  KSNET,
-  PINPAY,
-  NICE_V2,
-  TOSS_BRANDPAY,
-  WELCOME,
-  TOSSPAY_V2,
-  INICIS_V2,
-  KPN,
-  KCP_V2,
-  HYPHEN,
+public sealed class PgProvider {
+  @SerialName("HTML5_INICIS")
+  public data object Html5Inicis : PgProvider()
+  @SerialName("PAYPAL")
+  public data object Paypal : PgProvider()
+  @SerialName("PAYPAL_V2")
+  public data object PaypalV2 : PgProvider()
+  @SerialName("INICIS")
+  public data object Inicis : PgProvider()
+  @SerialName("DANAL")
+  public data object Danal : PgProvider()
+  @SerialName("NICE")
+  public data object Nice : PgProvider()
+  @SerialName("DANAL_TPAY")
+  public data object DanalTpay : PgProvider()
+  @SerialName("JTNET")
+  public data object Jtnet : PgProvider()
+  @SerialName("UPLUS")
+  public data object Uplus : PgProvider()
+  @SerialName("NAVERPAY")
+  public data object Naverpay : PgProvider()
+  @SerialName("KAKAO")
+  public data object Kakao : PgProvider()
+  @SerialName("SETTLE")
+  public data object Settle : PgProvider()
+  @SerialName("KCP")
+  public data object Kcp : PgProvider()
+  @SerialName("MOBILIANS")
+  public data object Mobilians : PgProvider()
+  @SerialName("KAKAOPAY")
+  public data object Kakaopay : PgProvider()
+  @SerialName("NAVERCO")
+  public data object Naverco : PgProvider()
+  @SerialName("SYRUP")
+  public data object Syrup : PgProvider()
+  @SerialName("KICC")
+  public data object Kicc : PgProvider()
+  @SerialName("EXIMBAY")
+  public data object Eximbay : PgProvider()
+  @SerialName("SMILEPAY")
+  public data object Smilepay : PgProvider()
+  @SerialName("PAYCO")
+  public data object Payco : PgProvider()
+  @SerialName("KCP_BILLING")
+  public data object KcpBilling : PgProvider()
+  @SerialName("ALIPAY")
+  public data object Alipay : PgProvider()
+  @SerialName("PAYPLE")
+  public data object Payple : PgProvider()
+  @SerialName("CHAI")
+  public data object Chai : PgProvider()
+  @SerialName("BLUEWALNUT")
+  public data object Bluewalnut : PgProvider()
+  @SerialName("SMARTRO")
+  public data object Smartro : PgProvider()
+  @SerialName("SMARTRO_V2")
+  public data object SmartroV2 : PgProvider()
+  @SerialName("PAYMENTWALL")
+  public data object Paymentwall : PgProvider()
+  @SerialName("TOSSPAYMENTS")
+  public data object Tosspayments : PgProvider()
+  @SerialName("KCP_QUICK")
+  public data object KcpQuick : PgProvider()
+  @SerialName("DAOU")
+  public data object Daou : PgProvider()
+  @SerialName("GALAXIA")
+  public data object Galaxia : PgProvider()
+  @SerialName("TOSSPAY")
+  public data object Tosspay : PgProvider()
+  @SerialName("KCP_DIRECT")
+  public data object KcpDirect : PgProvider()
+  @SerialName("SETTLE_ACC")
+  public data object SettleAcc : PgProvider()
+  @SerialName("SETTLE_FIRM")
+  public data object SettleFirm : PgProvider()
+  @SerialName("INICIS_UNIFIED")
+  public data object InicisUnified : PgProvider()
+  @SerialName("KSNET")
+  public data object Ksnet : PgProvider()
+  @SerialName("PINPAY")
+  public data object Pinpay : PgProvider()
+  @SerialName("NICE_V2")
+  public data object NiceV2 : PgProvider()
+  @SerialName("TOSS_BRANDPAY")
+  public data object TossBrandpay : PgProvider()
+  @SerialName("WELCOME")
+  public data object Welcome : PgProvider()
+  @SerialName("TOSSPAY_V2")
+  public data object TosspayV2 : PgProvider()
+  @SerialName("INICIS_V2")
+  public data object InicisV2 : PgProvider()
+  @SerialName("KPN")
+  public data object Kpn : PgProvider()
+  @SerialName("KCP_V2")
+  public data object KcpV2 : PgProvider()
+  @SerialName("HYPHEN")
+  public data object Hyphen : PgProvider()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PgProvider()
 }

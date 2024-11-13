@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.RevokePaymentSchedulesError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PAYMENT_SCHEDULE_ALREADY_PROCESSED")
 @ConsistentCopyVisibility
 public data class PaymentScheduleAlreadyProcessedError internal constructor(
-  override val message: String? = null,
-): RevokePaymentSchedulesError
+  val message: String? = null,
+) : RevokePaymentSchedulesError

@@ -1,10 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePaymentScheduleError
-import io.portone.sdk.server.errors.DeleteBillingKeyError
-import io.portone.sdk.server.errors.GetBillingKeyInfoError
-import io.portone.sdk.server.errors.PayWithBillingKeyError
-import io.portone.sdk.server.errors.RevokePaymentSchedulesError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -15,9 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("BILLING_KEY_NOT_FOUND")
 @ConsistentCopyVisibility
 public data class BillingKeyNotFoundError internal constructor(
-  override val message: String? = null,
-): CreatePaymentScheduleError,
-  DeleteBillingKeyError,
-  GetBillingKeyInfoError,
-  PayWithBillingKeyError,
-  RevokePaymentSchedulesError
+  val message: String? = null,
+) : CreatePaymentScheduleError, DeleteBillingKeyError, GetBillingKeyInfoError, PayWithBillingKeyError, RevokePaymentSchedulesError

@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ArchivePlatformContractError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT")
 @ConsistentCopyVisibility
 public data class PlatformCannotArchiveScheduledContractError internal constructor(
-  override val message: String? = null,
-): ArchivePlatformContractError
+  val message: String? = null,
+) : ArchivePlatformContractError

@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ScheduleContractError
-import io.portone.sdk.server.errors.UpdatePlatformContractError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -12,6 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_ARCHIVED_CONTRACT")
 @ConsistentCopyVisibility
 public data class PlatformArchivedContractError internal constructor(
-  override val message: String? = null,
-): ScheduleContractError,
-  UpdatePlatformContractError
+  val message: String? = null,
+) : ScheduleContractError, UpdatePlatformContractError

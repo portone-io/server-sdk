@@ -7,7 +7,6 @@ import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.payment.Payment
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.payment.PaymentCashReceipt
@@ -25,7 +24,7 @@ import kotlinx.serialization.Serializable
 @SerialName("PARTIAL_CANCELLED")
 public data class PartialCancelledPayment(
   /** 결제 건 아이디 */
-  override val id: String,
+  val id: String,
   /**
    * 결제 건 포트원 채번 아이디
    *
@@ -33,67 +32,67 @@ public data class PartialCancelledPayment(
    */
   val transactionId: String,
   /** 고객사 아이디 */
-  override val merchantId: String,
+  val merchantId: String,
   /** 상점 아이디 */
-  override val storeId: String,
+  val storeId: String,
   /** 결제 채널 */
   val channel: SelectedChannel,
   /** 포트원 버전 */
-  override val version: PortOneVersion,
+  val version: PortOneVersion,
   /** 결제 요청 시점 */
-  override val requestedAt: @Serializable(InstantSerializer::class) Instant,
+  val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** 업데이트 시점 */
-  override val updatedAt: @Serializable(InstantSerializer::class) Instant,
+  val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 상태 업데이트 시점 */
-  override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
+  val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
   /** 주문명 */
-  override val orderName: String,
+  val orderName: String,
   /** 결제 금액 관련 세부 정보 */
-  override val amount: PaymentAmount,
+  val amount: PaymentAmount,
   /** 통화 */
-  override val currency: Currency,
+  val currency: Currency,
   /** 구매자 정보 */
-  override val customer: Customer,
+  val customer: Customer,
   /** 결제 취소 내역 */
   val cancellations: List<PaymentCancellation>,
   /** 결제 취소 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
   /** 결제수단 정보 */
-  override val method: PaymentMethod? = null,
+  val method: PaymentMethod? = null,
   /** 결제 채널 그룹 정보 */
-  override val channelGroup: ChannelGroupSummary? = null,
+  val channelGroup: ChannelGroupSummary? = null,
   /**
    * 결제 예약 건 아이디
    *
    * 결제 예약을 이용한 경우에만 존재
    */
-  override val scheduleId: String? = null,
+  val scheduleId: String? = null,
   /**
    * 결제 시 사용된 빌링키
    *
    * 빌링키 결제인 경우에만 존재
    */
-  override val billingKey: String? = null,
+  val billingKey: String? = null,
   /** 웹훅 발송 내역 */
-  override val webhooks: List<PaymentWebhook>? = null,
+  val webhooks: List<PaymentWebhook>? = null,
   /** 프로모션 아이디 */
-  override val promotionId: String? = null,
+  val promotionId: String? = null,
   /** 문화비 지출 여부 */
-  override val isCulturalExpense: Boolean? = null,
+  val isCulturalExpense: Boolean? = null,
   /**
    * 에스크로 결제 정보
    *
    * 에스크로 결제인 경우 존재합니다.
    */
-  override val escrow: PaymentEscrow? = null,
+  val escrow: PaymentEscrow? = null,
   /** 상품 정보 */
-  override val products: List<PaymentProduct>? = null,
+  val products: List<PaymentProduct>? = null,
   /** 상품 갯수 */
-  override val productCount: Int? = null,
+  val productCount: Int? = null,
   /** 사용자 지정 데이터 */
-  override val customData: String? = null,
+  val customData: String? = null,
   /** 국가 코드 */
-  override val country: Country? = null,
+  val country: Country? = null,
   /** 결제 완료 시점 */
   val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** PG사 거래 아이디 */
@@ -102,4 +101,4 @@ public data class PartialCancelledPayment(
   val cashReceipt: PaymentCashReceipt? = null,
   /** 거래 영수증 URL */
   val receiptUrl: String? = null,
-): Payment
+) : Payment

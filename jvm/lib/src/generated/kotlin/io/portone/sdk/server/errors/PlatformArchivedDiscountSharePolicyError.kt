@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ScheduleDiscountSharePolicyError
-import io.portone.sdk.server.errors.UpdatePlatformDiscountSharePolicyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -12,6 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY")
 @ConsistentCopyVisibility
 public data class PlatformArchivedDiscountSharePolicyError internal constructor(
-  override val message: String? = null,
-): ScheduleDiscountSharePolicyError,
-  UpdatePlatformDiscountSharePolicyError
+  val message: String? = null,
+) : ScheduleDiscountSharePolicyError, UpdatePlatformDiscountSharePolicyError

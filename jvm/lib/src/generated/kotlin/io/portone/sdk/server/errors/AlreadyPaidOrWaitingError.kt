@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.CreatePaymentScheduleError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -11,5 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("ALREADY_PAID_OR_WAITING")
 @ConsistentCopyVisibility
 public data class AlreadyPaidOrWaitingError internal constructor(
-  override val message: String? = null,
-): CreatePaymentScheduleError
+  val message: String? = null,
+) : CreatePaymentScheduleError

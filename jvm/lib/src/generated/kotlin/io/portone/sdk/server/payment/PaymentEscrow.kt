@@ -11,4 +11,5 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("status")
 public sealed interface PaymentEscrow {
+  public data object Unrecognized : PaymentEscrow
 }

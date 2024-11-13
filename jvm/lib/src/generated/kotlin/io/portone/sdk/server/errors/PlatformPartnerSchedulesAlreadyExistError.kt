@@ -1,6 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.SchedulePlatformPartnersError
 import kotlin.Array
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
@@ -13,5 +12,5 @@ import kotlinx.serialization.Serializable
 public data class PlatformPartnerSchedulesAlreadyExistError internal constructor(
   val ids: List<String>,
   val graphqlIds: List<String>,
-  override val message: String? = null,
-): SchedulePlatformPartnersError
+  val message: String? = null,
+) : SchedulePlatformPartnersError

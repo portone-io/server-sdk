@@ -1,20 +1,29 @@
 package io.portone.sdk.server.payment.paymentschedule
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 결제 예약 건 상태 */
 @Serializable
-public enum class PaymentScheduleStatus {
+public sealed class PaymentScheduleStatus {
   /** 예약 완료 */
-  SCHEDULED,
+  @SerialName("SCHEDULED")
+  public data object Scheduled : PaymentScheduleStatus()
   /** 결제 시작 */
-  STARTED,
+  @SerialName("STARTED")
+  public data object Started : PaymentScheduleStatus()
   /** 결제 성공 */
-  SUCCEEDED,
+  @SerialName("SUCCEEDED")
+  public data object Succeeded : PaymentScheduleStatus()
   /** 결제 실패 */
-  FAILED,
+  @SerialName("FAILED")
+  public data object Failed : PaymentScheduleStatus()
   /** 취소된 결제 예약 */
-  REVOKED,
+  @SerialName("REVOKED")
+  public data object Revoked : PaymentScheduleStatus()
   /** 결제 승인 대기 */
-  PENDING,
+  @SerialName("PENDING")
+  public data object Pending : PaymentScheduleStatus()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : PaymentScheduleStatus()
 }

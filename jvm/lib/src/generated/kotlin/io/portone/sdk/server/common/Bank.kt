@@ -1,164 +1,245 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 은행 */
 @Serializable
-public enum class Bank {
+public sealed class Bank {
   /** 한국은행 */
-  BANK_OF_KOREA,
+  @SerialName("BANK_OF_KOREA")
+  public data object BankOfKorea : Bank()
   /** 산업은행 */
-  KDB,
+  @SerialName("KDB")
+  public data object Kdb : Bank()
   /** 기업은행 */
-  IBK,
+  @SerialName("IBK")
+  public data object Ibk : Bank()
   /** 국민은행 */
-  KOOKMIN,
+  @SerialName("KOOKMIN")
+  public data object Kookmin : Bank()
   /** 수협은행 */
-  SUHYUP,
+  @SerialName("SUHYUP")
+  public data object Suhyup : Bank()
   /** 수출입은행 */
-  KEXIM,
+  @SerialName("KEXIM")
+  public data object Kexim : Bank()
   /** NH농협은행 */
-  NONGHYUP,
+  @SerialName("NONGHYUP")
+  public data object Nonghyup : Bank()
   /** 지역농축협 */
-  LOCAL_NONGHYUP,
+  @SerialName("LOCAL_NONGHYUP")
+  public data object LocalNonghyup : Bank()
   /** 우리은행 */
-  WOORI,
+  @SerialName("WOORI")
+  public data object Woori : Bank()
   /** SC제일은행 */
-  STANDARD_CHARTERED,
+  @SerialName("STANDARD_CHARTERED")
+  public data object StandardChartered : Bank()
   /** 한국씨티은행 */
-  CITI,
+  @SerialName("CITI")
+  public data object Citi : Bank()
   /** 아이엠뱅크 */
-  DAEGU,
+  @SerialName("DAEGU")
+  public data object Daegu : Bank()
   /** 부산은행 */
-  BUSAN,
+  @SerialName("BUSAN")
+  public data object Busan : Bank()
   /** 광주은행 */
-  KWANGJU,
+  @SerialName("KWANGJU")
+  public data object Kwangju : Bank()
   /** 제주은행 */
-  JEJU,
+  @SerialName("JEJU")
+  public data object Jeju : Bank()
   /** 전북은행 */
-  JEONBUK,
+  @SerialName("JEONBUK")
+  public data object Jeonbuk : Bank()
   /** 경남은행 */
-  KYONGNAM,
+  @SerialName("KYONGNAM")
+  public data object Kyongnam : Bank()
   /** 새마을금고 */
-  KFCC,
+  @SerialName("KFCC")
+  public data object Kfcc : Bank()
   /** 신협 */
-  SHINHYUP,
+  @SerialName("SHINHYUP")
+  public data object Shinhyup : Bank()
   /** 저축은행 */
-  SAVINGS_BANK,
+  @SerialName("SAVINGS_BANK")
+  public data object SavingsBank : Bank()
   /** 모간스탠리은행 */
-  MORGAN_STANLEY,
+  @SerialName("MORGAN_STANLEY")
+  public data object MorganStanley : Bank()
   /** HSBC은행 */
-  HSBC,
+  @SerialName("HSBC")
+  public data object Hsbc : Bank()
   /** 도이치은행 */
-  DEUTSCHE,
+  @SerialName("DEUTSCHE")
+  public data object Deutsche : Bank()
   /** 제이피모간체이스은행 */
-  JPMC,
+  @SerialName("JPMC")
+  public data object Jpmc : Bank()
   /** 미즈호은행 */
-  MIZUHO,
+  @SerialName("MIZUHO")
+  public data object Mizuho : Bank()
   /** 엠유에프지은행 */
-  MUFG,
+  @SerialName("MUFG")
+  public data object Mufg : Bank()
   /** BOA은행 */
-  BANK_OF_AMERICA,
+  @SerialName("BANK_OF_AMERICA")
+  public data object BankOfAmerica : Bank()
   /** 비엔피파리바은행 */
-  BNP_PARIBAS,
+  @SerialName("BNP_PARIBAS")
+  public data object BnpParibas : Bank()
   /** 중국공상은행 */
-  ICBC,
+  @SerialName("ICBC")
+  public data object Icbc : Bank()
   /** 중국은행 */
-  BANK_OF_CHINA,
+  @SerialName("BANK_OF_CHINA")
+  public data object BankOfChina : Bank()
   /** 산림조합중앙회 */
-  NFCF,
+  @SerialName("NFCF")
+  public data object Nfcf : Bank()
   /** 대화은행 */
-  UOB,
+  @SerialName("UOB")
+  public data object Uob : Bank()
   /** 교통은행 */
-  BOCOM,
+  @SerialName("BOCOM")
+  public data object Bocom : Bank()
   /** 중국건설은행 */
-  CCB,
+  @SerialName("CCB")
+  public data object Ccb : Bank()
   /** 우체국 */
-  POST,
+  @SerialName("POST")
+  public data object Post : Bank()
   /** 신용보증기금 */
-  KODIT,
+  @SerialName("KODIT")
+  public data object Kodit : Bank()
   /** 기술보증기금 */
-  KIBO,
+  @SerialName("KIBO")
+  public data object Kibo : Bank()
   /** 하나은행 */
-  HANA,
+  @SerialName("HANA")
+  public data object Hana : Bank()
   /** 신한은행 */
-  SHINHAN,
+  @SerialName("SHINHAN")
+  public data object Shinhan : Bank()
   /** 케이뱅크 */
-  K_BANK,
+  @SerialName("K_BANK")
+  public data object KBank : Bank()
   /** 카카오뱅크 */
-  KAKAO,
+  @SerialName("KAKAO")
+  public data object Kakao : Bank()
   /** 토스뱅크 */
-  TOSS,
+  @SerialName("TOSS")
+  public data object Toss : Bank()
   /** 기타 외국계은행(중국 농업은행 등) */
-  MISC_FOREIGN,
+  @SerialName("MISC_FOREIGN")
+  public data object MiscForeign : Bank()
   /** 서울보증보험 */
-  SGI,
+  @SerialName("SGI")
+  public data object Sgi : Bank()
   /** 한국신용정보원 */
-  KCIS,
+  @SerialName("KCIS")
+  public data object Kcis : Bank()
   /** 유안타증권 */
-  YUANTA_SECURITIES,
+  @SerialName("YUANTA_SECURITIES")
+  public data object YuantaSecurities : Bank()
   /** KB증권 */
-  KB_SECURITIES,
+  @SerialName("KB_SECURITIES")
+  public data object KbSecurities : Bank()
   /** 상상인증권 */
-  SANGSANGIN_SECURITIES,
+  @SerialName("SANGSANGIN_SECURITIES")
+  public data object SangsanginSecurities : Bank()
   /** 한양증권 */
-  HANYANG_SECURITIES,
+  @SerialName("HANYANG_SECURITIES")
+  public data object HanyangSecurities : Bank()
   /** 리딩투자증권 */
-  LEADING_SECURITIES,
+  @SerialName("LEADING_SECURITIES")
+  public data object LeadingSecurities : Bank()
   /** BNK투자증권 */
-  BNK_SECURITIES,
+  @SerialName("BNK_SECURITIES")
+  public data object BnkSecurities : Bank()
   /** IBK투자증권 */
-  IBK_SECURITIES,
+  @SerialName("IBK_SECURITIES")
+  public data object IbkSecurities : Bank()
   /** 다올투자증권 */
-  DAOL_SECURITIES,
+  @SerialName("DAOL_SECURITIES")
+  public data object DaolSecurities : Bank()
   /** 미래에셋증권 */
-  MIRAE_ASSET_SECURITIES,
+  @SerialName("MIRAE_ASSET_SECURITIES")
+  public data object MiraeAssetSecurities : Bank()
   /** 삼성증권 */
-  SAMSUNG_SECURITIES,
+  @SerialName("SAMSUNG_SECURITIES")
+  public data object SamsungSecurities : Bank()
   /** 한국투자증권 */
-  KOREA_SECURITIES,
+  @SerialName("KOREA_SECURITIES")
+  public data object KoreaSecurities : Bank()
   /** NH투자증권 */
-  NH_SECURITIES,
+  @SerialName("NH_SECURITIES")
+  public data object NhSecurities : Bank()
   /** 교보증권 */
-  KYOBO_SECURITIES,
+  @SerialName("KYOBO_SECURITIES")
+  public data object KyoboSecurities : Bank()
   /** 하이투자증권 */
-  HI_SECURITIES,
+  @SerialName("HI_SECURITIES")
+  public data object HiSecurities : Bank()
   /** 현대차증권 */
-  HYUNDAI_MOTOR_SECURITIES,
+  @SerialName("HYUNDAI_MOTOR_SECURITIES")
+  public data object HyundaiMotorSecurities : Bank()
   /** 키움증권 */
-  KIWOOM_SECURITIES,
+  @SerialName("KIWOOM_SECURITIES")
+  public data object KiwoomSecurities : Bank()
   /** LS증권 */
-  EBEST_SECURITIES,
+  @SerialName("EBEST_SECURITIES")
+  public data object EbestSecurities : Bank()
   /** SK증권 */
-  SK_SECURITIES,
+  @SerialName("SK_SECURITIES")
+  public data object SkSecurities : Bank()
   /** 대신증권 */
-  DAISHIN_SECURITIES,
+  @SerialName("DAISHIN_SECURITIES")
+  public data object DaishinSecurities : Bank()
   /** 한화투자증권 */
-  HANHWA_SECURITIES,
+  @SerialName("HANHWA_SECURITIES")
+  public data object HanhwaSecurities : Bank()
   /** 하나증권 */
-  HANA_SECURITIES,
+  @SerialName("HANA_SECURITIES")
+  public data object HanaSecurities : Bank()
   /** 토스증권 */
-  TOSS_SECURITIES,
+  @SerialName("TOSS_SECURITIES")
+  public data object TossSecurities : Bank()
   /** 신한투자증권 */
-  SHINHAN_SECURITIES,
+  @SerialName("SHINHAN_SECURITIES")
+  public data object ShinhanSecurities : Bank()
   /** DB금융투자 */
-  DB_SECURITIES,
+  @SerialName("DB_SECURITIES")
+  public data object DbSecurities : Bank()
   /** 유진투자증권 */
-  EUGENE_SECURITIES,
+  @SerialName("EUGENE_SECURITIES")
+  public data object EugeneSecurities : Bank()
   /** 메리츠증권 */
-  MERITZ_SECURITIES,
+  @SerialName("MERITZ_SECURITIES")
+  public data object MeritzSecurities : Bank()
   /** 카카오페이증권 */
-  KAKAO_PAY_SECURITIES,
+  @SerialName("KAKAO_PAY_SECURITIES")
+  public data object KakaoPaySecurities : Bank()
   /** 부국증권 */
-  BOOKOOK_SECURITIES,
+  @SerialName("BOOKOOK_SECURITIES")
+  public data object BookookSecurities : Bank()
   /** 신영증권 */
-  SHINYOUNG_SECURITIES,
+  @SerialName("SHINYOUNG_SECURITIES")
+  public data object ShinyoungSecurities : Bank()
   /** 케이프투자증권 */
-  CAPE_SECURITIES,
+  @SerialName("CAPE_SECURITIES")
+  public data object CapeSecurities : Bank()
   /** 한국증권금융 */
-  KOREA_SECURITIES_FINANCE,
+  @SerialName("KOREA_SECURITIES_FINANCE")
+  public data object KoreaSecuritiesFinance : Bank()
   /** 한국포스증권 */
-  KOREA_FOSS_SECURITIES,
+  @SerialName("KOREA_FOSS_SECURITIES")
+  public data object KoreaFossSecurities : Bank()
   /** 우리종합금융 */
-  WOORI_INVESTMENT_BANK,
+  @SerialName("WOORI_INVESTMENT_BANK")
+  public data object WooriInvestmentBank : Bank()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : Bank()
 }

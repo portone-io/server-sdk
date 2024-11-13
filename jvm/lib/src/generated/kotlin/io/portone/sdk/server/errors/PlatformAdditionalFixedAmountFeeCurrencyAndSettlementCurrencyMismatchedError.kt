@@ -1,7 +1,6 @@
 package io.portone.sdk.server.errors
 
 import io.portone.sdk.server.common.Currency
-import io.portone.sdk.server.errors.CreatePlatformOrderTransferError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -15,5 +14,5 @@ public data class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyM
   val graphqlId: String,
   val feeCurrency: Currency,
   val settlementCurrency: Currency,
-  override val message: String? = null,
-): CreatePlatformOrderTransferError
+  val message: String? = null,
+) : CreatePlatformOrderTransferError

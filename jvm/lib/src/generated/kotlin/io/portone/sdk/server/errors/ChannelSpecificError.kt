@@ -1,8 +1,6 @@
 package io.portone.sdk.server.errors
 
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.errors.DeleteBillingKeyError
-import io.portone.sdk.server.errors.IssueBillingKeyError
 import io.portone.sdk.server.payment.billingkey.ChannelSpecificFailure
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
@@ -17,6 +15,5 @@ public data class ChannelSpecificError internal constructor(
   val failures: List<ChannelSpecificFailure>,
   /** (결제, 본인인증 등에) 선택된 채널 정보 */
   val succeededChannels: List<SelectedChannel>,
-  override val message: String? = null,
-): DeleteBillingKeyError,
-  IssueBillingKeyError
+  val message: String? = null,
+) : DeleteBillingKeyError, IssueBillingKeyError

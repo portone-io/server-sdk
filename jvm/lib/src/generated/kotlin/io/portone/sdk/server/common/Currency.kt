@@ -1,370 +1,554 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** 통화 단위 */
 @Serializable
-public enum class Currency {
+public sealed class Currency {
   /** 대한민국 원화 */
-  KRW,
+  @SerialName("KRW")
+  public data object Krw : Currency()
   /** 미국 달러 */
-  USD,
+  @SerialName("USD")
+  public data object Usd : Currency()
   /** 일본 엔화 */
-  JPY,
+  @SerialName("JPY")
+  public data object Jpy : Currency()
   /** UAE Dirham */
-  AED,
+  @SerialName("AED")
+  public data object Aed : Currency()
   /** Afghani */
-  AFN,
+  @SerialName("AFN")
+  public data object Afn : Currency()
   /** Lek */
-  ALL,
+  @SerialName("ALL")
+  public data object All : Currency()
   /** Armenian Dram */
-  AMD,
+  @SerialName("AMD")
+  public data object Amd : Currency()
   /** Netherlands Antillean Guilder */
-  ANG,
+  @SerialName("ANG")
+  public data object Ang : Currency()
   /** Kwanza */
-  AOA,
+  @SerialName("AOA")
+  public data object Aoa : Currency()
   /** Argentine Peso */
-  ARS,
+  @SerialName("ARS")
+  public data object Ars : Currency()
   /** Australian Dollar */
-  AUD,
+  @SerialName("AUD")
+  public data object Aud : Currency()
   /** Aruban Florin */
-  AWG,
+  @SerialName("AWG")
+  public data object Awg : Currency()
   /** Azerbaijan Manat */
-  AZN,
+  @SerialName("AZN")
+  public data object Azn : Currency()
   /** Convertible Mark */
-  BAM,
+  @SerialName("BAM")
+  public data object Bam : Currency()
   /** Barbados Dollar */
-  BBD,
+  @SerialName("BBD")
+  public data object Bbd : Currency()
   /** Taka */
-  BDT,
+  @SerialName("BDT")
+  public data object Bdt : Currency()
   /** Bulgarian Lev */
-  BGN,
+  @SerialName("BGN")
+  public data object Bgn : Currency()
   /** Bahraini Dinar */
-  BHD,
+  @SerialName("BHD")
+  public data object Bhd : Currency()
   /** Burundi Franc */
-  BIF,
+  @SerialName("BIF")
+  public data object Bif : Currency()
   /** Bermudian Dollar */
-  BMD,
+  @SerialName("BMD")
+  public data object Bmd : Currency()
   /** Brunei Dollar */
-  BND,
+  @SerialName("BND")
+  public data object Bnd : Currency()
   /** Boliviano */
-  BOB,
+  @SerialName("BOB")
+  public data object Bob : Currency()
   /** Mvdol */
-  BOV,
+  @SerialName("BOV")
+  public data object Bov : Currency()
   /** Brazilian Real */
-  BRL,
+  @SerialName("BRL")
+  public data object Brl : Currency()
   /** Bahamian Dollar */
-  BSD,
+  @SerialName("BSD")
+  public data object Bsd : Currency()
   /** Ngultrum */
-  BTN,
+  @SerialName("BTN")
+  public data object Btn : Currency()
   /** Pula */
-  BWP,
+  @SerialName("BWP")
+  public data object Bwp : Currency()
   /** Belarusian Ruble */
-  BYN,
+  @SerialName("BYN")
+  public data object Byn : Currency()
   /** Belize Dollar */
-  BZD,
+  @SerialName("BZD")
+  public data object Bzd : Currency()
   /** Canadian Dollar */
-  CAD,
+  @SerialName("CAD")
+  public data object Cad : Currency()
   /** Congolese Franc */
-  CDF,
+  @SerialName("CDF")
+  public data object Cdf : Currency()
   /** WIR Euro */
-  CHE,
+  @SerialName("CHE")
+  public data object Che : Currency()
   /** Swiss Franc */
-  CHF,
+  @SerialName("CHF")
+  public data object Chf : Currency()
   /** WIR Franc */
-  CHW,
+  @SerialName("CHW")
+  public data object Chw : Currency()
   /** Unidad de Fomento */
-  CLF,
+  @SerialName("CLF")
+  public data object Clf : Currency()
   /** Chilean Peso */
-  CLP,
+  @SerialName("CLP")
+  public data object Clp : Currency()
   /** Yuan Renminbi */
-  CNY,
+  @SerialName("CNY")
+  public data object Cny : Currency()
   /** Colombian Peso */
-  COP,
+  @SerialName("COP")
+  public data object Cop : Currency()
   /** Unidad de Valor Real */
-  COU,
+  @SerialName("COU")
+  public data object Cou : Currency()
   /** Costa Rican Colon */
-  CRC,
+  @SerialName("CRC")
+  public data object Crc : Currency()
   /** Peso Convertible */
-  CUC,
+  @SerialName("CUC")
+  public data object Cuc : Currency()
   /** Cuban Peso */
-  CUP,
+  @SerialName("CUP")
+  public data object Cup : Currency()
   /** Cabo Verde Escudo */
-  CVE,
+  @SerialName("CVE")
+  public data object Cve : Currency()
   /** Czech Koruna */
-  CZK,
+  @SerialName("CZK")
+  public data object Czk : Currency()
   /** Djibouti Franc */
-  DJF,
+  @SerialName("DJF")
+  public data object Djf : Currency()
   /** Danish Krone */
-  DKK,
+  @SerialName("DKK")
+  public data object Dkk : Currency()
   /** Dominican Peso */
-  DOP,
+  @SerialName("DOP")
+  public data object Dop : Currency()
   /** Algerian Dinar */
-  DZD,
+  @SerialName("DZD")
+  public data object Dzd : Currency()
   /** Egyptian Pound */
-  EGP,
+  @SerialName("EGP")
+  public data object Egp : Currency()
   /** Nakfa */
-  ERN,
+  @SerialName("ERN")
+  public data object Ern : Currency()
   /** Ethiopian Birr */
-  ETB,
+  @SerialName("ETB")
+  public data object Etb : Currency()
   /** Euro */
-  EUR,
+  @SerialName("EUR")
+  public data object Eur : Currency()
   /** Fiji Dollar */
-  FJD,
+  @SerialName("FJD")
+  public data object Fjd : Currency()
   /** Falkland Islands Pound */
-  FKP,
+  @SerialName("FKP")
+  public data object Fkp : Currency()
   /** Pound Sterling */
-  GBP,
+  @SerialName("GBP")
+  public data object Gbp : Currency()
   /** Lari */
-  GEL,
+  @SerialName("GEL")
+  public data object Gel : Currency()
   /** Ghana Cedi */
-  GHS,
+  @SerialName("GHS")
+  public data object Ghs : Currency()
   /** Gibraltar Pound */
-  GIP,
+  @SerialName("GIP")
+  public data object Gip : Currency()
   /** Dalasi */
-  GMD,
+  @SerialName("GMD")
+  public data object Gmd : Currency()
   /** Guinean Franc */
-  GNF,
+  @SerialName("GNF")
+  public data object Gnf : Currency()
   /** Quetzal */
-  GTQ,
+  @SerialName("GTQ")
+  public data object Gtq : Currency()
   /** Guyana Dollar */
-  GYD,
+  @SerialName("GYD")
+  public data object Gyd : Currency()
   /** Hong Kong Dollar */
-  HKD,
+  @SerialName("HKD")
+  public data object Hkd : Currency()
   /** Lempira */
-  HNL,
+  @SerialName("HNL")
+  public data object Hnl : Currency()
   /** Kuna (Replaced by EUR) */
-  HRK,
+  @SerialName("HRK")
+  public data object Hrk : Currency()
   /** Gourde */
-  HTG,
+  @SerialName("HTG")
+  public data object Htg : Currency()
   /** Forint */
-  HUF,
+  @SerialName("HUF")
+  public data object Huf : Currency()
   /** Rupiah */
-  IDR,
+  @SerialName("IDR")
+  public data object Idr : Currency()
   /** New Israeli Sheqel */
-  ILS,
+  @SerialName("ILS")
+  public data object Ils : Currency()
   /** Indian Rupee */
-  INR,
+  @SerialName("INR")
+  public data object Inr : Currency()
   /** Iraqi Dinar */
-  IQD,
+  @SerialName("IQD")
+  public data object Iqd : Currency()
   /** Iranian Rial */
-  IRR,
+  @SerialName("IRR")
+  public data object Irr : Currency()
   /** Iceland Krona */
-  ISK,
+  @SerialName("ISK")
+  public data object Isk : Currency()
   /** Jamaican Dollar */
-  JMD,
+  @SerialName("JMD")
+  public data object Jmd : Currency()
   /** Jordanian Dinar */
-  JOD,
+  @SerialName("JOD")
+  public data object Jod : Currency()
   /** Kenyan Shilling */
-  KES,
+  @SerialName("KES")
+  public data object Kes : Currency()
   /** Som */
-  KGS,
+  @SerialName("KGS")
+  public data object Kgs : Currency()
   /** Riel */
-  KHR,
+  @SerialName("KHR")
+  public data object Khr : Currency()
   /** Comorian Franc */
-  KMF,
+  @SerialName("KMF")
+  public data object Kmf : Currency()
   /** North Korean Won */
-  KPW,
+  @SerialName("KPW")
+  public data object Kpw : Currency()
   /** Kuwaiti Dinar */
-  KWD,
+  @SerialName("KWD")
+  public data object Kwd : Currency()
   /** Cayman Islands Dollar */
-  KYD,
+  @SerialName("KYD")
+  public data object Kyd : Currency()
   /** Tenge */
-  KZT,
+  @SerialName("KZT")
+  public data object Kzt : Currency()
   /** Lao Kip */
-  LAK,
+  @SerialName("LAK")
+  public data object Lak : Currency()
   /** Lebanese Pound */
-  LBP,
+  @SerialName("LBP")
+  public data object Lbp : Currency()
   /** Sri Lanka Rupee */
-  LKR,
+  @SerialName("LKR")
+  public data object Lkr : Currency()
   /** Liberian Dollar */
-  LRD,
+  @SerialName("LRD")
+  public data object Lrd : Currency()
   /** Loti */
-  LSL,
+  @SerialName("LSL")
+  public data object Lsl : Currency()
   /** Libyan Dinar */
-  LYD,
+  @SerialName("LYD")
+  public data object Lyd : Currency()
   /** Moroccan Dirham */
-  MAD,
+  @SerialName("MAD")
+  public data object Mad : Currency()
   /** Moldovan Leu */
-  MDL,
+  @SerialName("MDL")
+  public data object Mdl : Currency()
   /** Malagasy Ariary */
-  MGA,
+  @SerialName("MGA")
+  public data object Mga : Currency()
   /** Denar */
-  MKD,
+  @SerialName("MKD")
+  public data object Mkd : Currency()
   /** Kyat */
-  MMK,
+  @SerialName("MMK")
+  public data object Mmk : Currency()
   /** Tugrik */
-  MNT,
+  @SerialName("MNT")
+  public data object Mnt : Currency()
   /** Pataca */
-  MOP,
+  @SerialName("MOP")
+  public data object Mop : Currency()
   /** Ouguiya */
-  MRU,
+  @SerialName("MRU")
+  public data object Mru : Currency()
   /** Mauritius Rupee */
-  MUR,
+  @SerialName("MUR")
+  public data object Mur : Currency()
   /** Rufiyaa */
-  MVR,
+  @SerialName("MVR")
+  public data object Mvr : Currency()
   /** Malawi Kwacha */
-  MWK,
+  @SerialName("MWK")
+  public data object Mwk : Currency()
   /** Mexican Peso */
-  MXN,
+  @SerialName("MXN")
+  public data object Mxn : Currency()
   /** Mexican Unidad de Inversion (UDI) */
-  MXV,
+  @SerialName("MXV")
+  public data object Mxv : Currency()
   /** Malaysian Ringgit */
-  MYR,
+  @SerialName("MYR")
+  public data object Myr : Currency()
   /** Mozambique Metical */
-  MZN,
+  @SerialName("MZN")
+  public data object Mzn : Currency()
   /** Namibia Dollar */
-  NAD,
+  @SerialName("NAD")
+  public data object Nad : Currency()
   /** Naira */
-  NGN,
+  @SerialName("NGN")
+  public data object Ngn : Currency()
   /** Cordoba Oro */
-  NIO,
+  @SerialName("NIO")
+  public data object Nio : Currency()
   /** Norwegian Krone */
-  NOK,
+  @SerialName("NOK")
+  public data object Nok : Currency()
   /** Nepalese Rupee */
-  NPR,
+  @SerialName("NPR")
+  public data object Npr : Currency()
   /** New Zealand Dollar */
-  NZD,
+  @SerialName("NZD")
+  public data object Nzd : Currency()
   /** Rial Omani */
-  OMR,
+  @SerialName("OMR")
+  public data object Omr : Currency()
   /** Balboa */
-  PAB,
+  @SerialName("PAB")
+  public data object Pab : Currency()
   /** Sol */
-  PEN,
+  @SerialName("PEN")
+  public data object Pen : Currency()
   /** Kina */
-  PGK,
+  @SerialName("PGK")
+  public data object Pgk : Currency()
   /** Philippine Peso */
-  PHP,
+  @SerialName("PHP")
+  public data object Php : Currency()
   /** Pakistan Rupee */
-  PKR,
+  @SerialName("PKR")
+  public data object Pkr : Currency()
   /** Zloty */
-  PLN,
+  @SerialName("PLN")
+  public data object Pln : Currency()
   /** Guarani */
-  PYG,
+  @SerialName("PYG")
+  public data object Pyg : Currency()
   /** Qatari Rial */
-  QAR,
+  @SerialName("QAR")
+  public data object Qar : Currency()
   /** Romanian Leu */
-  RON,
+  @SerialName("RON")
+  public data object Ron : Currency()
   /** Serbian Dinar */
-  RSD,
+  @SerialName("RSD")
+  public data object Rsd : Currency()
   /** Russian Ruble */
-  RUB,
+  @SerialName("RUB")
+  public data object Rub : Currency()
   /** Rwanda Franc */
-  RWF,
+  @SerialName("RWF")
+  public data object Rwf : Currency()
   /** Saudi Riyal */
-  SAR,
+  @SerialName("SAR")
+  public data object Sar : Currency()
   /** Solomon Islands Dollar */
-  SBD,
+  @SerialName("SBD")
+  public data object Sbd : Currency()
   /** Seychelles Rupee */
-  SCR,
+  @SerialName("SCR")
+  public data object Scr : Currency()
   /** Sudanese Pound */
-  SDG,
+  @SerialName("SDG")
+  public data object Sdg : Currency()
   /** Swedish Krona */
-  SEK,
+  @SerialName("SEK")
+  public data object Sek : Currency()
   /** Singapore Dollar */
-  SGD,
+  @SerialName("SGD")
+  public data object Sgd : Currency()
   /** Saint Helena Pound */
-  SHP,
+  @SerialName("SHP")
+  public data object Shp : Currency()
   /** Leone */
-  SLE,
+  @SerialName("SLE")
+  public data object Sle : Currency()
   /** Leone */
-  SLL,
+  @SerialName("SLL")
+  public data object Sll : Currency()
   /** Somali Shilling */
-  SOS,
+  @SerialName("SOS")
+  public data object Sos : Currency()
   /** Surinam Dollar */
-  SRD,
+  @SerialName("SRD")
+  public data object Srd : Currency()
   /** South Sudanese Pound */
-  SSP,
+  @SerialName("SSP")
+  public data object Ssp : Currency()
   /** Dobra */
-  STN,
+  @SerialName("STN")
+  public data object Stn : Currency()
   /** El Salvador Colon */
-  SVC,
+  @SerialName("SVC")
+  public data object Svc : Currency()
   /** Syrian Pound */
-  SYP,
+  @SerialName("SYP")
+  public data object Syp : Currency()
   /** Lilangeni */
-  SZL,
+  @SerialName("SZL")
+  public data object Szl : Currency()
   /** Baht */
-  THB,
+  @SerialName("THB")
+  public data object Thb : Currency()
   /** Somoni */
-  TJS,
+  @SerialName("TJS")
+  public data object Tjs : Currency()
   /** Turkmenistan New Manat */
-  TMT,
+  @SerialName("TMT")
+  public data object Tmt : Currency()
   /** Tunisian Dinar */
-  TND,
+  @SerialName("TND")
+  public data object Tnd : Currency()
   /** Pa’anga */
-  TOP,
+  @SerialName("TOP")
+  public data object Top : Currency()
   /** Turkish Lira */
-  TRY,
+  @SerialName("TRY")
+  public data object Try : Currency()
   /** Trinidad and Tobago Dollar */
-  TTD,
+  @SerialName("TTD")
+  public data object Ttd : Currency()
   /** New Taiwan Dollar */
-  TWD,
+  @SerialName("TWD")
+  public data object Twd : Currency()
   /** Tanzanian Shilling */
-  TZS,
+  @SerialName("TZS")
+  public data object Tzs : Currency()
   /** Hryvnia */
-  UAH,
+  @SerialName("UAH")
+  public data object Uah : Currency()
   /** Uganda Shilling */
-  UGX,
+  @SerialName("UGX")
+  public data object Ugx : Currency()
   /** US Dollar (Next day) */
-  USN,
+  @SerialName("USN")
+  public data object Usn : Currency()
   /** Uruguay Peso en Unidades Indexadas (UI) */
-  UYI,
+  @SerialName("UYI")
+  public data object Uyi : Currency()
   /** Peso Uruguayo */
-  UYU,
+  @SerialName("UYU")
+  public data object Uyu : Currency()
   /** Unidad Previsional */
-  UYW,
+  @SerialName("UYW")
+  public data object Uyw : Currency()
   /** Uzbekistan Sum */
-  UZS,
+  @SerialName("UZS")
+  public data object Uzs : Currency()
   /** Bolívar Soberano */
-  VED,
+  @SerialName("VED")
+  public data object Ved : Currency()
   /** Bolívar Soberano */
-  VES,
+  @SerialName("VES")
+  public data object Ves : Currency()
   /** Dong */
-  VND,
+  @SerialName("VND")
+  public data object Vnd : Currency()
   /** Vatu */
-  VUV,
+  @SerialName("VUV")
+  public data object Vuv : Currency()
   /** Tala */
-  WST,
+  @SerialName("WST")
+  public data object Wst : Currency()
   /** CFA Franc BEAC */
-  XAF,
+  @SerialName("XAF")
+  public data object Xaf : Currency()
   /** Silver */
-  XAG,
+  @SerialName("XAG")
+  public data object Xag : Currency()
   /** Gold */
-  XAU,
+  @SerialName("XAU")
+  public data object Xau : Currency()
   /** Bond Markets Unit European Composite Unit (EURCO) */
-  XBA,
+  @SerialName("XBA")
+  public data object Xba : Currency()
   /** Bond Markets Unit European Monetary Unit (E.M.U.-6) */
-  XBB,
+  @SerialName("XBB")
+  public data object Xbb : Currency()
   /** Bond Markets Unit European Unit of Account 9 (E.U.A.-9) */
-  XBC,
+  @SerialName("XBC")
+  public data object Xbc : Currency()
   /** Bond Markets Unit European Unit of Account 17 (E.U.A.-17) */
-  XBD,
+  @SerialName("XBD")
+  public data object Xbd : Currency()
   /** East Caribbean Dollar */
-  XCD,
+  @SerialName("XCD")
+  public data object Xcd : Currency()
   /** SDR (Special Drawing Right) */
-  XDR,
+  @SerialName("XDR")
+  public data object Xdr : Currency()
   /** CFA Franc BCEAO */
-  XOF,
+  @SerialName("XOF")
+  public data object Xof : Currency()
   /** Palladium */
-  XPD,
+  @SerialName("XPD")
+  public data object Xpd : Currency()
   /** CFP Franc */
-  XPF,
+  @SerialName("XPF")
+  public data object Xpf : Currency()
   /** Platinum */
-  XPT,
+  @SerialName("XPT")
+  public data object Xpt : Currency()
   /** Sucre */
-  XSU,
+  @SerialName("XSU")
+  public data object Xsu : Currency()
   /** Codes specifically reserved for testing purposes */
-  XTS,
+  @SerialName("XTS")
+  public data object Xts : Currency()
   /** ADB Unit of Account */
-  XUA,
+  @SerialName("XUA")
+  public data object Xua : Currency()
   /** The codes assigned for transactions where no currency is involved */
-  XXX,
+  @SerialName("XXX")
+  public data object Xxx : Currency()
   /** Yemeni Rial */
-  YER,
+  @SerialName("YER")
+  public data object Yer : Currency()
   /** Rand */
-  ZAR,
+  @SerialName("ZAR")
+  public data object Zar : Currency()
   /** Zambian Kwacha */
-  ZMW,
+  @SerialName("ZMW")
+  public data object Zmw : Currency()
   /** Zimbabwe Dollar */
-  ZWL,
+  @SerialName("ZWL")
+  public data object Zwl : Currency()
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(public val value: String) : Currency()
 }

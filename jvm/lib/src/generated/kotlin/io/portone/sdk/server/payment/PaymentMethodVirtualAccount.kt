@@ -1,7 +1,6 @@
 package io.portone.sdk.server.payment
 
 import io.portone.sdk.server.common.Bank
-import io.portone.sdk.server.payment.PaymentMethod
 import io.portone.sdk.server.payment.PaymentMethodVirtualAccountRefundStatus
 import io.portone.sdk.server.payment.PaymentMethodVirtualAccountType
 import io.portone.sdk.server.serializers.InstantSerializer
@@ -30,4 +29,4 @@ public data class PaymentMethodVirtualAccount(
   val issuedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 가상계좌 결제가 환불 단계일 때의 환불 상태 */
   val refundStatus: PaymentMethodVirtualAccountRefundStatus? = null,
-): PaymentMethod
+) : PaymentMethod

@@ -1,7 +1,5 @@
 package io.portone.sdk.server.errors
 
-import io.portone.sdk.server.errors.ScheduleAdditionalFeePolicyError
-import io.portone.sdk.server.errors.UpdatePlatformAdditionalFeePolicyError
 import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -12,6 +10,5 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY")
 @ConsistentCopyVisibility
 public data class PlatformArchivedAdditionalFeePolicyError internal constructor(
-  override val message: String? = null,
-): ScheduleAdditionalFeePolicyError,
-  UpdatePlatformAdditionalFeePolicyError
+  val message: String? = null,
+) : ScheduleAdditionalFeePolicyError, UpdatePlatformAdditionalFeePolicyError
