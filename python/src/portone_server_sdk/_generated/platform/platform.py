@@ -25,6 +25,8 @@ class Platform:
 
 
 def _serialize_platform(obj: Platform) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["merchantId"] = obj.merchant_id
     entity["graphqlId"] = obj.graphql_id

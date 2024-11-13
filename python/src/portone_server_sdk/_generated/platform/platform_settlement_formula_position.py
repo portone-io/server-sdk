@@ -19,6 +19,8 @@ class PlatformSettlementFormulaPosition:
 
 
 def _serialize_platform_settlement_formula_position(obj: PlatformSettlementFormulaPosition) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["startLine"] = obj.start_line
     entity["startIndex"] = obj.start_index

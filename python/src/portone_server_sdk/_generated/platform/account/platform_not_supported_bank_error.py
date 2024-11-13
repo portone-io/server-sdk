@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformNotSupportedBankError:
     """지원하지 않는 은행인 경우
     """
-    type: Literal["PLATFORM_NOT_SUPPORTED_BANK"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_not_supported_bank_error(obj: PlatformNotSupportedBankError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_NOT_SUPPORTED_BANK"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_not_supported_bank_error(obj: Any) -> PlatformNotSuppo
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformNotSupportedBankError(type, message)
+    return PlatformNotSupportedBankError(message)

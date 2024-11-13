@@ -9,25 +9,27 @@ from portone_server_sdk._generated.common.payment_schedule_already_exists_error 
 from portone_server_sdk._generated.common.sum_of_parts_exceeds_total_amount_error import SumOfPartsExceedsTotalAmountError, _deserialize_sum_of_parts_exceeds_total_amount_error, _serialize_sum_of_parts_exceeds_total_amount_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-CreatePaymentScheduleError = Union[AlreadyPaidOrWaitingError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, SumOfPartsExceedsTotalAmountError, UnauthorizedError]
+CreatePaymentScheduleError = Union[AlreadyPaidOrWaitingError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, dict]
 
 
 def _serialize_create_payment_schedule_error(obj: CreatePaymentScheduleError) -> Any:
-    if obj.type == "ALREADY_PAID_OR_WAITING":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, AlreadyPaidOrWaitingError):
         return _serialize_already_paid_or_waiting_error(obj)
-    if obj.type == "BILLING_KEY_ALREADY_DELETED":
+    if isinstance(obj, BillingKeyAlreadyDeletedError):
         return _serialize_billing_key_already_deleted_error(obj)
-    if obj.type == "BILLING_KEY_NOT_FOUND":
+    if isinstance(obj, BillingKeyNotFoundError):
         return _serialize_billing_key_not_found_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
+    if isinstance(obj, PaymentScheduleAlreadyExistsError):
         return _serialize_payment_schedule_already_exists_error(obj)
-    if obj.type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
+    if isinstance(obj, SumOfPartsExceedsTotalAmountError):
         return _serialize_sum_of_parts_exceeds_total_amount_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -64,4 +66,4 @@ def _deserialize_create_payment_schedule_error(obj: Any) -> CreatePaymentSchedul
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePaymentScheduleError")
+    return obj

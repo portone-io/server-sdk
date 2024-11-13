@@ -17,6 +17,8 @@ class GetPlatformContractsResponse:
 
 
 def _serialize_get_platform_contracts_response(obj: GetPlatformContractsResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_contract, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

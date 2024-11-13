@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.transfer.create_platform_order_transfer_body_order_line import CreatePlatformOrderTransferBodyOrderLine, _deserialize_create_platform_order_transfer_body_order_line, _serialize_create_platform_order_transfer_body_order_line
@@ -9,16 +10,18 @@ class CreatePlatformOrderTransferBodyOrderDetail:
 
     주문 금액 또는 주문 항목 하나만 입력 가능합니다.
     """
-    order_amount: Optional[int]
+    order_amount: Optional[int] = field(default=None)
     """주문 금액
     (int64)
     """
-    order_lines: Optional[list[CreatePlatformOrderTransferBodyOrderLine]]
+    order_lines: Optional[list[CreatePlatformOrderTransferBodyOrderLine]] = field(default=None)
     """주문 항목 리스트
     """
 
 
 def _serialize_create_platform_order_transfer_body_order_detail(obj: CreatePlatformOrderTransferBodyOrderDetail) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.order_amount is not None:
         entity["orderAmount"] = obj.order_amount

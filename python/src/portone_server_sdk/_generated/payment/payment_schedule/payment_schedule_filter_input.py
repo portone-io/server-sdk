@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_status import PaymentScheduleStatus, _deserialize_payment_schedule_status, _serialize_payment_schedule_status
@@ -7,27 +8,27 @@ from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_sta
 class PaymentScheduleFilterInput:
     """결제 예약 건 다건 조회를 위한 입력 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    billing_key: Optional[str]
+    billing_key: Optional[str] = field(default=None)
     """빌링키
     """
-    from_: Optional[str]
+    from_: Optional[str] = field(default=None)
     """결제 예정 시점 조건 범위의 시작
 
     값을 입력하지 않으면 파라미터 end의 90일 전으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    until: Optional[str]
+    until: Optional[str] = field(default=None)
     """결제 예정 시점 조건 범위의 끝
 
     값을 입력하지 않으면 현재 시점으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    status: Optional[list[PaymentScheduleStatus]]
+    status: Optional[list[PaymentScheduleStatus]] = field(default=None)
     """결제 예약 건 상태 리스트
 
     값을 입력하지 않으면 상태 필터링이 적용되지 않습니다.
@@ -35,6 +36,8 @@ class PaymentScheduleFilterInput:
 
 
 def _serialize_payment_schedule_filter_input(obj: PaymentScheduleFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.store_id is not None:
         entity["storeId"] = obj.store_id

@@ -16,6 +16,8 @@ class PlatformOrderTransferCancellation:
 
 
 def _serialize_platform_order_transfer_cancellation(obj: PlatformOrderTransferCancellation) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["cancelledAt"] = obj.cancelled_at

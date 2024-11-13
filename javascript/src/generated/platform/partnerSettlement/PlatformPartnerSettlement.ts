@@ -6,3 +6,4 @@ export type PlatformPartnerSettlement =
 	| PlatformPartnerManualSettlement
 	| PlatformPartnerOrderSettlement
 	| PlatformPartnerOrderCancelSettlement
+	| { readonly type: unique symbol }

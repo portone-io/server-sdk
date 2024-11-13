@@ -10,6 +10,8 @@ class CancelPlatformAdditionalFeePolicyScheduleResponse:
 
 
 def _serialize_cancel_platform_additional_fee_policy_schedule_response(obj: CancelPlatformAdditionalFeePolicyScheduleResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

@@ -12,3 +12,4 @@ export type ModifyEscrowLogisticsError =
 	| PaymentNotPaidError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

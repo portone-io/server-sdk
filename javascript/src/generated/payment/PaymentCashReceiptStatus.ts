@@ -2,3 +2,4 @@
 export type PaymentCashReceiptStatus =
 	| "ISSUED"
 	| "CANCELLED"
+	| string & {}

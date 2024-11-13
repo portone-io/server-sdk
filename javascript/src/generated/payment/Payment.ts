@@ -22,3 +22,4 @@ export type Payment =
 	| ReadyPayment
 	/** 가상계좌 발급 완료 */
 	| VirtualAccountIssuedPayment
+	| { readonly status: unique symbol }

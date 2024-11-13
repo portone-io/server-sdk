@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,12 +7,14 @@ from dataclasses import dataclass, field
 class RegisterStoreReceiptResponse:
     """영수증 내 하위 상점 거래 등록 응답
     """
-    receipt_url: Optional[str]
+    receipt_url: Optional[str] = field(default=None)
     """결제 영수증 URL
     """
 
 
 def _serialize_register_store_receipt_response(obj: RegisterStoreReceiptResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.receipt_url is not None:
         entity["receiptUrl"] = obj.receipt_url

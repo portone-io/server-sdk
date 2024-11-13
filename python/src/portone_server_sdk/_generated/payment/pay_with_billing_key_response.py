@@ -13,6 +13,8 @@ class PayWithBillingKeyResponse:
 
 
 def _serialize_pay_with_billing_key_response(obj: PayWithBillingKeyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_billing_key_payment_summary(obj.payment)
     return entity

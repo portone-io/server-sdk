@@ -18,3 +18,4 @@ export type SendIdentityVerificationError =
 	| MaxTransactionCountReachedError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

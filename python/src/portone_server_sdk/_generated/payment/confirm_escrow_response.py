@@ -13,6 +13,8 @@ class ConfirmEscrowResponse:
 
 
 def _serialize_confirm_escrow_response(obj: ConfirmEscrowResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["completedAt"] = obj.completed_at
     return entity

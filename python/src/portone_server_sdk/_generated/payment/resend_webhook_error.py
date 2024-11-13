@@ -7,21 +7,23 @@ from portone_server_sdk._generated.payment.payment_not_found_error import Paymen
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 from portone_server_sdk._generated.payment.webhook_not_found_error import WebhookNotFoundError, _deserialize_webhook_not_found_error, _serialize_webhook_not_found_error
 
-ResendWebhookError = Union[ForbiddenError, InvalidRequestError, MaxWebhookRetryCountReachedError, PaymentNotFoundError, UnauthorizedError, WebhookNotFoundError]
+ResendWebhookError = Union[ForbiddenError, InvalidRequestError, MaxWebhookRetryCountReachedError, PaymentNotFoundError, UnauthorizedError, WebhookNotFoundError, dict]
 
 
 def _serialize_resend_webhook_error(obj: ResendWebhookError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
+    if isinstance(obj, MaxWebhookRetryCountReachedError):
         return _serialize_max_webhook_retry_count_reached_error(obj)
-    if obj.type == "PAYMENT_NOT_FOUND":
+    if isinstance(obj, PaymentNotFoundError):
         return _serialize_payment_not_found_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
-    if obj.type == "WEBHOOK_NOT_FOUND":
+    if isinstance(obj, WebhookNotFoundError):
         return _serialize_webhook_not_found_error(obj)
 
 
@@ -50,4 +52,4 @@ def _deserialize_resend_webhook_error(obj: Any) -> ResendWebhookError:
         return _deserialize_webhook_not_found_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ResendWebhookError")
+    return obj

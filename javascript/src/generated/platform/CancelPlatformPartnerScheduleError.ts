@@ -10,3 +10,4 @@ export type CancelPlatformPartnerScheduleError =
 	| PlatformNotEnabledError
 	| PlatformPartnerNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

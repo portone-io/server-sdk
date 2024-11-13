@@ -64,13 +64,20 @@ class PgSpecificClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_kakaopay_payment_order_response(response.json())
     async def get_kakaopay_payment_order_async(
         self,
@@ -115,11 +122,18 @@ class PgSpecificClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_kakaopay_payment_order_response(response.json())

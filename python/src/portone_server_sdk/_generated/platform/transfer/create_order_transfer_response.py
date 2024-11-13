@@ -9,6 +9,8 @@ class CreateOrderTransferResponse:
 
 
 def _serialize_create_order_transfer_response(obj: CreateOrderTransferResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transfer"] = _serialize_platform_order_transfer(obj.transfer)
     return entity

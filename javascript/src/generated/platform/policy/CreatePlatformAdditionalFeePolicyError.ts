@@ -10,3 +10,4 @@ export type CreatePlatformAdditionalFeePolicyError =
 	| PlatformAdditionalFeePolicyAlreadyExistsError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

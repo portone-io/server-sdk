@@ -8,6 +8,8 @@ class PlatformPaymentMethodGiftCertificateInput:
 
 
 def _serialize_platform_payment_method_gift_certificate_input(obj: PlatformPaymentMethodGiftCertificateInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

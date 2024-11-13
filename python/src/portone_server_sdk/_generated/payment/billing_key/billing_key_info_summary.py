@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
@@ -12,12 +13,14 @@ class BillingKeyInfoSummary:
     """빌링크 발급 완료 시점
     (RFC 3339 date-time)
     """
-    channels: Optional[list[SelectedChannel]]
+    channels: Optional[list[SelectedChannel]] = field(default=None)
     """발급된 채널
     """
 
 
 def _serialize_billing_key_info_summary(obj: BillingKeyInfoSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["billingKey"] = obj.billing_key
     entity["issuedAt"] = obj.issued_at

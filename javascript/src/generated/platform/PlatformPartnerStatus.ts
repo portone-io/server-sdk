@@ -6,3 +6,4 @@ export type PlatformPartnerStatus =
 	| "APPROVED"
 	/** 승인 거절 */
 	| "REJECTED"
+	| string & {}

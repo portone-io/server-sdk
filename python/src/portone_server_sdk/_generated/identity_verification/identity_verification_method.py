@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-IdentityVerificationMethod = Literal["SMS", "APP"]
+IdentityVerificationMethod = Union[Literal["SMS", "APP"], str]
 """본인인증 방식
 """
 
 
 def _serialize_identity_verification_method(obj: IdentityVerificationMethod) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_identity_verification_method(obj: Any) -> IdentityVerificationMethod:
-    if obj not in ["SMS", "APP"]:
-        raise ValueError(f"{repr(obj)} is not IdentityVerificationMethod")
     return obj

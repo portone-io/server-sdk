@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformUserDefinedPropertyNotFoundError:
     """사용자 정의 속성이 존재 하지 않는 경우
     """
-    type: Literal["PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_user_defined_property_not_found_error(obj: PlatformUserDefinedPropertyNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_user_defined_property_not_found_error(obj: Any) -> Pla
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformUserDefinedPropertyNotFoundError(type, message)
+    return PlatformUserDefinedPropertyNotFoundError(message)

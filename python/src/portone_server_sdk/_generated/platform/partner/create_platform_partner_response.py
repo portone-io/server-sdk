@@ -13,6 +13,8 @@ class CreatePlatformPartnerResponse:
 
 
 def _serialize_create_platform_partner_response(obj: CreatePlatformPartnerResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partner"] = _serialize_platform_partner(obj.partner)
     return entity

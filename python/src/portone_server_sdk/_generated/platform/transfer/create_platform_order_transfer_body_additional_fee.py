@@ -12,6 +12,8 @@ class CreatePlatformOrderTransferBodyAdditionalFee:
 
 
 def _serialize_create_platform_order_transfer_body_additional_fee(obj: CreatePlatformOrderTransferBodyAdditionalFee) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["policyId"] = obj.policy_id
     return entity

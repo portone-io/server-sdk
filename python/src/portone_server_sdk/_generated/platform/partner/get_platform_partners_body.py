@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
@@ -8,15 +9,17 @@ from portone_server_sdk._generated.platform.platform_partner_filter_input import
 class GetPlatformPartnersBody:
     """파트너 다건 조회를 위한 입력 정보
     """
-    page: Optional[PageInput]
+    page: Optional[PageInput] = field(default=None)
     """요청할 페이지 정보
     """
-    filter: Optional[PlatformPartnerFilterInput]
+    filter: Optional[PlatformPartnerFilterInput] = field(default=None)
     """조회할 파트너 조건 필터
     """
 
 
 def _serialize_get_platform_partners_body(obj: GetPlatformPartnersBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.page is not None:
         entity["page"] = _serialize_page_input(obj.page)

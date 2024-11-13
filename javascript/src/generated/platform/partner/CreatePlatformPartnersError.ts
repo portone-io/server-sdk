@@ -18,3 +18,4 @@ export type CreatePlatformPartnersError =
 	| PlatformPartnerIdsDuplicatedError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -12,6 +12,8 @@ class RefreshTokenBody:
 
 
 def _serialize_refresh_token_body(obj: RefreshTokenBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["refreshToken"] = obj.refresh_token
     return entity

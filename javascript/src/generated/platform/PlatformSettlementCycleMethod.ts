@@ -13,3 +13,4 @@ export type PlatformSettlementCycleMethod =
 	| PlatformSettlementCycleMethodMonthly
 	/** 매주 정해진 요일에 정산 */
 	| PlatformSettlementCycleMethodWeekly
+	| { readonly type: unique symbol }

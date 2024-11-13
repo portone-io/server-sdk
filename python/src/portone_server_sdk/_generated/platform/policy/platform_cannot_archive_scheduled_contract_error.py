@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCannotArchiveScheduledContractError:
     """예약된 업데이트가 있는 계약을 보관하려고 하는 경우
     """
-    type: Literal["PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cannot_archive_scheduled_contract_error(obj: PlatformCannotArchiveScheduledContractError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_cannot_archive_scheduled_contract_error(obj: Any) -> P
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCannotArchiveScheduledContractError(type, message)
+    return PlatformCannotArchiveScheduledContractError(message)

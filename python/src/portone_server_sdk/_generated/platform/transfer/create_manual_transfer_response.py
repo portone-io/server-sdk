@@ -9,6 +9,8 @@ class CreateManualTransferResponse:
 
 
 def _serialize_create_manual_transfer_response(obj: CreateManualTransferResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transfer"] = _serialize_platform_manual_transfer(obj.transfer)
     return entity

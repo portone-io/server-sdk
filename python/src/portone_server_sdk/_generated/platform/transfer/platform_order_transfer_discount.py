@@ -29,6 +29,8 @@ class PlatformOrderTransferDiscount:
 
 
 def _serialize_platform_order_transfer_discount(obj: PlatformOrderTransferDiscount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["sharePolicy"] = _serialize_platform_discount_share_policy(obj.share_policy)
     entity["amount"] = obj.amount

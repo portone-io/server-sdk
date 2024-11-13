@@ -1,15 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPaymentMethodGiftCertificate:
     """상품권
     """
-    type: Literal["GIFT_CERTIFICATE"] = field(repr=False)
+    pass
 
 
 def _serialize_platform_payment_method_gift_certificate(obj: PlatformPaymentMethodGiftCertificate) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "GIFT_CERTIFICATE"
     return entity
@@ -23,4 +25,4 @@ def _deserialize_platform_payment_method_gift_certificate(obj: Any) -> PlatformP
     type = obj["type"]
     if type != "GIFT_CERTIFICATE":
         raise ValueError(f"{repr(type)} is not 'GIFT_CERTIFICATE'")
-    return PlatformPaymentMethodGiftCertificate(type)
+    return PlatformPaymentMethodGiftCertificate()

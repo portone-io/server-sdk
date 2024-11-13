@@ -4,3 +4,4 @@ export type CashReceiptType =
 	| "PERSONAL"
 	/** 지출증빙용 */
 	| "CORPORATE"
+	| string & {}

@@ -8,3 +8,4 @@ export type PlatformPayer =
 	| "PARTNER"
 	/** 고객사가 부담하는 경우 */
 	| "MERCHANT"
+	| string & {}

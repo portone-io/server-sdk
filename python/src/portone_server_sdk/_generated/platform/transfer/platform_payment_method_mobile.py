@@ -1,15 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPaymentMethodMobile:
     """모바일
     """
-    type: Literal["MOBILE"] = field(repr=False)
+    pass
 
 
 def _serialize_platform_payment_method_mobile(obj: PlatformPaymentMethodMobile) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MOBILE"
     return entity
@@ -23,4 +25,4 @@ def _deserialize_platform_payment_method_mobile(obj: Any) -> PlatformPaymentMeth
     type = obj["type"]
     if type != "MOBILE":
         raise ValueError(f"{repr(type)} is not 'MOBILE'")
-    return PlatformPaymentMethodMobile(type)
+    return PlatformPaymentMethodMobile()

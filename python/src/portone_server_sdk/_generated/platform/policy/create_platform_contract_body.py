@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
@@ -24,17 +25,19 @@ class CreatePlatformContractBody:
     subtract_payment_vat_amount: bool
     """정산 시 결제금액 부가세 감액 여부
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """계약에 부여할 고유 아이디
 
     명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """계약 내부 표기를 위한 메모
     """
 
 
 def _serialize_create_platform_contract_body(obj: CreatePlatformContractBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["platformFee"] = _serialize_platform_fee_input(obj.platform_fee)

@@ -161,21 +161,24 @@ export function writeOperation(
   writer.writeLine(
     "error_response = response.json()",
   )
-  writer.writeLine(`error_type = error_response["type"]`)
+  writer.writeLine("error = None")
   for (const variant of errors) {
-    writer.writeLine(`if error_type == "${variant.value}":`)
+    writer.writeLine("try:")
     writer.indent()
     writer.writeLine(
-      `raise errors.${variant.name}(_deserialize_${
-        toSnakeCase(variant.name)
-      }(error_response))`,
+      `error = _deserialize_${toSnakeCase(variant.name)}(error_response)`,
     )
     writer.outdent()
+    writer.writeLine("except Exception:")
+    writer.indent()
+    writer.writeLine("pass")
+    writer.outdent()
+    writer.writeLine("if error is not None:")
+    writer.indent()
+    writer.writeLine(`raise errors.${variant.name}(error)`)
+    writer.outdent()
   }
-  writer.writeLine("else:")
-  writer.indent()
   writer.writeLine("raise errors.UnknownError(error_response)")
-  writer.outdent()
   writer.outdent()
   switch (operation.response?.type) {
     case "application/json":

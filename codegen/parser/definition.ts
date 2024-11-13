@@ -92,13 +92,13 @@ const DefinitionSchema = RefSchema.or(OneOfSchema).or(StringSchema).or(
 
 export type OneOfVariant = {
   name: string
-  property: string
   value: string
   title: string | null
 }
 
 export type OneOfDefinition = {
   type: "oneOf"
+  property: string
   variants: OneOfVariant[]
 }
 
@@ -199,7 +199,6 @@ export function parseDefinition(name: string, definition: unknown): Definition {
     const { propertyName, mapping } = data.discriminator
     const variants = Object.entries(mapping).map(([discriminator, ref]) => ({
       name: stripRefPrefix(ref),
-      property: propertyName,
       value: discriminator,
       title: data["x-portone-discriminator"]?.[discriminator]?.title ?? null,
     }))
@@ -208,6 +207,7 @@ export function parseDefinition(name: string, definition: unknown): Definition {
       title,
       description,
       type: "oneOf",
+      property: propertyName,
       variants,
     }
   }

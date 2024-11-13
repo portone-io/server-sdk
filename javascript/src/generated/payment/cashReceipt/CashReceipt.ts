@@ -10,3 +10,4 @@ export type CashReceipt =
 	| IssuedCashReceipt
 	/** 발급 실패 */
 	| IssueFailedCashReceipt
+	| { readonly status: unique symbol }

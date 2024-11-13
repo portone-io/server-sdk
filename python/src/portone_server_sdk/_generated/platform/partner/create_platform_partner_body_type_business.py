@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
@@ -14,23 +15,25 @@ class CreatePlatformPartnerBodyTypeBusiness:
     representative_name: str
     """대표자 이름
     """
-    taxation_type: Optional[PlatformPartnerTaxationType]
+    taxation_type: Optional[PlatformPartnerTaxationType] = field(default=None)
     """사업자 유형
 
     값을 입력하지 않으면 일반 과세로 설정됩니다.
     """
-    company_address: Optional[str]
+    company_address: Optional[str] = field(default=None)
     """사업장 주소
     """
-    business_type: Optional[str]
+    business_type: Optional[str] = field(default=None)
     """업태
     """
-    business_class: Optional[str]
+    business_class: Optional[str] = field(default=None)
     """업종
     """
 
 
 def _serialize_create_platform_partner_body_type_business(obj: CreatePlatformPartnerBodyTypeBusiness) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["companyName"] = obj.company_name
     entity["businessRegistrationNumber"] = obj.business_registration_number

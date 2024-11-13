@@ -14,3 +14,4 @@ export type PlatformSettlementFormulaError =
 	| PlatformSettlementFormulaUnexpectedFunctionArguments
 	| PlatformSettlementFormulaUnknownError
 	| PlatformSettlementFormulaUnsupportedVariable
+	| { readonly type: unique symbol }

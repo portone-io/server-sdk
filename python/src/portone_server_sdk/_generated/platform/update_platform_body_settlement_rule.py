@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -8,18 +9,20 @@ class UpdatePlatformBodySettlementRule:
 
     값이 명시되지 않은 필드는 업데이트하지 않습니다.
     """
-    supports_multiple_order_transfers_per_partner: Optional[bool]
+    supports_multiple_order_transfers_per_partner: Optional[bool] = field(default=None)
     """paymentId, storeId, partnerId가 같은 주문 정산건에 대한 중복 정산 지원 여부
     """
-    adjust_settlement_date_after_holiday_if_earlier: Optional[bool]
+    adjust_settlement_date_after_holiday_if_earlier: Optional[bool] = field(default=None)
     """정산일이 정산시작일보다 작거나 같을 경우 공휴일 후 영업일로 정산일 다시 계산 여부
     """
-    subtract_wht_in_payout_amount: Optional[bool]
+    subtract_wht_in_payout_amount: Optional[bool] = field(default=None)
     """지급 금액에서 원천징수세 차감 여부
     """
 
 
 def _serialize_update_platform_body_settlement_rule(obj: UpdatePlatformBodySettlementRule) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.supports_multiple_order_transfers_per_partner is not None:
         entity["supportsMultipleOrderTransfersPerPartner"] = obj.supports_multiple_order_transfers_per_partner

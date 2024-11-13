@@ -1,5 +1,7 @@
 import type { Bank } from "./../common/Bank"
 import type { Currency } from "./../common/Currency"
+import type { PlatformAccountStatus } from "./../platform/PlatformAccountStatus"
+import type { PlatformPartnerBusinessStatus } from "./../platform/PlatformPartnerBusinessStatus"
 import type { PlatformPartnerFilterInputKeyword } from "./../platform/PlatformPartnerFilterInputKeyword"
 
 /** 파트너 필터 입력 정보 */
@@ -28,6 +30,18 @@ export type PlatformPartnerFilterInput = {
 	ids?: string[]
 	/** 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 기본 계약 id를 가진 파트너만 조회합니다. */
 	contractIds?: string[]
+	/**
+	 * 플랫폼 계좌 상태
+	 *
+	 * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 계좌 상태를 가진 파트너만 조회합니다.
+	 */
+	accountStatuses?: PlatformAccountStatus[]
+	/**
+	 * 플랫폼 파트너 사업자 상태
+	 *
+	 * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 사업자 상태를 가진 파트너만 조회합니다.
+	 */
+	businessStatuses?: PlatformPartnerBusinessStatus[]
 	/** 검색 키워드 */
 	keyword?: PlatformPartnerFilterInputKeyword
 }

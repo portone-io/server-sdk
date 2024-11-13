@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
@@ -8,7 +8,6 @@ class PlatformFixedRateFee:
 
     총 금액에 정해진 비율을 곱한 만큼의 수수료를 책정합니다.
     """
-    type: Literal["FIXED_RATE"] = field(repr=False)
     rate: int
     """수수료율
 
@@ -18,6 +17,8 @@ class PlatformFixedRateFee:
 
 
 def _serialize_platform_fixed_rate_fee(obj: PlatformFixedRateFee) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "FIXED_RATE"
     entity["rate"] = obj.rate
@@ -37,4 +38,4 @@ def _deserialize_platform_fixed_rate_fee(obj: Any) -> PlatformFixedRateFee:
     rate = obj["rate"]
     if not isinstance(rate, int):
         raise ValueError(f"{repr(rate)} is not int")
-    return PlatformFixedRateFee(type, rate)
+    return PlatformFixedRateFee(rate)

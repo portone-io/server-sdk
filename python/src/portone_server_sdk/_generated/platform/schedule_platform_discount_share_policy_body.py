@@ -17,6 +17,8 @@ class SchedulePlatformDiscountSharePolicyBody:
 
 
 def _serialize_schedule_platform_discount_share_policy_body(obj: SchedulePlatformDiscountSharePolicyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_discount_share_policy_body(obj.update)
     entity["appliedAt"] = obj.applied_at

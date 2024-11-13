@@ -30,6 +30,7 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.common.max_transaction_count_reached_error import MaxTransactionCountReachedError, _deserialize_max_transaction_count_reached_error, _serialize_max_transaction_count_reached_error
 from portone_server_sdk._generated.payment.max_webhook_retry_count_reached_error import MaxWebhookRetryCountReachedError, _deserialize_max_webhook_retry_count_reached_error, _serialize_max_webhook_retry_count_reached_error
 from portone_server_sdk._generated.payment.modify_escrow_logistics_response import ModifyEscrowLogisticsResponse, _deserialize_modify_escrow_logistics_response, _serialize_modify_escrow_logistics_response
+from portone_server_sdk._generated.payment.negative_promotion_adjusted_cancel_amount_error import NegativePromotionAdjustedCancelAmountError, _deserialize_negative_promotion_adjusted_cancel_amount_error, _serialize_negative_promotion_adjusted_cancel_amount_error
 from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from portone_server_sdk._generated.payment.pay_instantly_response import PayInstantlyResponse, _deserialize_pay_instantly_response, _serialize_pay_instantly_response
 from portone_server_sdk._generated.payment.pay_with_billing_key_response import PayWithBillingKeyResponse, _deserialize_pay_with_billing_key_response, _serialize_pay_with_billing_key_response
@@ -48,10 +49,11 @@ from portone_server_sdk._generated.common.payment_product_type import PaymentPro
 from portone_server_sdk._generated.common.payment_schedule_already_exists_error import PaymentScheduleAlreadyExistsError, _deserialize_payment_schedule_already_exists_error, _serialize_payment_schedule_already_exists_error
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.payment.pre_register_payment_response import PreRegisterPaymentResponse, _deserialize_pre_register_payment_response, _serialize_pre_register_payment_response
+from portone_server_sdk._generated.payment.promotion_discount_retain_option import PromotionDiscountRetainOption, _deserialize_promotion_discount_retain_option, _serialize_promotion_discount_retain_option
+from portone_server_sdk._generated.payment.promotion_discount_retain_option_should_not_be_changed_error import PromotionDiscountRetainOptionShouldNotBeChangedError, _deserialize_promotion_discount_retain_option_should_not_be_changed_error, _serialize_promotion_discount_retain_option_should_not_be_changed_error
 from portone_server_sdk._generated.payment.promotion_pay_method_does_not_match_error import PromotionPayMethodDoesNotMatchError, _deserialize_promotion_pay_method_does_not_match_error, _serialize_promotion_pay_method_does_not_match_error
 from portone_server_sdk._generated.payment.register_store_receipt_body_item import RegisterStoreReceiptBodyItem, _deserialize_register_store_receipt_body_item, _serialize_register_store_receipt_body_item
 from portone_server_sdk._generated.payment.register_store_receipt_response import RegisterStoreReceiptResponse, _deserialize_register_store_receipt_response, _serialize_register_store_receipt_response
-from portone_server_sdk._generated.payment.remained_amount_less_than_promotion_min_payment_amount_error import RemainedAmountLessThanPromotionMinPaymentAmountError, _deserialize_remained_amount_less_than_promotion_min_payment_amount_error, _serialize_remained_amount_less_than_promotion_min_payment_amount_error
 from portone_server_sdk._generated.payment.resend_webhook_response import ResendWebhookResponse, _deserialize_resend_webhook_response, _serialize_resend_webhook_response
 from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 from portone_server_sdk._generated.payment.sum_of_parts_exceeds_cancel_amount_error import SumOfPartsExceedsCancelAmountError, _deserialize_sum_of_parts_exceeds_cancel_amount_error, _serialize_sum_of_parts_exceeds_cancel_amount_error
@@ -143,17 +145,32 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pre_register_payment_response(response.json())
     async def pre_register_payment_async(
         self,
@@ -213,17 +230,32 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pre_register_payment_response(response.json())
     def get_payment(
         self,
@@ -266,17 +298,32 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_payment(response.json())
     async def get_payment_async(
         self,
@@ -319,17 +366,32 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_payment(response.json())
     def get_payments(
         self,
@@ -381,15 +443,26 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_payments_response(response.json())
     async def get_payments_async(
         self,
@@ -441,15 +514,26 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_payments_response(response.json())
     def get_all_payments_by_cursor(
         self,
@@ -517,15 +601,26 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_all_payments_by_cursor_response(response.json())
     async def get_all_payments_by_cursor_async(
         self,
@@ -593,15 +688,26 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_all_payments_by_cursor_response(response.json())
     def cancel_payment(
         self,
@@ -612,6 +718,7 @@ class PaymentClient:
         vat_amount: Optional[int] = None,
         reason: str,
         requester: Optional[CancelRequester] = None,
+        promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
     ) -> CancelPaymentResponse:
@@ -640,6 +747,13 @@ class PaymentClient:
                 취소 요청자
 
                 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
+            promotion_discount_retain_option (PromotionDiscountRetainOption, optional):
+                프로모션 할인율 유지 옵션
+
+                프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+                RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+                RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+                값을 입력하지 않으면 RELEASE 로 취급합니다.
             current_cancellable_amount (int, optional):
                 결제 건의 취소 가능 잔액
 
@@ -665,6 +779,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            NegativePromotionAdjustedCancelAmountError: 프로모션에 의해 조정된 취소 금액이 음수인 경우
+                프로모션에 의해 조정된 취소 금액이 음수인 경우
             PaymentAlreadyCancelledError: 결제가 이미 취소된 경우
                 결제가 이미 취소된 경우
             PaymentNotFoundError: 결제 건이 존재하지 않는 경우
@@ -673,8 +789,8 @@ class PaymentClient:
                 결제가 완료되지 않은 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
-            RemainedAmountLessThanPromotionMinPaymentAmountError: 부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
-                부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
+            PromotionDiscountRetainOptionShouldNotBeChangedError: 프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
+                프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
             SumOfPartsExceedsCancelAmountError: 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
                 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -693,6 +809,8 @@ class PaymentClient:
         request_body["reason"] = reason
         if requester is not None:
             request_body["requester"] = _serialize_cancel_requester(requester)
+        if promotion_discount_retain_option is not None:
+            request_body["promotionDiscountRetainOption"] = _serialize_promotion_discount_retain_option(promotion_discount_retain_option)
         if current_cancellable_amount is not None:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
@@ -710,35 +828,92 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-                raise errors.CancellableAmountConsistencyBrokenError(_deserialize_cancellable_amount_consistency_broken_error(error_response))
-            if error_type == "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-                raise errors.CancelAmountExceedsCancellableAmountError(_deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
-            if error_type == "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
-                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
-            if error_type == "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
-                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_ALREADY_CANCELLED":
-                raise errors.PaymentAlreadyCancelledError(_deserialize_payment_already_cancelled_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
-                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-                raise errors.SumOfPartsExceedsCancelAmountError(_deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cancellable_amount_consistency_broken_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancellableAmountConsistencyBrokenError(error)
+            try:
+                error = _deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelAmountExceedsCancellableAmountError(error)
+            try:
+                error = _deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(error)
+            try:
+                error = _deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.NegativePromotionAdjustedCancelAmountError(error)
+            try:
+                error = _deserialize_payment_already_cancelled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentAlreadyCancelledError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_discount_retain_option_should_not_be_changed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionDiscountRetainOptionShouldNotBeChangedError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsCancelAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
     async def cancel_payment_async(
         self,
@@ -749,6 +924,7 @@ class PaymentClient:
         vat_amount: Optional[int] = None,
         reason: str,
         requester: Optional[CancelRequester] = None,
+        promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
     ) -> CancelPaymentResponse:
@@ -777,6 +953,13 @@ class PaymentClient:
                 취소 요청자
 
                 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
+            promotion_discount_retain_option (PromotionDiscountRetainOption, optional):
+                프로모션 할인율 유지 옵션
+
+                프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+                RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+                RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+                값을 입력하지 않으면 RELEASE 로 취급합니다.
             current_cancellable_amount (int, optional):
                 결제 건의 취소 가능 잔액
 
@@ -802,6 +985,8 @@ class PaymentClient:
                 요청된 입력 정보가 유효하지 않은 경우
 
                 허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
+            NegativePromotionAdjustedCancelAmountError: 프로모션에 의해 조정된 취소 금액이 음수인 경우
+                프로모션에 의해 조정된 취소 금액이 음수인 경우
             PaymentAlreadyCancelledError: 결제가 이미 취소된 경우
                 결제가 이미 취소된 경우
             PaymentNotFoundError: 결제 건이 존재하지 않는 경우
@@ -810,8 +995,8 @@ class PaymentClient:
                 결제가 완료되지 않은 경우
             PgProviderError: PG사에서 오류를 전달한 경우
                 PG사에서 오류를 전달한 경우
-            RemainedAmountLessThanPromotionMinPaymentAmountError: 부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
-                부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
+            PromotionDiscountRetainOptionShouldNotBeChangedError: 프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
+                프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
             SumOfPartsExceedsCancelAmountError: 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
                 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
             UnauthorizedError: 인증 정보가 올바르지 않은 경우
@@ -830,6 +1015,8 @@ class PaymentClient:
         request_body["reason"] = reason
         if requester is not None:
             request_body["requester"] = _serialize_cancel_requester(requester)
+        if promotion_discount_retain_option is not None:
+            request_body["promotionDiscountRetainOption"] = _serialize_promotion_discount_retain_option(promotion_discount_retain_option)
         if current_cancellable_amount is not None:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
@@ -847,35 +1034,92 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-                raise errors.CancellableAmountConsistencyBrokenError(_deserialize_cancellable_amount_consistency_broken_error(error_response))
-            if error_type == "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-                raise errors.CancelAmountExceedsCancellableAmountError(_deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response))
-            if error_type == "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
-                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(_deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response))
-            if error_type == "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
-                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(_deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_ALREADY_CANCELLED":
-                raise errors.PaymentAlreadyCancelledError(_deserialize_payment_already_cancelled_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
-                raise errors.RemainedAmountLessThanPromotionMinPaymentAmountError(_deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-                raise errors.SumOfPartsExceedsCancelAmountError(_deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cancellable_amount_consistency_broken_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancellableAmountConsistencyBrokenError(error)
+            try:
+                error = _deserialize_cancel_amount_exceeds_cancellable_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelAmountExceedsCancellableAmountError(error)
+            try:
+                error = _deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelTaxAmountExceedsCancellableTaxAmountError(error)
+            try:
+                error = _deserialize_cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.NegativePromotionAdjustedCancelAmountError(error)
+            try:
+                error = _deserialize_payment_already_cancelled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentAlreadyCancelledError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_discount_retain_option_should_not_be_changed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionDiscountRetainOptionShouldNotBeChangedError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsCancelAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
     def pay_with_billing_key(
         self,
@@ -1037,35 +1281,86 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
-            if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
-            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_billing_key_already_deleted_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.BillingKeyAlreadyDeletedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_discount_amount_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.DiscountAmountExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_pay_method_does_not_match_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionPayMethodDoesNotMatchError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pay_with_billing_key_response(response.json())
     async def pay_with_billing_key_async(
         self,
@@ -1227,35 +1522,86 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "BILLING_KEY_ALREADY_DELETED":
-                raise errors.BillingKeyAlreadyDeletedError(_deserialize_billing_key_already_deleted_error(error_response))
-            if error_type == "BILLING_KEY_NOT_FOUND":
-                raise errors.BillingKeyNotFoundError(_deserialize_billing_key_not_found_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
-            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_billing_key_already_deleted_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.BillingKeyAlreadyDeletedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_discount_amount_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.DiscountAmountExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_pay_method_does_not_match_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionPayMethodDoesNotMatchError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pay_with_billing_key_response(response.json())
     def pay_instantly(
         self,
@@ -1409,31 +1755,74 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
-            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_discount_amount_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.DiscountAmountExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_pay_method_does_not_match_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionPayMethodDoesNotMatchError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pay_instantly_response(response.json())
     async def pay_instantly_async(
         self,
@@ -1587,31 +1976,74 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "ALREADY_PAID":
-                raise errors.AlreadyPaidError(_deserialize_already_paid_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.DiscountAmountExceedsTotalAmountError(_deserialize_discount_amount_exceeds_total_amount_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_TRANSACTION_COUNT_REACHED":
-                raise errors.MaxTransactionCountReachedError(_deserialize_max_transaction_count_reached_error(error_response))
-            if error_type == "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-                raise errors.PaymentScheduleAlreadyExistsError(_deserialize_payment_schedule_already_exists_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-                raise errors.PromotionPayMethodDoesNotMatchError(_deserialize_promotion_pay_method_does_not_match_error(error_response))
-            if error_type == "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-                raise errors.SumOfPartsExceedsTotalAmountError(_deserialize_sum_of_parts_exceeds_total_amount_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.AlreadyPaidError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_discount_amount_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.DiscountAmountExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_promotion_pay_method_does_not_match_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PromotionPayMethodDoesNotMatchError(error)
+            try:
+                error = _deserialize_sum_of_parts_exceeds_total_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.SumOfPartsExceedsTotalAmountError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_pay_instantly_response(response.json())
     def close_virtual_account(
         self,
@@ -1658,21 +2090,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-                raise errors.PaymentNotWaitingForDepositError(_deserialize_payment_not_waiting_for_deposit_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_waiting_for_deposit_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotWaitingForDepositError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_close_virtual_account_response(response.json())
     async def close_virtual_account_async(
         self,
@@ -1719,21 +2174,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-                raise errors.PaymentNotWaitingForDepositError(_deserialize_payment_not_waiting_for_deposit_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_waiting_for_deposit_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotWaitingForDepositError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_close_virtual_account_response(response.json())
     def apply_escrow_logistics(
         self,
@@ -1808,21 +2286,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_apply_escrow_logistics_response(response.json())
     async def apply_escrow_logistics_async(
         self,
@@ -1897,21 +2398,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_apply_escrow_logistics_response(response.json())
     def modify_escrow_logistics(
         self,
@@ -1986,21 +2510,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_modify_escrow_logistics_response(response.json())
     async def modify_escrow_logistics_async(
         self,
@@ -2075,21 +2622,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_modify_escrow_logistics_response(response.json())
     def confirm_escrow(
         self,
@@ -2146,21 +2716,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_confirm_escrow_response(response.json())
     async def confirm_escrow_async(
         self,
@@ -2217,21 +2810,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_confirm_escrow_response(response.json())
     def resend_webhook(
         self,
@@ -2287,21 +2903,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-                raise errors.MaxWebhookRetryCountReachedError(_deserialize_max_webhook_retry_count_reached_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            if error_type == "WEBHOOK_NOT_FOUND":
-                raise errors.WebhookNotFoundError(_deserialize_webhook_not_found_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_webhook_retry_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxWebhookRetryCountReachedError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            try:
+                error = _deserialize_webhook_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.WebhookNotFoundError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_resend_webhook_response(response.json())
     async def resend_webhook_async(
         self,
@@ -2357,21 +2996,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-                raise errors.MaxWebhookRetryCountReachedError(_deserialize_max_webhook_retry_count_reached_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            if error_type == "WEBHOOK_NOT_FOUND":
-                raise errors.WebhookNotFoundError(_deserialize_webhook_not_found_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_max_webhook_retry_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.MaxWebhookRetryCountReachedError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            try:
+                error = _deserialize_webhook_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.WebhookNotFoundError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_resend_webhook_response(response.json())
     def register_store_receipt(
         self,
@@ -2426,21 +3088,44 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_register_store_receipt_response(response.json())
     async def register_store_receipt_async(
         self,
@@ -2495,19 +3180,42 @@ class PaymentClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PAYMENT_NOT_FOUND":
-                raise errors.PaymentNotFoundError(_deserialize_payment_not_found_error(error_response))
-            if error_type == "PAYMENT_NOT_PAID":
-                raise errors.PaymentNotPaidError(_deserialize_payment_not_paid_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_register_store_receipt_response(response.json())

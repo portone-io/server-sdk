@@ -8,6 +8,8 @@ class PlatformPaymentMethodMobileInput:
 
 
 def _serialize_platform_payment_method_mobile_input(obj: PlatformPaymentMethodMobileInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

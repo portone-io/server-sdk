@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.transfer.platform_transfer_filter_input import PlatformTransferFilterInput, _deserialize_platform_transfer_filter_input, _serialize_platform_transfer_filter_input
@@ -6,15 +7,17 @@ from portone_server_sdk._generated.platform.transfer.platform_transfer_sheet_fie
 
 @dataclass
 class DownloadPlatformTransferSheetBody:
-    filter: Optional[PlatformTransferFilterInput]
-    fields: Optional[list[PlatformTransferSheetField]]
+    filter: Optional[PlatformTransferFilterInput] = field(default=None)
+    fields: Optional[list[PlatformTransferSheetField]] = field(default=None)
     """다운로드 할 시트 컬럼
     """
-    transfer_user_defined_property_keys: Optional[list[str]]
-    partner_user_defined_property_keys: Optional[list[str]]
+    transfer_user_defined_property_keys: Optional[list[str]] = field(default=None)
+    partner_user_defined_property_keys: Optional[list[str]] = field(default=None)
 
 
 def _serialize_download_platform_transfer_sheet_body(obj: DownloadPlatformTransferSheetBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.filter is not None:
         entity["filter"] = _serialize_platform_transfer_filter_input(obj.filter)

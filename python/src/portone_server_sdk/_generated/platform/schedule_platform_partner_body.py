@@ -17,6 +17,8 @@ class SchedulePlatformPartnerBody:
 
 
 def _serialize_schedule_platform_partner_body(obj: SchedulePlatformPartnerBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_partner_body(obj.update)
     entity["appliedAt"] = obj.applied_at

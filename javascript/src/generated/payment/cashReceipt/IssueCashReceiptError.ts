@@ -12,3 +12,4 @@ export type IssueCashReceiptError =
 	| InvalidRequestError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

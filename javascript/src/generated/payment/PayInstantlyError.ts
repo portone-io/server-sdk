@@ -22,3 +22,4 @@ export type PayInstantlyError =
 	| PromotionPayMethodDoesNotMatchError
 	| SumOfPartsExceedsTotalAmountError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

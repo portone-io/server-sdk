@@ -16,6 +16,8 @@ class PlatformUserDefinedPropertyKeyValue:
 
 
 def _serialize_platform_user_defined_property_key_value(obj: PlatformUserDefinedPropertyKeyValue) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["key"] = obj.key
     entity["value"] = _serialize_platform_user_defined_property_value(obj.value)

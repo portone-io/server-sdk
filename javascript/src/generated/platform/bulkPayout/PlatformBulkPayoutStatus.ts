@@ -6,3 +6,4 @@ export type PlatformBulkPayoutStatus =
 	| "CANCELLED"
 	| "STOPPED"
 	| "COMPLETED"
+	| string & {}

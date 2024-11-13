@@ -8,3 +8,4 @@ export type GetIdentityVerificationError =
 	| IdentityVerificationNotFoundError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

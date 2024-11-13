@@ -10,27 +10,29 @@ from portone_server_sdk._generated.common.max_transaction_count_reached_error im
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-SendIdentityVerificationError = Union[ChannelNotFoundError, ForbiddenError, IdentityVerificationAlreadySentError, IdentityVerificationAlreadyVerifiedError, IdentityVerificationNotFoundError, InvalidRequestError, MaxTransactionCountReachedError, PgProviderError, UnauthorizedError]
+SendIdentityVerificationError = Union[ChannelNotFoundError, ForbiddenError, IdentityVerificationAlreadySentError, IdentityVerificationAlreadyVerifiedError, IdentityVerificationNotFoundError, InvalidRequestError, MaxTransactionCountReachedError, PgProviderError, UnauthorizedError, dict]
 
 
 def _serialize_send_identity_verification_error(obj: SendIdentityVerificationError) -> Any:
-    if obj.type == "CHANNEL_NOT_FOUND":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ChannelNotFoundError):
         return _serialize_channel_not_found_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_ALREADY_SENT":
+    if isinstance(obj, IdentityVerificationAlreadySentError):
         return _serialize_identity_verification_already_sent_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
+    if isinstance(obj, IdentityVerificationAlreadyVerifiedError):
         return _serialize_identity_verification_already_verified_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_NOT_FOUND":
+    if isinstance(obj, IdentityVerificationNotFoundError):
         return _serialize_identity_verification_not_found_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "MAX_TRANSACTION_COUNT_REACHED":
+    if isinstance(obj, MaxTransactionCountReachedError):
         return _serialize_max_transaction_count_reached_error(obj)
-    if obj.type == "PG_PROVIDER":
+    if isinstance(obj, PgProviderError):
         return _serialize_pg_provider_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -71,4 +73,4 @@ def _deserialize_send_identity_verification_error(obj: Any) -> SendIdentityVerif
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not SendIdentityVerificationError")
+    return obj

@@ -19,3 +19,4 @@ export type PlatformPaymentMethod =
 	| PlatformPaymentMethodTransfer
 	/** 가상계좌 */
 	| PlatformPaymentMethodVirtualAccount
+	| { readonly type: unique symbol }

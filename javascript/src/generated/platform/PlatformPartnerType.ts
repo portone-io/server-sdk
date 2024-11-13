@@ -10,3 +10,4 @@ export type PlatformPartnerType =
 	| PlatformPartnerTypeNonWhtPayer
 	/** 원천징수 대상자 파트너 정보 */
 	| PlatformPartnerTypeWhtPayer
+	| { readonly type: unique symbol }

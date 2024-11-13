@@ -4,17 +4,19 @@ from portone_server_sdk._generated.payment.cash_receipt.cancelled_cash_receipt i
 from portone_server_sdk._generated.payment.cash_receipt.issue_failed_cash_receipt import IssueFailedCashReceipt, _deserialize_issue_failed_cash_receipt, _serialize_issue_failed_cash_receipt
 from portone_server_sdk._generated.payment.cash_receipt.issued_cash_receipt import IssuedCashReceipt, _deserialize_issued_cash_receipt, _serialize_issued_cash_receipt
 
-CashReceipt = Union[CancelledCashReceipt, IssuedCashReceipt, IssueFailedCashReceipt]
+CashReceipt = Union[CancelledCashReceipt, IssuedCashReceipt, IssueFailedCashReceipt, dict]
 """현금영수증 내역
 """
 
 
 def _serialize_cash_receipt(obj: CashReceipt) -> Any:
-    if obj.status == "CANCELLED":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, CancelledCashReceipt):
         return _serialize_cancelled_cash_receipt(obj)
-    if obj.status == "ISSUED":
+    if isinstance(obj, IssuedCashReceipt):
         return _serialize_issued_cash_receipt(obj)
-    if obj.status == "ISSUE_FAILED":
+    if isinstance(obj, IssueFailedCashReceipt):
         return _serialize_issue_failed_cash_receipt(obj)
 
 
@@ -31,4 +33,4 @@ def _deserialize_cash_receipt(obj: Any) -> CashReceipt:
         return _deserialize_issue_failed_cash_receipt(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CashReceipt")
+    return obj

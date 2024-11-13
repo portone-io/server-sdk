@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class RequestedPaymentCancellation:
     """취소 요청 상태
     """
-    status: Literal["REQUESTED"] = field(repr=False)
     """결제 취소 내역 상태
     """
     id: str
@@ -31,20 +31,22 @@ class RequestedPaymentCancellation:
     """취소 요청 시점
     (RFC 3339 date-time)
     """
-    pg_cancellation_id: Optional[str]
+    pg_cancellation_id: Optional[str] = field(default=None)
     """PG사 결제 취소 내역 아이디
     """
-    easy_pay_discount_amount: Optional[int]
+    easy_pay_discount_amount: Optional[int] = field(default=None)
     """적립형 포인트의 환불 금액
     (int64)
     """
-    cancelled_at: Optional[str]
+    cancelled_at: Optional[str] = field(default=None)
     """취소 시점
     (RFC 3339 date-time)
     """
 
 
 def _serialize_requested_payment_cancellation(obj: RequestedPaymentCancellation) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "REQUESTED"
     entity["id"] = obj.id
@@ -118,4 +120,4 @@ def _deserialize_requested_payment_cancellation(obj: Any) -> RequestedPaymentCan
             raise ValueError(f"{repr(cancelled_at)} is not str")
     else:
         cancelled_at = None
-    return RequestedPaymentCancellation(status, id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at)
+    return RequestedPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at)

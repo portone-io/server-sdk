@@ -12,6 +12,8 @@ class PaymentTextSearch:
 
 
 def _serialize_payment_text_search(obj: PaymentTextSearch) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["field"] = _serialize_payment_text_search_field(obj.field)
     entity["value"] = obj.value

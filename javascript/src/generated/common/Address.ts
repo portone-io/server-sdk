@@ -11,3 +11,4 @@ export type Address =
 	| OneLineAddress
 	/** 분리 형식 */
 	| SeparatedAddress
+	| { readonly type: unique symbol }

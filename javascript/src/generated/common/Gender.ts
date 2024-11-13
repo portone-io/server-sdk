@@ -6,3 +6,4 @@ export type Gender =
 	| "FEMALE"
 	/** 그 외 성별 */
 	| "OTHER"
+	| string & {}

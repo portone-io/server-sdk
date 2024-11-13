@@ -4,15 +4,17 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-GetPlatformError = Union[InvalidRequestError, PlatformNotEnabledError, UnauthorizedError]
+GetPlatformError = Union[InvalidRequestError, PlatformNotEnabledError, UnauthorizedError, dict]
 
 
 def _serialize_get_platform_error(obj: GetPlatformError) -> Any:
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -29,4 +31,4 @@ def _deserialize_get_platform_error(obj: Any) -> GetPlatformError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformError")
+    return obj

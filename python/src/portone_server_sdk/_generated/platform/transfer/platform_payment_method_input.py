@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.transfer.platform_payment_method_card_input import PlatformPaymentMethodCardInput, _deserialize_platform_payment_method_card_input, _serialize_platform_payment_method_card_input
@@ -12,27 +13,29 @@ from portone_server_sdk._generated.platform.transfer.platform_payment_method_vir
 class PlatformPaymentMethodInput:
     """결제 수단 입력 정보
     """
-    card: Optional[PlatformPaymentMethodCardInput]
+    card: Optional[PlatformPaymentMethodCardInput] = field(default=None)
     """카드
     """
-    transfer: Optional[PlatformPaymentMethodTransferInput]
+    transfer: Optional[PlatformPaymentMethodTransferInput] = field(default=None)
     """계좌이체
     """
-    virtual_account: Optional[PlatformPaymentMethodVirtualAccountInput]
+    virtual_account: Optional[PlatformPaymentMethodVirtualAccountInput] = field(default=None)
     """가상계좌
     """
-    gift_certificate: Optional[PlatformPaymentMethodGiftCertificateInput]
+    gift_certificate: Optional[PlatformPaymentMethodGiftCertificateInput] = field(default=None)
     """상품권
     """
-    mobile: Optional[PlatformPaymentMethodMobileInput]
+    mobile: Optional[PlatformPaymentMethodMobileInput] = field(default=None)
     """모바일
     """
-    easy_pay: Optional[PlatformPaymentMethodEasyPayInput]
+    easy_pay: Optional[PlatformPaymentMethodEasyPayInput] = field(default=None)
     """간편 결제
     """
 
 
 def _serialize_platform_payment_method_input(obj: PlatformPaymentMethodInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.card is not None:
         entity["card"] = _serialize_platform_payment_method_card_input(obj.card)

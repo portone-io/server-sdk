@@ -12,3 +12,4 @@ export type CancelCashReceiptError =
 	| InvalidRequestError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

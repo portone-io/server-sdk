@@ -12,3 +12,4 @@ export type CreatePlatformManualTransferError =
 	| PlatformPartnerNotFoundError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

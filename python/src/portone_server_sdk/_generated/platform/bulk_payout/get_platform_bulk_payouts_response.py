@@ -13,6 +13,8 @@ class GetPlatformBulkPayoutsResponse:
 
 
 def _serialize_get_platform_bulk_payouts_response(obj: GetPlatformBulkPayoutsResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_bulk_payout, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

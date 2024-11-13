@@ -16,6 +16,8 @@ class PaymentInstallment:
 
 
 def _serialize_payment_installment(obj: PaymentInstallment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["month"] = obj.month
     entity["isInterestFree"] = obj.is_interest_free

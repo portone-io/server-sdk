@@ -7,3 +7,4 @@ export type BillingKeyInfo =
 	| DeletedBillingKeyInfo
 	/** 발급 완료 */
 	| IssuedBillingKeyInfo
+	| { readonly status: unique symbol }

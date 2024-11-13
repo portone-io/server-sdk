@@ -17,6 +17,8 @@ class GetPlatformDiscountSharePoliciesResponse:
 
 
 def _serialize_get_platform_discount_share_policies_response(obj: GetPlatformDiscountSharePoliciesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_discount_share_policy, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

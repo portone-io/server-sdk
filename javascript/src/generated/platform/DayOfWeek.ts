@@ -7,3 +7,4 @@ export type DayOfWeek =
 	| "THU"
 	| "FRI"
 	| "SAT"
+	| string & {}

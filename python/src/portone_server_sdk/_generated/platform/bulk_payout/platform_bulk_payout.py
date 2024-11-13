@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_stats import PlatformBulkPayoutStats, _deserialize_platform_bulk_payout_stats, _serialize_platform_bulk_payout_stats
@@ -29,12 +30,14 @@ class PlatformBulkPayout:
     updated_at: str
     """(RFC 3339 date-time)
     """
-    scheduled_at: Optional[str]
+    scheduled_at: Optional[str] = field(default=None)
     """(RFC 3339 date-time)
     """
 
 
 def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

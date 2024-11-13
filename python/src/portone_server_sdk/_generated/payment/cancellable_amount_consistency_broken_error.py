@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class CancellableAmountConsistencyBrokenError:
     """취소 가능 잔액 검증에 실패한 경우
     """
-    type: Literal["CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_cancellable_amount_consistency_broken_error(obj: CancellableAmountConsistencyBrokenError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_cancellable_amount_consistency_broken_error(obj: Any) -> Cancel
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return CancellableAmountConsistencyBrokenError(type, message)
+    return CancellableAmountConsistencyBrokenError(message)

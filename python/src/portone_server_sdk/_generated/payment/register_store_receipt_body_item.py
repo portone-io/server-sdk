@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
@@ -20,21 +21,23 @@ class RegisterStoreReceiptBodyItem:
     currency: Currency
     """통화
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    vat_amount: Optional[int]
+    vat_amount: Optional[int] = field(default=None)
     """부가세액
     (int64)
     """
-    supply_amount: Optional[int]
+    supply_amount: Optional[int] = field(default=None)
     """공급가액
     (int64)
     """
 
 
 def _serialize_register_store_receipt_body_item(obj: RegisterStoreReceiptBodyItem) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["storeBusinessRegistrationNumber"] = obj.store_business_registration_number
     entity["storeName"] = obj.store_name

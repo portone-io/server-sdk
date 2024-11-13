@@ -6,3 +6,4 @@ export type PlatformPartnerSettlementType =
 	| "ORDER"
 	/** 주문 취소 정산 */
 	| "ORDER_CANCEL"
+	| string & {}

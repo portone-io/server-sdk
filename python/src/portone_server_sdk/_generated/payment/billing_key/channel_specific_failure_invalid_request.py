@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
@@ -9,12 +10,13 @@ class ChannelSpecificFailureInvalidRequest:
 
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
     """
-    type: Literal["INVALID_REQUEST"] = field(repr=False)
     channel: SelectedChannel
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_channel_specific_failure_invalid_request(obj: ChannelSpecificFailureInvalidRequest) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "INVALID_REQUEST"
     entity["channel"] = _serialize_selected_channel(obj.channel)
@@ -41,4 +43,4 @@ def _deserialize_channel_specific_failure_invalid_request(obj: Any) -> ChannelSp
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return ChannelSpecificFailureInvalidRequest(type, channel, message)
+    return ChannelSpecificFailureInvalidRequest(channel, message)

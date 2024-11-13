@@ -12,3 +12,4 @@ export type ArchivePlatformDiscountSharePolicyError =
 	| PlatformDiscountSharePolicyNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

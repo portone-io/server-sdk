@@ -10,3 +10,4 @@ export type RescheduleDiscountSharePolicyError =
 	| PlatformDiscountSharePolicyNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

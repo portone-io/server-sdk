@@ -2,6 +2,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { entities as webhookEntities } from "../common/webhook.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
@@ -9,6 +10,7 @@ import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
+import { generateEntity as generateWebhookEntity } from "./webhook.ts"
 
 /**
  * @returns entrypoints
@@ -24,13 +26,13 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   collectErrors(pack, entityMap, oneOfErrors, variantErrors)
   generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
   generateEntityDirectory(srcPath, pack, categoryMap, ".")
+  generateWebhook(srcPath)
   generateClient(srcPath, pack)
   generateIndex(srcPath, pack)
   const omitEntities = oneOfErrors.union(variantErrors)
   generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities, 0)
-  const ignoreEntrypoints = new Set(["webhook"])
   const entrypoints = [
-    ...new Set(categoryMap.values()).difference(ignoreEntrypoints),
+    ...categoryMap.values(),
   ].map((category) => category.replace(".", "/"))
   entrypoints.sort()
   return entrypoints
@@ -50,6 +52,24 @@ function generateIndex(srcPath: string, pack: Package) {
   Deno.writeTextFileSync(path.join(srcPath, "index.ts"), writer.content)
 }
 
+function generateWebhook(srcPath: string) {
+  const webhookPath = path.join(srcPath, "webhook")
+  fs.ensureDirSync(webhookPath)
+  const writer = TypescriptWriter()
+  for (
+    const entity of webhookEntities.toSorted((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+  ) {
+    const entityPath = path.join(webhookPath, `${entity.name}.ts`)
+    Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
+    writer.writeLine(
+      `export type { ${entity.name} } from "./${entity.name}.ts"`,
+    )
+  }
+  Deno.writeTextFileSync(path.join(webhookPath, "index.ts"), writer.content)
+}
+
 const PortOneError = `
 export abstract class PortOneError extends Error {
   abstract readonly _tag: string;
@@ -65,7 +85,7 @@ export abstract class PortOneError extends Error {
 export class UnknownError extends PortOneError {
   readonly _tag = "PortOneUnknownError"
 
-  constructor(cause: never) {
+  constructor(cause: unknown) {
     super("알 수 없는 에러가 발생했습니다.", { cause })
     Object.setPrototypeOf(this, UnknownError.prototype)
   }

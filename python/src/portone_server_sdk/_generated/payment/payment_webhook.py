@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.payment_webhook_payment_status import PaymentWebhookPaymentStatus, _deserialize_payment_webhook_payment_status, _serialize_payment_webhook_payment_status
@@ -19,43 +20,45 @@ class PaymentWebhook:
 
     V1 결제 건인 경우, 값이 존재하지 않습니다.
     """
-    payment_status: Optional[PaymentWebhookPaymentStatus]
+    payment_status: Optional[PaymentWebhookPaymentStatus] = field(default=None)
     """웹훅 발송 시 결제 건 상태
 
     V1 결제 건인 경우, 값이 존재하지 않습니다.
     """
-    status: Optional[PaymentWebhookStatus]
+    status: Optional[PaymentWebhookStatus] = field(default=None)
     """웹훅 상태
     """
-    is_async: Optional[bool]
+    is_async: Optional[bool] = field(default=None)
     """비동기 웹훅 여부
 
     V1 결제 건인 경우, 값이 존재하지 않습니다.
     """
-    current_execution_count: Optional[int]
+    current_execution_count: Optional[int] = field(default=None)
     """현재 발송 횟수
     (int32)
     """
-    max_execution_count: Optional[int]
+    max_execution_count: Optional[int] = field(default=None)
     """최대 발송 횟수
     (int32)
     """
-    trigger: Optional[PaymentWebhookTrigger]
+    trigger: Optional[PaymentWebhookTrigger] = field(default=None)
     """웹훅 실행 맥락
     """
-    request: Optional[PaymentWebhookRequest]
+    request: Optional[PaymentWebhookRequest] = field(default=None)
     """웹훅 요청 정보
     """
-    response: Optional[PaymentWebhookResponse]
+    response: Optional[PaymentWebhookResponse] = field(default=None)
     """웹훅 응답 정보
     """
-    triggered_at: Optional[str]
+    triggered_at: Optional[str] = field(default=None)
     """웹훅 처리 시작 시점
     (RFC 3339 date-time)
     """
 
 
 def _serialize_payment_webhook(obj: PaymentWebhook) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["url"] = obj.url

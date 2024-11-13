@@ -24,6 +24,7 @@ from portone_server_sdk._generated.identity_verification.identity_verification_n
 from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError as InternalInvalidRequestError
 from portone_server_sdk._generated.common.max_transaction_count_reached_error import MaxTransactionCountReachedError as InternalMaxTransactionCountReachedError
 from portone_server_sdk._generated.payment.max_webhook_retry_count_reached_error import MaxWebhookRetryCountReachedError as InternalMaxWebhookRetryCountReachedError
+from portone_server_sdk._generated.payment.negative_promotion_adjusted_cancel_amount_error import NegativePromotionAdjustedCancelAmountError as InternalNegativePromotionAdjustedCancelAmountError
 from portone_server_sdk._generated.payment.payment_already_cancelled_error import PaymentAlreadyCancelledError as InternalPaymentAlreadyCancelledError
 from portone_server_sdk._generated.payment.payment_not_found_error import PaymentNotFoundError as InternalPaymentNotFoundError
 from portone_server_sdk._generated.payment.payment_not_paid_error import PaymentNotPaidError as InternalPaymentNotPaidError
@@ -97,9 +98,9 @@ from portone_server_sdk._generated.platform.transfer.platform_transfer_discount_
 from portone_server_sdk._generated.platform.transfer.platform_transfer_non_deletable_status_error import PlatformTransferNonDeletableStatusError as InternalPlatformTransferNonDeletableStatusError
 from portone_server_sdk._generated.platform.transfer.platform_transfer_not_found_error import PlatformTransferNotFoundError as InternalPlatformTransferNotFoundError
 from portone_server_sdk._generated.platform.platform_user_defined_property_not_found_error import PlatformUserDefinedPropertyNotFoundError as InternalPlatformUserDefinedPropertyNotFoundError
+from portone_server_sdk._generated.payment.promotion_discount_retain_option_should_not_be_changed_error import PromotionDiscountRetainOptionShouldNotBeChangedError as InternalPromotionDiscountRetainOptionShouldNotBeChangedError
 from portone_server_sdk._generated.payment.promotion.promotion_not_found_error import PromotionNotFoundError as InternalPromotionNotFoundError
 from portone_server_sdk._generated.payment.promotion_pay_method_does_not_match_error import PromotionPayMethodDoesNotMatchError as InternalPromotionPayMethodDoesNotMatchError
-from portone_server_sdk._generated.payment.remained_amount_less_than_promotion_min_payment_amount_error import RemainedAmountLessThanPromotionMinPaymentAmountError as InternalRemainedAmountLessThanPromotionMinPaymentAmountError
 from portone_server_sdk._generated.payment.sum_of_parts_exceeds_cancel_amount_error import SumOfPartsExceedsCancelAmountError as InternalSumOfPartsExceedsCancelAmountError
 from portone_server_sdk._generated.common.sum_of_parts_exceeds_total_amount_error import SumOfPartsExceedsTotalAmountError as InternalSumOfPartsExceedsTotalAmountError
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError as InternalUnauthorizedError
@@ -334,6 +335,15 @@ class MaxWebhookRetryCountReachedError(PortOneError):
     _error: InitVar[InternalMaxWebhookRetryCountReachedError]
 
     def __post_init__(self, _error: InternalMaxWebhookRetryCountReachedError) -> None:
+        self.message = _error.message
+
+@dataclass
+class NegativePromotionAdjustedCancelAmountError(PortOneError):
+    """프로모션에 의해 조정된 취소 금액이 음수인 경우
+    """
+    _error: InitVar[InternalNegativePromotionAdjustedCancelAmountError]
+
+    def __post_init__(self, _error: InternalNegativePromotionAdjustedCancelAmountError) -> None:
         self.message = _error.message
 
 @dataclass
@@ -1050,6 +1060,15 @@ class PlatformUserDefinedPropertyNotFoundError(PortOneError):
         self.message = _error.message
 
 @dataclass
+class PromotionDiscountRetainOptionShouldNotBeChangedError(PortOneError):
+    """프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
+    """
+    _error: InitVar[InternalPromotionDiscountRetainOptionShouldNotBeChangedError]
+
+    def __post_init__(self, _error: InternalPromotionDiscountRetainOptionShouldNotBeChangedError) -> None:
+        self.message = _error.message
+
+@dataclass
 class PromotionNotFoundError(PortOneError):
     """프로모션이 존재하지 않는 경우
     """
@@ -1065,15 +1084,6 @@ class PromotionPayMethodDoesNotMatchError(PortOneError):
     _error: InitVar[InternalPromotionPayMethodDoesNotMatchError]
 
     def __post_init__(self, _error: InternalPromotionPayMethodDoesNotMatchError) -> None:
-        self.message = _error.message
-
-@dataclass
-class RemainedAmountLessThanPromotionMinPaymentAmountError(PortOneError):
-    """부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
-    """
-    _error: InitVar[InternalRemainedAmountLessThanPromotionMinPaymentAmountError]
-
-    def __post_init__(self, _error: InternalRemainedAmountLessThanPromotionMinPaymentAmountError) -> None:
         self.message = _error.message
 
 @dataclass

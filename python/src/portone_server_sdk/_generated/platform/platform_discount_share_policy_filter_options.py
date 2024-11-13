@@ -12,6 +12,8 @@ class PlatformDiscountSharePolicyFilterOptions:
 
 
 def _serialize_platform_discount_share_policy_filter_options(obj: PlatformDiscountSharePolicyFilterOptions) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partnerShareRates"] = obj.partner_share_rates
     return entity

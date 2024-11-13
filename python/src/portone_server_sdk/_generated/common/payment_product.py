@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -22,17 +23,19 @@ class PaymentProduct:
     """주문 수량
     (int32)
     """
-    tag: Optional[str]
+    tag: Optional[str] = field(default=None)
     """상품 태그
 
     카테고리 등으로 활용될 수 있습니다.
     """
-    code: Optional[str]
+    code: Optional[str] = field(default=None)
     """상품 코드
     """
 
 
 def _serialize_payment_product(obj: PaymentProduct) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["name"] = obj.name

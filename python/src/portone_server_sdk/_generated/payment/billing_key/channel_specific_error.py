@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.billing_key.channel_specific_failure import ChannelSpecificFailure, _deserialize_channel_specific_failure, _serialize_channel_specific_failure
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
@@ -8,15 +9,16 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class ChannelSpecificError:
     """여러 채널을 지정한 요청에서, 채널 각각에서 오류가 발생한 경우
     """
-    type: Literal["CHANNEL_SPECIFIC"] = field(repr=False)
     failures: list[ChannelSpecificFailure]
     succeeded_channels: list[SelectedChannel]
     """(결제, 본인인증 등에) 선택된 채널 정보
     """
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_channel_specific_error(obj: ChannelSpecificError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "CHANNEL_SPECIFIC"
     entity["failures"] = list(map(_serialize_channel_specific_failure, obj.failures))
@@ -56,4 +58,4 @@ def _deserialize_channel_specific_error(obj: Any) -> ChannelSpecificError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return ChannelSpecificError(type, failures, succeeded_channels, message)
+    return ChannelSpecificError(failures, succeeded_channels, message)

@@ -3,15 +3,17 @@ from typing import Any, Optional, Union
 from portone_server_sdk._generated.payment.billing_key.deleted_billing_key_info import DeletedBillingKeyInfo, _deserialize_deleted_billing_key_info, _serialize_deleted_billing_key_info
 from portone_server_sdk._generated.payment.billing_key.issued_billing_key_info import IssuedBillingKeyInfo, _deserialize_issued_billing_key_info, _serialize_issued_billing_key_info
 
-BillingKeyInfo = Union[DeletedBillingKeyInfo, IssuedBillingKeyInfo]
+BillingKeyInfo = Union[DeletedBillingKeyInfo, IssuedBillingKeyInfo, dict]
 """빌링키 정보
 """
 
 
 def _serialize_billing_key_info(obj: BillingKeyInfo) -> Any:
-    if obj.status == "DELETED":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, DeletedBillingKeyInfo):
         return _serialize_deleted_billing_key_info(obj)
-    if obj.status == "ISSUED":
+    if isinstance(obj, IssuedBillingKeyInfo):
         return _serialize_issued_billing_key_info(obj)
 
 
@@ -24,4 +26,4 @@ def _deserialize_billing_key_info(obj: Any) -> BillingKeyInfo:
         return _deserialize_issued_billing_key_info(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not BillingKeyInfo")
+    return obj

@@ -12,3 +12,4 @@ export type UpdatePlatformContractError =
 	| PlatformContractNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

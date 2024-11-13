@@ -8,3 +8,4 @@ export type InstantPaymentMethodInputVirtualAccountOptionType =
 	| "NORMAL"
 	/** 고정식 가상계좌 */
 	| "FIXED"
+	| string & {}

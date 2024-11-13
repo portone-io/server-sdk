@@ -106,6 +106,7 @@ export function generateEntity(
         writeDescription(writer, title)
         writer.writeLine(`| ${name}`)
       }
+      writer.writeLine(`| { readonly ${definition.property}: unique symbol }`)
       writer.outdent()
       break
     case "enum":
@@ -117,6 +118,7 @@ export function generateEntity(
         writeDescription(writer, mergedDescription)
         writer.writeLine(`| "${value}"`)
       }
+      writer.writeLine("| string & {}")
       writer.outdent()
       break
     case "array":

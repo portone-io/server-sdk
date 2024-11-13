@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformAccountVerificationNotFoundError:
     """파트너 계좌 검증 아이디를 찾을 수 없는 경우
     """
-    type: Literal["PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_account_verification_not_found_error(obj: PlatformAccountVerificationNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_account_verification_not_found_error(obj: Any) -> Plat
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformAccountVerificationNotFoundError(type, message)
+    return PlatformAccountVerificationNotFoundError(message)

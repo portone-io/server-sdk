@@ -10,3 +10,4 @@ export type PaymentMethodEasyPayMethod =
 	| PaymentMethodEasyPayMethodCharge
 	/** 계좌 이체 상세 정보 */
 	| PaymentMethodTransfer
+	| { readonly type: unique symbol }

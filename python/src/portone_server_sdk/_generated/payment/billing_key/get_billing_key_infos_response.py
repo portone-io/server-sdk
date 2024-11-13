@@ -17,6 +17,8 @@ class GetBillingKeyInfosResponse:
 
 
 def _serialize_get_billing_key_infos_response(obj: GetBillingKeyInfosResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_billing_key_info, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformSettlementAmountExceededError:
     """정산 가능한 금액을 초과한 경우
     """
-    type: Literal["PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED"] = field(repr=False)
     requested_amount: int
     """요청 받은 금액
     (int64)
@@ -15,8 +15,8 @@ class PlatformSettlementAmountExceededError:
     """초과한 금액
     (int64)
     """
-    message: Optional[str]
-    product_id: Optional[str]
+    message: Optional[str] = field(default=None)
+    product_id: Optional[str] = field(default=None)
     """상품 아이디
 
     주문 항목의 상품 아이디입니다.
@@ -24,6 +24,8 @@ class PlatformSettlementAmountExceededError:
 
 
 def _serialize_platform_settlement_amount_exceeded_error(obj: PlatformSettlementAmountExceededError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED"
     entity["requestedAmount"] = obj.requested_amount
@@ -65,4 +67,4 @@ def _deserialize_platform_settlement_amount_exceeded_error(obj: Any) -> Platform
             raise ValueError(f"{repr(product_id)} is not str")
     else:
         product_id = None
-    return PlatformSettlementAmountExceededError(type, requested_amount, allowed_amount, message, product_id)
+    return PlatformSettlementAmountExceededError(requested_amount, allowed_amount, message, product_id)

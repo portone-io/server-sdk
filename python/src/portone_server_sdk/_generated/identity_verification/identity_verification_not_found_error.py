@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class IdentityVerificationNotFoundError:
     """요청된 본인인증 건이 존재하지 않는 경우
     """
-    type: Literal["IDENTITY_VERIFICATION_NOT_FOUND"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_identity_verification_not_found_error(obj: IdentityVerificationNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "IDENTITY_VERIFICATION_NOT_FOUND"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_identity_verification_not_found_error(obj: Any) -> IdentityVeri
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return IdentityVerificationNotFoundError(type, message)
+    return IdentityVerificationNotFoundError(message)

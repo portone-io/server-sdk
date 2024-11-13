@@ -4,3 +4,4 @@ import type { PlatformTransferSummaryPortOnePayment } from "./../../platform/tra
 export type PlatformTransferSummaryPayment =
 	| PlatformTransferSummaryExternalPayment
 	| PlatformTransferSummaryPortOnePayment
+	| { readonly type: unique symbol }

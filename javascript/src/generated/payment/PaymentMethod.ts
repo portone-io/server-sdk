@@ -19,3 +19,4 @@ export type PaymentMethod =
 	| PaymentMethodTransfer
 	/** 가상계좌 상세 정보 */
 	| PaymentMethodVirtualAccount
+	| { readonly type: unique symbol }

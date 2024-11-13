@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.register_store_receipt_body_item import RegisterStoreReceiptBodyItem, _deserialize_register_store_receipt_body_item, _serialize_register_store_receipt_body_item
@@ -10,12 +11,14 @@ class RegisterStoreReceiptBody:
     items: list[RegisterStoreReceiptBodyItem]
     """하위 상점 거래 목록
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
     """
 
 
 def _serialize_register_store_receipt_body(obj: RegisterStoreReceiptBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_register_store_receipt_body_item, obj.items))
     if obj.store_id is not None:

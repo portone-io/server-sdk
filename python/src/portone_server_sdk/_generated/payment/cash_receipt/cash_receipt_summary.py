@@ -18,6 +18,8 @@ class CashReceiptSummary:
 
 
 def _serialize_cash_receipt_summary(obj: CashReceiptSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["issueNumber"] = obj.issue_number
     entity["url"] = obj.url

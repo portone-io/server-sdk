@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -8,18 +9,20 @@ class UpdatePlatformBodySettlementFormula:
 
     값이 명시되지 않은 필드는 업데이트하지 않습니다.
     """
-    platform_fee: Optional[str]
+    platform_fee: Optional[str] = field(default=None)
     """플랫폼 수수료 계산식
     """
-    discount_share: Optional[str]
+    discount_share: Optional[str] = field(default=None)
     """할인 분담액 계산식
     """
-    additional_fee: Optional[str]
+    additional_fee: Optional[str] = field(default=None)
     """추가 수수료 계산식
     """
 
 
 def _serialize_update_platform_body_settlement_formula(obj: UpdatePlatformBodySettlementFormula) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.platform_fee is not None:
         entity["platformFee"] = obj.platform_fee

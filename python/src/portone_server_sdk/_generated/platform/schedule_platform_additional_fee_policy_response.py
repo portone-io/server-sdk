@@ -13,6 +13,8 @@ class SchedulePlatformAdditionalFeePolicyResponse:
 
 
 def _serialize_schedule_platform_additional_fee_policy_response(obj: SchedulePlatformAdditionalFeePolicyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["scheduledAdditionalFeePolicy"] = _serialize_platform_additional_fee_policy(obj.scheduled_additional_fee_policy)
     return entity

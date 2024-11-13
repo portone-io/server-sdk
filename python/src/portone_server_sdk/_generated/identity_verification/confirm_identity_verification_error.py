@@ -8,23 +8,25 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-ConfirmIdentityVerificationError = Union[ForbiddenError, IdentityVerificationAlreadyVerifiedError, IdentityVerificationNotFoundError, IdentityVerificationNotSentError, InvalidRequestError, PgProviderError, UnauthorizedError]
+ConfirmIdentityVerificationError = Union[ForbiddenError, IdentityVerificationAlreadyVerifiedError, IdentityVerificationNotFoundError, IdentityVerificationNotSentError, InvalidRequestError, PgProviderError, UnauthorizedError, dict]
 
 
 def _serialize_confirm_identity_verification_error(obj: ConfirmIdentityVerificationError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
+    if isinstance(obj, IdentityVerificationAlreadyVerifiedError):
         return _serialize_identity_verification_already_verified_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_NOT_FOUND":
+    if isinstance(obj, IdentityVerificationNotFoundError):
         return _serialize_identity_verification_not_found_error(obj)
-    if obj.type == "IDENTITY_VERIFICATION_NOT_SENT":
+    if isinstance(obj, IdentityVerificationNotSentError):
         return _serialize_identity_verification_not_sent_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PG_PROVIDER":
+    if isinstance(obj, PgProviderError):
         return _serialize_pg_provider_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -57,4 +59,4 @@ def _deserialize_confirm_identity_verification_error(obj: Any) -> ConfirmIdentit
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ConfirmIdentityVerificationError")
+    return obj

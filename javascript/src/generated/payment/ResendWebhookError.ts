@@ -12,3 +12,4 @@ export type ResendWebhookError =
 	| PaymentNotFoundError
 	| UnauthorizedError
 	| WebhookNotFoundError
+	| { readonly type: unique symbol }

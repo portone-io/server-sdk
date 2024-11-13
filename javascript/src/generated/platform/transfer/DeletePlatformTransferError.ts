@@ -14,3 +14,4 @@ export type DeletePlatformTransferError =
 	| PlatformTransferNonDeletableStatusError
 	| PlatformTransferNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

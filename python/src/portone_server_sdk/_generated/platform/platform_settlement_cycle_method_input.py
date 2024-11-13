@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_settlement_cycle_method_daily_input import PlatformSettlementCycleMethodDailyInput, _deserialize_platform_settlement_cycle_method_daily_input, _serialize_platform_settlement_cycle_method_daily_input
@@ -12,21 +13,23 @@ class PlatformSettlementCycleMethodInput:
 
     하나의 하위 필드에만 값을 명시하여 요청합니다.
     """
-    daily: Optional[PlatformSettlementCycleMethodDailyInput]
+    daily: Optional[PlatformSettlementCycleMethodDailyInput] = field(default=None)
     """매일 정산
     """
-    weekly: Optional[PlatformSettlementCycleMethodWeeklyInput]
+    weekly: Optional[PlatformSettlementCycleMethodWeeklyInput] = field(default=None)
     """매주 정해진 요일에 정산
     """
-    monthly: Optional[PlatformSettlementCycleMethodMonthlyInput]
+    monthly: Optional[PlatformSettlementCycleMethodMonthlyInput] = field(default=None)
     """매월 정해진 날(일)에 정산
     """
-    manual_dates: Optional[PlatformSettlementCycleMethodManualDatesInput]
+    manual_dates: Optional[PlatformSettlementCycleMethodManualDatesInput] = field(default=None)
     """정해진 날짜(월, 일)에 정산
     """
 
 
 def _serialize_platform_settlement_cycle_method_input(obj: PlatformSettlementCycleMethodInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.daily is not None:
         entity["daily"] = _serialize_platform_settlement_cycle_method_daily_input(obj.daily)

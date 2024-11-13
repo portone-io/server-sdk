@@ -8,3 +8,4 @@ export type GetPlatformAccountTransfersError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -11,6 +11,8 @@ class PlatformPayoutAccount:
 
 
 def _serialize_platform_payout_account(obj: PlatformPayoutAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["bank"] = _serialize_bank(obj.bank)
     entity["number"] = obj.number

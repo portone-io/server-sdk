@@ -16,6 +16,8 @@ class GetKakaopayPaymentOrderResponse:
 
 
 def _serialize_get_kakaopay_payment_order_response(obj: GetKakaopayPaymentOrderResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["statusCode"] = obj.status_code
     entity["body"] = obj.body

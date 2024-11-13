@@ -20,6 +20,8 @@ class CreatePlatformOrderCancelTransferBodyOrderLine:
 
 
 def _serialize_create_platform_order_cancel_transfer_body_order_line(obj: CreatePlatformOrderCancelTransferBodyOrderLine) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["productId"] = obj.product_id
     entity["quantity"] = obj.quantity

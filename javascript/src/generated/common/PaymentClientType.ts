@@ -3,3 +3,4 @@ export type PaymentClientType =
 	| "SDK_MOBILE"
 	| "SDK_PC"
 	| "API"
+	| string & {}

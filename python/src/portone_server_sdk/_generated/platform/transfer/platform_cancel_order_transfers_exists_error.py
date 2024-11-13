@@ -1,14 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCancelOrderTransfersExistsError:
-    type: Literal["PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cancel_order_transfers_exists_error(obj: PlatformCancelOrderTransfersExistsError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS"
     if obj.message is not None:
@@ -30,4 +32,4 @@ def _deserialize_platform_cancel_order_transfers_exists_error(obj: Any) -> Platf
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCancelOrderTransfersExistsError(type, message)
+    return PlatformCancelOrderTransfersExistsError(message)

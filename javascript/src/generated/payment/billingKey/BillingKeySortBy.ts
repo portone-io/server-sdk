@@ -12,3 +12,4 @@ export type BillingKeySortBy =
 	 * 발급 완료 상태의 경우 ISSUED_AT, 삭제 완료 상태의 경우 DELETED_AT
 	 */
 	| "STATUS_TIMESTAMP"
+	| string & {}

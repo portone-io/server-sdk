@@ -7,3 +7,4 @@ export type PgBillingKeyIssueResponse =
 	| FailedPgBillingKeyIssueResponse
 	/** 발급 성공 채널 응답 */
 	| IssuedPgBillingKeyIssueResponse
+	| { readonly type: unique symbol }

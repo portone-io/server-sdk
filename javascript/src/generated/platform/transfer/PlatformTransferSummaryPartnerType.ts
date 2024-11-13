@@ -6,3 +6,4 @@ export type PlatformTransferSummaryPartnerType =
 	| "WHT_PAYER"
 	/** 원천징수 비대상자 */
 	| "NON_WHT_PAYER"
+	| string & {}

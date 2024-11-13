@@ -13,6 +13,8 @@ class ReschedulePlatformPartnerResponse:
 
 
 def _serialize_reschedule_platform_partner_response(obj: ReschedulePlatformPartnerResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["scheduledPartner"] = _serialize_platform_partner(obj.scheduled_partner)
     return entity

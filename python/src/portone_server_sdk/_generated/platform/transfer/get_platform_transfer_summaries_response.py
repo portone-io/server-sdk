@@ -11,6 +11,8 @@ class GetPlatformTransferSummariesResponse:
 
 
 def _serialize_get_platform_transfer_summaries_response(obj: GetPlatformTransferSummariesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transferSummaries"] = list(map(_serialize_platform_transfer_summary, obj.transfer_summaries))
     entity["page"] = _serialize_page_info(obj.page)

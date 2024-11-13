@@ -13,6 +13,8 @@ class CreatePaymentScheduleResponse:
 
 
 def _serialize_create_payment_schedule_response(obj: CreatePaymentScheduleResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["schedule"] = _serialize_payment_schedule_summary(obj.schedule)
     return entity

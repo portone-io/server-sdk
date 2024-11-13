@@ -4,3 +4,4 @@ import type { UnauthorizedError } from "./../common/UnauthorizedError"
 export type LoginViaApiSecretError =
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

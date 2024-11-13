@@ -8,3 +8,4 @@ export type GetPlatformPartnersError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

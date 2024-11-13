@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -27,12 +28,14 @@ class PlatformDiscountSharePolicy:
     """변경 적용 시점
     (RFC 3339 date-time)
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """해당 할인 분담에 대한 메모
     """
 
 
 def _serialize_platform_discount_share_policy(obj: PlatformDiscountSharePolicy) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

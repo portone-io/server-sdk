@@ -6,3 +6,4 @@ export type GetAllPaymentsError =
 	| ForbiddenError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

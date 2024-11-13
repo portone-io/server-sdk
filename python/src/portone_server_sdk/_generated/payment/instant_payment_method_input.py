@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.instant_payment_method_input_card import InstantPaymentMethodInputCard, _deserialize_instant_payment_method_input_card, _serialize_instant_payment_method_input_card
@@ -10,15 +11,17 @@ class InstantPaymentMethodInput:
 
     하나의 필드만 입력합니다.
     """
-    card: Optional[InstantPaymentMethodInputCard]
+    card: Optional[InstantPaymentMethodInputCard] = field(default=None)
     """카드
     """
-    virtual_account: Optional[InstantPaymentMethodInputVirtualAccount]
+    virtual_account: Optional[InstantPaymentMethodInputVirtualAccount] = field(default=None)
     """가상계좌
     """
 
 
 def _serialize_instant_payment_method_input(obj: InstantPaymentMethodInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.card is not None:
         entity["card"] = _serialize_instant_payment_method_input_card(obj.card)

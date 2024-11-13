@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -15,15 +16,17 @@ class CardCredential:
     expiry_month: str
     """유효 기간 만료 월 (2자리)
     """
-    birth_or_business_registration_number: Optional[str]
+    birth_or_business_registration_number: Optional[str] = field(default=None)
     """생년월일 (yyMMdd) 또는 사업자 등록 번호 (10자리, 숫자만)
     """
-    password_two_digits: Optional[str]
+    password_two_digits: Optional[str] = field(default=None)
     """비밀번호 앞 2자리
     """
 
 
 def _serialize_card_credential(obj: CardCredential) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["number"] = obj.number
     entity["expiryYear"] = obj.expiry_year

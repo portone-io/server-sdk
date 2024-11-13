@@ -1,4 +1,3 @@
-import { webhookPackage } from "../common/webhook.ts"
 import OpenAPI from "../openapi.json" with { type: "json" }
 import { type Definition, parseDefinition } from "./definition.ts"
 import { type Operation, parseOperation } from "./operation.ts"
@@ -128,7 +127,8 @@ export function packageSchema(): Package {
   }
   for (const { definition } of definitionUsages.values()) {
     if (definition.type === "oneOf") {
-      for (const { name, property, value } of definition.variants) {
+      const property = definition.property
+      for (const { name, value } of definition.variants) {
         const usage = definitionUsages.get(name)
         if (!usage) {
           throw new Error(`type ${name} was referenced but not found`, {
@@ -220,7 +220,6 @@ export function packageSchema(): Package {
     }
     pack.entities.push(definition)
   }
-  packages.push(webhookPackage)
   return sortPackages({
     category: "root",
     operations: [],

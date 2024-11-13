@@ -1,15 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class BillingKeyPaymentMethodPaypal:
     """페이팔 정보
     """
-    type: Literal["BillingKeyPaymentMethodPaypal"] = field(repr=False)
+    pass
 
 
 def _serialize_billing_key_payment_method_paypal(obj: BillingKeyPaymentMethodPaypal) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BillingKeyPaymentMethodPaypal"
     return entity
@@ -23,4 +25,4 @@ def _deserialize_billing_key_payment_method_paypal(obj: Any) -> BillingKeyPaymen
     type = obj["type"]
     if type != "BillingKeyPaymentMethodPaypal":
         raise ValueError(f"{repr(type)} is not 'BillingKeyPaymentMethodPaypal'")
-    return BillingKeyPaymentMethodPaypal(type)
+    return BillingKeyPaymentMethodPaypal()

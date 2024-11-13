@@ -16,3 +16,4 @@ export type RevokePaymentSchedulesError =
 	| PaymentScheduleAlreadyRevokedError
 	| PaymentScheduleNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -8,6 +8,8 @@ class PlatformPaymentMethodTransferInput:
 
 
 def _serialize_platform_payment_method_transfer_input(obj: PlatformPaymentMethodTransferInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

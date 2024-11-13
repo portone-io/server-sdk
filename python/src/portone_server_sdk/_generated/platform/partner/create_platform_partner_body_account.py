@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
@@ -20,12 +21,14 @@ class CreatePlatformPartnerBodyAccount:
     holder: str
     """예금주명
     """
-    account_verification_id: Optional[str]
+    account_verification_id: Optional[str] = field(default=None)
     """계좌 검증 아이디
     """
 
 
 def _serialize_create_platform_partner_body_account(obj: CreatePlatformPartnerBodyAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["bank"] = _serialize_bank(obj.bank)
     entity["currency"] = _serialize_currency(obj.currency)

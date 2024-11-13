@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -8,15 +9,17 @@ class PlatformDiscountSharePolicyFilterInputKeyword:
 
     검색 키워드 적용을 위한 옵션으로, 명시된 키워드를 포함하는 할인 분담 정책만 조회합니다. 하위 필드는 명시된 값 중 한 가지만 적용됩니다.
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """해당 값이 포함된 id 를 가진 할인 분담 정책만 조회합니다.
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """해당 값이 포함된 name 을 가진 할인 분담만 조회합니다.
     """
 
 
 def _serialize_platform_discount_share_policy_filter_input_keyword(obj: PlatformDiscountSharePolicyFilterInputKeyword) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.id is not None:
         entity["id"] = obj.id

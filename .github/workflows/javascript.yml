@@ -43,6 +43,7 @@ jobs:
           destination_dir: js
   check:
     name: Check
+    if: ${{ startsWith(github.ref, 'refs/heads') }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -66,6 +67,7 @@ jobs:
         run: pnpm biome check
   test:
     name: Test
+    if: ${{ startsWith(github.ref, 'refs/heads') }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -88,7 +90,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
       - name: Run tests
-        run: pnpm test
+        run: pnpm test --silent
+        env:
+          PORTONE_API_SECRET: ${{ secrets.PORTONE_API_SECRET }}
   release:
     name: Release
     needs: [check, test]

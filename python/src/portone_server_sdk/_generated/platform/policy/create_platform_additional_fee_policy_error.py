@@ -6,19 +6,21 @@ from portone_server_sdk._generated.platform.policy.platform_additional_fee_polic
 from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-CreatePlatformAdditionalFeePolicyError = Union[ForbiddenError, InvalidRequestError, PlatformAdditionalFeePolicyAlreadyExistsError, PlatformNotEnabledError, UnauthorizedError]
+CreatePlatformAdditionalFeePolicyError = Union[ForbiddenError, InvalidRequestError, PlatformAdditionalFeePolicyAlreadyExistsError, PlatformNotEnabledError, UnauthorizedError, dict]
 
 
 def _serialize_create_platform_additional_fee_policy_error(obj: CreatePlatformAdditionalFeePolicyError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
+    if isinstance(obj, PlatformAdditionalFeePolicyAlreadyExistsError):
         return _serialize_platform_additional_fee_policy_already_exists_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -43,4 +45,4 @@ def _deserialize_create_platform_additional_fee_policy_error(obj: Any) -> Create
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformAdditionalFeePolicyError")
+    return obj

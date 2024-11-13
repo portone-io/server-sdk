@@ -1,14 +1,14 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-PlatformPayoutMethod = Literal["DIRECT", "AGENCY"]
+PlatformPayoutMethod = Union[Literal["DIRECT", "AGENCY"], str]
 
 
 def _serialize_platform_payout_method(obj: PlatformPayoutMethod) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_platform_payout_method(obj: Any) -> PlatformPayoutMethod:
-    if obj not in ["DIRECT", "AGENCY"]:
-        raise ValueError(f"{repr(obj)} is not PlatformPayoutMethod")
     return obj

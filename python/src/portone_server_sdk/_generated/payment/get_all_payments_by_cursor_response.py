@@ -13,6 +13,8 @@ class GetAllPaymentsByCursorResponse:
 
 
 def _serialize_get_all_payments_by_cursor_response(obj: GetAllPaymentsByCursorResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_payment_with_cursor, obj.items))
     return entity

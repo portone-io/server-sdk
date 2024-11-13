@@ -6,3 +6,4 @@ export type GetPaymentSchedulesError =
 	| ForbiddenError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -8,3 +8,4 @@ export type PlatformPartnerTaxationType =
 	| "SIMPLE"
 	/** 면세 */
 	| "TAX_FREE"
+	| string & {}

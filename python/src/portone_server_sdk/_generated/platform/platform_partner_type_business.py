@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_partner_business_status import PlatformPartnerBusinessStatus, _deserialize_platform_partner_business_status, _serialize_platform_partner_business_status
 from portone_server_sdk._generated.platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
@@ -10,7 +11,6 @@ class PlatformPartnerTypeBusiness:
 
     사업자 유형의 파트너 추가 정보 입니다.
     """
-    type: Literal["BUSINESS"] = field(repr=False)
     company_name: str
     """상호명
     """
@@ -26,18 +26,20 @@ class PlatformPartnerTypeBusiness:
     representative_name: str
     """대표자 이름
     """
-    company_address: Optional[str]
+    company_address: Optional[str] = field(default=None)
     """사업장 주소
     """
-    business_type: Optional[str]
+    business_type: Optional[str] = field(default=None)
     """업태
     """
-    business_class: Optional[str]
+    business_class: Optional[str] = field(default=None)
     """업종
     """
 
 
 def _serialize_platform_partner_type_business(obj: PlatformPartnerTypeBusiness) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BUSINESS"
     entity["companyName"] = obj.company_name
@@ -103,4 +105,4 @@ def _deserialize_platform_partner_type_business(obj: Any) -> PlatformPartnerType
             raise ValueError(f"{repr(business_class)} is not str")
     else:
         business_class = None
-    return PlatformPartnerTypeBusiness(type, company_name, taxation_type, business_status, business_registration_number, representative_name, company_address, business_type, business_class)
+    return PlatformPartnerTypeBusiness(company_name, taxation_type, business_status, business_registration_number, representative_name, company_address, business_type, business_class)

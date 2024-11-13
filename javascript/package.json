@@ -18,6 +18,7 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./webhook": "./src/webhook.ts",
     "./auth": "./src/generated/auth/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
@@ -43,6 +44,11 @@
         "types": "./dist/index.d.ts",
         "require": "./dist/index.cjs",
         "import": "./dist/index.mjs"
+      },
+      "./webhook": {
+        "types": "./dist/webhook.d.ts",
+        "require": "./dist/webhook.cjs",
+        "import": "./dist/webhook.mjs"
       },
       "./auth": {
         "types": "./dist/generated/auth/index.d.ts",

@@ -8,6 +8,8 @@ class PlatformSettlementCycleMethodMonthlyInput:
 
 
 def _serialize_platform_settlement_cycle_method_monthly_input(obj: PlatformSettlementCycleMethodMonthlyInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["daysOfMonth"] = obj.days_of_month
     return entity

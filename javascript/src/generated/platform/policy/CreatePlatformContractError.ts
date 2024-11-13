@@ -10,3 +10,4 @@ export type CreatePlatformContractError =
 	| PlatformContractAlreadyExistsError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

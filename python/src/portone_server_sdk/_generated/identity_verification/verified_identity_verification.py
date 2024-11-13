@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.identity_verification.identity_verification_verified_customer import IdentityVerificationVerifiedCustomer, _deserialize_identity_verification_verified_customer, _serialize_identity_verification_verified_customer
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
@@ -8,7 +9,6 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class VerifiedIdentityVerification:
     """완료된 본인인증 내역
     """
-    status: Literal["VERIFIED"] = field(repr=False)
     """본인인증 상태
     """
     id: str
@@ -39,15 +39,17 @@ class VerifiedIdentityVerification:
     pg_raw_response: str
     """PG사 응답 데이터
     """
-    channel: Optional[SelectedChannel]
+    channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
 
 
 def _serialize_verified_identity_verification(obj: VerifiedIdentityVerification) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "VERIFIED"
     entity["id"] = obj.id
@@ -123,4 +125,4 @@ def _deserialize_verified_identity_verification(obj: Any) -> VerifiedIdentityVer
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return VerifiedIdentityVerification(status, id, verified_customer, requested_at, updated_at, status_changed_at, verified_at, pg_tx_id, pg_raw_response, channel, custom_data)
+    return VerifiedIdentityVerification(id, verified_customer, requested_at, updated_at, status_changed_at, verified_at, pg_tx_id, pg_raw_response, channel, custom_data)

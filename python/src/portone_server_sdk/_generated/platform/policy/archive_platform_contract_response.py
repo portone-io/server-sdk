@@ -13,6 +13,8 @@ class ArchivePlatformContractResponse:
 
 
 def _serialize_archive_platform_contract_response(obj: ArchivePlatformContractResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["contract"] = _serialize_platform_contract(obj.contract)
     return entity

@@ -10,6 +10,8 @@ class PreRegisterPaymentResponse:
 
 
 def _serialize_pre_register_payment_response(obj: PreRegisterPaymentResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

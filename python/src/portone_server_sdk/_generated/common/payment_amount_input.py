@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -10,11 +11,11 @@ class PaymentAmountInput:
     """총 금액
     (int64)
     """
-    tax_free: Optional[int]
+    tax_free: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    vat: Optional[int]
+    vat: Optional[int] = field(default=None)
     """부가세액
 
     고객사에서 직접 계산이 필요한 경우 입력합니다.
@@ -24,6 +25,8 @@ class PaymentAmountInput:
 
 
 def _serialize_payment_amount_input(obj: PaymentAmountInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["total"] = obj.total
     if obj.tax_free is not None:

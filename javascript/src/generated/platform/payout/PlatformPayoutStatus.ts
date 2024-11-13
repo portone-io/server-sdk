@@ -6,3 +6,4 @@ export type PlatformPayoutStatus =
 	| "SUCCEEDED"
 	| "FAILED"
 	| "SCHEDULED"
+	| string & {}

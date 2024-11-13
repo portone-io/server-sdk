@@ -16,3 +16,4 @@ export type CreatePaymentScheduleError =
 	| PaymentScheduleAlreadyExistsError
 	| SumOfPartsExceedsTotalAmountError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

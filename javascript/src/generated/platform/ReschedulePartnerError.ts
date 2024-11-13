@@ -12,3 +12,4 @@ export type ReschedulePartnerError =
 	| PlatformNotEnabledError
 	| PlatformPartnerNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

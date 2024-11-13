@@ -13,6 +13,8 @@ class ArchivePlatformPartnerResponse:
 
 
 def _serialize_archive_platform_partner_response(obj: ArchivePlatformPartnerResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partner"] = _serialize_platform_partner(obj.partner)
     return entity

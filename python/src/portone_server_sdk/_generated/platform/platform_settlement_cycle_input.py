@@ -23,6 +23,8 @@ class PlatformSettlementCycleInput:
 
 
 def _serialize_platform_settlement_cycle_input(obj: PlatformSettlementCycleInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["lagDays"] = obj.lag_days
     entity["datePolicy"] = _serialize_platform_settlement_cycle_date_policy(obj.date_policy)

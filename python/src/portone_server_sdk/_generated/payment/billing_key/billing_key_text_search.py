@@ -12,6 +12,8 @@ class BillingKeyTextSearch:
 
 
 def _serialize_billing_key_text_search(obj: BillingKeyTextSearch) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["field"] = _serialize_billing_key_text_search_field(obj.field)
     entity["value"] = obj.value

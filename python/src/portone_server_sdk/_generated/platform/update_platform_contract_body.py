@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
@@ -11,27 +12,29 @@ class UpdatePlatformContractBody:
 
     값이 명시되지 않은 필드는 업데이트되지 않습니다.
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """계약 이름
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """계약 내부 표기를 위한 메모
     """
-    platform_fee: Optional[PlatformFeeInput]
+    platform_fee: Optional[PlatformFeeInput] = field(default=None)
     """중개수수료
     """
-    settlement_cycle: Optional[PlatformSettlementCycleInput]
+    settlement_cycle: Optional[PlatformSettlementCycleInput] = field(default=None)
     """정산 주기
     """
-    platform_fee_vat_payer: Optional[PlatformPayer]
+    platform_fee_vat_payer: Optional[PlatformPayer] = field(default=None)
     """중개수수료에 대한 부가세 부담 주체
     """
-    subtract_payment_vat_amount: Optional[bool]
+    subtract_payment_vat_amount: Optional[bool] = field(default=None)
     """정산 시 결제금액 부가세 감액 여부
     """
 
 
 def _serialize_update_platform_contract_body(obj: UpdatePlatformContractBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.name is not None:
         entity["name"] = obj.name

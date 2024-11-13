@@ -19,3 +19,4 @@ export type PaymentSchedule =
 	| StartedPaymentSchedule
 	/** 결제 성공 */
 	| SucceededPaymentSchedule
+	| { readonly status: unique symbol }

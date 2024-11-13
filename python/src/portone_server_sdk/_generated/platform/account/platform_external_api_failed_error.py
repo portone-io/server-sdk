@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformExternalApiFailedError:
     """외부 api 오류
     """
-    type: Literal["PLATFORM_EXTERNAL_API_FAILED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_external_api_failed_error(obj: PlatformExternalApiFailedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_EXTERNAL_API_FAILED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_external_api_failed_error(obj: Any) -> PlatformExterna
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformExternalApiFailedError(type, message)
+    return PlatformExternalApiFailedError(message)

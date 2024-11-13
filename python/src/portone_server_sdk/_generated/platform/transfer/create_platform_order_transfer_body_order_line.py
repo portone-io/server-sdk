@@ -25,6 +25,8 @@ class CreatePlatformOrderTransferBodyOrderLine:
 
 
 def _serialize_create_platform_order_transfer_body_order_line(obj: CreatePlatformOrderTransferBodyOrderLine) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["product"] = _serialize_create_platform_order_transfer_body_product(obj.product)
     entity["quantity"] = obj.quantity

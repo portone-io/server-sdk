@@ -8,3 +8,4 @@ export type GetPlatformBulkPayoutsError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
@@ -34,21 +35,23 @@ class IssueCashReceiptBody:
     customer: IssueCashReceiptCustomerInput
     """고객 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    product_type: Optional[PaymentProductType]
+    product_type: Optional[PaymentProductType] = field(default=None)
     """상품 유형
     """
-    paid_at: Optional[str]
+    paid_at: Optional[str] = field(default=None)
     """결제 일자
     (RFC 3339 date-time)
     """
 
 
 def _serialize_issue_cash_receipt_body(obj: IssueCashReceiptBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["paymentId"] = obj.payment_id
     entity["channelKey"] = obj.channel_key

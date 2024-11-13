@@ -8,3 +8,4 @@ export type GetPlatformDiscountSharePoliciesError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

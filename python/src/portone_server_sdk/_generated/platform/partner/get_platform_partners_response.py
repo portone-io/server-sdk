@@ -17,6 +17,8 @@ class GetPlatformPartnersResponse:
 
 
 def _serialize_get_platform_partners_response(obj: GetPlatformPartnersResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_partner, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

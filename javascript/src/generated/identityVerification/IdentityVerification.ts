@@ -10,3 +10,4 @@ export type IdentityVerification =
 	| ReadyIdentityVerification
 	/** 완료된 본인인증 내역 */
 	| VerifiedIdentityVerification
+	| { readonly status: unique symbol }

@@ -12,3 +12,4 @@ export type ArchivePlatformPartnerError =
 	| PlatformNotEnabledError
 	| PlatformPartnerNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

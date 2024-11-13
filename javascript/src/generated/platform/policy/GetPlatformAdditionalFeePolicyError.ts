@@ -10,3 +10,4 @@ export type GetPlatformAdditionalFeePolicyError =
 	| PlatformAdditionalFeePolicyNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

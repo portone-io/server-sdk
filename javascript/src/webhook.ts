@@ -1,6 +1,6 @@
 export type * from "./generated/webhook";
 import { PortOneError } from "./generated/errors";
-import type { WebhookRequest } from "./generated/webhook";
+import type { Webhook } from "./generated/webhook";
 import { timingSafeEqual } from "./utils/timingSafeEqual";
 import { tryCatch } from "./utils/try";
 
@@ -142,7 +142,7 @@ export async function verify(
 	headers:
 		| WebhookUnbrandedRequiredHeaders
 		| Record<string, string | string[] | undefined>,
-): Promise<WebhookRequest> {
+): Promise<Webhook> {
 	const msgId = findHeaderValue(headers, "webhook-id");
 	const msgSignature = findHeaderValue(headers, "webhook-signature");
 	const msgTimestamp = findHeaderValue(headers, "webhook-timestamp");

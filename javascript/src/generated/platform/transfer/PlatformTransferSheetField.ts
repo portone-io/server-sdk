@@ -30,18 +30,6 @@ export type PlatformTransferSheetField =
 	| "SETTLEMENT_PAYMENT_VAT_AMOUNT"
 	/** 결제 금액 부가세 부담금 */
 	| "SETTLEMENT_PAYMENT_VAT_BURDEN_AMOUNT"
-	/**
-	 * 결제 공급가액
-	 *
-	 * 해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 SETTLEMENT_PAYMENT_SUPPLY_AMOUNT 필드를 사용해주세요.
-	 */
-	| "SETTLEMENT_SUPPLY_AMOUNT"
-	/**
-	 * 결제 면세액
-	 *
-	 * 해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 SETTLEMENT_PAYMENT_TAX_FREE_AMOUNT 필드를 사용해주세요.
-	 */
-	| "SETTLEMENT_TAX_FREE_AMOUNT"
 	/** 결제 공급가액 */
 	| "SETTLEMENT_PAYMENT_SUPPLY_AMOUNT"
 	/** 결제 면세액 */
@@ -66,13 +54,18 @@ export type PlatformTransferSheetField =
 	| "SETTLEMENT_CURRENCY"
 	/** 파트너 유형 */
 	| "PARTNER_TYPE"
-	/** 과세 유형 */
-	| "TAXATION_TYPE"
-	/** 소득 유형 */
-	| "INCOME_TYPE"
+	/** 파트너 과세 유형 */
+	| "PARTNER_TAXATION_TYPE"
+	/** 파트너 소득 유형 */
+	| "PARTNER_INCOME_TYPE"
 	/**
-	 * 과세 유형 또는 소득 유형
+	 * 파트너 과세 유형 또는 소득 유형
 	 *
 	 * 파트너 유형이 사업자인 경우 과세 유형, 원천징수 대상자인 소득 유형입니다.
 	 */
-	| "TAXATION_TYPE_OR_INCOME_TYPE"
+	| "PARTNER_TAXATION_TYPE_OR_INCOME_TYPE"
+	/** 파트너 아이디 */
+	| "PARTNER_ID"
+	/** 메모 */
+	| "MEMO"
+	| string & {}

@@ -6,3 +6,4 @@ export type GetBillingKeyInfosError =
 	| ForbiddenError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

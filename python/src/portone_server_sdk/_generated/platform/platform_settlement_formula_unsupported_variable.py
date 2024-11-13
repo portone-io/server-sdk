@@ -1,16 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
 
 @dataclass
 class PlatformSettlementFormulaUnsupportedVariable:
-    type: Literal["UNSUPPORTED_VARIABLE"] = field(repr=False)
     name: str
     position: PlatformSettlementFormulaPosition
 
 
 def _serialize_platform_settlement_formula_unsupported_variable(obj: PlatformSettlementFormulaUnsupportedVariable) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "UNSUPPORTED_VARIABLE"
     entity["name"] = obj.name
@@ -35,4 +36,4 @@ def _deserialize_platform_settlement_formula_unsupported_variable(obj: Any) -> P
         raise KeyError(f"'position' is not in {obj}")
     position = obj["position"]
     position = _deserialize_platform_settlement_formula_position(position)
-    return PlatformSettlementFormulaUnsupportedVariable(type, name, position)
+    return PlatformSettlementFormulaUnsupportedVariable(name, position)

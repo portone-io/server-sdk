@@ -4,11 +4,12 @@ import type { CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError } from "./
 import type { CancellableAmountConsistencyBrokenError } from "./../payment/CancellableAmountConsistencyBrokenError"
 import type { ForbiddenError } from "./../common/ForbiddenError"
 import type { InvalidRequestError } from "./../common/InvalidRequestError"
+import type { NegativePromotionAdjustedCancelAmountError } from "./../payment/NegativePromotionAdjustedCancelAmountError"
 import type { PaymentAlreadyCancelledError } from "./../payment/PaymentAlreadyCancelledError"
 import type { PaymentNotFoundError } from "./../payment/PaymentNotFoundError"
 import type { PaymentNotPaidError } from "./../payment/PaymentNotPaidError"
 import type { PgProviderError } from "./../common/PgProviderError"
-import type { RemainedAmountLessThanPromotionMinPaymentAmountError } from "./../payment/RemainedAmountLessThanPromotionMinPaymentAmountError"
+import type { PromotionDiscountRetainOptionShouldNotBeChangedError } from "./../payment/PromotionDiscountRetainOptionShouldNotBeChangedError"
 import type { SumOfPartsExceedsCancelAmountError } from "./../payment/SumOfPartsExceedsCancelAmountError"
 import type { UnauthorizedError } from "./../common/UnauthorizedError"
 
@@ -19,10 +20,12 @@ export type CancelPaymentError =
 	| CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError
 	| ForbiddenError
 	| InvalidRequestError
+	| NegativePromotionAdjustedCancelAmountError
 	| PaymentAlreadyCancelledError
 	| PaymentNotFoundError
 	| PaymentNotPaidError
 	| PgProviderError
-	| RemainedAmountLessThanPromotionMinPaymentAmountError
+	| PromotionDiscountRetainOptionShouldNotBeChangedError
 	| SumOfPartsExceedsCancelAmountError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

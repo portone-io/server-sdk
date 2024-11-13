@@ -26,3 +26,4 @@ export type PaymentEscrow =
 	| RejectedPaymentEscrow
 	/** 구매 거절 확정 */
 	| RejectConfirmedPaymentEscrow
+	| { readonly status: unique symbol }

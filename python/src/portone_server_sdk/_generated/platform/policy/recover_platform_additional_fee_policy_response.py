@@ -13,6 +13,8 @@ class RecoverPlatformAdditionalFeePolicyResponse:
 
 
 def _serialize_recover_platform_additional_fee_policy_response(obj: RecoverPlatformAdditionalFeePolicyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["additionalFeePolicy"] = _serialize_platform_additional_fee_policy(obj.additional_fee_policy)
     return entity

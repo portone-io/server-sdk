@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.payment_logistics_company import PaymentLogisticsCompany, _deserialize_payment_logistics_company, _serialize_payment_logistics_company
@@ -18,16 +19,18 @@ class PaymentLogistics:
     """발송시점
     (RFC 3339 date-time)
     """
-    received_at: Optional[str]
+    received_at: Optional[str] = field(default=None)
     """수령시점
     (RFC 3339 date-time)
     """
-    address: Optional[SeparatedAddressInput]
+    address: Optional[SeparatedAddressInput] = field(default=None)
     """주소
     """
 
 
 def _serialize_payment_logistics(obj: PaymentLogistics) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["company"] = _serialize_payment_logistics_company(obj.company)
     entity["invoiceNumber"] = obj.invoice_number

@@ -15,3 +15,4 @@ export type PlatformTransfer =
 	| PlatformOrderTransfer
 	/** 주문 취소 정산건 */
 	| PlatformOrderCancelTransfer
+	| { readonly type: unique symbol }

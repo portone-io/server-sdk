@@ -40,3 +40,4 @@ export type CreatePlatformOrderTransferError =
 	| PlatformTransferAlreadyExistsError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

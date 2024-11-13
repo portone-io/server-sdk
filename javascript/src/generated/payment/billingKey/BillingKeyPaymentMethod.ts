@@ -16,3 +16,4 @@ export type BillingKeyPaymentMethod =
 	| BillingKeyPaymentMethodPaypal
 	/** 계좌이체 정보 */
 	| BillingKeyPaymentMethodTransfer
+	| { readonly type: unique symbol }

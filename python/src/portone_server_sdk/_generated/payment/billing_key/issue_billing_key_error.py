@@ -7,21 +7,23 @@ from portone_server_sdk._generated.common.invalid_request_error import InvalidRe
 from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-IssueBillingKeyError = Union[ChannelNotFoundError, ChannelSpecificError, ForbiddenError, InvalidRequestError, PgProviderError, UnauthorizedError]
+IssueBillingKeyError = Union[ChannelNotFoundError, ChannelSpecificError, ForbiddenError, InvalidRequestError, PgProviderError, UnauthorizedError, dict]
 
 
 def _serialize_issue_billing_key_error(obj: IssueBillingKeyError) -> Any:
-    if obj.type == "CHANNEL_NOT_FOUND":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ChannelNotFoundError):
         return _serialize_channel_not_found_error(obj)
-    if obj.type == "CHANNEL_SPECIFIC":
+    if isinstance(obj, ChannelSpecificError):
         return _serialize_channel_specific_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PG_PROVIDER":
+    if isinstance(obj, PgProviderError):
         return _serialize_pg_provider_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -50,4 +52,4 @@ def _deserialize_issue_billing_key_error(obj: Any) -> IssueBillingKeyError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not IssueBillingKeyError")
+    return obj

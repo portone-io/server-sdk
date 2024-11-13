@@ -8,23 +8,25 @@ from portone_server_sdk._generated.platform.platform_discount_share_policy_sched
 from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-ScheduleDiscountSharePolicyError = Union[ForbiddenError, InvalidRequestError, PlatformArchivedDiscountSharePolicyError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformNotEnabledError, UnauthorizedError]
+ScheduleDiscountSharePolicyError = Union[ForbiddenError, InvalidRequestError, PlatformArchivedDiscountSharePolicyError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformNotEnabledError, UnauthorizedError, dict]
 
 
 def _serialize_schedule_discount_share_policy_error(obj: ScheduleDiscountSharePolicyError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
+    if isinstance(obj, PlatformArchivedDiscountSharePolicyError):
         return _serialize_platform_archived_discount_share_policy_error(obj)
-    if obj.type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
+    if isinstance(obj, PlatformDiscountSharePolicyNotFoundError):
         return _serialize_platform_discount_share_policy_not_found_error(obj)
-    if obj.type == "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
+    if isinstance(obj, PlatformDiscountSharePolicyScheduleAlreadyExistsError):
         return _serialize_platform_discount_share_policy_schedule_already_exists_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -57,4 +59,4 @@ def _deserialize_schedule_discount_share_policy_error(obj: Any) -> ScheduleDisco
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ScheduleDiscountSharePolicyError")
+    return obj

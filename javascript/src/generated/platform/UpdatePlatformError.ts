@@ -10,3 +10,4 @@ export type UpdatePlatformError =
 	| PlatformInvalidSettlementFormulaError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

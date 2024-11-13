@@ -10,3 +10,4 @@ export type GetPlatformTransferError =
 	| PlatformNotEnabledError
 	| PlatformTransferNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

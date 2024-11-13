@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -32,17 +33,19 @@ class PaymentAmount:
     """취소금액 중 면세액
     (int64)
     """
-    vat: Optional[int]
+    vat: Optional[int] = field(default=None)
     """부가세액
     (int64)
     """
-    supply: Optional[int]
+    supply: Optional[int] = field(default=None)
     """공급가액
     (int64)
     """
 
 
 def _serialize_payment_amount(obj: PaymentAmount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["total"] = obj.total
     entity["taxFree"] = obj.tax_free

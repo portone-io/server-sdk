@@ -4,3 +4,4 @@ export type SortOrder =
 	| "DESC"
 	/** 오름차순 */
 	| "ASC"
+	| string & {}

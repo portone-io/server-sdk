@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
@@ -25,104 +26,106 @@ from portone_server_sdk._generated.common.sort_order import SortOrder, _deserial
 class PaymentFilterInput:
     """결제 건 다건 조회를 위한 입력 정보
     """
-    merchant_id: Optional[str]
+    merchant_id: Optional[str] = field(default=None)
     """고객사 아이디
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     Merchant 사용자만 사용가능하며, 지정되지 않은 경우 고객사 전체 결제 건을 조회합니다.
     """
-    timestamp_type: Optional[PaymentTimestampType]
+    timestamp_type: Optional[PaymentTimestampType] = field(default=None)
     """조회 기준 시점 유형
     """
-    from_: Optional[str]
+    from_: Optional[str] = field(default=None)
     """결제 요청/상태 승인 시점 범위의 시작
 
     값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    until: Optional[str]
+    until: Optional[str] = field(default=None)
     """결제 요청/상태 승인 시점 범위의 끝
 
     값을 입력하지 않으면 현재 시점으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    status: Optional[list[PaymentStatus]]
+    status: Optional[list[PaymentStatus]] = field(default=None)
     """결제 상태 리스트
 
     값을 입력하지 않으면 결제상태 필터링이 적용되지 않습니다.
     """
-    methods: Optional[list[PaymentMethodType]]
+    methods: Optional[list[PaymentMethodType]] = field(default=None)
     """결제수단 리스트
 
     값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
     """
-    pg_provider: Optional[list[PgProvider]]
+    pg_provider: Optional[list[PgProvider]] = field(default=None)
     """PG사 리스트
 
     값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
     """
-    is_test: Optional[bool]
+    is_test: Optional[bool] = field(default=None)
     """테스트 결제 필터링
     """
-    is_scheduled: Optional[bool]
+    is_scheduled: Optional[bool] = field(default=None)
     """결제 예약 건 필터링
     """
-    sort_by: Optional[PaymentSortBy]
+    sort_by: Optional[PaymentSortBy] = field(default=None)
     """결제 건 정렬 기준
     """
-    sort_order: Optional[SortOrder]
+    sort_order: Optional[SortOrder] = field(default=None)
     """결제 건 정렬 방식
     """
-    version: Optional[PortOneVersion]
+    version: Optional[PortOneVersion] = field(default=None)
     """포트원 버전
     """
-    webhook_status: Optional[PaymentWebhookStatus]
+    webhook_status: Optional[PaymentWebhookStatus] = field(default=None)
     """웹훅 상태
     """
-    platform_type: Optional[PaymentClientType]
+    platform_type: Optional[PaymentClientType] = field(default=None)
     """플랫폼 유형
     """
-    currency: Optional[Currency]
+    currency: Optional[Currency] = field(default=None)
     """통화
     """
-    is_escrow: Optional[bool]
+    is_escrow: Optional[bool] = field(default=None)
     """에스크로 결제 여부
     """
-    escrow_status: Optional[PaymentFilterInputEscrowStatus]
+    escrow_status: Optional[PaymentFilterInputEscrowStatus] = field(default=None)
     """에스크로 결제의 배송 정보 상태
     """
-    card_brand: Optional[CardBrand]
+    card_brand: Optional[CardBrand] = field(default=None)
     """카드 브랜드
     """
-    card_type: Optional[CardType]
+    card_type: Optional[CardType] = field(default=None)
     """카드 유형
     """
-    card_owner_type: Optional[CardOwnerType]
+    card_owner_type: Optional[CardOwnerType] = field(default=None)
     """카드 소유주 유형
     """
-    gift_certificate_type: Optional[PaymentMethodGiftCertificateType]
+    gift_certificate_type: Optional[PaymentMethodGiftCertificateType] = field(default=None)
     """상품권 종류
     """
-    cash_receipt_type: Optional[CashReceiptInputType]
+    cash_receipt_type: Optional[CashReceiptInputType] = field(default=None)
     """현금영수증 유형
     """
-    cash_receipt_status: Optional[PaymentCashReceiptStatus]
+    cash_receipt_status: Optional[PaymentCashReceiptStatus] = field(default=None)
     """현금영수증 상태
     """
-    cash_receipt_issued_at_range: Optional[DateTimeRange]
+    cash_receipt_issued_at_range: Optional[DateTimeRange] = field(default=None)
     """현금영수증 발급 시간 범위
     """
-    cash_receipt_cancelled_at_range: Optional[DateTimeRange]
+    cash_receipt_cancelled_at_range: Optional[DateTimeRange] = field(default=None)
     """현금영수증 취소 시간 범위
     """
-    text_search: Optional[list[PaymentTextSearch]]
+    text_search: Optional[list[PaymentTextSearch]] = field(default=None)
     """통합 검색 리스트 필터
     """
 
 
 def _serialize_payment_filter_input(obj: PaymentFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.merchant_id is not None:
         entity["merchantId"] = obj.merchant_id

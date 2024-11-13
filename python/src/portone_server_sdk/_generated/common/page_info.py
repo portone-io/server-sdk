@@ -21,6 +21,8 @@ class PageInfo:
 
 
 def _serialize_page_info(obj: PageInfo) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["number"] = obj.number
     entity["size"] = obj.size

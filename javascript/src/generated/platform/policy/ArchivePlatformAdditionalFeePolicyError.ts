@@ -12,3 +12,4 @@ export type ArchivePlatformAdditionalFeePolicyError =
 	| PlatformCannotArchiveScheduledAdditionalFeePolicyError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
@@ -22,12 +23,14 @@ class InstantPaymentMethodInputVirtualAccount:
     cash_receipt: InstantPaymentMethodInputVirtualAccountCashReceiptInfo
     """현금영수증 정보
     """
-    remittee_name: Optional[str]
+    remittee_name: Optional[str] = field(default=None)
     """예금주명
     """
 
 
 def _serialize_instant_payment_method_input_virtual_account(obj: InstantPaymentMethodInputVirtualAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["bank"] = _serialize_bank(obj.bank)
     entity["expiry"] = _serialize_instant_payment_method_input_virtual_account_expiry(obj.expiry)

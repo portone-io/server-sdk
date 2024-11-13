@@ -8,3 +8,4 @@ export type BillingKeyPaymentMethodType =
 	| "EASY_PAY"
 	/** 계좌 이체 */
 	| "TRANSFER"
+	| string & {}

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,17 +7,19 @@ from dataclasses import dataclass, field
 class PageInput:
     """다건 조회 API 에 사용되는 페이지 입력 정보
     """
-    number: Optional[int]
+    number: Optional[int] = field(default=None)
     """0부터 시작하는 페이지 번호
     (int32)
     """
-    size: Optional[int]
+    size: Optional[int] = field(default=None)
     """각 페이지 당 포함할 객체 수
     (int32)
     """
 
 
 def _serialize_page_input(obj: PageInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.number is not None:
         entity["number"] = obj.number

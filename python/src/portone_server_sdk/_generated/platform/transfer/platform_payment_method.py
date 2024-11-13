@@ -7,23 +7,25 @@ from portone_server_sdk._generated.platform.transfer.platform_payment_method_mob
 from portone_server_sdk._generated.platform.transfer.platform_payment_method_transfer import PlatformPaymentMethodTransfer, _deserialize_platform_payment_method_transfer, _serialize_platform_payment_method_transfer
 from portone_server_sdk._generated.platform.transfer.platform_payment_method_virtual_account import PlatformPaymentMethodVirtualAccount, _deserialize_platform_payment_method_virtual_account, _serialize_platform_payment_method_virtual_account
 
-PlatformPaymentMethod = Union[PlatformPaymentMethodCard, PlatformPaymentMethodEasyPay, PlatformPaymentMethodGiftCertificate, PlatformPaymentMethodMobile, PlatformPaymentMethodTransfer, PlatformPaymentMethodVirtualAccount]
+PlatformPaymentMethod = Union[PlatformPaymentMethodCard, PlatformPaymentMethodEasyPay, PlatformPaymentMethodGiftCertificate, PlatformPaymentMethodMobile, PlatformPaymentMethodTransfer, PlatformPaymentMethodVirtualAccount, dict]
 """결제 수단
 """
 
 
 def _serialize_platform_payment_method(obj: PlatformPaymentMethod) -> Any:
-    if obj.type == "CARD":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, PlatformPaymentMethodCard):
         return _serialize_platform_payment_method_card(obj)
-    if obj.type == "EASY_PAY":
+    if isinstance(obj, PlatformPaymentMethodEasyPay):
         return _serialize_platform_payment_method_easy_pay(obj)
-    if obj.type == "GIFT_CERTIFICATE":
+    if isinstance(obj, PlatformPaymentMethodGiftCertificate):
         return _serialize_platform_payment_method_gift_certificate(obj)
-    if obj.type == "MOBILE":
+    if isinstance(obj, PlatformPaymentMethodMobile):
         return _serialize_platform_payment_method_mobile(obj)
-    if obj.type == "TRANSFER":
+    if isinstance(obj, PlatformPaymentMethodTransfer):
         return _serialize_platform_payment_method_transfer(obj)
-    if obj.type == "VIRTUAL_ACCOUNT":
+    if isinstance(obj, PlatformPaymentMethodVirtualAccount):
         return _serialize_platform_payment_method_virtual_account(obj)
 
 
@@ -52,4 +54,4 @@ def _deserialize_platform_payment_method(obj: Any) -> PlatformPaymentMethod:
         return _deserialize_platform_payment_method_virtual_account(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PlatformPaymentMethod")
+    return obj

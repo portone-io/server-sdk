@@ -12,3 +12,4 @@ export type CloseVirtualAccountError =
 	| PaymentNotWaitingForDepositError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

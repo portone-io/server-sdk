@@ -9,25 +9,27 @@ from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_alr
 from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_not_found_error import PaymentScheduleNotFoundError, _deserialize_payment_schedule_not_found_error, _serialize_payment_schedule_not_found_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-RevokePaymentSchedulesError = Union[BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyProcessedError, PaymentScheduleAlreadyRevokedError, PaymentScheduleNotFoundError, UnauthorizedError]
+RevokePaymentSchedulesError = Union[BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyProcessedError, PaymentScheduleAlreadyRevokedError, PaymentScheduleNotFoundError, UnauthorizedError, dict]
 
 
 def _serialize_revoke_payment_schedules_error(obj: RevokePaymentSchedulesError) -> Any:
-    if obj.type == "BILLING_KEY_ALREADY_DELETED":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, BillingKeyAlreadyDeletedError):
         return _serialize_billing_key_already_deleted_error(obj)
-    if obj.type == "BILLING_KEY_NOT_FOUND":
+    if isinstance(obj, BillingKeyNotFoundError):
         return _serialize_billing_key_not_found_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PAYMENT_SCHEDULE_ALREADY_PROCESSED":
+    if isinstance(obj, PaymentScheduleAlreadyProcessedError):
         return _serialize_payment_schedule_already_processed_error(obj)
-    if obj.type == "PAYMENT_SCHEDULE_ALREADY_REVOKED":
+    if isinstance(obj, PaymentScheduleAlreadyRevokedError):
         return _serialize_payment_schedule_already_revoked_error(obj)
-    if obj.type == "PAYMENT_SCHEDULE_NOT_FOUND":
+    if isinstance(obj, PaymentScheduleNotFoundError):
         return _serialize_payment_schedule_not_found_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -64,4 +66,4 @@ def _deserialize_revoke_payment_schedules_error(obj: Any) -> RevokePaymentSchedu
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not RevokePaymentSchedulesError")
+    return obj

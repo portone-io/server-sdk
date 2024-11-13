@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PaymentAlreadyCancelledError:
     """결제가 이미 취소된 경우
     """
-    type: Literal["PAYMENT_ALREADY_CANCELLED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_payment_already_cancelled_error(obj: PaymentAlreadyCancelledError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PAYMENT_ALREADY_CANCELLED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_payment_already_cancelled_error(obj: Any) -> PaymentAlreadyCanc
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PaymentAlreadyCancelledError(type, message)
+    return PaymentAlreadyCancelledError(message)

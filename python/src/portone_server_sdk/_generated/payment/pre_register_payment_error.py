@@ -5,17 +5,19 @@ from portone_server_sdk._generated.common.forbidden_error import ForbiddenError,
 from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-PreRegisterPaymentError = Union[AlreadyPaidError, ForbiddenError, InvalidRequestError, UnauthorizedError]
+PreRegisterPaymentError = Union[AlreadyPaidError, ForbiddenError, InvalidRequestError, UnauthorizedError, dict]
 
 
 def _serialize_pre_register_payment_error(obj: PreRegisterPaymentError) -> Any:
-    if obj.type == "ALREADY_PAID":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, AlreadyPaidError):
         return _serialize_already_paid_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -36,4 +38,4 @@ def _deserialize_pre_register_payment_error(obj: Any) -> PreRegisterPaymentError
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PreRegisterPaymentError")
+    return obj

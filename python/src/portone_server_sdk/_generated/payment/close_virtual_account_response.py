@@ -13,6 +13,8 @@ class CloseVirtualAccountResponse:
 
 
 def _serialize_close_virtual_account_response(obj: CloseVirtualAccountResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["closedAt"] = obj.closed_at
     return entity

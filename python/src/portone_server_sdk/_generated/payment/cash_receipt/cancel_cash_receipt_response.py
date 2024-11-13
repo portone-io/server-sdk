@@ -17,6 +17,8 @@ class CancelCashReceiptResponse:
 
 
 def _serialize_cancel_cash_receipt_response(obj: CancelCashReceiptResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cancelledAmount"] = obj.cancelled_amount
     entity["cancelledAt"] = obj.cancelled_at

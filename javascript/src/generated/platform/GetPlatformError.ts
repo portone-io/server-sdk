@@ -6,3 +6,4 @@ export type GetPlatformError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

@@ -1,18 +1,20 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PaymentMethodMobile:
     """모바일 상세 정보
     """
-    type: Literal["PaymentMethodMobile"] = field(repr=False)
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
     """
 
 
 def _serialize_payment_method_mobile(obj: PaymentMethodMobile) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PaymentMethodMobile"
     if obj.phone_number is not None:
@@ -34,4 +36,4 @@ def _deserialize_payment_method_mobile(obj: Any) -> PaymentMethodMobile:
             raise ValueError(f"{repr(phone_number)} is not str")
     else:
         phone_number = None
-    return PaymentMethodMobile(type, phone_number)
+    return PaymentMethodMobile(phone_number)

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.cash_receipt_input import CashReceiptInput, _deserialize_cash_receipt_input, _serialize_cash_receipt_input
@@ -26,69 +27,71 @@ class BillingKeyPaymentInput:
     currency: Currency
     """통화
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    channel_key: Optional[str]
+    channel_key: Optional[str] = field(default=None)
     """채널 키
 
     다수 채널에 대해 발급된 빌링키에 대해, 결제 채널을 특정하고 싶을 때 명시
     """
-    customer: Optional[CustomerInput]
+    customer: Optional[CustomerInput] = field(default=None)
     """고객 정보
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
-    installment_month: Optional[int]
+    installment_month: Optional[int] = field(default=None)
     """할부 개월 수
     (int32)
     """
-    use_free_interest_from_merchant: Optional[bool]
+    use_free_interest_from_merchant: Optional[bool] = field(default=None)
     """무이자 할부 이자를 고객사가 부담할지 여부
     """
-    use_card_point: Optional[bool]
+    use_card_point: Optional[bool] = field(default=None)
     """카드 포인트 사용 여부
     """
-    cash_receipt: Optional[CashReceiptInput]
+    cash_receipt: Optional[CashReceiptInput] = field(default=None)
     """현금영수증 정보
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """결제 국가
     """
-    notice_urls: Optional[list[str]]
+    notice_urls: Optional[list[str]] = field(default=None)
     """웹훅 주소
 
     결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
     상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
     입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
     """
-    products: Optional[list[PaymentProduct]]
+    products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보
 
     입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
     """
-    product_count: Optional[int]
+    product_count: Optional[int] = field(default=None)
     """상품 개수
     (int32)
     """
-    product_type: Optional[PaymentProductType]
+    product_type: Optional[PaymentProductType] = field(default=None)
     """상품 유형
     """
-    shipping_address: Optional[SeparatedAddressInput]
+    shipping_address: Optional[SeparatedAddressInput] = field(default=None)
     """배송지 주소
     """
-    promotion_id: Optional[str]
+    promotion_id: Optional[str] = field(default=None)
     """해당 결제에 적용할 프로모션 아이디
     """
-    bypass: Optional[dict]
+    bypass: Optional[dict] = field(default=None)
     """PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
     """
 
 
 def _serialize_billing_key_payment_input(obj: BillingKeyPaymentInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["billingKey"] = obj.billing_key
     entity["orderName"] = obj.order_name

@@ -8,23 +8,25 @@ from portone_server_sdk._generated.platform.platform_not_enabled_error import Pl
 from portone_server_sdk._generated.platform.account.platform_not_supported_bank_error import PlatformNotSupportedBankError, _deserialize_platform_not_supported_bank_error, _serialize_platform_not_supported_bank_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-GetPlatformAccountHolderError = Union[ForbiddenError, InvalidRequestError, PlatformExternalApiFailedError, PlatformExternalApiTemporarilyFailedError, PlatformNotEnabledError, PlatformNotSupportedBankError, UnauthorizedError]
+GetPlatformAccountHolderError = Union[ForbiddenError, InvalidRequestError, PlatformExternalApiFailedError, PlatformExternalApiTemporarilyFailedError, PlatformNotEnabledError, PlatformNotSupportedBankError, UnauthorizedError, dict]
 
 
 def _serialize_get_platform_account_holder_error(obj: GetPlatformAccountHolderError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_EXTERNAL_API_FAILED":
+    if isinstance(obj, PlatformExternalApiFailedError):
         return _serialize_platform_external_api_failed_error(obj)
-    if obj.type == "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED":
+    if isinstance(obj, PlatformExternalApiTemporarilyFailedError):
         return _serialize_platform_external_api_temporarily_failed_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "PLATFORM_NOT_SUPPORTED_BANK":
+    if isinstance(obj, PlatformNotSupportedBankError):
         return _serialize_platform_not_supported_bank_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -57,4 +59,4 @@ def _deserialize_get_platform_account_holder_error(obj: Any) -> GetPlatformAccou
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetPlatformAccountHolderError")
+    return obj

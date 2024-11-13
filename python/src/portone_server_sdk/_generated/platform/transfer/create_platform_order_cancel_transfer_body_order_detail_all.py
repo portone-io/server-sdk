@@ -10,6 +10,8 @@ class CreatePlatformOrderCancelTransferBodyOrderDetailAll:
 
 
 def _serialize_create_platform_order_cancel_transfer_body_order_detail_all(obj: CreatePlatformOrderCancelTransferBodyOrderDetailAll) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

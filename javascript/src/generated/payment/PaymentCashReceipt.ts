@@ -7,3 +7,4 @@ export type PaymentCashReceipt =
 	| CancelledPaymentCashReceipt
 	/** 발급 완료 */
 	| IssuedPaymentCashReceipt
+	| { readonly status: unique symbol }

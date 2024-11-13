@@ -13,6 +13,8 @@ class ConfirmIdentityVerificationResponse:
 
 
 def _serialize_confirm_identity_verification_response(obj: ConfirmIdentityVerificationResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["identityVerification"] = _serialize_verified_identity_verification(obj.identity_verification)
     return entity

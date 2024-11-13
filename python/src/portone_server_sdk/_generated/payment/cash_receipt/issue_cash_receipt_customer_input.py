@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -9,18 +10,20 @@ class IssueCashReceiptCustomerInput:
     identity_number: str
     """고객 식별값
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """이름
     """
-    email: Optional[str]
+    email: Optional[str] = field(default=None)
     """이메일
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
     """
 
 
 def _serialize_issue_cash_receipt_customer_input(obj: IssueCashReceiptCustomerInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["identityNumber"] = obj.identity_number
     if obj.name is not None:

@@ -21,6 +21,7 @@ import type { IdentityVerificationNotSentError as InternalIdentityVerificationNo
 import type { InvalidRequestError as InternalInvalidRequestError } from "./common/InvalidRequestError"
 import type { MaxTransactionCountReachedError as InternalMaxTransactionCountReachedError } from "./common/MaxTransactionCountReachedError"
 import type { MaxWebhookRetryCountReachedError as InternalMaxWebhookRetryCountReachedError } from "./payment/MaxWebhookRetryCountReachedError"
+import type { NegativePromotionAdjustedCancelAmountError as InternalNegativePromotionAdjustedCancelAmountError } from "./payment/NegativePromotionAdjustedCancelAmountError"
 import type { PaymentAlreadyCancelledError as InternalPaymentAlreadyCancelledError } from "./payment/PaymentAlreadyCancelledError"
 import type { PaymentNotFoundError as InternalPaymentNotFoundError } from "./payment/PaymentNotFoundError"
 import type { PaymentNotPaidError as InternalPaymentNotPaidError } from "./payment/PaymentNotPaidError"
@@ -94,9 +95,9 @@ import type { PlatformTransferDiscountSharePolicyNotFoundError as InternalPlatfo
 import type { PlatformTransferNonDeletableStatusError as InternalPlatformTransferNonDeletableStatusError } from "./platform/transfer/PlatformTransferNonDeletableStatusError"
 import type { PlatformTransferNotFoundError as InternalPlatformTransferNotFoundError } from "./platform/transfer/PlatformTransferNotFoundError"
 import type { PlatformUserDefinedPropertyNotFoundError as InternalPlatformUserDefinedPropertyNotFoundError } from "./platform/PlatformUserDefinedPropertyNotFoundError"
+import type { PromotionDiscountRetainOptionShouldNotBeChangedError as InternalPromotionDiscountRetainOptionShouldNotBeChangedError } from "./payment/PromotionDiscountRetainOptionShouldNotBeChangedError"
 import type { PromotionNotFoundError as InternalPromotionNotFoundError } from "./payment/promotion/PromotionNotFoundError"
 import type { PromotionPayMethodDoesNotMatchError as InternalPromotionPayMethodDoesNotMatchError } from "./payment/PromotionPayMethodDoesNotMatchError"
-import type { RemainedAmountLessThanPromotionMinPaymentAmountError as InternalRemainedAmountLessThanPromotionMinPaymentAmountError } from "./payment/RemainedAmountLessThanPromotionMinPaymentAmountError"
 import type { SumOfPartsExceedsCancelAmountError as InternalSumOfPartsExceedsCancelAmountError } from "./payment/SumOfPartsExceedsCancelAmountError"
 import type { SumOfPartsExceedsTotalAmountError as InternalSumOfPartsExceedsTotalAmountError } from "./common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError as InternalUnauthorizedError } from "./common/UnauthorizedError"
@@ -122,7 +123,7 @@ export abstract class PortOneError extends Error {
 export class UnknownError extends PortOneError {
   readonly _tag = "PortOneUnknownError"
 
-  constructor(cause: never) {
+  constructor(cause: unknown) {
     super("알 수 없는 에러가 발생했습니다.", { cause })
     Object.setPrototypeOf(this, UnknownError.prototype)
   }
@@ -408,6 +409,18 @@ export class MaxWebhookRetryCountReachedError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, MaxWebhookRetryCountReachedError.prototype)
 		this.name = "MaxWebhookRetryCountReachedError"
+	}
+}
+
+/** 프로모션에 의해 조정된 취소 금액이 음수인 경우 */
+export class NegativePromotionAdjustedCancelAmountError extends PortOneError {
+	readonly _tag = "PortOneNegativePromotionAdjustedCancelAmountError"
+
+	/** @ignore */
+	constructor(error: InternalNegativePromotionAdjustedCancelAmountError) {
+		super(error.message)
+		Object.setPrototypeOf(this, NegativePromotionAdjustedCancelAmountError.prototype)
+		this.name = "NegativePromotionAdjustedCancelAmountError"
 	}
 }
 
@@ -1380,6 +1393,18 @@ export class PlatformUserDefinedPropertyNotFoundError extends PortOneError {
 	}
 }
 
+/** 프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우 */
+export class PromotionDiscountRetainOptionShouldNotBeChangedError extends PortOneError {
+	readonly _tag = "PortOnePromotionDiscountRetainOptionShouldNotBeChangedError"
+
+	/** @ignore */
+	constructor(error: InternalPromotionDiscountRetainOptionShouldNotBeChangedError) {
+		super(error.message)
+		Object.setPrototypeOf(this, PromotionDiscountRetainOptionShouldNotBeChangedError.prototype)
+		this.name = "PromotionDiscountRetainOptionShouldNotBeChangedError"
+	}
+}
+
 /** 프로모션이 존재하지 않는 경우 */
 export class PromotionNotFoundError extends PortOneError {
 	readonly _tag = "PortOnePromotionNotFoundError"
@@ -1401,18 +1426,6 @@ export class PromotionPayMethodDoesNotMatchError extends PortOneError {
 		super(error.message)
 		Object.setPrototypeOf(this, PromotionPayMethodDoesNotMatchError.prototype)
 		this.name = "PromotionPayMethodDoesNotMatchError"
-	}
-}
-
-/** 부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우 */
-export class RemainedAmountLessThanPromotionMinPaymentAmountError extends PortOneError {
-	readonly _tag = "PortOneRemainedAmountLessThanPromotionMinPaymentAmountError"
-
-	/** @ignore */
-	constructor(error: InternalRemainedAmountLessThanPromotionMinPaymentAmountError) {
-		super(error.message)
-		Object.setPrototypeOf(this, RemainedAmountLessThanPromotionMinPaymentAmountError.prototype)
-		this.name = "RemainedAmountLessThanPromotionMinPaymentAmountError"
 	}
 }
 

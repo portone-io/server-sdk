@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.billing_key.instant_billing_key_payment_method_input_card import InstantBillingKeyPaymentMethodInputCard, _deserialize_instant_billing_key_payment_method_input_card, _serialize_instant_billing_key_payment_method_input_card
@@ -7,10 +8,12 @@ from portone_server_sdk._generated.payment.billing_key.instant_billing_key_payme
 class InstantBillingKeyPaymentMethodInput:
     """빌링키 발급 시 결제 수단 입력 양식
     """
-    card: Optional[InstantBillingKeyPaymentMethodInputCard]
+    card: Optional[InstantBillingKeyPaymentMethodInputCard] = field(default=None)
 
 
 def _serialize_instant_billing_key_payment_method_input(obj: InstantBillingKeyPaymentMethodInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.card is not None:
         entity["card"] = _serialize_instant_billing_key_payment_method_input_card(obj.card)

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
 from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
@@ -17,7 +18,6 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class ReadyPayment:
     """준비 상태의 결제 건
     """
-    status: Literal["READY"] = field(repr=False)
     """결제 건 상태
     """
     id: str
@@ -61,55 +61,57 @@ class ReadyPayment:
     customer: Customer
     """구매자 정보
     """
-    method: Optional[PaymentMethod]
+    method: Optional[PaymentMethod] = field(default=None)
     """결제수단 정보
     """
-    channel: Optional[SelectedChannel]
+    channel: Optional[SelectedChannel] = field(default=None)
     """결제 채널
     """
-    channel_group: Optional[ChannelGroupSummary]
+    channel_group: Optional[ChannelGroupSummary] = field(default=None)
     """결제 채널 그룹 정보
     """
-    schedule_id: Optional[str]
+    schedule_id: Optional[str] = field(default=None)
     """결제 예약 건 아이디
 
     결제 예약을 이용한 경우에만 존재
     """
-    billing_key: Optional[str]
+    billing_key: Optional[str] = field(default=None)
     """결제 시 사용된 빌링키
 
     빌링키 결제인 경우에만 존재
     """
-    webhooks: Optional[list[PaymentWebhook]]
+    webhooks: Optional[list[PaymentWebhook]] = field(default=None)
     """웹훅 발송 내역
     """
-    promotion_id: Optional[str]
+    promotion_id: Optional[str] = field(default=None)
     """프로모션 아이디
     """
-    is_cultural_expense: Optional[bool]
+    is_cultural_expense: Optional[bool] = field(default=None)
     """문화비 지출 여부
     """
-    escrow: Optional[PaymentEscrow]
+    escrow: Optional[PaymentEscrow] = field(default=None)
     """에스크로 결제의 배송 정보
 
     에스크로 결제인 경우 존재합니다.
     """
-    products: Optional[list[PaymentProduct]]
+    products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보
     """
-    product_count: Optional[int]
+    product_count: Optional[int] = field(default=None)
     """상품 갯수
     (int32)
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """국가 코드
     """
 
 
 def _serialize_ready_payment(obj: ReadyPayment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "READY"
     entity["id"] = obj.id
@@ -296,4 +298,4 @@ def _deserialize_ready_payment(obj: Any) -> ReadyPayment:
         country = _deserialize_country(country)
     else:
         country = None
-    return ReadyPayment(status, id, transaction_id, merchant_id, store_id, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, method, channel, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country)
+    return ReadyPayment(id, transaction_id, merchant_id, store_id, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, method, channel, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country)

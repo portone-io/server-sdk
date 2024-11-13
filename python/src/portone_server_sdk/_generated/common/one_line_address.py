@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
@@ -8,13 +8,14 @@ class OneLineAddress:
 
     한 줄 형식 주소만 존재합니다.
     """
-    type: Literal["ONE_LINE"] = field(repr=False)
     one_line: str
     """주소 (한 줄)
     """
 
 
 def _serialize_one_line_address(obj: OneLineAddress) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ONE_LINE"
     entity["oneLine"] = obj.one_line
@@ -34,4 +35,4 @@ def _deserialize_one_line_address(obj: Any) -> OneLineAddress:
     one_line = obj["oneLine"]
     if not isinstance(one_line, str):
         raise ValueError(f"{repr(one_line)} is not str")
-    return OneLineAddress(type, one_line)
+    return OneLineAddress(one_line)

@@ -8,3 +8,4 @@ export type GetPromotionError =
 	| InvalidRequestError
 	| PromotionNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

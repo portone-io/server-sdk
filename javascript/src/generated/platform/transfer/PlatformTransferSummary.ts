@@ -6,3 +6,4 @@ export type PlatformTransferSummary =
 	| PlatformManualTransferSummary
 	| PlatformOrderTransferSummary
 	| PlatformOrderCancelTransferSummary
+	| { readonly type: unique symbol }

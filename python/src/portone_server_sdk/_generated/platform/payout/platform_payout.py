@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
@@ -36,15 +37,17 @@ class PlatformPayout:
     created_at: str
     """(RFC 3339 date-time)
     """
-    memo: Optional[str]
-    withdrawal_memo: Optional[str]
-    deposit_memo: Optional[str]
-    scheduled_at: Optional[str]
+    memo: Optional[str] = field(default=None)
+    withdrawal_memo: Optional[str] = field(default=None)
+    deposit_memo: Optional[str] = field(default=None)
+    scheduled_at: Optional[str] = field(default=None)
     """(RFC 3339 date-time)
     """
 
 
 def _serialize_platform_payout(obj: PlatformPayout) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

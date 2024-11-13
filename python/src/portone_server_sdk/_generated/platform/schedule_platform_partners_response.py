@@ -8,6 +8,8 @@ class SchedulePlatformPartnersResponse:
 
 
 def _serialize_schedule_platform_partners_response(obj: SchedulePlatformPartnersResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

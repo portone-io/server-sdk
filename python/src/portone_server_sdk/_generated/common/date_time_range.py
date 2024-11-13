@@ -15,6 +15,8 @@ class DateTimeRange:
 
 
 def _serialize_date_time_range(obj: DateTimeRange) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["from"] = obj.from_
     entity["until"] = obj.until

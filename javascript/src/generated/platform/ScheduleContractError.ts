@@ -14,3 +14,4 @@ export type ScheduleContractError =
 	| PlatformContractScheduleAlreadyExistsError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

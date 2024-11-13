@@ -10,3 +10,4 @@ export type RecoverPlatformContractError =
 	| PlatformContractNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

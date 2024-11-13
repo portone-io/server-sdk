@@ -7,3 +7,4 @@ export type PaymentWebhookPaymentStatus =
 	| "PARTIAL_CANCELLED"
 	| "CANCELLED"
 	| "PAY_PENDING"
+	| string & {}

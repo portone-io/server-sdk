@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
@@ -11,31 +12,31 @@ class IssueBillingKeyBody:
     method: InstantBillingKeyPaymentMethodInput
     """빌링키 결제 수단 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    channel_key: Optional[str]
+    channel_key: Optional[str] = field(default=None)
     """채널 키
 
     채널 키 또는 채널 그룹 ID 필수
     """
-    channel_group_id: Optional[str]
+    channel_group_id: Optional[str] = field(default=None)
     """채널 그룹 ID
 
     채널 키 또는 채널 그룹 ID 필수
     """
-    customer: Optional[CustomerInput]
+    customer: Optional[CustomerInput] = field(default=None)
     """고객 정보
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
-    bypass: Optional[dict]
+    bypass: Optional[dict] = field(default=None)
     """PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
     """
-    notice_urls: Optional[list[str]]
+    notice_urls: Optional[list[str]] = field(default=None)
     """웹훅 주소
 
     빌링키 발급 시 요청을 받을 웹훅 주소입니다.
@@ -45,6 +46,8 @@ class IssueBillingKeyBody:
 
 
 def _serialize_issue_billing_key_body(obj: IssueBillingKeyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["method"] = _serialize_instant_billing_key_payment_method_input(obj.method)
     if obj.store_id is not None:

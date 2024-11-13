@@ -8,3 +8,4 @@ export type GetPlatformAdditionalFeePoliciesError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

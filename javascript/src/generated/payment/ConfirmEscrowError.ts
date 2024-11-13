@@ -12,3 +12,4 @@ export type ConfirmEscrowError =
 	| PaymentNotPaidError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

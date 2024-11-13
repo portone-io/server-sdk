@@ -14,3 +14,4 @@ export type ScheduleDiscountSharePolicyError =
 	| PlatformDiscountSharePolicyScheduleAlreadyExistsError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

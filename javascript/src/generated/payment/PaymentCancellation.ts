@@ -10,3 +10,4 @@ export type PaymentCancellation =
 	| RequestedPaymentCancellation
 	/** 취소 완료 */
 	| SucceededPaymentCancellation
+	| { readonly status: unique symbol }

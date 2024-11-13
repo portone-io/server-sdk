@@ -1,14 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformContractNotFoundError:
-    type: Literal["PLATFORM_CONTRACT_NOT_FOUND"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_contract_not_found_error(obj: PlatformContractNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CONTRACT_NOT_FOUND"
     if obj.message is not None:
@@ -30,4 +32,4 @@ def _deserialize_platform_contract_not_found_error(obj: Any) -> PlatformContract
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformContractNotFoundError(type, message)
+    return PlatformContractNotFoundError(message)

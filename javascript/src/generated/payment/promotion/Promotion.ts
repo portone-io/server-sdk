@@ -4,3 +4,4 @@ import type { CardPromotion } from "./../../payment/promotion/CardPromotion"
 export type Promotion =
 	/** 카드 프로모션 */
 	| CardPromotion
+	| { readonly type: unique symbol }

@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
 from portone_server_sdk._generated.platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
@@ -8,7 +9,6 @@ from portone_server_sdk._generated.platform.transfer.platform_user_defined_prope
 
 @dataclass
 class PlatformManualTransferSummary:
-    type: Literal["MANUAL"] = field(repr=False)
     id: str
     graphql_id: str
     partner: PlatformTransferSummaryPartner
@@ -27,10 +27,12 @@ class PlatformManualTransferSummary:
     settlement_amount: int
     """(int64)
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
 
 
 def _serialize_platform_manual_transfer_summary(obj: PlatformManualTransferSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MANUAL"
     entity["id"] = obj.id
@@ -115,4 +117,4 @@ def _deserialize_platform_manual_transfer_summary(obj: Any) -> PlatformManualTra
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformManualTransferSummary(type, id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, settlement_amount, memo)
+    return PlatformManualTransferSummary(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, settlement_amount, memo)

@@ -10,3 +10,4 @@ export type RescheduleContractError =
 	| PlatformContractNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

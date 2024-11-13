@@ -26,3 +26,4 @@ export type SchedulePartnerError =
 	| PlatformPartnerScheduleAlreadyExistsError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

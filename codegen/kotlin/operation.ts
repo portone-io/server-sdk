@@ -271,6 +271,9 @@ export function writeOperation(
       `is ${error.name} -> throw ${toException(error.name)}(httpBodyDecoded)`,
     )
   }
+  writer.writeLine(
+    `else -> throw UnknownException("Unknown API error: $httpBody")`,
+  )
   writer.outdent()
   writer.writeLine("}")
   writer.outdent()

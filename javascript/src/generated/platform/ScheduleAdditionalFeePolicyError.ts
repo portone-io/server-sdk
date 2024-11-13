@@ -14,3 +14,4 @@ export type ScheduleAdditionalFeePolicyError =
 	| PlatformArchivedAdditionalFeePolicyError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

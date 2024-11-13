@@ -14,3 +14,4 @@ export type GetPlatformAccountHolderError =
 	| PlatformNotEnabledError
 	| PlatformNotSupportedBankError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

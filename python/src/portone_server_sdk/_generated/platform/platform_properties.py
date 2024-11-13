@@ -9,6 +9,8 @@ class PlatformProperties(PlatformUserDefinedPropertyValue):
 
 
 def _serialize_platform_properties(obj: PlatformProperties) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = _serialize_platform_user_defined_property_value(obj)
     return entity
 

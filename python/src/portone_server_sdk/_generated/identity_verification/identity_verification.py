@@ -4,17 +4,19 @@ from portone_server_sdk._generated.identity_verification.failed_identity_verific
 from portone_server_sdk._generated.identity_verification.ready_identity_verification import ReadyIdentityVerification, _deserialize_ready_identity_verification, _serialize_ready_identity_verification
 from portone_server_sdk._generated.identity_verification.verified_identity_verification import VerifiedIdentityVerification, _deserialize_verified_identity_verification, _serialize_verified_identity_verification
 
-IdentityVerification = Union[FailedIdentityVerification, ReadyIdentityVerification, VerifiedIdentityVerification]
+IdentityVerification = Union[FailedIdentityVerification, ReadyIdentityVerification, VerifiedIdentityVerification, dict]
 """본인인증 내역
 """
 
 
 def _serialize_identity_verification(obj: IdentityVerification) -> Any:
-    if obj.status == "FAILED":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, FailedIdentityVerification):
         return _serialize_failed_identity_verification(obj)
-    if obj.status == "READY":
+    if isinstance(obj, ReadyIdentityVerification):
         return _serialize_ready_identity_verification(obj)
-    if obj.status == "VERIFIED":
+    if isinstance(obj, VerifiedIdentityVerification):
         return _serialize_verified_identity_verification(obj)
 
 
@@ -31,4 +33,4 @@ def _deserialize_identity_verification(obj: Any) -> IdentityVerification:
         return _deserialize_verified_identity_verification(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not IdentityVerification")
+    return obj

@@ -17,6 +17,8 @@ class ReschedulePlatformContractBody:
 
 
 def _serialize_reschedule_platform_contract_body(obj: ReschedulePlatformContractBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_contract_body(obj.update)
     entity["appliedAt"] = obj.applied_at

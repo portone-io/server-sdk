@@ -7,3 +7,4 @@ export type PlatformPayment =
 	| PlatformExternalPayment
 	/** 포트원 결제 정보 */
 	| PlatformPortOnePayment
+	| { readonly type: unique symbol }

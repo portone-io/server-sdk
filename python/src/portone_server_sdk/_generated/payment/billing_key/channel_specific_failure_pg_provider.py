@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
@@ -7,14 +8,15 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class ChannelSpecificFailurePgProvider:
     """PG사에서 오류를 전달한 경우
     """
-    type: Literal["PG_PROVIDER"] = field(repr=False)
     channel: SelectedChannel
     pg_code: str
     pg_message: str
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_channel_specific_failure_pg_provider(obj: ChannelSpecificFailurePgProvider) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PG_PROVIDER"
     entity["channel"] = _serialize_selected_channel(obj.channel)
@@ -53,4 +55,4 @@ def _deserialize_channel_specific_failure_pg_provider(obj: Any) -> ChannelSpecif
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return ChannelSpecificFailurePgProvider(type, channel, pg_code, pg_message, message)
+    return ChannelSpecificFailurePgProvider(channel, pg_code, pg_message, message)

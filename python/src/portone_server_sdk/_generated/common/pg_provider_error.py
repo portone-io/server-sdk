@@ -1,18 +1,20 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PgProviderError:
     """PG사에서 오류를 전달한 경우
     """
-    type: Literal["PG_PROVIDER"] = field(repr=False)
     pg_code: str
     pg_message: str
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_pg_provider_error(obj: PgProviderError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PG_PROVIDER"
     entity["pgCode"] = obj.pg_code
@@ -46,4 +48,4 @@ def _deserialize_pg_provider_error(obj: Any) -> PgProviderError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PgProviderError(type, pg_code, pg_message, message)
+    return PgProviderError(pg_code, pg_message, message)

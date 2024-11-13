@@ -8,6 +8,8 @@ class PlatformPaymentMethodVirtualAccountInput:
 
 
 def _serialize_platform_payment_method_virtual_account_input(obj: PlatformPaymentMethodVirtualAccountInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

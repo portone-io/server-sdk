@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
 from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
@@ -9,7 +10,6 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class CancelledCashReceipt:
     """발급 취소
     """
-    status: Literal["CANCELLED"] = field(repr=False)
     """현금영수증 상태
     """
     merchant_id: str
@@ -48,26 +48,28 @@ class CancelledCashReceipt:
     """취소 시점
     (RFC 3339 date-time)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    vat_amount: Optional[int]
+    vat_amount: Optional[int] = field(default=None)
     """부가세액
     (int64)
     """
-    type: Optional[CashReceiptType]
+    type: Optional[CashReceiptType] = field(default=None)
     """현금영수증 유형
     """
-    pg_receipt_id: Optional[str]
+    pg_receipt_id: Optional[str] = field(default=None)
     """PG사 현금영수증 아이디
     """
-    url: Optional[str]
+    url: Optional[str] = field(default=None)
     """현금영수증 URL
     """
 
 
 def _serialize_cancelled_cash_receipt(obj: CancelledCashReceipt) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "CANCELLED"
     entity["merchantId"] = obj.merchant_id
@@ -184,4 +186,4 @@ def _deserialize_cancelled_cash_receipt(obj: Any) -> CancelledCashReceipt:
             raise ValueError(f"{repr(url)} is not str")
     else:
         url = None
-    return CancelledCashReceipt(status, merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, cancelled_at, tax_free_amount, vat_amount, type, pg_receipt_id, url)
+    return CancelledCashReceipt(merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, cancelled_at, tax_free_amount, vat_amount, type, pg_receipt_id, url)

@@ -5,3 +5,4 @@ export type PaymentMethodGiftCertificateType =
 	| "CULTURELAND"
 	| "HAPPYMONEY"
 	| "CULTUREGIFT"
+	| string & {}

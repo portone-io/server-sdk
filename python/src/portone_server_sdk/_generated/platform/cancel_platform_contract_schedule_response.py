@@ -10,6 +10,8 @@ class CancelPlatformContractScheduleResponse:
 
 
 def _serialize_cancel_platform_contract_schedule_response(obj: CancelPlatformContractScheduleResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

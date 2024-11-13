@@ -11,6 +11,8 @@ class InstantBillingKeyPaymentMethodInputCard:
 
 
 def _serialize_instant_billing_key_payment_method_input_card(obj: InstantBillingKeyPaymentMethodInputCard) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["credential"] = _serialize_card_credential(obj.credential)
     return entity

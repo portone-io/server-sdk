@@ -112,19 +112,38 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_transfer(response.json())
     async def get_platform_transfer_async(
         self,
@@ -166,19 +185,38 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_transfer(response.json())
     def delete_platform_transfer(
         self,
@@ -222,23 +260,50 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS":
-                raise errors.PlatformCancelOrderTransfersExistsError(_deserialize_platform_cancel_order_transfers_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NON_DELETABLE_STATUS":
-                raise errors.PlatformTransferNonDeletableStatusError(_deserialize_platform_transfer_non_deletable_status_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cancel_order_transfers_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancelOrderTransfersExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_transfer_non_deletable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNonDeletableStatusError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_delete_platform_transfer_response(response.json())
     async def delete_platform_transfer_async(
         self,
@@ -282,23 +347,50 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS":
-                raise errors.PlatformCancelOrderTransfersExistsError(_deserialize_platform_cancel_order_transfers_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NON_DELETABLE_STATUS":
-                raise errors.PlatformTransferNonDeletableStatusError(_deserialize_platform_transfer_non_deletable_status_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cancel_order_transfers_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancelOrderTransfersExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_transfer_non_deletable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNonDeletableStatusError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_delete_platform_transfer_response(response.json())
     def get_platform_transfer_summaries(
         self,
@@ -348,17 +440,32 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_transfer_summaries_response(response.json())
     async def get_platform_transfer_summaries_async(
         self,
@@ -408,17 +515,32 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_transfer_summaries_response(response.json())
     def create_platform_order_transfer(
         self,
@@ -551,49 +673,128 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICIES_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePoliciesNotFoundError(_deserialize_platform_additional_fee_policies_not_found_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-                raise errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(_deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-                raise errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(_deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response))
-            if error_type == "PLATFORM_CURRENCY_NOT_SUPPORTED":
-                raise errors.PlatformCurrencyNotSupportedError(_deserialize_platform_currency_not_supported_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICIES_NOT_FOUND":
-                raise errors.PlatformDiscountSharePoliciesNotFoundError(_deserialize_platform_discount_share_policies_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
-            if error_type == "PLATFORM_PAYMENT_NOT_FOUND":
-                raise errors.PlatformPaymentNotFoundError(_deserialize_platform_payment_not_found_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_DUPLICATED":
-                raise errors.PlatformProductIdDuplicatedError(_deserialize_platform_product_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-                raise errors.PlatformSettlementAmountExceededError(_deserialize_platform_settlement_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND":
-                raise errors.PlatformSettlementParameterNotFoundError(_deserialize_platform_settlement_parameter_not_found_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(_deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(_deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(_deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_ALREADY_EXISTS":
-                raise errors.PlatformTransferAlreadyExistsError(_deserialize_platform_transfer_already_exists_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCurrencyNotSupportedError(error)
+            try:
+                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementParameterNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_order_transfer_response(response.json())
     async def create_platform_order_transfer_async(
         self,
@@ -726,49 +927,128 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICIES_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePoliciesNotFoundError(_deserialize_platform_additional_fee_policies_not_found_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-                raise errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(_deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-                raise errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(_deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response))
-            if error_type == "PLATFORM_CURRENCY_NOT_SUPPORTED":
-                raise errors.PlatformCurrencyNotSupportedError(_deserialize_platform_currency_not_supported_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICIES_NOT_FOUND":
-                raise errors.PlatformDiscountSharePoliciesNotFoundError(_deserialize_platform_discount_share_policies_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
-            if error_type == "PLATFORM_PAYMENT_NOT_FOUND":
-                raise errors.PlatformPaymentNotFoundError(_deserialize_platform_payment_not_found_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_DUPLICATED":
-                raise errors.PlatformProductIdDuplicatedError(_deserialize_platform_product_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-                raise errors.PlatformSettlementAmountExceededError(_deserialize_platform_settlement_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND":
-                raise errors.PlatformSettlementParameterNotFoundError(_deserialize_platform_settlement_parameter_not_found_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(_deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(_deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-                raise errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(_deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_ALREADY_EXISTS":
-                raise errors.PlatformTransferAlreadyExistsError(_deserialize_platform_transfer_already_exists_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCurrencyNotSupportedError(error)
+            try:
+                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementParameterNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_order_transfer_response(response.json())
     def create_platform_order_cancel_transfer(
         self,
@@ -898,55 +1178,146 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableAmountExceededError(_deserialize_platform_cancellable_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableDiscountAmountExceededError(_deserialize_platform_cancellable_discount_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableDiscountTaxFreeAmountExceededError(_deserialize_platform_cancellable_discount_tax_free_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED":
-                raise errors.PlatformCancellableProductQuantityExceededError(_deserialize_platform_cancellable_product_quantity_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED":
-                raise errors.PlatformCancellationAndPaymentTypeMismatchedError(_deserialize_platform_cancellation_and_payment_type_mismatched_error(error_response))
-            if error_type == "PLATFORM_CANCELLATION_NOT_FOUND":
-                raise errors.PlatformCancellationNotFoundError(_deserialize_platform_cancellation_not_found_error(error_response))
-            if error_type == "PLATFORM_CANNOT_SPECIFY_TRANSFER":
-                raise errors.PlatformCannotSpecifyTransferError(_deserialize_platform_cannot_specify_transfer_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED":
-                raise errors.PlatformDiscountSharePolicyIdDuplicatedError(_deserialize_platform_discount_share_policy_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_ORDER_DETAIL_MISMATCHED":
-                raise errors.PlatformOrderDetailMismatchedError(_deserialize_platform_order_detail_mismatched_error(error_response))
-            if error_type == "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED":
-                raise errors.PlatformOrderTransferAlreadyCancelledError(_deserialize_platform_order_transfer_already_cancelled_error(error_response))
-            if error_type == "PLATFORM_PAYMENT_NOT_FOUND":
-                raise errors.PlatformPaymentNotFoundError(_deserialize_platform_payment_not_found_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_DUPLICATED":
-                raise errors.PlatformProductIdDuplicatedError(_deserialize_platform_product_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_NOT_FOUND":
-                raise errors.PlatformProductIdNotFoundError(_deserialize_platform_product_id_not_found_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-                raise errors.PlatformSettlementAmountExceededError(_deserialize_platform_settlement_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL":
-                raise errors.PlatformSettlementCancelAmountExceededPortOneCancelError(_deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_ALREADY_EXISTS":
-                raise errors.PlatformTransferAlreadyExistsError(_deserialize_platform_transfer_already_exists_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformTransferDiscountSharePolicyNotFoundError(_deserialize_platform_transfer_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cancellable_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_discount_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableDiscountAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_discount_tax_free_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableDiscountTaxFreeAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_product_quantity_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableProductQuantityExceededError(error)
+            try:
+                error = _deserialize_platform_cancellation_and_payment_type_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellationAndPaymentTypeMismatchedError(error)
+            try:
+                error = _deserialize_platform_cancellation_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellationNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_specify_transfer_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotSpecifyTransferError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_order_detail_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformOrderDetailMismatchedError(error)
+            try:
+                error = _deserialize_platform_order_transfer_already_cancelled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformOrderTransferAlreadyCancelledError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_product_id_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementCancelAmountExceededPortOneCancelError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_transfer_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_order_cancel_transfer_response(response.json())
     async def create_platform_order_cancel_transfer_async(
         self,
@@ -1076,55 +1447,146 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableAmountExceededError(_deserialize_platform_cancellable_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableDiscountAmountExceededError(_deserialize_platform_cancellable_discount_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED":
-                raise errors.PlatformCancellableDiscountTaxFreeAmountExceededError(_deserialize_platform_cancellable_discount_tax_free_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED":
-                raise errors.PlatformCancellableProductQuantityExceededError(_deserialize_platform_cancellable_product_quantity_exceeded_error(error_response))
-            if error_type == "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED":
-                raise errors.PlatformCancellationAndPaymentTypeMismatchedError(_deserialize_platform_cancellation_and_payment_type_mismatched_error(error_response))
-            if error_type == "PLATFORM_CANCELLATION_NOT_FOUND":
-                raise errors.PlatformCancellationNotFoundError(_deserialize_platform_cancellation_not_found_error(error_response))
-            if error_type == "PLATFORM_CANNOT_SPECIFY_TRANSFER":
-                raise errors.PlatformCannotSpecifyTransferError(_deserialize_platform_cannot_specify_transfer_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED":
-                raise errors.PlatformDiscountSharePolicyIdDuplicatedError(_deserialize_platform_discount_share_policy_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_ORDER_DETAIL_MISMATCHED":
-                raise errors.PlatformOrderDetailMismatchedError(_deserialize_platform_order_detail_mismatched_error(error_response))
-            if error_type == "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED":
-                raise errors.PlatformOrderTransferAlreadyCancelledError(_deserialize_platform_order_transfer_already_cancelled_error(error_response))
-            if error_type == "PLATFORM_PAYMENT_NOT_FOUND":
-                raise errors.PlatformPaymentNotFoundError(_deserialize_platform_payment_not_found_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_DUPLICATED":
-                raise errors.PlatformProductIdDuplicatedError(_deserialize_platform_product_id_duplicated_error(error_response))
-            if error_type == "PLATFORM_PRODUCT_ID_NOT_FOUND":
-                raise errors.PlatformProductIdNotFoundError(_deserialize_platform_product_id_not_found_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-                raise errors.PlatformSettlementAmountExceededError(_deserialize_platform_settlement_amount_exceeded_error(error_response))
-            if error_type == "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL":
-                raise errors.PlatformSettlementCancelAmountExceededPortOneCancelError(_deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_ALREADY_EXISTS":
-                raise errors.PlatformTransferAlreadyExistsError(_deserialize_platform_transfer_already_exists_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformTransferDiscountSharePolicyNotFoundError(_deserialize_platform_transfer_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_TRANSFER_NOT_FOUND":
-                raise errors.PlatformTransferNotFoundError(_deserialize_platform_transfer_not_found_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cancellable_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_discount_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableDiscountAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_discount_tax_free_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableDiscountTaxFreeAmountExceededError(error)
+            try:
+                error = _deserialize_platform_cancellable_product_quantity_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellableProductQuantityExceededError(error)
+            try:
+                error = _deserialize_platform_cancellation_and_payment_type_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellationAndPaymentTypeMismatchedError(error)
+            try:
+                error = _deserialize_platform_cancellation_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCancellationNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_specify_transfer_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotSpecifyTransferError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_order_detail_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformOrderDetailMismatchedError(error)
+            try:
+                error = _deserialize_platform_order_transfer_already_cancelled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformOrderTransferAlreadyCancelledError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_product_id_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformProductIdNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformSettlementCancelAmountExceededPortOneCancelError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_transfer_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformTransferNotFoundError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_order_cancel_transfer_response(response.json())
     def create_platform_manual_transfer(
         self,
@@ -1198,21 +1660,44 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_manual_transfer_response(response.json())
     async def create_platform_manual_transfer_async(
         self,
@@ -1286,21 +1771,44 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "PLATFORM_PARTNER_NOT_FOUND":
-                raise errors.PlatformPartnerNotFoundError(_deserialize_platform_partner_not_found_error(error_response))
-            if error_type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-                raise errors.PlatformUserDefinedPropertyNotFoundError(_deserialize_platform_user_defined_property_not_found_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_manual_transfer_response(response.json())
     def download_platform_transfer_sheet(
         self,
@@ -1356,13 +1864,20 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return response.text
     async def download_platform_transfer_sheet_async(
         self,
@@ -1418,11 +1933,18 @@ class TransferClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return response.text

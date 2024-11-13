@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
@@ -9,33 +10,35 @@ from portone_server_sdk._generated.common.card_type import CardType, _deserializ
 class Card:
     """카드 상세 정보
     """
-    publisher: Optional[str]
+    publisher: Optional[str] = field(default=None)
     """발행사 코드
     """
-    issuer: Optional[str]
+    issuer: Optional[str] = field(default=None)
     """발급사 코드
     """
-    brand: Optional[CardBrand]
+    brand: Optional[CardBrand] = field(default=None)
     """카드 브랜드
     """
-    type: Optional[CardType]
+    type: Optional[CardType] = field(default=None)
     """카드 유형
     """
-    owner_type: Optional[CardOwnerType]
+    owner_type: Optional[CardOwnerType] = field(default=None)
     """카드 소유주 유형
     """
-    bin: Optional[str]
+    bin: Optional[str] = field(default=None)
     """카드 번호 앞 6자리 또는 8자리의 BIN (Bank Identification Number)
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """카드 상품명
     """
-    number: Optional[str]
+    number: Optional[str] = field(default=None)
     """마스킹된 카드 번호
     """
 
 
 def _serialize_card(obj: Card) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.publisher is not None:
         entity["publisher"] = obj.publisher

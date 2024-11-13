@@ -1,18 +1,20 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_settlement_formula_error import PlatformSettlementFormulaError, _deserialize_platform_settlement_formula_error, _serialize_platform_settlement_formula_error
 
 @dataclass
 class PlatformInvalidSettlementFormulaError:
-    type: Literal["PLATFORM_INVALID_SETTLEMENT_FORMULA"] = field(repr=False)
-    platform_fee: Optional[PlatformSettlementFormulaError]
-    discount_share: Optional[PlatformSettlementFormulaError]
-    additional_fee: Optional[PlatformSettlementFormulaError]
-    message: Optional[str]
+    platform_fee: Optional[PlatformSettlementFormulaError] = field(default=None)
+    discount_share: Optional[PlatformSettlementFormulaError] = field(default=None)
+    additional_fee: Optional[PlatformSettlementFormulaError] = field(default=None)
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_invalid_settlement_formula_error(obj: PlatformInvalidSettlementFormulaError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_INVALID_SETTLEMENT_FORMULA"
     if obj.platform_fee is not None:
@@ -55,4 +57,4 @@ def _deserialize_platform_invalid_settlement_formula_error(obj: Any) -> Platform
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformInvalidSettlementFormulaError(type, platform_fee, discount_share, additional_fee, message)
+    return PlatformInvalidSettlementFormulaError(platform_fee, discount_share, additional_fee, message)

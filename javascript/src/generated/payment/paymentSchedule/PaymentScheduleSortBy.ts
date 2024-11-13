@@ -6,3 +6,4 @@ export type PaymentScheduleSortBy =
 	| "TIME_TO_PAY"
 	/** 예약 결제 시도(성공 / 실패) 시각 */
 	| "COMPLETED_AT"
+	| string & {}

@@ -16,6 +16,8 @@ class PaymentWithCursor:
 
 
 def _serialize_payment_with_cursor(obj: PaymentWithCursor) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_payment(obj.payment)
     entity["cursor"] = obj.cursor

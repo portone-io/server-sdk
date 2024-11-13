@@ -107,17 +107,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_discount_share_policies_response(response.json())
     async def get_platform_discount_share_policies_async(
         self,
@@ -167,17 +182,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_discount_share_policies_response(response.json())
     def create_platform_discount_share_policy(
         self,
@@ -238,19 +268,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS":
-                raise errors.PlatformDiscountSharePolicyAlreadyExistsError(_deserialize_platform_discount_share_policy_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_discount_share_policy_response(response.json())
     async def create_platform_discount_share_policy_async(
         self,
@@ -311,19 +360,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS":
-                raise errors.PlatformDiscountSharePolicyAlreadyExistsError(_deserialize_platform_discount_share_policy_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_discount_share_policy_response(response.json())
     def get_platform_discount_share_policy(
         self,
@@ -365,19 +433,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy(response.json())
     async def get_platform_discount_share_policy_async(
         self,
@@ -419,19 +506,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_discount_share_policy(response.json())
     def update_platform_discount_share_policy(
         self,
@@ -494,21 +600,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
-                raise errors.PlatformArchivedDiscountSharePolicyError(_deserialize_platform_archived_discount_share_policy_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_discount_share_policy_response(response.json())
     async def update_platform_discount_share_policy_async(
         self,
@@ -571,21 +700,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
-                raise errors.PlatformArchivedDiscountSharePolicyError(_deserialize_platform_archived_discount_share_policy_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_discount_share_policy_response(response.json())
     def archive_platform_discount_share_policy(
         self,
@@ -629,21 +781,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY":
-                raise errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(_deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_discount_share_policy_response(response.json())
     async def archive_platform_discount_share_policy_async(
         self,
@@ -687,21 +862,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY":
-                raise errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(_deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_discount_share_policy_response(response.json())
     def recover_platform_discount_share_policy(
         self,
@@ -743,19 +941,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_discount_share_policy_response(response.json())
     async def recover_platform_discount_share_policy_async(
         self,
@@ -797,19 +1014,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-                raise errors.PlatformDiscountSharePolicyNotFoundError(_deserialize_platform_discount_share_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_discount_share_policy_response(response.json())
     def get_platform_additional_fee_policies(
         self,
@@ -859,17 +1095,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_additional_fee_policies_response(response.json())
     async def get_platform_additional_fee_policies_async(
         self,
@@ -919,17 +1170,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_additional_fee_policies_response(response.json())
     def create_platform_additional_fee_policy(
         self,
@@ -994,19 +1260,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
-                raise errors.PlatformAdditionalFeePolicyAlreadyExistsError(_deserialize_platform_additional_fee_policy_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_additional_fee_policy_response(response.json())
     async def create_platform_additional_fee_policy_async(
         self,
@@ -1071,19 +1356,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
-                raise errors.PlatformAdditionalFeePolicyAlreadyExistsError(_deserialize_platform_additional_fee_policy_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_additional_fee_policy_response(response.json())
     def get_platform_additional_fee_policy(
         self,
@@ -1125,19 +1429,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_additional_fee_policy(response.json())
     async def get_platform_additional_fee_policy_async(
         self,
@@ -1179,19 +1502,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_additional_fee_policy(response.json())
     def update_platform_additional_fee_policy(
         self,
@@ -1257,21 +1599,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformArchivedAdditionalFeePolicyError(_deserialize_platform_archived_additional_fee_policy_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_additional_fee_policy_response(response.json())
     async def update_platform_additional_fee_policy_async(
         self,
@@ -1337,21 +1702,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformArchivedAdditionalFeePolicyError(_deserialize_platform_archived_additional_fee_policy_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_additional_fee_policy_response(response.json())
     def archive_platform_additional_fee_policy(
         self,
@@ -1395,21 +1783,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(_deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_additional_fee_policy_response(response.json())
     async def archive_platform_additional_fee_policy_async(
         self,
@@ -1453,21 +1864,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY":
-                raise errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(_deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_additional_fee_policy_response(response.json())
     def recover_platform_additional_fee_policy(
         self,
@@ -1509,19 +1943,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_additional_fee_policy_response(response.json())
     async def recover_platform_additional_fee_policy_async(
         self,
@@ -1563,19 +2016,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-                raise errors.PlatformAdditionalFeePolicyNotFoundError(_deserialize_platform_additional_fee_policy_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_additional_fee_policy_response(response.json())
     def get_platform_contracts(
         self,
@@ -1625,17 +2097,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_contracts_response(response.json())
     async def get_platform_contracts_async(
         self,
@@ -1685,17 +2172,32 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_get_platform_contracts_response(response.json())
     def create_platform_contract(
         self,
@@ -1768,19 +2270,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_ALREADY_EXISTS":
-                raise errors.PlatformContractAlreadyExistsError(_deserialize_platform_contract_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_contract_response(response.json())
     async def create_platform_contract_async(
         self,
@@ -1853,19 +2374,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_ALREADY_EXISTS":
-                raise errors.PlatformContractAlreadyExistsError(_deserialize_platform_contract_already_exists_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_create_platform_contract_response(response.json())
     def get_platform_contract(
         self,
@@ -1907,19 +2447,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_contract(response.json())
     async def get_platform_contract_async(
         self,
@@ -1961,19 +2520,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_platform_contract(response.json())
     def update_platform_contract(
         self,
@@ -2049,21 +2627,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_CONTRACT":
-                raise errors.PlatformArchivedContractError(_deserialize_platform_archived_contract_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_contract_response(response.json())
     async def update_platform_contract_async(
         self,
@@ -2139,21 +2740,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_ARCHIVED_CONTRACT":
-                raise errors.PlatformArchivedContractError(_deserialize_platform_archived_contract_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformArchivedContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_update_platform_contract_response(response.json())
     def archive_platform_contract(
         self,
@@ -2197,21 +2821,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT":
-                raise errors.PlatformCannotArchiveScheduledContractError(_deserialize_platform_cannot_archive_scheduled_contract_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_contract_response(response.json())
     async def archive_platform_contract_async(
         self,
@@ -2255,21 +2902,44 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT":
-                raise errors.PlatformCannotArchiveScheduledContractError(_deserialize_platform_cannot_archive_scheduled_contract_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformCannotArchiveScheduledContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_archive_platform_contract_response(response.json())
     def recover_platform_contract(
         self,
@@ -2311,19 +2981,38 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_contract_response(response.json())
     async def recover_platform_contract_async(
         self,
@@ -2365,17 +3054,36 @@ class PolicyClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PLATFORM_CONTRACT_NOT_FOUND":
-                raise errors.PlatformContractNotFoundError(_deserialize_platform_contract_not_found_error(error_response))
-            if error_type == "PLATFORM_NOT_ENABLED":
-                raise errors.PlatformNotEnabledError(_deserialize_platform_not_enabled_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_recover_platform_contract_response(response.json())

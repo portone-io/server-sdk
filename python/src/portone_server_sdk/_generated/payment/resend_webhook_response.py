@@ -13,6 +13,8 @@ class ResendWebhookResponse:
 
 
 def _serialize_resend_webhook_response(obj: ResendWebhookResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["webhook"] = _serialize_payment_webhook(obj.webhook)
     return entity

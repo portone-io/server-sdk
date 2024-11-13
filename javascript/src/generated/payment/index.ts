@@ -35,6 +35,7 @@ import type { PaymentProduct } from "..//common/PaymentProduct"
 import type { PaymentProductType } from "..//common/PaymentProductType"
 import type { PreRegisterPaymentError } from "..//payment/PreRegisterPaymentError"
 import type { PreRegisterPaymentResponse } from "..//payment/PreRegisterPaymentResponse"
+import type { PromotionDiscountRetainOption } from "..//payment/PromotionDiscountRetainOption"
 import type { RegisterStoreReceiptBodyItem } from "..//payment/RegisterStoreReceiptBodyItem"
 import type { RegisterStoreReceiptError } from "..//payment/RegisterStoreReceiptError"
 import type { RegisterStoreReceiptResponse } from "..//payment/RegisterStoreReceiptResponse"
@@ -125,6 +126,7 @@ export type { PaymentWebhookTrigger } from "./PaymentWebhookTrigger"
 export type { PaymentWithCursor } from "./PaymentWithCursor"
 export type { PreRegisterPaymentBody } from "./PreRegisterPaymentBody"
 export type { PreRegisterPaymentResponse } from "./PreRegisterPaymentResponse"
+export type { PromotionDiscountRetainOption } from "./PromotionDiscountRetainOption"
 export type { ReadyPayment } from "./ReadyPayment"
 export type { RegisterEscrowLogisticsBody } from "./RegisterEscrowLogisticsBody"
 export type { RegisterStoreReceiptBody } from "./RegisterStoreReceiptBody"
@@ -323,6 +325,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				vatAmount?: number,
 				reason: string,
 				requester?: CancelRequester,
+				promotionDiscountRetainOption?: PromotionDiscountRetainOption,
 				currentCancellableAmount?: number,
 				refundAccount?: CancelPaymentBodyRefundAccount,
 			}
@@ -334,6 +337,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				vatAmount,
 				reason,
 				requester,
+				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
 			} = options
@@ -344,6 +348,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 				vatAmount,
 				reason,
 				requester,
+				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
 			})
@@ -373,6 +378,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.ForbiddenError(errorResponse)
 				case "INVALID_REQUEST":
 					throw new Errors.InvalidRequestError(errorResponse)
+				case "NEGATIVE_PROMOTION_ADJUSTED_CANCEL_AMOUNT":
+					throw new Errors.NegativePromotionAdjustedCancelAmountError(errorResponse)
 				case "PAYMENT_ALREADY_CANCELLED":
 					throw new Errors.PaymentAlreadyCancelledError(errorResponse)
 				case "PAYMENT_NOT_FOUND":
@@ -381,8 +388,8 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 					throw new Errors.PaymentNotPaidError(errorResponse)
 				case "PG_PROVIDER":
 					throw new Errors.PgProviderError(errorResponse)
-				case "REMAINED_AMOUNT_LESS_THAN_PROMOTION_MIN_PAYMENT_AMOUNT":
-					throw new Errors.RemainedAmountLessThanPromotionMinPaymentAmountError(errorResponse)
+				case "PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED":
+					throw new Errors.PromotionDiscountRetainOptionShouldNotBeChangedError(errorResponse)
 				case "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
 					throw new Errors.SumOfPartsExceedsCancelAmountError(errorResponse)
 				case "UNAUTHORIZED":
@@ -1009,11 +1016,12 @@ export type PaymentClient = {
 	 * @throws {@link Errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError} 취소 면세 금액이 취소 가능한 면세 금액을 초과한 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
+	 * @throws {@link Errors.NegativePromotionAdjustedCancelAmountError} 프로모션에 의해 조정된 취소 금액이 음수인 경우
 	 * @throws {@link Errors.PaymentAlreadyCancelledError} 결제가 이미 취소된 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
 	 * @throws {@link Errors.PaymentNotPaidError} 결제가 완료되지 않은 경우
 	 * @throws {@link Errors.PgProviderError} PG사에서 오류를 전달한 경우
-	 * @throws {@link Errors.RemainedAmountLessThanPromotionMinPaymentAmountError} 부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
+	 * @throws {@link Errors.PromotionDiscountRetainOptionShouldNotBeChangedError} 프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
 	 * @throws {@link Errors.SumOfPartsExceedsCancelAmountError} 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
@@ -1051,6 +1059,15 @@ export type PaymentClient = {
 			 * 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
 			 */
 			requester?: CancelRequester,
+			/**
+			 * 프로모션 할인율 유지 옵션
+			 *
+			 * 프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+			 * RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+			 * RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+			 * 값을 입력하지 않으면 RELEASE 로 취급합니다.
+			 */
+			promotionDiscountRetainOption?: PromotionDiscountRetainOption,
 			/**
 			 * 결제 건의 취소 가능 잔액
 			 *

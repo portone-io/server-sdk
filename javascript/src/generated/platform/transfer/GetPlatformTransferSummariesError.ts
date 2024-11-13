@@ -8,3 +8,4 @@ export type GetPlatformTransferSummariesError =
 	| InvalidRequestError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

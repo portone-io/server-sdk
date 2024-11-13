@@ -75,17 +75,32 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_NOT_FOUND":
-                raise errors.CashReceiptNotFoundError(_deserialize_cash_receipt_not_found_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cash_receipt(response.json())
     async def get_cash_receipt_by_payment_id_async(
         self,
@@ -128,17 +143,32 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_NOT_FOUND":
-                raise errors.CashReceiptNotFoundError(_deserialize_cash_receipt_not_found_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cash_receipt(response.json())
     def issue_cash_receipt(
         self,
@@ -224,21 +254,44 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_ALREADY_ISSUED":
-                raise errors.CashReceiptAlreadyIssuedError(_deserialize_cash_receipt_already_issued_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptAlreadyIssuedError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_issue_cash_receipt_response(response.json())
     async def issue_cash_receipt_async(
         self,
@@ -324,21 +377,44 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_ALREADY_ISSUED":
-                raise errors.CashReceiptAlreadyIssuedError(_deserialize_cash_receipt_already_issued_error(error_response))
-            if error_type == "CHANNEL_NOT_FOUND":
-                raise errors.ChannelNotFoundError(_deserialize_channel_not_found_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptAlreadyIssuedError(error)
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ChannelNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_issue_cash_receipt_response(response.json())
     def cancel_cash_receipt_by_payment_id(
         self,
@@ -385,21 +461,44 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_NOT_FOUND":
-                raise errors.CashReceiptNotFoundError(_deserialize_cash_receipt_not_found_error(error_response))
-            if error_type == "CASH_RECEIPT_NOT_ISSUED":
-                raise errors.CashReceiptNotIssuedError(_deserialize_cash_receipt_not_issued_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_cash_receipt_not_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotIssuedError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cancel_cash_receipt_response(response.json())
     async def cancel_cash_receipt_by_payment_id_async(
         self,
@@ -446,19 +545,42 @@ class CashReceiptClient:
         )
         if response.status_code != 200:
             error_response = response.json()
-            error_type = error_response["type"]
-            if error_type == "CASH_RECEIPT_NOT_FOUND":
-                raise errors.CashReceiptNotFoundError(_deserialize_cash_receipt_not_found_error(error_response))
-            if error_type == "CASH_RECEIPT_NOT_ISSUED":
-                raise errors.CashReceiptNotIssuedError(_deserialize_cash_receipt_not_issued_error(error_response))
-            if error_type == "FORBIDDEN":
-                raise errors.ForbiddenError(_deserialize_forbidden_error(error_response))
-            if error_type == "INVALID_REQUEST":
-                raise errors.InvalidRequestError(_deserialize_invalid_request_error(error_response))
-            if error_type == "PG_PROVIDER":
-                raise errors.PgProviderError(_deserialize_pg_provider_error(error_response))
-            if error_type == "UNAUTHORIZED":
-                raise errors.UnauthorizedError(_deserialize_unauthorized_error(error_response))
-            else:
-                raise errors.UnknownError(error_response)
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_cash_receipt_not_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.CashReceiptNotIssuedError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise errors.UnauthorizedError(error)
+            raise errors.UnknownError(error_response)
         return _deserialize_cancel_cash_receipt_response(response.json())

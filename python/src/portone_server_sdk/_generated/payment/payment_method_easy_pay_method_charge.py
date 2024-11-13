@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
 
@@ -7,13 +8,14 @@ from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _
 class PaymentMethodEasyPayMethodCharge:
     """충전식 포인트 결제 정보
     """
-    type: Literal["PaymentMethodEasyPayMethodCharge"] = field(repr=False)
-    bank: Optional[Bank]
+    bank: Optional[Bank] = field(default=None)
     """표준 은행 코드
     """
 
 
 def _serialize_payment_method_easy_pay_method_charge(obj: PaymentMethodEasyPayMethodCharge) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PaymentMethodEasyPayMethodCharge"
     if obj.bank is not None:
@@ -34,4 +36,4 @@ def _deserialize_payment_method_easy_pay_method_charge(obj: Any) -> PaymentMetho
         bank = _deserialize_bank(bank)
     else:
         bank = None
-    return PaymentMethodEasyPayMethodCharge(type, bank)
+    return PaymentMethodEasyPayMethodCharge(bank)

@@ -21,6 +21,8 @@ class PlatformOrderTransferAdditionalFee:
 
 
 def _serialize_platform_order_transfer_additional_fee(obj: PlatformOrderTransferAdditionalFee) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["policy"] = _serialize_platform_additional_fee_policy(obj.policy)
     entity["amount"] = obj.amount

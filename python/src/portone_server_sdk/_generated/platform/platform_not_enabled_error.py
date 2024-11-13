@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformNotEnabledError:
     """플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
     """
-    type: Literal["PLATFORM_NOT_ENABLED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_not_enabled_error(obj: PlatformNotEnabledError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_NOT_ENABLED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_not_enabled_error(obj: Any) -> PlatformNotEnabledError
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformNotEnabledError(type, message)
+    return PlatformNotEnabledError(message)

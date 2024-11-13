@@ -13,6 +13,8 @@ class CreatePlatformPartnersBody:
 
 
 def _serialize_create_platform_partners_body(obj: CreatePlatformPartnersBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partners"] = list(map(_serialize_create_platform_partner_body, obj.partners))
     return entity

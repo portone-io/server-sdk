@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.cash_receipt_input_type import CashReceiptInputType, _deserialize_cash_receipt_input_type, _serialize_cash_receipt_input_type
@@ -10,7 +11,7 @@ class CashReceiptInput:
     type: CashReceiptInputType
     """현금영수증 유형
     """
-    customer_identity_number: Optional[str]
+    customer_identity_number: Optional[str] = field(default=None)
     """사용자 식별 번호
 
     미발행 유형 선택 시 입력하지 않습니다.
@@ -18,6 +19,8 @@ class CashReceiptInput:
 
 
 def _serialize_cash_receipt_input(obj: CashReceiptInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = _serialize_cash_receipt_input_type(obj.type)
     if obj.customer_identity_number is not None:

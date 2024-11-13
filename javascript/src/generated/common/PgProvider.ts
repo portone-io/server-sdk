@@ -48,3 +48,4 @@ export type PgProvider =
 	| "KPN"
 	| "KCP_V2"
 	| "HYPHEN"
+	| string & {}

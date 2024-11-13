@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,13 +7,13 @@ from dataclasses import dataclass, field
 class IdentityVerificationRequestedCustomer:
     """요청 시 고객 정보
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """식별 아이디
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """이름
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
 
     특수 문자(-) 없이 숫자로만 이루어진 번호 형식입니다.
@@ -20,6 +21,8 @@ class IdentityVerificationRequestedCustomer:
 
 
 def _serialize_identity_verification_requested_customer(obj: IdentityVerificationRequestedCustomer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.id is not None:
         entity["id"] = obj.id

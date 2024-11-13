@@ -24,3 +24,4 @@ export type UpdatePlatformPartnerError =
 	| PlatformPartnerNotFoundError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

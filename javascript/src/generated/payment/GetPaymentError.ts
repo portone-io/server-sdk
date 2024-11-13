@@ -8,3 +8,4 @@ export type GetPaymentError =
 	| InvalidRequestError
 	| PaymentNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

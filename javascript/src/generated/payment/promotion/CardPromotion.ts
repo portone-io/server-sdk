@@ -1,6 +1,7 @@
 import type { Currency } from "./../../common/Currency"
 import type { PromotionCardCompany } from "./../../payment/promotion/PromotionCardCompany"
-import type { PromotionDiscount } from "./../../payment/promotion/PromotionDiscount"
+import type { PromotionDiscountPolicy } from "./../../payment/promotion/PromotionDiscountPolicy"
+import type { PromotionRecoverOption } from "./../../payment/promotion/PromotionRecoverOption"
 import type { PromotionStatus } from "./../../payment/promotion/PromotionStatus"
 
 /** 카드 프로모션 */
@@ -13,18 +14,13 @@ export type CardPromotion = {
 	storeId: string
 	/** 프로모션 이름 */
 	name: string
-	/** 할인 유형 */
-	discountType: PromotionDiscount
+	/** 할인 정책 */
+	discountPolicy: PromotionDiscountPolicy
 	/**
 	 * 총 예산
 	 * (int64)
 	 */
 	totalBudget: number
-	/**
-	 * 최소 결제 금액
-	 * (int64)
-	 */
-	minPaymentAmount?: number
 	/**
 	 * 최대 할인 금액
 	 * (int64)
@@ -61,4 +57,6 @@ export type CardPromotion = {
 	 * (RFC 3339 date-time)
 	 */
 	createdAt: string
+	/** 결제 취소 시 프로모션 예산 복구 옵션 */
+	recoverOption: PromotionRecoverOption
 }

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -19,10 +20,10 @@ class SendIdentityVerificationBodyCustomer:
 
     고객의 요청 속도 제한에 사용됩니다.
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """식별 아이디
     """
-    identity_number: Optional[str]
+    identity_number: Optional[str] = field(default=None)
     """주민등록번호 앞 7자리
 
     SMS 방식의 경우 필수로 입력합니다.
@@ -30,6 +31,8 @@ class SendIdentityVerificationBodyCustomer:
 
 
 def _serialize_send_identity_verification_body_customer(obj: SendIdentityVerificationBodyCustomer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["phoneNumber"] = obj.phone_number

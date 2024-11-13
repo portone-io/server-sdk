@@ -10,3 +10,4 @@ export type PaymentWebhookTrigger =
 	| "ASYNC_CANCEL_FAILED"
 	| "ASYNC_PAY_APPROVED"
 	| "ASYNC_PAY_FAILED"
+	| string & {}

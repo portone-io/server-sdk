@@ -10,6 +10,8 @@ class PlatformBulkPayoutStats:
 
 
 def _serialize_platform_bulk_payout_stats(obj: PlatformBulkPayoutStats) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["amount"] = _serialize_platform_payout_status_stats(obj.amount)
     entity["count"] = _serialize_platform_payout_status_stats(obj.count)

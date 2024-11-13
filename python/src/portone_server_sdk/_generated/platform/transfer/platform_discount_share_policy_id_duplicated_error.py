@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformDiscountSharePolicyIdDuplicatedError:
-    type: Literal["PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED"] = field(repr=False)
     id: str
     graphql_id: str
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_discount_share_policy_id_duplicated_error(obj: PlatformDiscountSharePolicyIdDuplicatedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED"
     entity["id"] = obj.id
@@ -44,4 +46,4 @@ def _deserialize_platform_discount_share_policy_id_duplicated_error(obj: Any) ->
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformDiscountSharePolicyIdDuplicatedError(type, id, graphql_id, message)
+    return PlatformDiscountSharePolicyIdDuplicatedError(id, graphql_id, message)

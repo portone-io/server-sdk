@@ -14,3 +14,4 @@ export type ConfirmIdentityVerificationError =
 	| InvalidRequestError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

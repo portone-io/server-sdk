@@ -8,3 +8,4 @@ export type PreRegisterPaymentError =
 	| ForbiddenError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

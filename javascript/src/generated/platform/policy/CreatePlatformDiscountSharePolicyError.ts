@@ -10,3 +10,4 @@ export type CreatePlatformDiscountSharePolicyError =
 	| PlatformDiscountSharePolicyAlreadyExistsError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

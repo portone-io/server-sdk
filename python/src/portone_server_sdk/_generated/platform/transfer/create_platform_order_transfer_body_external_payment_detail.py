@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
@@ -11,19 +12,21 @@ class CreatePlatformOrderTransferBodyExternalPaymentDetail:
     currency: Currency
     """통화
     """
-    order_name: Optional[str]
+    order_name: Optional[str] = field(default=None)
     """주문 명
     """
-    paid_at: Optional[str]
+    paid_at: Optional[str] = field(default=None)
     """결제 일시
     (RFC 3339 date-time)
     """
-    method: Optional[PlatformPaymentMethodInput]
+    method: Optional[PlatformPaymentMethodInput] = field(default=None)
     """결제 수단
     """
 
 
 def _serialize_create_platform_order_transfer_body_external_payment_detail(obj: CreatePlatformOrderTransferBodyExternalPaymentDetail) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["currency"] = _serialize_currency(obj.currency)
     if obj.order_name is not None:

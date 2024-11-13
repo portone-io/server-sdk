@@ -12,3 +12,4 @@ export type ArchivePlatformContractError =
 	| PlatformContractNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

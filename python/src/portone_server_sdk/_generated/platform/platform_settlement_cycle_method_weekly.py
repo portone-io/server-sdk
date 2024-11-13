@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.day_of_week import DayOfWeek, _deserialize_day_of_week, _serialize_day_of_week
 
@@ -7,13 +7,14 @@ from portone_server_sdk._generated.platform.day_of_week import DayOfWeek, _deser
 class PlatformSettlementCycleMethodWeekly:
     """매주 정해진 요일에 정산
     """
-    type: Literal["WEEKLY"] = field(repr=False)
     days_of_week: list[DayOfWeek]
     """요일
     """
 
 
 def _serialize_platform_settlement_cycle_method_weekly(obj: PlatformSettlementCycleMethodWeekly) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "WEEKLY"
     entity["daysOfWeek"] = list(map(_serialize_day_of_week, obj.days_of_week))
@@ -36,4 +37,4 @@ def _deserialize_platform_settlement_cycle_method_weekly(obj: Any) -> PlatformSe
     for i, item in enumerate(days_of_week):
         item = _deserialize_day_of_week(item)
         days_of_week[i] = item
-    return PlatformSettlementCycleMethodWeekly(type, days_of_week)
+    return PlatformSettlementCycleMethodWeekly(days_of_week)

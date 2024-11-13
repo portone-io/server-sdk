@@ -10,3 +10,4 @@ export type GetPlatformPartnerError =
 	| PlatformNotEnabledError
 	| PlatformPartnerNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

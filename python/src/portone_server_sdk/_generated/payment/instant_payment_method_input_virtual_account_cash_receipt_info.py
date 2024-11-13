@@ -16,6 +16,8 @@ class InstantPaymentMethodInputVirtualAccountCashReceiptInfo:
 
 
 def _serialize_instant_payment_method_input_virtual_account_cash_receipt_info(obj: InstantPaymentMethodInputVirtualAccountCashReceiptInfo) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = _serialize_cash_receipt_input_type(obj.type)
     entity["customerIdentityNumber"] = obj.customer_identity_number

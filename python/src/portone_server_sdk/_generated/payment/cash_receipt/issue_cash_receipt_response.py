@@ -11,6 +11,8 @@ class IssueCashReceiptResponse:
 
 
 def _serialize_issue_cash_receipt_response(obj: IssueCashReceiptResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cashReceipt"] = _serialize_cash_receipt_summary(obj.cash_receipt)
     return entity

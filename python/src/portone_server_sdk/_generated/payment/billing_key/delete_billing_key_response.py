@@ -13,6 +13,8 @@ class DeleteBillingKeyResponse:
 
 
 def _serialize_delete_billing_key_response(obj: DeleteBillingKeyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["deletedAt"] = obj.deleted_at
     return entity

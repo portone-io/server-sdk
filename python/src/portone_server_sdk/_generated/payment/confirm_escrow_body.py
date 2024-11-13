@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,12 +7,12 @@ from dataclasses import dataclass, field
 class ConfirmEscrowBody:
     """에스크로 구매 확정 입력 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    from_store: Optional[bool]
+    from_store: Optional[bool] = field(default=None)
     """확인 주체가 상점인지 여부
 
     구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
@@ -20,6 +21,8 @@ class ConfirmEscrowBody:
 
 
 def _serialize_confirm_escrow_body(obj: ConfirmEscrowBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.store_id is not None:
         entity["storeId"] = obj.store_id

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_account import PlatformAccount, _deserialize_platform_account, _serialize_platform_account
@@ -49,12 +50,14 @@ class PlatformPartner:
     user_defined_properties: PlatformProperties
     """사용자 정의 속성
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """파트너에 대한 메모
     """
 
 
 def _serialize_platform_partner(obj: PlatformPartner) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

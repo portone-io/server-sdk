@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCurrencyNotSupportedError:
     """지원 되지 않는 통화를 선택한 경우
     """
-    type: Literal["PLATFORM_CURRENCY_NOT_SUPPORTED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_currency_not_supported_error(obj: PlatformCurrencyNotSupportedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CURRENCY_NOT_SUPPORTED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_currency_not_supported_error(obj: Any) -> PlatformCurr
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCurrencyNotSupportedError(type, message)
+    return PlatformCurrencyNotSupportedError(message)

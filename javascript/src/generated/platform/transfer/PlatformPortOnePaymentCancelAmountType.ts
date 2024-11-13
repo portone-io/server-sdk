@@ -8,3 +8,4 @@ export type PlatformPortOnePaymentCancelAmountType =
 	| "SUPPLY_WITH_VAT"
 	/** 면세 금액 */
 	| "TAX_FREE"
+	| string & {}

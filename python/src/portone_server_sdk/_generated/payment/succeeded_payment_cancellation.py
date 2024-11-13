@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class SucceededPaymentCancellation:
     """취소 완료 상태
     """
-    status: Literal["SUCCEEDED"] = field(repr=False)
     """결제 취소 내역 상태
     """
     id: str
@@ -31,23 +31,25 @@ class SucceededPaymentCancellation:
     """취소 요청 시점
     (RFC 3339 date-time)
     """
-    pg_cancellation_id: Optional[str]
+    pg_cancellation_id: Optional[str] = field(default=None)
     """PG사 결제 취소 내역 아이디
     """
-    easy_pay_discount_amount: Optional[int]
+    easy_pay_discount_amount: Optional[int] = field(default=None)
     """적립형 포인트의 환불 금액
     (int64)
     """
-    cancelled_at: Optional[str]
+    cancelled_at: Optional[str] = field(default=None)
     """취소 시점
     (RFC 3339 date-time)
     """
-    receipt_url: Optional[str]
+    receipt_url: Optional[str] = field(default=None)
     """취소 영수증 URL
     """
 
 
 def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "SUCCEEDED"
     entity["id"] = obj.id
@@ -129,4 +131,4 @@ def _deserialize_succeeded_payment_cancellation(obj: Any) -> SucceededPaymentCan
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return SucceededPaymentCancellation(status, id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url)
+    return SucceededPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url)

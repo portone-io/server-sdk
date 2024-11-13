@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.partner.create_platform_partner_body_type_business import CreatePlatformPartnerBodyTypeBusiness, _deserialize_create_platform_partner_body_type_business, _serialize_create_platform_partner_body_type_business
@@ -9,18 +10,20 @@ from portone_server_sdk._generated.platform.partner.create_platform_partner_body
 class CreatePlatformPartnerBodyType:
     """파트너 생성을 위한 유형별 추가 정보
     """
-    business: Optional[CreatePlatformPartnerBodyTypeBusiness]
+    business: Optional[CreatePlatformPartnerBodyTypeBusiness] = field(default=None)
     """사업자 추가 정보
     """
-    wht_payer: Optional[CreatePlatformPartnerBodyTypeWhtPayer]
+    wht_payer: Optional[CreatePlatformPartnerBodyTypeWhtPayer] = field(default=None)
     """원천징수 대상자 추가 정보
     """
-    non_wht_payer: Optional[CreatePlatformPartnerBodyTypeNonWhtPayer]
+    non_wht_payer: Optional[CreatePlatformPartnerBodyTypeNonWhtPayer] = field(default=None)
     """원천징수 비대상자 추가 정보
     """
 
 
 def _serialize_create_platform_partner_body_type(obj: CreatePlatformPartnerBodyType) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.business is not None:
         entity["business"] = _serialize_create_platform_partner_body_type_business(obj.business)

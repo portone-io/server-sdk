@@ -89,6 +89,8 @@ class PlatformOrderSettlementAmount:
 
 
 def _serialize_platform_order_settlement_amount(obj: PlatformOrderSettlementAmount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["settlement"] = obj.settlement
     entity["payment"] = obj.payment

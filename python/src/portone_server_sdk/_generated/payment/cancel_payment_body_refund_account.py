@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
@@ -16,12 +17,14 @@ class CancelPaymentBodyRefundAccount:
     holder_name: str
     """예금주
     """
-    holder_phone_number: Optional[str]
+    holder_phone_number: Optional[str] = field(default=None)
     """예금주 연락처 - 스마트로 가상계좌 결제인 경우에 필요합니다.
     """
 
 
 def _serialize_cancel_payment_body_refund_account(obj: CancelPaymentBodyRefundAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["bank"] = _serialize_bank(obj.bank)
     entity["number"] = obj.number

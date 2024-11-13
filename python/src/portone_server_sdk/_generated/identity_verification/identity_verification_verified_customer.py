@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
@@ -16,42 +17,42 @@ class IdentityVerificationVerifiedCustomer:
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """식별 아이디
     """
-    operator: Optional[IdentityVerificationOperator]
+    operator: Optional[IdentityVerificationOperator] = field(default=None)
     """통신사
 
     다날: 별도 계약이 필요합니다.
     KG이니시스: 제공하지 않습니다.
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
 
     특수 문자(-) 없이 숫자로만 이루어진 번호 형식입니다.
     다날: 별도 계약이 필요합니다.
     KG이니시스: 항상 제공합니다.
     """
-    gender: Optional[Gender]
+    gender: Optional[Gender] = field(default=None)
     """성별
 
     다날: 항상 제공합니다.
     KG이니시스: 항상 제공합니다.
     """
-    is_foreigner: Optional[bool]
+    is_foreigner: Optional[bool] = field(default=None)
     """외국인 여부
 
     다날: 별도 계약이 필요합니다.
     KG이니시스: 항상 제공합니다.
     """
-    ci: Optional[str]
+    ci: Optional[str] = field(default=None)
     """CI (개인 고유 식별키)
 
     개인을 식별하기 위한 고유 정보입니다.
     다날: 항상 제공합니다.
     KG이니시스: 카카오를 제외한 인증사에서 제공합니다.
     """
-    di: Optional[str]
+    di: Optional[str] = field(default=None)
     """DI (사이트별 개인 고유 식별키)
 
     중복 가입을 방지하기 위해 개인을 식별하는 사이트별 고유 정보입니다.
@@ -61,6 +62,8 @@ class IdentityVerificationVerifiedCustomer:
 
 
 def _serialize_identity_verification_verified_customer(obj: IdentityVerificationVerifiedCustomer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["birthDate"] = obj.birth_date

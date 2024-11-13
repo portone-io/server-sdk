@@ -1,17 +1,19 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformTransferDiscountSharePolicyNotFoundError:
-    type: Literal["PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND"] = field(repr=False)
     discount_share_policy_id: str
     discount_share_policy_graphql_id: str
-    product_id: Optional[str]
-    message: Optional[str]
+    product_id: Optional[str] = field(default=None)
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_transfer_discount_share_policy_not_found_error(obj: PlatformTransferDiscountSharePolicyNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND"
     entity["discountSharePolicyId"] = obj.discount_share_policy_id
@@ -53,4 +55,4 @@ def _deserialize_platform_transfer_discount_share_policy_not_found_error(obj: An
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformTransferDiscountSharePolicyNotFoundError(type, discount_share_policy_id, discount_share_policy_graphql_id, product_id, message)
+    return PlatformTransferDiscountSharePolicyNotFoundError(discount_share_policy_id, discount_share_policy_graphql_id, product_id, message)

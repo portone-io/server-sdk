@@ -4,3 +4,4 @@ import type { UnauthorizedError } from "./../../common/UnauthorizedError"
 export type DownloadPlatformTransferSheetError =
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

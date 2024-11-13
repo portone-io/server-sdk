@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
@@ -7,24 +8,26 @@ from portone_server_sdk._generated.common.separated_address_input import Separat
 class PaymentEscrowSenderInput:
     """에스크로 발송자 정보
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """이름
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
     """
-    zipcode: Optional[str]
+    zipcode: Optional[str] = field(default=None)
     """우편번호
     """
-    relationship: Optional[str]
+    relationship: Optional[str] = field(default=None)
     """수취인과의 관계
     """
-    address: Optional[SeparatedAddressInput]
+    address: Optional[SeparatedAddressInput] = field(default=None)
     """주소
     """
 
 
 def _serialize_payment_escrow_sender_input(obj: PaymentEscrowSenderInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.name is not None:
         entity["name"] = obj.name

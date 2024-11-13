@@ -13,6 +13,8 @@ class UpdatePlatformPartnerResponse:
 
 
 def _serialize_update_platform_partner_response(obj: UpdatePlatformPartnerResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partner"] = _serialize_platform_partner(obj.partner)
     return entity

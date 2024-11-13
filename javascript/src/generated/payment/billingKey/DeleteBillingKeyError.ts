@@ -18,3 +18,4 @@ export type DeleteBillingKeyError =
 	| PaymentScheduleAlreadyExistsError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

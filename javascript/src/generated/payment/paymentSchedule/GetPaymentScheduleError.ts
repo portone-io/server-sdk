@@ -8,3 +8,4 @@ export type GetPaymentScheduleError =
 	| InvalidRequestError
 	| PaymentScheduleNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

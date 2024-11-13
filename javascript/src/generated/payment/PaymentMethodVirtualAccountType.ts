@@ -4,3 +4,4 @@ export type PaymentMethodVirtualAccountType =
 	| "FIXED"
 	/** 회전식 */
 	| "NORMAL"
+	| string & {}

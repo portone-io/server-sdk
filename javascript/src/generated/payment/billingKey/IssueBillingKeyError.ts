@@ -12,3 +12,4 @@ export type IssueBillingKeyError =
 	| InvalidRequestError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

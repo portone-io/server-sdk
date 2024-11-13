@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,13 +7,15 @@ from dataclasses import dataclass, field
 class CreatePlatformOrderCancelTransferBodyExternalCancellationDetail:
     """외부 결제 상세 정보
     """
-    cancelled_at: Optional[str]
+    cancelled_at: Optional[str] = field(default=None)
     """취소 일시
     (RFC 3339 date-time)
     """
 
 
 def _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(obj: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.cancelled_at is not None:
         entity["cancelledAt"] = obj.cancelled_at

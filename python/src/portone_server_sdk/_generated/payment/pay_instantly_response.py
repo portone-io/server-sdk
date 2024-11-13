@@ -13,6 +13,8 @@ class PayInstantlyResponse:
 
 
 def _serialize_pay_instantly_response(obj: PayInstantlyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_instant_payment_summary(obj.payment)
     return entity

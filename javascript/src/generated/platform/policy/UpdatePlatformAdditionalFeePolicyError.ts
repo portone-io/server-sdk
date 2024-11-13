@@ -12,3 +12,4 @@ export type UpdatePlatformAdditionalFeePolicyError =
 	| PlatformArchivedAdditionalFeePolicyError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

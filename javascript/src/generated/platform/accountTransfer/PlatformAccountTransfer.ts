@@ -11,3 +11,4 @@ export type PlatformAccountTransfer =
 	| PlatformDepositAccountTransfer
 	| PlatformPartnerPayoutAccountTransfer
 	| PlatformRemitAccountTransfer
+	| { readonly type: unique symbol }

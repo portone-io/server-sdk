@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_filter_input_criteria import PlatformBulkPayoutFilterInputCriteria, _deserialize_platform_bulk_payout_filter_input_criteria, _serialize_platform_bulk_payout_filter_input_criteria
@@ -7,12 +8,14 @@ from portone_server_sdk._generated.platform.platform_payout_method import Platfo
 
 @dataclass
 class PlatformBulkPayoutFilterInput:
-    statuses: Optional[list[PlatformBulkPayoutStatus]]
-    methods: Optional[list[PlatformPayoutMethod]]
-    criteria: Optional[PlatformBulkPayoutFilterInputCriteria]
+    statuses: Optional[list[PlatformBulkPayoutStatus]] = field(default=None)
+    methods: Optional[list[PlatformPayoutMethod]] = field(default=None)
+    criteria: Optional[PlatformBulkPayoutFilterInputCriteria] = field(default=None)
 
 
 def _serialize_platform_bulk_payout_filter_input(obj: PlatformBulkPayoutFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.statuses is not None:
         entity["statuses"] = list(map(_serialize_platform_bulk_payout_status, obj.statuses))

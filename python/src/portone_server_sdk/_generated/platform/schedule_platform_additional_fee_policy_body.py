@@ -17,6 +17,8 @@ class SchedulePlatformAdditionalFeePolicyBody:
 
 
 def _serialize_schedule_platform_additional_fee_policy_body(obj: SchedulePlatformAdditionalFeePolicyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_additional_fee_policy_body(obj.update)
     entity["appliedAt"] = obj.applied_at

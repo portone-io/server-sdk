@@ -13,6 +13,8 @@ class CancelPaymentResponse:
 
 
 def _serialize_cancel_payment_response(obj: CancelPaymentResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cancellation"] = _serialize_payment_cancellation(obj.cancellation)
     return entity

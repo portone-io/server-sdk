@@ -13,6 +13,8 @@ class RecoverPlatformPartnerResponse:
 
 
 def _serialize_recover_platform_partner_response(obj: RecoverPlatformPartnerResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partner"] = _serialize_platform_partner(obj.partner)
     return entity

@@ -26,3 +26,4 @@ export type PayWithBillingKeyError =
 	| PromotionPayMethodDoesNotMatchError
 	| SumOfPartsExceedsTotalAmountError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

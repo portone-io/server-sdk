@@ -5,19 +5,21 @@ from portone_server_sdk._generated.platform.platform_settlement_cycle_method_man
 from portone_server_sdk._generated.platform.platform_settlement_cycle_method_monthly import PlatformSettlementCycleMethodMonthly, _deserialize_platform_settlement_cycle_method_monthly, _serialize_platform_settlement_cycle_method_monthly
 from portone_server_sdk._generated.platform.platform_settlement_cycle_method_weekly import PlatformSettlementCycleMethodWeekly, _deserialize_platform_settlement_cycle_method_weekly, _serialize_platform_settlement_cycle_method_weekly
 
-PlatformSettlementCycleMethod = Union[PlatformSettlementCycleMethodDaily, PlatformSettlementCycleMethodManualDates, PlatformSettlementCycleMethodMonthly, PlatformSettlementCycleMethodWeekly]
+PlatformSettlementCycleMethod = Union[PlatformSettlementCycleMethodDaily, PlatformSettlementCycleMethodManualDates, PlatformSettlementCycleMethodMonthly, PlatformSettlementCycleMethodWeekly, dict]
 """플랫폼 정산 주기 계산 방식
 """
 
 
 def _serialize_platform_settlement_cycle_method(obj: PlatformSettlementCycleMethod) -> Any:
-    if obj.type == "DAILY":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, PlatformSettlementCycleMethodDaily):
         return _serialize_platform_settlement_cycle_method_daily(obj)
-    if obj.type == "MANUAL_DATES":
+    if isinstance(obj, PlatformSettlementCycleMethodManualDates):
         return _serialize_platform_settlement_cycle_method_manual_dates(obj)
-    if obj.type == "MONTHLY":
+    if isinstance(obj, PlatformSettlementCycleMethodMonthly):
         return _serialize_platform_settlement_cycle_method_monthly(obj)
-    if obj.type == "WEEKLY":
+    if isinstance(obj, PlatformSettlementCycleMethodWeekly):
         return _serialize_platform_settlement_cycle_method_weekly(obj)
 
 
@@ -38,4 +40,4 @@ def _deserialize_platform_settlement_cycle_method(obj: Any) -> PlatformSettlemen
         return _deserialize_platform_settlement_cycle_method_weekly(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PlatformSettlementCycleMethod")
+    return obj

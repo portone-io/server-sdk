@@ -8,3 +8,4 @@ export type PlatformSettlementCycleType =
 	| "MONTHLY"
 	/** 정해진 날짜(월, 일)에 정산 */
 	| "MANUAL_DATES"
+	| string & {}

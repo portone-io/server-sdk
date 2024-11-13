@@ -8,6 +8,8 @@ class PlatformSettlementCycleMethodDailyInput:
 
 
 def _serialize_platform_settlement_cycle_method_daily_input(obj: PlatformSettlementCycleMethodDailyInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

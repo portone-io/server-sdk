@@ -12,3 +12,4 @@ export type IdentityVerificationOperator =
 	| "KT_MVNO"
 	/** LGU 알뜰폰 */
 	| "LGU_MVNO"
+	| string & {}

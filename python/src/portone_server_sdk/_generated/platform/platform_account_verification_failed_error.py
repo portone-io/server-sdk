@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformAccountVerificationFailedError:
     """파트너 계좌 인증이 실패한 경우
     """
-    type: Literal["PLATFORM_ACCOUNT_VERIFICATION_FAILED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_account_verification_failed_error(obj: PlatformAccountVerificationFailedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_ACCOUNT_VERIFICATION_FAILED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_account_verification_failed_error(obj: Any) -> Platfor
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformAccountVerificationFailedError(type, message)
+    return PlatformAccountVerificationFailedError(message)

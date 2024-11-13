@@ -46,3 +46,4 @@ export type CreatePlatformOrderCancelTransferError =
 	| PlatformTransferNotFoundError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

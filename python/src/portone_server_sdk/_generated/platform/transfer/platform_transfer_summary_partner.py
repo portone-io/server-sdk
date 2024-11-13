@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
@@ -10,10 +11,12 @@ class PlatformTransferSummaryPartner:
     graphql_id: str
     name: str
     type: PlatformTransferSummaryPartnerType
-    taxation_type: Optional[PlatformPartnerTaxationType]
+    taxation_type: Optional[PlatformPartnerTaxationType] = field(default=None)
 
 
 def _serialize_platform_transfer_summary_partner(obj: PlatformTransferSummaryPartner) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

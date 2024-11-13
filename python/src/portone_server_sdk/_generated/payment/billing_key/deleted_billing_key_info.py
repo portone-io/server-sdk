@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.payment.billing_key.billing_key_payment_method import BillingKeyPaymentMethod, _deserialize_billing_key_payment_method, _serialize_billing_key_payment_method
 from portone_server_sdk._generated.common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
@@ -11,7 +12,6 @@ from portone_server_sdk._generated.common.selected_channel import SelectedChanne
 class DeletedBillingKeyInfo:
     """빌링키 삭제 완료 상태 건
     """
-    status: Literal["DELETED"] = field(repr=False)
     """빌링키 상태
     """
     billing_key: str
@@ -39,28 +39,28 @@ class DeletedBillingKeyInfo:
     """발급 삭제 시점
     (RFC 3339 date-time)
     """
-    methods: Optional[list[BillingKeyPaymentMethod]]
+    methods: Optional[list[BillingKeyPaymentMethod]] = field(default=None)
     """빌링키 결제수단 상세 정보
 
     추후 슈퍼빌링키 기능 제공 시 여러 결제수단 정보가 담길 수 있습니다.
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
-    issue_id: Optional[str]
+    issue_id: Optional[str] = field(default=None)
     """고객사가 채번하는 빌링키 발급 건 고유 아이디
     """
-    issue_name: Optional[str]
+    issue_name: Optional[str] = field(default=None)
     """빌링키 발급 건 이름
     """
-    requested_at: Optional[str]
+    requested_at: Optional[str] = field(default=None)
     """발급 요청 시점
     (RFC 3339 date-time)
     """
-    channel_group: Optional[ChannelGroupSummary]
+    channel_group: Optional[ChannelGroupSummary] = field(default=None)
     """채널 그룹
     """
-    pg_billing_key_issue_responses: Optional[list[PgBillingKeyIssueResponse]]
+    pg_billing_key_issue_responses: Optional[list[PgBillingKeyIssueResponse]] = field(default=None)
     """채널 별 빌링키 발급 응답
 
     슈퍼빌링키의 경우, 빌링키 발급이 성공하더라도 일부 채널에 대한 발급은 실패할 수 있습니다.
@@ -68,6 +68,8 @@ class DeletedBillingKeyInfo:
 
 
 def _serialize_deleted_billing_key_info(obj: DeletedBillingKeyInfo) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "DELETED"
     entity["billingKey"] = obj.billing_key
@@ -186,4 +188,4 @@ def _deserialize_deleted_billing_key_info(obj: Any) -> DeletedBillingKeyInfo:
             pg_billing_key_issue_responses[i] = item
     else:
         pg_billing_key_issue_responses = None
-    return DeletedBillingKeyInfo(status, billing_key, merchant_id, store_id, channels, customer, issued_at, deleted_at, methods, custom_data, issue_id, issue_name, requested_at, channel_group, pg_billing_key_issue_responses)
+    return DeletedBillingKeyInfo(billing_key, merchant_id, store_id, channels, customer, issued_at, deleted_at, methods, custom_data, issue_id, issue_name, requested_at, channel_group, pg_billing_key_issue_responses)

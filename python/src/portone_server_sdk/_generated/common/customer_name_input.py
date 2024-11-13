@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.customer_separated_name import CustomerSeparatedName, _deserialize_customer_separated_name, _serialize_customer_separated_name
@@ -9,15 +10,17 @@ class CustomerNameInput:
 
     두 개의 이름 형식 중 한 가지만 선택하여 입력해주세요.
     """
-    full: Optional[str]
+    full: Optional[str] = field(default=None)
     """한 줄 이름 형식
     """
-    separated: Optional[CustomerSeparatedName]
+    separated: Optional[CustomerSeparatedName] = field(default=None)
     """분리형 이름 형식
     """
 
 
 def _serialize_customer_name_input(obj: CustomerNameInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.full is not None:
         entity["full"] = obj.full

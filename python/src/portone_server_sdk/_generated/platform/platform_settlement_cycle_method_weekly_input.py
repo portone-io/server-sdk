@@ -11,6 +11,8 @@ class PlatformSettlementCycleMethodWeeklyInput:
 
 
 def _serialize_platform_settlement_cycle_method_weekly_input(obj: PlatformSettlementCycleMethodWeeklyInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["daysOfWeek"] = list(map(_serialize_day_of_week, obj.days_of_week))
     return entity

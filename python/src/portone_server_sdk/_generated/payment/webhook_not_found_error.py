@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class WebhookNotFoundError:
     """웹훅 내역이 존재하지 않는 경우
     """
-    type: Literal["WEBHOOK_NOT_FOUND"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_webhook_not_found_error(obj: WebhookNotFoundError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "WEBHOOK_NOT_FOUND"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_webhook_not_found_error(obj: Any) -> WebhookNotFoundError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return WebhookNotFoundError(type, message)
+    return WebhookNotFoundError(message)

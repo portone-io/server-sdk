@@ -17,6 +17,8 @@ class GetPaymentSchedulesResponse:
 
 
 def _serialize_get_payment_schedules_response(obj: GetPaymentSchedulesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_payment_schedule, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

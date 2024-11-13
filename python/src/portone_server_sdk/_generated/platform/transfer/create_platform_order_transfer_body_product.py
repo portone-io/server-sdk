@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -16,16 +17,18 @@ class CreatePlatformOrderTransferBodyProduct:
     """상품 금액
     (int64)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """상품 면세 금액
     (int64)
     """
-    tag: Optional[str]
+    tag: Optional[str] = field(default=None)
     """태그
     """
 
 
 def _serialize_create_platform_order_transfer_body_product(obj: CreatePlatformOrderTransferBodyProduct) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["name"] = obj.name

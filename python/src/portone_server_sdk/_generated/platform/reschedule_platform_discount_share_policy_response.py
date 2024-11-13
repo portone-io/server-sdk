@@ -13,6 +13,8 @@ class ReschedulePlatformDiscountSharePolicyResponse:
 
 
 def _serialize_reschedule_platform_discount_share_policy_response(obj: ReschedulePlatformDiscountSharePolicyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["scheduledDiscountSharePolicy"] = _serialize_platform_discount_share_policy(obj.scheduled_discount_share_policy)
     return entity

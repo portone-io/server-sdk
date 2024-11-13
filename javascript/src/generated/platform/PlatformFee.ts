@@ -7,3 +7,4 @@ export type PlatformFee =
 	| PlatformFixedAmountFee
 	/** 정률 수수료 */
 	| PlatformFixedRateFee
+	| { readonly type: unique symbol }

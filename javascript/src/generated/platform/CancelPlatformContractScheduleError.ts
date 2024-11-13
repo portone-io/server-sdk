@@ -10,3 +10,4 @@ export type CancelPlatformContractScheduleError =
 	| PlatformContractNotFoundError
 	| PlatformNotEnabledError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

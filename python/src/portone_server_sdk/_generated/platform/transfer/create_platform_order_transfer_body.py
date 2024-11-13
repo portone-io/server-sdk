@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.transfer.create_platform_order_transfer_body_additional_fee import CreatePlatformOrderTransferBodyAdditionalFee, _deserialize_create_platform_order_transfer_body_additional_fee, _serialize_create_platform_order_transfer_body_additional_fee
@@ -27,44 +28,46 @@ class CreatePlatformOrderTransferBody:
     additional_fees: list[CreatePlatformOrderTransferBodyAdditionalFee]
     """추가 수수료 정보
     """
-    contract_id: Optional[str]
+    contract_id: Optional[str] = field(default=None)
     """계약 아이디
 
     기본값은 파트너의 기본 계약 아이디 입니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """주문 면세 금액
 
     주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
     (int64)
     """
-    settlement_start_date: Optional[str]
+    settlement_start_date: Optional[str] = field(default=None)
     """정산 시작일
 
     기본값은 결제 일시 입니다.
     """
-    external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail]
+    external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = field(default=None)
     """외부 결제 상세 정보
 
     해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
     """
-    is_for_test: Optional[bool]
+    is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
 
     기본값은 false 입니다.
     """
-    parameters: Optional[TransferParameters]
+    parameters: Optional[TransferParameters] = field(default=None)
     """정산 파라미터 (실험기능)
     """
-    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]]
+    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
 
 
 def _serialize_create_platform_order_transfer_body(obj: CreatePlatformOrderTransferBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partnerId"] = obj.partner_id
     entity["paymentId"] = obj.payment_id

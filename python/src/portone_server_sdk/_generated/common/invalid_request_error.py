@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
@@ -8,11 +9,12 @@ class InvalidRequestError:
 
     허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.
     """
-    type: Literal["INVALID_REQUEST"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_invalid_request_error(obj: InvalidRequestError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "INVALID_REQUEST"
     if obj.message is not None:
@@ -34,4 +36,4 @@ def _deserialize_invalid_request_error(obj: Any) -> InvalidRequestError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return InvalidRequestError(type, message)
+    return InvalidRequestError(message)

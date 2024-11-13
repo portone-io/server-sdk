@@ -16,6 +16,8 @@ class PlatformPartnerFilterOptions:
 
 
 def _serialize_platform_partner_filter_options(obj: PlatformPartnerFilterOptions) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["tags"] = obj.tags
     entity["contractSummary"] = list(map(_serialize_platform_partner_contract_summary, obj.contract_summary))

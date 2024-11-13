@@ -7,23 +7,25 @@ from portone_server_sdk._generated.payment.payment_method_mobile import PaymentM
 from portone_server_sdk._generated.payment.payment_method_transfer import PaymentMethodTransfer, _deserialize_payment_method_transfer, _serialize_payment_method_transfer
 from portone_server_sdk._generated.payment.payment_method_virtual_account import PaymentMethodVirtualAccount, _deserialize_payment_method_virtual_account, _serialize_payment_method_virtual_account
 
-PaymentMethod = Union[PaymentMethodCard, PaymentMethodEasyPay, PaymentMethodGiftCertificate, PaymentMethodMobile, PaymentMethodTransfer, PaymentMethodVirtualAccount]
+PaymentMethod = Union[PaymentMethodCard, PaymentMethodEasyPay, PaymentMethodGiftCertificate, PaymentMethodMobile, PaymentMethodTransfer, PaymentMethodVirtualAccount, dict]
 """결제수단 정보
 """
 
 
 def _serialize_payment_method(obj: PaymentMethod) -> Any:
-    if obj.type == "PaymentMethodCard":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, PaymentMethodCard):
         return _serialize_payment_method_card(obj)
-    if obj.type == "PaymentMethodEasyPay":
+    if isinstance(obj, PaymentMethodEasyPay):
         return _serialize_payment_method_easy_pay(obj)
-    if obj.type == "PaymentMethodGiftCertificate":
+    if isinstance(obj, PaymentMethodGiftCertificate):
         return _serialize_payment_method_gift_certificate(obj)
-    if obj.type == "PaymentMethodMobile":
+    if isinstance(obj, PaymentMethodMobile):
         return _serialize_payment_method_mobile(obj)
-    if obj.type == "PaymentMethodTransfer":
+    if isinstance(obj, PaymentMethodTransfer):
         return _serialize_payment_method_transfer(obj)
-    if obj.type == "PaymentMethodVirtualAccount":
+    if isinstance(obj, PaymentMethodVirtualAccount):
         return _serialize_payment_method_virtual_account(obj)
 
 
@@ -52,4 +54,4 @@ def _deserialize_payment_method(obj: Any) -> PaymentMethod:
         return _deserialize_payment_method_virtual_account(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not PaymentMethod")
+    return obj

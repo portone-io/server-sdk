@@ -9,6 +9,8 @@ class TransferParameters(PlatformSettlementParameterValue):
 
 
 def _serialize_transfer_parameters(obj: TransferParameters) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = _serialize_platform_settlement_parameter_value(obj)
     return entity
 

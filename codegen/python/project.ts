@@ -2,6 +2,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { entities as webhookEntities } from "../common/webhook.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
@@ -14,6 +15,7 @@ import {
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
+import { generateEntity as generateWebhookEntity } from "./webhook.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const srcPath = path.join(projectRoot, "src/portone_server_sdk/_generated")
@@ -33,6 +35,7 @@ export function generateProject(projectRoot: string, pack: Package) {
     entityMap,
   )
   generateEntityDirectory(srcPath, pack, categoryMap, entityMap)
+  generateWebhook(srcPath)
   generateClient(srcPath, pack)
   const omitEntities = oneOfErrors.union(variantErrors)
   generateCategoryIndex(
@@ -43,6 +46,20 @@ export function generateProject(projectRoot: string, pack: Package) {
     entityMap,
     omitEntities,
   )
+}
+
+function generateWebhook(
+  packagePath: string,
+) {
+  const webhookPath = path.join(packagePath, "webhook")
+  fs.ensureDirSync(webhookPath)
+  for (
+    const entity of webhookEntities.toSorted((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+  ) {
+    generateWebhookEntity(webhookPath, entity)
+  }
 }
 
 function generateCategoryIndex(
@@ -149,7 +166,7 @@ function generateCategoryIndex(
     )
     all.push(`${toPascalCase(pack.category)}Client`)
   }
-  if (pack.category !== "root" && pack.category !== "webhook") {
+  if (pack.category !== "root") {
     publicWriter.writeLine("__all__ = [")
     publicWriter.indent()
     for (const item of all) {

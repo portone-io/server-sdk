@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-CardType = Literal["CREDIT", "DEBIT", "GIFT"]
+CardType = Union[Literal["CREDIT", "DEBIT", "GIFT"], str]
 """카드 유형
 """
 
 
 def _serialize_card_type(obj: CardType) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_card_type(obj: Any) -> CardType:
-    if obj not in ["CREDIT", "DEBIT", "GIFT"]:
-        raise ValueError(f"{repr(obj)} is not CardType")
     return obj

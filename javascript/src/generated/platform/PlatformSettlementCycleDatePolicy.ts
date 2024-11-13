@@ -6,3 +6,4 @@ export type PlatformSettlementCycleDatePolicy =
 	| "HOLIDAY_AFTER"
 	/** 달력일 */
 	| "CALENDAR_DAY"
+	| string & {}

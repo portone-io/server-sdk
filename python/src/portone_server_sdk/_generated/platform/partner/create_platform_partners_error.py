@@ -10,27 +10,29 @@ from portone_server_sdk._generated.platform.partner.platform_partner_ids_duplica
 from portone_server_sdk._generated.platform.platform_user_defined_property_not_found_error import PlatformUserDefinedPropertyNotFoundError, _deserialize_platform_user_defined_property_not_found_error, _serialize_platform_user_defined_property_not_found_error
 from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-CreatePlatformPartnersError = Union[ForbiddenError, InvalidRequestError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformNotEnabledError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError]
+CreatePlatformPartnersError = Union[ForbiddenError, InvalidRequestError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformNotEnabledError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, dict]
 
 
 def _serialize_create_platform_partners_error(obj: CreatePlatformPartnersError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_CONTRACTS_NOT_FOUND":
+    if isinstance(obj, PlatformContractsNotFoundError):
         return _serialize_platform_contracts_not_found_error(obj)
-    if obj.type == "PLATFORM_CURRENCY_NOT_SUPPORTED":
+    if isinstance(obj, PlatformCurrencyNotSupportedError):
         return _serialize_platform_currency_not_supported_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "PLATFORM_PARTNER_IDS_ALREADY_EXISTS":
+    if isinstance(obj, PlatformPartnerIdsAlreadyExistError):
         return _serialize_platform_partner_ids_already_exist_error(obj)
-    if obj.type == "PLATFORM_PARTNER_IDS_DUPLICATED":
+    if isinstance(obj, PlatformPartnerIdsDuplicatedError):
         return _serialize_platform_partner_ids_duplicated_error(obj)
-    if obj.type == "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
+    if isinstance(obj, PlatformUserDefinedPropertyNotFoundError):
         return _serialize_platform_user_defined_property_not_found_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -71,4 +73,4 @@ def _deserialize_create_platform_partners_error(obj: Any) -> CreatePlatformPartn
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not CreatePlatformPartnersError")
+    return obj

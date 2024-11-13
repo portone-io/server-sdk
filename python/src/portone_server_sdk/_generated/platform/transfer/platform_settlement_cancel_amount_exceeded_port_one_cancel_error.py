@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.platform.transfer.platform_port_one_payment_cancel_amount_type import PlatformPortOnePaymentCancelAmountType, _deserialize_platform_port_one_payment_cancel_amount_type, _serialize_platform_port_one_payment_cancel_amount_type
 
@@ -7,7 +8,6 @@ from portone_server_sdk._generated.platform.transfer.platform_port_one_payment_c
 class PlatformSettlementCancelAmountExceededPortOneCancelError:
     """정산 취소 요청 금액이 포트원 결제 취소 내역의 취소 금액을 초과한 경우
     """
-    type: Literal["PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL"] = field(repr=False)
     registered_settlement_cancel_amount: int
     """(int64)
     """
@@ -18,10 +18,12 @@ class PlatformSettlementCancelAmountExceededPortOneCancelError:
     """(int64)
     """
     amount_type: PlatformPortOnePaymentCancelAmountType
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_error(obj: PlatformSettlementCancelAmountExceededPortOneCancelError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL"
     entity["registeredSettlementCancelAmount"] = obj.registered_settlement_cancel_amount
@@ -66,4 +68,4 @@ def _deserialize_platform_settlement_cancel_amount_exceeded_port_one_cancel_erro
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformSettlementCancelAmountExceededPortOneCancelError(type, registered_settlement_cancel_amount, request_settlement_cancel_amount, port_one_cancel_amount, amount_type, message)
+    return PlatformSettlementCancelAmountExceededPortOneCancelError(registered_settlement_cancel_amount, request_settlement_cancel_amount, port_one_cancel_amount, amount_type, message)

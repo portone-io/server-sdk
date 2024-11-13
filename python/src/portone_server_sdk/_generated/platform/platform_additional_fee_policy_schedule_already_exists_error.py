@@ -1,14 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformAdditionalFeePolicyScheduleAlreadyExistsError:
-    type: Literal["PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_additional_fee_policy_schedule_already_exists_error(obj: PlatformAdditionalFeePolicyScheduleAlreadyExistsError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS"
     if obj.message is not None:
@@ -30,4 +32,4 @@ def _deserialize_platform_additional_fee_policy_schedule_already_exists_error(ob
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformAdditionalFeePolicyScheduleAlreadyExistsError(type, message)
+    return PlatformAdditionalFeePolicyScheduleAlreadyExistsError(message)

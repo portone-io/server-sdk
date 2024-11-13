@@ -2,19 +2,20 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { entities as webhookEntities } from "../common/webhook.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import {
   filterName,
   KotlinWriter,
-  makeOverridesMap,
-  type Override,
+  makeExtendsMap,
   toException,
   toPackageCase,
 } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
+import { generateEntity as generateWebhookEntity } from "./webhook.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const packagePath = path.join(
@@ -26,7 +27,7 @@ export function generateProject(projectRoot: string, pack: Package) {
   }
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
-  const overridesMap = makeOverridesMap(pack, entityMap)
+  const extendsMap = makeExtendsMap(pack)
   const bodies = collectBody(pack)
   const internals = filterUsedAnotherPlace(pack, bodies)
   const oneOfErrors = new Set<string>()
@@ -48,11 +49,23 @@ export function generateProject(projectRoot: string, pack: Package) {
     pack,
     entityMap,
     categoryMap,
-    overridesMap,
+    extendsMap,
     errors,
     internals,
   )
+  generateWebhook(packagePath)
   generateRootClient(packagePath, pack, entityMap, categoryMap)
+}
+
+function generateWebhook(
+  packagePath: string,
+) {
+  const webhookPath = path.join(packagePath, "webhook")
+  fs.ensureDirSync(webhookPath)
+  for (const entity of webhookEntities) {
+    const entityPath = path.join(webhookPath, `${entity.name}.kt`)
+    Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
+  }
 }
 
 function generateExceptions(
@@ -442,7 +455,7 @@ function generateEntityDirectory(
   pack: Package,
   entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
-  overridesMap: Map<string, Override>,
+  extendsMap: Map<string, Set<string>>,
   errors: Set<string>,
   internals: Set<string>,
 ) {
@@ -456,8 +469,8 @@ function generateEntityDirectory(
         hierarchy,
         entityMap,
         categoryMap,
+        extendsMap,
         entity,
-        overridesMap,
         visibility,
         visibility,
       ),
@@ -476,8 +489,8 @@ function generateEntityDirectory(
           `${hierarchy}.errors`,
           entityMap,
           categoryMap,
+          extendsMap,
           entity,
-          overridesMap,
           "public",
           "internal",
         ),
@@ -493,7 +506,7 @@ function generateEntityDirectory(
       subpackage,
       entityMap,
       categoryMap,
-      overridesMap,
+      extendsMap,
       errors,
       internals,
     )

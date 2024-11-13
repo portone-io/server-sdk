@@ -15,6 +15,8 @@ class PlatformAccountHolder:
 
 
 def _serialize_platform_account_holder(obj: PlatformAccountHolder) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["holderName"] = obj.holder_name
     entity["accountVerificationId"] = obj.account_verification_id

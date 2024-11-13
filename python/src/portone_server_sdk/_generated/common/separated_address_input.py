@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
@@ -13,18 +14,20 @@ class SeparatedAddressInput:
     address_line_2: str
     """상세 주소 2
     """
-    city: Optional[str]
+    city: Optional[str] = field(default=None)
     """시/군/구
     """
-    province: Optional[str]
+    province: Optional[str] = field(default=None)
     """주/도/시
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """국가
     """
 
 
 def _serialize_separated_address_input(obj: SeparatedAddressInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["addressLine1"] = obj.address_line_1
     entity["addressLine2"] = obj.address_line_2

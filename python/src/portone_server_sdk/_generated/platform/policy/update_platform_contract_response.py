@@ -13,6 +13,8 @@ class UpdatePlatformContractResponse:
 
 
 def _serialize_update_platform_contract_response(obj: UpdatePlatformContractResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["contract"] = _serialize_platform_contract(obj.contract)
     return entity

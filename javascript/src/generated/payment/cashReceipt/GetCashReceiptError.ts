@@ -8,3 +8,4 @@ export type GetCashReceiptError =
 	| ForbiddenError
 	| InvalidRequestError
 	| UnauthorizedError
+	| { readonly type: unique symbol }

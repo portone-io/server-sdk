@@ -14,3 +14,4 @@ export type ResendIdentityVerificationError =
 	| InvalidRequestError
 	| PgProviderError
 	| UnauthorizedError
+	| { readonly type: unique symbol }
