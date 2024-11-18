@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.6.3
+
+### Patch Changes
+
+- 390f87b: PATCH 실패 수정
+
 ## 0.6.2
 
 ### Patch Changes
