@@ -23,8 +23,13 @@ export type { IssuedCashReceipt } from "./IssuedCashReceipt"
 export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): CashReceiptClient {
 	return {
 		getCashReceiptByPaymentId: async (
-			paymentId: string,
+			options: {
+				paymentId: string,
+			}
 		): Promise<CashReceipt> => {
+			const {
+				paymentId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -124,8 +129,13 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 			return response.json()
 		},
 		cancelCashReceiptByPaymentId: async (
-			paymentId: string,
+			options: {
+				paymentId: string,
+			}
 		): Promise<CancelCashReceiptResponse> => {
+			const {
+				paymentId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -169,9 +179,6 @@ export type CashReceiptClient = {
 	 *
 	 * 주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
 	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 *
 	 * @throws {@link Errors.CashReceiptNotFoundError} 현금영수증이 존재하지 않는 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -179,8 +186,10 @@ export type CashReceiptClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getCashReceiptByPaymentId: (
-		/** 결제 건 아이디 */
-		paymentId: string,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+		}
 	) => Promise<CashReceipt>
 	/**
 	 * 현금 영수증 수동 발급
@@ -229,9 +238,6 @@ export type CashReceiptClient = {
 	 *
 	 * 현금 영수증 취소를 요청합니다.
 	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 *
 	 * @throws {@link Errors.CashReceiptNotFoundError} 현금영수증이 존재하지 않는 경우
 	 * @throws {@link Errors.CashReceiptNotIssuedError} 현금영수증이 발급되지 않은 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
@@ -241,8 +247,10 @@ export type CashReceiptClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelCashReceiptByPaymentId: (
-		/** 결제 건 아이디 */
-		paymentId: string,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+		}
 	) => Promise<CancelCashReceiptResponse>
 }
 

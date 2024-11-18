@@ -35,7 +35,7 @@ describe("correct cases", () => {
 	describe("payment.getPayment()", () => {
 		it("with parameters", async () => {
 			await expect(
-				client.payment.getPayment("test-server-sdk"),
+				client.payment.getPayment({ paymentId: "test-server-sdk" }),
 			).resolves.toMatchObject({});
 		});
 	});
@@ -44,9 +44,9 @@ describe("correct cases", () => {
 describe("error cases", () => {
 	describe("payment.getPayment()", () => {
 		it("with invalid paymentId", async () => {
-			await expect(() => client.payment.getPayment(" ")).rejects.toThrow(
-				PaymentNotFoundError,
-			);
+			await expect(() =>
+				client.payment.getPayment({ paymentId: " " }),
+			).rejects.toThrow(PaymentNotFoundError);
 		});
 	});
 	describe("payment.cancelPayment()", () => {

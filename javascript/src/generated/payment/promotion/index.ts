@@ -20,8 +20,13 @@ export type { PromotionStatus } from "./PromotionStatus"
 export function PromotionClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PromotionClient {
 	return {
 		getPromotion: async (
-			promotionId: string,
+			options: {
+				promotionId: string,
+			}
 		): Promise<Promotion> => {
+			const {
+				promotionId,
+			} = options
 			const response = await fetch(
 				new URL(`/promotions/${encodeURIComponent(promotionId)}`, baseUrl),
 				{
@@ -56,9 +61,6 @@ export type PromotionClient = {
 	 *
 	 * 주어진 아이디에 대응되는 프로모션을 조회합니다.
 	 *
-	 * @param promotionId
-	 * 조회할 프로모션 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PromotionNotFoundError} 프로모션이 존재하지 않는 경우
@@ -66,8 +68,10 @@ export type PromotionClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPromotion: (
-		/** 조회할 프로모션 아이디 */
-		promotionId: string,
+		options: {
+			/** 조회할 프로모션 아이디 */
+			promotionId: string,
+		}
 	) => Promise<Promotion>
 }
 

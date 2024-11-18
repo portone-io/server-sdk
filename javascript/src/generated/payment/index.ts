@@ -195,8 +195,13 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		getPayment: async (
-			paymentId: string,
+			options: {
+				paymentId: string,
+			}
 		): Promise<Payment> => {
+			const {
+				paymentId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -616,8 +621,13 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		closeVirtualAccount: async (
-			paymentId: string,
+			options: {
+				paymentId: string,
+			}
 		): Promise<CloseVirtualAccountResponse> => {
+			const {
+				paymentId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -768,9 +778,15 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		confirmEscrow: async (
-			paymentId: string,
-			fromStore?: boolean,
+			options: {
+				paymentId: string,
+				fromStore?: boolean,
+			}
 		): Promise<ConfirmEscrowResponse> => {
+			const {
+				paymentId,
+				fromStore,
+			} = options
 			const requestBody = JSON.stringify({
 				storeId,
 				fromStore,
@@ -807,9 +823,15 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		resendWebhook: async (
-			paymentId: string,
-			webhookId?: string,
+			options: {
+				paymentId: string,
+				webhookId?: string,
+			}
 		): Promise<ResendWebhookResponse> => {
+			const {
+				paymentId,
+				webhookId,
+			} = options
 			const requestBody = JSON.stringify({
 				storeId,
 				webhookId,
@@ -846,9 +868,15 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		registerStoreReceipt: async (
-			paymentId: string,
-			items: RegisterStoreReceiptBodyItem[],
+			options: {
+				paymentId: string,
+				items: RegisterStoreReceiptBodyItem[],
+			}
 		): Promise<RegisterStoreReceiptResponse> => {
+			const {
+				paymentId,
+				items,
+			} = options
 			const requestBody = JSON.stringify({
 				items,
 				storeId,
@@ -925,9 +953,6 @@ export type PaymentClient = {
 	 *
 	 * 주어진 아이디에 대응되는 결제 건을 조회합니다.
 	 *
-	 * @param paymentId
-	 * 조회할 결제 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
@@ -935,8 +960,10 @@ export type PaymentClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPayment: (
-		/** 조회할 결제 아이디 */
-		paymentId: string,
+		options: {
+			/** 조회할 결제 아이디 */
+			paymentId: string,
+		}
 	) => Promise<Payment>
 	/**
 	 * 결제 다건 조회(페이지 기반)
@@ -1259,9 +1286,6 @@ export type PaymentClient = {
 	 *
 	 * 발급된 가상계좌를 말소합니다.
 	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
@@ -1271,8 +1295,10 @@ export type PaymentClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	closeVirtualAccount: (
-		/** 결제 건 아이디 */
-		paymentId: string,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+		}
 	) => Promise<CloseVirtualAccountResponse>
 	/**
 	 * 에스크로 배송 정보 등록
@@ -1345,14 +1371,6 @@ export type PaymentClient = {
 	 *
 	 * 에스크로 결제를 구매 확정 처리합니다
 	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 * @param fromStore
-	 * 확인 주체가 상점인지 여부
-	 *
-	 * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
-	 * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentNotFoundError} 결제 건이 존재하지 않는 경우
@@ -1362,27 +1380,22 @@ export type PaymentClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	confirmEscrow: (
-		/** 결제 건 아이디 */
-		paymentId: string,
-		/**
-		 * 확인 주체가 상점인지 여부
-		 *
-		 * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
-		 * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
-		 */
-		fromStore?: boolean,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/**
+			 * 확인 주체가 상점인지 여부
+			 *
+			 * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
+			 * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
+			 */
+			fromStore?: boolean,
+		}
 	) => Promise<ConfirmEscrowResponse>
 	/**
 	 * 웹훅 재발송
 	 *
 	 * 웹훅을 재발송합니다.
-	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 * @param webhookId
-	 * 웹훅 아이디
-	 *
-	 * 입력하지 않으면 결제 건의 가장 최근 웹훅 아이디가 기본 적용됩니다
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1393,14 +1406,16 @@ export type PaymentClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	resendWebhook: (
-		/** 결제 건 아이디 */
-		paymentId: string,
-		/**
-		 * 웹훅 아이디
-		 *
-		 * 입력하지 않으면 결제 건의 가장 최근 웹훅 아이디가 기본 적용됩니다
-		 */
-		webhookId?: string,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/**
+			 * 웹훅 아이디
+			 *
+			 * 입력하지 않으면 결제 건의 가장 최근 웹훅 아이디가 기본 적용됩니다
+			 */
+			webhookId?: string,
+		}
 	) => Promise<ResendWebhookResponse>
 	/**
 	 * 영수증 내 하위 상점 거래 등록
@@ -1408,11 +1423,6 @@ export type PaymentClient = {
 	 * 결제 내역 매출전표에 하위 상점의 거래를 등록합니다.
 	 * 지원되는 PG사:
 	 * KG이니시스(이용 전 콘솔 -> 결제연동 탭에서 INIApi Key 등록 필요)
-	 *
-	 * @param paymentId
-	 * 등록할 하위 상점 결제 건 아이디
-	 * @param items
-	 * 하위 상점 거래 목록
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1423,10 +1433,12 @@ export type PaymentClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	registerStoreReceipt: (
-		/** 등록할 하위 상점 결제 건 아이디 */
-		paymentId: string,
-		/** 하위 상점 거래 목록 */
-		items: RegisterStoreReceiptBodyItem[],
+		options: {
+			/** 등록할 하위 상점 결제 건 아이디 */
+			paymentId: string,
+			/** 하위 상점 거래 목록 */
+			items: RegisterStoreReceiptBodyItem[],
+		}
 	) => Promise<RegisterStoreReceiptResponse>
 	billingKey: BillingKey.BillingKeyClient
 	cashReceipt: CashReceipt.CashReceiptClient

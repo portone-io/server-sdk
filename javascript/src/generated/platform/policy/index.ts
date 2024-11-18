@@ -166,8 +166,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		getPlatformDiscountSharePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformDiscountSharePolicy> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -247,8 +252,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		archivePlatformDiscountSharePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<ArchivePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
@@ -280,8 +290,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		recoverPlatformDiscountSharePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<RecoverPlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
@@ -406,8 +421,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		getPlatformAdditionalFeePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformAdditionalFeePolicy> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -490,8 +510,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		archivePlatformAdditionalFeePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<ArchivePlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
@@ -523,8 +548,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		recoverPlatformAdditionalFeePolicy: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<RecoverPlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
@@ -655,8 +685,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		getPlatformContract: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformContract> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -745,8 +780,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		archivePlatformContract: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<ArchivePlatformContractResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
@@ -778,8 +818,13 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			return response.json()
 		},
 		recoverPlatformContract: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<RecoverPlatformContractResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
@@ -866,9 +911,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
 	 *
-	 * @param id
-	 * 조회할 할인 분담 정책 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformDiscountSharePolicyNotFoundError} PlatformDiscountSharePolicyNotFoundError
@@ -877,8 +919,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformDiscountSharePolicy: (
-		/** 조회할 할인 분담 정책 아이디 */
-		id: string,
+		options: {
+			/** 조회할 할인 분담 정책 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformDiscountSharePolicy>
 	/**
 	 * 할인 분담 정책 수정
@@ -915,9 +959,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
 	 *
-	 * @param id
-	 * 할인 분담 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError} 예약된 업데이트가 있는 할인 분담 정책을 보관하려고 하는 경우
@@ -927,16 +968,15 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	archivePlatformDiscountSharePolicy: (
-		/** 할인 분담 아이디 */
-		id: string,
+		options: {
+			/** 할인 분담 아이디 */
+			id: string,
+		}
 	) => Promise<ArchivePlatformDiscountSharePolicyResponse>
 	/**
 	 * 할인 분담 정책 복원
 	 *
 	 * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
-	 *
-	 * @param id
-	 * 할인 분담 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -946,8 +986,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	recoverPlatformDiscountSharePolicy: (
-		/** 할인 분담 아이디 */
-		id: string,
+		options: {
+			/** 할인 분담 아이디 */
+			id: string,
+		}
 	) => Promise<RecoverPlatformDiscountSharePolicyResponse>
 	/**
 	 * 추가 수수료 정책 다건 조회
@@ -1003,9 +1045,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.
 	 *
-	 * @param id
-	 * 조회할 추가 수수료 정책 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -1014,8 +1053,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformAdditionalFeePolicy: (
-		/** 조회할 추가 수수료 정책 아이디 */
-		id: string,
+		options: {
+			/** 조회할 추가 수수료 정책 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformAdditionalFeePolicy>
 	/**
 	 * 추가 수수료 정책 수정
@@ -1049,9 +1090,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
 	 *
-	 * @param id
-	 * 추가 수수료 정책 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -1061,16 +1099,15 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	archivePlatformAdditionalFeePolicy: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+		}
 	) => Promise<ArchivePlatformAdditionalFeePolicyResponse>
 	/**
 	 * 추가 수수료 정책 복원
 	 *
 	 * 주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
-	 *
-	 * @param id
-	 * 추가 수수료 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1080,8 +1117,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	recoverPlatformAdditionalFeePolicy: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+		}
 	) => Promise<RecoverPlatformAdditionalFeePolicyResponse>
 	/**
 	 * 계약 다건 조회
@@ -1141,9 +1180,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 계약을 조회합니다.
 	 *
-	 * @param id
-	 * 조회할 계약 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractNotFoundError} PlatformContractNotFoundError
@@ -1152,8 +1188,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformContract: (
-		/** 조회할 계약 아이디 */
-		id: string,
+		options: {
+			/** 조회할 계약 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformContract>
 	/**
 	 * 계약 수정
@@ -1191,9 +1229,6 @@ export type PolicyClient = {
 	 *
 	 * 주어진 아이디에 대응되는 계약을 보관합니다.
 	 *
-	 * @param id
-	 * 계약 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformCannotArchiveScheduledContractError} 예약된 업데이트가 있는 계약을 보관하려고 하는 경우
@@ -1203,16 +1238,15 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	archivePlatformContract: (
-		/** 계약 아이디 */
-		id: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+		}
 	) => Promise<ArchivePlatformContractResponse>
 	/**
 	 * 계약 복원
 	 *
 	 * 주어진 아이디에 대응되는 계약을 복원합니다.
-	 *
-	 * @param id
-	 * 계약 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1222,8 +1256,10 @@ export type PolicyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	recoverPlatformContract: (
-		/** 계약 아이디 */
-		id: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+		}
 	) => Promise<RecoverPlatformContractResponse>
 }
 

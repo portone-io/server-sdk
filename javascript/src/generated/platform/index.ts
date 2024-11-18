@@ -171,6 +171,8 @@ export type * as AccountTransfer from "./accountTransfer"
 export function PlatformClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PlatformClient {
 	return {
 		getPlatform: async (
+			options?: {
+			}
 		): Promise<Platform> => {
 			const response = await fetch(
 				new URL("/platform", baseUrl),
@@ -241,8 +243,11 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformDiscountSharePolicyFilterOptions: async (
-			isArchived?: boolean,
+			options?: {
+				isArchived?: boolean,
+			}
 		): Promise<PlatformDiscountSharePolicyFilterOptions> => {
+			const isArchived = options?.isArchived
 			const query = [
 				["isArchived", isArchived],
 			]
@@ -275,8 +280,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformDiscountSharePolicySchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformDiscountSharePolicy> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -306,10 +316,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		rescheduleDiscountSharePolicy: async (
-			id: string,
-			update: UpdatePlatformDiscountSharePolicyBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformDiscountSharePolicyBody,
+				appliedAt: string,
+			}
 		): Promise<ReschedulePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -344,10 +361,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		scheduleDiscountSharePolicy: async (
-			id: string,
-			update: UpdatePlatformDiscountSharePolicyBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformDiscountSharePolicyBody,
+				appliedAt: string,
+			}
 		): Promise<SchedulePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -386,8 +410,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		cancelPlatformDiscountSharePolicySchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<CancelPlatformDiscountSharePolicyScheduleResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -417,8 +446,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformAdditionalFeePolicySchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformAdditionalFeePolicy> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -448,10 +482,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		rescheduleAdditionalFeePolicy: async (
-			id: string,
-			update: UpdatePlatformAdditionalFeePolicyBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformAdditionalFeePolicyBody,
+				appliedAt: string,
+			}
 		): Promise<ReschedulePlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -486,10 +527,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		scheduleAdditionalFeePolicy: async (
-			id: string,
-			update: UpdatePlatformAdditionalFeePolicyBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformAdditionalFeePolicyBody,
+				appliedAt: string,
+			}
 		): Promise<SchedulePlatformAdditionalFeePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -528,8 +576,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		cancelPlatformAdditionalFeePolicySchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<CancelPlatformAdditionalFeePolicyScheduleResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -559,8 +612,11 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformPartnerFilterOptions: async (
-			isArchived?: boolean,
+			options?: {
+				isArchived?: boolean,
+			}
 		): Promise<PlatformPartnerFilterOptions> => {
+			const isArchived = options?.isArchived
 			const query = [
 				["isArchived", isArchived],
 			]
@@ -593,8 +649,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformPartnerSchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformPartner> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -624,10 +685,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		reschedulePartner: async (
-			id: string,
-			update: UpdatePlatformPartnerBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformPartnerBody,
+				appliedAt: string,
+			}
 		): Promise<ReschedulePlatformPartnerResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -664,10 +732,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		schedulePartner: async (
-			id: string,
-			update: UpdatePlatformPartnerBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformPartnerBody,
+				appliedAt: string,
+			}
 		): Promise<SchedulePlatformPartnerResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -718,8 +793,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		cancelPlatformPartnerSchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<CancelPlatformPartnerScheduleResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -749,10 +829,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		schedulePlatformPartners: async (
-			update: SchedulePlatformPartnersBodyUpdate,
-			appliedAt: string,
-			filter?: PlatformPartnerFilterInput,
+			options: {
+				filter?: PlatformPartnerFilterInput,
+				update: SchedulePlatformPartnersBodyUpdate,
+				appliedAt: string,
+			}
 		): Promise<SchedulePlatformPartnersResponse> => {
+			const {
+				filter,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				filter,
 				update,
@@ -794,8 +881,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		getPlatformContractSchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformContract> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -825,10 +917,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		rescheduleContract: async (
-			id: string,
-			update: UpdatePlatformContractBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformContractBody,
+				appliedAt: string,
+			}
 		): Promise<ReschedulePlatformContractResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -863,10 +962,17 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		scheduleContract: async (
-			id: string,
-			update: UpdatePlatformContractBody,
-			appliedAt: string,
+			options: {
+				id: string,
+				update: UpdatePlatformContractBody,
+				appliedAt: string,
+			}
 		): Promise<SchedulePlatformContractResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
 			const requestBody = JSON.stringify({
 				update,
 				appliedAt,
@@ -905,8 +1011,13 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		cancelPlatformContractSchedule: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<CancelPlatformContractScheduleResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
@@ -950,14 +1061,14 @@ export type PlatformClient = {
 	 * 고객사의 플랫폼 정보를 조회합니다.
 	 * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 	 *
-	 *
-	 *
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
 	 * @throws {@link Errors.UnauthorizedError} 인증 정보가 올바르지 않은 경우
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatform: (
+		options?: {
+		}
 	) => Promise<Platform>
 	/**
 	 * 고객사의 플랫폼 관련 정보를 업데이트합니다.
@@ -983,11 +1094,6 @@ export type PlatformClient = {
 	/**
 	 * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 	 *
-	 * @param isArchived
-	 * 보관 조회 여부
-	 *
-	 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -995,18 +1101,17 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformDiscountSharePolicyFilterOptions: (
-		/**
-		 * 보관 조회 여부
-		 *
-		 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-		 */
-		isArchived?: boolean,
+		options?: {
+			/**
+			 * 보관 조회 여부
+			 *
+			 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+			 */
+			isArchived?: boolean,
+		}
 	) => Promise<PlatformDiscountSharePolicyFilterOptions>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
-	 *
-	 * @param id
-	 * 할인 분담 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1016,18 +1121,13 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformDiscountSharePolicySchedule: (
-		/** 할인 분담 정책 아이디 */
-		id: string,
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformDiscountSharePolicy>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
-	 *
-	 * @param id
-	 * 할인 분담 정책 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1037,25 +1137,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	rescheduleDiscountSharePolicy: (
-		/** 할인 분담 정책 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformDiscountSharePolicyBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformDiscountSharePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<ReschedulePlatformDiscountSharePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
-	 *
-	 * @param id
-	 * 할인 분담 정책 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1067,21 +1162,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	scheduleDiscountSharePolicy: (
-		/** 할인 분담 정책 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformDiscountSharePolicyBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformDiscountSharePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<SchedulePlatformDiscountSharePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
-	 *
-	 * @param id
-	 * 할인 분담 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1091,14 +1185,13 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelPlatformDiscountSharePolicySchedule: (
-		/** 할인 분담 정책 아이디 */
-		id: string,
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+		}
 	) => Promise<CancelPlatformDiscountSharePolicyScheduleResponse>
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
-	 *
-	 * @param id
-	 * 추가 수수료 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1108,17 +1201,12 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformAdditionalFeePolicySchedule: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformAdditionalFeePolicy>
 	/**
-	 * @param id
-	 * 추가 수수료 정책 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformAdditionalFeePolicyNotFoundError} PlatformAdditionalFeePolicyNotFoundError
@@ -1127,25 +1215,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	rescheduleAdditionalFeePolicy: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformAdditionalFeePolicyBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformAdditionalFeePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<ReschedulePlatformAdditionalFeePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
-	 *
-	 * @param id
-	 * 추가 수수료 정책 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1157,21 +1240,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	scheduleAdditionalFeePolicy: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformAdditionalFeePolicyBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformAdditionalFeePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<SchedulePlatformAdditionalFeePolicyResponse>
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
-	 *
-	 * @param id
-	 * 추가 수수료 정책 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1181,16 +1263,13 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelPlatformAdditionalFeePolicySchedule: (
-		/** 추가 수수료 정책 아이디 */
-		id: string,
+		options: {
+			/** 추가 수수료 정책 아이디 */
+			id: string,
+		}
 	) => Promise<CancelPlatformAdditionalFeePolicyScheduleResponse>
 	/**
 	 * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
-	 *
-	 * @param isArchived
-	 * 보관 조회 여부
-	 *
-	 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1199,18 +1278,17 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartnerFilterOptions: (
-		/**
-		 * 보관 조회 여부
-		 *
-		 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-		 */
-		isArchived?: boolean,
+		options?: {
+			/**
+			 * 보관 조회 여부
+			 *
+			 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+			 */
+			isArchived?: boolean,
+		}
 	) => Promise<PlatformPartnerFilterOptions>
 	/**
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1220,18 +1298,13 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartnerSchedule: (
-		/** 파트너 아이디 */
-		id: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformPartner>
 	/**
 	 * 주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1242,25 +1315,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	reschedulePartner: (
-		/** 파트너 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformPartnerBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformPartnerBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<ReschedulePlatformPartnerResponse>
 	/**
 	 * 주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1278,21 +1346,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	schedulePartner: (
-		/** 파트너 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformPartnerBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformPartnerBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<SchedulePlatformPartnerResponse>
 	/**
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1302,17 +1369,12 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelPlatformPartnerSchedule: (
-		/** 파트너 아이디 */
-		id: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
 	) => Promise<CancelPlatformPartnerScheduleResponse>
 	/**
-	 * @param filter
-	 *
-	 * @param update
-	 *
-	 * @param appliedAt
-	 *
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformArchivedPartnersCannotBeScheduledError} 보관된 파트너들을 예약 업데이트하려고 하는 경우
@@ -1324,16 +1386,15 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	schedulePlatformPartners: (
-		update: SchedulePlatformPartnersBodyUpdate,
-		/** (RFC 3339 date-time) */
-		appliedAt: string,
-		filter?: PlatformPartnerFilterInput,
+		options: {
+			filter?: PlatformPartnerFilterInput,
+			update: SchedulePlatformPartnersBodyUpdate,
+			/** (RFC 3339 date-time) */
+			appliedAt: string,
+		}
 	) => Promise<SchedulePlatformPartnersResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
-	 *
-	 * @param id
-	 * 계약 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1343,18 +1404,13 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformContractSchedule: (
-		/** 계약 아이디 */
-		id: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformContract>
 	/**
 	 * 주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
-	 *
-	 * @param id
-	 * 계약 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1364,25 +1420,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	rescheduleContract: (
-		/** 계약 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformContractBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformContractBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<ReschedulePlatformContractResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
-	 *
-	 * @param id
-	 * 계약 아이디
-	 * @param update
-	 * 반영할 업데이트 내용
-	 * @param appliedAt
-	 * 업데이트 적용 시점
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1394,21 +1445,20 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	scheduleContract: (
-		/** 계약 아이디 */
-		id: string,
-		/** 반영할 업데이트 내용 */
-		update: UpdatePlatformContractBody,
-		/**
-		 * 업데이트 적용 시점
-		 * (RFC 3339 date-time)
-		 */
-		appliedAt: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformContractBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
 	) => Promise<SchedulePlatformContractResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
-	 *
-	 * @param id
-	 * 계약 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -1418,8 +1468,10 @@ export type PlatformClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	cancelPlatformContractSchedule: (
-		/** 계약 아이디 */
-		id: string,
+		options: {
+			/** 계약 아이디 */
+			id: string,
+		}
 	) => Promise<CancelPlatformContractScheduleResponse>
 	policy: Policy.PolicyClient
 	partner: Partner.PartnerClient

@@ -95,8 +95,13 @@ export type { TransferParameters } from "./TransferParameters"
 export function TransferClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): TransferClient {
 	return {
 		getPlatformTransfer: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformTransfer> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -126,8 +131,13 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			return response.json()
 		},
 		deletePlatformTransfer: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<DeletePlatformTransferResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -528,9 +538,6 @@ export type TransferClient = {
 	 *
 	 * 정산건을 조회합니다.
 	 *
-	 * @param id
-	 * 조회하고 싶은 정산건 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -539,16 +546,15 @@ export type TransferClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformTransfer: (
-		/** 조회하고 싶은 정산건 아이디 */
-		id: string,
+		options: {
+			/** 조회하고 싶은 정산건 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformTransfer>
 	/**
 	 * 정산건 삭제
 	 *
 	 * scheduled, in_process 상태의 정산건만 삭제가능합니다.
-	 *
-	 * @param id
-	 * 정산건 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -560,8 +566,10 @@ export type TransferClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	deletePlatformTransfer: (
-		/** 정산건 아이디 */
-		id: string,
+		options: {
+			/** 정산건 아이디 */
+			id: string,
+		}
 	) => Promise<DeletePlatformTransferResponse>
 	/**
 	 * 정산건 다건 조회

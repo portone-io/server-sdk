@@ -161,8 +161,13 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		getPlatformPartner: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<PlatformPartner> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
 				{
@@ -269,8 +274,13 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		createPlatformPartners: async (
-			partners: CreatePlatformPartnerBody[],
+			options: {
+				partners: CreatePlatformPartnerBody[],
+			}
 		): Promise<CreatePlatformPartnersResponse> => {
+			const {
+				partners,
+			} = options
 			const requestBody = JSON.stringify({
 				partners,
 			})
@@ -312,8 +322,13 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		archivePlatformPartner: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<ArchivePlatformPartnerResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
@@ -345,8 +360,13 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			return response.json()
 		},
 		recoverPlatformPartner: async (
-			id: string,
+			options: {
+				id: string,
+			}
 		): Promise<RecoverPlatformPartnerResponse> => {
+			const {
+				id,
+			} = options
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
@@ -466,9 +486,6 @@ export type PartnerClient = {
 	 *
 	 * 파트너 객체를 조회합니다.
 	 *
-	 * @param id
-	 * 조회하고 싶은 파트너 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformNotEnabledError} 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
@@ -477,8 +494,10 @@ export type PartnerClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPlatformPartner: (
-		/** 조회하고 싶은 파트너 아이디 */
-		id: string,
+		options: {
+			/** 조회하고 싶은 파트너 아이디 */
+			id: string,
+		}
 	) => Promise<PlatformPartner>
 	/**
 	 * 파트너 수정
@@ -526,9 +545,6 @@ export type PartnerClient = {
 	 *
 	 * 새로운 파트너를 다건 생성합니다.
 	 *
-	 * @param partners
-	 * 생성할 파트너 리스트 정보
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PlatformContractsNotFoundError} PlatformContractsNotFoundError
@@ -541,16 +557,15 @@ export type PartnerClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPlatformPartners: (
-		/** 생성할 파트너 리스트 정보 */
-		partners: CreatePlatformPartnerBody[],
+		options: {
+			/** 생성할 파트너 리스트 정보 */
+			partners: CreatePlatformPartnerBody[],
+		}
 	) => Promise<CreatePlatformPartnersResponse>
 	/**
 	 * 파트너 복원
 	 *
 	 * 주어진 아이디에 대응되는 파트너를 보관합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -561,16 +576,15 @@ export type PartnerClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	archivePlatformPartner: (
-		/** 파트너 아이디 */
-		id: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
 	) => Promise<ArchivePlatformPartnerResponse>
 	/**
 	 * 파트너 복원
 	 *
 	 * 주어진 아이디에 대응되는 파트너를 복원합니다.
-	 *
-	 * @param id
-	 * 파트너 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -580,8 +594,10 @@ export type PartnerClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	recoverPlatformPartner: (
-		/** 파트너 아이디 */
-		id: string,
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
 	) => Promise<RecoverPlatformPartnerResponse>
 }
 

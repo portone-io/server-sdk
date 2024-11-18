@@ -19,18 +19,7 @@ export function writeOperation(
   const params = operation.params.path.concat(operation.params.query).concat(
     requestBody,
   ).filter(({ name }) => name !== "storeId")
-  const optionalCount = params.reduce(
-    (count, { required }) => count + (required ? 0 : 1),
-    0,
-  )
-  const isStructured = optionalCount >= 2
   const isStructureOptional = params.every(({ required }) => !required)
-  const paramDescription = isStructured ? [] : params.map((property) => {
-    const block = ([] as string[]).concat(property.title ?? []).concat(
-      property.description ?? [],
-    ).join("\n\n")
-    return `@param ${property.name}\n${block}`
-  }).join("\n")
   const errorDescription = errors.map(({ name }) => {
     const error = entityMap.get(name)
     if (!error) {
@@ -43,8 +32,6 @@ export function writeOperation(
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
-    paramDescription,
-  ).concat(
     errorDescription,
   ).join("\n\n")
   writeDescription(typeWriter, description)
@@ -52,25 +39,20 @@ export function writeOperation(
   implWriter.writeLine(`${operation.id}: async (`)
   typeWriter.indent()
   implWriter.indent()
-  if (isStructured) {
-    writeStructuredParameters(
-      typeWriter,
-      params,
-      isStructureOptional,
-      true,
-      crossRef,
-    )
-    writeStructuredParameters(
-      implWriter,
-      params,
-      isStructureOptional,
-      false,
-      crossRef,
-    )
-  } else {
-    writeInlineParameters(typeWriter, params, true, crossRef)
-    writeInlineParameters(implWriter, params, false, crossRef)
-  }
+  writeStructuredParameters(
+    typeWriter,
+    params,
+    isStructureOptional,
+    true,
+    crossRef,
+  )
+  writeStructuredParameters(
+    implWriter,
+    params,
+    isStructureOptional,
+    false,
+    crossRef,
+  )
   typeWriter.outdent()
   implWriter.outdent()
   switch (operation.response?.type) {
@@ -97,20 +79,18 @@ export function writeOperation(
       })
   }
   implWriter.indent()
-  if (isStructured) {
-    if (isStructureOptional) {
-      for (const param of params) {
-        implWriter.writeLine(`const ${param.name} = options?.${param.name}`)
-      }
-    } else {
-      implWriter.writeLine("const {")
-      implWriter.indent()
-      for (const param of params) {
-        implWriter.writeLine(`${param.name},`)
-      }
-      implWriter.outdent()
-      implWriter.writeLine("} = options")
+  if (isStructureOptional) {
+    for (const param of params) {
+      implWriter.writeLine(`const ${param.name} = options?.${param.name}`)
     }
+  } else {
+    implWriter.writeLine("const {")
+    implWriter.indent()
+    for (const param of params) {
+      implWriter.writeLine(`${param.name},`)
+    }
+    implWriter.outdent()
+    implWriter.writeLine("} = options")
   }
   let hasQuery = false
   writeRequestBody(implWriter, requestBody)
@@ -306,22 +286,6 @@ function writeStructuredParameters(
   writePropertyList(writer, params, withComment, crossRef)
   writer.outdent()
   writer.writeLine("}")
-}
-
-function writeInlineParameters(
-  writer: Writer,
-  params: Property[],
-  withComment: boolean,
-  crossRef: Set<string>,
-) {
-  const required = params.filter((property) => property.required)
-  const optional = params.filter((property) => !property.required)
-  writePropertyList(
-    writer,
-    required.concat(optional),
-    withComment,
-    crossRef,
-  )
 }
 
 function writePropertyList(

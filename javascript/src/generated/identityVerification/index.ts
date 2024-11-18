@@ -29,8 +29,13 @@ export type { VerifiedIdentityVerification } from "./VerifiedIdentityVerificatio
 export function IdentityVerificationClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): IdentityVerificationClient {
 	return {
 		getIdentityVerification: async (
-			identityVerificationId: string,
+			options: {
+				identityVerificationId: string,
+			}
 		): Promise<IdentityVerification> => {
+			const {
+				identityVerificationId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -129,9 +134,15 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			return response.json()
 		},
 		confirmIdentityVerification: async (
-			identityVerificationId: string,
-			otp?: string,
+			options: {
+				identityVerificationId: string,
+				otp?: string,
+			}
 		): Promise<ConfirmIdentityVerificationResponse> => {
+			const {
+				identityVerificationId,
+				otp,
+			} = options
 			const requestBody = JSON.stringify({
 				storeId,
 				otp,
@@ -170,8 +181,13 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			return response.json()
 		},
 		resendIdentityVerification: async (
-			identityVerificationId: string,
+			options: {
+				identityVerificationId: string,
+			}
 		): Promise<ResendIdentityVerificationResponse> => {
+			const {
+				identityVerificationId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -217,9 +233,6 @@ export type IdentityVerificationClient = {
 	 *
 	 * 주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
 	 *
-	 * @param identityVerificationId
-	 * 조회할 본인인증 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationNotFoundError} 요청된 본인인증 건이 존재하지 않는 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -227,8 +240,10 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getIdentityVerification: (
-		/** 조회할 본인인증 아이디 */
-		identityVerificationId: string,
+		options: {
+			/** 조회할 본인인증 아이디 */
+			identityVerificationId: string,
+		}
 	) => Promise<IdentityVerification>
 	/**
 	 * 본인인증 요청 전송
@@ -269,13 +284,6 @@ export type IdentityVerificationClient = {
 	 *
 	 * 요청된 본인인증에 대한 확인을 진행합니다.
 	 *
-	 * @param identityVerificationId
-	 * 본인인증 아이디
-	 * @param otp
-	 * OTP (One-Time Password)
-	 *
-	 * SMS 방식에서만 사용됩니다.
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationAlreadyVerifiedError} 본인인증 건이 이미 인증 완료된 상태인 경우
 	 * @throws {@link Errors.IdentityVerificationNotFoundError} 요청된 본인인증 건이 존재하지 않는 경우
@@ -286,22 +294,21 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	confirmIdentityVerification: (
-		/** 본인인증 아이디 */
-		identityVerificationId: string,
-		/**
-		 * OTP (One-Time Password)
-		 *
-		 * SMS 방식에서만 사용됩니다.
-		 */
-		otp?: string,
+		options: {
+			/** 본인인증 아이디 */
+			identityVerificationId: string,
+			/**
+			 * OTP (One-Time Password)
+			 *
+			 * SMS 방식에서만 사용됩니다.
+			 */
+			otp?: string,
+		}
 	) => Promise<ConfirmIdentityVerificationResponse>
 	/**
 	 * SMS 본인인증 요청 재전송
 	 *
 	 * SMS 본인인증 요청을 재전송합니다.
-	 *
-	 * @param identityVerificationId
-	 * 본인인증 아이디
 	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.IdentityVerificationAlreadyVerifiedError} 본인인증 건이 이미 인증 완료된 상태인 경우
@@ -313,8 +320,10 @@ export type IdentityVerificationClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	resendIdentityVerification: (
-		/** 본인인증 아이디 */
-		identityVerificationId: string,
+		options: {
+			/** 본인인증 아이디 */
+			identityVerificationId: string,
+		}
 	) => Promise<ResendIdentityVerificationResponse>
 }
 

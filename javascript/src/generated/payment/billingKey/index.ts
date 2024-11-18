@@ -51,8 +51,13 @@ export type { PgCompany } from "./PgCompany"
 export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): BillingKeyClient {
 	return {
 		getBillingKeyInfo: async (
-			billingKey: string,
+			options: {
+				billingKey: string,
+			}
 		): Promise<BillingKeyInfo> => {
+			const {
+				billingKey,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -85,8 +90,13 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 			return response.json()
 		},
 		deleteBillingKey: async (
-			billingKey: string,
+			options: {
+				billingKey: string,
+			}
 		): Promise<DeleteBillingKeyResponse> => {
+			const {
+				billingKey,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -241,9 +251,6 @@ export type BillingKeyClient = {
 	 *
 	 * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
 	 *
-	 * @param billingKey
-	 * 조회할 빌링키
-	 *
 	 * @throws {@link Errors.BillingKeyNotFoundError} 빌링키가 존재하지 않는 경우
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
@@ -251,16 +258,15 @@ export type BillingKeyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getBillingKeyInfo: (
-		/** 조회할 빌링키 */
-		billingKey: string,
+		options: {
+			/** 조회할 빌링키 */
+			billingKey: string,
+		}
 	) => Promise<BillingKeyInfo>
 	/**
 	 * 빌링키 삭제
 	 *
 	 * 빌링키를 삭제합니다.
-	 *
-	 * @param billingKey
-	 * 삭제할 빌링키
 	 *
 	 * @throws {@link Errors.BillingKeyAlreadyDeletedError} 빌링키가 이미 삭제된 경우
 	 * @throws {@link Errors.BillingKeyNotFoundError} 빌링키가 존재하지 않는 경우
@@ -274,8 +280,10 @@ export type BillingKeyClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	deleteBillingKey: (
-		/** 삭제할 빌링키 */
-		billingKey: string,
+		options: {
+			/** 삭제할 빌링키 */
+			billingKey: string,
+		}
 	) => Promise<DeleteBillingKeyResponse>
 	/**
 	 * 빌링키 다건 조회

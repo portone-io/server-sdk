@@ -33,8 +33,13 @@ export type { SucceededPaymentSchedule } from "./SucceededPaymentSchedule"
 export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl?: string, storeId?: string): PaymentScheduleClient {
 	return {
 		getPaymentSchedule: async (
-			paymentScheduleId: string,
+			options: {
+				paymentScheduleId: string,
+			}
 		): Promise<PaymentSchedule> => {
+			const {
+				paymentScheduleId,
+			} = options
 			const query = [
 				["storeId", storeId],
 			]
@@ -163,10 +168,17 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 			return response.json()
 		},
 		createPaymentSchedule: async (
-			paymentId: string,
-			payment: BillingKeyPaymentInput,
-			timeToPay: string,
+			options: {
+				paymentId: string,
+				payment: BillingKeyPaymentInput,
+				timeToPay: string,
+			}
 		): Promise<CreatePaymentScheduleResponse> => {
+			const {
+				paymentId,
+				payment,
+				timeToPay,
+			} = options
 			const requestBody = JSON.stringify({
 				payment,
 				timeToPay,
@@ -214,9 +226,6 @@ export type PaymentScheduleClient = {
 	 *
 	 * 주어진 아이디에 대응되는 결제 예약 건을 조회합니다.
 	 *
-	 * @param paymentScheduleId
-	 * 조회할 결제 예약 건 아이디
-	 *
 	 * @throws {@link Errors.ForbiddenError} 요청이 거절된 경우
 	 * @throws {@link Errors.InvalidRequestError} 요청된 입력 정보가 유효하지 않은 경우
 	 * @throws {@link Errors.PaymentScheduleNotFoundError} 결제 예약건이 존재하지 않는 경우
@@ -224,8 +233,10 @@ export type PaymentScheduleClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	getPaymentSchedule: (
-		/** 조회할 결제 예약 건 아이디 */
-		paymentScheduleId: string,
+		options: {
+			/** 조회할 결제 예약 건 아이디 */
+			paymentScheduleId: string,
+		}
 	) => Promise<PaymentSchedule>
 	/**
 	 * 결제 예약 다건 조회
@@ -289,13 +300,6 @@ export type PaymentScheduleClient = {
 	 *
 	 * 결제를 예약합니다.
 	 *
-	 * @param paymentId
-	 * 결제 건 아이디
-	 * @param payment
-	 * 빌링키 결제 입력 정보
-	 * @param timeToPay
-	 * 결제 예정 시점
-	 *
 	 * @throws {@link Errors.AlreadyPaidOrWaitingError} 결제가 이미 완료되었거나 대기중인 경우
 	 * @throws {@link Errors.BillingKeyAlreadyDeletedError} 빌링키가 이미 삭제된 경우
 	 * @throws {@link Errors.BillingKeyNotFoundError} 빌링키가 존재하지 않는 경우
@@ -307,15 +311,17 @@ export type PaymentScheduleClient = {
 	 * @throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우
 	 */
 	createPaymentSchedule: (
-		/** 결제 건 아이디 */
-		paymentId: string,
-		/** 빌링키 결제 입력 정보 */
-		payment: BillingKeyPaymentInput,
-		/**
-		 * 결제 예정 시점
-		 * (RFC 3339 date-time)
-		 */
-		timeToPay: string,
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/** 빌링키 결제 입력 정보 */
+			payment: BillingKeyPaymentInput,
+			/**
+			 * 결제 예정 시점
+			 * (RFC 3339 date-time)
+			 */
+			timeToPay: string,
+		}
 	) => Promise<CreatePaymentScheduleResponse>
 }
 
