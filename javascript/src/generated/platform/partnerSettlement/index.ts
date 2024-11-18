@@ -35,7 +35,7 @@ export function PartnerSettlementClient(secret: string, userAgent: string, baseU
 			const response = await fetch(
 				new URL(`/platform/partner-settlements?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

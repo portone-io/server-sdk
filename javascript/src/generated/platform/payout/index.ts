@@ -36,7 +36,7 @@ export function PayoutClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/payouts?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

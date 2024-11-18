@@ -18,7 +18,7 @@ export function PgSpecificClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL(`/kakaopay/payment/order?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

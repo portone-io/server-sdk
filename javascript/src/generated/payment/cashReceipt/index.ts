@@ -33,7 +33,7 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -95,7 +95,7 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 			const response = await fetch(
 				new URL("/cash-receipts", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -134,7 +134,7 @@ export function CashReceiptClient(secret: string, userAgent: string, baseUrl?: s
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt/cancel?${query}`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

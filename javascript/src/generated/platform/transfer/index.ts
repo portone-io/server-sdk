@@ -100,7 +100,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -131,7 +131,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -180,7 +180,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/transfer-summaries?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -253,7 +253,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform/transfers/order", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -356,7 +356,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform/transfers/order-cancel", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -447,7 +447,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform/transfers/manual", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -501,7 +501,7 @@ export function TransferClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/transfer-summaries/sheet-file?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

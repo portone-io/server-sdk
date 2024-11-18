@@ -61,7 +61,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/partners?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -122,7 +122,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL("/platform/partners", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -166,7 +166,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -228,7 +228,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -277,7 +277,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL("/platform/partners/batch", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -317,7 +317,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -350,7 +350,7 @@ export function PartnerClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

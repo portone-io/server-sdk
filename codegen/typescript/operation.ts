@@ -137,7 +137,7 @@ export function writeOperation(
   )
   implWriter.writeLine("{")
   implWriter.indent()
-  implWriter.writeLine(`method: "${operation.method}",`)
+  implWriter.writeLine(`method: "${operation.method.toUpperCase()}",`)
   implWriter.writeLine("headers: {")
   implWriter.indent()
   implWriter.writeLine("Authorization: `PortOne ${secret}`,")

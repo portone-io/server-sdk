@@ -37,7 +37,7 @@ export function AccountTransferClient(secret: string, userAgent: string, baseUrl
 			const response = await fetch(
 				new URL(`/platform/account-transfers?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

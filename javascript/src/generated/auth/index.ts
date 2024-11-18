@@ -19,7 +19,7 @@ export function AuthClient(secret: string, userAgent: string, baseUrl?: string, 
 			const response = await fetch(
 				new URL("/login/api-secret", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -48,7 +48,7 @@ export function AuthClient(secret: string, userAgent: string, baseUrl?: string, 
 			const response = await fetch(
 				new URL("/token/refresh", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

@@ -43,7 +43,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 			const response = await fetch(
 				new URL(`/payment-schedules/${encodeURIComponent(paymentScheduleId)}?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -89,7 +89,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 			const response = await fetch(
 				new URL(`/payment-schedules?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -131,7 +131,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 			const response = await fetch(
 				new URL(`/payment-schedules?${query}`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -174,7 +174,7 @@ export function PaymentScheduleClient(secret: string, userAgent: string, baseUrl
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/schedule`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

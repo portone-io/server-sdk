@@ -17,7 +17,7 @@ export function PromotionClient(secret: string, userAgent: string, baseUrl?: str
 			const response = await fetch(
 				new URL(`/promotions/${encodeURIComponent(promotionId)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

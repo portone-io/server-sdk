@@ -29,7 +29,7 @@ export function AccountClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/platform/bank-accounts/${encodeURIComponent(bank)}/${encodeURIComponent(accountNumber)}/holder?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

@@ -39,7 +39,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			const response = await fetch(
 				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -94,7 +94,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			const response = await fetch(
 				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/send`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -139,7 +139,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			const response = await fetch(
 				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/confirm`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -180,7 +180,7 @@ export function IdentityVerificationClient(secret: string, userAgent: string, ba
 			const response = await fetch(
 				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/resend?${query}`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

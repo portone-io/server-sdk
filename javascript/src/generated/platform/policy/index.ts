@@ -93,7 +93,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -139,7 +139,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL("/platform/discount-share-policies", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -171,7 +171,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -218,7 +218,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -252,7 +252,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -285,7 +285,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -330,7 +330,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -379,7 +379,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL("/platform/additional-fee-policies", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -411,7 +411,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -461,7 +461,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -495,7 +495,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -528,7 +528,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -573,7 +573,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/contracts?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -628,7 +628,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL("/platform/contracts", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -660,7 +660,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -716,7 +716,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}`, baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -750,7 +750,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/archive`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -783,7 +783,7 @@ export function PolicyClient(secret: string, userAgent: string, baseUrl?: string
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/recover`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

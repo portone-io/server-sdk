@@ -61,7 +61,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -95,7 +95,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -151,7 +151,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL(`/billing-keys?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -205,7 +205,7 @@ export function BillingKeyClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL("/billing-keys", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

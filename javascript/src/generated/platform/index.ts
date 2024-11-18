@@ -175,7 +175,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform", baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -214,7 +214,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform", baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -251,7 +251,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/discount-share-policy-filter-options?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -280,7 +280,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -317,7 +317,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "put",
+					method: "PUT",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -355,7 +355,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -391,7 +391,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -422,7 +422,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -459,7 +459,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "put",
+					method: "PUT",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -497,7 +497,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -533,7 +533,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -569,7 +569,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/partner-filter-options?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -598,7 +598,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -635,7 +635,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "put",
+					method: "PUT",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -675,7 +675,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -723,7 +723,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -761,7 +761,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL("/platform/partners/schedule", baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -799,7 +799,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -836,7 +836,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "put",
+					method: "PUT",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -874,7 +874,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -910,7 +910,7 @@ export function PlatformClient(secret: string, userAgent: string, baseUrl?: stri
 			const response = await fetch(
 				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
 				{
-					method: "delete",
+					method: "DELETE",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

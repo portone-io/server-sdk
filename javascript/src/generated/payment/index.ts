@@ -168,7 +168,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/pre-register`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -203,7 +203,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -246,7 +246,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -294,7 +294,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments-by-cursor?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -350,7 +350,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/cancel`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -463,7 +463,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/billing-key`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -570,7 +570,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/instant`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -619,7 +619,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/virtual-account/close?${query}`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -675,7 +675,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -732,7 +732,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/logistics`, baseUrl),
 				{
-					method: "patch",
+					method: "PATCH",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -771,7 +771,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/escrow/complete`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -810,7 +810,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/resend-webhook`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
@@ -849,7 +849,7 @@ export function PaymentClient(secret: string, userAgent: string, baseUrl?: strin
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/register-store-receipt`, baseUrl),
 				{
-					method: "post",
+					method: "POST",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,

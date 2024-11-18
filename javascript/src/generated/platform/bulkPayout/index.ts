@@ -37,7 +37,7 @@ export function BulkPayoutClient(secret: string, userAgent: string, baseUrl?: st
 			const response = await fetch(
 				new URL(`/platform/bulk-payouts?${query}`, baseUrl),
 				{
-					method: "get",
+					method: "GET",
 					headers: {
 						Authorization: `PortOne ${secret}`,
 						"User-Agent": userAgent,
