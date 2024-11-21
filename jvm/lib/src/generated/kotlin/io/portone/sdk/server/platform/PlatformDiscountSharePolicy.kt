@@ -23,10 +23,10 @@ public data class PlatformDiscountSharePolicy(
    * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
    */
   val partnerShareRate: Int,
+  /** 해당 할인 분담에 대한 메모 */
+  val memo: String? = null,
   /** 보관 여부 */
   val isArchived: Boolean,
   /** 변경 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 해당 할인 분담에 대한 메모 */
-  val memo: String? = null,
 )

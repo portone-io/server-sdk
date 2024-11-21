@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제가 이미 취소된 경우 */
-public class PaymentAlreadyCancelledException(
+public class PaymentAlreadyCancelledException internal constructor(
   cause: PaymentAlreadyCancelledError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CancelPaymentException {
 }

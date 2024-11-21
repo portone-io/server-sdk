@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformAdditionalFeePolicyAlreadyExistsErro
 import java.lang.Exception
 
 
-public class PlatformAdditionalFeePolicyAlreadyExistsException(
+public class PlatformAdditionalFeePolicyAlreadyExistsException internal constructor(
   cause: PlatformAdditionalFeePolicyAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformAdditionalFeePolicyException {
 }

@@ -16,30 +16,30 @@ import kotlinx.serialization.json.JsonObject
 /** 빌링키 결제 요청 입력 정보 */
 @Serializable
 public data class BillingKeyPaymentInput(
-  /** 빌링키 결제에 사용할 빌링키 */
-  val billingKey: String,
-  /** 주문명 */
-  val orderName: String,
-  /** 결제 금액 세부 입력 정보 */
-  val amount: PaymentAmountInput,
-  /** 통화 */
-  val currency: Currency,
   /**
    * 상점 아이디
    *
    * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
    */
   val storeId: String? = null,
+  /** 빌링키 결제에 사용할 빌링키 */
+  val billingKey: String,
   /**
    * 채널 키
    *
    * 다수 채널에 대해 발급된 빌링키에 대해, 결제 채널을 특정하고 싶을 때 명시
    */
   val channelKey: String? = null,
+  /** 주문명 */
+  val orderName: String,
   /** 고객 정보 */
   val customer: CustomerInput? = null,
   /** 사용자 지정 데이터 */
   val customData: String? = null,
+  /** 결제 금액 세부 입력 정보 */
+  val amount: PaymentAmountInput,
+  /** 통화 */
+  val currency: Currency,
   /** 할부 개월 수 */
   val installmentMonth: Int? = null,
   /** 무이자 할부 이자를 고객사가 부담할지 여부 */

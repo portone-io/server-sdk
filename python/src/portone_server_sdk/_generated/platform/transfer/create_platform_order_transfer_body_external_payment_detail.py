@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.transfer.platform_payment_method_input import PlatformPaymentMethodInput, _deserialize_platform_payment_method_input, _serialize_platform_payment_method_input
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.transfer.platform_payment_method_input import PlatformPaymentMethodInput, _deserialize_platform_payment_method_input, _serialize_platform_payment_method_input
 
 @dataclass
 class CreatePlatformOrderTransferBodyExternalPaymentDetail:

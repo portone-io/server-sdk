@@ -7,5 +7,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface BillingKeyPaymentMethod {
+  public sealed interface Recognized : BillingKeyPaymentMethod {
+  }
   public data object Unrecognized : BillingKeyPaymentMethod
 }

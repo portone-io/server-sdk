@@ -11,6 +11,12 @@ import kotlinx.serialization.Serializable
 /** 파트너 생성을 위한 입력 정보 */
 @Serializable
 public data class CreatePlatformPartnerBody(
+  /**
+   * 파트너에 부여할 고유 아이디
+   *
+   * 고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+   */
+  val id: String? = null,
   /** 파트너 법인명 혹은 이름 */
   val name: String,
   /** 파트너 담당자 연락 정보 */
@@ -28,6 +34,12 @@ public data class CreatePlatformPartnerBody(
    */
   val defaultContractId: String,
   /**
+   * 파트너에 대한 메모
+   *
+   * 총 256자까지 입력할 수 있습니다.
+   */
+  val memo: String? = null,
+  /**
    * 파트너에 부여할 태그 리스트
    *
    * 최대 10개까지 입력할 수 있습니다.
@@ -39,18 +51,6 @@ public data class CreatePlatformPartnerBody(
    * 사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.
    */
   val type: CreatePlatformPartnerBodyType,
-  /**
-   * 파트너에 부여할 고유 아이디
-   *
-   * 고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-   */
-  val id: String? = null,
-  /**
-   * 파트너에 대한 메모
-   *
-   * 총 256자까지 입력할 수 있습니다.
-   */
-  val memo: String? = null,
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties? = null,
 )

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.promotion.promotion_discount_partition import PromotionDiscountPartition, _deserialize_promotion_discount_partition, _serialize_promotion_discount_partition
+from ...payment.promotion.promotion_discount_partition import PromotionDiscountPartition, _deserialize_promotion_discount_partition, _serialize_promotion_discount_partition
 
 @dataclass
 class PromotionDiscountPolicy:

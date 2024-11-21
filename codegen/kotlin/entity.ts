@@ -1,13 +1,14 @@
 import { toPascalCase } from "@std/text"
-import type { Definition } from "../parser/definition.ts"
-import { filterName, KotlinWriter, toPackageCase } from "./common.ts"
+import type { Definition, Property } from "../parser/definition.ts"
+import { Extends, filterName, KotlinWriter, toPackageCase } from "./common.ts"
 import { writeDescription } from "./description.ts"
 
 export function generateEntity(
   hierarchy: string,
   entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
-  extendsMap: Map<string, Set<string>>,
+  parentsMap: Map<string, Property[]>,
+  childrenMap: Map<string, Extends>,
   definition: Definition,
   visibility = "public",
   constructorVisibility = "public",
@@ -20,9 +21,12 @@ export function generateEntity(
   )
   writer.writeLine("@Serializable")
   crossRef.add("kotlinx.serialization.Serializable")
-  const extension = extendsMap.get(definition.name)
+  const extension = childrenMap.get(definition.name)
   const extendList = extension
-    ? ` : ${[...extension].toSorted().join(", ")}`
+    ? ` : ${
+      [...extension.parents].toSorted().map((parent) => `${parent}.Recognized`)
+        .join(", ")
+    }`
     : ""
   switch (definition.type) {
     case "object": {
@@ -66,13 +70,15 @@ export function generateEntity(
         `${visibility} data class ${definition.name}${constructor_}(`,
       )
       writer.indent()
-      const required = nonDiscriminant.filter(({ required }) => required)
-      const optional = nonDiscriminant.filter(({ required }) => !required)
-      for (const property of required.concat(optional)) {
+
+      for (const property of nonDiscriminant) {
         const description = ([] as string[]).concat(property.title ?? [])
           .concat(property.description ?? []).join("\n\n")
         const name = filterName(property.name)
-        const val = `val ${name}`
+        const overrides = extension?.properties?.has(property.name)
+          ? "override "
+          : ""
+        const val = `${overrides}val ${name}`
         const wrapOptional = (type: string) =>
           property.required ? type : `${type}? = null`
         switch (property.type) {
@@ -214,8 +220,150 @@ export function generateEntity(
         `@JsonClassDiscriminator("${definition.property}")`,
       )
       crossRef.add("kotlinx.serialization.json.JsonClassDiscriminator")
+
       writer.writeLine(`public sealed interface ${definition.name} {`)
       writer.indent()
+      writer.writeLine(
+        `public sealed interface Recognized : ${definition.name} {`,
+      )
+      writer.indent()
+      const recognized = parentsMap.get(definition.name) ?? []
+      for (const property of recognized) {
+        const description = ([] as string[]).concat(property.title ?? [])
+          .concat(property.description ?? []).join("\n\n")
+        const name = filterName(property.name)
+        const optional = property.required ? "" : "?"
+        switch (property.type) {
+          case "discriminant":
+            break
+          case "string":
+            writeDescription(writer, description)
+            if (property.format === "date-time") {
+              crossRef.add("java.time.Instant")
+              writer.writeLine(`public val ${name}: Instant${optional}`)
+              break
+            }
+            crossRef.add("kotlin.String")
+            writer.writeLine(`public val ${name}: String${optional}`)
+            break
+          case "boolean":
+            writeDescription(writer, description)
+            writer.writeLine(`public val ${name}: Boolean${optional}`)
+            break
+          case "number":
+            writeDescription(writer, description)
+            writer.writeLine(`public val ${name}: Double${optional}`)
+            break
+          case "integer":
+            writeDescription(writer, description)
+            if (property.format === "int64") {
+              writer.writeLine(`public val ${name}: Long${optional}`)
+              break
+            }
+            writer.writeLine(`public val ${name}: Int${optional}`)
+            break
+          case "ref": {
+            writeDescription(writer, description)
+            writer.writeLine(`public val ${name}: ${property.value}${optional}`)
+            const category = categoryMap.get(property.value)
+            if (!category) {
+              throw new Error("unrecognized cross reference", {
+                cause: { ref: property.value },
+              })
+            }
+            crossRef.add(
+              `io.portone.sdk.server.${
+                toPackageCase(category)
+              }.${property.value}`,
+            )
+            break
+          }
+          case "object":
+            writeDescription(writer, description)
+            if (property.properties.length !== 0) {
+              throw new Error("object with thier properties is not supported", {
+                cause: { definition: property },
+              })
+            }
+            crossRef.add("kotlinx.serialization.json.JsonObject")
+            writer.writeLine(`public val ${name}: JsonObject${optional}`)
+            break
+          case "array":
+            writeDescription(writer, description)
+            switch (property.item.type) {
+              case "string":
+                crossRef.add("kotlin.Array")
+                if (property.item.format === "date-time") {
+                  writer.writeLine(
+                    `public val ${name}: List<Instant>${optional}`,
+                  )
+                  crossRef.add("java.time.Instant")
+                  break
+                }
+                writer.writeLine(`public val ${name}: List<String>${optional}`)
+                crossRef.add("kotlin.String")
+                break
+              case "boolean":
+                writer.writeLine(`public val ${name}: BooleanArray${optional}`)
+                crossRef.add("kotlin.BooleanArray")
+                break
+              case "number":
+                writer.writeLine(`public val ${name}: DoubleArray${optional}`)
+                crossRef.add("kotlin.DoubleArray")
+                break
+              case "integer":
+                if (property.item.format === "int64") {
+                  writer.writeLine(`public val ${name}: LongArray${optional}`)
+                  crossRef.add("kotlin.LongArray")
+                  break
+                }
+                writer.writeLine(`public val ${name}: IntArray${optional}`)
+                crossRef.add("kotlin.IntArray")
+                break
+              case "ref": {
+                writer.writeLine(
+                  `public val ${name}: List<${property.item.value}>${optional}`,
+                )
+                const category = categoryMap.get(property.item.value)
+                if (!category) {
+                  throw new Error("unrecognized cross reference", {
+                    cause: { ref: property.item.value },
+                  })
+                }
+                crossRef.add(
+                  `io.portone.sdk.server.${
+                    toPackageCase(category)
+                  }.${property.item.value}`,
+                )
+                break
+              }
+              case "discriminant":
+              case "object":
+              case "oneOf":
+              case "enum":
+              case "array":
+                throw new Error("unsupported array item type", {
+                  cause: { definition },
+                })
+              default:
+                throw new Error("unrecognized definition type", {
+                  cause: { definition },
+                })
+            }
+            break
+          case "oneOf":
+          case "enum":
+            throw new Error("unsupported array item type", {
+              cause: { definition },
+            })
+          default:
+            throw new Error("unrecognized definition type", {
+              cause: { definition },
+            })
+        }
+      }
+      writer.outdent()
+      writer.writeLine("}")
       writer.writeLine(`public data object Unrecognized : ${definition.name}`)
       writer.outdent()
       writer.writeLine("}")
@@ -223,9 +371,10 @@ export function generateEntity(
     }
     case "enum":
       writer.writeLine(
-        `public sealed class ${definition.name} {`,
+        `public sealed interface ${definition.name} {`,
       )
       writer.indent()
+      writer.writeLine("public val value: String")
       for (const { value, title, description } of definition.variants) {
         const mergedDescription = [title ?? []].concat([description ?? []])
           .flat().join("\n\n")
@@ -233,12 +382,18 @@ export function generateEntity(
         writer.writeLine(`@SerialName("${value}")`)
         crossRef.add("kotlinx.serialization.SerialName")
         writer.writeLine(
-          `public data object ${toPascalCase(value)} : ${definition.name}()`,
+          `public data object ${toPascalCase(value)} : ${definition.name} {`,
         )
+        writer.indent()
+        writer.writeLine(
+          `override val value: String = "${value}"`,
+        )
+        writer.outdent()
+        writer.writeLine("}")
       }
       writer.writeLine("@ConsistentCopyVisibility")
       writer.writeLine(
-        `public data class Unrecognized internal constructor(public val value: String) : ${definition.name}()`,
+        `public data class Unrecognized internal constructor(override val value: String) : ${definition.name}`,
       )
       writer.outdent()
       writer.writeLine("}")

@@ -1,9 +1,5 @@
 import * as sdk from "@portone/server-sdk";
 import { describe, expect, it } from "vitest";
-import {
-	PaymentAlreadyCancelledError,
-	PaymentNotFoundError,
-} from "../src/generated/errors";
 
 declare global {
 	namespace NodeJS {
@@ -15,18 +11,20 @@ declare global {
 
 const { PORTONE_API_SECRET } = process.env;
 
-const client = sdk.PortOneClient(PORTONE_API_SECRET);
+const client = sdk.PaymentClient({
+	secret: PORTONE_API_SECRET,
+});
 
 describe("correct cases", () => {
 	describe("payment.getPayments()", () => {
 		it("without parameters", async () => {
-			await expect(client.payment.getPayments()).resolves.toMatchObject({
+			await expect(client.getPayments()).resolves.toMatchObject({
 				items: expect.arrayContaining([]),
 			});
 		});
 		it("with parameters", async () => {
 			await expect(
-				client.payment.getPayments({ page: { number: 3000 } }),
+				client.getPayments({ page: { number: 3000 } }),
 			).resolves.toMatchObject({
 				items: [],
 			});
@@ -35,7 +33,7 @@ describe("correct cases", () => {
 	describe("payment.getPayment()", () => {
 		it("with parameters", async () => {
 			await expect(
-				client.payment.getPayment({ paymentId: "test-server-sdk" }),
+				client.getPayment({ paymentId: "test-server-sdk" }),
 			).resolves.toMatchObject({});
 		});
 	});
@@ -44,20 +42,20 @@ describe("correct cases", () => {
 describe("error cases", () => {
 	describe("payment.getPayment()", () => {
 		it("with invalid paymentId", async () => {
-			await expect(() =>
-				client.payment.getPayment({ paymentId: " " }),
-			).rejects.toThrow(PaymentNotFoundError);
+			await expect(() => client.getPayment({ paymentId: " " })).rejects.toThrow(
+				sdk.Errors.PaymentNotFoundError,
+			);
 		});
 	});
 	describe("payment.cancelPayment()", () => {
 		it("with already cancelled paymentId", async () => {
 			await expect(() =>
-				client.payment.cancelPayment({
+				client.cancelPayment({
 					paymentId: "test-server-sdk",
 					reason: "test",
 					amount: 1,
 				}),
-			).rejects.toThrow(PaymentAlreadyCancelledError);
+			).rejects.toThrow(sdk.Errors.PaymentAlreadyCancelledError);
 		});
 	});
 });

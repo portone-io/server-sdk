@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.month_day import MonthDay, _deserialize_month_day, _serialize_month_day
+from ..platform.month_day import MonthDay, _deserialize_month_day, _serialize_month_day
 
 @dataclass
 class PlatformSettlementCycleMethodManualDates:

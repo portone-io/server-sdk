@@ -5,9 +5,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformCancellableDiscountTaxFreeAmountExceededException(
+public class PlatformCancellableDiscountTaxFreeAmountExceededException internal constructor(
   cause: PlatformCancellableDiscountTaxFreeAmountExceededError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val discountSharePolicyId: String = cause.discountSharePolicyId
   public val discountSharePolicyGraphqlId: String = cause.discountSharePolicyGraphqlId
   public val cancellableAmount: Long = cause.cancellableAmount

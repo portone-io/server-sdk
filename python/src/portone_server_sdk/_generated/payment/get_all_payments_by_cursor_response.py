@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_with_cursor import PaymentWithCursor, _deserialize_payment_with_cursor, _serialize_payment_with_cursor
+from ..payment.payment_with_cursor import PaymentWithCursor, _deserialize_payment_with_cursor, _serialize_payment_with_cursor
 
 @dataclass
 class GetAllPaymentsByCursorResponse:

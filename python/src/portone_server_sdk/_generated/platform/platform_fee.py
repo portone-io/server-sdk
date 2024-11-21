@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.platform.platform_fixed_amount_fee import PlatformFixedAmountFee, _deserialize_platform_fixed_amount_fee, _serialize_platform_fixed_amount_fee
-from portone_server_sdk._generated.platform.platform_fixed_rate_fee import PlatformFixedRateFee, _deserialize_platform_fixed_rate_fee, _serialize_platform_fixed_rate_fee
+from ..platform.platform_fixed_amount_fee import PlatformFixedAmountFee, _deserialize_platform_fixed_amount_fee, _serialize_platform_fixed_amount_fee
+from ..platform.platform_fixed_rate_fee import PlatformFixedRateFee, _deserialize_platform_fixed_rate_fee, _serialize_platform_fixed_rate_fee
 
 PlatformFee = Union[PlatformFixedAmountFee, PlatformFixedRateFee, dict]
 """플랫폼 중개수수료 정보

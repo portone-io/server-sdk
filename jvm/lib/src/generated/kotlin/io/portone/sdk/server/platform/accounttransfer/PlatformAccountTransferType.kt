@@ -5,16 +5,23 @@ import kotlinx.serialization.Serializable
 
 /** 계좌 이체 유형 */
 @Serializable
-public sealed class PlatformAccountTransferType {
+public sealed interface PlatformAccountTransferType {
+  public val value: String
   /** 충전 */
   @SerialName("DEPOSIT")
-  public data object Deposit : PlatformAccountTransferType()
+  public data object Deposit : PlatformAccountTransferType {
+    override val value: String = "DEPOSIT"
+  }
   /** 파트너 정산 송금 */
   @SerialName("WITHDRAWAL_PARTNER_PAYOUT")
-  public data object WithdrawalPartnerPayout : PlatformAccountTransferType()
+  public data object WithdrawalPartnerPayout : PlatformAccountTransferType {
+    override val value: String = "WITHDRAWAL_PARTNER_PAYOUT"
+  }
   /** 송금 */
   @SerialName("WITHDRAWAL_REMIT")
-  public data object WithdrawalRemit : PlatformAccountTransferType()
+  public data object WithdrawalRemit : PlatformAccountTransferType {
+    override val value: String = "WITHDRAWAL_REMIT"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : PlatformAccountTransferType()
+  public data class Unrecognized internal constructor(override val value: String) : PlatformAccountTransferType
 }

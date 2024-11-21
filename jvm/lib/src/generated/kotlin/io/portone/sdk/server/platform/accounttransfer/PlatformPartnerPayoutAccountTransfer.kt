@@ -12,22 +12,30 @@ import kotlinx.serialization.Serializable
 @SerialName("PARTNER_PAYOUT")
 public data class PlatformPartnerPayoutAccountTransfer(
   /** 계좌 이체 아이디 */
-  val id: String,
+  override val id: String,
   /** 거래 일련번호 */
   val sequenceNumber: Int,
   /** 통화 */
-  val currency: Currency,
+  override val currency: Currency,
   /** 입금 계좌 은행 */
   val depositBank: Bank,
   /** 입금 계좌 번호 */
   val depositAccountNumber: String,
   /** 금액 */
-  val amount: Long,
-  val isForTest: Boolean,
+  override val amount: Long,
+  /** 출금 계좌 적요 */
+  val withdrawalMemo: String? = null,
+  /** 입금 계좌 적요 */
+  override val depositMemo: String? = null,
+  /** 잔액 */
+  val balance: Long? = null,
+  /** 실패 사유 */
+  val failReason: String? = null,
+  override val isForTest: Boolean,
   /** 생성 일자 */
-  val createdAt: @Serializable(InstantSerializer::class) Instant,
+  override val createdAt: @Serializable(InstantSerializer::class) Instant,
   /** 수정 일자 */
-  val updatedAt: @Serializable(InstantSerializer::class) Instant,
+  override val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 파트너 고유 아이디 */
   val partnerId: String,
   val partnerGraphqlId: String,
@@ -37,12 +45,4 @@ public data class PlatformPartnerPayoutAccountTransfer(
   /** 지급 고유 아이디 */
   val payoutId: String,
   val payoutGraphqlId: String,
-  /** 출금 계좌 적요 */
-  val withdrawalMemo: String? = null,
-  /** 입금 계좌 적요 */
-  val depositMemo: String? = null,
-  /** 잔액 */
-  val balance: Long? = null,
-  /** 실패 사유 */
-  val failReason: String? = null,
-) : PlatformAccountTransfer
+) : PlatformAccountTransfer.Recognized

@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformOrderDetailMismatchedError
 import java.lang.Exception
 
 
-public class PlatformOrderDetailMismatchedException(
+public class PlatformOrderDetailMismatchedException internal constructor(
   cause: PlatformOrderDetailMismatchedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
 }

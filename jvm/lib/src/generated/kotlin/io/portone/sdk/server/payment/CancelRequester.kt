@@ -4,11 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public sealed class CancelRequester {
+public sealed interface CancelRequester {
+  public val value: String
   @SerialName("CUSTOMER")
-  public data object Customer : CancelRequester()
+  public data object Customer : CancelRequester {
+    override val value: String = "CUSTOMER"
+  }
   @SerialName("ADMIN")
-  public data object Admin : CancelRequester()
+  public data object Admin : CancelRequester {
+    override val value: String = "ADMIN"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : CancelRequester()
+  public data class Unrecognized internal constructor(override val value: String) : CancelRequester
 }

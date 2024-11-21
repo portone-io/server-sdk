@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformTransferNotFoundError
 import java.lang.Exception
 
 
-public class PlatformTransferNotFoundException(
+public class PlatformTransferNotFoundException internal constructor(
   cause: PlatformTransferNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException, DeletePlatformTransferException, GetPlatformTransferException {
 }

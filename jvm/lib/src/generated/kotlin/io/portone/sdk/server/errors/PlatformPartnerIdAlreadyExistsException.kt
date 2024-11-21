@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformPartnerIdAlreadyExistsError
 import java.lang.Exception
 
 
-public class PlatformPartnerIdAlreadyExistsException(
+public class PlatformPartnerIdAlreadyExistsException internal constructor(
   cause: PlatformPartnerIdAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformPartnerException {
 }

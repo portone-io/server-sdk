@@ -1,6 +1,6 @@
 /** @type {import('typedoc').TypeDocOptions} */
 export default {
-	entryPoints: ["./src/index.ts"],
+	entryPoints: ["src/index.ts"],
 	emit: "docs",
 	out: "./docs",
 	tsconfig: "./tsconfig.json",

@@ -25,12 +25,18 @@ export function generateProject(projectRoot: string, pack: Package) {
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
   const oneOfErrors = new Set<string>()
-  const variantErrors = new Set<string>()
-  collectErrors(pack, entityMap, oneOfErrors, variantErrors)
+  const variantErrors = new Map<string, Set<string>>()
+  collectErrors(
+    pack,
+    entityMap,
+    oneOfErrors,
+    variantErrors,
+    "",
+  )
   generateErrors(
     srcPath,
     publicPath,
-    [...variantErrors].toSorted(),
+    variantErrors,
     categoryMap,
     entityMap,
   )
@@ -69,10 +75,12 @@ function generateCategoryIndex(
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
   omitEntities: Set<string>,
-  hierarchy: string = "portone_server_sdk._generated",
+  hierarchy: string = "",
 ) {
+  const toRoot = ".".repeat(hierarchy.split(".").length)
   const hasClient = pack.operations.length > 0 || pack.subpackages.length > 0
   const crossRef = new Set<string>()
+  const errorRef = new Set<string>()
   const writer = PythonWriter()
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, toSnakeCase(subpackage.category))
@@ -89,7 +97,7 @@ function generateCategoryIndex(
   }
   const typing = new Set<string>()
   if (hasClient) {
-    writeClientObject(writer, pack, entityMap, crossRef, typing)
+    writeClientObject(writer, pack, entityMap, crossRef, errorRef, typing)
   }
   const importWriter = PythonWriter()
   importWriter.writeLine("from __future__ import annotations")
@@ -97,11 +105,34 @@ function generateCategoryIndex(
     importWriter.writeLine("import httpx")
     importWriter.writeLine("import json")
     importWriter.writeLine("from httpx import AsyncClient")
+    importWriter.writeLine(
+      `from ${toRoot}._user_agent import USER_AGENT`,
+    )
     typing.add("Optional")
   }
+  const errors = pack.operations.map(({ errors }) => errors).toSorted()
   const sortedTyping = [...typing].toSorted()
   if (sortedTyping.length > 0) {
     importWriter.writeLine(`from typing import ${sortedTyping.join(", ")}`)
+  }
+  if (errorRef.size > 0) {
+    const sortedError = [...errorRef].toSorted()
+    importWriter.writeLine(
+      `from ${toRoot}errors import ${sortedError.join(", ")}`,
+    )
+    for (const error of sortedError) {
+      if (error === "UnknownError") continue
+      const category = categoryMap.get(error)
+      if (category == null) {
+        throw new Error("unrecognized error ref", { cause: { ref: error } })
+      }
+      const canonicalCategory = category.split(".").map(toSnakeCase).join(".")
+      importWriter.writeLine(
+        `from ${toRoot}${canonicalCategory}.${
+          toSnakeCase(error)
+        } import _deserialize_${toSnakeCase(error)}`,
+      )
+    }
   }
   const sortedRef = [...crossRef].toSorted()
   for (const ref of sortedRef) {
@@ -110,11 +141,11 @@ function generateCategoryIndex(
       throw new Error("unrecognized category", { cause: { ref } })
     }
     importWriter.writeLine(
-      `from portone_server_sdk._generated.${
-        category.split(".").map(toSnakeCase).join(".")
-      }.${toSnakeCase(ref)} import ${ref}, _deserialize_${
+      `from ${toRoot}${category.split(".").map(toSnakeCase).join(".")}.${
         toSnakeCase(ref)
-      }, _serialize_${toSnakeCase(ref)}`,
+      } import ${ref}, _deserialize_${toSnakeCase(ref)}, _serialize_${
+        toSnakeCase(ref)
+      }`,
     )
   }
   if (hasClient) {
@@ -124,19 +155,46 @@ function generateCategoryIndex(
         subpackage.operations.length > 0 || subpackage.subpackages.length > 0
       ) {
         importWriter.writeLine(
-          `from .${toSnakeCase(subpackage.category)} import ${
+          `from .${toSnakeCase(subpackage.category)}.client import ${
             toPascalCase(subpackage.category)
           }Client`,
         )
       }
     }
-    importWriter.writeLine(`from portone_server_sdk._generated import errors`)
   }
-  const indexPath = path.join(packagePath, "__init__.py")
-  Deno.writeTextFileSync(indexPath, importWriter.content + writer.content)
+  if (pack.category !== "root") {
+    const clientPath = path.join(packagePath, "client.py")
+    Deno.writeTextFileSync(clientPath, importWriter.content + writer.content)
+  }
 
-  const publicWriter = PythonWriter()
   const all = []
+  const publicWriter = PythonWriter()
+  if (errors.length > 0) {
+    const errorPath = path.join(packagePath, "errors")
+    fs.ensureDirSync(errorPath)
+    for (const error of errors) {
+      all.push(error)
+      const errorWriter = PythonWriter()
+      errorWriter.writeLine("from dataclasses import dataclass")
+      errorWriter.writeLine(
+        `from .${toRoot}._portone_error import PortOneError`,
+      )
+      errorWriter.writeLine("@dataclass")
+      errorWriter.writeLine(`class ${error}(PortOneError):`)
+      errorWriter.indent()
+      errorWriter.writeLine("pass")
+      errorWriter.outdent()
+      Deno.writeTextFileSync(
+        path.join(errorPath, `${toSnakeCase(error)}.py`),
+        errorWriter.content,
+      )
+      publicWriter.writeLine(
+        `from ${toRoot}_generated${hierarchy}.errors.${
+          toSnakeCase(error)
+        } import ${error}`,
+      )
+    }
+  }
   for (const subpackage of pack.subpackages) {
     publicWriter.writeLine(`from . import ${toSnakeCase(subpackage.category)}`)
     all.push(toSnakeCase(subpackage.category))
@@ -151,7 +209,7 @@ function generateCategoryIndex(
       throw new Error("unrecognized category", { cause: { ref: entity.name } })
     }
     publicWriter.writeLine(
-      `from portone_server_sdk._generated.${
+      `from ${toRoot}_generated.${
         category.split(".").map(toSnakeCase).join(".")
       }.${toSnakeCase(entity.name)} import ${entity.name}`,
     )
@@ -162,7 +220,9 @@ function generateCategoryIndex(
   }
   if (hasClient) {
     publicWriter.writeLine(
-      `from ${hierarchy} import ${toPascalCase(pack.category)}Client`,
+      `from ${toRoot}_generated${hierarchy}.client import ${
+        toPascalCase(pack.category)
+      }Client`,
     )
     all.push(`${toPascalCase(pack.category)}Client`)
   }
@@ -187,6 +247,7 @@ function writeClientObject(
   pack: Package,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
+  errorRef: Set<string>,
   typing: Set<string>,
 ) {
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
@@ -195,7 +256,6 @@ function writeClientObject(
   implWriter.writeLine(`class ${toPascalCase(pack.category)}Client:`)
   implWriter.indent()
   implWriter.writeLine("_secret: str")
-  implWriter.writeLine("_user_agent: str")
   implWriter.writeLine("_base_url: str")
   implWriter.writeLine("_store_id: Optional[str]")
   implWriter.writeLine("_client: AsyncClient")
@@ -208,11 +268,13 @@ function writeClientObject(
   }
   implWriter.writeLine("")
   implWriter.writeLine(
-    "def __init__(self, secret: str, user_agent: str, base_url: str, store_id: Optional[str]):",
+    `def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):`,
   )
   implWriter.indent()
+  implWriter.writeLine(
+    `"""API Secret을 사용해 포트원 API 클라이언트를 생성합니다."""`,
+  )
   implWriter.writeLine("self._secret = secret")
-  implWriter.writeLine("self._user_agent = user_agent")
   implWriter.writeLine("self._base_url = base_url")
   implWriter.writeLine("self._store_id = store_id")
   implWriter.writeLine("self._client = AsyncClient()")
@@ -220,7 +282,7 @@ function writeClientObject(
     implWriter.writeLine(
       `self.${toSnakeCase(subpackage.category)} = ${
         toPascalCase(subpackage.category)
-      }Client(secret, user_agent, base_url, store_id)`,
+      }Client(secret=secret, base_url=base_url, store_id=store_id)`,
     )
   }
   implWriter.outdent()
@@ -230,6 +292,7 @@ function writeClientObject(
       operation,
       entityMap,
       crossRef,
+      errorRef,
       typing,
       false,
     )
@@ -238,6 +301,7 @@ function writeClientObject(
       operation,
       entityMap,
       crossRef,
+      errorRef,
       typing,
       true,
     )
@@ -249,7 +313,8 @@ function collectErrors(
   pack: Package,
   entityMap: Map<string, Definition>,
   oneOfErrors: Set<string>,
-  variantErrors: Set<string>,
+  variantErrors: Map<string, Set<string>>,
+  hierarchy: string,
 ) {
   for (const operation of pack.operations) {
     oneOfErrors.add(operation.errors)
@@ -258,12 +323,22 @@ function collectErrors(
       throw new Error("unrecognized error", { cause: { operation } })
     }
     switch (errorEntity.type) {
-      case "object":
-        variantErrors.add(errorEntity.name)
+      case "object": {
+        let parents = variantErrors.get(errorEntity.name)
+        if (parents == null) {
+          parents = new Set()
+          variantErrors.set(errorEntity.name, parents)
+        }
         break
+      }
       case "oneOf":
         for (const variant of errorEntity.variants) {
-          variantErrors.add(variant.name)
+          let parents = variantErrors.get(variant.name)
+          if (parents == null) {
+            parents = new Set()
+            variantErrors.set(variant.name, parents)
+          }
+          parents.add(`${hierarchy}.errors.${errorEntity.name}`)
         }
         break
       case "string":
@@ -282,29 +357,20 @@ function collectErrors(
     }
   }
   for (const subpackage of pack.subpackages) {
-    collectErrors(subpackage, entityMap, oneOfErrors, variantErrors)
+    collectErrors(
+      subpackage,
+      entityMap,
+      oneOfErrors,
+      variantErrors,
+      `${hierarchy}.${toSnakeCase(subpackage.category)}`,
+    )
   }
 }
-
-const PortOneError = `
-@dataclass(init=False)
-class PortOneError(Exception):
-    """포트원 SDK에서 발생하는 모든 에러의 기본 타입입니다."""
-
-    message: Optional[str] = field(init=False)
-
-@dataclass
-class UnknownError(PortOneError):
-    """알 수 없는 경우"""
-
-    message: Optional[str] = field(default="알 수 없는 오류가 발생했습니다.", init=False)
-    error: dict
-`
 
 function generateErrors(
   srcPath: string,
   publicPath: string,
-  errors: string[],
+  errors: Map<string, Set<string>>,
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
 ) {
@@ -313,7 +379,7 @@ function generateErrors(
   writer.writeLine("from dataclasses import InitVar, dataclass, field")
   writer.writeLine("from typing import Optional")
   const crossRef = new Set<string>()
-  for (const error of errors) {
+  for (const error of errors.keys()) {
     const path = categoryMap.get(error)?.split(".")?.map(toSnakeCase)?.join(".")
     if (!path) {
       throw new Error("unrecognized error reference", { cause: { error } })
@@ -375,9 +441,18 @@ function generateErrors(
       }
     }
     writer.writeLine(
-      `from portone_server_sdk._generated.${path}.${
-        toSnakeCase(error)
-      } import ${error} as Internal${error}`,
+      `from .${path}.${toSnakeCase(error)} import ${error} as Internal${error}`,
+    )
+  }
+  const allParents = [
+    ...errors.values().reduce((prev, current) => prev.union(current)),
+  ].toSorted()
+  for (const parent of allParents) {
+    const dot = parent.lastIndexOf(".")
+    const name = parent.slice(dot + 1)
+    const module = parent.slice(undefined, dot)
+    writer.writeLine(
+      `from ${module}.${toSnakeCase(name)} import ${name}`,
     )
   }
   const sortedRef = [...crossRef].toSorted()
@@ -389,15 +464,10 @@ function generateErrors(
       })
     }
     writer.writeLine(
-      `from portone_server_sdk._generated.${path}.${
-        toSnakeCase(ref)
-      } import ${ref}`,
+      `from .${path}.${toSnakeCase(ref)} import ${ref}`,
     )
   }
-  for (const line of PortOneError.split("\n")) {
-    writer.writeLine(line)
-  }
-  for (const error of errors) {
+  for (const [error, parents] of errors.entries()) {
     const definition = entityMap.get(error)
     if (!definition) {
       throw new Error("unrecognized error reference", { cause: { error } })
@@ -412,7 +482,10 @@ function generateErrors(
     )
     writer.writeLine("")
     writer.writeLine("@dataclass")
-    writer.writeLine(`class ${error}(PortOneError):`)
+    const extension = [...parents].map((hierarchy) =>
+      hierarchy.split(".").at(-1)!
+    ).toSorted().join(", ")
+    writer.writeLine(`class ${error}(${extension}):`)
     writer.indent()
     writeDescription(writer, definition.description)
     for (const property of additionalProperties) {
@@ -436,12 +509,29 @@ function generateErrors(
     writer.outdent()
     writer.outdent()
   }
+  writer.writeLine("@dataclass")
+  writer.writeLine(
+    `class UnknownError(${
+      allParents.map((hierarchy) => hierarchy.split(".").at(-1)!).join(", ")
+    }):`,
+  )
+  writer.indent()
+  writer.writeLine(`"""알 수 없는 경우"""`)
+  writer.writeLine(
+    `message: Optional[str] = field(default="알 수 없는 오류가 발생했습니다.", init=False)`,
+  )
+  writer.writeLine("error: dict")
+  writer.outdent()
   const errorPath = path.join(srcPath, "errors.py")
   Deno.writeTextFileSync(errorPath, writer.content)
-  const all = ["PortOneError", "UnknownError"].concat(errors).toSorted()
+  const importErrors = [...errors.keys(), "UnknownError"].toSorted()
+  const all = ["PortOneError"].concat(importErrors)
   const publicWriter = PythonWriter()
   publicWriter.writeLine(
-    `from portone_server_sdk._generated.errors import ${all.join(", ")}`,
+    `from ._generated.errors import ${importErrors.join(", ")}`,
+  )
+  publicWriter.writeLine(
+    "from ._portone_error import PortOneError",
   )
   publicWriter.writeLine("__all__ = [")
   publicWriter.indent()
@@ -467,7 +557,7 @@ function generateClient(
   for (const subpackage of pack.subpackages) {
     if (subpackage.operations.length > 0 || subpackage.subpackages.length > 0) {
       writer.writeLine(
-        `from .${toSnakeCase(subpackage.category)} import ${
+        `from .${toSnakeCase(subpackage.category)}.client import ${
           toPascalCase(subpackage.category)
         }Client`,
       )
@@ -479,13 +569,11 @@ function generateClient(
 }
 
 const PortOneClientInit = `
-def __init__(self, *, secret: str, store_id: Optional[str] = None, base_url: str = "https://api.portone.io") -> None:
-    """API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
-    """
+def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None) -> None:
+    """API Secret을 사용해 포트원 API 클라이언트를 생성합니다."""
     self._secret = secret
     self._store_id = store_id
     self._client = AsyncClient()
-    user_agent = "__USER_AGENT__"
 `
 
 function writeRootClientObject(
@@ -498,7 +586,6 @@ function writeRootClientObject(
   writer.writeLine("_secret: str")
   writer.writeLine("_store_id: Optional[str]")
   writer.writeLine("_base_url: str")
-  writer.writeLine("_user_agent: str")
   writer.writeLine("_client: AsyncClient")
   const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
     operations.length > 0 || subpackages.length > 0
@@ -518,7 +605,7 @@ function writeRootClientObject(
     writer.writeLine(
       `self.${toSnakeCase(subpackage.category)} = ${
         toPascalCase(subpackage.category)
-      }Client(secret, user_agent, base_url, store_id)`,
+      }Client(secret=secret, base_url=base_url, store_id=store_id)`,
     )
   }
   writer.outdent()
@@ -530,10 +617,11 @@ function generateEntityDirectory(
   pack: Package,
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
+  depth: number = 1,
 ) {
   fs.ensureDirSync(packagePath)
   for (const entity of pack.entities) {
-    generateEntity(packagePath, categoryMap, entityMap, entity)
+    generateEntity(packagePath, categoryMap, entityMap, entity, depth)
   }
   for (const subpackage of pack.subpackages) {
     generateEntityDirectory(
@@ -541,6 +629,7 @@ function generateEntityDirectory(
       subpackage,
       categoryMap,
       entityMap,
+      depth + 1,
     )
   }
 }

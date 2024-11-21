@@ -12,4 +12,4 @@ public data class PlatformSettlementFormulaUnexpectedFunctionArguments(
   val expectedCount: Int,
   val currentCount: Int,
   val position: PlatformSettlementFormulaPosition,
-) : PlatformSettlementFormulaError
+) : PlatformSettlementFormulaError.Recognized

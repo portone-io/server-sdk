@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformCancellationNotFoundError
 import java.lang.Exception
 
 
-public class PlatformCancellationNotFoundException(
+public class PlatformCancellationNotFoundException internal constructor(
   cause: PlatformCancellationNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
 }

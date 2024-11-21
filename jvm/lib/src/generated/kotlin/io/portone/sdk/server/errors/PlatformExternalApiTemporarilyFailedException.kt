@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 외부 api의 일시적인 오류 */
-public class PlatformExternalApiTemporarilyFailedException(
+public class PlatformExternalApiTemporarilyFailedException internal constructor(
   cause: PlatformExternalApiTemporarilyFailedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), GetPlatformAccountHolderException {
 }

@@ -5,9 +5,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformTransferAlreadyExistsException(
+public class PlatformTransferAlreadyExistsException internal constructor(
   cause: PlatformTransferAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException, CreatePlatformOrderTransferException {
   public val transferId: String = cause.transferId
   public val transferGraphqlId: String = cause.transferGraphqlId
 }

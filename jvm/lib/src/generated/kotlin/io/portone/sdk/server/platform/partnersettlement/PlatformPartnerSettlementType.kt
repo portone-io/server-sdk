@@ -5,16 +5,23 @@ import kotlinx.serialization.Serializable
 
 /** 정산 유형 */
 @Serializable
-public sealed class PlatformPartnerSettlementType {
+public sealed interface PlatformPartnerSettlementType {
+  public val value: String
   /** 수동 정산 */
   @SerialName("MANUAL")
-  public data object Manual : PlatformPartnerSettlementType()
+  public data object Manual : PlatformPartnerSettlementType {
+    override val value: String = "MANUAL"
+  }
   /** 주문 정산 */
   @SerialName("ORDER")
-  public data object Order : PlatformPartnerSettlementType()
+  public data object Order : PlatformPartnerSettlementType {
+    override val value: String = "ORDER"
+  }
   /** 주문 취소 정산 */
   @SerialName("ORDER_CANCEL")
-  public data object OrderCancel : PlatformPartnerSettlementType()
+  public data object OrderCancel : PlatformPartnerSettlementType {
+    override val value: String = "ORDER_CANCEL"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : PlatformPartnerSettlementType()
+  public data class Unrecognized internal constructor(override val value: String) : PlatformPartnerSettlementType
 }

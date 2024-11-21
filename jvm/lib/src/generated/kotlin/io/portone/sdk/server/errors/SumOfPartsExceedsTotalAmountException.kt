@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우 */
-public class SumOfPartsExceedsTotalAmountException(
+public class SumOfPartsExceedsTotalAmountException internal constructor(
   cause: SumOfPartsExceedsTotalAmountError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePaymentScheduleException, PayInstantlyException, PayWithBillingKeyException {
 }

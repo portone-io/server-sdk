@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 /** 가상계좌 */
 @Serializable
 @SerialName("VIRTUAL_ACCOUNT")
-public data object PlatformPaymentMethodVirtualAccount : PlatformPaymentMethod
+public data object PlatformPaymentMethodVirtualAccount : PlatformPaymentMethod.Recognized

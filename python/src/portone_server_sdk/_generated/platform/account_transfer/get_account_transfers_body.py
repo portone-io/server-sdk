@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from portone_server_sdk._generated.platform.account_transfer.platform_account_transfer_filter import PlatformAccountTransferFilter, _deserialize_platform_account_transfer_filter, _serialize_platform_account_transfer_filter
+from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
+from ...platform.account_transfer.platform_account_transfer_filter import PlatformAccountTransferFilter, _deserialize_platform_account_transfer_filter, _serialize_platform_account_transfer_filter
 
 @dataclass
 class GetAccountTransfersBody:

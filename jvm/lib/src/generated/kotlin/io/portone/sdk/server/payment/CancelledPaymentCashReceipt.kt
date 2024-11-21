@@ -12,22 +12,22 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CANCELLED")
 public data class CancelledPaymentCashReceipt(
+  /** 현금영수증 유형 */
+  override val type: CashReceiptType? = null,
+  /** PG사 영수증 발급 아이디 */
+  override val pgReceiptId: String? = null,
   /** 승인 번호 */
-  val issueNumber: String,
+  override val issueNumber: String,
   /** 총 금액 */
-  val totalAmount: Long,
+  override val totalAmount: Long,
+  /** 면세액 */
+  override val taxFreeAmount: Long? = null,
   /** 통화 */
-  val currency: Currency,
+  override val currency: Currency,
+  /** 현금영수증 URL */
+  override val url: String? = null,
   /** 발급 시점 */
-  val issuedAt: @Serializable(InstantSerializer::class) Instant,
+  override val issuedAt: @Serializable(InstantSerializer::class) Instant,
   /** 취소 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
-  /** 현금영수증 유형 */
-  val type: CashReceiptType? = null,
-  /** PG사 영수증 발급 아이디 */
-  val pgReceiptId: String? = null,
-  /** 면세액 */
-  val taxFreeAmount: Long? = null,
-  /** 현금영수증 URL */
-  val url: String? = null,
-) : PaymentCashReceipt
+) : PaymentCashReceipt.Recognized

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_failure import BillingKeyFailure, _deserialize_billing_key_failure, _serialize_billing_key_failure
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...payment.billing_key.billing_key_failure import BillingKeyFailure, _deserialize_billing_key_failure, _serialize_billing_key_failure
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class FailedPgBillingKeyIssueResponse:

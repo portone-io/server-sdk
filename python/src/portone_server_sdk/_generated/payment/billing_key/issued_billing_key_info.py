@@ -2,11 +2,11 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_payment_method import BillingKeyPaymentMethod, _deserialize_billing_key_payment_method, _serialize_billing_key_payment_method
-from portone_server_sdk._generated.common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
-from portone_server_sdk._generated.common.customer import Customer, _deserialize_customer, _serialize_customer
-from portone_server_sdk._generated.payment.billing_key.pg_billing_key_issue_response import PgBillingKeyIssueResponse, _deserialize_pg_billing_key_issue_response, _serialize_pg_billing_key_issue_response
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...payment.billing_key.billing_key_payment_method import BillingKeyPaymentMethod, _deserialize_billing_key_payment_method, _serialize_billing_key_payment_method
+from ...common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
+from ...common.customer import Customer, _deserialize_customer, _serialize_customer
+from ...payment.billing_key.pg_billing_key_issue_response import PgBillingKeyIssueResponse, _deserialize_pg_billing_key_issue_response, _serialize_pg_billing_key_issue_response
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class IssuedBillingKeyInfo:

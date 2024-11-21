@@ -1,12 +1,12 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.payment.cancelled_payment import CancelledPayment, _deserialize_cancelled_payment, _serialize_cancelled_payment
-from portone_server_sdk._generated.payment.failed_payment import FailedPayment, _deserialize_failed_payment, _serialize_failed_payment
-from portone_server_sdk._generated.payment.paid_payment import PaidPayment, _deserialize_paid_payment, _serialize_paid_payment
-from portone_server_sdk._generated.payment.partial_cancelled_payment import PartialCancelledPayment, _deserialize_partial_cancelled_payment, _serialize_partial_cancelled_payment
-from portone_server_sdk._generated.payment.pay_pending_payment import PayPendingPayment, _deserialize_pay_pending_payment, _serialize_pay_pending_payment
-from portone_server_sdk._generated.payment.ready_payment import ReadyPayment, _deserialize_ready_payment, _serialize_ready_payment
-from portone_server_sdk._generated.payment.virtual_account_issued_payment import VirtualAccountIssuedPayment, _deserialize_virtual_account_issued_payment, _serialize_virtual_account_issued_payment
+from ..payment.cancelled_payment import CancelledPayment, _deserialize_cancelled_payment, _serialize_cancelled_payment
+from ..payment.failed_payment import FailedPayment, _deserialize_failed_payment, _serialize_failed_payment
+from ..payment.paid_payment import PaidPayment, _deserialize_paid_payment, _serialize_paid_payment
+from ..payment.partial_cancelled_payment import PartialCancelledPayment, _deserialize_partial_cancelled_payment, _serialize_partial_cancelled_payment
+from ..payment.pay_pending_payment import PayPendingPayment, _deserialize_pay_pending_payment, _serialize_pay_pending_payment
+from ..payment.ready_payment import ReadyPayment, _deserialize_ready_payment, _serialize_ready_payment
+from ..payment.virtual_account_issued_payment import VirtualAccountIssuedPayment, _deserialize_virtual_account_issued_payment, _serialize_virtual_account_issued_payment
 
 Payment = Union[CancelledPayment, FailedPayment, PaidPayment, PartialCancelledPayment, PayPendingPayment, ReadyPayment, VirtualAccountIssuedPayment, dict]
 """결제 건

@@ -29,11 +29,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import kotlinx.serialization.json.Json
 
-public class PromotionClient internal constructor(
+public class PromotionClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -46,11 +46,7 @@ public class PromotionClient internal constructor(
    * @param promotionId
    * 조회할 프로모션 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PromotionNotFoundException 프로모션이 존재하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPromotionException
    */
   @JvmName("getPromotionSuspend")
   public suspend fun getPromotion(
@@ -97,7 +93,7 @@ public class PromotionClient internal constructor(
     promotionId: String,
   ): CompletableFuture<Promotion> = GlobalScope.future { getPromotion(promotionId) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

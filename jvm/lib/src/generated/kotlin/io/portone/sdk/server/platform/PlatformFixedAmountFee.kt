@@ -13,4 +13,4 @@ import kotlinx.serialization.Serializable
 public data class PlatformFixedAmountFee(
   /** 고정된 수수료 금액 */
   val amount: Long,
-) : PlatformFee
+) : PlatformFee.Recognized

@@ -1,13 +1,11 @@
 package io.portone.sdk.server.errors
 
-import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND")
-@ConsistentCopyVisibility
-public data class PlatformDiscountSharePolicyNotFoundError internal constructor(
-  val message: String? = null,
-) : ArchivePlatformDiscountSharePolicyError, CancelPlatformDiscountSharePolicyScheduleError, GetPlatformDiscountSharePolicyError, GetPlatformDiscountSharePolicyScheduleError, RecoverPlatformDiscountSharePolicyError, RescheduleDiscountSharePolicyError, ScheduleDiscountSharePolicyError, UpdatePlatformDiscountSharePolicyError
+internal data class PlatformDiscountSharePolicyNotFoundError(
+  override val message: String? = null,
+) : ArchivePlatformDiscountSharePolicyError.Recognized, CancelPlatformDiscountSharePolicyScheduleError.Recognized, GetPlatformDiscountSharePolicyError.Recognized, GetPlatformDiscountSharePolicyScheduleError.Recognized, RecoverPlatformDiscountSharePolicyError.Recognized, RescheduleDiscountSharePolicyError.Recognized, ScheduleDiscountSharePolicyError.Recognized, UpdatePlatformDiscountSharePolicyError.Recognized

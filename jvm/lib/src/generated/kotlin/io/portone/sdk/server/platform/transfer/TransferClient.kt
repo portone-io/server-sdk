@@ -127,11 +127,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class TransferClient internal constructor(
+public class TransferClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -144,12 +144,7 @@ public class TransferClient internal constructor(
    * @param id
    * 조회하고 싶은 정산건 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformTransferNotFoundException PlatformTransferNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformTransferException
    */
   @JvmName("getPlatformTransferSuspend")
   public suspend fun getPlatformTransfer(
@@ -206,14 +201,7 @@ public class TransferClient internal constructor(
    * @param id
    * 정산건 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformCancelOrderTransfersExistsException PlatformCancelOrderTransfersExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformTransferNonDeletableStatusException PlatformTransferNonDeletableStatusError
-   * @throws PlatformTransferNotFoundException PlatformTransferNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws DeletePlatformTransferException
    */
   @JvmName("deletePlatformTransferSuspend")
   public suspend fun deletePlatformTransfer(
@@ -274,11 +262,7 @@ public class TransferClient internal constructor(
    * @param filter
    * 조회할 정산건 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformTransferSummariesException
    */
   @JvmName("getPlatformTransferSummariesSuspend")
   public suspend fun getPlatformTransferSummaries(
@@ -375,27 +359,7 @@ public class TransferClient internal constructor(
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePoliciesNotFoundException PlatformAdditionalFeePoliciesNotFoundError
-   * @throws PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-   * @throws PlatformCurrencyNotSupportedException 지원 되지 않는 통화를 선택한 경우
-   * @throws PlatformDiscountSharePoliciesNotFoundException PlatformDiscountSharePoliciesNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws PlatformPaymentNotFoundException PlatformPaymentNotFoundError
-   * @throws PlatformProductIdDuplicatedException PlatformProductIdDuplicatedError
-   * @throws PlatformSettlementAmountExceededException 정산 가능한 금액을 초과한 경우
-   * @throws PlatformSettlementParameterNotFoundException 정산 파라미터가 존재하지 않는 경우
-   * @throws PlatformSettlementPaymentAmountExceededPortOnePaymentException 정산 요청 결제 금액이 포트원 결제 내역의 결제 금액을 초과한 경우
-   * @throws PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentException 정산 요청 공급대가가 포트원 결제 내역의 공급대가를 초과한 경우
-   * @throws PlatformSettlementTaxFreeAmountExceededPortOnePaymentException 정산 요청 면세 금액이 포트원 결제 내역의 면세 금액을 초과한 경우
-   * @throws PlatformTransferAlreadyExistsException PlatformTransferAlreadyExistsError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformOrderTransferException
    */
   @JvmName("createPlatformOrderTransferSuspend")
   public suspend fun createPlatformOrderTransfer(
@@ -538,30 +502,7 @@ public class TransferClient internal constructor(
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformCancellableAmountExceededException 취소 가능한 금액이 초과한 경우
-   * @throws PlatformCancellableDiscountAmountExceededException PlatformCancellableDiscountAmountExceededError
-   * @throws PlatformCancellableDiscountTaxFreeAmountExceededException PlatformCancellableDiscountTaxFreeAmountExceededError
-   * @throws PlatformCancellableProductQuantityExceededException PlatformCancellableProductQuantityExceededError
-   * @throws PlatformCancellationAndPaymentTypeMismatchedException PlatformCancellationAndPaymentTypeMismatchedError
-   * @throws PlatformCancellationNotFoundException PlatformCancellationNotFoundError
-   * @throws PlatformCannotSpecifyTransferException 정산 건 식별에 실패한 경우
-   * @throws PlatformDiscountSharePolicyIdDuplicatedException PlatformDiscountSharePolicyIdDuplicatedError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformOrderDetailMismatchedException PlatformOrderDetailMismatchedError
-   * @throws PlatformOrderTransferAlreadyCancelledException PlatformOrderTransferAlreadyCancelledError
-   * @throws PlatformPaymentNotFoundException PlatformPaymentNotFoundError
-   * @throws PlatformProductIdDuplicatedException PlatformProductIdDuplicatedError
-   * @throws PlatformProductIdNotFoundException PlatformProductIdNotFoundError
-   * @throws PlatformSettlementAmountExceededException 정산 가능한 금액을 초과한 경우
-   * @throws PlatformSettlementCancelAmountExceededPortOneCancelException 정산 취소 요청 금액이 포트원 결제 취소 내역의 취소 금액을 초과한 경우
-   * @throws PlatformTransferAlreadyExistsException PlatformTransferAlreadyExistsError
-   * @throws PlatformTransferDiscountSharePolicyNotFoundException PlatformTransferDiscountSharePolicyNotFoundError
-   * @throws PlatformTransferNotFoundException PlatformTransferNotFoundError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformOrderCancelTransferException
    */
   @JvmName("createPlatformOrderCancelTransferSuspend")
   public suspend fun createPlatformOrderCancelTransfer(
@@ -688,13 +629,7 @@ public class TransferClient internal constructor(
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformManualTransferException
    */
   @JvmName("createPlatformManualTransferSuspend")
   public suspend fun createPlatformManualTransfer(
@@ -778,9 +713,7 @@ public class TransferClient internal constructor(
    * @param partnerUserDefinedPropertyKeys
    *
    *
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws DownloadPlatformTransferSheetException
    */
   @JvmName("downloadPlatformTransferSheetSuspend")
   public suspend fun downloadPlatformTransferSheet(
@@ -832,7 +765,7 @@ public class TransferClient internal constructor(
     partnerUserDefinedPropertyKeys: List<String>? = null,
   ): CompletableFuture<String> = GlobalScope.future { downloadPlatformTransferSheet(filter, fields, transferUserDefinedPropertyKeys, partnerUserDefinedPropertyKeys) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

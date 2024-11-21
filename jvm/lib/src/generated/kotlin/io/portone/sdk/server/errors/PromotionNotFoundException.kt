@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 프로모션이 존재하지 않는 경우 */
-public class PromotionNotFoundException(
+public class PromotionNotFoundException internal constructor(
   cause: PromotionNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), GetPromotionException {
 }

@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 취소 가능 잔액 검증에 실패한 경우 */
-public class CancellableAmountConsistencyBrokenException(
+public class CancellableAmountConsistencyBrokenException internal constructor(
   cause: CancellableAmountConsistencyBrokenError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CancelPaymentException {
 }

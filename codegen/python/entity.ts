@@ -8,6 +8,7 @@ export function generateEntity(
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
   definition: Definition,
+  depth: number,
 ) {
   const crossRef = new Set<string>()
   const std = new Set<string>([
@@ -218,7 +219,7 @@ export function generateEntity(
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }
-    return `from portone_server_sdk._generated.${path}.${
+    return `from ${".".repeat(depth)}${path}.${
       toSnakeCase(ref)
     } import ${ref}, _deserialize_${toSnakeCase(ref)}, _serialize_${
       toSnakeCase(ref)

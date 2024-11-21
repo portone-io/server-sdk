@@ -6,9 +6,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException(
+public class PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException internal constructor(
   cause: PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderTransferException {
   public val id: String = cause.id
   public val graphqlId: String = cause.graphqlId
   public val feeCurrency: Currency = cause.feeCurrency

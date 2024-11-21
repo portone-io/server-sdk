@@ -6,5 +6,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PromotionRecoverOption {
+  public sealed interface Recognized : PromotionRecoverOption {
+  }
   public data object Unrecognized : PromotionRecoverOption
 }

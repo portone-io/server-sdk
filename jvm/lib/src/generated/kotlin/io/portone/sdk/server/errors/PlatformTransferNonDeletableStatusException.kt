@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformTransferNonDeletableStatusError
 import java.lang.Exception
 
 
-public class PlatformTransferNonDeletableStatusException(
+public class PlatformTransferNonDeletableStatusException internal constructor(
   cause: PlatformTransferNonDeletableStatusError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), DeletePlatformTransferException {
 }

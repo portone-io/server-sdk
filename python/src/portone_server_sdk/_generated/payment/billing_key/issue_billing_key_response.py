@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_info_summary import BillingKeyInfoSummary, _deserialize_billing_key_info_summary, _serialize_billing_key_info_summary
-from portone_server_sdk._generated.payment.billing_key.channel_specific_failure import ChannelSpecificFailure, _deserialize_channel_specific_failure, _serialize_channel_specific_failure
+from ...payment.billing_key.billing_key_info_summary import BillingKeyInfoSummary, _deserialize_billing_key_info_summary, _serialize_billing_key_info_summary
+from ...payment.billing_key.channel_specific_failure import ChannelSpecificFailure, _deserialize_channel_specific_failure, _serialize_channel_specific_failure
 
 @dataclass
 class IssueBillingKeyResponse:

@@ -1,9 +1,9 @@
-import io.portone.sdk.server.PortOneClient
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledException
 import io.portone.sdk.server.errors.PaymentNotFoundException
 import io.portone.sdk.server.payment.CancelledPayment
 import io.portone.sdk.server.payment.GetPaymentsResponse
+import io.portone.sdk.server.payment.PaymentClient
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
@@ -12,26 +12,26 @@ import kotlin.test.assertIs
 
 class ClientTest {
     private val apiSecret = System.getenv("PORTONE_API_SECRET")
-    private val client = PortOneClient(apiSecret)
+    private val client = PaymentClient(apiSecret)
 
     @Test
     fun testGetPaymentsWithoutParams() =
         runTest {
-            val payments = client.payment.getPayments()
+            val payments = client.getPayments()
             assertIs<GetPaymentsResponse>(payments)
         }
 
     @Test
     fun testGetPaymentsWithParams() =
         runTest {
-            val payments = client.payment.getPayments(PageInput(3000))
+            val payments = client.getPayments(PageInput(3000))
             assertContentEquals(emptyList(), payments.items)
         }
 
     @Test
     fun testGetPaymentWithParams() =
         runTest {
-            val payment = client.payment.getPayment("test-server-sdk")
+            val payment = client.getPayment("test-server-sdk")
             assertIs<CancelledPayment>(payment)
         }
 
@@ -39,7 +39,7 @@ class ClientTest {
     fun testGetPaymentWithInvalidPaymentId() =
         runTest {
             assertThrows<PaymentNotFoundException> {
-                client.payment.getPayment(" ")
+                client.getPayment(" ")
             }
         }
 
@@ -47,7 +47,7 @@ class ClientTest {
     fun testCancelPaymentWithAlreadyCancelledPaymentId() =
         runTest {
             assertThrows<PaymentAlreadyCancelledException> {
-                client.payment.cancelPayment(paymentId = "test-server-sdk", reason = "test", amount = 1)
+                client.cancelPayment(paymentId = "test-server-sdk", reason = "test", amount = 1)
             }
         }
 }

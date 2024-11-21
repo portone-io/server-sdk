@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
-from portone_server_sdk._generated.payment.billing_key.instant_billing_key_payment_method_input import InstantBillingKeyPaymentMethodInput, _deserialize_instant_billing_key_payment_method_input, _serialize_instant_billing_key_payment_method_input
+from ...common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
+from ...payment.billing_key.instant_billing_key_payment_method_input import InstantBillingKeyPaymentMethodInput, _deserialize_instant_billing_key_payment_method_input, _serialize_instant_billing_key_payment_method_input
 
 @dataclass
 class IssueBillingKeyBody:

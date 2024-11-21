@@ -5,23 +5,32 @@ import kotlinx.serialization.Serializable
 
 /** 빌링키 다건 조회 시, 시각 범위를 적용할 필드 */
 @Serializable
-public sealed class BillingKeyTimeRangeField {
+public sealed interface BillingKeyTimeRangeField {
+  public val value: String
   /** 발급 요청 시각 */
   @SerialName("REQUESTED_AT")
-  public data object RequestedAt : BillingKeyTimeRangeField()
+  public data object RequestedAt : BillingKeyTimeRangeField {
+    override val value: String = "REQUESTED_AT"
+  }
   /** 발급 완료 시각 */
   @SerialName("ISSUED_AT")
-  public data object IssuedAt : BillingKeyTimeRangeField()
+  public data object IssuedAt : BillingKeyTimeRangeField {
+    override val value: String = "ISSUED_AT"
+  }
   /** 삭제 완료 시각 */
   @SerialName("DELETED_AT")
-  public data object DeletedAt : BillingKeyTimeRangeField()
+  public data object DeletedAt : BillingKeyTimeRangeField {
+    override val value: String = "DELETED_AT"
+  }
   /**
    * 상태 변경 시각
    *
    * 발급 완료 상태의 경우 ISSUED_AT, 삭제 완료 상태의 경우 DELETED_AT
    */
   @SerialName("STATUS_TIMESTAMP")
-  public data object StatusTimestamp : BillingKeyTimeRangeField()
+  public data object StatusTimestamp : BillingKeyTimeRangeField {
+    override val value: String = "STATUS_TIMESTAMP"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : BillingKeyTimeRangeField()
+  public data class Unrecognized internal constructor(override val value: String) : BillingKeyTimeRangeField
 }

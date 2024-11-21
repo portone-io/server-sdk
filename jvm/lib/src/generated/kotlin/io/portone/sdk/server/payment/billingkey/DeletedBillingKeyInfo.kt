@@ -16,43 +16,43 @@ import kotlinx.serialization.Serializable
 @SerialName("DELETED")
 public data class DeletedBillingKeyInfo(
   /** 빌링키 */
-  val billingKey: String,
+  override val billingKey: String,
   /** 고객사 아이디 */
-  val merchantId: String,
+  override val merchantId: String,
   /** 상점 아이디 */
-  val storeId: String,
-  /**
-   * 빌링키 발급 시 사용된 채널
-   *
-   * 추후 슈퍼빌링키 기능 제공 시 여러 채널 정보가 담길 수 있습니다.
-   */
-  val channels: List<SelectedChannel>,
-  /** 고객 정보 */
-  val customer: Customer,
-  /** 발급 시점 */
-  val issuedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 발급 삭제 시점 */
-  val deletedAt: @Serializable(InstantSerializer::class) Instant,
+  override val storeId: String,
   /**
    * 빌링키 결제수단 상세 정보
    *
    * 추후 슈퍼빌링키 기능 제공 시 여러 결제수단 정보가 담길 수 있습니다.
    */
-  val methods: List<BillingKeyPaymentMethod>? = null,
+  override val methods: List<BillingKeyPaymentMethod>? = null,
+  /**
+   * 빌링키 발급 시 사용된 채널
+   *
+   * 추후 슈퍼빌링키 기능 제공 시 여러 채널 정보가 담길 수 있습니다.
+   */
+  override val channels: List<SelectedChannel>,
+  /** 고객 정보 */
+  override val customer: Customer,
   /** 사용자 지정 데이터 */
-  val customData: String? = null,
+  override val customData: String? = null,
   /** 고객사가 채번하는 빌링키 발급 건 고유 아이디 */
-  val issueId: String? = null,
+  override val issueId: String? = null,
   /** 빌링키 발급 건 이름 */
-  val issueName: String? = null,
+  override val issueName: String? = null,
   /** 발급 요청 시점 */
-  val requestedAt: @Serializable(InstantSerializer::class) Instant? = null,
+  override val requestedAt: @Serializable(InstantSerializer::class) Instant? = null,
+  /** 발급 시점 */
+  override val issuedAt: @Serializable(InstantSerializer::class) Instant,
   /** 채널 그룹 */
-  val channelGroup: ChannelGroupSummary? = null,
+  override val channelGroup: ChannelGroupSummary? = null,
   /**
    * 채널 별 빌링키 발급 응답
    *
    * 슈퍼빌링키의 경우, 빌링키 발급이 성공하더라도 일부 채널에 대한 발급은 실패할 수 있습니다.
    */
-  val pgBillingKeyIssueResponses: List<PgBillingKeyIssueResponse>? = null,
-) : BillingKeyInfo
+  override val pgBillingKeyIssueResponses: List<PgBillingKeyIssueResponse>? = null,
+  /** 발급 삭제 시점 */
+  val deletedAt: @Serializable(InstantSerializer::class) Instant,
+) : BillingKeyInfo.Recognized

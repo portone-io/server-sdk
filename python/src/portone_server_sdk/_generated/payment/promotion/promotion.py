@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any, Optional
-from portone_server_sdk._generated.payment.promotion.card_promotion import CardPromotion, _deserialize_card_promotion, _serialize_card_promotion
+from ...payment.promotion.card_promotion import CardPromotion, _deserialize_card_promotion, _serialize_card_promotion
 
 Promotion = CardPromotion
 """프로모션

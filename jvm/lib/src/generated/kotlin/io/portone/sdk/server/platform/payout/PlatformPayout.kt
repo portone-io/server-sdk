@@ -18,6 +18,7 @@ public data class PlatformPayout(
   val method: PlatformPayoutMethod,
   val status: PlatformPayoutStatus,
   val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
+  val memo: String? = null,
   val partner: PlatformPartner,
   val account: PlatformPayoutAccount,
   val currency: Currency,
@@ -25,9 +26,8 @@ public data class PlatformPayout(
   val settlementAmount: Long,
   val incomeTaxAmount: Long,
   val localIncomeTaxAmount: Long,
-  val createdAt: @Serializable(InstantSerializer::class) Instant,
-  val memo: String? = null,
   val withdrawalMemo: String? = null,
   val depositMemo: String? = null,
+  val createdAt: @Serializable(InstantSerializer::class) Instant,
   val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )

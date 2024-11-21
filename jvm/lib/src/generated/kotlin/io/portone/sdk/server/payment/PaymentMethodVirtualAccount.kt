@@ -13,10 +13,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("PaymentMethodVirtualAccount")
 public data class PaymentMethodVirtualAccount(
-  /** 계좌번호 */
-  val accountNumber: String,
   /** 표준 은행 코드 */
   val bank: Bank? = null,
+  /** 계좌번호 */
+  val accountNumber: String,
   /** 계좌 유형 */
   val accountType: PaymentMethodVirtualAccountType? = null,
   /** 계좌주 */
@@ -29,4 +29,4 @@ public data class PaymentMethodVirtualAccount(
   val issuedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 가상계좌 결제가 환불 단계일 때의 환불 상태 */
   val refundStatus: PaymentMethodVirtualAccountRefundStatus? = null,
-) : PaymentMethod
+) : PaymentMethod.Recognized

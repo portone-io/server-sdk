@@ -70,6 +70,18 @@ class WebhookVerifierTest {
     @Test
     fun testVerifyValidSignatureRecognized() {
         val mock = makeWebhook(testObjectRecognized)
-        verifier.verify(mock.payload, mock.id, mock.signature, mock.timestamp)
+        val webhook = verifier.verify(mock.payload, mock.id, mock.signature, mock.timestamp)
+        assertEquals(
+            webhook,
+            WebhookTransactionCancelledCancelled(
+                timestamp = Instant.parse("2024-04-25T10:00:00.000Z"),
+                data =
+                    WebhookTransactionCancelledDataCancelled(
+                        paymentId = "example-payment-id",
+                        transactionId = "55451513-9763-4a7a-bb43-78a4c65be843",
+                        cancellationId = "0cdd91e9-4e7c-44a3-a72e-1a6511826c2b",
+                    ),
+            ),
+        )
     }
 }

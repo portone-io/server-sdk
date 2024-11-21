@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_cancellable_amount_type import PlatformCancellableAmountType, _deserialize_platform_cancellable_amount_type, _serialize_platform_cancellable_amount_type
+from ...platform.transfer.platform_cancellable_amount_type import PlatformCancellableAmountType, _deserialize_platform_cancellable_amount_type, _serialize_platform_cancellable_amount_type
 
 @dataclass
 class PlatformCancellableAmountExceededError:

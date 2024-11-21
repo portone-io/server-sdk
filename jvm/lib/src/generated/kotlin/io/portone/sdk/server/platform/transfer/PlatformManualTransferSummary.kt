@@ -11,18 +11,18 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("MANUAL")
 public data class PlatformManualTransferSummary(
-  val id: String,
-  val graphqlId: String,
-  val partner: PlatformTransferSummaryPartner,
-  val status: PlatformTransferStatus,
+  override val id: String,
+  override val graphqlId: String,
+  override val partner: PlatformTransferSummaryPartner,
+  override val status: PlatformTransferStatus,
+  override val memo: String? = null,
   /** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
-  val settlementDate: String,
-  val settlementCurrency: Currency,
-  val isForTest: Boolean,
+  override val settlementDate: String,
+  override val settlementCurrency: Currency,
+  override val isForTest: Boolean,
   /** 사용자 정의 속성 */
-  val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
+  override val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 사용자 정의 속성 */
-  val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
+  override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   val settlementAmount: Long,
-  val memo: String? = null,
-) : PlatformTransferSummary
+) : PlatformTransferSummary.Recognized

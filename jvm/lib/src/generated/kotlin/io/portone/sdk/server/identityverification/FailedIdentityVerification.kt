@@ -14,19 +14,19 @@ import kotlinx.serialization.Serializable
 @SerialName("FAILED")
 public data class FailedIdentityVerification(
   /** 본인인증 내역 아이디 */
-  val id: String,
+  override val id: String,
+  /** 사용된 본인인증 채널 */
+  override val channel: SelectedChannel? = null,
   /** 요청 시 고객 정보 */
   val requestedCustomer: IdentityVerificationRequestedCustomer,
+  /** 사용자 지정 데이터 */
+  override val customData: String? = null,
   /** 본인인증 요청 시점 */
-  val requestedAt: @Serializable(InstantSerializer::class) Instant,
+  override val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** 업데이트 시점 */
-  val updatedAt: @Serializable(InstantSerializer::class) Instant,
+  override val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 상태 업데이트 시점 */
-  val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
+  override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
   /** 본인인증 실패 정보 */
   val failure: IdentityVerificationFailure,
-  /** 사용된 본인인증 채널 */
-  val channel: SelectedChannel? = null,
-  /** 사용자 지정 데이터 */
-  val customData: String? = null,
-) : IdentityVerification
+) : IdentityVerification.Recognized

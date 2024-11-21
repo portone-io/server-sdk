@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제 건이 입금 대기 상태가 아닌 경우 */
-public class PaymentNotWaitingForDepositException(
+public class PaymentNotWaitingForDepositException internal constructor(
   cause: PaymentNotWaitingForDepositError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CloseVirtualAccountException {
 }

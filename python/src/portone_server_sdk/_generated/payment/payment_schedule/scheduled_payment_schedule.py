@@ -2,9 +2,9 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.customer import Customer, _deserialize_customer, _serialize_customer
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.customer import Customer, _deserialize_customer, _serialize_customer
+from ...common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 
 @dataclass
 class ScheduledPaymentSchedule:

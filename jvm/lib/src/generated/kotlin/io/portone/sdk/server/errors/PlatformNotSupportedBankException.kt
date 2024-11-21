@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 지원하지 않는 은행인 경우 */
-public class PlatformNotSupportedBankException(
+public class PlatformNotSupportedBankException internal constructor(
   cause: PlatformNotSupportedBankError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), GetPlatformAccountHolderException {
 }

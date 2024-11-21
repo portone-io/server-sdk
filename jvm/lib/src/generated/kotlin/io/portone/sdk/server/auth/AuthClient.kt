@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class AuthClient internal constructor(
+public class AuthClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -49,9 +49,7 @@ public class AuthClient internal constructor(
    * @param apiSecret
    * 발급받은 API secret
    *
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws LoginViaApiSecretException
    */
   @JvmName("loginViaApiSecretSuspend")
   public suspend fun loginViaApiSecret(
@@ -110,9 +108,7 @@ public class AuthClient internal constructor(
    * @param refreshToken
    * 리프레시 토큰
    *
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RefreshTokenException
    */
   @JvmName("refreshTokenSuspend")
   public suspend fun refreshToken(
@@ -162,7 +158,7 @@ public class AuthClient internal constructor(
     refreshToken: String,
   ): CompletableFuture<RefreshTokenResponse> = GlobalScope.future { refreshToken(refreshToken) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

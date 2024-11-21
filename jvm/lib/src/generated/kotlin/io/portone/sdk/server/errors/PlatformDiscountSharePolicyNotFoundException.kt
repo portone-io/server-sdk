@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformDiscountSharePolicyNotFoundError
 import java.lang.Exception
 
 
-public class PlatformDiscountSharePolicyNotFoundException(
+public class PlatformDiscountSharePolicyNotFoundException internal constructor(
   cause: PlatformDiscountSharePolicyNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ArchivePlatformDiscountSharePolicyException, CancelPlatformDiscountSharePolicyScheduleException, GetPlatformDiscountSharePolicyException, GetPlatformDiscountSharePolicyScheduleException, RecoverPlatformDiscountSharePolicyException, RescheduleDiscountSharePolicyException, ScheduleDiscountSharePolicyException, UpdatePlatformDiscountSharePolicyException {
 }

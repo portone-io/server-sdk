@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformPartnerScheduleAlreadyExistsError
 import java.lang.Exception
 
 
-public class PlatformPartnerScheduleAlreadyExistsException(
+public class PlatformPartnerScheduleAlreadyExistsException internal constructor(
   cause: PlatformPartnerScheduleAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), SchedulePartnerException {
 }

@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PlatformSettlementFormulaInvalidOperator(
   val `operator`: String,
   val position: PlatformSettlementFormulaPosition,
-) : PlatformSettlementFormulaError
+) : PlatformSettlementFormulaError.Recognized

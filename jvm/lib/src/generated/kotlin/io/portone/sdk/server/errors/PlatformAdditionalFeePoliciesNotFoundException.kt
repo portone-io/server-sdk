@@ -6,9 +6,9 @@ import kotlin.Array
 import kotlin.String
 
 
-public class PlatformAdditionalFeePoliciesNotFoundException(
+public class PlatformAdditionalFeePoliciesNotFoundException internal constructor(
   cause: PlatformAdditionalFeePoliciesNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderTransferException {
   public val ids: List<String> = cause.ids
   public val graphqlIds: List<String> = cause.graphqlIds
 }

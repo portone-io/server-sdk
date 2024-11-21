@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 사용자 정의 속성이 존재 하지 않는 경우 */
-public class PlatformUserDefinedPropertyNotFoundException(
+public class PlatformUserDefinedPropertyNotFoundException internal constructor(
   cause: PlatformUserDefinedPropertyNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformManualTransferException, CreatePlatformOrderCancelTransferException, CreatePlatformOrderTransferException, CreatePlatformPartnerException, CreatePlatformPartnersException, SchedulePartnerException, SchedulePlatformPartnersException, UpdatePlatformPartnerException {
 }

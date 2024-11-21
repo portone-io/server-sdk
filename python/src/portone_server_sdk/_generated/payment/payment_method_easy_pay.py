@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
-from portone_server_sdk._generated.payment.payment_method_easy_pay_method import PaymentMethodEasyPayMethod, _deserialize_payment_method_easy_pay_method, _serialize_payment_method_easy_pay_method
+from ..common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
+from ..payment.payment_method_easy_pay_method import PaymentMethodEasyPayMethod, _deserialize_payment_method_easy_pay_method, _serialize_payment_method_easy_pay_method
 
 @dataclass
 class PaymentMethodEasyPay:

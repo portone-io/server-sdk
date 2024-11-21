@@ -13,13 +13,13 @@ import kotlinx.serialization.Serializable
 @SerialName("EXTERNAL")
 public data class PlatformExternalPayment(
   /** 결제 아이디 */
-  val id: String,
-  /** 통화 */
-  val currency: Currency,
+  override val id: String,
   /** 주문 명 */
-  val orderName: String? = null,
+  override val orderName: String? = null,
+  /** 통화 */
+  override val currency: Currency,
   /** 결제 수단 */
-  val method: PlatformPaymentMethod? = null,
+  override val method: PlatformPaymentMethod? = null,
   /** 결제 일시 */
-  val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
-) : PlatformPayment
+  override val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
+) : PlatformPayment.Recognized

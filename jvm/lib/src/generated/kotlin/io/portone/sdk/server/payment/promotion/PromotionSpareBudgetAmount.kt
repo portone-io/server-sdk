@@ -7,4 +7,4 @@ import kotlinx.serialization.Serializable
 @SerialName("AMOUNT")
 public data class PromotionSpareBudgetAmount(
   val amount: Long,
-) : PromotionSpareBudget
+) : PromotionSpareBudget.Recognized

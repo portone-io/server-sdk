@@ -6,9 +6,9 @@ import kotlin.String
 
 
 /** 정산 가능한 금액을 초과한 경우 */
-public class PlatformSettlementAmountExceededException(
+public class PlatformSettlementAmountExceededException internal constructor(
   cause: PlatformSettlementAmountExceededError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException, CreatePlatformOrderTransferException {
   /** 주문 항목의 상품 아이디입니다. */
   public val productId: String? = cause.productId
   /** 요청 받은 금액 */

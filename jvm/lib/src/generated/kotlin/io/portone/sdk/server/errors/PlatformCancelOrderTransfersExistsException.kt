@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformCancelOrderTransfersExistsError
 import java.lang.Exception
 
 
-public class PlatformCancelOrderTransfersExistsException(
+public class PlatformCancelOrderTransfersExistsException internal constructor(
   cause: PlatformCancelOrderTransfersExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), DeletePlatformTransferException {
 }

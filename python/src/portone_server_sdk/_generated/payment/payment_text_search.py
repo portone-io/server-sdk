@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_text_search_field import PaymentTextSearchField, _deserialize_payment_text_search_field, _serialize_payment_text_search_field
+from ..payment.payment_text_search_field import PaymentTextSearchField, _deserialize_payment_text_search_field, _serialize_payment_text_search_field
 
 @dataclass
 class PaymentTextSearch:

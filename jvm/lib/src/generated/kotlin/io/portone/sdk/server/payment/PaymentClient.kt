@@ -138,11 +138,11 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-public class PaymentClient internal constructor(
+public class PaymentClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -161,11 +161,7 @@ public class PaymentClient internal constructor(
    * @param currency
    * 통화 단위
    *
-   * @throws AlreadyPaidException 결제가 이미 완료된 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws PreRegisterPaymentException
    */
   @JvmName("preRegisterPaymentSuspend")
   public suspend fun preRegisterPayment(
@@ -235,11 +231,7 @@ public class PaymentClient internal constructor(
    * @param paymentId
    * 조회할 결제 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPaymentException
    */
   @JvmName("getPaymentSuspend")
   public suspend fun getPayment(
@@ -302,10 +294,7 @@ public class PaymentClient internal constructor(
    *
    * V1 결제 건의 경우 일부 필드에 대해 필터가 적용되지 않을 수 있습니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPaymentsException
    */
   @JvmName("getPaymentsSuspend")
   public suspend fun getPayments(
@@ -381,10 +370,7 @@ public class PaymentClient internal constructor(
    *
    * 미입력 시 기본값은 10 이며 최대 1000까지 허용
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetAllPaymentsException
    */
   @JvmName("getAllPaymentsByCursorSuspend")
   public suspend fun getAllPaymentsByCursor(
@@ -486,21 +472,7 @@ public class PaymentClient internal constructor(
    *
    * 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
    *
-   * @throws CancellableAmountConsistencyBrokenException 취소 가능 잔액 검증에 실패한 경우
-   * @throws CancelAmountExceedsCancellableAmountException 결제 취소 금액이 취소 가능 금액을 초과한 경우
-   * @throws CancelTaxAmountExceedsCancellableTaxAmountException 취소 과세 금액이 취소 가능한 과세 금액을 초과한 경우
-   * @throws CancelTaxFreeAmountExceedsCancellableTaxFreeAmountException 취소 면세 금액이 취소 가능한 면세 금액을 초과한 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws NegativePromotionAdjustedCancelAmountException 프로모션에 의해 조정된 취소 금액이 음수인 경우
-   * @throws PaymentAlreadyCancelledException 결제가 이미 취소된 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotPaidException 결제가 완료되지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws PromotionDiscountRetainOptionShouldNotBeChangedException 프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
-   * @throws SumOfPartsExceedsCancelAmountException 면세 금액 등 하위 항목들의 합이 전체 취소 금액을 초과한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelPaymentException
    */
   @JvmName("cancelPaymentSuspend")
   public suspend fun cancelPayment(
@@ -641,20 +613,7 @@ public class PaymentClient internal constructor(
    * @param bypass
    * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
    *
-   * @throws AlreadyPaidException 결제가 이미 완료된 경우
-   * @throws BillingKeyAlreadyDeletedException 빌링키가 이미 삭제된 경우
-   * @throws BillingKeyNotFoundException 빌링키가 존재하지 않는 경우
-   * @throws ChannelNotFoundException 요청된 채널이 존재하지 않는 경우
-   * @throws DiscountAmountExceedsTotalAmountException 프로모션 할인 금액이 결제 시도 금액 이상인 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
-   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
-   * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws PayWithBillingKeyException
    */
   @JvmName("payWithBillingKeySuspend")
   public suspend fun payWithBillingKey(
@@ -829,18 +788,7 @@ public class PaymentClient internal constructor(
    * @param promotionId
    * 해당 결제에 적용할 프로모션 아이디
    *
-   * @throws AlreadyPaidException 결제가 이미 완료된 경우
-   * @throws ChannelNotFoundException 요청된 채널이 존재하지 않는 경우
-   * @throws DiscountAmountExceedsTotalAmountException 프로모션 할인 금액이 결제 시도 금액 이상인 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
-   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws PromotionPayMethodDoesNotMatchException 결제수단이 프로모션에 지정된 것과 일치하지 않는 경우
-   * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws PayInstantlyException
    */
   @JvmName("payInstantlySuspend")
   public suspend fun payInstantly(
@@ -959,13 +907,7 @@ public class PaymentClient internal constructor(
    * @param paymentId
    * 결제 건 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotWaitingForDepositException 결제 건이 입금 대기 상태가 아닌 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CloseVirtualAccountException
    */
   @JvmName("closeVirtualAccountSuspend")
   public suspend fun closeVirtualAccount(
@@ -1036,13 +978,7 @@ public class PaymentClient internal constructor(
    * @param products
    * 상품 정보
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotPaidException 결제가 완료되지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ApplyEscrowLogisticsException
    */
   @JvmName("applyEscrowLogisticsSuspend")
   public suspend fun applyEscrowLogistics(
@@ -1132,13 +1068,7 @@ public class PaymentClient internal constructor(
    * @param products
    * 상품 정보
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotPaidException 결제가 완료되지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ModifyEscrowLogisticsException
    */
   @JvmName("modifyEscrowLogisticsSuspend")
   public suspend fun modifyEscrowLogistics(
@@ -1221,13 +1151,7 @@ public class PaymentClient internal constructor(
    * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
    * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotPaidException 결제가 완료되지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ConfirmEscrowException
    */
   @JvmName("confirmEscrowSuspend")
   public suspend fun confirmEscrow(
@@ -1297,13 +1221,7 @@ public class PaymentClient internal constructor(
    *
    * 입력하지 않으면 결제 건의 가장 최근 웹훅 아이디가 기본 적용됩니다
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws MaxWebhookRetryCountReachedException 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws WebhookNotFoundException 웹훅 내역이 존재하지 않는 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ResendWebhookException
    */
   @JvmName("resendWebhookSuspend")
   public suspend fun resendWebhook(
@@ -1373,13 +1291,7 @@ public class PaymentClient internal constructor(
    * @param items
    * 하위 상점 거래 목록
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentNotFoundException 결제 건이 존재하지 않는 경우
-   * @throws PaymentNotPaidException 결제가 완료되지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RegisterStoreReceiptException
    */
   @JvmName("registerStoreReceiptSuspend")
   public suspend fun registerStoreReceipt(
@@ -1440,7 +1352,7 @@ public class PaymentClient internal constructor(
   public val cashReceipt: CashReceiptClient = CashReceiptClient(apiSecret, apiBase, storeId)
   public val paymentSchedule: PaymentScheduleClient = PaymentScheduleClient(apiSecret, apiBase, storeId)
   public val promotion: PromotionClient = PromotionClient(apiSecret, apiBase, storeId)
-  internal fun close() {
+  override fun close() {
     billingKey.close()
     cashReceipt.close()
     paymentSchedule.close()

@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 /** 계좌이체 */
 @Serializable
 @SerialName("TRANSFER")
-public data object PlatformPaymentMethodTransfer : PlatformPaymentMethod
+public data object PlatformPaymentMethodTransfer : PlatformPaymentMethod.Recognized

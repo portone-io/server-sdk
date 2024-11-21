@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
-from portone_server_sdk._generated.common.selected_channel_type import SelectedChannelType, _deserialize_selected_channel_type, _serialize_selected_channel_type
+from ..common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
+from ..common.selected_channel_type import SelectedChannelType, _deserialize_selected_channel_type, _serialize_selected_channel_type
 
 @dataclass
 class SelectedChannel:

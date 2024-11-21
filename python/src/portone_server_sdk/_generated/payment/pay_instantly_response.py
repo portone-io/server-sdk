@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.instant_payment_summary import InstantPaymentSummary, _deserialize_instant_payment_summary, _serialize_instant_payment_summary
+from ..payment.instant_payment_summary import InstantPaymentSummary, _deserialize_instant_payment_summary, _serialize_instant_payment_summary
 
 @dataclass
 class PayInstantlyResponse:

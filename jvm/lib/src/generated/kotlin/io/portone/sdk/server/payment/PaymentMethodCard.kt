@@ -18,4 +18,4 @@ public data class PaymentMethodCard(
   val installment: PaymentInstallment? = null,
   /** 카드 포인트 사용여부 */
   val pointUsed: Boolean? = null,
-) : PaymentMethod, PaymentMethodEasyPayMethod
+) : PaymentMethod.Recognized, PaymentMethodEasyPayMethod.Recognized

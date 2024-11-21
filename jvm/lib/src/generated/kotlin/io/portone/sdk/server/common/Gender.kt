@@ -5,16 +5,23 @@ import kotlinx.serialization.Serializable
 
 /** 성별 */
 @Serializable
-public sealed class Gender {
+public sealed interface Gender {
+  public val value: String
   /** 남성 */
   @SerialName("MALE")
-  public data object Male : Gender()
+  public data object Male : Gender {
+    override val value: String = "MALE"
+  }
   /** 여성 */
   @SerialName("FEMALE")
-  public data object Female : Gender()
+  public data object Female : Gender {
+    override val value: String = "FEMALE"
+  }
   /** 그 외 성별 */
   @SerialName("OTHER")
-  public data object Other : Gender()
+  public data object Other : Gender {
+    override val value: String = "OTHER"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : Gender()
+  public data class Unrecognized internal constructor(override val value: String) : Gender
 }

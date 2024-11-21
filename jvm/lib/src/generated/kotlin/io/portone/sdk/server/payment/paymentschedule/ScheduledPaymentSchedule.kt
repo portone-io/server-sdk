@@ -15,41 +15,41 @@ import kotlinx.serialization.Serializable
 @SerialName("SCHEDULED")
 public data class ScheduledPaymentSchedule(
   /** 결제 예약 건 아이디 */
-  val id: String,
+  override val id: String,
   /** 고객사 아이디 */
-  val merchantId: String,
+  override val merchantId: String,
   /** 상점 아이디 */
-  val storeId: String,
+  override val storeId: String,
   /** 결제 건 아이디 */
-  val paymentId: String,
+  override val paymentId: String,
   /** 빌링키 */
-  val billingKey: String,
+  override val billingKey: String,
   /** 주문명 */
-  val orderName: String,
+  override val orderName: String,
   /** 문화비 지출 여부 */
-  val isCulturalExpense: Boolean,
+  override val isCulturalExpense: Boolean,
   /** 에스크로 결제 여부 */
-  val isEscrow: Boolean,
+  override val isEscrow: Boolean,
   /** 고객 정보 */
-  val customer: Customer,
+  override val customer: Customer,
   /** 사용자 지정 데이터 */
-  val customData: String,
+  override val customData: String,
   /** 결제 총 금액 */
-  val totalAmount: Long,
-  /** 통화 */
-  val currency: Currency,
-  /** 결제 예약 등록 시점 */
-  val createdAt: @Serializable(InstantSerializer::class) Instant,
-  /** 결제 예정 시점 */
-  val timeToPay: @Serializable(InstantSerializer::class) Instant,
+  override val totalAmount: Long,
   /** 면세액 */
-  val taxFreeAmount: Long? = null,
+  override val taxFreeAmount: Long? = null,
   /** 부가세 */
-  val vatAmount: Long? = null,
+  override val vatAmount: Long? = null,
+  /** 통화 */
+  override val currency: Currency,
   /** 할부 개월 수 */
-  val installmentMonth: Int? = null,
+  override val installmentMonth: Int? = null,
   /** 웹훅 주소 */
-  val noticeUrls: List<String>? = null,
+  override val noticeUrls: List<String>? = null,
   /** 상품 정보 */
-  val products: List<PaymentProduct>? = null,
-) : PaymentSchedule
+  override val products: List<PaymentProduct>? = null,
+  /** 결제 예약 등록 시점 */
+  override val createdAt: @Serializable(InstantSerializer::class) Instant,
+  /** 결제 예정 시점 */
+  override val timeToPay: @Serializable(InstantSerializer::class) Instant,
+) : PaymentSchedule.Recognized

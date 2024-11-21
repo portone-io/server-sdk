@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 /** 상품권 */
 @Serializable
 @SerialName("GIFT_CERTIFICATE")
-public data object PlatformPaymentMethodGiftCertificate : PlatformPaymentMethod
+public data object PlatformPaymentMethodGiftCertificate : PlatformPaymentMethod.Recognized

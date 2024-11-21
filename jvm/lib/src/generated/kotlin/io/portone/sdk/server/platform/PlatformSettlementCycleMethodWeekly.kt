@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PlatformSettlementCycleMethodWeekly(
   /** 요일 */
   val daysOfWeek: List<DayOfWeek>,
-) : PlatformSettlementCycleMethod
+) : PlatformSettlementCycleMethod.Recognized

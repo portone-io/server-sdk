@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformPaymentNotFoundError
 import java.lang.Exception
 
 
-public class PlatformPaymentNotFoundException(
+public class PlatformPaymentNotFoundException internal constructor(
   cause: PlatformPaymentNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException, CreatePlatformOrderTransferException {
 }

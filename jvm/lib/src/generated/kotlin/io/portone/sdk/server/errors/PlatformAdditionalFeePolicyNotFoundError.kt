@@ -1,13 +1,11 @@
 package io.portone.sdk.server.errors
 
-import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND")
-@ConsistentCopyVisibility
-public data class PlatformAdditionalFeePolicyNotFoundError internal constructor(
-  val message: String? = null,
-) : ArchivePlatformAdditionalFeePolicyError, CancelPlatformAdditionalFeePolicyScheduleError, GetPlatformAdditionalFeePolicyError, GetPlatformAdditionalFeePolicyScheduleError, RecoverPlatformAdditionalFeePolicyError, RescheduleAdditionalFeePolicyError, ScheduleAdditionalFeePolicyError, UpdatePlatformAdditionalFeePolicyError
+internal data class PlatformAdditionalFeePolicyNotFoundError(
+  override val message: String? = null,
+) : ArchivePlatformAdditionalFeePolicyError.Recognized, CancelPlatformAdditionalFeePolicyScheduleError.Recognized, GetPlatformAdditionalFeePolicyError.Recognized, GetPlatformAdditionalFeePolicyScheduleError.Recognized, RecoverPlatformAdditionalFeePolicyError.Recognized, RescheduleAdditionalFeePolicyError.Recognized, ScheduleAdditionalFeePolicyError.Recognized, UpdatePlatformAdditionalFeePolicyError.Recognized

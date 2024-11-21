@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_round_type import PlatformRoundType, _deserialize_platform_round_type, _serialize_platform_round_type
-from portone_server_sdk._generated.platform.platform_settlement_formula import PlatformSettlementFormula, _deserialize_platform_settlement_formula, _serialize_platform_settlement_formula
-from portone_server_sdk._generated.platform.platform_settlement_rule import PlatformSettlementRule, _deserialize_platform_settlement_rule, _serialize_platform_settlement_rule
+from ..platform.platform_round_type import PlatformRoundType, _deserialize_platform_round_type, _serialize_platform_round_type
+from ..platform.platform_settlement_formula import PlatformSettlementFormula, _deserialize_platform_settlement_formula, _serialize_platform_settlement_formula
+from ..platform.platform_settlement_rule import PlatformSettlementRule, _deserialize_platform_settlement_rule, _serialize_platform_settlement_rule
 
 @dataclass
 class Platform:

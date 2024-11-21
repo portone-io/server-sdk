@@ -9,6 +9,10 @@ public data class PaymentAmount(
   val total: Long,
   /** 면세액 */
   val taxFree: Long,
+  /** 부가세액 */
+  val vat: Long? = null,
+  /** 공급가액 */
+  val supply: Long? = null,
   /**
    * 할인금액
    *
@@ -21,8 +25,4 @@ public data class PaymentAmount(
   val cancelled: Long,
   /** 취소금액 중 면세액 */
   val cancelledTaxFree: Long,
-  /** 부가세액 */
-  val vat: Long? = null,
-  /** 공급가액 */
-  val supply: Long? = null,
 )

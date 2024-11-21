@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 본인인증 건이 이미 API로 요청된 상태인 경우 */
-public class IdentityVerificationAlreadySentException(
+public class IdentityVerificationAlreadySentException internal constructor(
   cause: IdentityVerificationAlreadySentError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), SendIdentityVerificationException {
 }

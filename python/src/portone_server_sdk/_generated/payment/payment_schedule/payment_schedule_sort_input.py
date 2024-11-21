@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_sort_by import PaymentScheduleSortBy, _deserialize_payment_schedule_sort_by, _serialize_payment_schedule_sort_by
-from portone_server_sdk._generated.common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
+from ...payment.payment_schedule.payment_schedule_sort_by import PaymentScheduleSortBy, _deserialize_payment_schedule_sort_by, _serialize_payment_schedule_sort_by
+from ...common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
 
 @dataclass
 class PaymentScheduleSortInput:

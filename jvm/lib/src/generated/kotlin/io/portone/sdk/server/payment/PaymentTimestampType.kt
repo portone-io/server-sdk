@@ -16,13 +16,18 @@ import kotlinx.serialization.Serializable
  * 값을 입력하지 않으면 STATUS_CHANGED_AT 으로 자동 적용됩니다.
  */
 @Serializable
-public sealed class PaymentTimestampType {
+public sealed interface PaymentTimestampType {
+  public val value: String
   /** 결제 건 생성 시점 */
   @SerialName("CREATED_AT")
-  public data object CreatedAt : PaymentTimestampType()
+  public data object CreatedAt : PaymentTimestampType {
+    override val value: String = "CREATED_AT"
+  }
   /** 상태 변경 시점 */
   @SerialName("STATUS_CHANGED_AT")
-  public data object StatusChangedAt : PaymentTimestampType()
+  public data object StatusChangedAt : PaymentTimestampType {
+    override val value: String = "STATUS_CHANGED_AT"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : PaymentTimestampType()
+  public data class Unrecognized internal constructor(override val value: String) : PaymentTimestampType
 }

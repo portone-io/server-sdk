@@ -2,11 +2,11 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_account import PlatformAccount, _deserialize_platform_account, _serialize_platform_account
-from portone_server_sdk._generated.platform.platform_contact import PlatformContact, _deserialize_platform_contact, _serialize_platform_contact
-from portone_server_sdk._generated.platform.platform_partner_status import PlatformPartnerStatus, _deserialize_platform_partner_status, _serialize_platform_partner_status
-from portone_server_sdk._generated.platform.platform_partner_type import PlatformPartnerType, _deserialize_platform_partner_type, _serialize_platform_partner_type
-from portone_server_sdk._generated.platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
+from ..platform.platform_account import PlatformAccount, _deserialize_platform_account, _serialize_platform_account
+from ..platform.platform_contact import PlatformContact, _deserialize_platform_contact, _serialize_platform_contact
+from ..platform.platform_partner_status import PlatformPartnerStatus, _deserialize_platform_partner_status, _serialize_platform_partner_status
+from ..platform.platform_partner_type import PlatformPartnerType, _deserialize_platform_partner_type, _serialize_platform_partner_type
+from ..platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
 
 @dataclass
 class PlatformPartner:

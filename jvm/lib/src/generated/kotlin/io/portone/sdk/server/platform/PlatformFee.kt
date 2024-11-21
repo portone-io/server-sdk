@@ -7,5 +7,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PlatformFee {
+  public sealed interface Recognized : PlatformFee {
+  }
   public data object Unrecognized : PlatformFee
 }

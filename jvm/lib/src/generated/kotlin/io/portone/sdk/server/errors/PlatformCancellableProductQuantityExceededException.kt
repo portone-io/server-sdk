@@ -5,9 +5,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformCancellableProductQuantityExceededException(
+public class PlatformCancellableProductQuantityExceededException internal constructor(
   cause: PlatformCancellableProductQuantityExceededError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val productId: String = cause.productId
   public val cancellableQuantity: Long = cause.cancellableQuantity
 }

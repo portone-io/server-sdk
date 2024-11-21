@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PaymentMethodEasyPayMethodCharge(
   /** 표준 은행 코드 */
   val bank: Bank? = null,
-) : PaymentMethodEasyPayMethod
+) : PaymentMethodEasyPayMethod.Recognized

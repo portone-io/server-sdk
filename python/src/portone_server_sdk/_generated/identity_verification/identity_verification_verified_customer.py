@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
-from portone_server_sdk._generated.identity_verification.identity_verification_operator import IdentityVerificationOperator, _deserialize_identity_verification_operator, _serialize_identity_verification_operator
+from ..common.gender import Gender, _deserialize_gender, _serialize_gender
+from ..identity_verification.identity_verification_operator import IdentityVerificationOperator, _deserialize_identity_verification_operator, _serialize_identity_verification_operator
 
 @dataclass
 class IdentityVerificationVerifiedCustomer:

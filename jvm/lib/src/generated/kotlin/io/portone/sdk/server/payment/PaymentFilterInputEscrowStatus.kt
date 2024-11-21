@@ -5,19 +5,32 @@ import kotlinx.serialization.Serializable
 
 /** 에스크로 상태 */
 @Serializable
-public sealed class PaymentFilterInputEscrowStatus {
+public sealed interface PaymentFilterInputEscrowStatus {
+  public val value: String
   @SerialName("REGISTERED")
-  public data object Registered : PaymentFilterInputEscrowStatus()
+  public data object Registered : PaymentFilterInputEscrowStatus {
+    override val value: String = "REGISTERED"
+  }
   @SerialName("DELIVERED")
-  public data object Delivered : PaymentFilterInputEscrowStatus()
+  public data object Delivered : PaymentFilterInputEscrowStatus {
+    override val value: String = "DELIVERED"
+  }
   @SerialName("CONFIRMED")
-  public data object Confirmed : PaymentFilterInputEscrowStatus()
+  public data object Confirmed : PaymentFilterInputEscrowStatus {
+    override val value: String = "CONFIRMED"
+  }
   @SerialName("REJECTED")
-  public data object Rejected : PaymentFilterInputEscrowStatus()
+  public data object Rejected : PaymentFilterInputEscrowStatus {
+    override val value: String = "REJECTED"
+  }
   @SerialName("CANCELLED")
-  public data object Cancelled : PaymentFilterInputEscrowStatus()
+  public data object Cancelled : PaymentFilterInputEscrowStatus {
+    override val value: String = "CANCELLED"
+  }
   @SerialName("REJECT_CONFIRMED")
-  public data object RejectConfirmed : PaymentFilterInputEscrowStatus()
+  public data object RejectConfirmed : PaymentFilterInputEscrowStatus {
+    override val value: String = "REJECT_CONFIRMED"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : PaymentFilterInputEscrowStatus()
+  public data class Unrecognized internal constructor(override val value: String) : PaymentFilterInputEscrowStatus
 }

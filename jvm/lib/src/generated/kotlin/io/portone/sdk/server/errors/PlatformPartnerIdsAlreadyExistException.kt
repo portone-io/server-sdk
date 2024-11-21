@@ -6,9 +6,9 @@ import kotlin.Array
 import kotlin.String
 
 
-public class PlatformPartnerIdsAlreadyExistException(
+public class PlatformPartnerIdsAlreadyExistException internal constructor(
   cause: PlatformPartnerIdsAlreadyExistError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformPartnersException {
   public val ids: List<String> = cause.ids
   public val graphqlIds: List<String> = cause.graphqlIds
 }

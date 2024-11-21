@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class BillingKeyPaymentMethodCard(
   /** 카드 상세 정보 */
   val card: Card? = null,
-) : BillingKeyPaymentMethod, BillingKeyPaymentMethodEasyPayMethod
+) : BillingKeyPaymentMethod.Recognized, BillingKeyPaymentMethodEasyPayMethod.Recognized

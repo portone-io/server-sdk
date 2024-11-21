@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SchedulePlatformPartnersBody(
+  val filter: PlatformPartnerFilterInput? = null,
   val update: SchedulePlatformPartnersBodyUpdate,
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
-  val filter: PlatformPartnerFilterInput? = null,
 )

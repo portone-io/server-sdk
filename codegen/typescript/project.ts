@@ -1,9 +1,8 @@
 import * as fs from "@std/fs"
 import * as path from "@std/path"
-import { toPascalCase } from "@std/text"
+import { toCamelCase, toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import { entities as webhookEntities } from "../common/webhook.ts"
-import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
@@ -27,10 +26,28 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
   generateEntityDirectory(srcPath, pack, categoryMap, ".")
   generateWebhook(srcPath)
-  generateClient(srcPath, pack)
-  generateIndex(srcPath, pack)
+  const allClients: Client[] = []
+  generateClient(
+    srcPath,
+    pack,
+    "..",
+    ".",
+    categoryMap,
+    entityMap,
+    allClients,
+  )
+  allClients.sort((a, b) => a.name.localeCompare(b.name))
+  generateIndex(srcPath, pack, allClients)
   const omitEntities = oneOfErrors.union(variantErrors)
-  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities, 0)
+  generateCategoryIndex(
+    srcPath,
+    pack,
+    categoryMap,
+    entityMap,
+    omitEntities,
+    0,
+    "",
+  )
   const entrypoints = [
     ...categoryMap.values(),
   ].map((category) => category.replace(".", "/"))
@@ -38,15 +55,19 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   return entrypoints
 }
 
-function generateIndex(srcPath: string, pack: Package) {
+function generateIndex(srcPath: string, pack: Package, clients: Client[]) {
   const writer = TypescriptWriter()
   writer.writeLine(`export * as Errors from "./errors"`)
-  writer.writeLine(`export * from "./client"`)
   for (const subpackage of pack.subpackages) {
     writer.writeLine(
-      `export * as ${
-        toPascalCase(subpackage.category)
-      } from "./${subpackage.category}"`,
+      `export * as ${toCamelCase(subpackage.category)} from "./${
+        toCamelCase(subpackage.category)
+      }"`,
+    )
+  }
+  for (const client of clients) {
+    writer.writeLine(
+      `export { ${client.name} } from "${client.hierarchy}/client"`,
     )
   }
   Deno.writeTextFileSync(path.join(srcPath, "index.ts"), writer.content)
@@ -266,148 +287,132 @@ function collectErrors(
   }
 }
 
-const PortOneClientInit = `
-export type PortOneClientInit = {
-  /**
-	 * 포트원 API URL Origin
-	 *
-	 * 기본값은 \`https://api.portone.io\`입니다.
-	 */
-	baseUrl?: string;
-	/**
-	 * 상점 ID
-	 */
-	storeId?: string;
-}`
+type Client = {
+  hierarchy: string
+  name: string
+}
 
 function generateClient(
-  srcPath: string,
+  packagePath: string,
   pack: Package,
-) {
-  const typeWriter = TypescriptWriter()
-  const writer = TypescriptWriter()
-  writer.writeLine(`import * as Errors from "./errors"`)
-  for (
-    const subpackage of pack.subpackages.map(({ category }) => category)
-      .toSorted()
-  ) {
-    writer.writeLine(
-      `import * as ${toPascalCase(subpackage)} from "./${subpackage}"`,
-    )
-  }
-  for (const line of PortOneClientInit.split("\n")) {
-    writer.writeLine(line)
-  }
-  writeRootClientObject(writer, pack)
-  const operationPath = path.join(srcPath, "client.ts")
-  Deno.writeTextFileSync(operationPath, writer.content + typeWriter.content)
-}
-
-const PortOneClientHead = `
-/**
- * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
- */
-export function PortOneClient(
-  /** 포트원 API Secret */
-  secret: string,
-  /** 포트원 API를 사용하기 위한 추가 정보 */
-  init?: PortOneClientInit,
-): PortOneClient {`
-
-function writeRootClientObject(
-  writer: Writer,
-  pack: Package,
-) {
-  for (const line of PortOneClientHead.split("\n")) {
-    writer.writeLine(line)
-  }
-  writer.indent()
-  writer.writeLine(`const baseUrl = init?.baseUrl ?? "https://api.portone.io"`)
-  writer.writeLine("const storeId = init?.storeId")
-  writer.writeLine(`const userAgent = "__USER_AGENT__"`)
-  writer.writeLine("return {")
-  writer.indent()
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
-  for (const subpackage of subpackages) {
-    writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client(secret, userAgent, baseUrl, storeId),`,
-    )
-  }
-  writer.outdent()
-  writer.writeLine("}")
-  writer.outdent()
-  writer.writeLine("}")
-  writer.writeLine("")
-  writer.writeLine("export type PortOneClient = {")
-  writer.indent()
-  for (const subpackage of subpackages) {
-    writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client`,
-    )
-  }
-  writer.outdent()
-  writer.writeLine("}")
-}
-
-function writeClientObject(
-  implWriter: Writer,
-  pack: Package,
+  hierarchyToSrc: string,
+  hierarchy: string,
+  categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
-  crossRef: Set<string>,
-) {
-  const typeWriter = TypescriptWriter()
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
-  implWriter.writeLine("/** @ignore */")
-  implWriter.writeLine(
-    `export function ${
-      toPascalCase(pack.category)
-    }Client(secret: string, userAgent: string, baseUrl?: string, storeId?: string): ${
-      toPascalCase(pack.category)
-    }Client {`,
-  )
-  implWriter.indent()
-  implWriter.writeLine("return {")
-  implWriter.indent()
-  typeWriter.writeLine(`export type ${toPascalCase(pack.category)}Client = {`)
-  typeWriter.indent()
-  for (const operation of pack.operations) {
-    writeOperation(
-      implWriter,
-      typeWriter,
-      operation,
-      entityMap,
-      crossRef,
+  collected: Client[],
+): Client | null {
+  let client = null
+  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
+  if (hasClient) {
+    const importWriter = TypescriptWriter()
+    const typeWriter = TypescriptWriter()
+    const errorWriter = TypescriptWriter()
+    const writer = TypescriptWriter()
+    if (pack.operations.length > 0) {
+      importWriter.writeLine(
+        `import * as Errors from "${hierarchyToSrc}/generated/errors"`,
+      )
+      importWriter.writeLine(
+        `import { USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
+      )
+    } else {
+      importWriter.writeLine(
+        `import type { PortOneClientInit } from "${hierarchyToSrc}/client"`,
+      )
+    }
+    const clientName = pack.category === "root"
+      ? "PortOneClient"
+      : `${toPascalCase(pack.category)}Client`
+    client = {
+      hierarchy,
+      name: clientName,
+    }
+    collected.push(client)
+    writer.writeLine(
+      `export function ${clientName}(init: PortOneClientInit): ${clientName} {`,
+    )
+    writer.indent()
+    if (pack.operations.length > 0) {
+      writer.writeLine(
+        `const baseUrl = init.baseUrl ?? "https://api.portone.io"`,
+      )
+      writer.writeLine(`const secret = init.secret`)
+    }
+    writer.writeLine("return {")
+    writer.indent()
+    typeWriter.writeLine(`export type ${clientName} = {`)
+    typeWriter.indent()
+    const crossRef = new Set<string>()
+    for (const operation of pack.operations) {
+      writeOperation(
+        writer,
+        typeWriter,
+        errorWriter,
+        operation,
+        entityMap,
+        crossRef,
+      )
+    }
+    for (const subpackage of pack.subpackages) {
+      const subclient = generateClient(
+        `${packagePath}/${toCamelCase(subpackage.category)}`,
+        subpackage,
+        `../${hierarchyToSrc}`,
+        `${hierarchy}/${subpackage.category}`,
+        categoryMap,
+        entityMap,
+        collected,
+      )
+      if (subclient) {
+        importWriter.writeLine(
+          `import { ${subclient.name} } from "./${subpackage.category}/client"`,
+        )
+        writer.writeLine(
+          `${toCamelCase(subpackage.category)}: ${subclient.name}(init),`,
+        )
+        typeWriter.writeLine(
+          `${toCamelCase(subpackage.category)}: ${subclient.name}`,
+        )
+      }
+    }
+    typeWriter.outdent()
+    typeWriter.writeLine("}")
+    writer.outdent()
+    writer.writeLine("}")
+    writer.outdent()
+    writer.writeLine("}")
+    for (const ref of [...crossRef].toSorted()) {
+      const rename = ref
+      let name = rename
+      if (name.startsWith("_Internal")) {
+        name = name.slice(9)
+      }
+      const category = categoryMap.get(name)
+      if (!category) {
+        throw new Error("unrecognized ref", { cause: { ref: name } })
+      }
+      if (name === rename) {
+        importWriter.writeLine(
+          `import type { ${name} } from "${hierarchyToSrc}/generated/${
+            category.replaceAll(".", "/")
+          }/${name}"`,
+        )
+      } else {
+        importWriter.writeLine(
+          `import type { ${name} as ${rename} } from "${hierarchyToSrc}/generated/${
+            category.replaceAll(".", "/")
+          }/${name}"`,
+        )
+      }
+    }
+    const operationPath = path.join(packagePath, "client.ts")
+    Deno.writeTextFileSync(
+      operationPath,
+      importWriter.content + writer.content + typeWriter.content +
+        errorWriter.content,
     )
   }
-  for (const subpackage of subpackages) {
-    implWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client(secret, userAgent, baseUrl, storeId),`,
-    )
-    typeWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client`,
-    )
-  }
-  typeWriter.outdent()
-  typeWriter.writeLine("}")
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  for (const line of typeWriter.content.split("\n")) {
-    implWriter.writeLine(line)
-  }
+  return client
 }
 
 function generateEntityDirectory(
@@ -437,13 +442,18 @@ function generateCategoryIndex(
   entityMap: Map<string, Definition>,
   omitEntities: Set<string>,
   depth: number,
+  canonicalCategory: string,
 ) {
-  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
   const crossRef = new Set<string>()
   const writer = TypescriptWriter()
   for (const entity of pack.entities) {
     if (omitEntities.has(entity.name)) continue
     writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
+  }
+  if (pack.operations.length > 0) {
+    writer.writeLine(
+      `export * from "./client"`,
+    )
   }
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
@@ -455,15 +465,13 @@ function generateCategoryIndex(
       entityMap,
       omitEntities,
       depth + 1,
+      `${canonicalCategory}/${subpackage.category}`,
     )
     writer.writeLine(
-      `export type * as ${
-        toPascalCase(subpackage.category)
-      } from "./${subpackage.category}"`,
+      `export * as ${toCamelCase(subpackage.category)} from "./${
+        toCamelCase(subpackage.category)
+      }"`,
     )
-  }
-  if (hasClient) {
-    writeClientObject(writer, pack, entityMap, crossRef)
   }
   const sortedRef = [...crossRef].toSorted()
   const importWriter = TypescriptWriter()
@@ -476,11 +484,6 @@ function generateCategoryIndex(
       `import type { ${ref} } from "${"../".repeat(depth)}/${
         category.split(".").join("/")
       }/${ref}"`,
-    )
-  }
-  if (hasClient) {
-    importWriter.writeLine(
-      `import * as Errors from "${"../".repeat(depth)}/errors"`,
     )
   }
   for (const subpackage of pack.subpackages) {

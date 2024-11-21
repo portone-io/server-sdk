@@ -2,10 +2,10 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
-from portone_server_sdk._generated.common.customer_name_input import CustomerNameInput, _deserialize_customer_name_input, _serialize_customer_name_input
-from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
-from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..common.country import Country, _deserialize_country, _serialize_country
+from ..common.customer_name_input import CustomerNameInput, _deserialize_customer_name_input, _serialize_customer_name_input
+from ..common.gender import Gender, _deserialize_gender, _serialize_gender
+from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 
 @dataclass
 class CustomerInput:

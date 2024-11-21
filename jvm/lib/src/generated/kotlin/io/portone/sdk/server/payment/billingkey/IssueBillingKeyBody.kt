@@ -10,14 +10,14 @@ import kotlinx.serialization.json.JsonObject
 /** 빌링키 발급 요청 양식 */
 @Serializable
 internal data class IssueBillingKeyBody(
-  /** 빌링키 결제 수단 정보 */
-  val method: InstantBillingKeyPaymentMethodInput,
   /**
    * 상점 아이디
    *
    * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
    */
   val storeId: String? = null,
+  /** 빌링키 결제 수단 정보 */
+  val method: InstantBillingKeyPaymentMethodInput,
   /**
    * 채널 키
    *

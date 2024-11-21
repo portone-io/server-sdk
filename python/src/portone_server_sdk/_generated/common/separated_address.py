@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
+from ..common.country import Country, _deserialize_country, _serialize_country
 
 @dataclass
 class SeparatedAddress:

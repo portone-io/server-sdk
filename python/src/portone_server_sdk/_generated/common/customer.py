@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.address import Address, _deserialize_address, _serialize_address
-from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
+from ..common.address import Address, _deserialize_address, _serialize_address
+from ..common.gender import Gender, _deserialize_gender, _serialize_gender
 
 @dataclass
 class Customer:

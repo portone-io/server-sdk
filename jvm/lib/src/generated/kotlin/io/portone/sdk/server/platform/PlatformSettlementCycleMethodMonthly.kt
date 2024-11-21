@@ -9,4 +9,4 @@ import kotlinx.serialization.Serializable
 @SerialName("MONTHLY")
 public data class PlatformSettlementCycleMethodMonthly(
   val daysOfMonth: IntArray,
-) : PlatformSettlementCycleMethod
+) : PlatformSettlementCycleMethod.Recognized

@@ -88,11 +88,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PartnerClient internal constructor(
+public class PartnerClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -107,11 +107,7 @@ public class PartnerClient internal constructor(
    * @param filter
    * 조회할 파트너 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformPartnersException
    */
   @JvmName("getPlatformPartnersSuspend")
   public suspend fun getPlatformPartners(
@@ -202,18 +198,7 @@ public class PartnerClient internal constructor(
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAccountVerificationAlreadyUsedException 파트너 계좌 검증 아이디를 이미 사용한 경우
-   * @throws PlatformAccountVerificationFailedException 파트너 계좌 인증이 실패한 경우
-   * @throws PlatformAccountVerificationNotFoundException 파트너 계좌 검증 아이디를 찾을 수 없는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformCurrencyNotSupportedException 지원 되지 않는 통화를 선택한 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerIdAlreadyExistsException PlatformPartnerIdAlreadyExistsError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformPartnerException
    */
   @JvmName("createPlatformPartnerSuspend")
   public suspend fun createPlatformPartner(
@@ -305,12 +290,7 @@ public class PartnerClient internal constructor(
    * @param id
    * 조회하고 싶은 파트너 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformPartnerException
    */
   @JvmName("getPlatformPartnerSuspend")
   public suspend fun getPlatformPartner(
@@ -383,19 +363,7 @@ public class PartnerClient internal constructor(
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAccountVerificationAlreadyUsedException 파트너 계좌 검증 아이디를 이미 사용한 경우
-   * @throws PlatformAccountVerificationFailedException 파트너 계좌 인증이 실패한 경우
-   * @throws PlatformAccountVerificationNotFoundException 파트너 계좌 검증 아이디를 찾을 수 없는 경우
-   * @throws PlatformArchivedPartnerException 보관된 파트너를 업데이트하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformInsufficientDataToChangePartnerTypeException 파트너 타입 수정에 필요한 데이터가 부족한 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws UpdatePlatformPartnerException
    */
   @JvmName("updatePlatformPartnerSuspend")
   public suspend fun updatePlatformPartner(
@@ -487,16 +455,7 @@ public class PartnerClient internal constructor(
    * @param partners
    * 생성할 파트너 리스트 정보
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractsNotFoundException PlatformContractsNotFoundError
-   * @throws PlatformCurrencyNotSupportedException 지원 되지 않는 통화를 선택한 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerIdsAlreadyExistException PlatformPartnerIdsAlreadyExistError
-   * @throws PlatformPartnerIdsDuplicatedException PlatformPartnerIdsDuplicatedError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformPartnersException
    */
   @JvmName("createPlatformPartnersSuspend")
   public suspend fun createPlatformPartners(
@@ -562,13 +521,7 @@ public class PartnerClient internal constructor(
    * @param id
    * 파트너 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformCannotArchiveScheduledPartnerException 예약된 업데이트가 있는 파트너를 보관하려고 하는 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ArchivePlatformPartnerException
    */
   @JvmName("archivePlatformPartnerSuspend")
   public suspend fun archivePlatformPartner(
@@ -626,12 +579,7 @@ public class PartnerClient internal constructor(
    * @param id
    * 파트너 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RecoverPlatformPartnerException
    */
   @JvmName("recoverPlatformPartnerSuspend")
   public suspend fun recoverPlatformPartner(
@@ -679,7 +627,7 @@ public class PartnerClient internal constructor(
     id: String,
   ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

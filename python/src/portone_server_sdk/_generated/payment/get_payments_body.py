@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from portone_server_sdk._generated.payment.payment_filter_input import PaymentFilterInput, _deserialize_payment_filter_input, _serialize_payment_filter_input
+from ..common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
+from ..payment.payment_filter_input import PaymentFilterInput, _deserialize_payment_filter_input, _serialize_payment_filter_input
 
 @dataclass
 class GetPaymentsBody:

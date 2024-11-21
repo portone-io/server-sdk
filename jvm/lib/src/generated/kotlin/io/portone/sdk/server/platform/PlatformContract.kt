@@ -21,6 +21,8 @@ public data class PlatformContract(
   val graphqlId: String,
   /** 계약 이름 */
   val name: String,
+  /** 계약 내부 표기를 위한 메모 */
+  val memo: String? = null,
   /** 중개수수료 */
   val platformFee: PlatformFee,
   /** 정산 주기 */
@@ -37,6 +39,4 @@ public data class PlatformContract(
   val isArchived: Boolean,
   /** 변경 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 계약 내부 표기를 위한 메모 */
-  val memo: String? = null,
 )

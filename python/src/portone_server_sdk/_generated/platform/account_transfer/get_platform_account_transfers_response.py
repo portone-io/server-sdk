@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.platform.account_transfer.platform_account_transfer import PlatformAccountTransfer, _deserialize_platform_account_transfer, _serialize_platform_account_transfer
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...platform.account_transfer.platform_account_transfer import PlatformAccountTransfer, _deserialize_platform_account_transfer, _serialize_platform_account_transfer
 
 @dataclass
 class GetPlatformAccountTransfersResponse:

@@ -120,7 +120,7 @@ export function generateEntity(
     const dot = ref.lastIndexOf(".")
     const module = ref.slice(0, dot)
     const name = ref.slice(dot + 1)
-    return `from portone_server_sdk._generated.webhook.${module} import ${name}`
+    return `from .${module} import ${name}`
   })
   const imports = stdImports.concat(
     definition.type === "object"

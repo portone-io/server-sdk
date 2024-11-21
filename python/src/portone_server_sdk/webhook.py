@@ -6,100 +6,101 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Literal, Optional, Union
 
-from portone_server_sdk._generated.webhook.webhook import Webhook, _deserialize_webhook
-from portone_server_sdk._generated.webhook.webhook_billing_key import WebhookBillingKey
-from portone_server_sdk._generated.webhook.webhook_billing_key_data import (
+from portone_server_sdk.errors import PortOneError
+
+from ._generated.webhook.webhook import Webhook, _deserialize_webhook
+from ._generated.webhook.webhook_billing_key import WebhookBillingKey
+from ._generated.webhook.webhook_billing_key_data import (
     WebhookBillingKeyData,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_deleted import (
+from ._generated.webhook.webhook_billing_key_data_deleted import (
     WebhookBillingKeyDataDeleted,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_failed import (
+from ._generated.webhook.webhook_billing_key_data_failed import (
     WebhookBillingKeyDataFailed,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_issued import (
+from ._generated.webhook.webhook_billing_key_data_issued import (
     WebhookBillingKeyDataIssued,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_ready import (
+from ._generated.webhook.webhook_billing_key_data_ready import (
     WebhookBillingKeyDataReady,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_updated import (
+from ._generated.webhook.webhook_billing_key_data_updated import (
     WebhookBillingKeyDataUpdated,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_deleted import (
+from ._generated.webhook.webhook_billing_key_deleted import (
     WebhookBillingKeyDeleted,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_failed import (
+from ._generated.webhook.webhook_billing_key_failed import (
     WebhookBillingKeyFailed,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_issued import (
+from ._generated.webhook.webhook_billing_key_issued import (
     WebhookBillingKeyIssued,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_ready import (
+from ._generated.webhook.webhook_billing_key_ready import (
     WebhookBillingKeyReady,
 )
-from portone_server_sdk._generated.webhook.webhook_billing_key_updated import (
+from ._generated.webhook.webhook_billing_key_updated import (
     WebhookBillingKeyUpdated,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction import WebhookTransaction
-from portone_server_sdk._generated.webhook.webhook_transaction_cancel_pending import (
+from ._generated.webhook.webhook_transaction import WebhookTransaction
+from ._generated.webhook.webhook_transaction_cancel_pending import (
     WebhookTransactionCancelPending,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled import (
+from ._generated.webhook.webhook_transaction_cancelled import (
     WebhookTransactionCancelled,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled_cancelled import (
+from ._generated.webhook.webhook_transaction_cancelled_cancelled import (
     WebhookTransactionCancelledCancelled,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled_data import (
+from ._generated.webhook.webhook_transaction_cancelled_data import (
     WebhookTransactionCancelledData,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled_data_cancelled import (
+from ._generated.webhook.webhook_transaction_cancelled_data_cancelled import (
     WebhookTransactionCancelledDataCancelled,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled_data_partial_cancelled import (
+from ._generated.webhook.webhook_transaction_cancelled_data_partial_cancelled import (
     WebhookTransactionCancelledDataPartialCancelled,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_cancelled_partial_cancelled import (
+from ._generated.webhook.webhook_transaction_cancelled_partial_cancelled import (
     WebhookTransactionCancelledPartialCancelled,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data import (
+from ._generated.webhook.webhook_transaction_data import (
     WebhookTransactionData,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_cancel_pending import (
+from ._generated.webhook.webhook_transaction_data_cancel_pending import (
     WebhookTransactionDataCancelPending,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_failed import (
+from ._generated.webhook.webhook_transaction_data_failed import (
     WebhookTransactionDataFailed,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_paid import (
+from ._generated.webhook.webhook_transaction_data_paid import (
     WebhookTransactionDataPaid,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_pay_pending import (
+from ._generated.webhook.webhook_transaction_data_pay_pending import (
     WebhookTransactionDataPayPending,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_ready import (
+from ._generated.webhook.webhook_transaction_data_ready import (
     WebhookTransactionDataReady,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_data_virtual_account_issued import (
+from ._generated.webhook.webhook_transaction_data_virtual_account_issued import (
     WebhookTransactionDataVirtualAccountIssued,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_failed import (
+from ._generated.webhook.webhook_transaction_failed import (
     WebhookTransactionFailed,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_paid import (
+from ._generated.webhook.webhook_transaction_paid import (
     WebhookTransactionPaid,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_pay_pending import (
+from ._generated.webhook.webhook_transaction_pay_pending import (
     WebhookTransactionPayPending,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_ready import (
+from ._generated.webhook.webhook_transaction_ready import (
     WebhookTransactionReady,
 )
-from portone_server_sdk._generated.webhook.webhook_transaction_virtual_account_issued import (
+from ._generated.webhook.webhook_transaction_virtual_account_issued import (
     WebhookTransactionVirtualAccountIssued,
 )
-from portone_server_sdk.errors import PortOneError
 
 _required_headers = {
     "webhook-id": str,

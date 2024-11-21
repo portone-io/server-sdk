@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer import PlatformOrderTransfer, _deserialize_platform_order_transfer, _serialize_platform_order_transfer
+from ...platform.transfer.platform_order_transfer import PlatformOrderTransfer, _deserialize_platform_order_transfer, _serialize_platform_order_transfer
 
 @dataclass
 class CreateOrderTransferResponse:

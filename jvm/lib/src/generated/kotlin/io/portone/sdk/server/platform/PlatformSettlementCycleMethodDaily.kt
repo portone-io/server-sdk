@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 /** 매일 정산 */
 @Serializable
 @SerialName("DAILY")
-public data object PlatformSettlementCycleMethodDaily : PlatformSettlementCycleMethod
+public data object PlatformSettlementCycleMethodDaily : PlatformSettlementCycleMethod.Recognized

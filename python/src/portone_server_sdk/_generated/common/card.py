@@ -2,9 +2,9 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
-from portone_server_sdk._generated.common.card_owner_type import CardOwnerType, _deserialize_card_owner_type, _serialize_card_owner_type
-from portone_server_sdk._generated.common.card_type import CardType, _deserialize_card_type, _serialize_card_type
+from ..common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
+from ..common.card_owner_type import CardOwnerType, _deserialize_card_owner_type, _serialize_card_owner_type
+from ..common.card_type import CardType, _deserialize_card_type, _serialize_card_type
 
 @dataclass
 class Card:

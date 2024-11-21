@@ -5,11 +5,16 @@ import kotlinx.serialization.Serializable
 
 /** 빌링키 상태 */
 @Serializable
-public sealed class BillingKeyStatus {
+public sealed interface BillingKeyStatus {
+  public val value: String
   @SerialName("ISSUED")
-  public data object Issued : BillingKeyStatus()
+  public data object Issued : BillingKeyStatus {
+    override val value: String = "ISSUED"
+  }
   @SerialName("DELETED")
-  public data object Deleted : BillingKeyStatus()
+  public data object Deleted : BillingKeyStatus {
+    override val value: String = "DELETED"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : BillingKeyStatus()
+  public data class Unrecognized internal constructor(override val value: String) : BillingKeyStatus
 }

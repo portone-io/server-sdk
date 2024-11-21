@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.platform.transfer.platform_external_payment import PlatformExternalPayment, _deserialize_platform_external_payment, _serialize_platform_external_payment
-from portone_server_sdk._generated.platform.transfer.platform_port_one_payment import PlatformPortOnePayment, _deserialize_platform_port_one_payment, _serialize_platform_port_one_payment
+from ...platform.transfer.platform_external_payment import PlatformExternalPayment, _deserialize_platform_external_payment, _serialize_platform_external_payment
+from ...platform.transfer.platform_port_one_payment import PlatformPortOnePayment, _deserialize_platform_port_one_payment, _serialize_platform_port_one_payment
 
 PlatformPayment = Union[PlatformExternalPayment, PlatformPortOnePayment, dict]
 """결제 정보

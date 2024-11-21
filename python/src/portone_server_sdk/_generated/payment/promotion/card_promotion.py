@@ -2,11 +2,11 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.payment.promotion.promotion_card_company import PromotionCardCompany, _deserialize_promotion_card_company, _serialize_promotion_card_company
-from portone_server_sdk._generated.payment.promotion.promotion_discount_policy import PromotionDiscountPolicy, _deserialize_promotion_discount_policy, _serialize_promotion_discount_policy
-from portone_server_sdk._generated.payment.promotion.promotion_recover_option import PromotionRecoverOption, _deserialize_promotion_recover_option, _serialize_promotion_recover_option
-from portone_server_sdk._generated.payment.promotion.promotion_status import PromotionStatus, _deserialize_promotion_status, _serialize_promotion_status
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...payment.promotion.promotion_card_company import PromotionCardCompany, _deserialize_promotion_card_company, _serialize_promotion_card_company
+from ...payment.promotion.promotion_discount_policy import PromotionDiscountPolicy, _deserialize_promotion_discount_policy, _serialize_promotion_discount_policy
+from ...payment.promotion.promotion_recover_option import PromotionRecoverOption, _deserialize_promotion_recover_option, _serialize_promotion_recover_option
+from ...payment.promotion.promotion_status import PromotionStatus, _deserialize_promotion_status, _serialize_promotion_status
 
 @dataclass
 class CardPromotion:

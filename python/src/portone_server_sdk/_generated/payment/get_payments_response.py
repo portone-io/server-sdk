@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.payment.payment import Payment, _deserialize_payment, _serialize_payment
+from ..common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ..payment.payment import Payment, _deserialize_payment, _serialize_payment
 
 @dataclass
 class GetPaymentsResponse:

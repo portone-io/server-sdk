@@ -2,14 +2,14 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_input import CashReceiptInput, _deserialize_cash_receipt_input, _serialize_cash_receipt_input
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
-from portone_server_sdk._generated.common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
-from portone_server_sdk._generated.common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
-from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..common.cash_receipt_input import CashReceiptInput, _deserialize_cash_receipt_input, _serialize_cash_receipt_input
+from ..common.country import Country, _deserialize_country, _serialize_country
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
+from ..common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
+from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ..common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
+from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 
 @dataclass
 class BillingKeyPaymentInput:

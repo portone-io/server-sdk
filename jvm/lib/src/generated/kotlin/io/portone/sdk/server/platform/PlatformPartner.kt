@@ -32,6 +32,8 @@ public data class PlatformPartner(
   val status: PlatformPartnerStatus,
   /** 파트너에 설정된 기본 계약 아이디 */
   val defaultContractId: String,
+  /** 파트너에 대한 메모 */
+  val memo: String? = null,
   /** 파트너의 태그 리스트 */
   val tags: List<String>,
   /** 파트너 유형별 정보 */
@@ -42,6 +44,4 @@ public data class PlatformPartner(
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties,
-  /** 파트너에 대한 메모 */
-  val memo: String? = null,
 )

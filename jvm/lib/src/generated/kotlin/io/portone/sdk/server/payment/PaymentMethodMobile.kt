@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PaymentMethodMobile(
   /** 전화번호 */
   val phoneNumber: String? = null,
-) : PaymentMethod
+) : PaymentMethod.Recognized

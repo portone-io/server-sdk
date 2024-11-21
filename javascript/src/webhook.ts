@@ -168,8 +168,9 @@ export async function verify(
 		);
 		if (signatureDecoded === undefined) continue;
 
-		if (timingSafeEqual(signatureDecoded, expectedSignature))
+		if (timingSafeEqual(signatureDecoded, expectedSignature)) {
 			return JSON.parse(payload);
+		}
 	}
 	throw new WebhookVerificationError("NO_MATCHING_SIGNATURE");
 }

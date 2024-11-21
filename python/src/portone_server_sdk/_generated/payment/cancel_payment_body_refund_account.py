@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
+from ..common.bank import Bank, _deserialize_bank, _serialize_bank
 
 @dataclass
 class CancelPaymentBodyRefundAccount:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.webhook.webhook_transaction_data_failed import WebhookTransactionDataFailed, _deserialize_webhook_transaction_data_failed
+from .webhook_transaction_data_failed import WebhookTransactionDataFailed, _deserialize_webhook_transaction_data_failed
 
 @dataclass
 class WebhookTransactionFailed:

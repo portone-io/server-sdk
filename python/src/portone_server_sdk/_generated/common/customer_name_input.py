@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.customer_separated_name import CustomerSeparatedName, _deserialize_customer_separated_name, _serialize_customer_separated_name
+from ..common.customer_separated_name import CustomerSeparatedName, _deserialize_customer_separated_name, _serialize_customer_separated_name
 
 @dataclass
 class CustomerNameInput:

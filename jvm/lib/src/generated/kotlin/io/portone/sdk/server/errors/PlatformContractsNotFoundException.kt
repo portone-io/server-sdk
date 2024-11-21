@@ -6,9 +6,9 @@ import kotlin.Array
 import kotlin.String
 
 
-public class PlatformContractsNotFoundException(
+public class PlatformContractsNotFoundException internal constructor(
   cause: PlatformContractsNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformPartnersException {
   public val ids: List<String> = cause.ids
   public val graphqlIds: List<String> = cause.graphqlIds
 }

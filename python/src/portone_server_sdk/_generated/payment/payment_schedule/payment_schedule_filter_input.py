@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_status import PaymentScheduleStatus, _deserialize_payment_schedule_status, _serialize_payment_schedule_status
+from ...payment.payment_schedule.payment_schedule_status import PaymentScheduleStatus, _deserialize_payment_schedule_status, _serialize_payment_schedule_status
 
 @dataclass
 class PaymentScheduleFilterInput:

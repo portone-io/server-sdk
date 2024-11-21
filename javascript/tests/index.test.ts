@@ -15,14 +15,11 @@ beforeAll(async () => {
 	const result = await spawnAsync("pnpm", [
 		"pack",
 		"--pack-destination",
+		"--json",
 		`./temp/${uuid}`,
 	]);
-	await spawnAsync("tar", [
-		"-xf",
-		result.stdout.trim(),
-		"-C",
-		`./temp/${uuid}`,
-	]);
+	const json = JSON.parse(result.stdout);
+	await spawnAsync("tar", ["-xf", json.filename, "-C", `./temp/${uuid}`]);
 
 	return async () => {
 		await fs.rm(`./temp/${uuid}`, { recursive: true, force: true });

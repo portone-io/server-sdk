@@ -18,4 +18,4 @@ public data class RejectConfirmedPaymentEscrow(
   val sentAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 배송등록 처리 일자 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant? = null,
-) : PaymentEscrow
+) : PaymentEscrow.Recognized

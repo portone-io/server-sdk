@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.webhook.webhook_billing_key import WebhookBillingKey, _deserialize_webhook_billing_key
-from portone_server_sdk._generated.webhook.webhook_transaction import WebhookTransaction, _deserialize_webhook_transaction
+from .webhook_billing_key import WebhookBillingKey, _deserialize_webhook_billing_key
+from .webhook_transaction import WebhookTransaction, _deserialize_webhook_transaction
 
 Webhook = Union[WebhookTransaction, WebhookBillingKey, dict]
 

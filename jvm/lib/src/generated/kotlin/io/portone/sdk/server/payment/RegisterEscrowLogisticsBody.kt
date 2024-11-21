@@ -10,8 +10,6 @@ import kotlinx.serialization.Serializable
 /** 에스크로 배송 정보 등록 입력 정보 */
 @Serializable
 internal data class RegisterEscrowLogisticsBody(
-  /** 에스크로 물류 정보 */
-  val logistics: PaymentLogistics,
   /**
    * 상점 아이디
    *
@@ -22,6 +20,8 @@ internal data class RegisterEscrowLogisticsBody(
   val sender: PaymentEscrowSenderInput? = null,
   /** 에스크로 수취인 정보 */
   val receiver: PaymentEscrowReceiverInput? = null,
+  /** 에스크로 물류 정보 */
+  val logistics: PaymentLogistics,
   /**
    * 이메일 알림 전송 여부
    *

@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class RegisterStoreReceiptBodyItem:

@@ -2,9 +2,9 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_fee import PlatformFee, _deserialize_platform_fee, _serialize_platform_fee
-from portone_server_sdk._generated.platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
-from portone_server_sdk._generated.platform.platform_settlement_cycle import PlatformSettlementCycle, _deserialize_platform_settlement_cycle, _serialize_platform_settlement_cycle
+from ..platform.platform_fee import PlatformFee, _deserialize_platform_fee, _serialize_platform_fee
+from ..platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
+from ..platform.platform_settlement_cycle import PlatformSettlementCycle, _deserialize_platform_settlement_cycle, _serialize_platform_settlement_cycle
 
 @dataclass
 class PlatformContract:

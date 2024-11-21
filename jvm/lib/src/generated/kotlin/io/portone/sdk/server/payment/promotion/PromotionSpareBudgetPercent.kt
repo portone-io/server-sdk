@@ -7,4 +7,4 @@ import kotlinx.serialization.Serializable
 @SerialName("PERCENT")
 public data class PromotionSpareBudgetPercent(
   val percent: Int,
-) : PromotionSpareBudget
+) : PromotionSpareBudget.Recognized

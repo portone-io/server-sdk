@@ -61,11 +61,11 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-public class BillingKeyClient internal constructor(
+public class BillingKeyClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -78,11 +78,7 @@ public class BillingKeyClient internal constructor(
    * @param billingKey
    * 조회할 빌링키
    *
-   * @throws BillingKeyNotFoundException 빌링키가 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetBillingKeyInfoException
    */
   @JvmName("getBillingKeyInfoSuspend")
   public suspend fun getBillingKeyInfo(
@@ -139,16 +135,7 @@ public class BillingKeyClient internal constructor(
    * @param billingKey
    * 삭제할 빌링키
    *
-   * @throws BillingKeyAlreadyDeletedException 빌링키가 이미 삭제된 경우
-   * @throws BillingKeyNotFoundException 빌링키가 존재하지 않는 경우
-   * @throws BillingKeyNotIssuedException BillingKeyNotIssuedError
-   * @throws ChannelSpecificException 여러 채널을 지정한 요청에서, 채널 각각에서 오류가 발생한 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws DeleteBillingKeyException
    */
   @JvmName("deleteBillingKeySuspend")
   public suspend fun deleteBillingKey(
@@ -220,10 +207,7 @@ public class BillingKeyClient internal constructor(
    *
    * V1 빌링키 건의 경우 일부 필드에 대해 필터가 적용되지 않을 수 있습니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetBillingKeyInfosException
    */
   @JvmName("getBillingKeyInfosSuspend")
   public suspend fun getBillingKeyInfos(
@@ -308,13 +292,7 @@ public class BillingKeyClient internal constructor(
    * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
    * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
    *
-   * @throws ChannelNotFoundException 요청된 채널이 존재하지 않는 경우
-   * @throws ChannelSpecificException 여러 채널을 지정한 요청에서, 채널 각각에서 오류가 발생한 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws IssueBillingKeyException
    */
   @JvmName("issueBillingKeySuspend")
   public suspend fun issueBillingKey(
@@ -387,7 +365,7 @@ public class BillingKeyClient internal constructor(
     noticeUrls: List<String>? = null,
   ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

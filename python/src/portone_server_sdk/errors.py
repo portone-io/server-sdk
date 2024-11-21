@@ -1,4 +1,4 @@
-from portone_server_sdk._generated.errors import (
+from ._generated.errors import (
     AlreadyPaidError,
     AlreadyPaidOrWaitingError,
     BillingKeyAlreadyDeletedError,
@@ -96,7 +96,6 @@ from portone_server_sdk._generated.errors import (
     PlatformTransferNonDeletableStatusError,
     PlatformTransferNotFoundError,
     PlatformUserDefinedPropertyNotFoundError,
-    PortOneError,
     PromotionDiscountRetainOptionShouldNotBeChangedError,
     PromotionNotFoundError,
     PromotionPayMethodDoesNotMatchError,
@@ -106,8 +105,10 @@ from portone_server_sdk._generated.errors import (
     UnknownError,
     WebhookNotFoundError,
 )
+from ._portone_error import PortOneError
 
 __all__ = [
+    "PortOneError",
     "AlreadyPaidError",
     "AlreadyPaidOrWaitingError",
     "BillingKeyAlreadyDeletedError",
@@ -205,7 +206,6 @@ __all__ = [
     "PlatformTransferNonDeletableStatusError",
     "PlatformTransferNotFoundError",
     "PlatformUserDefinedPropertyNotFoundError",
-    "PortOneError",
     "PromotionDiscountRetainOptionShouldNotBeChangedError",
     "PromotionNotFoundError",
     "PromotionPayMethodDoesNotMatchError",

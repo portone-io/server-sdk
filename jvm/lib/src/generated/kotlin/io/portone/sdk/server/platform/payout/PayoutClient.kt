@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PayoutClient internal constructor(
+public class PayoutClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -53,11 +53,7 @@ public class PayoutClient internal constructor(
    * @param filter
    *
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformPayoutsException
    */
   @JvmName("getPlatformPayoutsSuspend")
   public suspend fun getPlatformPayouts(
@@ -114,7 +110,7 @@ public class PayoutClient internal constructor(
     filter: PlatformPayoutFilterInput? = null,
   ): CompletableFuture<GetPlatformPayoutsResponse> = GlobalScope.future { getPlatformPayouts(isForTest, page, filter) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

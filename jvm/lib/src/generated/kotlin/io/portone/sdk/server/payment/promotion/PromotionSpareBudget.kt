@@ -6,5 +6,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PromotionSpareBudget {
+  public sealed interface Recognized : PromotionSpareBudget {
+  }
   public data object Unrecognized : PromotionSpareBudget
 }

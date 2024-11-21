@@ -2,19 +2,19 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.customer import Customer, _deserialize_customer, _serialize_customer
-from portone_server_sdk._generated.payment.payment_amount import PaymentAmount, _deserialize_payment_amount, _serialize_payment_amount
-from portone_server_sdk._generated.payment.payment_cancellation import PaymentCancellation, _deserialize_payment_cancellation, _serialize_payment_cancellation
-from portone_server_sdk._generated.payment.payment_cash_receipt import PaymentCashReceipt, _deserialize_payment_cash_receipt, _serialize_payment_cash_receipt
-from portone_server_sdk._generated.payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
-from portone_server_sdk._generated.payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
-from portone_server_sdk._generated.payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
-from portone_server_sdk._generated.common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ..common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
+from ..common.country import Country, _deserialize_country, _serialize_country
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.customer import Customer, _deserialize_customer, _serialize_customer
+from ..payment.payment_amount import PaymentAmount, _deserialize_payment_amount, _serialize_payment_amount
+from ..payment.payment_cancellation import PaymentCancellation, _deserialize_payment_cancellation, _serialize_payment_cancellation
+from ..payment.payment_cash_receipt import PaymentCashReceipt, _deserialize_payment_cash_receipt, _serialize_payment_cash_receipt
+from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
+from ..payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
+from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ..payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
+from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
+from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class CancelledPayment:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.webhook.webhook_billing_key_data_issued import WebhookBillingKeyDataIssued, _deserialize_webhook_billing_key_data_issued
+from .webhook_billing_key_data_issued import WebhookBillingKeyDataIssued, _deserialize_webhook_billing_key_data_issued
 
 @dataclass
 class WebhookBillingKeyIssued:

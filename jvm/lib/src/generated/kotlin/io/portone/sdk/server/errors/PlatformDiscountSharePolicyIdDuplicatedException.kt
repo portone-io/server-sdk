@@ -5,9 +5,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformDiscountSharePolicyIdDuplicatedException(
+public class PlatformDiscountSharePolicyIdDuplicatedException internal constructor(
   cause: PlatformDiscountSharePolicyIdDuplicatedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val id: String = cause.id
   public val graphqlId: String = cause.graphqlId
 }

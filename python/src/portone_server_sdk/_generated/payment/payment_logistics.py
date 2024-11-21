@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_logistics_company import PaymentLogisticsCompany, _deserialize_payment_logistics_company, _serialize_payment_logistics_company
-from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..payment.payment_logistics_company import PaymentLogisticsCompany, _deserialize_payment_logistics_company, _serialize_payment_logistics_company
+from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 
 @dataclass
 class PaymentLogistics:

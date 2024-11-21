@@ -5,11 +5,16 @@ import kotlinx.serialization.Serializable
 
 /** 본인인증 방식 */
 @Serializable
-public sealed class IdentityVerificationMethod {
+public sealed interface IdentityVerificationMethod {
+  public val value: String
   @SerialName("SMS")
-  public data object Sms : IdentityVerificationMethod()
+  public data object Sms : IdentityVerificationMethod {
+    override val value: String = "SMS"
+  }
   @SerialName("APP")
-  public data object App : IdentityVerificationMethod()
+  public data object App : IdentityVerificationMethod {
+    override val value: String = "APP"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : IdentityVerificationMethod()
+  public data class Unrecognized internal constructor(override val value: String) : IdentityVerificationMethod
 }

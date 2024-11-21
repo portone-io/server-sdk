@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PlatformSettlementCycleMethodManualDates(
   /** 월 및 일자 정보 */
   val dates: List<MonthDay>,
-) : PlatformSettlementCycleMethod
+) : PlatformSettlementCycleMethod.Recognized

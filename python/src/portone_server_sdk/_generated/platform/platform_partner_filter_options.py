@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_partner_contract_summary import PlatformPartnerContractSummary, _deserialize_platform_partner_contract_summary, _serialize_platform_partner_contract_summary
+from ..platform.platform_partner_contract_summary import PlatformPartnerContractSummary, _deserialize_platform_partner_contract_summary, _serialize_platform_partner_contract_summary
 
 @dataclass
 class PlatformPartnerFilterOptions:

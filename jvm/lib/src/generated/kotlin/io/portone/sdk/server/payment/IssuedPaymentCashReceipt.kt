@@ -12,20 +12,20 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("ISSUED")
 public data class IssuedPaymentCashReceipt(
-  /** 승인 번호 */
-  val issueNumber: String,
-  /** 총 금액 */
-  val totalAmount: Long,
-  /** 통화 */
-  val currency: Currency,
-  /** 발급 시점 */
-  val issuedAt: @Serializable(InstantSerializer::class) Instant,
   /** 현금영수증 유형 */
-  val type: CashReceiptType? = null,
+  override val type: CashReceiptType? = null,
   /** PG사 영수증 발급 아이디 */
-  val pgReceiptId: String? = null,
+  override val pgReceiptId: String? = null,
+  /** 승인 번호 */
+  override val issueNumber: String,
+  /** 총 금액 */
+  override val totalAmount: Long,
   /** 면세액 */
-  val taxFreeAmount: Long? = null,
+  override val taxFreeAmount: Long? = null,
+  /** 통화 */
+  override val currency: Currency,
   /** 현금영수증 URL */
-  val url: String? = null,
-) : PaymentCashReceipt
+  override val url: String? = null,
+  /** 발급 시점 */
+  override val issuedAt: @Serializable(InstantSerializer::class) Instant,
+) : PaymentCashReceipt.Recognized

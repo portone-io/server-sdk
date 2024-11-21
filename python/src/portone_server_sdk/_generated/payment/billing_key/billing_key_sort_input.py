@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_sort_by import BillingKeySortBy, _deserialize_billing_key_sort_by, _serialize_billing_key_sort_by
-from portone_server_sdk._generated.common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
+from ...payment.billing_key.billing_key_sort_by import BillingKeySortBy, _deserialize_billing_key_sort_by, _serialize_billing_key_sort_by
+from ...common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
 
 @dataclass
 class BillingKeySortInput:

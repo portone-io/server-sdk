@@ -14,7 +14,7 @@ public data class FailedPgBillingKeyIssueResponse(
    *
    * 빌링키 발급을 시도한 채널입니다.
    */
-  val channel: SelectedChannel,
+  override val channel: SelectedChannel,
   /** 발급 실패 상세 정보 */
   val failure: BillingKeyFailure,
-) : PgBillingKeyIssueResponse
+) : PgBillingKeyIssueResponse.Recognized

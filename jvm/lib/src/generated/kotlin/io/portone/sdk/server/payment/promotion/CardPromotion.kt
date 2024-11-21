@@ -16,33 +16,33 @@ import kotlinx.serialization.Serializable
 @SerialName("CARD")
 public data class CardPromotion(
   /** 프로모션 아이디 */
-  val id: String,
+  override val id: String,
   /** 상점 아이디 */
-  val storeId: String,
+  override val storeId: String,
   /** 프로모션 이름 */
-  val name: String,
+  override val name: String,
   /** 할인 정책 */
-  val discountPolicy: PromotionDiscountPolicy,
+  override val discountPolicy: PromotionDiscountPolicy,
   /** 총 예산 */
-  val totalBudget: Long,
-  /** 소진 금액 */
-  val spentAmount: Long,
-  /** 금액 화폐 */
-  val currency: Currency,
-  /** 프로모션 시작 시각 */
-  val startAt: @Serializable(InstantSerializer::class) Instant,
-  /** 프로모션 종료 시각 */
-  val endAt: @Serializable(InstantSerializer::class) Instant,
-  /** 프로모션 카드사 */
-  val cardCompany: PromotionCardCompany,
-  /** 프로모션 상태 */
-  val status: PromotionStatus,
-  /** 프로모션 생성 시각 */
-  val createdAt: @Serializable(InstantSerializer::class) Instant,
-  /** 결제 취소 시 프로모션 예산 복구 옵션 */
-  val recoverOption: PromotionRecoverOption,
+  override val totalBudget: Long,
   /** 최대 할인 금액 */
-  val maxDiscountAmount: Long? = null,
+  override val maxDiscountAmount: Long? = null,
+  /** 소진 금액 */
+  override val spentAmount: Long,
+  /** 금액 화폐 */
+  override val currency: Currency,
+  /** 프로모션 시작 시각 */
+  override val startAt: @Serializable(InstantSerializer::class) Instant,
+  /** 프로모션 종료 시각 */
+  override val endAt: @Serializable(InstantSerializer::class) Instant,
   /** 프로모션 중단 시각 */
-  val terminatedAt: @Serializable(InstantSerializer::class) Instant? = null,
-) : Promotion
+  override val terminatedAt: @Serializable(InstantSerializer::class) Instant? = null,
+  /** 프로모션 카드사 */
+  override val cardCompany: PromotionCardCompany,
+  /** 프로모션 상태 */
+  override val status: PromotionStatus,
+  /** 프로모션 생성 시각 */
+  override val createdAt: @Serializable(InstantSerializer::class) Instant,
+  /** 결제 취소 시 프로모션 예산 복구 옵션 */
+  override val recoverOption: PromotionRecoverOption,
+) : Promotion.Recognized

@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.promotion.promotion_spare_budget import PromotionSpareBudget, _deserialize_promotion_spare_budget, _serialize_promotion_spare_budget
+from ...payment.promotion.promotion_spare_budget import PromotionSpareBudget, _deserialize_promotion_spare_budget, _serialize_promotion_spare_budget
 
 @dataclass
 class PromotionRecoverOptionNoRecover:

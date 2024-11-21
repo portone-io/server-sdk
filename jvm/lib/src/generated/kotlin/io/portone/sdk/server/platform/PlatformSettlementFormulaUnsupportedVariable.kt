@@ -10,4 +10,4 @@ import kotlinx.serialization.Serializable
 public data class PlatformSettlementFormulaUnsupportedVariable(
   val name: String,
   val position: PlatformSettlementFormulaPosition,
-) : PlatformSettlementFormulaError
+) : PlatformSettlementFormulaError.Recognized

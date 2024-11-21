@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제 예약건이 존재하지 않는 경우 */
-public class PaymentScheduleNotFoundException(
+public class PaymentScheduleNotFoundException internal constructor(
   cause: PaymentScheduleNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), GetPaymentScheduleException, RevokePaymentSchedulesException {
 }

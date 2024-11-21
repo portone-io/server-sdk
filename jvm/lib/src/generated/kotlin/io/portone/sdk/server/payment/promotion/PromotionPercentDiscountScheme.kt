@@ -7,4 +7,4 @@ import kotlinx.serialization.Serializable
 @SerialName("PERCENT")
 public data class PromotionPercentDiscountScheme(
   val percent: Int,
-) : PromotionDiscountScheme
+) : PromotionDiscountScheme.Recognized

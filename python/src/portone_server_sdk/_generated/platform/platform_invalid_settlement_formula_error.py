@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_settlement_formula_error import PlatformSettlementFormulaError, _deserialize_platform_settlement_formula_error, _serialize_platform_settlement_formula_error
+from ..platform.platform_settlement_formula_error import PlatformSettlementFormulaError, _deserialize_platform_settlement_formula_error, _serialize_platform_settlement_formula_error
 
 @dataclass
 class PlatformInvalidSettlementFormulaError:

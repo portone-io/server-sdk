@@ -13,17 +13,17 @@ import kotlinx.serialization.Serializable
 @SerialName("PORT_ONE")
 public data class PlatformPortOnePayment(
   /** 결제 아이디 */
-  val id: String,
+  override val id: String,
   /** 상점 아이디 */
   val storeId: String,
   /** 채널 키 */
   val channelKey: String,
   /** 주문 명 */
-  val orderName: String,
-  /** 통화 */
-  val currency: Currency,
-  /** 결제 일시 */
-  val paidAt: @Serializable(InstantSerializer::class) Instant,
+  override val orderName: String,
   /** 결제 수단 */
-  val method: PlatformPaymentMethod? = null,
-) : PlatformPayment
+  override val method: PlatformPaymentMethod? = null,
+  /** 통화 */
+  override val currency: Currency,
+  /** 결제 일시 */
+  override val paidAt: @Serializable(InstantSerializer::class) Instant,
+) : PlatformPayment.Recognized

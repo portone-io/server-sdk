@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform import Platform, _deserialize_platform, _serialize_platform
+from ..platform.platform import Platform, _deserialize_platform, _serialize_platform
 
 @dataclass
 class UpdatePlatformResponse:

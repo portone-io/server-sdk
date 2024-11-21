@@ -10,25 +10,43 @@ import { annotateDescription, writeDescription } from "./description.ts"
 export function writeOperation(
   implWriter: Writer,
   typeWriter: Writer,
+  errorWriter: Writer,
   operation: Operation,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
 ) {
   const errors = fetchErrors(operation, entityMap)
+  errorWriter.writeLine(`export type ${operation.errors} =`)
+  errorWriter.indent()
+  for (const error of errors) {
+    errorWriter.writeLine(`| Errors.${error.name}`)
+  }
+  errorWriter.outdent()
+  errorWriter.writeLine(
+    `export function is${operation.errors}(error: Error): error is ${operation.errors} {`,
+  )
+  errorWriter.indent()
+  let isFirst = true
+  errorWriter.writeLine("return (")
+  errorWriter.indent()
+  for (const error of errors) {
+    if (isFirst) {
+      isFirst = false
+      errorWriter.writeLine(`error instanceof Errors.${error.name}`)
+    } else {
+      errorWriter.writeLine(`|| error instanceof Errors.${error.name}`)
+    }
+  }
+  errorWriter.outdent()
+  errorWriter.writeLine(")")
+  errorWriter.outdent()
+  errorWriter.writeLine("}")
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
   const params = operation.params.path.concat(operation.params.query).concat(
     requestBody,
-  ).filter(({ name }) => name !== "storeId")
+  )
   const isStructureOptional = params.every(({ required }) => !required)
-  const errorDescription = errors.map(({ name }) => {
-    const error = entityMap.get(name)
-    if (!error) {
-      throw new Error("unrecognized error variant", { cause: { operation } })
-    }
-    return `@throws {@link Errors.${name}} ${error.title ?? ""}`
-  }).concat(
-    "@throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우",
-  ).join("\n")
+  const errorDescription = `@throws {@link ${operation.errors}}`
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
@@ -121,7 +139,7 @@ export function writeOperation(
   implWriter.writeLine("headers: {")
   implWriter.indent()
   implWriter.writeLine("Authorization: `PortOne ${secret}`,")
-  implWriter.writeLine(`"User-Agent": userAgent,`)
+  implWriter.writeLine(`"User-Agent": USER_AGENT,`)
   implWriter.outdent()
   implWriter.writeLine("},")
   switch (operation.method) {
@@ -144,9 +162,9 @@ export function writeOperation(
   implWriter.writeLine(")")
   implWriter.writeLine("if (!response.ok) {")
   implWriter.indent()
-  crossRef.add(operation.errors)
+  crossRef.add(`_Internal${operation.errors}`)
   implWriter.writeLine(
-    `const errorResponse: ${operation.errors} = await response.json()`,
+    `const errorResponse: _Internal${operation.errors} = await response.json()`,
   )
   implWriter.writeLine("switch (errorResponse.type) {")
   implWriter.indent()
@@ -233,7 +251,11 @@ function writeRequestBody(writer: Writer, body: Property[]) {
   writer.writeLine("const requestBody = JSON.stringify({")
   writer.indent()
   for (const property of body) {
-    writer.writeLine(`${property.name},`)
+    if (property.name === "storeId") {
+      writer.writeLine("storeId: storeId ?? init.storeId,")
+    } else {
+      writer.writeLine(`${property.name},`)
+    }
   }
   writer.outdent()
   writer.writeLine("})")

@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class CancelledPaymentCashReceipt:

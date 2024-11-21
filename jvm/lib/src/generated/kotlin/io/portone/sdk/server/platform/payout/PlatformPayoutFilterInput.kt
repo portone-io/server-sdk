@@ -10,9 +10,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class PlatformPayoutFilterInput(
-  val criteria: PlatformPayoutFilterInputCriteria,
   val statuses: List<PlatformPayoutStatus>? = null,
   val partnerIds: List<String>? = null,
+  val criteria: PlatformPayoutFilterInputCriteria,
   /** 은행 */
   val payoutAccountBanks: List<Bank>? = null,
   val partnerTags: List<String>? = null,

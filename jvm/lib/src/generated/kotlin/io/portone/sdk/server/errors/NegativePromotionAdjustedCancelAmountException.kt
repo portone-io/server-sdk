@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 프로모션에 의해 조정된 취소 금액이 음수인 경우 */
-public class NegativePromotionAdjustedCancelAmountException(
+public class NegativePromotionAdjustedCancelAmountException internal constructor(
   cause: NegativePromotionAdjustedCancelAmountError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CancelPaymentException {
 }

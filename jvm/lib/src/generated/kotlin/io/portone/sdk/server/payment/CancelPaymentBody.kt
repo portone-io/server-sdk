@@ -9,8 +9,6 @@ import kotlinx.serialization.Serializable
 /** 결제 취소 요청 입력 정보 */
 @Serializable
 internal data class CancelPaymentBody(
-  /** 취소 사유 */
-  val reason: String,
   /**
    * 상점 아이디
    *
@@ -35,6 +33,8 @@ internal data class CancelPaymentBody(
    * 값을 입력하지 않으면 자동 계산됩니다.
    */
   val vatAmount: Long? = null,
+  /** 취소 사유 */
+  val reason: String,
   /**
    * 취소 요청자
    *

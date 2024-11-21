@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card import Card, _deserialize_card, _serialize_card
+from ...common.card import Card, _deserialize_card, _serialize_card
 
 @dataclass
 class BillingKeyPaymentMethodCard:

@@ -5,13 +5,18 @@ import kotlinx.serialization.Serializable
 
 /** 발급 유형 */
 @Serializable
-public sealed class CashReceiptType {
+public sealed interface CashReceiptType {
+  public val value: String
   /** 소득공제용 */
   @SerialName("PERSONAL")
-  public data object Personal : CashReceiptType()
+  public data object Personal : CashReceiptType {
+    override val value: String = "PERSONAL"
+  }
   /** 지출증빙용 */
   @SerialName("CORPORATE")
-  public data object Corporate : CashReceiptType()
+  public data object Corporate : CashReceiptType {
+    override val value: String = "CORPORATE"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : CashReceiptType()
+  public data class Unrecognized internal constructor(override val value: String) : CashReceiptType
 }

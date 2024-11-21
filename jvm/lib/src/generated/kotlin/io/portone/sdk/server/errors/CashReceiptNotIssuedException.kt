@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 현금영수증이 발급되지 않은 경우 */
-public class CashReceiptNotIssuedException(
+public class CashReceiptNotIssuedException internal constructor(
   cause: CashReceiptNotIssuedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CancelCashReceiptException {
 }

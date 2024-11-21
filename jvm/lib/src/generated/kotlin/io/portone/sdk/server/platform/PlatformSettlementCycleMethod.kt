@@ -7,5 +7,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface PlatformSettlementCycleMethod {
+  public sealed interface Recognized : PlatformSettlementCycleMethod {
+  }
   public data object Unrecognized : PlatformSettlementCycleMethod
 }

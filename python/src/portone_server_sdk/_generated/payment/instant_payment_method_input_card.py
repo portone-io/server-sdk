@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
+from ..common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
 
 @dataclass
 class InstantPaymentMethodInputCard:

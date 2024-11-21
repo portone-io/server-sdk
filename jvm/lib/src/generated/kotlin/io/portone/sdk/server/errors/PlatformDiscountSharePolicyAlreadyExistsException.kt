@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformDiscountSharePolicyAlreadyExistsErro
 import java.lang.Exception
 
 
-public class PlatformDiscountSharePolicyAlreadyExistsException(
+public class PlatformDiscountSharePolicyAlreadyExistsException internal constructor(
   cause: PlatformDiscountSharePolicyAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformDiscountSharePolicyException {
 }

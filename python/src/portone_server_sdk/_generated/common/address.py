@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.common.one_line_address import OneLineAddress, _deserialize_one_line_address, _serialize_one_line_address
-from portone_server_sdk._generated.common.separated_address import SeparatedAddress, _deserialize_separated_address, _serialize_separated_address
+from ..common.one_line_address import OneLineAddress, _deserialize_one_line_address, _serialize_one_line_address
+from ..common.separated_address import SeparatedAddress, _deserialize_separated_address, _serialize_separated_address
 
 Address = Union[OneLineAddress, SeparatedAddress, dict]
 """분리 형식 주소

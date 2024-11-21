@@ -13,4 +13,4 @@ public data class BillingKeyPaymentMethodEasyPay(
   val provider: EasyPayProvider? = null,
   /** 간편 결제 수단 */
   val method: BillingKeyPaymentMethodEasyPayMethod? = null,
-) : BillingKeyPaymentMethod
+) : BillingKeyPaymentMethod.Recognized

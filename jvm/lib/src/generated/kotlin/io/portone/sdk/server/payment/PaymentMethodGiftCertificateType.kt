@@ -5,17 +5,28 @@ import kotlinx.serialization.Serializable
 
 /** 상품권 종류 */
 @Serializable
-public sealed class PaymentMethodGiftCertificateType {
+public sealed interface PaymentMethodGiftCertificateType {
+  public val value: String
   @SerialName("BOOKNLIFE")
-  public data object Booknlife : PaymentMethodGiftCertificateType()
+  public data object Booknlife : PaymentMethodGiftCertificateType {
+    override val value: String = "BOOKNLIFE"
+  }
   @SerialName("SMART_MUNSANG")
-  public data object SmartMunsang : PaymentMethodGiftCertificateType()
+  public data object SmartMunsang : PaymentMethodGiftCertificateType {
+    override val value: String = "SMART_MUNSANG"
+  }
   @SerialName("CULTURELAND")
-  public data object Cultureland : PaymentMethodGiftCertificateType()
+  public data object Cultureland : PaymentMethodGiftCertificateType {
+    override val value: String = "CULTURELAND"
+  }
   @SerialName("HAPPYMONEY")
-  public data object Happymoney : PaymentMethodGiftCertificateType()
+  public data object Happymoney : PaymentMethodGiftCertificateType {
+    override val value: String = "HAPPYMONEY"
+  }
   @SerialName("CULTUREGIFT")
-  public data object Culturegift : PaymentMethodGiftCertificateType()
+  public data object Culturegift : PaymentMethodGiftCertificateType {
+    override val value: String = "CULTUREGIFT"
+  }
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(public val value: String) : PaymentMethodGiftCertificateType()
+  public data class Unrecognized internal constructor(override val value: String) : PaymentMethodGiftCertificateType
 }

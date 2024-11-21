@@ -66,23 +66,14 @@ export function writeOperation(
     ).join("\n\n")
     return `@param ${property.name}\n${block}`
   }).join("\n")
-  const errorDescription = errors.map(({ name }) => {
-    const error = entityMap.get(name)
-    if (!error) {
-      throw new Error("unrecognized error variant", { cause: { operation } })
-    }
-    return `@throws ${toException(error.name)} ${error.title ?? ""}`
-  }).concat("@throws UnknownException API 응답이 알 수 없는 형식인 경우").join(
-    "\n",
-  )
-  crossRef.add("io.portone.sdk.server.errors.UnknownException")
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
     paramDescription,
   ).concat(
-    errorDescription,
+    `@throws ${toException(operation.errors)}`,
   ).join("\n\n")
+  crossRef.add("io.portone.sdk.server.errors.UnknownException")
   writeDescription(writer, description)
   const futureWriter = KotlinWriter()
   writeDescription(futureWriter, "@suppress")

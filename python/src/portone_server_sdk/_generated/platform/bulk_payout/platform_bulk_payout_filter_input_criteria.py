@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
+from ...common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
 
 @dataclass
 class PlatformBulkPayoutFilterInputCriteria:
