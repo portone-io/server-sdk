@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformTransferNotFoundError(
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized, DeletePlatformTransferError.Recognized, GetPlatformTransferError.Recognized
+
+

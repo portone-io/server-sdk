@@ -21,3 +21,5 @@ public data class ConfirmedPaymentEscrow(
   /** 자동 구매 확정 처리 여부 */
   val isAutomaticallyConfirmed: Boolean,
 ) : PaymentEscrow.Recognized
+
+

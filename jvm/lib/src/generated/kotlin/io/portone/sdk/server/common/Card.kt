@@ -26,3 +26,5 @@ public data class Card(
   /** 마스킹된 카드 번호 */
   val number: String? = null,
 )
+
+

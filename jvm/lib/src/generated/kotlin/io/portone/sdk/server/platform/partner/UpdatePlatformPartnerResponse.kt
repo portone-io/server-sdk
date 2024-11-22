@@ -9,3 +9,5 @@ public data class UpdatePlatformPartnerResponse(
   /** 업데이트된 파트너 */
   val partner: PlatformPartner,
 )
+
+

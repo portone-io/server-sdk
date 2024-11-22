@@ -11,3 +11,5 @@ public data class CustomerSeparatedName(
   /** 성 */
   val last: String,
 )
+
+

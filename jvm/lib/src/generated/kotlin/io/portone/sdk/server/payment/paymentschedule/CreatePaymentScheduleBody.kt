@@ -13,3 +13,5 @@ internal data class CreatePaymentScheduleBody(
   /** 결제 예정 시점 */
   val timeToPay: @Serializable(InstantSerializer::class) Instant,
 )
+
+

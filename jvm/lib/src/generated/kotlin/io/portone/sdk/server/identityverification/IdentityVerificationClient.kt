@@ -94,7 +94,7 @@ public class IdentityVerificationClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetIdentityVerificationError>(httpBody)
+        json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -104,7 +104,6 @@ public class IdentityVerificationClient(
         is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -179,7 +178,7 @@ public class IdentityVerificationClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SendIdentityVerificationError>(httpBody)
+        json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -194,7 +193,6 @@ public class IdentityVerificationClient(
         is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -257,7 +255,7 @@ public class IdentityVerificationClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConfirmIdentityVerificationError>(httpBody)
+        json.decodeFromString<ConfirmIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -270,7 +268,6 @@ public class IdentityVerificationClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -318,7 +315,7 @@ public class IdentityVerificationClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ResendIdentityVerificationError>(httpBody)
+        json.decodeFromString<ResendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -331,7 +328,6 @@ public class IdentityVerificationClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

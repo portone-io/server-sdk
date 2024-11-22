@@ -15,3 +15,5 @@ public data class CreatePlatformPartnerBodyType(
   /** 원천징수 비대상자 추가 정보 */
   val nonWhtPayer: CreatePlatformPartnerBodyTypeNonWhtPayer? = null,
 )
+
+

@@ -10,3 +10,5 @@ public data class PageInput(
   /** 각 페이지 당 포함할 객체 수 */
   val size: Int? = null,
 )
+
+

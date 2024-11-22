@@ -5,11 +5,17 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 본인인증 내역 */
-@Serializable
-@JsonClassDiscriminator("status")
+@Serializable(IdentityVerificationSerializer::class)
 public sealed interface IdentityVerification {
+  @Serializable
+  @JsonClassDiscriminator("status")
   public sealed interface Recognized : IdentityVerification {
     /** 본인인증 내역 아이디 */
     public val id: String
@@ -24,5 +30,16 @@ public sealed interface IdentityVerification {
     /** 상태 업데이트 시점 */
     public val statusChangedAt: Instant
   }
+  @Serializable
   public data object Unrecognized : IdentityVerification
+}
+
+
+private object IdentityVerificationSerializer : JsonContentPolymorphicSerializer<IdentityVerification>(IdentityVerification::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+    "FAILED" -> FailedIdentityVerification.serializer()
+    "READY" -> ReadyIdentityVerification.serializer()
+    "VERIFIED" -> VerifiedIdentityVerification.serializer()
+    else -> IdentityVerification.Unrecognized.serializer()
+  }
 }

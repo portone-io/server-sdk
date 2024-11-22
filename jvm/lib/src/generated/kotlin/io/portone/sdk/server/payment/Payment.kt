@@ -15,11 +15,17 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 결제 건 */
-@Serializable
-@JsonClassDiscriminator("status")
+@Serializable(PaymentSerializer::class)
 public sealed interface Payment {
+  @Serializable
+  @JsonClassDiscriminator("status")
   public sealed interface Recognized : Payment {
     /** 결제 건 아이디 */
     public val id: String
@@ -82,5 +88,20 @@ public sealed interface Payment {
     /** 국가 코드 */
     public val country: Country?
   }
+  @Serializable
   public data object Unrecognized : Payment
+}
+
+
+private object PaymentSerializer : JsonContentPolymorphicSerializer<Payment>(Payment::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+    "CANCELLED" -> CancelledPayment.serializer()
+    "FAILED" -> FailedPayment.serializer()
+    "PAID" -> PaidPayment.serializer()
+    "PARTIAL_CANCELLED" -> PartialCancelledPayment.serializer()
+    "PAY_PENDING" -> PayPendingPayment.serializer()
+    "READY" -> ReadyPayment.serializer()
+    "VIRTUAL_ACCOUNT_ISSUED" -> VirtualAccountIssuedPayment.serializer()
+    else -> Payment.Unrecognized.serializer()
+  }
 }

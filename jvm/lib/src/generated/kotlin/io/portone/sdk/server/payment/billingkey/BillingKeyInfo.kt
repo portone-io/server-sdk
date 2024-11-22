@@ -9,11 +9,17 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 빌링키 정보 */
-@Serializable
-@JsonClassDiscriminator("status")
+@Serializable(BillingKeyInfoSerializer::class)
 public sealed interface BillingKeyInfo {
+  @Serializable
+  @JsonClassDiscriminator("status")
   public sealed interface Recognized : BillingKeyInfo {
     /** 빌링키 */
     public val billingKey: String
@@ -54,5 +60,15 @@ public sealed interface BillingKeyInfo {
      */
     public val pgBillingKeyIssueResponses: List<PgBillingKeyIssueResponse>?
   }
+  @Serializable
   public data object Unrecognized : BillingKeyInfo
+}
+
+
+private object BillingKeyInfoSerializer : JsonContentPolymorphicSerializer<BillingKeyInfo>(BillingKeyInfo::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+    "DELETED" -> DeletedBillingKeyInfo.serializer()
+    "ISSUED" -> IssuedBillingKeyInfo.serializer()
+    else -> BillingKeyInfo.Unrecognized.serializer()
+  }
 }

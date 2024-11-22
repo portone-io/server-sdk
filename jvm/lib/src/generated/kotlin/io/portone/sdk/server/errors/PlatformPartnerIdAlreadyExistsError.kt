@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformPartnerIdAlreadyExistsError(
   override val message: String? = null,
 ) : CreatePlatformPartnerError.Recognized
+
+

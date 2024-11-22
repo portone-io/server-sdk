@@ -29,3 +29,5 @@ public data class IssuedPaymentCashReceipt(
   /** 발급 시점 */
   override val issuedAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentCashReceipt.Recognized
+
+

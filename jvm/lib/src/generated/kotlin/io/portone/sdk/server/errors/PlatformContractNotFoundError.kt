@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformContractNotFoundError(
   override val message: String? = null,
 ) : ArchivePlatformContractError.Recognized, CancelPlatformContractScheduleError.Recognized, CreatePlatformOrderTransferError.Recognized, CreatePlatformPartnerError.Recognized, GetPlatformContractError.Recognized, GetPlatformContractScheduleError.Recognized, RecoverPlatformContractError.Recognized, RescheduleContractError.Recognized, ReschedulePartnerError.Recognized, ScheduleContractError.Recognized, SchedulePartnerError.Recognized, SchedulePlatformPartnersError.Recognized, UpdatePlatformContractError.Recognized, UpdatePlatformPartnerError.Recognized
+
+

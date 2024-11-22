@@ -17,3 +17,5 @@ public data class BillingKeyFailure(
   /** 실패 시점 */
   val failedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

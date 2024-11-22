@@ -23,3 +23,5 @@ internal data class CreatePlatformAdditionalFeePolicyBody(
   /** 부가세 부담 주체 */
   val vatPayer: PlatformPayer,
 )
+
+

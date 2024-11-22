@@ -93,3 +93,5 @@ public data class FailedPayment(
   /** 결제 실패 정보 */
   val failure: PaymentFailure,
 ) : Payment.Recognized
+
+

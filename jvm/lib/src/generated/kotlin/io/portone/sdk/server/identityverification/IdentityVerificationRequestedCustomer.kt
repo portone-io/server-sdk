@@ -17,3 +17,5 @@ public data class IdentityVerificationRequestedCustomer(
    */
   val phoneNumber: String? = null,
 )
+
+

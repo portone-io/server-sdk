@@ -30,3 +30,5 @@ public data class PlatformAdditionalFeePolicy(
   /** 변경 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

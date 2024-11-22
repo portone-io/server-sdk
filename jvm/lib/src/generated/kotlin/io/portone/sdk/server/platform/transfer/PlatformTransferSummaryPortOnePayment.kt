@@ -14,3 +14,5 @@ public data class PlatformTransferSummaryPortOnePayment(
   override val currency: Currency,
   override val methodType: PaymentMethodType? = null,
 ) : PlatformTransferSummaryPayment.Recognized
+
+

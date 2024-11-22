@@ -19,3 +19,5 @@ internal data class CreatePlatformDiscountSharePolicyBody(
   /** 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰 */
   val memo: String? = null,
 )
+
+

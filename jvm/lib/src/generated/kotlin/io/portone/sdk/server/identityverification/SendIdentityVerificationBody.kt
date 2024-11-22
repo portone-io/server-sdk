@@ -28,3 +28,5 @@ internal data class SendIdentityVerificationBody(
   /** 본인인증 방식 */
   val method: IdentityVerificationMethod,
 )
+
+

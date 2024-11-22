@@ -13,3 +13,5 @@ public data class InstantPaymentSummary(
   /** 결제 완료 시점 */
   val paidAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

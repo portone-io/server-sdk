@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformAccountVerificationNotFoundError(
   override val message: String? = null,
 ) : CreatePlatformPartnerError.Recognized, SchedulePartnerError.Recognized, UpdatePlatformPartnerError.Recognized
+
+

@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("DAILY")
 public data object PlatformSettlementCycleMethodDaily : PlatformSettlementCycleMethod.Recognized
+
+

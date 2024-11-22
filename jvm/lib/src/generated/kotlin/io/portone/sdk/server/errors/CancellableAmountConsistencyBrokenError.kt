@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class CancellableAmountConsistencyBrokenError(
   override val message: String? = null,
 ) : CancelPaymentError.Recognized
+
+

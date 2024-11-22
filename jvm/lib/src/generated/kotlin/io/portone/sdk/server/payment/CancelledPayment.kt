@@ -102,3 +102,5 @@ public data class CancelledPayment(
   /** 결제 취소 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
 ) : Payment.Recognized
+
+

@@ -8,3 +8,5 @@ import kotlinx.serialization.Serializable
 public data class PromotionAmountDiscountScheme(
   val amount: Long,
 ) : PromotionDiscountScheme.Recognized
+
+

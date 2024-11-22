@@ -88,3 +88,5 @@ public data class ReadyPayment(
   /** 국가 코드 */
   override val country: Country? = null,
 ) : Payment.Recognized
+
+

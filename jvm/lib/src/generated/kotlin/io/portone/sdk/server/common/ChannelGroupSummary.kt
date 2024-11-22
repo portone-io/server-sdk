@@ -13,3 +13,5 @@ public data class ChannelGroupSummary(
   /** 테스트 채널 그룹 여부 */
   val isForTest: Boolean,
 )
+
+

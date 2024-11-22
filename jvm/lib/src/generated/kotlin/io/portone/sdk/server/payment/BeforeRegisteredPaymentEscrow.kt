@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("BEFORE_REGISTERED")
 public data object BeforeRegisteredPaymentEscrow : PaymentEscrow.Recognized
+
+

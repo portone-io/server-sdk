@@ -13,3 +13,5 @@ internal data class PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentE
   val portOneSupplyWithVatAmount: Long,
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

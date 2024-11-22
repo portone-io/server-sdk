@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformCancelOrderTransfersExistsError(
   override val message: String? = null,
 ) : DeletePlatformTransferError.Recognized
+
+

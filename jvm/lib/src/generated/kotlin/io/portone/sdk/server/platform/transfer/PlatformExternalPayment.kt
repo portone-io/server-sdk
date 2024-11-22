@@ -23,3 +23,5 @@ public data class PlatformExternalPayment(
   /** 결제 일시 */
   override val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
 ) : PlatformPayment.Recognized
+
+

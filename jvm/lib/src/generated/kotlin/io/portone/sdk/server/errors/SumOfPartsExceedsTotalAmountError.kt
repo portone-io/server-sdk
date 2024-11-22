@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class SumOfPartsExceedsTotalAmountError(
   override val message: String? = null,
 ) : CreatePaymentScheduleError.Recognized, PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized
+
+

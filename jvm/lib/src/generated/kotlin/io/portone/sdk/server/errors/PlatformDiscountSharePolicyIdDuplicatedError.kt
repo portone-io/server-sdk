@@ -11,3 +11,5 @@ internal data class PlatformDiscountSharePolicyIdDuplicatedError(
   val graphqlId: String,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

@@ -20,3 +20,5 @@ public data class PlatformOrderTransferOrderLine(
   /** 상품 정산 금액 정보 */
   val amount: PlatformOrderSettlementAmount,
 )
+
+

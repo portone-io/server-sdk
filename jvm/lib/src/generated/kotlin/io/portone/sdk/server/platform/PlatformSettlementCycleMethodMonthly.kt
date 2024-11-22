@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 public data class PlatformSettlementCycleMethodMonthly(
   val daysOfMonth: IntArray,
 ) : PlatformSettlementCycleMethod.Recognized
+
+

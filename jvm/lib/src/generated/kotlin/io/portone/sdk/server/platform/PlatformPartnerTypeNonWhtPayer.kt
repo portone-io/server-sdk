@@ -19,3 +19,5 @@ public data class PlatformPartnerTypeNonWhtPayer(
    */
   val birthdate: String? = null,
 ) : PlatformPartnerType.Recognized
+
+

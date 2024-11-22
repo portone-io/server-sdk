@@ -9,11 +9,17 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 프로모션 */
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(PromotionSerializer::class)
 public sealed interface Promotion {
+  @Serializable
+  @JsonClassDiscriminator("type")
   public sealed interface Recognized : Promotion {
     /** 프로모션 아이디 */
     public val id: String
@@ -46,5 +52,14 @@ public sealed interface Promotion {
     /** 결제 취소 시 프로모션 예산 복구 옵션 */
     public val recoverOption: PromotionRecoverOption
   }
+  @Serializable
   public data object Unrecognized : Promotion
+}
+
+
+private object PromotionSerializer : JsonContentPolymorphicSerializer<Promotion>(Promotion::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "CARD" -> CardPromotion.serializer()
+    else -> Promotion.Unrecognized.serializer()
+  }
 }

@@ -11,3 +11,5 @@ internal data class PlatformTransferAlreadyExistsError(
   val transferGraphqlId: String,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized, CreatePlatformOrderTransferError.Recognized
+
+

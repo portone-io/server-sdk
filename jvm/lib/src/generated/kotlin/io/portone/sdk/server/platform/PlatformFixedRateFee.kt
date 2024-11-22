@@ -18,3 +18,5 @@ public data class PlatformFixedRateFee(
    */
   val rate: Int,
 ) : PlatformFee.Recognized
+
+

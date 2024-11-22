@@ -12,3 +12,5 @@ internal data class PlatformTransferDiscountSharePolicyNotFoundError(
   val productId: String? = null,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

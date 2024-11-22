@@ -27,3 +27,5 @@ public data class ReadyIdentityVerification(
   /** 상태 업데이트 시점 */
   override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
 ) : IdentityVerification.Recognized
+
+

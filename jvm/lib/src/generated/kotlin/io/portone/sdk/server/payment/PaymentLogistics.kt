@@ -21,3 +21,5 @@ public data class PaymentLogistics(
   /** 주소 */
   val address: SeparatedAddressInput? = null,
 )
+
+

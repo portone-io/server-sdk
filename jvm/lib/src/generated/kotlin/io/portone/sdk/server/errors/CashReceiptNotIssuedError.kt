@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class CashReceiptNotIssuedError(
   override val message: String? = null,
 ) : CancelCashReceiptError.Recognized
+
+

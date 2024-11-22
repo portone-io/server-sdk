@@ -59,3 +59,5 @@ internal data class CreatePlatformOrderTransferBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )
+
+

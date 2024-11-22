@@ -67,7 +67,7 @@ public class PgSpecificClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetKakaopayPaymentOrderError>(httpBody)
+        json.decodeFromString<GetKakaopayPaymentOrderError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -75,7 +75,6 @@ public class PgSpecificClient(
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

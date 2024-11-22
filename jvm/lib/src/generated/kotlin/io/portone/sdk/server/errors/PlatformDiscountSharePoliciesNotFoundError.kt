@@ -12,3 +12,5 @@ internal data class PlatformDiscountSharePoliciesNotFoundError(
   val graphqlIds: List<String>,
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

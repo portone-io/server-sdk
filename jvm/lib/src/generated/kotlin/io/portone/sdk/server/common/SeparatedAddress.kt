@@ -27,3 +27,5 @@ public data class SeparatedAddress(
   /** 국가 */
   val country: Country? = null,
 ) : Address.Recognized
+
+

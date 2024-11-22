@@ -25,3 +25,5 @@ public data class IssuedPgBillingKeyIssueResponse(
    */
   val method: BillingKeyPaymentMethod? = null,
 ) : PgBillingKeyIssueResponse.Recognized
+
+

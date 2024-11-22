@@ -18,3 +18,5 @@ public data class CreatePlatformOrderCancelTransferBodyOrderDetail(
   /** 전체 금액 취소 */
   val all: CreatePlatformOrderCancelTransferBodyOrderDetailAll? = null,
 )
+
+

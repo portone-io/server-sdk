@@ -39,3 +39,5 @@ public data class PlatformPartnerOrderSettlement(
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
 ) : PlatformPartnerSettlement.Recognized
+
+

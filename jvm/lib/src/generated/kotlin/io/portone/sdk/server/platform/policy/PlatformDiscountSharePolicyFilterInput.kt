@@ -18,3 +18,5 @@ public data class PlatformDiscountSharePolicyFilterInput(
   /** 검색 키워드 */
   val keyword: PlatformDiscountSharePolicyFilterInputKeyword? = null,
 )
+
+

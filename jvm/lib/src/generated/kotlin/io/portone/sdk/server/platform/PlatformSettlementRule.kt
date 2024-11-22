@@ -12,3 +12,5 @@ public data class PlatformSettlementRule(
   /** 지급 금액에서 원천징수세 차감 여부 */
   val subtractWhtInPayoutAmount: Boolean,
 )
+
+

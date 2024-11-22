@@ -38,3 +38,5 @@ public data class PlatformManualTransfer(
   /** 정산 금액 */
   val settlementAmount: Long,
 ) : PlatformTransfer.Recognized
+
+

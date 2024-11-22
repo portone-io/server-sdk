@@ -12,3 +12,5 @@ internal data class PlatformContractsNotFoundError(
   val graphqlIds: List<String>,
   override val message: String? = null,
 ) : CreatePlatformPartnersError.Recognized
+
+

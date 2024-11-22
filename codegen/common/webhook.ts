@@ -652,6 +652,22 @@ export const entities = [
   ...webhookBillingKeyDataVariants,
 ]
 
+export const types = [
+  ...webhookTransactionVariants.flatMap(extractDiscriminant),
+  ...webhookBillingKeyVariants.flatMap(extractDiscriminant),
+]
+
+function extractDiscriminant(definition: Definition): [string, string][] {
+  if (definition.type === "object") {
+    for (const property of definition.properties) {
+      if (property.type === "discriminant") {
+        return [[property.value, definition.name]]
+      }
+    }
+  }
+  return []
+}
+
 function extendType(
   self: Omit<Definition & ObjectDefinition, "extends">,
   parent: Definition & ObjectDefinition,

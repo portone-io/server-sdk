@@ -10,3 +10,5 @@ internal data class GetAccountTransfersBody(
   val page: PageInput? = null,
   val filter: PlatformAccountTransferFilter? = null,
 )
+
+

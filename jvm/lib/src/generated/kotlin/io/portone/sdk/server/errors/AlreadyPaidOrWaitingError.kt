@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class AlreadyPaidOrWaitingError(
   override val message: String? = null,
 ) : CreatePaymentScheduleError.Recognized
+
+

@@ -177,7 +177,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformError>(httpBody)
+        json.decodeFromString<GetPlatformError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -186,7 +186,6 @@ public class PlatformClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -243,7 +242,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformError>(httpBody)
+        json.decodeFromString<UpdatePlatformError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -254,7 +253,6 @@ public class PlatformClient(
         is PlatformInvalidSettlementFormulaError -> throw PlatformInvalidSettlementFormulaException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -303,7 +301,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -313,7 +311,6 @@ public class PlatformClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -357,7 +354,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -368,7 +365,6 @@ public class PlatformClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -424,7 +420,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<RescheduleDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -435,7 +431,6 @@ public class PlatformClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -493,7 +488,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<ScheduleDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -506,7 +501,6 @@ public class PlatformClient(
         is PlatformDiscountSharePolicyScheduleAlreadyExistsError -> throw PlatformDiscountSharePolicyScheduleAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -552,7 +546,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformDiscountSharePolicyScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformDiscountSharePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -563,7 +557,6 @@ public class PlatformClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -607,7 +600,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -618,7 +611,6 @@ public class PlatformClient(
         is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -672,7 +664,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<RescheduleAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -683,7 +675,6 @@ public class PlatformClient(
         is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -741,7 +732,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<ScheduleAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -754,7 +745,6 @@ public class PlatformClient(
         is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -800,7 +790,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -811,7 +801,6 @@ public class PlatformClient(
         is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -858,7 +847,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnerFilterOptionsError>(httpBody)
+        json.decodeFromString<GetPlatformPartnerFilterOptionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -868,7 +857,6 @@ public class PlatformClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -912,7 +900,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnerScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformPartnerScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -923,7 +911,6 @@ public class PlatformClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -979,7 +966,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ReschedulePartnerError>(httpBody)
+        json.decodeFromString<ReschedulePartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -991,7 +978,6 @@ public class PlatformClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1049,7 +1035,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SchedulePartnerError>(httpBody)
+        json.decodeFromString<SchedulePartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1068,7 +1054,6 @@ public class PlatformClient(
         is PlatformPartnerScheduleAlreadyExistsError -> throw PlatformPartnerScheduleAlreadyExistsException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1114,7 +1099,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformPartnerScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformPartnerScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1125,7 +1110,6 @@ public class PlatformClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1180,7 +1164,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SchedulePlatformPartnersError>(httpBody)
+        json.decodeFromString<SchedulePlatformPartnersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1194,7 +1178,6 @@ public class PlatformClient(
         is PlatformPartnerSchedulesAlreadyExistError -> throw PlatformPartnerSchedulesAlreadyExistException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1240,7 +1223,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformContractScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1251,7 +1234,6 @@ public class PlatformClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1307,7 +1289,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleContractError>(httpBody)
+        json.decodeFromString<RescheduleContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1318,7 +1300,6 @@ public class PlatformClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1376,7 +1357,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleContractError>(httpBody)
+        json.decodeFromString<ScheduleContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1389,7 +1370,6 @@ public class PlatformClient(
         is PlatformContractScheduleAlreadyExistsError -> throw PlatformContractScheduleAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1435,7 +1415,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformContractScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformContractScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1446,7 +1426,6 @@ public class PlatformClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

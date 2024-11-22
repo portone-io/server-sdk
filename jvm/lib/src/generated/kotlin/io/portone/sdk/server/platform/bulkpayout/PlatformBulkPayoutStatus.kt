@@ -1,39 +1,57 @@
 package io.portone.sdk.server.platform.bulkpayout
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable
+@Serializable(PlatformBulkPayoutStatusSerializer::class)
 public sealed interface PlatformBulkPayoutStatus {
   public val value: String
-  @SerialName("SCHEDULED")
   public data object Scheduled : PlatformBulkPayoutStatus {
     override val value: String = "SCHEDULED"
   }
-  @SerialName("PREPARING")
   public data object Preparing : PlatformBulkPayoutStatus {
     override val value: String = "PREPARING"
   }
-  @SerialName("PREPARED")
   public data object Prepared : PlatformBulkPayoutStatus {
     override val value: String = "PREPARED"
   }
-  @SerialName("ONGOING")
   public data object Ongoing : PlatformBulkPayoutStatus {
     override val value: String = "ONGOING"
   }
-  @SerialName("CANCELLED")
   public data object Cancelled : PlatformBulkPayoutStatus {
     override val value: String = "CANCELLED"
   }
-  @SerialName("STOPPED")
   public data object Stopped : PlatformBulkPayoutStatus {
     override val value: String = "STOPPED"
   }
-  @SerialName("COMPLETED")
   public data object Completed : PlatformBulkPayoutStatus {
     override val value: String = "COMPLETED"
   }
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PlatformBulkPayoutStatus
+}
+
+
+private object PlatformBulkPayoutStatusSerializer : KSerializer<PlatformBulkPayoutStatus> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformBulkPayoutStatus::class.java.canonicalName, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): PlatformBulkPayoutStatus {
+    val value = decoder.decodeString()
+    return when (value) {
+      "SCHEDULED" -> PlatformBulkPayoutStatus.Scheduled
+      "PREPARING" -> PlatformBulkPayoutStatus.Preparing
+      "PREPARED" -> PlatformBulkPayoutStatus.Prepared
+      "ONGOING" -> PlatformBulkPayoutStatus.Ongoing
+      "CANCELLED" -> PlatformBulkPayoutStatus.Cancelled
+      "STOPPED" -> PlatformBulkPayoutStatus.Stopped
+      "COMPLETED" -> PlatformBulkPayoutStatus.Completed
+      else -> PlatformBulkPayoutStatus.Unrecognized(value)
+    }
+  }
+  override fun serialize(encoder: Encoder, value: PlatformBulkPayoutStatus) = encoder.encodeString(value.value)
 }

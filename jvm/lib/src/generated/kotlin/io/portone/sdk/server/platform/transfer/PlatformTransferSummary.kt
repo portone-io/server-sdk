@@ -7,10 +7,16 @@ import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyVal
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(PlatformTransferSummarySerializer::class)
 public sealed interface PlatformTransferSummary {
+  @Serializable
+  @JsonClassDiscriminator("type")
   public sealed interface Recognized : PlatformTransferSummary {
     public val id: String
     public val graphqlId: String
@@ -26,5 +32,16 @@ public sealed interface PlatformTransferSummary {
     /** 사용자 정의 속성 */
     public val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
   }
+  @Serializable
   public data object Unrecognized : PlatformTransferSummary
+}
+
+
+private object PlatformTransferSummarySerializer : JsonContentPolymorphicSerializer<PlatformTransferSummary>(PlatformTransferSummary::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "MANUAL" -> PlatformManualTransferSummary.serializer()
+    "ORDER" -> PlatformOrderTransferSummary.serializer()
+    "ORDER_CANCEL" -> PlatformOrderCancelTransferSummary.serializer()
+    else -> PlatformTransferSummary.Unrecognized.serializer()
+  }
 }

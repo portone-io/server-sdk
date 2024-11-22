@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformPartnerNotFoundError(
   override val message: String? = null,
 ) : ArchivePlatformPartnerError.Recognized, CancelPlatformPartnerScheduleError.Recognized, CreatePlatformManualTransferError.Recognized, CreatePlatformOrderTransferError.Recognized, GetPlatformPartnerError.Recognized, GetPlatformPartnerScheduleError.Recognized, RecoverPlatformPartnerError.Recognized, ReschedulePartnerError.Recognized, SchedulePartnerError.Recognized, UpdatePlatformPartnerError.Recognized
+
+

@@ -7,5 +7,6 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface Webhook {
+  @Serializable
   public data object Unrecognized : Webhook
 }

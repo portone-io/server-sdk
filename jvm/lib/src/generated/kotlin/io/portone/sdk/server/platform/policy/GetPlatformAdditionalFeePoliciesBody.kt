@@ -12,3 +12,5 @@ internal data class GetPlatformAdditionalFeePoliciesBody(
   /** 조회할 추가 수수료 정책 조건 필터 */
   val filter: PlatformAdditionalFeePolicyFilterInput? = null,
 )
+
+

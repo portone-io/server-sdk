@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformPartnerScheduleAlreadyExistsError(
   override val message: String? = null,
 ) : SchedulePartnerError.Recognized
+
+

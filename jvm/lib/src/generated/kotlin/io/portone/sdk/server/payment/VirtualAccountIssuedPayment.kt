@@ -90,3 +90,5 @@ public data class VirtualAccountIssuedPayment(
   /** PG사 거래 아이디 */
   val pgTxId: String? = null,
 ) : Payment.Recognized
+
+

@@ -9,3 +9,5 @@ public data class UpdatePlatformResponse(
   /** 업데이트된 플랫폼 정보 */
   val platform: Platform,
 )
+
+

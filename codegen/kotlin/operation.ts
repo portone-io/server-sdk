@@ -247,7 +247,9 @@ export function writeOperation(
       `io.portone.sdk.server.${toPackageCase(category)}.${operation.errors}`,
     )
   }
-  writer.writeLine(`json.decodeFromString<${operation.errors}>(httpBody)`)
+  writer.writeLine(
+    `json.decodeFromString<${operation.errors}.Recognized>(httpBody)`,
+  )
   writer.outdent()
   writer.writeLine("}")
   writer.writeLine("catch (_: Exception) {")
@@ -262,9 +264,6 @@ export function writeOperation(
       `is ${error.name} -> throw ${toException(error.name)}(httpBodyDecoded)`,
     )
   }
-  writer.writeLine(
-    `else -> throw UnknownException("Unknown API error: $httpBody")`,
-  )
   writer.outdent()
   writer.writeLine("}")
   writer.outdent()

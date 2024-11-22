@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("BillingKeyPaymentMethodPaypal")
 public data object BillingKeyPaymentMethodPaypal : BillingKeyPaymentMethod.Recognized
+
+

@@ -11,3 +11,5 @@ public data class PlatformSettlementCycleMethodWeekly(
   /** 요일 */
   val daysOfWeek: List<DayOfWeek>,
 ) : PlatformSettlementCycleMethod.Recognized
+
+

@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformCannotArchiveScheduledContractError(
   override val message: String? = null,
 ) : ArchivePlatformContractError.Recognized
+
+

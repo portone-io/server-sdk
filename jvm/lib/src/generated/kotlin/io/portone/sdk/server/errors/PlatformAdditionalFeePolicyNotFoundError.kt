@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformAdditionalFeePolicyNotFoundError(
   override val message: String? = null,
 ) : ArchivePlatformAdditionalFeePolicyError.Recognized, CancelPlatformAdditionalFeePolicyScheduleError.Recognized, GetPlatformAdditionalFeePolicyError.Recognized, GetPlatformAdditionalFeePolicyScheduleError.Recognized, RecoverPlatformAdditionalFeePolicyError.Recognized, RescheduleAdditionalFeePolicyError.Recognized, ScheduleAdditionalFeePolicyError.Recognized, UpdatePlatformAdditionalFeePolicyError.Recognized
+
+

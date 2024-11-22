@@ -54,3 +54,5 @@ public data class CreatePlatformPartnerBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties? = null,
 )
+
+

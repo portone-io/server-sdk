@@ -13,3 +13,5 @@ public data class IdentityVerificationFailure(
   /** PG사 실패 메시지 */
   val pgMessage: String? = null,
 )
+
+

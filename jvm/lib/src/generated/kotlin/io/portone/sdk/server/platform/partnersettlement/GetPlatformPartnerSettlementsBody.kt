@@ -13,3 +13,5 @@ internal data class GetPlatformPartnerSettlementsBody(
   val filter: PlatformPartnerSettlementFilterInput,
   val isForTest: Boolean,
 )
+
+

@@ -15,12 +15,11 @@ export function generateEntity(
 ): string {
   const crossRef = new Set<string>()
   const writer = KotlinWriter()
+  const serializerWriter = KotlinWriter()
   writeDescription(
     writer,
     definition.description,
   )
-  writer.writeLine("@Serializable")
-  crossRef.add("kotlinx.serialization.Serializable")
   const extension = childrenMap.get(definition.name)
   const extendList = extension
     ? ` : ${
@@ -45,6 +44,8 @@ export function generateEntity(
         }
         properties = properties.concat(entity.properties)
       }
+      writer.writeLine("@Serializable")
+      crossRef.add("kotlinx.serialization.Serializable")
       const firstProperty = properties[0]
       if (firstProperty?.type === "discriminant") {
         writer.writeLine(`@SerialName("${firstProperty.value}")`)
@@ -216,13 +217,40 @@ export function generateEntity(
       break
     }
     case "oneOf": {
+      serializerWriter.writeLine(
+        `private object ${definition.name}Serializer : JsonContentPolymorphicSerializer<${definition.name}>(${definition.name}::class) {`,
+      )
+      crossRef.add(
+        "kotlinx.serialization.json.JsonContentPolymorphicSerializer",
+      )
+      serializerWriter.indent()
+      serializerWriter.writeLine(
+        `override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["${definition.property}"]?.jsonPrimitive?.contentOrNull) {`,
+      )
+      crossRef.add("kotlinx.serialization.json.JsonElement")
+      crossRef.add("kotlinx.serialization.json.contentOrNull")
+      crossRef.add("kotlinx.serialization.json.jsonObject")
+      crossRef.add("kotlinx.serialization.json.jsonPrimitive")
+      serializerWriter.indent()
+      for (const { value, name } of definition.variants) {
+        serializerWriter.writeLine(`"${value}" -> ${name}.serializer()`)
+      }
+      serializerWriter.writeLine(
+        `else -> ${definition.name}.Unrecognized.serializer()`,
+      )
+      serializerWriter.outdent()
+      serializerWriter.writeLine("}")
+      serializerWriter.outdent()
+      serializerWriter.writeLine("}")
+      writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
+      crossRef.add("kotlinx.serialization.Serializable")
+      writer.writeLine(`public sealed interface ${definition.name} {`)
+      writer.indent()
+      writer.writeLine("@Serializable")
       writer.writeLine(
         `@JsonClassDiscriminator("${definition.property}")`,
       )
       crossRef.add("kotlinx.serialization.json.JsonClassDiscriminator")
-
-      writer.writeLine(`public sealed interface ${definition.name} {`)
-      writer.indent()
       writer.writeLine(
         `public sealed interface Recognized : ${definition.name} {`,
       )
@@ -364,12 +392,54 @@ export function generateEntity(
       }
       writer.outdent()
       writer.writeLine("}")
+      writer.writeLine("@Serializable")
       writer.writeLine(`public data object Unrecognized : ${definition.name}`)
       writer.outdent()
       writer.writeLine("}")
       break
     }
     case "enum":
+      writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
+      serializerWriter.writeLine(
+        `private object ${definition.name}Serializer : KSerializer<${definition.name}> {`,
+      )
+      crossRef.add("kotlinx.serialization.KSerializer")
+      serializerWriter.indent()
+      serializerWriter.writeLine(
+        `override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(${definition.name}::class.java.canonicalName, PrimitiveKind.STRING)`,
+      )
+      crossRef.add("kotlinx.serialization.descriptors.PrimitiveKind")
+      crossRef.add(
+        "kotlinx.serialization.descriptors.PrimitiveSerialDescriptor",
+      )
+      crossRef.add("kotlinx.serialization.descriptors.SerialDescriptor")
+      serializerWriter.writeLine(
+        `override fun deserialize(decoder: Decoder): ${definition.name} {`,
+      )
+      crossRef.add("kotlinx.serialization.encoding.Decoder")
+      serializerWriter.indent()
+      serializerWriter.writeLine("val value = decoder.decodeString()")
+      serializerWriter.writeLine("return when (value) {")
+      serializerWriter.indent()
+      for (const { value } of definition.variants) {
+        serializerWriter.writeLine(
+          `"${value}" -> ${definition.name}.${toPascalCase(value)}`,
+        )
+      }
+      serializerWriter.writeLine(
+        `else -> ${definition.name}.Unrecognized(value)`,
+      )
+      serializerWriter.outdent()
+      serializerWriter.writeLine("}")
+      serializerWriter.outdent()
+      serializerWriter.writeLine("}")
+      serializerWriter.writeLine(
+        `override fun serialize(encoder: Encoder, value: ${definition.name}) = encoder.encodeString(value.value)`,
+      )
+      crossRef.add("kotlinx.serialization.encoding.Encoder")
+      serializerWriter.outdent()
+      serializerWriter.writeLine("}")
+      crossRef.add("kotlinx.serialization.Serializable")
       writer.writeLine(
         `public sealed interface ${definition.name} {`,
       )
@@ -379,7 +449,6 @@ export function generateEntity(
         const mergedDescription = [title ?? []].concat([description ?? []])
           .flat().join("\n\n")
         writeDescription(writer, mergedDescription)
-        writer.writeLine(`@SerialName("${value}")`)
         crossRef.add("kotlinx.serialization.SerialName")
         writer.writeLine(
           `public data object ${toPascalCase(value)} : ${definition.name} {`,
@@ -416,6 +485,6 @@ export function generateEntity(
   const content = [`package ${toPackageCase(hierarchy)}`].concat(
     imports.length > 0 ? imports.join("\n") : [],
   )
-    .concat(writer.content).join("\n\n")
+    .concat(writer.content).concat(serializerWriter.content).join("\n\n")
   return content
 }

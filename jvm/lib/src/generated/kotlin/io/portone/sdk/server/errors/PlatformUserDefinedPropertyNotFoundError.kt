@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformUserDefinedPropertyNotFoundError(
   override val message: String? = null,
 ) : CreatePlatformManualTransferError.Recognized, CreatePlatformOrderCancelTransferError.Recognized, CreatePlatformOrderTransferError.Recognized, CreatePlatformPartnerError.Recognized, CreatePlatformPartnersError.Recognized, SchedulePartnerError.Recognized, SchedulePlatformPartnersError.Recognized, UpdatePlatformPartnerError.Recognized
+
+

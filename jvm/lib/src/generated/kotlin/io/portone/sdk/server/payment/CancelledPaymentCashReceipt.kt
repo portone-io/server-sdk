@@ -31,3 +31,5 @@ public data class CancelledPaymentCashReceipt(
   /** 취소 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentCashReceipt.Recognized
+
+

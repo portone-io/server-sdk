@@ -36,3 +36,5 @@ public data class PaymentScheduleFilterInput(
    */
   val status: List<PaymentScheduleStatus>? = null,
 )
+
+

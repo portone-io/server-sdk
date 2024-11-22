@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentScheduleNotFoundError(
   override val message: String? = null,
 ) : GetPaymentScheduleError.Recognized, RevokePaymentSchedulesError.Recognized
+
+

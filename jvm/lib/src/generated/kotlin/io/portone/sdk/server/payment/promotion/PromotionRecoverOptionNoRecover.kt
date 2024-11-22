@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 public data class PromotionRecoverOptionNoRecover(
   val spareBudget: PromotionSpareBudget? = null,
 ) : PromotionRecoverOption.Recognized
+
+

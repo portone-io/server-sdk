@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentScheduleAlreadyRevokedError(
   override val message: String? = null,
 ) : RevokePaymentSchedulesError.Recognized
+
+

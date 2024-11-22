@@ -15,3 +15,5 @@ internal data class ChannelSpecificError(
   /** (결제, 본인인증 등에) 선택된 채널 정보 */
   val succeededChannels: List<SelectedChannel>,
 ) : DeleteBillingKeyError.Recognized, IssueBillingKeyError.Recognized
+
+

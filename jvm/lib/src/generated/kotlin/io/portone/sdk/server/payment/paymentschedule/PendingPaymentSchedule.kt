@@ -57,3 +57,5 @@ public data class PendingPaymentSchedule(
   /** 결제 완료 시점 */
   val completedAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentSchedule.Recognized
+
+

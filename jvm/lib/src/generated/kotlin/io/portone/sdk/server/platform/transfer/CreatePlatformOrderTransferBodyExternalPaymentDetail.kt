@@ -19,3 +19,5 @@ public data class CreatePlatformOrderTransferBodyExternalPaymentDetail(
   /** 결제 수단 */
   val method: PlatformPaymentMethodInput? = null,
 )
+
+

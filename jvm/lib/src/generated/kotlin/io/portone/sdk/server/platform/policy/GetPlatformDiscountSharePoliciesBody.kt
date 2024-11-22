@@ -12,3 +12,5 @@ internal data class GetPlatformDiscountSharePoliciesBody(
   /** 조회할 할인 분담 정책 조건 필터 */
   val filter: PlatformDiscountSharePolicyFilterInput? = null,
 )
+
+

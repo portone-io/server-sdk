@@ -56,3 +56,5 @@ public data class DeletedBillingKeyInfo(
   /** 발급 삭제 시점 */
   val deletedAt: @Serializable(InstantSerializer::class) Instant,
 ) : BillingKeyInfo.Recognized
+
+

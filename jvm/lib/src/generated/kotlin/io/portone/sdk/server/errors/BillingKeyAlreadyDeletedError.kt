@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class BillingKeyAlreadyDeletedError(
   override val message: String? = null,
 ) : CreatePaymentScheduleError.Recognized, DeleteBillingKeyError.Recognized, PayWithBillingKeyError.Recognized, RevokePaymentSchedulesError.Recognized
+
+

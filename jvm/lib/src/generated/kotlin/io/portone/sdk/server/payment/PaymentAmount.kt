@@ -26,3 +26,5 @@ public data class PaymentAmount(
   /** 취소금액 중 면세액 */
   val cancelledTaxFree: Long,
 )
+
+

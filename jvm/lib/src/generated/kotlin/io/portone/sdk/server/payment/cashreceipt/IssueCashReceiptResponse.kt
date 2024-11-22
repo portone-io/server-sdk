@@ -8,3 +8,5 @@ import kotlinx.serialization.Serializable
 public data class IssueCashReceiptResponse(
   val cashReceipt: CashReceiptSummary,
 )
+
+

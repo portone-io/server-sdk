@@ -9,3 +9,5 @@ public data class PayWithBillingKeyResponse(
   /** 결제 건 요약 정보 */
   val payment: BillingKeyPaymentSummary,
 )
+
+

@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class BillingKeyNotIssuedError(
   override val message: String? = null,
 ) : DeleteBillingKeyError.Recognized
+
+

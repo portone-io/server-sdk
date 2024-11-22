@@ -15,3 +15,5 @@ public data class OneLineAddress(
   /** 주소 (한 줄) */
   override val oneLine: String,
 ) : Address.Recognized
+
+

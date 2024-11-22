@@ -9,3 +9,5 @@ public data class RecoverPlatformPartnerResponse(
   /** 복원된 파트너 */
   val partner: PlatformPartner,
 )
+
+

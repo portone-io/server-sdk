@@ -2,7 +2,10 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import { entities as webhookEntities } from "../common/webhook.ts"
+import {
+  entities as webhookEntities,
+  types as webhookTypes,
+} from "../common/webhook.ts"
 import type { Definition, Property } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import {
@@ -58,6 +61,7 @@ export function generateProject(projectRoot: string, pack: Package) {
     internals,
   )
   generateWebhook(packagePath)
+  generateWebhookSerializer(packagePath)
   generateRootClient(packagePath, pack, entityMap, categoryMap)
 }
 
@@ -70,6 +74,43 @@ function generateWebhook(
     const entityPath = path.join(webhookPath, `${entity.name}.kt`)
     Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
   }
+}
+
+function generateWebhookSerializer(srcPath: string) {
+  const writer = KotlinWriter()
+  writer.writeLine("package io.portone.sdk.server.webhook")
+  const imports = [
+    "kotlinx.serialization.DeserializationStrategy",
+    "kotlinx.serialization.json.JsonContentPolymorphicSerializer",
+    "kotlinx.serialization.json.JsonElement",
+    "kotlinx.serialization.json.contentOrNull",
+    "kotlinx.serialization.json.jsonObject",
+    "kotlinx.serialization.json.jsonPrimitive",
+  ]
+  for (const item of imports) {
+    writer.writeLine(`import ${item}`)
+  }
+  writer.writeLine("")
+  writer.writeLine(
+    "internal object WebhookSerializer : JsonContentPolymorphicSerializer<Webhook>(Webhook::class) {",
+  )
+  writer.indent()
+  writer.writeLine(
+    `override fun selectDeserializer(element: JsonElement): DeserializationStrategy<Webhook> = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {`,
+  )
+  writer.indent()
+  for (const [value, name] of webhookTypes) {
+    writer.writeLine(`"${value}" -> ${name}.serializer()`)
+  }
+  writer.writeLine("else -> Webhook.Unrecognized.serializer()")
+  writer.outdent()
+  writer.writeLine("}")
+  writer.outdent()
+  writer.writeLine("}")
+  Deno.writeTextFileSync(
+    path.join(srcPath, "webhook", "WebhookSerializer.kt"),
+    writer.content,
+  )
 }
 
 function generateExceptions(

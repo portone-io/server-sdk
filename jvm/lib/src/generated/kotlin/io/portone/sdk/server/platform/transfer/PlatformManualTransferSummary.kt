@@ -26,3 +26,5 @@ public data class PlatformManualTransferSummary(
   override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   val settlementAmount: Long,
 ) : PlatformTransferSummary.Recognized
+
+

@@ -1,36 +1,54 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /** 에스크로 상태 */
-@Serializable
+@Serializable(PaymentFilterInputEscrowStatusSerializer::class)
 public sealed interface PaymentFilterInputEscrowStatus {
   public val value: String
-  @SerialName("REGISTERED")
   public data object Registered : PaymentFilterInputEscrowStatus {
     override val value: String = "REGISTERED"
   }
-  @SerialName("DELIVERED")
   public data object Delivered : PaymentFilterInputEscrowStatus {
     override val value: String = "DELIVERED"
   }
-  @SerialName("CONFIRMED")
   public data object Confirmed : PaymentFilterInputEscrowStatus {
     override val value: String = "CONFIRMED"
   }
-  @SerialName("REJECTED")
   public data object Rejected : PaymentFilterInputEscrowStatus {
     override val value: String = "REJECTED"
   }
-  @SerialName("CANCELLED")
   public data object Cancelled : PaymentFilterInputEscrowStatus {
     override val value: String = "CANCELLED"
   }
-  @SerialName("REJECT_CONFIRMED")
   public data object RejectConfirmed : PaymentFilterInputEscrowStatus {
     override val value: String = "REJECT_CONFIRMED"
   }
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentFilterInputEscrowStatus
+}
+
+
+private object PaymentFilterInputEscrowStatusSerializer : KSerializer<PaymentFilterInputEscrowStatus> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentFilterInputEscrowStatus::class.java.canonicalName, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): PaymentFilterInputEscrowStatus {
+    val value = decoder.decodeString()
+    return when (value) {
+      "REGISTERED" -> PaymentFilterInputEscrowStatus.Registered
+      "DELIVERED" -> PaymentFilterInputEscrowStatus.Delivered
+      "CONFIRMED" -> PaymentFilterInputEscrowStatus.Confirmed
+      "REJECTED" -> PaymentFilterInputEscrowStatus.Rejected
+      "CANCELLED" -> PaymentFilterInputEscrowStatus.Cancelled
+      "REJECT_CONFIRMED" -> PaymentFilterInputEscrowStatus.RejectConfirmed
+      else -> PaymentFilterInputEscrowStatus.Unrecognized(value)
+    }
+  }
+  override fun serialize(encoder: Encoder, value: PaymentFilterInputEscrowStatus) = encoder.encodeString(value.value)
 }

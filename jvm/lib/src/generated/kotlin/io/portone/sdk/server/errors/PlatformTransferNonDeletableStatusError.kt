@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformTransferNonDeletableStatusError(
   override val message: String? = null,
 ) : DeletePlatformTransferError.Recognized
+
+

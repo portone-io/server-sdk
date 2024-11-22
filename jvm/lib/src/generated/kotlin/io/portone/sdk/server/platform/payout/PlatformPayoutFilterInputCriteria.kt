@@ -11,3 +11,5 @@ public data class PlatformPayoutFilterInputCriteria(
   val payoutId: String? = null,
   val bulkPayoutId: String? = null,
 )
+
+

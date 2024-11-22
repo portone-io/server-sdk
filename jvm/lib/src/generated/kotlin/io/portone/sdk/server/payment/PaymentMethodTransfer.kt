@@ -11,3 +11,5 @@ public data class PaymentMethodTransfer(
   /** 표준 은행 코드 */
   val bank: Bank? = null,
 ) : PaymentMethod.Recognized, PaymentMethodEasyPayMethod.Recognized
+
+

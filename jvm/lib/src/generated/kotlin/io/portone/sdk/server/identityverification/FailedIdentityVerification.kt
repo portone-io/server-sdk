@@ -30,3 +30,5 @@ public data class FailedIdentityVerification(
   /** 본인인증 실패 정보 */
   val failure: IdentityVerificationFailure,
 ) : IdentityVerification.Recognized
+
+

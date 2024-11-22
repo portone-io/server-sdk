@@ -39,3 +39,5 @@ public data class PlatformRemitAccountTransfer(
   /** 전자서명 아이디 */
   val documentId: String,
 ) : PlatformAccountTransfer.Recognized
+
+

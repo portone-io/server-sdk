@@ -9,3 +9,5 @@ public data class RecoverPlatformDiscountSharePolicyResponse(
   /** 복원된 할인 분담 */
   val discountSharePolicy: PlatformDiscountSharePolicy,
 )
+
+

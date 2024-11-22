@@ -11,3 +11,5 @@ public data class BillingKeyPaymentMethodMobile(
   /** 전화번호 */
   val phoneNumber: String? = null,
 ) : BillingKeyPaymentMethod.Recognized
+
+

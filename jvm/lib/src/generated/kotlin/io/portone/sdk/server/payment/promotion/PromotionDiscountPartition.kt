@@ -9,3 +9,5 @@ public data class PromotionDiscountPartition(
   val amountFrom: Long,
   val scheme: PromotionDiscountScheme,
 )
+
+

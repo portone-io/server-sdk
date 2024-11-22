@@ -152,7 +152,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePoliciesError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -162,7 +162,6 @@ public class PolicyClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -228,7 +227,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -239,7 +238,6 @@ public class PolicyClient(
         is PlatformDiscountSharePolicyAlreadyExistsError -> throw PlatformDiscountSharePolicyAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -288,7 +286,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -299,7 +297,6 @@ public class PolicyClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -363,7 +360,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -375,7 +372,6 @@ public class PolicyClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -424,7 +420,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<ArchivePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -436,7 +432,6 @@ public class PolicyClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -482,7 +477,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<RecoverPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -493,7 +488,6 @@ public class PolicyClient(
         is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -547,7 +541,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePoliciesError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -557,7 +551,6 @@ public class PolicyClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -627,7 +620,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<CreatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -638,7 +631,6 @@ public class PolicyClient(
         is PlatformAdditionalFeePolicyAlreadyExistsError -> throw PlatformAdditionalFeePolicyAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -688,7 +680,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -699,7 +691,6 @@ public class PolicyClient(
         is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -765,7 +756,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -777,7 +768,6 @@ public class PolicyClient(
         is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -827,7 +817,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<ArchivePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -839,7 +829,6 @@ public class PolicyClient(
         is PlatformCannotArchiveScheduledAdditionalFeePolicyError -> throw PlatformCannotArchiveScheduledAdditionalFeePolicyException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -885,7 +874,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<RecoverPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -896,7 +885,6 @@ public class PolicyClient(
         is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -950,7 +938,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractsError>(httpBody)
+        json.decodeFromString<GetPlatformContractsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -960,7 +948,6 @@ public class PolicyClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1038,7 +1025,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformContractError>(httpBody)
+        json.decodeFromString<CreatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1049,7 +1036,6 @@ public class PolicyClient(
         is PlatformContractAlreadyExistsError -> throw PlatformContractAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1101,7 +1087,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractError>(httpBody)
+        json.decodeFromString<GetPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1112,7 +1098,6 @@ public class PolicyClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1186,7 +1171,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformContractError>(httpBody)
+        json.decodeFromString<UpdatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1198,7 +1183,6 @@ public class PolicyClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1250,7 +1234,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformContractError>(httpBody)
+        json.decodeFromString<ArchivePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1262,7 +1246,6 @@ public class PolicyClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1308,7 +1291,7 @@ public class PolicyClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformContractError>(httpBody)
+        json.decodeFromString<RecoverPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1319,7 +1302,6 @@ public class PolicyClient(
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

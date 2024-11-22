@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class IdentityVerificationAlreadySentError(
   override val message: String? = null,
 ) : SendIdentityVerificationError.Recognized
+
+

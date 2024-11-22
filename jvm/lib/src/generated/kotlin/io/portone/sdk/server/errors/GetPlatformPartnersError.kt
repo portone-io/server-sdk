@@ -3,12 +3,30 @@ package io.portone.sdk.server.errors
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(GetPlatformPartnersErrorSerializer::class)
 public sealed interface GetPlatformPartnersError {
+  @Serializable
+  @JsonClassDiscriminator("type")
   public sealed interface Recognized : GetPlatformPartnersError {
     public val message: String?
   }
+  @Serializable
   public data object Unrecognized : GetPlatformPartnersError
+}
+
+
+private object GetPlatformPartnersErrorSerializer : JsonContentPolymorphicSerializer<GetPlatformPartnersError>(GetPlatformPartnersError::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "FORBIDDEN" -> ForbiddenError.serializer()
+    "INVALID_REQUEST" -> InvalidRequestError.serializer()
+    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+    "UNAUTHORIZED" -> UnauthorizedError.serializer()
+    else -> GetPlatformPartnersError.Unrecognized.serializer()
+  }
 }

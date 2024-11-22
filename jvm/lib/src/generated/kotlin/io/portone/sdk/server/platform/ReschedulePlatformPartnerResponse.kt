@@ -9,3 +9,5 @@ public data class ReschedulePlatformPartnerResponse(
   /** 예약된 파트너 정보 */
   val scheduledPartner: PlatformPartner,
 )
+
+

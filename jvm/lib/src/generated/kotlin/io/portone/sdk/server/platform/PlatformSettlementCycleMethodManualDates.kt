@@ -11,3 +11,5 @@ public data class PlatformSettlementCycleMethodManualDates(
   /** 월 및 일자 정보 */
   val dates: List<MonthDay>,
 ) : PlatformSettlementCycleMethod.Recognized
+
+

@@ -80,7 +80,7 @@ public class BulkPayoutClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformBulkPayoutsError>(httpBody)
+        json.decodeFromString<GetPlatformBulkPayoutsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -90,7 +90,6 @@ public class BulkPayoutClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

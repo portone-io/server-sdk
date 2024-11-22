@@ -14,3 +14,5 @@ internal data class PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementC
   val settlementCurrency: Currency,
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

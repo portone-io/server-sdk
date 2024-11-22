@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformAccountVerificationAlreadyUsedError(
   override val message: String? = null,
 ) : CreatePlatformPartnerError.Recognized, SchedulePartnerError.Recognized, UpdatePlatformPartnerError.Recognized
+
+

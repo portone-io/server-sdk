@@ -8,3 +8,5 @@ import kotlinx.serialization.Serializable
 public data class PromotionSpareBudgetPercent(
   val percent: Int,
 ) : PromotionSpareBudget.Recognized
+
+

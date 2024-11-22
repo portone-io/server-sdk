@@ -8,11 +8,17 @@ import kotlin.Array
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 결제 예약 건 */
-@Serializable
-@JsonClassDiscriminator("status")
+@Serializable(PaymentScheduleSerializer::class)
 public sealed interface PaymentSchedule {
+  @Serializable
+  @JsonClassDiscriminator("status")
   public sealed interface Recognized : PaymentSchedule {
     /** 결제 예약 건 아이디 */
     public val id: String
@@ -53,5 +59,19 @@ public sealed interface PaymentSchedule {
     /** 결제 예정 시점 */
     public val timeToPay: Instant
   }
+  @Serializable
   public data object Unrecognized : PaymentSchedule
+}
+
+
+private object PaymentScheduleSerializer : JsonContentPolymorphicSerializer<PaymentSchedule>(PaymentSchedule::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+    "FAILED" -> FailedPaymentSchedule.serializer()
+    "PENDING" -> PendingPaymentSchedule.serializer()
+    "REVOKED" -> RevokedPaymentSchedule.serializer()
+    "SCHEDULED" -> ScheduledPaymentSchedule.serializer()
+    "STARTED" -> StartedPaymentSchedule.serializer()
+    "SUCCEEDED" -> SucceededPaymentSchedule.serializer()
+    else -> PaymentSchedule.Unrecognized.serializer()
+  }
 }

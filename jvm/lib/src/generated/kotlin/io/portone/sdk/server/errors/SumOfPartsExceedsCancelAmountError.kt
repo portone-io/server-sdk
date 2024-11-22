@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class SumOfPartsExceedsCancelAmountError(
   override val message: String? = null,
 ) : CancelPaymentError.Recognized
+
+

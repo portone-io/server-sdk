@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformContractAlreadyExistsError(
   override val message: String? = null,
 ) : CreatePlatformContractError.Recognized
+
+

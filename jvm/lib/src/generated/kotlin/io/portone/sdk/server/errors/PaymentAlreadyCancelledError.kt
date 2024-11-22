@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentAlreadyCancelledError(
   override val message: String? = null,
 ) : CancelPaymentError.Recognized
+
+

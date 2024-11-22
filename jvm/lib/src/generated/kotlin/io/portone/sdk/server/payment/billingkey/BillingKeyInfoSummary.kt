@@ -15,3 +15,5 @@ public data class BillingKeyInfoSummary(
   /** 빌링크 발급 완료 시점 */
   val issuedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

@@ -12,3 +12,5 @@ public data class SchedulePlatformPartnersBodyUpdateTypeWhtPayer(
    */
   val birthdate: String? = null,
 )
+
+

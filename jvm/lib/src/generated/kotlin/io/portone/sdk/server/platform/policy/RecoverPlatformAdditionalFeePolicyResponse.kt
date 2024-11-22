@@ -9,3 +9,5 @@ public data class RecoverPlatformAdditionalFeePolicyResponse(
   /** 복원된 추가 수수료 정책 */
   val additionalFeePolicy: PlatformAdditionalFeePolicy,
 )
+
+

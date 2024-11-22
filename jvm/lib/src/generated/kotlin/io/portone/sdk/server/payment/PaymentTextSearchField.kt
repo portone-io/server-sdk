@@ -1,140 +1,158 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /** 통합검색 항목 */
-@Serializable
+@Serializable(PaymentTextSearchFieldSerializer::class)
 public sealed interface PaymentTextSearchField {
   public val value: String
-  @SerialName("ALL")
   public data object All : PaymentTextSearchField {
     override val value: String = "ALL"
   }
-  @SerialName("PAYMENT_ID")
   public data object PaymentId : PaymentTextSearchField {
     override val value: String = "PAYMENT_ID"
   }
-  @SerialName("TX_ID")
   public data object TxId : PaymentTextSearchField {
     override val value: String = "TX_ID"
   }
-  @SerialName("SCHEDULE_ID")
   public data object ScheduleId : PaymentTextSearchField {
     override val value: String = "SCHEDULE_ID"
   }
-  @SerialName("FAIL_REASON")
   public data object FailReason : PaymentTextSearchField {
     override val value: String = "FAIL_REASON"
   }
-  @SerialName("CARD_ISSUER")
   public data object CardIssuer : PaymentTextSearchField {
     override val value: String = "CARD_ISSUER"
   }
-  @SerialName("CARD_ACQUIRER")
   public data object CardAcquirer : PaymentTextSearchField {
     override val value: String = "CARD_ACQUIRER"
   }
-  @SerialName("CARD_BIN")
   public data object CardBin : PaymentTextSearchField {
     override val value: String = "CARD_BIN"
   }
-  @SerialName("CARD_NUMBER")
   public data object CardNumber : PaymentTextSearchField {
     override val value: String = "CARD_NUMBER"
   }
-  @SerialName("CARD_APPROVAL_NUMBER")
   public data object CardApprovalNumber : PaymentTextSearchField {
     override val value: String = "CARD_APPROVAL_NUMBER"
   }
-  @SerialName("CARD_RECEIPT_NAME")
   public data object CardReceiptName : PaymentTextSearchField {
     override val value: String = "CARD_RECEIPT_NAME"
   }
-  @SerialName("CARD_INSTALLMENT")
   public data object CardInstallment : PaymentTextSearchField {
     override val value: String = "CARD_INSTALLMENT"
   }
-  @SerialName("TRANS_BANK")
   public data object TransBank : PaymentTextSearchField {
     override val value: String = "TRANS_BANK"
   }
-  @SerialName("VIRTUAL_ACCOUNT_HOLDER_NAME")
   public data object VirtualAccountHolderName : PaymentTextSearchField {
     override val value: String = "VIRTUAL_ACCOUNT_HOLDER_NAME"
   }
-  @SerialName("VIRTUAL_ACCOUNT_BANK")
   public data object VirtualAccountBank : PaymentTextSearchField {
     override val value: String = "VIRTUAL_ACCOUNT_BANK"
   }
-  @SerialName("VIRTUAL_ACCOUNT_NUMBER")
   public data object VirtualAccountNumber : PaymentTextSearchField {
     override val value: String = "VIRTUAL_ACCOUNT_NUMBER"
   }
-  @SerialName("PG_MERCHANT_ID")
   public data object PgMerchantId : PaymentTextSearchField {
     override val value: String = "PG_MERCHANT_ID"
   }
-  @SerialName("PG_TX_ID")
   public data object PgTxId : PaymentTextSearchField {
     override val value: String = "PG_TX_ID"
   }
-  @SerialName("PG_RECEIPT_ID")
   public data object PgReceiptId : PaymentTextSearchField {
     override val value: String = "PG_RECEIPT_ID"
   }
-  @SerialName("RECEIPT_APPROVAL_NUMBER")
   public data object ReceiptApprovalNumber : PaymentTextSearchField {
     override val value: String = "RECEIPT_APPROVAL_NUMBER"
   }
-  @SerialName("PG_CANCELLATION_ID")
   public data object PgCancellationId : PaymentTextSearchField {
     override val value: String = "PG_CANCELLATION_ID"
   }
-  @SerialName("CANCEL_REASON")
   public data object CancelReason : PaymentTextSearchField {
     override val value: String = "CANCEL_REASON"
   }
-  @SerialName("ORDER_NAME")
   public data object OrderName : PaymentTextSearchField {
     override val value: String = "ORDER_NAME"
   }
-  @SerialName("CUSTOMER_NAME")
   public data object CustomerName : PaymentTextSearchField {
     override val value: String = "CUSTOMER_NAME"
   }
-  @SerialName("CUSTOMER_EMAIL")
   public data object CustomerEmail : PaymentTextSearchField {
     override val value: String = "CUSTOMER_EMAIL"
   }
-  @SerialName("CUSTOMER_PHONE_NUMBER")
   public data object CustomerPhoneNumber : PaymentTextSearchField {
     override val value: String = "CUSTOMER_PHONE_NUMBER"
   }
-  @SerialName("CUSTOMER_ADDRESS")
   public data object CustomerAddress : PaymentTextSearchField {
     override val value: String = "CUSTOMER_ADDRESS"
   }
-  @SerialName("CUSTOMER_ZIPCODE")
   public data object CustomerZipcode : PaymentTextSearchField {
     override val value: String = "CUSTOMER_ZIPCODE"
   }
-  @SerialName("USER_AGENT")
   public data object UserAgent : PaymentTextSearchField {
     override val value: String = "USER_AGENT"
   }
-  @SerialName("BILLING_KEY")
   public data object BillingKey : PaymentTextSearchField {
     override val value: String = "BILLING_KEY"
   }
-  @SerialName("PROMOTION_ID")
   public data object PromotionId : PaymentTextSearchField {
     override val value: String = "PROMOTION_ID"
   }
-  @SerialName("GIFT_CERTIFICATION_APPROVAL_NUMBER")
   public data object GiftCertificationApprovalNumber : PaymentTextSearchField {
     override val value: String = "GIFT_CERTIFICATION_APPROVAL_NUMBER"
   }
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentTextSearchField
+}
+
+
+private object PaymentTextSearchFieldSerializer : KSerializer<PaymentTextSearchField> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentTextSearchField::class.java.canonicalName, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): PaymentTextSearchField {
+    val value = decoder.decodeString()
+    return when (value) {
+      "ALL" -> PaymentTextSearchField.All
+      "PAYMENT_ID" -> PaymentTextSearchField.PaymentId
+      "TX_ID" -> PaymentTextSearchField.TxId
+      "SCHEDULE_ID" -> PaymentTextSearchField.ScheduleId
+      "FAIL_REASON" -> PaymentTextSearchField.FailReason
+      "CARD_ISSUER" -> PaymentTextSearchField.CardIssuer
+      "CARD_ACQUIRER" -> PaymentTextSearchField.CardAcquirer
+      "CARD_BIN" -> PaymentTextSearchField.CardBin
+      "CARD_NUMBER" -> PaymentTextSearchField.CardNumber
+      "CARD_APPROVAL_NUMBER" -> PaymentTextSearchField.CardApprovalNumber
+      "CARD_RECEIPT_NAME" -> PaymentTextSearchField.CardReceiptName
+      "CARD_INSTALLMENT" -> PaymentTextSearchField.CardInstallment
+      "TRANS_BANK" -> PaymentTextSearchField.TransBank
+      "VIRTUAL_ACCOUNT_HOLDER_NAME" -> PaymentTextSearchField.VirtualAccountHolderName
+      "VIRTUAL_ACCOUNT_BANK" -> PaymentTextSearchField.VirtualAccountBank
+      "VIRTUAL_ACCOUNT_NUMBER" -> PaymentTextSearchField.VirtualAccountNumber
+      "PG_MERCHANT_ID" -> PaymentTextSearchField.PgMerchantId
+      "PG_TX_ID" -> PaymentTextSearchField.PgTxId
+      "PG_RECEIPT_ID" -> PaymentTextSearchField.PgReceiptId
+      "RECEIPT_APPROVAL_NUMBER" -> PaymentTextSearchField.ReceiptApprovalNumber
+      "PG_CANCELLATION_ID" -> PaymentTextSearchField.PgCancellationId
+      "CANCEL_REASON" -> PaymentTextSearchField.CancelReason
+      "ORDER_NAME" -> PaymentTextSearchField.OrderName
+      "CUSTOMER_NAME" -> PaymentTextSearchField.CustomerName
+      "CUSTOMER_EMAIL" -> PaymentTextSearchField.CustomerEmail
+      "CUSTOMER_PHONE_NUMBER" -> PaymentTextSearchField.CustomerPhoneNumber
+      "CUSTOMER_ADDRESS" -> PaymentTextSearchField.CustomerAddress
+      "CUSTOMER_ZIPCODE" -> PaymentTextSearchField.CustomerZipcode
+      "USER_AGENT" -> PaymentTextSearchField.UserAgent
+      "BILLING_KEY" -> PaymentTextSearchField.BillingKey
+      "PROMOTION_ID" -> PaymentTextSearchField.PromotionId
+      "GIFT_CERTIFICATION_APPROVAL_NUMBER" -> PaymentTextSearchField.GiftCertificationApprovalNumber
+      else -> PaymentTextSearchField.Unrecognized(value)
+    }
+  }
+  override fun serialize(encoder: Encoder, value: PaymentTextSearchField) = encoder.encodeString(value.value)
 }

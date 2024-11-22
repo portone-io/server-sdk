@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformExternalApiFailedError(
   override val message: String? = null,
 ) : GetPlatformAccountHolderError.Recognized
+
+

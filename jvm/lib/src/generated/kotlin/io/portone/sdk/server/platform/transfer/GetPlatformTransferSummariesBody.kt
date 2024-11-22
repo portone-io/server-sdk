@@ -12,3 +12,5 @@ internal data class GetPlatformTransferSummariesBody(
   /** 조회할 정산건 조건 필터 */
   val filter: PlatformTransferFilterInput? = null,
 )
+
+

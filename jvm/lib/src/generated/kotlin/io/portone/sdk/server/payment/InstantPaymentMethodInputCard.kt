@@ -17,3 +17,5 @@ public data class InstantPaymentMethodInputCard(
   /** 카드 포인트 사용 여부 */
   val useCardPoint: Boolean? = null,
 )
+
+

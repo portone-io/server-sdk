@@ -12,3 +12,5 @@ public data class InstantPaymentMethodInputVirtualAccountCashReceiptInfo(
   /** 사용자 식별 번호 */
   val customerIdentityNumber: String,
 )
+
+

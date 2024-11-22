@@ -55,3 +55,5 @@ public data class StartedPaymentSchedule(
   /** 결제 시작 시점 */
   val startedAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentSchedule.Recognized
+
+

@@ -14,3 +14,5 @@ public data class BillingKeyPaymentMethodTransfer(
   /** 계좌번호 */
   val accountNumber: String? = null,
 ) : BillingKeyPaymentMethod.Recognized, BillingKeyPaymentMethodEasyPayMethod.Recognized
+
+

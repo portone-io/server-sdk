@@ -82,3 +82,5 @@ internal data class InstantPaymentInput(
   /** 해당 결제에 적용할 프로모션 아이디 */
   val promotionId: String? = null,
 )
+
+

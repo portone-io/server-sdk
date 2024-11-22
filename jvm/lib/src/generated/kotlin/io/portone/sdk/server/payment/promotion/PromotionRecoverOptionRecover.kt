@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("RECOVER")
 public data object PromotionRecoverOptionRecover : PromotionRecoverOption.Recognized
+
+

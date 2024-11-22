@@ -22,3 +22,5 @@ public data class IssueFailedCashReceipt(
   /** 수동 발급 여부 */
   override val isManual: Boolean,
 ) : CashReceipt.Recognized
+
+

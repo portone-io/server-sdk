@@ -19,3 +19,5 @@ internal data class UpdatePlatformBody(
   /** 정산 규칙 */
   val settlementRule: UpdatePlatformBodySettlementRule? = null,
 )
+
+

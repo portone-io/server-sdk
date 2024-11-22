@@ -15,3 +15,5 @@ public data class IssueCashReceiptCustomerInput(
   /** 전화번호 */
   val phoneNumber: String? = null,
 )
+
+

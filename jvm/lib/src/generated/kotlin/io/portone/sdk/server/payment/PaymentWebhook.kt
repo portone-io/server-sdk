@@ -48,3 +48,5 @@ public data class PaymentWebhook(
   /** 웹훅 처리 시작 시점 */
   val triggeredAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

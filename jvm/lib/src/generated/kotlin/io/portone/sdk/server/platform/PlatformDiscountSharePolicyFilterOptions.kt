@@ -9,3 +9,5 @@ public data class PlatformDiscountSharePolicyFilterOptions(
   /** 조회된 파트너 분담율 리스트 */
   val partnerShareRates: IntArray,
 )
+
+

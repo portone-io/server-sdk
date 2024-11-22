@@ -2,6 +2,8 @@ package io.portone.sdk.server.webhook
 
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import java.time.Instant
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
@@ -24,13 +26,15 @@ class WebhookVerifierTest {
     private val testObjectRecognized =
         json.encodeToString(
             mapOf(
-                "type" to "Transaction.Cancelled",
-                "timestamp" to "2024-04-25T10:00:00.000Z",
+                "type" to JsonPrimitive("Transaction.Cancelled"),
+                "timestamp" to JsonPrimitive("2024-04-25T10:00:00.000Z"),
                 "data" to
-                    mapOf(
-                        "paymentId" to "example-payment-id",
-                        "transactionId" to "55451513-9763-4a7a-bb43-78a4c65be843",
-                        "cancellationId" to "0cdd91e9-4e7c-44a3-a72e-1a6511826c2b",
+                    JsonObject(
+                        mapOf(
+                            "paymentId" to JsonPrimitive("example-payment-id"),
+                            "transactionId" to JsonPrimitive("55451513-9763-4a7a-bb43-78a4c65be843"),
+                            "cancellationId" to JsonPrimitive("0cdd91e9-4e7c-44a3-a72e-1a6511826c2b"),
+                        ),
                     ),
             ),
         )
@@ -53,7 +57,7 @@ class WebhookVerifierTest {
         val signature = hmac.doFinal(plaintext)
         val payload = Base64.encode(signature)
         return WebhookMock(
-            payload,
+            body,
             id,
             "v1,$payload",
             epochSecond.toString(),

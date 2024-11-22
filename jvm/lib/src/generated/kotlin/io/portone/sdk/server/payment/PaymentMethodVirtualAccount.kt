@@ -30,3 +30,5 @@ public data class PaymentMethodVirtualAccount(
   /** 가상계좌 결제가 환불 단계일 때의 환불 상태 */
   val refundStatus: PaymentMethodVirtualAccountRefundStatus? = null,
 ) : PaymentMethod.Recognized
+
+

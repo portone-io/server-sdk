@@ -15,3 +15,5 @@ public data class PlatformFeeInput(
   /** 정액 수수료 */
   val fixedAmount: Long? = null,
 )
+
+

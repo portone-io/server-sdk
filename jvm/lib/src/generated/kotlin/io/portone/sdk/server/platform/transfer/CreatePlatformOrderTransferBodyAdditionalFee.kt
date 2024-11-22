@@ -9,3 +9,5 @@ public data class CreatePlatformOrderTransferBodyAdditionalFee(
   /** 추가 수수료 정책 아이디 */
   val policyId: String,
 )
+
+

@@ -46,3 +46,5 @@ public data class PlatformPartnerPayoutAccountTransfer(
   val payoutId: String,
   val payoutGraphqlId: String,
 ) : PlatformAccountTransfer.Recognized
+
+

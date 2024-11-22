@@ -32,3 +32,5 @@ public data class UpdatePlatformPartnerBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties? = null,
 )
+
+

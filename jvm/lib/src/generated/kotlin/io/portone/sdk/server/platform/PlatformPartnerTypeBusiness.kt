@@ -31,3 +31,5 @@ public data class PlatformPartnerTypeBusiness(
   /** 업종 */
   val businessClass: String? = null,
 ) : PlatformPartnerType.Recognized
+
+

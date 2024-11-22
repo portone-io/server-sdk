@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentScheduleAlreadyExistsError(
   override val message: String? = null,
 ) : CreatePaymentScheduleError.Recognized, DeleteBillingKeyError.Recognized, PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized
+
+

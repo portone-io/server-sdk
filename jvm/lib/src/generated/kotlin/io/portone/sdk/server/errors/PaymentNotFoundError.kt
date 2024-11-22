@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentNotFoundError(
   override val message: String? = null,
 ) : ApplyEscrowLogisticsError.Recognized, CancelPaymentError.Recognized, CloseVirtualAccountError.Recognized, ConfirmEscrowError.Recognized, GetPaymentError.Recognized, ModifyEscrowLogisticsError.Recognized, RegisterStoreReceiptError.Recognized, ResendWebhookError.Recognized
+
+

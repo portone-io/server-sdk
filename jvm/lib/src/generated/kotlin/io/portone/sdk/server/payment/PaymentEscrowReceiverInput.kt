@@ -16,3 +16,5 @@ public data class PaymentEscrowReceiverInput(
   /** 주소 */
   val address: SeparatedAddressInput? = null,
 )
+
+

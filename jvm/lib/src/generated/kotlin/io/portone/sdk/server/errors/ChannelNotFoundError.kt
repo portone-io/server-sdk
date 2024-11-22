@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class ChannelNotFoundError(
   override val message: String? = null,
 ) : IssueBillingKeyError.Recognized, IssueCashReceiptError.Recognized, PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized, SendIdentityVerificationError.Recognized
+
+

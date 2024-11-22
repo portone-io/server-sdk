@@ -44,3 +44,5 @@ public data class IssuedCashReceipt(
   /** 발급 시점 */
   val issuedAt: @Serializable(InstantSerializer::class) Instant,
 ) : CashReceipt.Recognized
+
+

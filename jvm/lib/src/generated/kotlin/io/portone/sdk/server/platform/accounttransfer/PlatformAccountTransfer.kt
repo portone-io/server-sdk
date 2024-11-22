@@ -5,15 +5,21 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /**
  * 계좌 이체
  *
  * 송금 대행을 통해 일어난 정산 금액 지급, 인출 목적의 계좌 이체 결과 정보입니다.
  */
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(PlatformAccountTransferSerializer::class)
 public sealed interface PlatformAccountTransfer {
+  @Serializable
+  @JsonClassDiscriminator("type")
   public sealed interface Recognized : PlatformAccountTransfer {
     /** 계좌 이체 아이디 */
     public val id: String
@@ -29,5 +35,16 @@ public sealed interface PlatformAccountTransfer {
     /** 수정 일자 */
     public val updatedAt: Instant
   }
+  @Serializable
   public data object Unrecognized : PlatformAccountTransfer
+}
+
+
+private object PlatformAccountTransferSerializer : JsonContentPolymorphicSerializer<PlatformAccountTransfer>(PlatformAccountTransfer::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "DEPOSIT" -> PlatformDepositAccountTransfer.serializer()
+    "PARTNER_PAYOUT" -> PlatformPartnerPayoutAccountTransfer.serializer()
+    "REMIT" -> PlatformRemitAccountTransfer.serializer()
+    else -> PlatformAccountTransfer.Unrecognized.serializer()
+  }
 }

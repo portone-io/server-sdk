@@ -25,3 +25,5 @@ public data class CreatePlatformPartnerBodyTypeBusiness(
   /** 업종 */
   val businessClass: String? = null,
 )
+
+

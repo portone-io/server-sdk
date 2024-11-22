@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformContractScheduleAlreadyExistsError(
   override val message: String? = null,
 ) : ScheduleContractError.Recognized
+
+

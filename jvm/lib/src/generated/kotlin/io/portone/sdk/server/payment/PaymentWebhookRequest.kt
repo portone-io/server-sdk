@@ -15,3 +15,5 @@ public data class PaymentWebhookRequest(
   /** 요청 시점 */
   val requestedAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

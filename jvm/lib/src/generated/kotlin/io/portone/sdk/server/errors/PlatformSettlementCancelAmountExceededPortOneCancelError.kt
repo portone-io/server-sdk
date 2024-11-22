@@ -15,3 +15,5 @@ internal data class PlatformSettlementCancelAmountExceededPortOneCancelError(
   val amountType: PlatformPortOnePaymentCancelAmountType,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

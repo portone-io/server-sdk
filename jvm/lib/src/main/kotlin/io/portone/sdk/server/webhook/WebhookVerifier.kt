@@ -37,7 +37,7 @@ import javax.crypto.spec.SecretKeySpec
  * ```
  */
 public class WebhookVerifier private constructor(private val secretKeySpec: SecretKeySpec) {
-    private val json = Json
+    private val json = Json { ignoreUnknownKeys = true }
 
     /**
      * Constructs the verifier with the secret key.
@@ -108,11 +108,7 @@ public class WebhookVerifier private constructor(private val secretKeySpec: Secr
         ) {
             throw WebhookVerificationException("No matching signature found")
         }
-        return try {
-            json.decodeFromString<Webhook>(msgBody)
-        } catch (_: Exception) {
-            Webhook.Unrecognized
-        }
+        return json.decodeFromString(WebhookSerializer, msgBody)
     }
 
     private fun sign(

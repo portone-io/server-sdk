@@ -16,3 +16,5 @@ public data class InstantPaymentMethodInput(
   /** 가상계좌 */
   val virtualAccount: InstantPaymentMethodInputVirtualAccount? = null,
 )
+
+

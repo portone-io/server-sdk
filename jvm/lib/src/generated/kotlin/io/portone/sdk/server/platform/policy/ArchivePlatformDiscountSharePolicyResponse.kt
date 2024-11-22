@@ -9,3 +9,5 @@ public data class ArchivePlatformDiscountSharePolicyResponse(
   /** 보관된 할인 분담 */
   val discountSharePolicy: PlatformDiscountSharePolicy,
 )
+
+

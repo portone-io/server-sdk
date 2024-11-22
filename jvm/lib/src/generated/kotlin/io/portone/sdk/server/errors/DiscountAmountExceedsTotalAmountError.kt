@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class DiscountAmountExceedsTotalAmountError(
   override val message: String? = null,
 ) : PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized
+
+

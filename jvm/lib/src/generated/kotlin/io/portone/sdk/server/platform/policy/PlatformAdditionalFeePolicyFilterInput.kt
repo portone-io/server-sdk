@@ -22,3 +22,5 @@ public data class PlatformAdditionalFeePolicyFilterInput(
   /** 검색 키워드 */
   val keyword: PlatformAdditionalFeePolicyFilterInputKeyword? = null,
 )
+
+

@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class CashReceiptAlreadyIssuedError(
   override val message: String? = null,
 ) : IssueCashReceiptError.Recognized
+
+

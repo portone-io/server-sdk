@@ -11,3 +11,5 @@ public data class PlatformSettlementFormulaInvalidFunction(
   val name: String,
   val position: PlatformSettlementFormulaPosition,
 ) : PlatformSettlementFormulaError.Recognized
+
+

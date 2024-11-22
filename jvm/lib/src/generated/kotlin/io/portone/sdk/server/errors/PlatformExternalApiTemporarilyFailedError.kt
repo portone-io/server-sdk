@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformExternalApiTemporarilyFailedError(
   override val message: String? = null,
 ) : GetPlatformAccountHolderError.Recognized
+
+

@@ -28,3 +28,5 @@ internal data class CreatePlatformManualTransferBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )
+
+

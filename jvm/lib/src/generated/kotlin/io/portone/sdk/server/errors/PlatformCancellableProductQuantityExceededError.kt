@@ -11,3 +11,5 @@ internal data class PlatformCancellableProductQuantityExceededError(
   val cancellableQuantity: Long,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

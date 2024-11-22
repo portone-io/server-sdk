@@ -132,7 +132,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnersError>(httpBody)
+        json.decodeFromString<GetPlatformPartnersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -142,7 +142,6 @@ public class PartnerClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -238,7 +237,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformPartnerError>(httpBody)
+        json.decodeFromString<CreatePlatformPartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -255,7 +254,6 @@ public class PartnerClient(
         is PlatformPartnerIdAlreadyExistsError -> throw PlatformPartnerIdAlreadyExistsException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -309,7 +307,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnerError>(httpBody)
+        json.decodeFromString<GetPlatformPartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -320,7 +318,6 @@ public class PartnerClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -402,7 +399,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformPartnerError>(httpBody)
+        json.decodeFromString<UpdatePlatformPartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -420,7 +417,6 @@ public class PartnerClient(
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -479,7 +475,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformPartnersError>(httpBody)
+        json.decodeFromString<CreatePlatformPartnersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -494,7 +490,6 @@ public class PartnerClient(
         is PlatformPartnerIdsDuplicatedError -> throw PlatformPartnerIdsDuplicatedException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -540,7 +535,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformPartnerError>(httpBody)
+        json.decodeFromString<ArchivePlatformPartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -552,7 +547,6 @@ public class PartnerClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -598,7 +592,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformPartnerError>(httpBody)
+        json.decodeFromString<RecoverPlatformPartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -609,7 +603,6 @@ public class PartnerClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

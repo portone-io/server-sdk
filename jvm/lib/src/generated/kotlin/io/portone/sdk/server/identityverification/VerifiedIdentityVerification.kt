@@ -33,3 +33,5 @@ public data class VerifiedIdentityVerification(
   /** PG사 응답 데이터 */
   val pgRawResponse: String,
 ) : IdentityVerification.Recognized
+
+

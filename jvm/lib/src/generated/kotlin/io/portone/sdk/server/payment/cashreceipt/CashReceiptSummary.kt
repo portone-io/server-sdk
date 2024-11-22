@@ -13,3 +13,5 @@ public data class CashReceiptSummary(
   /** PG사 현금영수증 아이디 */
   val pgReceiptId: String,
 )
+
+

@@ -10,3 +10,5 @@ public data class CloseVirtualAccountResponse(
   /** 가상계좌 말소 시점 */
   val closedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

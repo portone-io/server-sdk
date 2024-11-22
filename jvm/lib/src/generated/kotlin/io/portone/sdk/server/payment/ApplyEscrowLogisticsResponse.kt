@@ -15,3 +15,5 @@ public data class ApplyEscrowLogisticsResponse(
   /** 에스크로 정보 등록 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

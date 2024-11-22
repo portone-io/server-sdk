@@ -9,3 +9,5 @@ internal data class LoginViaApiSecretBody(
   /** 발급받은 API secret */
   val apiSecret: String,
 )
+
+

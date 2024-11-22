@@ -89,7 +89,7 @@ public class CashReceiptClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetCashReceiptError>(httpBody)
+        json.decodeFromString<GetCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -99,7 +99,6 @@ public class CashReceiptClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -185,7 +184,7 @@ public class CashReceiptClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<IssueCashReceiptError>(httpBody)
+        json.decodeFromString<IssueCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -197,7 +196,6 @@ public class CashReceiptClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -252,7 +250,7 @@ public class CashReceiptClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelCashReceiptError>(httpBody)
+        json.decodeFromString<CancelCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -264,7 +262,6 @@ public class CashReceiptClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

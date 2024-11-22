@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformDiscountSharePolicyAlreadyExistsError(
   override val message: String? = null,
 ) : CreatePlatformDiscountSharePolicyError.Recognized
+
+

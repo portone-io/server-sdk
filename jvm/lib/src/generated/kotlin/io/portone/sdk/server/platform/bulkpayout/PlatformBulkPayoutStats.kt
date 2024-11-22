@@ -8,3 +8,5 @@ public data class PlatformBulkPayoutStats(
   val amount: PlatformPayoutStatusStats,
   val count: PlatformPayoutStatusStats,
 )
+
+

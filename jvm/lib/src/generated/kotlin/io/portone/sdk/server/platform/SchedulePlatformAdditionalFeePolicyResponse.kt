@@ -9,3 +9,5 @@ public data class SchedulePlatformAdditionalFeePolicyResponse(
   /** 예약된 추가 수수료 정책 */
   val scheduledAdditionalFeePolicy: PlatformAdditionalFeePolicy,
 )
+
+

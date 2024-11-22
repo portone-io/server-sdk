@@ -22,3 +22,5 @@ public data class PlatformSettlementCycleMethodInput(
   /** 정해진 날짜(월, 일)에 정산 */
   val manualDates: PlatformSettlementCycleMethodManualDatesInput? = null,
 )
+
+

@@ -11,3 +11,5 @@ public data class GetPlatformPayoutsResponse(
   val page: PageInfo,
   val counts: PlatformPayoutStatusStats,
 )
+
+

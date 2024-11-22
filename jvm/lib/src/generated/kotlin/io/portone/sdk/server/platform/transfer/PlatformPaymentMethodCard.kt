@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("CARD")
 public data object PlatformPaymentMethodCard : PlatformPaymentMethod.Recognized
+
+

@@ -29,3 +29,5 @@ public data class FailedPaymentCancellation(
   /** 취소 요청 시점 */
   override val requestedAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentCancellation.Recognized
+
+

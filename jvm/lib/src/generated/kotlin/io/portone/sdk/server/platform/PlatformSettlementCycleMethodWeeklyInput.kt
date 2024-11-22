@@ -8,3 +8,5 @@ public data class PlatformSettlementCycleMethodWeeklyInput(
   /** 요일 */
   val daysOfWeek: List<DayOfWeek>,
 )
+
+

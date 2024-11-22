@@ -39,3 +39,5 @@ public data class CustomerInput(
   /** 사업자 등록 번호 */
   val businessRegistrationNumber: String? = null,
 )
+
+

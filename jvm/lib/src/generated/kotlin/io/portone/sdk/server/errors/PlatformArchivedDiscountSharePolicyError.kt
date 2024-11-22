@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformArchivedDiscountSharePolicyError(
   override val message: String? = null,
 ) : ScheduleDiscountSharePolicyError.Recognized, UpdatePlatformDiscountSharePolicyError.Recognized
+
+

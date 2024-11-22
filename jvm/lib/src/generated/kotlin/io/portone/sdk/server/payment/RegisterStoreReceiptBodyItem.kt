@@ -22,3 +22,5 @@ public data class RegisterStoreReceiptBodyItem(
   /** 통화 */
   val currency: Currency,
 )
+
+

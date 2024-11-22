@@ -10,3 +10,5 @@ internal data class PlatformProductIdDuplicatedError(
   val id: String,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized, CreatePlatformOrderTransferError.Recognized
+
+

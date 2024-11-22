@@ -14,3 +14,5 @@ public data class PaymentMethodEasyPay(
   /** 간편 결제 수단 */
   val easyPayMethod: PaymentMethodEasyPayMethod? = null,
 ) : PaymentMethod.Recognized
+
+

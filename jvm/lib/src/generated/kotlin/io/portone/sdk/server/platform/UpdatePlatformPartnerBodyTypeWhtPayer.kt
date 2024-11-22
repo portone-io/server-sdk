@@ -12,3 +12,5 @@ public data class UpdatePlatformPartnerBodyTypeWhtPayer(
    */
   val birthdate: String? = null,
 )
+
+

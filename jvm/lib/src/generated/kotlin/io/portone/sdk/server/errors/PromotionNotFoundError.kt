@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PromotionNotFoundError(
   override val message: String? = null,
 ) : GetPromotionError.Recognized
+
+

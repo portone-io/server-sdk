@@ -20,3 +20,5 @@ public data class SchedulePlatformPartnersBodyUpdateType(
   /** 원천징수 비대상자 추가 정보 */
   val nonWhtPayer: SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer? = null,
 )
+
+

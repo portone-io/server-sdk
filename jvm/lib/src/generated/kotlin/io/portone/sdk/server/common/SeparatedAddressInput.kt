@@ -18,3 +18,5 @@ public data class SeparatedAddressInput(
   /** 국가 */
   val country: Country? = null,
 )
+
+

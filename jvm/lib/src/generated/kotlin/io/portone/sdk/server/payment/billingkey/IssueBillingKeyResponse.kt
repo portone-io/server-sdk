@@ -12,3 +12,5 @@ public data class IssueBillingKeyResponse(
   /** 발급에 실패한 채널이 있을시 실패 정보 */
   val channelSpecificFailures: List<ChannelSpecificFailure>? = null,
 )
+
+

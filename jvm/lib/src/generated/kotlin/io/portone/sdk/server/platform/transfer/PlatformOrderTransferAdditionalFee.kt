@@ -13,3 +13,5 @@ public data class PlatformOrderTransferAdditionalFee(
   /** 추가 수수료 부가세 금액 */
   val vat: Long,
 )
+
+

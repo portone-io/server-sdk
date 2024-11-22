@@ -31,3 +31,5 @@ internal data class ModifyEscrowLogisticsBody(
   /** 상품 정보 */
   val products: List<PaymentProduct>? = null,
 )
+
+

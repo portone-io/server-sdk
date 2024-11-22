@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformCurrencyNotSupportedError(
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized, CreatePlatformPartnerError.Recognized, CreatePlatformPartnersError.Recognized
+
+

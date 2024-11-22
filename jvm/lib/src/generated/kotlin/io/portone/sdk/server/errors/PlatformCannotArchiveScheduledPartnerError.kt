@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformCannotArchiveScheduledPartnerError(
   override val message: String? = null,
 ) : ArchivePlatformPartnerError.Recognized
+
+

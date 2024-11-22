@@ -45,3 +45,5 @@ public data class PlatformPartner(
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties,
 )
+
+

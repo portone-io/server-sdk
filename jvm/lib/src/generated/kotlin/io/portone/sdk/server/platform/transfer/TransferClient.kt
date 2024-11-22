@@ -163,7 +163,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformTransferError>(httpBody)
+        json.decodeFromString<GetPlatformTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -174,7 +174,6 @@ public class TransferClient(
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformTransferNotFoundError -> throw PlatformTransferNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -220,7 +219,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<DeletePlatformTransferError>(httpBody)
+        json.decodeFromString<DeletePlatformTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -233,7 +232,6 @@ public class TransferClient(
         is PlatformTransferNonDeletableStatusError -> throw PlatformTransferNonDeletableStatusException(httpBodyDecoded)
         is PlatformTransferNotFoundError -> throw PlatformTransferNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -287,7 +285,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformTransferSummariesError>(httpBody)
+        json.decodeFromString<GetPlatformTransferSummariesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -297,7 +295,6 @@ public class TransferClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -407,7 +404,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformOrderTransferError>(httpBody)
+        json.decodeFromString<CreatePlatformOrderTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -433,7 +430,6 @@ public class TransferClient(
         is PlatformTransferAlreadyExistsError -> throw PlatformTransferAlreadyExistsException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -548,7 +544,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformOrderCancelTransferError>(httpBody)
+        json.decodeFromString<CreatePlatformOrderCancelTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -577,7 +573,6 @@ public class TransferClient(
         is PlatformTransferNotFoundError -> throw PlatformTransferNotFoundException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -663,7 +658,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformManualTransferError>(httpBody)
+        json.decodeFromString<CreatePlatformManualTransferError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -675,7 +670,6 @@ public class TransferClient(
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -742,7 +736,7 @@ public class TransferClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<DownloadPlatformTransferSheetError>(httpBody)
+        json.decodeFromString<DownloadPlatformTransferSheetError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -750,7 +744,6 @@ public class TransferClient(
       when (httpBodyDecoded) {
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     return httpResponse.body<String>()

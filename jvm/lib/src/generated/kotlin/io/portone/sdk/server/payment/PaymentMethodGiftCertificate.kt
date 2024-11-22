@@ -14,3 +14,5 @@ public data class PaymentMethodGiftCertificate(
   /** 상품권 승인 번호 */
   val approvalNumber: String,
 ) : PaymentMethod.Recognized
+
+

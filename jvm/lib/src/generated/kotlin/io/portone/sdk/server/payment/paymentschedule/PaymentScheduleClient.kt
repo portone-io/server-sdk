@@ -100,7 +100,7 @@ public class PaymentScheduleClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentScheduleError>(httpBody)
+        json.decodeFromString<GetPaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -110,7 +110,6 @@ public class PaymentScheduleClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PaymentScheduleNotFoundError -> throw PaymentScheduleNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -173,7 +172,7 @@ public class PaymentScheduleClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentSchedulesError>(httpBody)
+        json.decodeFromString<GetPaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -182,7 +181,6 @@ public class PaymentScheduleClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -244,7 +242,7 @@ public class PaymentScheduleClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RevokePaymentSchedulesError>(httpBody)
+        json.decodeFromString<RevokePaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -258,7 +256,6 @@ public class PaymentScheduleClient(
         is PaymentScheduleAlreadyRevokedError -> throw PaymentScheduleAlreadyRevokedException(httpBodyDecoded)
         is PaymentScheduleNotFoundError -> throw PaymentScheduleNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -317,7 +314,7 @@ public class PaymentScheduleClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePaymentScheduleError>(httpBody)
+        json.decodeFromString<CreatePaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -331,7 +328,6 @@ public class PaymentScheduleClient(
         is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

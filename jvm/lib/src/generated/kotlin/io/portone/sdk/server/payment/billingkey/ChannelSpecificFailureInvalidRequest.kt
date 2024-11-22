@@ -16,3 +16,5 @@ public data class ChannelSpecificFailureInvalidRequest(
   override val channel: SelectedChannel,
   override val message: String? = null,
 ) : ChannelSpecificFailure.Recognized
+
+

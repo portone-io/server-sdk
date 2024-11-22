@@ -27,3 +27,5 @@ public data class PlatformPartnerFilterInputKeyword(
   /** 해당 값이 포함된 계좌 예금주명을 가진 파트너만 조회합니다. */
   val accountHolder: String? = null,
 )
+
+

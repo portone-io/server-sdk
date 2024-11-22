@@ -66,3 +66,5 @@ public data class PlatformOrderCancelTransfer(
   /** 정산 파라미터 (실험기능) */
   val parameters: TransferParameters,
 ) : PlatformTransfer.Recognized
+
+

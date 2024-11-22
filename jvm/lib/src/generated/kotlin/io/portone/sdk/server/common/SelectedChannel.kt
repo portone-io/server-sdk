@@ -21,3 +21,5 @@ public data class SelectedChannel(
   /** PG사 고객사 식별 아이디 */
   val pgMerchantId: String,
 )
+
+

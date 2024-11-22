@@ -99,3 +99,5 @@ public data class PaidPayment(
   /** 거래 영수증 URL */
   val receiptUrl: String? = null,
 ) : Payment.Recognized
+
+

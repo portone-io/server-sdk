@@ -12,3 +12,5 @@ internal data class PgProviderError(
   val pgCode: String,
   val pgMessage: String,
 ) : ApplyEscrowLogisticsError.Recognized, CancelCashReceiptError.Recognized, CancelPaymentError.Recognized, CloseVirtualAccountError.Recognized, ConfirmEscrowError.Recognized, ConfirmIdentityVerificationError.Recognized, DeleteBillingKeyError.Recognized, IssueBillingKeyError.Recognized, IssueCashReceiptError.Recognized, ModifyEscrowLogisticsError.Recognized, PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized, RegisterStoreReceiptError.Recognized, ResendIdentityVerificationError.Recognized, SendIdentityVerificationError.Recognized
+
+

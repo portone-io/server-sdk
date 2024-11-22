@@ -22,3 +22,5 @@ public data class PlatformSettlementCycle(
   /** 정산 주기 계산 방식 */
   val method: PlatformSettlementCycleMethod,
 )
+
+

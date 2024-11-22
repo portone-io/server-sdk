@@ -12,3 +12,5 @@ internal data class SchedulePlatformPartnersBody(
   val update: SchedulePlatformPartnersBodyUpdate,
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

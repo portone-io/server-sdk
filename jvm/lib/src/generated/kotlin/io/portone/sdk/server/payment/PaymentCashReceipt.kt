@@ -6,11 +6,17 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 /** 결제 건 내 현금영수증 정보 */
-@Serializable
-@JsonClassDiscriminator("status")
+@Serializable(PaymentCashReceiptSerializer::class)
 public sealed interface PaymentCashReceipt {
+  @Serializable
+  @JsonClassDiscriminator("status")
   public sealed interface Recognized : PaymentCashReceipt {
     /** 현금영수증 유형 */
     public val type: CashReceiptType?
@@ -29,5 +35,15 @@ public sealed interface PaymentCashReceipt {
     /** 발급 시점 */
     public val issuedAt: Instant
   }
+  @Serializable
   public data object Unrecognized : PaymentCashReceipt
+}
+
+
+private object PaymentCashReceiptSerializer : JsonContentPolymorphicSerializer<PaymentCashReceipt>(PaymentCashReceipt::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+    "CANCELLED" -> CancelledPaymentCashReceipt.serializer()
+    "ISSUED" -> IssuedPaymentCashReceipt.serializer()
+    else -> PaymentCashReceipt.Unrecognized.serializer()
+  }
 }

@@ -12,3 +12,5 @@ internal data class PlatformAdditionalFeePoliciesNotFoundError(
   val graphqlIds: List<String>,
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

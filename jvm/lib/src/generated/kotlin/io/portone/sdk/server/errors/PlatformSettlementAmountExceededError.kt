@@ -20,3 +20,5 @@ internal data class PlatformSettlementAmountExceededError(
   /** 초과한 금액 */
   val allowedAmount: Long,
 ) : CreatePlatformOrderCancelTransferError.Recognized, CreatePlatformOrderTransferError.Recognized
+
+

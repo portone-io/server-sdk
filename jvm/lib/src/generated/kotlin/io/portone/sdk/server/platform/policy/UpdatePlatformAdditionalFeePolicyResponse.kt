@@ -9,3 +9,5 @@ public data class UpdatePlatformAdditionalFeePolicyResponse(
   /** 업데이트된 추가 수수료 정책 */
   val additionalFeePolicy: PlatformAdditionalFeePolicy,
 )
+
+

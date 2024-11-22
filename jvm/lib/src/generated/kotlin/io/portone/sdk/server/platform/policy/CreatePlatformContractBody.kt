@@ -28,3 +28,5 @@ internal data class CreatePlatformContractBody(
   /** 정산 시 결제금액 부가세 감액 여부 */
   val subtractPaymentVatAmount: Boolean,
 )
+
+

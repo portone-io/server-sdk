@@ -108,6 +108,7 @@ export function generateEntity(
       if (definition.interface) {
         if (definition.interface.open) {
           writer.indent()
+          writer.writeLine("@Serializable")
           writer.writeLine(
             `public data object Unrecognized : ${definition.name}`,
           )

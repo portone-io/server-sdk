@@ -19,3 +19,5 @@ public data class SchedulePlatformPartnersBodyUpdate(
   val tags: List<String>? = null,
   val userDefinedProperties: PlatformProperties? = null,
 )
+
+

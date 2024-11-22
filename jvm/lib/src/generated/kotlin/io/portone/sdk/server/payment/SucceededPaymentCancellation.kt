@@ -31,3 +31,5 @@ public data class SucceededPaymentCancellation(
   /** 취소 영수증 URL */
   val receiptUrl: String? = null,
 ) : PaymentCancellation.Recognized
+
+

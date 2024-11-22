@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class MaxWebhookRetryCountReachedError(
   override val message: String? = null,
 ) : ResendWebhookError.Recognized
+
+

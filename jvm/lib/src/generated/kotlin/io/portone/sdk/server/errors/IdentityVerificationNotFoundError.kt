@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class IdentityVerificationNotFoundError(
   override val message: String? = null,
 ) : ConfirmIdentityVerificationError.Recognized, GetIdentityVerificationError.Recognized, ResendIdentityVerificationError.Recognized, SendIdentityVerificationError.Recognized
+
+

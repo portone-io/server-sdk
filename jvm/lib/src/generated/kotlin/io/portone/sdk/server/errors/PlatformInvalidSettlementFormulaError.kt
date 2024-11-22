@@ -13,3 +13,5 @@ internal data class PlatformInvalidSettlementFormulaError(
   val additionalFee: PlatformSettlementFormulaError? = null,
   override val message: String? = null,
 ) : UpdatePlatformError.Recognized
+
+

@@ -12,3 +12,5 @@ internal data class PlatformPartnerSchedulesAlreadyExistError(
   val graphqlIds: List<String>,
   override val message: String? = null,
 ) : SchedulePlatformPartnersError.Recognized
+
+

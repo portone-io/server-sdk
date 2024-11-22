@@ -53,3 +53,5 @@ public data class ScheduledPaymentSchedule(
   /** 결제 예정 시점 */
   override val timeToPay: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentSchedule.Recognized
+
+

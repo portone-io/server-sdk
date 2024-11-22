@@ -15,3 +15,5 @@ public data class ModifyEscrowLogisticsResponse(
   /** 에스크로 정보 수정 시점 */
   val modifiedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

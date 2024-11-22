@@ -55,3 +55,5 @@ public data class RevokedPaymentSchedule(
   /** 결제 취소 시점 */
   val revokedAt: @Serializable(InstantSerializer::class) Instant,
 ) : PaymentSchedule.Recognized
+
+

@@ -12,3 +12,5 @@ internal data class PlatformPartnerIdsDuplicatedError(
   val graphqlIds: List<String>,
   override val message: String? = null,
 ) : CreatePlatformPartnersError.Recognized
+
+

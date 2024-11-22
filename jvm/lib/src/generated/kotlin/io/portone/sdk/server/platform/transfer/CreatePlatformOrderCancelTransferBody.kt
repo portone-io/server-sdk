@@ -57,3 +57,5 @@ internal data class CreatePlatformOrderCancelTransferBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )
+
+

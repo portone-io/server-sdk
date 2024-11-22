@@ -19,3 +19,5 @@ public data class PlatformPayoutFilterInput(
   /** 통화 단위 */
   val payoutCurrencies: List<Currency>? = null,
 )
+
+

@@ -13,3 +13,5 @@ public data class PaymentFailure(
   /** PG사 실패 메시지 */
   val pgMessage: String? = null,
 )
+
+

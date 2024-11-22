@@ -27,3 +27,5 @@ public data class PlatformPortOnePayment(
   /** 결제 일시 */
   override val paidAt: @Serializable(InstantSerializer::class) Instant,
 ) : PlatformPayment.Recognized
+
+

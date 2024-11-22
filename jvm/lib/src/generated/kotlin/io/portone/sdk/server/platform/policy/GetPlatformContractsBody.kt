@@ -12,3 +12,5 @@ internal data class GetPlatformContractsBody(
   /** 조회할 계약 조건 필터 */
   val filter: PlatformContractFilterInput? = null,
 )
+
+

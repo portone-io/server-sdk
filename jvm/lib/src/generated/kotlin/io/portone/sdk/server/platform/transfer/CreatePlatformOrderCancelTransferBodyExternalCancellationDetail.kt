@@ -10,3 +10,5 @@ public data class CreatePlatformOrderCancelTransferBodyExternalCancellationDetai
   /** 취소 일시 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

@@ -84,3 +84,5 @@ public data class PayPendingPayment(
   /** PG사 거래 아이디 */
   val pgTxId: String? = null,
 ) : Payment.Recognized
+
+

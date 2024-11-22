@@ -15,3 +15,5 @@ public data class GetPlatformPartnerSettlementsResponse(
   /** 정산내역 상태 별 갯수 */
   val counts: PlatformPartnerSettlementStatusStats,
 )
+
+

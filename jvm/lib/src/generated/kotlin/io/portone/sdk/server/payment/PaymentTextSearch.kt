@@ -10,3 +10,5 @@ public data class PaymentTextSearch(
   val field: PaymentTextSearchField,
   val value: String,
 )
+
+

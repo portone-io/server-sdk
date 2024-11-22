@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class WebhookNotFoundError(
   override val message: String? = null,
 ) : ResendWebhookError.Recognized
+
+

@@ -6,3 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("UNKNOWN_ERROR")
 public data object PlatformSettlementFormulaUnknownError : PlatformSettlementFormulaError.Recognized
+
+

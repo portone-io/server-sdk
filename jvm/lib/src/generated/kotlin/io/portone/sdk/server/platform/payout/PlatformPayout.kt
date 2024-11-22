@@ -31,3 +31,5 @@ public data class PlatformPayout(
   val createdAt: @Serializable(InstantSerializer::class) Instant,
   val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

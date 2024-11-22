@@ -13,3 +13,5 @@ internal data class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(
   val portOneTaxFreeAmount: Long,
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

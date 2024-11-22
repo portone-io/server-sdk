@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PaymentNotWaitingForDepositError(
   override val message: String? = null,
 ) : CloseVirtualAccountError.Recognized
+
+

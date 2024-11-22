@@ -1,39 +1,57 @@
 package io.portone.sdk.server.platform.payout
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
-@Serializable
+@Serializable(PlatformPayoutStatusSerializer::class)
 public sealed interface PlatformPayoutStatus {
   public val value: String
-  @SerialName("PREPARED")
   public data object Prepared : PlatformPayoutStatus {
     override val value: String = "PREPARED"
   }
-  @SerialName("CANCELLED")
   public data object Cancelled : PlatformPayoutStatus {
     override val value: String = "CANCELLED"
   }
-  @SerialName("STOPPED")
   public data object Stopped : PlatformPayoutStatus {
     override val value: String = "STOPPED"
   }
-  @SerialName("PROCESSING")
   public data object Processing : PlatformPayoutStatus {
     override val value: String = "PROCESSING"
   }
-  @SerialName("SUCCEEDED")
   public data object Succeeded : PlatformPayoutStatus {
     override val value: String = "SUCCEEDED"
   }
-  @SerialName("FAILED")
   public data object Failed : PlatformPayoutStatus {
     override val value: String = "FAILED"
   }
-  @SerialName("SCHEDULED")
   public data object Scheduled : PlatformPayoutStatus {
     override val value: String = "SCHEDULED"
   }
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PlatformPayoutStatus
+}
+
+
+private object PlatformPayoutStatusSerializer : KSerializer<PlatformPayoutStatus> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayoutStatus::class.java.canonicalName, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): PlatformPayoutStatus {
+    val value = decoder.decodeString()
+    return when (value) {
+      "PREPARED" -> PlatformPayoutStatus.Prepared
+      "CANCELLED" -> PlatformPayoutStatus.Cancelled
+      "STOPPED" -> PlatformPayoutStatus.Stopped
+      "PROCESSING" -> PlatformPayoutStatus.Processing
+      "SUCCEEDED" -> PlatformPayoutStatus.Succeeded
+      "FAILED" -> PlatformPayoutStatus.Failed
+      "SCHEDULED" -> PlatformPayoutStatus.Scheduled
+      else -> PlatformPayoutStatus.Unrecognized(value)
+    }
+  }
+  override fun serialize(encoder: Encoder, value: PlatformPayoutStatus) = encoder.encodeString(value.value)
 }

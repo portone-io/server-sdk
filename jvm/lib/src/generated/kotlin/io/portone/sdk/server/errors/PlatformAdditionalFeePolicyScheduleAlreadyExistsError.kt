@@ -9,3 +9,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformAdditionalFeePolicyScheduleAlreadyExistsError(
   override val message: String? = null,
 ) : ScheduleAdditionalFeePolicyError.Recognized
+
+

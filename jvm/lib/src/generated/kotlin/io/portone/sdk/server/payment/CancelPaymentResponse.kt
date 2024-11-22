@@ -9,3 +9,5 @@ public data class CancelPaymentResponse(
   /** 결체 취소 내역 */
   val cancellation: PaymentCancellation,
 )
+
+

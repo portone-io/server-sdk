@@ -42,3 +42,5 @@ internal data class IssueCashReceiptBody(
   /** 결제 일자 */
   val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

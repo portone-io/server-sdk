@@ -24,3 +24,5 @@ public data class PlatformPaymentMethodInput(
   /** 간편 결제 */
   val easyPay: PlatformPaymentMethodEasyPayInput? = null,
 )
+
+

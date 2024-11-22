@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformCannotSpecifyTransferError(
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

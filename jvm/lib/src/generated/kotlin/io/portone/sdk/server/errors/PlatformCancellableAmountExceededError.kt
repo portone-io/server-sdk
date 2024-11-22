@@ -14,3 +14,5 @@ internal data class PlatformCancellableAmountExceededError(
   val amountType: PlatformCancellableAmountType,
   override val message: String? = null,
 ) : CreatePlatformOrderCancelTransferError.Recognized
+
+

@@ -26,3 +26,5 @@ public data class PlatformDepositAccountTransfer(
   /** 입금자명 */
   val depositorName: String,
 ) : PlatformAccountTransfer.Recognized
+
+

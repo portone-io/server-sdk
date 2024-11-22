@@ -191,7 +191,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<PreRegisterPaymentError>(httpBody)
+        json.decodeFromString<PreRegisterPaymentError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -201,7 +201,6 @@ public class PaymentClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -251,7 +250,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentError>(httpBody)
+        json.decodeFromString<GetPaymentError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -261,7 +260,6 @@ public class PaymentClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -319,7 +317,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentsError>(httpBody)
+        json.decodeFromString<GetPaymentsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -328,7 +326,6 @@ public class PaymentClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -400,7 +397,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetAllPaymentsError>(httpBody)
+        json.decodeFromString<GetAllPaymentsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -409,7 +406,6 @@ public class PaymentClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -512,7 +508,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPaymentError>(httpBody)
+        json.decodeFromString<CancelPaymentError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -532,7 +528,6 @@ public class PaymentClient(
         is PromotionDiscountRetainOptionShouldNotBeChangedError -> throw PromotionDiscountRetainOptionShouldNotBeChangedException(httpBodyDecoded)
         is SumOfPartsExceedsCancelAmountError -> throw SumOfPartsExceedsCancelAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -675,7 +670,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<PayWithBillingKeyError>(httpBody)
+        json.decodeFromString<PayWithBillingKeyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -694,7 +689,6 @@ public class PaymentClient(
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -846,7 +840,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<PayInstantlyError>(httpBody)
+        json.decodeFromString<PayInstantlyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -863,7 +857,6 @@ public class PaymentClient(
         is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
         is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -927,7 +920,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CloseVirtualAccountError>(httpBody)
+        json.decodeFromString<CloseVirtualAccountError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -939,7 +932,6 @@ public class PaymentClient(
         is PaymentNotWaitingForDepositError -> throw PaymentNotWaitingForDepositException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1012,7 +1004,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ApplyEscrowLogisticsError>(httpBody)
+        json.decodeFromString<ApplyEscrowLogisticsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1024,7 +1016,6 @@ public class PaymentClient(
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1102,7 +1093,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ModifyEscrowLogisticsError>(httpBody)
+        json.decodeFromString<ModifyEscrowLogisticsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1114,7 +1105,6 @@ public class PaymentClient(
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1177,7 +1167,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConfirmEscrowError>(httpBody)
+        json.decodeFromString<ConfirmEscrowError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1189,7 +1179,6 @@ public class PaymentClient(
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1247,7 +1236,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ResendWebhookError>(httpBody)
+        json.decodeFromString<ResendWebhookError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1259,7 +1248,6 @@ public class PaymentClient(
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
         is WebhookNotFoundError -> throw WebhookNotFoundException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()
@@ -1317,7 +1305,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RegisterStoreReceiptError>(httpBody)
+        json.decodeFromString<RegisterStoreReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1329,7 +1317,6 @@ public class PaymentClient(
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-        else -> throw UnknownException("Unknown API error: $httpBody")
       }
     }
     val httpBody = httpResponse.body<String>()

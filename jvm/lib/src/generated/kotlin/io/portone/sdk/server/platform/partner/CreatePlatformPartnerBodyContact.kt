@@ -13,3 +13,5 @@ public data class CreatePlatformPartnerBodyContact(
   /** 담당자 이메일 */
   val email: String,
 )
+
+

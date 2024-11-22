@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("TRANSFER")
 public data object PlatformPaymentMethodTransfer : PlatformPaymentMethod.Recognized
+
+

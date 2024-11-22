@@ -10,3 +10,5 @@ import kotlinx.serialization.Serializable
 internal data class PlatformSettlementParameterNotFoundError(
   override val message: String? = null,
 ) : CreatePlatformOrderTransferError.Recognized
+
+

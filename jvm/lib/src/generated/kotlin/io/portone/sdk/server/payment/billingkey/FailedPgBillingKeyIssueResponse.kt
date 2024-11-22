@@ -18,3 +18,5 @@ public data class FailedPgBillingKeyIssueResponse(
   /** 발급 실패 상세 정보 */
   val failure: BillingKeyFailure,
 ) : PgBillingKeyIssueResponse.Recognized
+
+

@@ -8,3 +8,5 @@ import kotlinx.serialization.Serializable
 public data class PromotionSpareBudgetAmount(
   val amount: Long,
 ) : PromotionSpareBudget.Recognized
+
+
