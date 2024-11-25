@@ -5,7 +5,6 @@ import type { WebhookTransactionPaid } from "./WebhookTransactionPaid"
 import type { WebhookTransactionPayPending } from "./WebhookTransactionPayPending"
 import type { WebhookTransactionReady } from "./WebhookTransactionReady"
 import type { WebhookTransactionVirtualAccountIssued } from "./WebhookTransactionVirtualAccountIssued"
-
 /** 결제 관련 */
 export type WebhookTransaction =
 	| WebhookTransactionReady

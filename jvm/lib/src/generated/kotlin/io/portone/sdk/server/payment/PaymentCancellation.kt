@@ -15,6 +15,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface PaymentCancellation {
   @Serializable
   @JsonClassDiscriminator("status")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : PaymentCancellation {
     /** 취소 내역 아이디 */
     public val id: String
@@ -35,6 +36,7 @@ public sealed interface PaymentCancellation {
     /** 취소 요청 시점 */
     public val requestedAt: Instant
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : PaymentCancellation
 }

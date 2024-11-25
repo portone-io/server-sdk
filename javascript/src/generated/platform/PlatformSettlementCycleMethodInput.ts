@@ -2,7 +2,6 @@ import type { PlatformSettlementCycleMethodDailyInput } from "./../platform/Plat
 import type { PlatformSettlementCycleMethodManualDatesInput } from "./../platform/PlatformSettlementCycleMethodManualDatesInput"
 import type { PlatformSettlementCycleMethodMonthlyInput } from "./../platform/PlatformSettlementCycleMethodMonthlyInput"
 import type { PlatformSettlementCycleMethodWeeklyInput } from "./../platform/PlatformSettlementCycleMethodWeeklyInput"
-
 /**
  * 플랫폼 정산 주기 계산 방식 입력 정보
  *

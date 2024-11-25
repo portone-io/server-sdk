@@ -1,2 +1,2 @@
-export type { GetKakaopayPaymentOrderResponse } from "./GetKakaopayPaymentOrderResponse"
+export * from "./GetKakaopayPaymentOrderResponse"
 export * from "./client"

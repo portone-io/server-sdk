@@ -2,7 +2,6 @@ import type { PaymentEscrowReceiverInput } from "./../payment/PaymentEscrowRecei
 import type { PaymentEscrowSenderInput } from "./../payment/PaymentEscrowSenderInput"
 import type { PaymentLogistics } from "./../payment/PaymentLogistics"
 import type { PaymentProduct } from "./../common/PaymentProduct"
-
 /** 에스크로 배송 정보 수정 입력 정보 */
 export type ModifyEscrowLogisticsBody = {
 	/**

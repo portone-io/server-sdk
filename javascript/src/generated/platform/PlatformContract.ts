@@ -1,7 +1,6 @@
 import type { PlatformFee } from "./../platform/PlatformFee"
 import type { PlatformPayer } from "./../platform/PlatformPayer"
 import type { PlatformSettlementCycle } from "./../platform/PlatformSettlementCycle"
-
 /**
  * 계약
  *

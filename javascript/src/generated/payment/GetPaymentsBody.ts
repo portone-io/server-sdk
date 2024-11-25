@@ -1,6 +1,5 @@
 import type { PageInput } from "./../common/PageInput"
 import type { PaymentFilterInput } from "./../payment/PaymentFilterInput"
-
 /** 결제 건 다건 조회를 위한 입력 정보 */
 export type GetPaymentsBody = {
 	/**

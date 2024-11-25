@@ -3,7 +3,6 @@ import type { PaymentMethodType } from "./../../common/PaymentMethodType"
 import type { PlatformTransferFilterInputKeyword } from "./../../platform/transfer/PlatformTransferFilterInputKeyword"
 import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
 import type { PlatformTransferType } from "./../../platform/transfer/PlatformTransferType"
-
 /**
  * 정산건 필터 입력 정보
  *

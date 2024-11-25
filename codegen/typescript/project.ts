@@ -2,7 +2,10 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toCamelCase, toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import { entities as webhookEntities } from "../common/webhook.ts"
+import {
+  entities as webhookEntities,
+  types as webhookTypes,
+} from "../common/webhook.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
@@ -85,9 +88,31 @@ function generateWebhook(srcPath: string) {
     const entityPath = path.join(webhookPath, `${entity.name}.ts`)
     Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
     writer.writeLine(
-      `export type { ${entity.name} } from "./${entity.name}.ts"`,
+      `export type { ${entity.name} } from "./${entity.name}"`,
     )
   }
+  writer.writeLine(`import type { Webhook } from "./Webhook"`)
+  writer.writeLine(
+    `import type { Unrecognized } from "../../utils/unrecognized"`,
+  )
+  writer.writeLine("")
+  writer.writeLine(
+    `export function isUnrecognizedWebhook(entity: Webhook): entity is { readonly type: Unrecognized } {`,
+  )
+  writer.indent()
+  let first = true
+  for (const [type] of webhookTypes) {
+    if (first) {
+      writer.writeLine(`return entity.type !== "${type}"`)
+      writer.indent()
+      first = false
+    } else {
+      writer.writeLine(`&& entity.type !== "${type}"`)
+    }
+  }
+  writer.outdent()
+  writer.outdent()
+  writer.writeLine(`}`)
   Deno.writeTextFileSync(path.join(webhookPath, "index.ts"), writer.content)
 }
 
@@ -448,7 +473,7 @@ function generateCategoryIndex(
   const writer = TypescriptWriter()
   for (const entity of pack.entities) {
     if (omitEntities.has(entity.name)) continue
-    writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
+    writer.writeLine(`export * from "./${entity.name}"`)
   }
   if (pack.operations.length > 0) {
     writer.writeLine(

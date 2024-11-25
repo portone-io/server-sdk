@@ -28,6 +28,7 @@ public sealed interface PaymentMethodGiftCertificateType {
   public data object Culturegift : PaymentMethodGiftCertificateType {
     override val value: String = "CULTUREGIFT"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentMethodGiftCertificateType
 }

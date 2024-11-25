@@ -8,6 +8,7 @@ export function generateEntity(
   hierarchy: string,
 ): string {
   const crossRef = new Set<string>()
+  const importWriter = TypescriptWriter()
   const writer = TypescriptWriter()
   writeDescription(
     writer,
@@ -98,7 +99,7 @@ export function generateEntity(
         writer.writeLine("}")
       }
       break
-    case "oneOf":
+    case "oneOf": {
       writer.writeLine(`export type ${definition.name} =`)
       writer.indent()
       for (const { name, title } of definition.variants) {
@@ -106,9 +107,33 @@ export function generateEntity(
         writeDescription(writer, title)
         writer.writeLine(`| ${name}`)
       }
-      writer.writeLine(`| { readonly ${definition.property}: unique symbol }`)
+      writer.writeLine(`| { readonly ${definition.property}: Unrecognized }`)
       writer.outdent()
+      importWriter.writeLine(
+        `import type { Unrecognized } from "${hierarchy}/../utils/unrecognized"`,
+      )
+      writer.writeLine("")
+      writer.writeLine(
+        `export function isUnrecognized${definition.name}(entity: ${definition.name}): entity is { readonly ${definition.property}: Unrecognized } {`,
+      )
+      writer.indent()
+      let first = true
+      for (const { value } of definition.variants) {
+        if (first) {
+          writer.writeLine(
+            `return entity.${definition.property} !== "${value}"`,
+          )
+          writer.indent()
+          first = false
+        } else {
+          writer.writeLine(`&& entity.${definition.property} !== "${value}"`)
+        }
+      }
+      writer.outdent()
+      writer.outdent()
+      writer.writeLine("}")
       break
+    }
     case "enum":
       writer.writeLine(`export type ${definition.name} =`)
       writer.indent()
@@ -129,15 +154,15 @@ export function generateEntity(
   }
   const sortedRef = [...crossRef]
   sortedRef.sort()
-  const imports = sortedRef.map((ref) => {
+  for (const ref of sortedRef) {
     const path = categoryMap.get(ref)?.replace(".", "/")
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }
-    return `import type { ${ref} } from "${hierarchy}/${path}/${ref}"`
-  })
-  const content = imports.length > 0
-    ? `${imports.join("\n")}\n\n${writer.content}`
-    : writer.content
+    importWriter.writeLine(
+      `import type { ${ref} } from "${hierarchy}/${path}/${ref}"`,
+    )
+  }
+  const content = importWriter.content + writer.content
   return content
 }

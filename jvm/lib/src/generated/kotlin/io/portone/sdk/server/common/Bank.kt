@@ -325,6 +325,7 @@ public sealed interface Bank {
   public data object WooriInvestmentBank : Bank {
     override val value: String = "WOORI_INVESTMENT_BANK"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : Bank
 }

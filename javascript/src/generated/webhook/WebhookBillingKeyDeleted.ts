@@ -1,5 +1,4 @@
 import type { WebhookBillingKeyDataDeleted } from "./WebhookBillingKeyDataDeleted"
-
 /** 빌링키가 삭제되었을 때 */
 export type WebhookBillingKeyDeleted = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

@@ -1,7 +1,6 @@
 import type { CashReceiptType } from "./../../common/CashReceiptType"
 import type { Currency } from "./../../common/Currency"
 import type { SelectedChannel } from "./../../common/SelectedChannel"
-
 /** 발급 취소 */
 export type CancelledCashReceipt = {
 	/** 현금영수증 상태 */

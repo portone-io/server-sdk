@@ -13,9 +13,11 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface GetKakaopayPaymentOrderError {
   @Serializable
   @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : GetKakaopayPaymentOrderError {
     public val message: String?
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : GetKakaopayPaymentOrderError
 }

@@ -1,6 +1,6 @@
+import type { Unrecognized } from "./../../utils/unrecognized"
 import type { OneLineAddress } from "./../common/OneLineAddress"
 import type { SeparatedAddress } from "./../common/SeparatedAddress"
-
 /**
  * 분리 형식 주소
  *
@@ -11,4 +11,9 @@ export type Address =
 	| OneLineAddress
 	/** 분리 형식 */
 	| SeparatedAddress
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedAddress(entity: Address): entity is { readonly type: Unrecognized } {
+	return entity.type !== "ONE_LINE"
+		&& entity.type !== "SEPARATED"
+}

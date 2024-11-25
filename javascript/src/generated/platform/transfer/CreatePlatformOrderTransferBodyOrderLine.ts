@@ -1,7 +1,6 @@
 import type { CreatePlatformOrderTransferBodyAdditionalFee } from "./../../platform/transfer/CreatePlatformOrderTransferBodyAdditionalFee"
 import type { CreatePlatformOrderTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderTransferBodyDiscount"
 import type { CreatePlatformOrderTransferBodyProduct } from "./../../platform/transfer/CreatePlatformOrderTransferBodyProduct"
-
 /** 주문 항목 */
 export type CreatePlatformOrderTransferBodyOrderLine = {
 	/** 상품 */

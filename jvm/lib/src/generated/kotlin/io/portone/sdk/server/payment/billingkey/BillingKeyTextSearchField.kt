@@ -46,6 +46,7 @@ public sealed interface BillingKeyTextSearchField {
   public data object ChannelGroupName : BillingKeyTextSearchField {
     override val value: String = "CHANNEL_GROUP_NAME"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : BillingKeyTextSearchField
 }

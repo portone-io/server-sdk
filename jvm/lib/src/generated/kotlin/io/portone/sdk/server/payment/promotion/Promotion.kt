@@ -20,6 +20,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface Promotion {
   @Serializable
   @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : Promotion {
     /** 프로모션 아이디 */
     public val id: String
@@ -52,6 +53,7 @@ public sealed interface Promotion {
     /** 결제 취소 시 프로모션 예산 복구 옵션 */
     public val recoverOption: PromotionRecoverOption
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : Promotion
 }

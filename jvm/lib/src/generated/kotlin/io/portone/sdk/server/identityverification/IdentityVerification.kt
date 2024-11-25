@@ -16,6 +16,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface IdentityVerification {
   @Serializable
   @JsonClassDiscriminator("status")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : IdentityVerification {
     /** 본인인증 내역 아이디 */
     public val id: String
@@ -30,6 +31,7 @@ public sealed interface IdentityVerification {
     /** 상태 업데이트 시점 */
     public val statusChangedAt: Instant
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : IdentityVerification
 }

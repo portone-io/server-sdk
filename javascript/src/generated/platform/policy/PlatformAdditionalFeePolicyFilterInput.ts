@@ -1,6 +1,5 @@
 import type { PlatformAdditionalFeePolicyFilterInputKeyword } from "./../../platform/policy/PlatformAdditionalFeePolicyFilterInputKeyword"
 import type { PlatformPayer } from "./../../platform/PlatformPayer"
-
 /** 추가 수수료 정책 다건 조회를 위한 필터 조건 */
 export type PlatformAdditionalFeePolicyFilterInput = {
 	/**

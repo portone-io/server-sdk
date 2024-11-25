@@ -30,6 +30,7 @@ public sealed interface PaymentMethodType {
   public data object EasyPay : PaymentMethodType {
     override val value: String = "EASY_PAY"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentMethodType
 }

@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataVirtualAccountIssued } from "./WebhookTransactionDataVirtualAccountIssued"
-
 /** 가상계좌가 발급되었을 때 */
 export type WebhookTransactionVirtualAccountIssued = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

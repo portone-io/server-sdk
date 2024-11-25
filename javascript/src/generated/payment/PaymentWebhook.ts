@@ -3,7 +3,6 @@ import type { PaymentWebhookRequest } from "./../payment/PaymentWebhookRequest"
 import type { PaymentWebhookResponse } from "./../payment/PaymentWebhookResponse"
 import type { PaymentWebhookStatus } from "./../payment/PaymentWebhookStatus"
 import type { PaymentWebhookTrigger } from "./../payment/PaymentWebhookTrigger"
-
 /** 성공 웹훅 내역 */
 export type PaymentWebhook = {
 	/**

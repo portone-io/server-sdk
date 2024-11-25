@@ -19,6 +19,7 @@ public sealed interface PortOneVersion {
   public data object V2 : PortOneVersion {
     override val value: String = "V2"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PortOneVersion
 }

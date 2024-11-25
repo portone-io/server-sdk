@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataPaid } from "./WebhookTransactionDataPaid"
-
 /** 결제(예약 결제 포함)가 승인되었을 때 (모든 결제 수단) */
 export type WebhookTransactionPaid = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

@@ -34,6 +34,7 @@ public sealed interface DayOfWeek {
   public data object Sat : DayOfWeek {
     override val value: String = "SAT"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : DayOfWeek
 }

@@ -1,8 +1,8 @@
+import type { Unrecognized } from "./../../utils/unrecognized"
 import type { PlatformSettlementCycleMethodDaily } from "./../platform/PlatformSettlementCycleMethodDaily"
 import type { PlatformSettlementCycleMethodManualDates } from "./../platform/PlatformSettlementCycleMethodManualDates"
 import type { PlatformSettlementCycleMethodMonthly } from "./../platform/PlatformSettlementCycleMethodMonthly"
 import type { PlatformSettlementCycleMethodWeekly } from "./../platform/PlatformSettlementCycleMethodWeekly"
-
 /** 플랫폼 정산 주기 계산 방식 */
 export type PlatformSettlementCycleMethod =
 	/** 매일 정산 */
@@ -13,4 +13,11 @@ export type PlatformSettlementCycleMethod =
 	| PlatformSettlementCycleMethodMonthly
 	/** 매주 정해진 요일에 정산 */
 	| PlatformSettlementCycleMethodWeekly
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedPlatformSettlementCycleMethod(entity: PlatformSettlementCycleMethod): entity is { readonly type: Unrecognized } {
+	return entity.type !== "DAILY"
+		&& entity.type !== "MANUAL_DATES"
+		&& entity.type !== "MONTHLY"
+		&& entity.type !== "WEEKLY"
+}

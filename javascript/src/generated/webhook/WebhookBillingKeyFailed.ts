@@ -1,5 +1,4 @@
 import type { WebhookBillingKeyDataFailed } from "./WebhookBillingKeyDataFailed"
-
 /** 빌링키 발급이 실패했을 때 */
 export type WebhookBillingKeyFailed = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

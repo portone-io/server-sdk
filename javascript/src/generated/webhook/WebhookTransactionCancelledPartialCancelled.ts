@@ -1,5 +1,4 @@
 import type { WebhookTransactionCancelledDataPartialCancelled } from "./WebhookTransactionCancelledDataPartialCancelled"
-
 /** 결제가 부분 취소되었을 때 */
 export type WebhookTransactionCancelledPartialCancelled = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

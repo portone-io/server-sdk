@@ -26,6 +26,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface Payment {
   @Serializable
   @JsonClassDiscriminator("status")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : Payment {
     /** 결제 건 아이디 */
     public val id: String
@@ -88,6 +89,7 @@ public sealed interface Payment {
     /** 국가 코드 */
     public val country: Country?
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : Payment
 }

@@ -1,5 +1,4 @@
 import type { BillingKeyPaymentInput } from "./../../common/BillingKeyPaymentInput"
-
 /** 결제 예약 요청 입력 정보 */
 export type CreatePaymentScheduleBody = {
 	/** 빌링키 결제 입력 정보 */

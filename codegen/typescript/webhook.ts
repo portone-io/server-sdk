@@ -6,6 +6,7 @@ export function generateEntity(
   definition: Definition,
 ): string {
   const crossRef = new Set<string>()
+  const importWriter = TypescriptWriter()
   const writer = TypescriptWriter()
   writeDescription(
     writer,
@@ -22,7 +23,10 @@ export function generateEntity(
         }
         if (definition.interface.open) {
           writer.writeLine(
-            `| { readonly ${definition.interface.discriminant}: unique symbol }`,
+            `| { readonly ${definition.interface.discriminant}: Unrecognized }`,
+          )
+          importWriter.writeLine(
+            `import type { Unrecognized } from "../../utils/unrecognized"`,
           )
         }
         writer.outdent()
@@ -70,11 +74,8 @@ export function generateEntity(
   }
   const sortedRef = [...crossRef]
   sortedRef.sort()
-  const imports = sortedRef.map((ref) => {
-    return `import type { ${ref} } from "./${ref}"`
-  })
-  const content = imports.length > 0
-    ? `${imports.join("\n")}\n\n${writer.content}`
-    : writer.content
-  return content
+  for (const ref of sortedRef) {
+    importWriter.writeLine(`import type { ${ref} } from "./${ref}"`)
+  }
+  return importWriter.content + writer.content
 }

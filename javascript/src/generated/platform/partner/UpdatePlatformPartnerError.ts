@@ -1,3 +1,4 @@
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import type { ForbiddenError } from "./../../common/ForbiddenError"
 import type { InvalidRequestError } from "./../../common/InvalidRequestError"
 import type { PlatformAccountVerificationAlreadyUsedError } from "./../../platform/PlatformAccountVerificationAlreadyUsedError"
@@ -10,7 +11,6 @@ import type { PlatformNotEnabledError } from "./../../platform/PlatformNotEnable
 import type { PlatformPartnerNotFoundError } from "./../../platform/PlatformPartnerNotFoundError"
 import type { PlatformUserDefinedPropertyNotFoundError } from "./../../platform/PlatformUserDefinedPropertyNotFoundError"
 import type { UnauthorizedError } from "./../../common/UnauthorizedError"
-
 export type UpdatePlatformPartnerError =
 	| ForbiddenError
 	| InvalidRequestError
@@ -24,4 +24,19 @@ export type UpdatePlatformPartnerError =
 	| PlatformPartnerNotFoundError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedUpdatePlatformPartnerError(entity: UpdatePlatformPartnerError): entity is { readonly type: Unrecognized } {
+	return entity.type !== "FORBIDDEN"
+		&& entity.type !== "INVALID_REQUEST"
+		&& entity.type !== "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED"
+		&& entity.type !== "PLATFORM_ACCOUNT_VERIFICATION_FAILED"
+		&& entity.type !== "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND"
+		&& entity.type !== "PLATFORM_ARCHIVED_PARTNER"
+		&& entity.type !== "PLATFORM_CONTRACT_NOT_FOUND"
+		&& entity.type !== "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE"
+		&& entity.type !== "PLATFORM_NOT_ENABLED"
+		&& entity.type !== "PLATFORM_PARTNER_NOT_FOUND"
+		&& entity.type !== "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND"
+		&& entity.type !== "UNAUTHORIZED"
+}

@@ -1,6 +1,5 @@
 import type { CustomerInput } from "./../../common/CustomerInput"
 import type { InstantBillingKeyPaymentMethodInput } from "./../../payment/billingKey/InstantBillingKeyPaymentMethodInput"
-
 /** 빌링키 발급 요청 양식 */
 export type IssueBillingKeyBody = {
 	/**

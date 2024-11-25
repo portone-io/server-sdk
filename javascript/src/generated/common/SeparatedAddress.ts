@@ -1,5 +1,4 @@
 import type { Country } from "./../common/Country"
-
 /**
  * 분리 형식 주소
  *

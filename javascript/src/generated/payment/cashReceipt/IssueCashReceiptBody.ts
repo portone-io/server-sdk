@@ -3,7 +3,6 @@ import type { Currency } from "./../../common/Currency"
 import type { IssueCashReceiptCustomerInput } from "./../../payment/cashReceipt/IssueCashReceiptCustomerInput"
 import type { PaymentAmountInput } from "./../../common/PaymentAmountInput"
 import type { PaymentProductType } from "./../../common/PaymentProductType"
-
 /** 현금영수증 발급 요청 양식 */
 export type IssueCashReceiptBody = {
 	/**

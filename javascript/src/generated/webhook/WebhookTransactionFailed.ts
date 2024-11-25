@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataFailed } from "./WebhookTransactionDataFailed"
-
 /** 결제(예약 결제 포함)가 실패했을 때 */
 export type WebhookTransactionFailed = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

@@ -23,6 +23,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface PlatformTransfer {
   @Serializable
   @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : PlatformTransfer {
     /** 정산건 아이디 */
     public val id: String
@@ -48,6 +49,7 @@ public sealed interface PlatformTransfer {
     /** 사용자 정의 속성 */
     public val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : PlatformTransfer
 }

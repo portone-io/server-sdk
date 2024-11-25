@@ -4,7 +4,6 @@ import type { PlatformContract } from "./../../platform/PlatformContract"
 import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
 import type { PlatformPartner } from "./../../platform/PlatformPartner"
 import type { PlatformPartnerSettlementStatus } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatus"
-
 export type PlatformPartnerOrderSettlement = {
 	type: "ORDER"
 	/** 정산내역 아이디 */

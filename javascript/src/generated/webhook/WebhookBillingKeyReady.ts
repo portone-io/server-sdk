@@ -1,5 +1,4 @@
 import type { WebhookBillingKeyDataReady } from "./WebhookBillingKeyDataReady"
-
 /** 빌링키 발급창이 열렸을 때 */
 export type WebhookBillingKeyReady = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

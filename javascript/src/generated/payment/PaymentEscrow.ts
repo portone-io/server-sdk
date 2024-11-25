@@ -1,3 +1,4 @@
+import type { Unrecognized } from "./../../utils/unrecognized"
 import type { BeforeRegisteredPaymentEscrow } from "./../payment/BeforeRegisteredPaymentEscrow"
 import type { CancelledPaymentEscrow } from "./../payment/CancelledPaymentEscrow"
 import type { ConfirmedPaymentEscrow } from "./../payment/ConfirmedPaymentEscrow"
@@ -5,7 +6,6 @@ import type { DeliveredPaymentEscrow } from "./../payment/DeliveredPaymentEscrow
 import type { RegisteredPaymentEscrow } from "./../payment/RegisteredPaymentEscrow"
 import type { RejectConfirmedPaymentEscrow } from "./../payment/RejectConfirmedPaymentEscrow"
 import type { RejectedPaymentEscrow } from "./../payment/RejectedPaymentEscrow"
-
 /**
  * 에스크로 정보
  *
@@ -26,4 +26,14 @@ export type PaymentEscrow =
 	| RejectedPaymentEscrow
 	/** 구매 거절 확정 */
 	| RejectConfirmedPaymentEscrow
-	| { readonly status: unique symbol }
+	| { readonly status: Unrecognized }
+
+export function isUnrecognizedPaymentEscrow(entity: PaymentEscrow): entity is { readonly status: Unrecognized } {
+	return entity.status !== "BEFORE_REGISTERED"
+		&& entity.status !== "CANCELLED"
+		&& entity.status !== "CONFIRMED"
+		&& entity.status !== "DELIVERED"
+		&& entity.status !== "REGISTERED"
+		&& entity.status !== "REJECTED"
+		&& entity.status !== "REJECT_CONFIRMED"
+}

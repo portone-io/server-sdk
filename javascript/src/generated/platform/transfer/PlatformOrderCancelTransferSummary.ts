@@ -4,7 +4,6 @@ import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformT
 import type { PlatformTransferSummaryPartner } from "./../../platform/transfer/PlatformTransferSummaryPartner"
 import type { PlatformTransferSummaryPayment } from "./../../platform/transfer/PlatformTransferSummaryPayment"
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
-
 export type PlatformOrderCancelTransferSummary = {
 	type: "ORDER_CANCEL"
 	id: string

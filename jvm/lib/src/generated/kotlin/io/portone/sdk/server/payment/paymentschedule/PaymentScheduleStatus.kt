@@ -37,6 +37,7 @@ public sealed interface PaymentScheduleStatus {
   public data object Pending : PaymentScheduleStatus {
     override val value: String = "PENDING"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentScheduleStatus
 }

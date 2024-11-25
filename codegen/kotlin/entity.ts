@@ -252,6 +252,9 @@ export function generateEntity(
       )
       crossRef.add("kotlinx.serialization.json.JsonClassDiscriminator")
       writer.writeLine(
+        "/** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */",
+      )
+      writer.writeLine(
         `public sealed interface Recognized : ${definition.name} {`,
       )
       writer.indent()
@@ -392,6 +395,7 @@ export function generateEntity(
       }
       writer.outdent()
       writer.writeLine("}")
+      writer.writeLine("/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */")
       writer.writeLine("@Serializable")
       writer.writeLine(`public data object Unrecognized : ${definition.name}`)
       writer.outdent()
@@ -460,6 +464,7 @@ export function generateEntity(
         writer.outdent()
         writer.writeLine("}")
       }
+      writer.writeLine("/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */")
       writer.writeLine("@ConsistentCopyVisibility")
       writer.writeLine(
         `public data class Unrecognized internal constructor(override val value: String) : ${definition.name}`,

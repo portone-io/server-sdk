@@ -4,7 +4,6 @@ import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "./../
 import type { CreatePlatformOrderTransferBodyOrderDetail } from "./../../platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 import type { TransferParameters } from "./../../platform/transfer/TransferParameters"
-
 /** 주문 정산건 생성을 위한 입력 정보 */
 export type CreatePlatformOrderTransferBody = {
 	/** 파트너 아이디 */

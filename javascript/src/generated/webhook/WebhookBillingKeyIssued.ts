@@ -1,5 +1,4 @@
 import type { WebhookBillingKeyDataIssued } from "./WebhookBillingKeyDataIssued"
-
 /** 빌링키가 발급되었을 때 */
 export type WebhookBillingKeyIssued = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

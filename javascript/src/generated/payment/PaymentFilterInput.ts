@@ -17,7 +17,6 @@ import type { PaymentWebhookStatus } from "./../payment/PaymentWebhookStatus"
 import type { PgProvider } from "./../common/PgProvider"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SortOrder } from "./../common/SortOrder"
-
 /** 결제 건 다건 조회를 위한 입력 정보 */
 export type PaymentFilterInput = {
 	/** 고객사 아이디 */

@@ -3,7 +3,6 @@ import type { PromotionCardCompany } from "./../../payment/promotion/PromotionCa
 import type { PromotionDiscountPolicy } from "./../../payment/promotion/PromotionDiscountPolicy"
 import type { PromotionRecoverOption } from "./../../payment/promotion/PromotionRecoverOption"
 import type { PromotionStatus } from "./../../payment/promotion/PromotionStatus"
-
 /** 카드 프로모션 */
 export type CardPromotion = {
 	/** 프로모션 유형 */

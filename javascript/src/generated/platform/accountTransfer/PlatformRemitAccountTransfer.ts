@@ -1,6 +1,5 @@
 import type { Bank } from "./../../common/Bank"
 import type { Currency } from "./../../common/Currency"
-
 export type PlatformRemitAccountTransfer = {
 	/** 계좌 이체 유형 */
 	type: "REMIT"

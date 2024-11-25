@@ -1,6 +1,5 @@
 import type { PlatformPartnerBusinessStatus } from "./../platform/PlatformPartnerBusinessStatus"
 import type { PlatformPartnerTaxationType } from "./../platform/PlatformPartnerTaxationType"
-
 /**
  * 사업자 파트너 정보
  *

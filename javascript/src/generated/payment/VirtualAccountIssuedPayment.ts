@@ -9,7 +9,6 @@ import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
-
 /** 가상계좌 발급 완료 상태 건 */
 export type VirtualAccountIssuedPayment = {
 	/** 결제 건 상태 */

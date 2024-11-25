@@ -1,6 +1,5 @@
 import type { CashReceiptType } from "./../common/CashReceiptType"
 import type { Currency } from "./../common/Currency"
-
 /** 취소된 현금영수증 */
 export type CancelledPaymentCashReceipt = {
 	/** 결제 건 내 현금영수증 상태 */

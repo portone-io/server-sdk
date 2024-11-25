@@ -3,7 +3,6 @@ import type { PlatformPartner } from "./../../platform/PlatformPartner"
 import type { PlatformPayoutAccount } from "./../../platform/payout/PlatformPayoutAccount"
 import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
 import type { PlatformPayoutStatus } from "./../../platform/payout/PlatformPayoutStatus"
-
 export type PlatformPayout = {
 	/** 지급 고유 아이디 */
 	id: string

@@ -1,5 +1,4 @@
 import type { UpdatePlatformAdditionalFeePolicyBody } from "./../platform/UpdatePlatformAdditionalFeePolicyBody"
-
 /** 추가 수수료 정책 예약 업데이트 재설정을 위한 입력 정보 */
 export type ReschedulePlatformAdditionalFeePolicyBody = {
 	/** 반영할 업데이트 내용 */

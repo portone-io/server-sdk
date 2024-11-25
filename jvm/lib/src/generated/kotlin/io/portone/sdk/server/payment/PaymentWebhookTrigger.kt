@@ -35,6 +35,7 @@ public sealed interface PaymentWebhookTrigger {
   public data object AsyncPayFailed : PaymentWebhookTrigger {
     override val value: String = "ASYNC_PAY_FAILED"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentWebhookTrigger
 }

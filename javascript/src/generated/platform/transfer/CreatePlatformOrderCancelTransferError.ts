@@ -1,3 +1,4 @@
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import type { ForbiddenError } from "./../../common/ForbiddenError"
 import type { InvalidRequestError } from "./../../common/InvalidRequestError"
 import type { PlatformCancellableAmountExceededError } from "./../../platform/transfer/PlatformCancellableAmountExceededError"
@@ -21,7 +22,6 @@ import type { PlatformTransferDiscountSharePolicyNotFoundError } from "./../../p
 import type { PlatformTransferNotFoundError } from "./../../platform/transfer/PlatformTransferNotFoundError"
 import type { PlatformUserDefinedPropertyNotFoundError } from "./../../platform/PlatformUserDefinedPropertyNotFoundError"
 import type { UnauthorizedError } from "./../../common/UnauthorizedError"
-
 export type CreatePlatformOrderCancelTransferError =
 	| ForbiddenError
 	| InvalidRequestError
@@ -46,4 +46,30 @@ export type CreatePlatformOrderCancelTransferError =
 	| PlatformTransferNotFoundError
 	| PlatformUserDefinedPropertyNotFoundError
 	| UnauthorizedError
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedCreatePlatformOrderCancelTransferError(entity: CreatePlatformOrderCancelTransferError): entity is { readonly type: Unrecognized } {
+	return entity.type !== "FORBIDDEN"
+		&& entity.type !== "INVALID_REQUEST"
+		&& entity.type !== "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED"
+		&& entity.type !== "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED"
+		&& entity.type !== "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED"
+		&& entity.type !== "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED"
+		&& entity.type !== "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED"
+		&& entity.type !== "PLATFORM_CANCELLATION_NOT_FOUND"
+		&& entity.type !== "PLATFORM_CANNOT_SPECIFY_TRANSFER"
+		&& entity.type !== "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED"
+		&& entity.type !== "PLATFORM_NOT_ENABLED"
+		&& entity.type !== "PLATFORM_ORDER_DETAIL_MISMATCHED"
+		&& entity.type !== "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED"
+		&& entity.type !== "PLATFORM_PAYMENT_NOT_FOUND"
+		&& entity.type !== "PLATFORM_PRODUCT_ID_DUPLICATED"
+		&& entity.type !== "PLATFORM_PRODUCT_ID_NOT_FOUND"
+		&& entity.type !== "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED"
+		&& entity.type !== "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL"
+		&& entity.type !== "PLATFORM_TRANSFER_ALREADY_EXISTS"
+		&& entity.type !== "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND"
+		&& entity.type !== "PLATFORM_TRANSFER_NOT_FOUND"
+		&& entity.type !== "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND"
+		&& entity.type !== "UNAUTHORIZED"
+}

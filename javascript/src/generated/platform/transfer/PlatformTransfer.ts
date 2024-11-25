@@ -1,7 +1,7 @@
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import type { PlatformManualTransfer } from "./../../platform/transfer/PlatformManualTransfer"
 import type { PlatformOrderCancelTransfer } from "./../../platform/transfer/PlatformOrderCancelTransfer"
 import type { PlatformOrderTransfer } from "./../../platform/transfer/PlatformOrderTransfer"
-
 /**
  * 정산건
  *
@@ -15,4 +15,10 @@ export type PlatformTransfer =
 	| PlatformOrderTransfer
 	/** 주문 취소 정산건 */
 	| PlatformOrderCancelTransfer
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedPlatformTransfer(entity: PlatformTransfer): entity is { readonly type: Unrecognized } {
+	return entity.type !== "MANUAL"
+		&& entity.type !== "ORDER"
+		&& entity.type !== "ORDER_CANCEL"
+}

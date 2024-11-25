@@ -2,7 +2,6 @@ import type { PlatformContractFilterInputKeyword } from "./../../platform/policy
 import type { PlatformPayer } from "./../../platform/PlatformPayer"
 import type { PlatformSettlementCycleDatePolicy } from "./../../platform/PlatformSettlementCycleDatePolicy"
 import type { PlatformSettlementCycleType } from "./../../platform/policy/PlatformSettlementCycleType"
-
 /** 계약 다건 조회를 위한 필터 조건 */
 export type PlatformContractFilterInput = {
 	/**

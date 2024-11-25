@@ -1,6 +1,5 @@
 import type { PageInput } from "./../../common/PageInput"
 import type { PlatformDiscountSharePolicyFilterInput } from "./../../platform/policy/PlatformDiscountSharePolicyFilterInput"
-
 /** 할인 분담 정책 다건 조회를 위한 입력 정보 */
 export type GetPlatformDiscountSharePoliciesBody = {
 	/** 요청할 페이지 정보 */

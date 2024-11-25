@@ -6,7 +6,6 @@ import type { PaymentAmountInput } from "./../common/PaymentAmountInput"
 import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentProductType } from "./../common/PaymentProductType"
 import type { SeparatedAddressInput } from "./../common/SeparatedAddressInput"
-
 /** 수기 결제 요청 정보 */
 export type InstantPaymentInput = {
 	/**

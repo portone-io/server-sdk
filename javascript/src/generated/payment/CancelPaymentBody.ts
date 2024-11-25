@@ -1,7 +1,6 @@
 import type { CancelPaymentBodyRefundAccount } from "./../payment/CancelPaymentBodyRefundAccount"
 import type { CancelRequester } from "./../payment/CancelRequester"
 import type { PromotionDiscountRetainOption } from "./../payment/PromotionDiscountRetainOption"
-
 /** 결제 취소 요청 입력 정보 */
 export type CancelPaymentBody = {
 	/**

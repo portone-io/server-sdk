@@ -29,6 +29,7 @@ public sealed interface BillingKeyPaymentMethodType {
   public data object Transfer : BillingKeyPaymentMethodType {
     override val value: String = "TRANSFER"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : BillingKeyPaymentMethodType
 }

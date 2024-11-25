@@ -1,5 +1,4 @@
 import type { UpdatePlatformPartnerBody } from "./../platform/UpdatePlatformPartnerBody"
-
 /** 파트너 업데이트 예약을 위한 입력 정보 */
 export type SchedulePlatformPartnerBody = {
 	/** 반영할 업데이트 내용 */

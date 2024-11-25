@@ -67,6 +67,7 @@ public sealed interface EasyPayProvider {
   public data object Tmoney : EasyPayProvider {
     override val value: String = "TMONEY"
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : EasyPayProvider
 }

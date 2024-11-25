@@ -14,6 +14,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface PgBillingKeyIssueResponse {
   @Serializable
   @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : PgBillingKeyIssueResponse {
     /**
      * 채널
@@ -22,6 +23,7 @@ public sealed interface PgBillingKeyIssueResponse {
      */
     public val channel: SelectedChannel
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : PgBillingKeyIssueResponse
 }

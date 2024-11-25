@@ -1,7 +1,6 @@
 import type { Bank } from "./../common/Bank"
 import type { Currency } from "./../common/Currency"
 import type { PlatformAccountStatus } from "./../platform/PlatformAccountStatus"
-
 /**
  * 플랫폼 정산 계좌
  *

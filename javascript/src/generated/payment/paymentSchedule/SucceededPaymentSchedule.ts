@@ -1,7 +1,6 @@
 import type { Currency } from "./../../common/Currency"
 import type { Customer } from "./../../common/Customer"
 import type { PaymentProduct } from "./../../common/PaymentProduct"
-
 /** 결제 성공 상태 */
 export type SucceededPaymentSchedule = {
 	/** 결제 예약 건 상태 */

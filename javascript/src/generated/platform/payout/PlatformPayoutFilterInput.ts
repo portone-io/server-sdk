@@ -2,7 +2,6 @@ import type { Bank } from "./../../common/Bank"
 import type { Currency } from "./../../common/Currency"
 import type { PlatformPayoutFilterInputCriteria } from "./../../platform/payout/PlatformPayoutFilterInputCriteria"
 import type { PlatformPayoutStatus } from "./../../platform/payout/PlatformPayoutStatus"
-
 export type PlatformPayoutFilterInput = {
 	statuses?: PlatformPayoutStatus[]
 	partnerIds?: string[]

@@ -2,7 +2,6 @@ import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrd
 import type { PlatformOrderTransferAdditionalFee } from "./../../platform/transfer/PlatformOrderTransferAdditionalFee"
 import type { PlatformOrderTransferDiscount } from "./../../platform/transfer/PlatformOrderTransferDiscount"
 import type { PlatformOrderTransferProduct } from "./../../platform/transfer/PlatformOrderTransferProduct"
-
 /** 주문 항목 */
 export type PlatformOrderTransferOrderLine = {
 	/** 상품 */

@@ -1,3 +1,4 @@
+import type { Unrecognized } from "./../../utils/unrecognized"
 import type { AlreadyPaidError } from "./../payment/AlreadyPaidError"
 import type { ChannelNotFoundError } from "./../common/ChannelNotFoundError"
 import type { DiscountAmountExceedsTotalAmountError } from "./../payment/DiscountAmountExceedsTotalAmountError"
@@ -9,7 +10,6 @@ import type { PgProviderError } from "./../common/PgProviderError"
 import type { PromotionPayMethodDoesNotMatchError } from "./../payment/PromotionPayMethodDoesNotMatchError"
 import type { SumOfPartsExceedsTotalAmountError } from "./../common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError } from "./../common/UnauthorizedError"
-
 export type PayInstantlyError =
 	| AlreadyPaidError
 	| ChannelNotFoundError
@@ -22,4 +22,18 @@ export type PayInstantlyError =
 	| PromotionPayMethodDoesNotMatchError
 	| SumOfPartsExceedsTotalAmountError
 	| UnauthorizedError
-	| { readonly type: unique symbol }
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedPayInstantlyError(entity: PayInstantlyError): entity is { readonly type: Unrecognized } {
+	return entity.type !== "ALREADY_PAID"
+		&& entity.type !== "CHANNEL_NOT_FOUND"
+		&& entity.type !== "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT"
+		&& entity.type !== "FORBIDDEN"
+		&& entity.type !== "INVALID_REQUEST"
+		&& entity.type !== "MAX_TRANSACTION_COUNT_REACHED"
+		&& entity.type !== "PAYMENT_SCHEDULE_ALREADY_EXISTS"
+		&& entity.type !== "PG_PROVIDER"
+		&& entity.type !== "PROMOTION_PAY_METHOD_DOES_NOT_MATCH"
+		&& entity.type !== "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT"
+		&& entity.type !== "UNAUTHORIZED"
+}

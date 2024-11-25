@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataPayPending } from "./WebhookTransactionDataPayPending"
-
 /** 결제 승인 대기 상태가 되었을 때 (해외 결제시 발생 가능) */
 export type WebhookTransactionPayPending = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

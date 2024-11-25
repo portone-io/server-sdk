@@ -1,6 +1,5 @@
 import type { BillingKeyInfo } from "./../../payment/billingKey/BillingKeyInfo"
 import type { PageInfo } from "./../../common/PageInfo"
-
 /** 빌링키 다건 조회 성공 응답 정보 */
 export type GetBillingKeyInfosResponse = {
 	/** 조회된 빌링키 리스트 */

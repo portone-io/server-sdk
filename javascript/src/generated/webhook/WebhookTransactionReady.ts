@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataReady } from "./WebhookTransactionDataReady"
-
 /** 결제창이 열렸을 때 */
 export type WebhookTransactionReady = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

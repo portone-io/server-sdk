@@ -1,5 +1,4 @@
 import type { WebhookTransactionDataCancelPending } from "./WebhookTransactionDataCancelPending"
-
 /** (결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 */
 export type WebhookTransactionCancelPending = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

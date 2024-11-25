@@ -16,6 +16,7 @@ import kotlinx.serialization.json.jsonPrimitive
 public sealed interface PlatformPartnerSettlement {
   @Serializable
   @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : PlatformPartnerSettlement {
     /** 정산내역 아이디 */
     public val id: String
@@ -37,6 +38,7 @@ public sealed interface PlatformPartnerSettlement {
     /** 테스트 모드 여부 */
     public val isForTest: Boolean
   }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
   public data object Unrecognized : PlatformPartnerSettlement
 }

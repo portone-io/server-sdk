@@ -1,5 +1,4 @@
 import type { PlatformPartnerTaxationType } from "./../platform/PlatformPartnerTaxationType"
-
 export type UpdatePlatformPartnerBodyTypeBusiness = {
 	/** 상호명 */
 	companyName?: string

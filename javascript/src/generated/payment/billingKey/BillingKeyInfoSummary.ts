@@ -1,5 +1,4 @@
 import type { SelectedChannel } from "./../../common/SelectedChannel"
-
 export type BillingKeyInfoSummary = {
 	/** 발급된 빌링키 */
 	billingKey: string

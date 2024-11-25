@@ -1,5 +1,4 @@
 import type { WebhookTransactionCancelledDataCancelled } from "./WebhookTransactionCancelledDataCancelled"
-
 /** 결제가 완전 취소되었을 때 이벤트의 실제 세부 내용입니다. */
 export type WebhookTransactionCancelledCancelled = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */

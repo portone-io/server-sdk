@@ -10,7 +10,6 @@ import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
-
 /** 결제 실패 상태 건 */
 export type FailedPayment = {
 	/** 결제 건 상태 */
