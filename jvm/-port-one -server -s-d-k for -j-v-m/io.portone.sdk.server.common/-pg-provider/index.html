@@ -45,7 +45,7 @@
                     </a>
             </div>
             <div class="library-version">
-0.8.1            </div>
+0.8.1-4-g8ec15afdb            </div>
         </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":lib:dokkaHtml/main">jvm</button>
@@ -65,729 +65,744 @@
   <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.common</a><span class="delimiter">/</span><span class="current">PgProvider</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Pg</span><wbr></wbr><span><span>Provider</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="index.html">PgProvider</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">PgProvider</a><span class="token operator">&gt; </span></div><p class="paragraph">PG사 결제 모듈</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/PgProviderSerializer///PointingToDeclaration/">PgProviderSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PgProvider</a></div><p class="paragraph">PG사 결제 모듈</p><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-html5-inicis/index.html">Html5Inicis</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-paypal/index.html">Paypal</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-paypal-v2/index.html">PaypalV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-inicis/index.html">Inicis</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-danal/index.html">Danal</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-nice/index.html">Nice</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-danal-tpay/index.html">DanalTpay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-jtnet/index.html">Jtnet</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-uplus/index.html">Uplus</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-naverpay/index.html">Naverpay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kakao/index.html">Kakao</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-settle/index.html">Settle</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kcp/index.html">Kcp</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-mobilians/index.html">Mobilians</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kakaopay/index.html">Kakaopay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-naverco/index.html">Naverco</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-syrup/index.html">Syrup</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kicc/index.html">Kicc</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-eximbay/index.html">Eximbay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-smilepay/index.html">Smilepay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-payco/index.html">Payco</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kcp-billing/index.html">KcpBilling</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-alipay/index.html">Alipay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-payple/index.html">Payple</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-chai/index.html">Chai</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-bluewalnut/index.html">Bluewalnut</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-smartro/index.html">Smartro</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-smartro-v2/index.html">SmartroV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-paymentwall/index.html">Paymentwall</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tosspayments/index.html">Tosspayments</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kcp-quick/index.html">KcpQuick</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-daou/index.html">Daou</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-galaxia/index.html">Galaxia</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tosspay/index.html">Tosspay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kcp-direct/index.html">KcpDirect</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-settle-acc/index.html">SettleAcc</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-settle-firm/index.html">SettleFirm</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-inicis-unified/index.html">InicisUnified</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ksnet/index.html">Ksnet</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-pinpay/index.html">Pinpay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-nice-v2/index.html">NiceV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-toss-brandpay/index.html">TossBrandpay</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-welcome/index.html">Welcome</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tosspay-v2/index.html">TosspayV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-inicis-v2/index.html">InicisV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kpn/index.html">Kpn</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kcp-v2/index.html">KcpV2</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hyphen/index.html">Hyphen</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
-      <div data-togglable="ENTRY">
-        <h2 class="">Entries</h2>
-        <div class="table"><a data-name="-2110210950%2FClasslikes%2F1440829338" anchor-label="HTML5_INICIS" id="-2110210950%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1152642817%2FClasslikes%2F1440829338" anchor-label="Alipay" id="-1152642817%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-h-t-m-l5_-i-n-i-c-i-s/index.html">HTML5_INICIS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2110210950%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-alipay/index.html"><span><span>Alipay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1152642817%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-h-t-m-l5_-i-n-i-c-i-s/index.html">HTML5_INICIS</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-alipay/index.html">Alipay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="425539663%2FClasslikes%2F1440829338" anchor-label="PAYPAL" id="425539663%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1980379804%2FClasslikes%2F1440829338" anchor-label="Bluewalnut" id="-1980379804%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-a-y-p-a-l/index.html">PAYPAL</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="425539663%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-bluewalnut/index.html"><span><span>Bluewalnut</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1980379804%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-a-y-p-a-l/index.html">PAYPAL</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-bluewalnut/index.html">Bluewalnut</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1561552140%2FClasslikes%2F1440829338" anchor-label="PAYPAL_V2" id="-1561552140%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="726701916%2FClasslikes%2F1440829338" anchor-label="Chai" id="726701916%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-a-y-p-a-l_-v2/index.html">PAYPAL_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1561552140%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-chai/index.html"><span><span>Chai</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="726701916%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-a-y-p-a-l_-v2/index.html">PAYPAL_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-chai/index.html">Chai</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-783348411%2FClasslikes%2F1440829338" anchor-label="INICIS" id="-783348411%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="2089652573%2FClasslikes%2F1440829338" anchor-label="Danal" id="2089652573%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-i-n-i-c-i-s/index.html">INICIS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-783348411%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-danal/index.html"><span><span>Danal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2089652573%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-i-n-i-c-i-s/index.html">INICIS</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-danal/index.html">Danal</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1140271080%2FClasslikes%2F1440829338" anchor-label="DANAL" id="1140271080%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="905835017%2FClasslikes%2F1440829338" anchor-label="DanalTpay" id="905835017%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-d-a-n-a-l/index.html">DANAL</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1140271080%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-danal-tpay/index.html"><span>Danal</span><wbr></wbr><span><span>Tpay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="905835017%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-d-a-n-a-l/index.html">DANAL</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-danal-tpay/index.html">DanalTpay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2105116985%2FClasslikes%2F1440829338" anchor-label="NICE" id="2105116985%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-142075834%2FClasslikes%2F1440829338" anchor-label="Daou" id="-142075834%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-n-i-c-e/index.html">NICE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2105116985%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-daou/index.html"><span><span>Daou</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-142075834%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-n-i-c-e/index.html">NICE</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-daou/index.html">Daou</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1601659155%2FClasslikes%2F1440829338" anchor-label="DANAL_TPAY" id="1601659155%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-446011114%2FClasslikes%2F1440829338" anchor-label="Eximbay" id="-446011114%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-d-a-n-a-l_-t-p-a-y/index.html">DANAL_TPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1601659155%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-eximbay/index.html"><span><span>Eximbay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-446011114%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-d-a-n-a-l_-t-p-a-y/index.html">DANAL_TPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-eximbay/index.html">Eximbay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="864625215%2FClasslikes%2F1440829338" anchor-label="JTNET" id="864625215%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="2001179928%2FClasslikes%2F1440829338" anchor-label="Galaxia" id="2001179928%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-j-t-n-e-t/index.html">JTNET</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="864625215%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-galaxia/index.html"><span><span>Galaxia</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2001179928%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-j-t-n-e-t/index.html">JTNET</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-galaxia/index.html">Galaxia</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-552911685%2FClasslikes%2F1440829338" anchor-label="UPLUS" id="-552911685%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-479210042%2FClasslikes%2F1440829338" anchor-label="Html5Inicis" id="-479210042%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-u-p-l-u-s/index.html">UPLUS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-552911685%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-html5-inicis/index.html"><span><span>Html5Inicis</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-479210042%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-u-p-l-u-s/index.html">UPLUS</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-html5-inicis/index.html">Html5Inicis</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1778132532%2FClasslikes%2F1440829338" anchor-label="NAVERPAY" id="1778132532%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1039993065%2FClasslikes%2F1440829338" anchor-label="Hyphen" id="-1039993065%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-n-a-v-e-r-p-a-y/index.html">NAVERPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1778132532%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-hyphen/index.html"><span><span>Hyphen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1039993065%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-n-a-v-e-r-p-a-y/index.html">NAVERPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hyphen/index.html">Hyphen</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2143947025%2FClasslikes%2F1440829338" anchor-label="KAKAO" id="-2143947025%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-390144576%2FClasslikes%2F1440829338" anchor-label="Inicis" id="-390144576%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-a-k-a-o/index.html">KAKAO</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2143947025%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-inicis/index.html"><span><span>Inicis</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-390144576%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-a-k-a-o/index.html">KAKAO</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-inicis/index.html">Inicis</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1215487833%2FClasslikes%2F1440829338" anchor-label="SETTLE" id="-1215487833%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1235826032%2FClasslikes%2F1440829338" anchor-label="InicisUnified" id="-1235826032%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-e-t-t-l-e/index.html">SETTLE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1215487833%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-inicis-unified/index.html"><span>Inicis</span><wbr></wbr><span><span>Unified</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1235826032%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-e-t-t-l-e/index.html">SETTLE</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-inicis-unified/index.html">InicisUnified</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1431197820%2FClasslikes%2F1440829338" anchor-label="KCP" id="-1431197820%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="594088676%2FClasslikes%2F1440829338" anchor-label="InicisV2" id="594088676%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-c-p/index.html">KCP</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1431197820%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-inicis-v2/index.html"><span>Inicis</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="594088676%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-c-p/index.html">KCP</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-inicis-v2/index.html">InicisV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="240571628%2FClasslikes%2F1440829338" anchor-label="MOBILIANS" id="240571628%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-2053740378%2FClasslikes%2F1440829338" anchor-label="Jtnet" id="-2053740378%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-m-o-b-i-l-i-a-n-s/index.html">MOBILIANS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="240571628%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-jtnet/index.html"><span><span>Jtnet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2053740378%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-m-o-b-i-l-i-a-n-s/index.html">MOBILIANS</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-jtnet/index.html">Jtnet</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1602175775%2FClasslikes%2F1440829338" anchor-label="KAKAOPAY" id="-1602175775%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1268832778%2FClasslikes%2F1440829338" anchor-label="Kakao" id="-1268832778%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-a-k-a-o-p-a-y/index.html">KAKAOPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1602175775%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kakao/index.html"><span><span>Kakao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1268832778%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-a-k-a-o-p-a-y/index.html">KAKAOPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kakao/index.html">Kakao</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-409296920%2FClasslikes%2F1440829338" anchor-label="NAVERCO" id="-409296920%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="2085327012%2FClasslikes%2F1440829338" anchor-label="Kakaopay" id="2085327012%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-n-a-v-e-r-c-o/index.html">NAVERCO</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-409296920%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kakaopay/index.html"><span><span>Kakaopay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2085327012%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-n-a-v-e-r-c-o/index.html">NAVERCO</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kakaopay/index.html">Kakaopay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="837783955%2FClasslikes%2F1440829338" anchor-label="SYRUP" id="837783955%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1968239681%2FClasslikes%2F1440829338" anchor-label="Kcp" id="1968239681%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-y-r-u-p/index.html">SYRUP</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="837783955%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kcp/index.html"><span><span>Kcp</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1968239681%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-y-r-u-p/index.html">SYRUP</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kcp/index.html">Kcp</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-620601254%2FClasslikes%2F1440829338" anchor-label="KICC" id="-620601254%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1929500710%2FClasslikes%2F1440829338" anchor-label="KcpBilling" id="1929500710%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-i-c-c/index.html">KICC</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-620601254%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kcp-billing/index.html"><span>Kcp</span><wbr></wbr><span><span>Billing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1929500710%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-i-c-c/index.html">KICC</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kcp-billing/index.html">KcpBilling</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="630596559%2FClasslikes%2F1440829338" anchor-label="EXIMBAY" id="630596559%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1967950936%2FClasslikes%2F1440829338" anchor-label="KcpDirect" id="1967950936%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-e-x-i-m-b-a-y/index.html">EXIMBAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="630596559%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kcp-direct/index.html"><span>Kcp</span><wbr></wbr><span><span>Direct</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1967950936%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-e-x-i-m-b-a-y/index.html">EXIMBAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kcp-direct/index.html">KcpDirect</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="332344124%2FClasslikes%2F1440829338" anchor-label="SMILEPAY" id="332344124%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1521156876%2FClasslikes%2F1440829338" anchor-label="KcpQuick" id="-1521156876%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-m-i-l-e-p-a-y/index.html">SMILEPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="332344124%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kcp-quick/index.html"><span>Kcp</span><wbr></wbr><span><span>Quick</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1521156876%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-m-i-l-e-p-a-y/index.html">SMILEPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kcp-quick/index.html">KcpQuick</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2137329280%2FClasslikes%2F1440829338" anchor-label="PAYCO" id="-2137329280%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-741372635%2FClasslikes%2F1440829338" anchor-label="KcpV2" id="-741372635%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-a-y-c-o/index.html">PAYCO</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2137329280%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kcp-v2/index.html"><span>Kcp</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-741372635%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-a-y-c-o/index.html">PAYCO</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kcp-v2/index.html">KcpV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="205448096%2FClasslikes%2F1440829338" anchor-label="KCP_BILLING" id="205448096%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-836046453%2FClasslikes%2F1440829338" anchor-label="Kicc" id="-836046453%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-c-p_-b-i-l-l-i-n-g/index.html">KCP_BILLING</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="205448096%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kicc/index.html"><span><span>Kicc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-836046453%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-c-p_-b-i-l-l-i-n-g/index.html">KCP_BILLING</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kicc/index.html">Kicc</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2069413222%2FClasslikes%2F1440829338" anchor-label="ALIPAY" id="2069413222%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1522280400%2FClasslikes%2F1440829338" anchor-label="Kpn" id="1522280400%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-a-l-i-p-a-y/index.html">ALIPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2069413222%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-kpn/index.html"><span><span>Kpn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1522280400%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-a-l-i-p-a-y/index.html">ALIPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kpn/index.html">Kpn</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="877548829%2FClasslikes%2F1440829338" anchor-label="PAYPLE" id="877548829%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1559441348%2FClasslikes%2F1440829338" anchor-label="Ksnet" id="1559441348%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-a-y-p-l-e/index.html">PAYPLE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="877548829%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-ksnet/index.html"><span><span>Ksnet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1559441348%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-a-y-p-l-e/index.html">PAYPLE</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ksnet/index.html">Ksnet</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="729006377%2FClasslikes%2F1440829338" anchor-label="CHAI" id="729006377%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1472226855%2FClasslikes%2F1440829338" anchor-label="Mobilians" id="-1472226855%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-c-h-a-i/index.html">CHAI</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="729006377%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-mobilians/index.html"><span><span>Mobilians</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1472226855%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-c-h-a-i/index.html">CHAI</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-mobilians/index.html">Mobilians</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="749009953%2FClasslikes%2F1440829338" anchor-label="BLUEWALNUT" id="749009953%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-106064547%2FClasslikes%2F1440829338" anchor-label="Naverco" id="-106064547%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-b-l-u-e-w-a-l-n-u-t/index.html">BLUEWALNUT</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="749009953%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-naverco/index.html"><span><span>Naverco</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-106064547%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-b-l-u-e-w-a-l-n-u-t/index.html">BLUEWALNUT</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-naverco/index.html">Naverco</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="565698226%2FClasslikes%2F1440829338" anchor-label="SMARTRO" id="565698226%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1517665137%2FClasslikes%2F1440829338" anchor-label="Naverpay" id="1517665137%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-m-a-r-t-r-o/index.html">SMARTRO</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="565698226%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-naverpay/index.html"><span><span>Naverpay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1517665137%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-m-a-r-t-r-o/index.html">SMARTRO</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-naverpay/index.html">Naverpay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-806013519%2FClasslikes%2F1440829338" anchor-label="SMARTRO_V2" id="-806013519%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1305298252%2FClasslikes%2F1440829338" anchor-label="Nice" id="1305298252%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-m-a-r-t-r-o_-v2/index.html">SMARTRO_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-806013519%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-nice/index.html"><span><span>Nice</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1305298252%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-m-a-r-t-r-o_-v2/index.html">SMARTRO_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-nice/index.html">Nice</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1011498948%2FClasslikes%2F1440829338" anchor-label="PAYMENTWALL" id="-1011498948%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="2122041200%2FClasslikes%2F1440829338" anchor-label="NiceV2" id="2122041200%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-a-y-m-e-n-t-w-a-l-l/index.html">PAYMENTWALL</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1011498948%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-nice-v2/index.html"><span>Nice</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2122041200%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-a-y-m-e-n-t-w-a-l-l/index.html">PAYMENTWALL</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-nice-v2/index.html">NiceV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-485255452%2FClasslikes%2F1440829338" anchor-label="TOSSPAYMENTS" id="-485255452%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1439631557%2FClasslikes%2F1440829338" anchor-label="Payco" id="1439631557%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-t-o-s-s-p-a-y-m-e-n-t-s/index.html">TOSSPAYMENTS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-485255452%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-payco/index.html"><span><span>Payco</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1439631557%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-t-o-s-s-p-a-y-m-e-n-t-s/index.html">TOSSPAYMENTS</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-payco/index.html">Payco</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="938508242%2FClasslikes%2F1440829338" anchor-label="KCP_QUICK" id="938508242%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-786196343%2FClasslikes%2F1440829338" anchor-label="Paymentwall" id="-786196343%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-c-p_-q-u-i-c-k/index.html">KCP_QUICK</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="938508242%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-paymentwall/index.html"><span><span>Paymentwall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-786196343%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-c-p_-q-u-i-c-k/index.html">KCP_QUICK</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-paymentwall/index.html">Paymentwall</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-168183169%2FClasslikes%2F1440829338" anchor-label="DAOU" id="-168183169%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1786346614%2FClasslikes%2F1440829338" anchor-label="Paypal" id="1786346614%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-d-a-o-u/index.html">DAOU</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-168183169%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-paypal/index.html"><span><span>Paypal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1786346614%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-d-a-o-u/index.html">DAOU</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-paypal/index.html">Paypal</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1864318707%2FClasslikes%2F1440829338" anchor-label="GALAXIA" id="-1864318707%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="553049114%2FClasslikes%2F1440829338" anchor-label="PaypalV2" id="553049114%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-g-a-l-a-x-i-a/index.html">GALAXIA</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1864318707%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-paypal-v2/index.html"><span>Paypal</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="553049114%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-g-a-l-a-x-i-a/index.html">GALAXIA</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-paypal-v2/index.html">PaypalV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-983370919%2FClasslikes%2F1440829338" anchor-label="TOSSPAY" id="-983370919%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-737939736%2FClasslikes%2F1440829338" anchor-label="Payple" id="-737939736%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-t-o-s-s-p-a-y/index.html">TOSSPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-983370919%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-payple/index.html"><span><span>Payple</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-737939736%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-t-o-s-s-p-a-y/index.html">TOSSPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-payple/index.html">Payple</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="996849836%2FClasslikes%2F1440829338" anchor-label="KCP_DIRECT" id="996849836%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1049018250%2FClasslikes%2F1440829338" anchor-label="Pinpay" id="-1049018250%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-c-p_-d-i-r-e-c-t/index.html">KCP_DIRECT</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="996849836%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-pinpay/index.html"><span><span>Pinpay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1049018250%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-c-p_-d-i-r-e-c-t/index.html">KCP_DIRECT</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-pinpay/index.html">Pinpay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1828525239%2FClasslikes%2F1440829338" anchor-label="SETTLE_ACC" id="-1828525239%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="170237214%2FClasslikes%2F1440829338" anchor-label="Settle" id="170237214%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-e-t-t-l-e_-a-c-c/index.html">SETTLE_ACC</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1828525239%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-settle/index.html"><span><span>Settle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="170237214%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-e-t-t-l-e_-a-c-c/index.html">SETTLE_ACC</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-settle/index.html">Settle</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2013138110%2FClasslikes%2F1440829338" anchor-label="SETTLE_FIRM" id="2013138110%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1384418019%2FClasslikes%2F1440829338" anchor-label="SettleAcc" id="1384418019%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-s-e-t-t-l-e_-f-i-r-m/index.html">SETTLE_FIRM</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2013138110%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-settle-acc/index.html"><span>Settle</span><wbr></wbr><span><span>Acc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1384418019%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-s-e-t-t-l-e_-f-i-r-m/index.html">SETTLE_FIRM</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-settle-acc/index.html">SettleAcc</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="29819192%2FClasslikes%2F1440829338" anchor-label="INICIS_UNIFIED" id="29819192%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1118520832%2FClasslikes%2F1440829338" anchor-label="SettleFirm" id="-1118520832%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-i-n-i-c-i-s_-u-n-i-f-i-e-d/index.html">INICIS_UNIFIED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="29819192%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-settle-firm/index.html"><span>Settle</span><wbr></wbr><span><span>Firm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1118520832%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-i-n-i-c-i-s_-u-n-i-f-i-e-d/index.html">INICIS_UNIFIED</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-settle-firm/index.html">SettleFirm</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1892874783%2FClasslikes%2F1440829338" anchor-label="KSNET" id="-1892874783%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-439433133%2FClasslikes%2F1440829338" anchor-label="Smartro" id="-439433133%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-s-n-e-t/index.html">KSNET</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1892874783%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-smartro/index.html"><span><span>Smartro</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-439433133%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-s-n-e-t/index.html">KSNET</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-smartro/index.html">Smartro</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="298316879%2FClasslikes%2F1440829338" anchor-label="PINPAY" id="298316879%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="472425655%2FClasslikes%2F1440829338" anchor-label="SmartroV2" id="472425655%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-p-i-n-p-a-y/index.html">PINPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="298316879%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-smartro-v2/index.html"><span>Smartro</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="472425655%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-p-i-n-p-a-y/index.html">PINPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-smartro-v2/index.html">SmartroV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1642550838%2FClasslikes%2F1440829338" anchor-label="NICE_V2" id="-1642550838%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="231166313%2FClasslikes%2F1440829338" anchor-label="Smilepay" id="231166313%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-n-i-c-e_-v2/index.html">NICE_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1642550838%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-smilepay/index.html"><span><span>Smilepay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="231166313%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-n-i-c-e_-v2/index.html">NICE_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-smilepay/index.html">Smilepay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="912123953%2FClasslikes%2F1440829338" anchor-label="TOSS_BRANDPAY" id="912123953%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1423457070%2FClasslikes%2F1440829338" anchor-label="Syrup" id="-1423457070%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-t-o-s-s_-b-r-a-n-d-p-a-y/index.html">TOSS_BRANDPAY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="912123953%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-syrup/index.html"><span><span>Syrup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1423457070%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-t-o-s-s_-b-r-a-n-d-p-a-y/index.html">TOSS_BRANDPAY</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-syrup/index.html">Syrup</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="228924238%2FClasslikes%2F1440829338" anchor-label="WELCOME" id="228924238%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="720477837%2FClasslikes%2F1440829338" anchor-label="TossBrandpay" id="720477837%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-w-e-l-c-o-m-e/index.html">WELCOME</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="228924238%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-toss-brandpay/index.html"><span>Toss</span><wbr></wbr><span><span>Brandpay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="720477837%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-w-e-l-c-o-m-e/index.html">WELCOME</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-toss-brandpay/index.html">TossBrandpay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="298683306%2FClasslikes%2F1440829338" anchor-label="TOSSPAY_V2" id="298683306%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1310430028%2FClasslikes%2F1440829338" anchor-label="Tosspay" id="1310430028%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-t-o-s-s-p-a-y_-v2/index.html">TOSSPAY_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="298683306%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-tosspay/index.html"><span><span>Tosspay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1310430028%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-t-o-s-s-p-a-y_-v2/index.html">TOSSPAY_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tosspay/index.html">Tosspay</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2049579582%2FClasslikes%2F1440829338" anchor-label="INICIS_V2" id="2049579582%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="792814785%2FClasslikes%2F1440829338" anchor-label="Tosspayments" id="792814785%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-i-n-i-c-i-s_-v2/index.html">INICIS_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2049579582%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-tosspayments/index.html"><span><span>Tosspayments</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="792814785%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-i-n-i-c-i-s_-v2/index.html">INICIS_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tosspayments/index.html">Tosspayments</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-502740651%2FClasslikes%2F1440829338" anchor-label="KPN" id="-502740651%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1536256656%2FClasslikes%2F1440829338" anchor-label="TosspayV2" id="-1536256656%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-p-n/index.html">KPN</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-502740651%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-tosspay-v2/index.html"><span>Tosspay</span><wbr></wbr><span><span>V2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1536256656%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-p-n/index.html">KPN</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tosspay-v2/index.html">TosspayV2</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-744103009%2FClasslikes%2F1440829338" anchor-label="KCP_V2" id="-744103009%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="513941498%2FClasslikes%2F1440829338" anchor-label="Unrecognized" id="513941498%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-c-p_-v2/index.html">KCP_V2</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-744103009%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-unrecognized/index.html"><span><span>Unrecognized</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="513941498%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-k-c-p_-v2/index.html">KCP_V2</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">PgProvider</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1675819442%2FClasslikes%2F1440829338" anchor-label="HYPHEN" id="-1675819442%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1722294102%2FClasslikes%2F1440829338" anchor-label="Uplus" id="-1722294102%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-h-y-p-h-e-n/index.html">HYPHEN</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1675819442%2FClasslikes%2F1440829338"></span>
+                  <div><a href="-uplus/index.html"><span><span>Uplus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1722294102%2FClasslikes%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><a href="-h-y-p-h-e-n/index.html">HYPHEN</a></div></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-uplus/index.html">Uplus</a> : <a href="index.html">PgProvider</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="366922295%2FClasslikes%2F1440829338" anchor-label="Welcome" id="366922295%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-welcome/index.html"><span><span>Welcome</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="366922295%2FClasslikes%2F1440829338"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-welcome/index.html">Welcome</a> : <a href="index.html">PgProvider</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -796,81 +811,17 @@
       </div>
       <div data-togglable="PROPERTY">
         <h2 class="">Properties</h2>
-        <div class="table"><a data-name="234747446%2FProperties%2F1440829338" anchor-label="entries" id="234747446%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table"><a data-name="1860118197%2FProperties%2F1440829338" anchor-label="value" id="1860118197%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
           <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="234747446%2FProperties%2F1440829338"></span>
+                  <div><a href="value.html"><span><span>value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1860118197%2FProperties%2F1440829338"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">PgProvider</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-372974862%2FProperties%2F1440829338" anchor-label="name" id="-372974862%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../../io.portone.sdk.server.platform.transfer/-platform-transfer-type/-m-a-n-u-a-l/index.html#-372974862%2FProperties%2F1440829338"><span><span>name</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F1440829338"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.portone.sdk.server.platform.transfer/-platform-transfer-type/-m-a-n-u-a-l/index.html#-372974862%2FProperties%2F1440829338">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-739389684%2FProperties%2F1440829338" anchor-label="ordinal" id="-739389684%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../../io.portone.sdk.server.platform.transfer/-platform-transfer-type/-m-a-n-u-a-l/index.html#-739389684%2FProperties%2F1440829338"><span><span>ordinal</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F1440829338"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.portone.sdk.server.platform.transfer/-platform-transfer-type/-m-a-n-u-a-l/index.html#-739389684%2FProperties%2F1440829338">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="393621286%2FFunctions%2F1440829338" anchor-label="valueOf" id="393621286%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="value-of.html"><span>value</span><wbr></wbr><span><span>Of</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="393621286%2FFunctions%2F1440829338"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PgProvider</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-899623246%2FFunctions%2F1440829338" anchor-label="values" id="-899623246%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="values.html"><span><span>values</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-899623246%2FFunctions%2F1440829338"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">PgProvider</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
                 </div>
               </div>
             </div>
