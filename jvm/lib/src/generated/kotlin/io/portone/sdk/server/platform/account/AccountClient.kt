@@ -15,6 +15,7 @@ import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPlatformAccountHolderError
+import io.portone.sdk.server.errors.GetPlatformAccountHolderException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.PlatformExternalApiFailedError

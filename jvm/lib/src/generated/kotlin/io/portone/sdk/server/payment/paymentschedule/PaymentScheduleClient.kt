@@ -24,10 +24,13 @@ import io.portone.sdk.server.errors.BillingKeyAlreadyDeletedException
 import io.portone.sdk.server.errors.BillingKeyNotFoundError
 import io.portone.sdk.server.errors.BillingKeyNotFoundException
 import io.portone.sdk.server.errors.CreatePaymentScheduleError
+import io.portone.sdk.server.errors.CreatePaymentScheduleException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPaymentScheduleError
+import io.portone.sdk.server.errors.GetPaymentScheduleException
 import io.portone.sdk.server.errors.GetPaymentSchedulesError
+import io.portone.sdk.server.errors.GetPaymentSchedulesException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.PaymentScheduleAlreadyExistsError
@@ -39,6 +42,7 @@ import io.portone.sdk.server.errors.PaymentScheduleAlreadyRevokedException
 import io.portone.sdk.server.errors.PaymentScheduleNotFoundError
 import io.portone.sdk.server.errors.PaymentScheduleNotFoundException
 import io.portone.sdk.server.errors.RevokePaymentSchedulesError
+import io.portone.sdk.server.errors.RevokePaymentSchedulesException
 import io.portone.sdk.server.errors.SumOfPartsExceedsTotalAmountError
 import io.portone.sdk.server.errors.SumOfPartsExceedsTotalAmountException
 import io.portone.sdk.server.errors.UnauthorizedError

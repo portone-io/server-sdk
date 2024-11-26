@@ -47,6 +47,7 @@ export function writeOperation(
       throw new Error("unrecognized operation method", { cause: { operation } })
   }
   const errors = fetchErrors(operation, entityMap)
+  crossRef.add(`io.portone.sdk.server.errors.${toException(operation.errors)}`)
   for (const { name } of errors) {
     const category = categoryMap.get(name)
     if (!category) {

@@ -19,6 +19,7 @@ import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProductType
 import io.portone.sdk.server.errors.CancelCashReceiptError
+import io.portone.sdk.server.errors.CancelCashReceiptException
 import io.portone.sdk.server.errors.CashReceiptAlreadyIssuedError
 import io.portone.sdk.server.errors.CashReceiptAlreadyIssuedException
 import io.portone.sdk.server.errors.CashReceiptNotFoundError
@@ -30,9 +31,11 @@ import io.portone.sdk.server.errors.ChannelNotFoundException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetCashReceiptError
+import io.portone.sdk.server.errors.GetCashReceiptException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.IssueCashReceiptError
+import io.portone.sdk.server.errors.IssueCashReceiptException
 import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.UnauthorizedError

@@ -12,6 +12,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.errors.GetKakaopayPaymentOrderError
+import io.portone.sdk.server.errors.GetKakaopayPaymentOrderException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.UnauthorizedError

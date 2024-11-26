@@ -14,6 +14,7 @@ import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPromotionError
+import io.portone.sdk.server.errors.GetPromotionException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.PromotionNotFoundError

@@ -20,7 +20,9 @@ import io.portone.sdk.server.auth.RefreshTokenResponse
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.LoginViaApiSecretError
+import io.portone.sdk.server.errors.LoginViaApiSecretException
 import io.portone.sdk.server.errors.RefreshTokenError
+import io.portone.sdk.server.errors.RefreshTokenException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException

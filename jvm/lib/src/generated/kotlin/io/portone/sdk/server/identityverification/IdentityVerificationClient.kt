@@ -17,9 +17,11 @@ import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
 import io.portone.sdk.server.errors.ConfirmIdentityVerificationError
+import io.portone.sdk.server.errors.ConfirmIdentityVerificationException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetIdentityVerificationError
+import io.portone.sdk.server.errors.GetIdentityVerificationException
 import io.portone.sdk.server.errors.IdentityVerificationAlreadySentError
 import io.portone.sdk.server.errors.IdentityVerificationAlreadySentException
 import io.portone.sdk.server.errors.IdentityVerificationAlreadyVerifiedError
@@ -35,7 +37,9 @@ import io.portone.sdk.server.errors.MaxTransactionCountReachedException
 import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.ResendIdentityVerificationError
+import io.portone.sdk.server.errors.ResendIdentityVerificationException
 import io.portone.sdk.server.errors.SendIdentityVerificationError
+import io.portone.sdk.server.errors.SendIdentityVerificationException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException

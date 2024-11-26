@@ -15,6 +15,7 @@ import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPlatformBulkPayoutsError
+import io.portone.sdk.server.errors.GetPlatformBulkPayoutsException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
