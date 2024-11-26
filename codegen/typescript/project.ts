@@ -8,8 +8,7 @@ import {
 } from "../common/webhook.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
-import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
-import { writeDescription } from "./description.ts"
+import { TypescriptWriter } from "./common.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
@@ -24,10 +23,8 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
   const oneOfErrors = new Set<string>()
-  const variantErrors = new Set<string>()
-  collectErrors(pack, entityMap, oneOfErrors, variantErrors)
-  generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
-  generateEntityDirectory(srcPath, pack, categoryMap, ".")
+  collectErrors(pack, entityMap, oneOfErrors, new Set())
+  generateEntityDirectory(srcPath, pack, categoryMap, ".", oneOfErrors)
   generateWebhook(srcPath)
   const allClients: Client[] = []
   generateClient(
@@ -41,15 +38,15 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   )
   allClients.sort((a, b) => a.name.localeCompare(b.name))
   generateIndex(srcPath, pack, allClients)
-  const omitEntities = oneOfErrors.union(variantErrors)
   generateCategoryIndex(
     srcPath,
     pack,
     categoryMap,
     entityMap,
-    omitEntities,
+    oneOfErrors,
     0,
     "",
+    "PortOneError",
   )
   const entrypoints = [
     ...categoryMap.values(),
@@ -60,7 +57,7 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
 
 function generateIndex(srcPath: string, pack: Package, clients: Client[]) {
   const writer = TypescriptWriter()
-  writer.writeLine(`export * as Errors from "./errors"`)
+  writer.writeLine(`export { RestError } from "./RestError"`)
   for (const subpackage of pack.subpackages) {
     writer.writeLine(
       `export * as ${toCamelCase(subpackage.category)} from "./${
@@ -114,161 +111,6 @@ function generateWebhook(srcPath: string) {
   writer.outdent()
   writer.writeLine(`}`)
   Deno.writeTextFileSync(path.join(webhookPath, "index.ts"), writer.content)
-}
-
-const PortOneError = `
-export abstract class PortOneError extends Error {
-  abstract readonly _tag: string;
-
-  constructor(message?: string, options?: ErrorOptions) {
-    super(message ?? "", options)
-    Object.setPrototypeOf(this, PortOneError.prototype)
-    this.name = "PortOneError"
-    this.stack = new Error(message ?? "").stack
-  }
-}
-  
-export class UnknownError extends PortOneError {
-  readonly _tag = "PortOneUnknownError"
-
-  constructor(cause: unknown) {
-    super("알 수 없는 에러가 발생했습니다.", { cause })
-    Object.setPrototypeOf(this, UnknownError.prototype)
-  }
-}`
-
-function generateErrors(
-  srcPath: string,
-  errors: string[],
-  categoryMap: Map<string, string>,
-  entityMap: Map<string, Definition>,
-) {
-  const writer = TypescriptWriter()
-  const crossRef = new Set<string>()
-  for (const error of errors) {
-    const path = categoryMap.get(error)?.replace(".", "/")
-    if (!path) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    const definition = entityMap.get(error)
-    if (!definition) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    if (definition.type !== "object") {
-      throw new Error("unsupported generation of error type", {
-        cause: { definition },
-      })
-    }
-    for (const property of definition.properties) {
-      switch (property.type) {
-        case "ref":
-          crossRef.add(property.value)
-          break
-        case "oneOf":
-          for (const { name } of property.variants) {
-            crossRef.add(name)
-          }
-          break
-        case "array":
-          switch (property.item.type) {
-            case "ref":
-              crossRef.add(property.item.value)
-              break
-            case "string":
-            case "number":
-            case "boolean":
-            case "oneOf":
-            case "discriminant":
-            case "enum":
-            case "integer":
-              break
-            case "object":
-            case "array":
-              throw new Error("unsupported error property array item type", {
-                cause: { definition },
-              })
-            default:
-              throw new Error("unsupported definition type", {
-                cause: { definition: property.item },
-              })
-          }
-          break
-        case "string":
-        case "number":
-        case "boolean":
-        case "discriminant":
-        case "enum":
-        case "integer":
-          break
-        case "object":
-          throw new Error("unsupported error property type", {
-            cause: { definition },
-          })
-      }
-    }
-    writer.writeLine(
-      `import type { ${error} as Internal${error} } from "./${path}/${error}"`,
-    )
-  }
-  const sortedRef = [...crossRef]
-  sortedRef.sort()
-  for (const ref of crossRef) {
-    const path = categoryMap.get(ref)?.replace(".", "/")
-    if (!path) {
-      throw new Error("unrecognized error property reference", {
-        cause: { ref },
-      })
-    }
-    writer.writeLine(
-      `import type { ${ref} } from "./${path}/${ref}"`,
-    )
-  }
-  for (const line of PortOneError.split("\n")) {
-    writer.writeLine(line)
-  }
-  for (const error of errors) {
-    const definition = entityMap.get(error)
-    if (!definition) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    if (definition.type !== "object") {
-      throw new Error("unsupported generation of error type", {
-        cause: { definition },
-      })
-    }
-    const additionalProperties = definition.properties.filter(({ name }) =>
-      name !== "type" && name !== "message"
-    )
-    writer.writeLine("")
-    writeDescription(writer, definition.description)
-    writer.writeLine(`export class ${error} extends PortOneError {`)
-    writer.indent()
-    writer.writeLine(`readonly _tag = "PortOne${error}"`)
-    for (const property of additionalProperties) {
-      const name = property.required ? property.name : `${property.name}?`
-      writer.writeLine(`readonly ${name}: ${intoInlineTypeName(property)}`)
-    }
-    writer.writeLine("")
-    writer.writeLine("/** @ignore */")
-    writer.writeLine(`constructor(error: Internal${error}) {`)
-    writer.indent()
-    if (definition.properties.some(({ name }) => name === "message")) {
-      writer.writeLine("super(error.message)")
-    } else {
-      writer.writeLine("super()")
-    }
-    writer.writeLine(`Object.setPrototypeOf(this, ${error}.prototype)`)
-    writer.writeLine(`this.name = "${error}"`)
-    for (const { name } of additionalProperties) {
-      writer.writeLine(`this.${name} = error.${name}`)
-    }
-    writer.outdent()
-    writer.writeLine("}")
-    writer.outdent()
-    writer.writeLine("}")
-  }
-  const errorPath = path.join(srcPath, "errors.ts")
-  Deno.writeTextFileSync(errorPath, writer.content)
 }
 
 function collectErrors(
@@ -329,13 +171,15 @@ function generateClient(
   let client = null
   const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
   if (hasClient) {
+    const error = `${toPascalCase(pack.category)}Error`
     const importWriter = TypescriptWriter()
     const typeWriter = TypescriptWriter()
     const errorWriter = TypescriptWriter()
     const writer = TypescriptWriter()
     if (pack.operations.length > 0) {
+      importWriter.writeLine(`import { ${error} } from "./${error}"`)
       importWriter.writeLine(
-        `import * as Errors from "${hierarchyToSrc}/generated/errors"`,
+        `import type { Unrecognized } from "./${hierarchyToSrc}/utils/unrecognized"`,
       )
       importWriter.writeLine(
         `import { USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
@@ -376,6 +220,7 @@ function generateClient(
         operation,
         entityMap,
         crossRef,
+        error,
       )
     }
     for (const subpackage of pack.subpackages) {
@@ -445,8 +290,10 @@ function generateEntityDirectory(
   pack: Package,
   categoryMap: Map<string, string>,
   hierarchy: string,
+  exclude: Set<string>,
 ) {
   for (const entity of pack.entities) {
+    if (exclude.has(entity.name)) continue
     const entityPath = path.join(packagePath, `${entity.name}.ts`)
     Deno.writeTextFileSync(
       entityPath,
@@ -456,7 +303,13 @@ function generateEntityDirectory(
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
     fs.ensureDirSync(subPath)
-    generateEntityDirectory(subPath, subpackage, categoryMap, hierarchy + "/..")
+    generateEntityDirectory(
+      subPath,
+      subpackage,
+      categoryMap,
+      hierarchy + "/..",
+      exclude,
+    )
   }
 }
 
@@ -468,9 +321,79 @@ function generateCategoryIndex(
   omitEntities: Set<string>,
   depth: number,
   canonicalCategory: string,
+  parentError: string,
 ) {
-  const crossRef = new Set<string>()
   const writer = TypescriptWriter()
+  const crossRef = new Set<string>()
+  const error = pack.category === "root"
+    ? "RestError"
+    : `${toPascalCase(pack.category)}Error`
+  if (
+    pack.operations.length > 0 || pack.subpackages.length > 0
+  ) {
+    const errorWriter = TypescriptWriter()
+    errorWriter.writeLine(
+      `import type { Unrecognized } from "${
+        "../".repeat(depth)
+      }../utils/unrecognized"`,
+    )
+    errorWriter.writeLine(
+      `import { ${parentError} } from "../${parentError}"`,
+    )
+    const variantErrors = new Set<string>()
+    collectErrors(pack, entityMap, new Set(), variantErrors)
+    const dataType = [...variantErrors]
+    dataType.sort()
+    for (const error of dataType) {
+      const category = categoryMap.get(error)
+      if (!category) {
+        throw new Error("unrecognized error ref", { cause: error })
+      }
+      errorWriter.writeLine(
+        `import type { ${error} } from "${
+          depth === 0 ? "./" : "../".repeat(depth)
+        }${category.replaceAll(".", "/")}/${error}"`,
+      )
+    }
+    errorWriter.writeLine(
+      `export abstract class ${error} extends ${parentError} {`,
+    )
+    errorWriter.indent()
+    if (pack.category === "root") {
+      errorWriter.writeLine(
+        `readonly data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }`,
+      )
+      errorWriter.writeLine("/** @ignore */")
+      errorWriter.writeLine(
+        `constructor(data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }) {`,
+      )
+      errorWriter.indent()
+      errorWriter.writeLine(
+        `const message = "message" in data ? data.message : undefined`,
+      )
+      errorWriter.writeLine("super(message)")
+      errorWriter.writeLine("this.data = data")
+      errorWriter.outdent()
+      errorWriter.writeLine(`}`)
+    } else {
+      errorWriter.writeLine(
+        `declare readonly data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }`,
+      )
+    }
+    errorWriter.outdent()
+    errorWriter.writeLine(`}`)
+    Deno.writeTextFileSync(
+      path.join(packagePath, `${error}.ts`),
+      errorWriter.content,
+    )
+    writer.writeLine(`export { ${error} } from "./${error}"`)
+  }
   for (const entity of pack.entities) {
     if (omitEntities.has(entity.name)) continue
     writer.writeLine(`export * from "./${entity.name}"`)
@@ -491,6 +414,7 @@ function generateCategoryIndex(
       omitEntities,
       depth + 1,
       `${canonicalCategory}/${subpackage.category}`,
+      error,
     )
     writer.writeLine(
       `export * as ${toCamelCase(subpackage.category)} from "./${

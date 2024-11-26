@@ -1,9 +1,5 @@
 import type { Writer } from "../common/writer.ts"
-import type {
-  Definition,
-  OneOfVariant,
-  Property,
-} from "../parser/definition.ts"
+import type { Definition, Property } from "../parser/definition.ts"
 import type { Operation } from "../parser/operation.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 
@@ -14,31 +10,35 @@ export function writeOperation(
   operation: Operation,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
+  baseError: string,
 ) {
-  const errors = fetchErrors(operation, entityMap)
-  errorWriter.writeLine(`export type ${operation.errors} =`)
-  errorWriter.indent()
-  for (const error of errors) {
-    errorWriter.writeLine(`| Errors.${error.name}`)
+  const errorType = entityMap.get(operation.errors)
+  if (!errorType || errorType.type !== "oneOf") {
+    throw new Error("unrecognized error ref", {
+      cause: { error: operation.errors },
+    })
   }
-  errorWriter.outdent()
+  const variants = `${
+    errorType.variants.map(({ name }) => {
+      crossRef.add(name)
+      return name
+    }).join(" | ")
+  } | { readonly type: Unrecognized }`
   errorWriter.writeLine(
-    `export function is${operation.errors}(error: Error): error is ${operation.errors} {`,
+    `export class ${operation.errors} extends ${baseError} {`,
   )
   errorWriter.indent()
-  let isFirst = true
-  errorWriter.writeLine("return (")
+  errorWriter.writeLine(`declare readonly data: ${variants}`)
+  errorWriter.writeLine("/** @ignore */")
+  errorWriter.writeLine(`constructor(data: ${variants}) {`)
   errorWriter.indent()
-  for (const error of errors) {
-    if (isFirst) {
-      isFirst = false
-      errorWriter.writeLine(`error instanceof Errors.${error.name}`)
-    } else {
-      errorWriter.writeLine(`|| error instanceof Errors.${error.name}`)
-    }
-  }
+  errorWriter.writeLine(`super(data)`)
+  errorWriter.writeLine(
+    `Object.setPrototypeOf(this, ${operation.errors}.prototype)`,
+  )
+  errorWriter.writeLine(`this.name = "${operation.errors}"`)
   errorWriter.outdent()
-  errorWriter.writeLine(")")
+  errorWriter.writeLine("}")
   errorWriter.outdent()
   errorWriter.writeLine("}")
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
@@ -162,21 +162,7 @@ export function writeOperation(
   implWriter.writeLine(")")
   implWriter.writeLine("if (!response.ok) {")
   implWriter.indent()
-  crossRef.add(`_Internal${operation.errors}`)
-  implWriter.writeLine(
-    `const errorResponse: _Internal${operation.errors} = await response.json()`,
-  )
-  implWriter.writeLine("switch (errorResponse.type) {")
-  implWriter.indent()
-  for (const variant of errors) {
-    implWriter.outdent()
-    implWriter.writeLine(`case "${variant.value}":`)
-    implWriter.indent()
-    implWriter.writeLine(`throw new Errors.${variant.name}(errorResponse)`)
-  }
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  implWriter.writeLine("throw new Errors.UnknownError(errorResponse)")
+  implWriter.writeLine(`throw new ${operation.errors}(await response.json())`)
   implWriter.outdent()
   implWriter.writeLine("}")
   switch (operation.response?.type) {
@@ -195,36 +181,6 @@ export function writeOperation(
   }
   implWriter.outdent()
   implWriter.writeLine("},")
-}
-
-function fetchErrors(
-  operation: Operation,
-  entityMap: Map<string, Definition>,
-): OneOfVariant[] {
-  const actualError = entityMap.get(operation.errors)
-  if (!actualError) {
-    throw new Error("unqualifed error type", { cause: { operation } })
-  }
-  switch (actualError.type) {
-    case "oneOf":
-      return actualError.variants
-    case "string":
-    case "number":
-    case "boolean":
-    case "object":
-    case "ref":
-    case "discriminant":
-    case "enum":
-    case "array":
-    case "integer":
-      throw new Error("unsupported error type", {
-        cause: { error: actualError },
-      })
-    default:
-      throw new Error("unrecognized error type", {
-        cause: { error: actualError },
-      })
-  }
 }
 
 function fetchBodyProperties(

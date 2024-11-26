@@ -1,53 +1,67 @@
-import * as Errors from "../../generated/errors"
+import { PaymentError } from "./PaymentError"
+import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
 import { BillingKeyClient } from "./billingKey/client"
 import { CashReceiptClient } from "./cashReceipt/client"
 import { PaymentScheduleClient } from "./paymentSchedule/client"
 import { PromotionClient } from "./promotion/client"
+import type { AlreadyPaidError } from "../../generated/payment/AlreadyPaidError"
 import type { ApplyEscrowLogisticsResponse } from "../../generated/payment/ApplyEscrowLogisticsResponse"
+import type { BillingKeyAlreadyDeletedError } from "../../generated/common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyNotFoundError } from "../../generated/common/BillingKeyNotFoundError"
+import type { CancelAmountExceedsCancellableAmountError } from "../../generated/payment/CancelAmountExceedsCancellableAmountError"
 import type { CancelPaymentBodyRefundAccount } from "../../generated/payment/CancelPaymentBodyRefundAccount"
 import type { CancelPaymentResponse } from "../../generated/payment/CancelPaymentResponse"
 import type { CancelRequester } from "../../generated/payment/CancelRequester"
+import type { CancelTaxAmountExceedsCancellableTaxAmountError } from "../../generated/payment/CancelTaxAmountExceedsCancellableTaxAmountError"
+import type { CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError } from "../../generated/payment/CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError"
+import type { CancellableAmountConsistencyBrokenError } from "../../generated/payment/CancellableAmountConsistencyBrokenError"
 import type { CashReceiptInput } from "../../generated/common/CashReceiptInput"
+import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { CloseVirtualAccountResponse } from "../../generated/payment/CloseVirtualAccountResponse"
 import type { ConfirmEscrowResponse } from "../../generated/payment/ConfirmEscrowResponse"
 import type { Country } from "../../generated/common/Country"
 import type { Currency } from "../../generated/common/Currency"
 import type { CustomerInput } from "../../generated/common/CustomerInput"
+import type { DiscountAmountExceedsTotalAmountError } from "../../generated/payment/DiscountAmountExceedsTotalAmountError"
+import type { ForbiddenError } from "../../generated/common/ForbiddenError"
 import type { GetAllPaymentsByCursorResponse } from "../../generated/payment/GetAllPaymentsByCursorResponse"
 import type { GetPaymentsResponse } from "../../generated/payment/GetPaymentsResponse"
 import type { InstantPaymentMethodInput } from "../../generated/payment/InstantPaymentMethodInput"
+import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
+import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
+import type { MaxWebhookRetryCountReachedError } from "../../generated/payment/MaxWebhookRetryCountReachedError"
 import type { ModifyEscrowLogisticsResponse } from "../../generated/payment/ModifyEscrowLogisticsResponse"
+import type { NegativePromotionAdjustedCancelAmountError } from "../../generated/payment/NegativePromotionAdjustedCancelAmountError"
 import type { PageInput } from "../../generated/common/PageInput"
 import type { PayInstantlyResponse } from "../../generated/payment/PayInstantlyResponse"
 import type { PayWithBillingKeyResponse } from "../../generated/payment/PayWithBillingKeyResponse"
 import type { Payment } from "../../generated/payment/Payment"
+import type { PaymentAlreadyCancelledError } from "../../generated/payment/PaymentAlreadyCancelledError"
 import type { PaymentAmountInput } from "../../generated/common/PaymentAmountInput"
 import type { PaymentEscrowReceiverInput } from "../../generated/payment/PaymentEscrowReceiverInput"
 import type { PaymentEscrowSenderInput } from "../../generated/payment/PaymentEscrowSenderInput"
 import type { PaymentFilterInput } from "../../generated/payment/PaymentFilterInput"
 import type { PaymentLogistics } from "../../generated/payment/PaymentLogistics"
+import type { PaymentNotFoundError } from "../../generated/payment/PaymentNotFoundError"
+import type { PaymentNotPaidError } from "../../generated/payment/PaymentNotPaidError"
+import type { PaymentNotWaitingForDepositError } from "../../generated/payment/PaymentNotWaitingForDepositError"
 import type { PaymentProduct } from "../../generated/common/PaymentProduct"
 import type { PaymentProductType } from "../../generated/common/PaymentProductType"
+import type { PaymentScheduleAlreadyExistsError } from "../../generated/common/PaymentScheduleAlreadyExistsError"
+import type { PgProviderError } from "../../generated/common/PgProviderError"
 import type { PreRegisterPaymentResponse } from "../../generated/payment/PreRegisterPaymentResponse"
 import type { PromotionDiscountRetainOption } from "../../generated/payment/PromotionDiscountRetainOption"
+import type { PromotionDiscountRetainOptionShouldNotBeChangedError } from "../../generated/payment/PromotionDiscountRetainOptionShouldNotBeChangedError"
+import type { PromotionPayMethodDoesNotMatchError } from "../../generated/payment/PromotionPayMethodDoesNotMatchError"
 import type { RegisterStoreReceiptBodyItem } from "../../generated/payment/RegisterStoreReceiptBodyItem"
 import type { RegisterStoreReceiptResponse } from "../../generated/payment/RegisterStoreReceiptResponse"
 import type { ResendWebhookResponse } from "../../generated/payment/ResendWebhookResponse"
 import type { SeparatedAddressInput } from "../../generated/common/SeparatedAddressInput"
-import type { ApplyEscrowLogisticsError as _InternalApplyEscrowLogisticsError } from "../../generated/payment/ApplyEscrowLogisticsError"
-import type { CancelPaymentError as _InternalCancelPaymentError } from "../../generated/payment/CancelPaymentError"
-import type { CloseVirtualAccountError as _InternalCloseVirtualAccountError } from "../../generated/payment/CloseVirtualAccountError"
-import type { ConfirmEscrowError as _InternalConfirmEscrowError } from "../../generated/payment/ConfirmEscrowError"
-import type { GetAllPaymentsError as _InternalGetAllPaymentsError } from "../../generated/payment/GetAllPaymentsError"
-import type { GetPaymentError as _InternalGetPaymentError } from "../../generated/payment/GetPaymentError"
-import type { GetPaymentsError as _InternalGetPaymentsError } from "../../generated/payment/GetPaymentsError"
-import type { ModifyEscrowLogisticsError as _InternalModifyEscrowLogisticsError } from "../../generated/payment/ModifyEscrowLogisticsError"
-import type { PayInstantlyError as _InternalPayInstantlyError } from "../../generated/payment/PayInstantlyError"
-import type { PayWithBillingKeyError as _InternalPayWithBillingKeyError } from "../../generated/payment/PayWithBillingKeyError"
-import type { PreRegisterPaymentError as _InternalPreRegisterPaymentError } from "../../generated/payment/PreRegisterPaymentError"
-import type { RegisterStoreReceiptError as _InternalRegisterStoreReceiptError } from "../../generated/payment/RegisterStoreReceiptError"
-import type { ResendWebhookError as _InternalResendWebhookError } from "../../generated/payment/ResendWebhookError"
+import type { SumOfPartsExceedsCancelAmountError } from "../../generated/payment/SumOfPartsExceedsCancelAmountError"
+import type { SumOfPartsExceedsTotalAmountError } from "../../generated/common/SumOfPartsExceedsTotalAmountError"
+import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
+import type { WebhookNotFoundError } from "../../generated/payment/WebhookNotFoundError"
 export function PaymentClient(init: PortOneClientInit): PaymentClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -86,18 +100,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalPreRegisterPaymentError = await response.json()
-				switch (errorResponse.type) {
-				case "ALREADY_PAID":
-					throw new Errors.AlreadyPaidError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new PreRegisterPaymentError(await response.json())
 			}
 			return response.json()
 		},
@@ -127,18 +130,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPaymentError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPaymentError(await response.json())
 			}
 			return response.json()
 		},
@@ -170,16 +162,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPaymentsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPaymentsError(await response.json())
 			}
 			return response.json()
 		},
@@ -220,16 +203,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetAllPaymentsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetAllPaymentsError(await response.json())
 			}
 			return response.json()
 		},
@@ -282,38 +256,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelPaymentError = await response.json()
-				switch (errorResponse.type) {
-				case "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN":
-					throw new Errors.CancellableAmountConsistencyBrokenError(errorResponse)
-				case "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT":
-					throw new Errors.CancelAmountExceedsCancellableAmountError(errorResponse)
-				case "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT":
-					throw new Errors.CancelTaxAmountExceedsCancellableTaxAmountError(errorResponse)
-				case "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT":
-					throw new Errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "NEGATIVE_PROMOTION_ADJUSTED_CANCEL_AMOUNT":
-					throw new Errors.NegativePromotionAdjustedCancelAmountError(errorResponse)
-				case "PAYMENT_ALREADY_CANCELLED":
-					throw new Errors.PaymentAlreadyCancelledError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_PAID":
-					throw new Errors.PaymentNotPaidError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED":
-					throw new Errors.PromotionDiscountRetainOptionShouldNotBeChangedError(errorResponse)
-				case "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT":
-					throw new Errors.SumOfPartsExceedsCancelAmountError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelPaymentError(await response.json())
 			}
 			return response.json()
 		},
@@ -399,36 +342,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalPayWithBillingKeyError = await response.json()
-				switch (errorResponse.type) {
-				case "ALREADY_PAID":
-					throw new Errors.AlreadyPaidError(errorResponse)
-				case "BILLING_KEY_ALREADY_DELETED":
-					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
-				case "BILLING_KEY_NOT_FOUND":
-					throw new Errors.BillingKeyNotFoundError(errorResponse)
-				case "CHANNEL_NOT_FOUND":
-					throw new Errors.ChannelNotFoundError(errorResponse)
-				case "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-					throw new Errors.DiscountAmountExceedsTotalAmountError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "MAX_TRANSACTION_COUNT_REACHED":
-					throw new Errors.MaxTransactionCountReachedError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-					throw new Errors.PromotionPayMethodDoesNotMatchError(errorResponse)
-				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new PayWithBillingKeyError(await response.json())
 			}
 			return response.json()
 		},
@@ -508,32 +422,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalPayInstantlyError = await response.json()
-				switch (errorResponse.type) {
-				case "ALREADY_PAID":
-					throw new Errors.AlreadyPaidError(errorResponse)
-				case "CHANNEL_NOT_FOUND":
-					throw new Errors.ChannelNotFoundError(errorResponse)
-				case "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT":
-					throw new Errors.DiscountAmountExceedsTotalAmountError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "MAX_TRANSACTION_COUNT_REACHED":
-					throw new Errors.MaxTransactionCountReachedError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "PROMOTION_PAY_METHOD_DOES_NOT_MATCH":
-					throw new Errors.PromotionPayMethodDoesNotMatchError(errorResponse)
-				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new PayInstantlyError(await response.json())
 			}
 			return response.json()
 		},
@@ -563,22 +452,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCloseVirtualAccountError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_WAITING_FOR_DEPOSIT":
-					throw new Errors.PaymentNotWaitingForDepositError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CloseVirtualAccountError(await response.json())
 			}
 			return response.json()
 		},
@@ -622,22 +496,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalApplyEscrowLogisticsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_PAID":
-					throw new Errors.PaymentNotPaidError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ApplyEscrowLogisticsError(await response.json())
 			}
 			return response.json()
 		},
@@ -681,22 +540,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalModifyEscrowLogisticsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_PAID":
-					throw new Errors.PaymentNotPaidError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ModifyEscrowLogisticsError(await response.json())
 			}
 			return response.json()
 		},
@@ -728,22 +572,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalConfirmEscrowError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_PAID":
-					throw new Errors.PaymentNotPaidError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ConfirmEscrowError(await response.json())
 			}
 			return response.json()
 		},
@@ -775,22 +604,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalResendWebhookError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "MAX_WEBHOOK_RETRY_COUNT_REACHED":
-					throw new Errors.MaxWebhookRetryCountReachedError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				case "WEBHOOK_NOT_FOUND":
-					throw new Errors.WebhookNotFoundError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ResendWebhookError(await response.json())
 			}
 			return response.json()
 		},
@@ -822,22 +636,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRegisterStoreReceiptError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_NOT_FOUND":
-					throw new Errors.PaymentNotFoundError(errorResponse)
-				case "PAYMENT_NOT_PAID":
-					throw new Errors.PaymentNotPaidError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RegisterStoreReceiptError(await response.json())
 			}
 			return response.json()
 		},
@@ -1350,244 +1149,120 @@ export type PaymentClient = {
 	paymentSchedule: PaymentScheduleClient
 	promotion: PromotionClient
 }
-export type PreRegisterPaymentError =
-	| Errors.AlreadyPaidError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isPreRegisterPaymentError(error: Error): error is PreRegisterPaymentError {
-	return (
-		error instanceof Errors.AlreadyPaidError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class PreRegisterPaymentError extends PaymentError {
+	declare readonly data: AlreadyPaidError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: AlreadyPaidError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, PreRegisterPaymentError.prototype)
+		this.name = "PreRegisterPaymentError"
+	}
 }
-export type GetPaymentError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPaymentError(error: Error): error is GetPaymentError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPaymentError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPaymentError.prototype)
+		this.name = "GetPaymentError"
+	}
 }
-export type GetPaymentsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetPaymentsError(error: Error): error is GetPaymentsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPaymentsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPaymentsError.prototype)
+		this.name = "GetPaymentsError"
+	}
 }
-export type GetAllPaymentsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetAllPaymentsError(error: Error): error is GetAllPaymentsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetAllPaymentsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetAllPaymentsError.prototype)
+		this.name = "GetAllPaymentsError"
+	}
 }
-export type CancelPaymentError =
-	| Errors.CancellableAmountConsistencyBrokenError
-	| Errors.CancelAmountExceedsCancellableAmountError
-	| Errors.CancelTaxAmountExceedsCancellableTaxAmountError
-	| Errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.NegativePromotionAdjustedCancelAmountError
-	| Errors.PaymentAlreadyCancelledError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotPaidError
-	| Errors.PgProviderError
-	| Errors.PromotionDiscountRetainOptionShouldNotBeChangedError
-	| Errors.SumOfPartsExceedsCancelAmountError
-	| Errors.UnauthorizedError
-export function isCancelPaymentError(error: Error): error is CancelPaymentError {
-	return (
-		error instanceof Errors.CancellableAmountConsistencyBrokenError
-		|| error instanceof Errors.CancelAmountExceedsCancellableAmountError
-		|| error instanceof Errors.CancelTaxAmountExceedsCancellableTaxAmountError
-		|| error instanceof Errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.NegativePromotionAdjustedCancelAmountError
-		|| error instanceof Errors.PaymentAlreadyCancelledError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotPaidError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.PromotionDiscountRetainOptionShouldNotBeChangedError
-		|| error instanceof Errors.SumOfPartsExceedsCancelAmountError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelPaymentError extends PaymentError {
+	declare readonly data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPaymentError.prototype)
+		this.name = "CancelPaymentError"
+	}
 }
-export type PayWithBillingKeyError =
-	| Errors.AlreadyPaidError
-	| Errors.BillingKeyAlreadyDeletedError
-	| Errors.BillingKeyNotFoundError
-	| Errors.ChannelNotFoundError
-	| Errors.DiscountAmountExceedsTotalAmountError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.MaxTransactionCountReachedError
-	| Errors.PaymentScheduleAlreadyExistsError
-	| Errors.PgProviderError
-	| Errors.PromotionPayMethodDoesNotMatchError
-	| Errors.SumOfPartsExceedsTotalAmountError
-	| Errors.UnauthorizedError
-export function isPayWithBillingKeyError(error: Error): error is PayWithBillingKeyError {
-	return (
-		error instanceof Errors.AlreadyPaidError
-		|| error instanceof Errors.BillingKeyAlreadyDeletedError
-		|| error instanceof Errors.BillingKeyNotFoundError
-		|| error instanceof Errors.ChannelNotFoundError
-		|| error instanceof Errors.DiscountAmountExceedsTotalAmountError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.MaxTransactionCountReachedError
-		|| error instanceof Errors.PaymentScheduleAlreadyExistsError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.PromotionPayMethodDoesNotMatchError
-		|| error instanceof Errors.SumOfPartsExceedsTotalAmountError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class PayWithBillingKeyError extends PaymentError {
+	declare readonly data: AlreadyPaidError | BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ChannelNotFoundError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InvalidRequestError | MaxTransactionCountReachedError | PaymentScheduleAlreadyExistsError | PgProviderError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: AlreadyPaidError | BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ChannelNotFoundError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InvalidRequestError | MaxTransactionCountReachedError | PaymentScheduleAlreadyExistsError | PgProviderError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, PayWithBillingKeyError.prototype)
+		this.name = "PayWithBillingKeyError"
+	}
 }
-export type PayInstantlyError =
-	| Errors.AlreadyPaidError
-	| Errors.ChannelNotFoundError
-	| Errors.DiscountAmountExceedsTotalAmountError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.MaxTransactionCountReachedError
-	| Errors.PaymentScheduleAlreadyExistsError
-	| Errors.PgProviderError
-	| Errors.PromotionPayMethodDoesNotMatchError
-	| Errors.SumOfPartsExceedsTotalAmountError
-	| Errors.UnauthorizedError
-export function isPayInstantlyError(error: Error): error is PayInstantlyError {
-	return (
-		error instanceof Errors.AlreadyPaidError
-		|| error instanceof Errors.ChannelNotFoundError
-		|| error instanceof Errors.DiscountAmountExceedsTotalAmountError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.MaxTransactionCountReachedError
-		|| error instanceof Errors.PaymentScheduleAlreadyExistsError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.PromotionPayMethodDoesNotMatchError
-		|| error instanceof Errors.SumOfPartsExceedsTotalAmountError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class PayInstantlyError extends PaymentError {
+	declare readonly data: AlreadyPaidError | ChannelNotFoundError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InvalidRequestError | MaxTransactionCountReachedError | PaymentScheduleAlreadyExistsError | PgProviderError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: AlreadyPaidError | ChannelNotFoundError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InvalidRequestError | MaxTransactionCountReachedError | PaymentScheduleAlreadyExistsError | PgProviderError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, PayInstantlyError.prototype)
+		this.name = "PayInstantlyError"
+	}
 }
-export type CloseVirtualAccountError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotWaitingForDepositError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isCloseVirtualAccountError(error: Error): error is CloseVirtualAccountError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotWaitingForDepositError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CloseVirtualAccountError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotWaitingForDepositError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotWaitingForDepositError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CloseVirtualAccountError.prototype)
+		this.name = "CloseVirtualAccountError"
+	}
 }
-export type ApplyEscrowLogisticsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotPaidError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isApplyEscrowLogisticsError(error: Error): error is ApplyEscrowLogisticsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotPaidError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ApplyEscrowLogisticsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ApplyEscrowLogisticsError.prototype)
+		this.name = "ApplyEscrowLogisticsError"
+	}
 }
-export type ModifyEscrowLogisticsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotPaidError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isModifyEscrowLogisticsError(error: Error): error is ModifyEscrowLogisticsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotPaidError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ModifyEscrowLogisticsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ModifyEscrowLogisticsError.prototype)
+		this.name = "ModifyEscrowLogisticsError"
+	}
 }
-export type ConfirmEscrowError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotPaidError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isConfirmEscrowError(error: Error): error is ConfirmEscrowError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotPaidError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ConfirmEscrowError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ConfirmEscrowError.prototype)
+		this.name = "ConfirmEscrowError"
+	}
 }
-export type ResendWebhookError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.MaxWebhookRetryCountReachedError
-	| Errors.PaymentNotFoundError
-	| Errors.UnauthorizedError
-	| Errors.WebhookNotFoundError
-export function isResendWebhookError(error: Error): error is ResendWebhookError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.MaxWebhookRetryCountReachedError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-		|| error instanceof Errors.WebhookNotFoundError
-	)
+export class ResendWebhookError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | MaxWebhookRetryCountReachedError | PaymentNotFoundError | UnauthorizedError | WebhookNotFoundError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | MaxWebhookRetryCountReachedError | PaymentNotFoundError | UnauthorizedError | WebhookNotFoundError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ResendWebhookError.prototype)
+		this.name = "ResendWebhookError"
+	}
 }
-export type RegisterStoreReceiptError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentNotFoundError
-	| Errors.PaymentNotPaidError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isRegisterStoreReceiptError(error: Error): error is RegisterStoreReceiptError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentNotFoundError
-		|| error instanceof Errors.PaymentNotPaidError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RegisterStoreReceiptError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RegisterStoreReceiptError.prototype)
+		this.name = "RegisterStoreReceiptError"
+	}
 }

@@ -1,7 +1,9 @@
-import * as Errors from "../../generated/errors"
+import { PgSpecificError } from "./PgSpecificError"
+import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
 import type { GetKakaopayPaymentOrderResponse } from "../../generated/pgSpecific/GetKakaopayPaymentOrderResponse"
-import type { GetKakaopayPaymentOrderError as _InternalGetKakaopayPaymentOrderError } from "../../generated/pgSpecific/GetKakaopayPaymentOrderError"
+import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
+import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 export function PgSpecificClient(init: PortOneClientInit): PgSpecificClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -33,14 +35,7 @@ export function PgSpecificClient(init: PortOneClientInit): PgSpecificClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetKakaopayPaymentOrderError = await response.json()
-				switch (errorResponse.type) {
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetKakaopayPaymentOrderError(await response.json())
 			}
 			return response.json()
 		},
@@ -64,12 +59,12 @@ export type PgSpecificClient = {
 		}
 	) => Promise<GetKakaopayPaymentOrderResponse>
 }
-export type GetKakaopayPaymentOrderError =
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetKakaopayPaymentOrderError(error: Error): error is GetKakaopayPaymentOrderError {
-	return (
-		error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetKakaopayPaymentOrderError extends PgSpecificError {
+	declare readonly data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetKakaopayPaymentOrderError.prototype)
+		this.name = "GetKakaopayPaymentOrderError"
+	}
 }

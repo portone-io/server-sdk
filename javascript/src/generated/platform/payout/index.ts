@@ -1,3 +1,4 @@
+export { PayoutError } from "./PayoutError"
 export * from "./GetPlatformPayoutsBody"
 export * from "./GetPlatformPayoutsResponse"
 export * from "./PlatformPayout"

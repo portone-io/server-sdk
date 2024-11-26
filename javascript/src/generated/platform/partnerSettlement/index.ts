@@ -1,3 +1,4 @@
+export { PartnerSettlementError } from "./PartnerSettlementError"
 export * from "./GetPlatformPartnerSettlementsBody"
 export * from "./GetPlatformPartnerSettlementsResponse"
 export * from "./PlatformPartnerManualSettlement"

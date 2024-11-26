@@ -1,9 +1,10 @@
-import * as Errors from "../../generated/errors"
+import { AuthError } from "./AuthError"
+import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
+import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { LoginViaApiSecretResponse } from "../../generated/auth/LoginViaApiSecretResponse"
 import type { RefreshTokenResponse } from "../../generated/auth/RefreshTokenResponse"
-import type { LoginViaApiSecretError as _InternalLoginViaApiSecretError } from "../../generated/auth/LoginViaApiSecretError"
-import type { RefreshTokenError as _InternalRefreshTokenError } from "../../generated/auth/RefreshTokenError"
+import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 export function AuthClient(init: PortOneClientInit): AuthClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -31,14 +32,7 @@ export function AuthClient(init: PortOneClientInit): AuthClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalLoginViaApiSecretError = await response.json()
-				switch (errorResponse.type) {
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new LoginViaApiSecretError(await response.json())
 			}
 			return response.json()
 		},
@@ -65,14 +59,7 @@ export function AuthClient(init: PortOneClientInit): AuthClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRefreshTokenError = await response.json()
-				switch (errorResponse.type) {
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RefreshTokenError(await response.json())
 			}
 			return response.json()
 		},
@@ -106,21 +93,21 @@ export type AuthClient = {
 		}
 	) => Promise<RefreshTokenResponse>
 }
-export type LoginViaApiSecretError =
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isLoginViaApiSecretError(error: Error): error is LoginViaApiSecretError {
-	return (
-		error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class LoginViaApiSecretError extends AuthError {
+	declare readonly data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, LoginViaApiSecretError.prototype)
+		this.name = "LoginViaApiSecretError"
+	}
 }
-export type RefreshTokenError =
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isRefreshTokenError(error: Error): error is RefreshTokenError {
-	return (
-		error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RefreshTokenError extends AuthError {
+	declare readonly data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RefreshTokenError.prototype)
+		this.name = "RefreshTokenError"
+	}
 }

@@ -1,7 +1,11 @@
-import * as Errors from "../../../generated/errors"
+import { PromotionError } from "./PromotionError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { Promotion } from "../../../generated/payment/promotion/Promotion"
-import type { GetPromotionError as _InternalGetPromotionError } from "../../../generated/payment/promotion/GetPromotionError"
+import type { PromotionNotFoundError } from "../../../generated/payment/promotion/PromotionNotFoundError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function PromotionClient(init: PortOneClientInit): PromotionClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -25,18 +29,7 @@ export function PromotionClient(init: PortOneClientInit): PromotionClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPromotionError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PROMOTION_NOT_FOUND":
-					throw new Errors.PromotionNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPromotionError(await response.json())
 			}
 			return response.json()
 		},
@@ -57,16 +50,12 @@ export type PromotionClient = {
 		}
 	) => Promise<Promotion>
 }
-export type GetPromotionError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PromotionNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPromotionError(error: Error): error is GetPromotionError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PromotionNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPromotionError extends PromotionError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PromotionNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PromotionNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPromotionError.prototype)
+		this.name = "GetPromotionError"
+	}
 }

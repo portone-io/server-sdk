@@ -1,4 +1,5 @@
-import * as Errors from "../../../generated/errors"
+import { PolicyError } from "./PolicyError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/ArchivePlatformAdditionalFeePolicyResponse"
 import type { ArchivePlatformContractResponse } from "../../../generated/platform/policy/ArchivePlatformContractResponse"
@@ -6,43 +7,41 @@ import type { ArchivePlatformDiscountSharePolicyResponse } from "../../../genera
 import type { CreatePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/CreatePlatformAdditionalFeePolicyResponse"
 import type { CreatePlatformContractResponse } from "../../../generated/platform/policy/CreatePlatformContractResponse"
 import type { CreatePlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/CreatePlatformDiscountSharePolicyResponse"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformAdditionalFeePoliciesResponse } from "../../../generated/platform/policy/GetPlatformAdditionalFeePoliciesResponse"
 import type { GetPlatformContractsResponse } from "../../../generated/platform/policy/GetPlatformContractsResponse"
 import type { GetPlatformDiscountSharePoliciesResponse } from "../../../generated/platform/policy/GetPlatformDiscountSharePoliciesResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
 import type { PlatformAdditionalFeePolicy } from "../../../generated/platform/PlatformAdditionalFeePolicy"
+import type { PlatformAdditionalFeePolicyAlreadyExistsError } from "../../../generated/platform/policy/PlatformAdditionalFeePolicyAlreadyExistsError"
 import type { PlatformAdditionalFeePolicyFilterInput } from "../../../generated/platform/policy/PlatformAdditionalFeePolicyFilterInput"
+import type { PlatformAdditionalFeePolicyNotFoundError } from "../../../generated/platform/PlatformAdditionalFeePolicyNotFoundError"
+import type { PlatformArchivedAdditionalFeePolicyError } from "../../../generated/platform/PlatformArchivedAdditionalFeePolicyError"
+import type { PlatformArchivedContractError } from "../../../generated/platform/PlatformArchivedContractError"
+import type { PlatformArchivedDiscountSharePolicyError } from "../../../generated/platform/PlatformArchivedDiscountSharePolicyError"
+import type { PlatformCannotArchiveScheduledAdditionalFeePolicyError } from "../../../generated/platform/policy/PlatformCannotArchiveScheduledAdditionalFeePolicyError"
+import type { PlatformCannotArchiveScheduledContractError } from "../../../generated/platform/policy/PlatformCannotArchiveScheduledContractError"
+import type { PlatformCannotArchiveScheduledDiscountSharePolicyError } from "../../../generated/platform/policy/PlatformCannotArchiveScheduledDiscountSharePolicyError"
 import type { PlatformContract } from "../../../generated/platform/PlatformContract"
+import type { PlatformContractAlreadyExistsError } from "../../../generated/platform/policy/PlatformContractAlreadyExistsError"
 import type { PlatformContractFilterInput } from "../../../generated/platform/policy/PlatformContractFilterInput"
+import type { PlatformContractNotFoundError } from "../../../generated/platform/PlatformContractNotFoundError"
 import type { PlatformDiscountSharePolicy } from "../../../generated/platform/PlatformDiscountSharePolicy"
+import type { PlatformDiscountSharePolicyAlreadyExistsError } from "../../../generated/platform/policy/PlatformDiscountSharePolicyAlreadyExistsError"
 import type { PlatformDiscountSharePolicyFilterInput } from "../../../generated/platform/policy/PlatformDiscountSharePolicyFilterInput"
+import type { PlatformDiscountSharePolicyNotFoundError } from "../../../generated/platform/PlatformDiscountSharePolicyNotFoundError"
 import type { PlatformFeeInput } from "../../../generated/platform/PlatformFeeInput"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPayer } from "../../../generated/platform/PlatformPayer"
 import type { PlatformSettlementCycleInput } from "../../../generated/platform/PlatformSettlementCycleInput"
 import type { RecoverPlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/RecoverPlatformAdditionalFeePolicyResponse"
 import type { RecoverPlatformContractResponse } from "../../../generated/platform/policy/RecoverPlatformContractResponse"
 import type { RecoverPlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/RecoverPlatformDiscountSharePolicyResponse"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 import type { UpdatePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/UpdatePlatformAdditionalFeePolicyResponse"
 import type { UpdatePlatformContractResponse } from "../../../generated/platform/policy/UpdatePlatformContractResponse"
 import type { UpdatePlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/UpdatePlatformDiscountSharePolicyResponse"
-import type { ArchivePlatformAdditionalFeePolicyError as _InternalArchivePlatformAdditionalFeePolicyError } from "../../../generated/platform/policy/ArchivePlatformAdditionalFeePolicyError"
-import type { ArchivePlatformContractError as _InternalArchivePlatformContractError } from "../../../generated/platform/policy/ArchivePlatformContractError"
-import type { ArchivePlatformDiscountSharePolicyError as _InternalArchivePlatformDiscountSharePolicyError } from "../../../generated/platform/policy/ArchivePlatformDiscountSharePolicyError"
-import type { CreatePlatformAdditionalFeePolicyError as _InternalCreatePlatformAdditionalFeePolicyError } from "../../../generated/platform/policy/CreatePlatformAdditionalFeePolicyError"
-import type { CreatePlatformContractError as _InternalCreatePlatformContractError } from "../../../generated/platform/policy/CreatePlatformContractError"
-import type { CreatePlatformDiscountSharePolicyError as _InternalCreatePlatformDiscountSharePolicyError } from "../../../generated/platform/policy/CreatePlatformDiscountSharePolicyError"
-import type { GetPlatformAdditionalFeePoliciesError as _InternalGetPlatformAdditionalFeePoliciesError } from "../../../generated/platform/policy/GetPlatformAdditionalFeePoliciesError"
-import type { GetPlatformAdditionalFeePolicyError as _InternalGetPlatformAdditionalFeePolicyError } from "../../../generated/platform/policy/GetPlatformAdditionalFeePolicyError"
-import type { GetPlatformContractError as _InternalGetPlatformContractError } from "../../../generated/platform/policy/GetPlatformContractError"
-import type { GetPlatformContractsError as _InternalGetPlatformContractsError } from "../../../generated/platform/policy/GetPlatformContractsError"
-import type { GetPlatformDiscountSharePoliciesError as _InternalGetPlatformDiscountSharePoliciesError } from "../../../generated/platform/policy/GetPlatformDiscountSharePoliciesError"
-import type { GetPlatformDiscountSharePolicyError as _InternalGetPlatformDiscountSharePolicyError } from "../../../generated/platform/policy/GetPlatformDiscountSharePolicyError"
-import type { RecoverPlatformAdditionalFeePolicyError as _InternalRecoverPlatformAdditionalFeePolicyError } from "../../../generated/platform/policy/RecoverPlatformAdditionalFeePolicyError"
-import type { RecoverPlatformContractError as _InternalRecoverPlatformContractError } from "../../../generated/platform/policy/RecoverPlatformContractError"
-import type { RecoverPlatformDiscountSharePolicyError as _InternalRecoverPlatformDiscountSharePolicyError } from "../../../generated/platform/policy/RecoverPlatformDiscountSharePolicyError"
-import type { UpdatePlatformAdditionalFeePolicyError as _InternalUpdatePlatformAdditionalFeePolicyError } from "../../../generated/platform/policy/UpdatePlatformAdditionalFeePolicyError"
-import type { UpdatePlatformContractError as _InternalUpdatePlatformContractError } from "../../../generated/platform/policy/UpdatePlatformContractError"
-import type { UpdatePlatformDiscountSharePolicyError as _InternalUpdatePlatformDiscountSharePolicyError } from "../../../generated/platform/policy/UpdatePlatformDiscountSharePolicyError"
 export function PolicyClient(init: PortOneClientInit): PolicyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -75,18 +74,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformDiscountSharePoliciesError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformDiscountSharePoliciesError(await response.json())
 			}
 			return response.json()
 		},
@@ -122,20 +110,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS":
-					throw new Errors.PlatformDiscountSharePolicyAlreadyExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -158,20 +133,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -206,22 +168,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalUpdatePlatformDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
-					throw new Errors.PlatformArchivedDiscountSharePolicyError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new UpdatePlatformDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -244,22 +191,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalArchivePlatformDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY":
-					throw new Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ArchivePlatformDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -282,20 +214,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRecoverPlatformDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RecoverPlatformDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -327,18 +246,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformAdditionalFeePoliciesError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformAdditionalFeePoliciesError(await response.json())
 			}
 			return response.json()
 		},
@@ -377,20 +285,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_ALREADY_EXISTS":
-					throw new Errors.PlatformAdditionalFeePolicyAlreadyExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -413,20 +308,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -464,22 +346,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalUpdatePlatformAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-					throw new Errors.PlatformArchivedAdditionalFeePolicyError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new UpdatePlatformAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -502,22 +369,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalArchivePlatformAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_ADDITIONAL_FEE_POLICY":
-					throw new Errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ArchivePlatformAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -540,20 +392,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRecoverPlatformAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RecoverPlatformAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -585,18 +424,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformContractsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformContractsError(await response.json())
 			}
 			return response.json()
 		},
@@ -641,20 +469,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_ALREADY_EXISTS":
-					throw new Errors.PlatformContractAlreadyExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -677,20 +492,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -734,22 +536,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalUpdatePlatformContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ARCHIVED_CONTRACT":
-					throw new Errors.PlatformArchivedContractError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new UpdatePlatformContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -772,22 +559,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalArchivePlatformContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT":
-					throw new Errors.PlatformCannotArchiveScheduledContractError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ArchivePlatformContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -810,20 +582,7 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRecoverPlatformContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RecoverPlatformContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -1143,279 +902,165 @@ export type PolicyClient = {
 		}
 	) => Promise<RecoverPlatformContractResponse>
 }
-export type GetPlatformDiscountSharePoliciesError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformDiscountSharePoliciesError(error: Error): error is GetPlatformDiscountSharePoliciesError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformDiscountSharePoliciesError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePoliciesError.prototype)
+		this.name = "GetPlatformDiscountSharePoliciesError"
+	}
 }
-export type CreatePlatformDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyAlreadyExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCreatePlatformDiscountSharePolicyError(error: Error): error is CreatePlatformDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyAlreadyExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformDiscountSharePolicyError.prototype)
+		this.name = "CreatePlatformDiscountSharePolicyError"
+	}
 }
-export type GetPlatformDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformDiscountSharePolicyError(error: Error): error is GetPlatformDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyError"
+	}
 }
-export type UpdatePlatformDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformArchivedDiscountSharePolicyError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isUpdatePlatformDiscountSharePolicyError(error: Error): error is UpdatePlatformDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformArchivedDiscountSharePolicyError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class UpdatePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformDiscountSharePolicyError.prototype)
+		this.name = "UpdatePlatformDiscountSharePolicyError"
+	}
 }
-export type ArchivePlatformDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isArchivePlatformDiscountSharePolicyError(error: Error): error is ArchivePlatformDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformCannotArchiveScheduledDiscountSharePolicyError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ArchivePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformDiscountSharePolicyError.prototype)
+		this.name = "ArchivePlatformDiscountSharePolicyError"
+	}
 }
-export type RecoverPlatformDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRecoverPlatformDiscountSharePolicyError(error: Error): error is RecoverPlatformDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RecoverPlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformDiscountSharePolicyError.prototype)
+		this.name = "RecoverPlatformDiscountSharePolicyError"
+	}
 }
-export type GetPlatformAdditionalFeePoliciesError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformAdditionalFeePoliciesError(error: Error): error is GetPlatformAdditionalFeePoliciesError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformAdditionalFeePoliciesError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformAdditionalFeePoliciesError.prototype)
+		this.name = "GetPlatformAdditionalFeePoliciesError"
+	}
 }
-export type CreatePlatformAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyAlreadyExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCreatePlatformAdditionalFeePolicyError(error: Error): error is CreatePlatformAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyAlreadyExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformAdditionalFeePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformAdditionalFeePolicyError.prototype)
+		this.name = "CreatePlatformAdditionalFeePolicyError"
+	}
 }
-export type GetPlatformAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformAdditionalFeePolicyError(error: Error): error is GetPlatformAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformAdditionalFeePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformAdditionalFeePolicyError.prototype)
+		this.name = "GetPlatformAdditionalFeePolicyError"
+	}
 }
-export type UpdatePlatformAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformArchivedAdditionalFeePolicyError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isUpdatePlatformAdditionalFeePolicyError(error: Error): error is UpdatePlatformAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformArchivedAdditionalFeePolicyError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class UpdatePlatformAdditionalFeePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformArchivedAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformArchivedAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformAdditionalFeePolicyError.prototype)
+		this.name = "UpdatePlatformAdditionalFeePolicyError"
+	}
 }
-export type ArchivePlatformAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isArchivePlatformAdditionalFeePolicyError(error: Error): error is ArchivePlatformAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformCannotArchiveScheduledAdditionalFeePolicyError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ArchivePlatformAdditionalFeePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformCannotArchiveScheduledAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformCannotArchiveScheduledAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformAdditionalFeePolicyError.prototype)
+		this.name = "ArchivePlatformAdditionalFeePolicyError"
+	}
 }
-export type RecoverPlatformAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRecoverPlatformAdditionalFeePolicyError(error: Error): error is RecoverPlatformAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RecoverPlatformAdditionalFeePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformAdditionalFeePolicyError.prototype)
+		this.name = "RecoverPlatformAdditionalFeePolicyError"
+	}
 }
-export type GetPlatformContractsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformContractsError(error: Error): error is GetPlatformContractsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformContractsError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformContractsError.prototype)
+		this.name = "GetPlatformContractsError"
+	}
 }
-export type CreatePlatformContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractAlreadyExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCreatePlatformContractError(error: Error): error is CreatePlatformContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractAlreadyExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformContractError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformContractError.prototype)
+		this.name = "CreatePlatformContractError"
+	}
 }
-export type GetPlatformContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformContractError(error: Error): error is GetPlatformContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformContractError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformContractError.prototype)
+		this.name = "GetPlatformContractError"
+	}
 }
-export type UpdatePlatformContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformArchivedContractError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isUpdatePlatformContractError(error: Error): error is UpdatePlatformContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformArchivedContractError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class UpdatePlatformContractError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformContractError.prototype)
+		this.name = "UpdatePlatformContractError"
+	}
 }
-export type ArchivePlatformContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformCannotArchiveScheduledContractError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isArchivePlatformContractError(error: Error): error is ArchivePlatformContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformCannotArchiveScheduledContractError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ArchivePlatformContractError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledContractError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledContractError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformContractError.prototype)
+		this.name = "ArchivePlatformContractError"
+	}
 }
-export type RecoverPlatformContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRecoverPlatformContractError(error: Error): error is RecoverPlatformContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RecoverPlatformContractError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformContractError.prototype)
+		this.name = "RecoverPlatformContractError"
+	}
 }

@@ -1,4 +1,8 @@
 import * as sdk from "@portone/server-sdk";
+import {
+	CancelPaymentError,
+	GetPaymentError,
+} from "@portone/server-sdk/payment";
 import { describe, expect, it } from "vitest";
 
 declare global {
@@ -43,7 +47,7 @@ describe("error cases", () => {
 	describe("payment.getPayment()", () => {
 		it("with invalid paymentId", async () => {
 			await expect(() => client.getPayment({ paymentId: " " })).rejects.toThrow(
-				sdk.Errors.PaymentNotFoundError,
+				GetPaymentError,
 			);
 		});
 	});
@@ -55,7 +59,7 @@ describe("error cases", () => {
 					reason: "test",
 					amount: 1,
 				}),
-			).rejects.toThrow(sdk.Errors.PaymentAlreadyCancelledError);
+			).rejects.toThrow(CancelPaymentError);
 		});
 	});
 });

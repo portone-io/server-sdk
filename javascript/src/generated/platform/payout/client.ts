@@ -1,9 +1,13 @@
-import * as Errors from "../../../generated/errors"
+import { PayoutError } from "./PayoutError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPayoutsResponse } from "../../../generated/platform/payout/GetPlatformPayoutsResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPayoutFilterInput } from "../../../generated/platform/payout/PlatformPayoutFilterInput"
-import type { GetPlatformPayoutsError as _InternalGetPlatformPayoutsError } from "../../../generated/platform/payout/GetPlatformPayoutsError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function PayoutClient(init: PortOneClientInit): PayoutClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -39,18 +43,7 @@ export function PayoutClient(init: PortOneClientInit): PayoutClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPayoutsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPayoutsError(await response.json())
 			}
 			return response.json()
 		},
@@ -72,16 +65,12 @@ export type PayoutClient = {
 		}
 	) => Promise<GetPlatformPayoutsResponse>
 }
-export type GetPlatformPayoutsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformPayoutsError(error: Error): error is GetPlatformPayoutsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPayoutsError extends PayoutError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPayoutsError.prototype)
+		this.name = "GetPlatformPayoutsError"
+	}
 }

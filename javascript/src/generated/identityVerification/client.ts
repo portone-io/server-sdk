@@ -1,16 +1,23 @@
-import * as Errors from "../../generated/errors"
+import { IdentityVerificationError } from "./IdentityVerificationError"
+import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
+import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { ConfirmIdentityVerificationResponse } from "../../generated/identityVerification/ConfirmIdentityVerificationResponse"
+import type { ForbiddenError } from "../../generated/common/ForbiddenError"
 import type { IdentityVerification } from "../../generated/identityVerification/IdentityVerification"
+import type { IdentityVerificationAlreadySentError } from "../../generated/identityVerification/IdentityVerificationAlreadySentError"
+import type { IdentityVerificationAlreadyVerifiedError } from "../../generated/identityVerification/IdentityVerificationAlreadyVerifiedError"
 import type { IdentityVerificationMethod } from "../../generated/identityVerification/IdentityVerificationMethod"
+import type { IdentityVerificationNotFoundError } from "../../generated/identityVerification/IdentityVerificationNotFoundError"
+import type { IdentityVerificationNotSentError } from "../../generated/identityVerification/IdentityVerificationNotSentError"
 import type { IdentityVerificationOperator } from "../../generated/identityVerification/IdentityVerificationOperator"
+import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
+import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
+import type { PgProviderError } from "../../generated/common/PgProviderError"
 import type { ResendIdentityVerificationResponse } from "../../generated/identityVerification/ResendIdentityVerificationResponse"
 import type { SendIdentityVerificationBodyCustomer } from "../../generated/identityVerification/SendIdentityVerificationBodyCustomer"
 import type { SendIdentityVerificationResponse } from "../../generated/identityVerification/SendIdentityVerificationResponse"
-import type { ConfirmIdentityVerificationError as _InternalConfirmIdentityVerificationError } from "../../generated/identityVerification/ConfirmIdentityVerificationError"
-import type { GetIdentityVerificationError as _InternalGetIdentityVerificationError } from "../../generated/identityVerification/GetIdentityVerificationError"
-import type { ResendIdentityVerificationError as _InternalResendIdentityVerificationError } from "../../generated/identityVerification/ResendIdentityVerificationError"
-import type { SendIdentityVerificationError as _InternalSendIdentityVerificationError } from "../../generated/identityVerification/SendIdentityVerificationError"
+import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 export function IdentityVerificationClient(init: PortOneClientInit): IdentityVerificationClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -41,18 +48,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetIdentityVerificationError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_FOUND":
-					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetIdentityVerificationError(await response.json())
 			}
 			return response.json()
 		},
@@ -99,28 +95,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalSendIdentityVerificationError = await response.json()
-				switch (errorResponse.type) {
-				case "CHANNEL_NOT_FOUND":
-					throw new Errors.ChannelNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "IDENTITY_VERIFICATION_ALREADY_SENT":
-					throw new Errors.IdentityVerificationAlreadySentError(errorResponse)
-				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_FOUND":
-					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "MAX_TRANSACTION_COUNT_REACHED":
-					throw new Errors.MaxTransactionCountReachedError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new SendIdentityVerificationError(await response.json())
 			}
 			return response.json()
 		},
@@ -152,24 +127,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalConfirmIdentityVerificationError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_FOUND":
-					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_SENT":
-					throw new Errors.IdentityVerificationNotSentError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ConfirmIdentityVerificationError(await response.json())
 			}
 			return response.json()
 		},
@@ -199,24 +157,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalResendIdentityVerificationError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "IDENTITY_VERIFICATION_ALREADY_VERIFIED":
-					throw new Errors.IdentityVerificationAlreadyVerifiedError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_FOUND":
-					throw new Errors.IdentityVerificationNotFoundError(errorResponse)
-				case "IDENTITY_VERIFICATION_NOT_SENT":
-					throw new Errors.IdentityVerificationNotSentError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ResendIdentityVerificationError(await response.json())
 			}
 			return response.json()
 		},
@@ -318,77 +259,39 @@ export type IdentityVerificationClient = {
 		}
 	) => Promise<ResendIdentityVerificationResponse>
 }
-export type GetIdentityVerificationError =
-	| Errors.ForbiddenError
-	| Errors.IdentityVerificationNotFoundError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetIdentityVerificationError(error: Error): error is GetIdentityVerificationError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.IdentityVerificationNotFoundError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetIdentityVerificationError extends IdentityVerificationError {
+	declare readonly data: ForbiddenError | IdentityVerificationNotFoundError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | IdentityVerificationNotFoundError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetIdentityVerificationError.prototype)
+		this.name = "GetIdentityVerificationError"
+	}
 }
-export type SendIdentityVerificationError =
-	| Errors.ChannelNotFoundError
-	| Errors.ForbiddenError
-	| Errors.IdentityVerificationAlreadySentError
-	| Errors.IdentityVerificationAlreadyVerifiedError
-	| Errors.IdentityVerificationNotFoundError
-	| Errors.InvalidRequestError
-	| Errors.MaxTransactionCountReachedError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isSendIdentityVerificationError(error: Error): error is SendIdentityVerificationError {
-	return (
-		error instanceof Errors.ChannelNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.IdentityVerificationAlreadySentError
-		|| error instanceof Errors.IdentityVerificationAlreadyVerifiedError
-		|| error instanceof Errors.IdentityVerificationNotFoundError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.MaxTransactionCountReachedError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class SendIdentityVerificationError extends IdentityVerificationError {
+	declare readonly data: ChannelNotFoundError | ForbiddenError | IdentityVerificationAlreadySentError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | InvalidRequestError | MaxTransactionCountReachedError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ChannelNotFoundError | ForbiddenError | IdentityVerificationAlreadySentError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | InvalidRequestError | MaxTransactionCountReachedError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, SendIdentityVerificationError.prototype)
+		this.name = "SendIdentityVerificationError"
+	}
 }
-export type ConfirmIdentityVerificationError =
-	| Errors.ForbiddenError
-	| Errors.IdentityVerificationAlreadyVerifiedError
-	| Errors.IdentityVerificationNotFoundError
-	| Errors.IdentityVerificationNotSentError
-	| Errors.InvalidRequestError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isConfirmIdentityVerificationError(error: Error): error is ConfirmIdentityVerificationError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.IdentityVerificationAlreadyVerifiedError
-		|| error instanceof Errors.IdentityVerificationNotFoundError
-		|| error instanceof Errors.IdentityVerificationNotSentError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ConfirmIdentityVerificationError extends IdentityVerificationError {
+	declare readonly data: ForbiddenError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | IdentityVerificationNotSentError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | IdentityVerificationNotSentError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ConfirmIdentityVerificationError.prototype)
+		this.name = "ConfirmIdentityVerificationError"
+	}
 }
-export type ResendIdentityVerificationError =
-	| Errors.ForbiddenError
-	| Errors.IdentityVerificationAlreadyVerifiedError
-	| Errors.IdentityVerificationNotFoundError
-	| Errors.IdentityVerificationNotSentError
-	| Errors.InvalidRequestError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isResendIdentityVerificationError(error: Error): error is ResendIdentityVerificationError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.IdentityVerificationAlreadyVerifiedError
-		|| error instanceof Errors.IdentityVerificationNotFoundError
-		|| error instanceof Errors.IdentityVerificationNotSentError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ResendIdentityVerificationError extends IdentityVerificationError {
+	declare readonly data: ForbiddenError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | IdentityVerificationNotSentError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | IdentityVerificationAlreadyVerifiedError | IdentityVerificationNotFoundError | IdentityVerificationNotSentError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ResendIdentityVerificationError.prototype)
+		this.name = "ResendIdentityVerificationError"
+	}
 }

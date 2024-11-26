@@ -1,3 +1,4 @@
+export { BulkPayoutError } from "./BulkPayoutError"
 export * from "./GetPlatformBulkPayoutsBody"
 export * from "./GetPlatformBulkPayoutsResponse"
 export * from "./PlatformBulkPayout"

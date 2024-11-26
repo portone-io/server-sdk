@@ -1,17 +1,25 @@
-import * as Errors from "../../../generated/errors"
+import { PaymentScheduleError } from "./PaymentScheduleError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { AlreadyPaidOrWaitingError } from "../../../generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
+import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
 import type { BillingKeyPaymentInput } from "../../../generated/common/BillingKeyPaymentInput"
 import type { CreatePaymentScheduleResponse } from "../../../generated/payment/paymentSchedule/CreatePaymentScheduleResponse"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPaymentSchedulesResponse } from "../../../generated/payment/paymentSchedule/GetPaymentSchedulesResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
 import type { PaymentSchedule } from "../../../generated/payment/paymentSchedule/PaymentSchedule"
+import type { PaymentScheduleAlreadyExistsError } from "../../../generated/common/PaymentScheduleAlreadyExistsError"
+import type { PaymentScheduleAlreadyProcessedError } from "../../../generated/payment/paymentSchedule/PaymentScheduleAlreadyProcessedError"
+import type { PaymentScheduleAlreadyRevokedError } from "../../../generated/payment/paymentSchedule/PaymentScheduleAlreadyRevokedError"
 import type { PaymentScheduleFilterInput } from "../../../generated/payment/paymentSchedule/PaymentScheduleFilterInput"
+import type { PaymentScheduleNotFoundError } from "../../../generated/payment/paymentSchedule/PaymentScheduleNotFoundError"
 import type { PaymentScheduleSortInput } from "../../../generated/payment/paymentSchedule/PaymentScheduleSortInput"
 import type { RevokePaymentSchedulesResponse } from "../../../generated/payment/paymentSchedule/RevokePaymentSchedulesResponse"
-import type { CreatePaymentScheduleError as _InternalCreatePaymentScheduleError } from "../../../generated/payment/paymentSchedule/CreatePaymentScheduleError"
-import type { GetPaymentScheduleError as _InternalGetPaymentScheduleError } from "../../../generated/payment/paymentSchedule/GetPaymentScheduleError"
-import type { GetPaymentSchedulesError as _InternalGetPaymentSchedulesError } from "../../../generated/payment/paymentSchedule/GetPaymentSchedulesError"
-import type { RevokePaymentSchedulesError as _InternalRevokePaymentSchedulesError } from "../../../generated/payment/paymentSchedule/RevokePaymentSchedulesError"
+import type { SumOfPartsExceedsTotalAmountError } from "../../../generated/common/SumOfPartsExceedsTotalAmountError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -42,18 +50,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPaymentScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_SCHEDULE_NOT_FOUND":
-					throw new Errors.PaymentScheduleNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPaymentScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -88,16 +85,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPaymentSchedulesError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPaymentSchedulesError(await response.json())
 			}
 			return response.json()
 		},
@@ -132,26 +120,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRevokePaymentSchedulesError = await response.json()
-				switch (errorResponse.type) {
-				case "BILLING_KEY_ALREADY_DELETED":
-					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
-				case "BILLING_KEY_NOT_FOUND":
-					throw new Errors.BillingKeyNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_PROCESSED":
-					throw new Errors.PaymentScheduleAlreadyProcessedError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_REVOKED":
-					throw new Errors.PaymentScheduleAlreadyRevokedError(errorResponse)
-				case "PAYMENT_SCHEDULE_NOT_FOUND":
-					throw new Errors.PaymentScheduleNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RevokePaymentSchedulesError(await response.json())
 			}
 			return response.json()
 		},
@@ -183,26 +152,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePaymentScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "ALREADY_PAID_OR_WAITING":
-					throw new Errors.AlreadyPaidOrWaitingError(errorResponse)
-				case "BILLING_KEY_ALREADY_DELETED":
-					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
-				case "BILLING_KEY_NOT_FOUND":
-					throw new Errors.BillingKeyNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
-				case "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT":
-					throw new Errors.SumOfPartsExceedsTotalAmountError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePaymentScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -301,69 +251,39 @@ export type PaymentScheduleClient = {
 		}
 	) => Promise<CreatePaymentScheduleResponse>
 }
-export type GetPaymentScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentScheduleNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPaymentScheduleError(error: Error): error is GetPaymentScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentScheduleNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPaymentScheduleError extends PaymentScheduleError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentScheduleNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentScheduleNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPaymentScheduleError.prototype)
+		this.name = "GetPaymentScheduleError"
+	}
 }
-export type GetPaymentSchedulesError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetPaymentSchedulesError(error: Error): error is GetPaymentSchedulesError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPaymentSchedulesError extends PaymentScheduleError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPaymentSchedulesError.prototype)
+		this.name = "GetPaymentSchedulesError"
+	}
 }
-export type RevokePaymentSchedulesError =
-	| Errors.BillingKeyAlreadyDeletedError
-	| Errors.BillingKeyNotFoundError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentScheduleAlreadyProcessedError
-	| Errors.PaymentScheduleAlreadyRevokedError
-	| Errors.PaymentScheduleNotFoundError
-	| Errors.UnauthorizedError
-export function isRevokePaymentSchedulesError(error: Error): error is RevokePaymentSchedulesError {
-	return (
-		error instanceof Errors.BillingKeyAlreadyDeletedError
-		|| error instanceof Errors.BillingKeyNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentScheduleAlreadyProcessedError
-		|| error instanceof Errors.PaymentScheduleAlreadyRevokedError
-		|| error instanceof Errors.PaymentScheduleNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RevokePaymentSchedulesError extends PaymentScheduleError {
+	declare readonly data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyProcessedError | PaymentScheduleAlreadyRevokedError | PaymentScheduleNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyProcessedError | PaymentScheduleAlreadyRevokedError | PaymentScheduleNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RevokePaymentSchedulesError.prototype)
+		this.name = "RevokePaymentSchedulesError"
+	}
 }
-export type CreatePaymentScheduleError =
-	| Errors.AlreadyPaidOrWaitingError
-	| Errors.BillingKeyAlreadyDeletedError
-	| Errors.BillingKeyNotFoundError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentScheduleAlreadyExistsError
-	| Errors.SumOfPartsExceedsTotalAmountError
-	| Errors.UnauthorizedError
-export function isCreatePaymentScheduleError(error: Error): error is CreatePaymentScheduleError {
-	return (
-		error instanceof Errors.AlreadyPaidOrWaitingError
-		|| error instanceof Errors.BillingKeyAlreadyDeletedError
-		|| error instanceof Errors.BillingKeyNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentScheduleAlreadyExistsError
-		|| error instanceof Errors.SumOfPartsExceedsTotalAmountError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePaymentScheduleError extends PaymentScheduleError {
+	declare readonly data: AlreadyPaidOrWaitingError | BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: AlreadyPaidOrWaitingError | BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePaymentScheduleError.prototype)
+		this.name = "CreatePaymentScheduleError"
+	}
 }

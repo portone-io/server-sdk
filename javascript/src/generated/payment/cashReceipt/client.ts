@@ -1,16 +1,22 @@
-import * as Errors from "../../../generated/errors"
+import { CashReceiptError } from "./CashReceiptError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CancelCashReceiptResponse } from "../../../generated/payment/cashReceipt/CancelCashReceiptResponse"
 import type { CashReceipt } from "../../../generated/payment/cashReceipt/CashReceipt"
+import type { CashReceiptAlreadyIssuedError } from "../../../generated/payment/cashReceipt/CashReceiptAlreadyIssuedError"
+import type { CashReceiptNotFoundError } from "../../../generated/payment/cashReceipt/CashReceiptNotFoundError"
+import type { CashReceiptNotIssuedError } from "../../../generated/payment/cashReceipt/CashReceiptNotIssuedError"
 import type { CashReceiptType } from "../../../generated/common/CashReceiptType"
+import type { ChannelNotFoundError } from "../../../generated/common/ChannelNotFoundError"
 import type { Currency } from "../../../generated/common/Currency"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { IssueCashReceiptCustomerInput } from "../../../generated/payment/cashReceipt/IssueCashReceiptCustomerInput"
 import type { IssueCashReceiptResponse } from "../../../generated/payment/cashReceipt/IssueCashReceiptResponse"
 import type { PaymentAmountInput } from "../../../generated/common/PaymentAmountInput"
 import type { PaymentProductType } from "../../../generated/common/PaymentProductType"
-import type { CancelCashReceiptError as _InternalCancelCashReceiptError } from "../../../generated/payment/cashReceipt/CancelCashReceiptError"
-import type { GetCashReceiptError as _InternalGetCashReceiptError } from "../../../generated/payment/cashReceipt/GetCashReceiptError"
-import type { IssueCashReceiptError as _InternalIssueCashReceiptError } from "../../../generated/payment/cashReceipt/IssueCashReceiptError"
+import type { PgProviderError } from "../../../generated/common/PgProviderError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -41,18 +47,7 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetCashReceiptError = await response.json()
-				switch (errorResponse.type) {
-				case "CASH_RECEIPT_NOT_FOUND":
-					throw new Errors.CashReceiptNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetCashReceiptError(await response.json())
 			}
 			return response.json()
 		},
@@ -106,22 +101,7 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalIssueCashReceiptError = await response.json()
-				switch (errorResponse.type) {
-				case "CASH_RECEIPT_ALREADY_ISSUED":
-					throw new Errors.CashReceiptAlreadyIssuedError(errorResponse)
-				case "CHANNEL_NOT_FOUND":
-					throw new Errors.ChannelNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new IssueCashReceiptError(await response.json())
 			}
 			return response.json()
 		},
@@ -151,22 +131,7 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelCashReceiptError = await response.json()
-				switch (errorResponse.type) {
-				case "CASH_RECEIPT_NOT_FOUND":
-					throw new Errors.CashReceiptNotFoundError(errorResponse)
-				case "CASH_RECEIPT_NOT_ISSUED":
-					throw new Errors.CashReceiptNotIssuedError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelCashReceiptError(await response.json())
 			}
 			return response.json()
 		},
@@ -254,50 +219,30 @@ export type CashReceiptClient = {
 		}
 	) => Promise<CancelCashReceiptResponse>
 }
-export type GetCashReceiptError =
-	| Errors.CashReceiptNotFoundError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetCashReceiptError(error: Error): error is GetCashReceiptError {
-	return (
-		error instanceof Errors.CashReceiptNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetCashReceiptError extends CashReceiptError {
+	declare readonly data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetCashReceiptError.prototype)
+		this.name = "GetCashReceiptError"
+	}
 }
-export type IssueCashReceiptError =
-	| Errors.CashReceiptAlreadyIssuedError
-	| Errors.ChannelNotFoundError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isIssueCashReceiptError(error: Error): error is IssueCashReceiptError {
-	return (
-		error instanceof Errors.CashReceiptAlreadyIssuedError
-		|| error instanceof Errors.ChannelNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class IssueCashReceiptError extends CashReceiptError {
+	declare readonly data: CashReceiptAlreadyIssuedError | ChannelNotFoundError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: CashReceiptAlreadyIssuedError | ChannelNotFoundError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, IssueCashReceiptError.prototype)
+		this.name = "IssueCashReceiptError"
+	}
 }
-export type CancelCashReceiptError =
-	| Errors.CashReceiptNotFoundError
-	| Errors.CashReceiptNotIssuedError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isCancelCashReceiptError(error: Error): error is CancelCashReceiptError {
-	return (
-		error instanceof Errors.CashReceiptNotFoundError
-		|| error instanceof Errors.CashReceiptNotIssuedError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelCashReceiptError extends CashReceiptError {
+	declare readonly data: CashReceiptNotFoundError | CashReceiptNotIssuedError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: CashReceiptNotFoundError | CashReceiptNotIssuedError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelCashReceiptError.prototype)
+		this.name = "CancelCashReceiptError"
+	}
 }

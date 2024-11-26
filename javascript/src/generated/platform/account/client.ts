@@ -1,8 +1,15 @@
-import * as Errors from "../../../generated/errors"
+import { AccountError } from "./AccountError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { Bank } from "../../../generated/common/Bank"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PlatformAccountHolder } from "../../../generated/platform/account/PlatformAccountHolder"
-import type { GetPlatformAccountHolderError as _InternalGetPlatformAccountHolderError } from "../../../generated/platform/account/GetPlatformAccountHolderError"
+import type { PlatformExternalApiFailedError } from "../../../generated/platform/account/PlatformExternalApiFailedError"
+import type { PlatformExternalApiTemporarilyFailedError } from "../../../generated/platform/account/PlatformExternalApiTemporarilyFailedError"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
+import type { PlatformNotSupportedBankError } from "../../../generated/platform/account/PlatformNotSupportedBankError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function AccountClient(init: PortOneClientInit): AccountClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -38,24 +45,7 @@ export function AccountClient(init: PortOneClientInit): AccountClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformAccountHolderError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_EXTERNAL_API_FAILED":
-					throw new Errors.PlatformExternalApiFailedError(errorResponse)
-				case "PLATFORM_EXTERNAL_API_TEMPORARILY_FAILED":
-					throw new Errors.PlatformExternalApiTemporarilyFailedError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_NOT_SUPPORTED_BANK":
-					throw new Errors.PlatformNotSupportedBankError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformAccountHolderError(await response.json())
 			}
 			return response.json()
 		},
@@ -90,22 +80,12 @@ export type AccountClient = {
 		}
 	) => Promise<PlatformAccountHolder>
 }
-export type GetPlatformAccountHolderError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformExternalApiFailedError
-	| Errors.PlatformExternalApiTemporarilyFailedError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformNotSupportedBankError
-	| Errors.UnauthorizedError
-export function isGetPlatformAccountHolderError(error: Error): error is GetPlatformAccountHolderError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformExternalApiFailedError
-		|| error instanceof Errors.PlatformExternalApiTemporarilyFailedError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformNotSupportedBankError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformAccountHolderError extends AccountError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformExternalApiFailedError | PlatformExternalApiTemporarilyFailedError | PlatformNotEnabledError | PlatformNotSupportedBankError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformExternalApiFailedError | PlatformExternalApiTemporarilyFailedError | PlatformNotEnabledError | PlatformNotSupportedBankError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformAccountHolderError.prototype)
+		this.name = "GetPlatformAccountHolderError"
+	}
 }

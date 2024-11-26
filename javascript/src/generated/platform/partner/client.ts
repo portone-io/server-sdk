@@ -1,4 +1,5 @@
-import * as Errors from "../../../generated/errors"
+import { PartnerError } from "./PartnerError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformPartnerResponse } from "../../../generated/platform/partner/ArchivePlatformPartnerResponse"
 import type { CreatePlatformPartnerBody } from "../../../generated/platform/partner/CreatePlatformPartnerBody"
@@ -7,23 +8,34 @@ import type { CreatePlatformPartnerBodyContact } from "../../../generated/platfo
 import type { CreatePlatformPartnerBodyType } from "../../../generated/platform/partner/CreatePlatformPartnerBodyType"
 import type { CreatePlatformPartnerResponse } from "../../../generated/platform/partner/CreatePlatformPartnerResponse"
 import type { CreatePlatformPartnersResponse } from "../../../generated/platform/partner/CreatePlatformPartnersResponse"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPartnersResponse } from "../../../generated/platform/partner/GetPlatformPartnersResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
+import type { PlatformAccountVerificationAlreadyUsedError } from "../../../generated/platform/PlatformAccountVerificationAlreadyUsedError"
+import type { PlatformAccountVerificationFailedError } from "../../../generated/platform/PlatformAccountVerificationFailedError"
+import type { PlatformAccountVerificationNotFoundError } from "../../../generated/platform/PlatformAccountVerificationNotFoundError"
+import type { PlatformArchivedPartnerError } from "../../../generated/platform/PlatformArchivedPartnerError"
+import type { PlatformCannotArchiveScheduledPartnerError } from "../../../generated/platform/partner/PlatformCannotArchiveScheduledPartnerError"
+import type { PlatformContractNotFoundError } from "../../../generated/platform/PlatformContractNotFoundError"
+import type { PlatformContractsNotFoundError } from "../../../generated/platform/partner/PlatformContractsNotFoundError"
+import type { PlatformCurrencyNotSupportedError } from "../../../generated/platform/PlatformCurrencyNotSupportedError"
+import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPartner } from "../../../generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "../../../generated/platform/PlatformPartnerFilterInput"
+import type { PlatformPartnerIdAlreadyExistsError } from "../../../generated/platform/partner/PlatformPartnerIdAlreadyExistsError"
+import type { PlatformPartnerIdsAlreadyExistError } from "../../../generated/platform/partner/PlatformPartnerIdsAlreadyExistError"
+import type { PlatformPartnerIdsDuplicatedError } from "../../../generated/platform/partner/PlatformPartnerIdsDuplicatedError"
+import type { PlatformPartnerNotFoundError } from "../../../generated/platform/PlatformPartnerNotFoundError"
 import type { PlatformProperties } from "../../../generated/platform/PlatformProperties"
+import type { PlatformUserDefinedPropertyNotFoundError } from "../../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { RecoverPlatformPartnerResponse } from "../../../generated/platform/partner/RecoverPlatformPartnerResponse"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 import type { UpdatePlatformPartnerBodyAccount } from "../../../generated/platform/UpdatePlatformPartnerBodyAccount"
 import type { UpdatePlatformPartnerBodyContact } from "../../../generated/platform/UpdatePlatformPartnerBodyContact"
 import type { UpdatePlatformPartnerBodyType } from "../../../generated/platform/UpdatePlatformPartnerBodyType"
 import type { UpdatePlatformPartnerResponse } from "../../../generated/platform/partner/UpdatePlatformPartnerResponse"
-import type { ArchivePlatformPartnerError as _InternalArchivePlatformPartnerError } from "../../../generated/platform/partner/ArchivePlatformPartnerError"
-import type { CreatePlatformPartnerError as _InternalCreatePlatformPartnerError } from "../../../generated/platform/partner/CreatePlatformPartnerError"
-import type { CreatePlatformPartnersError as _InternalCreatePlatformPartnersError } from "../../../generated/platform/partner/CreatePlatformPartnersError"
-import type { GetPlatformPartnerError as _InternalGetPlatformPartnerError } from "../../../generated/platform/partner/GetPlatformPartnerError"
-import type { GetPlatformPartnersError as _InternalGetPlatformPartnersError } from "../../../generated/platform/partner/GetPlatformPartnersError"
-import type { RecoverPlatformPartnerError as _InternalRecoverPlatformPartnerError } from "../../../generated/platform/partner/RecoverPlatformPartnerError"
-import type { UpdatePlatformPartnerError as _InternalUpdatePlatformPartnerError } from "../../../generated/platform/partner/UpdatePlatformPartnerError"
 export function PartnerClient(init: PortOneClientInit): PartnerClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -56,18 +68,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPartnersError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPartnersError(await response.json())
 			}
 			return response.json()
 		},
@@ -118,32 +119,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformPartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
-					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
-					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
-					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_ID_ALREADY_EXISTS":
-					throw new Errors.PlatformPartnerIdAlreadyExistsError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformPartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -166,20 +142,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -229,34 +192,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalUpdatePlatformPartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
-					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
-					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
-				case "PLATFORM_ARCHIVED_PARTNER":
-					throw new Errors.PlatformArchivedPartnerError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
-					throw new Errors.PlatformInsufficientDataToChangePartnerTypeError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new UpdatePlatformPartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -283,28 +219,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformPartnersError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACTS_NOT_FOUND":
-					throw new Errors.PlatformContractsNotFoundError(errorResponse)
-				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
-					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_IDS_ALREADY_EXISTS":
-					throw new Errors.PlatformPartnerIdsAlreadyExistError(errorResponse)
-				case "PLATFORM_PARTNER_IDS_DUPLICATED":
-					throw new Errors.PlatformPartnerIdsDuplicatedError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformPartnersError(await response.json())
 			}
 			return response.json()
 		},
@@ -327,22 +242,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalArchivePlatformPartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_PARTNER":
-					throw new Errors.PlatformCannotArchiveScheduledPartnerError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ArchivePlatformPartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -365,20 +265,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRecoverPlatformPartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RecoverPlatformPartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -535,142 +422,66 @@ export type PartnerClient = {
 		}
 	) => Promise<RecoverPlatformPartnerResponse>
 }
-export type GetPlatformPartnersError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformPartnersError(error: Error): error is GetPlatformPartnersError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPartnersError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPartnersError.prototype)
+		this.name = "GetPlatformPartnersError"
+	}
 }
-export type CreatePlatformPartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAccountVerificationAlreadyUsedError
-	| Errors.PlatformAccountVerificationFailedError
-	| Errors.PlatformAccountVerificationNotFoundError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformCurrencyNotSupportedError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerIdAlreadyExistsError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isCreatePlatformPartnerError(error: Error): error is CreatePlatformPartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAccountVerificationAlreadyUsedError
-		|| error instanceof Errors.PlatformAccountVerificationFailedError
-		|| error instanceof Errors.PlatformAccountVerificationNotFoundError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformCurrencyNotSupportedError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerIdAlreadyExistsError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformPartnerError.prototype)
+		this.name = "CreatePlatformPartnerError"
+	}
 }
-export type GetPlatformPartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPlatformPartnerError(error: Error): error is GetPlatformPartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPartnerError.prototype)
+		this.name = "GetPlatformPartnerError"
+	}
 }
-export type UpdatePlatformPartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAccountVerificationAlreadyUsedError
-	| Errors.PlatformAccountVerificationFailedError
-	| Errors.PlatformAccountVerificationNotFoundError
-	| Errors.PlatformArchivedPartnerError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformInsufficientDataToChangePartnerTypeError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isUpdatePlatformPartnerError(error: Error): error is UpdatePlatformPartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAccountVerificationAlreadyUsedError
-		|| error instanceof Errors.PlatformAccountVerificationFailedError
-		|| error instanceof Errors.PlatformAccountVerificationNotFoundError
-		|| error instanceof Errors.PlatformArchivedPartnerError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformInsufficientDataToChangePartnerTypeError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class UpdatePlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformPartnerError.prototype)
+		this.name = "UpdatePlatformPartnerError"
+	}
 }
-export type CreatePlatformPartnersError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractsNotFoundError
-	| Errors.PlatformCurrencyNotSupportedError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerIdsAlreadyExistError
-	| Errors.PlatformPartnerIdsDuplicatedError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isCreatePlatformPartnersError(error: Error): error is CreatePlatformPartnersError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractsNotFoundError
-		|| error instanceof Errors.PlatformCurrencyNotSupportedError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerIdsAlreadyExistError
-		|| error instanceof Errors.PlatformPartnerIdsDuplicatedError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformPartnersError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractsNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdsAlreadyExistError | PlatformPartnerIdsDuplicatedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractsNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdsAlreadyExistError | PlatformPartnerIdsDuplicatedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformPartnersError.prototype)
+		this.name = "CreatePlatformPartnersError"
+	}
 }
-export type ArchivePlatformPartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformCannotArchiveScheduledPartnerError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isArchivePlatformPartnerError(error: Error): error is ArchivePlatformPartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformCannotArchiveScheduledPartnerError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ArchivePlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformPartnerError.prototype)
+		this.name = "ArchivePlatformPartnerError"
+	}
 }
-export type RecoverPlatformPartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isRecoverPlatformPartnerError(error: Error): error is RecoverPlatformPartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RecoverPlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformPartnerError.prototype)
+		this.name = "RecoverPlatformPartnerError"
+	}
 }

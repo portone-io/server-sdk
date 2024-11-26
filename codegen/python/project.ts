@@ -161,10 +161,10 @@ function generateCategoryIndex(
         )
       }
     }
-  }
-  if (pack.category !== "root") {
-    const clientPath = path.join(packagePath, "client.py")
-    Deno.writeTextFileSync(clientPath, importWriter.content + writer.content)
+    if (pack.category !== "root") {
+      const clientPath = path.join(packagePath, "client.py")
+      Deno.writeTextFileSync(clientPath, importWriter.content + writer.content)
+    }
   }
 
   const all = []

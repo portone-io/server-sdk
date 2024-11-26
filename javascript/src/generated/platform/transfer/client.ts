@@ -1,4 +1,5 @@
-import * as Errors from "../../../generated/errors"
+import { TransferError } from "./TransferError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CreateManualTransferResponse } from "../../../generated/platform/transfer/CreateManualTransferResponse"
 import type { CreateOrderCancelTransferResponse } from "../../../generated/platform/transfer/CreateOrderCancelTransferResponse"
@@ -11,20 +12,49 @@ import type { CreatePlatformOrderTransferBodyDiscount } from "../../../generated
 import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "../../../generated/platform/transfer/CreatePlatformOrderTransferBodyExternalPaymentDetail"
 import type { CreatePlatformOrderTransferBodyOrderDetail } from "../../../generated/platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
 import type { DeletePlatformTransferResponse } from "../../../generated/platform/transfer/DeletePlatformTransferResponse"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformTransferSummariesResponse } from "../../../generated/platform/transfer/GetPlatformTransferSummariesResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
+import type { PlatformAdditionalFeePoliciesNotFoundError } from "../../../generated/platform/transfer/PlatformAdditionalFeePoliciesNotFoundError"
+import type { PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError } from "../../../generated/platform/transfer/PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError"
+import type { PlatformCancelOrderTransfersExistsError } from "../../../generated/platform/transfer/PlatformCancelOrderTransfersExistsError"
+import type { PlatformCancellableAmountExceededError } from "../../../generated/platform/transfer/PlatformCancellableAmountExceededError"
+import type { PlatformCancellableDiscountAmountExceededError } from "../../../generated/platform/transfer/PlatformCancellableDiscountAmountExceededError"
+import type { PlatformCancellableDiscountTaxFreeAmountExceededError } from "../../../generated/platform/transfer/PlatformCancellableDiscountTaxFreeAmountExceededError"
+import type { PlatformCancellableProductQuantityExceededError } from "../../../generated/platform/transfer/PlatformCancellableProductQuantityExceededError"
+import type { PlatformCancellationAndPaymentTypeMismatchedError } from "../../../generated/platform/transfer/PlatformCancellationAndPaymentTypeMismatchedError"
+import type { PlatformCancellationNotFoundError } from "../../../generated/platform/transfer/PlatformCancellationNotFoundError"
+import type { PlatformCannotSpecifyTransferError } from "../../../generated/platform/transfer/PlatformCannotSpecifyTransferError"
+import type { PlatformContractNotFoundError } from "../../../generated/platform/PlatformContractNotFoundError"
+import type { PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError } from "../../../generated/platform/transfer/PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError"
+import type { PlatformCurrencyNotSupportedError } from "../../../generated/platform/PlatformCurrencyNotSupportedError"
+import type { PlatformDiscountSharePoliciesNotFoundError } from "../../../generated/platform/transfer/PlatformDiscountSharePoliciesNotFoundError"
+import type { PlatformDiscountSharePolicyIdDuplicatedError } from "../../../generated/platform/transfer/PlatformDiscountSharePolicyIdDuplicatedError"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
+import type { PlatformOrderDetailMismatchedError } from "../../../generated/platform/transfer/PlatformOrderDetailMismatchedError"
+import type { PlatformOrderTransferAlreadyCancelledError } from "../../../generated/platform/transfer/PlatformOrderTransferAlreadyCancelledError"
+import type { PlatformPartnerNotFoundError } from "../../../generated/platform/PlatformPartnerNotFoundError"
+import type { PlatformPaymentNotFoundError } from "../../../generated/platform/transfer/PlatformPaymentNotFoundError"
+import type { PlatformProductIdDuplicatedError } from "../../../generated/platform/transfer/PlatformProductIdDuplicatedError"
+import type { PlatformProductIdNotFoundError } from "../../../generated/platform/transfer/PlatformProductIdNotFoundError"
+import type { PlatformSettlementAmountExceededError } from "../../../generated/platform/transfer/PlatformSettlementAmountExceededError"
+import type { PlatformSettlementCancelAmountExceededPortOneCancelError } from "../../../generated/platform/transfer/PlatformSettlementCancelAmountExceededPortOneCancelError"
+import type { PlatformSettlementParameterNotFoundError } from "../../../generated/platform/transfer/PlatformSettlementParameterNotFoundError"
+import type { PlatformSettlementPaymentAmountExceededPortOnePaymentError } from "../../../generated/platform/transfer/PlatformSettlementPaymentAmountExceededPortOnePaymentError"
+import type { PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError } from "../../../generated/platform/transfer/PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError"
+import type { PlatformSettlementTaxFreeAmountExceededPortOnePaymentError } from "../../../generated/platform/transfer/PlatformSettlementTaxFreeAmountExceededPortOnePaymentError"
 import type { PlatformTransfer } from "../../../generated/platform/transfer/PlatformTransfer"
+import type { PlatformTransferAlreadyExistsError } from "../../../generated/platform/transfer/PlatformTransferAlreadyExistsError"
+import type { PlatformTransferDiscountSharePolicyNotFoundError } from "../../../generated/platform/transfer/PlatformTransferDiscountSharePolicyNotFoundError"
 import type { PlatformTransferFilterInput } from "../../../generated/platform/transfer/PlatformTransferFilterInput"
+import type { PlatformTransferNonDeletableStatusError } from "../../../generated/platform/transfer/PlatformTransferNonDeletableStatusError"
+import type { PlatformTransferNotFoundError } from "../../../generated/platform/transfer/PlatformTransferNotFoundError"
 import type { PlatformTransferSheetField } from "../../../generated/platform/transfer/PlatformTransferSheetField"
 import type { PlatformUserDefinedPropertyKeyValue } from "../../../generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
+import type { PlatformUserDefinedPropertyNotFoundError } from "../../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { TransferParameters } from "../../../generated/platform/transfer/TransferParameters"
-import type { CreatePlatformManualTransferError as _InternalCreatePlatformManualTransferError } from "../../../generated/platform/transfer/CreatePlatformManualTransferError"
-import type { CreatePlatformOrderCancelTransferError as _InternalCreatePlatformOrderCancelTransferError } from "../../../generated/platform/transfer/CreatePlatformOrderCancelTransferError"
-import type { CreatePlatformOrderTransferError as _InternalCreatePlatformOrderTransferError } from "../../../generated/platform/transfer/CreatePlatformOrderTransferError"
-import type { DeletePlatformTransferError as _InternalDeletePlatformTransferError } from "../../../generated/platform/transfer/DeletePlatformTransferError"
-import type { DownloadPlatformTransferSheetError as _InternalDownloadPlatformTransferSheetError } from "../../../generated/platform/transfer/DownloadPlatformTransferSheetError"
-import type { GetPlatformTransferError as _InternalGetPlatformTransferError } from "../../../generated/platform/transfer/GetPlatformTransferError"
-import type { GetPlatformTransferSummariesError as _InternalGetPlatformTransferSummariesError } from "../../../generated/platform/transfer/GetPlatformTransferSummariesError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function TransferClient(init: PortOneClientInit): TransferClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -48,20 +78,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformTransferError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_TRANSFER_NOT_FOUND":
-					throw new Errors.PlatformTransferNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformTransferError(await response.json())
 			}
 			return response.json()
 		},
@@ -84,24 +101,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalDeletePlatformTransferError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CANCEL_ORDER_TRANSFERS_EXISTS":
-					throw new Errors.PlatformCancelOrderTransfersExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_TRANSFER_NON_DELETABLE_STATUS":
-					throw new Errors.PlatformTransferNonDeletableStatusError(errorResponse)
-				case "PLATFORM_TRANSFER_NOT_FOUND":
-					throw new Errors.PlatformTransferNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new DeletePlatformTransferError(await response.json())
 			}
 			return response.json()
 		},
@@ -133,18 +133,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformTransferSummariesError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformTransferSummariesError(await response.json())
 			}
 			return response.json()
 		},
@@ -207,50 +196,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformOrderTransferError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICIES_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePoliciesNotFoundError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-					throw new Errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED":
-					throw new Errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(errorResponse)
-				case "PLATFORM_CURRENCY_NOT_SUPPORTED":
-					throw new Errors.PlatformCurrencyNotSupportedError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICIES_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePoliciesNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "PLATFORM_PAYMENT_NOT_FOUND":
-					throw new Errors.PlatformPaymentNotFoundError(errorResponse)
-				case "PLATFORM_PRODUCT_ID_DUPLICATED":
-					throw new Errors.PlatformProductIdDuplicatedError(errorResponse)
-				case "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-					throw new Errors.PlatformSettlementAmountExceededError(errorResponse)
-				case "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND":
-					throw new Errors.PlatformSettlementParameterNotFoundError(errorResponse)
-				case "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-					throw new Errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError(errorResponse)
-				case "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-					throw new Errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(errorResponse)
-				case "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT":
-					throw new Errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(errorResponse)
-				case "PLATFORM_TRANSFER_ALREADY_EXISTS":
-					throw new Errors.PlatformTransferAlreadyExistsError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformOrderTransferError(await response.json())
 			}
 			return response.json()
 		},
@@ -310,56 +256,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformOrderCancelTransferError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED":
-					throw new Errors.PlatformCancellableAmountExceededError(errorResponse)
-				case "PLATFORM_CANCELLABLE_DISCOUNT_AMOUNT_EXCEEDED":
-					throw new Errors.PlatformCancellableDiscountAmountExceededError(errorResponse)
-				case "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED":
-					throw new Errors.PlatformCancellableDiscountTaxFreeAmountExceededError(errorResponse)
-				case "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED":
-					throw new Errors.PlatformCancellableProductQuantityExceededError(errorResponse)
-				case "PLATFORM_CANCELLATION_AND_PAYMENT_TYPE_MISMATCHED":
-					throw new Errors.PlatformCancellationAndPaymentTypeMismatchedError(errorResponse)
-				case "PLATFORM_CANCELLATION_NOT_FOUND":
-					throw new Errors.PlatformCancellationNotFoundError(errorResponse)
-				case "PLATFORM_CANNOT_SPECIFY_TRANSFER":
-					throw new Errors.PlatformCannotSpecifyTransferError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_ID_DUPLICATED":
-					throw new Errors.PlatformDiscountSharePolicyIdDuplicatedError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_ORDER_DETAIL_MISMATCHED":
-					throw new Errors.PlatformOrderDetailMismatchedError(errorResponse)
-				case "PLATFORM_ORDER_TRANSFER_ALREADY_CANCELLED":
-					throw new Errors.PlatformOrderTransferAlreadyCancelledError(errorResponse)
-				case "PLATFORM_PAYMENT_NOT_FOUND":
-					throw new Errors.PlatformPaymentNotFoundError(errorResponse)
-				case "PLATFORM_PRODUCT_ID_DUPLICATED":
-					throw new Errors.PlatformProductIdDuplicatedError(errorResponse)
-				case "PLATFORM_PRODUCT_ID_NOT_FOUND":
-					throw new Errors.PlatformProductIdNotFoundError(errorResponse)
-				case "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED":
-					throw new Errors.PlatformSettlementAmountExceededError(errorResponse)
-				case "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL":
-					throw new Errors.PlatformSettlementCancelAmountExceededPortOneCancelError(errorResponse)
-				case "PLATFORM_TRANSFER_ALREADY_EXISTS":
-					throw new Errors.PlatformTransferAlreadyExistsError(errorResponse)
-				case "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformTransferDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_TRANSFER_NOT_FOUND":
-					throw new Errors.PlatformTransferNotFoundError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformOrderCancelTransferError(await response.json())
 			}
 			return response.json()
 		},
@@ -401,22 +298,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCreatePlatformManualTransferError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CreatePlatformManualTransferError(await response.json())
 			}
 			return response.json()
 		},
@@ -454,14 +336,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalDownloadPlatformTransferSheetError = await response.json()
-				switch (errorResponse.type) {
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new DownloadPlatformTransferSheetError(await response.json())
 			}
 			return response.text()
 		},
@@ -670,172 +545,66 @@ export type TransferClient = {
 		}
 	) => Promise<string>
 }
-export type GetPlatformTransferError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformTransferNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPlatformTransferError(error: Error): error is GetPlatformTransferError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformTransferNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformTransferNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformTransferNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformTransferError.prototype)
+		this.name = "GetPlatformTransferError"
+	}
 }
-export type DeletePlatformTransferError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformCancelOrderTransfersExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformTransferNonDeletableStatusError
-	| Errors.PlatformTransferNotFoundError
-	| Errors.UnauthorizedError
-export function isDeletePlatformTransferError(error: Error): error is DeletePlatformTransferError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformCancelOrderTransfersExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformTransferNonDeletableStatusError
-		|| error instanceof Errors.PlatformTransferNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class DeletePlatformTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCancelOrderTransfersExistsError | PlatformNotEnabledError | PlatformTransferNonDeletableStatusError | PlatformTransferNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCancelOrderTransfersExistsError | PlatformNotEnabledError | PlatformTransferNonDeletableStatusError | PlatformTransferNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, DeletePlatformTransferError.prototype)
+		this.name = "DeletePlatformTransferError"
+	}
 }
-export type GetPlatformTransferSummariesError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformTransferSummariesError(error: Error): error is GetPlatformTransferSummariesError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformTransferSummariesError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformTransferSummariesError.prototype)
+		this.name = "GetPlatformTransferSummariesError"
+	}
 }
-export type CreatePlatformOrderTransferError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePoliciesNotFoundError
-	| Errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-	| Errors.PlatformCurrencyNotSupportedError
-	| Errors.PlatformDiscountSharePoliciesNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.PlatformPaymentNotFoundError
-	| Errors.PlatformProductIdDuplicatedError
-	| Errors.PlatformSettlementAmountExceededError
-	| Errors.PlatformSettlementParameterNotFoundError
-	| Errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError
-	| Errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError
-	| Errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError
-	| Errors.PlatformTransferAlreadyExistsError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isCreatePlatformOrderTransferError(error: Error): error is CreatePlatformOrderTransferError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePoliciesNotFoundError
-		|| error instanceof Errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
-		|| error instanceof Errors.PlatformCurrencyNotSupportedError
-		|| error instanceof Errors.PlatformDiscountSharePoliciesNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.PlatformPaymentNotFoundError
-		|| error instanceof Errors.PlatformProductIdDuplicatedError
-		|| error instanceof Errors.PlatformSettlementAmountExceededError
-		|| error instanceof Errors.PlatformSettlementParameterNotFoundError
-		|| error instanceof Errors.PlatformSettlementPaymentAmountExceededPortOnePaymentError
-		|| error instanceof Errors.PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError
-		|| error instanceof Errors.PlatformSettlementTaxFreeAmountExceededPortOnePaymentError
-		|| error instanceof Errors.PlatformTransferAlreadyExistsError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformOrderTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformOrderTransferError.prototype)
+		this.name = "CreatePlatformOrderTransferError"
+	}
 }
-export type CreatePlatformOrderCancelTransferError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformCancellableAmountExceededError
-	| Errors.PlatformCancellableDiscountAmountExceededError
-	| Errors.PlatformCancellableDiscountTaxFreeAmountExceededError
-	| Errors.PlatformCancellableProductQuantityExceededError
-	| Errors.PlatformCancellationAndPaymentTypeMismatchedError
-	| Errors.PlatformCancellationNotFoundError
-	| Errors.PlatformCannotSpecifyTransferError
-	| Errors.PlatformDiscountSharePolicyIdDuplicatedError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformOrderDetailMismatchedError
-	| Errors.PlatformOrderTransferAlreadyCancelledError
-	| Errors.PlatformPaymentNotFoundError
-	| Errors.PlatformProductIdDuplicatedError
-	| Errors.PlatformProductIdNotFoundError
-	| Errors.PlatformSettlementAmountExceededError
-	| Errors.PlatformSettlementCancelAmountExceededPortOneCancelError
-	| Errors.PlatformTransferAlreadyExistsError
-	| Errors.PlatformTransferDiscountSharePolicyNotFoundError
-	| Errors.PlatformTransferNotFoundError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isCreatePlatformOrderCancelTransferError(error: Error): error is CreatePlatformOrderCancelTransferError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformCancellableAmountExceededError
-		|| error instanceof Errors.PlatformCancellableDiscountAmountExceededError
-		|| error instanceof Errors.PlatformCancellableDiscountTaxFreeAmountExceededError
-		|| error instanceof Errors.PlatformCancellableProductQuantityExceededError
-		|| error instanceof Errors.PlatformCancellationAndPaymentTypeMismatchedError
-		|| error instanceof Errors.PlatformCancellationNotFoundError
-		|| error instanceof Errors.PlatformCannotSpecifyTransferError
-		|| error instanceof Errors.PlatformDiscountSharePolicyIdDuplicatedError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformOrderDetailMismatchedError
-		|| error instanceof Errors.PlatformOrderTransferAlreadyCancelledError
-		|| error instanceof Errors.PlatformPaymentNotFoundError
-		|| error instanceof Errors.PlatformProductIdDuplicatedError
-		|| error instanceof Errors.PlatformProductIdNotFoundError
-		|| error instanceof Errors.PlatformSettlementAmountExceededError
-		|| error instanceof Errors.PlatformSettlementCancelAmountExceededPortOneCancelError
-		|| error instanceof Errors.PlatformTransferAlreadyExistsError
-		|| error instanceof Errors.PlatformTransferDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformTransferNotFoundError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformOrderCancelTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformOrderCancelTransferError.prototype)
+		this.name = "CreatePlatformOrderCancelTransferError"
+	}
 }
-export type CreatePlatformManualTransferError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isCreatePlatformManualTransferError(error: Error): error is CreatePlatformManualTransferError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CreatePlatformManualTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformManualTransferError.prototype)
+		this.name = "CreatePlatformManualTransferError"
+	}
 }
-export type DownloadPlatformTransferSheetError =
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isDownloadPlatformTransferSheetError(error: Error): error is DownloadPlatformTransferSheetError {
-	return (
-		error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class DownloadPlatformTransferSheetError extends TransferError {
+	declare readonly data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, DownloadPlatformTransferSheetError.prototype)
+		this.name = "DownloadPlatformTransferSheetError"
+	}
 }

@@ -1,18 +1,25 @@
-import * as Errors from "../../../generated/errors"
+import { BillingKeyError } from "./BillingKeyError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyFilterInput } from "../../../generated/payment/billingKey/BillingKeyFilterInput"
 import type { BillingKeyInfo } from "../../../generated/payment/billingKey/BillingKeyInfo"
+import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
+import type { BillingKeyNotIssuedError } from "../../../generated/payment/billingKey/BillingKeyNotIssuedError"
 import type { BillingKeySortInput } from "../../../generated/payment/billingKey/BillingKeySortInput"
+import type { ChannelNotFoundError } from "../../../generated/common/ChannelNotFoundError"
+import type { ChannelSpecificError } from "../../../generated/payment/billingKey/ChannelSpecificError"
 import type { CustomerInput } from "../../../generated/common/CustomerInput"
 import type { DeleteBillingKeyResponse } from "../../../generated/payment/billingKey/DeleteBillingKeyResponse"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetBillingKeyInfosResponse } from "../../../generated/payment/billingKey/GetBillingKeyInfosResponse"
 import type { InstantBillingKeyPaymentMethodInput } from "../../../generated/payment/billingKey/InstantBillingKeyPaymentMethodInput"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { IssueBillingKeyResponse } from "../../../generated/payment/billingKey/IssueBillingKeyResponse"
 import type { PageInput } from "../../../generated/common/PageInput"
-import type { DeleteBillingKeyError as _InternalDeleteBillingKeyError } from "../../../generated/payment/billingKey/DeleteBillingKeyError"
-import type { GetBillingKeyInfoError as _InternalGetBillingKeyInfoError } from "../../../generated/payment/billingKey/GetBillingKeyInfoError"
-import type { GetBillingKeyInfosError as _InternalGetBillingKeyInfosError } from "../../../generated/payment/billingKey/GetBillingKeyInfosError"
-import type { IssueBillingKeyError as _InternalIssueBillingKeyError } from "../../../generated/payment/billingKey/IssueBillingKeyError"
+import type { PaymentScheduleAlreadyExistsError } from "../../../generated/common/PaymentScheduleAlreadyExistsError"
+import type { PgProviderError } from "../../../generated/common/PgProviderError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -43,18 +50,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetBillingKeyInfoError = await response.json()
-				switch (errorResponse.type) {
-				case "BILLING_KEY_NOT_FOUND":
-					throw new Errors.BillingKeyNotFoundError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetBillingKeyInfoError(await response.json())
 			}
 			return response.json()
 		},
@@ -84,28 +80,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalDeleteBillingKeyError = await response.json()
-				switch (errorResponse.type) {
-				case "BILLING_KEY_ALREADY_DELETED":
-					throw new Errors.BillingKeyAlreadyDeletedError(errorResponse)
-				case "BILLING_KEY_NOT_FOUND":
-					throw new Errors.BillingKeyNotFoundError(errorResponse)
-				case "BILLING_KEY_NOT_ISSUED":
-					throw new Errors.BillingKeyNotIssuedError(errorResponse)
-				case "CHANNEL_SPECIFIC":
-					throw new Errors.ChannelSpecificError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PAYMENT_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PaymentScheduleAlreadyExistsError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new DeleteBillingKeyError(await response.json())
 			}
 			return response.json()
 		},
@@ -140,16 +115,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetBillingKeyInfosError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetBillingKeyInfosError(await response.json())
 			}
 			return response.json()
 		},
@@ -197,22 +163,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalIssueBillingKeyError = await response.json()
-				switch (errorResponse.type) {
-				case "CHANNEL_NOT_FOUND":
-					throw new Errors.ChannelNotFoundError(errorResponse)
-				case "CHANNEL_SPECIFIC":
-					throw new Errors.ChannelSpecificError(errorResponse)
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PG_PROVIDER":
-					throw new Errors.PgProviderError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new IssueBillingKeyError(await response.json())
 			}
 			return response.json()
 		},
@@ -332,67 +283,39 @@ export type BillingKeyClient = {
 		}
 	) => Promise<IssueBillingKeyResponse>
 }
-export type GetBillingKeyInfoError =
-	| Errors.BillingKeyNotFoundError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetBillingKeyInfoError(error: Error): error is GetBillingKeyInfoError {
-	return (
-		error instanceof Errors.BillingKeyNotFoundError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetBillingKeyInfoError extends BillingKeyError {
+	declare readonly data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetBillingKeyInfoError.prototype)
+		this.name = "GetBillingKeyInfoError"
+	}
 }
-export type DeleteBillingKeyError =
-	| Errors.BillingKeyAlreadyDeletedError
-	| Errors.BillingKeyNotFoundError
-	| Errors.BillingKeyNotIssuedError
-	| Errors.ChannelSpecificError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PaymentScheduleAlreadyExistsError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isDeleteBillingKeyError(error: Error): error is DeleteBillingKeyError {
-	return (
-		error instanceof Errors.BillingKeyAlreadyDeletedError
-		|| error instanceof Errors.BillingKeyNotFoundError
-		|| error instanceof Errors.BillingKeyNotIssuedError
-		|| error instanceof Errors.ChannelSpecificError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PaymentScheduleAlreadyExistsError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class DeleteBillingKeyError extends BillingKeyError {
+	declare readonly data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, DeleteBillingKeyError.prototype)
+		this.name = "DeleteBillingKeyError"
+	}
 }
-export type GetBillingKeyInfosError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.UnauthorizedError
-export function isGetBillingKeyInfosError(error: Error): error is GetBillingKeyInfosError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetBillingKeyInfosError extends BillingKeyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetBillingKeyInfosError.prototype)
+		this.name = "GetBillingKeyInfosError"
+	}
 }
-export type IssueBillingKeyError =
-	| Errors.ChannelNotFoundError
-	| Errors.ChannelSpecificError
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PgProviderError
-	| Errors.UnauthorizedError
-export function isIssueBillingKeyError(error: Error): error is IssueBillingKeyError {
-	return (
-		error instanceof Errors.ChannelNotFoundError
-		|| error instanceof Errors.ChannelSpecificError
-		|| error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PgProviderError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class IssueBillingKeyError extends BillingKeyError {
+	declare readonly data: ChannelNotFoundError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ChannelNotFoundError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, IssueBillingKeyError.prototype)
+		this.name = "IssueBillingKeyError"
+	}
 }

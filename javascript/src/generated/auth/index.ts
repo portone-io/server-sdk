@@ -1,3 +1,4 @@
+export { AuthError } from "./AuthError"
 export * from "./LoginViaApiSecretBody"
 export * from "./LoginViaApiSecretResponse"
 export * from "./RefreshTokenBody"

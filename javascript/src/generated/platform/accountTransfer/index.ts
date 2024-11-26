@@ -1,3 +1,4 @@
+export { AccountTransferError } from "./AccountTransferError"
 export * from "./GetAccountTransfersBody"
 export * from "./GetPlatformAccountTransfersResponse"
 export * from "./PlatformAccountTransfer"

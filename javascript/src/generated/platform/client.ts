@@ -1,4 +1,5 @@
-import * as Errors from "../../generated/errors"
+import { PlatformError } from "./PlatformError"
+import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
 import { PolicyClient } from "./policy/client"
 import { PartnerClient } from "./partner/client"
@@ -12,15 +13,38 @@ import type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "../../ge
 import type { CancelPlatformContractScheduleResponse } from "../../generated/platform/CancelPlatformContractScheduleResponse"
 import type { CancelPlatformDiscountSharePolicyScheduleResponse } from "../../generated/platform/CancelPlatformDiscountSharePolicyScheduleResponse"
 import type { CancelPlatformPartnerScheduleResponse } from "../../generated/platform/CancelPlatformPartnerScheduleResponse"
+import type { ForbiddenError } from "../../generated/common/ForbiddenError"
+import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { Platform } from "../../generated/platform/Platform"
+import type { PlatformAccountVerificationAlreadyUsedError } from "../../generated/platform/PlatformAccountVerificationAlreadyUsedError"
+import type { PlatformAccountVerificationFailedError } from "../../generated/platform/PlatformAccountVerificationFailedError"
+import type { PlatformAccountVerificationNotFoundError } from "../../generated/platform/PlatformAccountVerificationNotFoundError"
 import type { PlatformAdditionalFeePolicy } from "../../generated/platform/PlatformAdditionalFeePolicy"
+import type { PlatformAdditionalFeePolicyNotFoundError } from "../../generated/platform/PlatformAdditionalFeePolicyNotFoundError"
+import type { PlatformAdditionalFeePolicyScheduleAlreadyExistsError } from "../../generated/platform/PlatformAdditionalFeePolicyScheduleAlreadyExistsError"
+import type { PlatformArchivedAdditionalFeePolicyError } from "../../generated/platform/PlatformArchivedAdditionalFeePolicyError"
+import type { PlatformArchivedContractError } from "../../generated/platform/PlatformArchivedContractError"
+import type { PlatformArchivedDiscountSharePolicyError } from "../../generated/platform/PlatformArchivedDiscountSharePolicyError"
+import type { PlatformArchivedPartnerError } from "../../generated/platform/PlatformArchivedPartnerError"
+import type { PlatformArchivedPartnersCannotBeScheduledError } from "../../generated/platform/PlatformArchivedPartnersCannotBeScheduledError"
 import type { PlatformContract } from "../../generated/platform/PlatformContract"
+import type { PlatformContractNotFoundError } from "../../generated/platform/PlatformContractNotFoundError"
+import type { PlatformContractScheduleAlreadyExistsError } from "../../generated/platform/PlatformContractScheduleAlreadyExistsError"
 import type { PlatformDiscountSharePolicy } from "../../generated/platform/PlatformDiscountSharePolicy"
 import type { PlatformDiscountSharePolicyFilterOptions } from "../../generated/platform/PlatformDiscountSharePolicyFilterOptions"
+import type { PlatformDiscountSharePolicyNotFoundError } from "../../generated/platform/PlatformDiscountSharePolicyNotFoundError"
+import type { PlatformDiscountSharePolicyScheduleAlreadyExistsError } from "../../generated/platform/PlatformDiscountSharePolicyScheduleAlreadyExistsError"
+import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
+import type { PlatformInvalidSettlementFormulaError } from "../../generated/platform/PlatformInvalidSettlementFormulaError"
+import type { PlatformNotEnabledError } from "../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPartner } from "../../generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "../../generated/platform/PlatformPartnerFilterInput"
 import type { PlatformPartnerFilterOptions } from "../../generated/platform/PlatformPartnerFilterOptions"
+import type { PlatformPartnerNotFoundError } from "../../generated/platform/PlatformPartnerNotFoundError"
+import type { PlatformPartnerScheduleAlreadyExistsError } from "../../generated/platform/PlatformPartnerScheduleAlreadyExistsError"
+import type { PlatformPartnerSchedulesAlreadyExistError } from "../../generated/platform/PlatformPartnerSchedulesAlreadyExistError"
 import type { PlatformRoundType } from "../../generated/platform/PlatformRoundType"
+import type { PlatformUserDefinedPropertyNotFoundError } from "../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { ReschedulePlatformAdditionalFeePolicyResponse } from "../../generated/platform/ReschedulePlatformAdditionalFeePolicyResponse"
 import type { ReschedulePlatformContractResponse } from "../../generated/platform/ReschedulePlatformContractResponse"
 import type { ReschedulePlatformDiscountSharePolicyResponse } from "../../generated/platform/ReschedulePlatformDiscountSharePolicyResponse"
@@ -31,6 +55,7 @@ import type { SchedulePlatformDiscountSharePolicyResponse } from "../../generate
 import type { SchedulePlatformPartnerResponse } from "../../generated/platform/SchedulePlatformPartnerResponse"
 import type { SchedulePlatformPartnersBodyUpdate } from "../../generated/platform/SchedulePlatformPartnersBodyUpdate"
 import type { SchedulePlatformPartnersResponse } from "../../generated/platform/SchedulePlatformPartnersResponse"
+import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 import type { UpdatePlatformAdditionalFeePolicyBody } from "../../generated/platform/UpdatePlatformAdditionalFeePolicyBody"
 import type { UpdatePlatformBodySettlementFormula } from "../../generated/platform/UpdatePlatformBodySettlementFormula"
 import type { UpdatePlatformBodySettlementRule } from "../../generated/platform/UpdatePlatformBodySettlementRule"
@@ -38,27 +63,6 @@ import type { UpdatePlatformContractBody } from "../../generated/platform/Update
 import type { UpdatePlatformDiscountSharePolicyBody } from "../../generated/platform/UpdatePlatformDiscountSharePolicyBody"
 import type { UpdatePlatformPartnerBody } from "../../generated/platform/UpdatePlatformPartnerBody"
 import type { UpdatePlatformResponse } from "../../generated/platform/UpdatePlatformResponse"
-import type { CancelPlatformAdditionalFeePolicyScheduleError as _InternalCancelPlatformAdditionalFeePolicyScheduleError } from "../../generated/platform/CancelPlatformAdditionalFeePolicyScheduleError"
-import type { CancelPlatformContractScheduleError as _InternalCancelPlatformContractScheduleError } from "../../generated/platform/CancelPlatformContractScheduleError"
-import type { CancelPlatformDiscountSharePolicyScheduleError as _InternalCancelPlatformDiscountSharePolicyScheduleError } from "../../generated/platform/CancelPlatformDiscountSharePolicyScheduleError"
-import type { CancelPlatformPartnerScheduleError as _InternalCancelPlatformPartnerScheduleError } from "../../generated/platform/CancelPlatformPartnerScheduleError"
-import type { GetPlatformAdditionalFeePolicyScheduleError as _InternalGetPlatformAdditionalFeePolicyScheduleError } from "../../generated/platform/GetPlatformAdditionalFeePolicyScheduleError"
-import type { GetPlatformContractScheduleError as _InternalGetPlatformContractScheduleError } from "../../generated/platform/GetPlatformContractScheduleError"
-import type { GetPlatformDiscountSharePolicyFilterOptionsError as _InternalGetPlatformDiscountSharePolicyFilterOptionsError } from "../../generated/platform/GetPlatformDiscountSharePolicyFilterOptionsError"
-import type { GetPlatformDiscountSharePolicyScheduleError as _InternalGetPlatformDiscountSharePolicyScheduleError } from "../../generated/platform/GetPlatformDiscountSharePolicyScheduleError"
-import type { GetPlatformError as _InternalGetPlatformError } from "../../generated/platform/GetPlatformError"
-import type { GetPlatformPartnerFilterOptionsError as _InternalGetPlatformPartnerFilterOptionsError } from "../../generated/platform/GetPlatformPartnerFilterOptionsError"
-import type { GetPlatformPartnerScheduleError as _InternalGetPlatformPartnerScheduleError } from "../../generated/platform/GetPlatformPartnerScheduleError"
-import type { RescheduleAdditionalFeePolicyError as _InternalRescheduleAdditionalFeePolicyError } from "../../generated/platform/RescheduleAdditionalFeePolicyError"
-import type { RescheduleContractError as _InternalRescheduleContractError } from "../../generated/platform/RescheduleContractError"
-import type { RescheduleDiscountSharePolicyError as _InternalRescheduleDiscountSharePolicyError } from "../../generated/platform/RescheduleDiscountSharePolicyError"
-import type { ReschedulePartnerError as _InternalReschedulePartnerError } from "../../generated/platform/ReschedulePartnerError"
-import type { ScheduleAdditionalFeePolicyError as _InternalScheduleAdditionalFeePolicyError } from "../../generated/platform/ScheduleAdditionalFeePolicyError"
-import type { ScheduleContractError as _InternalScheduleContractError } from "../../generated/platform/ScheduleContractError"
-import type { ScheduleDiscountSharePolicyError as _InternalScheduleDiscountSharePolicyError } from "../../generated/platform/ScheduleDiscountSharePolicyError"
-import type { SchedulePartnerError as _InternalSchedulePartnerError } from "../../generated/platform/SchedulePartnerError"
-import type { SchedulePlatformPartnersError as _InternalSchedulePlatformPartnersError } from "../../generated/platform/SchedulePlatformPartnersError"
-import type { UpdatePlatformError as _InternalUpdatePlatformError } from "../../generated/platform/UpdatePlatformError"
 export function PlatformClient(init: PortOneClientInit): PlatformClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -78,16 +82,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformError = await response.json()
-				switch (errorResponse.type) {
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformError(await response.json())
 			}
 			return response.json()
 		},
@@ -118,20 +113,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalUpdatePlatformError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_INVALID_SETTLEMENT_FORMULA":
-					throw new Errors.PlatformInvalidSettlementFormulaError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new UpdatePlatformError(await response.json())
 			}
 			return response.json()
 		},
@@ -157,18 +139,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformDiscountSharePolicyFilterOptionsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformDiscountSharePolicyFilterOptionsError(await response.json())
 			}
 			return response.json()
 		},
@@ -191,20 +162,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformDiscountSharePolicyScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformDiscountSharePolicyScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -236,20 +194,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRescheduleDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RescheduleDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -281,24 +226,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalScheduleDiscountSharePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY":
-					throw new Errors.PlatformArchivedDiscountSharePolicyError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ScheduleDiscountSharePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -321,20 +249,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelPlatformDiscountSharePolicyScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformDiscountSharePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelPlatformDiscountSharePolicyScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -357,20 +272,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformAdditionalFeePolicyScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformAdditionalFeePolicyScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -402,20 +304,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRescheduleAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RescheduleAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -447,24 +336,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalScheduleAdditionalFeePolicyError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError(errorResponse)
-				case "PLATFORM_ARCHIVED_ADDITIONAL_FEE_POLICY":
-					throw new Errors.PlatformArchivedAdditionalFeePolicyError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ScheduleAdditionalFeePolicyError(await response.json())
 			}
 			return response.json()
 		},
@@ -487,20 +359,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelPlatformAdditionalFeePolicyScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND":
-					throw new Errors.PlatformAdditionalFeePolicyNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelPlatformAdditionalFeePolicyScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -526,18 +385,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPartnerFilterOptionsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPartnerFilterOptionsError(await response.json())
 			}
 			return response.json()
 		},
@@ -560,20 +408,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPartnerScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPartnerScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -605,22 +440,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalReschedulePartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ReschedulePartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -652,36 +472,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalSchedulePartnerError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED":
-					throw new Errors.PlatformAccountVerificationAlreadyUsedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_FAILED":
-					throw new Errors.PlatformAccountVerificationFailedError(errorResponse)
-				case "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND":
-					throw new Errors.PlatformAccountVerificationNotFoundError(errorResponse)
-				case "PLATFORM_ARCHIVED_PARTNER":
-					throw new Errors.PlatformArchivedPartnerError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_INSUFFICIENT_DATA_TO_CHANGE_PARTNER_TYPE":
-					throw new Errors.PlatformInsufficientDataToChangePartnerTypeError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "PLATFORM_PARTNER_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PlatformPartnerScheduleAlreadyExistsError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new SchedulePartnerError(await response.json())
 			}
 			return response.json()
 		},
@@ -704,20 +495,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelPlatformPartnerScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_NOT_FOUND":
-					throw new Errors.PlatformPartnerNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelPlatformPartnerScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -750,26 +528,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalSchedulePlatformPartnersError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED":
-					throw new Errors.PlatformArchivedPartnersCannotBeScheduledError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST":
-					throw new Errors.PlatformPartnerSchedulesAlreadyExistError(errorResponse)
-				case "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND":
-					throw new Errors.PlatformUserDefinedPropertyNotFoundError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new SchedulePlatformPartnersError(await response.json())
 			}
 			return response.json()
 		},
@@ -792,20 +551,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformContractScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformContractScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -837,20 +583,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalRescheduleContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new RescheduleContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -882,24 +615,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalScheduleContractError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_ARCHIVED_CONTRACT":
-					throw new Errors.PlatformArchivedContractError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_CONTRACT_SCHEDULE_ALREADY_EXISTS":
-					throw new Errors.PlatformContractScheduleAlreadyExistsError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new ScheduleContractError(await response.json())
 			}
 			return response.json()
 		},
@@ -922,20 +638,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalCancelPlatformContractScheduleError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_CONTRACT_NOT_FOUND":
-					throw new Errors.PlatformContractNotFoundError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new CancelPlatformContractScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -1252,346 +955,192 @@ export type PlatformClient = {
 	account: AccountClient
 	accountTransfer: AccountTransferClient
 }
-export type GetPlatformError =
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformError(error: Error): error is GetPlatformError {
-	return (
-		error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformError extends PlatformError {
+	declare readonly data: InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformError.prototype)
+		this.name = "GetPlatformError"
+	}
 }
-export type UpdatePlatformError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformInvalidSettlementFormulaError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isUpdatePlatformError(error: Error): error is UpdatePlatformError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformInvalidSettlementFormulaError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class UpdatePlatformError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformInvalidSettlementFormulaError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformInvalidSettlementFormulaError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformError.prototype)
+		this.name = "UpdatePlatformError"
+	}
 }
-export type GetPlatformDiscountSharePolicyFilterOptionsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformDiscountSharePolicyFilterOptionsError(error: Error): error is GetPlatformDiscountSharePolicyFilterOptionsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformDiscountSharePolicyFilterOptionsError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyFilterOptionsError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyFilterOptionsError"
+	}
 }
-export type GetPlatformDiscountSharePolicyScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformDiscountSharePolicyScheduleError(error: Error): error is GetPlatformDiscountSharePolicyScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformDiscountSharePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyScheduleError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyScheduleError"
+	}
 }
-export type RescheduleDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRescheduleDiscountSharePolicyError(error: Error): error is RescheduleDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RescheduleDiscountSharePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RescheduleDiscountSharePolicyError.prototype)
+		this.name = "RescheduleDiscountSharePolicyError"
+	}
 }
-export type ScheduleDiscountSharePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformArchivedDiscountSharePolicyError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isScheduleDiscountSharePolicyError(error: Error): error is ScheduleDiscountSharePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformArchivedDiscountSharePolicyError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformDiscountSharePolicyScheduleAlreadyExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ScheduleDiscountSharePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ScheduleDiscountSharePolicyError.prototype)
+		this.name = "ScheduleDiscountSharePolicyError"
+	}
 }
-export type CancelPlatformDiscountSharePolicyScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformDiscountSharePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCancelPlatformDiscountSharePolicyScheduleError(error: Error): error is CancelPlatformDiscountSharePolicyScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformDiscountSharePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelPlatformDiscountSharePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformDiscountSharePolicyScheduleError.prototype)
+		this.name = "CancelPlatformDiscountSharePolicyScheduleError"
+	}
 }
-export type GetPlatformAdditionalFeePolicyScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformAdditionalFeePolicyScheduleError(error: Error): error is GetPlatformAdditionalFeePolicyScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformAdditionalFeePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformAdditionalFeePolicyScheduleError.prototype)
+		this.name = "GetPlatformAdditionalFeePolicyScheduleError"
+	}
 }
-export type RescheduleAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRescheduleAdditionalFeePolicyError(error: Error): error is RescheduleAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RescheduleAdditionalFeePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RescheduleAdditionalFeePolicyError.prototype)
+		this.name = "RescheduleAdditionalFeePolicyError"
+	}
 }
-export type ScheduleAdditionalFeePolicyError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError
-	| Errors.PlatformArchivedAdditionalFeePolicyError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isScheduleAdditionalFeePolicyError(error: Error): error is ScheduleAdditionalFeePolicyError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError
-		|| error instanceof Errors.PlatformArchivedAdditionalFeePolicyError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ScheduleAdditionalFeePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformAdditionalFeePolicyScheduleAlreadyExistsError | PlatformArchivedAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformAdditionalFeePolicyScheduleAlreadyExistsError | PlatformArchivedAdditionalFeePolicyError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ScheduleAdditionalFeePolicyError.prototype)
+		this.name = "ScheduleAdditionalFeePolicyError"
+	}
 }
-export type CancelPlatformAdditionalFeePolicyScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAdditionalFeePolicyNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCancelPlatformAdditionalFeePolicyScheduleError(error: Error): error is CancelPlatformAdditionalFeePolicyScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAdditionalFeePolicyNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelPlatformAdditionalFeePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformAdditionalFeePolicyScheduleError.prototype)
+		this.name = "CancelPlatformAdditionalFeePolicyScheduleError"
+	}
 }
-export type GetPlatformPartnerFilterOptionsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformPartnerFilterOptionsError(error: Error): error is GetPlatformPartnerFilterOptionsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPartnerFilterOptionsError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPartnerFilterOptionsError.prototype)
+		this.name = "GetPlatformPartnerFilterOptionsError"
+	}
 }
-export type GetPlatformPartnerScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isGetPlatformPartnerScheduleError(error: Error): error is GetPlatformPartnerScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPartnerScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPartnerScheduleError.prototype)
+		this.name = "GetPlatformPartnerScheduleError"
+	}
 }
-export type ReschedulePartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isReschedulePartnerError(error: Error): error is ReschedulePartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ReschedulePartnerError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ReschedulePartnerError.prototype)
+		this.name = "ReschedulePartnerError"
+	}
 }
-export type SchedulePartnerError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformAccountVerificationAlreadyUsedError
-	| Errors.PlatformAccountVerificationFailedError
-	| Errors.PlatformAccountVerificationNotFoundError
-	| Errors.PlatformArchivedPartnerError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformInsufficientDataToChangePartnerTypeError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.PlatformPartnerScheduleAlreadyExistsError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isSchedulePartnerError(error: Error): error is SchedulePartnerError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformAccountVerificationAlreadyUsedError
-		|| error instanceof Errors.PlatformAccountVerificationFailedError
-		|| error instanceof Errors.PlatformAccountVerificationNotFoundError
-		|| error instanceof Errors.PlatformArchivedPartnerError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformInsufficientDataToChangePartnerTypeError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.PlatformPartnerScheduleAlreadyExistsError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class SchedulePartnerError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, SchedulePartnerError.prototype)
+		this.name = "SchedulePartnerError"
+	}
 }
-export type CancelPlatformPartnerScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerNotFoundError
-	| Errors.UnauthorizedError
-export function isCancelPlatformPartnerScheduleError(error: Error): error is CancelPlatformPartnerScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelPlatformPartnerScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformPartnerScheduleError.prototype)
+		this.name = "CancelPlatformPartnerScheduleError"
+	}
 }
-export type SchedulePlatformPartnersError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformArchivedPartnersCannotBeScheduledError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.PlatformPartnerSchedulesAlreadyExistError
-	| Errors.PlatformUserDefinedPropertyNotFoundError
-	| Errors.UnauthorizedError
-export function isSchedulePlatformPartnersError(error: Error): error is SchedulePlatformPartnersError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformArchivedPartnersCannotBeScheduledError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.PlatformPartnerSchedulesAlreadyExistError
-		|| error instanceof Errors.PlatformUserDefinedPropertyNotFoundError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class SchedulePlatformPartnersError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, SchedulePlatformPartnersError.prototype)
+		this.name = "SchedulePlatformPartnersError"
+	}
 }
-export type GetPlatformContractScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformContractScheduleError(error: Error): error is GetPlatformContractScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformContractScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformContractScheduleError.prototype)
+		this.name = "GetPlatformContractScheduleError"
+	}
 }
-export type RescheduleContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isRescheduleContractError(error: Error): error is RescheduleContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class RescheduleContractError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RescheduleContractError.prototype)
+		this.name = "RescheduleContractError"
+	}
 }
-export type ScheduleContractError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformArchivedContractError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformContractScheduleAlreadyExistsError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isScheduleContractError(error: Error): error is ScheduleContractError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformArchivedContractError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformContractScheduleAlreadyExistsError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class ScheduleContractError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ScheduleContractError.prototype)
+		this.name = "ScheduleContractError"
+	}
 }
-export type CancelPlatformContractScheduleError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformContractNotFoundError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isCancelPlatformContractScheduleError(error: Error): error is CancelPlatformContractScheduleError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformContractNotFoundError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class CancelPlatformContractScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformContractScheduleError.prototype)
+		this.name = "CancelPlatformContractScheduleError"
+	}
 }

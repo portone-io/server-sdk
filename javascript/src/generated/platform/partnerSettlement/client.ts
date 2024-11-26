@@ -1,9 +1,13 @@
-import * as Errors from "../../../generated/errors"
+import { PartnerSettlementError } from "./PartnerSettlementError"
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPartnerSettlementsResponse } from "../../../generated/platform/partnerSettlement/GetPlatformPartnerSettlementsResponse"
+import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PageInput } from "../../../generated/common/PageInput"
+import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPartnerSettlementFilterInput } from "../../../generated/platform/partnerSettlement/PlatformPartnerSettlementFilterInput"
-import type { GetPlatformPartnerSettlementsError as _InternalGetPlatformPartnerSettlementsError } from "../../../generated/platform/partnerSettlement/GetPlatformPartnerSettlementsError"
+import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
 export function PartnerSettlementClient(init: PortOneClientInit): PartnerSettlementClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -41,18 +45,7 @@ export function PartnerSettlementClient(init: PortOneClientInit): PartnerSettlem
 				},
 			)
 			if (!response.ok) {
-				const errorResponse: _InternalGetPlatformPartnerSettlementsError = await response.json()
-				switch (errorResponse.type) {
-				case "FORBIDDEN":
-					throw new Errors.ForbiddenError(errorResponse)
-				case "INVALID_REQUEST":
-					throw new Errors.InvalidRequestError(errorResponse)
-				case "PLATFORM_NOT_ENABLED":
-					throw new Errors.PlatformNotEnabledError(errorResponse)
-				case "UNAUTHORIZED":
-					throw new Errors.UnauthorizedError(errorResponse)
-				}
-				throw new Errors.UnknownError(errorResponse)
+				throw new GetPlatformPartnerSettlementsError(await response.json())
 			}
 			return response.json()
 		},
@@ -76,16 +69,12 @@ export type PartnerSettlementClient = {
 		}
 	) => Promise<GetPlatformPartnerSettlementsResponse>
 }
-export type GetPlatformPartnerSettlementsError =
-	| Errors.ForbiddenError
-	| Errors.InvalidRequestError
-	| Errors.PlatformNotEnabledError
-	| Errors.UnauthorizedError
-export function isGetPlatformPartnerSettlementsError(error: Error): error is GetPlatformPartnerSettlementsError {
-	return (
-		error instanceof Errors.ForbiddenError
-		|| error instanceof Errors.InvalidRequestError
-		|| error instanceof Errors.PlatformNotEnabledError
-		|| error instanceof Errors.UnauthorizedError
-	)
+export class GetPlatformPartnerSettlementsError extends PartnerSettlementError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformPartnerSettlementsError.prototype)
+		this.name = "GetPlatformPartnerSettlementsError"
+	}
 }

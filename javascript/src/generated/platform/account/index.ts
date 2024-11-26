@@ -1,2 +1,6 @@
+export { AccountError } from "./AccountError"
 export * from "./PlatformAccountHolder"
+export * from "./PlatformExternalApiFailedError"
+export * from "./PlatformExternalApiTemporarilyFailedError"
+export * from "./PlatformNotSupportedBankError"
 export * from "./client"

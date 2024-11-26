@@ -1,4 +1,4 @@
-export * as Errors from "./errors"
+export { RestError } from "./RestError"
 export * as auth from "./auth"
 export * as platform from "./platform"
 export * as identityVerification from "./identityVerification"
