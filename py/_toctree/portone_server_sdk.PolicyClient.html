@@ -1,0 +1,1315 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>portone_server_sdk.PolicyClient &#8212; portone-server-sdk  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.PolicyClient';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="portone_server_sdk.TransferClient" href="portone_server_sdk.TransferClient.html" />
+    <link rel="prev" title="portone_server_sdk.PayoutClient" href="portone_server_sdk.PayoutClient.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">portone-server-sdk  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PolicyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_toctree/portone_server_sdk.PolicyClient.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>portone_server_sdk.PolicyClient</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient"><code class="docutils literal notranslate"><span class="pre">PolicyClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.__init__"><code class="docutils literal notranslate"><span class="pre">PolicyClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policies_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policies_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contracts"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contracts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contracts_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contracts_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_contract_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="portone-server-sdk-policyclient">
+<h1>portone_server_sdk.PolicyClient<a class="headerlink" href="#portone-server-sdk-policyclient" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">PolicyClient</span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.PolicyClient.__init__" title="Link to this definition">#</a></dt>
+<dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.__init__" title="portone_server_sdk.PolicyClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy" title="portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_additional_fee_policy</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 보관</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async" title="portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_additional_fee_policy_async</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 보관</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_contract" title="portone_server_sdk.PolicyClient.archive_platform_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_contract</span></code></a>(*, id)</p></td>
+<td><p>계약 보관</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_contract_async" title="portone_server_sdk.PolicyClient.archive_platform_contract_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_contract_async</span></code></a>(*, id)</p></td>
+<td><p>계약 보관</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy" title="portone_server_sdk.PolicyClient.archive_platform_discount_share_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_discount_share_policy</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 보관</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async" title="portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_discount_share_policy_async</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 보관</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy" title="portone_server_sdk.PolicyClient.create_platform_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_additional_fee_policy</span></code></a>(*[, ...])</p></td>
+<td><p>추가 수수료 정책 생성</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async" title="portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_additional_fee_policy_async</span></code></a>(*)</p></td>
+<td><p>추가 수수료 정책 생성</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_contract" title="portone_server_sdk.PolicyClient.create_platform_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_contract</span></code></a>(*[, id, memo])</p></td>
+<td><p>계약 생성</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_contract_async" title="portone_server_sdk.PolicyClient.create_platform_contract_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_contract_async</span></code></a>(*[, id, memo])</p></td>
+<td><p>계약 생성</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy" title="portone_server_sdk.PolicyClient.create_platform_discount_share_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_discount_share_policy</span></code></a>(*[, ...])</p></td>
+<td><p>할인 분담 정책 생성</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async" title="portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_discount_share_policy_async</span></code></a>(*)</p></td>
+<td><p>할인 분담 정책 생성</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies" title="portone_server_sdk.PolicyClient.get_platform_additional_fee_policies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_additional_fee_policies</span></code></a>(*[, ...])</p></td>
+<td><p>추가 수수료 정책 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async" title="portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_additional_fee_policies_async</span></code></a>(*)</p></td>
+<td><p>추가 수수료 정책 다건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy" title="portone_server_sdk.PolicyClient.get_platform_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_additional_fee_policy</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async" title="portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_additional_fee_policy_async</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_contract" title="portone_server_sdk.PolicyClient.get_platform_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_contract</span></code></a>(*, id)</p></td>
+<td><p>계약 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_contract_async" title="portone_server_sdk.PolicyClient.get_platform_contract_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_contract_async</span></code></a>(*, id)</p></td>
+<td><p>계약 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_contracts" title="portone_server_sdk.PolicyClient.get_platform_contracts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_contracts</span></code></a>(*[, page, filter])</p></td>
+<td><p>계약 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_contracts_async" title="portone_server_sdk.PolicyClient.get_platform_contracts_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_contracts_async</span></code></a>(*[, page, filter])</p></td>
+<td><p>계약 다건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies" title="portone_server_sdk.PolicyClient.get_platform_discount_share_policies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_discount_share_policies</span></code></a>(*[, ...])</p></td>
+<td><p>할인 분담 정책 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async" title="portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_discount_share_policies_async</span></code></a>(*)</p></td>
+<td><p>할인 분담 정책 다건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy" title="portone_server_sdk.PolicyClient.get_platform_discount_share_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_discount_share_policy</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async" title="portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_discount_share_policy_async</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy" title="portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_additional_fee_policy</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 복원</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async" title="portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_additional_fee_policy_async</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 복원</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_contract" title="portone_server_sdk.PolicyClient.recover_platform_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_contract</span></code></a>(*, id)</p></td>
+<td><p>계약 복원</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_contract_async" title="portone_server_sdk.PolicyClient.recover_platform_contract_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_contract_async</span></code></a>(*, id)</p></td>
+<td><p>계약 복원</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy" title="portone_server_sdk.PolicyClient.recover_platform_discount_share_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_discount_share_policy</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 복원</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async" title="portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_discount_share_policy_async</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 복원</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy" title="portone_server_sdk.PolicyClient.update_platform_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_additional_fee_policy</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 수정</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async" title="portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_additional_fee_policy_async</span></code></a>(*, id)</p></td>
+<td><p>추가 수수료 정책 수정</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_contract" title="portone_server_sdk.PolicyClient.update_platform_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_contract</span></code></a>(*, id[, name, ...])</p></td>
+<td><p>계약 수정</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_contract_async" title="portone_server_sdk.PolicyClient.update_platform_contract_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_contract_async</span></code></a>(*, id[, ...])</p></td>
+<td><p>계약 수정</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy" title="portone_server_sdk.PolicyClient.update_platform_discount_share_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_discount_share_policy</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 수정</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async" title="portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_discount_share_policy_async</span></code></a>(*, id)</p></td>
+<td><p>할인 분담 정책 수정</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_discount_share_policies">
+<span class="sig-name descname"><span class="pre">get_platform_discount_share_policies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformDiscountSharePolicyFilterInput" title="portone_server_sdk._generated.platform.policy.platform_discount_share_policy_filter_input.PlatformDiscountSharePolicyFilterInput"><span class="pre">PlatformDiscountSharePolicyFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesResponse" title="portone_server_sdk._generated.platform.policy.get_platform_discount_share_policies_response.GetPlatformDiscountSharePoliciesResponse"><span class="pre">GetPlatformDiscountSharePoliciesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 다건 조회</p>
+<p>여러 할인 분담을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicyFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 할인 분담 정책 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesError" title="portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesError"><strong>GetPlatformDiscountSharePoliciesError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_discount_share_policies_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformDiscountSharePolicyFilterInput" title="portone_server_sdk._generated.platform.policy.platform_discount_share_policy_filter_input.PlatformDiscountSharePolicyFilterInput"><span class="pre">PlatformDiscountSharePolicyFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesResponse" title="portone_server_sdk._generated.platform.policy.get_platform_discount_share_policies_response.GetPlatformDiscountSharePoliciesResponse"><span class="pre">GetPlatformDiscountSharePoliciesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 다건 조회</p>
+<p>여러 할인 분담을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicyFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 할인 분담 정책 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesError" title="portone_server_sdk.platform.policy.GetPlatformDiscountSharePoliciesError"><strong>GetPlatformDiscountSharePoliciesError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_discount_share_policy">
+<span class="sig-name descname"><span class="pre">create_platform_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_share_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.create_platform_discount_share_policy_response.CreatePlatformDiscountSharePolicyResponse"><span class="pre">CreatePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 생성</p>
+<p>새로운 할인 분담을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>할인 분담에 부여할 고유 아이디</p>
+<p>명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담에 부여할 이름</p></li>
+<li><p><strong>partner_share_rate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 <cite>할인금액 * partnerShareRate * 10^5</cite> 로 책정합니다.</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyError"><strong>CreatePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_platform_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_share_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.create_platform_discount_share_policy_response.CreatePlatformDiscountSharePolicyResponse"><span class="pre">CreatePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 생성</p>
+<p>새로운 할인 분담을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>할인 분담에 부여할 고유 아이디</p>
+<p>명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담에 부여할 이름</p></li>
+<li><p><strong>partner_share_rate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 <cite>할인금액 * partnerShareRate * 10^5</cite> 로 책정합니다.</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.CreatePlatformDiscountSharePolicyError"><strong>CreatePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_discount_share_policy">
+<span class="sig-name descname"><span class="pre">get_platform_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk._generated.platform.platform_discount_share_policy.PlatformDiscountSharePolicy"><span class="pre">PlatformDiscountSharePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 조회</p>
+<p>주어진 아이디에 대응되는 할인 분담을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 할인 분담 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.GetPlatformDiscountSharePolicyError"><strong>GetPlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk._generated.platform.platform_discount_share_policy.PlatformDiscountSharePolicy"><span class="pre">PlatformDiscountSharePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 조회</p>
+<p>주어진 아이디에 대응되는 할인 분담을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 할인 분담 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.GetPlatformDiscountSharePolicyError"><strong>GetPlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_discount_share_policy">
+<span class="sig-name descname"><span class="pre">update_platform_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_share_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.update_platform_discount_share_policy_response.UpdatePlatformDiscountSharePolicyResponse"><span class="pre">UpdatePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 수정</p>
+<p>주어진 아이디에 대응되는 할인 분담을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 할인 분담 정책 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 할인 분담 정책 이름</p></li>
+<li><p><strong>partner_share_rate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>할인 분담율</p>
+<p>파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 <cite>할인금액 * partnerShareRate * 10^5</cite> 로 책정합니다.</p>
+</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 할인 분담에 대한 메모</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyError"><strong>UpdatePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_platform_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_share_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.update_platform_discount_share_policy_response.UpdatePlatformDiscountSharePolicyResponse"><span class="pre">UpdatePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 수정</p>
+<p>주어진 아이디에 대응되는 할인 분담을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 할인 분담 정책 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 할인 분담 정책 이름</p></li>
+<li><p><strong>partner_share_rate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>할인 분담율</p>
+<p>파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 <cite>할인금액 * partnerShareRate * 10^5</cite> 로 책정합니다.</p>
+</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 할인 분담에 대한 메모</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.UpdatePlatformDiscountSharePolicyError"><strong>UpdatePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_discount_share_policy">
+<span class="sig-name descname"><span class="pre">archive_platform_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_discount_share_policy_response.ArchivePlatformDiscountSharePolicyResponse"><span class="pre">ArchivePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 보관</p>
+<p>주어진 아이디에 대응되는 할인 분담을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyError"><strong>ArchivePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_platform_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_discount_share_policy_response.ArchivePlatformDiscountSharePolicyResponse"><span class="pre">ArchivePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 보관</p>
+<p>주어진 아이디에 대응되는 할인 분담을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.ArchivePlatformDiscountSharePolicyError"><strong>ArchivePlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_discount_share_policy">
+<span class="sig-name descname"><span class="pre">recover_platform_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_discount_share_policy_response.RecoverPlatformDiscountSharePolicyResponse"><span class="pre">RecoverPlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 복원</p>
+<p>주어진 아이디에 대응되는 할인 분담을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyError"><strong>RecoverPlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recover_platform_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_discount_share_policy_response.RecoverPlatformDiscountSharePolicyResponse"><span class="pre">RecoverPlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>할인 분담 정책 복원</p>
+<p>주어진 아이디에 대응되는 할인 분담을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 할인 분담 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyError" title="portone_server_sdk.platform.policy.RecoverPlatformDiscountSharePolicyError"><strong>RecoverPlatformDiscountSharePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_additional_fee_policies">
+<span class="sig-name descname"><span class="pre">get_platform_additional_fee_policies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformAdditionalFeePolicyFilterInput" title="portone_server_sdk._generated.platform.policy.platform_additional_fee_policy_filter_input.PlatformAdditionalFeePolicyFilterInput"><span class="pre">PlatformAdditionalFeePolicyFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesResponse" title="portone_server_sdk._generated.platform.policy.get_platform_additional_fee_policies_response.GetPlatformAdditionalFeePoliciesResponse"><span class="pre">GetPlatformAdditionalFeePoliciesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 다건 조회</p>
+<p>여러 추가 수수료 정책을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformAdditionalFeePolicyFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 추가 수수료 정책 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesError" title="portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesError"><strong>GetPlatformAdditionalFeePoliciesError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_additional_fee_policies_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformAdditionalFeePolicyFilterInput" title="portone_server_sdk._generated.platform.policy.platform_additional_fee_policy_filter_input.PlatformAdditionalFeePolicyFilterInput"><span class="pre">PlatformAdditionalFeePolicyFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesResponse" title="portone_server_sdk._generated.platform.policy.get_platform_additional_fee_policies_response.GetPlatformAdditionalFeePoliciesResponse"><span class="pre">GetPlatformAdditionalFeePoliciesResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 다건 조회</p>
+<p>여러 추가 수수료 정책을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformAdditionalFeePolicyFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 추가 수수료 정책 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesError" title="portone_server_sdk.platform.policy.GetPlatformAdditionalFeePoliciesError"><strong>GetPlatformAdditionalFeePoliciesError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_additional_fee_policy">
+<span class="sig-name descname"><span class="pre">create_platform_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.create_platform_additional_fee_policy_response.CreatePlatformAdditionalFeePolicyResponse"><span class="pre">CreatePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 생성</p>
+<p>새로운 추가 수수료 정책을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>생성할 추가 수수료 정책 아이디</p>
+<p>명시하지 않으면 id 가 임의로 생성됩니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 이름</p></li>
+<li><p><strong>fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code>) – 수수료 정보</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
+<li><p><strong>vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer</span></code>) – 부가세 부담 주체</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyError"><strong>CreatePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_platform_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.create_platform_additional_fee_policy_response.CreatePlatformAdditionalFeePolicyResponse"><span class="pre">CreatePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 생성</p>
+<p>새로운 추가 수수료 정책을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>생성할 추가 수수료 정책 아이디</p>
+<p>명시하지 않으면 id 가 임의로 생성됩니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 이름</p></li>
+<li><p><strong>fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code>) – 수수료 정보</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
+<li><p><strong>vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer</span></code>) – 부가세 부담 주체</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.CreatePlatformAdditionalFeePolicyError"><strong>CreatePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_additional_fee_policy">
+<span class="sig-name descname"><span class="pre">get_platform_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk._generated.platform.platform_additional_fee_policy.PlatformAdditionalFeePolicy"><span class="pre">PlatformAdditionalFeePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 조회</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.GetPlatformAdditionalFeePolicyError"><strong>GetPlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk._generated.platform.platform_additional_fee_policy.PlatformAdditionalFeePolicy"><span class="pre">PlatformAdditionalFeePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 조회</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.GetPlatformAdditionalFeePolicyError"><strong>GetPlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_additional_fee_policy">
+<span class="sig-name descname"><span class="pre">update_platform_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.update_platform_additional_fee_policy_response.UpdatePlatformAdditionalFeePolicyResponse"><span class="pre">UpdatePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 수정</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 추가 수수료 정책 아이디</p></li>
+<li><p><strong>fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput,</span> <span class="pre">optional</span></code>) – 책정 수수료</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 추가 수수료 정책 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 추가 수수료 정책에 대한 메모</p></li>
+<li><p><strong>vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer,</span> <span class="pre">optional</span></code>) – 부가세를 부담할 주체</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyError"><strong>UpdatePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_platform_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.update_platform_additional_fee_policy_response.UpdatePlatformAdditionalFeePolicyResponse"><span class="pre">UpdatePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 수정</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 추가 수수료 정책 아이디</p></li>
+<li><p><strong>fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput,</span> <span class="pre">optional</span></code>) – 책정 수수료</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 추가 수수료 정책 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 해당 추가 수수료 정책에 대한 메모</p></li>
+<li><p><strong>vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer,</span> <span class="pre">optional</span></code>) – 부가세를 부담할 주체</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.UpdatePlatformAdditionalFeePolicyError"><strong>UpdatePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy">
+<span class="sig-name descname"><span class="pre">archive_platform_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_additional_fee_policy_response.ArchivePlatformAdditionalFeePolicyResponse"><span class="pre">ArchivePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 보관</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyError"><strong>ArchivePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_platform_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_additional_fee_policy_response.ArchivePlatformAdditionalFeePolicyResponse"><span class="pre">ArchivePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 보관</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.ArchivePlatformAdditionalFeePolicyError"><strong>ArchivePlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy">
+<span class="sig-name descname"><span class="pre">recover_platform_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_additional_fee_policy_response.RecoverPlatformAdditionalFeePolicyResponse"><span class="pre">RecoverPlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 복원</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyError"><strong>RecoverPlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recover_platform_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_additional_fee_policy_response.RecoverPlatformAdditionalFeePolicyResponse"><span class="pre">RecoverPlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async" title="Link to this definition">#</a></dt>
+<dd><p>추가 수수료 정책 복원</p>
+<p>주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyError" title="portone_server_sdk.platform.policy.RecoverPlatformAdditionalFeePolicyError"><strong>RecoverPlatformAdditionalFeePolicyError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_contracts">
+<span class="sig-name descname"><span class="pre">get_platform_contracts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformContractFilterInput" title="portone_server_sdk._generated.platform.policy.platform_contract_filter_input.PlatformContractFilterInput"><span class="pre">PlatformContractFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractsResponse" title="portone_server_sdk._generated.platform.policy.get_platform_contracts_response.GetPlatformContractsResponse"><span class="pre">GetPlatformContractsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_contracts" title="Link to this definition">#</a></dt>
+<dd><p>계약 다건 조회</p>
+<p>여러 계약을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformContractFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 계약 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractsError" title="portone_server_sdk.platform.policy.GetPlatformContractsError"><strong>GetPlatformContractsError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_contracts_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_contracts_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformContractFilterInput" title="portone_server_sdk._generated.platform.policy.platform_contract_filter_input.PlatformContractFilterInput"><span class="pre">PlatformContractFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractsResponse" title="portone_server_sdk._generated.platform.policy.get_platform_contracts_response.GetPlatformContractsResponse"><span class="pre">GetPlatformContractsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_contracts_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 다건 조회</p>
+<p>여러 계약을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformContractFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 계약 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractsError" title="portone_server_sdk.platform.policy.GetPlatformContractsError"><strong>GetPlatformContractsError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_contract">
+<span class="sig-name descname"><span class="pre">create_platform_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settlement_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk._generated.platform.platform_settlement_cycle_input.PlatformSettlementCycleInput"><span class="pre">PlatformSettlementCycleInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee_vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_payment_vat_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.create_platform_contract_response.CreatePlatformContractResponse"><span class="pre">CreatePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_contract" title="Link to this definition">#</a></dt>
+<dd><p>계약 생성</p>
+<p>새로운 계약을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>계약에 부여할 고유 아이디</p>
+<p>명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 내부 표기를 위한 메모</p></li>
+<li><p><strong>platform_fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code>) – 중개수수료</p></li>
+<li><p><strong>settlement_cycle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput</span></code>) – 정산 주기</p></li>
+<li><p><strong>platform_fee_vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer</span></code>) – 중개수수료에 대한 부가세 부담 주체</p></li>
+<li><p><strong>subtract_payment_vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – 정산 시 결제금액 부가세 감액 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformContractError" title="portone_server_sdk.platform.policy.CreatePlatformContractError"><strong>CreatePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.create_platform_contract_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_platform_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settlement_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk._generated.platform.platform_settlement_cycle_input.PlatformSettlementCycleInput"><span class="pre">PlatformSettlementCycleInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee_vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_payment_vat_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.create_platform_contract_response.CreatePlatformContractResponse"><span class="pre">CreatePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.create_platform_contract_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 생성</p>
+<p>새로운 계약을 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>계약에 부여할 고유 아이디</p>
+<p>명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 내부 표기를 위한 메모</p></li>
+<li><p><strong>platform_fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code>) – 중개수수료</p></li>
+<li><p><strong>settlement_cycle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput</span></code>) – 정산 주기</p></li>
+<li><p><strong>platform_fee_vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer</span></code>) – 중개수수료에 대한 부가세 부담 주체</p></li>
+<li><p><strong>subtract_payment_vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – 정산 시 결제금액 부가세 감액 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.CreatePlatformContractError" title="portone_server_sdk.platform.policy.CreatePlatformContractError"><strong>CreatePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_contract">
+<span class="sig-name descname"><span class="pre">get_platform_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_contract" title="Link to this definition">#</a></dt>
+<dd><p>계약 조회</p>
+<p>주어진 아이디에 대응되는 계약을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractError" title="portone_server_sdk.platform.policy.GetPlatformContractError"><strong>GetPlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.get_platform_contract_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.get_platform_contract_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 조회</p>
+<p>주어진 아이디에 대응되는 계약을 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회할 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractError" title="portone_server_sdk.platform.policy.GetPlatformContractError"><strong>GetPlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_contract">
+<span class="sig-name descname"><span class="pre">update_platform_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settlement_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk._generated.platform.platform_settlement_cycle_input.PlatformSettlementCycleInput"><span class="pre">PlatformSettlementCycleInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee_vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_payment_vat_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.update_platform_contract_response.UpdatePlatformContractResponse"><span class="pre">UpdatePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_contract" title="Link to this definition">#</a></dt>
+<dd><p>계약 수정</p>
+<p>주어진 아이디에 대응되는 계약을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 계약 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 내부 표기를 위한 메모</p></li>
+<li><p><strong>platform_fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput,</span> <span class="pre">optional</span></code>) – 중개수수료</p></li>
+<li><p><strong>settlement_cycle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput,</span> <span class="pre">optional</span></code>) – 정산 주기</p></li>
+<li><p><strong>platform_fee_vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer,</span> <span class="pre">optional</span></code>) – 중개수수료에 대한 부가세 부담 주체</p></li>
+<li><p><strong>subtract_payment_vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – 정산 시 결제금액 부가세 감액 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformContractError" title="portone_server_sdk.platform.policy.UpdatePlatformContractError"><strong>UpdatePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.update_platform_contract_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_platform_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk._generated.platform.platform_fee_input.PlatformFeeInput"><span class="pre">PlatformFeeInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settlement_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk._generated.platform.platform_settlement_cycle_input.PlatformSettlementCycleInput"><span class="pre">PlatformSettlementCycleInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_fee_vat_payer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PARTNER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MERCHANT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_payment_vat_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.update_platform_contract_response.UpdatePlatformContractResponse"><span class="pre">UpdatePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.update_platform_contract_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 수정</p>
+<p>주어진 아이디에 대응되는 계약을 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 계약 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 이름</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 계약 내부 표기를 위한 메모</p></li>
+<li><p><strong>platform_fee</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformFeeInput,</span> <span class="pre">optional</span></code>) – 중개수수료</p></li>
+<li><p><strong>settlement_cycle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput,</span> <span class="pre">optional</span></code>) – 정산 주기</p></li>
+<li><p><strong>platform_fee_vat_payer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayer,</span> <span class="pre">optional</span></code>) – 중개수수료에 대한 부가세 부담 주체</p></li>
+<li><p><strong>subtract_payment_vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – 정산 시 결제금액 부가세 감액 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.UpdatePlatformContractError" title="portone_server_sdk.platform.policy.UpdatePlatformContractError"><strong>UpdatePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_contract">
+<span class="sig-name descname"><span class="pre">archive_platform_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_contract_response.ArchivePlatformContractResponse"><span class="pre">ArchivePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_contract" title="Link to this definition">#</a></dt>
+<dd><p>계약 보관</p>
+<p>주어진 아이디에 대응되는 계약을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformContractError" title="portone_server_sdk.platform.policy.ArchivePlatformContractError"><strong>ArchivePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.archive_platform_contract_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_platform_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformContractResponse" title="portone_server_sdk._generated.platform.policy.archive_platform_contract_response.ArchivePlatformContractResponse"><span class="pre">ArchivePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.archive_platform_contract_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 보관</p>
+<p>주어진 아이디에 대응되는 계약을 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.ArchivePlatformContractError" title="portone_server_sdk.platform.policy.ArchivePlatformContractError"><strong>ArchivePlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_contract">
+<span class="sig-name descname"><span class="pre">recover_platform_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformContractResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_contract_response.RecoverPlatformContractResponse"><span class="pre">RecoverPlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_contract" title="Link to this definition">#</a></dt>
+<dd><p>계약 복원</p>
+<p>주어진 아이디에 대응되는 계약을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformContractError" title="portone_server_sdk.platform.policy.RecoverPlatformContractError"><strong>RecoverPlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PolicyClient.recover_platform_contract_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recover_platform_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformContractResponse" title="portone_server_sdk._generated.platform.policy.recover_platform_contract_response.RecoverPlatformContractResponse"><span class="pre">RecoverPlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PolicyClient.recover_platform_contract_async" title="Link to this definition">#</a></dt>
+<dd><p>계약 복원</p>
+<p>주어진 아이디에 대응되는 계약을 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 계약 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.RecoverPlatformContractError" title="portone_server_sdk.platform.policy.RecoverPlatformContractError"><strong>RecoverPlatformContractError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portone_server_sdk.PayoutClient.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">portone_server_sdk.PayoutClient</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="portone_server_sdk.TransferClient.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">portone_server_sdk.TransferClient</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient"><code class="docutils literal notranslate"><span class="pre">PolicyClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.__init__"><code class="docutils literal notranslate"><span class="pre">PolicyClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policies_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policies_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_discount_share_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_discount_share_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_discount_share_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policies_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policies_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_additional_fee_policy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_additional_fee_policy_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_additional_fee_policy_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contracts"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contracts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contracts_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contracts_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.create_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.create_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.get_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.get_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.update_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.update_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.archive_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.archive_platform_contract_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_contract"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_contract()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PolicyClient.recover_platform_contract_async"><code class="docutils literal notranslate"><span class="pre">PolicyClient.recover_platform_contract_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By portone <tech.support@portone.io>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, PortOne.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

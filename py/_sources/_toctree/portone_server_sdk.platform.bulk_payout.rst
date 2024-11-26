@@ -17,3 +17,9 @@ portone\_server\_sdk.platform.bulk\_payout
       PlatformBulkPayoutStatusStats
       BulkPayoutClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPlatformBulkPayoutsError
+   

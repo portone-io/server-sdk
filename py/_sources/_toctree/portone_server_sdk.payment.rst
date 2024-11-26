@@ -81,6 +81,24 @@
       VirtualAccountIssuedPayment
       PaymentClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ApplyEscrowLogisticsError
+      CancelPaymentError
+      CloseVirtualAccountError
+      ConfirmEscrowError
+      GetAllPaymentsError
+      GetPaymentError
+      GetPaymentsError
+      ModifyEscrowLogisticsError
+      PayInstantlyError
+      PayWithBillingKeyError
+      PreRegisterPaymentError
+      RegisterStoreReceiptError
+      ResendWebhookError
+   
 .. rubric:: Modules
 
 .. autosummary::

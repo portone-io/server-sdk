@@ -22,3 +22,12 @@
       VerifiedIdentityVerification
       IdentityVerificationClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ConfirmIdentityVerificationError
+      GetIdentityVerificationError
+      ResendIdentityVerificationError
+      SendIdentityVerificationError
+   

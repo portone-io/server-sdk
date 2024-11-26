@@ -37,3 +37,26 @@ portone\_server\_sdk.platform.policy
       UpdatePlatformDiscountSharePolicyResponse
       PolicyClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ArchivePlatformAdditionalFeePolicyError
+      ArchivePlatformContractError
+      ArchivePlatformDiscountSharePolicyError
+      CreatePlatformAdditionalFeePolicyError
+      CreatePlatformContractError
+      CreatePlatformDiscountSharePolicyError
+      GetPlatformAdditionalFeePoliciesError
+      GetPlatformAdditionalFeePolicyError
+      GetPlatformContractError
+      GetPlatformContractsError
+      GetPlatformDiscountSharePoliciesError
+      GetPlatformDiscountSharePolicyError
+      RecoverPlatformAdditionalFeePolicyError
+      RecoverPlatformContractError
+      RecoverPlatformDiscountSharePolicyError
+      UpdatePlatformAdditionalFeePolicyError
+      UpdatePlatformContractError
+      UpdatePlatformDiscountSharePolicyError
+   

@@ -11,3 +11,9 @@ portone\_server\_sdk.platform.account
       PlatformAccountHolder
       AccountClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPlatformAccountHolderError
+   

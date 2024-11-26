@@ -149,7 +149,24 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -322,6 +339,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.args"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.message"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.status_code"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse.status_code</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.body"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse.body</span></code></a></li>
@@ -357,10 +380,43 @@ document.write(`
 </tbody>
 </table>
 </div>
+<p class="rubric">Exceptions</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError" title="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.pg_specific.</span></span><span class="sig-name descname"><span class="pre">GetKakaopayPaymentOrderError</span></span><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError" title="portone_server_sdk._portone_error.PortOneError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PortOneError</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.pg_specific.</span></span><span class="sig-name descname"><span class="pre">GetKakaopayPaymentOrderResponse</span></span><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse" title="Link to this definition">#</a></dt>
-<dd><p>카카오페이 주문 조회 응답</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>카카오페이 주문 조회 응답</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.status_code">
 <span class="sig-name descname"><span class="pre">status_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.status_code" title="Link to this definition">#</a></dt>
@@ -379,7 +435,8 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="portone_server_sdk.pg_specific.PgSpecificClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.pg_specific.</span></span><span class="sig-name descname"><span class="pre">PgSpecificClient</span></span><a class="headerlink" href="#portone_server_sdk.pg_specific.PgSpecificClient" title="Link to this definition">#</a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.pg_specific.PgSpecificClient.get_kakaopay_payment_order">
 <span class="sig-name descname"><span class="pre">get_kakaopay_payment_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pg_tx_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse" title="portone_server_sdk._generated.pg_specific.get_kakaopay_payment_order_response.GetKakaopayPaymentOrderResponse"><span class="pre">GetKakaopayPaymentOrderResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.pg_specific.PgSpecificClient.get_kakaopay_payment_order" title="Link to this definition">#</a></dt>
 <dd><p>카카오페이 주문 조회 API</p>
@@ -393,15 +450,7 @@ document.write(`
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
-    요청된 입력 정보가 유효하지 않은 경우
-    
-    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
-    인증 정보가 올바르지 않은 경우</p></li>
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
-</ul>
+<dd class="field-even"><p><a class="reference internal" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError" title="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError"><strong>GetKakaopayPaymentOrderError</strong></a> – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -420,15 +469,7 @@ document.write(`
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.InvalidRequestError" title="portone_server_sdk.errors.InvalidRequestError"><strong>InvalidRequestError</strong></a> – 요청된 입력 정보가 유효하지 않은 경우
-    요청된 입력 정보가 유효하지 않은 경우
-    
-    허가되지 않은 값, 올바르지 않은 형식의 요청 등이 모두 해당됩니다.</p></li>
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnauthorizedError" title="portone_server_sdk.errors.UnauthorizedError"><strong>UnauthorizedError</strong></a> – 인증 정보가 올바르지 않은 경우
-    인증 정보가 올바르지 않은 경우</p></li>
-<li><p><a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError" title="portone_server_sdk.errors.UnknownError"><strong>UnknownError</strong></a> – API 응답이 알 수 없는 형식인 경우</p></li>
-</ul>
+<dd class="field-even"><p><a class="reference internal" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError" title="portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError"><strong>GetKakaopayPaymentOrderError</strong></a> – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -482,6 +523,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.args"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderError.message"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderError.message</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.status_code"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse.status_code</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.body"><code class="docutils literal notranslate"><span class="pre">GetKakaopayPaymentOrderResponse.body</span></code></a></li>

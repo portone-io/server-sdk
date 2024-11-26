@@ -18,3 +18,9 @@ portone\_server\_sdk.platform.partner\_settlement
       PlatformPartnerSettlementStatusStats
       PartnerSettlementClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPlatformPartnerSettlementsError
+   

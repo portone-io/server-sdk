@@ -16,3 +16,9 @@ portone\_server\_sdk.platform.account\_transfer
       PlatformRemitAccountTransfer
       AccountTransferClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPlatformAccountTransfersError
+   

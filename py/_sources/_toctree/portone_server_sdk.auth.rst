@@ -14,3 +14,10 @@
       RefreshTokenResponse
       AuthClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      LoginViaApiSecretError
+      RefreshTokenError
+   

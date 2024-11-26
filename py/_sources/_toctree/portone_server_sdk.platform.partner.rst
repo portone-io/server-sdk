@@ -25,3 +25,15 @@ portone\_server\_sdk.platform.partner
       UpdatePlatformPartnerResponse
       PartnerClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ArchivePlatformPartnerError
+      CreatePlatformPartnerError
+      CreatePlatformPartnersError
+      GetPlatformPartnerError
+      GetPlatformPartnersError
+      RecoverPlatformPartnerError
+      UpdatePlatformPartnerError
+   

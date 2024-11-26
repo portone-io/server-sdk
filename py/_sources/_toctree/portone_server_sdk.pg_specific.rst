@@ -11,3 +11,9 @@
       GetKakaopayPaymentOrderResponse
       PgSpecificClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetKakaopayPaymentOrderError
+   

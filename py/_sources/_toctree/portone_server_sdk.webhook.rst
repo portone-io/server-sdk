@@ -20,32 +20,32 @@
 
    .. autosummary::
    
-      WebhookBillingKeyRequestDeletedData
-      WebhookBillingKeyRequestDeleted
-      WebhookBillingKeyRequestFailedData
-      WebhookBillingKeyRequestFailed
-      WebhookBillingKeyRequestIssuedData
-      WebhookBillingKeyRequestIssued
-      WebhookBillingKeyRequestReadyData
-      WebhookBillingKeyRequestReady
-      WebhookBillingKeyRequestUpdatedData
-      WebhookBillingKeyRequestUpdated
-      WebhookTransactionRequestCancelPendingData
-      WebhookTransactionRequestCancelPending
-      WebhookTransactionRequestCancelledData
-      WebhookTransactionRequestCancelled
-      WebhookTransactionRequestFailedData
-      WebhookTransactionRequestFailed
-      WebhookTransactionRequestPaidData
-      WebhookTransactionRequestPaid
-      WebhookTransactionRequestPartialCancelledData
-      WebhookTransactionRequestPartialCancelled
-      WebhookTransactionRequestPayPendingData
-      WebhookTransactionRequestPayPending
-      WebhookTransactionRequestReadyData
-      WebhookTransactionRequestReady
-      WebhookTransactionRequestVirtualAccountIssuedData
-      WebhookTransactionRequestVirtualAccountIssued
+      WebhookBillingKeyDataDeleted
+      WebhookBillingKeyDataFailed
+      WebhookBillingKeyDataIssued
+      WebhookBillingKeyDataReady
+      WebhookBillingKeyDataUpdated
+      WebhookBillingKeyDeleted
+      WebhookBillingKeyFailed
+      WebhookBillingKeyIssued
+      WebhookBillingKeyReady
+      WebhookBillingKeyUpdated
+      WebhookTransactionCancelPending
+      WebhookTransactionCancelledCancelled
+      WebhookTransactionCancelledDataCancelled
+      WebhookTransactionCancelledDataPartialCancelled
+      WebhookTransactionCancelledPartialCancelled
+      WebhookTransactionDataCancelPending
+      WebhookTransactionDataFailed
+      WebhookTransactionDataPaid
+      WebhookTransactionDataPayPending
+      WebhookTransactionDataReady
+      WebhookTransactionDataVirtualAccountIssued
+      WebhookTransactionFailed
+      WebhookTransactionPaid
+      WebhookTransactionPayPending
+      WebhookTransactionReady
+      WebhookTransactionVirtualAccountIssued
    
    .. rubric:: Exceptions
 

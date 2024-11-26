@@ -25,3 +25,12 @@ portone\_server\_sdk.payment.payment\_schedule
       SucceededPaymentSchedule
       PaymentScheduleClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      CreatePaymentScheduleError
+      GetPaymentScheduleError
+      GetPaymentSchedulesError
+      RevokePaymentSchedulesError
+   

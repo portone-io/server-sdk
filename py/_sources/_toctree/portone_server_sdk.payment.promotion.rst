@@ -14,3 +14,9 @@ portone\_server\_sdk.payment.promotion
       PromotionPercentDiscount
       PromotionClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPromotionError
+   

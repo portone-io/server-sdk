@@ -1,0 +1,835 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>portone_server_sdk.PartnerClient &#8212; portone-server-sdk  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.PartnerClient';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="portone_server_sdk.PartnerSettlementClient" href="portone_server_sdk.PartnerSettlementClient.html" />
+    <link rel="prev" title="portone_server_sdk.BulkPayoutClient" href="portone_server_sdk.BulkPayoutClient.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">portone-server-sdk  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PartnerClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_toctree/portone_server_sdk.PartnerClient.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>portone_server_sdk.PartnerClient</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient"><code class="docutils literal notranslate"><span class="pre">PartnerClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.__init__"><code class="docutils literal notranslate"><span class="pre">PartnerClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partners"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partners()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partners_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partners_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.update_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.update_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.update_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.update_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partners"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partners()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partners_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partners_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.archive_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.archive_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.archive_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.archive_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.recover_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.recover_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.recover_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.recover_platform_partner_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="portone-server-sdk-partnerclient">
+<h1>portone_server_sdk.PartnerClient<a class="headerlink" href="#portone-server-sdk-partnerclient" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">PartnerClient</span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.PartnerClient.__init__" title="Link to this definition">#</a></dt>
+<dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.__init__" title="portone_server_sdk.PartnerClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.archive_platform_partner" title="portone_server_sdk.PartnerClient.archive_platform_partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_partner</span></code></a>(*, id)</p></td>
+<td><p>파트너 복원</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.archive_platform_partner_async" title="portone_server_sdk.PartnerClient.archive_platform_partner_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">archive_platform_partner_async</span></code></a>(*, id)</p></td>
+<td><p>파트너 복원</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.create_platform_partner" title="portone_server_sdk.PartnerClient.create_platform_partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_partner</span></code></a>(*[, id, memo, ...])</p></td>
+<td><p>파트너 생성</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.create_platform_partner_async" title="portone_server_sdk.PartnerClient.create_platform_partner_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_partner_async</span></code></a>(*[, id, memo, ...])</p></td>
+<td><p>파트너 생성</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.create_platform_partners" title="portone_server_sdk.PartnerClient.create_platform_partners"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_partners</span></code></a>(*, partners)</p></td>
+<td><p>파트너 다건 생성</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.create_platform_partners_async" title="portone_server_sdk.PartnerClient.create_platform_partners_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_platform_partners_async</span></code></a>(*, partners)</p></td>
+<td><p>파트너 다건 생성</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.get_platform_partner" title="portone_server_sdk.PartnerClient.get_platform_partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_partner</span></code></a>(*, id)</p></td>
+<td><p>파트너 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.get_platform_partner_async" title="portone_server_sdk.PartnerClient.get_platform_partner_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_partner_async</span></code></a>(*, id)</p></td>
+<td><p>파트너 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.get_platform_partners" title="portone_server_sdk.PartnerClient.get_platform_partners"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_partners</span></code></a>(*[, page, filter])</p></td>
+<td><p>파트너 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.get_platform_partners_async" title="portone_server_sdk.PartnerClient.get_platform_partners_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_partners_async</span></code></a>(*[, page, filter])</p></td>
+<td><p>파트너 다건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.recover_platform_partner" title="portone_server_sdk.PartnerClient.recover_platform_partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_partner</span></code></a>(*, id)</p></td>
+<td><p>파트너 복원</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.recover_platform_partner_async" title="portone_server_sdk.PartnerClient.recover_platform_partner_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recover_platform_partner_async</span></code></a>(*, id)</p></td>
+<td><p>파트너 복원</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.update_platform_partner" title="portone_server_sdk.PartnerClient.update_platform_partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_partner</span></code></a>(*, id[, name, ...])</p></td>
+<td><p>파트너 수정</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PartnerClient.update_platform_partner_async" title="portone_server_sdk.PartnerClient.update_platform_partner_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_partner_async</span></code></a>(*, id[, name, ...])</p></td>
+<td><p>파트너 수정</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.get_platform_partners">
+<span class="sig-name descname"><span class="pre">get_platform_partners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnersResponse" title="portone_server_sdk._generated.platform.partner.get_platform_partners_response.GetPlatformPartnersResponse"><span class="pre">GetPlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.get_platform_partners" title="Link to this definition">#</a></dt>
+<dd><p>파트너 다건 조회</p>
+<p>여러 파트너를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 파트너 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnersError" title="portone_server_sdk.platform.partner.GetPlatformPartnersError"><strong>GetPlatformPartnersError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.get_platform_partners_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_partners_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnersResponse" title="portone_server_sdk._generated.platform.partner.get_platform_partners_response.GetPlatformPartnersResponse"><span class="pre">GetPlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.get_platform_partners_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 다건 조회</p>
+<p>여러 파트너를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – 요청할 페이지 정보</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 파트너 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnersError" title="portone_server_sdk.platform.partner.GetPlatformPartnersError"><strong>GetPlatformPartnersError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.create_platform_partner">
+<span class="sig-name descname"><span class="pre">create_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyContact" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_contact.CreatePlatformPartnerBodyContact"><span class="pre">CreatePlatformPartnerBodyContact</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyAccount" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_account.CreatePlatformPartnerBodyAccount"><span class="pre">CreatePlatformPartnerBodyAccount</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_contract_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_type.CreatePlatformPartnerBodyType"><span class="pre">CreatePlatformPartnerBodyType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_defined_properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk._generated.platform.platform_properties.PlatformProperties"><span class="pre">PlatformProperties</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.create_platform_partner_response.CreatePlatformPartnerResponse"><span class="pre">CreatePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.create_platform_partner" title="Link to this definition">#</a></dt>
+<dd><p>파트너 생성</p>
+<p>새로운 파트너를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>파트너에 부여할 고유 아이디</p>
+<p>고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 법인명 혹은 이름</p></li>
+<li><p><strong>contact</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyContact</span></code>) – 파트너 담당자 연락 정보</p></li>
+<li><p><strong>account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyAccount</span></code>) – <p>정산 계좌</p>
+<p>파트너의 사업자등록번호가 존재하는 경우 명시합니다. 별도로 검증하지는 않으며, 번호와 기호 모두 입력 가능합니다.</p>
+</p></li>
+<li><p><strong>default_contract_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>기본 계약 아이디</p>
+<p>이미 존재하는 계약 아이디를 등록해야 합니다.</p>
+</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>파트너에 대한 메모</p>
+<p>총 256자까지 입력할 수 있습니다.</p>
+</p></li>
+<li><p><strong>tags</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – <p>파트너에 부여할 태그 리스트</p>
+<p>최대 10개까지 입력할 수 있습니다.</p>
+</p></li>
+<li><p><strong>type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyType</span></code>) – <p>파트너 유형별 추가 정보</p>
+<p>사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.</p>
+</p></li>
+<li><p><strong>user_defined_properties</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformProperties,</span> <span class="pre">optional</span></code>) – 사용자 정의 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerError" title="portone_server_sdk.platform.partner.CreatePlatformPartnerError"><strong>CreatePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.create_platform_partner_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyContact" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_contact.CreatePlatformPartnerBodyContact"><span class="pre">CreatePlatformPartnerBodyContact</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyAccount" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_account.CreatePlatformPartnerBodyAccount"><span class="pre">CreatePlatformPartnerBodyAccount</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_contract_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body_type.CreatePlatformPartnerBodyType"><span class="pre">CreatePlatformPartnerBodyType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_defined_properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk._generated.platform.platform_properties.PlatformProperties"><span class="pre">PlatformProperties</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.create_platform_partner_response.CreatePlatformPartnerResponse"><span class="pre">CreatePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.create_platform_partner_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 생성</p>
+<p>새로운 파트너를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>파트너에 부여할 고유 아이디</p>
+<p>고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.</p>
+</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 법인명 혹은 이름</p></li>
+<li><p><strong>contact</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyContact</span></code>) – 파트너 담당자 연락 정보</p></li>
+<li><p><strong>account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyAccount</span></code>) – <p>정산 계좌</p>
+<p>파트너의 사업자등록번호가 존재하는 경우 명시합니다. 별도로 검증하지는 않으며, 번호와 기호 모두 입력 가능합니다.</p>
+</p></li>
+<li><p><strong>default_contract_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>기본 계약 아이디</p>
+<p>이미 존재하는 계약 아이디를 등록해야 합니다.</p>
+</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>파트너에 대한 메모</p>
+<p>총 256자까지 입력할 수 있습니다.</p>
+</p></li>
+<li><p><strong>tags</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – <p>파트너에 부여할 태그 리스트</p>
+<p>최대 10개까지 입력할 수 있습니다.</p>
+</p></li>
+<li><p><strong>type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyType</span></code>) – <p>파트너 유형별 추가 정보</p>
+<p>사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.</p>
+</p></li>
+<li><p><strong>user_defined_properties</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformProperties,</span> <span class="pre">optional</span></code>) – 사용자 정의 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerError" title="portone_server_sdk.platform.partner.CreatePlatformPartnerError"><strong>CreatePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.get_platform_partner">
+<span class="sig-name descname"><span class="pre">get_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.get_platform_partner" title="Link to this definition">#</a></dt>
+<dd><p>파트너 조회</p>
+<p>파트너 객체를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회하고 싶은 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnerError" title="portone_server_sdk.platform.partner.GetPlatformPartnerError"><strong>GetPlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.get_platform_partner_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.get_platform_partner_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 조회</p>
+<p>파트너 객체를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 조회하고 싶은 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.GetPlatformPartnerError" title="portone_server_sdk.platform.partner.GetPlatformPartnerError"><strong>GetPlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.update_platform_partner">
+<span class="sig-name descname"><span class="pre">update_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyContact" title="portone_server_sdk._generated.platform.update_platform_partner_body_contact.UpdatePlatformPartnerBodyContact"><span class="pre">UpdatePlatformPartnerBodyContact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount" title="portone_server_sdk._generated.platform.update_platform_partner_body_account.UpdatePlatformPartnerBodyAccount"><span class="pre">UpdatePlatformPartnerBodyAccount</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_contract_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyType" title="portone_server_sdk._generated.platform.update_platform_partner_body_type.UpdatePlatformPartnerBodyType"><span class="pre">UpdatePlatformPartnerBodyType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_defined_properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk._generated.platform.platform_properties.PlatformProperties"><span class="pre">PlatformProperties</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.UpdatePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.update_platform_partner_response.UpdatePlatformPartnerResponse"><span class="pre">UpdatePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.update_platform_partner" title="Link to this definition">#</a></dt>
+<dd><p>파트너 수정</p>
+<p>주어진 아이디에 대응되는 파트너 정보를 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 파트너 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너 법인명 혹은 이름</p></li>
+<li><p><strong>contact</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyContact,</span> <span class="pre">optional</span></code>) – 파트너 담당자 연락 정보</p></li>
+<li><p><strong>account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyAccount,</span> <span class="pre">optional</span></code>) – 정산 계좌</p></li>
+<li><p><strong>default_contract_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너에 설정된 기본 계약 아이디</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너에 대한 메모</p></li>
+<li><p><strong>tags</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str],</span> <span class="pre">optional</span></code>) – 파트너의 태그 리스트</p></li>
+<li><p><strong>type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyType,</span> <span class="pre">optional</span></code>) – 파트너 유형별 정보</p></li>
+<li><p><strong>user_defined_properties</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformProperties,</span> <span class="pre">optional</span></code>) – 사용자 정의 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.UpdatePlatformPartnerError" title="portone_server_sdk.platform.partner.UpdatePlatformPartnerError"><strong>UpdatePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.update_platform_partner_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyContact" title="portone_server_sdk._generated.platform.update_platform_partner_body_contact.UpdatePlatformPartnerBodyContact"><span class="pre">UpdatePlatformPartnerBodyContact</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount" title="portone_server_sdk._generated.platform.update_platform_partner_body_account.UpdatePlatformPartnerBodyAccount"><span class="pre">UpdatePlatformPartnerBodyAccount</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_contract_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyType" title="portone_server_sdk._generated.platform.update_platform_partner_body_type.UpdatePlatformPartnerBodyType"><span class="pre">UpdatePlatformPartnerBodyType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_defined_properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk._generated.platform.platform_properties.PlatformProperties"><span class="pre">PlatformProperties</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.UpdatePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.update_platform_partner_response.UpdatePlatformPartnerResponse"><span class="pre">UpdatePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.update_platform_partner_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 수정</p>
+<p>주어진 아이디에 대응되는 파트너 정보를 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 업데이트할 파트너 아이디</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너 법인명 혹은 이름</p></li>
+<li><p><strong>contact</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyContact,</span> <span class="pre">optional</span></code>) – 파트너 담당자 연락 정보</p></li>
+<li><p><strong>account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyAccount,</span> <span class="pre">optional</span></code>) – 정산 계좌</p></li>
+<li><p><strong>default_contract_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너에 설정된 기본 계약 아이디</p></li>
+<li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 파트너에 대한 메모</p></li>
+<li><p><strong>tags</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str],</span> <span class="pre">optional</span></code>) – 파트너의 태그 리스트</p></li>
+<li><p><strong>type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyType,</span> <span class="pre">optional</span></code>) – 파트너 유형별 정보</p></li>
+<li><p><strong>user_defined_properties</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformProperties,</span> <span class="pre">optional</span></code>) – 사용자 정의 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.UpdatePlatformPartnerError" title="portone_server_sdk.platform.partner.UpdatePlatformPartnerError"><strong>UpdatePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.create_platform_partners">
+<span class="sig-name descname"><span class="pre">create_platform_partners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partners</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBody" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body.CreatePlatformPartnerBody"><span class="pre">CreatePlatformPartnerBody</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnersResponse" title="portone_server_sdk._generated.platform.partner.create_platform_partners_response.CreatePlatformPartnersResponse"><span class="pre">CreatePlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.create_platform_partners" title="Link to this definition">#</a></dt>
+<dd><p>파트너 다건 생성</p>
+<p>새로운 파트너를 다건 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>partners</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformPartnerBody]</span></code>) – 생성할 파트너 리스트 정보</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnersError" title="portone_server_sdk.platform.partner.CreatePlatformPartnersError"><strong>CreatePlatformPartnersError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.create_platform_partners_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_platform_partners_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partners</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBody" title="portone_server_sdk._generated.platform.partner.create_platform_partner_body.CreatePlatformPartnerBody"><span class="pre">CreatePlatformPartnerBody</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnersResponse" title="portone_server_sdk._generated.platform.partner.create_platform_partners_response.CreatePlatformPartnersResponse"><span class="pre">CreatePlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.create_platform_partners_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 다건 생성</p>
+<p>새로운 파트너를 다건 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>partners</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformPartnerBody]</span></code>) – 생성할 파트너 리스트 정보</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnersError" title="portone_server_sdk.platform.partner.CreatePlatformPartnersError"><strong>CreatePlatformPartnersError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.archive_platform_partner">
+<span class="sig-name descname"><span class="pre">archive_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.archive_platform_partner_response.ArchivePlatformPartnerResponse"><span class="pre">ArchivePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.archive_platform_partner" title="Link to this definition">#</a></dt>
+<dd><p>파트너 복원</p>
+<p>주어진 아이디에 대응되는 파트너를 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerError" title="portone_server_sdk.platform.partner.ArchivePlatformPartnerError"><strong>ArchivePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.archive_platform_partner_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.archive_platform_partner_response.ArchivePlatformPartnerResponse"><span class="pre">ArchivePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.archive_platform_partner_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 복원</p>
+<p>주어진 아이디에 대응되는 파트너를 보관합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerError" title="portone_server_sdk.platform.partner.ArchivePlatformPartnerError"><strong>ArchivePlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.recover_platform_partner">
+<span class="sig-name descname"><span class="pre">recover_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.RecoverPlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.recover_platform_partner_response.RecoverPlatformPartnerResponse"><span class="pre">RecoverPlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.recover_platform_partner" title="Link to this definition">#</a></dt>
+<dd><p>파트너 복원</p>
+<p>주어진 아이디에 대응되는 파트너를 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.RecoverPlatformPartnerError" title="portone_server_sdk.platform.partner.RecoverPlatformPartnerError"><strong>RecoverPlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PartnerClient.recover_platform_partner_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recover_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.RecoverPlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.recover_platform_partner_response.RecoverPlatformPartnerResponse"><span class="pre">RecoverPlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PartnerClient.recover_platform_partner_async" title="Link to this definition">#</a></dt>
+<dd><p>파트너 복원</p>
+<p>주어진 아이디에 대응되는 파트너를 복원합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.RecoverPlatformPartnerError" title="portone_server_sdk.platform.partner.RecoverPlatformPartnerError"><strong>RecoverPlatformPartnerError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portone_server_sdk.BulkPayoutClient.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">portone_server_sdk.BulkPayoutClient</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="portone_server_sdk.PartnerSettlementClient.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">portone_server_sdk.PartnerSettlementClient</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient"><code class="docutils literal notranslate"><span class="pre">PartnerClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.__init__"><code class="docutils literal notranslate"><span class="pre">PartnerClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partners"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partners()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partners_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partners_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.get_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.get_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.update_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.update_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.update_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.update_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partners"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partners()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.create_platform_partners_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.create_platform_partners_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.archive_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.archive_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.archive_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.archive_platform_partner_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.recover_platform_partner"><code class="docutils literal notranslate"><span class="pre">PartnerClient.recover_platform_partner()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PartnerClient.recover_platform_partner_async"><code class="docutils literal notranslate"><span class="pre">PartnerClient.recover_platform_partner_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By portone <tech.support@portone.io>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, PortOne.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

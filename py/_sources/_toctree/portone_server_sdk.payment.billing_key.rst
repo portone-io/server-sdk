@@ -34,3 +34,12 @@ portone\_server\_sdk.payment.billing\_key
       IssuedPgBillingKeyIssueResponse
       BillingKeyClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      DeleteBillingKeyError
+      GetBillingKeyInfoError
+      GetBillingKeyInfosError
+      IssueBillingKeyError
+   

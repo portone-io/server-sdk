@@ -98,6 +98,32 @@
       UpdatePlatformResponse
       PlatformClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      CancelPlatformAdditionalFeePolicyScheduleError
+      CancelPlatformContractScheduleError
+      CancelPlatformDiscountSharePolicyScheduleError
+      CancelPlatformPartnerScheduleError
+      GetPlatformAdditionalFeePolicyScheduleError
+      GetPlatformContractScheduleError
+      GetPlatformDiscountSharePolicyFilterOptionsError
+      GetPlatformDiscountSharePolicyScheduleError
+      GetPlatformError
+      GetPlatformPartnerFilterOptionsError
+      GetPlatformPartnerScheduleError
+      RescheduleAdditionalFeePolicyError
+      RescheduleContractError
+      RescheduleDiscountSharePolicyError
+      ReschedulePartnerError
+      ScheduleAdditionalFeePolicyError
+      ScheduleContractError
+      ScheduleDiscountSharePolicyError
+      SchedulePartnerError
+      SchedulePlatformPartnersError
+      UpdatePlatformError
+   
 .. rubric:: Modules
 
 .. autosummary::

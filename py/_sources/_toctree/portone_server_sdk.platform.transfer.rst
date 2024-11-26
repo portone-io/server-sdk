@@ -65,3 +65,15 @@ portone\_server\_sdk.platform.transfer
       TransferParameters
       TransferClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      CreatePlatformManualTransferError
+      CreatePlatformOrderCancelTransferError
+      CreatePlatformOrderTransferError
+      DeletePlatformTransferError
+      DownloadPlatformTransferSheetError
+      GetPlatformTransferError
+      GetPlatformTransferSummariesError
+   

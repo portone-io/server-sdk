@@ -18,3 +18,11 @@ portone\_server\_sdk.payment.cash\_receipt
       IssuedCashReceipt
       CashReceiptClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      CancelCashReceiptError
+      GetCashReceiptError
+      IssueCashReceiptError
+   

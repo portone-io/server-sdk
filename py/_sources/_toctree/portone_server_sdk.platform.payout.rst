@@ -16,3 +16,9 @@ portone\_server\_sdk.platform.payout
       PlatformPayoutFilterInputCriteria
       PayoutClient
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      GetPlatformPayoutsError
+   

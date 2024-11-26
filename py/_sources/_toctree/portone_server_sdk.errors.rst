@@ -8,6 +8,7 @@
 
    .. autosummary::
    
+      PortOneError
       AlreadyPaidError
       AlreadyPaidOrWaitingError
       BillingKeyAlreadyDeletedError
@@ -104,7 +105,6 @@
       PlatformTransferNonDeletableStatusError
       PlatformTransferNotFoundError
       PlatformUserDefinedPropertyNotFoundError
-      PortOneError
       PromotionNotFoundError
       PromotionPayMethodDoesNotMatchError
       RemainedAmountLessThanPromotionMinPaymentAmountError
