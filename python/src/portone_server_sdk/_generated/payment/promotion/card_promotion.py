@@ -4,8 +4,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...payment.promotion.promotion_card_company import PromotionCardCompany, _deserialize_promotion_card_company, _serialize_promotion_card_company
-from ...payment.promotion.promotion_discount_policy import PromotionDiscountPolicy, _deserialize_promotion_discount_policy, _serialize_promotion_discount_policy
-from ...payment.promotion.promotion_recover_option import PromotionRecoverOption, _deserialize_promotion_recover_option, _serialize_promotion_recover_option
+from ...payment.promotion.promotion_discount import PromotionDiscount, _deserialize_promotion_discount, _serialize_promotion_discount
 from ...payment.promotion.promotion_status import PromotionStatus, _deserialize_promotion_status, _serialize_promotion_status
 
 @dataclass
@@ -23,8 +22,8 @@ class CardPromotion:
     name: str
     """프로모션 이름
     """
-    discount_policy: PromotionDiscountPolicy
-    """할인 정책
+    discount_type: PromotionDiscount
+    """할인 유형
     """
     total_budget: int
     """총 예산
@@ -55,8 +54,9 @@ class CardPromotion:
     """프로모션 생성 시각
     (RFC 3339 date-time)
     """
-    recover_option: PromotionRecoverOption
-    """결제 취소 시 프로모션 예산 복구 옵션
+    min_payment_amount: Optional[int] = field(default=None)
+    """최소 결제 금액
+    (int64)
     """
     max_discount_amount: Optional[int] = field(default=None)
     """최대 할인 금액
@@ -76,7 +76,7 @@ def _serialize_card_promotion(obj: CardPromotion) -> Any:
     entity["id"] = obj.id
     entity["storeId"] = obj.store_id
     entity["name"] = obj.name
-    entity["discountPolicy"] = _serialize_promotion_discount_policy(obj.discount_policy)
+    entity["discountType"] = _serialize_promotion_discount(obj.discount_type)
     entity["totalBudget"] = obj.total_budget
     entity["spentAmount"] = obj.spent_amount
     entity["currency"] = _serialize_currency(obj.currency)
@@ -85,7 +85,8 @@ def _serialize_card_promotion(obj: CardPromotion) -> Any:
     entity["cardCompany"] = _serialize_promotion_card_company(obj.card_company)
     entity["status"] = _serialize_promotion_status(obj.status)
     entity["createdAt"] = obj.created_at
-    entity["recoverOption"] = _serialize_promotion_recover_option(obj.recover_option)
+    if obj.min_payment_amount is not None:
+        entity["minPaymentAmount"] = obj.min_payment_amount
     if obj.max_discount_amount is not None:
         entity["maxDiscountAmount"] = obj.max_discount_amount
     if obj.terminated_at is not None:
@@ -116,10 +117,10 @@ def _deserialize_card_promotion(obj: Any) -> CardPromotion:
     name = obj["name"]
     if not isinstance(name, str):
         raise ValueError(f"{repr(name)} is not str")
-    if "discountPolicy" not in obj:
-        raise KeyError(f"'discountPolicy' is not in {obj}")
-    discount_policy = obj["discountPolicy"]
-    discount_policy = _deserialize_promotion_discount_policy(discount_policy)
+    if "discountType" not in obj:
+        raise KeyError(f"'discountType' is not in {obj}")
+    discount_type = obj["discountType"]
+    discount_type = _deserialize_promotion_discount(discount_type)
     if "totalBudget" not in obj:
         raise KeyError(f"'totalBudget' is not in {obj}")
     total_budget = obj["totalBudget"]
@@ -157,10 +158,12 @@ def _deserialize_card_promotion(obj: Any) -> CardPromotion:
     created_at = obj["createdAt"]
     if not isinstance(created_at, str):
         raise ValueError(f"{repr(created_at)} is not str")
-    if "recoverOption" not in obj:
-        raise KeyError(f"'recoverOption' is not in {obj}")
-    recover_option = obj["recoverOption"]
-    recover_option = _deserialize_promotion_recover_option(recover_option)
+    if "minPaymentAmount" in obj:
+        min_payment_amount = obj["minPaymentAmount"]
+        if not isinstance(min_payment_amount, int):
+            raise ValueError(f"{repr(min_payment_amount)} is not int")
+    else:
+        min_payment_amount = None
     if "maxDiscountAmount" in obj:
         max_discount_amount = obj["maxDiscountAmount"]
         if not isinstance(max_discount_amount, int):
@@ -173,4 +176,4 @@ def _deserialize_card_promotion(obj: Any) -> CardPromotion:
             raise ValueError(f"{repr(terminated_at)} is not str")
     else:
         terminated_at = None
-    return CardPromotion(id, store_id, name, discount_policy, total_budget, spent_amount, currency, start_at, end_at, card_company, status, created_at, recover_option, max_discount_amount, terminated_at)
+    return CardPromotion(id, store_id, name, discount_type, total_budget, spent_amount, currency, start_at, end_at, card_company, status, created_at, min_payment_amount, max_discount_amount, terminated_at)

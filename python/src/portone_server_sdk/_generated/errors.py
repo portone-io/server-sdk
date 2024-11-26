@@ -81,10 +81,9 @@ from .payment.cancellable_amount_consistency_broken_error import CancellableAmou
 from .payment.cancel_amount_exceeds_cancellable_amount_error import CancelAmountExceedsCancellableAmountError as InternalCancelAmountExceedsCancellableAmountError
 from .payment.cancel_tax_amount_exceeds_cancellable_tax_amount_error import CancelTaxAmountExceedsCancellableTaxAmountError as InternalCancelTaxAmountExceedsCancellableTaxAmountError
 from .payment.cancel_tax_free_amount_exceeds_cancellable_tax_free_amount_error import CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError as InternalCancelTaxFreeAmountExceedsCancellableTaxFreeAmountError
-from .payment.negative_promotion_adjusted_cancel_amount_error import NegativePromotionAdjustedCancelAmountError as InternalNegativePromotionAdjustedCancelAmountError
 from .payment.payment_already_cancelled_error import PaymentAlreadyCancelledError as InternalPaymentAlreadyCancelledError
 from .payment.payment_not_paid_error import PaymentNotPaidError as InternalPaymentNotPaidError
-from .payment.promotion_discount_retain_option_should_not_be_changed_error import PromotionDiscountRetainOptionShouldNotBeChangedError as InternalPromotionDiscountRetainOptionShouldNotBeChangedError
+from .payment.remained_amount_less_than_promotion_min_payment_amount_error import RemainedAmountLessThanPromotionMinPaymentAmountError as InternalRemainedAmountLessThanPromotionMinPaymentAmountError
 from .payment.sum_of_parts_exceeds_cancel_amount_error import SumOfPartsExceedsCancelAmountError as InternalSumOfPartsExceedsCancelAmountError
 from .common.billing_key_already_deleted_error import BillingKeyAlreadyDeletedError as InternalBillingKeyAlreadyDeletedError
 from .common.billing_key_not_found_error import BillingKeyNotFoundError as InternalBillingKeyNotFoundError
@@ -981,15 +980,6 @@ class CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError(CancelPaymentError
         self.message = _error.message
 
 @dataclass
-class NegativePromotionAdjustedCancelAmountError(CancelPaymentError):
-    """프로모션에 의해 조정된 취소 금액이 음수인 경우
-    """
-    _error: InitVar[InternalNegativePromotionAdjustedCancelAmountError]
-
-    def __post_init__(self, _error: InternalNegativePromotionAdjustedCancelAmountError) -> None:
-        self.message = _error.message
-
-@dataclass
 class PaymentAlreadyCancelledError(CancelPaymentError):
     """결제가 이미 취소된 경우
     """
@@ -1008,12 +998,12 @@ class PaymentNotPaidError(ApplyEscrowLogisticsError, CancelPaymentError, Confirm
         self.message = _error.message
 
 @dataclass
-class PromotionDiscountRetainOptionShouldNotBeChangedError(CancelPaymentError):
-    """프로모션 혜택 유지 옵션을 이전 부분 취소와 다른 것으로 입력한 경우
+class RemainedAmountLessThanPromotionMinPaymentAmountError(CancelPaymentError):
+    """부분 취소 시, 취소하게 될 경우 남은 금액이 프로모션의 최소 결제 금액보다 작아지는 경우
     """
-    _error: InitVar[InternalPromotionDiscountRetainOptionShouldNotBeChangedError]
+    _error: InitVar[InternalRemainedAmountLessThanPromotionMinPaymentAmountError]
 
-    def __post_init__(self, _error: InternalPromotionDiscountRetainOptionShouldNotBeChangedError) -> None:
+    def __post_init__(self, _error: InternalRemainedAmountLessThanPromotionMinPaymentAmountError) -> None:
         self.message = _error.message
 
 @dataclass

@@ -5970,7 +5970,7 @@ public final class io/portone/sdk/server/errors/ApplyEscrowLogisticsError$Unreco
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ApplyEscrowLogisticsException {
+public abstract interface class io/portone/sdk/server/errors/ApplyEscrowLogisticsException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -5999,7 +5999,7 @@ public final class io/portone/sdk/server/errors/ArchivePlatformAdditionalFeePoli
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ArchivePlatformAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/ArchivePlatformAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6028,7 +6028,7 @@ public final class io/portone/sdk/server/errors/ArchivePlatformContractError$Unr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ArchivePlatformContractException {
+public abstract interface class io/portone/sdk/server/errors/ArchivePlatformContractException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6057,7 +6057,7 @@ public final class io/portone/sdk/server/errors/ArchivePlatformDiscountSharePoli
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ArchivePlatformDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/ArchivePlatformDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6086,7 +6086,11 @@ public final class io/portone/sdk/server/errors/ArchivePlatformPartnerError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ArchivePlatformPartnerException {
+public abstract interface class io/portone/sdk/server/errors/ArchivePlatformPartnerException : io/portone/sdk/server/errors/PlatformPartnerException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/AuthException : io/portone/sdk/server/errors/RestException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6127,7 +6131,7 @@ public final class io/portone/sdk/server/errors/CancelCashReceiptError$Unrecogni
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelCashReceiptException {
+public abstract interface class io/portone/sdk/server/errors/CancelCashReceiptException : io/portone/sdk/server/errors/PaymentCashReceiptException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6156,7 +6160,7 @@ public final class io/portone/sdk/server/errors/CancelPaymentError$Unrecognized 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelPaymentException {
+public abstract interface class io/portone/sdk/server/errors/CancelPaymentException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6185,7 +6189,7 @@ public final class io/portone/sdk/server/errors/CancelPlatformAdditionalFeePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelPlatformAdditionalFeePolicyScheduleException {
+public abstract interface class io/portone/sdk/server/errors/CancelPlatformAdditionalFeePolicyScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6214,7 +6218,7 @@ public final class io/portone/sdk/server/errors/CancelPlatformContractScheduleEr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelPlatformContractScheduleException {
+public abstract interface class io/portone/sdk/server/errors/CancelPlatformContractScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6243,7 +6247,7 @@ public final class io/portone/sdk/server/errors/CancelPlatformDiscountSharePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelPlatformDiscountSharePolicyScheduleException {
+public abstract interface class io/portone/sdk/server/errors/CancelPlatformDiscountSharePolicyScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6272,7 +6276,7 @@ public final class io/portone/sdk/server/errors/CancelPlatformPartnerScheduleErr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CancelPlatformPartnerScheduleException {
+public abstract interface class io/portone/sdk/server/errors/CancelPlatformPartnerScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6327,7 +6331,7 @@ public final class io/portone/sdk/server/errors/CloseVirtualAccountError$Unrecog
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CloseVirtualAccountException {
+public abstract interface class io/portone/sdk/server/errors/CloseVirtualAccountException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6356,7 +6360,7 @@ public final class io/portone/sdk/server/errors/ConfirmEscrowError$Unrecognized 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ConfirmEscrowException {
+public abstract interface class io/portone/sdk/server/errors/ConfirmEscrowException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6385,7 +6389,7 @@ public final class io/portone/sdk/server/errors/ConfirmIdentityVerificationError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ConfirmIdentityVerificationException {
+public abstract interface class io/portone/sdk/server/errors/ConfirmIdentityVerificationException : io/portone/sdk/server/errors/IdentityVerificationException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6414,7 +6418,7 @@ public final class io/portone/sdk/server/errors/CreatePaymentScheduleError$Unrec
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePaymentScheduleException {
+public abstract interface class io/portone/sdk/server/errors/CreatePaymentScheduleException : io/portone/sdk/server/errors/PaymentPaymentScheduleException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6443,7 +6447,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformAdditionalFeePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6472,7 +6476,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformContractError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformContractException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformContractException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6501,7 +6505,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformDiscountSharePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6530,7 +6534,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformManualTransferErro
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformManualTransferException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformManualTransferException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6559,7 +6563,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformOrderCancelTransfe
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformOrderCancelTransferException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformOrderCancelTransferException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6588,7 +6592,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformOrderTransferError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformOrderTransferException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformOrderTransferException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6617,7 +6621,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformPartnerError$Unrec
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformPartnerException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformPartnerException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6646,7 +6650,7 @@ public final class io/portone/sdk/server/errors/CreatePlatformPartnersError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/CreatePlatformPartnersException {
+public abstract interface class io/portone/sdk/server/errors/CreatePlatformPartnersException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6675,7 +6679,7 @@ public final class io/portone/sdk/server/errors/DeleteBillingKeyError$Unrecogniz
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/DeleteBillingKeyException {
+public abstract interface class io/portone/sdk/server/errors/DeleteBillingKeyException : io/portone/sdk/server/errors/PaymentBillingKeyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6704,7 +6708,7 @@ public final class io/portone/sdk/server/errors/DeletePlatformTransferError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/DeletePlatformTransferException {
+public abstract interface class io/portone/sdk/server/errors/DeletePlatformTransferException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6736,7 +6740,7 @@ public final class io/portone/sdk/server/errors/DownloadPlatformTransferSheetErr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/DownloadPlatformTransferSheetException {
+public abstract interface class io/portone/sdk/server/errors/DownloadPlatformTransferSheetException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6768,7 +6772,7 @@ public final class io/portone/sdk/server/errors/GetAllPaymentsError$Unrecognized
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetAllPaymentsException {
+public abstract interface class io/portone/sdk/server/errors/GetAllPaymentsException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6797,7 +6801,7 @@ public final class io/portone/sdk/server/errors/GetBillingKeyInfoError$Unrecogni
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetBillingKeyInfoException {
+public abstract interface class io/portone/sdk/server/errors/GetBillingKeyInfoException : io/portone/sdk/server/errors/PaymentBillingKeyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6826,7 +6830,7 @@ public final class io/portone/sdk/server/errors/GetBillingKeyInfosError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetBillingKeyInfosException {
+public abstract interface class io/portone/sdk/server/errors/GetBillingKeyInfosException : io/portone/sdk/server/errors/PaymentBillingKeyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6855,7 +6859,7 @@ public final class io/portone/sdk/server/errors/GetCashReceiptError$Unrecognized
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetCashReceiptException {
+public abstract interface class io/portone/sdk/server/errors/GetCashReceiptException : io/portone/sdk/server/errors/PaymentCashReceiptException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6884,7 +6888,7 @@ public final class io/portone/sdk/server/errors/GetIdentityVerificationError$Unr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetIdentityVerificationException {
+public abstract interface class io/portone/sdk/server/errors/GetIdentityVerificationException : io/portone/sdk/server/errors/IdentityVerificationException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6913,7 +6917,7 @@ public final class io/portone/sdk/server/errors/GetKakaopayPaymentOrderError$Unr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetKakaopayPaymentOrderException {
+public abstract interface class io/portone/sdk/server/errors/GetKakaopayPaymentOrderException : io/portone/sdk/server/errors/PgSpecificException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6942,7 +6946,7 @@ public final class io/portone/sdk/server/errors/GetPaymentError$Unrecognized : i
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPaymentException {
+public abstract interface class io/portone/sdk/server/errors/GetPaymentException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -6971,7 +6975,7 @@ public final class io/portone/sdk/server/errors/GetPaymentScheduleError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPaymentScheduleException {
+public abstract interface class io/portone/sdk/server/errors/GetPaymentScheduleException : io/portone/sdk/server/errors/PaymentPaymentScheduleException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7000,7 +7004,7 @@ public final class io/portone/sdk/server/errors/GetPaymentSchedulesError$Unrecog
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPaymentSchedulesException {
+public abstract interface class io/portone/sdk/server/errors/GetPaymentSchedulesException : io/portone/sdk/server/errors/PaymentPaymentScheduleException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7029,7 +7033,7 @@ public final class io/portone/sdk/server/errors/GetPaymentsError$Unrecognized : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPaymentsException {
+public abstract interface class io/portone/sdk/server/errors/GetPaymentsException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7058,7 +7062,7 @@ public final class io/portone/sdk/server/errors/GetPlatformAccountHolderError$Un
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformAccountHolderException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformAccountHolderException : io/portone/sdk/server/errors/PlatformAccountException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7087,7 +7091,7 @@ public final class io/portone/sdk/server/errors/GetPlatformAccountTransfersError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformAccountTransfersException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformAccountTransfersException : io/portone/sdk/server/errors/PlatformAccountTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7116,7 +7120,7 @@ public final class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicies
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePoliciesException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePoliciesException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7145,7 +7149,7 @@ public final class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicyEr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7174,7 +7178,7 @@ public final class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicySc
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicyScheduleException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformAdditionalFeePolicyScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7203,7 +7207,7 @@ public final class io/portone/sdk/server/errors/GetPlatformBulkPayoutsError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformBulkPayoutsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformBulkPayoutsException : io/portone/sdk/server/errors/PlatformBulkPayoutException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7232,7 +7236,7 @@ public final class io/portone/sdk/server/errors/GetPlatformContractError$Unrecog
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformContractException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformContractException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7261,7 +7265,7 @@ public final class io/portone/sdk/server/errors/GetPlatformContractScheduleError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformContractScheduleException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformContractScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7290,7 +7294,7 @@ public final class io/portone/sdk/server/errors/GetPlatformContractsError$Unreco
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformContractsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformContractsException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7319,7 +7323,7 @@ public final class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicies
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePoliciesException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePoliciesException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7348,7 +7352,7 @@ public final class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyEr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7377,7 +7381,7 @@ public final class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyFi
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyFilterOptionsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyFilterOptionsException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7406,7 +7410,7 @@ public final class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicySc
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyScheduleException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformDiscountSharePolicyScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7435,7 +7439,7 @@ public final class io/portone/sdk/server/errors/GetPlatformError$Unrecognized : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7464,7 +7468,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPartnerError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7493,7 +7497,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPartnerFilterOptionsE
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerFilterOptionsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerFilterOptionsException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7522,7 +7526,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPartnerScheduleError$
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerScheduleException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerScheduleException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7551,7 +7555,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPartnerSettlementsErr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerSettlementsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnerSettlementsException : io/portone/sdk/server/errors/PlatformPartnerSettlementException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7580,7 +7584,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPartnersError$Unrecog
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnersException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPartnersException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7609,7 +7613,7 @@ public final class io/portone/sdk/server/errors/GetPlatformPayoutsError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformPayoutsException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformPayoutsException : io/portone/sdk/server/errors/PlatformPayoutException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7638,7 +7642,7 @@ public final class io/portone/sdk/server/errors/GetPlatformTransferError$Unrecog
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformTransferException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformTransferException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7667,7 +7671,7 @@ public final class io/portone/sdk/server/errors/GetPlatformTransferSummariesErro
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPlatformTransferSummariesException {
+public abstract interface class io/portone/sdk/server/errors/GetPlatformTransferSummariesException : io/portone/sdk/server/errors/PlatformTransferException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7696,7 +7700,7 @@ public final class io/portone/sdk/server/errors/GetPromotionError$Unrecognized :
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/GetPromotionException {
+public abstract interface class io/portone/sdk/server/errors/GetPromotionException : io/portone/sdk/server/errors/PaymentPromotionException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7704,6 +7708,10 @@ public final class io/portone/sdk/server/errors/IdentityVerificationAlreadySentE
 }
 
 public final class io/portone/sdk/server/errors/IdentityVerificationAlreadyVerifiedException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ConfirmIdentityVerificationException, io/portone/sdk/server/errors/ResendIdentityVerificationException, io/portone/sdk/server/errors/SendIdentityVerificationException {
+}
+
+public abstract interface class io/portone/sdk/server/errors/IdentityVerificationException : io/portone/sdk/server/errors/RestException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/IdentityVerificationNotFoundException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ConfirmIdentityVerificationException, io/portone/sdk/server/errors/GetIdentityVerificationException, io/portone/sdk/server/errors/ResendIdentityVerificationException, io/portone/sdk/server/errors/SendIdentityVerificationException {
@@ -7740,7 +7748,7 @@ public final class io/portone/sdk/server/errors/IssueBillingKeyError$Unrecognize
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/IssueBillingKeyException {
+public abstract interface class io/portone/sdk/server/errors/IssueBillingKeyException : io/portone/sdk/server/errors/PaymentBillingKeyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7769,7 +7777,7 @@ public final class io/portone/sdk/server/errors/IssueCashReceiptError$Unrecogniz
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/IssueCashReceiptException {
+public abstract interface class io/portone/sdk/server/errors/IssueCashReceiptException : io/portone/sdk/server/errors/PaymentCashReceiptException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7798,7 +7806,7 @@ public final class io/portone/sdk/server/errors/LoginViaApiSecretError$Unrecogni
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/LoginViaApiSecretException {
+public abstract interface class io/portone/sdk/server/errors/LoginViaApiSecretException : io/portone/sdk/server/errors/AuthException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7833,11 +7841,8 @@ public final class io/portone/sdk/server/errors/ModifyEscrowLogisticsError$Unrec
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ModifyEscrowLogisticsException {
+public abstract interface class io/portone/sdk/server/errors/ModifyEscrowLogisticsException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/errors/NegativePromotionAdjustedCancelAmountException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CancelPaymentException {
 }
 
 public abstract interface class io/portone/sdk/server/errors/PayInstantlyError {
@@ -7865,7 +7870,7 @@ public final class io/portone/sdk/server/errors/PayInstantlyError$Unrecognized :
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/PayInstantlyException {
+public abstract interface class io/portone/sdk/server/errors/PayInstantlyException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -7894,11 +7899,23 @@ public final class io/portone/sdk/server/errors/PayWithBillingKeyError$Unrecogni
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/PayWithBillingKeyException {
+public abstract interface class io/portone/sdk/server/errors/PayWithBillingKeyException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PaymentAlreadyCancelledException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CancelPaymentException {
+}
+
+public abstract interface class io/portone/sdk/server/errors/PaymentBillingKeyException : io/portone/sdk/server/errors/PaymentException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PaymentCashReceiptException : io/portone/sdk/server/errors/PaymentException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PaymentException : io/portone/sdk/server/errors/RestException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PaymentNotFoundException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ApplyEscrowLogisticsException, io/portone/sdk/server/errors/CancelPaymentException, io/portone/sdk/server/errors/CloseVirtualAccountException, io/portone/sdk/server/errors/ConfirmEscrowException, io/portone/sdk/server/errors/GetPaymentException, io/portone/sdk/server/errors/ModifyEscrowLogisticsException, io/portone/sdk/server/errors/RegisterStoreReceiptException, io/portone/sdk/server/errors/ResendWebhookException {
@@ -7908,6 +7925,14 @@ public final class io/portone/sdk/server/errors/PaymentNotPaidException : io/por
 }
 
 public final class io/portone/sdk/server/errors/PaymentNotWaitingForDepositException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CloseVirtualAccountException {
+}
+
+public abstract interface class io/portone/sdk/server/errors/PaymentPaymentScheduleException : io/portone/sdk/server/errors/PaymentException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PaymentPromotionException : io/portone/sdk/server/errors/PaymentException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PaymentScheduleAlreadyExistsException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePaymentScheduleException, io/portone/sdk/server/errors/DeleteBillingKeyException, io/portone/sdk/server/errors/PayInstantlyException, io/portone/sdk/server/errors/PayWithBillingKeyException {
@@ -7925,6 +7950,18 @@ public final class io/portone/sdk/server/errors/PaymentScheduleNotFoundException
 public final class io/portone/sdk/server/errors/PgProviderException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ApplyEscrowLogisticsException, io/portone/sdk/server/errors/CancelCashReceiptException, io/portone/sdk/server/errors/CancelPaymentException, io/portone/sdk/server/errors/CloseVirtualAccountException, io/portone/sdk/server/errors/ConfirmEscrowException, io/portone/sdk/server/errors/ConfirmIdentityVerificationException, io/portone/sdk/server/errors/DeleteBillingKeyException, io/portone/sdk/server/errors/IssueBillingKeyException, io/portone/sdk/server/errors/IssueCashReceiptException, io/portone/sdk/server/errors/ModifyEscrowLogisticsException, io/portone/sdk/server/errors/PayInstantlyException, io/portone/sdk/server/errors/PayWithBillingKeyException, io/portone/sdk/server/errors/RegisterStoreReceiptException, io/portone/sdk/server/errors/ResendIdentityVerificationException, io/portone/sdk/server/errors/SendIdentityVerificationException {
 	public final fun getPgCode ()Ljava/lang/String;
 	public final fun getPgMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PgSpecificException : io/portone/sdk/server/errors/RestException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PlatformAccountException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PlatformAccountTransferException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PlatformAccountVerificationAlreadyUsedException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePlatformPartnerException, io/portone/sdk/server/errors/SchedulePartnerException, io/portone/sdk/server/errors/UpdatePlatformPartnerException {
@@ -7970,6 +8007,10 @@ public final class io/portone/sdk/server/errors/PlatformArchivedPartnerException
 }
 
 public final class io/portone/sdk/server/errors/PlatformArchivedPartnersCannotBeScheduledException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/SchedulePlatformPartnersException {
+}
+
+public abstract interface class io/portone/sdk/server/errors/PlatformBulkPayoutException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PlatformCancelOrderTransfersExistsException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/DeletePlatformTransferException {
@@ -8066,6 +8107,10 @@ public final class io/portone/sdk/server/errors/PlatformDiscountSharePolicyNotFo
 public final class io/portone/sdk/server/errors/PlatformDiscountSharePolicyScheduleAlreadyExistsException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ScheduleDiscountSharePolicyException {
 }
 
+public abstract interface class io/portone/sdk/server/errors/PlatformException : io/portone/sdk/server/errors/RestException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/errors/PlatformExternalApiFailedException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/GetPlatformAccountHolderException {
 }
 
@@ -8093,6 +8138,10 @@ public final class io/portone/sdk/server/errors/PlatformOrderDetailMismatchedExc
 public final class io/portone/sdk/server/errors/PlatformOrderTransferAlreadyCancelledException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePlatformOrderCancelTransferException {
 }
 
+public abstract interface class io/portone/sdk/server/errors/PlatformPartnerException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/errors/PlatformPartnerIdAlreadyExistsException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePlatformPartnerException {
 }
 
@@ -8117,7 +8166,19 @@ public final class io/portone/sdk/server/errors/PlatformPartnerSchedulesAlreadyE
 	public final fun getIds ()Ljava/util/List;
 }
 
+public abstract interface class io/portone/sdk/server/errors/PlatformPartnerSettlementException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/errors/PlatformPaymentNotFoundException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePlatformOrderCancelTransferException, io/portone/sdk/server/errors/CreatePlatformOrderTransferException {
+}
+
+public abstract interface class io/portone/sdk/server/errors/PlatformPayoutException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/PlatformPolicyException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/PlatformProductIdDuplicatedException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CreatePlatformOrderCancelTransferException, io/portone/sdk/server/errors/CreatePlatformOrderTransferException {
@@ -8173,6 +8234,10 @@ public final class io/portone/sdk/server/errors/PlatformTransferDiscountSharePol
 	public final fun getProductId ()Ljava/lang/String;
 }
 
+public abstract interface class io/portone/sdk/server/errors/PlatformTransferException : io/portone/sdk/server/errors/PlatformException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/errors/PlatformTransferNonDeletableStatusException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/DeletePlatformTransferException {
 }
 
@@ -8214,11 +8279,8 @@ public final class io/portone/sdk/server/errors/PreRegisterPaymentError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/PreRegisterPaymentException {
+public abstract interface class io/portone/sdk/server/errors/PreRegisterPaymentException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/errors/PromotionDiscountRetainOptionShouldNotBeChangedException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CancelPaymentException {
 }
 
 public final class io/portone/sdk/server/errors/PromotionNotFoundException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/GetPromotionException {
@@ -8252,7 +8314,7 @@ public final class io/portone/sdk/server/errors/RecoverPlatformAdditionalFeePoli
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RecoverPlatformAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/RecoverPlatformAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8281,7 +8343,7 @@ public final class io/portone/sdk/server/errors/RecoverPlatformContractError$Unr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RecoverPlatformContractException {
+public abstract interface class io/portone/sdk/server/errors/RecoverPlatformContractException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8310,7 +8372,7 @@ public final class io/portone/sdk/server/errors/RecoverPlatformDiscountSharePoli
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RecoverPlatformDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/RecoverPlatformDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8339,7 +8401,7 @@ public final class io/portone/sdk/server/errors/RecoverPlatformPartnerError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RecoverPlatformPartnerException {
+public abstract interface class io/portone/sdk/server/errors/RecoverPlatformPartnerException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8368,7 +8430,7 @@ public final class io/portone/sdk/server/errors/RefreshTokenError$Unrecognized :
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RefreshTokenException {
+public abstract interface class io/portone/sdk/server/errors/RefreshTokenException : io/portone/sdk/server/errors/AuthException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8397,8 +8459,11 @@ public final class io/portone/sdk/server/errors/RegisterStoreReceiptError$Unreco
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RegisterStoreReceiptException {
+public abstract interface class io/portone/sdk/server/errors/RegisterStoreReceiptException : io/portone/sdk/server/errors/PaymentException {
 	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/errors/RemainedAmountLessThanPromotionMinPaymentAmountException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/CancelPaymentException {
 }
 
 public abstract interface class io/portone/sdk/server/errors/RescheduleAdditionalFeePolicyError {
@@ -8426,7 +8491,7 @@ public final class io/portone/sdk/server/errors/RescheduleAdditionalFeePolicyErr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RescheduleAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/RescheduleAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8455,7 +8520,7 @@ public final class io/portone/sdk/server/errors/RescheduleContractError$Unrecogn
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RescheduleContractException {
+public abstract interface class io/portone/sdk/server/errors/RescheduleContractException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8484,7 +8549,7 @@ public final class io/portone/sdk/server/errors/RescheduleDiscountSharePolicyErr
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RescheduleDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/RescheduleDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8513,7 +8578,7 @@ public final class io/portone/sdk/server/errors/ReschedulePartnerError$Unrecogni
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ReschedulePartnerException {
+public abstract interface class io/portone/sdk/server/errors/ReschedulePartnerException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8542,7 +8607,7 @@ public final class io/portone/sdk/server/errors/ResendIdentityVerificationError$
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ResendIdentityVerificationException {
+public abstract interface class io/portone/sdk/server/errors/ResendIdentityVerificationException : io/portone/sdk/server/errors/IdentityVerificationException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8571,7 +8636,11 @@ public final class io/portone/sdk/server/errors/ResendWebhookError$Unrecognized 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ResendWebhookException {
+public abstract interface class io/portone/sdk/server/errors/ResendWebhookException : io/portone/sdk/server/errors/PaymentException {
+	public abstract fun getMessage ()Ljava/lang/String;
+}
+
+public abstract interface class io/portone/sdk/server/errors/RestException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8600,7 +8669,7 @@ public final class io/portone/sdk/server/errors/RevokePaymentSchedulesError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/RevokePaymentSchedulesException {
+public abstract interface class io/portone/sdk/server/errors/RevokePaymentSchedulesException : io/portone/sdk/server/errors/PaymentPaymentScheduleException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8629,7 +8698,7 @@ public final class io/portone/sdk/server/errors/ScheduleAdditionalFeePolicyError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ScheduleAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/ScheduleAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8658,7 +8727,7 @@ public final class io/portone/sdk/server/errors/ScheduleContractError$Unrecogniz
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ScheduleContractException {
+public abstract interface class io/portone/sdk/server/errors/ScheduleContractException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8687,7 +8756,7 @@ public final class io/portone/sdk/server/errors/ScheduleDiscountSharePolicyError
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/ScheduleDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/ScheduleDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8716,7 +8785,7 @@ public final class io/portone/sdk/server/errors/SchedulePartnerError$Unrecognize
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/SchedulePartnerException {
+public abstract interface class io/portone/sdk/server/errors/SchedulePartnerException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8745,7 +8814,7 @@ public final class io/portone/sdk/server/errors/SchedulePlatformPartnersError$Un
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/SchedulePlatformPartnersException {
+public abstract interface class io/portone/sdk/server/errors/SchedulePlatformPartnersException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8774,7 +8843,7 @@ public final class io/portone/sdk/server/errors/SendIdentityVerificationError$Un
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/SendIdentityVerificationException {
+public abstract interface class io/portone/sdk/server/errors/SendIdentityVerificationException : io/portone/sdk/server/errors/IdentityVerificationException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8816,7 +8885,7 @@ public final class io/portone/sdk/server/errors/UpdatePlatformAdditionalFeePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/UpdatePlatformAdditionalFeePolicyException {
+public abstract interface class io/portone/sdk/server/errors/UpdatePlatformAdditionalFeePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8845,7 +8914,7 @@ public final class io/portone/sdk/server/errors/UpdatePlatformContractError$Unre
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/UpdatePlatformContractException {
+public abstract interface class io/portone/sdk/server/errors/UpdatePlatformContractException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8874,7 +8943,7 @@ public final class io/portone/sdk/server/errors/UpdatePlatformDiscountSharePolic
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/UpdatePlatformDiscountSharePolicyException {
+public abstract interface class io/portone/sdk/server/errors/UpdatePlatformDiscountSharePolicyException : io/portone/sdk/server/errors/PlatformPolicyException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8903,7 +8972,7 @@ public final class io/portone/sdk/server/errors/UpdatePlatformError$Unrecognized
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/UpdatePlatformException {
+public abstract interface class io/portone/sdk/server/errors/UpdatePlatformException : io/portone/sdk/server/errors/PlatformException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
@@ -8932,11 +9001,18 @@ public final class io/portone/sdk/server/errors/UpdatePlatformPartnerError$Unrec
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class io/portone/sdk/server/errors/UpdatePlatformPartnerException {
+public abstract interface class io/portone/sdk/server/errors/UpdatePlatformPartnerException : io/portone/sdk/server/errors/PlatformPartnerException {
 	public abstract fun getMessage ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/errors/WebhookNotFoundException : io/portone/sdk/server/errors/PortOneException, io/portone/sdk/server/errors/ResendWebhookException {
+}
+
+public final class io/portone/sdk/server/errors/WebhookVerificationException : io/portone/sdk/server/errors/PortOneException {
+	public static final field Companion Lio/portone/sdk/server/errors/WebhookVerificationException$Companion;
+}
+
+public final class io/portone/sdk/server/errors/WebhookVerificationException$Companion {
 }
 
 public final class io/portone/sdk/server/identityverification/ConfirmIdentityVerificationResponse {
@@ -10892,10 +10968,10 @@ public final class io/portone/sdk/server/payment/PaymentClient : java/io/Closeab
 	public static synthetic fun applyEscrowLogistics$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Lio/portone/sdk/server/payment/PaymentEscrowSenderInput;Lio/portone/sdk/server/payment/PaymentEscrowReceiverInput;Lio/portone/sdk/server/payment/PaymentLogistics;Ljava/lang/Boolean;Ljava/util/List;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public final fun applyEscrowLogisticsSuspend (Ljava/lang/String;Lio/portone/sdk/server/payment/PaymentEscrowSenderInput;Lio/portone/sdk/server/payment/PaymentEscrowReceiverInput;Lio/portone/sdk/server/payment/PaymentLogistics;Ljava/lang/Boolean;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun applyEscrowLogisticsSuspend$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Lio/portone/sdk/server/payment/PaymentEscrowSenderInput;Lio/portone/sdk/server/payment/PaymentEscrowReceiverInput;Lio/portone/sdk/server/payment/PaymentLogistics;Ljava/lang/Boolean;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun cancelPayment (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Lio/portone/sdk/server/payment/PromotionDiscountRetainOption;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;)Ljava/util/concurrent/CompletableFuture;
-	public static synthetic fun cancelPayment$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Lio/portone/sdk/server/payment/PromotionDiscountRetainOption;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
-	public final fun cancelPaymentSuspend (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Lio/portone/sdk/server/payment/PromotionDiscountRetainOption;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun cancelPaymentSuspend$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Lio/portone/sdk/server/payment/PromotionDiscountRetainOption;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun cancelPayment (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun cancelPayment$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public final fun cancelPaymentSuspend (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun cancelPaymentSuspend$default (Lio/portone/sdk/server/payment/PaymentClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Lio/portone/sdk/server/payment/CancelRequester;Ljava/lang/Long;Lio/portone/sdk/server/payment/CancelPaymentBodyRefundAccount;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public fun close ()V
 	public final fun closeVirtualAccount (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 	public final fun closeVirtualAccountSuspend (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -12717,39 +12793,6 @@ public final class io/portone/sdk/server/payment/PreRegisterPaymentResponse {
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
-}
-
-public abstract interface class io/portone/sdk/server/payment/PromotionDiscountRetainOption {
-	public static final field Companion Lio/portone/sdk/server/payment/PromotionDiscountRetainOption$Companion;
-	public abstract fun getValue ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/payment/PromotionDiscountRetainOption$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/PromotionDiscountRetainOption$Release : io/portone/sdk/server/payment/PromotionDiscountRetainOption {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/PromotionDiscountRetainOption$Release;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/payment/PromotionDiscountRetainOption$Retain : io/portone/sdk/server/payment/PromotionDiscountRetainOption {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/PromotionDiscountRetainOption$Retain;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/payment/PromotionDiscountRetainOption$Unrecognized : io/portone/sdk/server/payment/PromotionDiscountRetainOption {
-	public final fun component1 ()Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -15646,35 +15689,35 @@ public final class io/portone/sdk/server/payment/paymentschedule/SucceededPaymen
 
 public final class io/portone/sdk/server/payment/promotion/CardPromotion : io/portone/sdk/server/payment/promotion/Promotion$Recognized {
 	public static final field Companion Lio/portone/sdk/server/payment/promotion/CardPromotion$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;JLjava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;JLjava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscount;JLjava/lang/Long;Ljava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscount;JLjava/lang/Long;Ljava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/time/Instant;
 	public final fun component11 ()Ljava/time/Instant;
-	public final fun component12 ()Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;
-	public final fun component13 ()Lio/portone/sdk/server/payment/promotion/PromotionStatus;
-	public final fun component14 ()Ljava/time/Instant;
-	public final fun component15 ()Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;
+	public final fun component12 ()Ljava/time/Instant;
+	public final fun component13 ()Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;
+	public final fun component14 ()Lio/portone/sdk/server/payment/promotion/PromotionStatus;
+	public final fun component15 ()Ljava/time/Instant;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
+	public final fun component4 ()Lio/portone/sdk/server/payment/promotion/PromotionDiscount;
 	public final fun component5 ()J
 	public final fun component6 ()Ljava/lang/Long;
-	public final fun component7 ()J
-	public final fun component8 ()Lio/portone/sdk/server/common/Currency;
-	public final fun component9 ()Ljava/time/Instant;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;JLjava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;)Lio/portone/sdk/server/payment/promotion/CardPromotion;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/CardPromotion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;JLjava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;ILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/CardPromotion;
+	public final fun component7 ()Ljava/lang/Long;
+	public final fun component8 ()J
+	public final fun component9 ()Lio/portone/sdk/server/common/Currency;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscount;JLjava/lang/Long;Ljava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;)Lio/portone/sdk/server/payment/promotion/CardPromotion;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/CardPromotion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/promotion/PromotionDiscount;JLjava/lang/Long;Ljava/lang/Long;JLio/portone/sdk/server/common/Currency;Ljava/time/Instant;Ljava/time/Instant;Ljava/time/Instant;Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;Lio/portone/sdk/server/payment/promotion/PromotionStatus;Ljava/time/Instant;ILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/CardPromotion;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getCardCompany ()Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;
 	public fun getCreatedAt ()Ljava/time/Instant;
 	public fun getCurrency ()Lio/portone/sdk/server/common/Currency;
-	public fun getDiscountPolicy ()Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
+	public fun getDiscountType ()Lio/portone/sdk/server/payment/promotion/PromotionDiscount;
 	public fun getEndAt ()Ljava/time/Instant;
 	public fun getId ()Ljava/lang/String;
 	public fun getMaxDiscountAmount ()Ljava/lang/Long;
+	public fun getMinPaymentAmount ()Ljava/lang/Long;
 	public fun getName ()Ljava/lang/String;
-	public fun getRecoverOption ()Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;
 	public fun getSpentAmount ()J
 	public fun getStartAt ()Ljava/time/Instant;
 	public fun getStatus ()Lio/portone/sdk/server/payment/promotion/PromotionStatus;
@@ -15713,12 +15756,12 @@ public abstract interface class io/portone/sdk/server/payment/promotion/Promotio
 	public abstract fun getCardCompany ()Lio/portone/sdk/server/payment/promotion/PromotionCardCompany;
 	public abstract fun getCreatedAt ()Ljava/time/Instant;
 	public abstract fun getCurrency ()Lio/portone/sdk/server/common/Currency;
-	public abstract fun getDiscountPolicy ()Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
+	public abstract fun getDiscountType ()Lio/portone/sdk/server/payment/promotion/PromotionDiscount;
 	public abstract fun getEndAt ()Ljava/time/Instant;
 	public abstract fun getId ()Ljava/lang/String;
 	public abstract fun getMaxDiscountAmount ()Ljava/lang/Long;
+	public abstract fun getMinPaymentAmount ()Ljava/lang/Long;
 	public abstract fun getName ()Ljava/lang/String;
-	public abstract fun getRecoverOption ()Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption;
 	public abstract fun getSpentAmount ()J
 	public abstract fun getStartAt ()Ljava/time/Instant;
 	public abstract fun getStatus ()Lio/portone/sdk/server/payment/promotion/PromotionStatus;
@@ -15739,30 +15782,30 @@ public final class io/portone/sdk/server/payment/promotion/Promotion$Unrecognize
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme : io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Recognized {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme$Companion;
+public final class io/portone/sdk/server/payment/promotion/PromotionAmountDiscount : io/portone/sdk/server/payment/promotion/PromotionDiscount$Recognized {
+	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount$Companion;
 	public fun <init> (J)V
 	public final fun component1 ()J
-	public final fun copy (J)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme;JILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme;
+	public final fun copy (J)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount;JILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAmount ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme$$serializer;
+public synthetic class io/portone/sdk/server/payment/promotion/PromotionAmountDiscount$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionAmountDiscount;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionAmountDiscountScheme$Companion {
+public final class io/portone/sdk/server/payment/promotion/PromotionAmountDiscount$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -15863,249 +15906,54 @@ public final class io/portone/sdk/server/payment/promotion/PromotionClient : jav
 	public final fun getPromotionSuspend (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountPartition {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition$Companion;
-	public fun <init> (JLio/portone/sdk/server/payment/promotion/PromotionDiscountScheme;)V
-	public final fun component1 ()J
-	public final fun component2 ()Lio/portone/sdk/server/payment/promotion/PromotionDiscountScheme;
-	public final fun copy (JLio/portone/sdk/server/payment/promotion/PromotionDiscountScheme;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition;JLio/portone/sdk/server/payment/promotion/PromotionDiscountScheme;ILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAmountFrom ()J
-	public final fun getScheme ()Lio/portone/sdk/server/payment/promotion/PromotionDiscountScheme;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public abstract interface class io/portone/sdk/server/payment/promotion/PromotionDiscount {
+	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscount$Companion;
 }
 
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionDiscountPartition$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPartition;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountPartition$Companion {
+public final class io/portone/sdk/server/payment/promotion/PromotionDiscount$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountPolicy {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy$Companion;
-	public fun <init> (Ljava/util/List;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;Ljava/util/List;ILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getPartitions ()Ljava/util/List;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public abstract interface class io/portone/sdk/server/payment/promotion/PromotionDiscount$Recognized : io/portone/sdk/server/payment/promotion/PromotionDiscount {
+	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscount$Recognized$Companion;
 }
 
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionDiscountPolicy$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionDiscountPolicy;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountPolicy$Companion {
+public final class io/portone/sdk/server/payment/promotion/PromotionDiscount$Recognized$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionDiscountScheme {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Recognized : io/portone/sdk/server/payment/promotion/PromotionDiscountScheme {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Recognized$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Recognized$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Unrecognized : io/portone/sdk/server/payment/promotion/PromotionDiscountScheme {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Unrecognized;
+public final class io/portone/sdk/server/payment/promotion/PromotionDiscount$Unrecognized : io/portone/sdk/server/payment/promotion/PromotionDiscount {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionDiscount$Unrecognized;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme : io/portone/sdk/server/payment/promotion/PromotionDiscountScheme$Recognized {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme$Companion;
+public final class io/portone/sdk/server/payment/promotion/PromotionPercentDiscount : io/portone/sdk/server/payment/promotion/PromotionDiscount$Recognized {
+	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount$Companion;
 	public fun <init> (I)V
 	public final fun component1 ()I
-	public final fun copy (I)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme;IILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme;
+	public final fun copy (I)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount;IILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getPercent ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme$$serializer;
+public synthetic class io/portone/sdk/server/payment/promotion/PromotionPercentDiscount$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionPercentDiscount;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/payment/promotion/PromotionPercentDiscountScheme$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionRecoverOption {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Recognized : io/portone/sdk/server/payment/promotion/PromotionRecoverOption {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption$Recognized$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Recognized$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Unrecognized : io/portone/sdk/server/payment/promotion/PromotionRecoverOption {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionRecoverOption$Unrecognized;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover : io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Recognized {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover$Companion;
-	public fun <init> ()V
-	public fun <init> (Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;)V
-	public synthetic fun <init> (Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;
-	public final fun copy (Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;)Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover;Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;ILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getSpareBudget ()Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOptionNoRecover$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionRecoverOptionRecover : io/portone/sdk/server/payment/promotion/PromotionRecoverOption$Recognized {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionRecoverOptionRecover;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
-}
-
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionSpareBudget {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public abstract interface class io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Recognized : io/portone/sdk/server/payment/promotion/PromotionSpareBudget {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget$Recognized$Companion;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Recognized$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Unrecognized : io/portone/sdk/server/payment/promotion/PromotionSpareBudget {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionSpareBudget$Unrecognized;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount : io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Recognized {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount$Companion;
-	public fun <init> (J)V
-	public final fun component1 ()J
-	public final fun copy (J)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount;JILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAmount ()J
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetAmount$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent : io/portone/sdk/server/payment/promotion/PromotionSpareBudget$Recognized {
-	public static final field Companion Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent$Companion;
-	public fun <init> (I)V
-	public final fun component1 ()I
-	public final fun copy (I)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent;IILjava/lang/Object;)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getPercent ()I
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/payment/promotion/PromotionSpareBudgetPercent$Companion {
+public final class io/portone/sdk/server/payment/promotion/PromotionPercentDiscount$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -16453,6 +16301,14 @@ public final class io/portone/sdk/server/platform/PlatformAccountStatus$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class io/portone/sdk/server/platform/PlatformAccountStatus$Expired : io/portone/sdk/server/platform/PlatformAccountStatus {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$Expired;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/platform/PlatformAccountStatus$NotVerified : io/portone/sdk/server/platform/PlatformAccountStatus {
 	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$NotVerified;
 	public fun equals (Ljava/lang/Object;)Z
@@ -16485,16 +16341,16 @@ public final class io/portone/sdk/server/platform/PlatformAccountStatus$Verified
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/platform/PlatformAccountStatus$VerifyError : io/portone/sdk/server/platform/PlatformAccountStatus {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$VerifyError;
+public final class io/portone/sdk/server/platform/PlatformAccountStatus$VerifyFailed : io/portone/sdk/server/platform/PlatformAccountStatus {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$VerifyFailed;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/platform/PlatformAccountStatus$VerifyFailed : io/portone/sdk/server/platform/PlatformAccountStatus {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$VerifyFailed;
+public final class io/portone/sdk/server/platform/PlatformAccountStatus$Verifying : io/portone/sdk/server/platform/PlatformAccountStatus {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformAccountStatus$Verifying;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -17031,8 +16887,16 @@ public final class io/portone/sdk/server/platform/PlatformPartnerBusinessStatus$
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/platform/PlatformPartnerBusinessStatus$VerifyError : io/portone/sdk/server/platform/PlatformPartnerBusinessStatus {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformPartnerBusinessStatus$VerifyError;
+public final class io/portone/sdk/server/platform/PlatformPartnerBusinessStatus$VerifyFailed : io/portone/sdk/server/platform/PlatformPartnerBusinessStatus {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformPartnerBusinessStatus$VerifyFailed;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/platform/PlatformPartnerBusinessStatus$Verifying : io/portone/sdk/server/platform/PlatformPartnerBusinessStatus {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformPartnerBusinessStatus$Verifying;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -17071,24 +16935,20 @@ public final class io/portone/sdk/server/platform/PlatformPartnerContractSummary
 public final class io/portone/sdk/server/platform/PlatformPartnerFilterInput {
 	public static final field Companion Lio/portone/sdk/server/platform/PlatformPartnerFilterInput$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;)V
-	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/util/List;
 	public final fun component5 ()Ljava/util/List;
 	public final fun component6 ()Ljava/util/List;
-	public final fun component7 ()Ljava/util/List;
-	public final fun component8 ()Ljava/util/List;
-	public final fun component9 ()Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;
-	public final fun copy (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;)Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;ILjava/lang/Object;)Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;
+	public final fun component7 ()Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;
+	public final fun copy (Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;)Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;ILjava/lang/Object;)Lio/portone/sdk/server/platform/PlatformPartnerFilterInput;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAccountCurrencies ()Ljava/util/List;
-	public final fun getAccountStatuses ()Ljava/util/List;
 	public final fun getBanks ()Ljava/util/List;
-	public final fun getBusinessStatuses ()Ljava/util/List;
 	public final fun getContractIds ()Ljava/util/List;
 	public final fun getIds ()Ljava/util/List;
 	public final fun getKeyword ()Lio/portone/sdk/server/platform/PlatformPartnerFilterInputKeyword;
@@ -23185,8 +23045,8 @@ public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheet
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$Memo : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$Memo;
+public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$IncomeType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$IncomeType;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -23201,40 +23061,8 @@ public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheet
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerId : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerId;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerIncomeType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerIncomeType;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
 public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerName : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
 	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerName;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerTaxationType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerTaxationType;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerTaxationTypeOrIncomeType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$PartnerTaxationTypeOrIncomeType;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -23417,8 +23245,40 @@ public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheet
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$SettlementSupplyAmount : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$SettlementSupplyAmount;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$SettlementTaxFreeAmount : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$SettlementTaxFreeAmount;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$Status : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
 	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$Status;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$TaxationType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$TaxationType;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/platform/transfer/PlatformTransferSheetField$TaxationTypeOrIncomeType : io/portone/sdk/server/platform/transfer/PlatformTransferSheetField {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/PlatformTransferSheetField$TaxationTypeOrIncomeType;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -24602,13 +24462,6 @@ public synthetic class io/portone/sdk/server/webhook/WebhookTransactionVirtualAc
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionVirtualAccountIssued$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookVerificationException : java/lang/Exception {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookVerificationException$Companion;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookVerificationException$Companion {
 }
 
 public final class io/portone/sdk/server/webhook/WebhookVerifier {

@@ -13,17 +13,21 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformPartnerBusinessStatusSerializer::class)
 public sealed interface PlatformPartnerBusinessStatus {
   public val value: String
-  /** 조회 되지 않음 */
+  /** 인증 되지 않음 */
   public data object NotVerified : PlatformPartnerBusinessStatus {
     override val value: String = "NOT_VERIFIED"
   }
-  /** 조회 오류 */
-  public data object VerifyError : PlatformPartnerBusinessStatus {
-    override val value: String = "VERIFY_ERROR"
+  /** 인증 실패 */
+  public data object VerifyFailed : PlatformPartnerBusinessStatus {
+    override val value: String = "VERIFY_FAILED"
   }
   /** 대응되는 사업자 없음 */
   public data object NotFound : PlatformPartnerBusinessStatus {
     override val value: String = "NOT_FOUND"
+  }
+  /** 인증 대기 중 */
+  public data object Verifying : PlatformPartnerBusinessStatus {
+    override val value: String = "VERIFYING"
   }
   /** 사업 중 */
   public data object InBusiness : PlatformPartnerBusinessStatus {
@@ -49,8 +53,9 @@ private object PlatformPartnerBusinessStatusSerializer : KSerializer<PlatformPar
     val value = decoder.decodeString()
     return when (value) {
       "NOT_VERIFIED" -> PlatformPartnerBusinessStatus.NotVerified
-      "VERIFY_ERROR" -> PlatformPartnerBusinessStatus.VerifyError
+      "VERIFY_FAILED" -> PlatformPartnerBusinessStatus.VerifyFailed
       "NOT_FOUND" -> PlatformPartnerBusinessStatus.NotFound
+      "VERIFYING" -> PlatformPartnerBusinessStatus.Verifying
       "IN_BUSINESS" -> PlatformPartnerBusinessStatus.InBusiness
       "CLOSED" -> PlatformPartnerBusinessStatus.Closed
       "SUSPENDED" -> PlatformPartnerBusinessStatus.Suspended

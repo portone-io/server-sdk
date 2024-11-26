@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface GetPlatformAccountHolderException {
-  public val message: String?
+public sealed interface GetPlatformAccountHolderException : PlatformAccountException {
+  public override val message: String?
 }

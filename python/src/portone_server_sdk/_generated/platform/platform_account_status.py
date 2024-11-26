@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformAccountStatus = Union[Literal["VERIFIED", "VERIFY_FAILED", "VERIFY_ERROR", "NOT_VERIFIED", "UNKNOWN"], str]
+PlatformAccountStatus = Union[Literal["VERIFYING", "VERIFIED", "VERIFY_FAILED", "NOT_VERIFIED", "EXPIRED", "UNKNOWN"], str]
 """플랫폼 계좌 상태
 """
 

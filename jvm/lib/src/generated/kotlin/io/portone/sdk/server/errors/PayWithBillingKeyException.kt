@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface PayWithBillingKeyException {
-  public val message: String?
+public sealed interface PayWithBillingKeyException : PaymentException {
+  public override val message: String?
 }

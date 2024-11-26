@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface GetPlatformPartnerFilterOptionsException {
-  public val message: String?
+public sealed interface GetPlatformPartnerFilterOptionsException : PlatformException {
+  public override val message: String?
 }

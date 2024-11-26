@@ -158,9 +158,6 @@ from .._generated.payment.pre_register_payment_body import PreRegisterPaymentBod
 from .._generated.payment.pre_register_payment_response import (
     PreRegisterPaymentResponse,
 )
-from .._generated.payment.promotion_discount_retain_option import (
-    PromotionDiscountRetainOption,
-)
 from .._generated.payment.ready_payment import ReadyPayment
 from .._generated.payment.register_escrow_logistics_body import (
     RegisterEscrowLogisticsBody,
@@ -287,7 +284,6 @@ __all__ = [
     "PaymentWithCursor",
     "PreRegisterPaymentBody",
     "PreRegisterPaymentResponse",
-    "PromotionDiscountRetainOption",
     "ReadyPayment",
     "RegisterEscrowLogisticsBody",
     "RegisterStoreReceiptBody",

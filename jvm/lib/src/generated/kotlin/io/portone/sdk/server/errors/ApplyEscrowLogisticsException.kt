@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface ApplyEscrowLogisticsException {
-  public val message: String?
+public sealed interface ApplyEscrowLogisticsException : PaymentException {
+  public override val message: String?
 }

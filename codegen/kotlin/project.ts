@@ -39,15 +39,18 @@ export function generateProject(projectRoot: string, pack: Package) {
   const variantErrors = new Map<string, Set<string>>()
   collectErrors(pack, entityMap, oneOfErrors, variantErrors)
   const errors = oneOfErrors.union(new Set(variantErrors.keys()))
+  const operationCategoryMap = new Map<string, string>(categoryMap)
   for (const error of errors) {
     categoryMap.set(error, "errors")
   }
   generateExceptions(
     packagePath,
+    pack,
     oneOfErrors,
     variantErrors,
     entityMap,
     categoryMap,
+    operationCategoryMap,
   )
   generateEntityDirectory(
     packagePath,
@@ -113,15 +116,50 @@ function generateWebhookSerializer(srcPath: string) {
   )
 }
 
+function generateCategoryExceptions(
+  errorPath: string,
+  pack: Package,
+  hierarchy: string,
+  parentException?: string,
+) {
+  if (pack.subpackages.length === 0 && pack.operations.length === 0) return
+  const writer = KotlinWriter()
+  writer.writeLine("package io.portone.sdk.server.errors")
+  writer.writeLine("")
+  const name = pack.category === "root"
+    ? "RestException"
+    : `${hierarchy}Exception`
+  const extend = parentException ? ` : ${parentException}` : ""
+  writer.writeLine(`public sealed interface ${name}${extend} {`)
+  writer.indent()
+  writer.writeLine(
+    `public${parentException == null ? "" : " override"} val message: String?`,
+  )
+  writer.outdent()
+  writer.writeLine("}")
+  for (const subpackage of pack.subpackages) {
+    generateCategoryExceptions(
+      errorPath,
+      subpackage,
+      `${hierarchy}${toPascalCase(subpackage.category)}`,
+      name,
+    )
+  }
+  Deno.writeTextFileSync(path.join(errorPath, `${name}.kt`), writer.content)
+}
+
 function generateExceptions(
   packagePath: string,
+  pack: Package,
   oneOfErrors: Set<string>,
   variantErrors: Map<string, Set<string>>,
   entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
+  operationCategoryMap: Map<string, string>,
 ) {
   const errorPath = path.join(packagePath, "errors")
   fs.ensureDirSync(errorPath)
+  generateCategoryExceptions(errorPath, pack, "")
   {
     const writer = KotlinWriter()
     writer.writeLine("package io.portone.sdk.server.errors")
@@ -138,14 +176,18 @@ function generateExceptions(
     )
   }
   for (const error of oneOfErrors) {
+    const category = operationCategoryMap.get(error)
+    if (!category) continue
     const writer = KotlinWriter()
     writer.writeLine("package io.portone.sdk.server.errors")
     writer.writeLine("")
     writer.writeLine(
-      `public sealed interface ${toException(error)} {`,
+      `public sealed interface ${toException(error)} : ${
+        toPascalCase(category)
+      }Exception {`,
     )
     writer.indent()
-    writer.writeLine("public val message: String?")
+    writer.writeLine("public override val message: String?")
     writer.outdent()
     writer.writeLine("}")
     Deno.writeTextFileSync(

@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface GetPaymentException {
-  public val message: String?
+public sealed interface GetPaymentException : PaymentException {
+  public override val message: String?
 }

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformPartnerBusinessStatus = Union[Literal["NOT_VERIFIED", "VERIFY_ERROR", "NOT_FOUND", "IN_BUSINESS", "CLOSED", "SUSPENDED"], str]
+PlatformPartnerBusinessStatus = Union[Literal["NOT_VERIFIED", "VERIFY_FAILED", "NOT_FOUND", "VERIFYING", "IN_BUSINESS", "CLOSED", "SUSPENDED"], str]
 """플랫폼 파트너 사업자 상태
 """
 

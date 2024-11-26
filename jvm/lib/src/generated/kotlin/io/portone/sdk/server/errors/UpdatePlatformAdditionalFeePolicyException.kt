@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface UpdatePlatformAdditionalFeePolicyException {
-  public val message: String?
+public sealed interface UpdatePlatformAdditionalFeePolicyException : PlatformPolicyException {
+  public override val message: String?
 }

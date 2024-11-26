@@ -1,5 +1,6 @@
 package io.portone.sdk.server.webhook
 
+import io.portone.sdk.server.errors.WebhookVerificationException
 import kotlinx.serialization.json.Json
 import java.security.MessageDigest
 import java.util.Base64

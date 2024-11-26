@@ -1,5 +1,5 @@
 package io.portone.sdk.server.errors
 
-public sealed interface GetPlatformContractScheduleException {
-  public val message: String?
+public sealed interface GetPlatformContractScheduleException : PlatformException {
+  public override val message: String?
 }

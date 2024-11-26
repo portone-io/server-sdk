@@ -59,8 +59,6 @@ import io.portone.sdk.server.errors.MaxTransactionCountReachedException
 import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedError
 import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedException
 import io.portone.sdk.server.errors.ModifyEscrowLogisticsError
-import io.portone.sdk.server.errors.NegativePromotionAdjustedCancelAmountError
-import io.portone.sdk.server.errors.NegativePromotionAdjustedCancelAmountException
 import io.portone.sdk.server.errors.PayInstantlyError
 import io.portone.sdk.server.errors.PayWithBillingKeyError
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledError
@@ -76,11 +74,11 @@ import io.portone.sdk.server.errors.PaymentScheduleAlreadyExistsException
 import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.PreRegisterPaymentError
-import io.portone.sdk.server.errors.PromotionDiscountRetainOptionShouldNotBeChangedError
-import io.portone.sdk.server.errors.PromotionDiscountRetainOptionShouldNotBeChangedException
 import io.portone.sdk.server.errors.PromotionPayMethodDoesNotMatchError
 import io.portone.sdk.server.errors.PromotionPayMethodDoesNotMatchException
 import io.portone.sdk.server.errors.RegisterStoreReceiptError
+import io.portone.sdk.server.errors.RemainedAmountLessThanPromotionMinPaymentAmountError
+import io.portone.sdk.server.errors.RemainedAmountLessThanPromotionMinPaymentAmountException
 import io.portone.sdk.server.errors.ResendWebhookError
 import io.portone.sdk.server.errors.SumOfPartsExceedsCancelAmountError
 import io.portone.sdk.server.errors.SumOfPartsExceedsCancelAmountException
@@ -116,7 +114,6 @@ import io.portone.sdk.server.payment.PaymentFilterInput
 import io.portone.sdk.server.payment.PaymentLogistics
 import io.portone.sdk.server.payment.PreRegisterPaymentBody
 import io.portone.sdk.server.payment.PreRegisterPaymentResponse
-import io.portone.sdk.server.payment.PromotionDiscountRetainOption
 import io.portone.sdk.server.payment.RegisterEscrowLogisticsBody
 import io.portone.sdk.server.payment.RegisterStoreReceiptBody
 import io.portone.sdk.server.payment.RegisterStoreReceiptBodyItem
@@ -452,13 +449,6 @@ public class PaymentClient(
    * 취소 요청자
    *
    * 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
-   * @param promotionDiscountRetainOption
-   * 프로모션 할인율 유지 옵션
-   *
-   * 프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
-   * RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
-   * RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
-   * 값을 입력하지 않으면 RELEASE 로 취급합니다.
    * @param currentCancellableAmount
    * 결제 건의 취소 가능 잔액
    *
@@ -478,7 +468,6 @@ public class PaymentClient(
     vatAmount: Long? = null,
     reason: String,
     requester: CancelRequester? = null,
-    promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
   ): CancelPaymentResponse {
@@ -489,7 +478,6 @@ public class PaymentClient(
       vatAmount = vatAmount,
       reason = reason,
       requester = requester,
-      promotionDiscountRetainOption = promotionDiscountRetainOption,
       currentCancellableAmount = currentCancellableAmount,
       refundAccount = refundAccount,
     )
@@ -520,12 +508,11 @@ public class PaymentClient(
         is CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError -> throw CancelTaxFreeAmountExceedsCancellableTaxFreeAmountException(httpBodyDecoded)
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is NegativePromotionAdjustedCancelAmountError -> throw NegativePromotionAdjustedCancelAmountException(httpBodyDecoded)
         is PaymentAlreadyCancelledError -> throw PaymentAlreadyCancelledException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is PromotionDiscountRetainOptionShouldNotBeChangedError -> throw PromotionDiscountRetainOptionShouldNotBeChangedException(httpBodyDecoded)
+        is RemainedAmountLessThanPromotionMinPaymentAmountError -> throw RemainedAmountLessThanPromotionMinPaymentAmountException(httpBodyDecoded)
         is SumOfPartsExceedsCancelAmountError -> throw SumOfPartsExceedsCancelAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
@@ -548,10 +535,9 @@ public class PaymentClient(
     vatAmount: Long? = null,
     reason: String,
     requester: CancelRequester? = null,
-    promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
-  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, promotionDiscountRetainOption, currentCancellableAmount, refundAccount) }
+  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, currentCancellableAmount, refundAccount) }
 
 
   /**

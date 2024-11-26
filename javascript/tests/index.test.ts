@@ -1,6 +1,6 @@
-import spawnAsync from "@expo/spawn-async";
 import * as fs from "node:fs/promises";
 import { createRequire } from "node:module";
+import spawnAsync from "@expo/spawn-async";
 import { beforeAll, describe, expect, test } from "vitest";
 
 let uuid: string;
