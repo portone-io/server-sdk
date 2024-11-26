@@ -1,5 +1,16 @@
 # @portone/server-sdk
 
+## 0.7.0
+
+### Minor Changes
+
+- 8ec15af: 전체 스키마 구조 변경
+- 8ec15af: API 업데이트
+
+### Patch Changes
+
+- a88c9a4: 의존성 업데이트
+
 ## 0.6.3
 
 ### Patch Changes
