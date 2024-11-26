@@ -1,8 +1,8 @@
 package io.portone.sdk.server.common
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -14,12 +14,36 @@ import kotlinx.serialization.encoding.Encoder
 public sealed interface CardOwnerType {
   public val value: String
   /** 개인 */
+  @Serializable(PersonalSerializer::class)
   public data object Personal : CardOwnerType {
     override val value: String = "PERSONAL"
   }
+  private object PersonalSerializer : KSerializer<Personal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Personal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Personal = decoder.decodeString().let {
+      if (it != "PERSONAL") {
+        throw SerializationException(it)
+      } else {
+        return Personal
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Personal) = encoder.encodeString(value.value)
+  }
   /** 법인 */
+  @Serializable(CorporateSerializer::class)
   public data object Corporate : CardOwnerType {
     override val value: String = "CORPORATE"
+  }
+  private object CorporateSerializer : KSerializer<Corporate> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Corporate::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Corporate = decoder.decodeString().let {
+      if (it != "CORPORATE") {
+        throw SerializationException(it)
+      } else {
+        return Corporate
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Corporate) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -28,7 +52,7 @@ public sealed interface CardOwnerType {
 
 
 private object CardOwnerTypeSerializer : KSerializer<CardOwnerType> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardOwnerType::class.java.canonicalName, PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardOwnerType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): CardOwnerType {
     val value = decoder.decodeString()
     return when (value) {

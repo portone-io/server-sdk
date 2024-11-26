@@ -1,8 +1,8 @@
 package io.portone.sdk.server.platform
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -18,12 +18,36 @@ import kotlinx.serialization.encoding.Encoder
 public sealed interface PlatformPayer {
   public val value: String
   /** 파트너가 부담하는 경우 */
+  @Serializable(PartnerSerializer::class)
   public data object Partner : PlatformPayer {
     override val value: String = "PARTNER"
   }
+  private object PartnerSerializer : KSerializer<Partner> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Partner::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Partner = decoder.decodeString().let {
+      if (it != "PARTNER") {
+        throw SerializationException(it)
+      } else {
+        return Partner
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Partner) = encoder.encodeString(value.value)
+  }
   /** 고객사가 부담하는 경우 */
+  @Serializable(MerchantSerializer::class)
   public data object Merchant : PlatformPayer {
     override val value: String = "MERCHANT"
+  }
+  private object MerchantSerializer : KSerializer<Merchant> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Merchant::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Merchant = decoder.decodeString().let {
+      if (it != "MERCHANT") {
+        throw SerializationException(it)
+      } else {
+        return Merchant
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Merchant) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -32,7 +56,7 @@ public sealed interface PlatformPayer {
 
 
 private object PlatformPayerSerializer : KSerializer<PlatformPayer> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayer::class.java.canonicalName, PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayer::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPayer {
     val value = decoder.decodeString()
     return when (value) {

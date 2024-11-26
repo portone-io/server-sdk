@@ -1,8 +1,8 @@
 package io.portone.sdk.server.platform
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -14,20 +14,68 @@ import kotlinx.serialization.encoding.Encoder
 public sealed interface PlatformPartnerTaxationType {
   public val value: String
   /** 일반 과세 */
+  @Serializable(NormalSerializer::class)
   public data object Normal : PlatformPartnerTaxationType {
     override val value: String = "NORMAL"
   }
+  private object NormalSerializer : KSerializer<Normal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
+      if (it != "NORMAL") {
+        throw SerializationException(it)
+      } else {
+        return Normal
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Normal) = encoder.encodeString(value.value)
+  }
   /** 간이과세(세금계산서 발행) */
+  @Serializable(SimpleTaxInvoiceIssuerSerializer::class)
   public data object SimpleTaxInvoiceIssuer : PlatformPartnerTaxationType {
     override val value: String = "SIMPLE_TAX_INVOICE_ISSUER"
   }
+  private object SimpleTaxInvoiceIssuerSerializer : KSerializer<SimpleTaxInvoiceIssuer> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SimpleTaxInvoiceIssuer::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SimpleTaxInvoiceIssuer = decoder.decodeString().let {
+      if (it != "SIMPLE_TAX_INVOICE_ISSUER") {
+        throw SerializationException(it)
+      } else {
+        return SimpleTaxInvoiceIssuer
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SimpleTaxInvoiceIssuer) = encoder.encodeString(value.value)
+  }
   /** 간이과세(세금계산서 미발행) */
+  @Serializable(SimpleSerializer::class)
   public data object Simple : PlatformPartnerTaxationType {
     override val value: String = "SIMPLE"
   }
+  private object SimpleSerializer : KSerializer<Simple> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Simple::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Simple = decoder.decodeString().let {
+      if (it != "SIMPLE") {
+        throw SerializationException(it)
+      } else {
+        return Simple
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Simple) = encoder.encodeString(value.value)
+  }
   /** 면세 */
+  @Serializable(TaxFreeSerializer::class)
   public data object TaxFree : PlatformPartnerTaxationType {
     override val value: String = "TAX_FREE"
+  }
+  private object TaxFreeSerializer : KSerializer<TaxFree> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxFree::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): TaxFree = decoder.decodeString().let {
+      if (it != "TAX_FREE") {
+        throw SerializationException(it)
+      } else {
+        return TaxFree
+      }
+    }
+    override fun serialize(encoder: Encoder, value: TaxFree) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -36,7 +84,7 @@ public sealed interface PlatformPartnerTaxationType {
 
 
 private object PlatformPartnerTaxationTypeSerializer : KSerializer<PlatformPartnerTaxationType> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerTaxationType::class.java.canonicalName, PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerTaxationType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerTaxationType {
     val value = decoder.decodeString()
     return when (value) {

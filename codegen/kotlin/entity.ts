@@ -410,7 +410,7 @@ export function generateEntity(
       crossRef.add("kotlinx.serialization.KSerializer")
       serializerWriter.indent()
       serializerWriter.writeLine(
-        `override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(${definition.name}::class.java.canonicalName, PrimitiveKind.STRING)`,
+        `override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(${definition.name}::class.java.name, PrimitiveKind.STRING)`,
       )
       crossRef.add("kotlinx.serialization.descriptors.PrimitiveKind")
       crossRef.add(
@@ -453,13 +453,51 @@ export function generateEntity(
         const mergedDescription = [title ?? []].concat([description ?? []])
           .flat().join("\n\n")
         writeDescription(writer, mergedDescription)
-        crossRef.add("kotlinx.serialization.SerialName")
+        writer.writeLine(
+          `@Serializable(${toPascalCase(value)}Serializer::class)`,
+        )
         writer.writeLine(
           `public data object ${toPascalCase(value)} : ${definition.name} {`,
         )
         writer.indent()
         writer.writeLine(
           `override val value: String = "${value}"`,
+        )
+        writer.outdent()
+        writer.writeLine("}")
+        writer.writeLine(
+          `private object ${toPascalCase(value)}Serializer : KSerializer<${
+            toPascalCase(value)
+          }> {`,
+        )
+        writer.indent()
+        writer.writeLine(
+          `override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(${
+            toPascalCase(value)
+          }::class.java.name, PrimitiveKind.STRING)`,
+        )
+        writer.writeLine(
+          `override fun deserialize(decoder: Decoder): ${
+            toPascalCase(value)
+          } = decoder.decodeString().let {`,
+        )
+        writer.indent()
+        writer.writeLine(`if (it != "${value}") {`)
+        writer.indent()
+        writer.writeLine(`throw SerializationException(it)`)
+        crossRef.add("kotlinx.serialization.SerializationException")
+        writer.outdent()
+        writer.writeLine("} else {")
+        writer.indent()
+        writer.writeLine(`return ${toPascalCase(value)}`)
+        writer.outdent()
+        writer.writeLine("}")
+        writer.outdent()
+        writer.writeLine("}")
+        writer.writeLine(
+          `override fun serialize(encoder: Encoder, value: ${
+            toPascalCase(value)
+          }) = encoder.encodeString(value.value)`,
         )
         writer.outdent()
         writer.writeLine("}")

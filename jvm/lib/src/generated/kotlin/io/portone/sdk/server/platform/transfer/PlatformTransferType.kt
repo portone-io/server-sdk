@@ -1,8 +1,8 @@
 package io.portone.sdk.server.platform.transfer
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -12,14 +12,50 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformTransferTypeSerializer::class)
 public sealed interface PlatformTransferType {
   public val value: String
+  @Serializable(OrderSerializer::class)
   public data object Order : PlatformTransferType {
     override val value: String = "ORDER"
   }
+  private object OrderSerializer : KSerializer<Order> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Order::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Order = decoder.decodeString().let {
+      if (it != "ORDER") {
+        throw SerializationException(it)
+      } else {
+        return Order
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Order) = encoder.encodeString(value.value)
+  }
+  @Serializable(OrderCancelSerializer::class)
   public data object OrderCancel : PlatformTransferType {
     override val value: String = "ORDER_CANCEL"
   }
+  private object OrderCancelSerializer : KSerializer<OrderCancel> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderCancel::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): OrderCancel = decoder.decodeString().let {
+      if (it != "ORDER_CANCEL") {
+        throw SerializationException(it)
+      } else {
+        return OrderCancel
+      }
+    }
+    override fun serialize(encoder: Encoder, value: OrderCancel) = encoder.encodeString(value.value)
+  }
+  @Serializable(ManualSerializer::class)
   public data object Manual : PlatformTransferType {
     override val value: String = "MANUAL"
+  }
+  private object ManualSerializer : KSerializer<Manual> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
+      if (it != "MANUAL") {
+        throw SerializationException(it)
+      } else {
+        return Manual
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Manual) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -28,7 +64,7 @@ public sealed interface PlatformTransferType {
 
 
 private object PlatformTransferTypeSerializer : KSerializer<PlatformTransferType> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformTransferType::class.java.canonicalName, PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformTransferType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformTransferType {
     val value = decoder.decodeString()
     return when (value) {

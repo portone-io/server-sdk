@@ -1,8 +1,8 @@
 package io.portone.sdk.server.payment
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -25,12 +25,36 @@ import kotlinx.serialization.encoding.Encoder
 public sealed interface PaymentTimestampType {
   public val value: String
   /** 결제 건 생성 시점 */
+  @Serializable(CreatedAtSerializer::class)
   public data object CreatedAt : PaymentTimestampType {
     override val value: String = "CREATED_AT"
   }
+  private object CreatedAtSerializer : KSerializer<CreatedAt> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreatedAt::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): CreatedAt = decoder.decodeString().let {
+      if (it != "CREATED_AT") {
+        throw SerializationException(it)
+      } else {
+        return CreatedAt
+      }
+    }
+    override fun serialize(encoder: Encoder, value: CreatedAt) = encoder.encodeString(value.value)
+  }
   /** 상태 변경 시점 */
+  @Serializable(StatusChangedAtSerializer::class)
   public data object StatusChangedAt : PaymentTimestampType {
     override val value: String = "STATUS_CHANGED_AT"
+  }
+  private object StatusChangedAtSerializer : KSerializer<StatusChangedAt> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusChangedAt::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): StatusChangedAt = decoder.decodeString().let {
+      if (it != "STATUS_CHANGED_AT") {
+        throw SerializationException(it)
+      } else {
+        return StatusChangedAt
+      }
+    }
+    override fun serialize(encoder: Encoder, value: StatusChangedAt) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -39,7 +63,7 @@ public sealed interface PaymentTimestampType {
 
 
 private object PaymentTimestampTypeSerializer : KSerializer<PaymentTimestampType> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentTimestampType::class.java.canonicalName, PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentTimestampType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentTimestampType {
     val value = decoder.decodeString()
     return when (value) {
