@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,18 +7,20 @@ from dataclasses import dataclass, field
 class IdentityVerificationFailure:
     """본인인증 실패 정보
     """
-    reason: Optional[str]
+    reason: Optional[str] = field(default=None)
     """실패 사유
     """
-    pg_code: Optional[str]
+    pg_code: Optional[str] = field(default=None)
     """PG사 실패 코드
     """
-    pg_message: Optional[str]
+    pg_message: Optional[str] = field(default=None)
     """PG사 실패 메시지
     """
 
 
 def _serialize_identity_verification_failure(obj: IdentityVerificationFailure) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.reason is not None:
         entity["reason"] = obj.reason

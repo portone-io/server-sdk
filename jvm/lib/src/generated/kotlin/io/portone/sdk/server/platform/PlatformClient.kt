@@ -144,11 +144,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PlatformClient internal constructor(
+public class PlatformClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -159,10 +159,7 @@ public class PlatformClient internal constructor(
    *
    *
    *
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformException
    */
   @JvmName("getPlatformSuspend")
   public suspend fun getPlatform(
@@ -180,7 +177,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformError>(httpBody)
+        json.decodeFromString<GetPlatformError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -217,12 +214,7 @@ public class PlatformClient internal constructor(
    * @param settlementRule
    * 정산 규칙
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformInvalidSettlementFormulaException PlatformInvalidSettlementFormulaError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws UpdatePlatformException
    */
   @JvmName("updatePlatformSuspend")
   public suspend fun updatePlatform(
@@ -250,7 +242,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformError>(httpBody)
+        json.decodeFromString<UpdatePlatformError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -289,11 +281,7 @@ public class PlatformClient internal constructor(
    *
    * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformDiscountSharePolicyFilterOptionsException
    */
   @JvmName("getPlatformDiscountSharePolicyFilterOptionsSuspend")
   public suspend fun getPlatformDiscountSharePolicyFilterOptions(
@@ -313,7 +301,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -347,12 +335,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 할인 분담 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformDiscountSharePolicyScheduleException
    */
   @JvmName("getPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun getPlatformDiscountSharePolicySchedule(
@@ -371,7 +354,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -410,12 +393,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RescheduleDiscountSharePolicyException
    */
   @JvmName("rescheduleDiscountSharePolicySuspend")
   public suspend fun rescheduleDiscountSharePolicy(
@@ -442,7 +420,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<RescheduleDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -483,14 +461,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformArchivedDiscountSharePolicyException 보관된 할인 분담 정책을 업데이트하려고 하는 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformDiscountSharePolicyScheduleAlreadyExistsException PlatformDiscountSharePolicyScheduleAlreadyExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ScheduleDiscountSharePolicyException
    */
   @JvmName("scheduleDiscountSharePolicySuspend")
   public suspend fun scheduleDiscountSharePolicy(
@@ -517,7 +488,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<ScheduleDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -556,12 +527,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 할인 분담 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelPlatformDiscountSharePolicyScheduleException
    */
   @JvmName("cancelPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun cancelPlatformDiscountSharePolicySchedule(
@@ -580,7 +546,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformDiscountSharePolicyScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformDiscountSharePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -615,12 +581,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 추가 수수료 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformAdditionalFeePolicyScheduleException
    */
   @JvmName("getPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun getPlatformAdditionalFeePolicySchedule(
@@ -639,7 +600,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -676,12 +637,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RescheduleAdditionalFeePolicyException
    */
   @JvmName("rescheduleAdditionalFeePolicySuspend")
   public suspend fun rescheduleAdditionalFeePolicy(
@@ -708,7 +664,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<RescheduleAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -749,14 +705,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformAdditionalFeePolicyScheduleAlreadyExistsException PlatformAdditionalFeePolicyScheduleAlreadyExistsError
-   * @throws PlatformArchivedAdditionalFeePolicyException 보관된 추가 수수료 정책을 업데이트하려고 하는 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ScheduleAdditionalFeePolicyException
    */
   @JvmName("scheduleAdditionalFeePolicySuspend")
   public suspend fun scheduleAdditionalFeePolicy(
@@ -783,7 +732,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<ScheduleAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -822,12 +771,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 추가 수수료 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelPlatformAdditionalFeePolicyScheduleException
    */
   @JvmName("cancelPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun cancelPlatformAdditionalFeePolicySchedule(
@@ -846,7 +790,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -883,11 +827,7 @@ public class PlatformClient internal constructor(
    *
    * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformPartnerFilterOptionsException
    */
   @JvmName("getPlatformPartnerFilterOptionsSuspend")
   public suspend fun getPlatformPartnerFilterOptions(
@@ -907,7 +847,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnerFilterOptionsError>(httpBody)
+        json.decodeFromString<GetPlatformPartnerFilterOptionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -941,12 +881,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 파트너 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformPartnerScheduleException
    */
   @JvmName("getPlatformPartnerScheduleSuspend")
   public suspend fun getPlatformPartnerSchedule(
@@ -965,7 +900,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnerScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformPartnerScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1004,13 +939,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ReschedulePartnerException
    */
   @JvmName("reschedulePartnerSuspend")
   public suspend fun reschedulePartner(
@@ -1037,7 +966,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ReschedulePartnerError>(httpBody)
+        json.decodeFromString<ReschedulePartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1079,20 +1008,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAccountVerificationAlreadyUsedException 파트너 계좌 검증 아이디를 이미 사용한 경우
-   * @throws PlatformAccountVerificationFailedException 파트너 계좌 인증이 실패한 경우
-   * @throws PlatformAccountVerificationNotFoundException 파트너 계좌 검증 아이디를 찾을 수 없는 경우
-   * @throws PlatformArchivedPartnerException 보관된 파트너를 업데이트하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformInsufficientDataToChangePartnerTypeException 파트너 타입 수정에 필요한 데이터가 부족한 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws PlatformPartnerScheduleAlreadyExistsException PlatformPartnerScheduleAlreadyExistsError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws SchedulePartnerException
    */
   @JvmName("schedulePartnerSuspend")
   public suspend fun schedulePartner(
@@ -1119,7 +1035,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SchedulePartnerError>(httpBody)
+        json.decodeFromString<SchedulePartnerError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1164,12 +1080,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 파트너 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerNotFoundException PlatformPartnerNotFoundError
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelPlatformPartnerScheduleException
    */
   @JvmName("cancelPlatformPartnerScheduleSuspend")
   public suspend fun cancelPlatformPartnerSchedule(
@@ -1188,7 +1099,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformPartnerScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformPartnerScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1225,15 +1136,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    *
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformArchivedPartnersCannotBeScheduledException 보관된 파트너들을 예약 업데이트하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws PlatformPartnerSchedulesAlreadyExistException PlatformPartnerSchedulesAlreadyExistError
-   * @throws PlatformUserDefinedPropertyNotFoundException 사용자 정의 속성이 존재 하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws SchedulePlatformPartnersException
    */
   @JvmName("schedulePlatformPartnersSuspend")
   public suspend fun schedulePlatformPartners(
@@ -1261,7 +1164,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SchedulePlatformPartnersError>(httpBody)
+        json.decodeFromString<SchedulePlatformPartnersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1301,12 +1204,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 계약 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformContractScheduleException
    */
   @JvmName("getPlatformContractScheduleSuspend")
   public suspend fun getPlatformContractSchedule(
@@ -1325,7 +1223,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractScheduleError>(httpBody)
+        json.decodeFromString<GetPlatformContractScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1364,12 +1262,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RescheduleContractException
    */
   @JvmName("rescheduleContractSuspend")
   public suspend fun rescheduleContract(
@@ -1396,7 +1289,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleContractError>(httpBody)
+        json.decodeFromString<RescheduleContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1437,14 +1330,7 @@ public class PlatformClient internal constructor(
    * @param appliedAt
    * 업데이트 적용 시점
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformArchivedContractException 보관된 계약을 업데이트하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformContractScheduleAlreadyExistsException PlatformContractScheduleAlreadyExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ScheduleContractException
    */
   @JvmName("scheduleContractSuspend")
   public suspend fun scheduleContract(
@@ -1471,7 +1357,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleContractError>(httpBody)
+        json.decodeFromString<ScheduleContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1510,12 +1396,7 @@ public class PlatformClient internal constructor(
    * @param id
    * 계약 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelPlatformContractScheduleException
    */
   @JvmName("cancelPlatformContractScheduleSuspend")
   public suspend fun cancelPlatformContractSchedule(
@@ -1534,7 +1415,7 @@ public class PlatformClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformContractScheduleError>(httpBody)
+        json.decodeFromString<CancelPlatformContractScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1570,7 +1451,7 @@ public class PlatformClient internal constructor(
   public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
   public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)
-  internal fun close() {
+  override fun close() {
     policy.close()
     partner.close()
     transfer.close()

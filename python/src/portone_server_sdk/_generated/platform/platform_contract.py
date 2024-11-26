@@ -1,9 +1,10 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_fee import PlatformFee, _deserialize_platform_fee, _serialize_platform_fee
-from portone_server_sdk._generated.platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
-from portone_server_sdk._generated.platform.platform_settlement_cycle import PlatformSettlementCycle, _deserialize_platform_settlement_cycle, _serialize_platform_settlement_cycle
+from ..platform.platform_fee import PlatformFee, _deserialize_platform_fee, _serialize_platform_fee
+from ..platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
+from ..platform.platform_settlement_cycle import PlatformSettlementCycle, _deserialize_platform_settlement_cycle, _serialize_platform_settlement_cycle
 
 @dataclass
 class PlatformContract:
@@ -40,12 +41,14 @@ class PlatformContract:
     """변경 적용 시점
     (RFC 3339 date-time)
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """계약 내부 표기를 위한 메모
     """
 
 
 def _serialize_platform_contract(obj: PlatformContract) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

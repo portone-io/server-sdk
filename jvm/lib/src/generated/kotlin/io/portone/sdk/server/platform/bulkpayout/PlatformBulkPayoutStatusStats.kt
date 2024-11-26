@@ -12,3 +12,5 @@ public data class PlatformBulkPayoutStatusStats(
   val cancelled: Long,
   val completed: Long,
 )
+
+

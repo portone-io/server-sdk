@@ -1,15 +1,18 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
+from ...common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
 
 @dataclass
 class PlatformBulkPayoutFilterInputCriteria:
-    timestamp_range: Optional[DateTimeRange]
-    bulk_payout_id: Optional[str]
+    timestamp_range: Optional[DateTimeRange] = field(default=None)
+    bulk_payout_id: Optional[str] = field(default=None)
 
 
 def _serialize_platform_bulk_payout_filter_input_criteria(obj: PlatformBulkPayoutFilterInputCriteria) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.timestamp_range is not None:
         entity["timestampRange"] = _serialize_date_time_range(obj.timestamp_range)

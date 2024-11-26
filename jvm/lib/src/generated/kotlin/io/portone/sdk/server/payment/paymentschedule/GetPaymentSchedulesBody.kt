@@ -27,3 +27,5 @@ internal data class GetPaymentSchedulesBody(
   /** 조회할 결제 예약 건의 조건 필터 */
   val filter: PaymentScheduleFilterInput? = null,
 )
+
+

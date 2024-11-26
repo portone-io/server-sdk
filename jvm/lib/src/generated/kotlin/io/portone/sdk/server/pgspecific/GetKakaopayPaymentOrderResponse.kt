@@ -11,3 +11,5 @@ public data class GetKakaopayPaymentOrderResponse(
   /** HTTP 응답 본문 (JSON) */
   val body: String,
 )
+
+

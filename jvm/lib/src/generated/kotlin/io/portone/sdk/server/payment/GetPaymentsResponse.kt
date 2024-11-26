@@ -12,3 +12,5 @@ public data class GetPaymentsResponse(
   /** 조회된 페이지 정보 */
   val page: PageInfo,
 )
+
+

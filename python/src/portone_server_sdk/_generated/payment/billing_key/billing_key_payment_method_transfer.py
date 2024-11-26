@@ -1,22 +1,24 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
+from ...common.bank import Bank, _deserialize_bank, _serialize_bank
 
 @dataclass
 class BillingKeyPaymentMethodTransfer:
     """계좌이체 정보
     """
-    type: Literal["BillingKeyPaymentMethodTransfer"] = field(repr=False)
-    bank: Optional[Bank]
+    bank: Optional[Bank] = field(default=None)
     """표준 은행 코드
     """
-    account_number: Optional[str]
+    account_number: Optional[str] = field(default=None)
     """계좌번호
     """
 
 
 def _serialize_billing_key_payment_method_transfer(obj: BillingKeyPaymentMethodTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BillingKeyPaymentMethodTransfer"
     if obj.bank is not None:
@@ -45,4 +47,4 @@ def _deserialize_billing_key_payment_method_transfer(obj: Any) -> BillingKeyPaym
             raise ValueError(f"{repr(account_number)} is not str")
     else:
         account_number = None
-    return BillingKeyPaymentMethodTransfer(type, bank, account_number)
+    return BillingKeyPaymentMethodTransfer(bank, account_number)

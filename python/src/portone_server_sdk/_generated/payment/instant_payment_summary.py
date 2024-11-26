@@ -16,6 +16,8 @@ class InstantPaymentSummary:
 
 
 def _serialize_instant_payment_summary(obj: InstantPaymentSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["pgTxId"] = obj.pg_tx_id
     entity["paidAt"] = obj.paid_at

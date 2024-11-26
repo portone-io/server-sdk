@@ -9,3 +9,5 @@ public data class ArchivePlatformPartnerResponse(
   /** 보관된 파트너 */
   val partner: PlatformPartner,
 )
+
+

@@ -1,10 +1,11 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer:
-    birthdate: Optional[str]
+    birthdate: Optional[str] = field(default=None)
     """생년월일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
@@ -12,6 +13,8 @@ class SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer:
 
 
 def _serialize_schedule_platform_partners_body_update_type_non_wht_payer(obj: SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.birthdate is not None:
         entity["birthdate"] = obj.birthdate

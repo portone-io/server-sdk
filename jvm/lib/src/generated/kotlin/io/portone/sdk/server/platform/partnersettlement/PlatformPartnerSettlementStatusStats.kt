@@ -11,3 +11,5 @@ public data class PlatformPartnerSettlementStatusStats(
   val inPayout: Long,
   val paidOut: Long,
 )
+
+

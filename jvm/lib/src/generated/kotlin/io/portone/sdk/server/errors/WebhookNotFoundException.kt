@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 웹훅 내역이 존재하지 않는 경우 */
-public class WebhookNotFoundException(
+public class WebhookNotFoundException internal constructor(
   cause: WebhookNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ResendWebhookException {
 }

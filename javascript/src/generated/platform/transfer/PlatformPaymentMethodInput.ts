@@ -4,7 +4,6 @@ import type { PlatformPaymentMethodGiftCertificateInput } from "./../../platform
 import type { PlatformPaymentMethodMobileInput } from "./../../platform/transfer/PlatformPaymentMethodMobileInput"
 import type { PlatformPaymentMethodTransferInput } from "./../../platform/transfer/PlatformPaymentMethodTransferInput"
 import type { PlatformPaymentMethodVirtualAccountInput } from "./../../platform/transfer/PlatformPaymentMethodVirtualAccountInput"
-
 /** 결제 수단 입력 정보 */
 export type PlatformPaymentMethodInput = {
 	/** 카드 */

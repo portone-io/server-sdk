@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -13,13 +14,15 @@ class CreatePlatformOrderCancelTransferBodyDiscount:
     """할인 금액
     (int64)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세 할인 금액
     (int64)
     """
 
 
 def _serialize_create_platform_order_cancel_transfer_body_discount(obj: CreatePlatformOrderCancelTransferBodyDiscount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["sharePolicyId"] = obj.share_policy_id
     entity["amount"] = obj.amount

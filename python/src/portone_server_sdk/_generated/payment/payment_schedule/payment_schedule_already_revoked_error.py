@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PaymentScheduleAlreadyRevokedError:
     """결제 예약건이 이미 취소된 경우
     """
-    type: Literal["PAYMENT_SCHEDULE_ALREADY_REVOKED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_payment_schedule_already_revoked_error(obj: PaymentScheduleAlreadyRevokedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PAYMENT_SCHEDULE_ALREADY_REVOKED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_payment_schedule_already_revoked_error(obj: Any) -> PaymentSche
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PaymentScheduleAlreadyRevokedError(type, message)
+    return PaymentScheduleAlreadyRevokedError(message)

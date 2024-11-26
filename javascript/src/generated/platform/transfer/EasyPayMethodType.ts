@@ -3,3 +3,4 @@ export type EasyPayMethodType =
 	| "CARD"
 	| "TRANSFER"
 	| "CHARGE"
+	| string & {}

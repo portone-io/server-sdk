@@ -1,21 +1,23 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.payment.cash_receipt.cash_receipt_not_found_error import CashReceiptNotFoundError, _deserialize_cash_receipt_not_found_error, _serialize_cash_receipt_not_found_error
-from portone_server_sdk._generated.common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
-from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
-from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from ...payment.cash_receipt.cash_receipt_not_found_error import CashReceiptNotFoundError, _deserialize_cash_receipt_not_found_error, _serialize_cash_receipt_not_found_error
+from ...common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
+from ...common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from ...common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-GetCashReceiptError = Union[CashReceiptNotFoundError, ForbiddenError, InvalidRequestError, UnauthorizedError]
+GetCashReceiptError = Union[CashReceiptNotFoundError, ForbiddenError, InvalidRequestError, UnauthorizedError, dict]
 
 
 def _serialize_get_cash_receipt_error(obj: GetCashReceiptError) -> Any:
-    if obj.type == "CASH_RECEIPT_NOT_FOUND":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, CashReceiptNotFoundError):
         return _serialize_cash_receipt_not_found_error(obj)
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -36,4 +38,4 @@ def _deserialize_get_cash_receipt_error(obj: Any) -> GetCashReceiptError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not GetCashReceiptError")
+    return obj

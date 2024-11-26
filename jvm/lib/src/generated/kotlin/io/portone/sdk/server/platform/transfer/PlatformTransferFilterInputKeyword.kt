@@ -29,3 +29,5 @@ public data class PlatformTransferFilterInputKeyword(
   /** 해당 값이 포함된 partnerMemo 를 가진 정산건만 조회합니다. */
   val partnerMemo: String? = null,
 )
+
+

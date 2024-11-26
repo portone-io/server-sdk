@@ -1,7 +1,6 @@
 package io.portone.sdk.server.identityverification
 
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.identityverification.IdentityVerification
 import io.portone.sdk.server.identityverification.IdentityVerificationVerifiedCustomer
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -15,8 +14,12 @@ import kotlinx.serialization.Serializable
 public data class VerifiedIdentityVerification(
   /** 본인인증 내역 아이디 */
   override val id: String,
+  /** 사용된 본인인증 채널 */
+  override val channel: SelectedChannel? = null,
   /** 인증된 고객 정보 */
   val verifiedCustomer: IdentityVerificationVerifiedCustomer,
+  /** 사용자 지정 데이터 */
+  override val customData: String? = null,
   /** 본인인증 요청 시점 */
   override val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** 업데이트 시점 */
@@ -29,8 +32,6 @@ public data class VerifiedIdentityVerification(
   val pgTxId: String,
   /** PG사 응답 데이터 */
   val pgRawResponse: String,
-  /** 사용된 본인인증 채널 */
-  override val channel: SelectedChannel? = null,
-  /** 사용자 지정 데이터 */
-  override val customData: String? = null,
-): IdentityVerification
+) : IdentityVerification.Recognized
+
+

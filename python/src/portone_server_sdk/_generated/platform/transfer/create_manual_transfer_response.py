@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_manual_transfer import PlatformManualTransfer, _deserialize_platform_manual_transfer, _serialize_platform_manual_transfer
+from ...platform.transfer.platform_manual_transfer import PlatformManualTransfer, _deserialize_platform_manual_transfer, _serialize_platform_manual_transfer
 
 @dataclass
 class CreateManualTransferResponse:
@@ -9,6 +9,8 @@ class CreateManualTransferResponse:
 
 
 def _serialize_create_manual_transfer_response(obj: CreateManualTransferResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transfer"] = _serialize_platform_manual_transfer(obj.transfer)
     return entity

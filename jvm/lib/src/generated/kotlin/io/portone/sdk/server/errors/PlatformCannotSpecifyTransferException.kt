@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 정산 건 식별에 실패한 경우 */
-public class PlatformCannotSpecifyTransferException(
+public class PlatformCannotSpecifyTransferException internal constructor(
   cause: PlatformCannotSpecifyTransferError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
 }

@@ -1,6 +1,6 @@
 export type * from "./generated/webhook";
-import { PortOneError } from "./generated/errors";
-import type { WebhookRequest } from "./generated/webhook";
+import { PortOneError } from "./PortOneError";
+import type { Webhook } from "./generated/webhook";
 import { timingSafeEqual } from "./utils/timingSafeEqual";
 import { tryCatch } from "./utils/try";
 
@@ -14,8 +14,7 @@ const WEBHOOK_TOLERANCE_IN_SECONDS = 5 * 60; // 5분
  * 문제를 수정해주시기 바랍니다.
  */
 export class InvalidInputError extends PortOneError {
-	readonly _tag = "PortOneInvalidInputError";
-
+	/** @ignore */
 	constructor(message: string) {
 		super(message);
 		Object.setPrototypeOf(this, InvalidInputError.prototype);
@@ -29,8 +28,6 @@ export class InvalidInputError extends PortOneError {
  * `reason` 필드를 통해 상세한 실패 원인을 확인할 수 있습니다.
  */
 export class WebhookVerificationError extends PortOneError {
-	readonly _tag = "WebhookVerificationError";
-
 	/**
 	 * 웹훅 검증이 실패한 상세 사유을 나타냅니다.
 	 */
@@ -57,6 +54,7 @@ export class WebhookVerificationError extends PortOneError {
 		}
 	}
 
+	/** @ignore */
 	constructor(
 		reason: WebhookVerificationFailureReason,
 		options?: ErrorOptions,
@@ -142,7 +140,7 @@ export async function verify(
 	headers:
 		| WebhookUnbrandedRequiredHeaders
 		| Record<string, string | string[] | undefined>,
-): Promise<WebhookRequest> {
+): Promise<Webhook> {
 	const msgId = findHeaderValue(headers, "webhook-id");
 	const msgSignature = findHeaderValue(headers, "webhook-signature");
 	const msgTimestamp = findHeaderValue(headers, "webhook-timestamp");
@@ -168,8 +166,9 @@ export async function verify(
 		);
 		if (signatureDecoded === undefined) continue;
 
-		if (timingSafeEqual(signatureDecoded, expectedSignature))
+		if (timingSafeEqual(signatureDecoded, expectedSignature)) {
 			return JSON.parse(payload);
+		}
 	}
 	throw new WebhookVerificationError("NO_MATCHING_SIGNATURE");
 }

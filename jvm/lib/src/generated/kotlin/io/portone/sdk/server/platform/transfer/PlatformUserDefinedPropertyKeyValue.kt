@@ -12,3 +12,5 @@ public data class PlatformUserDefinedPropertyKeyValue(
   /** 사용자 정의 속성 값 */
   val value: PlatformUserDefinedPropertyValue,
 )
+
+

@@ -88,6 +88,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
+
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 repositories {

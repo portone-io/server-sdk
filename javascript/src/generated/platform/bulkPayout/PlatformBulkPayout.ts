@@ -1,7 +1,6 @@
 import type { PlatformBulkPayoutStats } from "./../../platform/bulkPayout/PlatformBulkPayoutStats"
 import type { PlatformBulkPayoutStatus } from "./../../platform/bulkPayout/PlatformBulkPayoutStatus"
 import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
-
 export type PlatformBulkPayout = {
 	/** 일괄 지급 고유 아이디 */
 	id: string

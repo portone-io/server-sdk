@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformContractAlreadyExistsError
 import java.lang.Exception
 
 
-public class PlatformContractAlreadyExistsException(
+public class PlatformContractAlreadyExistsException internal constructor(
   cause: PlatformContractAlreadyExistsError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformContractException {
 }

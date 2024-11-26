@@ -25,6 +25,8 @@ class PlatformPartnerSettlementStatusStats:
 
 
 def _serialize_platform_partner_settlement_status_stats(obj: PlatformPartnerSettlementStatusStats) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payoutScheduled"] = obj.payout_scheduled
     entity["payoutPrepared"] = obj.payout_prepared

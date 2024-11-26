@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.platform.transfer.platform_transfer_summary import PlatformTransferSummary, _deserialize_platform_transfer_summary, _serialize_platform_transfer_summary
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...platform.transfer.platform_transfer_summary import PlatformTransferSummary, _deserialize_platform_transfer_summary, _serialize_platform_transfer_summary
 
 @dataclass
 class GetPlatformTransferSummariesResponse:
@@ -11,6 +11,8 @@ class GetPlatformTransferSummariesResponse:
 
 
 def _serialize_get_platform_transfer_summaries_response(obj: GetPlatformTransferSummariesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transferSummaries"] = list(map(_serialize_platform_transfer_summary, obj.transfer_summaries))
     entity["page"] = _serialize_page_info(obj.page)

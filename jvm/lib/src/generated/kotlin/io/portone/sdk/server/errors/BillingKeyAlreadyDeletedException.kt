@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 빌링키가 이미 삭제된 경우 */
-public class BillingKeyAlreadyDeletedException(
+public class BillingKeyAlreadyDeletedException internal constructor(
   cause: BillingKeyAlreadyDeletedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePaymentScheduleException, DeleteBillingKeyException, PayWithBillingKeyException, RevokePaymentSchedulesException {
 }

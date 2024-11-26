@@ -1,56 +1,59 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
-from portone_server_sdk._generated.common.customer_name_input import CustomerNameInput, _deserialize_customer_name_input, _serialize_customer_name_input
-from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
-from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..common.country import Country, _deserialize_country, _serialize_country
+from ..common.customer_name_input import CustomerNameInput, _deserialize_customer_name_input, _serialize_customer_name_input
+from ..common.gender import Gender, _deserialize_gender, _serialize_gender
+from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 
 @dataclass
 class CustomerInput:
     """고객 정보 입력 정보
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """고객 아이디
 
     고객사가 지정한 고객의 고유 식별자입니다.
     """
-    name: Optional[CustomerNameInput]
+    name: Optional[CustomerNameInput] = field(default=None)
     """이름
     """
-    birth_year: Optional[str]
+    birth_year: Optional[str] = field(default=None)
     """출생 연도
     """
-    birth_month: Optional[str]
+    birth_month: Optional[str] = field(default=None)
     """출생월
     """
-    birth_day: Optional[str]
+    birth_day: Optional[str] = field(default=None)
     """출생일
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """국가
     """
-    gender: Optional[Gender]
+    gender: Optional[Gender] = field(default=None)
     """성별
     """
-    email: Optional[str]
+    email: Optional[str] = field(default=None)
     """이메일
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
     """
-    address: Optional[SeparatedAddressInput]
+    address: Optional[SeparatedAddressInput] = field(default=None)
     """주소
     """
-    zipcode: Optional[str]
+    zipcode: Optional[str] = field(default=None)
     """우편번호
     """
-    business_registration_number: Optional[str]
+    business_registration_number: Optional[str] = field(default=None)
     """사업자 등록 번호
     """
 
 
 def _serialize_customer_input(obj: CustomerInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.id is not None:
         entity["id"] = obj.id

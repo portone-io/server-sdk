@@ -12,6 +12,8 @@ class PaymentScheduleSummary:
 
 
 def _serialize_payment_schedule_summary(obj: PaymentScheduleSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     return entity

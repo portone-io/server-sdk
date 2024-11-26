@@ -13,12 +13,14 @@ public data class RegisterStoreReceiptBodyItem(
   val storeName: String,
   /** 결제 총 금액 */
   val totalAmount: Long,
-  /** 통화 */
-  val currency: Currency,
   /** 면세액 */
   val taxFreeAmount: Long? = null,
   /** 부가세액 */
   val vatAmount: Long? = null,
   /** 공급가액 */
   val supplyAmount: Long? = null,
+  /** 통화 */
+  val currency: Currency,
 )
+
+

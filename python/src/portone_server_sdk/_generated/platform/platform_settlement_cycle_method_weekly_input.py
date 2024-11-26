@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.day_of_week import DayOfWeek, _deserialize_day_of_week, _serialize_day_of_week
+from ..platform.day_of_week import DayOfWeek, _deserialize_day_of_week, _serialize_day_of_week
 
 @dataclass
 class PlatformSettlementCycleMethodWeeklyInput:
@@ -11,6 +11,8 @@ class PlatformSettlementCycleMethodWeeklyInput:
 
 
 def _serialize_platform_settlement_cycle_method_weekly_input(obj: PlatformSettlementCycleMethodWeeklyInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["daysOfWeek"] = list(map(_serialize_day_of_week, obj.days_of_week))
     return entity

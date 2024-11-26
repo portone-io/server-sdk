@@ -10,8 +10,6 @@ import kotlinx.serialization.Serializable
 /** 에스크로 배송 정보 수정 입력 정보 */
 @Serializable
 internal data class ModifyEscrowLogisticsBody(
-  /** 에스크로 물류 정보 */
-  val logistics: PaymentLogistics,
   /**
    * 상점 아이디
    *
@@ -22,6 +20,8 @@ internal data class ModifyEscrowLogisticsBody(
   val sender: PaymentEscrowSenderInput? = null,
   /** 에스크로 수취인 정보 */
   val receiver: PaymentEscrowReceiverInput? = null,
+  /** 에스크로 물류 정보 */
+  val logistics: PaymentLogistics,
   /**
    * 이메일 알림 전송 여부
    *
@@ -31,3 +31,5 @@ internal data class ModifyEscrowLogisticsBody(
   /** 상품 정보 */
   val products: List<PaymentProduct>? = null,
 )
+
+

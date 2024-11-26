@@ -1,10 +1,11 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_escrow_receiver_input import PaymentEscrowReceiverInput, _deserialize_payment_escrow_receiver_input, _serialize_payment_escrow_receiver_input
-from portone_server_sdk._generated.payment.payment_escrow_sender_input import PaymentEscrowSenderInput, _deserialize_payment_escrow_sender_input, _serialize_payment_escrow_sender_input
-from portone_server_sdk._generated.payment.payment_logistics import PaymentLogistics, _deserialize_payment_logistics, _serialize_payment_logistics
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ..payment.payment_escrow_receiver_input import PaymentEscrowReceiverInput, _deserialize_payment_escrow_receiver_input, _serialize_payment_escrow_receiver_input
+from ..payment.payment_escrow_sender_input import PaymentEscrowSenderInput, _deserialize_payment_escrow_sender_input, _serialize_payment_escrow_sender_input
+from ..payment.payment_logistics import PaymentLogistics, _deserialize_payment_logistics, _serialize_payment_logistics
+from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 
 @dataclass
 class RegisterEscrowLogisticsBody:
@@ -13,28 +14,30 @@ class RegisterEscrowLogisticsBody:
     logistics: PaymentLogistics
     """에스크로 물류 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    sender: Optional[PaymentEscrowSenderInput]
+    sender: Optional[PaymentEscrowSenderInput] = field(default=None)
     """에스크로 발송자 정보
     """
-    receiver: Optional[PaymentEscrowReceiverInput]
+    receiver: Optional[PaymentEscrowReceiverInput] = field(default=None)
     """에스크로 수취인 정보
     """
-    send_email: Optional[bool]
+    send_email: Optional[bool] = field(default=None)
     """이메일 알림 전송 여부
 
     에스크로 구매 확정 시 이메일로 알림을 보낼지 여부입니다.
     """
-    products: Optional[list[PaymentProduct]]
+    products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보
     """
 
 
 def _serialize_register_escrow_logistics_body(obj: RegisterEscrowLogisticsBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["logistics"] = _serialize_payment_logistics(obj.logistics)
     if obj.store_id is not None:

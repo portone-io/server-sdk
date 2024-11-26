@@ -14,3 +14,5 @@ public data class RevokePaymentSchedulesResponse(
   /** 결제 예약 건 취소 완료 시점 */
   val revokedAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

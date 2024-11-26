@@ -73,3 +73,5 @@ public data class PlatformTransferFilterInput(
   /** 테스트 모드 여부 */
   val isForTest: Boolean? = null,
 )
+
+

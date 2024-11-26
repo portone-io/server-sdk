@@ -1,14 +1,15 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
-from portone_server_sdk._generated.payment.instant_payment_method_input import InstantPaymentMethodInput, _deserialize_instant_payment_method_input, _serialize_instant_payment_method_input
-from portone_server_sdk._generated.common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
-from portone_server_sdk._generated.common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
-from portone_server_sdk._generated.common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..common.country import Country, _deserialize_country, _serialize_country
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
+from ..payment.instant_payment_method_input import InstantPaymentMethodInput, _deserialize_instant_payment_method_input, _serialize_instant_payment_method_input
+from ..common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
+from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ..common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
+from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
 
 @dataclass
 class InstantPaymentInput:
@@ -26,68 +27,70 @@ class InstantPaymentInput:
     currency: Currency
     """통화
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    channel_key: Optional[str]
+    channel_key: Optional[str] = field(default=None)
     """채널 키
 
     채널 키 또는 채널 그룹 ID 필수
     """
-    channel_group_id: Optional[str]
+    channel_group_id: Optional[str] = field(default=None)
     """채널 그룹 ID
 
     채널 키 또는 채널 그룹 ID 필수
     """
-    is_cultural_expense: Optional[bool]
+    is_cultural_expense: Optional[bool] = field(default=None)
     """문화비 지출 여부
 
     기본값은 false 입니다.
     """
-    is_escrow: Optional[bool]
+    is_escrow: Optional[bool] = field(default=None)
     """에스크로 결제 여부
 
     기본값은 false 입니다.
     """
-    customer: Optional[CustomerInput]
+    customer: Optional[CustomerInput] = field(default=None)
     """고객 정보
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """결제 국가
     """
-    notice_urls: Optional[list[str]]
+    notice_urls: Optional[list[str]] = field(default=None)
     """웹훅 주소
 
     결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
     상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
     입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
     """
-    products: Optional[list[PaymentProduct]]
+    products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보
 
     입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
     """
-    product_count: Optional[int]
+    product_count: Optional[int] = field(default=None)
     """상품 개수
     (int32)
     """
-    product_type: Optional[PaymentProductType]
+    product_type: Optional[PaymentProductType] = field(default=None)
     """상품 유형
     """
-    shipping_address: Optional[SeparatedAddressInput]
+    shipping_address: Optional[SeparatedAddressInput] = field(default=None)
     """배송지 주소
     """
-    promotion_id: Optional[str]
+    promotion_id: Optional[str] = field(default=None)
     """해당 결제에 적용할 프로모션 아이디
     """
 
 
 def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["method"] = _serialize_instant_payment_method_input(obj.method)
     entity["orderName"] = obj.order_name

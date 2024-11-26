@@ -1,6 +1,5 @@
 import type { BillingKeySortBy } from "./../../payment/billingKey/BillingKeySortBy"
 import type { SortOrder } from "./../../common/SortOrder"
-
 /** 빌링키 다건 조회 시 정렬 조건 */
 export type BillingKeySortInput = {
 	/**

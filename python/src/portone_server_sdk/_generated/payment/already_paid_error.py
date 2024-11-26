@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class AlreadyPaidError:
     """결제가 이미 완료된 경우
     """
-    type: Literal["ALREADY_PAID"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_already_paid_error(obj: AlreadyPaidError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ALREADY_PAID"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_already_paid_error(obj: Any) -> AlreadyPaidError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return AlreadyPaidError(type, message)
+    return AlreadyPaidError(message)

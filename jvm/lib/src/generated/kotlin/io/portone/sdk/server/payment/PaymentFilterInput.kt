@@ -106,3 +106,5 @@ public data class PaymentFilterInput(
   /** 통합 검색 리스트 필터 */
   val textSearch: List<PaymentTextSearch>? = null,
 )
+
+

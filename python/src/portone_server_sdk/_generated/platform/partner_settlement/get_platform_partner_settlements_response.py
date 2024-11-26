@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement import PlatformPartnerSettlement, _deserialize_platform_partner_settlement, _serialize_platform_partner_settlement
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_status_stats import PlatformPartnerSettlementStatusStats, _deserialize_platform_partner_settlement_status_stats, _serialize_platform_partner_settlement_status_stats
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...platform.partner_settlement.platform_partner_settlement import PlatformPartnerSettlement, _deserialize_platform_partner_settlement, _serialize_platform_partner_settlement
+from ...platform.partner_settlement.platform_partner_settlement_status_stats import PlatformPartnerSettlementStatusStats, _deserialize_platform_partner_settlement_status_stats, _serialize_platform_partner_settlement_status_stats
 
 @dataclass
 class GetPlatformPartnerSettlementsResponse:
@@ -21,6 +21,8 @@ class GetPlatformPartnerSettlementsResponse:
 
 
 def _serialize_get_platform_partner_settlements_response(obj: GetPlatformPartnerSettlementsResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_partner_settlement, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

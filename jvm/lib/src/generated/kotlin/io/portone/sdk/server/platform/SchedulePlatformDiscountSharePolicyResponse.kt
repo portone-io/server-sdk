@@ -9,3 +9,5 @@ public data class SchedulePlatformDiscountSharePolicyResponse(
   /** 예약된 할인 분담 정보 */
   val scheduledDiscountSharePolicy: PlatformDiscountSharePolicy,
 )
+
+

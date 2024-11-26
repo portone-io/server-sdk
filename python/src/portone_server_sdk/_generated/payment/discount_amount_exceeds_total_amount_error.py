@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class DiscountAmountExceedsTotalAmountError:
     """프로모션 할인 금액이 결제 시도 금액 이상인 경우
     """
-    type: Literal["DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_discount_amount_exceeds_total_amount_error(obj: DiscountAmountExceedsTotalAmountError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "DISCOUNT_AMOUNT_EXCEEDS_TOTAL_AMOUNT"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_discount_amount_exceeds_total_amount_error(obj: Any) -> Discoun
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return DiscountAmountExceedsTotalAmountError(type, message)
+    return DiscountAmountExceedsTotalAmountError(message)

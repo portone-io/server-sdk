@@ -10,6 +10,8 @@ class CancelPlatformDiscountSharePolicyScheduleResponse:
 
 
 def _serialize_cancel_platform_discount_share_policy_schedule_response(obj: CancelPlatformDiscountSharePolicyScheduleResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

@@ -1,9 +1,10 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.update_platform_partner_body_type_business import UpdatePlatformPartnerBodyTypeBusiness, _deserialize_update_platform_partner_body_type_business, _serialize_update_platform_partner_body_type_business
-from portone_server_sdk._generated.platform.update_platform_partner_body_type_non_wht_payer import UpdatePlatformPartnerBodyTypeNonWhtPayer, _deserialize_update_platform_partner_body_type_non_wht_payer, _serialize_update_platform_partner_body_type_non_wht_payer
-from portone_server_sdk._generated.platform.update_platform_partner_body_type_wht_payer import UpdatePlatformPartnerBodyTypeWhtPayer, _deserialize_update_platform_partner_body_type_wht_payer, _serialize_update_platform_partner_body_type_wht_payer
+from ..platform.update_platform_partner_body_type_business import UpdatePlatformPartnerBodyTypeBusiness, _deserialize_update_platform_partner_body_type_business, _serialize_update_platform_partner_body_type_business
+from ..platform.update_platform_partner_body_type_non_wht_payer import UpdatePlatformPartnerBodyTypeNonWhtPayer, _deserialize_update_platform_partner_body_type_non_wht_payer, _serialize_update_platform_partner_body_type_non_wht_payer
+from ..platform.update_platform_partner_body_type_wht_payer import UpdatePlatformPartnerBodyTypeWhtPayer, _deserialize_update_platform_partner_body_type_wht_payer, _serialize_update_platform_partner_body_type_wht_payer
 
 @dataclass
 class UpdatePlatformPartnerBodyType:
@@ -12,18 +13,20 @@ class UpdatePlatformPartnerBodyType:
     파트너 유형별 추가 정보를 수정합니다.
     기존과 다른 파트너 유형 정보가 입력된 경우, 파트너의 유형 자체가 변경됩니다.
     """
-    business: Optional[UpdatePlatformPartnerBodyTypeBusiness]
+    business: Optional[UpdatePlatformPartnerBodyTypeBusiness] = field(default=None)
     """사업자 추가 정보
     """
-    wht_payer: Optional[UpdatePlatformPartnerBodyTypeWhtPayer]
+    wht_payer: Optional[UpdatePlatformPartnerBodyTypeWhtPayer] = field(default=None)
     """원천징수 대상자 추가 정보
     """
-    non_wht_payer: Optional[UpdatePlatformPartnerBodyTypeNonWhtPayer]
+    non_wht_payer: Optional[UpdatePlatformPartnerBodyTypeNonWhtPayer] = field(default=None)
     """원천징수 비대상자 추가 정보
     """
 
 
 def _serialize_update_platform_partner_body_type(obj: UpdatePlatformPartnerBodyType) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.business is not None:
         entity["business"] = _serialize_update_platform_partner_body_type_business(obj.business)

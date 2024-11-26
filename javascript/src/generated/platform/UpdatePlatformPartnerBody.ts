@@ -2,7 +2,6 @@ import type { PlatformProperties } from "./../platform/PlatformProperties"
 import type { UpdatePlatformPartnerBodyAccount } from "./../platform/UpdatePlatformPartnerBodyAccount"
 import type { UpdatePlatformPartnerBodyContact } from "./../platform/UpdatePlatformPartnerBodyContact"
 import type { UpdatePlatformPartnerBodyType } from "./../platform/UpdatePlatformPartnerBodyType"
-
 /**
  * 파트너 업데이트를 위한 입력 정보
  *

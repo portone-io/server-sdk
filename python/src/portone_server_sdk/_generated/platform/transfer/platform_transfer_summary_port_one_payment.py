@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
 
 @dataclass
 class PlatformTransferSummaryPortOnePayment:
-    type: Literal["PORT_ONE"] = field(repr=False)
     id: str
     order_name: str
     currency: Currency
-    method_type: Optional[PaymentMethodType]
+    method_type: Optional[PaymentMethodType] = field(default=None)
 
 
 def _serialize_platform_transfer_summary_port_one_payment(obj: PlatformTransferSummaryPortOnePayment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PORT_ONE"
     entity["id"] = obj.id
@@ -51,4 +53,4 @@ def _deserialize_platform_transfer_summary_port_one_payment(obj: Any) -> Platfor
         method_type = _deserialize_payment_method_type(method_type)
     else:
         method_type = None
-    return PlatformTransferSummaryPortOnePayment(type, id, order_name, currency, method_type)
+    return PlatformTransferSummaryPortOnePayment(id, order_name, currency, method_type)

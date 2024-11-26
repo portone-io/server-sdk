@@ -24,3 +24,5 @@ public data class PlatformAccount(
   /** 계좌 상태 */
   val status: PlatformAccountStatus,
 )
+
+

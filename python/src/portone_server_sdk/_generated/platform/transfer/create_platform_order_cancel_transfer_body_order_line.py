@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.create_platform_order_cancel_transfer_body_discount import CreatePlatformOrderCancelTransferBodyDiscount, _deserialize_create_platform_order_cancel_transfer_body_discount, _serialize_create_platform_order_cancel_transfer_body_discount
+from ...platform.transfer.create_platform_order_cancel_transfer_body_discount import CreatePlatformOrderCancelTransferBodyDiscount, _deserialize_create_platform_order_cancel_transfer_body_discount, _serialize_create_platform_order_cancel_transfer_body_discount
 
 @dataclass
 class CreatePlatformOrderCancelTransferBodyOrderLine:
@@ -20,6 +20,8 @@ class CreatePlatformOrderCancelTransferBodyOrderLine:
 
 
 def _serialize_create_platform_order_cancel_transfer_body_order_line(obj: CreatePlatformOrderCancelTransferBodyOrderLine) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["productId"] = obj.product_id
     entity["quantity"] = obj.quantity

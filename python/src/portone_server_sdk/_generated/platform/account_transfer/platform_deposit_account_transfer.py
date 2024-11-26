@@ -1,11 +1,11 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class PlatformDepositAccountTransfer:
-    type: Literal["DEPOSIT"] = field(repr=False)
     """계좌 이체 유형
     """
     id: str
@@ -30,12 +30,14 @@ class PlatformDepositAccountTransfer:
     depositor_name: str
     """입금자명
     """
-    deposit_memo: Optional[str]
+    deposit_memo: Optional[str] = field(default=None)
     """입금 계좌 적요
     """
 
 
 def _serialize_platform_deposit_account_transfer(obj: PlatformDepositAccountTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "DEPOSIT"
     entity["id"] = obj.id
@@ -98,4 +100,4 @@ def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositA
             raise ValueError(f"{repr(deposit_memo)} is not str")
     else:
         deposit_memo = None
-    return PlatformDepositAccountTransfer(type, id, currency, amount, is_for_test, created_at, updated_at, depositor_name, deposit_memo)
+    return PlatformDepositAccountTransfer(id, currency, amount, is_for_test, created_at, updated_at, depositor_name, deposit_memo)

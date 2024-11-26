@@ -8,3 +8,5 @@ import kotlinx.serialization.Serializable
 public data class InstantBillingKeyPaymentMethodInput(
   val card: InstantBillingKeyPaymentMethodInputCard? = null,
 )
+
+

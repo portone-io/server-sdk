@@ -1,5 +1,4 @@
 import type { CustomerSeparatedName } from "./../common/CustomerSeparatedName"
-
 /**
  * 고객 이름 입력 정보
  *

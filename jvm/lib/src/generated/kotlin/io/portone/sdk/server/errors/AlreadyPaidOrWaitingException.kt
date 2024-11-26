@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제가 이미 완료되었거나 대기중인 경우 */
-public class AlreadyPaidOrWaitingException(
+public class AlreadyPaidOrWaitingException internal constructor(
   cause: AlreadyPaidOrWaitingError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePaymentScheduleException {
 }

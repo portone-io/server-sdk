@@ -10,3 +10,5 @@ public data class PlatformPayoutAccount(
   val number: String,
   val holder: String,
 )
+
+

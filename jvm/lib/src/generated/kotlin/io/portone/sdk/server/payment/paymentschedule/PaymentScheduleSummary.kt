@@ -9,3 +9,5 @@ public data class PaymentScheduleSummary(
   /** 결제 예약 건 아이디 */
   val id: String,
 )
+
+

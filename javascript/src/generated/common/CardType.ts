@@ -6,3 +6,4 @@ export type CardType =
 	| "DEBIT"
 	/** 기프트카드 */
 	| "GIFT"
+	| string & {}

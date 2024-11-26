@@ -1,6 +1,5 @@
 package io.portone.sdk.server.platform
 
-import io.portone.sdk.server.platform.PlatformSettlementFormulaError
 import io.portone.sdk.server.platform.PlatformSettlementFormulaPosition
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -13,4 +12,6 @@ public data class PlatformSettlementFormulaUnexpectedFunctionArguments(
   val expectedCount: Int,
   val currentCount: Int,
   val position: PlatformSettlementFormulaPosition,
-): PlatformSettlementFormulaError
+) : PlatformSettlementFormulaError.Recognized
+
+

@@ -1,7 +1,7 @@
+import type { Unrecognized } from "./../../../utils/unrecognized"
 import type { PlatformDepositAccountTransfer } from "./../../platform/accountTransfer/PlatformDepositAccountTransfer"
 import type { PlatformPartnerPayoutAccountTransfer } from "./../../platform/accountTransfer/PlatformPartnerPayoutAccountTransfer"
 import type { PlatformRemitAccountTransfer } from "./../../platform/accountTransfer/PlatformRemitAccountTransfer"
-
 /**
  * 계좌 이체
  *
@@ -11,3 +11,10 @@ export type PlatformAccountTransfer =
 	| PlatformDepositAccountTransfer
 	| PlatformPartnerPayoutAccountTransfer
 	| PlatformRemitAccountTransfer
+	| { readonly type: Unrecognized }
+
+export function isUnrecognizedPlatformAccountTransfer(entity: PlatformAccountTransfer): entity is { readonly type: Unrecognized } {
+	return entity.type !== "DEPOSIT"
+		&& entity.type !== "PARTNER_PAYOUT"
+		&& entity.type !== "REMIT"
+}

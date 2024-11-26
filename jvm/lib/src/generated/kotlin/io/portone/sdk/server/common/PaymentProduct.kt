@@ -14,10 +14,6 @@ public data class PaymentProduct(
   val id: String,
   /** 상품명 */
   val name: String,
-  /** 상품 단위가격 */
-  val amount: Long,
-  /** 주문 수량 */
-  val quantity: Int,
   /**
    * 상품 태그
    *
@@ -26,4 +22,10 @@ public data class PaymentProduct(
   val tag: String? = null,
   /** 상품 코드 */
   val code: String? = null,
+  /** 상품 단위가격 */
+  val amount: Long,
+  /** 주문 수량 */
+  val quantity: Int,
 )
+
+

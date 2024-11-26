@@ -1,14 +1,14 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class CancelledPaymentCashReceipt:
     """취소된 현금영수증
     """
-    status: Literal["CANCELLED"] = field(repr=False)
     """결제 건 내 현금영수증 상태
     """
     issue_number: str
@@ -29,22 +29,24 @@ class CancelledPaymentCashReceipt:
     """취소 시점
     (RFC 3339 date-time)
     """
-    type: Optional[CashReceiptType]
+    type: Optional[CashReceiptType] = field(default=None)
     """현금영수증 유형
     """
-    pg_receipt_id: Optional[str]
+    pg_receipt_id: Optional[str] = field(default=None)
     """PG사 영수증 발급 아이디
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    url: Optional[str]
+    url: Optional[str] = field(default=None)
     """현금영수증 URL
     """
 
 
 def _serialize_cancelled_payment_cash_receipt(obj: CancelledPaymentCashReceipt) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "CANCELLED"
     entity["issueNumber"] = obj.issue_number
@@ -118,4 +120,4 @@ def _deserialize_cancelled_payment_cash_receipt(obj: Any) -> CancelledPaymentCas
             raise ValueError(f"{repr(url)} is not str")
     else:
         url = None
-    return CancelledPaymentCashReceipt(status, issue_number, total_amount, currency, issued_at, cancelled_at, type, pg_receipt_id, tax_free_amount, url)
+    return CancelledPaymentCashReceipt(issue_number, total_amount, currency, issued_at, cancelled_at, type, pg_receipt_id, tax_free_amount, url)

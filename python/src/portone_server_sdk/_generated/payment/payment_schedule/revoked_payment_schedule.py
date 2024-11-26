@@ -1,15 +1,15 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.customer import Customer, _deserialize_customer, _serialize_customer
-from portone_server_sdk._generated.common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.customer import Customer, _deserialize_customer, _serialize_customer
+from ...common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 
 @dataclass
 class RevokedPaymentSchedule:
     """결제 예약 취소 상태
     """
-    status: Literal["REVOKED"] = field(repr=False)
     """결제 예약 건 상태
     """
     id: str
@@ -61,27 +61,29 @@ class RevokedPaymentSchedule:
     """결제 취소 시점
     (RFC 3339 date-time)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    vat_amount: Optional[int]
+    vat_amount: Optional[int] = field(default=None)
     """부가세
     (int64)
     """
-    installment_month: Optional[int]
+    installment_month: Optional[int] = field(default=None)
     """할부 개월 수
     (int32)
     """
-    notice_urls: Optional[list[str]]
+    notice_urls: Optional[list[str]] = field(default=None)
     """웹훅 주소
     """
-    products: Optional[list[PaymentProduct]]
+    products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보
     """
 
 
 def _serialize_revoked_payment_schedule(obj: RevokedPaymentSchedule) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "REVOKED"
     entity["id"] = obj.id
@@ -229,4 +231,4 @@ def _deserialize_revoked_payment_schedule(obj: Any) -> RevokedPaymentSchedule:
             products[i] = item
     else:
         products = None
-    return RevokedPaymentSchedule(status, id, merchant_id, store_id, payment_id, billing_key, order_name, is_cultural_expense, is_escrow, customer, custom_data, total_amount, currency, created_at, time_to_pay, revoked_at, tax_free_amount, vat_amount, installment_month, notice_urls, products)
+    return RevokedPaymentSchedule(id, merchant_id, store_id, payment_id, billing_key, order_name, is_cultural_expense, is_escrow, customer, custom_data, total_amount, currency, created_at, time_to_pay, revoked_at, tax_free_amount, vat_amount, installment_month, notice_urls, products)

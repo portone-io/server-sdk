@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,20 +7,22 @@ from dataclasses import dataclass, field
 class RevokePaymentSchedulesBody:
     """결제 예약 건 취소 요청 입력 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    billing_key: Optional[str]
+    billing_key: Optional[str] = field(default=None)
     """빌링키
     """
-    schedule_ids: Optional[list[str]]
+    schedule_ids: Optional[list[str]] = field(default=None)
     """결제 예약 건 아이디 목록
     """
 
 
 def _serialize_revoke_payment_schedules_body(obj: RevokePaymentSchedulesBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.store_id is not None:
         entity["storeId"] = obj.store_id

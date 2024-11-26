@@ -38,6 +38,7 @@ autodoc_default_options = {
     "undoc-members": True,
     "imported-members": True,
     "inherited-members": True,
+    "show-inheritance": True,
     "no-value": True,
 }
 autosummary_generate = True

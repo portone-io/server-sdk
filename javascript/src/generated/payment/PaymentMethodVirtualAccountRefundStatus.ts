@@ -8,3 +8,4 @@ export type PaymentMethodVirtualAccountRefundStatus =
 	| "FAILED"
 	/** 환불 완료 */
 	| "COMPLETED"
+	| string & {}

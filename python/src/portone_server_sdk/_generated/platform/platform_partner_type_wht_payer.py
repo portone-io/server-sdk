@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
@@ -8,8 +9,7 @@ class PlatformPartnerTypeWhtPayer:
 
     비사업자 유형의 파트너 추가 정보 입니다.
     """
-    type: Literal["WHT_PAYER"] = field(repr=False)
-    birthdate: Optional[str]
+    birthdate: Optional[str] = field(default=None)
     """생년월일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
@@ -17,6 +17,8 @@ class PlatformPartnerTypeWhtPayer:
 
 
 def _serialize_platform_partner_type_wht_payer(obj: PlatformPartnerTypeWhtPayer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "WHT_PAYER"
     if obj.birthdate is not None:
@@ -38,4 +40,4 @@ def _deserialize_platform_partner_type_wht_payer(obj: Any) -> PlatformPartnerTyp
             raise ValueError(f"{repr(birthdate)} is not str")
     else:
         birthdate = None
-    return PlatformPartnerTypeWhtPayer(type, birthdate)
+    return PlatformPartnerTypeWhtPayer(birthdate)

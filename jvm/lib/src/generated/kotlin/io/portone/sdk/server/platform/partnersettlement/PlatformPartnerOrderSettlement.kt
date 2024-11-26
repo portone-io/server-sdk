@@ -5,7 +5,6 @@ import io.portone.sdk.server.platform.DateRange
 import io.portone.sdk.server.platform.PlatformContract
 import io.portone.sdk.server.platform.PlatformOrderSettlementAmount
 import io.portone.sdk.server.platform.PlatformPartner
-import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlement
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementStatus
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -29,6 +28,8 @@ public data class PlatformPartnerOrderSettlement(
   override val settlementCurrency: Currency,
   /** 정산 상태 */
   override val status: PlatformPartnerSettlementStatus,
+  /** 메모 */
+  override val memo: String? = null,
   /** 계약 */
   val contract: PlatformContract,
   /** 정산 시작 일 범위 */
@@ -37,6 +38,6 @@ public data class PlatformPartnerOrderSettlement(
   val amount: PlatformOrderSettlementAmount,
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
-  /** 메모 */
-  override val memo: String? = null,
-): PlatformPartnerSettlement
+) : PlatformPartnerSettlement.Recognized
+
+

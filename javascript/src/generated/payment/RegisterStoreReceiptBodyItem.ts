@@ -1,5 +1,4 @@
 import type { Currency } from "./../common/Currency"
-
 /** 하위 상점 거래 정보 */
 export type RegisterStoreReceiptBodyItem = {
 	/** 하위 상점 사업자등록번호 */

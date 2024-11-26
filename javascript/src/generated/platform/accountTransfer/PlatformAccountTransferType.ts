@@ -6,3 +6,4 @@ export type PlatformAccountTransferType =
 	| "WITHDRAWAL_PARTNER_PAYOUT"
 	/** 송금 */
 	| "WITHDRAWAL_REMIT"
+	| string & {}

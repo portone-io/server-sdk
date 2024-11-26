@@ -18,3 +18,5 @@ public data class PlatformSettlementCycleInput(
   /** 정산 주기 계산 방식 */
   val method: PlatformSettlementCycleMethodInput,
 )
+
+

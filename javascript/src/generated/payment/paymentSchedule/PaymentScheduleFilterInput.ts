@@ -1,5 +1,4 @@
 import type { PaymentScheduleStatus } from "./../../payment/paymentSchedule/PaymentScheduleStatus"
-
 /** 결제 예약 건 다건 조회를 위한 입력 정보 */
 export type PaymentScheduleFilterInput = {
 	/**

@@ -1,9 +1,10 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_filter_input import PaymentScheduleFilterInput, _deserialize_payment_schedule_filter_input, _serialize_payment_schedule_filter_input
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_sort_input import PaymentScheduleSortInput, _deserialize_payment_schedule_sort_input, _serialize_payment_schedule_sort_input
+from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
+from ...payment.payment_schedule.payment_schedule_filter_input import PaymentScheduleFilterInput, _deserialize_payment_schedule_filter_input, _serialize_payment_schedule_filter_input
+from ...payment.payment_schedule.payment_schedule_sort_input import PaymentScheduleSortInput, _deserialize_payment_schedule_sort_input, _serialize_payment_schedule_sort_input
 
 @dataclass
 class GetPaymentSchedulesBody:
@@ -11,22 +12,24 @@ class GetPaymentSchedulesBody:
 
     조회 결과는 결제 예정 시점(timeToPay) 기준 최신 순으로 정렬됩니다.
     """
-    page: Optional[PageInput]
+    page: Optional[PageInput] = field(default=None)
     """요청할 페이지 정보
 
     미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
     """
-    sort: Optional[PaymentScheduleSortInput]
+    sort: Optional[PaymentScheduleSortInput] = field(default=None)
     """정렬 조건
 
     미 입력 시 sortBy: TIME_TO_PAY, sortOrder: DESC 으로 기본값이 적용됩니다.
     """
-    filter: Optional[PaymentScheduleFilterInput]
+    filter: Optional[PaymentScheduleFilterInput] = field(default=None)
     """조회할 결제 예약 건의 조건 필터
     """
 
 
 def _serialize_get_payment_schedules_body(obj: GetPaymentSchedulesBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.page is not None:
         entity["page"] = _serialize_page_input(obj.page)

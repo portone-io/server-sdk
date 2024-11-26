@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
+from ..platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
 
 @dataclass
 class SchedulePlatformDiscountSharePolicyBody:
@@ -17,6 +17,8 @@ class SchedulePlatformDiscountSharePolicyBody:
 
 
 def _serialize_schedule_platform_discount_share_policy_body(obj: SchedulePlatformDiscountSharePolicyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_discount_share_policy_body(obj.update)
     entity["appliedAt"] = obj.applied_at

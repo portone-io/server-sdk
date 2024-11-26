@@ -1,15 +1,18 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPartnerSettlementFilterKeywordInput:
-    partner_settlement_id: Optional[str]
-    payout_id: Optional[str]
-    bulk_payout_id: Optional[str]
+    partner_settlement_id: Optional[str] = field(default=None)
+    payout_id: Optional[str] = field(default=None)
+    bulk_payout_id: Optional[str] = field(default=None)
 
 
 def _serialize_platform_partner_settlement_filter_keyword_input(obj: PlatformPartnerSettlementFilterKeywordInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.partner_settlement_id is not None:
         entity["partnerSettlementId"] = obj.partner_settlement_id

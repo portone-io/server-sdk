@@ -1,14 +1,13 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_failure import BillingKeyFailure, _deserialize_billing_key_failure, _serialize_billing_key_failure
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...payment.billing_key.billing_key_failure import BillingKeyFailure, _deserialize_billing_key_failure, _serialize_billing_key_failure
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class FailedPgBillingKeyIssueResponse:
     """빌링키 발급 실패 채널 응답
     """
-    type: Literal["FAILED"] = field(repr=False)
     channel: SelectedChannel
     """채널
 
@@ -20,6 +19,8 @@ class FailedPgBillingKeyIssueResponse:
 
 
 def _serialize_failed_pg_billing_key_issue_response(obj: FailedPgBillingKeyIssueResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "FAILED"
     entity["channel"] = _serialize_selected_channel(obj.channel)
@@ -43,4 +44,4 @@ def _deserialize_failed_pg_billing_key_issue_response(obj: Any) -> FailedPgBilli
         raise KeyError(f"'failure' is not in {obj}")
     failure = obj["failure"]
     failure = _deserialize_billing_key_failure(failure)
-    return FailedPgBillingKeyIssueResponse(type, channel, failure)
+    return FailedPgBillingKeyIssueResponse(channel, failure)

@@ -2,7 +2,6 @@ package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.payment.billingkey.BillingKeyFailure
-import io.portone.sdk.server.payment.billingkey.PgBillingKeyIssueResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,4 +17,6 @@ public data class FailedPgBillingKeyIssueResponse(
   override val channel: SelectedChannel,
   /** 발급 실패 상세 정보 */
   val failure: BillingKeyFailure,
-): PgBillingKeyIssueResponse
+) : PgBillingKeyIssueResponse.Recognized
+
+

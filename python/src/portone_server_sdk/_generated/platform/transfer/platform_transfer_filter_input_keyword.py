@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -8,36 +9,38 @@ class PlatformTransferFilterInputKeyword:
 
     검색 키워드 적용을 위한 옵션으로, 명시된 키워드를 포함하는 정산건만 조회합니다. 하나의 하위 필드에만 값을 명시하여 요청합니다.
     """
-    all: Optional[str]
+    all: Optional[str] = field(default=None)
     """해당 값이 포함된 정보를 가진 정산건만 조회합니다.
     """
-    payment_id: Optional[str]
+    payment_id: Optional[str] = field(default=None)
     """해당 값이랑 일치하는 paymentId 를 가진 정산건만 조회합니다.
     """
-    transfer_id: Optional[str]
+    transfer_id: Optional[str] = field(default=None)
     """해당 값이랑 일치하는 transferId 를 가진 정산건만 조회합니다.
     """
-    transfer_memo: Optional[str]
+    transfer_memo: Optional[str] = field(default=None)
     """해당 값이 포함된 transferMemo 를 가진 정산건만 조회합니다.
     """
-    product_id: Optional[str]
+    product_id: Optional[str] = field(default=None)
     """해당 값이랑 일치하는 productId 를 가진 정산건만 조회합니다.
     """
-    product_name: Optional[str]
+    product_name: Optional[str] = field(default=None)
     """해당 값이랑 일치하는 productName 을 가진 정산건만 조회합니다.
     """
-    partner_id: Optional[str]
+    partner_id: Optional[str] = field(default=None)
     """해당 값이랑 일치하는 partnerId 를 가진 정산건만 조회합니다.
     """
-    partner_name: Optional[str]
+    partner_name: Optional[str] = field(default=None)
     """해당 값이 포함된 partnerName 을 가진 정산건만 조회합니다.
     """
-    partner_memo: Optional[str]
+    partner_memo: Optional[str] = field(default=None)
     """해당 값이 포함된 partnerMemo 를 가진 정산건만 조회합니다.
     """
 
 
 def _serialize_platform_transfer_filter_input_keyword(obj: PlatformTransferFilterInputKeyword) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.all is not None:
         entity["all"] = obj.all

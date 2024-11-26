@@ -1,5 +1,4 @@
 import type { CreatePlatformOrderCancelTransferBodyDiscount } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyDiscount"
-
 /** 주문 취소 항목 리스트 */
 export type CreatePlatformOrderCancelTransferBodyOrderLine = {
 	/** 상품 아이디 */

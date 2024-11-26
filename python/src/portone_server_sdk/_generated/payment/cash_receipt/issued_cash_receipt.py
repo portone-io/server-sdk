@@ -1,15 +1,15 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class IssuedCashReceipt:
     """발급 완료
     """
-    status: Literal["ISSUED"] = field(repr=False)
     """현금영수증 상태
     """
     merchant_id: str
@@ -44,26 +44,28 @@ class IssuedCashReceipt:
     """발급 시점
     (RFC 3339 date-time)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """면세액
     (int64)
     """
-    vat_amount: Optional[int]
+    vat_amount: Optional[int] = field(default=None)
     """부가세액
     (int64)
     """
-    type: Optional[CashReceiptType]
+    type: Optional[CashReceiptType] = field(default=None)
     """현금영수증 유형
     """
-    pg_receipt_id: Optional[str]
+    pg_receipt_id: Optional[str] = field(default=None)
     """PG사 현금영수증 아이디
     """
-    url: Optional[str]
+    url: Optional[str] = field(default=None)
     """현금영수증 URL
     """
 
 
 def _serialize_issued_cash_receipt(obj: IssuedCashReceipt) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "ISSUED"
     entity["merchantId"] = obj.merchant_id
@@ -174,4 +176,4 @@ def _deserialize_issued_cash_receipt(obj: Any) -> IssuedCashReceipt:
             raise ValueError(f"{repr(url)} is not str")
     else:
         url = None
-    return IssuedCashReceipt(status, merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, tax_free_amount, vat_amount, type, pg_receipt_id, url)
+    return IssuedCashReceipt(merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, tax_free_amount, vat_amount, type, pg_receipt_id, url)

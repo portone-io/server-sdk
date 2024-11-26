@@ -1,30 +1,33 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_filter_keyword_input import PlatformPartnerSettlementFilterKeywordInput, _deserialize_platform_partner_settlement_filter_keyword_input, _serialize_platform_partner_settlement_filter_keyword_input
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_type import PlatformPartnerSettlementType, _deserialize_platform_partner_settlement_type, _serialize_platform_partner_settlement_type
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.partner_settlement.platform_partner_settlement_filter_keyword_input import PlatformPartnerSettlementFilterKeywordInput, _deserialize_platform_partner_settlement_filter_keyword_input, _serialize_platform_partner_settlement_filter_keyword_input
+from ...platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
+from ...platform.partner_settlement.platform_partner_settlement_type import PlatformPartnerSettlementType, _deserialize_platform_partner_settlement_type, _serialize_platform_partner_settlement_type
 
 @dataclass
 class PlatformPartnerSettlementFilterInput:
-    settlement_dates: Optional[list[str]]
-    contract_ids: Optional[list[str]]
-    partner_tags: Optional[list[str]]
-    settlement_currencies: Optional[list[Currency]]
+    settlement_dates: Optional[list[str]] = field(default=None)
+    contract_ids: Optional[list[str]] = field(default=None)
+    partner_tags: Optional[list[str]] = field(default=None)
+    settlement_currencies: Optional[list[Currency]] = field(default=None)
     """통화 단위
     """
-    statuses: Optional[list[PlatformPartnerSettlementStatus]]
+    statuses: Optional[list[PlatformPartnerSettlementStatus]] = field(default=None)
     """정산 상태
     """
-    partner_ids: Optional[list[str]]
-    settlement_types: Optional[list[PlatformPartnerSettlementType]]
+    partner_ids: Optional[list[str]] = field(default=None)
+    settlement_types: Optional[list[PlatformPartnerSettlementType]] = field(default=None)
     """정산 유형
     """
-    keyword: Optional[PlatformPartnerSettlementFilterKeywordInput]
+    keyword: Optional[PlatformPartnerSettlementFilterKeywordInput] = field(default=None)
 
 
 def _serialize_platform_partner_settlement_filter_input(obj: PlatformPartnerSettlementFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.settlement_dates is not None:
         entity["settlementDates"] = obj.settlement_dates

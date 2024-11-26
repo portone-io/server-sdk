@@ -1,7 +1,8 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.country import Country, _deserialize_country, _serialize_country
+from ..common.country import Country, _deserialize_country, _serialize_country
 
 @dataclass
 class SeparatedAddress:
@@ -10,7 +11,6 @@ class SeparatedAddress:
     한 줄 형식 주소와 분리 형식 주소 모두 존재합니다.
     한 줄 형식 주소는 분리 형식 주소를 이어 붙인 형태로 생성됩니다.
     """
-    type: Literal["SEPARATED"] = field(repr=False)
     one_line: str
     """주소 (한 줄)
     """
@@ -20,18 +20,20 @@ class SeparatedAddress:
     address_line_2: str
     """상세 주소 2
     """
-    city: Optional[str]
+    city: Optional[str] = field(default=None)
     """시/군/구
     """
-    province: Optional[str]
+    province: Optional[str] = field(default=None)
     """주/도/시
     """
-    country: Optional[Country]
+    country: Optional[Country] = field(default=None)
     """국가
     """
 
 
 def _serialize_separated_address(obj: SeparatedAddress) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "SEPARATED"
     entity["oneLine"] = obj.one_line
@@ -86,4 +88,4 @@ def _deserialize_separated_address(obj: Any) -> SeparatedAddress:
         country = _deserialize_country(country)
     else:
         country = None
-    return SeparatedAddress(type, one_line, address_line_1, address_line_2, city, province, country)
+    return SeparatedAddress(one_line, address_line_1, address_line_2, city, province, country)

@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
-from portone_server_sdk._generated.platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
-from portone_server_sdk._generated.platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
+from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
+from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
 
 @dataclass
 class PlatformPartnerOrderCancelSettlement:
-    type: Literal["ORDER_CANCEL"] = field(repr=False)
     id: str
     """정산내역 아이디
     """
@@ -41,12 +41,14 @@ class PlatformPartnerOrderCancelSettlement:
     is_for_test: bool
     """테스트 모드 여부
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
 
 
 def _serialize_platform_partner_order_cancel_settlement(obj: PlatformPartnerOrderCancelSettlement) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ORDER_CANCEL"
     entity["id"] = obj.id
@@ -122,4 +124,4 @@ def _deserialize_platform_partner_order_cancel_settlement(obj: Any) -> PlatformP
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformPartnerOrderCancelSettlement(type, id, graphql_id, partner, settlement_date, settlement_currency, status, contract, settlement_start_date_range, amount, is_for_test, memo)
+    return PlatformPartnerOrderCancelSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, contract, settlement_start_date_range, amount, is_for_test, memo)

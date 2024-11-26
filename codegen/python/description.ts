@@ -1,5 +1,5 @@
 import type { Writer } from "../common/writer.ts"
-import type { Definition } from "../parser/definition.ts"
+import { Annotated } from "../parser/common.ts"
 
 export function writeDescription(writer: Writer, description: string | null) {
   const trimmed = (description ?? "").trim()
@@ -19,7 +19,7 @@ export function writeDescription(writer: Writer, description: string | null) {
 
 export function annotateDescription(
   description: string,
-  definition: Definition,
+  definition: Annotated,
 ): string | null {
   if ("format" in definition) {
     switch (definition.format) {

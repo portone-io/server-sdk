@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule_summary import PaymentScheduleSummary, _deserialize_payment_schedule_summary, _serialize_payment_schedule_summary
+from ...payment.payment_schedule.payment_schedule_summary import PaymentScheduleSummary, _deserialize_payment_schedule_summary, _serialize_payment_schedule_summary
 
 @dataclass
 class CreatePaymentScheduleResponse:
@@ -13,6 +13,8 @@ class CreatePaymentScheduleResponse:
 
 
 def _serialize_create_payment_schedule_response(obj: CreatePaymentScheduleResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["schedule"] = _serialize_payment_schedule_summary(obj.schedule)
     return entity

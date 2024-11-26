@@ -1,5 +1,4 @@
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
-
 /** 수기 정산건 생성을 위한 입력 정보 */
 export type CreatePlatformManualTransferBody = {
 	/** 파트너 아이디 */

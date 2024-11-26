@@ -19,6 +19,8 @@ class LoginViaApiSecretResponse:
 
 
 def _serialize_login_via_api_secret_response(obj: LoginViaApiSecretResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["accessToken"] = obj.access_token
     entity["refreshToken"] = obj.refresh_token

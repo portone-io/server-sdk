@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
+from ...common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
 
 @dataclass
 class InstantBillingKeyPaymentMethodInputCard:
@@ -11,6 +11,8 @@ class InstantBillingKeyPaymentMethodInputCard:
 
 
 def _serialize_instant_billing_key_payment_method_input_card(obj: InstantBillingKeyPaymentMethodInputCard) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["credential"] = _serialize_card_credential(obj.credential)
     return entity

@@ -17,3 +17,5 @@ public data class PlatformOrderTransferDiscount(
   /** 면세 할인 분담 금액 */
   val shareTaxFreeAmount: Long,
 )
+
+

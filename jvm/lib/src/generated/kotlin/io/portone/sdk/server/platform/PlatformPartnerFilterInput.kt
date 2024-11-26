@@ -37,3 +37,5 @@ public data class PlatformPartnerFilterInput(
   /** 검색 키워드 */
   val keyword: PlatformPartnerFilterInputKeyword? = null,
 )
+
+

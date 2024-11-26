@@ -15,6 +15,8 @@ class CustomerSeparatedName:
 
 
 def _serialize_customer_separated_name(obj: CustomerSeparatedName) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["first"] = obj.first
     entity["last"] = obj.last

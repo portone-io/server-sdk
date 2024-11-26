@@ -156,3 +156,4 @@ export type Bank =
 	| "KOREA_FOSS_SECURITIES"
 	/** 우리종합금융 */
 	| "WOORI_INVESTMENT_BANK"
+	| string & {}

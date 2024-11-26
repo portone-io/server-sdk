@@ -2,7 +2,6 @@ package io.portone.sdk.server.platform
 
 import io.portone.sdk.server.platform.PlatformPartnerBusinessStatus
 import io.portone.sdk.server.platform.PlatformPartnerTaxationType
-import io.portone.sdk.server.platform.PlatformPartnerType
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -31,4 +30,6 @@ public data class PlatformPartnerTypeBusiness(
   val businessType: String? = null,
   /** 업종 */
   val businessClass: String? = null,
-): PlatformPartnerType
+) : PlatformPartnerType.Recognized
+
+

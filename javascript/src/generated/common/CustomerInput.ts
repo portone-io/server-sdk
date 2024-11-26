@@ -2,7 +2,6 @@ import type { Country } from "./../common/Country"
 import type { CustomerNameInput } from "./../common/CustomerNameInput"
 import type { Gender } from "./../common/Gender"
 import type { SeparatedAddressInput } from "./../common/SeparatedAddressInput"
-
 /** 고객 정보 입력 정보 */
 export type CustomerInput = {
 	/**

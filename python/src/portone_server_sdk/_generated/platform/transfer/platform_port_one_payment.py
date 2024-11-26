@@ -1,14 +1,14 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.transfer.platform_payment_method import PlatformPaymentMethod, _deserialize_platform_payment_method, _serialize_platform_payment_method
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.transfer.platform_payment_method import PlatformPaymentMethod, _deserialize_platform_payment_method, _serialize_platform_payment_method
 
 @dataclass
 class PlatformPortOnePayment:
     """포트원 결제 정보
     """
-    type: Literal["PORT_ONE"] = field(repr=False)
     id: str
     """결제 아이디
     """
@@ -28,12 +28,14 @@ class PlatformPortOnePayment:
     """결제 일시
     (RFC 3339 date-time)
     """
-    method: Optional[PlatformPaymentMethod]
+    method: Optional[PlatformPaymentMethod] = field(default=None)
     """결제 수단
     """
 
 
 def _serialize_platform_port_one_payment(obj: PlatformPortOnePayment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PORT_ONE"
     entity["id"] = obj.id
@@ -89,4 +91,4 @@ def _deserialize_platform_port_one_payment(obj: Any) -> PlatformPortOnePayment:
         method = _deserialize_platform_payment_method(method)
     else:
         method = None
-    return PlatformPortOnePayment(type, id, store_id, channel_key, order_name, currency, paid_at, method)
+    return PlatformPortOnePayment(id, store_id, channel_key, order_name, currency, paid_at, method)

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -6,18 +7,20 @@ from dataclasses import dataclass, field
 class UpdatePlatformPartnerBodyContact:
     """파트너 담당자 업데이트를 위한 정보
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """담당자 이름
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """담당자 휴대폰 번호
     """
-    email: Optional[str]
+    email: Optional[str] = field(default=None)
     """담당자 이메일
     """
 
 
 def _serialize_update_platform_partner_body_contact(obj: UpdatePlatformPartnerBodyContact) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.name is not None:
         entity["name"] = obj.name

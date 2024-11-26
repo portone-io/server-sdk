@@ -1,53 +1,67 @@
-from portone_server_sdk._generated.identity_verification.confirm_identity_verification_body import (
+from .._generated.identity_verification.errors.confirm_identity_verification_error import (
+    ConfirmIdentityVerificationError,
+)
+from .._generated.identity_verification.errors.get_identity_verification_error import (
+    GetIdentityVerificationError,
+)
+from .._generated.identity_verification.errors.resend_identity_verification_error import (
+    ResendIdentityVerificationError,
+)
+from .._generated.identity_verification.errors.send_identity_verification_error import (
+    SendIdentityVerificationError,
+)
+from .._generated.identity_verification.confirm_identity_verification_body import (
     ConfirmIdentityVerificationBody,
 )
-from portone_server_sdk._generated.identity_verification.confirm_identity_verification_response import (
+from .._generated.identity_verification.confirm_identity_verification_response import (
     ConfirmIdentityVerificationResponse,
 )
-from portone_server_sdk._generated.identity_verification.failed_identity_verification import (
+from .._generated.identity_verification.failed_identity_verification import (
     FailedIdentityVerification,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification import (
+from .._generated.identity_verification.identity_verification import (
     IdentityVerification,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification_failure import (
+from .._generated.identity_verification.identity_verification_failure import (
     IdentityVerificationFailure,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification_method import (
+from .._generated.identity_verification.identity_verification_method import (
     IdentityVerificationMethod,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification_operator import (
+from .._generated.identity_verification.identity_verification_operator import (
     IdentityVerificationOperator,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification_requested_customer import (
+from .._generated.identity_verification.identity_verification_requested_customer import (
     IdentityVerificationRequestedCustomer,
 )
-from portone_server_sdk._generated.identity_verification.identity_verification_verified_customer import (
+from .._generated.identity_verification.identity_verification_verified_customer import (
     IdentityVerificationVerifiedCustomer,
 )
-from portone_server_sdk._generated.identity_verification.ready_identity_verification import (
+from .._generated.identity_verification.ready_identity_verification import (
     ReadyIdentityVerification,
 )
-from portone_server_sdk._generated.identity_verification.resend_identity_verification_response import (
+from .._generated.identity_verification.resend_identity_verification_response import (
     ResendIdentityVerificationResponse,
 )
-from portone_server_sdk._generated.identity_verification.send_identity_verification_body import (
+from .._generated.identity_verification.send_identity_verification_body import (
     SendIdentityVerificationBody,
 )
-from portone_server_sdk._generated.identity_verification.send_identity_verification_body_customer import (
+from .._generated.identity_verification.send_identity_verification_body_customer import (
     SendIdentityVerificationBodyCustomer,
 )
-from portone_server_sdk._generated.identity_verification.send_identity_verification_response import (
+from .._generated.identity_verification.send_identity_verification_response import (
     SendIdentityVerificationResponse,
 )
-from portone_server_sdk._generated.identity_verification.verified_identity_verification import (
+from .._generated.identity_verification.verified_identity_verification import (
     VerifiedIdentityVerification,
 )
-from portone_server_sdk._generated.identity_verification import (
-    IdentityVerificationClient,
-)
+from .._generated.identity_verification.client import IdentityVerificationClient
 
 __all__ = [
+    "ConfirmIdentityVerificationError",
+    "GetIdentityVerificationError",
+    "ResendIdentityVerificationError",
+    "SendIdentityVerificationError",
     "ConfirmIdentityVerificationBody",
     "ConfirmIdentityVerificationResponse",
     "FailedIdentityVerification",

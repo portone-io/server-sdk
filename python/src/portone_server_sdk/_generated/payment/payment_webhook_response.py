@@ -22,6 +22,8 @@ class PaymentWebhookResponse:
 
 
 def _serialize_payment_webhook_response(obj: PaymentWebhookResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["code"] = obj.code
     entity["header"] = obj.header

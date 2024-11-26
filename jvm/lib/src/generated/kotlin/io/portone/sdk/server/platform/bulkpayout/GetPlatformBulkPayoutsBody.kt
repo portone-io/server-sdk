@@ -10,3 +10,5 @@ internal data class GetPlatformBulkPayoutsBody(
   val page: PageInput? = null,
   val filter: PlatformBulkPayoutFilterInput? = null,
 )
+
+

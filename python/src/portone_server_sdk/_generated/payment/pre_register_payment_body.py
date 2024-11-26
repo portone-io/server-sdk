@@ -1,31 +1,34 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class PreRegisterPaymentBody:
     """결제 정보 사전 등록 입력 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    total_amount: Optional[int]
+    total_amount: Optional[int] = field(default=None)
     """결제 총 금액
     (int64)
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """결제 면세 금액
     (int64)
     """
-    currency: Optional[Currency]
+    currency: Optional[Currency] = field(default=None)
     """통화 단위
     """
 
 
 def _serialize_pre_register_payment_body(obj: PreRegisterPaymentBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.store_id is not None:
         entity["storeId"] = obj.store_id

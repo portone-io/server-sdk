@@ -15,6 +15,8 @@ class MonthDay:
 
 
 def _serialize_month_day(obj: MonthDay) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["month"] = obj.month
     entity["day"] = obj.day

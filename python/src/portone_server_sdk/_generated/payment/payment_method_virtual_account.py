@@ -1,44 +1,46 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.payment.payment_method_virtual_account_refund_status import PaymentMethodVirtualAccountRefundStatus, _deserialize_payment_method_virtual_account_refund_status, _serialize_payment_method_virtual_account_refund_status
-from portone_server_sdk._generated.payment.payment_method_virtual_account_type import PaymentMethodVirtualAccountType, _deserialize_payment_method_virtual_account_type, _serialize_payment_method_virtual_account_type
+from ..common.bank import Bank, _deserialize_bank, _serialize_bank
+from ..payment.payment_method_virtual_account_refund_status import PaymentMethodVirtualAccountRefundStatus, _deserialize_payment_method_virtual_account_refund_status, _serialize_payment_method_virtual_account_refund_status
+from ..payment.payment_method_virtual_account_type import PaymentMethodVirtualAccountType, _deserialize_payment_method_virtual_account_type, _serialize_payment_method_virtual_account_type
 
 @dataclass
 class PaymentMethodVirtualAccount:
     """가상계좌 상세 정보
     """
-    type: Literal["PaymentMethodVirtualAccount"] = field(repr=False)
     account_number: str
     """계좌번호
     """
-    bank: Optional[Bank]
+    bank: Optional[Bank] = field(default=None)
     """표준 은행 코드
     """
-    account_type: Optional[PaymentMethodVirtualAccountType]
+    account_type: Optional[PaymentMethodVirtualAccountType] = field(default=None)
     """계좌 유형
     """
-    remittee_name: Optional[str]
+    remittee_name: Optional[str] = field(default=None)
     """계좌주
     """
-    remitter_name: Optional[str]
+    remitter_name: Optional[str] = field(default=None)
     """송금인(입금자)
     """
-    expired_at: Optional[str]
+    expired_at: Optional[str] = field(default=None)
     """입금만료시점
     (RFC 3339 date-time)
     """
-    issued_at: Optional[str]
+    issued_at: Optional[str] = field(default=None)
     """계좌발급시점
     (RFC 3339 date-time)
     """
-    refund_status: Optional[PaymentMethodVirtualAccountRefundStatus]
+    refund_status: Optional[PaymentMethodVirtualAccountRefundStatus] = field(default=None)
     """가상계좌 결제가 환불 단계일 때의 환불 상태
     """
 
 
 def _serialize_payment_method_virtual_account(obj: PaymentMethodVirtualAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PaymentMethodVirtualAccount"
     entity["accountNumber"] = obj.account_number
@@ -111,4 +113,4 @@ def _deserialize_payment_method_virtual_account(obj: Any) -> PaymentMethodVirtua
         refund_status = _deserialize_payment_method_virtual_account_refund_status(refund_status)
     else:
         refund_status = None
-    return PaymentMethodVirtualAccount(type, account_number, bank, account_type, remittee_name, remitter_name, expired_at, issued_at, refund_status)
+    return PaymentMethodVirtualAccount(account_number, bank, account_type, remittee_name, remitter_name, expired_at, issued_at, refund_status)

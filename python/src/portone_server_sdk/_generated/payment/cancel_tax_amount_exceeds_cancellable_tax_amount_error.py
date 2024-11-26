@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class CancelTaxAmountExceedsCancellableTaxAmountError:
     """취소 과세 금액이 취소 가능한 과세 금액을 초과한 경우
     """
-    type: Literal["CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(obj: CancelTaxAmountExceedsCancellableTaxAmountError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_cancel_tax_amount_exceeds_cancellable_tax_amount_error(obj: Any
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return CancelTaxAmountExceedsCancellableTaxAmountError(type, message)
+    return CancelTaxAmountExceedsCancellableTaxAmountError(message)

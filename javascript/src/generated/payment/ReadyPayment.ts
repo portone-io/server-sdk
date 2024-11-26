@@ -9,7 +9,6 @@ import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
-
 /** 준비 상태의 결제 건 */
 export type ReadyPayment = {
 	/** 결제 건 상태 */

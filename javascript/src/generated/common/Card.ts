@@ -1,7 +1,6 @@
 import type { CardBrand } from "./../common/CardBrand"
 import type { CardOwnerType } from "./../common/CardOwnerType"
 import type { CardType } from "./../common/CardType"
-
 /** 카드 상세 정보 */
 export type Card = {
 	/** 발행사 코드 */

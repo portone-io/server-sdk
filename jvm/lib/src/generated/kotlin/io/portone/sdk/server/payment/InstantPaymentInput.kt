@@ -15,14 +15,6 @@ import kotlinx.serialization.Serializable
 /** 수기 결제 요청 정보 */
 @Serializable
 internal data class InstantPaymentInput(
-  /** 결제수단 정보 */
-  val method: InstantPaymentMethodInput,
-  /** 주문명 */
-  val orderName: String,
-  /** 결제 금액 세부 입력 정보 */
-  val amount: PaymentAmountInput,
-  /** 통화 */
-  val currency: Currency,
   /**
    * 상점 아이디
    *
@@ -41,6 +33,10 @@ internal data class InstantPaymentInput(
    * 채널 키 또는 채널 그룹 ID 필수
    */
   val channelGroupId: String? = null,
+  /** 결제수단 정보 */
+  val method: InstantPaymentMethodInput,
+  /** 주문명 */
+  val orderName: String,
   /**
    * 문화비 지출 여부
    *
@@ -57,6 +53,10 @@ internal data class InstantPaymentInput(
   val customer: CustomerInput? = null,
   /** 사용자 지정 데이터 */
   val customData: String? = null,
+  /** 결제 금액 세부 입력 정보 */
+  val amount: PaymentAmountInput,
+  /** 통화 */
+  val currency: Currency,
   /** 결제 국가 */
   val country: Country? = null,
   /**
@@ -82,3 +82,5 @@ internal data class InstantPaymentInput(
   /** 해당 결제에 적용할 프로모션 아이디 */
   val promotionId: String? = null,
 )
+
+

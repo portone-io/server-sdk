@@ -6,9 +6,9 @@ import java.lang.Exception
 
 
 /** 취소 가능한 금액이 초과한 경우 */
-public class PlatformCancellableAmountExceededException(
+public class PlatformCancellableAmountExceededException internal constructor(
   cause: PlatformCancellableAmountExceededError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val cancellableAmount: Long = cause.cancellableAmount
   public val requestAmount: Long = cause.requestAmount
   public val amountType: PlatformCancellableAmountType = cause.amountType

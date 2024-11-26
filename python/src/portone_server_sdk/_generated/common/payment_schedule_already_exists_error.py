@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PaymentScheduleAlreadyExistsError:
     """결제 예약건이 이미 존재하는 경우
     """
-    type: Literal["PAYMENT_SCHEDULE_ALREADY_EXISTS"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_payment_schedule_already_exists_error(obj: PaymentScheduleAlreadyExistsError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PAYMENT_SCHEDULE_ALREADY_EXISTS"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_payment_schedule_already_exists_error(obj: Any) -> PaymentSched
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PaymentScheduleAlreadyExistsError(type, message)
+    return PaymentScheduleAlreadyExistsError(message)

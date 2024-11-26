@@ -8,23 +8,9 @@ on:
       - "codegen/openapi.json"
 
 jobs:
-  check:
-    name: Check
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./jvm
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-      - name: Run lint
-        run: ./gradlew ktlintCheck
   build:
     name: Build
+    if: ${{ startsWith(github.ref, 'refs/heads') || startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,10 +23,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Build
-        run: ./gradlew build
+        run: gradle build
+        env:
+          PORTONE_API_SECRET: ${{ secrets.PORTONE_API_SECRET }}
   docs:
     name: Publish API reference
-    needs: [build, check]
+    needs: [build]
     if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
     defaults:
@@ -54,7 +42,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Run dokka
-        run: ./gradlew dokkaHtml
+        run: gradle dokkaHtml
       - name: Deploy on GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -63,7 +51,7 @@ jobs:
           destination_dir: jvm
   release:
     name: Release
-    needs: [check, build]
+    needs: [build]
     if: ${{ startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
     defaults:
@@ -78,7 +66,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Publish package
-        run: ./gradlew publishToMavenCentral --no-configuration-cache
+        run: gradle publishToMavenCentral --no-configuration-cache
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALUSERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALPASSWORD }}

@@ -9,3 +9,5 @@ public data class ConfirmIdentityVerificationResponse(
   /** 완료된 본인인증 내역 */
   val identityVerification: VerifiedIdentityVerification,
 )
+
+

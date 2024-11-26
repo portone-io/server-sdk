@@ -18,6 +18,8 @@ class PlatformSettlementRule:
 
 
 def _serialize_platform_settlement_rule(obj: PlatformSettlementRule) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["supportsMultipleOrderTransfersPerPartner"] = obj.supports_multiple_order_transfers_per_partner
     entity["adjustSettlementDateAfterHolidayIfEarlier"] = obj.adjust_settlement_date_after_holiday_if_earlier

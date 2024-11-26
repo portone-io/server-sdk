@@ -6,27 +6,49 @@ import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlemen
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(PlatformPartnerSettlementSerializer::class)
 public sealed interface PlatformPartnerSettlement {
-  /** 정산내역 아이디 */
-  public val id: String
-  public val graphqlId: String
-  /** 파트너 */
-  public val partner: PlatformPartner
-  /**
-   * 정산 일
-   *
-   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-   */
-  public val settlementDate: String
-  /** 정산 통화 */
-  public val settlementCurrency: Currency
-  /** 정산 상태 */
-  public val status: PlatformPartnerSettlementStatus
-  /** 메모 */
-  public val memo: String?
-  /** 테스트 모드 여부 */
-  public val isForTest: Boolean
+  @Serializable
+  @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
+  public sealed interface Recognized : PlatformPartnerSettlement {
+    /** 정산내역 아이디 */
+    public val id: String
+    public val graphqlId: String
+    /** 파트너 */
+    public val partner: PlatformPartner
+    /**
+     * 정산 일
+     *
+     * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+     */
+    public val settlementDate: String
+    /** 정산 통화 */
+    public val settlementCurrency: Currency
+    /** 정산 상태 */
+    public val status: PlatformPartnerSettlementStatus
+    /** 메모 */
+    public val memo: String?
+    /** 테스트 모드 여부 */
+    public val isForTest: Boolean
+  }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
+  @Serializable
+  public data object Unrecognized : PlatformPartnerSettlement
+}
+
+
+private object PlatformPartnerSettlementSerializer : JsonContentPolymorphicSerializer<PlatformPartnerSettlement>(PlatformPartnerSettlement::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "MANUAL" -> PlatformPartnerManualSettlement.serializer()
+    "ORDER" -> PlatformPartnerOrderSettlement.serializer()
+    "ORDER_CANCEL" -> PlatformPartnerOrderCancelSettlement.serializer()
+    else -> PlatformPartnerSettlement.Unrecognized.serializer()
+  }
 }

@@ -28,6 +28,8 @@ class PlatformBulkPayoutStatusStats:
 
 
 def _serialize_platform_bulk_payout_status_stats(obj: PlatformBulkPayoutStatusStats) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["scheduled"] = obj.scheduled
     entity["preparing"] = obj.preparing

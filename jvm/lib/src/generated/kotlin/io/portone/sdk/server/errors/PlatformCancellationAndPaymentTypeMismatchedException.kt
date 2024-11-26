@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformCancellationAndPaymentTypeMismatched
 import java.lang.Exception
 
 
-public class PlatformCancellationAndPaymentTypeMismatchedException(
+public class PlatformCancellationAndPaymentTypeMismatchedException internal constructor(
   cause: PlatformCancellationAndPaymentTypeMismatchedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
 }

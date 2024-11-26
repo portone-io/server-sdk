@@ -14,14 +14,6 @@ import kotlinx.serialization.Serializable
 internal data class CreatePlatformOrderTransferBody(
   /** 파트너 아이디 */
   val partnerId: String,
-  /** 결제 아이디 */
-  val paymentId: String,
-  /** 주문 정보 */
-  val orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
-  /** 할인 정보 */
-  val discounts: List<CreatePlatformOrderTransferBodyDiscount>,
-  /** 추가 수수료 정보 */
-  val additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
   /**
    * 계약 아이디
    *
@@ -30,6 +22,10 @@ internal data class CreatePlatformOrderTransferBody(
   val contractId: String? = null,
   /** 메모 */
   val memo: String? = null,
+  /** 결제 아이디 */
+  val paymentId: String,
+  /** 주문 정보 */
+  val orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
   /**
    * 주문 면세 금액
    *
@@ -42,6 +38,10 @@ internal data class CreatePlatformOrderTransferBody(
    * 기본값은 결제 일시 입니다.
    */
   val settlementStartDate: String? = null,
+  /** 할인 정보 */
+  val discounts: List<CreatePlatformOrderTransferBodyDiscount>,
+  /** 추가 수수료 정보 */
+  val additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
   /**
    * 외부 결제 상세 정보
    *
@@ -59,3 +59,5 @@ internal data class CreatePlatformOrderTransferBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )
+
+

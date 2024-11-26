@@ -12,3 +12,5 @@ public data class PageInfo(
   /** 실제 반환된 객체 수 */
   val totalCount: Int,
 )
+
+

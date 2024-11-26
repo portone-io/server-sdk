@@ -17,3 +17,5 @@ public data class PaymentWebhookResponse(
   /** 응답 시점 */
   val respondedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

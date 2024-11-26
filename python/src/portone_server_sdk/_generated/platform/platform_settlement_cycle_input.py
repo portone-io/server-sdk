@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_settlement_cycle_date_policy import PlatformSettlementCycleDatePolicy, _deserialize_platform_settlement_cycle_date_policy, _serialize_platform_settlement_cycle_date_policy
-from portone_server_sdk._generated.platform.platform_settlement_cycle_method_input import PlatformSettlementCycleMethodInput, _deserialize_platform_settlement_cycle_method_input, _serialize_platform_settlement_cycle_method_input
+from ..platform.platform_settlement_cycle_date_policy import PlatformSettlementCycleDatePolicy, _deserialize_platform_settlement_cycle_date_policy, _serialize_platform_settlement_cycle_date_policy
+from ..platform.platform_settlement_cycle_method_input import PlatformSettlementCycleMethodInput, _deserialize_platform_settlement_cycle_method_input, _serialize_platform_settlement_cycle_method_input
 
 @dataclass
 class PlatformSettlementCycleInput:
@@ -23,6 +23,8 @@ class PlatformSettlementCycleInput:
 
 
 def _serialize_platform_settlement_cycle_input(obj: PlatformSettlementCycleInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["lagDays"] = obj.lag_days
     entity["datePolicy"] = _serialize_platform_settlement_cycle_date_policy(obj.date_policy)

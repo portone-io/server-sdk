@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-BillingKeyPaymentMethodType = Literal["CARD", "MOBILE", "EASY_PAY", "TRANSFER"]
+BillingKeyPaymentMethodType = Union[Literal["CARD", "MOBILE", "EASY_PAY", "TRANSFER"], str]
 """빌링키 결제 수단
 """
 
 
 def _serialize_billing_key_payment_method_type(obj: BillingKeyPaymentMethodType) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_billing_key_payment_method_type(obj: Any) -> BillingKeyPaymentMethodType:
-    if obj not in ["CARD", "MOBILE", "EASY_PAY", "TRANSFER"]:
-        raise ValueError(f"{repr(obj)} is not BillingKeyPaymentMethodType")
     return obj

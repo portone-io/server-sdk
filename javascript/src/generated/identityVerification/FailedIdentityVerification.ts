@@ -1,7 +1,6 @@
 import type { IdentityVerificationFailure } from "./../identityVerification/IdentityVerificationFailure"
 import type { IdentityVerificationRequestedCustomer } from "./../identityVerification/IdentityVerificationRequestedCustomer"
 import type { SelectedChannel } from "./../common/SelectedChannel"
-
 /** 실패한 본인인증 내역 */
 export type FailedIdentityVerification = {
 	/** 본인인증 상태 */

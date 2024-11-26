@@ -1,7 +1,6 @@
 package io.portone.sdk.server.payment.cashreceipt
 
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.payment.cashreceipt.CashReceipt
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,10 +15,12 @@ public data class IssueFailedCashReceipt(
   override val storeId: String,
   /** 결제 건 아이디 */
   override val paymentId: String,
+  /** 현금영수증 발급에 사용된 채널 */
+  override val channel: SelectedChannel? = null,
   /** 주문명 */
   override val orderName: String,
   /** 수동 발급 여부 */
   override val isManual: Boolean,
-  /** 현금영수증 발급에 사용된 채널 */
-  val channel: SelectedChannel? = null,
-): CashReceipt
+) : CashReceipt.Recognized
+
+

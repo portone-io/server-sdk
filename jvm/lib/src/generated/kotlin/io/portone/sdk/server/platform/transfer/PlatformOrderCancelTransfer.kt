@@ -9,7 +9,6 @@ import io.portone.sdk.server.platform.transfer.PlatformOrderTransferCancellation
 import io.portone.sdk.server.platform.transfer.PlatformOrderTransferDiscount
 import io.portone.sdk.server.platform.transfer.PlatformOrderTransferOrderLine
 import io.portone.sdk.server.platform.transfer.PlatformPayment
-import io.portone.sdk.server.platform.transfer.PlatformTransfer
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyValue
 import io.portone.sdk.server.platform.transfer.TransferParameters
@@ -28,6 +27,8 @@ public data class PlatformOrderCancelTransfer(
   override val partner: PlatformPartner,
   /** 정산 상태 */
   override val status: PlatformTransferStatus,
+  /** 메모 */
+  override val memo: String? = null,
   /**
    * 정산 일
    *
@@ -36,6 +37,8 @@ public data class PlatformOrderCancelTransfer(
   override val settlementDate: String,
   /** 정산 통화 */
   override val settlementCurrency: Currency,
+  override val payoutId: String? = null,
+  override val payoutGraphqlId: String? = null,
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
   /** 사용자 정의 속성 */
@@ -62,8 +65,6 @@ public data class PlatformOrderCancelTransfer(
   val cancellation: PlatformOrderTransferCancellation,
   /** 정산 파라미터 (실험기능) */
   val parameters: TransferParameters,
-  /** 메모 */
-  override val memo: String? = null,
-  override val payoutId: String? = null,
-  override val payoutGraphqlId: String? = null,
-): PlatformTransfer
+) : PlatformTransfer.Recognized
+
+

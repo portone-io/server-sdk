@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformContractNotFoundError
 import java.lang.Exception
 
 
-public class PlatformContractNotFoundException(
+public class PlatformContractNotFoundException internal constructor(
   cause: PlatformContractNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ArchivePlatformContractException, CancelPlatformContractScheduleException, CreatePlatformOrderTransferException, CreatePlatformPartnerException, GetPlatformContractException, GetPlatformContractScheduleException, RecoverPlatformContractException, RescheduleContractException, ReschedulePartnerException, ScheduleContractException, SchedulePartnerException, SchedulePlatformPartnersException, UpdatePlatformContractException, UpdatePlatformPartnerException {
 }

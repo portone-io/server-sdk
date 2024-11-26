@@ -1,0 +1,21 @@
+import type { Unrecognized } from "../../../utils/unrecognized"
+import { PlatformError } from "../PlatformError"
+import type { ForbiddenError } from "../../common/ForbiddenError"
+import type { InvalidRequestError } from "../../common/InvalidRequestError"
+import type { PlatformAdditionalFeePolicyAlreadyExistsError } from "../../platform/policy/PlatformAdditionalFeePolicyAlreadyExistsError"
+import type { PlatformAdditionalFeePolicyNotFoundError } from "../../platform/PlatformAdditionalFeePolicyNotFoundError"
+import type { PlatformArchivedAdditionalFeePolicyError } from "../../platform/PlatformArchivedAdditionalFeePolicyError"
+import type { PlatformArchivedContractError } from "../../platform/PlatformArchivedContractError"
+import type { PlatformArchivedDiscountSharePolicyError } from "../../platform/PlatformArchivedDiscountSharePolicyError"
+import type { PlatformCannotArchiveScheduledAdditionalFeePolicyError } from "../../platform/policy/PlatformCannotArchiveScheduledAdditionalFeePolicyError"
+import type { PlatformCannotArchiveScheduledContractError } from "../../platform/policy/PlatformCannotArchiveScheduledContractError"
+import type { PlatformCannotArchiveScheduledDiscountSharePolicyError } from "../../platform/policy/PlatformCannotArchiveScheduledDiscountSharePolicyError"
+import type { PlatformContractAlreadyExistsError } from "../../platform/policy/PlatformContractAlreadyExistsError"
+import type { PlatformContractNotFoundError } from "../../platform/PlatformContractNotFoundError"
+import type { PlatformDiscountSharePolicyAlreadyExistsError } from "../../platform/policy/PlatformDiscountSharePolicyAlreadyExistsError"
+import type { PlatformDiscountSharePolicyNotFoundError } from "../../platform/PlatformDiscountSharePolicyNotFoundError"
+import type { PlatformNotEnabledError } from "../../platform/PlatformNotEnabledError"
+import type { UnauthorizedError } from "../../common/UnauthorizedError"
+export abstract class PolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePolicyAlreadyExistsError | PlatformAdditionalFeePolicyNotFoundError | PlatformArchivedAdditionalFeePolicyError | PlatformArchivedContractError | PlatformArchivedDiscountSharePolicyError | PlatformCannotArchiveScheduledAdditionalFeePolicyError | PlatformCannotArchiveScheduledContractError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformContractAlreadyExistsError | PlatformContractNotFoundError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+}

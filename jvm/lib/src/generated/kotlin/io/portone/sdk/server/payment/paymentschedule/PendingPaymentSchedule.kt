@@ -3,7 +3,6 @@ package io.portone.sdk.server.payment.paymentschedule
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
-import io.portone.sdk.server.payment.paymentschedule.PaymentSchedule
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.Array
@@ -37,8 +36,18 @@ public data class PendingPaymentSchedule(
   override val customData: String,
   /** 결제 총 금액 */
   override val totalAmount: Long,
+  /** 면세액 */
+  override val taxFreeAmount: Long? = null,
+  /** 부가세 */
+  override val vatAmount: Long? = null,
   /** 통화 */
   override val currency: Currency,
+  /** 할부 개월 수 */
+  override val installmentMonth: Int? = null,
+  /** 웹훅 주소 */
+  override val noticeUrls: List<String>? = null,
+  /** 상품 정보 */
+  override val products: List<PaymentProduct>? = null,
   /** 결제 예약 등록 시점 */
   override val createdAt: @Serializable(InstantSerializer::class) Instant,
   /** 결제 예정 시점 */
@@ -47,14 +56,6 @@ public data class PendingPaymentSchedule(
   val startedAt: @Serializable(InstantSerializer::class) Instant,
   /** 결제 완료 시점 */
   val completedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 면세액 */
-  override val taxFreeAmount: Long? = null,
-  /** 부가세 */
-  override val vatAmount: Long? = null,
-  /** 할부 개월 수 */
-  override val installmentMonth: Int? = null,
-  /** 웹훅 주소 */
-  override val noticeUrls: List<String>? = null,
-  /** 상품 정보 */
-  override val products: List<PaymentProduct>? = null,
-): PaymentSchedule
+) : PaymentSchedule.Recognized
+
+

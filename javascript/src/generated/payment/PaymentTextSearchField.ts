@@ -32,3 +32,4 @@ export type PaymentTextSearchField =
 	| "BILLING_KEY"
 	| "PROMOTION_ID"
 	| "GIFT_CERTIFICATION_APPROVAL_NUMBER"
+	| string & {}

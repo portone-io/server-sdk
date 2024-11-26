@@ -5,8 +5,8 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformProductIdNotFoundException(
+public class PlatformProductIdNotFoundException internal constructor(
   cause: PlatformProductIdNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val id: String = cause.id
 }

@@ -1,6 +1,5 @@
 import type { PlatformFee } from "./../platform/PlatformFee"
 import type { PlatformPayer } from "./../platform/PlatformPayer"
-
 /**
  * 추가 수수료 정책
  *

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
+from ..common.card_credential import CardCredential, _deserialize_card_credential, _serialize_card_credential
 
 @dataclass
 class InstantPaymentMethodInputCard:
@@ -10,22 +11,24 @@ class InstantPaymentMethodInputCard:
     credential: CardCredential
     """카드 인증 관련 정보
     """
-    installment_month: Optional[int]
+    installment_month: Optional[int] = field(default=None)
     """카드 할부 개월 수
     (int32)
     """
-    use_free_installment_plan: Optional[bool]
+    use_free_installment_plan: Optional[bool] = field(default=None)
     """무이자 할부 적용 여부
     """
-    use_free_interest_from_merchant: Optional[bool]
+    use_free_interest_from_merchant: Optional[bool] = field(default=None)
     """무이자 할부 이자를 고객사가 부담할지 여부
     """
-    use_card_point: Optional[bool]
+    use_card_point: Optional[bool] = field(default=None)
     """카드 포인트 사용 여부
     """
 
 
 def _serialize_instant_payment_method_input_card(obj: InstantPaymentMethodInputCard) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["credential"] = _serialize_card_credential(obj.credential)
     if obj.installment_month is not None:

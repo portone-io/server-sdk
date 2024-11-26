@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_settlement_parameter_value import PlatformSettlementParameterValue, _deserialize_platform_settlement_parameter_value, _serialize_platform_settlement_parameter_value
+from ...platform.transfer.platform_settlement_parameter_value import PlatformSettlementParameterValue, _deserialize_platform_settlement_parameter_value, _serialize_platform_settlement_parameter_value
 
 @dataclass
 class TransferParameters(PlatformSettlementParameterValue):
@@ -9,6 +9,8 @@ class TransferParameters(PlatformSettlementParameterValue):
 
 
 def _serialize_transfer_parameters(obj: TransferParameters) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = _serialize_platform_settlement_parameter_value(obj)
     return entity
 

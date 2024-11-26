@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.BillingKeyNotIssuedError
 import java.lang.Exception
 
 
-public class BillingKeyNotIssuedException(
+public class BillingKeyNotIssuedException internal constructor(
   cause: BillingKeyNotIssuedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), DeleteBillingKeyException {
 }

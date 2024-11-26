@@ -1,5 +1,4 @@
 import type { Bank } from "./../common/Bank"
-
 /** 충전식 포인트 결제 정보 */
 export type PaymentMethodEasyPayMethodCharge = {
 	type: "PaymentMethodEasyPayMethodCharge"

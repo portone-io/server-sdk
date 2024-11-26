@@ -28,6 +28,8 @@ class PlatformPayoutStatusStats:
 
 
 def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["prepared"] = obj.prepared
     entity["cancelled"] = obj.cancelled

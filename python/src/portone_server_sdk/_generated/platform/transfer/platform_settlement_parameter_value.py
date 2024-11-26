@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -10,7 +11,7 @@ class PlatformSettlementParameterValue:
     """크기가 조정되지 않은 숫자
     (int64)
     """
-    decimal_scale: Optional[int]
+    decimal_scale: Optional[int] = field(default=None)
     """소수 자리수
 
     정산 시 필요한 `decimalScale`이 지정되지 않은 경우 기본값으로 0을 사용합니다.
@@ -20,6 +21,8 @@ class PlatformSettlementParameterValue:
 
 
 def _serialize_platform_settlement_parameter_value(obj: PlatformSettlementParameterValue) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["decimal"] = obj.decimal
     if obj.decimal_scale is not None:

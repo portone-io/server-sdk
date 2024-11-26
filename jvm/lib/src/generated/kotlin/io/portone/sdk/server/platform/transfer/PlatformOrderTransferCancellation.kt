@@ -13,3 +13,5 @@ public data class PlatformOrderTransferCancellation(
   /** 취소 일시 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

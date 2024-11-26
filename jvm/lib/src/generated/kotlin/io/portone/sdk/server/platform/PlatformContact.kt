@@ -12,8 +12,10 @@ import kotlinx.serialization.Serializable
 public data class PlatformContact(
   /** 담당자 이름 */
   val name: String,
-  /** 담당자 이메일 */
-  val email: String,
   /** 담당자 휴대폰 번호 */
   val phoneNumber: String? = null,
+  /** 담당자 이메일 */
+  val email: String,
 )
+
+

@@ -20,3 +20,5 @@ public data class InstantPaymentMethodInputVirtualAccountExpiry(
   /** 만료 시점 */
   val dueDate: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

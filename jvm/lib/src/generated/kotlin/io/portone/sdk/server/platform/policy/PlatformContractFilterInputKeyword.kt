@@ -15,3 +15,5 @@ public data class PlatformContractFilterInputKeyword(
   /** 해당 값이 포함된 name 을 가진 계약만 조회합니다. */
   val name: String? = null,
 )
+
+

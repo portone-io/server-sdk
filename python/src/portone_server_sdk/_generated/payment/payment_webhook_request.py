@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -9,16 +10,18 @@ class PaymentWebhookRequest:
     body: str
     """요청 본문
     """
-    header: Optional[str]
+    header: Optional[str] = field(default=None)
     """요청 헤더
     """
-    requested_at: Optional[str]
+    requested_at: Optional[str] = field(default=None)
     """요청 시점
     (RFC 3339 date-time)
     """
 
 
 def _serialize_payment_webhook_request(obj: PaymentWebhookRequest) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["body"] = obj.body
     if obj.header is not None:

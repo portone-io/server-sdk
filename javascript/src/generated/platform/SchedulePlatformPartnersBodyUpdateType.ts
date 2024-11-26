@@ -1,7 +1,6 @@
 import type { SchedulePlatformPartnersBodyUpdateTypeBusiness } from "./../platform/SchedulePlatformPartnersBodyUpdateTypeBusiness"
 import type { SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer } from "./../platform/SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer"
 import type { SchedulePlatformPartnersBodyUpdateTypeWhtPayer } from "./../platform/SchedulePlatformPartnersBodyUpdateTypeWhtPayer"
-
 /**
  * 파트너 유형별 정보 업데이트를 위한 입력 정보
  *

@@ -4,7 +4,7 @@ import io.portone.sdk.server.errors.PlatformPartnerNotFoundError
 import java.lang.Exception
 
 
-public class PlatformPartnerNotFoundException(
+public class PlatformPartnerNotFoundException internal constructor(
   cause: PlatformPartnerNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ArchivePlatformPartnerException, CancelPlatformPartnerScheduleException, CreatePlatformManualTransferException, CreatePlatformOrderTransferException, GetPlatformPartnerException, GetPlatformPartnerScheduleException, RecoverPlatformPartnerException, ReschedulePartnerException, SchedulePartnerException, UpdatePlatformPartnerException {
 }

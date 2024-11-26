@@ -12,3 +12,5 @@ internal data class RegisterStoreReceiptBody(
   /** 상점 아이디 */
   val storeId: String? = null,
 )
+
+

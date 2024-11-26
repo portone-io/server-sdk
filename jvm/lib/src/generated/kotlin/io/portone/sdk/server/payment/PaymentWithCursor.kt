@@ -12,3 +12,5 @@ public data class PaymentWithCursor(
   /** 해당 결제 건의 커서 정보 */
   val cursor: String,
 )
+
+

@@ -1,44 +1,47 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_partner_filter_input_keyword import PlatformPartnerFilterInputKeyword, _deserialize_platform_partner_filter_input_keyword, _serialize_platform_partner_filter_input_keyword
+from ..common.bank import Bank, _deserialize_bank, _serialize_bank
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..platform.platform_partner_filter_input_keyword import PlatformPartnerFilterInputKeyword, _deserialize_platform_partner_filter_input_keyword, _serialize_platform_partner_filter_input_keyword
 
 @dataclass
 class PlatformPartnerFilterInput:
     """파트너 필터 입력 정보
     """
-    is_archived: Optional[bool]
+    is_archived: Optional[bool] = field(default=None)
     """보관 조회 여부
 
     true 이면 보관된 파트너를 조회하고, false 이면 보관되지 않은 파트너를 조회합니다. 기본값은 false 입니다.
     """
-    tags: Optional[list[str]]
+    tags: Optional[list[str]] = field(default=None)
     """하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 태그를 하나 이상 가지는 파트너만 조회합니다.
     """
-    banks: Optional[list[Bank]]
+    banks: Optional[list[Bank]] = field(default=None)
     """은행
 
     하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 계좌 은행을 가진 파트너만 조회합니다.
     """
-    account_currencies: Optional[list[Currency]]
+    account_currencies: Optional[list[Currency]] = field(default=None)
     """통화 단위
 
     하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 계좌 통화를 가진 파트너만 조회합니다.
     """
-    ids: Optional[list[str]]
+    ids: Optional[list[str]] = field(default=None)
     """하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 아이디를 가진 파트너만 조회합니다.
     """
-    contract_ids: Optional[list[str]]
+    contract_ids: Optional[list[str]] = field(default=None)
     """하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 기본 계약 id를 가진 파트너만 조회합니다.
     """
-    keyword: Optional[PlatformPartnerFilterInputKeyword]
+    keyword: Optional[PlatformPartnerFilterInputKeyword] = field(default=None)
     """검색 키워드
     """
 
 
 def _serialize_platform_partner_filter_input(obj: PlatformPartnerFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.is_archived is not None:
         entity["isArchived"] = obj.is_archived

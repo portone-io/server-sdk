@@ -1,6 +1,5 @@
 import type { Address } from "./../common/Address"
 import type { Gender } from "./../common/Gender"
-
 /** 고객 정보 */
 export type Customer = {
 	/**

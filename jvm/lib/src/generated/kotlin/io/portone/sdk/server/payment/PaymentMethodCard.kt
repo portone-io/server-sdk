@@ -2,8 +2,6 @@ package io.portone.sdk.server.payment
 
 import io.portone.sdk.server.common.Card
 import io.portone.sdk.server.payment.PaymentInstallment
-import io.portone.sdk.server.payment.PaymentMethod
-import io.portone.sdk.server.payment.PaymentMethodEasyPayMethod
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -20,5 +18,6 @@ public data class PaymentMethodCard(
   val installment: PaymentInstallment? = null,
   /** 카드 포인트 사용여부 */
   val pointUsed: Boolean? = null,
-): PaymentMethod,
-  PaymentMethodEasyPayMethod
+) : PaymentMethod.Recognized, PaymentMethodEasyPayMethod.Recognized
+
+

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.billing_key_payment_input import BillingKeyPaymentInput, _deserialize_billing_key_payment_input, _serialize_billing_key_payment_input
+from ...common.billing_key_payment_input import BillingKeyPaymentInput, _deserialize_billing_key_payment_input, _serialize_billing_key_payment_input
 
 @dataclass
 class CreatePaymentScheduleBody:
@@ -17,6 +17,8 @@ class CreatePaymentScheduleBody:
 
 
 def _serialize_create_payment_schedule_body(obj: CreatePaymentScheduleBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_billing_key_payment_input(obj.payment)
     entity["timeToPay"] = obj.time_to_pay

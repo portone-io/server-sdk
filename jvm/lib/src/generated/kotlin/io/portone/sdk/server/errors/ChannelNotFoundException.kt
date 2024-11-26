@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 요청된 채널이 존재하지 않는 경우 */
-public class ChannelNotFoundException(
+public class ChannelNotFoundException internal constructor(
   cause: ChannelNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), IssueBillingKeyException, IssueCashReceiptException, PayInstantlyException, PayWithBillingKeyException, SendIdentityVerificationException {
 }

@@ -2,7 +2,6 @@ import type { CreatePlatformOrderCancelTransferBodyDiscount } from "./../../plat
 import type { CreatePlatformOrderCancelTransferBodyExternalCancellationDetail } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyExternalCancellationDetail"
 import type { CreatePlatformOrderCancelTransferBodyOrderDetail } from "./../../platform/transfer/CreatePlatformOrderCancelTransferBodyOrderDetail"
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
-
 /**
  * 주문 취소 정산 등록을 위한 입력 정보
  *

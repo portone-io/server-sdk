@@ -11,3 +11,5 @@ public data class PlatformBulkPayoutFilterInput(
   val methods: List<PlatformPayoutMethod>? = null,
   val criteria: PlatformBulkPayoutFilterInputCriteria? = null,
 )
+
+

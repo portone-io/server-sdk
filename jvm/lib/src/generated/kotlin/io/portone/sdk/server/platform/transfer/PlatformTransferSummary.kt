@@ -7,21 +7,43 @@ import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyVal
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
-@Serializable
-@JsonClassDiscriminator("type")
+@Serializable(PlatformTransferSummarySerializer::class)
 public sealed interface PlatformTransferSummary {
-  public val id: String
-  public val graphqlId: String
-  public val partner: PlatformTransferSummaryPartner
-  public val status: PlatformTransferStatus
-  public val memo: String?
-  /** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
-  public val settlementDate: String
-  public val settlementCurrency: Currency
-  public val isForTest: Boolean
-  /** 사용자 정의 속성 */
-  public val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
-  /** 사용자 정의 속성 */
-  public val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
+  @Serializable
+  @JsonClassDiscriminator("type")
+  /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
+  public sealed interface Recognized : PlatformTransferSummary {
+    public val id: String
+    public val graphqlId: String
+    public val partner: PlatformTransferSummaryPartner
+    public val status: PlatformTransferStatus
+    public val memo: String?
+    /** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+    public val settlementDate: String
+    public val settlementCurrency: Currency
+    public val isForTest: Boolean
+    /** 사용자 정의 속성 */
+    public val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
+    /** 사용자 정의 속성 */
+    public val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
+  }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
+  @Serializable
+  public data object Unrecognized : PlatformTransferSummary
+}
+
+
+private object PlatformTransferSummarySerializer : JsonContentPolymorphicSerializer<PlatformTransferSummary>(PlatformTransferSummary::class) {
+  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+    "MANUAL" -> PlatformManualTransferSummary.serializer()
+    "ORDER" -> PlatformOrderTransferSummary.serializer()
+    "ORDER_CANCEL" -> PlatformOrderCancelTransferSummary.serializer()
+    else -> PlatformTransferSummary.Unrecognized.serializer()
+  }
 }

@@ -1,15 +1,15 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.identity_verification.identity_verification_failure import IdentityVerificationFailure, _deserialize_identity_verification_failure, _serialize_identity_verification_failure
-from portone_server_sdk._generated.identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ..identity_verification.identity_verification_failure import IdentityVerificationFailure, _deserialize_identity_verification_failure, _serialize_identity_verification_failure
+from ..identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
+from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class FailedIdentityVerification:
     """실패한 본인인증 내역
     """
-    status: Literal["FAILED"] = field(repr=False)
     """본인인증 상태
     """
     id: str
@@ -33,15 +33,17 @@ class FailedIdentityVerification:
     failure: IdentityVerificationFailure
     """본인인증 실패 정보
     """
-    channel: Optional[SelectedChannel]
+    channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
 
 
 def _serialize_failed_identity_verification(obj: FailedIdentityVerification) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "FAILED"
     entity["id"] = obj.id
@@ -104,4 +106,4 @@ def _deserialize_failed_identity_verification(obj: Any) -> FailedIdentityVerific
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return FailedIdentityVerification(status, id, requested_customer, requested_at, updated_at, status_changed_at, failure, channel, custom_data)
+    return FailedIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, failure, channel, custom_data)

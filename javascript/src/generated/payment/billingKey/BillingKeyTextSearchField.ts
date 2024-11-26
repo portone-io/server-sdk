@@ -11,3 +11,4 @@ export type BillingKeyTextSearchField =
 	| "USER_AGENT"
 	| "BILLING_KEY"
 	| "CHANNEL_GROUP_NAME"
+	| string & {}

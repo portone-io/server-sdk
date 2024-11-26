@@ -63,11 +63,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PaymentScheduleClient internal constructor(
+public class PaymentScheduleClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -80,11 +80,7 @@ public class PaymentScheduleClient internal constructor(
    * @param paymentScheduleId
    * 조회할 결제 예약 건 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentScheduleNotFoundException 결제 예약건이 존재하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPaymentScheduleException
    */
   @JvmName("getPaymentScheduleSuspend")
   public suspend fun getPaymentSchedule(
@@ -104,7 +100,7 @@ public class PaymentScheduleClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentScheduleError>(httpBody)
+        json.decodeFromString<GetPaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -149,10 +145,7 @@ public class PaymentScheduleClient internal constructor(
    * @param filter
    * 조회할 결제 예약 건의 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPaymentSchedulesException
    */
   @JvmName("getPaymentSchedulesSuspend")
   public suspend fun getPaymentSchedules(
@@ -179,7 +172,7 @@ public class PaymentScheduleClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentSchedulesError>(httpBody)
+        json.decodeFromString<GetPaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -223,15 +216,7 @@ public class PaymentScheduleClient internal constructor(
    * @param scheduleIds
    * 결제 예약 건 아이디 목록
    *
-   * @throws BillingKeyAlreadyDeletedException 빌링키가 이미 삭제된 경우
-   * @throws BillingKeyNotFoundException 빌링키가 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentScheduleAlreadyProcessedException 결제 예약건이 이미 처리된 경우
-   * @throws PaymentScheduleAlreadyRevokedException 결제 예약건이 이미 취소된 경우
-   * @throws PaymentScheduleNotFoundException 결제 예약건이 존재하지 않는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RevokePaymentSchedulesException
    */
   @JvmName("revokePaymentSchedulesSuspend")
   public suspend fun revokePaymentSchedules(
@@ -257,7 +242,7 @@ public class PaymentScheduleClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RevokePaymentSchedulesError>(httpBody)
+        json.decodeFromString<RevokePaymentSchedulesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -302,15 +287,7 @@ public class PaymentScheduleClient internal constructor(
    * @param timeToPay
    * 결제 예정 시점
    *
-   * @throws AlreadyPaidOrWaitingException 결제가 이미 완료되었거나 대기중인 경우
-   * @throws BillingKeyAlreadyDeletedException 빌링키가 이미 삭제된 경우
-   * @throws BillingKeyNotFoundException 빌링키가 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PaymentScheduleAlreadyExistsException 결제 예약건이 이미 존재하는 경우
-   * @throws SumOfPartsExceedsTotalAmountException 면세 금액 등 하위 항목들의 합이 전체 결제 금액을 초과한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePaymentScheduleException
    */
   @JvmName("createPaymentScheduleSuspend")
   public suspend fun createPaymentSchedule(
@@ -337,7 +314,7 @@ public class PaymentScheduleClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePaymentScheduleError>(httpBody)
+        json.decodeFromString<CreatePaymentScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -370,7 +347,7 @@ public class PaymentScheduleClient internal constructor(
     timeToPay: Instant,
   ): CompletableFuture<CreatePaymentScheduleResponse> = GlobalScope.future { createPaymentSchedule(paymentId, payment, timeToPay) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

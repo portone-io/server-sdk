@@ -362,3 +362,4 @@ export type Currency =
 	| "ZMW"
 	/** Zimbabwe Dollar */
 	| "ZWL"
+	| string & {}

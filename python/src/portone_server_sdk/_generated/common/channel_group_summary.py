@@ -18,6 +18,8 @@ class ChannelGroupSummary:
 
 
 def _serialize_channel_group_summary(obj: ChannelGroupSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["name"] = obj.name

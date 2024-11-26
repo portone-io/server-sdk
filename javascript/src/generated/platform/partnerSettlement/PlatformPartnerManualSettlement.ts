@@ -1,7 +1,6 @@
 import type { Currency } from "./../../common/Currency"
 import type { PlatformPartner } from "./../../platform/PlatformPartner"
 import type { PlatformPartnerSettlementStatus } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatus"
-
 export type PlatformPartnerManualSettlement = {
 	type: "MANUAL"
 	/** 정산내역 아이디 */

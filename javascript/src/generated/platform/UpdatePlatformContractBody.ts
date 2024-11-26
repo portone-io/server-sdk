@@ -1,7 +1,6 @@
 import type { PlatformFeeInput } from "./../platform/PlatformFeeInput"
 import type { PlatformPayer } from "./../platform/PlatformPayer"
 import type { PlatformSettlementCycleInput } from "./../platform/PlatformSettlementCycleInput"
-
 /**
  * 계약 업데이트를 위한 입력 정보. 값이 명시되지 않은 필드는 업데이트되지 않습니다.
  *

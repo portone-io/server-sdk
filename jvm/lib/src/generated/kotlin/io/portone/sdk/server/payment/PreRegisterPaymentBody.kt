@@ -20,3 +20,5 @@ internal data class PreRegisterPaymentBody(
   /** 통화 단위 */
   val currency: Currency? = null,
 )
+
+

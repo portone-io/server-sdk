@@ -1,16 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
+from ..platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
 
 @dataclass
 class PlatformSettlementFormulaInvalidOperator:
-    type: Literal["INVALID_OPERATOR"] = field(repr=False)
     operator: str
     position: PlatformSettlementFormulaPosition
 
 
 def _serialize_platform_settlement_formula_invalid_operator(obj: PlatformSettlementFormulaInvalidOperator) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "INVALID_OPERATOR"
     entity["operator"] = obj.operator
@@ -35,4 +36,4 @@ def _deserialize_platform_settlement_formula_invalid_operator(obj: Any) -> Platf
         raise KeyError(f"'position' is not in {obj}")
     position = obj["position"]
     position = _deserialize_platform_settlement_formula_position(position)
-    return PlatformSettlementFormulaInvalidOperator(type, operator, position)
+    return PlatformSettlementFormulaInvalidOperator(operator, position)

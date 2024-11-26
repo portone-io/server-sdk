@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 보관된 파트너들을 예약 업데이트하려고 하는 경우 */
-public class PlatformArchivedPartnersCannotBeScheduledException(
+public class PlatformArchivedPartnersCannotBeScheduledException internal constructor(
   cause: PlatformArchivedPartnersCannotBeScheduledError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), SchedulePlatformPartnersException {
 }

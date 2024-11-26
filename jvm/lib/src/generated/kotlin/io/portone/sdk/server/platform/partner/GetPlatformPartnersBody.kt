@@ -12,3 +12,5 @@ internal data class GetPlatformPartnersBody(
   /** 조회할 파트너 조건 필터 */
   val filter: PlatformPartnerFilterInput? = null,
 )
+
+

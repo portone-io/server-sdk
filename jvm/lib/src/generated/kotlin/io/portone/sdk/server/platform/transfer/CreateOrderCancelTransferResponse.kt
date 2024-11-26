@@ -7,3 +7,5 @@ import kotlinx.serialization.Serializable
 public data class CreateOrderCancelTransferResponse(
   val transfer: PlatformOrderCancelTransfer,
 )
+
+

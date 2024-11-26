@@ -7,3 +7,4 @@ export type CardBrand =
 	| "JCB"
 	| "AMEX"
 	| "DINERS"
+	| string & {}

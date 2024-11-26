@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.payment.promotion.promotion_card_company import PromotionCardCompany, _deserialize_promotion_card_company, _serialize_promotion_card_company
-from portone_server_sdk._generated.payment.promotion.promotion_discount import PromotionDiscount, _deserialize_promotion_discount, _serialize_promotion_discount
-from portone_server_sdk._generated.payment.promotion.promotion_status import PromotionStatus, _deserialize_promotion_status, _serialize_promotion_status
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...payment.promotion.promotion_card_company import PromotionCardCompany, _deserialize_promotion_card_company, _serialize_promotion_card_company
+from ...payment.promotion.promotion_discount import PromotionDiscount, _deserialize_promotion_discount, _serialize_promotion_discount
+from ...payment.promotion.promotion_status import PromotionStatus, _deserialize_promotion_status, _serialize_promotion_status
 
 @dataclass
 class CardPromotion:
     """카드 프로모션
     """
-    type: Literal["CARD"] = field(repr=False)
     """프로모션 유형
     """
     id: str
@@ -54,21 +54,23 @@ class CardPromotion:
     """프로모션 생성 시각
     (RFC 3339 date-time)
     """
-    min_payment_amount: Optional[int]
+    min_payment_amount: Optional[int] = field(default=None)
     """최소 결제 금액
     (int64)
     """
-    max_discount_amount: Optional[int]
+    max_discount_amount: Optional[int] = field(default=None)
     """최대 할인 금액
     (int64)
     """
-    terminated_at: Optional[str]
+    terminated_at: Optional[str] = field(default=None)
     """프로모션 중단 시각
     (RFC 3339 date-time)
     """
 
 
 def _serialize_card_promotion(obj: CardPromotion) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "CARD"
     entity["id"] = obj.id
@@ -174,4 +176,4 @@ def _deserialize_card_promotion(obj: Any) -> CardPromotion:
             raise ValueError(f"{repr(terminated_at)} is not str")
     else:
         terminated_at = None
-    return CardPromotion(type, id, store_id, name, discount_type, total_budget, spent_amount, currency, start_at, end_at, card_company, status, created_at, min_payment_amount, max_discount_amount, terminated_at)
+    return CardPromotion(id, store_id, name, discount_type, total_budget, spent_amount, currency, start_at, end_at, card_company, status, created_at, min_payment_amount, max_discount_amount, terminated_at)

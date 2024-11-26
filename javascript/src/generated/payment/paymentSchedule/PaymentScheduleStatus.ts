@@ -12,3 +12,4 @@ export type PaymentScheduleStatus =
 	| "REVOKED"
 	/** 결제 승인 대기 */
 	| "PENDING"
+	| string & {}

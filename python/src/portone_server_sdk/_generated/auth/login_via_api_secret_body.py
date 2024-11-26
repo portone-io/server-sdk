@@ -12,6 +12,8 @@ class LoginViaApiSecretBody:
 
 
 def _serialize_login_via_api_secret_body(obj: LoginViaApiSecretBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["apiSecret"] = obj.api_secret
     return entity

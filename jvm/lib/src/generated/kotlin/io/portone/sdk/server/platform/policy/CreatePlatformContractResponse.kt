@@ -9,3 +9,5 @@ public data class CreatePlatformContractResponse(
   /** 생성된 계약 객체 */
   val contract: PlatformContract,
 )
+
+

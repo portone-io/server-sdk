@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.month_day import MonthDay, _deserialize_month_day, _serialize_month_day
+from ..platform.month_day import MonthDay, _deserialize_month_day, _serialize_month_day
 
 @dataclass
 class PlatformSettlementCycleMethodManualDatesInput:
@@ -11,6 +11,8 @@ class PlatformSettlementCycleMethodManualDatesInput:
 
 
 def _serialize_platform_settlement_cycle_method_manual_dates_input(obj: PlatformSettlementCycleMethodManualDatesInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["dates"] = list(map(_serialize_month_day, obj.dates))
     return entity

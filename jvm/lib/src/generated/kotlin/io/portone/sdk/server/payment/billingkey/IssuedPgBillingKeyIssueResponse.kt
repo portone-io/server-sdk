@@ -2,7 +2,6 @@ package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethod
-import io.portone.sdk.server.payment.billingkey.PgBillingKeyIssueResponse
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,4 +24,6 @@ public data class IssuedPgBillingKeyIssueResponse(
    * 채널에 대응되는 PG사에서 응답한 빌링키 발급 수단 정보입니다.
    */
   val method: BillingKeyPaymentMethod? = null,
-): PgBillingKeyIssueResponse
+) : PgBillingKeyIssueResponse.Recognized
+
+

@@ -14,3 +14,5 @@ public data class CreatePlatformOrderCancelTransferBodyOrderLine(
   /** 상품 할인 정보 */
   val discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
 )
+
+

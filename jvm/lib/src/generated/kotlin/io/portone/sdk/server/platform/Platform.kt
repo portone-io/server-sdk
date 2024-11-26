@@ -19,3 +19,5 @@ public data class Platform(
   /** 정산 규칙 */
   val settlementRule: PlatformSettlementRule,
 )
+
+

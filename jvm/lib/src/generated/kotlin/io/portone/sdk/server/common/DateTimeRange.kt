@@ -10,3 +10,5 @@ public data class DateTimeRange(
   val `from`: @Serializable(InstantSerializer::class) Instant,
   val until: @Serializable(InstantSerializer::class) Instant,
 )
+
+

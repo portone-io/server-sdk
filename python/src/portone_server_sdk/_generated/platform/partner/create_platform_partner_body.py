@@ -1,10 +1,11 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.partner.create_platform_partner_body_account import CreatePlatformPartnerBodyAccount, _deserialize_create_platform_partner_body_account, _serialize_create_platform_partner_body_account
-from portone_server_sdk._generated.platform.partner.create_platform_partner_body_contact import CreatePlatformPartnerBodyContact, _deserialize_create_platform_partner_body_contact, _serialize_create_platform_partner_body_contact
-from portone_server_sdk._generated.platform.partner.create_platform_partner_body_type import CreatePlatformPartnerBodyType, _deserialize_create_platform_partner_body_type, _serialize_create_platform_partner_body_type
-from portone_server_sdk._generated.platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
+from ...platform.partner.create_platform_partner_body_account import CreatePlatformPartnerBodyAccount, _deserialize_create_platform_partner_body_account, _serialize_create_platform_partner_body_account
+from ...platform.partner.create_platform_partner_body_contact import CreatePlatformPartnerBodyContact, _deserialize_create_platform_partner_body_contact, _serialize_create_platform_partner_body_contact
+from ...platform.partner.create_platform_partner_body_type import CreatePlatformPartnerBodyType, _deserialize_create_platform_partner_body_type, _serialize_create_platform_partner_body_type
+from ...platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
 
 @dataclass
 class CreatePlatformPartnerBody:
@@ -36,22 +37,24 @@ class CreatePlatformPartnerBody:
 
     사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """파트너에 부여할 고유 아이디
 
     고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """파트너에 대한 메모
 
     총 256자까지 입력할 수 있습니다.
     """
-    user_defined_properties: Optional[PlatformProperties]
+    user_defined_properties: Optional[PlatformProperties] = field(default=None)
     """사용자 정의 속성
     """
 
 
 def _serialize_create_platform_partner_body(obj: CreatePlatformPartnerBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["contact"] = _serialize_create_platform_partner_body_contact(obj.contact)

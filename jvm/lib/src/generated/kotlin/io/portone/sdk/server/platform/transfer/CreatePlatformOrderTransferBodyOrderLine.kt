@@ -17,3 +17,5 @@ public data class CreatePlatformOrderTransferBodyOrderLine(
   /** 상품 추가 수수료 정보 */
   val additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
 )
+
+

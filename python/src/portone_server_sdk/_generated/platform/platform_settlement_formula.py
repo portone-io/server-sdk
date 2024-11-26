@@ -18,6 +18,8 @@ class PlatformSettlementFormula:
 
 
 def _serialize_platform_settlement_formula(obj: PlatformSettlementFormula) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["platformFee"] = obj.platform_fee
     entity["discountShare"] = obj.discount_share

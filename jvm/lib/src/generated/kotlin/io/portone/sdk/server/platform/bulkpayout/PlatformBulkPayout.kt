@@ -25,3 +25,5 @@ public data class PlatformBulkPayout(
   val updatedAt: @Serializable(InstantSerializer::class) Instant,
   val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
+
+

@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.bank import Bank, _deserialize_bank, _serialize_bank
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class PlatformRemitAccountTransfer:
-    type: Literal["REMIT"] = field(repr=False)
     """계좌 이체 유형
     """
     id: str
@@ -41,22 +41,24 @@ class PlatformRemitAccountTransfer:
     document_id: str
     """전자서명 아이디
     """
-    withdrawal_memo: Optional[str]
+    withdrawal_memo: Optional[str] = field(default=None)
     """출금 계좌 적요
     """
-    deposit_memo: Optional[str]
+    deposit_memo: Optional[str] = field(default=None)
     """입금 계좌 적요
     """
-    balance: Optional[int]
+    balance: Optional[int] = field(default=None)
     """잔액
     (int64)
     """
-    fail_reason: Optional[str]
+    fail_reason: Optional[str] = field(default=None)
     """실패 사유
     """
 
 
 def _serialize_platform_remit_account_transfer(obj: PlatformRemitAccountTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "REMIT"
     entity["id"] = obj.id
@@ -160,4 +162,4 @@ def _deserialize_platform_remit_account_transfer(obj: Any) -> PlatformRemitAccou
             raise ValueError(f"{repr(fail_reason)} is not str")
     else:
         fail_reason = None
-    return PlatformRemitAccountTransfer(type, id, sequence_number, currency, deposit_bank, deposit_account_number, amount, is_for_test, created_at, updated_at, document_id, withdrawal_memo, deposit_memo, balance, fail_reason)
+    return PlatformRemitAccountTransfer(id, sequence_number, currency, deposit_bank, deposit_account_number, amount, is_for_test, created_at, updated_at, document_id, withdrawal_memo, deposit_memo, balance, fail_reason)

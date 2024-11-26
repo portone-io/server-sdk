@@ -1,7 +1,6 @@
 import type { PageInput } from "./../../common/PageInput"
 import type { PaymentScheduleFilterInput } from "./../../payment/paymentSchedule/PaymentScheduleFilterInput"
 import type { PaymentScheduleSortInput } from "./../../payment/paymentSchedule/PaymentScheduleSortInput"
-
 /**
  * 결제 예약 다건 조회를 위한 입력 정보
  *

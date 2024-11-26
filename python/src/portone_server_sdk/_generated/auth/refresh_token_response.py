@@ -19,6 +19,8 @@ class RefreshTokenResponse:
 
 
 def _serialize_refresh_token_response(obj: RefreshTokenResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["accessToken"] = obj.access_token
     entity["refreshToken"] = obj.refresh_token

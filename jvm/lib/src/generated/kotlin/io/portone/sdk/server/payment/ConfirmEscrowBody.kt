@@ -20,3 +20,5 @@ internal data class ConfirmEscrowBody(
    */
   val fromStore: Boolean? = null,
 )
+
+

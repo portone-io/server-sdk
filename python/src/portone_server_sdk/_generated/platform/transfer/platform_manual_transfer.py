@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
-from portone_server_sdk._generated.platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
-from portone_server_sdk._generated.platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
+from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 
 @dataclass
 class PlatformManualTransfer:
     """수기 정산건
     """
-    type: Literal["MANUAL"] = field(repr=False)
     id: str
     """정산건 아이디
     """
@@ -39,14 +39,16 @@ class PlatformManualTransfer:
     """정산 금액
     (int64)
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
-    payout_id: Optional[str]
-    payout_graphql_id: Optional[str]
+    payout_id: Optional[str] = field(default=None)
+    payout_graphql_id: Optional[str] = field(default=None)
 
 
 def _serialize_platform_manual_transfer(obj: PlatformManualTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MANUAL"
     entity["id"] = obj.id
@@ -138,4 +140,4 @@ def _deserialize_platform_manual_transfer(obj: Any) -> PlatformManualTransfer:
             raise ValueError(f"{repr(payout_graphql_id)} is not str")
     else:
         payout_graphql_id = None
-    return PlatformManualTransfer(type, id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, settlement_amount, memo, payout_id, payout_graphql_id)
+    return PlatformManualTransfer(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, settlement_amount, memo, payout_id, payout_graphql_id)

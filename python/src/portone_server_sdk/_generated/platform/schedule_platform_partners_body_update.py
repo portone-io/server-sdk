@@ -1,24 +1,27 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
-from portone_server_sdk._generated.platform.schedule_platform_partners_body_update_account import SchedulePlatformPartnersBodyUpdateAccount, _deserialize_schedule_platform_partners_body_update_account, _serialize_schedule_platform_partners_body_update_account
-from portone_server_sdk._generated.platform.schedule_platform_partners_body_update_contact import SchedulePlatformPartnersBodyUpdateContact, _deserialize_schedule_platform_partners_body_update_contact, _serialize_schedule_platform_partners_body_update_contact
-from portone_server_sdk._generated.platform.schedule_platform_partners_body_update_type import SchedulePlatformPartnersBodyUpdateType, _deserialize_schedule_platform_partners_body_update_type, _serialize_schedule_platform_partners_body_update_type
+from ..platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
+from ..platform.schedule_platform_partners_body_update_account import SchedulePlatformPartnersBodyUpdateAccount, _deserialize_schedule_platform_partners_body_update_account, _serialize_schedule_platform_partners_body_update_account
+from ..platform.schedule_platform_partners_body_update_contact import SchedulePlatformPartnersBodyUpdateContact, _deserialize_schedule_platform_partners_body_update_contact, _serialize_schedule_platform_partners_body_update_contact
+from ..platform.schedule_platform_partners_body_update_type import SchedulePlatformPartnersBodyUpdateType, _deserialize_schedule_platform_partners_body_update_type, _serialize_schedule_platform_partners_body_update_type
 
 @dataclass
 class SchedulePlatformPartnersBodyUpdate:
-    name: Optional[str]
-    contact: Optional[SchedulePlatformPartnersBodyUpdateContact]
-    type: Optional[SchedulePlatformPartnersBodyUpdateType]
-    account: Optional[SchedulePlatformPartnersBodyUpdateAccount]
-    default_contract_id: Optional[str]
-    memo: Optional[str]
-    tags: Optional[list[str]]
-    user_defined_properties: Optional[PlatformProperties]
+    name: Optional[str] = field(default=None)
+    contact: Optional[SchedulePlatformPartnersBodyUpdateContact] = field(default=None)
+    type: Optional[SchedulePlatformPartnersBodyUpdateType] = field(default=None)
+    account: Optional[SchedulePlatformPartnersBodyUpdateAccount] = field(default=None)
+    default_contract_id: Optional[str] = field(default=None)
+    memo: Optional[str] = field(default=None)
+    tags: Optional[list[str]] = field(default=None)
+    user_defined_properties: Optional[PlatformProperties] = field(default=None)
 
 
 def _serialize_schedule_platform_partners_body_update(obj: SchedulePlatformPartnersBodyUpdate) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.name is not None:
         entity["name"] = obj.name

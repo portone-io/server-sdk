@@ -1,33 +1,35 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.transfer.platform_payment_method import PlatformPaymentMethod, _deserialize_platform_payment_method, _serialize_platform_payment_method
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.transfer.platform_payment_method import PlatformPaymentMethod, _deserialize_platform_payment_method, _serialize_platform_payment_method
 
 @dataclass
 class PlatformExternalPayment:
     """외부 결제 정보
     """
-    type: Literal["EXTERNAL"] = field(repr=False)
     id: str
     """결제 아이디
     """
     currency: Currency
     """통화
     """
-    order_name: Optional[str]
+    order_name: Optional[str] = field(default=None)
     """주문 명
     """
-    method: Optional[PlatformPaymentMethod]
+    method: Optional[PlatformPaymentMethod] = field(default=None)
     """결제 수단
     """
-    paid_at: Optional[str]
+    paid_at: Optional[str] = field(default=None)
     """결제 일시
     (RFC 3339 date-time)
     """
 
 
 def _serialize_platform_external_payment(obj: PlatformExternalPayment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "EXTERNAL"
     entity["id"] = obj.id
@@ -75,4 +77,4 @@ def _deserialize_platform_external_payment(obj: Any) -> PlatformExternalPayment:
             raise ValueError(f"{repr(paid_at)} is not str")
     else:
         paid_at = None
-    return PlatformExternalPayment(type, id, currency, order_name, method, paid_at)
+    return PlatformExternalPayment(id, currency, order_name, method, paid_at)

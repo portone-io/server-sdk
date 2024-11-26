@@ -1,5 +1,4 @@
 import type { Payment } from "./../payment/Payment"
-
 /** 결제 건 및 커서 정보 */
 export type PaymentWithCursor = {
 	/** 결제 건 정보 */

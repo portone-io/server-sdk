@@ -30,3 +30,4 @@ export type PgCompany =
 	| "JTNET"
 	| "KPN"
 	| "HYPHEN"
+	| string & {}

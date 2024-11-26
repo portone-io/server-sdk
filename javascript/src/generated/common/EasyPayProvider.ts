@@ -18,3 +18,4 @@ export type EasyPayProvider =
 	| "ALIPAY"
 	| "HYPHEN"
 	| "TMONEY"
+	| string & {}

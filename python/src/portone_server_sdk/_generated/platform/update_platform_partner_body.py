@@ -1,10 +1,11 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
-from portone_server_sdk._generated.platform.update_platform_partner_body_account import UpdatePlatformPartnerBodyAccount, _deserialize_update_platform_partner_body_account, _serialize_update_platform_partner_body_account
-from portone_server_sdk._generated.platform.update_platform_partner_body_contact import UpdatePlatformPartnerBodyContact, _deserialize_update_platform_partner_body_contact, _serialize_update_platform_partner_body_contact
-from portone_server_sdk._generated.platform.update_platform_partner_body_type import UpdatePlatformPartnerBodyType, _deserialize_update_platform_partner_body_type, _serialize_update_platform_partner_body_type
+from ..platform.platform_properties import PlatformProperties, _deserialize_platform_properties, _serialize_platform_properties
+from ..platform.update_platform_partner_body_account import UpdatePlatformPartnerBodyAccount, _deserialize_update_platform_partner_body_account, _serialize_update_platform_partner_body_account
+from ..platform.update_platform_partner_body_contact import UpdatePlatformPartnerBodyContact, _deserialize_update_platform_partner_body_contact, _serialize_update_platform_partner_body_contact
+from ..platform.update_platform_partner_body_type import UpdatePlatformPartnerBodyType, _deserialize_update_platform_partner_body_type, _serialize_update_platform_partner_body_type
 
 @dataclass
 class UpdatePlatformPartnerBody:
@@ -12,33 +13,35 @@ class UpdatePlatformPartnerBody:
 
     값이 명시되지 않은 필드는 업데이트되지 않습니다.
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """파트너 법인명 혹은 이름
     """
-    contact: Optional[UpdatePlatformPartnerBodyContact]
+    contact: Optional[UpdatePlatformPartnerBodyContact] = field(default=None)
     """파트너 담당자 연락 정보
     """
-    account: Optional[UpdatePlatformPartnerBodyAccount]
+    account: Optional[UpdatePlatformPartnerBodyAccount] = field(default=None)
     """정산 계좌
     """
-    default_contract_id: Optional[str]
+    default_contract_id: Optional[str] = field(default=None)
     """파트너에 설정된 기본 계약 아이디
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """파트너에 대한 메모
     """
-    tags: Optional[list[str]]
+    tags: Optional[list[str]] = field(default=None)
     """파트너의 태그 리스트
     """
-    type: Optional[UpdatePlatformPartnerBodyType]
+    type: Optional[UpdatePlatformPartnerBodyType] = field(default=None)
     """파트너 유형별 정보
     """
-    user_defined_properties: Optional[PlatformProperties]
+    user_defined_properties: Optional[PlatformProperties] = field(default=None)
     """사용자 정의 속성
     """
 
 
 def _serialize_update_platform_partner_body(obj: UpdatePlatformPartnerBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.name is not None:
         entity["name"] = obj.name

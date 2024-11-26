@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_order_cancel_transfer import PlatformOrderCancelTransfer, _deserialize_platform_order_cancel_transfer, _serialize_platform_order_cancel_transfer
+from ...platform.transfer.platform_order_cancel_transfer import PlatformOrderCancelTransfer, _deserialize_platform_order_cancel_transfer, _serialize_platform_order_cancel_transfer
 
 @dataclass
 class CreateOrderCancelTransferResponse:
@@ -9,6 +9,8 @@ class CreateOrderCancelTransferResponse:
 
 
 def _serialize_create_order_cancel_transfer_response(obj: CreateOrderCancelTransferResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["transfer"] = _serialize_platform_order_cancel_transfer(obj.transfer)
     return entity

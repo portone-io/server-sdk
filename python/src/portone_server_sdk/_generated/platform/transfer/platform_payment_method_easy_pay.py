@@ -1,23 +1,25 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.easy_pay_method_type import EasyPayMethodType, _deserialize_easy_pay_method_type, _serialize_easy_pay_method_type
-from portone_server_sdk._generated.common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
+from ...platform.transfer.easy_pay_method_type import EasyPayMethodType, _deserialize_easy_pay_method_type, _serialize_easy_pay_method_type
+from ...common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
 
 @dataclass
 class PlatformPaymentMethodEasyPay:
     """간편 결제
     """
-    type: Literal["EASY_PAY"] = field(repr=False)
-    provider: Optional[EasyPayProvider]
+    provider: Optional[EasyPayProvider] = field(default=None)
     """간편 결제사
     """
-    method_type: Optional[EasyPayMethodType]
+    method_type: Optional[EasyPayMethodType] = field(default=None)
     """간편 결제 수단
     """
 
 
 def _serialize_platform_payment_method_easy_pay(obj: PlatformPaymentMethodEasyPay) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "EASY_PAY"
     if obj.provider is not None:
@@ -45,4 +47,4 @@ def _deserialize_platform_payment_method_easy_pay(obj: Any) -> PlatformPaymentMe
         method_type = _deserialize_easy_pay_method_type(method_type)
     else:
         method_type = None
-    return PlatformPaymentMethodEasyPay(type, provider, method_type)
+    return PlatformPaymentMethodEasyPay(provider, method_type)

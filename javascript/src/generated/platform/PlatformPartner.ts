@@ -3,7 +3,6 @@ import type { PlatformContact } from "./../platform/PlatformContact"
 import type { PlatformPartnerStatus } from "./../platform/PlatformPartnerStatus"
 import type { PlatformPartnerType } from "./../platform/PlatformPartnerType"
 import type { PlatformProperties } from "./../platform/PlatformProperties"
-
 /**
  * 파트너
  *

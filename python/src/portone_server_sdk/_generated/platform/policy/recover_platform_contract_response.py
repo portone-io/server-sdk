@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
+from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
 
 @dataclass
 class RecoverPlatformContractResponse:
@@ -13,6 +13,8 @@ class RecoverPlatformContractResponse:
 
 
 def _serialize_recover_platform_contract_response(obj: RecoverPlatformContractResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["contract"] = _serialize_platform_contract(obj.contract)
     return entity

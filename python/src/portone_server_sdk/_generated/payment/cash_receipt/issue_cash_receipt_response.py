@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.cash_receipt.cash_receipt_summary import CashReceiptSummary, _deserialize_cash_receipt_summary, _serialize_cash_receipt_summary
+from ...payment.cash_receipt.cash_receipt_summary import CashReceiptSummary, _deserialize_cash_receipt_summary, _serialize_cash_receipt_summary
 
 @dataclass
 class IssueCashReceiptResponse:
@@ -11,6 +11,8 @@ class IssueCashReceiptResponse:
 
 
 def _serialize_issue_cash_receipt_response(obj: IssueCashReceiptResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cashReceipt"] = _serialize_cash_receipt_summary(obj.cash_receipt)
     return entity

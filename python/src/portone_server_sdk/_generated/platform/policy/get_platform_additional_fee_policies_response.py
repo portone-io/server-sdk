@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
 
 @dataclass
 class GetPlatformAdditionalFeePoliciesResponse:
@@ -17,6 +17,8 @@ class GetPlatformAdditionalFeePoliciesResponse:
 
 
 def _serialize_get_platform_additional_fee_policies_response(obj: GetPlatformAdditionalFeePoliciesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_additional_fee_policy, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

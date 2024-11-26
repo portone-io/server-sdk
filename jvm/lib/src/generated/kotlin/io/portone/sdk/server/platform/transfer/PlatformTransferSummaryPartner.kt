@@ -13,3 +13,5 @@ public data class PlatformTransferSummaryPartner(
   val type: PlatformTransferSummaryPartnerType,
   val taxationType: PlatformPartnerTaxationType? = null,
 )
+
+

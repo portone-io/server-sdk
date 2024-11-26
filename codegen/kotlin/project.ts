@@ -2,19 +2,23 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import type { Definition } from "../parser/definition.ts"
+import {
+  entities as webhookEntities,
+  types as webhookTypes,
+} from "../common/webhook.ts"
+import type { Definition, Property } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import {
+  Extends,
   filterName,
   KotlinWriter,
-  makeOverridesMap,
-  type Override,
   toException,
   toPackageCase,
 } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
+import { generateEntity as generateWebhookEntity } from "./webhook.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const packagePath = path.join(
@@ -26,21 +30,27 @@ export function generateProject(projectRoot: string, pack: Package) {
   }
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
-  const overridesMap = makeOverridesMap(pack, entityMap)
+  const parentsMap = new Map<string, Property[]>()
+  const childrenMap = new Map<string, Extends>()
+  makeExtendsMap(pack, entityMap, parentsMap, childrenMap)
   const bodies = collectBody(pack)
   const internals = filterUsedAnotherPlace(pack, bodies)
   const oneOfErrors = new Set<string>()
-  const variantErrors = new Set<string>()
+  const variantErrors = new Map<string, Set<string>>()
   collectErrors(pack, entityMap, oneOfErrors, variantErrors)
-  const errors = oneOfErrors.union(variantErrors)
+  const errors = oneOfErrors.union(new Set(variantErrors.keys()))
+  const operationCategoryMap = new Map<string, string>(categoryMap)
   for (const error of errors) {
     categoryMap.set(error, "errors")
   }
   generateExceptions(
     packagePath,
-    [...variantErrors].toSorted(),
+    pack,
+    oneOfErrors,
+    variantErrors,
     entityMap,
     categoryMap,
+    operationCategoryMap,
   )
   generateEntityDirectory(
     packagePath,
@@ -48,22 +58,144 @@ export function generateProject(projectRoot: string, pack: Package) {
     pack,
     entityMap,
     categoryMap,
-    overridesMap,
+    parentsMap,
+    childrenMap,
     errors,
     internals,
   )
+  generateWebhook(packagePath)
+  generateWebhookSerializer(packagePath)
   generateRootClient(packagePath, pack, entityMap, categoryMap)
+}
+
+function generateWebhook(
+  packagePath: string,
+) {
+  const webhookPath = path.join(packagePath, "webhook")
+  fs.ensureDirSync(webhookPath)
+  for (const entity of webhookEntities) {
+    const entityPath = path.join(webhookPath, `${entity.name}.kt`)
+    Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
+  }
+}
+
+function generateWebhookSerializer(srcPath: string) {
+  const writer = KotlinWriter()
+  writer.writeLine("package io.portone.sdk.server.webhook")
+  const imports = [
+    "kotlinx.serialization.DeserializationStrategy",
+    "kotlinx.serialization.json.JsonContentPolymorphicSerializer",
+    "kotlinx.serialization.json.JsonElement",
+    "kotlinx.serialization.json.contentOrNull",
+    "kotlinx.serialization.json.jsonObject",
+    "kotlinx.serialization.json.jsonPrimitive",
+  ]
+  for (const item of imports) {
+    writer.writeLine(`import ${item}`)
+  }
+  writer.writeLine("")
+  writer.writeLine(
+    "internal object WebhookSerializer : JsonContentPolymorphicSerializer<Webhook>(Webhook::class) {",
+  )
+  writer.indent()
+  writer.writeLine(
+    `override fun selectDeserializer(element: JsonElement): DeserializationStrategy<Webhook> = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {`,
+  )
+  writer.indent()
+  for (const [value, name] of webhookTypes) {
+    writer.writeLine(`"${value}" -> ${name}.serializer()`)
+  }
+  writer.writeLine("else -> Webhook.Unrecognized.serializer()")
+  writer.outdent()
+  writer.writeLine("}")
+  writer.outdent()
+  writer.writeLine("}")
+  Deno.writeTextFileSync(
+    path.join(srcPath, "webhook", "WebhookSerializer.kt"),
+    writer.content,
+  )
+}
+
+function generateCategoryExceptions(
+  errorPath: string,
+  pack: Package,
+  hierarchy: string,
+  parentException?: string,
+) {
+  if (pack.subpackages.length === 0 && pack.operations.length === 0) return
+  const writer = KotlinWriter()
+  writer.writeLine("package io.portone.sdk.server.errors")
+  writer.writeLine("")
+  const name = pack.category === "root"
+    ? "RestException"
+    : `${hierarchy}Exception`
+  const extend = parentException ? ` : ${parentException}` : ""
+  writer.writeLine(`public sealed interface ${name}${extend} {`)
+  writer.indent()
+  writer.writeLine(
+    `public${parentException == null ? "" : " override"} val message: String?`,
+  )
+  writer.outdent()
+  writer.writeLine("}")
+  for (const subpackage of pack.subpackages) {
+    generateCategoryExceptions(
+      errorPath,
+      subpackage,
+      `${hierarchy}${toPascalCase(subpackage.category)}`,
+      name,
+    )
+  }
+  Deno.writeTextFileSync(path.join(errorPath, `${name}.kt`), writer.content)
 }
 
 function generateExceptions(
   packagePath: string,
-  errors: string[],
+  pack: Package,
+  oneOfErrors: Set<string>,
+  variantErrors: Map<string, Set<string>>,
   entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
+  operationCategoryMap: Map<string, string>,
 ) {
   const errorPath = path.join(packagePath, "errors")
   fs.ensureDirSync(errorPath)
-  for (const error of errors) {
+  generateCategoryExceptions(errorPath, pack, "")
+  {
+    const writer = KotlinWriter()
+    writer.writeLine("package io.portone.sdk.server.errors")
+    writer.writeLine("")
+    const extension = [...oneOfErrors].toSorted().map((error) =>
+      toException(error)
+    ).join(", ")
+    writer.writeLine(
+      `public class UnknownException internal constructor(public override val message: String) : PortOneException(message), ${extension}`,
+    )
+    Deno.writeTextFileSync(
+      path.join(errorPath, "UnknownException.kt"),
+      writer.content,
+    )
+  }
+  for (const error of oneOfErrors) {
+    const category = operationCategoryMap.get(error)
+    if (!category) continue
+    const writer = KotlinWriter()
+    writer.writeLine("package io.portone.sdk.server.errors")
+    writer.writeLine("")
+    writer.writeLine(
+      `public sealed interface ${toException(error)} : ${
+        toPascalCase(category)
+      }Exception {`,
+    )
+    writer.indent()
+    writer.writeLine("public override val message: String?")
+    writer.outdent()
+    writer.writeLine("}")
+    Deno.writeTextFileSync(
+      path.join(errorPath, `${toException(error)}.kt`),
+      writer.content,
+    )
+  }
+  for (const [error, parents] of variantErrors.entries()) {
     const writer = KotlinWriter()
     const category = categoryMap.get(error)
     if (!category) {
@@ -82,11 +214,14 @@ function generateExceptions(
     }
     writer.writeLine("")
     writeDescription(writer, definition.description)
-    writer.writeLine(`public class ${toException(error)}(`)
+    writer.writeLine(`public class ${toException(error)} internal constructor(`)
     writer.indent()
     writer.writeLine(`cause: ${error}`)
     writer.outdent()
-    writer.writeLine(") : Exception(cause.message) {")
+    const extension = [...parents].toSorted().map((parent) =>
+      `${toException(parent)}`
+    ).join(", ")
+    writer.writeLine(`) : PortOneException(cause.message), ${extension} {`)
     writer.indent()
     for (const property of definition.properties) {
       if (property.name === "type" || property.name === "message") continue
@@ -377,14 +512,14 @@ function generateClient(
   ])
   const writer = KotlinWriter()
   writer.writeLine(
-    `public class ${toPascalCase(pack.category)}Client internal constructor(`,
+    `public class ${toPascalCase(pack.category)}Client(`,
   )
   writer.indent()
   writer.writeLine("private val apiSecret: String,")
-  writer.writeLine("private val apiBase: String,")
-  writer.writeLine("private val storeId: String?,")
+  writer.writeLine(`private val apiBase: String = "https://api.portone.io",`)
+  writer.writeLine("private val storeId: String? = null,")
   writer.outdent()
-  writer.writeLine(") {")
+  writer.writeLine("): Closeable {")
   writer.indent()
   writer.writeLine("private val client: HttpClient = HttpClient(OkHttp)")
   writer.writeLine("")
@@ -416,7 +551,7 @@ function generateClient(
       categoryMap,
     )
   }
-  writer.writeLine("internal fun close() {")
+  writer.writeLine("override fun close() {")
   writer.indent()
   for (const subpackage of subpackages) {
     writer.writeLine(`${subpackage.category}.close()`)
@@ -442,7 +577,8 @@ function generateEntityDirectory(
   pack: Package,
   entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
-  overridesMap: Map<string, Override>,
+  parentsMap: Map<string, Property[]>,
+  childrenMap: Map<string, Extends>,
   errors: Set<string>,
   internals: Set<string>,
 ) {
@@ -456,8 +592,9 @@ function generateEntityDirectory(
         hierarchy,
         entityMap,
         categoryMap,
+        parentsMap,
+        childrenMap,
         entity,
-        overridesMap,
         visibility,
         visibility,
       ),
@@ -476,9 +613,10 @@ function generateEntityDirectory(
           `${hierarchy}.errors`,
           entityMap,
           categoryMap,
+          parentsMap,
+          childrenMap,
           entity,
-          overridesMap,
-          "public",
+          "internal",
           "internal",
         ),
       )
@@ -493,7 +631,8 @@ function generateEntityDirectory(
       subpackage,
       entityMap,
       categoryMap,
-      overridesMap,
+      parentsMap,
+      childrenMap,
       errors,
       internals,
     )
@@ -542,7 +681,7 @@ function collectErrors(
   pack: Package,
   entityMap: Map<string, Definition>,
   oneOfErrors: Set<string>,
-  variantErrors: Set<string>,
+  variantErrors: Map<string, Set<string>>,
 ) {
   for (const operation of pack.operations) {
     const errorEntity = entityMap.get(operation.errors)
@@ -551,12 +690,23 @@ function collectErrors(
     }
     switch (errorEntity.type) {
       case "object":
-        variantErrors.add(errorEntity.name)
+        {
+          let parents = variantErrors.get(errorEntity.name)
+          if (parents == null) {
+            parents = new Set()
+            variantErrors.set(errorEntity.name, parents)
+          }
+        }
         break
       case "oneOf":
         oneOfErrors.add(errorEntity.name)
         for (const variant of errorEntity.variants) {
-          variantErrors.add(variant.name)
+          let parents = variantErrors.get(variant.name)
+          if (parents == null) {
+            parents = new Set()
+            variantErrors.set(variant.name, parents)
+          }
+          parents.add(errorEntity.name)
         }
         break
       case "string":
@@ -576,5 +726,60 @@ function collectErrors(
   }
   for (const subpackage of pack.subpackages) {
     collectErrors(subpackage, entityMap, oneOfErrors, variantErrors)
+  }
+}
+
+function makeExtendsMap(
+  pack: Package,
+  entityMap: Map<string, Definition>,
+  parentsMap: Map<string, Property[]>,
+  childrenMap: Map<string, Extends>,
+) {
+  for (const entity of pack.entities) {
+    if (entity.type === "oneOf") {
+      let recognized: Property[] | null = null
+      for (const variant of entity.variants) {
+        const variantDefinition = entityMap.get(variant.name)
+        if (variantDefinition == null || variantDefinition.type !== "object") {
+          throw new Error("unrecognized oneOf variant", {
+            cause: { definition: entity },
+          })
+        }
+        if (recognized === null) {
+          recognized = [...variantDefinition.properties]
+        } else {
+          recognized = recognized.flatMap((left) =>
+            variantDefinition.properties.filter((right) =>
+              left.name === right.name && left.type === right.type &&
+              (left.type !== "ref" || right.type !== "ref" ||
+                left.value === right.value)
+            ).map((right) => ({
+              ...right,
+              required: left.required && right.required,
+            }))
+          )
+        }
+      }
+      if (recognized) {
+        parentsMap.set(entity.name, recognized)
+        for (const variant of entity.variants) {
+          let extend = childrenMap.get(variant.name)
+          if (extend == null) {
+            extend = {
+              parents: new Set(),
+              properties: new Set(),
+            }
+            childrenMap.set(variant.name, extend)
+          }
+          extend.parents.add(entity.name)
+          for (const { name } of recognized) {
+            extend.properties.add(name)
+          }
+        }
+      }
+    }
+  }
+  for (const subpackage of pack.subpackages) {
+    makeExtendsMap(subpackage, entityMap, parentsMap, childrenMap)
   }
 }

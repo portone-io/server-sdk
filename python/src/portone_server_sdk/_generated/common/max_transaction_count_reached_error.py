@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class MaxTransactionCountReachedError:
     """결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
     """
-    type: Literal["MAX_TRANSACTION_COUNT_REACHED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_max_transaction_count_reached_error(obj: MaxTransactionCountReachedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MAX_TRANSACTION_COUNT_REACHED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_max_transaction_count_reached_error(obj: Any) -> MaxTransaction
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return MaxTransactionCountReachedError(type, message)
+    return MaxTransactionCountReachedError(message)

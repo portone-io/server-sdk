@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
+from ..payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
 
 @dataclass
 class ResendWebhookResponse:
@@ -13,6 +13,8 @@ class ResendWebhookResponse:
 
 
 def _serialize_resend_webhook_response(obj: ResendWebhookResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["webhook"] = _serialize_payment_webhook(obj.webhook)
     return entity

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -14,12 +15,14 @@ class PlatformContact:
     email: str
     """담당자 이메일
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """담당자 휴대폰 번호
     """
 
 
 def _serialize_platform_contact(obj: PlatformContact) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["email"] = obj.email

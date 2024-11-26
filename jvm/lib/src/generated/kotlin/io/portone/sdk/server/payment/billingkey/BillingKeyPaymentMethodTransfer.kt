@@ -1,8 +1,6 @@
 package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.Bank
-import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethod
-import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethodEasyPayMethod
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -15,5 +13,6 @@ public data class BillingKeyPaymentMethodTransfer(
   val bank: Bank? = null,
   /** 계좌번호 */
   val accountNumber: String? = null,
-): BillingKeyPaymentMethod,
-  BillingKeyPaymentMethodEasyPayMethod
+) : BillingKeyPaymentMethod.Recognized, BillingKeyPaymentMethodEasyPayMethod.Recognized
+
+

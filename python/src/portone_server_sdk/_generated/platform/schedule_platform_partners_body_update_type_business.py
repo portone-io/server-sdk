@@ -1,34 +1,37 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
+from ..platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
 
 @dataclass
 class SchedulePlatformPartnersBodyUpdateTypeBusiness:
-    company_name: Optional[str]
+    company_name: Optional[str] = field(default=None)
     """상호명
     """
-    taxation_type: Optional[PlatformPartnerTaxationType]
+    taxation_type: Optional[PlatformPartnerTaxationType] = field(default=None)
     """사업자 유형
     """
-    business_registration_number: Optional[str]
+    business_registration_number: Optional[str] = field(default=None)
     """사업자등록번호
     """
-    representative_name: Optional[str]
+    representative_name: Optional[str] = field(default=None)
     """대표자 이름
     """
-    company_address: Optional[str]
+    company_address: Optional[str] = field(default=None)
     """사업장 주소
     """
-    business_type: Optional[str]
+    business_type: Optional[str] = field(default=None)
     """업태
     """
-    business_class: Optional[str]
+    business_class: Optional[str] = field(default=None)
     """업종
     """
 
 
 def _serialize_schedule_platform_partners_body_update_type_business(obj: SchedulePlatformPartnersBodyUpdateTypeBusiness) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.company_name is not None:
         entity["companyName"] = obj.company_name

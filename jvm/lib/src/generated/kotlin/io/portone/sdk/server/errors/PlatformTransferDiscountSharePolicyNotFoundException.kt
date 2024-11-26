@@ -5,9 +5,9 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformTransferDiscountSharePolicyNotFoundException(
+public class PlatformTransferDiscountSharePolicyNotFoundException internal constructor(
   cause: PlatformTransferDiscountSharePolicyNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException {
   public val discountSharePolicyId: String = cause.discountSharePolicyId
   public val discountSharePolicyGraphqlId: String = cause.discountSharePolicyGraphqlId
   public val productId: String? = cause.productId

@@ -5,8 +5,8 @@ import java.lang.Exception
 import kotlin.String
 
 
-public class PlatformProductIdDuplicatedException(
+public class PlatformProductIdDuplicatedException internal constructor(
   cause: PlatformProductIdDuplicatedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderCancelTransferException, CreatePlatformOrderTransferException {
   public val id: String = cause.id
 }

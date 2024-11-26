@@ -1,7 +1,6 @@
 import type { PageInfo } from "./../../common/PageInfo"
 import type { PlatformPartnerSettlement } from "./../../platform/partnerSettlement/PlatformPartnerSettlement"
 import type { PlatformPartnerSettlementStatusStats } from "./../../platform/partnerSettlement/PlatformPartnerSettlementStatusStats"
-
 /** 정산내역 다건 조회 성공 응답 정보 */
 export type GetPlatformPartnerSettlementsResponse = {
 	/** 조회된 정산내역 리스트 */

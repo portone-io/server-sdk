@@ -20,6 +20,8 @@ class ModifyEscrowLogisticsResponse:
 
 
 def _serialize_modify_escrow_logistics_response(obj: ModifyEscrowLogisticsResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["invoiceNumber"] = obj.invoice_number
     entity["sentAt"] = obj.sent_at

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_account_status import PlatformAccountStatus, _deserialize_platform_account_status, _serialize_platform_account_status
+from ..common.bank import Bank, _deserialize_bank, _serialize_bank
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..platform.platform_account_status import PlatformAccountStatus, _deserialize_platform_account_status, _serialize_platform_account_status
 
 @dataclass
 class PlatformAccount:
@@ -29,6 +29,8 @@ class PlatformAccount:
 
 
 def _serialize_platform_account(obj: PlatformAccount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["bank"] = _serialize_bank(obj.bank)
     entity["currency"] = _serialize_currency(obj.currency)

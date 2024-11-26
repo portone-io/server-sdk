@@ -10,3 +10,5 @@ public data class PaymentInstallment(
   /** 무이자할부 여부 */
   val isInterestFree: Boolean,
 )
+
+

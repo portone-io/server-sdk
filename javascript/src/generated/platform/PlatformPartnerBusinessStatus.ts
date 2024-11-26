@@ -14,3 +14,4 @@ export type PlatformPartnerBusinessStatus =
 	| "CLOSED"
 	/** 휴업 */
 	| "SUSPENDED"
+	| string & {}

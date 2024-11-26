@@ -13,3 +13,5 @@ public data class BillingKeyPaymentSummary(
   /** 결제 완료 시점 */
   val paidAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

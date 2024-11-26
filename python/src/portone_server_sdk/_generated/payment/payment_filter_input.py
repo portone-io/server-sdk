@@ -1,128 +1,131 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
-from portone_server_sdk._generated.common.card_owner_type import CardOwnerType, _deserialize_card_owner_type, _serialize_card_owner_type
-from portone_server_sdk._generated.common.card_type import CardType, _deserialize_card_type, _serialize_card_type
-from portone_server_sdk._generated.common.cash_receipt_input_type import CashReceiptInputType, _deserialize_cash_receipt_input_type, _serialize_cash_receipt_input_type
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
-from portone_server_sdk._generated.payment.payment_cash_receipt_status import PaymentCashReceiptStatus, _deserialize_payment_cash_receipt_status, _serialize_payment_cash_receipt_status
-from portone_server_sdk._generated.common.payment_client_type import PaymentClientType, _deserialize_payment_client_type, _serialize_payment_client_type
-from portone_server_sdk._generated.payment.payment_filter_input_escrow_status import PaymentFilterInputEscrowStatus, _deserialize_payment_filter_input_escrow_status, _serialize_payment_filter_input_escrow_status
-from portone_server_sdk._generated.payment.payment_method_gift_certificate_type import PaymentMethodGiftCertificateType, _deserialize_payment_method_gift_certificate_type, _serialize_payment_method_gift_certificate_type
-from portone_server_sdk._generated.common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
-from portone_server_sdk._generated.payment.payment_sort_by import PaymentSortBy, _deserialize_payment_sort_by, _serialize_payment_sort_by
-from portone_server_sdk._generated.payment.payment_status import PaymentStatus, _deserialize_payment_status, _serialize_payment_status
-from portone_server_sdk._generated.payment.payment_text_search import PaymentTextSearch, _deserialize_payment_text_search, _serialize_payment_text_search
-from portone_server_sdk._generated.payment.payment_timestamp_type import PaymentTimestampType, _deserialize_payment_timestamp_type, _serialize_payment_timestamp_type
-from portone_server_sdk._generated.payment.payment_webhook_status import PaymentWebhookStatus, _deserialize_payment_webhook_status, _serialize_payment_webhook_status
-from portone_server_sdk._generated.common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
-from portone_server_sdk._generated.common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
-from portone_server_sdk._generated.common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
+from ..common.card_brand import CardBrand, _deserialize_card_brand, _serialize_card_brand
+from ..common.card_owner_type import CardOwnerType, _deserialize_card_owner_type, _serialize_card_owner_type
+from ..common.card_type import CardType, _deserialize_card_type, _serialize_card_type
+from ..common.cash_receipt_input_type import CashReceiptInputType, _deserialize_cash_receipt_input_type, _serialize_cash_receipt_input_type
+from ..common.currency import Currency, _deserialize_currency, _serialize_currency
+from ..common.date_time_range import DateTimeRange, _deserialize_date_time_range, _serialize_date_time_range
+from ..payment.payment_cash_receipt_status import PaymentCashReceiptStatus, _deserialize_payment_cash_receipt_status, _serialize_payment_cash_receipt_status
+from ..common.payment_client_type import PaymentClientType, _deserialize_payment_client_type, _serialize_payment_client_type
+from ..payment.payment_filter_input_escrow_status import PaymentFilterInputEscrowStatus, _deserialize_payment_filter_input_escrow_status, _serialize_payment_filter_input_escrow_status
+from ..payment.payment_method_gift_certificate_type import PaymentMethodGiftCertificateType, _deserialize_payment_method_gift_certificate_type, _serialize_payment_method_gift_certificate_type
+from ..common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
+from ..payment.payment_sort_by import PaymentSortBy, _deserialize_payment_sort_by, _serialize_payment_sort_by
+from ..payment.payment_status import PaymentStatus, _deserialize_payment_status, _serialize_payment_status
+from ..payment.payment_text_search import PaymentTextSearch, _deserialize_payment_text_search, _serialize_payment_text_search
+from ..payment.payment_timestamp_type import PaymentTimestampType, _deserialize_payment_timestamp_type, _serialize_payment_timestamp_type
+from ..payment.payment_webhook_status import PaymentWebhookStatus, _deserialize_payment_webhook_status, _serialize_payment_webhook_status
+from ..common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
+from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
+from ..common.sort_order import SortOrder, _deserialize_sort_order, _serialize_sort_order
 
 @dataclass
 class PaymentFilterInput:
     """결제 건 다건 조회를 위한 입력 정보
     """
-    merchant_id: Optional[str]
+    merchant_id: Optional[str] = field(default=None)
     """고객사 아이디
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     Merchant 사용자만 사용가능하며, 지정되지 않은 경우 고객사 전체 결제 건을 조회합니다.
     """
-    timestamp_type: Optional[PaymentTimestampType]
+    timestamp_type: Optional[PaymentTimestampType] = field(default=None)
     """조회 기준 시점 유형
     """
-    from_: Optional[str]
+    from_: Optional[str] = field(default=None)
     """결제 요청/상태 승인 시점 범위의 시작
 
     값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    until: Optional[str]
+    until: Optional[str] = field(default=None)
     """결제 요청/상태 승인 시점 범위의 끝
 
     값을 입력하지 않으면 현재 시점으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    status: Optional[list[PaymentStatus]]
+    status: Optional[list[PaymentStatus]] = field(default=None)
     """결제 상태 리스트
 
     값을 입력하지 않으면 결제상태 필터링이 적용되지 않습니다.
     """
-    methods: Optional[list[PaymentMethodType]]
+    methods: Optional[list[PaymentMethodType]] = field(default=None)
     """결제수단 리스트
 
     값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
     """
-    pg_provider: Optional[list[PgProvider]]
+    pg_provider: Optional[list[PgProvider]] = field(default=None)
     """PG사 리스트
 
     값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
     """
-    is_test: Optional[bool]
+    is_test: Optional[bool] = field(default=None)
     """테스트 결제 필터링
     """
-    is_scheduled: Optional[bool]
+    is_scheduled: Optional[bool] = field(default=None)
     """결제 예약 건 필터링
     """
-    sort_by: Optional[PaymentSortBy]
+    sort_by: Optional[PaymentSortBy] = field(default=None)
     """결제 건 정렬 기준
     """
-    sort_order: Optional[SortOrder]
+    sort_order: Optional[SortOrder] = field(default=None)
     """결제 건 정렬 방식
     """
-    version: Optional[PortOneVersion]
+    version: Optional[PortOneVersion] = field(default=None)
     """포트원 버전
     """
-    webhook_status: Optional[PaymentWebhookStatus]
+    webhook_status: Optional[PaymentWebhookStatus] = field(default=None)
     """웹훅 상태
     """
-    platform_type: Optional[PaymentClientType]
+    platform_type: Optional[PaymentClientType] = field(default=None)
     """플랫폼 유형
     """
-    currency: Optional[Currency]
+    currency: Optional[Currency] = field(default=None)
     """통화
     """
-    is_escrow: Optional[bool]
+    is_escrow: Optional[bool] = field(default=None)
     """에스크로 결제 여부
     """
-    escrow_status: Optional[PaymentFilterInputEscrowStatus]
+    escrow_status: Optional[PaymentFilterInputEscrowStatus] = field(default=None)
     """에스크로 결제의 배송 정보 상태
     """
-    card_brand: Optional[CardBrand]
+    card_brand: Optional[CardBrand] = field(default=None)
     """카드 브랜드
     """
-    card_type: Optional[CardType]
+    card_type: Optional[CardType] = field(default=None)
     """카드 유형
     """
-    card_owner_type: Optional[CardOwnerType]
+    card_owner_type: Optional[CardOwnerType] = field(default=None)
     """카드 소유주 유형
     """
-    gift_certificate_type: Optional[PaymentMethodGiftCertificateType]
+    gift_certificate_type: Optional[PaymentMethodGiftCertificateType] = field(default=None)
     """상품권 종류
     """
-    cash_receipt_type: Optional[CashReceiptInputType]
+    cash_receipt_type: Optional[CashReceiptInputType] = field(default=None)
     """현금영수증 유형
     """
-    cash_receipt_status: Optional[PaymentCashReceiptStatus]
+    cash_receipt_status: Optional[PaymentCashReceiptStatus] = field(default=None)
     """현금영수증 상태
     """
-    cash_receipt_issued_at_range: Optional[DateTimeRange]
+    cash_receipt_issued_at_range: Optional[DateTimeRange] = field(default=None)
     """현금영수증 발급 시간 범위
     """
-    cash_receipt_cancelled_at_range: Optional[DateTimeRange]
+    cash_receipt_cancelled_at_range: Optional[DateTimeRange] = field(default=None)
     """현금영수증 취소 시간 범위
     """
-    text_search: Optional[list[PaymentTextSearch]]
+    text_search: Optional[list[PaymentTextSearch]] = field(default=None)
     """통합 검색 리스트 필터
     """
 
 
 def _serialize_payment_filter_input(obj: PaymentFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.merchant_id is not None:
         entity["merchantId"] = obj.merchant_id

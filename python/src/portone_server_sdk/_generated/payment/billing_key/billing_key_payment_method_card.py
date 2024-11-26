@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card import Card, _deserialize_card, _serialize_card
+from ...common.card import Card, _deserialize_card, _serialize_card
 
 @dataclass
 class BillingKeyPaymentMethodCard:
     """카드 정보
     """
-    type: Literal["BillingKeyPaymentMethodCard"] = field(repr=False)
-    card: Optional[Card]
+    card: Optional[Card] = field(default=None)
     """카드 상세 정보
     """
 
 
 def _serialize_billing_key_payment_method_card(obj: BillingKeyPaymentMethodCard) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BillingKeyPaymentMethodCard"
     if obj.card is not None:
@@ -34,4 +36,4 @@ def _deserialize_billing_key_payment_method_card(obj: Any) -> BillingKeyPaymentM
         card = _deserialize_card(card)
     else:
         card = None
-    return BillingKeyPaymentMethodCard(type, card)
+    return BillingKeyPaymentMethodCard(card)

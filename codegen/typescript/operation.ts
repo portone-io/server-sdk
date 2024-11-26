@@ -1,49 +1,54 @@
 import type { Writer } from "../common/writer.ts"
-import type {
-  Definition,
-  OneOfVariant,
-  Property,
-} from "../parser/definition.ts"
+import type { Definition, Property } from "../parser/definition.ts"
 import type { Operation } from "../parser/operation.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 
 export function writeOperation(
   implWriter: Writer,
   typeWriter: Writer,
+  errorWriter: Writer,
   operation: Operation,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
+  baseError: string,
 ) {
-  const errors = fetchErrors(operation, entityMap)
+  const errorType = entityMap.get(operation.errors)
+  if (!errorType || errorType.type !== "oneOf") {
+    throw new Error("unrecognized error ref", {
+      cause: { error: operation.errors },
+    })
+  }
+  const variants = `${
+    errorType.variants.map(({ name }) => {
+      crossRef.add(name)
+      return name
+    }).join(" | ")
+  } | { readonly type: Unrecognized }`
+  errorWriter.writeLine(
+    `export class ${operation.errors} extends ${baseError} {`,
+  )
+  errorWriter.indent()
+  errorWriter.writeLine(`declare readonly data: ${variants}`)
+  errorWriter.writeLine("/** @ignore */")
+  errorWriter.writeLine(`constructor(data: ${variants}) {`)
+  errorWriter.indent()
+  errorWriter.writeLine(`super(data)`)
+  errorWriter.writeLine(
+    `Object.setPrototypeOf(this, ${operation.errors}.prototype)`,
+  )
+  errorWriter.writeLine(`this.name = "${operation.errors}"`)
+  errorWriter.outdent()
+  errorWriter.writeLine("}")
+  errorWriter.outdent()
+  errorWriter.writeLine("}")
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
   const params = operation.params.path.concat(operation.params.query).concat(
     requestBody,
-  ).filter(({ name }) => name !== "storeId")
-  const optionalCount = params.reduce(
-    (count, { required }) => count + (required ? 0 : 1),
-    0,
   )
-  const isStructured = optionalCount >= 2
   const isStructureOptional = params.every(({ required }) => !required)
-  const paramDescription = isStructured ? [] : params.map((property) => {
-    const block = ([] as string[]).concat(property.title ?? []).concat(
-      property.description ?? [],
-    ).join("\n\n")
-    return `@param ${property.name}\n${block}`
-  }).join("\n")
-  const errorDescription = errors.map(({ name }) => {
-    const error = entityMap.get(name)
-    if (!error) {
-      throw new Error("unrecognized error variant", { cause: { operation } })
-    }
-    return `@throws {@link Errors.${name}} ${error.title ?? ""}`
-  }).concat(
-    "@throws {@link Errors.UnknownError} API 응답이 알 수 없는 형식인 경우",
-  ).join("\n")
+  const errorDescription = `@throws {@link ${operation.errors}}`
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
-  ).concat(
-    paramDescription,
   ).concat(
     errorDescription,
   ).join("\n\n")
@@ -52,25 +57,20 @@ export function writeOperation(
   implWriter.writeLine(`${operation.id}: async (`)
   typeWriter.indent()
   implWriter.indent()
-  if (isStructured) {
-    writeStructuredParameters(
-      typeWriter,
-      params,
-      isStructureOptional,
-      true,
-      crossRef,
-    )
-    writeStructuredParameters(
-      implWriter,
-      params,
-      isStructureOptional,
-      false,
-      crossRef,
-    )
-  } else {
-    writeInlineParameters(typeWriter, params, true, crossRef)
-    writeInlineParameters(implWriter, params, false, crossRef)
-  }
+  writeStructuredParameters(
+    typeWriter,
+    params,
+    isStructureOptional,
+    true,
+    crossRef,
+  )
+  writeStructuredParameters(
+    implWriter,
+    params,
+    isStructureOptional,
+    false,
+    crossRef,
+  )
   typeWriter.outdent()
   implWriter.outdent()
   switch (operation.response?.type) {
@@ -97,20 +97,18 @@ export function writeOperation(
       })
   }
   implWriter.indent()
-  if (isStructured) {
-    if (isStructureOptional) {
-      for (const param of params) {
-        implWriter.writeLine(`const ${param.name} = options?.${param.name}`)
-      }
-    } else {
-      implWriter.writeLine("const {")
-      implWriter.indent()
-      for (const param of params) {
-        implWriter.writeLine(`${param.name},`)
-      }
-      implWriter.outdent()
-      implWriter.writeLine("} = options")
+  if (isStructureOptional) {
+    for (const param of params) {
+      implWriter.writeLine(`const ${param.name} = options?.${param.name}`)
     }
+  } else {
+    implWriter.writeLine("const {")
+    implWriter.indent()
+    for (const param of params) {
+      implWriter.writeLine(`${param.name},`)
+    }
+    implWriter.outdent()
+    implWriter.writeLine("} = options")
   }
   let hasQuery = false
   writeRequestBody(implWriter, requestBody)
@@ -141,7 +139,7 @@ export function writeOperation(
   implWriter.writeLine("headers: {")
   implWriter.indent()
   implWriter.writeLine("Authorization: `PortOne ${secret}`,")
-  implWriter.writeLine(`"User-Agent": userAgent,`)
+  implWriter.writeLine(`"User-Agent": USER_AGENT,`)
   implWriter.outdent()
   implWriter.writeLine("},")
   switch (operation.method) {
@@ -164,21 +162,7 @@ export function writeOperation(
   implWriter.writeLine(")")
   implWriter.writeLine("if (!response.ok) {")
   implWriter.indent()
-  crossRef.add(operation.errors)
-  implWriter.writeLine(
-    `const errorResponse: ${operation.errors} = await response.json()`,
-  )
-  implWriter.writeLine("switch (errorResponse.type) {")
-  implWriter.indent()
-  for (const variant of errors) {
-    implWriter.outdent()
-    implWriter.writeLine(`case "${variant.value}":`)
-    implWriter.indent()
-    implWriter.writeLine(`throw new Errors.${variant.name}(errorResponse)`)
-  }
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  implWriter.writeLine("throw new Errors.UnknownError(errorResponse)")
+  implWriter.writeLine(`throw new ${operation.errors}(await response.json())`)
   implWriter.outdent()
   implWriter.writeLine("}")
   switch (operation.response?.type) {
@@ -197,36 +181,6 @@ export function writeOperation(
   }
   implWriter.outdent()
   implWriter.writeLine("},")
-}
-
-function fetchErrors(
-  operation: Operation,
-  entityMap: Map<string, Definition>,
-): OneOfVariant[] {
-  const actualError = entityMap.get(operation.errors)
-  if (!actualError) {
-    throw new Error("unqualifed error type", { cause: { operation } })
-  }
-  switch (actualError.type) {
-    case "oneOf":
-      return actualError.variants
-    case "string":
-    case "number":
-    case "boolean":
-    case "object":
-    case "ref":
-    case "discriminant":
-    case "enum":
-    case "array":
-    case "integer":
-      throw new Error("unsupported error type", {
-        cause: { error: actualError },
-      })
-    default:
-      throw new Error("unrecognized error type", {
-        cause: { error: actualError },
-      })
-  }
 }
 
 function fetchBodyProperties(
@@ -253,7 +207,11 @@ function writeRequestBody(writer: Writer, body: Property[]) {
   writer.writeLine("const requestBody = JSON.stringify({")
   writer.indent()
   for (const property of body) {
-    writer.writeLine(`${property.name},`)
+    if (property.name === "storeId") {
+      writer.writeLine("storeId: storeId ?? init.storeId,")
+    } else {
+      writer.writeLine(`${property.name},`)
+    }
   }
   writer.outdent()
   writer.writeLine("})")
@@ -306,22 +264,6 @@ function writeStructuredParameters(
   writePropertyList(writer, params, withComment, crossRef)
   writer.outdent()
   writer.writeLine("}")
-}
-
-function writeInlineParameters(
-  writer: Writer,
-  params: Property[],
-  withComment: boolean,
-  crossRef: Set<string>,
-) {
-  const required = params.filter((property) => property.required)
-  const optional = params.filter((property) => !property.required)
-  writePropertyList(
-    writer,
-    required.concat(optional),
-    withComment,
-    crossRef,
-  )
 }
 
 function writePropertyList(

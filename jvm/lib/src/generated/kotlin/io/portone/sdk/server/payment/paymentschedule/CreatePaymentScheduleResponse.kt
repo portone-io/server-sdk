@@ -9,3 +9,5 @@ public data class CreatePaymentScheduleResponse(
   /** 결제 예약 건 */
   val schedule: PaymentScheduleSummary,
 )
+
+

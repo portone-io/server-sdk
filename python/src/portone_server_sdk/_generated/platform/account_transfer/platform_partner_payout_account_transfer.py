@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.bank import Bank, _deserialize_bank, _serialize_bank
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class PlatformPartnerPayoutAccountTransfer:
-    type: Literal["PARTNER_PAYOUT"] = field(repr=False)
     """계좌 이체 유형
     """
     id: str
@@ -50,22 +50,24 @@ class PlatformPartnerPayoutAccountTransfer:
     """지급 고유 아이디
     """
     payout_graphql_id: str
-    withdrawal_memo: Optional[str]
+    withdrawal_memo: Optional[str] = field(default=None)
     """출금 계좌 적요
     """
-    deposit_memo: Optional[str]
+    deposit_memo: Optional[str] = field(default=None)
     """입금 계좌 적요
     """
-    balance: Optional[int]
+    balance: Optional[int] = field(default=None)
     """잔액
     (int64)
     """
-    fail_reason: Optional[str]
+    fail_reason: Optional[str] = field(default=None)
     """실패 사유
     """
 
 
 def _serialize_platform_partner_payout_account_transfer(obj: PlatformPartnerPayoutAccountTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PARTNER_PAYOUT"
     entity["id"] = obj.id
@@ -199,4 +201,4 @@ def _deserialize_platform_partner_payout_account_transfer(obj: Any) -> PlatformP
             raise ValueError(f"{repr(fail_reason)} is not str")
     else:
         fail_reason = None
-    return PlatformPartnerPayoutAccountTransfer(type, id, sequence_number, currency, deposit_bank, deposit_account_number, amount, is_for_test, created_at, updated_at, partner_id, partner_graphql_id, bulk_payout_id, bulk_payout_graphql_id, payout_id, payout_graphql_id, withdrawal_memo, deposit_memo, balance, fail_reason)
+    return PlatformPartnerPayoutAccountTransfer(id, sequence_number, currency, deposit_bank, deposit_account_number, amount, is_for_test, created_at, updated_at, partner_id, partner_graphql_id, bulk_payout_id, bulk_payout_graphql_id, payout_id, payout_graphql_id, withdrawal_memo, deposit_memo, balance, fail_reason)

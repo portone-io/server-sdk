@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -9,13 +10,15 @@ class RevokePaymentSchedulesResponse:
     revoked_schedule_ids: list[str]
     """취소 완료된 결제 예약 건 아이디 목록
     """
-    revoked_at: Optional[str]
+    revoked_at: Optional[str] = field(default=None)
     """결제 예약 건 취소 완료 시점
     (RFC 3339 date-time)
     """
 
 
 def _serialize_revoke_payment_schedules_response(obj: RevokePaymentSchedulesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["revokedScheduleIds"] = obj.revoked_schedule_ids
     if obj.revoked_at is not None:

@@ -1,27 +1,29 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
-from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
-from portone_server_sdk._generated.payment.payment_not_found_error import PaymentNotFoundError, _deserialize_payment_not_found_error, _serialize_payment_not_found_error
-from portone_server_sdk._generated.payment.payment_not_paid_error import PaymentNotPaidError, _deserialize_payment_not_paid_error, _serialize_payment_not_paid_error
-from portone_server_sdk._generated.common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
-from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from ..common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
+from ..common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from ..payment.payment_not_found_error import PaymentNotFoundError, _deserialize_payment_not_found_error, _serialize_payment_not_found_error
+from ..payment.payment_not_paid_error import PaymentNotPaidError, _deserialize_payment_not_paid_error, _serialize_payment_not_paid_error
+from ..common.pg_provider_error import PgProviderError, _deserialize_pg_provider_error, _serialize_pg_provider_error
+from ..common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-ApplyEscrowLogisticsError = Union[ForbiddenError, InvalidRequestError, PaymentNotFoundError, PaymentNotPaidError, PgProviderError, UnauthorizedError]
+ApplyEscrowLogisticsError = Union[ForbiddenError, InvalidRequestError, PaymentNotFoundError, PaymentNotPaidError, PgProviderError, UnauthorizedError, dict]
 
 
 def _serialize_apply_escrow_logistics_error(obj: ApplyEscrowLogisticsError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PAYMENT_NOT_FOUND":
+    if isinstance(obj, PaymentNotFoundError):
         return _serialize_payment_not_found_error(obj)
-    if obj.type == "PAYMENT_NOT_PAID":
+    if isinstance(obj, PaymentNotPaidError):
         return _serialize_payment_not_paid_error(obj)
-    if obj.type == "PG_PROVIDER":
+    if isinstance(obj, PgProviderError):
         return _serialize_pg_provider_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -50,4 +52,4 @@ def _deserialize_apply_escrow_logistics_error(obj: Any) -> ApplyEscrowLogisticsE
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ApplyEscrowLogisticsError")
+    return obj

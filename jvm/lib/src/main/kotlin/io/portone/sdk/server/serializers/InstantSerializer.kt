@@ -8,7 +8,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.time.Instant
 
-public object InstantSerializer : KSerializer<Instant> {
+internal object InstantSerializer : KSerializer<Instant> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("io.portone.sdk.server.serializers.InstantSerializer", PrimitiveKind.STRING)
 

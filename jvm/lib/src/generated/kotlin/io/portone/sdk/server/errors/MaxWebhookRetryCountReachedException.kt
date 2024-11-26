@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우 */
-public class MaxWebhookRetryCountReachedException(
+public class MaxWebhookRetryCountReachedException internal constructor(
   cause: MaxWebhookRetryCountReachedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ResendWebhookException {
 }

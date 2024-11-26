@@ -1,6 +1,5 @@
 package io.portone.sdk.server.payment
 
-import io.portone.sdk.server.payment.PaymentMethod
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -11,4 +10,6 @@ import kotlinx.serialization.Serializable
 public data class PaymentMethodMobile(
   /** 전화번호 */
   val phoneNumber: String? = null,
-): PaymentMethod
+) : PaymentMethod.Recognized
+
+

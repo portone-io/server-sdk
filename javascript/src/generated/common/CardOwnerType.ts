@@ -4,3 +4,4 @@ export type CardOwnerType =
 	| "PERSONAL"
 	/** 법인 */
 	| "CORPORATE"
+	| string & {}

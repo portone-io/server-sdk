@@ -1,27 +1,29 @@
 from __future__ import annotations
 from typing import Any, Optional, Union
-from portone_server_sdk._generated.common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
-from portone_server_sdk._generated.common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
-from portone_server_sdk._generated.platform.policy.platform_cannot_archive_scheduled_contract_error import PlatformCannotArchiveScheduledContractError, _deserialize_platform_cannot_archive_scheduled_contract_error, _serialize_platform_cannot_archive_scheduled_contract_error
-from portone_server_sdk._generated.platform.platform_contract_not_found_error import PlatformContractNotFoundError, _deserialize_platform_contract_not_found_error, _serialize_platform_contract_not_found_error
-from portone_server_sdk._generated.platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
-from portone_server_sdk._generated.common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
+from ...common.forbidden_error import ForbiddenError, _deserialize_forbidden_error, _serialize_forbidden_error
+from ...common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
+from ...platform.policy.platform_cannot_archive_scheduled_contract_error import PlatformCannotArchiveScheduledContractError, _deserialize_platform_cannot_archive_scheduled_contract_error, _serialize_platform_cannot_archive_scheduled_contract_error
+from ...platform.platform_contract_not_found_error import PlatformContractNotFoundError, _deserialize_platform_contract_not_found_error, _serialize_platform_contract_not_found_error
+from ...platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
+from ...common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-ArchivePlatformContractError = Union[ForbiddenError, InvalidRequestError, PlatformCannotArchiveScheduledContractError, PlatformContractNotFoundError, PlatformNotEnabledError, UnauthorizedError]
+ArchivePlatformContractError = Union[ForbiddenError, InvalidRequestError, PlatformCannotArchiveScheduledContractError, PlatformContractNotFoundError, PlatformNotEnabledError, UnauthorizedError, dict]
 
 
 def _serialize_archive_platform_contract_error(obj: ArchivePlatformContractError) -> Any:
-    if obj.type == "FORBIDDEN":
+    if isinstance(obj, dict):
+        return obj
+    if isinstance(obj, ForbiddenError):
         return _serialize_forbidden_error(obj)
-    if obj.type == "INVALID_REQUEST":
+    if isinstance(obj, InvalidRequestError):
         return _serialize_invalid_request_error(obj)
-    if obj.type == "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_CONTRACT":
+    if isinstance(obj, PlatformCannotArchiveScheduledContractError):
         return _serialize_platform_cannot_archive_scheduled_contract_error(obj)
-    if obj.type == "PLATFORM_CONTRACT_NOT_FOUND":
+    if isinstance(obj, PlatformContractNotFoundError):
         return _serialize_platform_contract_not_found_error(obj)
-    if obj.type == "PLATFORM_NOT_ENABLED":
+    if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
-    if obj.type == "UNAUTHORIZED":
+    if isinstance(obj, UnauthorizedError):
         return _serialize_unauthorized_error(obj)
 
 
@@ -50,4 +52,4 @@ def _deserialize_archive_platform_contract_error(obj: Any) -> ArchivePlatformCon
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    raise ValueError(f"{repr(obj)} is not ArchivePlatformContractError")
+    return obj

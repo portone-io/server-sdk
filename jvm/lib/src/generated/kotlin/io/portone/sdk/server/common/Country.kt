@@ -1,506 +1,1276 @@
 package io.portone.sdk.server.common
 
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /** 국가 */
-@Serializable
-public enum class Country {
+@Serializable(CountrySerializer::class)
+public sealed interface Country {
+  public val value: String
   /** Andorra */
-  AD,
+  public data object Ad : Country {
+    override val value: String = "AD"
+  }
   /** United Arab Emirates (the) */
-  AE,
+  public data object Ae : Country {
+    override val value: String = "AE"
+  }
   /** Afghanistan */
-  AF,
+  public data object Af : Country {
+    override val value: String = "AF"
+  }
   /** Antigua and Barbuda */
-  AG,
+  public data object Ag : Country {
+    override val value: String = "AG"
+  }
   /** Anguilla */
-  AI,
+  public data object Ai : Country {
+    override val value: String = "AI"
+  }
   /** Albania */
-  AL,
+  public data object Al : Country {
+    override val value: String = "AL"
+  }
   /** Armenia */
-  AM,
+  public data object Am : Country {
+    override val value: String = "AM"
+  }
   /** Angola */
-  AO,
+  public data object Ao : Country {
+    override val value: String = "AO"
+  }
   /** Antarctica */
-  AQ,
+  public data object Aq : Country {
+    override val value: String = "AQ"
+  }
   /** Argentina */
-  AR,
+  public data object Ar : Country {
+    override val value: String = "AR"
+  }
   /** American Samoa */
-  AS,
+  public data object As : Country {
+    override val value: String = "AS"
+  }
   /** Austria */
-  AT,
+  public data object At : Country {
+    override val value: String = "AT"
+  }
   /** Australia */
-  AU,
+  public data object Au : Country {
+    override val value: String = "AU"
+  }
   /** Aruba */
-  AW,
+  public data object Aw : Country {
+    override val value: String = "AW"
+  }
   /** Åland Islands */
-  AX,
+  public data object Ax : Country {
+    override val value: String = "AX"
+  }
   /** Azerbaijan */
-  AZ,
+  public data object Az : Country {
+    override val value: String = "AZ"
+  }
   /** Bosnia and Herzegovina */
-  BA,
+  public data object Ba : Country {
+    override val value: String = "BA"
+  }
   /** Barbados */
-  BB,
+  public data object Bb : Country {
+    override val value: String = "BB"
+  }
   /** Bangladesh */
-  BD,
+  public data object Bd : Country {
+    override val value: String = "BD"
+  }
   /** Belgium */
-  BE,
+  public data object Be : Country {
+    override val value: String = "BE"
+  }
   /** Burkina Faso */
-  BF,
+  public data object Bf : Country {
+    override val value: String = "BF"
+  }
   /** Bulgaria */
-  BG,
+  public data object Bg : Country {
+    override val value: String = "BG"
+  }
   /** Bahrain */
-  BH,
+  public data object Bh : Country {
+    override val value: String = "BH"
+  }
   /** Burundi */
-  BI,
+  public data object Bi : Country {
+    override val value: String = "BI"
+  }
   /** Benin */
-  BJ,
+  public data object Bj : Country {
+    override val value: String = "BJ"
+  }
   /** Saint Barthélemy */
-  BL,
+  public data object Bl : Country {
+    override val value: String = "BL"
+  }
   /** Bermuda */
-  BM,
+  public data object Bm : Country {
+    override val value: String = "BM"
+  }
   /** Brunei Darussalam */
-  BN,
+  public data object Bn : Country {
+    override val value: String = "BN"
+  }
   /** Bolivia (Plurinational State of) */
-  BO,
+  public data object Bo : Country {
+    override val value: String = "BO"
+  }
   /** Bonaire, Sint Eustatius and Saba */
-  BQ,
+  public data object Bq : Country {
+    override val value: String = "BQ"
+  }
   /** Brazil */
-  BR,
+  public data object Br : Country {
+    override val value: String = "BR"
+  }
   /** Bahamas (the) */
-  BS,
+  public data object Bs : Country {
+    override val value: String = "BS"
+  }
   /** Bhutan */
-  BT,
+  public data object Bt : Country {
+    override val value: String = "BT"
+  }
   /** Bouvet Island */
-  BV,
+  public data object Bv : Country {
+    override val value: String = "BV"
+  }
   /** Botswana */
-  BW,
+  public data object Bw : Country {
+    override val value: String = "BW"
+  }
   /** Belarus */
-  BY,
+  public data object By : Country {
+    override val value: String = "BY"
+  }
   /** Belize */
-  BZ,
+  public data object Bz : Country {
+    override val value: String = "BZ"
+  }
   /** Canada */
-  CA,
+  public data object Ca : Country {
+    override val value: String = "CA"
+  }
   /** Cocos (Keeling) Islands (the) */
-  CC,
+  public data object Cc : Country {
+    override val value: String = "CC"
+  }
   /** Congo (the Democratic Republic of the) */
-  CD,
+  public data object Cd : Country {
+    override val value: String = "CD"
+  }
   /** Central African Republic (the) */
-  CF,
+  public data object Cf : Country {
+    override val value: String = "CF"
+  }
   /** Congo (the) */
-  CG,
+  public data object Cg : Country {
+    override val value: String = "CG"
+  }
   /** Switzerland */
-  CH,
+  public data object Ch : Country {
+    override val value: String = "CH"
+  }
   /** Côte d'Ivoire */
-  CI,
+  public data object Ci : Country {
+    override val value: String = "CI"
+  }
   /** Cook Islands (the) */
-  CK,
+  public data object Ck : Country {
+    override val value: String = "CK"
+  }
   /** Chile */
-  CL,
+  public data object Cl : Country {
+    override val value: String = "CL"
+  }
   /** Cameroon */
-  CM,
+  public data object Cm : Country {
+    override val value: String = "CM"
+  }
   /** China */
-  CN,
+  public data object Cn : Country {
+    override val value: String = "CN"
+  }
   /** Colombia */
-  CO,
+  public data object Co : Country {
+    override val value: String = "CO"
+  }
   /** Costa Rica */
-  CR,
+  public data object Cr : Country {
+    override val value: String = "CR"
+  }
   /** Cuba */
-  CU,
+  public data object Cu : Country {
+    override val value: String = "CU"
+  }
   /** Cabo Verde */
-  CV,
+  public data object Cv : Country {
+    override val value: String = "CV"
+  }
   /** Curaçao */
-  CW,
+  public data object Cw : Country {
+    override val value: String = "CW"
+  }
   /** Christmas Island */
-  CX,
+  public data object Cx : Country {
+    override val value: String = "CX"
+  }
   /** Cyprus */
-  CY,
+  public data object Cy : Country {
+    override val value: String = "CY"
+  }
   /** Czechia */
-  CZ,
+  public data object Cz : Country {
+    override val value: String = "CZ"
+  }
   /** Germany */
-  DE,
+  public data object De : Country {
+    override val value: String = "DE"
+  }
   /** Djibouti */
-  DJ,
+  public data object Dj : Country {
+    override val value: String = "DJ"
+  }
   /** Denmark */
-  DK,
+  public data object Dk : Country {
+    override val value: String = "DK"
+  }
   /** Dominica */
-  DM,
+  public data object Dm : Country {
+    override val value: String = "DM"
+  }
   /** Dominican Republic (the) */
-  DO,
+  public data object Do : Country {
+    override val value: String = "DO"
+  }
   /** Algeria */
-  DZ,
+  public data object Dz : Country {
+    override val value: String = "DZ"
+  }
   /** Ecuador */
-  EC,
+  public data object Ec : Country {
+    override val value: String = "EC"
+  }
   /** Estonia */
-  EE,
+  public data object Ee : Country {
+    override val value: String = "EE"
+  }
   /** Egypt */
-  EG,
+  public data object Eg : Country {
+    override val value: String = "EG"
+  }
   /** Western Sahara */
-  EH,
+  public data object Eh : Country {
+    override val value: String = "EH"
+  }
   /** Eritrea */
-  ER,
+  public data object Er : Country {
+    override val value: String = "ER"
+  }
   /** Spain */
-  ES,
+  public data object Es : Country {
+    override val value: String = "ES"
+  }
   /** Ethiopia */
-  ET,
+  public data object Et : Country {
+    override val value: String = "ET"
+  }
   /** Finland */
-  FI,
+  public data object Fi : Country {
+    override val value: String = "FI"
+  }
   /** Fiji */
-  FJ,
+  public data object Fj : Country {
+    override val value: String = "FJ"
+  }
   /** Falkland Islands (the) [Malvinas] */
-  FK,
+  public data object Fk : Country {
+    override val value: String = "FK"
+  }
   /** Micronesia (Federated States of) */
-  FM,
+  public data object Fm : Country {
+    override val value: String = "FM"
+  }
   /** Faroe Islands (the) */
-  FO,
+  public data object Fo : Country {
+    override val value: String = "FO"
+  }
   /** France */
-  FR,
+  public data object Fr : Country {
+    override val value: String = "FR"
+  }
   /** Gabon */
-  GA,
+  public data object Ga : Country {
+    override val value: String = "GA"
+  }
   /** United Kingdom of Great Britain and Northern Ireland (the) */
-  GB,
+  public data object Gb : Country {
+    override val value: String = "GB"
+  }
   /** Grenada */
-  GD,
+  public data object Gd : Country {
+    override val value: String = "GD"
+  }
   /** Georgia */
-  GE,
+  public data object Ge : Country {
+    override val value: String = "GE"
+  }
   /** French Guiana */
-  GF,
+  public data object Gf : Country {
+    override val value: String = "GF"
+  }
   /** Guernsey */
-  GG,
+  public data object Gg : Country {
+    override val value: String = "GG"
+  }
   /** Ghana */
-  GH,
+  public data object Gh : Country {
+    override val value: String = "GH"
+  }
   /** Gibraltar */
-  GI,
+  public data object Gi : Country {
+    override val value: String = "GI"
+  }
   /** Greenland */
-  GL,
+  public data object Gl : Country {
+    override val value: String = "GL"
+  }
   /** Gambia (the) */
-  GM,
+  public data object Gm : Country {
+    override val value: String = "GM"
+  }
   /** Guinea */
-  GN,
+  public data object Gn : Country {
+    override val value: String = "GN"
+  }
   /** Guadeloupe */
-  GP,
+  public data object Gp : Country {
+    override val value: String = "GP"
+  }
   /** Equatorial Guinea */
-  GQ,
+  public data object Gq : Country {
+    override val value: String = "GQ"
+  }
   /** Greece */
-  GR,
+  public data object Gr : Country {
+    override val value: String = "GR"
+  }
   /** South Georgia and the South Sandwich Islands */
-  GS,
+  public data object Gs : Country {
+    override val value: String = "GS"
+  }
   /** Guatemala */
-  GT,
+  public data object Gt : Country {
+    override val value: String = "GT"
+  }
   /** Guam */
-  GU,
+  public data object Gu : Country {
+    override val value: String = "GU"
+  }
   /** Guinea-Bissau */
-  GW,
+  public data object Gw : Country {
+    override val value: String = "GW"
+  }
   /** Guyana */
-  GY,
+  public data object Gy : Country {
+    override val value: String = "GY"
+  }
   /** Hong Kong */
-  HK,
+  public data object Hk : Country {
+    override val value: String = "HK"
+  }
   /** Heard Island and McDonald Islands */
-  HM,
+  public data object Hm : Country {
+    override val value: String = "HM"
+  }
   /** Honduras */
-  HN,
+  public data object Hn : Country {
+    override val value: String = "HN"
+  }
   /** Croatia */
-  HR,
+  public data object Hr : Country {
+    override val value: String = "HR"
+  }
   /** Haiti */
-  HT,
+  public data object Ht : Country {
+    override val value: String = "HT"
+  }
   /** Hungary */
-  HU,
+  public data object Hu : Country {
+    override val value: String = "HU"
+  }
   /** Indonesia */
-  ID,
+  public data object Id : Country {
+    override val value: String = "ID"
+  }
   /** Ireland */
-  IE,
+  public data object Ie : Country {
+    override val value: String = "IE"
+  }
   /** Israel */
-  IL,
+  public data object Il : Country {
+    override val value: String = "IL"
+  }
   /** Isle of Man */
-  IM,
+  public data object Im : Country {
+    override val value: String = "IM"
+  }
   /** India */
-  IN,
+  public data object In : Country {
+    override val value: String = "IN"
+  }
   /** British Indian Ocean Territory (the) */
-  IO,
+  public data object Io : Country {
+    override val value: String = "IO"
+  }
   /** Iraq */
-  IQ,
+  public data object Iq : Country {
+    override val value: String = "IQ"
+  }
   /** Iran (Islamic Republic of) */
-  IR,
+  public data object Ir : Country {
+    override val value: String = "IR"
+  }
   /** Iceland */
-  IS,
+  public data object Is : Country {
+    override val value: String = "IS"
+  }
   /** Italy */
-  IT,
+  public data object It : Country {
+    override val value: String = "IT"
+  }
   /** Jersey */
-  JE,
+  public data object Je : Country {
+    override val value: String = "JE"
+  }
   /** Jamaica */
-  JM,
+  public data object Jm : Country {
+    override val value: String = "JM"
+  }
   /** Jordan */
-  JO,
+  public data object Jo : Country {
+    override val value: String = "JO"
+  }
   /** Japan */
-  JP,
+  public data object Jp : Country {
+    override val value: String = "JP"
+  }
   /** Kenya */
-  KE,
+  public data object Ke : Country {
+    override val value: String = "KE"
+  }
   /** Kyrgyzstan */
-  KG,
+  public data object Kg : Country {
+    override val value: String = "KG"
+  }
   /** Cambodia */
-  KH,
+  public data object Kh : Country {
+    override val value: String = "KH"
+  }
   /** Kiribati */
-  KI,
+  public data object Ki : Country {
+    override val value: String = "KI"
+  }
   /** Comoros (the) */
-  KM,
+  public data object Km : Country {
+    override val value: String = "KM"
+  }
   /** Saint Kitts and Nevis */
-  KN,
+  public data object Kn : Country {
+    override val value: String = "KN"
+  }
   /** Korea (the Democratic People's Republic of) */
-  KP,
+  public data object Kp : Country {
+    override val value: String = "KP"
+  }
   /** Korea (the Republic of) */
-  KR,
+  public data object Kr : Country {
+    override val value: String = "KR"
+  }
   /** Kuwait */
-  KW,
+  public data object Kw : Country {
+    override val value: String = "KW"
+  }
   /** Cayman Islands (the) */
-  KY,
+  public data object Ky : Country {
+    override val value: String = "KY"
+  }
   /** Kazakhstan */
-  KZ,
+  public data object Kz : Country {
+    override val value: String = "KZ"
+  }
   /** Lao People's Democratic Republic (the) */
-  LA,
+  public data object La : Country {
+    override val value: String = "LA"
+  }
   /** Lebanon */
-  LB,
+  public data object Lb : Country {
+    override val value: String = "LB"
+  }
   /** Saint Lucia */
-  LC,
+  public data object Lc : Country {
+    override val value: String = "LC"
+  }
   /** Liechtenstein */
-  LI,
+  public data object Li : Country {
+    override val value: String = "LI"
+  }
   /** Sri Lanka */
-  LK,
+  public data object Lk : Country {
+    override val value: String = "LK"
+  }
   /** Liberia */
-  LR,
+  public data object Lr : Country {
+    override val value: String = "LR"
+  }
   /** Lesotho */
-  LS,
+  public data object Ls : Country {
+    override val value: String = "LS"
+  }
   /** Lithuania */
-  LT,
+  public data object Lt : Country {
+    override val value: String = "LT"
+  }
   /** Luxembourg */
-  LU,
+  public data object Lu : Country {
+    override val value: String = "LU"
+  }
   /** Latvia */
-  LV,
+  public data object Lv : Country {
+    override val value: String = "LV"
+  }
   /** Libya */
-  LY,
+  public data object Ly : Country {
+    override val value: String = "LY"
+  }
   /** Morocco */
-  MA,
+  public data object Ma : Country {
+    override val value: String = "MA"
+  }
   /** Monaco */
-  MC,
+  public data object Mc : Country {
+    override val value: String = "MC"
+  }
   /** Moldova (the Republic of) */
-  MD,
+  public data object Md : Country {
+    override val value: String = "MD"
+  }
   /** Montenegro */
-  ME,
+  public data object Me : Country {
+    override val value: String = "ME"
+  }
   /** Saint Martin (French part) */
-  MF,
+  public data object Mf : Country {
+    override val value: String = "MF"
+  }
   /** Madagascar */
-  MG,
+  public data object Mg : Country {
+    override val value: String = "MG"
+  }
   /** Marshall Islands (the) */
-  MH,
+  public data object Mh : Country {
+    override val value: String = "MH"
+  }
   /** North Macedonia */
-  MK,
+  public data object Mk : Country {
+    override val value: String = "MK"
+  }
   /** Mali */
-  ML,
+  public data object Ml : Country {
+    override val value: String = "ML"
+  }
   /** Myanmar */
-  MM,
+  public data object Mm : Country {
+    override val value: String = "MM"
+  }
   /** Mongolia */
-  MN,
+  public data object Mn : Country {
+    override val value: String = "MN"
+  }
   /** Macao */
-  MO,
+  public data object Mo : Country {
+    override val value: String = "MO"
+  }
   /** Northern Mariana Islands (the) */
-  MP,
+  public data object Mp : Country {
+    override val value: String = "MP"
+  }
   /** Martinique */
-  MQ,
+  public data object Mq : Country {
+    override val value: String = "MQ"
+  }
   /** Mauritania */
-  MR,
+  public data object Mr : Country {
+    override val value: String = "MR"
+  }
   /** Montserrat */
-  MS,
+  public data object Ms : Country {
+    override val value: String = "MS"
+  }
   /** Malta */
-  MT,
+  public data object Mt : Country {
+    override val value: String = "MT"
+  }
   /** Mauritius */
-  MU,
+  public data object Mu : Country {
+    override val value: String = "MU"
+  }
   /** Maldives */
-  MV,
+  public data object Mv : Country {
+    override val value: String = "MV"
+  }
   /** Malawi */
-  MW,
+  public data object Mw : Country {
+    override val value: String = "MW"
+  }
   /** Mexico */
-  MX,
+  public data object Mx : Country {
+    override val value: String = "MX"
+  }
   /** Malaysia */
-  MY,
+  public data object My : Country {
+    override val value: String = "MY"
+  }
   /** Mozambique */
-  MZ,
+  public data object Mz : Country {
+    override val value: String = "MZ"
+  }
   /** Namibia */
-  NA,
+  public data object Na : Country {
+    override val value: String = "NA"
+  }
   /** New Caledonia */
-  NC,
+  public data object Nc : Country {
+    override val value: String = "NC"
+  }
   /** Niger (the) */
-  NE,
+  public data object Ne : Country {
+    override val value: String = "NE"
+  }
   /** Norfolk Island */
-  NF,
+  public data object Nf : Country {
+    override val value: String = "NF"
+  }
   /** Nigeria */
-  NG,
+  public data object Ng : Country {
+    override val value: String = "NG"
+  }
   /** Nicaragua */
-  NI,
+  public data object Ni : Country {
+    override val value: String = "NI"
+  }
   /** Netherlands (Kingdom of the) */
-  NL,
+  public data object Nl : Country {
+    override val value: String = "NL"
+  }
   /** Norway */
-  NO,
+  public data object No : Country {
+    override val value: String = "NO"
+  }
   /** Nepal */
-  NP,
+  public data object Np : Country {
+    override val value: String = "NP"
+  }
   /** Nauru */
-  NR,
+  public data object Nr : Country {
+    override val value: String = "NR"
+  }
   /** Niue */
-  NU,
+  public data object Nu : Country {
+    override val value: String = "NU"
+  }
   /** New Zealand */
-  NZ,
+  public data object Nz : Country {
+    override val value: String = "NZ"
+  }
   /** Oman */
-  OM,
+  public data object Om : Country {
+    override val value: String = "OM"
+  }
   /** Panama */
-  PA,
+  public data object Pa : Country {
+    override val value: String = "PA"
+  }
   /** Peru */
-  PE,
+  public data object Pe : Country {
+    override val value: String = "PE"
+  }
   /** French Polynesia */
-  PF,
+  public data object Pf : Country {
+    override val value: String = "PF"
+  }
   /** Papua New Guinea */
-  PG,
+  public data object Pg : Country {
+    override val value: String = "PG"
+  }
   /** Philippines (the) */
-  PH,
+  public data object Ph : Country {
+    override val value: String = "PH"
+  }
   /** Pakistan */
-  PK,
+  public data object Pk : Country {
+    override val value: String = "PK"
+  }
   /** Poland */
-  PL,
+  public data object Pl : Country {
+    override val value: String = "PL"
+  }
   /** Saint Pierre and Miquelon */
-  PM,
+  public data object Pm : Country {
+    override val value: String = "PM"
+  }
   /** Pitcairn */
-  PN,
+  public data object Pn : Country {
+    override val value: String = "PN"
+  }
   /** Puerto Rico */
-  PR,
+  public data object Pr : Country {
+    override val value: String = "PR"
+  }
   /** Palestine, State of */
-  PS,
+  public data object Ps : Country {
+    override val value: String = "PS"
+  }
   /** Portugal */
-  PT,
+  public data object Pt : Country {
+    override val value: String = "PT"
+  }
   /** Palau */
-  PW,
+  public data object Pw : Country {
+    override val value: String = "PW"
+  }
   /** Paraguay */
-  PY,
+  public data object Py : Country {
+    override val value: String = "PY"
+  }
   /** Qatar */
-  QA,
+  public data object Qa : Country {
+    override val value: String = "QA"
+  }
   /** Réunion */
-  RE,
+  public data object Re : Country {
+    override val value: String = "RE"
+  }
   /** Romania */
-  RO,
+  public data object Ro : Country {
+    override val value: String = "RO"
+  }
   /** Serbia */
-  RS,
+  public data object Rs : Country {
+    override val value: String = "RS"
+  }
   /** Russian Federation (the) */
-  RU,
+  public data object Ru : Country {
+    override val value: String = "RU"
+  }
   /** Rwanda */
-  RW,
+  public data object Rw : Country {
+    override val value: String = "RW"
+  }
   /** Saudi Arabia */
-  SA,
+  public data object Sa : Country {
+    override val value: String = "SA"
+  }
   /** Solomon Islands */
-  SB,
+  public data object Sb : Country {
+    override val value: String = "SB"
+  }
   /** Seychelles */
-  SC,
+  public data object Sc : Country {
+    override val value: String = "SC"
+  }
   /** Sudan (the) */
-  SD,
+  public data object Sd : Country {
+    override val value: String = "SD"
+  }
   /** Sweden */
-  SE,
+  public data object Se : Country {
+    override val value: String = "SE"
+  }
   /** Singapore */
-  SG,
+  public data object Sg : Country {
+    override val value: String = "SG"
+  }
   /** Saint Helena, Ascension and Tristan da Cunha */
-  SH,
+  public data object Sh : Country {
+    override val value: String = "SH"
+  }
   /** Slovenia */
-  SI,
+  public data object Si : Country {
+    override val value: String = "SI"
+  }
   /** Svalbard and Jan Mayen */
-  SJ,
+  public data object Sj : Country {
+    override val value: String = "SJ"
+  }
   /** Slovakia */
-  SK,
+  public data object Sk : Country {
+    override val value: String = "SK"
+  }
   /** Sierra Leone */
-  SL,
+  public data object Sl : Country {
+    override val value: String = "SL"
+  }
   /** San Marino */
-  SM,
+  public data object Sm : Country {
+    override val value: String = "SM"
+  }
   /** Senegal */
-  SN,
+  public data object Sn : Country {
+    override val value: String = "SN"
+  }
   /** Somalia */
-  SO,
+  public data object So : Country {
+    override val value: String = "SO"
+  }
   /** Suriname */
-  SR,
+  public data object Sr : Country {
+    override val value: String = "SR"
+  }
   /** South Sudan */
-  SS,
+  public data object Ss : Country {
+    override val value: String = "SS"
+  }
   /** Sao Tome and Principe */
-  ST,
+  public data object St : Country {
+    override val value: String = "ST"
+  }
   /** El Salvador */
-  SV,
+  public data object Sv : Country {
+    override val value: String = "SV"
+  }
   /** Sint Maarten (Dutch part) */
-  SX,
+  public data object Sx : Country {
+    override val value: String = "SX"
+  }
   /** Syrian Arab Republic (the) */
-  SY,
+  public data object Sy : Country {
+    override val value: String = "SY"
+  }
   /** Eswatini */
-  SZ,
+  public data object Sz : Country {
+    override val value: String = "SZ"
+  }
   /** Turks and Caicos Islands (the) */
-  TC,
+  public data object Tc : Country {
+    override val value: String = "TC"
+  }
   /** Chad */
-  TD,
+  public data object Td : Country {
+    override val value: String = "TD"
+  }
   /** French Southern Territories (the) */
-  TF,
+  public data object Tf : Country {
+    override val value: String = "TF"
+  }
   /** Togo */
-  TG,
+  public data object Tg : Country {
+    override val value: String = "TG"
+  }
   /** Thailand */
-  TH,
+  public data object Th : Country {
+    override val value: String = "TH"
+  }
   /** Tajikistan */
-  TJ,
+  public data object Tj : Country {
+    override val value: String = "TJ"
+  }
   /** Tokelau */
-  TK,
+  public data object Tk : Country {
+    override val value: String = "TK"
+  }
   /** Timor-Leste */
-  TL,
+  public data object Tl : Country {
+    override val value: String = "TL"
+  }
   /** Turkmenistan */
-  TM,
+  public data object Tm : Country {
+    override val value: String = "TM"
+  }
   /** Tunisia */
-  TN,
+  public data object Tn : Country {
+    override val value: String = "TN"
+  }
   /** Tonga */
-  TO,
+  public data object To : Country {
+    override val value: String = "TO"
+  }
   /** Türkiye */
-  TR,
+  public data object Tr : Country {
+    override val value: String = "TR"
+  }
   /** Trinidad and Tobago */
-  TT,
+  public data object Tt : Country {
+    override val value: String = "TT"
+  }
   /** Tuvalu */
-  TV,
+  public data object Tv : Country {
+    override val value: String = "TV"
+  }
   /** Taiwan (Province of China) */
-  TW,
+  public data object Tw : Country {
+    override val value: String = "TW"
+  }
   /** Tanzania, the United Republic of */
-  TZ,
+  public data object Tz : Country {
+    override val value: String = "TZ"
+  }
   /** Ukraine */
-  UA,
+  public data object Ua : Country {
+    override val value: String = "UA"
+  }
   /** Uganda */
-  UG,
+  public data object Ug : Country {
+    override val value: String = "UG"
+  }
   /** United States Minor Outlying Islands (the) */
-  UM,
+  public data object Um : Country {
+    override val value: String = "UM"
+  }
   /** United States of America (the) */
-  US,
+  public data object Us : Country {
+    override val value: String = "US"
+  }
   /** Uruguay */
-  UY,
+  public data object Uy : Country {
+    override val value: String = "UY"
+  }
   /** Uzbekistan */
-  UZ,
+  public data object Uz : Country {
+    override val value: String = "UZ"
+  }
   /** Holy See (the) */
-  VA,
+  public data object Va : Country {
+    override val value: String = "VA"
+  }
   /** Saint Vincent and the Grenadines */
-  VC,
+  public data object Vc : Country {
+    override val value: String = "VC"
+  }
   /** Venezuela (Bolivarian Republic of) */
-  VE,
+  public data object Ve : Country {
+    override val value: String = "VE"
+  }
   /** Virgin Islands (British) */
-  VG,
+  public data object Vg : Country {
+    override val value: String = "VG"
+  }
   /** Virgin Islands (U.S.) */
-  VI,
+  public data object Vi : Country {
+    override val value: String = "VI"
+  }
   /** Viet Nam */
-  VN,
+  public data object Vn : Country {
+    override val value: String = "VN"
+  }
   /** Vanuatu */
-  VU,
+  public data object Vu : Country {
+    override val value: String = "VU"
+  }
   /** Wallis and Futuna */
-  WF,
+  public data object Wf : Country {
+    override val value: String = "WF"
+  }
   /** Samoa */
-  WS,
+  public data object Ws : Country {
+    override val value: String = "WS"
+  }
   /** Yemen */
-  YE,
+  public data object Ye : Country {
+    override val value: String = "YE"
+  }
   /** Mayotte */
-  YT,
+  public data object Yt : Country {
+    override val value: String = "YT"
+  }
   /** South Africa */
-  ZA,
+  public data object Za : Country {
+    override val value: String = "ZA"
+  }
   /** Zambia */
-  ZM,
+  public data object Zm : Country {
+    override val value: String = "ZM"
+  }
   /** Zimbabwe */
-  ZW,
+  public data object Zw : Country {
+    override val value: String = "ZW"
+  }
+  /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
+  @ConsistentCopyVisibility
+  public data class Unrecognized internal constructor(override val value: String) : Country
+}
+
+
+private object CountrySerializer : KSerializer<Country> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Country::class.java.canonicalName, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): Country {
+    val value = decoder.decodeString()
+    return when (value) {
+      "AD" -> Country.Ad
+      "AE" -> Country.Ae
+      "AF" -> Country.Af
+      "AG" -> Country.Ag
+      "AI" -> Country.Ai
+      "AL" -> Country.Al
+      "AM" -> Country.Am
+      "AO" -> Country.Ao
+      "AQ" -> Country.Aq
+      "AR" -> Country.Ar
+      "AS" -> Country.As
+      "AT" -> Country.At
+      "AU" -> Country.Au
+      "AW" -> Country.Aw
+      "AX" -> Country.Ax
+      "AZ" -> Country.Az
+      "BA" -> Country.Ba
+      "BB" -> Country.Bb
+      "BD" -> Country.Bd
+      "BE" -> Country.Be
+      "BF" -> Country.Bf
+      "BG" -> Country.Bg
+      "BH" -> Country.Bh
+      "BI" -> Country.Bi
+      "BJ" -> Country.Bj
+      "BL" -> Country.Bl
+      "BM" -> Country.Bm
+      "BN" -> Country.Bn
+      "BO" -> Country.Bo
+      "BQ" -> Country.Bq
+      "BR" -> Country.Br
+      "BS" -> Country.Bs
+      "BT" -> Country.Bt
+      "BV" -> Country.Bv
+      "BW" -> Country.Bw
+      "BY" -> Country.By
+      "BZ" -> Country.Bz
+      "CA" -> Country.Ca
+      "CC" -> Country.Cc
+      "CD" -> Country.Cd
+      "CF" -> Country.Cf
+      "CG" -> Country.Cg
+      "CH" -> Country.Ch
+      "CI" -> Country.Ci
+      "CK" -> Country.Ck
+      "CL" -> Country.Cl
+      "CM" -> Country.Cm
+      "CN" -> Country.Cn
+      "CO" -> Country.Co
+      "CR" -> Country.Cr
+      "CU" -> Country.Cu
+      "CV" -> Country.Cv
+      "CW" -> Country.Cw
+      "CX" -> Country.Cx
+      "CY" -> Country.Cy
+      "CZ" -> Country.Cz
+      "DE" -> Country.De
+      "DJ" -> Country.Dj
+      "DK" -> Country.Dk
+      "DM" -> Country.Dm
+      "DO" -> Country.Do
+      "DZ" -> Country.Dz
+      "EC" -> Country.Ec
+      "EE" -> Country.Ee
+      "EG" -> Country.Eg
+      "EH" -> Country.Eh
+      "ER" -> Country.Er
+      "ES" -> Country.Es
+      "ET" -> Country.Et
+      "FI" -> Country.Fi
+      "FJ" -> Country.Fj
+      "FK" -> Country.Fk
+      "FM" -> Country.Fm
+      "FO" -> Country.Fo
+      "FR" -> Country.Fr
+      "GA" -> Country.Ga
+      "GB" -> Country.Gb
+      "GD" -> Country.Gd
+      "GE" -> Country.Ge
+      "GF" -> Country.Gf
+      "GG" -> Country.Gg
+      "GH" -> Country.Gh
+      "GI" -> Country.Gi
+      "GL" -> Country.Gl
+      "GM" -> Country.Gm
+      "GN" -> Country.Gn
+      "GP" -> Country.Gp
+      "GQ" -> Country.Gq
+      "GR" -> Country.Gr
+      "GS" -> Country.Gs
+      "GT" -> Country.Gt
+      "GU" -> Country.Gu
+      "GW" -> Country.Gw
+      "GY" -> Country.Gy
+      "HK" -> Country.Hk
+      "HM" -> Country.Hm
+      "HN" -> Country.Hn
+      "HR" -> Country.Hr
+      "HT" -> Country.Ht
+      "HU" -> Country.Hu
+      "ID" -> Country.Id
+      "IE" -> Country.Ie
+      "IL" -> Country.Il
+      "IM" -> Country.Im
+      "IN" -> Country.In
+      "IO" -> Country.Io
+      "IQ" -> Country.Iq
+      "IR" -> Country.Ir
+      "IS" -> Country.Is
+      "IT" -> Country.It
+      "JE" -> Country.Je
+      "JM" -> Country.Jm
+      "JO" -> Country.Jo
+      "JP" -> Country.Jp
+      "KE" -> Country.Ke
+      "KG" -> Country.Kg
+      "KH" -> Country.Kh
+      "KI" -> Country.Ki
+      "KM" -> Country.Km
+      "KN" -> Country.Kn
+      "KP" -> Country.Kp
+      "KR" -> Country.Kr
+      "KW" -> Country.Kw
+      "KY" -> Country.Ky
+      "KZ" -> Country.Kz
+      "LA" -> Country.La
+      "LB" -> Country.Lb
+      "LC" -> Country.Lc
+      "LI" -> Country.Li
+      "LK" -> Country.Lk
+      "LR" -> Country.Lr
+      "LS" -> Country.Ls
+      "LT" -> Country.Lt
+      "LU" -> Country.Lu
+      "LV" -> Country.Lv
+      "LY" -> Country.Ly
+      "MA" -> Country.Ma
+      "MC" -> Country.Mc
+      "MD" -> Country.Md
+      "ME" -> Country.Me
+      "MF" -> Country.Mf
+      "MG" -> Country.Mg
+      "MH" -> Country.Mh
+      "MK" -> Country.Mk
+      "ML" -> Country.Ml
+      "MM" -> Country.Mm
+      "MN" -> Country.Mn
+      "MO" -> Country.Mo
+      "MP" -> Country.Mp
+      "MQ" -> Country.Mq
+      "MR" -> Country.Mr
+      "MS" -> Country.Ms
+      "MT" -> Country.Mt
+      "MU" -> Country.Mu
+      "MV" -> Country.Mv
+      "MW" -> Country.Mw
+      "MX" -> Country.Mx
+      "MY" -> Country.My
+      "MZ" -> Country.Mz
+      "NA" -> Country.Na
+      "NC" -> Country.Nc
+      "NE" -> Country.Ne
+      "NF" -> Country.Nf
+      "NG" -> Country.Ng
+      "NI" -> Country.Ni
+      "NL" -> Country.Nl
+      "NO" -> Country.No
+      "NP" -> Country.Np
+      "NR" -> Country.Nr
+      "NU" -> Country.Nu
+      "NZ" -> Country.Nz
+      "OM" -> Country.Om
+      "PA" -> Country.Pa
+      "PE" -> Country.Pe
+      "PF" -> Country.Pf
+      "PG" -> Country.Pg
+      "PH" -> Country.Ph
+      "PK" -> Country.Pk
+      "PL" -> Country.Pl
+      "PM" -> Country.Pm
+      "PN" -> Country.Pn
+      "PR" -> Country.Pr
+      "PS" -> Country.Ps
+      "PT" -> Country.Pt
+      "PW" -> Country.Pw
+      "PY" -> Country.Py
+      "QA" -> Country.Qa
+      "RE" -> Country.Re
+      "RO" -> Country.Ro
+      "RS" -> Country.Rs
+      "RU" -> Country.Ru
+      "RW" -> Country.Rw
+      "SA" -> Country.Sa
+      "SB" -> Country.Sb
+      "SC" -> Country.Sc
+      "SD" -> Country.Sd
+      "SE" -> Country.Se
+      "SG" -> Country.Sg
+      "SH" -> Country.Sh
+      "SI" -> Country.Si
+      "SJ" -> Country.Sj
+      "SK" -> Country.Sk
+      "SL" -> Country.Sl
+      "SM" -> Country.Sm
+      "SN" -> Country.Sn
+      "SO" -> Country.So
+      "SR" -> Country.Sr
+      "SS" -> Country.Ss
+      "ST" -> Country.St
+      "SV" -> Country.Sv
+      "SX" -> Country.Sx
+      "SY" -> Country.Sy
+      "SZ" -> Country.Sz
+      "TC" -> Country.Tc
+      "TD" -> Country.Td
+      "TF" -> Country.Tf
+      "TG" -> Country.Tg
+      "TH" -> Country.Th
+      "TJ" -> Country.Tj
+      "TK" -> Country.Tk
+      "TL" -> Country.Tl
+      "TM" -> Country.Tm
+      "TN" -> Country.Tn
+      "TO" -> Country.To
+      "TR" -> Country.Tr
+      "TT" -> Country.Tt
+      "TV" -> Country.Tv
+      "TW" -> Country.Tw
+      "TZ" -> Country.Tz
+      "UA" -> Country.Ua
+      "UG" -> Country.Ug
+      "UM" -> Country.Um
+      "US" -> Country.Us
+      "UY" -> Country.Uy
+      "UZ" -> Country.Uz
+      "VA" -> Country.Va
+      "VC" -> Country.Vc
+      "VE" -> Country.Ve
+      "VG" -> Country.Vg
+      "VI" -> Country.Vi
+      "VN" -> Country.Vn
+      "VU" -> Country.Vu
+      "WF" -> Country.Wf
+      "WS" -> Country.Ws
+      "YE" -> Country.Ye
+      "YT" -> Country.Yt
+      "ZA" -> Country.Za
+      "ZM" -> Country.Zm
+      "ZW" -> Country.Zw
+      else -> Country.Unrecognized(value)
+    }
+  }
+  override fun serialize(encoder: Encoder, value: Country) = encoder.encodeString(value.value)
 }

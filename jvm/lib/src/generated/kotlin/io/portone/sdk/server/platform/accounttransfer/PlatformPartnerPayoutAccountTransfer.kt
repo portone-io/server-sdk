@@ -2,7 +2,6 @@ package io.portone.sdk.server.platform.accounttransfer
 
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.common.Currency
-import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransfer
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -24,6 +23,14 @@ public data class PlatformPartnerPayoutAccountTransfer(
   val depositAccountNumber: String,
   /** 금액 */
   override val amount: Long,
+  /** 출금 계좌 적요 */
+  val withdrawalMemo: String? = null,
+  /** 입금 계좌 적요 */
+  override val depositMemo: String? = null,
+  /** 잔액 */
+  val balance: Long? = null,
+  /** 실패 사유 */
+  val failReason: String? = null,
   override val isForTest: Boolean,
   /** 생성 일자 */
   override val createdAt: @Serializable(InstantSerializer::class) Instant,
@@ -38,12 +45,6 @@ public data class PlatformPartnerPayoutAccountTransfer(
   /** 지급 고유 아이디 */
   val payoutId: String,
   val payoutGraphqlId: String,
-  /** 출금 계좌 적요 */
-  val withdrawalMemo: String? = null,
-  /** 입금 계좌 적요 */
-  override val depositMemo: String? = null,
-  /** 잔액 */
-  val balance: Long? = null,
-  /** 실패 사유 */
-  val failReason: String? = null,
-): PlatformAccountTransfer
+) : PlatformAccountTransfer.Recognized
+
+

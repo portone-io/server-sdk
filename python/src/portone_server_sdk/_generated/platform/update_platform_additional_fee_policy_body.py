@@ -1,8 +1,9 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
-from portone_server_sdk._generated.platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
+from ..platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
+from ..platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
 
 @dataclass
 class UpdatePlatformAdditionalFeePolicyBody:
@@ -10,21 +11,23 @@ class UpdatePlatformAdditionalFeePolicyBody:
 
     값이 명시하지 않은 필드는 업데이트되지 않습니다.
     """
-    fee: Optional[PlatformFeeInput]
+    fee: Optional[PlatformFeeInput] = field(default=None)
     """책정 수수료
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """추가 수수료 정책 이름
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """해당 추가 수수료 정책에 대한 메모
     """
-    vat_payer: Optional[PlatformPayer]
+    vat_payer: Optional[PlatformPayer] = field(default=None)
     """부가세를 부담할 주체
     """
 
 
 def _serialize_update_platform_additional_fee_policy_body(obj: UpdatePlatformAdditionalFeePolicyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.fee is not None:
         entity["fee"] = _serialize_platform_fee_input(obj.fee)

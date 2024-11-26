@@ -16,3 +16,5 @@ public data class CustomerNameInput(
   /** 분리형 이름 형식 */
   val separated: CustomerSeparatedName? = null,
 )
+
+

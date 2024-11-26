@@ -32,11 +32,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class AccountTransferClient internal constructor(
+public class AccountTransferClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -53,11 +53,7 @@ public class AccountTransferClient internal constructor(
    * @param filter
    *
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformAccountTransfersException
    */
   @JvmName("getPlatformAccountTransfersSuspend")
   public suspend fun getPlatformAccountTransfers(
@@ -84,7 +80,7 @@ public class AccountTransferClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAccountTransfersError>(httpBody)
+        json.decodeFromString<GetPlatformAccountTransfersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -113,7 +109,7 @@ public class AccountTransferClient internal constructor(
     filter: PlatformAccountTransferFilter? = null,
   ): CompletableFuture<GetPlatformAccountTransfersResponse> = GlobalScope.future { getPlatformAccountTransfers(isForTest, page, filter) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

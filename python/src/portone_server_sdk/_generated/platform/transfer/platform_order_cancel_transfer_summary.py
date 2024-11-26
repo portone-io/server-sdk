@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
-from portone_server_sdk._generated.platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
-from portone_server_sdk._generated.platform.transfer.platform_transfer_summary_partner import PlatformTransferSummaryPartner, _deserialize_platform_transfer_summary_partner, _serialize_platform_transfer_summary_partner
-from portone_server_sdk._generated.platform.transfer.platform_transfer_summary_payment import PlatformTransferSummaryPayment, _deserialize_platform_transfer_summary_payment, _serialize_platform_transfer_summary_payment
-from portone_server_sdk._generated.platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
+from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
+from ...platform.transfer.platform_transfer_summary_partner import PlatformTransferSummaryPartner, _deserialize_platform_transfer_summary_partner, _serialize_platform_transfer_summary_partner
+from ...platform.transfer.platform_transfer_summary_payment import PlatformTransferSummaryPayment, _deserialize_platform_transfer_summary_payment, _serialize_platform_transfer_summary_payment
+from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 
 @dataclass
 class PlatformOrderCancelTransferSummary:
-    type: Literal["ORDER_CANCEL"] = field(repr=False)
     id: str
     graphql_id: str
     store_id: str
@@ -32,10 +32,12 @@ class PlatformOrderCancelTransferSummary:
     settlement_start_date: str
     """날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
 
 
 def _serialize_platform_order_cancel_transfer_summary(obj: PlatformOrderCancelTransferSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ORDER_CANCEL"
     entity["id"] = obj.id
@@ -136,4 +138,4 @@ def _deserialize_platform_order_cancel_transfer_summary(obj: Any) -> PlatformOrd
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformOrderCancelTransferSummary(type, id, graphql_id, store_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, amount, payment, settlement_start_date, memo)
+    return PlatformOrderCancelTransferSummary(id, graphql_id, store_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, amount, payment, settlement_start_date, memo)

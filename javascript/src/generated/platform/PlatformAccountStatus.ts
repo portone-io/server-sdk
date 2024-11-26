@@ -12,3 +12,4 @@ export type PlatformAccountStatus =
 	| "EXPIRED"
 	/** 알 수 없는 상태 */
 	| "UNKNOWN"
+	| string & {}

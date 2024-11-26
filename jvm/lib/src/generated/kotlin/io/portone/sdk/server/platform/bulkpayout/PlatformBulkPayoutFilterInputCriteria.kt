@@ -9,3 +9,5 @@ public data class PlatformBulkPayoutFilterInputCriteria(
   val timestampRange: DateTimeRange? = null,
   val bulkPayoutId: String? = null,
 )
+
+

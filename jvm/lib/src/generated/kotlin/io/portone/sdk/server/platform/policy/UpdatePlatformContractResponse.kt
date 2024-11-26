@@ -9,3 +9,5 @@ public data class UpdatePlatformContractResponse(
   /** 업데이트된 계약 객체 */
   val contract: PlatformContract,
 )
+
+

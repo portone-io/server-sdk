@@ -1,17 +1,20 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from portone_server_sdk._generated.platform.account_transfer.platform_account_transfer_filter import PlatformAccountTransferFilter, _deserialize_platform_account_transfer_filter, _serialize_platform_account_transfer_filter
+from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
+from ...platform.account_transfer.platform_account_transfer_filter import PlatformAccountTransferFilter, _deserialize_platform_account_transfer_filter, _serialize_platform_account_transfer_filter
 
 @dataclass
 class GetAccountTransfersBody:
-    is_for_test: Optional[bool]
-    page: Optional[PageInput]
-    filter: Optional[PlatformAccountTransferFilter]
+    is_for_test: Optional[bool] = field(default=None)
+    page: Optional[PageInput] = field(default=None)
+    filter: Optional[PlatformAccountTransferFilter] = field(default=None)
 
 
 def _serialize_get_account_transfers_body(obj: GetAccountTransfersBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.is_for_test is not None:
         entity["isForTest"] = obj.is_for_test

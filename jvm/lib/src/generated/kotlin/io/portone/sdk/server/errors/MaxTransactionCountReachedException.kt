@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우 */
-public class MaxTransactionCountReachedException(
+public class MaxTransactionCountReachedException internal constructor(
   cause: MaxTransactionCountReachedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), PayInstantlyException, PayWithBillingKeyException, SendIdentityVerificationException {
 }

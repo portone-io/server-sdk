@@ -76,3 +76,4 @@ export type PlatformTransferSheetField =
 	 * 파트너 유형이 사업자인 경우 과세 유형, 원천징수 대상자인 소득 유형입니다.
 	 */
 	| "TAXATION_TYPE_OR_INCOME_TYPE"
+	| string & {}

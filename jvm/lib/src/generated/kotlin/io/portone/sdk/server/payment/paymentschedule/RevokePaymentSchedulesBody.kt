@@ -18,3 +18,5 @@ internal data class RevokePaymentSchedulesBody(
   /** 결제 예약 건 아이디 목록 */
   val scheduleIds: List<String>? = null,
 )
+
+

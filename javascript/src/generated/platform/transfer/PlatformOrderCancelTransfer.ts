@@ -10,7 +10,6 @@ import type { PlatformPayment } from "./../../platform/transfer/PlatformPayment"
 import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 import type { TransferParameters } from "./../../platform/transfer/TransferParameters"
-
 /** 주문 취소 정산건 */
 export type PlatformOrderCancelTransfer = {
 	type: "ORDER_CANCEL"

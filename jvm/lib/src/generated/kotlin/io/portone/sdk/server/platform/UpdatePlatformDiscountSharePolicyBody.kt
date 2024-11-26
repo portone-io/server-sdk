@@ -21,3 +21,5 @@ public data class UpdatePlatformDiscountSharePolicyBody(
   /** 해당 할인 분담에 대한 메모 */
   val memo: String? = null,
 )
+
+

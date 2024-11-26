@@ -108,11 +108,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class PolicyClient internal constructor(
+public class PolicyClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -127,11 +127,7 @@ public class PolicyClient internal constructor(
    * @param filter
    * 조회할 할인 분담 정책 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformDiscountSharePoliciesException
    */
   @JvmName("getPlatformDiscountSharePoliciesSuspend")
   public suspend fun getPlatformDiscountSharePolicies(
@@ -156,7 +152,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePoliciesError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -201,12 +197,7 @@ public class PolicyClient internal constructor(
    * @param memo
    * 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyAlreadyExistsException PlatformDiscountSharePolicyAlreadyExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformDiscountSharePolicyException
    */
   @JvmName("createPlatformDiscountSharePolicySuspend")
   public suspend fun createPlatformDiscountSharePolicy(
@@ -236,7 +227,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -276,12 +267,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 조회할 할인 분담 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformDiscountSharePolicyException
    */
   @JvmName("getPlatformDiscountSharePolicySuspend")
   public suspend fun getPlatformDiscountSharePolicy(
@@ -300,7 +286,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -345,13 +331,7 @@ public class PolicyClient internal constructor(
    * @param memo
    * 해당 할인 분담에 대한 메모
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformArchivedDiscountSharePolicyException 보관된 할인 분담 정책을 업데이트하려고 하는 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws UpdatePlatformDiscountSharePolicyException
    */
   @JvmName("updatePlatformDiscountSharePolicySuspend")
   public suspend fun updatePlatformDiscountSharePolicy(
@@ -380,7 +360,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -421,13 +401,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 할인 분담 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformCannotArchiveScheduledDiscountSharePolicyException 예약된 업데이트가 있는 할인 분담 정책을 보관하려고 하는 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ArchivePlatformDiscountSharePolicyException
    */
   @JvmName("archivePlatformDiscountSharePolicySuspend")
   public suspend fun archivePlatformDiscountSharePolicy(
@@ -446,7 +420,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<ArchivePlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -484,12 +458,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 할인 분담 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformDiscountSharePolicyNotFoundException PlatformDiscountSharePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RecoverPlatformDiscountSharePolicyException
    */
   @JvmName("recoverPlatformDiscountSharePolicySuspend")
   public suspend fun recoverPlatformDiscountSharePolicy(
@@ -508,7 +477,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformDiscountSharePolicyError>(httpBody)
+        json.decodeFromString<RecoverPlatformDiscountSharePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -547,11 +516,7 @@ public class PolicyClient internal constructor(
    * @param filter
    * 조회할 추가 수수료 정책 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformAdditionalFeePoliciesException
    */
   @JvmName("getPlatformAdditionalFeePoliciesSuspend")
   public suspend fun getPlatformAdditionalFeePolicies(
@@ -576,7 +541,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePoliciesError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -623,12 +588,7 @@ public class PolicyClient internal constructor(
    * @param vatPayer
    * 부가세 부담 주체
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyAlreadyExistsException PlatformAdditionalFeePolicyAlreadyExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformAdditionalFeePolicyException
    */
   @JvmName("createPlatformAdditionalFeePolicySuspend")
   public suspend fun createPlatformAdditionalFeePolicy(
@@ -660,7 +620,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<CreatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -701,12 +661,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 조회할 추가 수수료 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformAdditionalFeePolicyException
    */
   @JvmName("getPlatformAdditionalFeePolicySuspend")
   public suspend fun getPlatformAdditionalFeePolicy(
@@ -725,7 +680,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -770,13 +725,7 @@ public class PolicyClient internal constructor(
    * @param vatPayer
    * 부가세를 부담할 주체
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformArchivedAdditionalFeePolicyException 보관된 추가 수수료 정책을 업데이트하려고 하는 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws UpdatePlatformAdditionalFeePolicyException
    */
   @JvmName("updatePlatformAdditionalFeePolicySuspend")
   public suspend fun updatePlatformAdditionalFeePolicy(
@@ -807,7 +756,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -849,13 +798,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 추가 수수료 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformCannotArchiveScheduledAdditionalFeePolicyException 예약된 업데이트가 있는 추가 수수료 정책을 보관하려고 하는 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ArchivePlatformAdditionalFeePolicyException
    */
   @JvmName("archivePlatformAdditionalFeePolicySuspend")
   public suspend fun archivePlatformAdditionalFeePolicy(
@@ -874,7 +817,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<ArchivePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -912,12 +855,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 추가 수수료 정책 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformAdditionalFeePolicyNotFoundException PlatformAdditionalFeePolicyNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RecoverPlatformAdditionalFeePolicyException
    */
   @JvmName("recoverPlatformAdditionalFeePolicySuspend")
   public suspend fun recoverPlatformAdditionalFeePolicy(
@@ -936,7 +874,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformAdditionalFeePolicyError>(httpBody)
+        json.decodeFromString<RecoverPlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -975,11 +913,7 @@ public class PolicyClient internal constructor(
    * @param filter
    * 조회할 계약 조건 필터
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformContractsException
    */
   @JvmName("getPlatformContractsSuspend")
   public suspend fun getPlatformContracts(
@@ -1004,7 +938,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractsError>(httpBody)
+        json.decodeFromString<GetPlatformContractsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1055,12 +989,7 @@ public class PolicyClient internal constructor(
    * @param subtractPaymentVatAmount
    * 정산 시 결제금액 부가세 감액 여부
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractAlreadyExistsException PlatformContractAlreadyExistsError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CreatePlatformContractException
    */
   @JvmName("createPlatformContractSuspend")
   public suspend fun createPlatformContract(
@@ -1096,7 +1025,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformContractError>(httpBody)
+        json.decodeFromString<CreatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1139,12 +1068,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 조회할 계약 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetPlatformContractException
    */
   @JvmName("getPlatformContractSuspend")
   public suspend fun getPlatformContract(
@@ -1163,7 +1087,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractError>(httpBody)
+        json.decodeFromString<GetPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1212,13 +1136,7 @@ public class PolicyClient internal constructor(
    * @param subtractPaymentVatAmount
    * 정산 시 결제금액 부가세 감액 여부
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformArchivedContractException 보관된 계약을 업데이트하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws UpdatePlatformContractException
    */
   @JvmName("updatePlatformContractSuspend")
   public suspend fun updatePlatformContract(
@@ -1253,7 +1171,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformContractError>(httpBody)
+        json.decodeFromString<UpdatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1297,13 +1215,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 계약 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformCannotArchiveScheduledContractException 예약된 업데이트가 있는 계약을 보관하려고 하는 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ArchivePlatformContractException
    */
   @JvmName("archivePlatformContractSuspend")
   public suspend fun archivePlatformContract(
@@ -1322,7 +1234,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformContractError>(httpBody)
+        json.decodeFromString<ArchivePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1360,12 +1272,7 @@ public class PolicyClient internal constructor(
    * @param id
    * 계약 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PlatformContractNotFoundException PlatformContractNotFoundError
-   * @throws PlatformNotEnabledException 플랫폼 기능이 활성화되지 않아 요청을 처리할 수 없는 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws RecoverPlatformContractException
    */
   @JvmName("recoverPlatformContractSuspend")
   public suspend fun recoverPlatformContract(
@@ -1384,7 +1291,7 @@ public class PolicyClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformContractError>(httpBody)
+        json.decodeFromString<RecoverPlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1412,7 +1319,7 @@ public class PolicyClient internal constructor(
     id: String,
   ): CompletableFuture<RecoverPlatformContractResponse> = GlobalScope.future { recoverPlatformContract(id) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

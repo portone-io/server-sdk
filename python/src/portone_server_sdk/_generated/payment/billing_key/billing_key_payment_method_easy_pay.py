@@ -1,23 +1,25 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_payment_method_easy_pay_method import BillingKeyPaymentMethodEasyPayMethod, _deserialize_billing_key_payment_method_easy_pay_method, _serialize_billing_key_payment_method_easy_pay_method
-from portone_server_sdk._generated.common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
+from ...payment.billing_key.billing_key_payment_method_easy_pay_method import BillingKeyPaymentMethodEasyPayMethod, _deserialize_billing_key_payment_method_easy_pay_method, _serialize_billing_key_payment_method_easy_pay_method
+from ...common.easy_pay_provider import EasyPayProvider, _deserialize_easy_pay_provider, _serialize_easy_pay_provider
 
 @dataclass
 class BillingKeyPaymentMethodEasyPay:
     """간편 결제 정보
     """
-    type: Literal["BillingKeyPaymentMethodEasyPay"] = field(repr=False)
-    provider: Optional[EasyPayProvider]
+    provider: Optional[EasyPayProvider] = field(default=None)
     """간편 결제 PG사
     """
-    method: Optional[BillingKeyPaymentMethodEasyPayMethod]
+    method: Optional[BillingKeyPaymentMethodEasyPayMethod] = field(default=None)
     """간편 결제 수단
     """
 
 
 def _serialize_billing_key_payment_method_easy_pay(obj: BillingKeyPaymentMethodEasyPay) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BillingKeyPaymentMethodEasyPay"
     if obj.provider is not None:
@@ -45,4 +47,4 @@ def _deserialize_billing_key_payment_method_easy_pay(obj: Any) -> BillingKeyPaym
         method = _deserialize_billing_key_payment_method_easy_pay_method(method)
     else:
         method = None
-    return BillingKeyPaymentMethodEasyPay(type, provider, method)
+    return BillingKeyPaymentMethodEasyPay(provider, method)

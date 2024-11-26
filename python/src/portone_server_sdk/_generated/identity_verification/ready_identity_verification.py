@@ -1,14 +1,14 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ..identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
+from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class ReadyIdentityVerification:
     """준비 상태의 본인인증 내역
     """
-    status: Literal["READY"] = field(repr=False)
     """본인인증 상태
     """
     id: str
@@ -29,15 +29,17 @@ class ReadyIdentityVerification:
     """상태 업데이트 시점
     (RFC 3339 date-time)
     """
-    channel: Optional[SelectedChannel]
+    channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
-    custom_data: Optional[str]
+    custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
 
 
 def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "READY"
     entity["id"] = obj.id
@@ -95,4 +97,4 @@ def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerificat
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return ReadyIdentityVerification(status, id, requested_customer, requested_at, updated_at, status_changed_at, channel, custom_data)
+    return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, channel, custom_data)

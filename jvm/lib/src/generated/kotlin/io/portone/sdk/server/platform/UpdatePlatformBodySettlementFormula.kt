@@ -17,3 +17,5 @@ public data class UpdatePlatformBodySettlementFormula(
   /** 추가 수수료 계산식 */
   val additionalFee: String? = null,
 )
+
+

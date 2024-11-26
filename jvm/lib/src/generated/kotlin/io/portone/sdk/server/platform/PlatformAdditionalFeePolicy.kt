@@ -21,12 +21,14 @@ public data class PlatformAdditionalFeePolicy(
   val name: String,
   /** 책정 수수료 */
   val fee: PlatformFee,
+  /** 해당 추가 수수료 정책에 대한 메모 */
+  val memo: String? = null,
   /** 부가세를 부담할 주체 */
   val vatPayer: PlatformPayer,
   /** 보관 여부 */
   val isArchived: Boolean,
   /** 변경 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 해당 추가 수수료 정책에 대한 메모 */
-  val memo: String? = null,
 )
+
+

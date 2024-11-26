@@ -16,3 +16,5 @@ public data class CancelPaymentBodyRefundAccount(
   /** 예금주 연락처 - 스마트로 가상계좌 결제인 경우에 필요합니다. */
   val holderPhoneNumber: String? = null,
 )
+
+

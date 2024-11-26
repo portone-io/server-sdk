@@ -24,3 +24,5 @@ public data class InstantPaymentMethodInputVirtualAccountOptionFixed(
    */
   val accountNumber: String? = null,
 )
+
+

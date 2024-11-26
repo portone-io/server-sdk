@@ -1,14 +1,17 @@
 import * as fs from "@std/fs"
 import * as path from "@std/path"
-import { toPascalCase } from "@std/text"
+import { toCamelCase, toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import type { Writer } from "../common/writer.ts"
+import {
+  entities as webhookEntities,
+  types as webhookTypes,
+} from "../common/webhook.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
-import { intoInlineTypeName, TypescriptWriter } from "./common.ts"
-import { writeDescription } from "./description.ts"
+import { TypescriptWriter } from "./common.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
+import { generateEntity as generateWebhookEntity } from "./webhook.ts"
 
 /**
  * @returns entrypoints
@@ -20,189 +23,94 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
   const categoryMap = makeCategoryMap(pack)
   const entityMap = makeEntityMap(pack)
   const oneOfErrors = new Set<string>()
-  const variantErrors = new Set<string>()
-  collectErrors(pack, entityMap, oneOfErrors, variantErrors)
-  generateErrors(srcPath, [...variantErrors].toSorted(), categoryMap, entityMap)
-  generateEntityDirectory(srcPath, pack, categoryMap, ".")
-  generateClient(srcPath, pack)
-  generateIndex(srcPath, pack)
-  const omitEntities = oneOfErrors.union(variantErrors)
-  generateCategoryIndex(srcPath, pack, categoryMap, entityMap, omitEntities, 0)
-  const ignoreEntrypoints = new Set(["webhook"])
+  collectErrors(pack, entityMap, oneOfErrors, new Set())
+  generateEntityDirectory(srcPath, pack, categoryMap, ".", oneOfErrors)
+  generateWebhook(srcPath)
+  const allClients: Client[] = []
+  generateClient(
+    srcPath,
+    pack,
+    "..",
+    ".",
+    categoryMap,
+    entityMap,
+    allClients,
+  )
+  allClients.sort((a, b) => a.name.localeCompare(b.name))
+  generateIndex(srcPath, pack, allClients)
+  generateCategoryIndex(
+    srcPath,
+    pack,
+    categoryMap,
+    entityMap,
+    oneOfErrors,
+    0,
+    "",
+    "PortOneError",
+  )
   const entrypoints = [
-    ...new Set(categoryMap.values()).difference(ignoreEntrypoints),
+    ...categoryMap.values(),
   ].map((category) => category.replace(".", "/"))
   entrypoints.sort()
   return entrypoints
 }
 
-function generateIndex(srcPath: string, pack: Package) {
+function generateIndex(srcPath: string, pack: Package, clients: Client[]) {
   const writer = TypescriptWriter()
-  writer.writeLine(`export * as Errors from "./errors"`)
-  writer.writeLine(`export * from "./client"`)
+  writer.writeLine(`export { RestError } from "./RestError"`)
   for (const subpackage of pack.subpackages) {
     writer.writeLine(
-      `export * as ${
-        toPascalCase(subpackage.category)
-      } from "./${subpackage.category}"`,
+      `export * as ${toCamelCase(subpackage.category)} from "./${
+        toCamelCase(subpackage.category)
+      }"`,
+    )
+  }
+  for (const client of clients) {
+    writer.writeLine(
+      `export { ${client.name} } from "${client.hierarchy}/client"`,
     )
   }
   Deno.writeTextFileSync(path.join(srcPath, "index.ts"), writer.content)
 }
 
-const PortOneError = `
-export abstract class PortOneError extends Error {
-  abstract readonly _tag: string;
-
-  constructor(message?: string, options?: ErrorOptions) {
-    super(message ?? "", options)
-    Object.setPrototypeOf(this, PortOneError.prototype)
-    this.name = "PortOneError"
-    this.stack = new Error(message ?? "").stack
-  }
-}
-  
-export class UnknownError extends PortOneError {
-  readonly _tag = "PortOneUnknownError"
-
-  constructor(cause: never) {
-    super("알 수 없는 에러가 발생했습니다.", { cause })
-    Object.setPrototypeOf(this, UnknownError.prototype)
-  }
-}`
-
-function generateErrors(
-  srcPath: string,
-  errors: string[],
-  categoryMap: Map<string, string>,
-  entityMap: Map<string, Definition>,
-) {
+function generateWebhook(srcPath: string) {
+  const webhookPath = path.join(srcPath, "webhook")
+  fs.ensureDirSync(webhookPath)
   const writer = TypescriptWriter()
-  const crossRef = new Set<string>()
-  for (const error of errors) {
-    const path = categoryMap.get(error)?.replace(".", "/")
-    if (!path) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    const definition = entityMap.get(error)
-    if (!definition) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    if (definition.type !== "object") {
-      throw new Error("unsupported generation of error type", {
-        cause: { definition },
-      })
-    }
-    for (const property of definition.properties) {
-      switch (property.type) {
-        case "ref":
-          crossRef.add(property.value)
-          break
-        case "oneOf":
-          for (const { name } of property.variants) {
-            crossRef.add(name)
-          }
-          break
-        case "array":
-          switch (property.item.type) {
-            case "ref":
-              crossRef.add(property.item.value)
-              break
-            case "string":
-            case "number":
-            case "boolean":
-            case "oneOf":
-            case "discriminant":
-            case "enum":
-            case "integer":
-              break
-            case "object":
-            case "array":
-              throw new Error("unsupported error property array item type", {
-                cause: { definition },
-              })
-            default:
-              throw new Error("unsupported definition type", {
-                cause: { definition: property.item },
-              })
-          }
-          break
-        case "string":
-        case "number":
-        case "boolean":
-        case "discriminant":
-        case "enum":
-        case "integer":
-          break
-        case "object":
-          throw new Error("unsupported error property type", {
-            cause: { definition },
-          })
-      }
-    }
+  for (
+    const entity of webhookEntities.toSorted((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+  ) {
+    const entityPath = path.join(webhookPath, `${entity.name}.ts`)
+    Deno.writeTextFileSync(entityPath, generateWebhookEntity(entity))
     writer.writeLine(
-      `import type { ${error} as Internal${error} } from "./${path}/${error}"`,
+      `export type { ${entity.name} } from "./${entity.name}"`,
     )
   }
-  const sortedRef = [...crossRef]
-  sortedRef.sort()
-  for (const ref of crossRef) {
-    const path = categoryMap.get(ref)?.replace(".", "/")
-    if (!path) {
-      throw new Error("unrecognized error property reference", {
-        cause: { ref },
-      })
-    }
-    writer.writeLine(
-      `import type { ${ref} } from "./${path}/${ref}"`,
-    )
-  }
-  for (const line of PortOneError.split("\n")) {
-    writer.writeLine(line)
-  }
-  for (const error of errors) {
-    const definition = entityMap.get(error)
-    if (!definition) {
-      throw new Error("unrecognized error reference", { cause: { error } })
-    }
-    if (definition.type !== "object") {
-      throw new Error("unsupported generation of error type", {
-        cause: { definition },
-      })
-    }
-    const additionalProperties = definition.properties.filter(({ name }) =>
-      name !== "type" && name !== "message"
-    )
-    writer.writeLine("")
-    writeDescription(writer, definition.description)
-    writer.writeLine(`export class ${error} extends PortOneError {`)
-    writer.indent()
-    writer.writeLine(`readonly _tag = "PortOne${error}"`)
-    for (const property of additionalProperties) {
-      const name = property.required ? property.name : `${property.name}?`
-      writer.writeLine(`readonly ${name}: ${intoInlineTypeName(property)}`)
-    }
-    writer.writeLine("")
-    writer.writeLine("/** @ignore */")
-    writer.writeLine(`constructor(error: Internal${error}) {`)
-    writer.indent()
-    if (definition.properties.some(({ name }) => name === "message")) {
-      writer.writeLine("super(error.message)")
+  writer.writeLine(`import type { Webhook } from "./Webhook"`)
+  writer.writeLine(
+    `import type { Unrecognized } from "../../utils/unrecognized"`,
+  )
+  writer.writeLine("")
+  writer.writeLine(
+    `export function isUnrecognizedWebhook(entity: Webhook): entity is { readonly type: Unrecognized } {`,
+  )
+  writer.indent()
+  let first = true
+  for (const [type] of webhookTypes) {
+    if (first) {
+      writer.writeLine(`return entity.type !== "${type}"`)
+      writer.indent()
+      first = false
     } else {
-      writer.writeLine("super()")
+      writer.writeLine(`&& entity.type !== "${type}"`)
     }
-    writer.writeLine(`Object.setPrototypeOf(this, ${error}.prototype)`)
-    writer.writeLine(`this.name = "${error}"`)
-    for (const { name } of additionalProperties) {
-      writer.writeLine(`this.${name} = error.${name}`)
-    }
-    writer.outdent()
-    writer.writeLine("}")
-    writer.outdent()
-    writer.writeLine("}")
   }
-  const errorPath = path.join(srcPath, "errors.ts")
-  Deno.writeTextFileSync(errorPath, writer.content)
+  writer.outdent()
+  writer.outdent()
+  writer.writeLine(`}`)
+  Deno.writeTextFileSync(path.join(webhookPath, "index.ts"), writer.content)
 }
 
 function collectErrors(
@@ -246,148 +154,135 @@ function collectErrors(
   }
 }
 
-const PortOneClientInit = `
-export type PortOneClientInit = {
-  /**
-	 * 포트원 API URL Origin
-	 *
-	 * 기본값은 \`https://api.portone.io\`입니다.
-	 */
-	baseUrl?: string;
-	/**
-	 * 상점 ID
-	 */
-	storeId?: string;
-}`
+type Client = {
+  hierarchy: string
+  name: string
+}
 
 function generateClient(
-  srcPath: string,
+  packagePath: string,
   pack: Package,
-) {
-  const typeWriter = TypescriptWriter()
-  const writer = TypescriptWriter()
-  writer.writeLine(`import * as Errors from "./errors"`)
-  for (
-    const subpackage of pack.subpackages.map(({ category }) => category)
-      .toSorted()
-  ) {
-    writer.writeLine(
-      `import * as ${toPascalCase(subpackage)} from "./${subpackage}"`,
-    )
-  }
-  for (const line of PortOneClientInit.split("\n")) {
-    writer.writeLine(line)
-  }
-  writeRootClientObject(writer, pack)
-  const operationPath = path.join(srcPath, "client.ts")
-  Deno.writeTextFileSync(operationPath, writer.content + typeWriter.content)
-}
-
-const PortOneClientHead = `
-/**
- * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
- */
-export function PortOneClient(
-  /** 포트원 API Secret */
-  secret: string,
-  /** 포트원 API를 사용하기 위한 추가 정보 */
-  init?: PortOneClientInit,
-): PortOneClient {`
-
-function writeRootClientObject(
-  writer: Writer,
-  pack: Package,
-) {
-  for (const line of PortOneClientHead.split("\n")) {
-    writer.writeLine(line)
-  }
-  writer.indent()
-  writer.writeLine(`const baseUrl = init?.baseUrl ?? "https://api.portone.io"`)
-  writer.writeLine("const storeId = init?.storeId")
-  writer.writeLine(`const userAgent = "__USER_AGENT__"`)
-  writer.writeLine("return {")
-  writer.indent()
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
-  for (const subpackage of subpackages) {
-    writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client(secret, userAgent, baseUrl, storeId),`,
-    )
-  }
-  writer.outdent()
-  writer.writeLine("}")
-  writer.outdent()
-  writer.writeLine("}")
-  writer.writeLine("")
-  writer.writeLine("export type PortOneClient = {")
-  writer.indent()
-  for (const subpackage of subpackages) {
-    writer.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client`,
-    )
-  }
-  writer.outdent()
-  writer.writeLine("}")
-}
-
-function writeClientObject(
-  implWriter: Writer,
-  pack: Package,
+  hierarchyToSrc: string,
+  hierarchy: string,
+  categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
-  crossRef: Set<string>,
-) {
-  const typeWriter = TypescriptWriter()
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
-  implWriter.writeLine("/** @ignore */")
-  implWriter.writeLine(
-    `export function ${
-      toPascalCase(pack.category)
-    }Client(secret: string, userAgent: string, baseUrl?: string, storeId?: string): ${
-      toPascalCase(pack.category)
-    }Client {`,
-  )
-  implWriter.indent()
-  implWriter.writeLine("return {")
-  implWriter.indent()
-  typeWriter.writeLine(`export type ${toPascalCase(pack.category)}Client = {`)
-  typeWriter.indent()
-  for (const operation of pack.operations) {
-    writeOperation(
-      implWriter,
-      typeWriter,
-      operation,
-      entityMap,
-      crossRef,
+  collected: Client[],
+): Client | null {
+  let client = null
+  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
+  if (hasClient) {
+    const error = `${toPascalCase(pack.category)}Error`
+    const importWriter = TypescriptWriter()
+    const typeWriter = TypescriptWriter()
+    const errorWriter = TypescriptWriter()
+    const writer = TypescriptWriter()
+    if (pack.operations.length > 0) {
+      importWriter.writeLine(`import { ${error} } from "./${error}"`)
+      importWriter.writeLine(
+        `import type { Unrecognized } from "./${hierarchyToSrc}/utils/unrecognized"`,
+      )
+      importWriter.writeLine(
+        `import { USER_AGENT, type PortOneClientInit } from "${hierarchyToSrc}/client"`,
+      )
+    } else {
+      importWriter.writeLine(
+        `import type { PortOneClientInit } from "${hierarchyToSrc}/client"`,
+      )
+    }
+    const clientName = pack.category === "root"
+      ? "PortOneClient"
+      : `${toPascalCase(pack.category)}Client`
+    client = {
+      hierarchy,
+      name: clientName,
+    }
+    collected.push(client)
+    writer.writeLine(
+      `export function ${clientName}(init: PortOneClientInit): ${clientName} {`,
+    )
+    writer.indent()
+    if (pack.operations.length > 0) {
+      writer.writeLine(
+        `const baseUrl = init.baseUrl ?? "https://api.portone.io"`,
+      )
+      writer.writeLine(`const secret = init.secret`)
+    }
+    writer.writeLine("return {")
+    writer.indent()
+    typeWriter.writeLine(`export type ${clientName} = {`)
+    typeWriter.indent()
+    const crossRef = new Set<string>()
+    for (const operation of pack.operations) {
+      writeOperation(
+        writer,
+        typeWriter,
+        errorWriter,
+        operation,
+        entityMap,
+        crossRef,
+        error,
+      )
+    }
+    for (const subpackage of pack.subpackages) {
+      const subclient = generateClient(
+        `${packagePath}/${toCamelCase(subpackage.category)}`,
+        subpackage,
+        `../${hierarchyToSrc}`,
+        `${hierarchy}/${subpackage.category}`,
+        categoryMap,
+        entityMap,
+        collected,
+      )
+      if (subclient) {
+        importWriter.writeLine(
+          `import { ${subclient.name} } from "./${subpackage.category}/client"`,
+        )
+        writer.writeLine(
+          `${toCamelCase(subpackage.category)}: ${subclient.name}(init),`,
+        )
+        typeWriter.writeLine(
+          `${toCamelCase(subpackage.category)}: ${subclient.name}`,
+        )
+      }
+    }
+    typeWriter.outdent()
+    typeWriter.writeLine("}")
+    writer.outdent()
+    writer.writeLine("}")
+    writer.outdent()
+    writer.writeLine("}")
+    for (const ref of [...crossRef].toSorted()) {
+      const rename = ref
+      let name = rename
+      if (name.startsWith("_Internal")) {
+        name = name.slice(9)
+      }
+      const category = categoryMap.get(name)
+      if (!category) {
+        throw new Error("unrecognized ref", { cause: { ref: name } })
+      }
+      if (name === rename) {
+        importWriter.writeLine(
+          `import type { ${name} } from "${hierarchyToSrc}/generated/${
+            category.replaceAll(".", "/")
+          }/${name}"`,
+        )
+      } else {
+        importWriter.writeLine(
+          `import type { ${name} as ${rename} } from "${hierarchyToSrc}/generated/${
+            category.replaceAll(".", "/")
+          }/${name}"`,
+        )
+      }
+    }
+    const operationPath = path.join(packagePath, "client.ts")
+    Deno.writeTextFileSync(
+      operationPath,
+      importWriter.content + writer.content + typeWriter.content +
+        errorWriter.content,
     )
   }
-  for (const subpackage of subpackages) {
-    implWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client(secret, userAgent, baseUrl, storeId),`,
-    )
-    typeWriter.writeLine(
-      `${subpackage.category}: ${toPascalCase(subpackage.category)}.${
-        toPascalCase(subpackage.category)
-      }Client`,
-    )
-  }
-  typeWriter.outdent()
-  typeWriter.writeLine("}")
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  implWriter.outdent()
-  implWriter.writeLine("}")
-  for (const line of typeWriter.content.split("\n")) {
-    implWriter.writeLine(line)
-  }
+  return client
 }
 
 function generateEntityDirectory(
@@ -395,8 +290,10 @@ function generateEntityDirectory(
   pack: Package,
   categoryMap: Map<string, string>,
   hierarchy: string,
+  exclude: Set<string>,
 ) {
   for (const entity of pack.entities) {
+    if (exclude.has(entity.name)) continue
     const entityPath = path.join(packagePath, `${entity.name}.ts`)
     Deno.writeTextFileSync(
       entityPath,
@@ -406,7 +303,13 @@ function generateEntityDirectory(
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
     fs.ensureDirSync(subPath)
-    generateEntityDirectory(subPath, subpackage, categoryMap, hierarchy + "/..")
+    generateEntityDirectory(
+      subPath,
+      subpackage,
+      categoryMap,
+      hierarchy + "/..",
+      exclude,
+    )
   }
 }
 
@@ -417,13 +320,88 @@ function generateCategoryIndex(
   entityMap: Map<string, Definition>,
   omitEntities: Set<string>,
   depth: number,
+  canonicalCategory: string,
+  parentError: string,
 ) {
-  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
-  const crossRef = new Set<string>()
   const writer = TypescriptWriter()
+  const crossRef = new Set<string>()
+  const error = pack.category === "root"
+    ? "RestError"
+    : `${toPascalCase(pack.category)}Error`
+  if (
+    pack.operations.length > 0 || pack.subpackages.length > 0
+  ) {
+    const errorWriter = TypescriptWriter()
+    errorWriter.writeLine(
+      `import type { Unrecognized } from "${
+        "../".repeat(depth)
+      }../utils/unrecognized"`,
+    )
+    errorWriter.writeLine(
+      `import { ${parentError} } from "../${parentError}"`,
+    )
+    const variantErrors = new Set<string>()
+    collectErrors(pack, entityMap, new Set(), variantErrors)
+    const dataType = [...variantErrors]
+    dataType.sort()
+    for (const error of dataType) {
+      const category = categoryMap.get(error)
+      if (!category) {
+        throw new Error("unrecognized error ref", { cause: error })
+      }
+      errorWriter.writeLine(
+        `import type { ${error} } from "${
+          depth === 0 ? "./" : "../".repeat(depth)
+        }${category.replaceAll(".", "/")}/${error}"`,
+      )
+    }
+    errorWriter.writeLine(
+      `export abstract class ${error} extends ${parentError} {`,
+    )
+    errorWriter.indent()
+    if (pack.category === "root") {
+      errorWriter.writeLine(
+        `readonly data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }`,
+      )
+      errorWriter.writeLine("/** @ignore */")
+      errorWriter.writeLine(
+        `constructor(data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }) {`,
+      )
+      errorWriter.indent()
+      errorWriter.writeLine(
+        `const message = "message" in data ? data.message : undefined`,
+      )
+      errorWriter.writeLine("super(message)")
+      errorWriter.writeLine("this.data = data")
+      errorWriter.outdent()
+      errorWriter.writeLine(`}`)
+    } else {
+      errorWriter.writeLine(
+        `declare readonly data: ${
+          dataType.join(" | ")
+        } | { readonly type: Unrecognized }`,
+      )
+    }
+    errorWriter.outdent()
+    errorWriter.writeLine(`}`)
+    Deno.writeTextFileSync(
+      path.join(packagePath, `${error}.ts`),
+      errorWriter.content,
+    )
+    writer.writeLine(`export { ${error} } from "./${error}"`)
+  }
   for (const entity of pack.entities) {
     if (omitEntities.has(entity.name)) continue
-    writer.writeLine(`export type { ${entity.name} } from "./${entity.name}"`)
+    writer.writeLine(`export * from "./${entity.name}"`)
+  }
+  if (pack.operations.length > 0) {
+    writer.writeLine(
+      `export * from "./client"`,
+    )
   }
   for (const subpackage of pack.subpackages) {
     const subPath = path.join(packagePath, subpackage.category)
@@ -435,15 +413,14 @@ function generateCategoryIndex(
       entityMap,
       omitEntities,
       depth + 1,
+      `${canonicalCategory}/${subpackage.category}`,
+      error,
     )
     writer.writeLine(
-      `export type * as ${
-        toPascalCase(subpackage.category)
-      } from "./${subpackage.category}"`,
+      `export * as ${toCamelCase(subpackage.category)} from "./${
+        toCamelCase(subpackage.category)
+      }"`,
     )
-  }
-  if (hasClient) {
-    writeClientObject(writer, pack, entityMap, crossRef)
   }
   const sortedRef = [...crossRef].toSorted()
   const importWriter = TypescriptWriter()
@@ -456,11 +433,6 @@ function generateCategoryIndex(
       `import type { ${ref} } from "${"../".repeat(depth)}/${
         category.split(".").join("/")
       }/${ref}"`,
-    )
-  }
-  if (hasClient) {
-    importWriter.writeLine(
-      `import * as Errors from "${"../".repeat(depth)}/errors"`,
     )
   }
   for (const subpackage of pack.subpackages) {

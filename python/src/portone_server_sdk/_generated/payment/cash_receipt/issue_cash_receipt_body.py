@@ -1,11 +1,12 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.payment.cash_receipt.issue_cash_receipt_customer_input import IssueCashReceiptCustomerInput, _deserialize_issue_cash_receipt_customer_input, _serialize_issue_cash_receipt_customer_input
-from portone_server_sdk._generated.common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
-from portone_server_sdk._generated.common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
+from ...common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...payment.cash_receipt.issue_cash_receipt_customer_input import IssueCashReceiptCustomerInput, _deserialize_issue_cash_receipt_customer_input, _serialize_issue_cash_receipt_customer_input
+from ...common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
+from ...common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
 
 @dataclass
 class IssueCashReceiptBody:
@@ -34,21 +35,23 @@ class IssueCashReceiptBody:
     customer: IssueCashReceiptCustomerInput
     """고객 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
     """
-    product_type: Optional[PaymentProductType]
+    product_type: Optional[PaymentProductType] = field(default=None)
     """상품 유형
     """
-    paid_at: Optional[str]
+    paid_at: Optional[str] = field(default=None)
     """결제 일자
     (RFC 3339 date-time)
     """
 
 
 def _serialize_issue_cash_receipt_body(obj: IssueCashReceiptBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["paymentId"] = obj.payment_id
     entity["channelKey"] = obj.channel_key

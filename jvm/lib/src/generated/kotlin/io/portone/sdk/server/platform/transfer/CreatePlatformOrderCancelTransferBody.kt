@@ -16,16 +16,14 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class CreatePlatformOrderCancelTransferBody(
-  /** 취소 내역 아이디 */
-  val cancellationId: String,
-  /** 할인 정보 */
-  val discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
   /** 파트너 아이디 */
   val partnerId: String? = null,
   /** 결제 아이디 */
   val paymentId: String? = null,
   /** 정산건 아이디 */
   val transferId: String? = null,
+  /** 취소 내역 아이디 */
+  val cancellationId: String,
   /** 메모 */
   val memo: String? = null,
   /** 주문 취소 정보 */
@@ -36,6 +34,8 @@ internal data class CreatePlatformOrderCancelTransferBody(
    * 주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
    */
   val taxFreeAmount: Long? = null,
+  /** 할인 정보 */
+  val discounts: List<CreatePlatformOrderCancelTransferBodyDiscount>,
   /**
    * 정산 시작일
    *
@@ -57,3 +57,5 @@ internal data class CreatePlatformOrderCancelTransferBody(
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
 )
+
+

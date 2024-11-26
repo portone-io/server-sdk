@@ -9,3 +9,5 @@ public data class CreatePlatformDiscountSharePolicyResponse(
   /** 생성된 할인 분담 정책 */
   val discountSharePolicy: PlatformDiscountSharePolicy,
 )
+
+

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
+from ...platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
 
 @dataclass
 class RecoverPlatformAdditionalFeePolicyResponse:
@@ -13,6 +13,8 @@ class RecoverPlatformAdditionalFeePolicyResponse:
 
 
 def _serialize_recover_platform_additional_fee_policy_response(obj: RecoverPlatformAdditionalFeePolicyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["additionalFeePolicy"] = _serialize_platform_additional_fee_policy(obj.additional_fee_policy)
     return entity

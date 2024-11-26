@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PaymentNotPaidError:
     """결제가 완료되지 않은 경우
     """
-    type: Literal["PAYMENT_NOT_PAID"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_payment_not_paid_error(obj: PaymentNotPaidError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PAYMENT_NOT_PAID"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_payment_not_paid_error(obj: Any) -> PaymentNotPaidError:
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PaymentNotPaidError(type, message)
+    return PaymentNotPaidError(message)

@@ -1,29 +1,31 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.card import Card, _deserialize_card, _serialize_card
-from portone_server_sdk._generated.payment.payment_installment import PaymentInstallment, _deserialize_payment_installment, _serialize_payment_installment
+from ..common.card import Card, _deserialize_card, _serialize_card
+from ..payment.payment_installment import PaymentInstallment, _deserialize_payment_installment, _serialize_payment_installment
 
 @dataclass
 class PaymentMethodCard:
     """결제수단 카드 정보
     """
-    type: Literal["PaymentMethodCard"] = field(repr=False)
-    card: Optional[Card]
+    card: Optional[Card] = field(default=None)
     """카드 상세 정보
     """
-    approval_number: Optional[str]
+    approval_number: Optional[str] = field(default=None)
     """승인 번호
     """
-    installment: Optional[PaymentInstallment]
+    installment: Optional[PaymentInstallment] = field(default=None)
     """할부 정보
     """
-    point_used: Optional[bool]
+    point_used: Optional[bool] = field(default=None)
     """카드 포인트 사용여부
     """
 
 
 def _serialize_payment_method_card(obj: PaymentMethodCard) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PaymentMethodCard"
     if obj.card is not None:
@@ -67,4 +69,4 @@ def _deserialize_payment_method_card(obj: Any) -> PaymentMethodCard:
             raise ValueError(f"{repr(point_used)} is not bool")
     else:
         point_used = None
-    return PaymentMethodCard(type, card, approval_number, installment, point_used)
+    return PaymentMethodCard(card, approval_number, installment, point_used)

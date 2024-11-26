@@ -19,3 +19,5 @@ public data class UpdatePlatformPartnerBodyAccount(
   /** 계좌 검증 아이디 */
   val accountVerificationId: String? = null,
 )
+
+

@@ -1,16 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
+from ..platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
 
 @dataclass
 class PlatformSettlementFormulaInvalidSyntax:
-    type: Literal["INVALID_SYNTAX"] = field(repr=False)
     syntax: str
     position: PlatformSettlementFormulaPosition
 
 
 def _serialize_platform_settlement_formula_invalid_syntax(obj: PlatformSettlementFormulaInvalidSyntax) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "INVALID_SYNTAX"
     entity["syntax"] = obj.syntax
@@ -35,4 +36,4 @@ def _deserialize_platform_settlement_formula_invalid_syntax(obj: Any) -> Platfor
         raise KeyError(f"'position' is not in {obj}")
     position = obj["position"]
     position = _deserialize_platform_settlement_formula_position(position)
-    return PlatformSettlementFormulaInvalidSyntax(type, syntax, position)
+    return PlatformSettlementFormulaInvalidSyntax(syntax, position)

@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformArchivedPartnersCannotBeScheduledError:
     """보관된 파트너들을 예약 업데이트하려고 하는 경우
     """
-    type: Literal["PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_archived_partners_cannot_be_scheduled_error(obj: PlatformArchivedPartnersCannotBeScheduledError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_archived_partners_cannot_be_scheduled_error(obj: Any) 
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformArchivedPartnersCannotBeScheduledError(type, message)
+    return PlatformArchivedPartnersCannotBeScheduledError(message)

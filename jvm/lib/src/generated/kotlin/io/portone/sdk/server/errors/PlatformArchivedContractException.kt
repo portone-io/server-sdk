@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 보관된 계약을 업데이트하려고 하는 경우 */
-public class PlatformArchivedContractException(
+public class PlatformArchivedContractException internal constructor(
   cause: PlatformArchivedContractError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ScheduleContractException, UpdatePlatformContractException {
 }

@@ -8,6 +8,8 @@ class DeletePlatformTransferResponse:
 
 
 def _serialize_delete_platform_transfer_response(obj: DeletePlatformTransferResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

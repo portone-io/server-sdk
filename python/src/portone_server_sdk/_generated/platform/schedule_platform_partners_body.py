@@ -1,8 +1,9 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_partner_filter_input import PlatformPartnerFilterInput, _deserialize_platform_partner_filter_input, _serialize_platform_partner_filter_input
-from portone_server_sdk._generated.platform.schedule_platform_partners_body_update import SchedulePlatformPartnersBodyUpdate, _deserialize_schedule_platform_partners_body_update, _serialize_schedule_platform_partners_body_update
+from ..platform.platform_partner_filter_input import PlatformPartnerFilterInput, _deserialize_platform_partner_filter_input, _serialize_platform_partner_filter_input
+from ..platform.schedule_platform_partners_body_update import SchedulePlatformPartnersBodyUpdate, _deserialize_schedule_platform_partners_body_update, _serialize_schedule_platform_partners_body_update
 
 @dataclass
 class SchedulePlatformPartnersBody:
@@ -10,10 +11,12 @@ class SchedulePlatformPartnersBody:
     applied_at: str
     """(RFC 3339 date-time)
     """
-    filter: Optional[PlatformPartnerFilterInput]
+    filter: Optional[PlatformPartnerFilterInput] = field(default=None)
 
 
 def _serialize_schedule_platform_partners_body(obj: SchedulePlatformPartnersBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_schedule_platform_partners_body_update(obj.update)
     entity["appliedAt"] = obj.applied_at

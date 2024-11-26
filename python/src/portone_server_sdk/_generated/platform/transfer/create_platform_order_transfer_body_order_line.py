@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.create_platform_order_transfer_body_additional_fee import CreatePlatformOrderTransferBodyAdditionalFee, _deserialize_create_platform_order_transfer_body_additional_fee, _serialize_create_platform_order_transfer_body_additional_fee
-from portone_server_sdk._generated.platform.transfer.create_platform_order_transfer_body_discount import CreatePlatformOrderTransferBodyDiscount, _deserialize_create_platform_order_transfer_body_discount, _serialize_create_platform_order_transfer_body_discount
-from portone_server_sdk._generated.platform.transfer.create_platform_order_transfer_body_product import CreatePlatformOrderTransferBodyProduct, _deserialize_create_platform_order_transfer_body_product, _serialize_create_platform_order_transfer_body_product
+from ...platform.transfer.create_platform_order_transfer_body_additional_fee import CreatePlatformOrderTransferBodyAdditionalFee, _deserialize_create_platform_order_transfer_body_additional_fee, _serialize_create_platform_order_transfer_body_additional_fee
+from ...platform.transfer.create_platform_order_transfer_body_discount import CreatePlatformOrderTransferBodyDiscount, _deserialize_create_platform_order_transfer_body_discount, _serialize_create_platform_order_transfer_body_discount
+from ...platform.transfer.create_platform_order_transfer_body_product import CreatePlatformOrderTransferBodyProduct, _deserialize_create_platform_order_transfer_body_product, _serialize_create_platform_order_transfer_body_product
 
 @dataclass
 class CreatePlatformOrderTransferBodyOrderLine:
@@ -25,6 +25,8 @@ class CreatePlatformOrderTransferBodyOrderLine:
 
 
 def _serialize_create_platform_order_transfer_body_order_line(obj: CreatePlatformOrderTransferBodyOrderLine) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["product"] = _serialize_create_platform_order_transfer_body_product(obj.product)
     entity["quantity"] = obj.quantity

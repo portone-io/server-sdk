@@ -1,10 +1,11 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.create_platform_order_cancel_transfer_body_discount import CreatePlatformOrderCancelTransferBodyDiscount, _deserialize_create_platform_order_cancel_transfer_body_discount, _serialize_create_platform_order_cancel_transfer_body_discount
-from portone_server_sdk._generated.platform.transfer.create_platform_order_cancel_transfer_body_external_cancellation_detail import CreatePlatformOrderCancelTransferBodyExternalCancellationDetail, _deserialize_create_platform_order_cancel_transfer_body_external_cancellation_detail, _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail
-from portone_server_sdk._generated.platform.transfer.create_platform_order_cancel_transfer_body_order_detail import CreatePlatformOrderCancelTransferBodyOrderDetail, _deserialize_create_platform_order_cancel_transfer_body_order_detail, _serialize_create_platform_order_cancel_transfer_body_order_detail
-from portone_server_sdk._generated.platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
+from ...platform.transfer.create_platform_order_cancel_transfer_body_discount import CreatePlatformOrderCancelTransferBodyDiscount, _deserialize_create_platform_order_cancel_transfer_body_discount, _serialize_create_platform_order_cancel_transfer_body_discount
+from ...platform.transfer.create_platform_order_cancel_transfer_body_external_cancellation_detail import CreatePlatformOrderCancelTransferBodyExternalCancellationDetail, _deserialize_create_platform_order_cancel_transfer_body_external_cancellation_detail, _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail
+from ...platform.transfer.create_platform_order_cancel_transfer_body_order_detail import CreatePlatformOrderCancelTransferBodyOrderDetail, _deserialize_create_platform_order_cancel_transfer_body_order_detail, _serialize_create_platform_order_cancel_transfer_body_order_detail
+from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 
 @dataclass
 class CreatePlatformOrderCancelTransferBody:
@@ -20,48 +21,50 @@ class CreatePlatformOrderCancelTransferBody:
     discounts: list[CreatePlatformOrderCancelTransferBodyDiscount]
     """할인 정보
     """
-    partner_id: Optional[str]
+    partner_id: Optional[str] = field(default=None)
     """파트너 아이디
     """
-    payment_id: Optional[str]
+    payment_id: Optional[str] = field(default=None)
     """결제 아이디
     """
-    transfer_id: Optional[str]
+    transfer_id: Optional[str] = field(default=None)
     """정산건 아이디
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
-    order_detail: Optional[CreatePlatformOrderCancelTransferBodyOrderDetail]
+    order_detail: Optional[CreatePlatformOrderCancelTransferBodyOrderDetail] = field(default=None)
     """주문 취소 정보
     """
-    tax_free_amount: Optional[int]
+    tax_free_amount: Optional[int] = field(default=None)
     """주문 취소 면세 금액
 
     주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
     (int64)
     """
-    settlement_start_date: Optional[str]
+    settlement_start_date: Optional[str] = field(default=None)
     """정산 시작일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
     """
-    external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail]
+    external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail] = field(default=None)
     """외부 결제 상세 정보
 
     해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.
     """
-    is_for_test: Optional[bool]
+    is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
 
     기본값은 false 입니다.
     """
-    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]]
+    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
 
 
 def _serialize_create_platform_order_cancel_transfer_body(obj: CreatePlatformOrderCancelTransferBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cancellationId"] = obj.cancellation_id
     entity["discounts"] = list(map(_serialize_create_platform_order_cancel_transfer_body_discount, obj.discounts))

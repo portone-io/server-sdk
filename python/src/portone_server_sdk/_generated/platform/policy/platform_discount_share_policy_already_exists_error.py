@@ -1,14 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformDiscountSharePolicyAlreadyExistsError:
-    type: Literal["PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_discount_share_policy_already_exists_error(obj: PlatformDiscountSharePolicyAlreadyExistsError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_DISCOUNT_SHARE_POLICY_ALREADY_EXISTS"
     if obj.message is not None:
@@ -30,4 +32,4 @@ def _deserialize_platform_discount_share_policy_already_exists_error(obj: Any) -
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformDiscountSharePolicyAlreadyExistsError(type, message)
+    return PlatformDiscountSharePolicyAlreadyExistsError(message)

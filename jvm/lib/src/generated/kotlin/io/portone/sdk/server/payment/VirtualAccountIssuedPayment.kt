@@ -7,7 +7,6 @@ import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.payment.Payment
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
@@ -34,28 +33,14 @@ public data class VirtualAccountIssuedPayment(
   override val merchantId: String,
   /** 상점 아이디 */
   override val storeId: String,
-  /** 결제 채널 */
-  val channel: SelectedChannel,
-  /** 포트원 버전 */
-  override val version: PortOneVersion,
-  /** 결제 요청 시점 */
-  override val requestedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 업데이트 시점 */
-  override val updatedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 상태 업데이트 시점 */
-  override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
-  /** 주문명 */
-  override val orderName: String,
-  /** 결제 금액 관련 세부 정보 */
-  override val amount: PaymentAmount,
-  /** 통화 */
-  override val currency: Currency,
-  /** 구매자 정보 */
-  override val customer: Customer,
   /** 결제수단 정보 */
   override val method: PaymentMethod? = null,
+  /** 결제 채널 */
+  override val channel: SelectedChannel,
   /** 결제 채널 그룹 정보 */
   override val channelGroup: ChannelGroupSummary? = null,
+  /** 포트원 버전 */
+  override val version: PortOneVersion,
   /**
    * 결제 예약 건 아이디
    *
@@ -70,6 +55,20 @@ public data class VirtualAccountIssuedPayment(
   override val billingKey: String? = null,
   /** 웹훅 발송 내역 */
   override val webhooks: List<PaymentWebhook>? = null,
+  /** 결제 요청 시점 */
+  override val requestedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 업데이트 시점 */
+  override val updatedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 상태 업데이트 시점 */
+  override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 주문명 */
+  override val orderName: String,
+  /** 결제 금액 관련 세부 정보 */
+  override val amount: PaymentAmount,
+  /** 통화 */
+  override val currency: Currency,
+  /** 구매자 정보 */
+  override val customer: Customer,
   /** 프로모션 아이디 */
   override val promotionId: String? = null,
   /** 문화비 지출 여부 */
@@ -90,4 +89,6 @@ public data class VirtualAccountIssuedPayment(
   override val country: Country? = null,
   /** PG사 거래 아이디 */
   val pgTxId: String? = null,
-): Payment
+) : Payment.Recognized
+
+

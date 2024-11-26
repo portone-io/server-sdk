@@ -9,3 +9,5 @@ public data class SchedulePlatformContractResponse(
   /** 예약된 계약 정보 */
   val scheduledContract: PlatformContract,
 )
+
+

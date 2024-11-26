@@ -2,7 +2,6 @@ package io.portone.sdk.server.platform.partnersettlement
 
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.PlatformPartner
-import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlement
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementStatus
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -26,10 +25,12 @@ public data class PlatformPartnerManualSettlement(
   override val settlementCurrency: Currency,
   /** 정산 상태 */
   override val status: PlatformPartnerSettlementStatus,
+  /** 메모 */
+  override val memo: String? = null,
   /** 정산 금액 */
   val amount: Long,
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
-  /** 메모 */
-  override val memo: String? = null,
-): PlatformPartnerSettlement
+) : PlatformPartnerSettlement.Recognized
+
+

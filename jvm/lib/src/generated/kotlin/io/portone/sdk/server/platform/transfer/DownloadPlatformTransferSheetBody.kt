@@ -14,3 +14,5 @@ internal data class DownloadPlatformTransferSheetBody(
   val transferUserDefinedPropertyKeys: List<String>? = null,
   val partnerUserDefinedPropertyKeys: List<String>? = null,
 )
+
+

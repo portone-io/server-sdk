@@ -9,3 +9,5 @@ public data class CreatePlatformAdditionalFeePolicyResponse(
   /** 생성된 추가 수수료 정책 */
   val additionalFeePolicy: PlatformAdditionalFeePolicy,
 )
+
+

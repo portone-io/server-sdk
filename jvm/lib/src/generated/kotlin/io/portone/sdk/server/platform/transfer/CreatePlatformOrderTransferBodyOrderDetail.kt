@@ -15,3 +15,5 @@ public data class CreatePlatformOrderTransferBodyOrderDetail(
   /** 주문 항목 리스트 */
   val orderLines: List<CreatePlatformOrderTransferBodyOrderLine>? = null,
 )
+
+

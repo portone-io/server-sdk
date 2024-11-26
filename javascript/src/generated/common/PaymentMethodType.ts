@@ -5,3 +5,4 @@ export type PaymentMethodType =
 	| "GIFT_CERTIFICATE"
 	| "MOBILE"
 	| "EASY_PAY"
+	| string & {}

@@ -1,26 +1,29 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.payout.platform_payout_filter_input_criteria import PlatformPayoutFilterInputCriteria, _deserialize_platform_payout_filter_input_criteria, _serialize_platform_payout_filter_input_criteria
-from portone_server_sdk._generated.platform.payout.platform_payout_status import PlatformPayoutStatus, _deserialize_platform_payout_status, _serialize_platform_payout_status
+from ...common.bank import Bank, _deserialize_bank, _serialize_bank
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.payout.platform_payout_filter_input_criteria import PlatformPayoutFilterInputCriteria, _deserialize_platform_payout_filter_input_criteria, _serialize_platform_payout_filter_input_criteria
+from ...platform.payout.platform_payout_status import PlatformPayoutStatus, _deserialize_platform_payout_status, _serialize_platform_payout_status
 
 @dataclass
 class PlatformPayoutFilterInput:
     criteria: PlatformPayoutFilterInputCriteria
-    statuses: Optional[list[PlatformPayoutStatus]]
-    partner_ids: Optional[list[str]]
-    payout_account_banks: Optional[list[Bank]]
+    statuses: Optional[list[PlatformPayoutStatus]] = field(default=None)
+    partner_ids: Optional[list[str]] = field(default=None)
+    payout_account_banks: Optional[list[Bank]] = field(default=None)
     """은행
     """
-    partner_tags: Optional[list[str]]
-    payout_currencies: Optional[list[Currency]]
+    partner_tags: Optional[list[str]] = field(default=None)
+    payout_currencies: Optional[list[Currency]] = field(default=None)
     """통화 단위
     """
 
 
 def _serialize_platform_payout_filter_input(obj: PlatformPayoutFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["criteria"] = _serialize_platform_payout_filter_input_criteria(obj.criteria)
     if obj.statuses is not None:

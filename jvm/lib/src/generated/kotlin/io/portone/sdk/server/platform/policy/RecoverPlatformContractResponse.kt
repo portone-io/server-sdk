@@ -9,3 +9,5 @@ public data class RecoverPlatformContractResponse(
   /** 복원된 계약 */
   val contract: PlatformContract,
 )
+
+

@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 결제 건이 존재하지 않는 경우 */
-public class PaymentNotFoundException(
+public class PaymentNotFoundException internal constructor(
   cause: PaymentNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ApplyEscrowLogisticsException, CancelPaymentException, CloseVirtualAccountException, ConfirmEscrowException, GetPaymentException, ModifyEscrowLogisticsException, RegisterStoreReceiptException, ResendWebhookException {
 }

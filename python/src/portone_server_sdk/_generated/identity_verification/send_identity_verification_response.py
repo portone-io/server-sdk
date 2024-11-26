@@ -10,6 +10,8 @@ class SendIdentityVerificationResponse:
 
 
 def _serialize_send_identity_verification_response(obj: SendIdentityVerificationResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     return entity
 

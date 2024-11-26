@@ -8,16 +8,10 @@ import kotlinx.serialization.Serializable
 /** 인증된 고객 정보 */
 @Serializable
 public data class IdentityVerificationVerifiedCustomer(
-  /** 이름 */
-  val name: String,
-  /**
-   * 생년월일 (yyyy-MM-dd)
-   *
-   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-   */
-  val birthDate: String,
   /** 식별 아이디 */
   val id: String? = null,
+  /** 이름 */
+  val name: String,
   /**
    * 통신사
    *
@@ -33,6 +27,12 @@ public data class IdentityVerificationVerifiedCustomer(
    * KG이니시스: 항상 제공합니다.
    */
   val phoneNumber: String? = null,
+  /**
+   * 생년월일 (yyyy-MM-dd)
+   *
+   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   */
+  val birthDate: String,
   /**
    * 성별
    *
@@ -64,3 +64,5 @@ public data class IdentityVerificationVerifiedCustomer(
    */
   val di: String? = null,
 )
+
+

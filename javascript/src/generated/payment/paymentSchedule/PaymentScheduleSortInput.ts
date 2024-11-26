@@ -1,6 +1,5 @@
 import type { PaymentScheduleSortBy } from "./../../payment/paymentSchedule/PaymentScheduleSortBy"
 import type { SortOrder } from "./../../common/SortOrder"
-
 /** 결제 예약 건 다건 조회 시 정렬 조건 */
 export type PaymentScheduleSortInput = {
 	/**

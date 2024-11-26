@@ -6,3 +6,4 @@ export type PaymentFilterInputEscrowStatus =
 	| "REJECTED"
 	| "CANCELLED"
 	| "REJECT_CONFIRMED"
+	| string & {}

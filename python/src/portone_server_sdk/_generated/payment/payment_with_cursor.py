@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment import Payment, _deserialize_payment, _serialize_payment
+from ..payment.payment import Payment, _deserialize_payment, _serialize_payment
 
 @dataclass
 class PaymentWithCursor:
@@ -16,6 +16,8 @@ class PaymentWithCursor:
 
 
 def _serialize_payment_with_cursor(obj: PaymentWithCursor) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_payment(obj.payment)
     entity["cursor"] = obj.cursor

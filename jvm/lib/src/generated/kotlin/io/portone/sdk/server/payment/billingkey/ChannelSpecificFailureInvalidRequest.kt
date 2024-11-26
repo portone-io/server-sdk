@@ -1,7 +1,6 @@
 package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.SelectedChannel
-import io.portone.sdk.server.payment.billingkey.ChannelSpecificFailure
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,4 +15,6 @@ import kotlinx.serialization.Serializable
 public data class ChannelSpecificFailureInvalidRequest(
   override val channel: SelectedChannel,
   override val message: String? = null,
-): ChannelSpecificFailure
+) : ChannelSpecificFailure.Recognized
+
+

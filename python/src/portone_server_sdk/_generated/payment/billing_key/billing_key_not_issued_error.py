@@ -1,14 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class BillingKeyNotIssuedError:
-    type: Literal["BILLING_KEY_NOT_ISSUED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_billing_key_not_issued_error(obj: BillingKeyNotIssuedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "BILLING_KEY_NOT_ISSUED"
     if obj.message is not None:
@@ -30,4 +32,4 @@ def _deserialize_billing_key_not_issued_error(obj: Any) -> BillingKeyNotIssuedEr
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return BillingKeyNotIssuedError(type, message)
+    return BillingKeyNotIssuedError(message)

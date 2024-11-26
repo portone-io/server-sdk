@@ -16,3 +16,5 @@ public data class CashReceiptInput(
    */
   val customerIdentityNumber: String? = null,
 )
+
+

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
 
 @dataclass
 class GetPlatformContractsResponse:
@@ -17,6 +17,8 @@ class GetPlatformContractsResponse:
 
 
 def _serialize_get_platform_contracts_response(obj: GetPlatformContractsResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_platform_contract, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

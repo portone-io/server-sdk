@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 
 @dataclass
 class PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError:
-    type: Literal["PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED"] = field(repr=False)
     id: str
     graphql_id: str
     fee_currency: Currency
     settlement_currency: Currency
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(obj: PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CONTRACT_PLATFORM_FIXED_AMOUNT_FEE_CURRENCY_AND_SETTLEMENT_CURRENCY_MISMATCHED"
     entity["id"] = obj.id
@@ -57,4 +59,4 @@ def _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settle
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(type, id, graphql_id, fee_currency, settlement_currency, message)
+    return PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(id, graphql_id, fee_currency, settlement_currency, message)

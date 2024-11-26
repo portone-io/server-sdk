@@ -7,3 +7,4 @@ export type PaymentStatus =
 	| "FAILED"
 	| "PARTIAL_CANCELLED"
 	| "CANCELLED"
+	| string & {}

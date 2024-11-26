@@ -2,3 +2,4 @@
 export type PortOneVersion =
 	| "V1"
 	| "V2"
+	| string & {}

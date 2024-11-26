@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -8,19 +9,21 @@ class InstantPaymentMethodInputVirtualAccountExpiry:
 
     validHours와 dueDate 둘 중 하나의 필드만 입력합니다.
     """
-    valid_hours: Optional[int]
+    valid_hours: Optional[int] = field(default=None)
     """유효 시간
 
     시간 단위로 입력합니다.
     (int32)
     """
-    due_date: Optional[str]
+    due_date: Optional[str] = field(default=None)
     """만료 시점
     (RFC 3339 date-time)
     """
 
 
 def _serialize_instant_payment_method_input_virtual_account_expiry(obj: InstantPaymentMethodInputVirtualAccountExpiry) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.valid_hours is not None:
         entity["validHours"] = obj.valid_hours

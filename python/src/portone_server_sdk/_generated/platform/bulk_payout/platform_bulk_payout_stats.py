@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_payout_status_stats import PlatformPayoutStatusStats, _deserialize_platform_payout_status_stats, _serialize_platform_payout_status_stats
+from ...platform.platform_payout_status_stats import PlatformPayoutStatusStats, _deserialize_platform_payout_status_stats, _serialize_platform_payout_status_stats
 
 @dataclass
 class PlatformBulkPayoutStats:
@@ -10,6 +10,8 @@ class PlatformBulkPayoutStats:
 
 
 def _serialize_platform_bulk_payout_stats(obj: PlatformBulkPayoutStats) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["amount"] = _serialize_platform_payout_status_stats(obj.amount)
     entity["count"] = _serialize_platform_payout_status_stats(obj.count)

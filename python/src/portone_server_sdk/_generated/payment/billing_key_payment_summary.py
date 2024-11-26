@@ -16,6 +16,8 @@ class BillingKeyPaymentSummary:
 
 
 def _serialize_billing_key_payment_summary(obj: BillingKeyPaymentSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["pgTxId"] = obj.pg_tx_id
     entity["paidAt"] = obj.paid_at

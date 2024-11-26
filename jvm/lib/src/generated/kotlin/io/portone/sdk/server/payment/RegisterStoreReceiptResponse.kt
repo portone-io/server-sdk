@@ -9,3 +9,5 @@ public data class RegisterStoreReceiptResponse(
   /** 결제 영수증 URL */
   val receiptUrl: String? = null,
 )
+
+

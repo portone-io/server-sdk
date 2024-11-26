@@ -1,11 +1,12 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
-from portone_server_sdk._generated.platform.payout.platform_payout_account import PlatformPayoutAccount, _deserialize_platform_payout_account, _serialize_platform_payout_account
-from portone_server_sdk._generated.platform.platform_payout_method import PlatformPayoutMethod, _deserialize_platform_payout_method, _serialize_platform_payout_method
-from portone_server_sdk._generated.platform.payout.platform_payout_status import PlatformPayoutStatus, _deserialize_platform_payout_status, _serialize_platform_payout_status
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.payout.platform_payout_account import PlatformPayoutAccount, _deserialize_platform_payout_account, _serialize_platform_payout_account
+from ...platform.platform_payout_method import PlatformPayoutMethod, _deserialize_platform_payout_method, _serialize_platform_payout_method
+from ...platform.payout.platform_payout_status import PlatformPayoutStatus, _deserialize_platform_payout_status, _serialize_platform_payout_status
 
 @dataclass
 class PlatformPayout:
@@ -36,15 +37,17 @@ class PlatformPayout:
     created_at: str
     """(RFC 3339 date-time)
     """
-    memo: Optional[str]
-    withdrawal_memo: Optional[str]
-    deposit_memo: Optional[str]
-    scheduled_at: Optional[str]
+    memo: Optional[str] = field(default=None)
+    withdrawal_memo: Optional[str] = field(default=None)
+    deposit_memo: Optional[str] = field(default=None)
+    scheduled_at: Optional[str] = field(default=None)
     """(RFC 3339 date-time)
     """
 
 
 def _serialize_platform_payout(obj: PlatformPayout) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

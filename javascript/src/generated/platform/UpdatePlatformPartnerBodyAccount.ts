@@ -1,6 +1,5 @@
 import type { Bank } from "./../common/Bank"
 import type { Currency } from "./../common/Currency"
-
 /** 파트너 계좌 업데이트를 위한 입력 정보 */
 export type UpdatePlatformPartnerBodyAccount = {
 	/** 은행 */

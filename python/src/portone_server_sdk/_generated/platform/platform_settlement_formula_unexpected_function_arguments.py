@@ -1,11 +1,10 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
+from ..platform.platform_settlement_formula_position import PlatformSettlementFormulaPosition, _deserialize_platform_settlement_formula_position, _serialize_platform_settlement_formula_position
 
 @dataclass
 class PlatformSettlementFormulaUnexpectedFunctionArguments:
-    type: Literal["UNEXPECTED_FUNCTION_ARGUMENTS"] = field(repr=False)
     function_name: str
     expected_count: int
     """(int32)
@@ -17,6 +16,8 @@ class PlatformSettlementFormulaUnexpectedFunctionArguments:
 
 
 def _serialize_platform_settlement_formula_unexpected_function_arguments(obj: PlatformSettlementFormulaUnexpectedFunctionArguments) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "UNEXPECTED_FUNCTION_ARGUMENTS"
     entity["functionName"] = obj.function_name
@@ -53,4 +54,4 @@ def _deserialize_platform_settlement_formula_unexpected_function_arguments(obj: 
         raise KeyError(f"'position' is not in {obj}")
     position = obj["position"]
     position = _deserialize_platform_settlement_formula_position(position)
-    return PlatformSettlementFormulaUnexpectedFunctionArguments(type, function_name, expected_count, current_count, position)
+    return PlatformSettlementFormulaUnexpectedFunctionArguments(function_name, expected_count, current_count, position)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_info_summary import BillingKeyInfoSummary, _deserialize_billing_key_info_summary, _serialize_billing_key_info_summary
-from portone_server_sdk._generated.payment.billing_key.channel_specific_failure import ChannelSpecificFailure, _deserialize_channel_specific_failure, _serialize_channel_specific_failure
+from ...payment.billing_key.billing_key_info_summary import BillingKeyInfoSummary, _deserialize_billing_key_info_summary, _serialize_billing_key_info_summary
+from ...payment.billing_key.channel_specific_failure import ChannelSpecificFailure, _deserialize_channel_specific_failure, _serialize_channel_specific_failure
 
 @dataclass
 class IssueBillingKeyResponse:
@@ -11,12 +12,14 @@ class IssueBillingKeyResponse:
     billing_key_info: BillingKeyInfoSummary
     """빌링키 정보
     """
-    channel_specific_failures: Optional[list[ChannelSpecificFailure]]
+    channel_specific_failures: Optional[list[ChannelSpecificFailure]] = field(default=None)
     """발급에 실패한 채널이 있을시 실패 정보
     """
 
 
 def _serialize_issue_billing_key_response(obj: IssueBillingKeyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["billingKeyInfo"] = _serialize_billing_key_info_summary(obj.billing_key_info)
     if obj.channel_specific_failures is not None:

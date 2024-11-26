@@ -1,79 +1,82 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_payment_method_type import BillingKeyPaymentMethodType, _deserialize_billing_key_payment_method_type, _serialize_billing_key_payment_method_type
-from portone_server_sdk._generated.payment.billing_key.billing_key_status import BillingKeyStatus, _deserialize_billing_key_status, _serialize_billing_key_status
-from portone_server_sdk._generated.payment.billing_key.billing_key_text_search import BillingKeyTextSearch, _deserialize_billing_key_text_search, _serialize_billing_key_text_search
-from portone_server_sdk._generated.payment.billing_key.billing_key_time_range_field import BillingKeyTimeRangeField, _deserialize_billing_key_time_range_field, _serialize_billing_key_time_range_field
-from portone_server_sdk._generated.common.payment_client_type import PaymentClientType, _deserialize_payment_client_type, _serialize_payment_client_type
-from portone_server_sdk._generated.payment.billing_key.pg_company import PgCompany, _deserialize_pg_company, _serialize_pg_company
-from portone_server_sdk._generated.common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
-from portone_server_sdk._generated.common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
+from ...payment.billing_key.billing_key_payment_method_type import BillingKeyPaymentMethodType, _deserialize_billing_key_payment_method_type, _serialize_billing_key_payment_method_type
+from ...payment.billing_key.billing_key_status import BillingKeyStatus, _deserialize_billing_key_status, _serialize_billing_key_status
+from ...payment.billing_key.billing_key_text_search import BillingKeyTextSearch, _deserialize_billing_key_text_search, _serialize_billing_key_text_search
+from ...payment.billing_key.billing_key_time_range_field import BillingKeyTimeRangeField, _deserialize_billing_key_time_range_field, _serialize_billing_key_time_range_field
+from ...common.payment_client_type import PaymentClientType, _deserialize_payment_client_type, _serialize_payment_client_type
+from ...payment.billing_key.pg_company import PgCompany, _deserialize_pg_company, _serialize_pg_company
+from ...common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
+from ...common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
 
 @dataclass
 class BillingKeyFilterInput:
     """빌링키 다건 조회를 위한 입력 정보
     """
-    store_id: Optional[str]
+    store_id: Optional[str] = field(default=None)
     """상점 아이디
 
     Merchant 사용자만 사용가능하며, 지정되지 않은 경우 고객사 전체 빌링키를 조회합니다.
     """
-    time_range_field: Optional[BillingKeyTimeRangeField]
+    time_range_field: Optional[BillingKeyTimeRangeField] = field(default=None)
     """조회 기준 시점 유형
     """
-    from_: Optional[str]
+    from_: Optional[str] = field(default=None)
     """조회 기준 시점 범위의 시작
 
     값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    until: Optional[str]
+    until: Optional[str] = field(default=None)
     """조회 기준 시점 범위의 끝
 
     값을 입력하지 않으면 현재 시점으로 설정됩니다.
     (RFC 3339 date-time)
     """
-    status: Optional[list[BillingKeyStatus]]
+    status: Optional[list[BillingKeyStatus]] = field(default=None)
     """빌링키 상태 리스트
 
     값을 입력하지 않으면 빌링키 상태 필터링이 적용되지 않습니다.
     """
-    channel_group_ids: Optional[list[str]]
+    channel_group_ids: Optional[list[str]] = field(default=None)
     """채널 그룹 아이디 리스트
 
     값을 입력하지 않으면 스마트 라우팅 그룹 아이디 필터링이 적용되지 않습니다.
     """
-    customer_id: Optional[str]
+    customer_id: Optional[str] = field(default=None)
     """고객 ID
     """
-    platform_type: Optional[PaymentClientType]
+    platform_type: Optional[PaymentClientType] = field(default=None)
     """플랫폼 유형
     """
-    text_search: Optional[BillingKeyTextSearch]
+    text_search: Optional[BillingKeyTextSearch] = field(default=None)
     """통합 검색 필터
     """
-    pg_providers: Optional[list[PgProvider]]
+    pg_providers: Optional[list[PgProvider]] = field(default=None)
     """PG사 결제 모듈 리스트
 
     값을 입력하지 않으면 PG사 결제 모듈 필터링이 적용되지 않습니다.
     """
-    pg_companies: Optional[list[PgCompany]]
+    pg_companies: Optional[list[PgCompany]] = field(default=None)
     """PG사 리스트
 
     값을 입력하지 않으면 PG사 필터링이 적용되지 않습니다.
     """
-    methods: Optional[list[BillingKeyPaymentMethodType]]
+    methods: Optional[list[BillingKeyPaymentMethodType]] = field(default=None)
     """결제수단 리스트
 
     값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
     """
-    version: Optional[PortOneVersion]
+    version: Optional[PortOneVersion] = field(default=None)
     """포트원 버전
     """
 
 
 def _serialize_billing_key_filter_input(obj: BillingKeyFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.store_id is not None:
         entity["storeId"] = obj.store_id

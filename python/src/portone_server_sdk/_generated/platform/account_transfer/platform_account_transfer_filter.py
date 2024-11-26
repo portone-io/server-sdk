@@ -1,16 +1,19 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.account_transfer.platform_account_transfer_type import PlatformAccountTransferType, _deserialize_platform_account_transfer_type, _serialize_platform_account_transfer_type
+from ...platform.account_transfer.platform_account_transfer_type import PlatformAccountTransferType, _deserialize_platform_account_transfer_type, _serialize_platform_account_transfer_type
 
 @dataclass
 class PlatformAccountTransferFilter:
-    types: Optional[list[PlatformAccountTransferType]]
+    types: Optional[list[PlatformAccountTransferType]] = field(default=None)
     """계좌 이체 유형
     """
 
 
 def _serialize_platform_account_transfer_filter(obj: PlatformAccountTransferFilter) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.types is not None:
         entity["types"] = list(map(_serialize_platform_account_transfer_type, obj.types))

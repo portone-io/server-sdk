@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformSettlementPaymentAmountExceededPortOnePaymentError:
     """정산 요청 결제 금액이 포트원 결제 내역의 결제 금액을 초과한 경우
     """
-    type: Literal["PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"] = field(repr=False)
     registered_settlement_payment_amount: int
     """(int64)
     """
@@ -16,10 +16,12 @@ class PlatformSettlementPaymentAmountExceededPortOnePaymentError:
     port_one_payment_amount: int
     """(int64)
     """
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(obj: PlatformSettlementPaymentAmountExceededPortOnePaymentError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"
     entity["registeredSettlementPaymentAmount"] = obj.registered_settlement_payment_amount
@@ -59,4 +61,4 @@ def _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_er
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformSettlementPaymentAmountExceededPortOnePaymentError(type, registered_settlement_payment_amount, request_settlement_payment_amount, port_one_payment_amount, message)
+    return PlatformSettlementPaymentAmountExceededPortOnePaymentError(registered_settlement_payment_amount, request_settlement_payment_amount, port_one_payment_amount, message)

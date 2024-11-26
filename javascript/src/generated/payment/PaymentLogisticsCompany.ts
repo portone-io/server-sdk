@@ -60,3 +60,4 @@ export type PaymentLogisticsCompany =
 	| "SF"
 	/** 기타 */
 	| "ETC"
+	| string & {}

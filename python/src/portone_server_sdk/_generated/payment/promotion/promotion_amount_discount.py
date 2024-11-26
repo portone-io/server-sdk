@@ -1,10 +1,9 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PromotionAmountDiscount:
-    type: Literal["AMOUNT"] = field(repr=False)
     """프로모션 할인 유형
     """
     amount: int
@@ -13,6 +12,8 @@ class PromotionAmountDiscount:
 
 
 def _serialize_promotion_amount_discount(obj: PromotionAmountDiscount) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "AMOUNT"
     entity["amount"] = obj.amount
@@ -32,4 +33,4 @@ def _deserialize_promotion_amount_discount(obj: Any) -> PromotionAmountDiscount:
     amount = obj["amount"]
     if not isinstance(amount, int):
         raise ValueError(f"{repr(amount)} is not int")
-    return PromotionAmountDiscount(type, amount)
+    return PromotionAmountDiscount(amount)

@@ -17,3 +17,5 @@ public data class CardCredential(
   /** 비밀번호 앞 2자리 */
   val passwordTwoDigits: String? = null,
 )
+
+

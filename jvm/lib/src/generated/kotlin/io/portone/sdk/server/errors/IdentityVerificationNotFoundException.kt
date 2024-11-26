@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 요청된 본인인증 건이 존재하지 않는 경우 */
-public class IdentityVerificationNotFoundException(
+public class IdentityVerificationNotFoundException internal constructor(
   cause: IdentityVerificationNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), ConfirmIdentityVerificationException, GetIdentityVerificationException, ResendIdentityVerificationException, SendIdentityVerificationException {
 }

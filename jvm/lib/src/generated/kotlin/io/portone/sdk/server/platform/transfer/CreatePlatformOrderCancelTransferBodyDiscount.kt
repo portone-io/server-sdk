@@ -13,3 +13,5 @@ public data class CreatePlatformOrderCancelTransferBodyDiscount(
   /** 면세 할인 금액 */
   val taxFreeAmount: Long? = null,
 )
+
+

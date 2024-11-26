@@ -11,3 +11,5 @@ public data class GetPlatformBulkPayoutsResponse(
   val page: PageInfo,
   val counts: PlatformBulkPayoutStatusStats,
 )
+
+

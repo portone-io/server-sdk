@@ -10,3 +10,5 @@ public data class ConfirmEscrowResponse(
   /** 에스크로 구매 확정 시점 */
   val completedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

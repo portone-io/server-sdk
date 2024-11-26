@@ -1,7 +1,6 @@
 package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.EasyPayProvider
-import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethod
 import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethodEasyPayMethod
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,4 +13,6 @@ public data class BillingKeyPaymentMethodEasyPay(
   val provider: EasyPayProvider? = null,
   /** 간편 결제 수단 */
   val method: BillingKeyPaymentMethodEasyPayMethod? = null,
-): BillingKeyPaymentMethod
+) : BillingKeyPaymentMethod.Recognized
+
+

@@ -1,6 +1,5 @@
 import type { Currency } from "./../../common/Currency"
 import type { PlatformPaymentMethodInput } from "./../../platform/transfer/PlatformPaymentMethodInput"
-
 /** 외부 결제 상세 정보 */
 export type CreatePlatformOrderTransferBodyExternalPaymentDetail = {
 	/** 통화 */

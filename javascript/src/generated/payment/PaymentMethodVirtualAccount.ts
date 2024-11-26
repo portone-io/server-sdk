@@ -1,7 +1,6 @@
 import type { Bank } from "./../common/Bank"
 import type { PaymentMethodVirtualAccountRefundStatus } from "./../payment/PaymentMethodVirtualAccountRefundStatus"
 import type { PaymentMethodVirtualAccountType } from "./../payment/PaymentMethodVirtualAccountType"
-
 /** 가상계좌 상세 정보 */
 export type PaymentMethodVirtualAccount = {
 	type: "PaymentMethodVirtualAccount"

@@ -13,3 +13,5 @@ public data class PlatformPartnerFilterOptions(
   /** 조회된 파트너 계약 요약 정보 리스트 */
   val contractSummary: List<PlatformPartnerContractSummary>,
 )
+
+

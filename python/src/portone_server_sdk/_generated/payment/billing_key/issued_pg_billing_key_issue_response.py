@@ -1,23 +1,23 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_payment_method import BillingKeyPaymentMethod, _deserialize_billing_key_payment_method, _serialize_billing_key_payment_method
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...payment.billing_key.billing_key_payment_method import BillingKeyPaymentMethod, _deserialize_billing_key_payment_method, _serialize_billing_key_payment_method
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class IssuedPgBillingKeyIssueResponse:
     """빌링키 발급 성공 채널 응답
     """
-    type: Literal["ISSUED"] = field(repr=False)
     channel: SelectedChannel
     """채널
 
     빌링키 발급을 시도한 채널입니다.
     """
-    pg_tx_id: Optional[str]
+    pg_tx_id: Optional[str] = field(default=None)
     """PG사 거래 아이디
     """
-    method: Optional[BillingKeyPaymentMethod]
+    method: Optional[BillingKeyPaymentMethod] = field(default=None)
     """빌링키 결제수단 상세 정보
 
     채널에 대응되는 PG사에서 응답한 빌링키 발급 수단 정보입니다.
@@ -25,6 +25,8 @@ class IssuedPgBillingKeyIssueResponse:
 
 
 def _serialize_issued_pg_billing_key_issue_response(obj: IssuedPgBillingKeyIssueResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ISSUED"
     entity["channel"] = _serialize_selected_channel(obj.channel)
@@ -58,4 +60,4 @@ def _deserialize_issued_pg_billing_key_issue_response(obj: Any) -> IssuedPgBilli
         method = _deserialize_billing_key_payment_method(method)
     else:
         method = None
-    return IssuedPgBillingKeyIssueResponse(type, channel, pg_tx_id, method)
+    return IssuedPgBillingKeyIssueResponse(channel, pg_tx_id, method)

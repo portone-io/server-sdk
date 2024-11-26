@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.cash_receipt_input_type import CashReceiptInputType, _deserialize_cash_receipt_input_type, _serialize_cash_receipt_input_type
+from ..common.cash_receipt_input_type import CashReceiptInputType, _deserialize_cash_receipt_input_type, _serialize_cash_receipt_input_type
 
 @dataclass
 class InstantPaymentMethodInputVirtualAccountCashReceiptInfo:
@@ -16,6 +16,8 @@ class InstantPaymentMethodInputVirtualAccountCashReceiptInfo:
 
 
 def _serialize_instant_payment_method_input_virtual_account_cash_receipt_info(obj: InstantPaymentMethodInputVirtualAccountCashReceiptInfo) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = _serialize_cash_receipt_input_type(obj.type)
     entity["customerIdentityNumber"] = obj.customer_identity_number

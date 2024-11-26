@@ -4,3 +4,4 @@ export type SelectedChannelType =
 	| "LIVE"
 	/** 테스트 연동 채널 */
 	| "TEST"
+	| string & {}

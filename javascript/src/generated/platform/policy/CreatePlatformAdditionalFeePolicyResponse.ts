@@ -1,5 +1,4 @@
 import type { PlatformAdditionalFeePolicy } from "./../../platform/PlatformAdditionalFeePolicy"
-
 /** 플랫폼 생성 성공 응답 정보 */
 export type CreatePlatformAdditionalFeePolicyResponse = {
 	/** 생성된 추가 수수료 정책 */

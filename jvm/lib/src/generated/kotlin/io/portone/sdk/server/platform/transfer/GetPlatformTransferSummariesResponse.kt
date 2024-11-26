@@ -9,3 +9,5 @@ public data class GetPlatformTransferSummariesResponse(
   val transferSummaries: List<PlatformTransferSummary>,
   val page: PageInfo,
 )
+
+

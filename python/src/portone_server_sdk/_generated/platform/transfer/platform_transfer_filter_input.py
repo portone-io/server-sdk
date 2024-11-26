@@ -1,11 +1,12 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
-from portone_server_sdk._generated.common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
-from portone_server_sdk._generated.platform.transfer.platform_transfer_filter_input_keyword import PlatformTransferFilterInputKeyword, _deserialize_platform_transfer_filter_input_keyword, _serialize_platform_transfer_filter_input_keyword
-from portone_server_sdk._generated.platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
-from portone_server_sdk._generated.platform.transfer.platform_transfer_type import PlatformTransferType, _deserialize_platform_transfer_type, _serialize_platform_transfer_type
+from ...platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
+from ...common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
+from ...platform.transfer.platform_transfer_filter_input_keyword import PlatformTransferFilterInputKeyword, _deserialize_platform_transfer_filter_input_keyword, _serialize_platform_transfer_filter_input_keyword
+from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
+from ...platform.transfer.platform_transfer_type import PlatformTransferType, _deserialize_platform_transfer_type, _serialize_platform_transfer_type
 
 @dataclass
 class PlatformTransferFilterInput:
@@ -13,61 +14,63 @@ class PlatformTransferFilterInput:
 
     정산 시작일 범위와 정산 일 범위는 둘 중 하나만 입력 가능합니다.
     """
-    settlement_start_date_range: Optional[DateRange]
+    settlement_start_date_range: Optional[DateRange] = field(default=None)
     """정산 시작일 범위
     """
-    settlement_date_range: Optional[DateRange]
+    settlement_date_range: Optional[DateRange] = field(default=None)
     """정산 일 범위
     """
-    partner_tags: Optional[list[str]]
+    partner_tags: Optional[list[str]] = field(default=None)
     """파트너 태그 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 태그를 하나 이상 가지는 파트너에 대한 정산건만 조회합니다.
     """
-    contract_ids: Optional[list[str]]
+    contract_ids: Optional[list[str]] = field(default=None)
     """계약 아이디 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 계약 아이디를 가지는 정산건만 조회합니다.
     """
-    discount_share_policy_ids: Optional[list[str]]
+    discount_share_policy_ids: Optional[list[str]] = field(default=None)
     """할인 분담 정책 아이디 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 할인 분담 정책 아이디를 하나 이상 가지는 정산건만 조회합니다.
     """
-    additional_fee_policy_ids: Optional[list[str]]
+    additional_fee_policy_ids: Optional[list[str]] = field(default=None)
     """추가 수수료 정책 아이디 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 추가 수수료 아이디를 하나 이상 가지는 정산건만 조회합니다.
     """
-    payment_method_types: Optional[list[PaymentMethodType]]
+    payment_method_types: Optional[list[PaymentMethodType]] = field(default=None)
     """결제 수단 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 결제 수단을 가지는 파트너만 조회합니다.
     """
-    channel_keys: Optional[list[str]]
+    channel_keys: Optional[list[str]] = field(default=None)
     """채널 키 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 채널 키를 가지는 정산건만 조회합니다.
     """
-    types: Optional[list[PlatformTransferType]]
+    types: Optional[list[PlatformTransferType]] = field(default=None)
     """정산 방식 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 방식의 정산건만 조회합니다.
     """
-    statuses: Optional[list[PlatformTransferStatus]]
+    statuses: Optional[list[PlatformTransferStatus]] = field(default=None)
     """정산 상태 리스트
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 상태인 정산건만 조회합니다.
     """
-    keyword: Optional[PlatformTransferFilterInputKeyword]
+    keyword: Optional[PlatformTransferFilterInputKeyword] = field(default=None)
     """검색 키워드
     """
-    is_for_test: Optional[bool]
+    is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
     """
 
 
 def _serialize_platform_transfer_filter_input(obj: PlatformTransferFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.settlement_start_date_range is not None:
         entity["settlementStartDateRange"] = _serialize_date_range(obj.settlement_start_date_range)

@@ -52,11 +52,11 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-public class CashReceiptClient internal constructor(
+public class CashReceiptClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -69,11 +69,7 @@ public class CashReceiptClient internal constructor(
    * @param paymentId
    * 결제 건 아이디
    *
-   * @throws CashReceiptNotFoundException 현금영수증이 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetCashReceiptException
    */
   @JvmName("getCashReceiptByPaymentIdSuspend")
   public suspend fun getCashReceiptByPaymentId(
@@ -93,7 +89,7 @@ public class CashReceiptClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetCashReceiptError>(httpBody)
+        json.decodeFromString<GetCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -147,13 +143,7 @@ public class CashReceiptClient internal constructor(
    * @param paidAt
    * 결제 일자
    *
-   * @throws CashReceiptAlreadyIssuedException 현금영수증이 이미 발급된 경우
-   * @throws ChannelNotFoundException 요청된 채널이 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws IssueCashReceiptException
    */
   @JvmName("issueCashReceiptSuspend")
   public suspend fun issueCashReceipt(
@@ -194,7 +184,7 @@ public class CashReceiptClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<IssueCashReceiptError>(httpBody)
+        json.decodeFromString<IssueCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -240,13 +230,7 @@ public class CashReceiptClient internal constructor(
    * @param paymentId
    * 결제 건 아이디
    *
-   * @throws CashReceiptNotFoundException 현금영수증이 존재하지 않는 경우
-   * @throws CashReceiptNotIssuedException 현금영수증이 발급되지 않은 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws CancelCashReceiptException
    */
   @JvmName("cancelCashReceiptByPaymentIdSuspend")
   public suspend fun cancelCashReceiptByPaymentId(
@@ -266,7 +250,7 @@ public class CashReceiptClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CancelCashReceiptError>(httpBody)
+        json.decodeFromString<CancelCashReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -295,7 +279,7 @@ public class CashReceiptClient internal constructor(
     paymentId: String,
   ): CompletableFuture<CancelCashReceiptResponse> = GlobalScope.future { cancelCashReceiptByPaymentId(paymentId) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

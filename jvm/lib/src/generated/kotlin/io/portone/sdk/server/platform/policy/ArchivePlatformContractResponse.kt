@@ -9,3 +9,5 @@ public data class ArchivePlatformContractResponse(
   /** 보관된 계약 */
   val contract: PlatformContract,
 )
+
+

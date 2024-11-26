@@ -1,6 +1,5 @@
 package io.portone.sdk.server.common
 
-import io.portone.sdk.server.common.Address
 import io.portone.sdk.server.common.Country
 import kotlin.String
 import kotlinx.serialization.SerialName
@@ -27,4 +26,6 @@ public data class SeparatedAddress(
   val province: String? = null,
   /** 국가 */
   val country: Country? = null,
-): Address
+) : Address.Recognized
+
+

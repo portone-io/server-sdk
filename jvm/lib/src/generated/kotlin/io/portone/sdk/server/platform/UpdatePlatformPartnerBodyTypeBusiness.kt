@@ -21,3 +21,5 @@ public data class UpdatePlatformPartnerBodyTypeBusiness(
   /** 업종 */
   val businessClass: String? = null,
 )
+
+

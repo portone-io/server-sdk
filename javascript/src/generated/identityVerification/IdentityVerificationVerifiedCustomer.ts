@@ -1,6 +1,5 @@
 import type { Gender } from "./../common/Gender"
 import type { IdentityVerificationOperator } from "./../identityVerification/IdentityVerificationOperator"
-
 /** 인증된 고객 정보 */
 export type IdentityVerificationVerifiedCustomer = {
 	/** 식별 아이디 */

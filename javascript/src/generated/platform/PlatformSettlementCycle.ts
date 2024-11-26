@@ -1,6 +1,5 @@
 import type { PlatformSettlementCycleDatePolicy } from "./../platform/PlatformSettlementCycleDatePolicy"
 import type { PlatformSettlementCycleMethod } from "./../platform/PlatformSettlementCycleMethod"
-
 /**
  * 정산 주기
  *

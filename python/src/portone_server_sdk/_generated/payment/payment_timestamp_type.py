@@ -1,7 +1,7 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-PaymentTimestampType = Literal["CREATED_AT", "STATUS_CHANGED_AT"]
+PaymentTimestampType = Union[Literal["CREATED_AT", "STATUS_CHANGED_AT"], str]
 """조회 시점 기준
 
 어떤 시점을 기준으로 조회를 할 것인지 선택합니다.
@@ -16,10 +16,10 @@ failed -> 결제 실패 시점 기준
 
 
 def _serialize_payment_timestamp_type(obj: PaymentTimestampType) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_payment_timestamp_type(obj: Any) -> PaymentTimestampType:
-    if obj not in ["CREATED_AT", "STATUS_CHANGED_AT"]:
-        raise ValueError(f"{repr(obj)} is not PaymentTimestampType")
     return obj

@@ -11,3 +11,4 @@ export type PromotionStatus =
 	| "TERMINATED"
 	/** 완료됨 */
 	| "COMPLETED"
+	| string & {}

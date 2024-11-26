@@ -1,7 +1,6 @@
 package io.portone.sdk.server.platform.accounttransfer
 
 import io.portone.sdk.server.common.Currency
-import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransfer
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -17,6 +16,8 @@ public data class PlatformDepositAccountTransfer(
   override val currency: Currency,
   /** 금액 */
   override val amount: Long,
+  /** 입금 계좌 적요 */
+  override val depositMemo: String? = null,
   override val isForTest: Boolean,
   /** 생성 일자 */
   override val createdAt: @Serializable(InstantSerializer::class) Instant,
@@ -24,6 +25,6 @@ public data class PlatformDepositAccountTransfer(
   override val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 입금자명 */
   val depositorName: String,
-  /** 입금 계좌 적요 */
-  override val depositMemo: String? = null,
-): PlatformAccountTransfer
+) : PlatformAccountTransfer.Recognized
+
+

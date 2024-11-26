@@ -1,5 +1,4 @@
 import type { PlatformSettlementFormulaPosition } from "./../platform/PlatformSettlementFormulaPosition"
-
 export type PlatformSettlementFormulaUnexpectedFunctionArguments = {
 	type: "UNEXPECTED_FUNCTION_ARGUMENTS"
 	functionName: string

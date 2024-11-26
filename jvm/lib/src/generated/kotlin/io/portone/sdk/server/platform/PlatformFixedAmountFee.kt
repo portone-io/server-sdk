@@ -1,6 +1,5 @@
 package io.portone.sdk.server.platform
 
-import io.portone.sdk.server.platform.PlatformFee
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,4 +13,6 @@ import kotlinx.serialization.Serializable
 public data class PlatformFixedAmountFee(
   /** 고정된 수수료 금액 */
   val amount: Long,
-): PlatformFee
+) : PlatformFee.Recognized
+
+

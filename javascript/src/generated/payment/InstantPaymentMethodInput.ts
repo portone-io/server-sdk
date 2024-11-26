@@ -1,6 +1,5 @@
 import type { InstantPaymentMethodInputCard } from "./../payment/InstantPaymentMethodInputCard"
 import type { InstantPaymentMethodInputVirtualAccount } from "./../payment/InstantPaymentMethodInputVirtualAccount"
-
 /**
  * 수기 결제 수단 입력 정보
  *

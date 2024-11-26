@@ -1,10 +1,10 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_additional_fee import PlatformOrderTransferAdditionalFee, _deserialize_platform_order_transfer_additional_fee, _serialize_platform_order_transfer_additional_fee
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_discount import PlatformOrderTransferDiscount, _deserialize_platform_order_transfer_discount, _serialize_platform_order_transfer_discount
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_product import PlatformOrderTransferProduct, _deserialize_platform_order_transfer_product, _serialize_platform_order_transfer_product
+from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
+from ...platform.transfer.platform_order_transfer_additional_fee import PlatformOrderTransferAdditionalFee, _deserialize_platform_order_transfer_additional_fee, _serialize_platform_order_transfer_additional_fee
+from ...platform.transfer.platform_order_transfer_discount import PlatformOrderTransferDiscount, _deserialize_platform_order_transfer_discount, _serialize_platform_order_transfer_discount
+from ...platform.transfer.platform_order_transfer_product import PlatformOrderTransferProduct, _deserialize_platform_order_transfer_product, _serialize_platform_order_transfer_product
 
 @dataclass
 class PlatformOrderTransferOrderLine:
@@ -29,6 +29,8 @@ class PlatformOrderTransferOrderLine:
 
 
 def _serialize_platform_order_transfer_order_line(obj: PlatformOrderTransferOrderLine) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["product"] = _serialize_platform_order_transfer_product(obj.product)
     entity["quantity"] = obj.quantity

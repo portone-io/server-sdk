@@ -1,41 +1,44 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.policy.platform_contract_filter_input_keyword import PlatformContractFilterInputKeyword, _deserialize_platform_contract_filter_input_keyword, _serialize_platform_contract_filter_input_keyword
-from portone_server_sdk._generated.platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
-from portone_server_sdk._generated.platform.platform_settlement_cycle_date_policy import PlatformSettlementCycleDatePolicy, _deserialize_platform_settlement_cycle_date_policy, _serialize_platform_settlement_cycle_date_policy
-from portone_server_sdk._generated.platform.policy.platform_settlement_cycle_type import PlatformSettlementCycleType, _deserialize_platform_settlement_cycle_type, _serialize_platform_settlement_cycle_type
+from ...platform.policy.platform_contract_filter_input_keyword import PlatformContractFilterInputKeyword, _deserialize_platform_contract_filter_input_keyword, _serialize_platform_contract_filter_input_keyword
+from ...platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
+from ...platform.platform_settlement_cycle_date_policy import PlatformSettlementCycleDatePolicy, _deserialize_platform_settlement_cycle_date_policy, _serialize_platform_settlement_cycle_date_policy
+from ...platform.policy.platform_settlement_cycle_type import PlatformSettlementCycleType, _deserialize_platform_settlement_cycle_type, _serialize_platform_settlement_cycle_type
 
 @dataclass
 class PlatformContractFilterInput:
     """계약 다건 조회를 위한 필터 조건
     """
-    platform_fee_payers: Optional[list[PlatformPayer]]
+    platform_fee_payers: Optional[list[PlatformPayer]] = field(default=None)
     """금액 부담 주체
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 수수료 부담 주체를 가진 계약만 조회합니다.
     """
-    cycle_types: Optional[list[PlatformSettlementCycleType]]
+    cycle_types: Optional[list[PlatformSettlementCycleType]] = field(default=None)
     """플랫폼 정산 주기 계산 방식
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 주기 계산 방식을 가진 계약만 조회합니다.
     """
-    date_policies: Optional[list[PlatformSettlementCycleDatePolicy]]
+    date_policies: Optional[list[PlatformSettlementCycleDatePolicy]] = field(default=None)
     """플랫폼 정산 기준일
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 기준일을 가진 계약만 조회합니다.
     """
-    is_archived: Optional[bool]
+    is_archived: Optional[bool] = field(default=None)
     """보관 조회 여부
 
     true 이면 보관된 계약을 조회하고, false 이면 보관되지 않은 계약을 조회합니다. 기본값은 false 입니다.
     """
-    keyword: Optional[PlatformContractFilterInputKeyword]
+    keyword: Optional[PlatformContractFilterInputKeyword] = field(default=None)
     """검색 키워드
     """
 
 
 def _serialize_platform_contract_filter_input(obj: PlatformContractFilterInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.platform_fee_payers is not None:
         entity["platformFeePayers"] = list(map(_serialize_platform_payer, obj.platform_fee_payers))

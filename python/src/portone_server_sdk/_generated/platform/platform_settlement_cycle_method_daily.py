@@ -1,15 +1,17 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformSettlementCycleMethodDaily:
     """매일 정산
     """
-    type: Literal["DAILY"] = field(repr=False)
+    pass
 
 
 def _serialize_platform_settlement_cycle_method_daily(obj: PlatformSettlementCycleMethodDaily) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "DAILY"
     return entity
@@ -23,4 +25,4 @@ def _deserialize_platform_settlement_cycle_method_daily(obj: Any) -> PlatformSet
     type = obj["type"]
     if type != "DAILY":
         raise ValueError(f"{repr(type)} is not 'DAILY'")
-    return PlatformSettlementCycleMethodDaily(type)
+    return PlatformSettlementCycleMethodDaily()

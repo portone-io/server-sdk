@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError:
     """정산 요청 면세 금액이 포트원 결제 내역의 면세 금액을 초과한 경우
     """
-    type: Literal["PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"] = field(repr=False)
     registered_settlement_tax_free_amount: int
     """(int64)
     """
@@ -16,10 +16,12 @@ class PlatformSettlementTaxFreeAmountExceededPortOnePaymentError:
     port_one_tax_free_amount: int
     """(int64)
     """
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(obj: PlatformSettlementTaxFreeAmountExceededPortOnePaymentError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT"
     entity["registeredSettlementTaxFreeAmount"] = obj.registered_settlement_tax_free_amount
@@ -59,4 +61,4 @@ def _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_e
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(type, registered_settlement_tax_free_amount, request_settlement_tax_free_amount, port_one_tax_free_amount, message)
+    return PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(registered_settlement_tax_free_amount, request_settlement_tax_free_amount, port_one_tax_free_amount, message)

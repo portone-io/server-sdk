@@ -18,6 +18,7 @@ export function writeOperation(
   operation: Operation,
   entityMap: Map<string, Definition>,
   crossRef: Set<string>,
+  errorRef: Set<string>,
   typing: Set<string>,
   async: boolean,
 ) {
@@ -79,26 +80,10 @@ export function writeOperation(
     }
     paramWriter.outdent()
   }
-  const errorVariants = errors.map(({ name }) => {
-    const error = entityMap.get(name)
-    if (!error) {
-      throw new Error("unrecognized error variant", { cause: { operation } })
-    }
-    return error
-  })
   const errorWriter = PythonWriter()
   errorWriter.writeLine("Raises:")
   errorWriter.indent()
-  for (const variant of errorVariants) {
-    crossRef.add(variant.name)
-    errorWriter.writeLine(`${variant.name}: ${variant.title}`)
-    errorWriter.indent()
-    for (const line of variant.description?.split("\n") ?? []) {
-      errorWriter.writeLine(line)
-    }
-    errorWriter.outdent()
-  }
-  errorWriter.writeLine("UnknownError: API 응답이 알 수 없는 형식인 경우")
+  errorWriter.writeLine(operation.errors)
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(
@@ -137,7 +122,7 @@ export function writeOperation(
   writer.writeLine("headers={")
   writer.indent()
   writer.writeLine(`"Authorization": f"PortOne {self._secret}",`)
-  writer.writeLine(`"User-Agent": self._user_agent,`)
+  writer.writeLine(`"User-Agent": USER_AGENT,`)
   writer.outdent()
   writer.writeLine("},")
   switch (operation.method) {
@@ -161,21 +146,26 @@ export function writeOperation(
   writer.writeLine(
     "error_response = response.json()",
   )
-  writer.writeLine(`error_type = error_response["type"]`)
+  writer.writeLine("error = None")
   for (const variant of errors) {
-    writer.writeLine(`if error_type == "${variant.value}":`)
+    writer.writeLine("try:")
     writer.indent()
     writer.writeLine(
-      `raise errors.${variant.name}(_deserialize_${
-        toSnakeCase(variant.name)
-      }(error_response))`,
+      `error = _deserialize_${toSnakeCase(variant.name)}(error_response)`,
     )
     writer.outdent()
+    writer.writeLine("except Exception:")
+    writer.indent()
+    writer.writeLine("pass")
+    writer.outdent()
+    writer.writeLine("if error is not None:")
+    writer.indent()
+    errorRef.add(variant.name)
+    writer.writeLine(`raise ${variant.name}(error)`)
+    writer.outdent()
   }
-  writer.writeLine("else:")
-  writer.indent()
-  writer.writeLine("raise errors.UnknownError(error_response)")
-  writer.outdent()
+  errorRef.add("UnknownError")
+  writer.writeLine("raise UnknownError(error_response)")
   writer.outdent()
   switch (operation.response?.type) {
     case "application/json":

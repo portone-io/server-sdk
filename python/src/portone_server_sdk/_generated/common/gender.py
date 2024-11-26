@@ -1,16 +1,16 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union
 
-Gender = Literal["MALE", "FEMALE", "OTHER"]
+Gender = Union[Literal["MALE", "FEMALE", "OTHER"], str]
 """성별
 """
 
 
 def _serialize_gender(obj: Gender) -> Any:
+    if isinstance(obj, dict):
+        return obj
     return obj
 
 
 def _deserialize_gender(obj: Any) -> Gender:
-    if obj not in ["MALE", "FEMALE", "OTHER"]:
-        raise ValueError(f"{repr(obj)} is not Gender")
     return obj

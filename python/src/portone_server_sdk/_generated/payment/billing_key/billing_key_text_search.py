@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key.billing_key_text_search_field import BillingKeyTextSearchField, _deserialize_billing_key_text_search_field, _serialize_billing_key_text_search_field
+from ...payment.billing_key.billing_key_text_search_field import BillingKeyTextSearchField, _deserialize_billing_key_text_search_field, _serialize_billing_key_text_search_field
 
 @dataclass
 class BillingKeyTextSearch:
@@ -12,6 +12,8 @@ class BillingKeyTextSearch:
 
 
 def _serialize_billing_key_text_search(obj: BillingKeyTextSearch) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["field"] = _serialize_billing_key_text_search_field(obj.field)
     entity["value"] = obj.value

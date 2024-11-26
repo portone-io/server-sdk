@@ -11,3 +11,5 @@ public data class PlatformAccountHolder(
   /** 계좌 검증 아이디 */
   val accountVerificationId: String,
 )
+
+

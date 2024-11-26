@@ -1,8 +1,9 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
-from portone_server_sdk._generated.platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
+from ...platform.platform_fee_input import PlatformFeeInput, _deserialize_platform_fee_input, _serialize_platform_fee_input
+from ...platform.platform_payer import PlatformPayer, _deserialize_platform_payer, _serialize_platform_payer
 
 @dataclass
 class CreatePlatformAdditionalFeePolicyBody:
@@ -17,17 +18,19 @@ class CreatePlatformAdditionalFeePolicyBody:
     vat_payer: PlatformPayer
     """부가세 부담 주체
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """생성할 추가 수수료 정책 아이디
 
     명시하지 않으면 id 가 임의로 생성됩니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
 
 
 def _serialize_create_platform_additional_fee_policy_body(obj: CreatePlatformAdditionalFeePolicyBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["name"] = obj.name
     entity["fee"] = _serialize_platform_fee_input(obj.fee)

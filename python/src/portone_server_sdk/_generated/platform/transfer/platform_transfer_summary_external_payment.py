@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
 
 @dataclass
 class PlatformTransferSummaryExternalPayment:
-    type: Literal["EXTERNAL"] = field(repr=False)
     id: str
     currency: Currency
-    order_name: Optional[str]
-    method_type: Optional[PaymentMethodType]
+    order_name: Optional[str] = field(default=None)
+    method_type: Optional[PaymentMethodType] = field(default=None)
 
 
 def _serialize_platform_transfer_summary_external_payment(obj: PlatformTransferSummaryExternalPayment) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "EXTERNAL"
     entity["id"] = obj.id
@@ -53,4 +55,4 @@ def _deserialize_platform_transfer_summary_external_payment(obj: Any) -> Platfor
         method_type = _deserialize_payment_method_type(method_type)
     else:
         method_type = None
-    return PlatformTransferSummaryExternalPayment(type, id, currency, order_name, method_type)
+    return PlatformTransferSummaryExternalPayment(id, currency, order_name, method_type)

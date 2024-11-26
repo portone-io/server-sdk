@@ -25,11 +25,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import kotlinx.serialization.json.Json
 
-public class PgSpecificClient internal constructor(
+public class PgSpecificClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -45,9 +45,7 @@ public class PgSpecificClient internal constructor(
    * @param channelKey
    * 채널 키
    *
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetKakaopayPaymentOrderException
    */
   @JvmName("getKakaopayPaymentOrderSuspend")
   public suspend fun getKakaopayPaymentOrder(
@@ -69,7 +67,7 @@ public class PgSpecificClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetKakaopayPaymentOrderError>(httpBody)
+        json.decodeFromString<GetKakaopayPaymentOrderError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -95,7 +93,7 @@ public class PgSpecificClient internal constructor(
     channelKey: String,
   ): CompletableFuture<GetKakaopayPaymentOrderResponse> = GlobalScope.future { getKakaopayPaymentOrder(pgTxId, channelKey) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

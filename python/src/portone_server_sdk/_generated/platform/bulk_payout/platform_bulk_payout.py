@@ -1,9 +1,10 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_stats import PlatformBulkPayoutStats, _deserialize_platform_bulk_payout_stats, _serialize_platform_bulk_payout_stats
-from portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_status import PlatformBulkPayoutStatus, _deserialize_platform_bulk_payout_status, _serialize_platform_bulk_payout_status
-from portone_server_sdk._generated.platform.platform_payout_method import PlatformPayoutMethod, _deserialize_platform_payout_method, _serialize_platform_payout_method
+from ...platform.bulk_payout.platform_bulk_payout_stats import PlatformBulkPayoutStats, _deserialize_platform_bulk_payout_stats, _serialize_platform_bulk_payout_stats
+from ...platform.bulk_payout.platform_bulk_payout_status import PlatformBulkPayoutStatus, _deserialize_platform_bulk_payout_status, _serialize_platform_bulk_payout_status
+from ...platform.platform_payout_method import PlatformPayoutMethod, _deserialize_platform_payout_method, _serialize_platform_payout_method
 
 @dataclass
 class PlatformBulkPayout:
@@ -29,12 +30,14 @@ class PlatformBulkPayout:
     updated_at: str
     """(RFC 3339 date-time)
     """
-    scheduled_at: Optional[str]
+    scheduled_at: Optional[str] = field(default=None)
     """(RFC 3339 date-time)
     """
 
 
 def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id

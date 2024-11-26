@@ -15,6 +15,8 @@ class PlatformPartnerContractSummary:
 
 
 def _serialize_platform_partner_contract_summary(obj: PlatformPartnerContractSummary) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["id"] = obj.id
     entity["name"] = obj.name

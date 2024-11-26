@@ -12,3 +12,5 @@ public data class CancelCashReceiptResponse(
   /** 현금 영수증 취소 완료 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

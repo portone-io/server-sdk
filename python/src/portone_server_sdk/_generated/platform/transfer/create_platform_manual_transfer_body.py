@@ -1,7 +1,8 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
+from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 
 @dataclass
 class CreatePlatformManualTransferBody:
@@ -19,20 +20,22 @@ class CreatePlatformManualTransferBody:
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
-    is_for_test: Optional[bool]
+    is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
 
     기본값은 false 입니다.
     """
-    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]]
+    user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
 
 
 def _serialize_create_platform_manual_transfer_body(obj: CreatePlatformManualTransferBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partnerId"] = obj.partner_id
     entity["settlementAmount"] = obj.settlement_amount

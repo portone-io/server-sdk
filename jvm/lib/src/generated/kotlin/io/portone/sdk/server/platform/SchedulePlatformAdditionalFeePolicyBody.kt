@@ -13,3 +13,5 @@ internal data class SchedulePlatformAdditionalFeePolicyBody(
   /** 업데이트 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
 )
+
+

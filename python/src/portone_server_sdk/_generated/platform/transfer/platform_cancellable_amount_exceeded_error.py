@@ -1,13 +1,13 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.transfer.platform_cancellable_amount_type import PlatformCancellableAmountType, _deserialize_platform_cancellable_amount_type, _serialize_platform_cancellable_amount_type
+from ...platform.transfer.platform_cancellable_amount_type import PlatformCancellableAmountType, _deserialize_platform_cancellable_amount_type, _serialize_platform_cancellable_amount_type
 
 @dataclass
 class PlatformCancellableAmountExceededError:
     """취소 가능한 금액이 초과한 경우
     """
-    type: Literal["PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED"] = field(repr=False)
     cancellable_amount: int
     """(int64)
     """
@@ -15,10 +15,12 @@ class PlatformCancellableAmountExceededError:
     """(int64)
     """
     amount_type: PlatformCancellableAmountType
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cancellable_amount_exceeded_error(obj: PlatformCancellableAmountExceededError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANCELLABLE_AMOUNT_EXCEEDED"
     entity["cancellableAmount"] = obj.cancellable_amount
@@ -57,4 +59,4 @@ def _deserialize_platform_cancellable_amount_exceeded_error(obj: Any) -> Platfor
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCancellableAmountExceededError(type, cancellable_amount, request_amount, amount_type, message)
+    return PlatformCancellableAmountExceededError(cancellable_amount, request_amount, amount_type, message)

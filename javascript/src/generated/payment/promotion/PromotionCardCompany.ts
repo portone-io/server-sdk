@@ -18,3 +18,4 @@ export type PromotionCardCompany =
 	| "HANA_CARD"
 	/** 국민카드 */
 	| "KOOKMIN_CARD"
+	| string & {}

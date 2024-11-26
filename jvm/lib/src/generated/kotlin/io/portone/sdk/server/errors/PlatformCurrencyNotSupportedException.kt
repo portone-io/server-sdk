@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 지원 되지 않는 통화를 선택한 경우 */
-public class PlatformCurrencyNotSupportedException(
+public class PlatformCurrencyNotSupportedException internal constructor(
   cause: PlatformCurrencyNotSupportedError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderTransferException, CreatePlatformPartnerException, CreatePlatformPartnersException {
 }

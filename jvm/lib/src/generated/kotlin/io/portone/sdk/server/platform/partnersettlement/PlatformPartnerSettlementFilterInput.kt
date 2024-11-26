@@ -22,3 +22,5 @@ public data class PlatformPartnerSettlementFilterInput(
   val settlementTypes: List<PlatformPartnerSettlementType>? = null,
   val keyword: PlatformPartnerSettlementFilterKeywordInput? = null,
 )
+
+

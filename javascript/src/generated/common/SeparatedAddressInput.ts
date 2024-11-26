@@ -1,5 +1,4 @@
 import type { Country } from "./../common/Country"
-
 /** 분리 형식 주소 입력 정보 */
 export type SeparatedAddressInput = {
 	/** 상세 주소 1 */

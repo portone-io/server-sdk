@@ -1,6 +1,5 @@
 import type { PlatformFeeInput } from "./../../platform/PlatformFeeInput"
 import type { PlatformPayer } from "./../../platform/PlatformPayer"
-
 /** 추가 수수료 정책 생성을 위한 입력 정보 */
 export type CreatePlatformAdditionalFeePolicyBody = {
 	/**

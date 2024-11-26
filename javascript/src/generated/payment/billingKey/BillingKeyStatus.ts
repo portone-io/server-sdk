@@ -2,3 +2,4 @@
 export type BillingKeyStatus =
 	| "ISSUED"
 	| "DELETED"
+	| string & {}

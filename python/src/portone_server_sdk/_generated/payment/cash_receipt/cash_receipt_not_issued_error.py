@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class CashReceiptNotIssuedError:
     """현금영수증이 발급되지 않은 경우
     """
-    type: Literal["CASH_RECEIPT_NOT_ISSUED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_cash_receipt_not_issued_error(obj: CashReceiptNotIssuedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "CASH_RECEIPT_NOT_ISSUED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_cash_receipt_not_issued_error(obj: Any) -> CashReceiptNotIssued
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return CashReceiptNotIssuedError(type, message)
+    return CashReceiptNotIssuedError(message)

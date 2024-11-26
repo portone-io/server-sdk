@@ -5,7 +5,7 @@ import java.lang.Exception
 
 
 /** 정산 파라미터가 존재하지 않는 경우 */
-public class PlatformSettlementParameterNotFoundException(
+public class PlatformSettlementParameterNotFoundException internal constructor(
   cause: PlatformSettlementParameterNotFoundError
-) : Exception(cause.message) {
+) : PortOneException(cause.message), CreatePlatformOrderTransferException {
 }

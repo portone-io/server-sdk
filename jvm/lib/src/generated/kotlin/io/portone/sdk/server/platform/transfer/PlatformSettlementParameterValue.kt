@@ -15,3 +15,5 @@ public data class PlatformSettlementParameterValue(
    */
   val decimalScale: Int? = null,
 )
+
+

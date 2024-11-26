@@ -6,89 +6,101 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Literal, Optional, Union
 
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_deleted import (
-    WebhookBillingKeyRequestDeleted,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_deleted_data import (
-    WebhookBillingKeyRequestDeletedData,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_failed import (
-    WebhookBillingKeyRequestFailed,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_failed_data import (
-    WebhookBillingKeyRequestFailedData,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_issued import (
-    WebhookBillingKeyRequestIssued,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_issued_data import (
-    WebhookBillingKeyRequestIssuedData,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_ready import (
-    WebhookBillingKeyRequestReady,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_ready_data import (
-    WebhookBillingKeyRequestReadyData,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_updated import (
-    WebhookBillingKeyRequestUpdated,
-)
-from portone_server_sdk._generated.webhook.webhook_billing_key_request_updated_data import (
-    WebhookBillingKeyRequestUpdatedData,
-)
-from portone_server_sdk._generated.webhook.webhook_request import (
-    WebhookRequest,
-    _deserialize_webhook_request,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_cancel_pending import (
-    WebhookTransactionRequestCancelPending,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_cancel_pending_data import (
-    WebhookTransactionRequestCancelPendingData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_cancelled import (
-    WebhookTransactionRequestCancelled,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_cancelled_data import (
-    WebhookTransactionRequestCancelledData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_failed import (
-    WebhookTransactionRequestFailed,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_failed_data import (
-    WebhookTransactionRequestFailedData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_paid import (
-    WebhookTransactionRequestPaid,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_paid_data import (
-    WebhookTransactionRequestPaidData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_partial_cancelled import (
-    WebhookTransactionRequestPartialCancelled,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_partial_cancelled_data import (
-    WebhookTransactionRequestPartialCancelledData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_pay_pending import (
-    WebhookTransactionRequestPayPending,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_pay_pending_data import (
-    WebhookTransactionRequestPayPendingData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_ready import (
-    WebhookTransactionRequestReady,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_ready_data import (
-    WebhookTransactionRequestReadyData,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_virtual_account_issued import (
-    WebhookTransactionRequestVirtualAccountIssued,
-)
-from portone_server_sdk._generated.webhook.webhook_transaction_request_virtual_account_issued_data import (
-    WebhookTransactionRequestVirtualAccountIssuedData,
-)
 from portone_server_sdk.errors import PortOneError
+
+from ._generated.webhook.webhook import Webhook, _deserialize_webhook
+from ._generated.webhook.webhook_billing_key import WebhookBillingKey
+from ._generated.webhook.webhook_billing_key_data import (
+    WebhookBillingKeyData,
+)
+from ._generated.webhook.webhook_billing_key_data_deleted import (
+    WebhookBillingKeyDataDeleted,
+)
+from ._generated.webhook.webhook_billing_key_data_failed import (
+    WebhookBillingKeyDataFailed,
+)
+from ._generated.webhook.webhook_billing_key_data_issued import (
+    WebhookBillingKeyDataIssued,
+)
+from ._generated.webhook.webhook_billing_key_data_ready import (
+    WebhookBillingKeyDataReady,
+)
+from ._generated.webhook.webhook_billing_key_data_updated import (
+    WebhookBillingKeyDataUpdated,
+)
+from ._generated.webhook.webhook_billing_key_deleted import (
+    WebhookBillingKeyDeleted,
+)
+from ._generated.webhook.webhook_billing_key_failed import (
+    WebhookBillingKeyFailed,
+)
+from ._generated.webhook.webhook_billing_key_issued import (
+    WebhookBillingKeyIssued,
+)
+from ._generated.webhook.webhook_billing_key_ready import (
+    WebhookBillingKeyReady,
+)
+from ._generated.webhook.webhook_billing_key_updated import (
+    WebhookBillingKeyUpdated,
+)
+from ._generated.webhook.webhook_transaction import WebhookTransaction
+from ._generated.webhook.webhook_transaction_cancel_pending import (
+    WebhookTransactionCancelPending,
+)
+from ._generated.webhook.webhook_transaction_cancelled import (
+    WebhookTransactionCancelled,
+)
+from ._generated.webhook.webhook_transaction_cancelled_cancelled import (
+    WebhookTransactionCancelledCancelled,
+)
+from ._generated.webhook.webhook_transaction_cancelled_data import (
+    WebhookTransactionCancelledData,
+)
+from ._generated.webhook.webhook_transaction_cancelled_data_cancelled import (
+    WebhookTransactionCancelledDataCancelled,
+)
+from ._generated.webhook.webhook_transaction_cancelled_data_partial_cancelled import (
+    WebhookTransactionCancelledDataPartialCancelled,
+)
+from ._generated.webhook.webhook_transaction_cancelled_partial_cancelled import (
+    WebhookTransactionCancelledPartialCancelled,
+)
+from ._generated.webhook.webhook_transaction_data import (
+    WebhookTransactionData,
+)
+from ._generated.webhook.webhook_transaction_data_cancel_pending import (
+    WebhookTransactionDataCancelPending,
+)
+from ._generated.webhook.webhook_transaction_data_failed import (
+    WebhookTransactionDataFailed,
+)
+from ._generated.webhook.webhook_transaction_data_paid import (
+    WebhookTransactionDataPaid,
+)
+from ._generated.webhook.webhook_transaction_data_pay_pending import (
+    WebhookTransactionDataPayPending,
+)
+from ._generated.webhook.webhook_transaction_data_ready import (
+    WebhookTransactionDataReady,
+)
+from ._generated.webhook.webhook_transaction_data_virtual_account_issued import (
+    WebhookTransactionDataVirtualAccountIssued,
+)
+from ._generated.webhook.webhook_transaction_failed import (
+    WebhookTransactionFailed,
+)
+from ._generated.webhook.webhook_transaction_paid import (
+    WebhookTransactionPaid,
+)
+from ._generated.webhook.webhook_transaction_pay_pending import (
+    WebhookTransactionPayPending,
+)
+from ._generated.webhook.webhook_transaction_ready import (
+    WebhookTransactionReady,
+)
+from ._generated.webhook.webhook_transaction_virtual_account_issued import (
+    WebhookTransactionVirtualAccountIssued,
+)
 
 _required_headers = {
     "webhook-id": str,
@@ -150,7 +162,7 @@ class InvalidInputError(PortOneError):
 
 def verify(
     secret: Union[str, bytes, bytearray], payload: str, headers: Mapping[str, str]
-) -> Optional[WebhookRequest]:
+) -> Webhook:
     """웹훅 페이로드를 검증합니다.
 
     Args:
@@ -190,10 +202,7 @@ def verify(
             continue
 
         if hmac.compare_digest(signature_decoded, expected_signature):
-            try:
-                return _deserialize_webhook_request(json.loads(payload))
-            except ValueError:
-                return None
+            return _deserialize_webhook(json.loads(payload))
     raise WebhookVerificationError("NO_MATCHING_SIGNATURE")
 
 
@@ -248,30 +257,37 @@ __all__ = [
     "WebhookVerificationError",
     "InvalidInputError",
     "verify",
-    "WebhookBillingKeyRequestDeletedData",
-    "WebhookBillingKeyRequestDeleted",
-    "WebhookBillingKeyRequestFailedData",
-    "WebhookBillingKeyRequestFailed",
-    "WebhookBillingKeyRequestIssuedData",
-    "WebhookBillingKeyRequestIssued",
-    "WebhookBillingKeyRequestReadyData",
-    "WebhookBillingKeyRequestReady",
-    "WebhookBillingKeyRequestUpdatedData",
-    "WebhookBillingKeyRequestUpdated",
-    "WebhookTransactionRequestCancelPendingData",
-    "WebhookTransactionRequestCancelPending",
-    "WebhookTransactionRequestCancelledData",
-    "WebhookTransactionRequestCancelled",
-    "WebhookTransactionRequestFailedData",
-    "WebhookTransactionRequestFailed",
-    "WebhookTransactionRequestPaidData",
-    "WebhookTransactionRequestPaid",
-    "WebhookTransactionRequestPartialCancelledData",
-    "WebhookTransactionRequestPartialCancelled",
-    "WebhookTransactionRequestPayPendingData",
-    "WebhookTransactionRequestPayPending",
-    "WebhookTransactionRequestReadyData",
-    "WebhookTransactionRequestReady",
-    "WebhookTransactionRequestVirtualAccountIssuedData",
-    "WebhookTransactionRequestVirtualAccountIssued",
+    "Webhook",
+    "WebhookBillingKey",
+    "WebhookBillingKeyData",
+    "WebhookBillingKeyDataDeleted",
+    "WebhookBillingKeyDataFailed",
+    "WebhookBillingKeyDataIssued",
+    "WebhookBillingKeyDataReady",
+    "WebhookBillingKeyDataUpdated",
+    "WebhookBillingKeyDeleted",
+    "WebhookBillingKeyFailed",
+    "WebhookBillingKeyIssued",
+    "WebhookBillingKeyReady",
+    "WebhookBillingKeyUpdated",
+    "WebhookTransaction",
+    "WebhookTransactionCancelPending",
+    "WebhookTransactionCancelled",
+    "WebhookTransactionCancelledCancelled",
+    "WebhookTransactionCancelledData",
+    "WebhookTransactionCancelledDataCancelled",
+    "WebhookTransactionCancelledDataPartialCancelled",
+    "WebhookTransactionCancelledPartialCancelled",
+    "WebhookTransactionData",
+    "WebhookTransactionDataCancelPending",
+    "WebhookTransactionDataFailed",
+    "WebhookTransactionDataPaid",
+    "WebhookTransactionDataPayPending",
+    "WebhookTransactionDataReady",
+    "WebhookTransactionDataVirtualAccountIssued",
+    "WebhookTransactionFailed",
+    "WebhookTransactionPaid",
+    "WebhookTransactionPayPending",
+    "WebhookTransactionReady",
+    "WebhookTransactionVirtualAccountIssued",
 ]

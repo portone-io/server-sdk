@@ -57,11 +57,11 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-public class IdentityVerificationClient internal constructor(
+public class IdentityVerificationClient(
   private val apiSecret: String,
-  private val apiBase: String,
-  private val storeId: String?,
-) {
+  private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
+): Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
@@ -74,11 +74,7 @@ public class IdentityVerificationClient internal constructor(
    * @param identityVerificationId
    * 조회할 본인인증 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws IdentityVerificationNotFoundException 요청된 본인인증 건이 존재하지 않는 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws GetIdentityVerificationException
    */
   @JvmName("getIdentityVerificationSuspend")
   public suspend fun getIdentityVerification(
@@ -98,7 +94,7 @@ public class IdentityVerificationClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetIdentityVerificationError>(httpBody)
+        json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -146,16 +142,7 @@ public class IdentityVerificationClient internal constructor(
    * @param method
    * 본인인증 방식
    *
-   * @throws ChannelNotFoundException 요청된 채널이 존재하지 않는 경우
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws IdentityVerificationAlreadySentException 본인인증 건이 이미 API로 요청된 상태인 경우
-   * @throws IdentityVerificationAlreadyVerifiedException 본인인증 건이 이미 인증 완료된 상태인 경우
-   * @throws IdentityVerificationNotFoundException 요청된 본인인증 건이 존재하지 않는 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws MaxTransactionCountReachedException 결제 혹은 본인인증 시도 횟수가 최대에 도달한 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws SendIdentityVerificationException
    */
   @JvmName("sendIdentityVerificationSuspend")
   public suspend fun sendIdentityVerification(
@@ -191,7 +178,7 @@ public class IdentityVerificationClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<SendIdentityVerificationError>(httpBody)
+        json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -242,14 +229,7 @@ public class IdentityVerificationClient internal constructor(
    *
    * SMS 방식에서만 사용됩니다.
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws IdentityVerificationAlreadyVerifiedException 본인인증 건이 이미 인증 완료된 상태인 경우
-   * @throws IdentityVerificationNotFoundException 요청된 본인인증 건이 존재하지 않는 경우
-   * @throws IdentityVerificationNotSentException 본인인증 건이 API로 요청된 상태가 아닌 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ConfirmIdentityVerificationException
    */
   @JvmName("confirmIdentityVerificationSuspend")
   public suspend fun confirmIdentityVerification(
@@ -275,7 +255,7 @@ public class IdentityVerificationClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConfirmIdentityVerificationError>(httpBody)
+        json.decodeFromString<ConfirmIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -315,14 +295,7 @@ public class IdentityVerificationClient internal constructor(
    * @param identityVerificationId
    * 본인인증 아이디
    *
-   * @throws ForbiddenException 요청이 거절된 경우
-   * @throws IdentityVerificationAlreadyVerifiedException 본인인증 건이 이미 인증 완료된 상태인 경우
-   * @throws IdentityVerificationNotFoundException 요청된 본인인증 건이 존재하지 않는 경우
-   * @throws IdentityVerificationNotSentException 본인인증 건이 API로 요청된 상태가 아닌 경우
-   * @throws InvalidRequestException 요청된 입력 정보가 유효하지 않은 경우
-   * @throws PgProviderException PG사에서 오류를 전달한 경우
-   * @throws UnauthorizedException 인증 정보가 올바르지 않은 경우
-   * @throws UnknownException API 응답이 알 수 없는 형식인 경우
+   * @throws ResendIdentityVerificationException
    */
   @JvmName("resendIdentityVerificationSuspend")
   public suspend fun resendIdentityVerification(
@@ -342,7 +315,7 @@ public class IdentityVerificationClient internal constructor(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ResendIdentityVerificationError>(httpBody)
+        json.decodeFromString<ResendIdentityVerificationError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -372,7 +345,7 @@ public class IdentityVerificationClient internal constructor(
     identityVerificationId: String,
   ): CompletableFuture<ResendIdentityVerificationResponse> = GlobalScope.future { resendIdentityVerification(identityVerificationId) }
 
-  internal fun close() {
+  override fun close() {
     client.close()
   }
 }

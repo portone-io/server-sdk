@@ -8,6 +8,8 @@ class PlatformUserDefinedPropertyValue:
 
 
 def _serialize_platform_user_defined_property_value(obj: PlatformUserDefinedPropertyValue) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["string"] = obj.string
     return entity

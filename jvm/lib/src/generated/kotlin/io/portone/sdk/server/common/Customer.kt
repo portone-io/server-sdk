@@ -29,3 +29,5 @@ public data class Customer(
   /** 우편번호 */
   val zipcode: String? = null,
 )
+
+

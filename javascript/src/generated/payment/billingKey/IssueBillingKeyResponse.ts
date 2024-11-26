@@ -1,6 +1,5 @@
 import type { BillingKeyInfoSummary } from "./../../payment/billingKey/BillingKeyInfoSummary"
 import type { ChannelSpecificFailure } from "./../../payment/billingKey/ChannelSpecificFailure"
-
 /** 빌링키 발급 성공 응답 */
 export type IssueBillingKeyResponse = {
 	/** 빌링키 정보 */

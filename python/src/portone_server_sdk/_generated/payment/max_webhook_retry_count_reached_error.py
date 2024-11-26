@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class MaxWebhookRetryCountReachedError:
     """동일한 webhook id에 대한 수동 재시도 횟수가 최대에 도달한 경우
     """
-    type: Literal["MAX_WEBHOOK_RETRY_COUNT_REACHED"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_max_webhook_retry_count_reached_error(obj: MaxWebhookRetryCountReachedError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MAX_WEBHOOK_RETRY_COUNT_REACHED"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_max_webhook_retry_count_reached_error(obj: Any) -> MaxWebhookRe
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return MaxWebhookRetryCountReachedError(type, message)
+    return MaxWebhookRetryCountReachedError(message)

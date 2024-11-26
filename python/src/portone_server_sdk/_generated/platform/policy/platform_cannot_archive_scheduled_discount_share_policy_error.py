@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCannotArchiveScheduledDiscountSharePolicyError:
     """예약된 업데이트가 있는 할인 분담 정책을 보관하려고 하는 경우
     """
-    type: Literal["PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY"] = field(repr=False)
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cannot_archive_scheduled_discount_share_policy_error(obj: PlatformCannotArchiveScheduledDiscountSharePolicyError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_DISCOUNT_SHARE_POLICY"
     if obj.message is not None:
@@ -32,4 +34,4 @@ def _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(o
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCannotArchiveScheduledDiscountSharePolicyError(type, message)
+    return PlatformCannotArchiveScheduledDiscountSharePolicyError(message)

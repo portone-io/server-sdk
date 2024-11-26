@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.bank import Bank, _deserialize_bank, _serialize_bank
+from ..common.bank import Bank, _deserialize_bank, _serialize_bank
 
 @dataclass
 class PaymentMethodTransfer:
     """계좌 이체 상세 정보
     """
-    type: Literal["PaymentMethodTransfer"] = field(repr=False)
-    bank: Optional[Bank]
+    bank: Optional[Bank] = field(default=None)
     """표준 은행 코드
     """
 
 
 def _serialize_payment_method_transfer(obj: PaymentMethodTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PaymentMethodTransfer"
     if obj.bank is not None:
@@ -34,4 +36,4 @@ def _deserialize_payment_method_transfer(obj: Any) -> PaymentMethodTransfer:
         bank = _deserialize_bank(bank)
     else:
         bank = None
-    return PaymentMethodTransfer(type, bank)
+    return PaymentMethodTransfer(bank)

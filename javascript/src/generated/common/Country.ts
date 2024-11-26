@@ -498,3 +498,4 @@ export type Country =
 	| "ZM"
 	/** Zimbabwe */
 	| "ZW"
+	| string & {}

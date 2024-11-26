@@ -1,13 +1,13 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
+from ...common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
 class IssueFailedCashReceipt:
     """발급 실패
     """
-    status: Literal["ISSUE_FAILED"] = field(repr=False)
     """현금영수증 상태
     """
     merchant_id: str
@@ -25,12 +25,14 @@ class IssueFailedCashReceipt:
     is_manual: bool
     """수동 발급 여부
     """
-    channel: Optional[SelectedChannel]
+    channel: Optional[SelectedChannel] = field(default=None)
     """현금영수증 발급에 사용된 채널
     """
 
 
 def _serialize_issue_failed_cash_receipt(obj: IssueFailedCashReceipt) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "ISSUE_FAILED"
     entity["merchantId"] = obj.merchant_id
@@ -81,4 +83,4 @@ def _deserialize_issue_failed_cash_receipt(obj: Any) -> IssueFailedCashReceipt:
         channel = _deserialize_selected_channel(channel)
     else:
         channel = None
-    return IssueFailedCashReceipt(status, merchant_id, store_id, payment_id, order_name, is_manual, channel)
+    return IssueFailedCashReceipt(merchant_id, store_id, payment_id, order_name, is_manual, channel)

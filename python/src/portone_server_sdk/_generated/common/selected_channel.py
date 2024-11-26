@@ -1,8 +1,9 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
-from portone_server_sdk._generated.common.selected_channel_type import SelectedChannelType, _deserialize_selected_channel_type, _serialize_selected_channel_type
+from ..common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
+from ..common.selected_channel_type import SelectedChannelType, _deserialize_selected_channel_type, _serialize_selected_channel_type
 
 @dataclass
 class SelectedChannel:
@@ -17,18 +18,20 @@ class SelectedChannel:
     pg_merchant_id: str
     """PG사 고객사 식별 아이디
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """채널 아이디
     """
-    key: Optional[str]
+    key: Optional[str] = field(default=None)
     """채널 키
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """채널 명
     """
 
 
 def _serialize_selected_channel(obj: SelectedChannel) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = _serialize_selected_channel_type(obj.type)
     entity["pgProvider"] = _serialize_pg_provider(obj.pg_provider)

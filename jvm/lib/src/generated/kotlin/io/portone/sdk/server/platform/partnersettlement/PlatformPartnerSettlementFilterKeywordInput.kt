@@ -9,3 +9,5 @@ public data class PlatformPartnerSettlementFilterKeywordInput(
   val payoutId: String? = null,
   val bulkPayoutId: String? = null,
 )
+
+

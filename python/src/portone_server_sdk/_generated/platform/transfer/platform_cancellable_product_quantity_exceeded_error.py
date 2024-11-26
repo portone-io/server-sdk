@@ -1,18 +1,20 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCancellableProductQuantityExceededError:
-    type: Literal["PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED"] = field(repr=False)
     product_id: str
     cancellable_quantity: int
     """(int64)
     """
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cancellable_product_quantity_exceeded_error(obj: PlatformCancellableProductQuantityExceededError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANCELLABLE_PRODUCT_QUANTITY_EXCEEDED"
     entity["productId"] = obj.product_id
@@ -46,4 +48,4 @@ def _deserialize_platform_cancellable_product_quantity_exceeded_error(obj: Any) 
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCancellableProductQuantityExceededError(type, product_id, cancellable_quantity, message)
+    return PlatformCancellableProductQuantityExceededError(product_id, cancellable_quantity, message)

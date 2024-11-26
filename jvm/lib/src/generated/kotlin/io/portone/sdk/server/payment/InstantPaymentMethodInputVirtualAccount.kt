@@ -21,3 +21,5 @@ public data class InstantPaymentMethodInputVirtualAccount(
   /** 예금주명 */
   val remitteeName: String? = null,
 )
+
+

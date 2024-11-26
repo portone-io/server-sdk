@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
-from portone_server_sdk._generated.payment.payment_schedule.payment_schedule import PaymentSchedule, _deserialize_payment_schedule, _serialize_payment_schedule
+from ...common.page_info import PageInfo, _deserialize_page_info, _serialize_page_info
+from ...payment.payment_schedule.payment_schedule import PaymentSchedule, _deserialize_payment_schedule, _serialize_payment_schedule
 
 @dataclass
 class GetPaymentSchedulesResponse:
@@ -17,6 +17,8 @@ class GetPaymentSchedulesResponse:
 
 
 def _serialize_get_payment_schedules_response(obj: GetPaymentSchedulesResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["items"] = list(map(_serialize_payment_schedule, obj.items))
     entity["page"] = _serialize_page_info(obj.page)

@@ -4,12 +4,18 @@ export function updatePackageJson(rootPath: string, entrypoints: string[]) {
   const json = JSON.parse(Deno.readTextFileSync(jsonPath))
   json.exports = {
     ".": "./src/index.ts",
+    "./webhook": "./src/webhook.ts",
   }
   json.publishConfig.exports = {
     ".": {
       types: "./dist/index.d.ts",
       require: "./dist/index.cjs",
       import: "./dist/index.mjs",
+    },
+    "./webhook": {
+      types: "./dist/webhook.d.ts",
+      require: "./dist/webhook.cjs",
+      import: "./dist/webhook.mjs",
     },
   }
   for (const entrypoint of entrypoints) {

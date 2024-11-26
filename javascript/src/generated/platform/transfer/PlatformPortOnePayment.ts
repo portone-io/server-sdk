@@ -1,6 +1,5 @@
 import type { Currency } from "./../../common/Currency"
 import type { PlatformPaymentMethod } from "./../../platform/transfer/PlatformPaymentMethod"
-
 /** 포트원 결제 정보 */
 export type PlatformPortOnePayment = {
 	type: "PORT_ONE"

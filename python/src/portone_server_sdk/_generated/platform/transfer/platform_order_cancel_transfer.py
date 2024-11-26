@@ -1,24 +1,24 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
-from portone_server_sdk._generated.platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_additional_fee import PlatformOrderTransferAdditionalFee, _deserialize_platform_order_transfer_additional_fee, _serialize_platform_order_transfer_additional_fee
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_cancellation import PlatformOrderTransferCancellation, _deserialize_platform_order_transfer_cancellation, _serialize_platform_order_transfer_cancellation
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_discount import PlatformOrderTransferDiscount, _deserialize_platform_order_transfer_discount, _serialize_platform_order_transfer_discount
-from portone_server_sdk._generated.platform.transfer.platform_order_transfer_order_line import PlatformOrderTransferOrderLine, _deserialize_platform_order_transfer_order_line, _serialize_platform_order_transfer_order_line
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
-from portone_server_sdk._generated.platform.transfer.platform_payment import PlatformPayment, _deserialize_platform_payment, _serialize_platform_payment
-from portone_server_sdk._generated.platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
-from portone_server_sdk._generated.platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
-from portone_server_sdk._generated.platform.transfer.transfer_parameters import TransferParameters, _deserialize_transfer_parameters, _serialize_transfer_parameters
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
+from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
+from ...platform.transfer.platform_order_transfer_additional_fee import PlatformOrderTransferAdditionalFee, _deserialize_platform_order_transfer_additional_fee, _serialize_platform_order_transfer_additional_fee
+from ...platform.transfer.platform_order_transfer_cancellation import PlatformOrderTransferCancellation, _deserialize_platform_order_transfer_cancellation, _serialize_platform_order_transfer_cancellation
+from ...platform.transfer.platform_order_transfer_discount import PlatformOrderTransferDiscount, _deserialize_platform_order_transfer_discount, _serialize_platform_order_transfer_discount
+from ...platform.transfer.platform_order_transfer_order_line import PlatformOrderTransferOrderLine, _deserialize_platform_order_transfer_order_line, _serialize_platform_order_transfer_order_line
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.transfer.platform_payment import PlatformPayment, _deserialize_platform_payment, _serialize_platform_payment
+from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
+from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
+from ...platform.transfer.transfer_parameters import TransferParameters, _deserialize_transfer_parameters, _serialize_transfer_parameters
 
 @dataclass
 class PlatformOrderCancelTransfer:
     """주문 취소 정산건
     """
-    type: Literal["ORDER_CANCEL"] = field(repr=False)
     id: str
     """정산건 아이디
     """
@@ -72,14 +72,16 @@ class PlatformOrderCancelTransfer:
     parameters: TransferParameters
     """정산 파라미터 (실험기능)
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
-    payout_id: Optional[str]
-    payout_graphql_id: Optional[str]
+    payout_id: Optional[str] = field(default=None)
+    payout_graphql_id: Optional[str] = field(default=None)
 
 
 def _serialize_platform_order_cancel_transfer(obj: PlatformOrderCancelTransfer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "ORDER_CANCEL"
     entity["id"] = obj.id
@@ -223,4 +225,4 @@ def _deserialize_platform_order_cancel_transfer(obj: Any) -> PlatformOrderCancel
             raise ValueError(f"{repr(payout_graphql_id)} is not str")
     else:
         payout_graphql_id = None
-    return PlatformOrderCancelTransfer(type, id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, amount, contract, payment, settlement_start_date, order_lines, additional_fees, discounts, cancellation, parameters, memo, payout_id, payout_graphql_id)
+    return PlatformOrderCancelTransfer(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, amount, contract, payment, settlement_start_date, order_lines, additional_fees, discounts, cancellation, parameters, memo, payout_id, payout_graphql_id)

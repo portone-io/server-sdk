@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
 
 @dataclass
 class CreatePlatformPartnersResponse:
@@ -13,6 +13,8 @@ class CreatePlatformPartnersResponse:
 
 
 def _serialize_create_platform_partners_response(obj: CreatePlatformPartnersResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["partners"] = list(map(_serialize_platform_partner, obj.partners))
     return entity

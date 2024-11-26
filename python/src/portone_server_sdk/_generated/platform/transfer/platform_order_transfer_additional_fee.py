@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
+from ...platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
 
 @dataclass
 class PlatformOrderTransferAdditionalFee:
@@ -21,6 +21,8 @@ class PlatformOrderTransferAdditionalFee:
 
 
 def _serialize_platform_order_transfer_additional_fee(obj: PlatformOrderTransferAdditionalFee) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["policy"] = _serialize_platform_additional_fee_policy(obj.policy)
     entity["amount"] = obj.amount

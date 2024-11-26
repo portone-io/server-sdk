@@ -17,3 +17,5 @@ public data class PlatformAdditionalFeePolicyFilterInputKeyword(
   /** 해당 값과 같은 수수료 를 가진 추가 수수료 정책만 조회합니다. */
   val fee: String? = null,
 )
+
+

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.billing_key_payment_summary import BillingKeyPaymentSummary, _deserialize_billing_key_payment_summary, _serialize_billing_key_payment_summary
+from ..payment.billing_key_payment_summary import BillingKeyPaymentSummary, _deserialize_billing_key_payment_summary, _serialize_billing_key_payment_summary
 
 @dataclass
 class PayWithBillingKeyResponse:
@@ -13,6 +13,8 @@ class PayWithBillingKeyResponse:
 
 
 def _serialize_pay_with_billing_key_response(obj: PayWithBillingKeyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["payment"] = _serialize_billing_key_payment_summary(obj.payment)
     return entity

@@ -10,3 +10,4 @@ export type PlatformTransferStatus =
 	| "IN_PAYOUT"
 	/** 지급 완료 */
 	| "PAID_OUT"
+	| string & {}

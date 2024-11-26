@@ -2,7 +2,6 @@ package io.portone.sdk.server.platform.transfer
 
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.PlatformPartner
-import io.portone.sdk.server.platform.transfer.PlatformTransfer
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyValue
 import kotlin.String
@@ -20,6 +19,8 @@ public data class PlatformManualTransfer(
   override val partner: PlatformPartner,
   /** 정산 상태 */
   override val status: PlatformTransferStatus,
+  /** 메모 */
+  override val memo: String? = null,
   /**
    * 정산 일
    *
@@ -28,14 +29,14 @@ public data class PlatformManualTransfer(
   override val settlementDate: String,
   /** 정산 통화 */
   override val settlementCurrency: Currency,
+  override val payoutId: String? = null,
+  override val payoutGraphqlId: String? = null,
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
   /** 사용자 정의 속성 */
   override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 정산 금액 */
   val settlementAmount: Long,
-  /** 메모 */
-  override val memo: String? = null,
-  override val payoutId: String? = null,
-  override val payoutGraphqlId: String? = null,
-): PlatformTransfer
+) : PlatformTransfer.Recognized
+
+

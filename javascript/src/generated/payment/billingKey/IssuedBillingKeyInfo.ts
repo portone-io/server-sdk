@@ -3,7 +3,6 @@ import type { ChannelGroupSummary } from "./../../common/ChannelGroupSummary"
 import type { Customer } from "./../../common/Customer"
 import type { PgBillingKeyIssueResponse } from "./../../payment/billingKey/PgBillingKeyIssueResponse"
 import type { SelectedChannel } from "./../../common/SelectedChannel"
-
 /** 빌링키 발급 완료 상태 건 */
 export type IssuedBillingKeyInfo = {
 	/** 빌링키 상태 */

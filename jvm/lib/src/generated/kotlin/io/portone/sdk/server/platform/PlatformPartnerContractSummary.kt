@@ -11,3 +11,5 @@ public data class PlatformPartnerContractSummary(
   /** 계약 이름 */
   val name: String,
 )
+
+

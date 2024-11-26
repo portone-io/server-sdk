@@ -1,6 +1,5 @@
 package io.portone.sdk.server.payment
 
-import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -19,4 +18,6 @@ public data class DeliveredPaymentEscrow(
   val sentAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 배송등록 처리 일자 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant? = null,
-): PaymentEscrow
+) : PaymentEscrow.Recognized
+
+

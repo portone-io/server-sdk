@@ -1,13 +1,13 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.currency import Currency, _deserialize_currency, _serialize_currency
-from portone_server_sdk._generated.platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
-from portone_server_sdk._generated.platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
+from ...platform.partner_settlement.platform_partner_settlement_status import PlatformPartnerSettlementStatus, _deserialize_platform_partner_settlement_status, _serialize_platform_partner_settlement_status
 
 @dataclass
 class PlatformPartnerManualSettlement:
-    type: Literal["MANUAL"] = field(repr=False)
     id: str
     """정산내역 아이디
     """
@@ -33,12 +33,14 @@ class PlatformPartnerManualSettlement:
     is_for_test: bool
     """테스트 모드 여부
     """
-    memo: Optional[str]
+    memo: Optional[str] = field(default=None)
     """메모
     """
 
 
 def _serialize_platform_partner_manual_settlement(obj: PlatformPartnerManualSettlement) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "MANUAL"
     entity["id"] = obj.id
@@ -105,4 +107,4 @@ def _deserialize_platform_partner_manual_settlement(obj: Any) -> PlatformPartner
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformPartnerManualSettlement(type, id, graphql_id, partner, settlement_date, settlement_currency, status, amount, is_for_test, memo)
+    return PlatformPartnerManualSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, amount, is_for_test, memo)

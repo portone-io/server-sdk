@@ -9,3 +9,5 @@ public data class ResendWebhookResponse(
   /** 재발송 웹훅 정보 */
   val webhook: PaymentWebhook,
 )
+
+

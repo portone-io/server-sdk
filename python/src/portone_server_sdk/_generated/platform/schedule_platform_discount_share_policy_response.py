@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.platform_discount_share_policy import PlatformDiscountSharePolicy, _deserialize_platform_discount_share_policy, _serialize_platform_discount_share_policy
+from ..platform.platform_discount_share_policy import PlatformDiscountSharePolicy, _deserialize_platform_discount_share_policy, _serialize_platform_discount_share_policy
 
 @dataclass
 class SchedulePlatformDiscountSharePolicyResponse:
@@ -13,6 +13,8 @@ class SchedulePlatformDiscountSharePolicyResponse:
 
 
 def _serialize_schedule_platform_discount_share_policy_response(obj: SchedulePlatformDiscountSharePolicyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["scheduledDiscountSharePolicy"] = _serialize_platform_discount_share_policy(obj.scheduled_discount_share_policy)
     return entity

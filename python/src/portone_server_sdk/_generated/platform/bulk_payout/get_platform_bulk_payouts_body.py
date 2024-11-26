@@ -1,17 +1,20 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
-from portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_filter_input import PlatformBulkPayoutFilterInput, _deserialize_platform_bulk_payout_filter_input, _serialize_platform_bulk_payout_filter_input
+from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
+from ...platform.bulk_payout.platform_bulk_payout_filter_input import PlatformBulkPayoutFilterInput, _deserialize_platform_bulk_payout_filter_input, _serialize_platform_bulk_payout_filter_input
 
 @dataclass
 class GetPlatformBulkPayoutsBody:
-    is_for_test: Optional[bool]
-    page: Optional[PageInput]
-    filter: Optional[PlatformBulkPayoutFilterInput]
+    is_for_test: Optional[bool] = field(default=None)
+    page: Optional[PageInput] = field(default=None)
+    filter: Optional[PlatformBulkPayoutFilterInput] = field(default=None)
 
 
 def _serialize_get_platform_bulk_payouts_body(obj: GetPlatformBulkPayoutsBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.is_for_test is not None:
         entity["isForTest"] = obj.is_for_test

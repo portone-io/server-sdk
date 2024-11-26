@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -10,18 +11,20 @@ class BillingKeyFailure:
     """실패 시점
     (RFC 3339 date-time)
     """
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
     """실패 사유
     """
-    pg_code: Optional[str]
+    pg_code: Optional[str] = field(default=None)
     """PG사 실패 코드
     """
-    pg_message: Optional[str]
+    pg_message: Optional[str] = field(default=None)
     """PG사 실패 사유
     """
 
 
 def _serialize_billing_key_failure(obj: BillingKeyFailure) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["failedAt"] = obj.failed_at
     if obj.message is not None:

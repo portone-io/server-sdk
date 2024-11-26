@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.payment.payment_cancellation import PaymentCancellation, _deserialize_payment_cancellation, _serialize_payment_cancellation
+from ..payment.payment_cancellation import PaymentCancellation, _deserialize_payment_cancellation, _serialize_payment_cancellation
 
 @dataclass
 class CancelPaymentResponse:
@@ -13,6 +13,8 @@ class CancelPaymentResponse:
 
 
 def _serialize_cancel_payment_response(obj: CancelPaymentResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["cancellation"] = _serialize_payment_cancellation(obj.cancellation)
     return entity

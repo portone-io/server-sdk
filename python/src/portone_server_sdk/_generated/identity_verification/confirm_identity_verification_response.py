@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.identity_verification.verified_identity_verification import VerifiedIdentityVerification, _deserialize_verified_identity_verification, _serialize_verified_identity_verification
+from ..identity_verification.verified_identity_verification import VerifiedIdentityVerification, _deserialize_verified_identity_verification, _serialize_verified_identity_verification
 
 @dataclass
 class ConfirmIdentityVerificationResponse:
@@ -13,6 +13,8 @@ class ConfirmIdentityVerificationResponse:
 
 
 def _serialize_confirm_identity_verification_response(obj: ConfirmIdentityVerificationResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["identityVerification"] = _serialize_verified_identity_verification(obj.identity_verification)
     return entity

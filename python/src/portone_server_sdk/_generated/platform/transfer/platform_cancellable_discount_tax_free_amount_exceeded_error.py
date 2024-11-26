@@ -1,10 +1,10 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformCancellableDiscountTaxFreeAmountExceededError:
-    type: Literal["PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED"] = field(repr=False)
     discount_share_policy_id: str
     discount_share_policy_graphql_id: str
     cancellable_amount: int
@@ -13,11 +13,13 @@ class PlatformCancellableDiscountTaxFreeAmountExceededError:
     request_amount: int
     """(int64)
     """
-    product_id: Optional[str]
-    message: Optional[str]
+    product_id: Optional[str] = field(default=None)
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_cancellable_discount_tax_free_amount_exceeded_error(obj: PlatformCancellableDiscountTaxFreeAmountExceededError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_CANCELLABLE_DISCOUNT_TAX_FREE_AMOUNT_EXCEEDED"
     entity["discountSharePolicyId"] = obj.discount_share_policy_id
@@ -71,4 +73,4 @@ def _deserialize_platform_cancellable_discount_tax_free_amount_exceeded_error(ob
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformCancellableDiscountTaxFreeAmountExceededError(type, discount_share_policy_id, discount_share_policy_graphql_id, cancellable_amount, request_amount, product_id, message)
+    return PlatformCancellableDiscountTaxFreeAmountExceededError(discount_share_policy_id, discount_share_policy_graphql_id, cancellable_amount, request_amount, product_id, message)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
+from ..platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
 
 @dataclass
 class ReschedulePlatformPartnerBody:
@@ -17,6 +17,8 @@ class ReschedulePlatformPartnerBody:
 
 
 def _serialize_reschedule_platform_partner_body(obj: ReschedulePlatformPartnerBody) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["update"] = _serialize_update_platform_partner_body(obj.update)
     entity["appliedAt"] = obj.applied_at

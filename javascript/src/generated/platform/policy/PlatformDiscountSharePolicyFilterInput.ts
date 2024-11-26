@@ -1,5 +1,4 @@
 import type { PlatformDiscountSharePolicyFilterInputKeyword } from "./../../platform/policy/PlatformDiscountSharePolicyFilterInputKeyword"
-
 /** 할인 분담 정책 다건 조회를 위한 필터 조건 */
 export type PlatformDiscountSharePolicyFilterInput = {
 	/**

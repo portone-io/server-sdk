@@ -8,3 +8,4 @@ export type PaymentProductType =
 	 * 서비스, 온라인 상품 등 실물이 존재하지 않는 무형의 상품을 의미합니다.
 	 */
 	| "DIGITAL"
+	| string & {}

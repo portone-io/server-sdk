@@ -11,7 +11,6 @@ import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
-
 /** 결제 취소 상태 건 */
 export type CancelledPayment = {
 	/** 결제 건 상태 */

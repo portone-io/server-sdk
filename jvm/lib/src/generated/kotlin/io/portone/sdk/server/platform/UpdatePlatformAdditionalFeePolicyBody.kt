@@ -21,3 +21,5 @@ public data class UpdatePlatformAdditionalFeePolicyBody(
   /** 부가세를 부담할 주체 */
   val vatPayer: PlatformPayer? = null,
 )
+
+

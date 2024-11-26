@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
@@ -9,17 +10,19 @@ class PlatformFeeInput:
     정률 수수료를 설정하고 싶은 경우 `fixedRate` 필드에, 정액 수수료를 설정하고 싶은 경우 `fixedAmount` 필드에 값을 명시해 요청합니다.
     두 필드 모두 값이 들어있지 않은 경우 요청이 거절됩니다.
     """
-    fixed_rate: Optional[int]
+    fixed_rate: Optional[int] = field(default=None)
     """정률 수수료
     (int32)
     """
-    fixed_amount: Optional[int]
+    fixed_amount: Optional[int] = field(default=None)
     """정액 수수료
     (int64)
     """
 
 
 def _serialize_platform_fee_input(obj: PlatformFeeInput) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.fixed_rate is not None:
         entity["fixedRate"] = obj.fixed_rate

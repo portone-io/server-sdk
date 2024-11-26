@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class DeliveredPaymentEscrow:
     """배송 완료
     """
-    status: Literal["DELIVERED"] = field(repr=False)
     """에스크로 상태
     """
     company: str
@@ -15,17 +15,19 @@ class DeliveredPaymentEscrow:
     invoice_number: str
     """송장번호
     """
-    sent_at: Optional[str]
+    sent_at: Optional[str] = field(default=None)
     """발송 일시
     (RFC 3339 date-time)
     """
-    applied_at: Optional[str]
+    applied_at: Optional[str] = field(default=None)
     """배송등록 처리 일자
     (RFC 3339 date-time)
     """
 
 
 def _serialize_delivered_payment_escrow(obj: DeliveredPaymentEscrow) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["status"] = "DELIVERED"
     entity["company"] = obj.company
@@ -67,4 +69,4 @@ def _deserialize_delivered_payment_escrow(obj: Any) -> DeliveredPaymentEscrow:
             raise ValueError(f"{repr(applied_at)} is not str")
     else:
         applied_at = None
-    return DeliveredPaymentEscrow(status, company, invoice_number, sent_at, applied_at)
+    return DeliveredPaymentEscrow(company, invoice_number, sent_at, applied_at)

@@ -6,3 +6,4 @@ export type PlatformRoundType =
 	| "DOWN"
 	/** 소수점 올림 */
 	| "UP"
+	| string & {}

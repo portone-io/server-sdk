@@ -15,3 +15,4 @@ export type PaymentTimestampType =
 	| "CREATED_AT"
 	/** 상태 변경 시점 */
 	| "STATUS_CHANGED_AT"
+	| string & {}

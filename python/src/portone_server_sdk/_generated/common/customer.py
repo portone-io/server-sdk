@@ -1,42 +1,45 @@
 from __future__ import annotations
+from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from portone_server_sdk._generated.common.address import Address, _deserialize_address, _serialize_address
-from portone_server_sdk._generated.common.gender import Gender, _deserialize_gender, _serialize_gender
+from ..common.address import Address, _deserialize_address, _serialize_address
+from ..common.gender import Gender, _deserialize_gender, _serialize_gender
 
 @dataclass
 class Customer:
     """고객 정보
     """
-    id: Optional[str]
+    id: Optional[str] = field(default=None)
     """고객 아이디
 
     고객사가 지정한 고객의 고유 식별자입니다.
     """
-    name: Optional[str]
+    name: Optional[str] = field(default=None)
     """이름
     """
-    birth_year: Optional[str]
+    birth_year: Optional[str] = field(default=None)
     """출생 연도
     """
-    gender: Optional[Gender]
+    gender: Optional[Gender] = field(default=None)
     """성별
     """
-    email: Optional[str]
+    email: Optional[str] = field(default=None)
     """이메일
     """
-    phone_number: Optional[str]
+    phone_number: Optional[str] = field(default=None)
     """전화번호
     """
-    address: Optional[Address]
+    address: Optional[Address] = field(default=None)
     """주소
     """
-    zipcode: Optional[str]
+    zipcode: Optional[str] = field(default=None)
     """우편번호
     """
 
 
 def _serialize_customer(obj: Customer) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     if obj.id is not None:
         entity["id"] = obj.id

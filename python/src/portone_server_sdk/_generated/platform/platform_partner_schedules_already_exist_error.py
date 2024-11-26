@@ -1,16 +1,18 @@
 from __future__ import annotations
-from typing import Any, Literal, Optional
+from dataclasses import field
+from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPartnerSchedulesAlreadyExistError:
-    type: Literal["PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST"] = field(repr=False)
     ids: list[str]
     graphql_ids: list[str]
-    message: Optional[str]
+    message: Optional[str] = field(default=None)
 
 
 def _serialize_platform_partner_schedules_already_exist_error(obj: PlatformPartnerSchedulesAlreadyExistError) -> Any:
+    if isinstance(obj, dict):
+        return obj
     entity = {}
     entity["type"] = "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST"
     entity["ids"] = obj.ids
@@ -50,4 +52,4 @@ def _deserialize_platform_partner_schedules_already_exist_error(obj: Any) -> Pla
             raise ValueError(f"{repr(message)} is not str")
     else:
         message = None
-    return PlatformPartnerSchedulesAlreadyExistError(type, ids, graphql_ids, message)
+    return PlatformPartnerSchedulesAlreadyExistError(ids, graphql_ids, message)

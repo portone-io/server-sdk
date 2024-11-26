@@ -9,3 +9,5 @@ public data class CreatePlatformPartnerResponse(
   /** 생성된 파트너 */
   val partner: PlatformPartner,
 )
+
+

@@ -8,6 +8,7 @@ export function generateEntity(
   categoryMap: Map<string, string>,
   entityMap: Map<string, Definition>,
   definition: Definition,
+  depth: number,
 ) {
   const crossRef = new Set<string>()
   const std = new Set<string>([
@@ -49,23 +50,22 @@ export function generateEntity(
       const properties = definition.properties.filter(({ required }) =>
         required
       ).concat(definition.properties.filter(({ required }) => !required))
-      if (properties.length === 0) {
+      if (
+        properties.filter(({ type }) => type !== "discriminant").length === 0
+      ) {
         writer.writeLine("pass")
       }
       for (const property of properties) {
         const wrapOptional = (type: string): string => {
           if (!property.required) {
-            return `Optional[${type}]`
+            std.add("dataclasses.field")
+            return `Optional[${type}] = field(default=None)`
           }
           return type
         }
         const name = filterName(property.name)
         switch (property.type) {
           case "discriminant":
-            std.add("typing.Literal")
-            writer.writeLine(
-              `${name}: Literal["${property.value}"] = field(repr=False)`,
-            )
             break
           case "string":
             writer.writeLine(`${name}: ${wrapOptional("str")}`)
@@ -153,7 +153,7 @@ export function generateEntity(
       if (definition.variants.length > 1) {
         const variants = definition.variants.map(({ name }) => name).join(", ")
         writer.writeLine(
-          `${name} = Union[${variants}]`,
+          `${name} = Union[${variants}, dict]`,
         )
         std.add("typing.Union")
       } else {
@@ -172,9 +172,10 @@ export function generateEntity(
       const variants = definition.variants.map(({ value }) => `"${value}"`)
         .join(", ")
       writer.writeLine(
-        `${name} = Literal[${variants}]`,
+        `${name} = Union[Literal[${variants}], str]`,
       )
       std.add("typing.Literal")
+      std.add("typing.Union")
       writeDescription(
         writer,
         annotateDescription(definition.description ?? "", definition),
@@ -218,7 +219,7 @@ export function generateEntity(
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }
-    return `from portone_server_sdk._generated.${path}.${
+    return `from ${".".repeat(depth)}${path}.${
       toSnakeCase(ref)
     } import ${ref}, _deserialize_${toSnakeCase(ref)}, _serialize_${
       toSnakeCase(ref)
@@ -318,20 +319,25 @@ function generateDeserializeEntity(
             break
           case "string":
             checkType("str", name)
+            allProperties.push(name)
             break
           case "boolean":
             checkType("bool", name)
+            allProperties.push(name)
             break
           case "number":
             checkType("(float, int)", name)
+            allProperties.push(name)
             break
           case "integer":
             checkType("int", name)
+            allProperties.push(name)
             break
           case "ref":
             writer.writeLine(
               `${name} = _deserialize_${toSnakeCase(property.value)}(${name})`,
             )
+            allProperties.push(name)
             break
           case "array":
             checkType("list", name)
@@ -372,9 +378,11 @@ function generateDeserializeEntity(
                 })
             }
             writer.outdent()
+            allProperties.push(name)
             break
           case "object":
             checkType("dict", name)
+            allProperties.push(name)
             break
           case "enum":
           case "oneOf":
@@ -389,7 +397,6 @@ function generateDeserializeEntity(
           writer.writeLine(`${name} = None`)
           writer.outdent()
         }
-        allProperties.push(name)
       }
       writer.writeLine(`return ${definition.name}(${allProperties.join(", ")})`)
       break
@@ -407,23 +414,12 @@ function generateDeserializeEntity(
         writer.writeLine("pass")
         writer.outdent()
       }
-      writer.writeLine(
-        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
-      )
-      break
-    }
-    case "enum": {
-      const variants = definition.variants.map(({ value }) => `"${value}"`)
-        .join(", ")
-      writer.writeLine(`if obj not in [${variants}]:`)
-      writer.indent()
-      writer.writeLine(
-        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
-      )
-      writer.outdent()
       writer.writeLine("return obj")
       break
     }
+    case "enum":
+      writer.writeLine("return obj")
+      break
     case "string":
     case "boolean":
     case "number":
@@ -446,6 +442,10 @@ function generateSerializeEntity(definition: Definition) {
     }(obj: ${definition.name}) -> Any:`,
   )
   writer.indent()
+  writer.writeLine("if isinstance(obj, dict):")
+  writer.indent()
+  writer.writeLine("return obj")
+  writer.outdent()
   switch (definition.type) {
     case "enum":
       writer.writeLine("return obj")
@@ -530,7 +530,7 @@ function generateSerializeEntity(definition: Definition) {
     case "oneOf": {
       for (const variant of definition.variants) {
         writer.writeLine(
-          `if obj.${filterName(variant.property)} == "${variant.value}":`,
+          `if isinstance(obj, ${variant.name}):`,
         )
         writer.indent()
         writer.writeLine(`return _serialize_${toSnakeCase(variant.name)}(obj)`)
