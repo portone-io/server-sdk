@@ -16,12 +16,16 @@ Ktor를 사용합니다. JSON 직렬화를 위해 kotlinx.serialization을 사�
 [![javadoc](https://javadoc.io/badge2/io.portone/server-sdk/javadoc.svg)](https://javadoc.io/doc/io.portone/server-sdk)
 
 메이븐 중앙 저장소를 통해 설치합니다.
+의존성 버전이 호환되지 않는 경우에는 `all` classifier을 적용하여 shading 버전을 사용합니다.
 
 ### 그래들
 
 ```Gradle Kotlin DSL
 dependencies {
     implementation("io.portone:server-sdk:x.y.z")
+    
+    // shading 버전의 경우
+    implementation("io.portone:server-sdk:x.y.z:all")
 }
 
 repositories {
@@ -37,6 +41,8 @@ repositories {
         <groupId>io.portone</groupId>
         <artifactId>server-sdk</artifactId>
         <version>x.y.z</version>
+        <!-- shading 버전의 경우 -->
+        <classifier>all</classifier>
     </dependency>
 </dependencies>
 ```
@@ -46,6 +52,9 @@ repositories {
 ```YAML
 dependencies:
   - io.portone:server-sdk:x.y.z
+  
+  # shading 버전의 경우
+  - io.portone:server-sdk:x.y.z:all
 ```
 
 ## 버전

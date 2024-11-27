@@ -17,6 +17,7 @@ plugins {
     alias(libs.plugins.binary.compatibility.validator)
     alias(libs.plugins.dokka)
     alias(libs.plugins.maven.publish)
+    alias(libs.plugins.shadow)
 }
 
 group = "io.portone"
@@ -205,6 +206,14 @@ mavenPublishing {
         ciManagement {
             system = "GitHub Actions"
             url = "https://github.com/portone-io/server-sdk/actions"
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("shadow") {
+            from(components["shadow"])
         }
     }
 }
