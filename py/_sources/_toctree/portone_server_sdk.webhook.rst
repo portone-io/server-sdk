@@ -30,12 +30,12 @@
       WebhookBillingKeyIssued
       WebhookBillingKeyReady
       WebhookBillingKeyUpdated
-      WebhookTransactionCancelPending
+      WebhookTransactionCancelledCancelPending
       WebhookTransactionCancelledCancelled
       WebhookTransactionCancelledDataCancelled
       WebhookTransactionCancelledDataPartialCancelled
       WebhookTransactionCancelledPartialCancelled
-      WebhookTransactionDataCancelPending
+      WebhookTransactionCancelledDataCancelPending
       WebhookTransactionDataFailed
       WebhookTransactionDataPaid
       WebhookTransactionDataPayPending
