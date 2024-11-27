@@ -44,17 +44,20 @@ from ._generated.webhook.webhook_billing_key_updated import (
     WebhookBillingKeyUpdated,
 )
 from ._generated.webhook.webhook_transaction import WebhookTransaction
-from ._generated.webhook.webhook_transaction_cancel_pending import (
-    WebhookTransactionCancelPending,
-)
 from ._generated.webhook.webhook_transaction_cancelled import (
     WebhookTransactionCancelled,
+)
+from ._generated.webhook.webhook_transaction_cancelled_cancel_pending import (
+    WebhookTransactionCancelledCancelPending,
 )
 from ._generated.webhook.webhook_transaction_cancelled_cancelled import (
     WebhookTransactionCancelledCancelled,
 )
 from ._generated.webhook.webhook_transaction_cancelled_data import (
     WebhookTransactionCancelledData,
+)
+from ._generated.webhook.webhook_transaction_cancelled_data_cancel_pending import (
+    WebhookTransactionCancelledDataCancelPending,
 )
 from ._generated.webhook.webhook_transaction_cancelled_data_cancelled import (
     WebhookTransactionCancelledDataCancelled,
@@ -67,9 +70,6 @@ from ._generated.webhook.webhook_transaction_cancelled_partial_cancelled import 
 )
 from ._generated.webhook.webhook_transaction_data import (
     WebhookTransactionData,
-)
-from ._generated.webhook.webhook_transaction_data_cancel_pending import (
-    WebhookTransactionDataCancelPending,
 )
 from ._generated.webhook.webhook_transaction_data_failed import (
     WebhookTransactionDataFailed,
@@ -271,7 +271,7 @@ __all__ = [
     "WebhookBillingKeyReady",
     "WebhookBillingKeyUpdated",
     "WebhookTransaction",
-    "WebhookTransactionCancelPending",
+    "WebhookTransactionCancelledCancelPending",
     "WebhookTransactionCancelled",
     "WebhookTransactionCancelledCancelled",
     "WebhookTransactionCancelledData",
@@ -279,7 +279,7 @@ __all__ = [
     "WebhookTransactionCancelledDataPartialCancelled",
     "WebhookTransactionCancelledPartialCancelled",
     "WebhookTransactionData",
-    "WebhookTransactionDataCancelPending",
+    "WebhookTransactionCancelledDataCancelPending",
     "WebhookTransactionDataFailed",
     "WebhookTransactionDataPaid",
     "WebhookTransactionDataPayPending",

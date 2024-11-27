@@ -105,7 +105,6 @@ const webhookTransactionData = {
       "VirtualAccountIssued",
       "Failed",
       "PayPending",
-      "CancelPending",
     ].map((name) => `WebhookTransactionData${name}`)
       .concat("WebhookTransactionCancelledData"),
     open: false,
@@ -128,7 +127,7 @@ const webhookTransactionCancelledData = extendType({
   ],
   interface: {
     discriminant: null,
-    coproduct: ["PartialCancelled", "Cancelled"].map((name) =>
+    coproduct: ["PartialCancelled", "Cancelled", "CancelPending"].map((name) =>
       `WebhookTransactionCancelledData${name}`
     ),
     open: false,
@@ -189,13 +188,13 @@ const webhookTransactionDataVariants = [
     interface: null,
   }, webhookTransactionData),
   extendType({
-    name: "WebhookTransactionDataCancelPending",
+    name: "WebhookTransactionCancelledDataCancelPending",
     description:
       "(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.",
     type: "object",
     properties: [],
     interface: null,
-  }, webhookTransactionData),
+  }, webhookTransactionCancelledData),
 ]
 
 const webhookTransaction = extendType({
@@ -221,7 +220,6 @@ const webhookTransaction = extendType({
       "VirtualAccountIssued",
       "Failed",
       "PayPending",
-      "CancelPending",
     ].map((name) => `WebhookTransaction${name}`).concat(
       "WebhookTransactionCancelled",
     ),
@@ -246,7 +244,7 @@ const webhookTransactionCancelled = extendType({
   ],
   interface: {
     discriminant: "type",
-    coproduct: ["PartialCancelled", "Cancelled"].map((name) =>
+    coproduct: ["PartialCancelled", "Cancelled", "CancelPending"].map((name) =>
       `WebhookTransactionCancelled${name}`
     ),
     open: false,
@@ -405,7 +403,7 @@ const webhookTransactionVariants = [
     interface: null,
   }, webhookTransaction),
   extendType({
-    name: "WebhookTransactionCancelPending",
+    name: "WebhookTransactionCancelledCancelPending",
     description: "(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때",
     type: "object",
     properties: [{
@@ -422,10 +420,10 @@ const webhookTransactionVariants = [
       required: true,
       overrides: true,
       type: "ref",
-      value: "WebhookTransactionDataCancelPending",
+      value: "WebhookTransactionCancelledDataCancelPending",
     }],
     interface: null,
-  }, webhookTransaction),
+  }, webhookTransactionCancelled),
 ]
 
 const webhookBillingKeyData = {

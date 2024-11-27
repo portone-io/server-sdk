@@ -1,6 +1,6 @@
-import type { WebhookTransactionDataCancelPending } from "./WebhookTransactionDataCancelPending"
+import type { WebhookTransactionCancelledDataCancelPending } from "./WebhookTransactionCancelledDataCancelPending"
 /** (결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 */
-export type WebhookTransactionCancelPending = {
+export type WebhookTransactionCancelledCancelPending = {
 	/** 웹훅을 트리거한 이벤트의 타입입니다. */
 	type: "Transaction.CancelPending"
 	/**
@@ -9,5 +9,5 @@ export type WebhookTransactionCancelPending = {
 	 */
 	timestamp: string
 	/** (결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다. */
-	data: WebhookTransactionDataCancelPending
+	data: WebhookTransactionCancelledDataCancelPending
 }

@@ -24930,33 +24930,6 @@ public final class io/portone/sdk/server/webhook/WebhookTransaction$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/webhook/WebhookTransactionCancelPending : io/portone/sdk/server/webhook/WebhookTransaction {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionCancelPending$Companion;
-	public final fun component1 ()Ljava/time/Instant;
-	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending;
-	public fun equals (Ljava/lang/Object;)Z
-	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
-	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending;
-	public fun getTimestamp ()Ljava/time/Instant;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionCancelPending$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionCancelPending$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionCancelPending;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionCancelPending;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionCancelPending$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
 public abstract interface class io/portone/sdk/server/webhook/WebhookTransactionCancelled : io/portone/sdk/server/webhook/WebhookTransaction {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionCancelled$Companion;
 	public abstract fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionCancelledData;
@@ -24964,6 +24937,34 @@ public abstract interface class io/portone/sdk/server/webhook/WebhookTransaction
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionCancelled$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending : io/portone/sdk/server/webhook/WebhookTransactionCancelled {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending$Companion;
+	public final fun component1 ()Ljava/time/Instant;
+	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending;
+	public fun equals (Ljava/lang/Object;)Z
+	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionCancelledData;
+	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending;
+	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
+	public fun getTimestamp ()Ljava/time/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledCancelPending$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -25003,6 +25004,34 @@ public abstract interface class io/portone/sdk/server/webhook/WebhookTransaction
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledData$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending : io/portone/sdk/server/webhook/WebhookTransactionCancelledData {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending$Companion;
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCancellationId ()Ljava/lang/String;
+	public fun getPaymentId ()Ljava/lang/String;
+	public fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledDataCancelPending$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -25097,32 +25126,6 @@ public abstract interface class io/portone/sdk/server/webhook/WebhookTransaction
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionData$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataCancelPending : io/portone/sdk/server/webhook/WebhookTransactionData {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending$Companion;
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getPaymentId ()Ljava/lang/String;
-	public fun getTransactionId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataCancelPending$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataCancelPending;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataCancelPending$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

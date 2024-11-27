@@ -3,7 +3,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
-class WebhookTransactionDataCancelPending:
+class WebhookTransactionCancelledDataCancelPending:
     """(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.
     """
     payment_id: str
@@ -12,9 +12,12 @@ class WebhookTransactionDataCancelPending:
     transaction_id: str
     """포트원에서 채번한 고유 거래 번호입니다. 한 결제 건에 여러 시도가 있을 경우 `transactionId` 가 달라질 수 있습니다.
     """
+    cancellation_id: str
+    """포트원에서 채번한 결제건의 취소 고유 번호입니다.
+    """
 
 
-def _deserialize_webhook_transaction_data_cancel_pending(obj: Any) -> WebhookTransactionDataCancelPending:
+def _deserialize_webhook_transaction_cancelled_data_cancel_pending(obj: Any) -> WebhookTransactionCancelledDataCancelPending:
     if not isinstance(obj, dict):
         raise ValueError(f"{repr(obj)} is not dict")
     if "paymentId" not in obj:
@@ -27,4 +30,9 @@ def _deserialize_webhook_transaction_data_cancel_pending(obj: Any) -> WebhookTra
     transaction_id = obj["transactionId"]
     if not isinstance(transaction_id, str):
         raise ValueError(f"{repr(transaction_id)} is not str")
-    return WebhookTransactionDataCancelPending(payment_id, transaction_id)
+    if "cancellationId" not in obj:
+        raise KeyError(f"'cancellationId' is not in {obj}")
+    cancellation_id = obj["cancellationId"]
+    if not isinstance(cancellation_id, str):
+        raise ValueError(f"{repr(cancellation_id)} is not str")
+    return WebhookTransactionCancelledDataCancelPending(payment_id, transaction_id, cancellation_id)

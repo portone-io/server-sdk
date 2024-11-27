@@ -1,5 +1,4 @@
 import type { WebhookTransactionCancelledData } from "./WebhookTransactionCancelledData"
-import type { WebhookTransactionDataCancelPending } from "./WebhookTransactionDataCancelPending"
 import type { WebhookTransactionDataFailed } from "./WebhookTransactionDataFailed"
 import type { WebhookTransactionDataPaid } from "./WebhookTransactionDataPaid"
 import type { WebhookTransactionDataPayPending } from "./WebhookTransactionDataPayPending"
@@ -12,5 +11,4 @@ export type WebhookTransactionData =
 	| WebhookTransactionDataVirtualAccountIssued
 	| WebhookTransactionDataFailed
 	| WebhookTransactionDataPayPending
-	| WebhookTransactionDataCancelPending
 	| WebhookTransactionCancelledData
