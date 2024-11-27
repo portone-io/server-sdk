@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.7.1
+
+### Patch Changes
+
+- c6ccc2d: WebhookTransactionCancelPending을 WebhookTransactionCancelledCancelPending으로 변경
+
 ## 0.7.0
 
 ### Minor Changes
