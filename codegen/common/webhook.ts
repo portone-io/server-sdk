@@ -8,6 +8,7 @@ export type Definition =
     | StringDefinition
     | ObjectDefinition
     | RefDefinition
+    | IntegerDefinition
   )
 
 export type Property = {
@@ -23,6 +24,10 @@ type DiscriminantDefinition = {
 type StringDefinition = {
   type: "string"
   format: string | null
+}
+
+type IntegerDefinition = {
+  type: "integer"
 }
 
 type ObjectDefinition = {
@@ -105,6 +110,7 @@ const webhookTransactionData = {
       "VirtualAccountIssued",
       "Failed",
       "PayPending",
+      "Confirm",
     ].map((name) => `WebhookTransactionData${name}`)
       .concat("WebhookTransactionCancelledData"),
     open: false,
@@ -195,6 +201,20 @@ const webhookTransactionDataVariants = [
     properties: [],
     interface: null,
   }, webhookTransactionCancelledData),
+  extendType({
+    name: "WebhookTransactionDataConfirm",
+    description:
+      "(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.",
+    type: "object",
+    properties: [{
+      name: "totalAmount",
+      description: "결제건의 결제 요청 금액입니다.",
+      required: true,
+      overrides: false,
+      type: "integer",
+    }],
+    interface: null,
+  }, webhookTransactionData),
 ]
 
 const webhookTransaction = extendType({
@@ -220,6 +240,7 @@ const webhookTransaction = extendType({
       "VirtualAccountIssued",
       "Failed",
       "PayPending",
+      "Confirm",
     ].map((name) => `WebhookTransaction${name}`).concat(
       "WebhookTransactionCancelled",
     ),
@@ -424,6 +445,28 @@ const webhookTransactionVariants = [
     }],
     interface: null,
   }, webhookTransactionCancelled),
+  extendType({
+    name: "WebhookTransactionConfirm",
+    description: "컨펌 프로세스에서 승인 요청을 받았을 때",
+    type: "object",
+    properties: [{
+      name: "type",
+      description: "웹훅을 트리거한 이벤트의 타입입니다.",
+      required: true,
+      overrides: true,
+      type: "discriminant",
+      value: "Transaction.Confirm",
+    }, {
+      name: "data",
+      description:
+        "컨펌 프로세스에서 승인 요청을 받았을 때 이벤트의 실제 세부 내용입니다.",
+      required: true,
+      overrides: true,
+      type: "ref",
+      value: "WebhookTransactionDataConfirm",
+    }],
+    interface: null,
+  }, webhookTransaction),
 ]
 
 const webhookBillingKeyData = {

@@ -49,6 +49,9 @@ export function generateEntity(
           case "string":
             writer.writeLine(`${name}: string`)
             break
+          case "integer":
+            writer.writeLine(`${name}: number`)
+            break
           case "ref":
             writer.writeLine(`${name}: ${property.value}`)
             crossRef.add(property.value)

@@ -25119,6 +25119,33 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledPart
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class io/portone/sdk/server/webhook/WebhookTransactionConfirm : io/portone/sdk/server/webhook/WebhookTransaction {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionConfirm$Companion;
+	public final fun component1 ()Ljava/time/Instant;
+	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm;
+	public fun equals (Ljava/lang/Object;)Z
+	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
+	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm;
+	public fun getTimestamp ()Ljava/time/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionConfirm$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionConfirm$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionConfirm;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionConfirm;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionConfirm$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public abstract interface class io/portone/sdk/server/webhook/WebhookTransactionData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionData$Companion;
 	public abstract fun getPaymentId ()Ljava/lang/String;
@@ -25126,6 +25153,34 @@ public abstract interface class io/portone/sdk/server/webhook/WebhookTransaction
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionData$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm : io/portone/sdk/server/webhook/WebhookTransactionData {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm$Companion;
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getPaymentId ()Ljava/lang/String;
+	public final fun getTotalAmount ()I
+	public fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

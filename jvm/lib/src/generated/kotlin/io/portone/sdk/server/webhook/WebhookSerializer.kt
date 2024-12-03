@@ -16,6 +16,7 @@ internal object WebhookSerializer : JsonContentPolymorphicSerializer<Webhook>(We
     "Transaction.Failed" -> WebhookTransactionFailed.serializer()
     "Transaction.PayPending" -> WebhookTransactionPayPending.serializer()
     "Transaction.CancelPending" -> WebhookTransactionCancelledCancelPending.serializer()
+    "Transaction.Confirm" -> WebhookTransactionConfirm.serializer()
     "BillingKey.Ready" -> WebhookBillingKeyReady.serializer()
     "BillingKey.Issued" -> WebhookBillingKeyIssued.serializer()
     "BillingKey.Failed" -> WebhookBillingKeyFailed.serializer()

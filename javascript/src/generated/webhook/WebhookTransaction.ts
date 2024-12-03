@@ -1,4 +1,5 @@
 import type { WebhookTransactionCancelled } from "./WebhookTransactionCancelled"
+import type { WebhookTransactionConfirm } from "./WebhookTransactionConfirm"
 import type { WebhookTransactionFailed } from "./WebhookTransactionFailed"
 import type { WebhookTransactionPaid } from "./WebhookTransactionPaid"
 import type { WebhookTransactionPayPending } from "./WebhookTransactionPayPending"
@@ -11,4 +12,5 @@ export type WebhookTransaction =
 	| WebhookTransactionVirtualAccountIssued
 	| WebhookTransactionFailed
 	| WebhookTransactionPayPending
+	| WebhookTransactionConfirm
 	| WebhookTransactionCancelled

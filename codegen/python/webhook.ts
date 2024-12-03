@@ -62,6 +62,9 @@ export function generateEntity(
           case "string":
             writer.writeLine(`${name}: ${wrapOptional("str")}`)
             break
+          case "integer":
+            writer.writeLine(`${name}: ${wrapOptional("int")}`)
+            break
           case "ref":
             writer.writeLine(
               `${name}: ${wrapOptional(property.value)}`,
@@ -207,6 +210,10 @@ function generateDeserializeEntity(
             break
           case "string":
             checkType("str", name)
+            allProperties.push(name)
+            break
+          case "integer":
+            checkType("int", name)
             allProperties.push(name)
             break
           case "ref":

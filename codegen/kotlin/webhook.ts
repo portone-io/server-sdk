@@ -89,6 +89,11 @@ export function generateEntity(
             writer.writeLine(`${val}: ${wrapOptional("String")}${comma}`)
             crossRef.add("kotlin.String")
             break
+          case "integer":
+            writeDescription(writer, description)
+            writer.writeLine(`${val}: ${wrapOptional("Int")}${comma}`)
+            crossRef.add("kotlin.Int")
+            break
           case "ref": {
             writeDescription(writer, description)
             writer.writeLine(`${val}: ${wrapOptional(property.value)}${comma}`)
