@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.8.0
+
+### Minor Changes
+
+- 0853f05: WebhookTransactionConfirm 추가
+
 ## 0.7.1
 
 ### Patch Changes
