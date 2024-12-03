@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 ktor = "3.0.1"
 kotlin-test = "2.0.0"
 kotlinx-coroutines = "1.9.0"
@@ -13,7 +13,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.1" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.2" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.16.3" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.30.0" }
