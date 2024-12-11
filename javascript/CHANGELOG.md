@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.8.1
+
+### Patch Changes
+
+- dfa8f26: 의존성 업데이트
+
 ## 0.8.0
 
 ### Minor Changes
