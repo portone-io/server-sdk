@@ -1,5 +1,12 @@
 # @portone/server-sdk
 
+## 0.8.1
+
+### Patch Changes
+
+- 3580254: Webhook 타입에 data.storeId 추가
+- dfa8f26: 의존성 업데이트
+
 ## 0.8.0
 
 ### Minor Changes
