@@ -16,6 +16,7 @@ test_object_recognized = {
         "paymentId": "example-payment-id",
         "transactionId": "55451513-9763-4a7a-bb43-78a4c65be843",
         "cancellationId": "0cdd91e9-4e7c-44a3-a72e-1a6511826c2b",
+        "storeId": "store-ae356798-3d20-4969-b739-14c6b0e1a667",
     },
 }
 

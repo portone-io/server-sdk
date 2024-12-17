@@ -24659,6 +24659,7 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKey$Companion {
 public abstract interface class io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyData$Companion;
 	public abstract fun getBillingKey ()Ljava/lang/String;
+	public abstract fun getStoreId ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyData$Companion {
@@ -24668,8 +24669,10 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKeyData$Companion
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataDeleted : io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyDataDeleted$Companion;
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getBillingKey ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -24692,8 +24695,10 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataDeleted$Co
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataFailed : io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyDataFailed$Companion;
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getBillingKey ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -24716,8 +24721,10 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataFailed$Com
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataIssued : io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyDataIssued$Companion;
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getBillingKey ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -24740,8 +24747,10 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataIssued$Com
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataReady : io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyDataReady$Companion;
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getBillingKey ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -24764,8 +24773,10 @@ public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataReady$Comp
 public final class io/portone/sdk/server/webhook/WebhookBillingKeyDataUpdated : io/portone/sdk/server/webhook/WebhookBillingKeyData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookBillingKeyDataUpdated$Companion;
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getBillingKey ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -25000,6 +25011,7 @@ public abstract interface class io/portone/sdk/server/webhook/WebhookTransaction
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionCancelledData$Companion;
 	public abstract fun getCancellationId ()Ljava/lang/String;
 	public abstract fun getPaymentId ()Ljava/lang/String;
+	public abstract fun getStoreId ()Ljava/lang/String;
 	public abstract fun getTransactionId ()Ljava/lang/String;
 }
 
@@ -25012,9 +25024,11 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledData
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getCancellationId ()Ljava/lang/String;
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25040,9 +25054,11 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledData
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getCancellationId ()Ljava/lang/String;
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25068,9 +25084,11 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledData
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getCancellationId ()Ljava/lang/String;
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25149,6 +25167,7 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionConfirm$Compa
 public abstract interface class io/portone/sdk/server/webhook/WebhookTransactionData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionData$Companion;
 	public abstract fun getPaymentId ()Ljava/lang/String;
+	public abstract fun getStoreId ()Ljava/lang/String;
 	public abstract fun getTransactionId ()Ljava/lang/String;
 }
 
@@ -25160,9 +25179,11 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm :
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public final fun getTotalAmount ()I
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -25188,8 +25209,10 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataFailed : 
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataFailed$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25214,8 +25237,10 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataPaid : io
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataPaid$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25240,8 +25265,10 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataPayPendin
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataPayPending$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25266,8 +25293,10 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataReady : i
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataReady$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -25292,8 +25321,10 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionDataVirtualAc
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataVirtualAccountIssued$Companion;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
 	public fun getTransactionId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

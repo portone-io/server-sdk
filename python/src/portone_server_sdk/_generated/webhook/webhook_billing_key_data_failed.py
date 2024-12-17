@@ -9,6 +9,9 @@ class WebhookBillingKeyDataFailed:
     billing_key: str
     """포트원에서 채번한 빌링키입니다.
     """
+    store_id: str
+    """웹훅을 트리거한 상점의 아이디입니다.
+    """
 
 
 def _deserialize_webhook_billing_key_data_failed(obj: Any) -> WebhookBillingKeyDataFailed:
@@ -19,4 +22,9 @@ def _deserialize_webhook_billing_key_data_failed(obj: Any) -> WebhookBillingKeyD
     billing_key = obj["billingKey"]
     if not isinstance(billing_key, str):
         raise ValueError(f"{repr(billing_key)} is not str")
-    return WebhookBillingKeyDataFailed(billing_key)
+    if "storeId" not in obj:
+        raise KeyError(f"'storeId' is not in {obj}")
+    store_id = obj["storeId"]
+    if not isinstance(store_id, str):
+        raise ValueError(f"{repr(store_id)} is not str")
+    return WebhookBillingKeyDataFailed(billing_key, store_id)
