@@ -4,4 +4,6 @@ export type PaymentMethodTransfer = {
 	type: "PaymentMethodTransfer"
 	/** 표준 은행 코드 */
 	bank?: Bank
+	/** 계좌번호 */
+	accountNumber?: string
 }

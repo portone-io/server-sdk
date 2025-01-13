@@ -137,17 +137,23 @@ public class BillingKeyClient(
    *
    * @param billingKey
    * 삭제할 빌링키
+   * @param reason
+   * 사유
+   *
+   * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
    *
    * @throws DeleteBillingKeyException
    */
   @JvmName("deleteBillingKeySuspend")
   public suspend fun deleteBillingKey(
     billingKey: String,
+    reason: String? = null,
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
         appendPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) parameters.append("storeId", storeId.toString())
+        if (reason != null) parameters.append("reason", reason.toString())
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -188,7 +194,8 @@ public class BillingKeyClient(
   @JvmName("deleteBillingKey")
   public fun deleteBillingKeyFuture(
     billingKey: String,
-  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey) }
+    reason: String? = null,
+  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason) }
 
 
   /**

@@ -41,6 +41,8 @@ import io.portone.sdk.server.errors.GetPlatformPartnerFilterOptionsError
 import io.portone.sdk.server.errors.GetPlatformPartnerFilterOptionsException
 import io.portone.sdk.server.errors.GetPlatformPartnerScheduleError
 import io.portone.sdk.server.errors.GetPlatformPartnerScheduleException
+import io.portone.sdk.server.errors.GetPlatformSettingError
+import io.portone.sdk.server.errors.GetPlatformSettingException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.PlatformAccountVerificationAlreadyUsedError
@@ -63,6 +65,8 @@ import io.portone.sdk.server.errors.PlatformArchivedPartnerError
 import io.portone.sdk.server.errors.PlatformArchivedPartnerException
 import io.portone.sdk.server.errors.PlatformArchivedPartnersCannotBeScheduledError
 import io.portone.sdk.server.errors.PlatformArchivedPartnersCannotBeScheduledException
+import io.portone.sdk.server.errors.PlatformCompanyVerificationAlreadyUsedError
+import io.portone.sdk.server.errors.PlatformCompanyVerificationAlreadyUsedException
 import io.portone.sdk.server.errors.PlatformContractNotFoundError
 import io.portone.sdk.server.errors.PlatformContractNotFoundException
 import io.portone.sdk.server.errors.PlatformContractScheduleAlreadyExistsError
@@ -75,6 +79,14 @@ import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeE
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeException
 import io.portone.sdk.server.errors.PlatformInvalidSettlementFormulaError
 import io.portone.sdk.server.errors.PlatformInvalidSettlementFormulaException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.PlatformPartnerNotFoundError
@@ -108,6 +120,8 @@ import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.errors.UpdatePlatformError
 import io.portone.sdk.server.errors.UpdatePlatformException
+import io.portone.sdk.server.errors.UpdatePlatformSettingError
+import io.portone.sdk.server.errors.UpdatePlatformSettingException
 import io.portone.sdk.server.platform.CancelPlatformAdditionalFeePolicyScheduleResponse
 import io.portone.sdk.server.platform.CancelPlatformContractScheduleResponse
 import io.portone.sdk.server.platform.CancelPlatformDiscountSharePolicyScheduleResponse
@@ -121,6 +135,7 @@ import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.PlatformPartnerFilterInput
 import io.portone.sdk.server.platform.PlatformPartnerFilterOptions
 import io.portone.sdk.server.platform.PlatformRoundType
+import io.portone.sdk.server.platform.PlatformSetting
 import io.portone.sdk.server.platform.ReschedulePlatformAdditionalFeePolicyBody
 import io.portone.sdk.server.platform.ReschedulePlatformAdditionalFeePolicyResponse
 import io.portone.sdk.server.platform.ReschedulePlatformContractBody
@@ -148,9 +163,12 @@ import io.portone.sdk.server.platform.UpdatePlatformContractBody
 import io.portone.sdk.server.platform.UpdatePlatformDiscountSharePolicyBody
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBody
 import io.portone.sdk.server.platform.UpdatePlatformResponse
+import io.portone.sdk.server.platform.UpdatePlatformSettingBody
+import io.portone.sdk.server.platform.UpdatePlatformSettingResponse
 import io.portone.sdk.server.platform.account.AccountClient
 import io.portone.sdk.server.platform.accounttransfer.AccountTransferClient
 import io.portone.sdk.server.platform.bulkpayout.BulkPayoutClient
+import io.portone.sdk.server.platform.company.CompanyClient
 import io.portone.sdk.server.platform.partner.PartnerClient
 import io.portone.sdk.server.platform.partnersettlement.PartnerSettlementClient
 import io.portone.sdk.server.platform.payout.PayoutClient
@@ -996,6 +1014,7 @@ public class PlatformClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerCannotBeScheduledError -> throw PlatformMemberCompanyConnectedPartnerCannotBeScheduledException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
@@ -1068,8 +1087,12 @@ public class PlatformClient(
         is PlatformAccountVerificationFailedError -> throw PlatformAccountVerificationFailedException(httpBodyDecoded)
         is PlatformAccountVerificationNotFoundError -> throw PlatformAccountVerificationNotFoundException(httpBodyDecoded)
         is PlatformArchivedPartnerError -> throw PlatformArchivedPartnerException(httpBodyDecoded)
+        is PlatformCompanyVerificationAlreadyUsedError -> throw PlatformCompanyVerificationAlreadyUsedException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformInsufficientDataToChangePartnerTypeError -> throw PlatformInsufficientDataToChangePartnerTypeException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerBrnUnchangeableError -> throw PlatformMemberCompanyConnectedPartnerBrnUnchangeableException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerCannotBeScheduledError -> throw PlatformMemberCompanyConnectedPartnerCannotBeScheduledException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerTypeUnchangeableError -> throw PlatformMemberCompanyConnectedPartnerTypeUnchangeableException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformPartnerScheduleAlreadyExistsError -> throw PlatformPartnerScheduleAlreadyExistsException(httpBodyDecoded)
@@ -1195,6 +1218,7 @@ public class PlatformClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformArchivedPartnersCannotBeScheduledError -> throw PlatformArchivedPartnersCannotBeScheduledException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnersCannotBeScheduledError -> throw PlatformMemberCompanyConnectedPartnersCannotBeScheduledException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerSchedulesAlreadyExistError -> throw PlatformPartnerSchedulesAlreadyExistException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
@@ -1464,6 +1488,123 @@ public class PlatformClient(
     id: String,
   ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id) }
 
+
+  /**
+   * 플랫폼 설정 조회
+   *
+   * 설정 정보를 조회합니다.
+   *
+   *
+   *
+   * @throws GetPlatformSettingException
+   */
+  @JvmName("getPlatformSettingSuspend")
+  public suspend fun getPlatformSetting(
+  ): PlatformSetting {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("platform", "setting")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformSettingError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformSetting>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformSetting")
+  public fun getPlatformSettingFuture(
+  ): CompletableFuture<PlatformSetting> = GlobalScope.future { getPlatformSetting() }
+
+
+  /**
+   * 플랫폼 설정 업데이트
+   *
+   * 설정 정보를 업데이트합니다.
+   *
+   * @param defaultWithdrawalMemo
+   * 기본 보내는 이 통장 메모
+   * @param defaultDepositMemo
+   * 기본 받는 이 통장 메모
+   *
+   * @throws UpdatePlatformSettingException
+   */
+  @JvmName("updatePlatformSettingSuspend")
+  public suspend fun updatePlatformSetting(
+    defaultWithdrawalMemo: String? = null,
+    defaultDepositMemo: String? = null,
+  ): UpdatePlatformSettingResponse {
+    val requestBody = UpdatePlatformSettingBody(
+      defaultWithdrawalMemo = defaultWithdrawalMemo,
+      defaultDepositMemo = defaultDepositMemo,
+    )
+    val httpResponse = client.patch(apiBase) {
+      url {
+        appendPathSegments("platform", "setting")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<UpdatePlatformSettingError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<UpdatePlatformSettingResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("updatePlatformSetting")
+  public fun updatePlatformSettingFuture(
+    defaultWithdrawalMemo: String? = null,
+    defaultDepositMemo: String? = null,
+  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(defaultWithdrawalMemo, defaultDepositMemo) }
+
   public val policy: PolicyClient = PolicyClient(apiSecret, apiBase, storeId)
   public val partner: PartnerClient = PartnerClient(apiSecret, apiBase, storeId)
   public val transfer: TransferClient = TransferClient(apiSecret, apiBase, storeId)
@@ -1471,6 +1612,7 @@ public class PlatformClient(
   public val payout: PayoutClient = PayoutClient(apiSecret, apiBase, storeId)
   public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
   public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
+  public val company: CompanyClient = CompanyClient(apiSecret, apiBase, storeId)
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)
   override fun close() {
     policy.close()
@@ -1480,6 +1622,7 @@ public class PlatformClient(
     payout.close()
     bulkPayout.close()
     account.close()
+    company.close()
     accountTransfer.close()
     client.close()
   }

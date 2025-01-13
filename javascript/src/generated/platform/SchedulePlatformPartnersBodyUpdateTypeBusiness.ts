@@ -14,4 +14,6 @@ export type SchedulePlatformPartnersBodyUpdateTypeBusiness = {
 	businessType?: string
 	/** 업종 */
 	businessClass?: string
+	/** 사업자 조회 검증 아이디 */
+	companyVerificationId?: string
 }

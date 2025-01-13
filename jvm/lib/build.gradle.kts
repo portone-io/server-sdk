@@ -63,7 +63,7 @@ kotlin {
         progressiveMode = true
         allWarningsAsErrors = true
         freeCompilerArgs.addAll(
-            "-Xjdk-release=8",
+            "-Xjdk-release=1.8",
             "-Xjsr305=strict",
             "-opt-in=kotlinx.coroutines.DelicateCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",

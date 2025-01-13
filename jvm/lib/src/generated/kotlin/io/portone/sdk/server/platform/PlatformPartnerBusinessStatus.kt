@@ -13,7 +13,7 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformPartnerBusinessStatusSerializer::class)
 public sealed interface PlatformPartnerBusinessStatus {
   public val value: String
-  /** 인증 되지 않음 */
+  /** 조회 되지 않음 */
   @Serializable(NotVerifiedSerializer::class)
   public data object NotVerified : PlatformPartnerBusinessStatus {
     override val value: String = "NOT_VERIFIED"
@@ -29,21 +29,21 @@ public sealed interface PlatformPartnerBusinessStatus {
     }
     override fun serialize(encoder: Encoder, value: NotVerified) = encoder.encodeString(value.value)
   }
-  /** 인증 실패 */
-  @Serializable(VerifyFailedSerializer::class)
-  public data object VerifyFailed : PlatformPartnerBusinessStatus {
-    override val value: String = "VERIFY_FAILED"
+  /** 조회 오류 */
+  @Serializable(VerifyErrorSerializer::class)
+  public data object VerifyError : PlatformPartnerBusinessStatus {
+    override val value: String = "VERIFY_ERROR"
   }
-  private object VerifyFailedSerializer : KSerializer<VerifyFailed> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyFailed::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): VerifyFailed = decoder.decodeString().let {
-      if (it != "VERIFY_FAILED") {
+  private object VerifyErrorSerializer : KSerializer<VerifyError> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
+      if (it != "VERIFY_ERROR") {
         throw SerializationException(it)
       } else {
-        return VerifyFailed
+        return VerifyError
       }
     }
-    override fun serialize(encoder: Encoder, value: VerifyFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VerifyError) = encoder.encodeString(value.value)
   }
   /** 대응되는 사업자 없음 */
   @Serializable(NotFoundSerializer::class)
@@ -60,22 +60,6 @@ public sealed interface PlatformPartnerBusinessStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: NotFound) = encoder.encodeString(value.value)
-  }
-  /** 인증 대기 중 */
-  @Serializable(VerifyingSerializer::class)
-  public data object Verifying : PlatformPartnerBusinessStatus {
-    override val value: String = "VERIFYING"
-  }
-  private object VerifyingSerializer : KSerializer<Verifying> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verifying::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): Verifying = decoder.decodeString().let {
-      if (it != "VERIFYING") {
-        throw SerializationException(it)
-      } else {
-        return Verifying
-      }
-    }
-    override fun serialize(encoder: Encoder, value: Verifying) = encoder.encodeString(value.value)
   }
   /** 사업 중 */
   @Serializable(InBusinessSerializer::class)
@@ -137,9 +121,8 @@ private object PlatformPartnerBusinessStatusSerializer : KSerializer<PlatformPar
     val value = decoder.decodeString()
     return when (value) {
       "NOT_VERIFIED" -> PlatformPartnerBusinessStatus.NotVerified
-      "VERIFY_FAILED" -> PlatformPartnerBusinessStatus.VerifyFailed
+      "VERIFY_ERROR" -> PlatformPartnerBusinessStatus.VerifyError
       "NOT_FOUND" -> PlatformPartnerBusinessStatus.NotFound
-      "VERIFYING" -> PlatformPartnerBusinessStatus.Verifying
       "IN_BUSINESS" -> PlatformPartnerBusinessStatus.InBusiness
       "CLOSED" -> PlatformPartnerBusinessStatus.Closed
       "SUSPENDED" -> PlatformPartnerBusinessStatus.Suspended

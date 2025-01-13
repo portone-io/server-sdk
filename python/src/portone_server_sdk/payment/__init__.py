@@ -8,6 +8,9 @@ from .._generated.payment.errors.close_virtual_account_error import (
 from .._generated.payment.errors.confirm_escrow_error import ConfirmEscrowError
 from .._generated.payment.errors.get_all_payments_error import GetAllPaymentsError
 from .._generated.payment.errors.get_payment_error import GetPaymentError
+from .._generated.payment.errors.get_payment_transactions_error import (
+    GetPaymentTransactionsError,
+)
 from .._generated.payment.errors.get_payments_error import GetPaymentsError
 from .._generated.payment.errors.modify_escrow_logistics_error import (
     ModifyEscrowLogisticsError,
@@ -45,6 +48,9 @@ from .._generated.payment.cancelled_payment_cash_receipt import (
     CancelledPaymentCashReceipt,
 )
 from .._generated.payment.cancelled_payment_escrow import CancelledPaymentEscrow
+from .._generated.payment.cancelled_payment_transaction import (
+    CancelledPaymentTransaction,
+)
 from .._generated.payment.close_virtual_account_response import (
     CloseVirtualAccountResponse,
 )
@@ -54,11 +60,15 @@ from .._generated.payment.confirmed_payment_escrow import ConfirmedPaymentEscrow
 from .._generated.payment.delivered_payment_escrow import DeliveredPaymentEscrow
 from .._generated.payment.failed_payment import FailedPayment
 from .._generated.payment.failed_payment_cancellation import FailedPaymentCancellation
+from .._generated.payment.failed_payment_transaction import FailedPaymentTransaction
 from .._generated.payment.get_all_payments_by_cursor_body import (
     GetAllPaymentsByCursorBody,
 )
 from .._generated.payment.get_all_payments_by_cursor_response import (
     GetAllPaymentsByCursorResponse,
+)
+from .._generated.payment.get_payment_transactions_response import (
+    GetPaymentTransactionsResponse,
 )
 from .._generated.payment.get_payments_body import GetPaymentsBody
 from .._generated.payment.get_payments_response import GetPaymentsResponse
@@ -92,9 +102,16 @@ from .._generated.payment.modify_escrow_logistics_response import (
     ModifyEscrowLogisticsResponse,
 )
 from .._generated.payment.paid_payment import PaidPayment
+from .._generated.payment.paid_payment_transaction import PaidPaymentTransaction
 from .._generated.payment.partial_cancelled_payment import PartialCancelledPayment
+from .._generated.payment.partial_cancelled_payment_transaction import (
+    PartialCancelledPaymentTransaction,
+)
 from .._generated.payment.pay_instantly_response import PayInstantlyResponse
 from .._generated.payment.pay_pending_payment import PayPendingPayment
+from .._generated.payment.pay_pending_payment_transaction import (
+    PayPendingPaymentTransaction,
+)
 from .._generated.payment.pay_with_billing_key_response import PayWithBillingKeyResponse
 from .._generated.payment.payment import Payment
 from .._generated.payment.payment_amount import PaymentAmount
@@ -145,6 +162,7 @@ from .._generated.payment.payment_status import PaymentStatus
 from .._generated.payment.payment_text_search import PaymentTextSearch
 from .._generated.payment.payment_text_search_field import PaymentTextSearchField
 from .._generated.payment.payment_timestamp_type import PaymentTimestampType
+from .._generated.payment.payment_transaction import PaymentTransaction
 from .._generated.payment.payment_webhook import PaymentWebhook
 from .._generated.payment.payment_webhook_payment_status import (
     PaymentWebhookPaymentStatus,
@@ -158,7 +176,11 @@ from .._generated.payment.pre_register_payment_body import PreRegisterPaymentBod
 from .._generated.payment.pre_register_payment_response import (
     PreRegisterPaymentResponse,
 )
+from .._generated.payment.promotion_discount_retain_option import (
+    PromotionDiscountRetainOption,
+)
 from .._generated.payment.ready_payment import ReadyPayment
+from .._generated.payment.ready_payment_transaction import ReadyPaymentTransaction
 from .._generated.payment.register_escrow_logistics_body import (
     RegisterEscrowLogisticsBody,
 )
@@ -182,8 +204,12 @@ from .._generated.payment.resend_webhook_response import ResendWebhookResponse
 from .._generated.payment.succeeded_payment_cancellation import (
     SucceededPaymentCancellation,
 )
+from .._generated.payment.trigger import Trigger
 from .._generated.payment.virtual_account_issued_payment import (
     VirtualAccountIssuedPayment,
+)
+from .._generated.payment.virtual_account_issued_payment_transaction import (
+    VirtualAccountIssuedPaymentTransaction,
 )
 from .._generated.payment.client import PaymentClient
 
@@ -194,6 +220,7 @@ __all__ = [
     "ConfirmEscrowError",
     "GetAllPaymentsError",
     "GetPaymentError",
+    "GetPaymentTransactionsError",
     "GetPaymentsError",
     "ModifyEscrowLogisticsError",
     "PayInstantlyError",
@@ -215,6 +242,7 @@ __all__ = [
     "CancelledPayment",
     "CancelledPaymentCashReceipt",
     "CancelledPaymentEscrow",
+    "CancelledPaymentTransaction",
     "CloseVirtualAccountResponse",
     "ConfirmEscrowBody",
     "ConfirmEscrowResponse",
@@ -222,8 +250,10 @@ __all__ = [
     "DeliveredPaymentEscrow",
     "FailedPayment",
     "FailedPaymentCancellation",
+    "FailedPaymentTransaction",
     "GetAllPaymentsByCursorBody",
     "GetAllPaymentsByCursorResponse",
+    "GetPaymentTransactionsResponse",
     "GetPaymentsBody",
     "GetPaymentsResponse",
     "InstantPaymentInput",
@@ -240,9 +270,12 @@ __all__ = [
     "ModifyEscrowLogisticsBody",
     "ModifyEscrowLogisticsResponse",
     "PaidPayment",
+    "PaidPaymentTransaction",
     "PartialCancelledPayment",
+    "PartialCancelledPaymentTransaction",
     "PayInstantlyResponse",
     "PayPendingPayment",
+    "PayPendingPaymentTransaction",
     "PayWithBillingKeyResponse",
     "Payment",
     "PaymentAmount",
@@ -275,6 +308,7 @@ __all__ = [
     "PaymentTextSearch",
     "PaymentTextSearchField",
     "PaymentTimestampType",
+    "PaymentTransaction",
     "PaymentWebhook",
     "PaymentWebhookPaymentStatus",
     "PaymentWebhookRequest",
@@ -284,7 +318,9 @@ __all__ = [
     "PaymentWithCursor",
     "PreRegisterPaymentBody",
     "PreRegisterPaymentResponse",
+    "PromotionDiscountRetainOption",
     "ReadyPayment",
+    "ReadyPaymentTransaction",
     "RegisterEscrowLogisticsBody",
     "RegisterStoreReceiptBody",
     "RegisterStoreReceiptBodyItem",
@@ -296,6 +332,8 @@ __all__ = [
     "ResendWebhookBody",
     "ResendWebhookResponse",
     "SucceededPaymentCancellation",
+    "Trigger",
     "VirtualAccountIssuedPayment",
+    "VirtualAccountIssuedPaymentTransaction",
     "PaymentClient",
 ]

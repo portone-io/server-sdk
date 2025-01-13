@@ -20,6 +20,8 @@ public data class SchedulePlatformPartnersBodyUpdateTypeBusiness(
   val businessType: String? = null,
   /** 업종 */
   val businessClass: String? = null,
+  /** 사업자 조회 검증 아이디 */
+  val companyVerificationId: String? = null,
 )
 
 

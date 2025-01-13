@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, PaymentAlreadyCancelledError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionPayMethodDoesNotMatchError, RemainedAmountLessThanPromotionMinPaymentAmountError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
+from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
 from ..payment.already_paid_error import _deserialize_already_paid_error
 from ..common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
 from ..common.billing_key_not_found_error import _deserialize_billing_key_not_found_error
@@ -18,14 +18,15 @@ from ..common.forbidden_error import _deserialize_forbidden_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
 from ..common.max_transaction_count_reached_error import _deserialize_max_transaction_count_reached_error
 from ..payment.max_webhook_retry_count_reached_error import _deserialize_max_webhook_retry_count_reached_error
+from ..payment.negative_promotion_adjusted_cancel_amount_error import _deserialize_negative_promotion_adjusted_cancel_amount_error
 from ..payment.payment_already_cancelled_error import _deserialize_payment_already_cancelled_error
 from ..payment.payment_not_found_error import _deserialize_payment_not_found_error
 from ..payment.payment_not_paid_error import _deserialize_payment_not_paid_error
 from ..payment.payment_not_waiting_for_deposit_error import _deserialize_payment_not_waiting_for_deposit_error
 from ..common.payment_schedule_already_exists_error import _deserialize_payment_schedule_already_exists_error
 from ..common.pg_provider_error import _deserialize_pg_provider_error
+from ..payment.promotion_discount_retain_option_should_not_be_changed_error import _deserialize_promotion_discount_retain_option_should_not_be_changed_error
 from ..payment.promotion_pay_method_does_not_match_error import _deserialize_promotion_pay_method_does_not_match_error
-from ..payment.remained_amount_less_than_promotion_min_payment_amount_error import _deserialize_remained_amount_less_than_promotion_min_payment_amount_error
 from ..payment.sum_of_parts_exceeds_cancel_amount_error import _deserialize_sum_of_parts_exceeds_cancel_amount_error
 from ..common.sum_of_parts_exceeds_total_amount_error import _deserialize_sum_of_parts_exceeds_total_amount_error
 from ..common.unauthorized_error import _deserialize_unauthorized_error
@@ -41,6 +42,7 @@ from ..common.country import Country, _deserialize_country, _serialize_country
 from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 from ..common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
 from ..payment.get_all_payments_by_cursor_response import GetAllPaymentsByCursorResponse, _deserialize_get_all_payments_by_cursor_response, _serialize_get_all_payments_by_cursor_response
+from ..payment.get_payment_transactions_response import GetPaymentTransactionsResponse, _deserialize_get_payment_transactions_response, _serialize_get_payment_transactions_response
 from ..payment.get_payments_response import GetPaymentsResponse, _deserialize_get_payments_response, _serialize_get_payments_response
 from ..payment.instant_payment_method_input import InstantPaymentMethodInput, _deserialize_instant_payment_method_input, _serialize_instant_payment_method_input
 from ..payment.modify_escrow_logistics_response import ModifyEscrowLogisticsResponse, _deserialize_modify_escrow_logistics_response, _serialize_modify_escrow_logistics_response
@@ -56,6 +58,7 @@ from ..payment.payment_logistics import PaymentLogistics, _deserialize_payment_l
 from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from ..common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
 from ..payment.pre_register_payment_response import PreRegisterPaymentResponse, _deserialize_pre_register_payment_response, _serialize_pre_register_payment_response
+from ..payment.promotion_discount_retain_option import PromotionDiscountRetainOption, _deserialize_promotion_discount_retain_option, _serialize_promotion_discount_retain_option
 from ..payment.register_store_receipt_body_item import RegisterStoreReceiptBodyItem, _deserialize_register_store_receipt_body_item, _serialize_register_store_receipt_body_item
 from ..payment.register_store_receipt_response import RegisterStoreReceiptResponse, _deserialize_register_store_receipt_response, _serialize_register_store_receipt_response
 from ..payment.resend_webhook_response import ResendWebhookResponse, _deserialize_resend_webhook_response, _serialize_resend_webhook_response
@@ -351,6 +354,122 @@ class PaymentClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_payment(response.json())
+    def get_payment_transactions(
+        self,
+        *,
+        payment_id: str,
+    ) -> GetPaymentTransactionsResponse:
+        """결제 시도 내역 조회
+
+        주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
+
+        Args:
+            payment_id (str):
+                조회할 결제 아이디
+
+
+        Raises:
+            GetPaymentTransactionsError
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/transactions",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_payment_transactions_response(response.json())
+    async def get_payment_transactions_async(
+        self,
+        *,
+        payment_id: str,
+    ) -> GetPaymentTransactionsResponse:
+        """결제 시도 내역 조회
+
+        주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
+
+        Args:
+            payment_id (str):
+                조회할 결제 아이디
+
+
+        Raises:
+            GetPaymentTransactionsError
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/transactions",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_payment_transactions_response(response.json())
     def get_payments(
         self,
         *,
@@ -644,6 +763,7 @@ class PaymentClient:
         vat_amount: Optional[int] = None,
         reason: str,
         requester: Optional[CancelRequester] = None,
+        promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
     ) -> CancelPaymentResponse:
@@ -672,6 +792,13 @@ class PaymentClient:
                 취소 요청자
 
                 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
+            promotion_discount_retain_option (PromotionDiscountRetainOption, optional):
+                프로모션 할인율 유지 옵션
+
+                프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+                RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+                RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+                값을 입력하지 않으면 RELEASE 로 취급합니다.
             current_cancellable_amount (int, optional):
                 결제 건의 취소 가능 잔액
 
@@ -697,6 +824,8 @@ class PaymentClient:
         request_body["reason"] = reason
         if requester is not None:
             request_body["requester"] = _serialize_cancel_requester(requester)
+        if promotion_discount_retain_option is not None:
+            request_body["promotionDiscountRetainOption"] = _serialize_promotion_discount_retain_option(promotion_discount_retain_option)
         if current_cancellable_amount is not None:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
@@ -752,6 +881,12 @@ class PaymentClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise NegativePromotionAdjustedCancelAmountError(error)
+            try:
                 error = _deserialize_payment_already_cancelled_error(error_response)
             except Exception:
                 pass
@@ -776,11 +911,11 @@ class PaymentClient:
             if error is not None:
                 raise PgProviderError(error)
             try:
-                error = _deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response)
+                error = _deserialize_promotion_discount_retain_option_should_not_be_changed_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise RemainedAmountLessThanPromotionMinPaymentAmountError(error)
+                raise PromotionDiscountRetainOptionShouldNotBeChangedError(error)
             try:
                 error = _deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response)
             except Exception:
@@ -804,6 +939,7 @@ class PaymentClient:
         vat_amount: Optional[int] = None,
         reason: str,
         requester: Optional[CancelRequester] = None,
+        promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
     ) -> CancelPaymentResponse:
@@ -832,6 +968,13 @@ class PaymentClient:
                 취소 요청자
 
                 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
+            promotion_discount_retain_option (PromotionDiscountRetainOption, optional):
+                프로모션 할인율 유지 옵션
+
+                프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+                RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+                RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+                값을 입력하지 않으면 RELEASE 로 취급합니다.
             current_cancellable_amount (int, optional):
                 결제 건의 취소 가능 잔액
 
@@ -857,6 +1000,8 @@ class PaymentClient:
         request_body["reason"] = reason
         if requester is not None:
             request_body["requester"] = _serialize_cancel_requester(requester)
+        if promotion_discount_retain_option is not None:
+            request_body["promotionDiscountRetainOption"] = _serialize_promotion_discount_retain_option(promotion_discount_retain_option)
         if current_cancellable_amount is not None:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
@@ -912,6 +1057,12 @@ class PaymentClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise NegativePromotionAdjustedCancelAmountError(error)
+            try:
                 error = _deserialize_payment_already_cancelled_error(error_response)
             except Exception:
                 pass
@@ -936,11 +1087,11 @@ class PaymentClient:
             if error is not None:
                 raise PgProviderError(error)
             try:
-                error = _deserialize_remained_amount_less_than_promotion_min_payment_amount_error(error_response)
+                error = _deserialize_promotion_discount_retain_option_should_not_be_changed_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise RemainedAmountLessThanPromotionMinPaymentAmountError(error)
+                raise PromotionDiscountRetainOptionShouldNotBeChangedError(error)
             try:
                 error = _deserialize_sum_of_parts_exceeds_cancel_amount_error(error_response)
             except Exception:

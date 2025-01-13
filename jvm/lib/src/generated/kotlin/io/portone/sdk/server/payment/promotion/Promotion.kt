@@ -2,7 +2,8 @@ package io.portone.sdk.server.payment.promotion
 
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.payment.promotion.PromotionCardCompany
-import io.portone.sdk.server.payment.promotion.PromotionDiscount
+import io.portone.sdk.server.payment.promotion.PromotionDiscountPolicy
+import io.portone.sdk.server.payment.promotion.PromotionRecoverOption
 import io.portone.sdk.server.payment.promotion.PromotionStatus
 import java.time.Instant
 import kotlin.String
@@ -27,12 +28,10 @@ public sealed interface Promotion {
     public val storeId: String
     /** 프로모션 이름 */
     public val name: String
-    /** 할인 유형 */
-    public val discountType: PromotionDiscount
+    /** 할인 정책 */
+    public val discountPolicy: PromotionDiscountPolicy
     /** 총 예산 */
     public val totalBudget: Long
-    /** 최소 결제 금액 */
-    public val minPaymentAmount: Long?
     /** 최대 할인 금액 */
     public val maxDiscountAmount: Long?
     /** 소진 금액 */
@@ -51,6 +50,8 @@ public sealed interface Promotion {
     public val status: PromotionStatus
     /** 프로모션 생성 시각 */
     public val createdAt: Instant
+    /** 결제 취소 시 프로모션 예산 복구 옵션 */
+    public val recoverOption: PromotionRecoverOption
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

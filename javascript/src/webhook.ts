@@ -1,4 +1,4 @@
-export type * from "./generated/webhook";
+export * from "./generated/webhook";
 import { PortOneError } from "./PortOneError";
 import type { Webhook } from "./generated/webhook";
 import { timingSafeEqual } from "./utils/timingSafeEqual";
@@ -131,7 +131,7 @@ function findHeaderValue(headers: unknown, name: string): string | undefined {
  * @param payload 웹훅 페이로드
  * @param headers 웹훅 요청 시 포함된 헤더
  * @returns 검증 후 디코딩된 웹훅 페이로드를 반환하는 Promise
- * @throws {@link InvalidInputError} 입력받은 시크릿이 유효하지 않을 때 발생합니다.
+ * @throws {@link InvalidInputError} 웹훅 시크릿 혹은 본문이 유효하지 않은 형식일 때 발생합니다.
  * @throws {@link WebhookVerificationError} 웹훅 검증에 실패했을 때 발생합니다.
  */
 export async function verify(
@@ -141,6 +141,11 @@ export async function verify(
 		| WebhookUnbrandedRequiredHeaders
 		| Record<string, string | string[] | undefined>,
 ): Promise<Webhook> {
+	if (typeof payload !== "string")
+		throw new InvalidInputError(
+			"`payload` 파라미터의 타입이 string이 아닙니다.",
+		);
+
 	const msgId = findHeaderValue(headers, "webhook-id");
 	const msgSignature = findHeaderValue(headers, "webhook-signature");
 	const msgTimestamp = findHeaderValue(headers, "webhook-timestamp");

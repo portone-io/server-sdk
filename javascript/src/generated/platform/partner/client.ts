@@ -17,10 +17,13 @@ import type { PlatformAccountVerificationFailedError } from "../../../generated/
 import type { PlatformAccountVerificationNotFoundError } from "../../../generated/platform/PlatformAccountVerificationNotFoundError"
 import type { PlatformArchivedPartnerError } from "../../../generated/platform/PlatformArchivedPartnerError"
 import type { PlatformCannotArchiveScheduledPartnerError } from "../../../generated/platform/partner/PlatformCannotArchiveScheduledPartnerError"
+import type { PlatformCompanyVerificationAlreadyUsedError } from "../../../generated/platform/PlatformCompanyVerificationAlreadyUsedError"
 import type { PlatformContractNotFoundError } from "../../../generated/platform/PlatformContractNotFoundError"
 import type { PlatformContractsNotFoundError } from "../../../generated/platform/partner/PlatformContractsNotFoundError"
 import type { PlatformCurrencyNotSupportedError } from "../../../generated/platform/PlatformCurrencyNotSupportedError"
 import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
+import type { PlatformMemberCompanyConnectedPartnerBrnUnchangeableError } from "../../../generated/platform/PlatformMemberCompanyConnectedPartnerBrnUnchangeableError"
+import type { PlatformMemberCompanyConnectedPartnerTypeUnchangeableError } from "../../../generated/platform/PlatformMemberCompanyConnectedPartnerTypeUnchangeableError"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPartner } from "../../../generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "../../../generated/platform/PlatformPartnerFilterInput"
@@ -432,9 +435,9 @@ export class GetPlatformPartnersError extends PartnerError {
 	}
 }
 export class CreatePlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformPartnerError.prototype)
 		this.name = "CreatePlatformPartnerError"
@@ -450,9 +453,9 @@ export class GetPlatformPartnerError extends PartnerError {
 	}
 }
 export class UpdatePlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformMemberCompanyConnectedPartnerBrnUnchangeableError | PlatformMemberCompanyConnectedPartnerTypeUnchangeableError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformMemberCompanyConnectedPartnerBrnUnchangeableError | PlatformMemberCompanyConnectedPartnerTypeUnchangeableError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, UpdatePlatformPartnerError.prototype)
 		this.name = "UpdatePlatformPartnerError"

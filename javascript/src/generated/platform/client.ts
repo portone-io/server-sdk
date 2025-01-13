@@ -8,6 +8,7 @@ import { PartnerSettlementClient } from "./partnerSettlement/client"
 import { PayoutClient } from "./payout/client"
 import { BulkPayoutClient } from "./bulkPayout/client"
 import { AccountClient } from "./account/client"
+import { CompanyClient } from "./company/client"
 import { AccountTransferClient } from "./accountTransfer/client"
 import type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "../../generated/platform/CancelPlatformAdditionalFeePolicyScheduleResponse"
 import type { CancelPlatformContractScheduleResponse } from "../../generated/platform/CancelPlatformContractScheduleResponse"
@@ -27,6 +28,7 @@ import type { PlatformArchivedContractError } from "../../generated/platform/Pla
 import type { PlatformArchivedDiscountSharePolicyError } from "../../generated/platform/PlatformArchivedDiscountSharePolicyError"
 import type { PlatformArchivedPartnerError } from "../../generated/platform/PlatformArchivedPartnerError"
 import type { PlatformArchivedPartnersCannotBeScheduledError } from "../../generated/platform/PlatformArchivedPartnersCannotBeScheduledError"
+import type { PlatformCompanyVerificationAlreadyUsedError } from "../../generated/platform/PlatformCompanyVerificationAlreadyUsedError"
 import type { PlatformContract } from "../../generated/platform/PlatformContract"
 import type { PlatformContractNotFoundError } from "../../generated/platform/PlatformContractNotFoundError"
 import type { PlatformContractScheduleAlreadyExistsError } from "../../generated/platform/PlatformContractScheduleAlreadyExistsError"
@@ -36,6 +38,10 @@ import type { PlatformDiscountSharePolicyNotFoundError } from "../../generated/p
 import type { PlatformDiscountSharePolicyScheduleAlreadyExistsError } from "../../generated/platform/PlatformDiscountSharePolicyScheduleAlreadyExistsError"
 import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
 import type { PlatformInvalidSettlementFormulaError } from "../../generated/platform/PlatformInvalidSettlementFormulaError"
+import type { PlatformMemberCompanyConnectedPartnerBrnUnchangeableError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerBrnUnchangeableError"
+import type { PlatformMemberCompanyConnectedPartnerCannotBeScheduledError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerCannotBeScheduledError"
+import type { PlatformMemberCompanyConnectedPartnerTypeUnchangeableError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerTypeUnchangeableError"
+import type { PlatformMemberCompanyConnectedPartnersCannotBeScheduledError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnersCannotBeScheduledError"
 import type { PlatformNotEnabledError } from "../../generated/platform/PlatformNotEnabledError"
 import type { PlatformPartner } from "../../generated/platform/PlatformPartner"
 import type { PlatformPartnerFilterInput } from "../../generated/platform/PlatformPartnerFilterInput"
@@ -44,6 +50,7 @@ import type { PlatformPartnerNotFoundError } from "../../generated/platform/Plat
 import type { PlatformPartnerScheduleAlreadyExistsError } from "../../generated/platform/PlatformPartnerScheduleAlreadyExistsError"
 import type { PlatformPartnerSchedulesAlreadyExistError } from "../../generated/platform/PlatformPartnerSchedulesAlreadyExistError"
 import type { PlatformRoundType } from "../../generated/platform/PlatformRoundType"
+import type { PlatformSetting } from "../../generated/platform/PlatformSetting"
 import type { PlatformUserDefinedPropertyNotFoundError } from "../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { ReschedulePlatformAdditionalFeePolicyResponse } from "../../generated/platform/ReschedulePlatformAdditionalFeePolicyResponse"
 import type { ReschedulePlatformContractResponse } from "../../generated/platform/ReschedulePlatformContractResponse"
@@ -63,6 +70,7 @@ import type { UpdatePlatformContractBody } from "../../generated/platform/Update
 import type { UpdatePlatformDiscountSharePolicyBody } from "../../generated/platform/UpdatePlatformDiscountSharePolicyBody"
 import type { UpdatePlatformPartnerBody } from "../../generated/platform/UpdatePlatformPartnerBody"
 import type { UpdatePlatformResponse } from "../../generated/platform/UpdatePlatformResponse"
+import type { UpdatePlatformSettingResponse } from "../../generated/platform/UpdatePlatformSettingResponse"
 export function PlatformClient(init: PortOneClientInit): PlatformClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -642,6 +650,53 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			}
 			return response.json()
 		},
+		getPlatformSetting: async (
+			options?: {
+			}
+		): Promise<PlatformSetting> => {
+			const response = await fetch(
+				new URL("/platform/setting", baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformSettingError(await response.json())
+			}
+			return response.json()
+		},
+		updatePlatformSetting: async (
+			options?: {
+				defaultWithdrawalMemo?: string,
+				defaultDepositMemo?: string,
+			}
+		): Promise<UpdatePlatformSettingResponse> => {
+			const defaultWithdrawalMemo = options?.defaultWithdrawalMemo
+			const defaultDepositMemo = options?.defaultDepositMemo
+			const requestBody = JSON.stringify({
+				defaultWithdrawalMemo,
+				defaultDepositMemo,
+			})
+			const response = await fetch(
+				new URL("/platform/setting", baseUrl),
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new UpdatePlatformSettingError(await response.json())
+			}
+			return response.json()
+		},
 		policy: PolicyClient(init),
 		partner: PartnerClient(init),
 		transfer: TransferClient(init),
@@ -649,6 +704,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 		payout: PayoutClient(init),
 		bulkPayout: BulkPayoutClient(init),
 		account: AccountClient(init),
+		company: CompanyClient(init),
 		accountTransfer: AccountTransferClient(init),
 	}
 }
@@ -946,6 +1002,32 @@ export type PlatformClient = {
 			id: string,
 		}
 	) => Promise<CancelPlatformContractScheduleResponse>
+	/**
+	 * 플랫폼 설정 조회
+	 *
+	 * 설정 정보를 조회합니다.
+	 *
+	 * @throws {@link GetPlatformSettingError}
+	 */
+	getPlatformSetting: (
+		options?: {
+		}
+	) => Promise<PlatformSetting>
+	/**
+	 * 플랫폼 설정 업데이트
+	 *
+	 * 설정 정보를 업데이트합니다.
+	 *
+	 * @throws {@link UpdatePlatformSettingError}
+	 */
+	updatePlatformSetting: (
+		options?: {
+			/** 기본 보내는 이 통장 메모 */
+			defaultWithdrawalMemo?: string,
+			/** 기본 받는 이 통장 메모 */
+			defaultDepositMemo?: string,
+		}
+	) => Promise<UpdatePlatformSettingResponse>
 	policy: PolicyClient
 	partner: PartnerClient
 	transfer: TransferClient
@@ -953,6 +1035,7 @@ export type PlatformClient = {
 	payout: PayoutClient
 	bulkPayout: BulkPayoutClient
 	account: AccountClient
+	company: CompanyClient
 	accountTransfer: AccountTransferClient
 }
 export class GetPlatformError extends PlatformError {
@@ -1073,18 +1156,18 @@ export class GetPlatformPartnerScheduleError extends PlatformError {
 	}
 }
 export class ReschedulePartnerError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnerCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnerCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, ReschedulePartnerError.prototype)
 		this.name = "ReschedulePartnerError"
 	}
 }
 export class SchedulePartnerError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformMemberCompanyConnectedPartnerBrnUnchangeableError | PlatformMemberCompanyConnectedPartnerCannotBeScheduledError | PlatformMemberCompanyConnectedPartnerTypeUnchangeableError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformInsufficientDataToChangePartnerTypeError | PlatformMemberCompanyConnectedPartnerBrnUnchangeableError | PlatformMemberCompanyConnectedPartnerCannotBeScheduledError | PlatformMemberCompanyConnectedPartnerTypeUnchangeableError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, SchedulePartnerError.prototype)
 		this.name = "SchedulePartnerError"
@@ -1100,9 +1183,9 @@ export class CancelPlatformPartnerScheduleError extends PlatformError {
 	}
 }
 export class SchedulePlatformPartnersError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, SchedulePlatformPartnersError.prototype)
 		this.name = "SchedulePlatformPartnersError"
@@ -1142,5 +1225,23 @@ export class CancelPlatformContractScheduleError extends PlatformError {
 		super(data)
 		Object.setPrototypeOf(this, CancelPlatformContractScheduleError.prototype)
 		this.name = "CancelPlatformContractScheduleError"
+	}
+}
+export class GetPlatformSettingError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformSettingError.prototype)
+		this.name = "GetPlatformSettingError"
+	}
+}
+export class UpdatePlatformSettingError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformSettingError.prototype)
+		this.name = "UpdatePlatformSettingError"
 	}
 }

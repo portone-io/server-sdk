@@ -1,3 +1,4 @@
+import type { Trigger } from "./../payment/Trigger"
 /** 취소 요청 상태 */
 export type RequestedPaymentCancellation = {
 	/** 결제 취소 내역 상태 */
@@ -38,4 +39,6 @@ export type RequestedPaymentCancellation = {
 	 * (RFC 3339 date-time)
 	 */
 	requestedAt: string
+	/** 취소 요청 경로 */
+	trigger?: Trigger
 }

@@ -28,7 +28,7 @@ public data class VirtualAccountIssuedPayment(
    *
    * V1 결제 건의 경우 imp_uid에 해당합니다.
    */
-  val transactionId: String,
+  override val transactionId: String,
   /** 고객사 아이디 */
   override val merchantId: String,
   /** 상점 아이디 */

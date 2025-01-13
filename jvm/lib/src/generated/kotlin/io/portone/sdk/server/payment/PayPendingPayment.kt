@@ -23,6 +23,12 @@ import kotlinx.serialization.Serializable
 public data class PayPendingPayment(
   /** 결제 건 아이디 */
   override val id: String,
+  /**
+   * 결제 건 포트원 채번 아이디
+   *
+   * V1 결제 건의 경우 imp_uid에 해당합니다.
+   */
+  override val transactionId: String,
   /** 고객사 아이디 */
   override val merchantId: String,
   /** 상점 아이디 */

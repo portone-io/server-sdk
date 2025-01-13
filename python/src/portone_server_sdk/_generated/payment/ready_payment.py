@@ -16,7 +16,7 @@ from ..common.selected_channel import SelectedChannel, _deserialize_selected_cha
 
 @dataclass
 class ReadyPayment:
-    """준비 상태의 결제 건
+    """준비 상태 건
     """
     """결제 건 상태
     """

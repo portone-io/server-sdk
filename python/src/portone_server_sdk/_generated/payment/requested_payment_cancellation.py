@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ..payment.trigger import Trigger, _deserialize_trigger, _serialize_trigger
 
 @dataclass
 class RequestedPaymentCancellation:
@@ -42,6 +43,9 @@ class RequestedPaymentCancellation:
     """취소 시점
     (RFC 3339 date-time)
     """
+    trigger: Optional[Trigger] = field(default=None)
+    """취소 요청 경로
+    """
 
 
 def _serialize_requested_payment_cancellation(obj: RequestedPaymentCancellation) -> Any:
@@ -61,6 +65,8 @@ def _serialize_requested_payment_cancellation(obj: RequestedPaymentCancellation)
         entity["easyPayDiscountAmount"] = obj.easy_pay_discount_amount
     if obj.cancelled_at is not None:
         entity["cancelledAt"] = obj.cancelled_at
+    if obj.trigger is not None:
+        entity["trigger"] = _serialize_trigger(obj.trigger)
     return entity
 
 
@@ -120,4 +126,9 @@ def _deserialize_requested_payment_cancellation(obj: Any) -> RequestedPaymentCan
             raise ValueError(f"{repr(cancelled_at)} is not str")
     else:
         cancelled_at = None
-    return RequestedPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at)
+    if "trigger" in obj:
+        trigger = obj["trigger"]
+        trigger = _deserialize_trigger(trigger)
+    else:
+        trigger = None
+    return RequestedPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, trigger)

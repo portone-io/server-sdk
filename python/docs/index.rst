@@ -25,6 +25,7 @@ portone_server_sdk
    PayoutClient
    PolicyClient
    TransferClient
+   CompanyClient
    auth
    common
    errors

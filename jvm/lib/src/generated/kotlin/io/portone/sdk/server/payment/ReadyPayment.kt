@@ -17,7 +17,7 @@ import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-/** 준비 상태의 결제 건 */
+/** 준비 상태 건 */
 @Serializable
 @SerialName("READY")
 public data class ReadyPayment(
@@ -28,7 +28,7 @@ public data class ReadyPayment(
    *
    * V1 결제 건의 경우 imp_uid에 해당합니다.
    */
-  val transactionId: String,
+  override val transactionId: String,
   /** 고객사 아이디 */
   override val merchantId: String,
   /** 상점 아이디 */

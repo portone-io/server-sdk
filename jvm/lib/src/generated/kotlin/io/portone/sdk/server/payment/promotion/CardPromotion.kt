@@ -2,7 +2,8 @@ package io.portone.sdk.server.payment.promotion
 
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.payment.promotion.PromotionCardCompany
-import io.portone.sdk.server.payment.promotion.PromotionDiscount
+import io.portone.sdk.server.payment.promotion.PromotionDiscountPolicy
+import io.portone.sdk.server.payment.promotion.PromotionRecoverOption
 import io.portone.sdk.server.payment.promotion.PromotionStatus
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -20,12 +21,10 @@ public data class CardPromotion(
   override val storeId: String,
   /** 프로모션 이름 */
   override val name: String,
-  /** 할인 유형 */
-  override val discountType: PromotionDiscount,
+  /** 할인 정책 */
+  override val discountPolicy: PromotionDiscountPolicy,
   /** 총 예산 */
   override val totalBudget: Long,
-  /** 최소 결제 금액 */
-  override val minPaymentAmount: Long? = null,
   /** 최대 할인 금액 */
   override val maxDiscountAmount: Long? = null,
   /** 소진 금액 */
@@ -44,6 +43,8 @@ public data class CardPromotion(
   override val status: PromotionStatus,
   /** 프로모션 생성 시각 */
   override val createdAt: @Serializable(InstantSerializer::class) Instant,
+  /** 결제 취소 시 프로모션 예산 복구 옵션 */
+  override val recoverOption: PromotionRecoverOption,
 ) : Promotion.Recognized
 
 

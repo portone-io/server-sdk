@@ -29,6 +29,9 @@ class CreatePlatformPartnerBodyTypeBusiness:
     business_class: Optional[str] = field(default=None)
     """업종
     """
+    company_verification_id: Optional[str] = field(default=None)
+    """사업자 조회 검증 아이디
+    """
 
 
 def _serialize_create_platform_partner_body_type_business(obj: CreatePlatformPartnerBodyTypeBusiness) -> Any:
@@ -46,6 +49,8 @@ def _serialize_create_platform_partner_body_type_business(obj: CreatePlatformPar
         entity["businessType"] = obj.business_type
     if obj.business_class is not None:
         entity["businessClass"] = obj.business_class
+    if obj.company_verification_id is not None:
+        entity["companyVerificationId"] = obj.company_verification_id
     return entity
 
 
@@ -90,4 +95,10 @@ def _deserialize_create_platform_partner_body_type_business(obj: Any) -> CreateP
             raise ValueError(f"{repr(business_class)} is not str")
     else:
         business_class = None
-    return CreatePlatformPartnerBodyTypeBusiness(company_name, business_registration_number, representative_name, taxation_type, company_address, business_type, business_class)
+    if "companyVerificationId" in obj:
+        company_verification_id = obj["companyVerificationId"]
+        if not isinstance(company_verification_id, str):
+            raise ValueError(f"{repr(company_verification_id)} is not str")
+    else:
+        company_verification_id = None
+    return CreatePlatformPartnerBodyTypeBusiness(company_name, business_registration_number, representative_name, taxation_type, company_address, business_type, business_class, company_verification_id)

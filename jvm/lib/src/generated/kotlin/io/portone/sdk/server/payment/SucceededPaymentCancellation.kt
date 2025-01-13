@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.payment.Trigger
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -30,6 +31,8 @@ public data class SucceededPaymentCancellation(
   override val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** 취소 영수증 URL */
   val receiptUrl: String? = null,
+  /** 취소 요청 경로 */
+  override val trigger: Trigger? = null,
 ) : PaymentCancellation.Recognized
 
 

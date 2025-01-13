@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformInvalidSettlementFormulaError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformInvalidSettlementFormulaError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerCannotBeScheduledError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ..common.forbidden_error import _deserialize_forbidden_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
 from ..platform.platform_account_verification_already_used_error import _deserialize_platform_account_verification_already_used_error
@@ -17,12 +17,17 @@ from ..platform.platform_archived_contract_error import _deserialize_platform_ar
 from ..platform.platform_archived_discount_share_policy_error import _deserialize_platform_archived_discount_share_policy_error
 from ..platform.platform_archived_partner_error import _deserialize_platform_archived_partner_error
 from ..platform.platform_archived_partners_cannot_be_scheduled_error import _deserialize_platform_archived_partners_cannot_be_scheduled_error
+from ..platform.platform_company_verification_already_used_error import _deserialize_platform_company_verification_already_used_error
 from ..platform.platform_contract_not_found_error import _deserialize_platform_contract_not_found_error
 from ..platform.platform_contract_schedule_already_exists_error import _deserialize_platform_contract_schedule_already_exists_error
 from ..platform.platform_discount_share_policy_not_found_error import _deserialize_platform_discount_share_policy_not_found_error
 from ..platform.platform_discount_share_policy_schedule_already_exists_error import _deserialize_platform_discount_share_policy_schedule_already_exists_error
 from ..platform.platform_insufficient_data_to_change_partner_type_error import _deserialize_platform_insufficient_data_to_change_partner_type_error
 from ..platform.platform_invalid_settlement_formula_error import _deserialize_platform_invalid_settlement_formula_error
+from ..platform.platform_member_company_connected_partner_brn_unchangeable_error import _deserialize_platform_member_company_connected_partner_brn_unchangeable_error
+from ..platform.platform_member_company_connected_partner_cannot_be_scheduled_error import _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error
+from ..platform.platform_member_company_connected_partner_type_unchangeable_error import _deserialize_platform_member_company_connected_partner_type_unchangeable_error
+from ..platform.platform_member_company_connected_partners_cannot_be_scheduled_error import _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error
 from ..platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
 from ..platform.platform_partner_not_found_error import _deserialize_platform_partner_not_found_error
 from ..platform.platform_partner_schedule_already_exists_error import _deserialize_platform_partner_schedule_already_exists_error
@@ -42,6 +47,7 @@ from ..platform.platform_partner import PlatformPartner, _deserialize_platform_p
 from ..platform.platform_partner_filter_input import PlatformPartnerFilterInput, _deserialize_platform_partner_filter_input, _serialize_platform_partner_filter_input
 from ..platform.platform_partner_filter_options import PlatformPartnerFilterOptions, _deserialize_platform_partner_filter_options, _serialize_platform_partner_filter_options
 from ..platform.platform_round_type import PlatformRoundType, _deserialize_platform_round_type, _serialize_platform_round_type
+from ..platform.platform_setting import PlatformSetting, _deserialize_platform_setting, _serialize_platform_setting
 from ..platform.reschedule_platform_additional_fee_policy_response import ReschedulePlatformAdditionalFeePolicyResponse, _deserialize_reschedule_platform_additional_fee_policy_response, _serialize_reschedule_platform_additional_fee_policy_response
 from ..platform.reschedule_platform_contract_response import ReschedulePlatformContractResponse, _deserialize_reschedule_platform_contract_response, _serialize_reschedule_platform_contract_response
 from ..platform.reschedule_platform_discount_share_policy_response import ReschedulePlatformDiscountSharePolicyResponse, _deserialize_reschedule_platform_discount_share_policy_response, _serialize_reschedule_platform_discount_share_policy_response
@@ -59,6 +65,7 @@ from ..platform.update_platform_contract_body import UpdatePlatformContractBody,
 from ..platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
 from ..platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
 from ..platform.update_platform_response import UpdatePlatformResponse, _deserialize_update_platform_response, _serialize_update_platform_response
+from ..platform.update_platform_setting_response import UpdatePlatformSettingResponse, _deserialize_update_platform_setting_response, _serialize_update_platform_setting_response
 from urllib.parse import quote
 from .policy.client import PolicyClient
 from .partner.client import PartnerClient
@@ -67,6 +74,7 @@ from .partner_settlement.client import PartnerSettlementClient
 from .payout.client import PayoutClient
 from .bulk_payout.client import BulkPayoutClient
 from .account.client import AccountClient
+from .company.client import CompanyClient
 from .account_transfer.client import AccountTransferClient
 class PlatformClient:
     _secret: str
@@ -80,6 +88,7 @@ class PlatformClient:
     payout: PayoutClient
     bulk_payout: BulkPayoutClient
     account: AccountClient
+    company: CompanyClient
     account_transfer: AccountTransferClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
@@ -95,6 +104,7 @@ class PlatformClient:
         self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.bulk_payout = BulkPayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account = AccountClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.company = CompanyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account_transfer = AccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
     def get_platform(
         self,
@@ -1823,6 +1833,12 @@ class PlatformClient:
             if error is not None:
                 raise PlatformContractNotFoundError(error)
             try:
+                error = _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -1898,6 +1914,12 @@ class PlatformClient:
                 pass
             if error is not None:
                 raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -1993,6 +2015,12 @@ class PlatformClient:
             if error is not None:
                 raise PlatformArchivedPartnerError(error)
             try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
                 pass
@@ -2004,6 +2032,24 @@ class PlatformClient:
                 pass
             if error is not None:
                 raise PlatformInsufficientDataToChangePartnerTypeError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_brn_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_type_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2111,6 +2157,12 @@ class PlatformClient:
             if error is not None:
                 raise PlatformArchivedPartnerError(error)
             try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
                 pass
@@ -2122,6 +2174,24 @@ class PlatformClient:
                 pass
             if error is not None:
                 raise PlatformInsufficientDataToChangePartnerTypeError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_brn_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_type_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2337,6 +2407,12 @@ class PlatformClient:
             if error is not None:
                 raise PlatformContractNotFoundError(error)
             try:
+                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -2424,6 +2500,12 @@ class PlatformClient:
                 pass
             if error is not None:
                 raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2994,3 +3076,231 @@ class PlatformClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_platform_contract_schedule_response(response.json())
+    def get_platform_setting(
+        self,
+    ) -> PlatformSetting:
+        """플랫폼 설정 조회
+
+        설정 정보를 조회합니다.
+
+        Raises:
+            GetPlatformSettingError
+        """
+        query = []
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/platform/setting",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_setting(response.json())
+    async def get_platform_setting_async(
+        self,
+    ) -> PlatformSetting:
+        """플랫폼 설정 조회
+
+        설정 정보를 조회합니다.
+
+        Raises:
+            GetPlatformSettingError
+        """
+        query = []
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/platform/setting",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_setting(response.json())
+    def update_platform_setting(
+        self,
+        *,
+        default_withdrawal_memo: Optional[str] = None,
+        default_deposit_memo: Optional[str] = None,
+    ) -> UpdatePlatformSettingResponse:
+        """플랫폼 설정 업데이트
+
+        설정 정보를 업데이트합니다.
+
+        Args:
+            default_withdrawal_memo (str, optional):
+                기본 보내는 이 통장 메모
+            default_deposit_memo (str, optional):
+                기본 받는 이 통장 메모
+
+
+        Raises:
+            UpdatePlatformSettingError
+        """
+        request_body = {}
+        if default_withdrawal_memo is not None:
+            request_body["defaultWithdrawalMemo"] = default_withdrawal_memo
+        if default_deposit_memo is not None:
+            request_body["defaultDepositMemo"] = default_deposit_memo
+        query = []
+        response = httpx.request(
+            "PATCH",
+            f"{self._base_url}/platform/setting",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_update_platform_setting_response(response.json())
+    async def update_platform_setting_async(
+        self,
+        *,
+        default_withdrawal_memo: Optional[str] = None,
+        default_deposit_memo: Optional[str] = None,
+    ) -> UpdatePlatformSettingResponse:
+        """플랫폼 설정 업데이트
+
+        설정 정보를 업데이트합니다.
+
+        Args:
+            default_withdrawal_memo (str, optional):
+                기본 보내는 이 통장 메모
+            default_deposit_memo (str, optional):
+                기본 받는 이 통장 메모
+
+
+        Raises:
+            UpdatePlatformSettingError
+        """
+        request_body = {}
+        if default_withdrawal_memo is not None:
+            request_body["defaultWithdrawalMemo"] = default_withdrawal_memo
+        if default_deposit_memo is not None:
+            request_body["defaultDepositMemo"] = default_deposit_memo
+        query = []
+        response = await self._client.request(
+            "PATCH",
+            f"{self._base_url}/platform/setting",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_update_platform_setting_response(response.json())

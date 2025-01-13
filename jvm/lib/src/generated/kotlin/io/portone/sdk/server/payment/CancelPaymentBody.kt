@@ -2,6 +2,7 @@ package io.portone.sdk.server.payment
 
 import io.portone.sdk.server.payment.CancelPaymentBodyRefundAccount
 import io.portone.sdk.server.payment.CancelRequester
+import io.portone.sdk.server.payment.PromotionDiscountRetainOption
 import kotlin.String
 import kotlinx.serialization.Serializable
 
@@ -40,6 +41,15 @@ internal data class CancelPaymentBody(
    * 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
    */
   val requester: CancelRequester? = null,
+  /**
+   * 프로모션 할인율 유지 옵션
+   *
+   * 프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+   * RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+   * RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+   * 값을 입력하지 않으면 RELEASE 로 취급합니다.
+   */
+  val promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
   /**
    * 결제 건의 취소 가능 잔액
    *

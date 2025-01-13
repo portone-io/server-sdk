@@ -15,6 +15,12 @@ export type PayPendingPayment = {
 	status: "PAY_PENDING"
 	/** 결제 건 아이디 */
 	id: string
+	/**
+	 * 결제 건 포트원 채번 아이디
+	 *
+	 * V1 결제 건의 경우 imp_uid에 해당합니다.
+	 */
+	transactionId: string
 	/** 고객사 아이디 */
 	merchantId: string
 	/** 상점 아이디 */

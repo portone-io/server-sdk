@@ -57,6 +57,8 @@ import io.portone.sdk.server.errors.GetAllPaymentsError
 import io.portone.sdk.server.errors.GetAllPaymentsException
 import io.portone.sdk.server.errors.GetPaymentError
 import io.portone.sdk.server.errors.GetPaymentException
+import io.portone.sdk.server.errors.GetPaymentTransactionsError
+import io.portone.sdk.server.errors.GetPaymentTransactionsException
 import io.portone.sdk.server.errors.GetPaymentsError
 import io.portone.sdk.server.errors.GetPaymentsException
 import io.portone.sdk.server.errors.InvalidRequestError
@@ -67,6 +69,8 @@ import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedError
 import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedException
 import io.portone.sdk.server.errors.ModifyEscrowLogisticsError
 import io.portone.sdk.server.errors.ModifyEscrowLogisticsException
+import io.portone.sdk.server.errors.NegativePromotionAdjustedCancelAmountError
+import io.portone.sdk.server.errors.NegativePromotionAdjustedCancelAmountException
 import io.portone.sdk.server.errors.PayInstantlyError
 import io.portone.sdk.server.errors.PayInstantlyException
 import io.portone.sdk.server.errors.PayWithBillingKeyError
@@ -85,12 +89,12 @@ import io.portone.sdk.server.errors.PgProviderError
 import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.PreRegisterPaymentError
 import io.portone.sdk.server.errors.PreRegisterPaymentException
+import io.portone.sdk.server.errors.PromotionDiscountRetainOptionShouldNotBeChangedError
+import io.portone.sdk.server.errors.PromotionDiscountRetainOptionShouldNotBeChangedException
 import io.portone.sdk.server.errors.PromotionPayMethodDoesNotMatchError
 import io.portone.sdk.server.errors.PromotionPayMethodDoesNotMatchException
 import io.portone.sdk.server.errors.RegisterStoreReceiptError
 import io.portone.sdk.server.errors.RegisterStoreReceiptException
-import io.portone.sdk.server.errors.RemainedAmountLessThanPromotionMinPaymentAmountError
-import io.portone.sdk.server.errors.RemainedAmountLessThanPromotionMinPaymentAmountException
 import io.portone.sdk.server.errors.ResendWebhookError
 import io.portone.sdk.server.errors.ResendWebhookException
 import io.portone.sdk.server.errors.SumOfPartsExceedsCancelAmountError
@@ -112,6 +116,7 @@ import io.portone.sdk.server.payment.ConfirmEscrowBody
 import io.portone.sdk.server.payment.ConfirmEscrowResponse
 import io.portone.sdk.server.payment.GetAllPaymentsByCursorBody
 import io.portone.sdk.server.payment.GetAllPaymentsByCursorResponse
+import io.portone.sdk.server.payment.GetPaymentTransactionsResponse
 import io.portone.sdk.server.payment.GetPaymentsBody
 import io.portone.sdk.server.payment.GetPaymentsResponse
 import io.portone.sdk.server.payment.InstantPaymentInput
@@ -127,6 +132,7 @@ import io.portone.sdk.server.payment.PaymentFilterInput
 import io.portone.sdk.server.payment.PaymentLogistics
 import io.portone.sdk.server.payment.PreRegisterPaymentBody
 import io.portone.sdk.server.payment.PreRegisterPaymentResponse
+import io.portone.sdk.server.payment.PromotionDiscountRetainOption
 import io.portone.sdk.server.payment.RegisterEscrowLogisticsBody
 import io.portone.sdk.server.payment.RegisterStoreReceiptBody
 import io.portone.sdk.server.payment.RegisterStoreReceiptBodyItem
@@ -286,6 +292,62 @@ public class PaymentClient(
   public fun getPaymentFuture(
     paymentId: String,
   ): CompletableFuture<Payment> = GlobalScope.future { getPayment(paymentId) }
+
+
+  /**
+   * 결제 시도 내역 조회
+   *
+   * 주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
+   *
+   * @param paymentId
+   * 조회할 결제 아이디
+   *
+   * @throws GetPaymentTransactionsException
+   */
+  @JvmName("getPaymentTransactionsSuspend")
+  public suspend fun getPaymentTransactions(
+    paymentId: String,
+  ): GetPaymentTransactionsResponse {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "transactions")
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPaymentTransactionsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetPaymentTransactionsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPaymentTransactions")
+  public fun getPaymentTransactionsFuture(
+    paymentId: String,
+  ): CompletableFuture<GetPaymentTransactionsResponse> = GlobalScope.future { getPaymentTransactions(paymentId) }
 
 
   /**
@@ -462,6 +524,13 @@ public class PaymentClient(
    * 취소 요청자
    *
    * 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
+   * @param promotionDiscountRetainOption
+   * 프로모션 할인율 유지 옵션
+   *
+   * 프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+   * RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+   * RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+   * 값을 입력하지 않으면 RELEASE 로 취급합니다.
    * @param currentCancellableAmount
    * 결제 건의 취소 가능 잔액
    *
@@ -481,6 +550,7 @@ public class PaymentClient(
     vatAmount: Long? = null,
     reason: String,
     requester: CancelRequester? = null,
+    promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
   ): CancelPaymentResponse {
@@ -491,6 +561,7 @@ public class PaymentClient(
       vatAmount = vatAmount,
       reason = reason,
       requester = requester,
+      promotionDiscountRetainOption = promotionDiscountRetainOption,
       currentCancellableAmount = currentCancellableAmount,
       refundAccount = refundAccount,
     )
@@ -521,11 +592,12 @@ public class PaymentClient(
         is CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError -> throw CancelTaxFreeAmountExceedsCancellableTaxFreeAmountException(httpBodyDecoded)
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is NegativePromotionAdjustedCancelAmountError -> throw NegativePromotionAdjustedCancelAmountException(httpBodyDecoded)
         is PaymentAlreadyCancelledError -> throw PaymentAlreadyCancelledException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
         is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is RemainedAmountLessThanPromotionMinPaymentAmountError -> throw RemainedAmountLessThanPromotionMinPaymentAmountException(httpBodyDecoded)
+        is PromotionDiscountRetainOptionShouldNotBeChangedError -> throw PromotionDiscountRetainOptionShouldNotBeChangedException(httpBodyDecoded)
         is SumOfPartsExceedsCancelAmountError -> throw SumOfPartsExceedsCancelAmountException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
@@ -548,9 +620,10 @@ public class PaymentClient(
     vatAmount: Long? = null,
     reason: String,
     requester: CancelRequester? = null,
+    promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
-  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, currentCancellableAmount, refundAccount) }
+  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, promotionDiscountRetainOption, currentCancellableAmount, refundAccount) }
 
 
   /**

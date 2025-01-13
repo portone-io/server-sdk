@@ -1,3 +1,4 @@
+import type { Trigger } from "./../payment/Trigger"
 /** 취소 완료 상태 */
 export type SucceededPaymentCancellation = {
 	/** 결제 취소 내역 상태 */
@@ -40,4 +41,6 @@ export type SucceededPaymentCancellation = {
 	requestedAt: string
 	/** 취소 영수증 URL */
 	receiptUrl?: string
+	/** 취소 요청 경로 */
+	trigger?: Trigger
 }

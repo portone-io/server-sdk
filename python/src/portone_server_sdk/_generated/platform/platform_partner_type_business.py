@@ -3,6 +3,7 @@ from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ..platform.platform_partner_business_status import PlatformPartnerBusinessStatus, _deserialize_platform_partner_business_status, _serialize_platform_partner_business_status
+from ..platform.platform_partner_member_company_connection_status import PlatformPartnerMemberCompanyConnectionStatus, _deserialize_platform_partner_member_company_connection_status, _serialize_platform_partner_member_company_connection_status
 from ..platform.platform_partner_taxation_type import PlatformPartnerTaxationType, _deserialize_platform_partner_taxation_type, _serialize_platform_partner_taxation_type
 
 @dataclass
@@ -26,6 +27,9 @@ class PlatformPartnerTypeBusiness:
     representative_name: str
     """대표자 이름
     """
+    member_company_connection_status: PlatformPartnerMemberCompanyConnectionStatus
+    """연동사업자 연동 상태
+    """
     company_address: Optional[str] = field(default=None)
     """사업장 주소
     """
@@ -34,6 +38,9 @@ class PlatformPartnerTypeBusiness:
     """
     business_class: Optional[str] = field(default=None)
     """업종
+    """
+    member_company_connection_failed_reason: Optional[str] = field(default=None)
+    """연동사업자 연동 실패 사유
     """
 
 
@@ -47,12 +54,15 @@ def _serialize_platform_partner_type_business(obj: PlatformPartnerTypeBusiness) 
     entity["businessStatus"] = _serialize_platform_partner_business_status(obj.business_status)
     entity["businessRegistrationNumber"] = obj.business_registration_number
     entity["representativeName"] = obj.representative_name
+    entity["memberCompanyConnectionStatus"] = _serialize_platform_partner_member_company_connection_status(obj.member_company_connection_status)
     if obj.company_address is not None:
         entity["companyAddress"] = obj.company_address
     if obj.business_type is not None:
         entity["businessType"] = obj.business_type
     if obj.business_class is not None:
         entity["businessClass"] = obj.business_class
+    if obj.member_company_connection_failed_reason is not None:
+        entity["memberCompanyConnectionFailedReason"] = obj.member_company_connection_failed_reason
     return entity
 
 
@@ -87,6 +97,10 @@ def _deserialize_platform_partner_type_business(obj: Any) -> PlatformPartnerType
     representative_name = obj["representativeName"]
     if not isinstance(representative_name, str):
         raise ValueError(f"{repr(representative_name)} is not str")
+    if "memberCompanyConnectionStatus" not in obj:
+        raise KeyError(f"'memberCompanyConnectionStatus' is not in {obj}")
+    member_company_connection_status = obj["memberCompanyConnectionStatus"]
+    member_company_connection_status = _deserialize_platform_partner_member_company_connection_status(member_company_connection_status)
     if "companyAddress" in obj:
         company_address = obj["companyAddress"]
         if not isinstance(company_address, str):
@@ -105,4 +119,10 @@ def _deserialize_platform_partner_type_business(obj: Any) -> PlatformPartnerType
             raise ValueError(f"{repr(business_class)} is not str")
     else:
         business_class = None
-    return PlatformPartnerTypeBusiness(company_name, taxation_type, business_status, business_registration_number, representative_name, company_address, business_type, business_class)
+    if "memberCompanyConnectionFailedReason" in obj:
+        member_company_connection_failed_reason = obj["memberCompanyConnectionFailedReason"]
+        if not isinstance(member_company_connection_failed_reason, str):
+            raise ValueError(f"{repr(member_company_connection_failed_reason)} is not str")
+    else:
+        member_company_connection_failed_reason = None
+    return PlatformPartnerTypeBusiness(company_name, taxation_type, business_status, business_registration_number, representative_name, member_company_connection_status, company_address, business_type, business_class, member_company_connection_failed_reason)

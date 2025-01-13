@@ -9,8 +9,14 @@ class PlatformPayoutFilterInputCriteria:
     """검색 기준 입력 정보
     """
     timestamp_range: Optional[DateTimeRange] = field(default=None)
+    """시간 범위
+    """
     payout_id: Optional[str] = field(default=None)
+    """지급 아이디
+    """
     bulk_payout_id: Optional[str] = field(default=None)
+    """일괄 지급 아이디
+    """
 
 
 def _serialize_platform_payout_filter_input_criteria(obj: PlatformPayoutFilterInputCriteria) -> Any:

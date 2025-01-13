@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformCannotArchiveScheduledPartnerError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformNotEnabledError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformNotEnabledError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.platform_account_verification_already_used_error import _deserialize_platform_account_verification_already_used_error
@@ -12,10 +12,13 @@ from ...platform.platform_account_verification_failed_error import _deserialize_
 from ...platform.platform_account_verification_not_found_error import _deserialize_platform_account_verification_not_found_error
 from ...platform.platform_archived_partner_error import _deserialize_platform_archived_partner_error
 from ...platform.partner.platform_cannot_archive_scheduled_partner_error import _deserialize_platform_cannot_archive_scheduled_partner_error
+from ...platform.platform_company_verification_already_used_error import _deserialize_platform_company_verification_already_used_error
 from ...platform.platform_contract_not_found_error import _deserialize_platform_contract_not_found_error
 from ...platform.partner.platform_contracts_not_found_error import _deserialize_platform_contracts_not_found_error
 from ...platform.platform_currency_not_supported_error import _deserialize_platform_currency_not_supported_error
 from ...platform.platform_insufficient_data_to_change_partner_type_error import _deserialize_platform_insufficient_data_to_change_partner_type_error
+from ...platform.platform_member_company_connected_partner_brn_unchangeable_error import _deserialize_platform_member_company_connected_partner_brn_unchangeable_error
+from ...platform.platform_member_company_connected_partner_type_unchangeable_error import _deserialize_platform_member_company_connected_partner_type_unchangeable_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
 from ...platform.partner.platform_partner_id_already_exists_error import _deserialize_platform_partner_id_already_exists_error
 from ...platform.partner.platform_partner_ids_already_exist_error import _deserialize_platform_partner_ids_already_exist_error
@@ -294,6 +297,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformAccountVerificationNotFoundError(error)
             try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
                 pass
@@ -441,6 +450,12 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformAccountVerificationNotFoundError(error)
+            try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
@@ -712,6 +727,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformArchivedPartnerError(error)
             try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
                 pass
@@ -723,6 +744,18 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformInsufficientDataToChangePartnerTypeError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_brn_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_type_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -858,6 +891,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformArchivedPartnerError(error)
             try:
+                error = _deserialize_platform_company_verification_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCompanyVerificationAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_contract_not_found_error(error_response)
             except Exception:
                 pass
@@ -869,6 +908,18 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformInsufficientDataToChangePartnerTypeError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_brn_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerBrnUnchangeableError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partner_type_unchangeable_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnerTypeUnchangeableError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:

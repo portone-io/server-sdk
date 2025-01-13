@@ -110,6 +110,18 @@ describe("error cases", () => {
 		).rejects.toThrow(sdk.Webhook.InvalidInputError);
 	});
 
+	it("object payload", async () => {
+		const testWebhook = await makeWebhook();
+
+		await expect(() =>
+			sdk.Webhook.verify(
+				secret,
+				JSON.parse(testWebhook.payload),
+				testWebhook.header,
+			),
+		).rejects.toThrow(sdk.Webhook.InvalidInputError);
+	});
+
 	it("missing id on header", async () => {
 		const testWebhook = await makeWebhook();
 		// biome-ignore lint/performance/noDelete: testing runtime validations

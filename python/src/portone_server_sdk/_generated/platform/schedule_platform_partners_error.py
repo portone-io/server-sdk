@@ -4,12 +4,13 @@ from ..common.forbidden_error import ForbiddenError, _deserialize_forbidden_erro
 from ..common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
 from ..platform.platform_archived_partners_cannot_be_scheduled_error import PlatformArchivedPartnersCannotBeScheduledError, _deserialize_platform_archived_partners_cannot_be_scheduled_error, _serialize_platform_archived_partners_cannot_be_scheduled_error
 from ..platform.platform_contract_not_found_error import PlatformContractNotFoundError, _deserialize_platform_contract_not_found_error, _serialize_platform_contract_not_found_error
+from ..platform.platform_member_company_connected_partners_cannot_be_scheduled_error import PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error, _serialize_platform_member_company_connected_partners_cannot_be_scheduled_error
 from ..platform.platform_not_enabled_error import PlatformNotEnabledError, _deserialize_platform_not_enabled_error, _serialize_platform_not_enabled_error
 from ..platform.platform_partner_schedules_already_exist_error import PlatformPartnerSchedulesAlreadyExistError, _deserialize_platform_partner_schedules_already_exist_error, _serialize_platform_partner_schedules_already_exist_error
 from ..platform.platform_user_defined_property_not_found_error import PlatformUserDefinedPropertyNotFoundError, _deserialize_platform_user_defined_property_not_found_error, _serialize_platform_user_defined_property_not_found_error
 from ..common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-SchedulePlatformPartnersError = Union[ForbiddenError, InvalidRequestError, PlatformArchivedPartnersCannotBeScheduledError, PlatformContractNotFoundError, PlatformNotEnabledError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, dict]
+SchedulePlatformPartnersError = Union[ForbiddenError, InvalidRequestError, PlatformArchivedPartnersCannotBeScheduledError, PlatformContractNotFoundError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, dict]
 
 
 def _serialize_schedule_platform_partners_error(obj: SchedulePlatformPartnersError) -> Any:
@@ -23,6 +24,8 @@ def _serialize_schedule_platform_partners_error(obj: SchedulePlatformPartnersErr
         return _serialize_platform_archived_partners_cannot_be_scheduled_error(obj)
     if isinstance(obj, PlatformContractNotFoundError):
         return _serialize_platform_contract_not_found_error(obj)
+    if isinstance(obj, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError):
+        return _serialize_platform_member_company_connected_partners_cannot_be_scheduled_error(obj)
     if isinstance(obj, PlatformNotEnabledError):
         return _serialize_platform_not_enabled_error(obj)
     if isinstance(obj, PlatformPartnerSchedulesAlreadyExistError):
@@ -48,6 +51,10 @@ def _deserialize_schedule_platform_partners_error(obj: Any) -> SchedulePlatformP
         pass
     try:
         return _deserialize_platform_contract_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(obj)
     except Exception:
         pass
     try:

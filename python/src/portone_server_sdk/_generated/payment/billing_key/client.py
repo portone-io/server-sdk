@@ -157,6 +157,7 @@ class BillingKeyClient:
         self,
         *,
         billing_key: str,
+        reason: Optional[str] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -165,6 +166,10 @@ class BillingKeyClient:
         Args:
             billing_key (str):
                 삭제할 빌링키
+            reason (str, optional):
+                사유
+
+                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
 
 
         Raises:
@@ -173,6 +178,8 @@ class BillingKeyClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
+        if reason is not None:
+            query.append(("reason", reason))
         response = httpx.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
@@ -245,6 +252,7 @@ class BillingKeyClient:
         self,
         *,
         billing_key: str,
+        reason: Optional[str] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -253,6 +261,10 @@ class BillingKeyClient:
         Args:
             billing_key (str):
                 삭제할 빌링키
+            reason (str, optional):
+                사유
+
+                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
 
 
         Raises:
@@ -261,6 +273,8 @@ class BillingKeyClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
+        if reason is not None:
+            query.append(("reason", reason))
         response = await self._client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",

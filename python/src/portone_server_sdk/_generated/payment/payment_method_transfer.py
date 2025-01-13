@@ -11,6 +11,9 @@ class PaymentMethodTransfer:
     bank: Optional[Bank] = field(default=None)
     """표준 은행 코드
     """
+    account_number: Optional[str] = field(default=None)
+    """계좌번호
+    """
 
 
 def _serialize_payment_method_transfer(obj: PaymentMethodTransfer) -> Any:
@@ -20,6 +23,8 @@ def _serialize_payment_method_transfer(obj: PaymentMethodTransfer) -> Any:
     entity["type"] = "PaymentMethodTransfer"
     if obj.bank is not None:
         entity["bank"] = _serialize_bank(obj.bank)
+    if obj.account_number is not None:
+        entity["accountNumber"] = obj.account_number
     return entity
 
 
@@ -36,4 +41,10 @@ def _deserialize_payment_method_transfer(obj: Any) -> PaymentMethodTransfer:
         bank = _deserialize_bank(bank)
     else:
         bank = None
-    return PaymentMethodTransfer(bank)
+    if "accountNumber" in obj:
+        account_number = obj["accountNumber"]
+        if not isinstance(account_number, str):
+            raise ValueError(f"{repr(account_number)} is not str")
+    else:
+        account_number = None
+    return PaymentMethodTransfer(bank, account_number)

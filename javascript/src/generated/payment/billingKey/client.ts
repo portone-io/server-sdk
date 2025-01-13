@@ -58,14 +58,17 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 			options: {
 				billingKey: string,
 				storeId?: string,
+				reason?: string,
 			}
 		): Promise<DeleteBillingKeyResponse> => {
 			const {
 				billingKey,
 				storeId,
+				reason,
 			} = options
 			const query = [
 				["storeId", storeId],
+				["reason", reason],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
@@ -206,6 +209,12 @@ export type BillingKeyClient = {
 			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
+			/**
+			 * 사유
+			 *
+			 * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+			 */
+			reason?: string,
 		}
 	) => Promise<DeleteBillingKeyResponse>
 	/**

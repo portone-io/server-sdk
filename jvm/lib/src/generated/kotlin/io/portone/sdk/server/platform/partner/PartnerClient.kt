@@ -40,6 +40,8 @@ import io.portone.sdk.server.errors.PlatformArchivedPartnerError
 import io.portone.sdk.server.errors.PlatformArchivedPartnerException
 import io.portone.sdk.server.errors.PlatformCannotArchiveScheduledPartnerError
 import io.portone.sdk.server.errors.PlatformCannotArchiveScheduledPartnerException
+import io.portone.sdk.server.errors.PlatformCompanyVerificationAlreadyUsedError
+import io.portone.sdk.server.errors.PlatformCompanyVerificationAlreadyUsedException
 import io.portone.sdk.server.errors.PlatformContractNotFoundError
 import io.portone.sdk.server.errors.PlatformContractNotFoundException
 import io.portone.sdk.server.errors.PlatformContractsNotFoundError
@@ -48,6 +50,10 @@ import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedError
 import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedException
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeError
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableException
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
+import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.PlatformPartnerIdAlreadyExistsError
@@ -255,6 +261,7 @@ public class PartnerClient(
         is PlatformAccountVerificationAlreadyUsedError -> throw PlatformAccountVerificationAlreadyUsedException(httpBodyDecoded)
         is PlatformAccountVerificationFailedError -> throw PlatformAccountVerificationFailedException(httpBodyDecoded)
         is PlatformAccountVerificationNotFoundError -> throw PlatformAccountVerificationNotFoundException(httpBodyDecoded)
+        is PlatformCompanyVerificationAlreadyUsedError -> throw PlatformCompanyVerificationAlreadyUsedException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
@@ -418,8 +425,11 @@ public class PartnerClient(
         is PlatformAccountVerificationFailedError -> throw PlatformAccountVerificationFailedException(httpBodyDecoded)
         is PlatformAccountVerificationNotFoundError -> throw PlatformAccountVerificationNotFoundException(httpBodyDecoded)
         is PlatformArchivedPartnerError -> throw PlatformArchivedPartnerException(httpBodyDecoded)
+        is PlatformCompanyVerificationAlreadyUsedError -> throw PlatformCompanyVerificationAlreadyUsedException(httpBodyDecoded)
         is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
         is PlatformInsufficientDataToChangePartnerTypeError -> throw PlatformInsufficientDataToChangePartnerTypeException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerBrnUnchangeableError -> throw PlatformMemberCompanyConnectedPartnerBrnUnchangeableException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnerTypeUnchangeableError -> throw PlatformMemberCompanyConnectedPartnerTypeUnchangeableException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)

@@ -26,12 +26,14 @@ import type { CustomerInput } from "../../generated/common/CustomerInput"
 import type { DiscountAmountExceedsTotalAmountError } from "../../generated/payment/DiscountAmountExceedsTotalAmountError"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
 import type { GetAllPaymentsByCursorResponse } from "../../generated/payment/GetAllPaymentsByCursorResponse"
+import type { GetPaymentTransactionsResponse } from "../../generated/payment/GetPaymentTransactionsResponse"
 import type { GetPaymentsResponse } from "../../generated/payment/GetPaymentsResponse"
 import type { InstantPaymentMethodInput } from "../../generated/payment/InstantPaymentMethodInput"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
 import type { MaxWebhookRetryCountReachedError } from "../../generated/payment/MaxWebhookRetryCountReachedError"
 import type { ModifyEscrowLogisticsResponse } from "../../generated/payment/ModifyEscrowLogisticsResponse"
+import type { NegativePromotionAdjustedCancelAmountError } from "../../generated/payment/NegativePromotionAdjustedCancelAmountError"
 import type { PageInput } from "../../generated/common/PageInput"
 import type { PayInstantlyResponse } from "../../generated/payment/PayInstantlyResponse"
 import type { PayWithBillingKeyResponse } from "../../generated/payment/PayWithBillingKeyResponse"
@@ -50,10 +52,11 @@ import type { PaymentProductType } from "../../generated/common/PaymentProductTy
 import type { PaymentScheduleAlreadyExistsError } from "../../generated/common/PaymentScheduleAlreadyExistsError"
 import type { PgProviderError } from "../../generated/common/PgProviderError"
 import type { PreRegisterPaymentResponse } from "../../generated/payment/PreRegisterPaymentResponse"
+import type { PromotionDiscountRetainOption } from "../../generated/payment/PromotionDiscountRetainOption"
+import type { PromotionDiscountRetainOptionShouldNotBeChangedError } from "../../generated/payment/PromotionDiscountRetainOptionShouldNotBeChangedError"
 import type { PromotionPayMethodDoesNotMatchError } from "../../generated/payment/PromotionPayMethodDoesNotMatchError"
 import type { RegisterStoreReceiptBodyItem } from "../../generated/payment/RegisterStoreReceiptBodyItem"
 import type { RegisterStoreReceiptResponse } from "../../generated/payment/RegisterStoreReceiptResponse"
-import type { RemainedAmountLessThanPromotionMinPaymentAmountError } from "../../generated/payment/RemainedAmountLessThanPromotionMinPaymentAmountError"
 import type { ResendWebhookResponse } from "../../generated/payment/ResendWebhookResponse"
 import type { SeparatedAddressInput } from "../../generated/common/SeparatedAddressInput"
 import type { SumOfPartsExceedsCancelAmountError } from "../../generated/payment/SumOfPartsExceedsCancelAmountError"
@@ -129,6 +132,36 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 			)
 			if (!response.ok) {
 				throw new GetPaymentError(await response.json())
+			}
+			return response.json()
+		},
+		getPaymentTransactions: async (
+			options: {
+				paymentId: string,
+				storeId?: string,
+			}
+		): Promise<GetPaymentTransactionsResponse> => {
+			const {
+				paymentId,
+				storeId,
+			} = options
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${encodeURIComponent(paymentId)}/transactions?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPaymentTransactionsError(await response.json())
 			}
 			return response.json()
 		},
@@ -214,6 +247,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				vatAmount?: number,
 				reason: string,
 				requester?: CancelRequester,
+				promotionDiscountRetainOption?: PromotionDiscountRetainOption,
 				currentCancellableAmount?: number,
 				refundAccount?: CancelPaymentBodyRefundAccount,
 			}
@@ -226,6 +260,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				vatAmount,
 				reason,
 				requester,
+				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
 			} = options
@@ -236,6 +271,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				vatAmount,
 				reason,
 				requester,
+				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
 			})
@@ -689,6 +725,21 @@ export type PaymentClient = {
 		}
 	) => Promise<Payment>
 	/**
+	 * 결제 시도 내역 조회
+	 *
+	 * 주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
+	 *
+	 * @throws {@link GetPaymentTransactionsError}
+	 */
+	getPaymentTransactions: (
+		options: {
+			/** 조회할 결제 아이디 */
+			paymentId: string,
+			/** 상점 아이디 */
+			storeId?: string,
+		}
+	) => Promise<GetPaymentTransactionsResponse>
+	/**
 	 * 결제 다건 조회(페이지 기반)
 	 *
 	 * 주어진 조건에 맞는 결제 건들을 페이지 기반으로 조회합니다.
@@ -801,6 +852,15 @@ export type PaymentClient = {
 			 * 고객에 의한 취소일 경우 Customer, 관리자에 의한 취소일 경우 Admin으로 입력합니다.
 			 */
 			requester?: CancelRequester,
+			/**
+			 * 프로모션 할인율 유지 옵션
+			 *
+			 * 프로모션이 적용된 결제를 부분 취소하는 경우, 최초 할인율을 유지할지 여부를 선택할 수 있습니다.
+			 * RETAIN 으로 설정 시, 최초 할인율을 유지할 수 있도록 취소 금액이 조정됩니다.
+			 * RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 프로모션 할인이 새롭게 적용됩니다.
+			 * 값을 입력하지 않으면 RELEASE 로 취급합니다.
+			 */
+			promotionDiscountRetainOption?: PromotionDiscountRetainOption,
 			/**
 			 * 결제 건의 취소 가능 잔액
 			 *
@@ -1153,6 +1213,15 @@ export class GetPaymentError extends PaymentError {
 		this.name = "GetPaymentError"
 	}
 }
+export class GetPaymentTransactionsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPaymentTransactionsError.prototype)
+		this.name = "GetPaymentTransactionsError"
+	}
+}
 export class GetPaymentsError extends PaymentError {
 	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
@@ -1172,9 +1241,9 @@ export class GetAllPaymentsError extends PaymentError {
 	}
 }
 export class CancelPaymentError extends PaymentError {
-	declare readonly data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | RemainedAmountLessThanPromotionMinPaymentAmountError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | RemainedAmountLessThanPromotionMinPaymentAmountError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CancelPaymentError.prototype)
 		this.name = "CancelPaymentError"

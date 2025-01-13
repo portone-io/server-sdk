@@ -7,10 +7,13 @@ import type { PlatformAccountVerificationFailedError } from "../../platform/Plat
 import type { PlatformAccountVerificationNotFoundError } from "../../platform/PlatformAccountVerificationNotFoundError"
 import type { PlatformArchivedPartnerError } from "../../platform/PlatformArchivedPartnerError"
 import type { PlatformCannotArchiveScheduledPartnerError } from "../../platform/partner/PlatformCannotArchiveScheduledPartnerError"
+import type { PlatformCompanyVerificationAlreadyUsedError } from "../../platform/PlatformCompanyVerificationAlreadyUsedError"
 import type { PlatformContractNotFoundError } from "../../platform/PlatformContractNotFoundError"
 import type { PlatformContractsNotFoundError } from "../../platform/partner/PlatformContractsNotFoundError"
 import type { PlatformCurrencyNotSupportedError } from "../../platform/PlatformCurrencyNotSupportedError"
 import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../platform/PlatformInsufficientDataToChangePartnerTypeError"
+import type { PlatformMemberCompanyConnectedPartnerBrnUnchangeableError } from "../../platform/PlatformMemberCompanyConnectedPartnerBrnUnchangeableError"
+import type { PlatformMemberCompanyConnectedPartnerTypeUnchangeableError } from "../../platform/PlatformMemberCompanyConnectedPartnerTypeUnchangeableError"
 import type { PlatformNotEnabledError } from "../../platform/PlatformNotEnabledError"
 import type { PlatformPartnerIdAlreadyExistsError } from "../../platform/partner/PlatformPartnerIdAlreadyExistsError"
 import type { PlatformPartnerIdsAlreadyExistError } from "../../platform/partner/PlatformPartnerIdsAlreadyExistError"
@@ -19,5 +22,5 @@ import type { PlatformPartnerNotFoundError } from "../../platform/PlatformPartne
 import type { PlatformUserDefinedPropertyNotFoundError } from "../../platform/PlatformUserDefinedPropertyNotFoundError"
 import type { UnauthorizedError } from "../../common/UnauthorizedError"
 export abstract class PartnerError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCannotArchiveScheduledPartnerError | PlatformContractNotFoundError | PlatformContractsNotFoundError | PlatformCurrencyNotSupportedError | PlatformInsufficientDataToChangePartnerTypeError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformPartnerIdsAlreadyExistError | PlatformPartnerIdsDuplicatedError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformArchivedPartnerError | PlatformCannotArchiveScheduledPartnerError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformContractsNotFoundError | PlatformCurrencyNotSupportedError | PlatformInsufficientDataToChangePartnerTypeError | PlatformMemberCompanyConnectedPartnerBrnUnchangeableError | PlatformMemberCompanyConnectedPartnerTypeUnchangeableError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformPartnerIdsAlreadyExistError | PlatformPartnerIdsDuplicatedError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 }

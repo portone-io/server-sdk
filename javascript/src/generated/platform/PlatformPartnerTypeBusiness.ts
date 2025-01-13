@@ -1,4 +1,5 @@
 import type { PlatformPartnerBusinessStatus } from "./../platform/PlatformPartnerBusinessStatus"
+import type { PlatformPartnerMemberCompanyConnectionStatus } from "./../platform/PlatformPartnerMemberCompanyConnectionStatus"
 import type { PlatformPartnerTaxationType } from "./../platform/PlatformPartnerTaxationType"
 /**
  * 사업자 파트너 정보
@@ -23,4 +24,8 @@ export type PlatformPartnerTypeBusiness = {
 	businessType?: string
 	/** 업종 */
 	businessClass?: string
+	/** 연동사업자 연동 상태 */
+	memberCompanyConnectionStatus: PlatformPartnerMemberCompanyConnectionStatus
+	/** 연동사업자 연동 실패 사유 */
+	memberCompanyConnectionFailedReason?: string
 }

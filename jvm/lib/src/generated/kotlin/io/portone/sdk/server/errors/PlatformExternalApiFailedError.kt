@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_EXTERNAL_API_FAILED")
 internal data class PlatformExternalApiFailedError(
   override val message: String? = null,
-) : GetPlatformAccountHolderError.Recognized
+) : GetPlatformAccountHolderError.Recognized, GetPlatformCompanyStateError.Recognized
 
 

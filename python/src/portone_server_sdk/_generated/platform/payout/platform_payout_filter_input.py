@@ -9,15 +9,35 @@ from ...platform.payout.platform_payout_status import PlatformPayoutStatus, _des
 
 @dataclass
 class PlatformPayoutFilterInput:
+    """지급 내역 필터 입력 정보
+    """
     criteria: PlatformPayoutFilterInputCriteria
+    """조회 기준
+    """
     statuses: Optional[list[PlatformPayoutStatus]] = field(default=None)
+    """지급 상태
+
+    값이 존재하는 경우 해당 리스트에 포함되는 지급 상태를 가진 지급 내역을 조회합니다.
+    """
     partner_ids: Optional[list[str]] = field(default=None)
+    """파트너 아이디
+
+    값이 존재하는 경우 해당 리스트에 포함되는 파트너 아이디를 가진 지급 내역을 조회합니다.
+    """
     payout_account_banks: Optional[list[Bank]] = field(default=None)
-    """은행
+    """지급 계좌 은행
+
+    값이 존재하는 경우 해당 리스트에 포함되는 지급 계좌 은행을 가진 지급 내역을 조회합니다.
     """
     partner_tags: Optional[list[str]] = field(default=None)
+    """파트너 태그
+
+    값이 존재하는 경우 해당 리스트에 포함되는 파트너 태그를 하나 이상 가진 지급 내역을 조회합니다.
+    """
     payout_currencies: Optional[list[Currency]] = field(default=None)
-    """통화 단위
+    """지급 통화
+
+    값이 존재하는 경우 해당 리스트에 포함되는 지급 통화를 가진 지급 내역을 조회합니다.
     """
 
 

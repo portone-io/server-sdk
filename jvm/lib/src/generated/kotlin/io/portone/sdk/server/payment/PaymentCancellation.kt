@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.payment.Trigger
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -35,6 +36,8 @@ public sealed interface PaymentCancellation {
     public val cancelledAt: Instant?
     /** 취소 요청 시점 */
     public val requestedAt: Instant
+    /** 취소 요청 경로 */
+    public val trigger: Trigger?
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

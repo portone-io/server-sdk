@@ -23,6 +23,11 @@ class PayPendingPayment:
     id: str
     """결제 건 아이디
     """
+    transaction_id: str
+    """결제 건 포트원 채번 아이디
+
+    V1 결제 건의 경우 imp_uid에 해당합니다.
+    """
     merchant_id: str
     """고객사 아이디
     """
@@ -113,6 +118,7 @@ def _serialize_pay_pending_payment(obj: PayPendingPayment) -> Any:
     entity = {}
     entity["status"] = "PAY_PENDING"
     entity["id"] = obj.id
+    entity["transactionId"] = obj.transaction_id
     entity["merchantId"] = obj.merchant_id
     entity["storeId"] = obj.store_id
     entity["channel"] = _serialize_selected_channel(obj.channel)
@@ -166,6 +172,11 @@ def _deserialize_pay_pending_payment(obj: Any) -> PayPendingPayment:
     id = obj["id"]
     if not isinstance(id, str):
         raise ValueError(f"{repr(id)} is not str")
+    if "transactionId" not in obj:
+        raise KeyError(f"'transactionId' is not in {obj}")
+    transaction_id = obj["transactionId"]
+    if not isinstance(transaction_id, str):
+        raise ValueError(f"{repr(transaction_id)} is not str")
     if "merchantId" not in obj:
         raise KeyError(f"'merchantId' is not in {obj}")
     merchant_id = obj["merchantId"]
@@ -296,4 +307,4 @@ def _deserialize_pay_pending_payment(obj: Any) -> PayPendingPayment:
             raise ValueError(f"{repr(pg_tx_id)} is not str")
     else:
         pg_tx_id = None
-    return PayPendingPayment(id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id)
+    return PayPendingPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id)

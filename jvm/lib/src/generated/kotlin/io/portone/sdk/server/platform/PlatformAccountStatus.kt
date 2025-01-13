@@ -13,22 +13,6 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformAccountStatusSerializer::class)
 public sealed interface PlatformAccountStatus {
   public val value: String
-  /** 계좌 인증 중 */
-  @Serializable(VerifyingSerializer::class)
-  public data object Verifying : PlatformAccountStatus {
-    override val value: String = "VERIFYING"
-  }
-  private object VerifyingSerializer : KSerializer<Verifying> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verifying::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): Verifying = decoder.decodeString().let {
-      if (it != "VERIFYING") {
-        throw SerializationException(it)
-      } else {
-        return Verifying
-      }
-    }
-    override fun serialize(encoder: Encoder, value: Verifying) = encoder.encodeString(value.value)
-  }
   /** 계좌 인증 완료됨 */
   @Serializable(VerifiedSerializer::class)
   public data object Verified : PlatformAccountStatus {
@@ -45,7 +29,7 @@ public sealed interface PlatformAccountStatus {
     }
     override fun serialize(encoder: Encoder, value: Verified) = encoder.encodeString(value.value)
   }
-  /** 계좌 인증 실패함 */
+  /** 계좌주 불일치 */
   @Serializable(VerifyFailedSerializer::class)
   public data object VerifyFailed : PlatformAccountStatus {
     override val value: String = "VERIFY_FAILED"
@@ -60,6 +44,22 @@ public sealed interface PlatformAccountStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: VerifyFailed) = encoder.encodeString(value.value)
+  }
+  /** 계좌 인증 오류 */
+  @Serializable(VerifyErrorSerializer::class)
+  public data object VerifyError : PlatformAccountStatus {
+    override val value: String = "VERIFY_ERROR"
+  }
+  private object VerifyErrorSerializer : KSerializer<VerifyError> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
+      if (it != "VERIFY_ERROR") {
+        throw SerializationException(it)
+      } else {
+        return VerifyError
+      }
+    }
+    override fun serialize(encoder: Encoder, value: VerifyError) = encoder.encodeString(value.value)
   }
   /** 계좌 인증 안됨 */
   @Serializable(NotVerifiedSerializer::class)
@@ -76,22 +76,6 @@ public sealed interface PlatformAccountStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: NotVerified) = encoder.encodeString(value.value)
-  }
-  /** 계좌 인증 만료됨 */
-  @Serializable(ExpiredSerializer::class)
-  public data object Expired : PlatformAccountStatus {
-    override val value: String = "EXPIRED"
-  }
-  private object ExpiredSerializer : KSerializer<Expired> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Expired::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): Expired = decoder.decodeString().let {
-      if (it != "EXPIRED") {
-        throw SerializationException(it)
-      } else {
-        return Expired
-      }
-    }
-    override fun serialize(encoder: Encoder, value: Expired) = encoder.encodeString(value.value)
   }
   /** 알 수 없는 상태 */
   @Serializable(UnknownSerializer::class)
@@ -120,11 +104,10 @@ private object PlatformAccountStatusSerializer : KSerializer<PlatformAccountStat
   override fun deserialize(decoder: Decoder): PlatformAccountStatus {
     val value = decoder.decodeString()
     return when (value) {
-      "VERIFYING" -> PlatformAccountStatus.Verifying
       "VERIFIED" -> PlatformAccountStatus.Verified
       "VERIFY_FAILED" -> PlatformAccountStatus.VerifyFailed
+      "VERIFY_ERROR" -> PlatformAccountStatus.VerifyError
       "NOT_VERIFIED" -> PlatformAccountStatus.NotVerified
-      "EXPIRED" -> PlatformAccountStatus.Expired
       "UNKNOWN" -> PlatformAccountStatus.Unknown
       else -> PlatformAccountStatus.Unrecognized(value)
     }

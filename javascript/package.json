@@ -32,6 +32,7 @@
     "./platform/account": "./src/generated/platform/account/index.ts",
     "./platform/accountTransfer": "./src/generated/platform/accountTransfer/index.ts",
     "./platform/bulkPayout": "./src/generated/platform/bulkPayout/index.ts",
+    "./platform/company": "./src/generated/platform/company/index.ts",
     "./platform/partner": "./src/generated/platform/partner/index.ts",
     "./platform/partnerSettlement": "./src/generated/platform/partnerSettlement/index.ts",
     "./platform/payout": "./src/generated/platform/payout/index.ts",
@@ -115,6 +116,11 @@
         "require": "./dist/generated/platform/bulkPayout/index.cjs",
         "import": "./dist/generated/platform/bulkPayout/index.mjs"
       },
+      "./platform/company": {
+        "types": "./dist/generated/platform/company/index.d.ts",
+        "require": "./dist/generated/platform/company/index.cjs",
+        "import": "./dist/generated/platform/company/index.mjs"
+      },
       "./platform/partner": {
         "types": "./dist/generated/platform/partner/index.d.ts",
         "require": "./dist/generated/platform/partner/index.cjs",
@@ -152,14 +158,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@changesets/cli": "^2.27.10",
+    "@changesets/cli": "^2.27.11",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "@vitest/ui": "^2.1.8",
     "jsr": "^0.13.2",
-    "typedoc": "0.27.5",
-    "typescript": "^5.7.2",
-    "unbuild": "^3.0.1",
+    "typedoc": "0.27.6",
+    "typescript": "^5.7.3",
+    "unbuild": "^3.3.0",
     "vitest": "^2.1.8"
   },
   "files": [

@@ -30,6 +30,7 @@ private object CreatePlatformPartnerErrorSerializer : JsonContentPolymorphicSeri
     "PLATFORM_ACCOUNT_VERIFICATION_ALREADY_USED" -> PlatformAccountVerificationAlreadyUsedError.serializer()
     "PLATFORM_ACCOUNT_VERIFICATION_FAILED" -> PlatformAccountVerificationFailedError.serializer()
     "PLATFORM_ACCOUNT_VERIFICATION_NOT_FOUND" -> PlatformAccountVerificationNotFoundError.serializer()
+    "PLATFORM_COMPANY_VERIFICATION_ALREADY_USED" -> PlatformCompanyVerificationAlreadyUsedError.serializer()
     "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
     "PLATFORM_CURRENCY_NOT_SUPPORTED" -> PlatformCurrencyNotSupportedError.serializer()
     "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()

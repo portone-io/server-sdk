@@ -7,7 +7,7 @@ from typing import Optional
 from ...errors import ForbiddenError, InvalidRequestError, PlatformExternalApiFailedError, PlatformExternalApiTemporarilyFailedError, PlatformNotEnabledError, PlatformNotSupportedBankError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
-from ...platform.account.platform_external_api_failed_error import _deserialize_platform_external_api_failed_error
+from ...platform.platform_external_api_failed_error import _deserialize_platform_external_api_failed_error
 from ...platform.account.platform_external_api_temporarily_failed_error import _deserialize_platform_external_api_temporarily_failed_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
 from ...platform.account.platform_not_supported_bank_error import _deserialize_platform_not_supported_bank_error

@@ -2,7 +2,12 @@ package io.portone.sdk.server.platform
 
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.platform.PlatformAccountStatus
+import io.portone.sdk.server.platform.PlatformPartnerBusinessStatus
 import io.portone.sdk.server.platform.PlatformPartnerFilterInputKeyword
+import io.portone.sdk.server.platform.PlatformPartnerMemberCompanyConnectionStatus
+import io.portone.sdk.server.platform.PlatformPartnerTaxationType
+import io.portone.sdk.server.platform.PlatformPartnerTypeName
 import kotlin.Array
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -34,6 +39,36 @@ public data class PlatformPartnerFilterInput(
   val ids: List<String>? = null,
   /** 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 기본 계약 id를 가진 파트너만 조회합니다. */
   val contractIds: List<String>? = null,
+  /**
+   * 플랫폼 계좌 상태
+   *
+   * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 계좌 상태를 가진 파트너만 조회합니다.
+   */
+  val accountStatuses: List<PlatformAccountStatus>? = null,
+  /**
+   * 플랫폼 파트너 사업자 상태
+   *
+   * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 사업자 상태를 가진 파트너만 조회합니다.
+   */
+  val businessStatuses: List<PlatformPartnerBusinessStatus>? = null,
+  /**
+   * 플랫폼 파트너 유형 이름
+   *
+   * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 사업자 유형을 가진 파트너만 조회합니다.
+   */
+  val types: List<PlatformPartnerTypeName>? = null,
+  /**
+   * 플랫폼 파트너 과세 유형
+   *
+   * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 과세 유형을 가진 파트너만 조회합니다.
+   */
+  val taxationTypes: List<PlatformPartnerTaxationType>? = null,
+  /**
+   * 플랫폼 파트너 연동 사업자 연결 상태
+   *
+   * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 연동 사업자 연결 상태를 가진 파트너만 조회합니다.
+   */
+  val memberCompanyConnectionStatuses: List<PlatformPartnerMemberCompanyConnectionStatus>? = null,
   /** 검색 키워드 */
   val keyword: PlatformPartnerFilterInputKeyword? = null,
 )

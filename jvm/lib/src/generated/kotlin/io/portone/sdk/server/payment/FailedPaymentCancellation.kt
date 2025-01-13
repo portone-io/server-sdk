@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import io.portone.sdk.server.payment.Trigger
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -28,6 +29,8 @@ public data class FailedPaymentCancellation(
   override val cancelledAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 취소 요청 시점 */
   override val requestedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 취소 요청 경로 */
+  override val trigger: Trigger? = null,
 ) : PaymentCancellation.Recognized
 
 

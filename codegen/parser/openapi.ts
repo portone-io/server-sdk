@@ -14,6 +14,10 @@ export type Package = {
   subpackages: Package[]
 }
 
+const excludeOperation = new Set([
+  "getBankInfos",
+])
+
 function normalizeCategory(category: string | null): string {
   const nonNull = category ?? "platform"
   return nonNull
@@ -169,6 +173,7 @@ export function packageSchema(): Package {
   for (const [path, methods] of Object.entries(OpenAPI.paths)) {
     for (const [method, operationSchema] of Object.entries(methods)) {
       const operation = parseOperation(path, method, operationSchema)
+      if (excludeOperation.has(operation.id)) continue
       const category = normalizeCategory(operation.category)
       let searchBound = packages
       let pack = null

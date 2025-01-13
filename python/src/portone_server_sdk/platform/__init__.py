@@ -29,6 +29,9 @@ from .._generated.platform.errors.get_platform_partner_filter_options_error impo
 from .._generated.platform.errors.get_platform_partner_schedule_error import (
     GetPlatformPartnerScheduleError,
 )
+from .._generated.platform.errors.get_platform_setting_error import (
+    GetPlatformSettingError,
+)
 from .._generated.platform.errors.reschedule_additional_fee_policy_error import (
     RescheduleAdditionalFeePolicyError,
 )
@@ -51,6 +54,9 @@ from .._generated.platform.errors.schedule_platform_partners_error import (
     SchedulePlatformPartnersError,
 )
 from .._generated.platform.errors.update_platform_error import UpdatePlatformError
+from .._generated.platform.errors.update_platform_setting_error import (
+    UpdatePlatformSettingError,
+)
 from . import policy
 from . import partner
 from . import transfer
@@ -58,6 +64,7 @@ from . import partner_settlement
 from . import payout
 from . import bulk_payout
 from . import account
+from . import company
 from . import account_transfer
 from .._generated.platform.cancel_platform_additional_fee_policy_schedule_response import (
     CancelPlatformAdditionalFeePolicyScheduleResponse,
@@ -111,6 +118,9 @@ from .._generated.platform.platform_partner_filter_input_keyword import (
 from .._generated.platform.platform_partner_filter_options import (
     PlatformPartnerFilterOptions,
 )
+from .._generated.platform.platform_partner_member_company_connection_status import (
+    PlatformPartnerMemberCompanyConnectionStatus,
+)
 from .._generated.platform.platform_partner_status import PlatformPartnerStatus
 from .._generated.platform.platform_partner_taxation_type import (
     PlatformPartnerTaxationType,
@@ -119,6 +129,7 @@ from .._generated.platform.platform_partner_type import PlatformPartnerType
 from .._generated.platform.platform_partner_type_business import (
     PlatformPartnerTypeBusiness,
 )
+from .._generated.platform.platform_partner_type_name import PlatformPartnerTypeName
 from .._generated.platform.platform_partner_type_non_wht_payer import (
     PlatformPartnerTypeNonWhtPayer,
 )
@@ -130,6 +141,7 @@ from .._generated.platform.platform_payout_method import PlatformPayoutMethod
 from .._generated.platform.platform_payout_status_stats import PlatformPayoutStatusStats
 from .._generated.platform.platform_properties import PlatformProperties
 from .._generated.platform.platform_round_type import PlatformRoundType
+from .._generated.platform.platform_setting import PlatformSetting
 from .._generated.platform.platform_settlement_cycle import PlatformSettlementCycle
 from .._generated.platform.platform_settlement_cycle_date_policy import (
     PlatformSettlementCycleDatePolicy,
@@ -310,6 +322,10 @@ from .._generated.platform.update_platform_partner_body_type_wht_payer import (
     UpdatePlatformPartnerBodyTypeWhtPayer,
 )
 from .._generated.platform.update_platform_response import UpdatePlatformResponse
+from .._generated.platform.update_platform_setting_body import UpdatePlatformSettingBody
+from .._generated.platform.update_platform_setting_response import (
+    UpdatePlatformSettingResponse,
+)
 from .._generated.platform.client import PlatformClient
 
 __all__ = [
@@ -324,6 +340,7 @@ __all__ = [
     "GetPlatformError",
     "GetPlatformPartnerFilterOptionsError",
     "GetPlatformPartnerScheduleError",
+    "GetPlatformSettingError",
     "RescheduleAdditionalFeePolicyError",
     "RescheduleContractError",
     "RescheduleDiscountSharePolicyError",
@@ -334,6 +351,7 @@ __all__ = [
     "SchedulePartnerError",
     "SchedulePlatformPartnersError",
     "UpdatePlatformError",
+    "UpdatePlatformSettingError",
     "policy",
     "partner",
     "transfer",
@@ -341,6 +359,7 @@ __all__ = [
     "payout",
     "bulk_payout",
     "account",
+    "company",
     "account_transfer",
     "CancelPlatformAdditionalFeePolicyScheduleResponse",
     "CancelPlatformContractScheduleResponse",
@@ -368,10 +387,12 @@ __all__ = [
     "PlatformPartnerFilterInput",
     "PlatformPartnerFilterInputKeyword",
     "PlatformPartnerFilterOptions",
+    "PlatformPartnerMemberCompanyConnectionStatus",
     "PlatformPartnerStatus",
     "PlatformPartnerTaxationType",
     "PlatformPartnerType",
     "PlatformPartnerTypeBusiness",
+    "PlatformPartnerTypeName",
     "PlatformPartnerTypeNonWhtPayer",
     "PlatformPartnerTypeWhtPayer",
     "PlatformPayer",
@@ -379,6 +400,7 @@ __all__ = [
     "PlatformPayoutStatusStats",
     "PlatformProperties",
     "PlatformRoundType",
+    "PlatformSetting",
     "PlatformSettlementCycle",
     "PlatformSettlementCycleDatePolicy",
     "PlatformSettlementCycleInput",
@@ -443,5 +465,7 @@ __all__ = [
     "UpdatePlatformPartnerBodyTypeNonWhtPayer",
     "UpdatePlatformPartnerBodyTypeWhtPayer",
     "UpdatePlatformResponse",
+    "UpdatePlatformSettingBody",
+    "UpdatePlatformSettingResponse",
     "PlatformClient",
 ]

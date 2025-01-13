@@ -14,6 +14,7 @@ from portone_server_sdk.platform.account_transfer import (
     AccountTransferClient,
 )
 from portone_server_sdk.platform.bulk_payout import BulkPayoutClient
+from portone_server_sdk.platform.company import CompanyClient
 from portone_server_sdk.platform.partner import PartnerClient
 from portone_server_sdk.platform.partner_settlement import (
     PartnerSettlementClient,
@@ -61,4 +62,5 @@ __all__ = [
     "PayoutClient",
     "PolicyClient",
     "TransferClient",
+    "CompanyClient",
 ]

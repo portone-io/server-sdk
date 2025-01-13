@@ -27,6 +27,9 @@ class SchedulePlatformPartnersBodyUpdateTypeBusiness:
     business_class: Optional[str] = field(default=None)
     """업종
     """
+    company_verification_id: Optional[str] = field(default=None)
+    """사업자 조회 검증 아이디
+    """
 
 
 def _serialize_schedule_platform_partners_body_update_type_business(obj: SchedulePlatformPartnersBodyUpdateTypeBusiness) -> Any:
@@ -47,6 +50,8 @@ def _serialize_schedule_platform_partners_body_update_type_business(obj: Schedul
         entity["businessType"] = obj.business_type
     if obj.business_class is not None:
         entity["businessClass"] = obj.business_class
+    if obj.company_verification_id is not None:
+        entity["companyVerificationId"] = obj.company_verification_id
     return entity
 
 
@@ -94,4 +99,10 @@ def _deserialize_schedule_platform_partners_body_update_type_business(obj: Any) 
             raise ValueError(f"{repr(business_class)} is not str")
     else:
         business_class = None
-    return SchedulePlatformPartnersBodyUpdateTypeBusiness(company_name, taxation_type, business_registration_number, representative_name, company_address, business_type, business_class)
+    if "companyVerificationId" in obj:
+        company_verification_id = obj["companyVerificationId"]
+        if not isinstance(company_verification_id, str):
+            raise ValueError(f"{repr(company_verification_id)} is not str")
+    else:
+        company_verification_id = None
+    return SchedulePlatformPartnersBodyUpdateTypeBusiness(company_name, taxation_type, business_registration_number, representative_name, company_address, business_type, business_class, company_verification_id)

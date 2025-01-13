@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ..payment.trigger import Trigger, _deserialize_trigger, _serialize_trigger
 
 @dataclass
 class SucceededPaymentCancellation:
@@ -45,6 +46,9 @@ class SucceededPaymentCancellation:
     receipt_url: Optional[str] = field(default=None)
     """취소 영수증 URL
     """
+    trigger: Optional[Trigger] = field(default=None)
+    """취소 요청 경로
+    """
 
 
 def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation) -> Any:
@@ -66,6 +70,8 @@ def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation)
         entity["cancelledAt"] = obj.cancelled_at
     if obj.receipt_url is not None:
         entity["receiptUrl"] = obj.receipt_url
+    if obj.trigger is not None:
+        entity["trigger"] = _serialize_trigger(obj.trigger)
     return entity
 
 
@@ -131,4 +137,9 @@ def _deserialize_succeeded_payment_cancellation(obj: Any) -> SucceededPaymentCan
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return SucceededPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url)
+    if "trigger" in obj:
+        trigger = obj["trigger"]
+        trigger = _deserialize_trigger(trigger)
+    else:
+        trigger = None
+    return SucceededPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url, trigger)

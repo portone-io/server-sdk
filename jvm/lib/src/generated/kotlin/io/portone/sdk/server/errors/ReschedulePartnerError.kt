@@ -28,6 +28,7 @@ private object ReschedulePartnerErrorSerializer : JsonContentPolymorphicSerializ
     "FORBIDDEN" -> ForbiddenError.serializer()
     "INVALID_REQUEST" -> InvalidRequestError.serializer()
     "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
+    "PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNER_CANNOT_BE_SCHEDULED" -> PlatformMemberCompanyConnectedPartnerCannotBeScheduledError.serializer()
     "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
     "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
     "UNAUTHORIZED" -> UnauthorizedError.serializer()
