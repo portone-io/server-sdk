@@ -1,5 +1,16 @@
 # @portone/server-sdk
 
+## 0.9.0
+
+### Minor Changes
+
+- b393159: API 업데이트
+- b393159: Webhook 모듈의 export 수정
+
+### Patch Changes
+
+- b393159: 의존성 업데이트
+
 ## 0.8.1
 
 ### Patch Changes
