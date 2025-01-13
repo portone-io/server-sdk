@@ -17,6 +17,7 @@
       CancelledPayment
       CancelledPaymentCashReceipt
       CancelledPaymentEscrow
+      CancelledPaymentTransaction
       CloseVirtualAccountResponse
       ConfirmEscrowBody
       ConfirmEscrowResponse
@@ -24,8 +25,10 @@
       DeliveredPaymentEscrow
       FailedPayment
       FailedPaymentCancellation
+      FailedPaymentTransaction
       GetAllPaymentsByCursorBody
       GetAllPaymentsByCursorResponse
+      GetPaymentTransactionsResponse
       GetPaymentsBody
       GetPaymentsResponse
       InstantPaymentInput
@@ -41,9 +44,12 @@
       ModifyEscrowLogisticsBody
       ModifyEscrowLogisticsResponse
       PaidPayment
+      PaidPaymentTransaction
       PartialCancelledPayment
+      PartialCancelledPaymentTransaction
       PayInstantlyResponse
       PayPendingPayment
+      PayPendingPaymentTransaction
       PayWithBillingKeyResponse
       PaymentAmount
       PaymentEscrowReceiverInput
@@ -67,6 +73,7 @@
       PreRegisterPaymentBody
       PreRegisterPaymentResponse
       ReadyPayment
+      ReadyPaymentTransaction
       RegisterEscrowLogisticsBody
       RegisterStoreReceiptBody
       RegisterStoreReceiptBodyItem
@@ -79,6 +86,7 @@
       ResendWebhookResponse
       SucceededPaymentCancellation
       VirtualAccountIssuedPayment
+      VirtualAccountIssuedPaymentTransaction
       PaymentClient
    
    .. rubric:: Exceptions
@@ -91,6 +99,7 @@
       ConfirmEscrowError
       GetAllPaymentsError
       GetPaymentError
+      GetPaymentTransactionsError
       GetPaymentsError
       ModifyEscrowLogisticsError
       PayInstantlyError

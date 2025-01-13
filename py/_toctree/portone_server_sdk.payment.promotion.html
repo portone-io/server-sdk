@@ -156,6 +156,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -176,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
@@ -330,7 +332,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.id"><code class="docutils literal notranslate"><span class="pre">CardPromotion.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.store_id"><code class="docutils literal notranslate"><span class="pre">CardPromotion.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.name"><code class="docutils literal notranslate"><span class="pre">CardPromotion.name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_type"><code class="docutils literal notranslate"><span class="pre">CardPromotion.discount_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_policy"><code class="docutils literal notranslate"><span class="pre">CardPromotion.discount_policy</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.total_budget"><code class="docutils literal notranslate"><span class="pre">CardPromotion.total_budget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.spent_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.spent_amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.currency"><code class="docutils literal notranslate"><span class="pre">CardPromotion.currency</span></code></a></li>
@@ -339,18 +341,40 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.card_company"><code class="docutils literal notranslate"><span class="pre">CardPromotion.card_company</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.status"><code class="docutils literal notranslate"><span class="pre">CardPromotion.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.created_at"><code class="docutils literal notranslate"><span class="pre">CardPromotion.created_at</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.min_payment_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.min_payment_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.recover_option"><code class="docutils literal notranslate"><span class="pre">CardPromotion.recover_option</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.max_discount_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.max_discount_amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.terminated_at"><code class="docutils literal notranslate"><span class="pre">CardPromotion.terminated_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.Promotion"><code class="docutils literal notranslate"><span class="pre">Promotion</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscount</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount.amount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscount.amount</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscountScheme</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme.amount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscountScheme.amount</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscount</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount.percent"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscount.percent</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.amount_from"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition.amount_from</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.scheme"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition.scheme</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPolicy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy.partitions"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPolicy.partitions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscountScheme</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme.percent"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscountScheme.percent</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionNoRecover</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover.spare_budget"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionNoRecover.spare_budget</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionRecover</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetAmount</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount.amount"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetAmount.amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetPercent</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent.percent"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetPercent.percent</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionClient"><code class="docutils literal notranslate"><span class="pre">PromotionClient</span></code></a><ul class="nav section-nav flex-column">
@@ -380,11 +404,29 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.Promotion" title="portone_server_sdk.payment.promotion.Promotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Promotion</span></code></a></p></td>
 <td><p>alias of <a class="reference internal" href="#portone_server_sdk.payment.promotion.CardPromotion" title="portone_server_sdk._generated.payment.promotion.card_promotion.CardPromotion"><code class="xref py py-class docutils literal notranslate"><span class="pre">CardPromotion</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount" title="portone_server_sdk.payment.promotion.PromotionAmountDiscount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionAmountDiscount</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme" title="portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionAmountDiscountScheme</span></code></a></p></td>
 <td><p>프로모션 할인 유형</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount" title="portone_server_sdk.payment.promotion.PromotionPercentDiscount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionPercentDiscount</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition" title="portone_server_sdk.payment.promotion.PromotionDiscountPartition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionDiscountPartition</span></code></a></p></td>
+<td><p>금액 구간별 프로모션 할인 정책</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy" title="portone_server_sdk.payment.promotion.PromotionDiscountPolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionDiscountPolicy</span></code></a></p></td>
+<td><p>프로모션 할인 정책</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme" title="portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionPercentDiscountScheme</span></code></a></p></td>
 <td><p>프로모션 할인 유형</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover" title="portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionRecoverOptionNoRecover</span></code></a></p></td>
+<td><p>결제 취소 시 프로모션 예산 미복구</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover" title="portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionRecoverOptionRecover</span></code></a></p></td>
+<td><p>결제 취소 시 프로모션 예산 복구</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount" title="portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionSpareBudgetAmount</span></code></a></p></td>
+<td><p>환불 대비용 프로모션 추가 예산</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent" title="portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionSpareBudgetPercent</span></code></a></p></td>
+<td><p>환불 대비용 프로모션 추가 예산</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionClient" title="portone_server_sdk.payment.promotion.PromotionClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PromotionClient</span></code></a></p></td>
 <td><p></p></td>
@@ -448,9 +490,9 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.CardPromotion.discount_type">
-<span class="sig-name descname"><span class="pre">discount_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount" title="portone_server_sdk._generated.payment.promotion.promotion_amount_discount.PromotionAmountDiscount"><span class="pre">PromotionAmountDiscount</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount" title="portone_server_sdk._generated.payment.promotion.promotion_percent_discount.PromotionPercentDiscount"><span class="pre">PromotionPercentDiscount</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_type" title="Link to this definition">#</a></dt>
-<dd><p>할인 유형</p>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.CardPromotion.discount_policy">
+<span class="sig-name descname"><span class="pre">discount_policy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy" title="portone_server_sdk._generated.payment.promotion.promotion_discount_policy.PromotionDiscountPolicy"><span class="pre">PromotionDiscountPolicy</span></a></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_policy" title="Link to this definition">#</a></dt>
+<dd><p>할인 정책</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -507,10 +549,9 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.CardPromotion.min_payment_amount">
-<span class="sig-name descname"><span class="pre">min_payment_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.CardPromotion.min_payment_amount" title="Link to this definition">#</a></dt>
-<dd><p>최소 결제 금액
-(int64)</p>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.CardPromotion.recover_option">
+<span class="sig-name descname"><span class="pre">recover_option</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover" title="portone_server_sdk._generated.payment.promotion.promotion_recover_option_no_recover.PromotionRecoverOptionNoRecover"><span class="pre">PromotionRecoverOptionNoRecover</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover" title="portone_server_sdk._generated.payment.promotion.promotion_recover_option_recover.PromotionRecoverOptionRecover"><span class="pre">PromotionRecoverOptionRecover</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.CardPromotion.recover_option" title="Link to this definition">#</a></dt>
+<dd><p>결제 취소 시 프로모션 예산 복구 옵션</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -536,26 +577,102 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionAmountDiscount">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionAmountDiscount</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionAmountDiscountScheme</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>프로모션 할인 유형</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionAmountDiscount.amount">
-<span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount.amount" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme.amount" title="Link to this definition">#</a></dt>
 <dd><p>(int64)</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionPercentDiscount">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionPercentDiscount</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionDiscountPartition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionDiscountPartition</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>금액 구간별 프로모션 할인 정책</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionDiscountPartition.amount_from">
+<span class="sig-name descname"><span class="pre">amount_from</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.amount_from" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionDiscountPartition.scheme">
+<span class="sig-name descname"><span class="pre">scheme</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme" title="portone_server_sdk._generated.payment.promotion.promotion_amount_discount_scheme.PromotionAmountDiscountScheme"><span class="pre">PromotionAmountDiscountScheme</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme" title="portone_server_sdk._generated.payment.promotion.promotion_percent_discount_scheme.PromotionPercentDiscountScheme"><span class="pre">PromotionPercentDiscountScheme</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.scheme" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionDiscountPolicy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionDiscountPolicy</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>프로모션 할인 정책</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionDiscountPolicy.partitions">
+<span class="sig-name descname"><span class="pre">partitions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition" title="portone_server_sdk._generated.payment.promotion.promotion_discount_partition.PromotionDiscountPartition"><span class="pre">PromotionDiscountPartition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy.partitions" title="Link to this definition">#</a></dt>
+<dd><p>금액 구간별 프로모션 할인 정책</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionPercentDiscountScheme</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>프로모션 할인 유형</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionPercentDiscount.percent">
-<span class="sig-name descname"><span class="pre">percent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount.percent" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme.percent">
+<span class="sig-name descname"><span class="pre">percent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme.percent" title="Link to this definition">#</a></dt>
+<dd><p>(int32)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionRecoverOptionNoRecover</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>결제 취소 시 프로모션 예산 미복구</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover.spare_budget">
+<span class="sig-name descname"><span class="pre">spare_budget</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount" title="portone_server_sdk._generated.payment.promotion.promotion_spare_budget_amount.PromotionSpareBudgetAmount"><span class="pre">PromotionSpareBudgetAmount</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent" title="portone_server_sdk._generated.payment.promotion.promotion_spare_budget_percent.PromotionSpareBudgetPercent"><span class="pre">PromotionSpareBudgetPercent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover.spare_budget" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionRecoverOptionRecover</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>결제 취소 시 프로모션 예산 복구</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionSpareBudgetAmount</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>환불 대비용 프로모션 추가 예산</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount.amount" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.payment.promotion.</span></span><span class="sig-name descname"><span class="pre">PromotionSpareBudgetPercent</span></span><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>환불 대비용 프로모션 추가 예산</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent.percent">
+<span class="sig-name descname"><span class="pre">percent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent.percent" title="Link to this definition">#</a></dt>
 <dd><p>(int32)</p>
 </dd></dl>
 
@@ -655,7 +772,7 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.id"><code class="docutils literal notranslate"><span class="pre">CardPromotion.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.store_id"><code class="docutils literal notranslate"><span class="pre">CardPromotion.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.name"><code class="docutils literal notranslate"><span class="pre">CardPromotion.name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_type"><code class="docutils literal notranslate"><span class="pre">CardPromotion.discount_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.discount_policy"><code class="docutils literal notranslate"><span class="pre">CardPromotion.discount_policy</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.total_budget"><code class="docutils literal notranslate"><span class="pre">CardPromotion.total_budget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.spent_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.spent_amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.currency"><code class="docutils literal notranslate"><span class="pre">CardPromotion.currency</span></code></a></li>
@@ -664,18 +781,40 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.card_company"><code class="docutils literal notranslate"><span class="pre">CardPromotion.card_company</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.status"><code class="docutils literal notranslate"><span class="pre">CardPromotion.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.created_at"><code class="docutils literal notranslate"><span class="pre">CardPromotion.created_at</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.min_payment_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.min_payment_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.recover_option"><code class="docutils literal notranslate"><span class="pre">CardPromotion.recover_option</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.max_discount_amount"><code class="docutils literal notranslate"><span class="pre">CardPromotion.max_discount_amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.CardPromotion.terminated_at"><code class="docutils literal notranslate"><span class="pre">CardPromotion.terminated_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.Promotion"><code class="docutils literal notranslate"><span class="pre">Promotion</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscount</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscount.amount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscount.amount</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscountScheme</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme.amount"><code class="docutils literal notranslate"><span class="pre">PromotionAmountDiscountScheme.amount</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscount</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscount.percent"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscount.percent</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.amount_from"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition.amount_from</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPartition.scheme"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPartition.scheme</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPolicy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionDiscountPolicy.partitions"><code class="docutils literal notranslate"><span class="pre">PromotionDiscountPolicy.partitions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscountScheme</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme.percent"><code class="docutils literal notranslate"><span class="pre">PromotionPercentDiscountScheme.percent</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionNoRecover</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover.spare_budget"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionNoRecover.spare_budget</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover"><code class="docutils literal notranslate"><span class="pre">PromotionRecoverOptionRecover</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetAmount</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount.amount"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetAmount.amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetPercent</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent.percent"><code class="docutils literal notranslate"><span class="pre">PromotionSpareBudgetPercent.percent</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.promotion.PromotionClient"><code class="docutils literal notranslate"><span class="pre">PromotionClient</span></code></a><ul class="nav section-nav flex-column">

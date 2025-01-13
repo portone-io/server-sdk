@@ -155,6 +155,7 @@
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -175,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
@@ -319,6 +321,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.CashReceiptClient.html#portone_server_sdk.CashReceiptClient.__init__">(portone_server_sdk.CashReceiptClient method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient.__init__">(portone_server_sdk.CompanyClient method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.IdentityVerificationClient.html#portone_server_sdk.IdentityVerificationClient.__init__">(portone_server_sdk.IdentityVerificationClient method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.PartnerClient.html#portone_server_sdk.PartnerClient.__init__">(portone_server_sdk.PartnerClient method)</a>
@@ -381,11 +385,15 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccountOptionFixed.account_number">(portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccountOptionFixed attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentMethodTransfer.account_number">(portone_server_sdk.payment.PaymentMethodTransfer attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentMethodVirtualAccount.account_number">(portone_server_sdk.payment.PaymentMethodVirtualAccount attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInputKeyword.account_number">(portone_server_sdk.platform.PlatformPartnerFilterInputKeyword attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.account_statuses">account_statuses (portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.account_transfer">account_transfer (portone_server_sdk.platform.PlatformClient attribute)</a>
 
       <ul>
@@ -501,6 +509,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.amount">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.amount">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelPaymentBody.amount">(portone_server_sdk.payment.CancelPaymentBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.amount">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
@@ -511,19 +521,33 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.amount">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.amount">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.amount">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.amount">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.amount">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.amount">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.amount">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.amount">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
-        <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionAmountDiscount.amount">(portone_server_sdk.payment.promotion.PromotionAmountDiscount attribute)</a>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.amount">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme.amount">(portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount.amount">(portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.amount">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.amount">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.amount">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.amount">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer.amount">(portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer attribute)</a>
 </li>
@@ -566,6 +590,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.amount">(portone_server_sdk.platform.transfer.PlatformOrderTransferSummary attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionDiscountPartition.amount_from">amount_from (portone_server_sdk.payment.promotion.PromotionDiscountPartition attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCancellableAmountExceededError.amount_type">amount_type (portone_server_sdk.errors.PlatformCancellableAmountExceededError attribute)</a>
 
       <ul>
@@ -755,6 +781,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.args">(portone_server_sdk.errors.MaxWebhookRetryCountReachedError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError.args">(portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PaymentAlreadyCancelledError.args">(portone_server_sdk.errors.PaymentAlreadyCancelledError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PaymentNotFoundError.args">(portone_server_sdk.errors.PaymentNotFoundError attribute)</a>
@@ -823,6 +851,10 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCannotSpecifyTransferError.args">(portone_server_sdk.errors.PlatformCannotSpecifyTransferError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyNotFoundError.args">(portone_server_sdk.errors.PlatformCompanyNotFoundError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError.args">(portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractAlreadyExistsError.args">(portone_server_sdk.errors.PlatformContractAlreadyExistsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractNotFoundError.args">(portone_server_sdk.errors.PlatformContractNotFoundError attribute)</a>
@@ -852,6 +884,14 @@
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError.args">(portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInvalidSettlementFormulaError.args">(portone_server_sdk.errors.PlatformInvalidSettlementFormulaError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError.args">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError.args">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.args">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError.args">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError.args">(portone_server_sdk.errors.PlatformNotEnabledError attribute)</a>
 </li>
@@ -903,11 +943,11 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError.args">(portone_server_sdk.errors.PortOneError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError.args">(portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionNotFoundError.args">(portone_server_sdk.errors.PromotionNotFoundError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError.args">(portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError attribute)</a>
-</li>
-        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError.args">(portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError.args">(portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError attribute)</a>
 </li>
@@ -955,6 +995,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentsError.args">(portone_server_sdk.payment.GetPaymentsError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsError.args">(portone_server_sdk.payment.GetPaymentTransactionsError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ModifyEscrowLogisticsError.args">(portone_server_sdk.payment.ModifyEscrowLogisticsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayInstantlyError.args">(portone_server_sdk.payment.PayInstantlyError attribute)</a>
@@ -993,6 +1035,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.CancelPlatformPartnerScheduleError.args">(portone_server_sdk.platform.CancelPlatformPartnerScheduleError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError.args">(portone_server_sdk.platform.company.GetPlatformCompanyStateError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError.args">(portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformContractScheduleError.args">(portone_server_sdk.platform.GetPlatformContractScheduleError attribute)</a>
@@ -1006,6 +1050,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError.args">(portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerScheduleError.args">(portone_server_sdk.platform.GetPlatformPartnerScheduleError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError.args">(portone_server_sdk.platform.GetPlatformSettingError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerError.args">(portone_server_sdk.platform.partner.ArchivePlatformPartnerError attribute)</a>
 </li>
@@ -1095,6 +1141,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformError.args">(portone_server_sdk.platform.UpdatePlatformError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError.args">(portone_server_sdk.platform.UpdatePlatformSettingError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.InvalidInputError.args">(portone_server_sdk.webhook.InvalidInputError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.WebhookVerificationError.args">(portone_server_sdk.webhook.WebhookVerificationError attribute)</a>
@@ -1161,11 +1209,19 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.billing_key">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.billing_key">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.billing_key">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.billing_key">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.billing_key">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.billing_key">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.billing_key">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.billing_key">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.billing_key">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -1187,9 +1243,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.billing_key">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.billing_key">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.billing_key">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.billing_key">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.billing_key">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.billing_key">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient.billing_key">(portone_server_sdk.PaymentClient attribute)</a>
 </li>
@@ -1230,12 +1292,12 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodEasyPay">BillingKeyPaymentMethodEasyPay (class in portone_server_sdk.payment.billing_key)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodEasyPayCharge">BillingKeyPaymentMethodEasyPayCharge (class in portone_server_sdk.payment.billing_key)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodMobile">BillingKeyPaymentMethodMobile (class in portone_server_sdk.payment.billing_key)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodPaypal">BillingKeyPaymentMethodPaypal (class in portone_server_sdk.payment.billing_key)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodTransfer">BillingKeyPaymentMethodTransfer (class in portone_server_sdk.payment.billing_key)</a>
@@ -1346,7 +1408,13 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.business_registration_number">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.business_status">business_status (portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.business_status">business_status (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.business_status">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.business_statuses">business_statuses (portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_type">business_type (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
 
@@ -1487,7 +1555,11 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.cancellations">cancellations (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.cancellations">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.cancellations">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.cancellations">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentAmount.cancelled">cancelled (portone_server_sdk.payment.PaymentAmount attribute)</a>
@@ -1505,6 +1577,8 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt.cancelled_at">(portone_server_sdk.payment.CancelledPaymentCashReceipt attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.cancelled_at">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelCashReceiptResponse.cancelled_at">(portone_server_sdk.payment.cash_receipt.CancelCashReceiptResponse attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.cancelled_at">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
@@ -1512,6 +1586,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentCancellation.cancelled_at">(portone_server_sdk.payment.FailedPaymentCancellation attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.cancelled_at">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.cancelled_at">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RequestedPaymentCancellation.cancelled_at">(portone_server_sdk.payment.RequestedPaymentCancellation attribute)</a>
 </li>
@@ -1531,6 +1607,8 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt">CancelledPaymentCashReceipt (class in portone_server_sdk.payment)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentEscrow">CancelledPaymentEscrow (class in portone_server_sdk.payment)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction">CancelledPaymentTransaction (class in portone_server_sdk.payment)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelPaymentBody">CancelPaymentBody (class in portone_server_sdk.payment)</a>
 </li>
@@ -1591,13 +1669,19 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.cash_receipt">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.cash_receipt">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptResponse.cash_receipt">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptResponse attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccount.cash_receipt">(portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccount attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.cash_receipt">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.cash_receipt">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.cash_receipt">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.cash_receipt">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentClient.cash_receipt">(portone_server_sdk.payment.PaymentClient attribute)</a>
 </li>
@@ -1645,6 +1729,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.channel">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.channel">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.channel">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssuedCashReceipt.channel">(portone_server_sdk.payment.cash_receipt.IssuedCashReceipt attribute)</a>
@@ -1653,15 +1739,27 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.channel">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.channel">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.channel">(portone_server_sdk.payment.PaidPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.channel">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.channel">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.channel">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.channel">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.channel">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.channel">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.channel">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.channel">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.channel">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo.channel_group">channel_group (portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo attribute)</a>
@@ -1671,17 +1769,31 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.channel_group">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.channel_group">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.channel_group">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.channel_group">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.channel_group">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.channel_group">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.channel_group">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.channel_group">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.channel_group">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.channel_group">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.channel_group">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.channel_group">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.channel_group">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.channel_group">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.IssueBillingKeyBody.channel_group_id">channel_group_id (portone_server_sdk.payment.billing_key.IssueBillingKeyBody attribute)</a>
@@ -1750,6 +1862,8 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CloseVirtualAccountResponse.closed_at">closed_at (portone_server_sdk.payment.CloseVirtualAccountResponse attribute)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.closed_suspended_date">closed_suspended_date (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CloseVirtualAccountError">CloseVirtualAccountError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CloseVirtualAccountResponse">CloseVirtualAccountResponse (class in portone_server_sdk.payment)</a>
@@ -1775,6 +1889,10 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RejectedPaymentEscrow.company">(portone_server_sdk.payment.RejectedPaymentEscrow attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.company">(portone_server_sdk.platform.PlatformClient attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.company">(portone_server_sdk.PlatformClient attribute)</a>
+</li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_address">company_address (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
 
@@ -1794,6 +1912,24 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness.company_name">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.company_name">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload.company_state">company_state (portone_server_sdk.platform.company.GetPlatformCompanyStatePayload attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload.company_verification_id">company_verification_id (portone_server_sdk.platform.company.GetPlatformCompanyStatePayload attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_verification_id">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness.company_verification_id">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.company_verification_id">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient">CompanyClient (class in portone_server_sdk)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.CompanyClient">(class in portone_server_sdk.platform.company)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.completed">completed (portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats attribute)</a>
@@ -1874,10 +2010,10 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransfer.contract">(portone_server_sdk.platform.transfer.PlatformOrderTransfer attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody.contract_id">contract_id (portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody.contract_id">contract_id (portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.partner_settlement.html#portone_server_sdk.platform.partner_settlement.PlatformPartnerSettlementFilterInput.contract_ids">contract_ids (portone_server_sdk.platform.partner_settlement.PlatformPartnerSettlementFilterInput attribute)</a>
 
       <ul>
@@ -1901,19 +2037,33 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.country">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.country">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.country">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.country">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.country">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.country">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.country">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.country">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.country">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.country">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.country">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.country">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.country">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.country">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.country">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsResponse.counts">counts (portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsResponse attribute)</a>
@@ -2167,6 +2317,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt.currency">(portone_server_sdk.payment.CancelledPaymentCashReceipt attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.currency">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.currency">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.currency">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody attribute)</a>
@@ -2175,13 +2327,19 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.currency">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.currency">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.currency">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.IssuedPaymentCashReceipt.currency">(portone_server_sdk.payment.IssuedPaymentCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.currency">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.currency">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.currency">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.currency">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.currency">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -2199,15 +2357,21 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.currency">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.currency">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PreRegisterPaymentBody.currency">(portone_server_sdk.payment.PreRegisterPaymentBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.currency">(portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.currency">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.currency">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterStoreReceiptBodyItem.currency">(portone_server_sdk.payment.RegisterStoreReceiptBodyItem attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.currency">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.currency">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer.currency">(portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer attribute)</a>
 </li>
@@ -2267,13 +2431,21 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.custom_data">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.custom_data">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.custom_data">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.custom_data">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.custom_data">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.custom_data">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.custom_data">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.custom_data">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.custom_data">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.custom_data">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -2289,9 +2461,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.custom_data">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.custom_data">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.custom_data">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.custom_data">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.custom_data">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.custom_data">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer">Customer (class in portone_server_sdk.common)</a>
@@ -2309,15 +2487,23 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.customer">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.customer">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.customer">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.customer">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.customer">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.customer">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.customer">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.customer">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.customer">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.customer">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.customer">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -2333,9 +2519,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.customer">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.customer">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.customer">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.customer">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.customer">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.customer">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyFilterInput.customer_id">customer_id (portone_server_sdk.payment.billing_key.BillingKeyFilterInput attribute)</a>
@@ -2446,6 +2638,18 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBody.default_contract_id">(portone_server_sdk.platform.UpdatePlatformPartnerBody attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSetting.default_deposit_memo">default_deposit_memo (portone_server_sdk.platform.PlatformSetting attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingBody.default_deposit_memo">(portone_server_sdk.platform.UpdatePlatformSettingBody attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSetting.default_withdrawal_memo">default_withdrawal_memo (portone_server_sdk.platform.PlatformSetting attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingBody.default_withdrawal_memo">(portone_server_sdk.platform.UpdatePlatformSettingBody attribute)</a>
+</li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.BillingKeyClient.html#portone_server_sdk.BillingKeyClient.delete_billing_key">delete_billing_key() (portone_server_sdk.BillingKeyClient method)</a>
 
       <ul>
@@ -2480,10 +2684,10 @@
         <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo.deleted_at">(portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo">DeletedBillingKeyInfo (class in portone_server_sdk.payment.billing_key)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo">DeletedBillingKeyInfo (class in portone_server_sdk.payment.billing_key)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.DeletePlatformTransferError">DeletePlatformTransferError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.DeletePlatformTransferResponse">DeletePlatformTransferResponse (class in portone_server_sdk.platform.transfer)</a>
@@ -2522,6 +2726,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformOrderSettlementAmount.discount">(portone_server_sdk.platform.PlatformOrderSettlementAmount attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.discount_policy">discount_policy (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInvalidSettlementFormulaError.discount_share">discount_share (portone_server_sdk.errors.PlatformInvalidSettlementFormulaError attribute)</a>
 
       <ul>
@@ -2563,8 +2769,6 @@
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformOrderSettlementAmount.discount_share_tax_free">discount_share_tax_free (portone_server_sdk.platform.PlatformOrderSettlementAmount attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformOrderSettlementAmount.discount_tax_free">discount_tax_free (portone_server_sdk.platform.PlatformOrderSettlementAmount attribute)</a>
-</li>
-      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.discount_type">discount_type (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.DiscountAmountExceedsTotalAmountError">DiscountAmountExceedsTotalAmountError</a>
 </li>
@@ -2646,26 +2850,40 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementFormulaPosition.end_line">end_line (portone_server_sdk.platform.PlatformSettlementFormulaPosition attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError.error">error (portone_server_sdk.errors.UnknownError attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.escrow">escrow (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.escrow">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.escrow">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.escrow">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.escrow">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.escrow">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.escrow">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.escrow">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.escrow">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.escrow">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.escrow">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.escrow">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.escrow">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.escrow">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.escrow_status">escrow_status (portone_server_sdk.payment.PaymentFilterInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSettlementFormulaUnexpectedFunctionArguments.expected_count">expected_count (portone_server_sdk.platform.PlatformSettlementFormulaUnexpectedFunctionArguments attribute)</a>
@@ -2701,6 +2919,8 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.failed_at">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.failed_at">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.FailedIdentityVerification">FailedIdentityVerification (class in portone_server_sdk.identity_verification)</a>
 </li>
@@ -2710,6 +2930,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule">FailedPaymentSchedule (class in portone_server_sdk.payment.payment_schedule)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction">FailedPaymentTransaction (class in portone_server_sdk.payment)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.FailedPgBillingKeyIssueResponse">FailedPgBillingKeyIssueResponse (class in portone_server_sdk.payment.billing_key)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.FailedIdentityVerification.failure">failure (portone_server_sdk.identity_verification.FailedIdentityVerification attribute)</a>
@@ -2718,6 +2940,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.FailedPgBillingKeyIssueResponse.failure">(portone_server_sdk.payment.billing_key.FailedPgBillingKeyIssueResponse attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.failure">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.failure">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.ChannelSpecificError.failures">failures (portone_server_sdk.errors.ChannelSpecificError attribute)</a>
@@ -2932,6 +3156,18 @@
         <li><a href="_toctree/portone_server_sdk.PaymentScheduleClient.html#portone_server_sdk.PaymentScheduleClient.get_payment_schedules_async">(portone_server_sdk.PaymentScheduleClient method)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentClient.get_payment_transactions">get_payment_transactions() (portone_server_sdk.payment.PaymentClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient.get_payment_transactions">(portone_server_sdk.PaymentClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentClient.get_payment_transactions_async">get_payment_transactions_async() (portone_server_sdk.payment.PaymentClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient.get_payment_transactions_async">(portone_server_sdk.PaymentClient method)</a>
+</li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentClient.get_payments">get_payments() (portone_server_sdk.payment.PaymentClient method)</a>
 
       <ul>
@@ -3026,6 +3262,18 @@
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.BulkPayoutClient.get_platform_bulk_payouts_async">(portone_server_sdk.platform.bulk_payout.BulkPayoutClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient.get_platform_company_state">get_platform_company_state() (portone_server_sdk.CompanyClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.CompanyClient.get_platform_company_state">(portone_server_sdk.platform.company.CompanyClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient.get_platform_company_state_async">get_platform_company_state_async() (portone_server_sdk.CompanyClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.CompanyClient.get_platform_company_state_async">(portone_server_sdk.platform.company.CompanyClient method)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PolicyClient.get_platform_contract">get_platform_contract() (portone_server_sdk.platform.policy.PolicyClient method)</a>
@@ -3148,14 +3396,14 @@
         <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.get_platform_partner_schedule_async">(portone_server_sdk.PlatformClient method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.PartnerSettlementClient.html#portone_server_sdk.PartnerSettlementClient.get_platform_partner_settlements">get_platform_partner_settlements() (portone_server_sdk.PartnerSettlementClient method)</a>
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.platform.partner_settlement.html#portone_server_sdk.platform.partner_settlement.PartnerSettlementClient.get_platform_partner_settlements">(portone_server_sdk.platform.partner_settlement.PartnerSettlementClient method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.PartnerSettlementClient.html#portone_server_sdk.PartnerSettlementClient.get_platform_partner_settlements_async">get_platform_partner_settlements_async() (portone_server_sdk.PartnerSettlementClient method)</a>
 
       <ul>
@@ -3184,6 +3432,18 @@
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PayoutClient.get_platform_payouts_async">(portone_server_sdk.platform.payout.PayoutClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.get_platform_setting">get_platform_setting() (portone_server_sdk.platform.PlatformClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.get_platform_setting">(portone_server_sdk.PlatformClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.get_platform_setting_async">get_platform_setting_async() (portone_server_sdk.platform.PlatformClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.get_platform_setting_async">(portone_server_sdk.PlatformClient method)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.TransferClient.get_platform_transfer">get_platform_transfer() (portone_server_sdk.platform.transfer.TransferClient method)</a>
@@ -3262,6 +3522,10 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentsResponse">GetPaymentsResponse (class in portone_server_sdk.payment)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsError">GetPaymentTransactionsError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsResponse">GetPaymentTransactionsResponse (class in portone_server_sdk.payment)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.account.html#portone_server_sdk.platform.account.GetPlatformAccountHolderError">GetPlatformAccountHolderError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.GetPlatformAccountTransfersError">GetPlatformAccountTransfersError</a>
@@ -3283,6 +3547,10 @@
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsError">GetPlatformBulkPayoutsError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsResponse">GetPlatformBulkPayoutsResponse (class in portone_server_sdk.platform.bulk_payout)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError">GetPlatformCompanyStateError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload">GetPlatformCompanyStatePayload (class in portone_server_sdk.platform.company)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.GetPlatformContractError">GetPlatformContractError</a>
 </li>
@@ -3331,6 +3599,8 @@
       <li><a href="_toctree/portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsError">GetPlatformPayoutsError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsResponse">GetPlatformPayoutsResponse (class in portone_server_sdk.platform.payout)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError">GetPlatformSettingError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.GetPlatformTransferError">GetPlatformTransferError</a>
 </li>
@@ -3398,6 +3668,8 @@
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractsNotFoundError.graphql_ids">(portone_server_sdk.errors.PlatformContractsNotFoundError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePoliciesNotFoundError.graphql_ids">(portone_server_sdk.errors.PlatformDiscountSharePoliciesNotFoundError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.graphql_ids">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformPartnerIdsAlreadyExistError.graphql_ids">(portone_server_sdk.errors.PlatformPartnerIdsAlreadyExistError attribute)</a>
 </li>
@@ -3481,13 +3753,21 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.id">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.id">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentCancellation.id">(portone_server_sdk.payment.FailedPaymentCancellation attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.id">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -3507,15 +3787,21 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.id">(portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RequestedPaymentCancellation.id">(portone_server_sdk.payment.RequestedPaymentCancellation attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.SucceededPaymentCancellation.id">(portone_server_sdk.payment.SucceededPaymentCancellation attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer.id">(portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer attribute)</a>
 </li>
@@ -3627,6 +3913,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformDiscountSharePoliciesNotFoundError.ids">(portone_server_sdk.errors.PlatformDiscountSharePoliciesNotFoundError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.ids">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformPartnerIdsAlreadyExistError.ids">(portone_server_sdk.errors.PlatformPartnerIdsAlreadyExistError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformPartnerIdsDuplicatedError.ids">(portone_server_sdk.errors.PlatformPartnerIdsDuplicatedError attribute)</a>
@@ -3735,13 +4023,21 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.is_cultural_expense">is_cultural_expense (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.is_cultural_expense">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.is_cultural_expense">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.is_cultural_expense">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.is_cultural_expense">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.is_cultural_expense">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -3757,9 +4053,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.is_cultural_expense">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.is_cultural_expense">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.is_cultural_expense">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.is_cultural_expense">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.is_escrow">is_escrow (portone_server_sdk.payment.InstantPaymentInput attribute)</a>
@@ -3939,6 +4241,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentsResponse.items">(portone_server_sdk.payment.GetPaymentsResponse attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsResponse.items">(portone_server_sdk.payment.GetPaymentTransactionsResponse attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.GetPaymentSchedulesResponse.items">(portone_server_sdk.payment.payment_schedule.GetPaymentSchedulesResponse attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterStoreReceiptBody.items">(portone_server_sdk.payment.RegisterStoreReceiptBody attribute)</a>
@@ -4044,6 +4348,12 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.MaxWebhookRetryCountReachedError">MaxWebhookRetryCountReachedError</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.member_company_connection_failed_reason">member_company_connection_failed_reason (portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.member_company_connection_status">member_company_connection_status (portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.member_company_connection_statuses">member_company_connection_statuses (portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBody.memo">memo (portone_server_sdk.platform.partner.CreatePlatformPartnerBody attribute)</a>
 
       <ul>
@@ -4107,6 +4417,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.merchant_id">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.merchant_id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.merchant_id">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssuedCashReceipt.merchant_id">(portone_server_sdk.payment.cash_receipt.IssuedCashReceipt attribute)</a>
@@ -4115,9 +4427,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.merchant_id">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.merchant_id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.merchant_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.merchant_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.merchant_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.merchant_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.merchant_id">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -4135,9 +4453,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.merchant_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.merchant_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.merchant_id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.merchant_id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.merchant_id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.merchant_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.Platform.merchant_id">(portone_server_sdk.platform.Platform attribute)</a>
 </li>
@@ -4192,6 +4516,8 @@
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.MaxTransactionCountReachedError.message">(portone_server_sdk.errors.MaxTransactionCountReachedError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.message">(portone_server_sdk.errors.MaxWebhookRetryCountReachedError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError.message">(portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PaymentAlreadyCancelledError.message">(portone_server_sdk.errors.PaymentAlreadyCancelledError attribute)</a>
 </li>
@@ -4261,6 +4587,10 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCannotSpecifyTransferError.message">(portone_server_sdk.errors.PlatformCannotSpecifyTransferError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyNotFoundError.message">(portone_server_sdk.errors.PlatformCompanyNotFoundError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError.message">(portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractAlreadyExistsError.message">(portone_server_sdk.errors.PlatformContractAlreadyExistsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractNotFoundError.message">(portone_server_sdk.errors.PlatformContractNotFoundError attribute)</a>
@@ -4290,6 +4620,14 @@
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError.message">(portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInvalidSettlementFormulaError.message">(portone_server_sdk.errors.PlatformInvalidSettlementFormulaError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError.message">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError.message">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.message">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError.message">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError.message">(portone_server_sdk.errors.PlatformNotEnabledError attribute)</a>
 </li>
@@ -4341,11 +4679,11 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError.message">(portone_server_sdk.errors.PortOneError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError.message">(portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionNotFoundError.message">(portone_server_sdk.errors.PromotionNotFoundError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError.message">(portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError attribute)</a>
-</li>
-        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError.message">(portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError.message">(portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError attribute)</a>
 </li>
@@ -4399,6 +4737,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentsError.message">(portone_server_sdk.payment.GetPaymentsError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsError.message">(portone_server_sdk.payment.GetPaymentTransactionsError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ModifyEscrowLogisticsError.message">(portone_server_sdk.payment.ModifyEscrowLogisticsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayInstantlyError.message">(portone_server_sdk.payment.PayInstantlyError attribute)</a>
@@ -4437,6 +4777,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.CancelPlatformPartnerScheduleError.message">(portone_server_sdk.platform.CancelPlatformPartnerScheduleError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError.message">(portone_server_sdk.platform.company.GetPlatformCompanyStateError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError.message">(portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformContractScheduleError.message">(portone_server_sdk.platform.GetPlatformContractScheduleError attribute)</a>
@@ -4450,6 +4792,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError.message">(portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerScheduleError.message">(portone_server_sdk.platform.GetPlatformPartnerScheduleError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError.message">(portone_server_sdk.platform.GetPlatformSettingError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerError.message">(portone_server_sdk.platform.partner.ArchivePlatformPartnerError attribute)</a>
 </li>
@@ -4539,6 +4883,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformError.message">(portone_server_sdk.platform.UpdatePlatformError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError.message">(portone_server_sdk.platform.UpdatePlatformSettingError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.InvalidInputError.message">(portone_server_sdk.webhook.InvalidInputError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.WebhookVerificationError.message">(portone_server_sdk.webhook.WebhookVerificationError attribute)</a>
@@ -4557,19 +4903,33 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.method">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.method">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.method">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.method">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.method">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.method">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.method">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.method">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.method">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.method">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.method">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.method">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.method">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.method">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.method">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayout.method">(portone_server_sdk.platform.bulk_payout.PlatformBulkPayout attribute)</a>
 </li>
@@ -4608,8 +4968,6 @@
         <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput.methods">(portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.min_payment_amount">min_payment_amount (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
-</li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformPaymentMethodInput.mobile">mobile (portone_server_sdk.platform.transfer.PlatformPaymentMethodInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ModifyEscrowLogisticsResponse.modified_at">modified_at (portone_server_sdk.payment.ModifyEscrowLogisticsResponse attribute)</a>
@@ -4663,6 +5021,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#module-portone_server_sdk.platform.account_transfer">portone_server_sdk.platform.account_transfer</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#module-portone_server_sdk.platform.bulk_payout">portone_server_sdk.platform.bulk_payout</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#module-portone_server_sdk.platform.company">portone_server_sdk.platform.company</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#module-portone_server_sdk.platform.partner">portone_server_sdk.platform.partner</a>
 </li>
@@ -4781,6 +5141,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError">NegativePromotionAdjustedCancelAmountError</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType.non_wht_payer">non_wht_payer (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType attribute)</a>
 
       <ul>
@@ -4892,6 +5254,8 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.order_name">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.order_name">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.order_name">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.order_name">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody attribute)</a>
@@ -4902,11 +5266,17 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.order_name">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.order_name">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.order_name">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.order_name">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.order_name">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.order_name">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.order_name">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.order_name">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -4922,9 +5292,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.order_name">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.order_name">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.order_name">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.order_name">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.order_name">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.order_name">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyExternalPaymentDetail.order_name">(portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyExternalPaymentDetail attribute)</a>
 </li>
@@ -5012,13 +5388,19 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.paid_at">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.paid_at">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.paid_at">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentSummary.paid_at">(portone_server_sdk.payment.InstantPaymentSummary attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.paid_at">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.paid_at">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.paid_at">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.paid_at">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyExternalPaymentDetail.paid_at">(portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyExternalPaymentDetail attribute)</a>
 </li>
@@ -5031,6 +5413,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment">PaidPayment (class in portone_server_sdk.payment)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction">PaidPaymentTransaction (class in portone_server_sdk.payment)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody.parameters">parameters (portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody attribute)</a>
 
       <ul>
@@ -5040,6 +5424,10 @@
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment">PartialCancelledPayment (class in portone_server_sdk.payment)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction">PartialCancelledPaymentTransaction (class in portone_server_sdk.payment)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionDiscountPolicy.partitions">partitions (portone_server_sdk.payment.promotion.PromotionDiscountPolicy attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse.partner">partner (portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse attribute)</a>
 
@@ -5209,14 +5597,22 @@
         <li><a href="_toctree/portone_server_sdk.PortOneClient.html#portone_server_sdk.PortOneClient.payment">(portone_server_sdk.PortOneClient attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.payment_id">payment_id (portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.payment_id">payment_id (portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.payment_id">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.payment_id">(portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssuedCashReceipt.payment_id">(portone_server_sdk.payment.cash_receipt.IssuedCashReceipt attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.IssueFailedCashReceipt.payment_id">(portone_server_sdk.payment.cash_receipt.IssueFailedCashReceipt attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.payment_id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.payment_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.payment_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.payment_id">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -5229,6 +5625,12 @@
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.StartedPaymentSchedule.payment_id">(portone_server_sdk.payment.payment_schedule.StartedPaymentSchedule attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.SucceededPaymentSchedule.payment_id">(portone_server_sdk.payment.payment_schedule.SucceededPaymentSchedule attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.payment_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.payment_id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.payment_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBody.payment_id">(portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBody attribute)</a>
 </li>
@@ -5399,14 +5801,20 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment">PayPendingPayment (class in portone_server_sdk.payment)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction">PayPendingPaymentTransaction (class in portone_server_sdk.payment)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayWithBillingKeyError">PayWithBillingKeyError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayWithBillingKeyResponse">PayWithBillingKeyResponse (class in portone_server_sdk.payment)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.PendingPaymentSchedule">PendingPaymentSchedule (class in portone_server_sdk.payment.payment_schedule)</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionPercentDiscount.percent">percent (portone_server_sdk.payment.promotion.PromotionPercentDiscount attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme.percent">percent (portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent.percent">(portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent attribute)</a>
 </li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccountOptionFixed.pg_account_id">pg_account_id (portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccountOptionFixed attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo.pg_billing_key_issue_responses">pg_billing_key_issue_responses (portone_server_sdk.payment.billing_key.DeletedBillingKeyInfo attribute)</a>
@@ -5474,7 +5882,11 @@
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.pg_response">pg_response (portone_server_sdk.payment.PaidPayment attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.pg_response">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
 </li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.PortOneClient.html#portone_server_sdk.PortOneClient.pg_specific">pg_specific (portone_server_sdk.PortOneClient attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.VerifiedIdentityVerification.pg_tx_id">pg_tx_id (portone_server_sdk.identity_verification.VerifiedIdentityVerification attribute)</a>
@@ -5486,15 +5898,25 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.pg_tx_id">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.pg_tx_id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentSummary.pg_tx_id">(portone_server_sdk.payment.InstantPaymentSummary attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.pg_tx_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.pg_tx_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.pg_tx_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.pg_tx_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.pg_tx_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.pg_tx_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.pg_tx_id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.pg_tx_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PgProviderError">PgProviderError</a>
@@ -5605,8 +6027,6 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError">PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedAdditionalFeePolicyError">PlatformArchivedAdditionalFeePolicyError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedContractError">PlatformArchivedContractError</a>
@@ -5625,6 +6045,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStats">PlatformBulkPayoutStats (class in portone_server_sdk.platform.bulk_payout)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats">PlatformBulkPayoutStatusStats (class in portone_server_sdk.platform.bulk_payout)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCancellableAmountExceededError">PlatformCancellableAmountExceededError</a>
@@ -5657,6 +6079,12 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient">(class in portone_server_sdk.platform)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyNotFoundError">PlatformCompanyNotFoundError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState">PlatformCompanyState (class in portone_server_sdk.platform.company)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError">PlatformCompanyVerificationAlreadyUsedError</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContact">PlatformContact (class in portone_server_sdk.platform)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContract">PlatformContract (class in portone_server_sdk.platform)</a>
@@ -5716,6 +6144,14 @@
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformManualTransfer">PlatformManualTransfer (class in portone_server_sdk.platform.transfer)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformManualTransferSummary">PlatformManualTransferSummary (class in portone_server_sdk.platform.transfer)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError">PlatformMemberCompanyConnectedPartnerBrnUnchangeableError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError">PlatformMemberCompanyConnectedPartnerCannotBeScheduledError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError">PlatformMemberCompanyConnectedPartnersCannotBeScheduledError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError">PlatformMemberCompanyConnectedPartnerTypeUnchangeableError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError">PlatformNotEnabledError</a>
 </li>
@@ -5834,6 +6270,8 @@
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformProperties">PlatformProperties (class in portone_server_sdk.platform)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformRemitAccountTransfer">PlatformRemitAccountTransfer (class in portone_server_sdk.platform.account_transfer)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSetting">PlatformSetting (class in portone_server_sdk.platform)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformSettlementAmountExceededError">PlatformSettlementAmountExceededError</a>
 </li>
@@ -6040,6 +6478,13 @@
 </li>
       </ul></li>
       <li>
+    portone_server_sdk.platform.company
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#module-portone_server_sdk.platform.company">module</a>
+</li>
+      </ul></li>
+      <li>
     portone_server_sdk.platform.partner
 
       <ul>
@@ -6138,19 +6583,33 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.product_count">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.product_count">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.product_count">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.product_count">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.product_count">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.product_count">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.product_count">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.product_count">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.product_count">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.product_count">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.product_count">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.product_count">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.product_count">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.product_count">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.product_count">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCancellableDiscountAmountExceededError.product_id">product_id (portone_server_sdk.errors.PlatformCancellableDiscountAmountExceededError attribute)</a>
@@ -6184,7 +6643,11 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.products">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.products">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.products">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.products">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.products">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
@@ -6192,7 +6655,11 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.products">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.products">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.products">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.products">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.products">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -6208,11 +6675,17 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.products">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.products">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.products">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.products">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterEscrowLogisticsBody.products">(portone_server_sdk.payment.RegisterEscrowLogisticsBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.products">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.products">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.Promotion">Promotion (in module portone_server_sdk.payment.promotion)</a>
@@ -6223,27 +6696,43 @@
         <li><a href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient.promotion">(portone_server_sdk.PaymentClient attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelPaymentBody.promotion_discount_retain_option">promotion_discount_retain_option (portone_server_sdk.payment.CancelPaymentBody attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.BillingKeyPaymentInput.promotion_id">promotion_id (portone_server_sdk.common.BillingKeyPaymentInput attribute)</a>
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.promotion_id">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.promotion_id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.promotion_id">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.promotion_id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.promotion_id">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.promotion_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.promotion_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.promotion_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.promotion_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.promotion_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.promotion_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.promotion_id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.promotion_id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.promotion_id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.promotion_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
+</li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionAmountDiscount">PromotionAmountDiscount (class in portone_server_sdk.payment.promotion)</a>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionAmountDiscountScheme">PromotionAmountDiscountScheme (class in portone_server_sdk.payment.promotion)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.PromotionClient.html#portone_server_sdk.PromotionClient">PromotionClient (class in portone_server_sdk)</a>
 
@@ -6251,11 +6740,25 @@
         <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionClient">(class in portone_server_sdk.payment.promotion)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionDiscountPartition">PromotionDiscountPartition (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionDiscountPolicy">PromotionDiscountPolicy (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError">PromotionDiscountRetainOptionShouldNotBeChangedError</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionNotFoundError">PromotionNotFoundError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError">PromotionPayMethodDoesNotMatchError</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionPercentDiscount">PromotionPercentDiscount (class in portone_server_sdk.payment.promotion)</a>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionPercentDiscountScheme">PromotionPercentDiscountScheme (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover">PromotionRecoverOptionNoRecover (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionRecoverOptionRecover">PromotionRecoverOptionRecover (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionSpareBudgetAmount">PromotionSpareBudgetAmount (class in portone_server_sdk.payment.promotion)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionSpareBudgetPercent">PromotionSpareBudgetPercent (class in portone_server_sdk.payment.promotion)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodEasyPay.provider">provider (portone_server_sdk.payment.billing_key.BillingKeyPaymentMethodEasyPay attribute)</a>
 
@@ -6303,6 +6806,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment">ReadyPayment (class in portone_server_sdk.payment)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction">ReadyPaymentTransaction (class in portone_server_sdk.payment)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationFailure.reason">reason (portone_server_sdk.identity_verification.IdentityVerificationFailure attribute)</a>
 
       <ul>
@@ -6322,9 +6827,15 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.receipt_url">receipt_url (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.receipt_url">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.receipt_url">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.receipt_url">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.receipt_url">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.receipt_url">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterStoreReceiptResponse.receipt_url">(portone_server_sdk.payment.RegisterStoreReceiptResponse attribute)</a>
 </li>
@@ -6339,6 +6850,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterEscrowLogisticsBody.receiver">(portone_server_sdk.payment.RegisterEscrowLogisticsBody attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.recover_option">recover_option (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PolicyClient.recover_platform_additional_fee_policy">recover_platform_additional_fee_policy() (portone_server_sdk.platform.policy.PolicyClient method)</a>
 
       <ul>
@@ -6471,8 +6984,6 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentEscrowSenderInput.relationship">relationship (portone_server_sdk.payment.PaymentEscrowSenderInput attribute)</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError">RemainedAmountLessThanPromotionMinPaymentAmountError</a>
-</li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccount.remittee_name">remittee_name (portone_server_sdk.payment.InstantPaymentMethodInputVirtualAccount attribute)</a>
 
       <ul>
@@ -6526,25 +7037,39 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.requested_at">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.requested_at">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.requested_at">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentCancellation.requested_at">(portone_server_sdk.payment.FailedPaymentCancellation attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.requested_at">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.requested_at">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.requested_at">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.requested_at">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.requested_at">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentWebhookRequest.requested_at">(portone_server_sdk.payment.PaymentWebhookRequest attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.requested_at">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.requested_at">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.requested_at">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.requested_at">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RequestedPaymentCancellation.requested_at">(portone_server_sdk.payment.RequestedPaymentCancellation attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.SucceededPaymentCancellation.requested_at">(portone_server_sdk.payment.SucceededPaymentCancellation attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.requested_at">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.requested_at">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.FailedIdentityVerification.requested_customer">requested_customer (portone_server_sdk.identity_verification.FailedIdentityVerification attribute)</a>
@@ -6748,17 +7273,31 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.schedule_id">schedule_id (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.schedule_id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.schedule_id">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.schedule_id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.schedule_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.schedule_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.schedule_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.schedule_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.schedule_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.schedule_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.schedule_id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.schedule_id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.schedule_id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.schedule_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody.schedule_ids">schedule_ids (portone_server_sdk.payment.payment_schedule.RevokePaymentSchedulesBody attribute)</a>
@@ -6869,6 +7408,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersResponse">SchedulePlatformPartnersResponse (class in portone_server_sdk.platform)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionDiscountPartition.scheme">scheme (portone_server_sdk.payment.promotion.PromotionDiscountPartition attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.SelectedChannel">SelectedChannel (class in portone_server_sdk.common)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ModifyEscrowLogisticsBody.send_email">send_email (portone_server_sdk.payment.ModifyEscrowLogisticsBody attribute)</a>
@@ -6935,6 +7476,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformRemitAccountTransfer.sequence_number">(portone_server_sdk.platform.account_transfer.PlatformRemitAccountTransfer attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingResponse.setting">setting (portone_server_sdk.platform.UpdatePlatformSettingResponse attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformOrderSettlementAmount.settlement">settlement (portone_server_sdk.platform.PlatformOrderSettlementAmount attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PlatformPayout.settlement_amount">settlement_amount (portone_server_sdk.platform.payout.PlatformPayout attribute)</a>
@@ -7041,12 +7584,12 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformTransferFilterInput.settlement_start_date_range">(portone_server_sdk.platform.transfer.PlatformTransferFilterInput attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.platform.partner_settlement.html#portone_server_sdk.platform.partner_settlement.PlatformPartnerSettlementFilterInput.settlement_types">settlement_types (portone_server_sdk.platform.partner_settlement.PlatformPartnerSettlementFilterInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransferDiscount.share_amount">share_amount (portone_server_sdk.platform.transfer.PlatformOrderTransferDiscount attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransferDiscount.share_policy">share_policy (portone_server_sdk.platform.transfer.PlatformOrderTransferDiscount attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBodyDiscount.share_policy_id">share_policy_id (portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBodyDiscount attribute)</a>
@@ -7080,6 +7623,8 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.sort_by">sort_by (portone_server_sdk.payment.PaymentFilterInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.sort_order">sort_order (portone_server_sdk.payment.PaymentFilterInput attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover.spare_budget">spare_budget (portone_server_sdk.payment.promotion.PromotionRecoverOptionNoRecover attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.spent_amount">spent_amount (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
@@ -7148,17 +7693,31 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.status_changed_at">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.status_changed_at">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.status_changed_at">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.status_changed_at">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.status_changed_at">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.status_changed_at">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.status_changed_at">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.status_changed_at">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.status_changed_at">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.status_changed_at">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.status_changed_at">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.status_changed_at">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.status_changed_at">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.status_changed_at">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.pg_specific.html#portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse.status_code">status_code (portone_server_sdk.pg_specific.GetKakaopayPaymentOrderResponse attribute)</a>
@@ -7204,6 +7763,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.store_id">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.store_id">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelPaymentBody.store_id">(portone_server_sdk.payment.CancelPaymentBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CancelledCashReceipt.store_id">(portone_server_sdk.payment.cash_receipt.CancelledCashReceipt attribute)</a>
@@ -7218,6 +7779,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.store_id">(portone_server_sdk.payment.FailedPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.store_id">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetAllPaymentsByCursorBody.store_id">(portone_server_sdk.payment.GetAllPaymentsByCursorBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.store_id">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
@@ -7226,7 +7789,11 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.store_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.store_id">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.store_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.store_id">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule.store_id">(portone_server_sdk.payment.payment_schedule.FailedPaymentSchedule attribute)</a>
 </li>
@@ -7248,11 +7815,15 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.store_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.store_id">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PreRegisterPaymentBody.store_id">(portone_server_sdk.payment.PreRegisterPaymentBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.store_id">(portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.store_id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.store_id">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RegisterEscrowLogisticsBody.store_id">(portone_server_sdk.payment.RegisterEscrowLogisticsBody attribute)</a>
 </li>
@@ -7261,6 +7832,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ResendWebhookBody.store_id">(portone_server_sdk.payment.ResendWebhookBody attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.store_id">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.store_id">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.store_id">(portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary attribute)</a>
 </li>
@@ -7429,9 +8002,11 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransferProduct.tax_free_amount">(portone_server_sdk.platform.transfer.PlatformOrderTransferProduct attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.taxation_type">taxation_type (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.taxation_type">taxation_type (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.taxation_type">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.taxation_type">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness.taxation_type">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness attribute)</a>
@@ -7441,6 +8016,10 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.taxation_type">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.taxation_type_date">taxation_type_date (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.taxation_types">taxation_types (portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.terminated_at">terminated_at (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyFilterInput.text_search">text_search (portone_server_sdk.payment.billing_key.BillingKeyFilterInput attribute)</a>
@@ -7503,14 +8082,14 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.timestamp_type">timestamp_type (portone_server_sdk.payment.PaymentFilterInput attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.PaymentAmountInput.total">total (portone_server_sdk.common.PaymentAmountInput attribute)</a>
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentAmount.total">(portone_server_sdk.payment.PaymentAmount attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt.total_amount">total_amount (portone_server_sdk.payment.CancelledPaymentCashReceipt attribute)</a>
 
       <ul>
@@ -7553,6 +8132,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.transaction_id">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.transaction_id">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.transaction_id">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.transaction_id">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
@@ -7613,8 +8194,16 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.TransferParameters">TransferParameters (class in portone_server_sdk.platform.transfer)</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentWebhook.trigger">trigger (portone_server_sdk.payment.PaymentWebhook attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentCancellation.trigger">trigger (portone_server_sdk.payment.FailedPaymentCancellation attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentWebhook.trigger">(portone_server_sdk.payment.PaymentWebhook attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.RequestedPaymentCancellation.trigger">(portone_server_sdk.payment.RequestedPaymentCancellation attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.SucceededPaymentCancellation.trigger">(portone_server_sdk.payment.SucceededPaymentCancellation attribute)</a>
+</li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentWebhook.triggered_at">triggered_at (portone_server_sdk.payment.PaymentWebhook attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Card.type">type (portone_server_sdk.common.Card attribute)</a>
@@ -7652,6 +8241,8 @@
       <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformAccountTransferFilter.types">types (portone_server_sdk.platform.account_transfer.PlatformAccountTransferFilter attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.types">(portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformTransferFilterInput.types">(portone_server_sdk.platform.transfer.PlatformTransferFilterInput attribute)</a>
 </li>
       </ul></li>
@@ -7759,6 +8350,18 @@
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.PartnerClient.update_platform_partner_async">(portone_server_sdk.platform.partner.PartnerClient method)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.update_platform_setting">update_platform_setting() (portone_server_sdk.platform.PlatformClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.update_platform_setting">(portone_server_sdk.PlatformClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.update_platform_setting_async">update_platform_setting_async() (portone_server_sdk.platform.PlatformClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient.update_platform_setting_async">(portone_server_sdk.PlatformClient method)</a>
+</li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.FailedIdentityVerification.updated_at">updated_at (portone_server_sdk.identity_verification.FailedIdentityVerification attribute)</a>
 
       <ul>
@@ -7768,17 +8371,31 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.updated_at">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.updated_at">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.updated_at">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.updated_at">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.updated_at">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.updated_at">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.updated_at">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.updated_at">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.updated_at">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.updated_at">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.updated_at">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.updated_at">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.updated_at">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.updated_at">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer.updated_at">(portone_server_sdk.platform.account_transfer.PlatformDepositAccountTransfer attribute)</a>
 </li>
@@ -7836,6 +8453,12 @@
       <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.UpdatePlatformPartnerResponse">UpdatePlatformPartnerResponse (class in portone_server_sdk.platform.partner)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformResponse">UpdatePlatformResponse (class in portone_server_sdk.platform)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingBody">UpdatePlatformSettingBody (class in portone_server_sdk.platform)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError">UpdatePlatformSettingError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingResponse">UpdatePlatformSettingResponse (class in portone_server_sdk.platform)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt.url">url (portone_server_sdk.payment.CancelledPaymentCashReceipt attribute)</a>
 
@@ -7945,8 +8568,6 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.SucceededPaymentCancellation.vat_amount">(portone_server_sdk.payment.SucceededPaymentCancellation attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformAdditionalFeePolicy.vat_payer">vat_payer (portone_server_sdk.platform.PlatformAdditionalFeePolicy attribute)</a>
 
       <ul>
@@ -7957,6 +8578,8 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.policy.html#portone_server_sdk.platform.policy.PlatformAdditionalFeePolicyFilterInput.vat_payers">vat_payers (portone_server_sdk.platform.policy.PlatformAdditionalFeePolicyFilterInput attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.VerifiedIdentityVerification.verified_at">verified_at (portone_server_sdk.identity_verification.VerifiedIdentityVerification attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.VerifiedIdentityVerification.verified_customer">verified_customer (portone_server_sdk.identity_verification.VerifiedIdentityVerification attribute)</a>
@@ -7970,19 +8593,33 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.version">(portone_server_sdk.payment.CancelledPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.version">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.version">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.version">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.version">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.version">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.version">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.version">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.version">(portone_server_sdk.payment.PaymentFilterInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.version">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.version">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.version">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.version">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.version">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.version">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentMethodInput.virtual_account">virtual_account (portone_server_sdk.payment.InstantPaymentMethodInput attribute)</a>
@@ -7992,6 +8629,8 @@
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment">VirtualAccountIssuedPayment (class in portone_server_sdk.payment)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction">VirtualAccountIssuedPaymentTransaction (class in portone_server_sdk.payment)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -8030,17 +8669,31 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.webhooks">webhooks (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentTransaction.webhooks">(portone_server_sdk.payment.CancelledPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPayment.webhooks">(portone_server_sdk.payment.FailedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.FailedPaymentTransaction.webhooks">(portone_server_sdk.payment.FailedPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPayment.webhooks">(portone_server_sdk.payment.PaidPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaidPaymentTransaction.webhooks">(portone_server_sdk.payment.PaidPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPayment.webhooks">(portone_server_sdk.payment.PartialCancelledPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PartialCancelledPaymentTransaction.webhooks">(portone_server_sdk.payment.PartialCancelledPaymentTransaction attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPayment.webhooks">(portone_server_sdk.payment.PayPendingPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayPendingPaymentTransaction.webhooks">(portone_server_sdk.payment.PayPendingPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPayment.webhooks">(portone_server_sdk.payment.ReadyPayment attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ReadyPaymentTransaction.webhooks">(portone_server_sdk.payment.ReadyPaymentTransaction attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPayment.webhooks">(portone_server_sdk.payment.VirtualAccountIssuedPayment attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction.webhooks">(portone_server_sdk.payment.VirtualAccountIssuedPaymentTransaction attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.WebhookTransactionCancelledCancelled">WebhookTransactionCancelledCancelled (class in portone_server_sdk.webhook)</a>
@@ -8140,6 +8793,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.MaxWebhookRetryCountReachedError.with_traceback">(portone_server_sdk.errors.MaxWebhookRetryCountReachedError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError.with_traceback">(portone_server_sdk.errors.NegativePromotionAdjustedCancelAmountError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PaymentAlreadyCancelledError.with_traceback">(portone_server_sdk.errors.PaymentAlreadyCancelledError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PaymentNotFoundError.with_traceback">(portone_server_sdk.errors.PaymentNotFoundError method)</a>
@@ -8208,6 +8863,10 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCannotSpecifyTransferError.with_traceback">(portone_server_sdk.errors.PlatformCannotSpecifyTransferError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyNotFoundError.with_traceback">(portone_server_sdk.errors.PlatformCompanyNotFoundError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError.with_traceback">(portone_server_sdk.errors.PlatformCompanyVerificationAlreadyUsedError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractAlreadyExistsError.with_traceback">(portone_server_sdk.errors.PlatformContractAlreadyExistsError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformContractNotFoundError.with_traceback">(portone_server_sdk.errors.PlatformContractNotFoundError method)</a>
@@ -8237,6 +8896,14 @@
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError.with_traceback">(portone_server_sdk.errors.PlatformInsufficientDataToChangePartnerTypeError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformInvalidSettlementFormulaError.with_traceback">(portone_server_sdk.errors.PlatformInvalidSettlementFormulaError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError.with_traceback">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError.with_traceback">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.with_traceback">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnersCannotBeScheduledError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError.with_traceback">(portone_server_sdk.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformNotEnabledError.with_traceback">(portone_server_sdk.errors.PlatformNotEnabledError method)</a>
 </li>
@@ -8288,11 +8955,11 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError.with_traceback">(portone_server_sdk.errors.PortOneError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError.with_traceback">(portone_server_sdk.errors.PromotionDiscountRetainOptionShouldNotBeChangedError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionNotFoundError.with_traceback">(portone_server_sdk.errors.PromotionNotFoundError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError.with_traceback">(portone_server_sdk.errors.PromotionPayMethodDoesNotMatchError method)</a>
-</li>
-        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError.with_traceback">(portone_server_sdk.errors.RemainedAmountLessThanPromotionMinPaymentAmountError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError.with_traceback">(portone_server_sdk.errors.SumOfPartsExceedsCancelAmountError method)</a>
 </li>
@@ -8340,6 +9007,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentsError.with_traceback">(portone_server_sdk.payment.GetPaymentsError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetPaymentTransactionsError.with_traceback">(portone_server_sdk.payment.GetPaymentTransactionsError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.ModifyEscrowLogisticsError.with_traceback">(portone_server_sdk.payment.ModifyEscrowLogisticsError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PayInstantlyError.with_traceback">(portone_server_sdk.payment.PayInstantlyError method)</a>
@@ -8378,6 +9047,8 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.CancelPlatformPartnerScheduleError.with_traceback">(portone_server_sdk.platform.CancelPlatformPartnerScheduleError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError.with_traceback">(portone_server_sdk.platform.company.GetPlatformCompanyStateError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError.with_traceback">(portone_server_sdk.platform.GetPlatformAdditionalFeePolicyScheduleError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformContractScheduleError.with_traceback">(portone_server_sdk.platform.GetPlatformContractScheduleError method)</a>
@@ -8391,6 +9062,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError.with_traceback">(portone_server_sdk.platform.GetPlatformPartnerFilterOptionsError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformPartnerScheduleError.with_traceback">(portone_server_sdk.platform.GetPlatformPartnerScheduleError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError.with_traceback">(portone_server_sdk.platform.GetPlatformSettingError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.ArchivePlatformPartnerError.with_traceback">(portone_server_sdk.platform.partner.ArchivePlatformPartnerError method)</a>
 </li>
@@ -8479,6 +9152,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.GetPlatformTransferSummariesError.with_traceback">(portone_server_sdk.platform.transfer.GetPlatformTransferSummariesError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformError.with_traceback">(portone_server_sdk.platform.UpdatePlatformError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError.with_traceback">(portone_server_sdk.platform.UpdatePlatformSettingError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.webhook.html#portone_server_sdk.webhook.InvalidInputError.with_traceback">(portone_server_sdk.webhook.InvalidInputError method)</a>
 </li>

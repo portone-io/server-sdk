@@ -156,6 +156,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -176,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
@@ -329,6 +331,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.bulk_payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.account"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.company"><code class="docutils literal notranslate"><span class="pre">PlatformClient.company</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.account_transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account_transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_async()</span></code></a></li>
@@ -372,6 +375,10 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.schedule_contract_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.schedule_contract_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.cancel_platform_contract_schedule"><code class="docutils literal notranslate"><span class="pre">PlatformClient.cancel_platform_contract_schedule()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.cancel_platform_contract_schedule_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.cancel_platform_contract_schedule_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_setting"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_setting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_setting_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_setting_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.update_platform_setting"><code class="docutils literal notranslate"><span class="pre">PlatformClient.update_platform_setting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.update_platform_setting_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.update_platform_setting_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -469,6 +476,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.get_platform_partner_schedule_async" title="portone_server_sdk.PlatformClient.get_platform_partner_schedule_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_partner_schedule_async</span></code></a>(*, id)</p></td>
 <td><p>주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.get_platform_setting" title="portone_server_sdk.PlatformClient.get_platform_setting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_setting</span></code></a>()</p></td>
+<td><p>플랫폼 설정 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.get_platform_setting_async" title="portone_server_sdk.PlatformClient.get_platform_setting_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_setting_async</span></code></a>()</p></td>
+<td><p>플랫폼 설정 조회</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.reschedule_additional_fee_policy" title="portone_server_sdk.PlatformClient.reschedule_additional_fee_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reschedule_additional_fee_policy</span></code></a>(*, id, ...)</p></td>
 <td><p></p></td>
 </tr>
@@ -529,6 +542,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.update_platform_async" title="portone_server_sdk.PlatformClient.update_platform_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_async</span></code></a>(*[, round_type, ...])</p></td>
 <td><p>고객사의 플랫폼 관련 정보를 업데이트합니다.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.update_platform_setting" title="portone_server_sdk.PlatformClient.update_platform_setting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_setting</span></code></a>(*[, ...])</p></td>
+<td><p>플랫폼 설정 업데이트</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.update_platform_setting_async" title="portone_server_sdk.PlatformClient.update_platform_setting_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_platform_setting_async</span></code></a>(*[, ...])</p></td>
+<td><p>플랫폼 설정 업데이트</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -556,7 +575,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.account" title="portone_server_sdk.PlatformClient.account"><code class="xref py py-obj docutils literal notranslate"><span class="pre">account</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.account_transfer" title="portone_server_sdk.PlatformClient.account_transfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">account_transfer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.company" title="portone_server_sdk.PlatformClient.company"><code class="xref py py-obj docutils literal notranslate"><span class="pre">company</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PlatformClient.account_transfer" title="portone_server_sdk.PlatformClient.account_transfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">account_transfer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -595,6 +617,11 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.account">
 <span class="sig-name descname"><span class="pre">account</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.account.html#portone_server_sdk.platform.account.AccountClient" title="portone_server_sdk._generated.platform.account.client.AccountClient"><span class="pre">AccountClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PlatformClient.account" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.company">
+<span class="sig-name descname"><span class="pre">company</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.CompanyClient" title="portone_server_sdk._generated.platform.company.client.CompanyClient"><span class="pre">CompanyClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PlatformClient.company" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1272,6 +1299,66 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.get_platform_setting">
+<span class="sig-name descname"><span class="pre">get_platform_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSetting" title="portone_server_sdk._generated.platform.platform_setting.PlatformSetting"><span class="pre">PlatformSetting</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PlatformClient.get_platform_setting" title="Link to this definition">#</a></dt>
+<dd><p>플랫폼 설정 조회</p>
+<p>설정 정보를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError" title="portone_server_sdk.platform.GetPlatformSettingError"><strong>GetPlatformSettingError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.get_platform_setting_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_setting_async</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformSetting" title="portone_server_sdk._generated.platform.platform_setting.PlatformSetting"><span class="pre">PlatformSetting</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PlatformClient.get_platform_setting_async" title="Link to this definition">#</a></dt>
+<dd><p>플랫폼 설정 조회</p>
+<p>설정 정보를 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.GetPlatformSettingError" title="portone_server_sdk.platform.GetPlatformSettingError"><strong>GetPlatformSettingError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.update_platform_setting">
+<span class="sig-name descname"><span class="pre">update_platform_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_withdrawal_memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_deposit_memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingResponse" title="portone_server_sdk._generated.platform.update_platform_setting_response.UpdatePlatformSettingResponse"><span class="pre">UpdatePlatformSettingResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PlatformClient.update_platform_setting" title="Link to this definition">#</a></dt>
+<dd><p>플랫폼 설정 업데이트</p>
+<p>설정 정보를 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_withdrawal_memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 기본 보내는 이 통장 메모</p></li>
+<li><p><strong>default_deposit_memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 기본 받는 이 통장 메모</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError" title="portone_server_sdk.platform.UpdatePlatformSettingError"><strong>UpdatePlatformSettingError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PlatformClient.update_platform_setting_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_platform_setting_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_withdrawal_memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_deposit_memo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingResponse" title="portone_server_sdk._generated.platform.update_platform_setting_response.UpdatePlatformSettingResponse"><span class="pre">UpdatePlatformSettingResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PlatformClient.update_platform_setting_async" title="Link to this definition">#</a></dt>
+<dd><p>플랫폼 설정 업데이트</p>
+<p>설정 정보를 업데이트합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_withdrawal_memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 기본 보내는 이 통장 메모</p></li>
+<li><p><strong>default_deposit_memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 기본 받는 이 통장 메모</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformSettingError" title="portone_server_sdk.platform.UpdatePlatformSettingError"><strong>UpdatePlatformSettingError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1331,6 +1418,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.bulk_payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.account"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.company"><code class="docutils literal notranslate"><span class="pre">PlatformClient.company</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.account_transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account_transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_async()</span></code></a></li>
@@ -1374,6 +1462,10 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.schedule_contract_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.schedule_contract_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.cancel_platform_contract_schedule"><code class="docutils literal notranslate"><span class="pre">PlatformClient.cancel_platform_contract_schedule()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.cancel_platform_contract_schedule_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.cancel_platform_contract_schedule_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_setting"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_setting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.get_platform_setting_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_setting_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.update_platform_setting"><code class="docutils literal notranslate"><span class="pre">PlatformClient.update_platform_setting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PlatformClient.update_platform_setting_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.update_platform_setting_async()</span></code></a></li>
 </ul>
 </li>
 </ul>

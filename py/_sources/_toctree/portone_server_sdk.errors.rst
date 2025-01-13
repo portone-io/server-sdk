@@ -32,6 +32,7 @@
       InvalidRequestError
       MaxTransactionCountReachedError
       MaxWebhookRetryCountReachedError
+      NegativePromotionAdjustedCancelAmountError
       PaymentAlreadyCancelledError
       PaymentNotFoundError
       PaymentNotPaidError
@@ -66,6 +67,8 @@
       PlatformCannotArchiveScheduledDiscountSharePolicyError
       PlatformCannotArchiveScheduledPartnerError
       PlatformCannotSpecifyTransferError
+      PlatformCompanyNotFoundError
+      PlatformCompanyVerificationAlreadyUsedError
       PlatformContractAlreadyExistsError
       PlatformContractNotFoundError
       PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
@@ -81,6 +84,10 @@
       PlatformExternalApiTemporarilyFailedError
       PlatformInsufficientDataToChangePartnerTypeError
       PlatformInvalidSettlementFormulaError
+      PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
+      PlatformMemberCompanyConnectedPartnerCannotBeScheduledError
+      PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
+      PlatformMemberCompanyConnectedPartnersCannotBeScheduledError
       PlatformNotEnabledError
       PlatformNotSupportedBankError
       PlatformOrderDetailMismatchedError
@@ -105,9 +112,9 @@
       PlatformTransferNonDeletableStatusError
       PlatformTransferNotFoundError
       PlatformUserDefinedPropertyNotFoundError
+      PromotionDiscountRetainOptionShouldNotBeChangedError
       PromotionNotFoundError
       PromotionPayMethodDoesNotMatchError
-      RemainedAmountLessThanPromotionMinPaymentAmountError
       SumOfPartsExceedsCancelAmountError
       SumOfPartsExceedsTotalAmountError
       UnauthorizedError

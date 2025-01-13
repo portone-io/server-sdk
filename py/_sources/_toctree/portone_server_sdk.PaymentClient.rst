@@ -26,6 +26,8 @@
       ~PaymentClient.get_all_payments_by_cursor_async
       ~PaymentClient.get_payment
       ~PaymentClient.get_payment_async
+      ~PaymentClient.get_payment_transactions
+      ~PaymentClient.get_payment_transactions_async
       ~PaymentClient.get_payments
       ~PaymentClient.get_payments_async
       ~PaymentClient.modify_escrow_logistics

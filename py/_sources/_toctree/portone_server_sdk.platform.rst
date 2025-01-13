@@ -35,6 +35,7 @@
       PlatformPartnerTypeWhtPayer
       PlatformPayoutStatusStats
       PlatformProperties
+      PlatformSetting
       PlatformSettlementCycle
       PlatformSettlementCycleInput
       PlatformSettlementCycleMethodDaily
@@ -96,6 +97,8 @@
       UpdatePlatformPartnerBodyTypeNonWhtPayer
       UpdatePlatformPartnerBodyTypeWhtPayer
       UpdatePlatformResponse
+      UpdatePlatformSettingBody
+      UpdatePlatformSettingResponse
       PlatformClient
    
    .. rubric:: Exceptions
@@ -113,6 +116,7 @@
       GetPlatformError
       GetPlatformPartnerFilterOptionsError
       GetPlatformPartnerScheduleError
+      GetPlatformSettingError
       RescheduleAdditionalFeePolicyError
       RescheduleContractError
       RescheduleDiscountSharePolicyError
@@ -123,6 +127,7 @@
       SchedulePartnerError
       SchedulePlatformPartnersError
       UpdatePlatformError
+      UpdatePlatformSettingError
    
 .. rubric:: Modules
 
@@ -137,4 +142,5 @@
    payout
    bulk_payout
    account
+   company
    account_transfer

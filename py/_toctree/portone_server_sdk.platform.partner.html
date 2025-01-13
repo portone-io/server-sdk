@@ -156,6 +156,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -176,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 </ul>
 </details></li>
@@ -406,6 +408,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_address"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.company_address</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_type"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.business_type</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.business_class</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_verification_id"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.company_verification_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeNonWhtPayer"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeNonWhtPayer</span></code></a><ul class="nav section-nav flex-column">
@@ -930,6 +933,12 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class">
 <span class="sig-name descname"><span class="pre">business_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class" title="Link to this definition">#</a></dt>
 <dd><p>업종</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_verification_id">
+<span class="sig-name descname"><span class="pre">company_verification_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_verification_id" title="Link to this definition">#</a></dt>
+<dd><p>사업자 조회 검증 아이디</p>
 </dd></dl>
 
 </dd></dl>
@@ -1483,6 +1492,7 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_address"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.company_address</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_type"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.business_type</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.business_class</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.company_verification_id"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeBusiness.company_verification_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeNonWhtPayer"><code class="docutils literal notranslate"><span class="pre">CreatePlatformPartnerBodyTypeNonWhtPayer</span></code></a><ul class="nav section-nav flex-column">

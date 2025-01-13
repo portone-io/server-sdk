@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>portone_server_sdk.PayoutClient &#8212; portone-server-sdk  documentation</title>
+    <title>portone_server_sdk.CompanyClient &#8212; portone-server-sdk  documentation</title>
   
   
   
@@ -43,11 +43,11 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.PayoutClient';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.CompanyClient';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.PolicyClient" href="portone_server_sdk.PolicyClient.html" />
-    <link rel="prev" title="portone_server_sdk.PartnerSettlementClient" href="portone_server_sdk.PartnerSettlementClient.html" />
+    <link rel="next" title="portone_server_sdk.auth" href="portone_server_sdk.auth.html" />
+    <link rel="prev" title="portone_server_sdk.TransferClient" href="portone_server_sdk.TransferClient.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -153,10 +153,10 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -236,7 +236,7 @@
       
       
       
-      <li><a href="../_sources/_toctree/portone_server_sdk.PayoutClient.rst" target="_blank"
+      <li><a href="../_sources/_toctree/portone_server_sdk.CompanyClient.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -312,7 +312,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>portone_server_sdk.PayoutClient</h1>
+    <h1>portone_server_sdk.CompanyClient</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -322,10 +322,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">PayoutClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient"><code class="docutils literal notranslate"><span class="pre">CompanyClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.__init__"><code class="docutils literal notranslate"><span class="pre">CompanyClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -339,67 +339,59 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="portone-server-sdk-payoutclient">
-<h1>portone_server_sdk.PayoutClient<a class="headerlink" href="#portone-server-sdk-payoutclient" title="Link to this heading">#</a></h1>
+  <section id="portone-server-sdk-companyclient">
+<h1>portone_server_sdk.CompanyClient<a class="headerlink" href="#portone-server-sdk-companyclient" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">PayoutClient</span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">CompanyClient</span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.PayoutClient.__init__" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.CompanyClient.__init__" title="Link to this definition">#</a></dt>
 <dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.__init__" title="portone_server_sdk.PayoutClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.__init__" title="portone_server_sdk.CompanyClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
 <td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.get_platform_payouts" title="portone_server_sdk.PayoutClient.get_platform_payouts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_payouts</span></code></a>(*[, is_for_test, page, ...])</p></td>
-<td><p>지급 내역 다건 조회</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_platform_company_state" title="portone_server_sdk.CompanyClient.get_platform_company_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_company_state</span></code></a>(*, ...)</p></td>
+<td><p>사업자 조회</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async" title="portone_server_sdk.PayoutClient.get_platform_payouts_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_payouts_async</span></code></a>(*[, is_for_test, ...])</p></td>
-<td><p>지급 내역 다건 조회</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async" title="portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_company_state_async</span></code></a>(*, ...)</p></td>
+<td><p>사업자 조회</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.get_platform_payouts">
-<span class="sig-name descname"><span class="pre">get_platform_payouts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PlatformPayoutFilterInput" title="portone_server_sdk._generated.platform.payout.platform_payout_filter_input.PlatformPayoutFilterInput"><span class="pre">PlatformPayoutFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsResponse" title="portone_server_sdk._generated.platform.payout.get_platform_payouts_response.GetPlatformPayoutsResponse"><span class="pre">GetPlatformPayoutsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient.get_platform_payouts" title="Link to this definition">#</a></dt>
-<dd><p>지급 내역 다건 조회</p>
-<p>여러 지급 내역을 조회합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_platform_company_state">
+<span class="sig-name descname"><span class="pre">get_platform_company_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">business_registration_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload" title="portone_server_sdk._generated.platform.company.get_platform_company_state_payload.GetPlatformCompanyStatePayload"><span class="pre">GetPlatformCompanyStatePayload</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_platform_company_state" title="Link to this definition">#</a></dt>
+<dd><p>사업자 조회</p>
+<p>사업자 정보를 조회합니다. 포트원 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
-</ul>
+<dd class="field-odd"><p><strong>business_registration_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 사업자등록번호</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsError" title="portone_server_sdk.platform.payout.GetPlatformPayoutsError"><strong>GetPlatformPayoutsError</strong></a> – </p>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError" title="portone_server_sdk.platform.company.GetPlatformCompanyStateError"><strong>GetPlatformCompanyStateError</strong></a> – </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.get_platform_payouts_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_payouts_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PlatformPayoutFilterInput" title="portone_server_sdk._generated.platform.payout.platform_payout_filter_input.PlatformPayoutFilterInput"><span class="pre">PlatformPayoutFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsResponse" title="portone_server_sdk._generated.platform.payout.get_platform_payouts_response.GetPlatformPayoutsResponse"><span class="pre">GetPlatformPayoutsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async" title="Link to this definition">#</a></dt>
-<dd><p>지급 내역 다건 조회</p>
-<p>여러 지급 내역을 조회합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_platform_company_state_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_company_state_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">business_registration_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload" title="portone_server_sdk._generated.platform.company.get_platform_company_state_payload.GetPlatformCompanyStatePayload"><span class="pre">GetPlatformCompanyStatePayload</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async" title="Link to this definition">#</a></dt>
+<dd><p>사업자 조회</p>
+<p>사업자 정보를 조회합니다. 포트원 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
-</ul>
+<dd class="field-odd"><p><strong>business_registration_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 사업자등록번호</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsError" title="portone_server_sdk.platform.payout.GetPlatformPayoutsError"><strong>GetPlatformPayoutsError</strong></a> – </p>
+<dd class="field-even"><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError" title="portone_server_sdk.platform.company.GetPlatformCompanyStateError"><strong>GetPlatformCompanyStateError</strong></a> – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -420,20 +412,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.PartnerSettlementClient.html"
+       href="portone_server_sdk.TransferClient.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.PartnerSettlementClient</p>
+        <p class="prev-next-title">portone_server_sdk.TransferClient</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.PolicyClient.html"
+       href="portone_server_sdk.auth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.PolicyClient</p>
+        <p class="prev-next-title">portone_server_sdk.auth</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -454,10 +446,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">PayoutClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient"><code class="docutils literal notranslate"><span class="pre">CompanyClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.__init__"><code class="docutils literal notranslate"><span class="pre">CompanyClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state_async()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -36,6 +36,8 @@
       ~PlatformClient.get_platform_partner_filter_options_async
       ~PlatformClient.get_platform_partner_schedule
       ~PlatformClient.get_platform_partner_schedule_async
+      ~PlatformClient.get_platform_setting
+      ~PlatformClient.get_platform_setting_async
       ~PlatformClient.reschedule_additional_fee_policy
       ~PlatformClient.reschedule_additional_fee_policy_async
       ~PlatformClient.reschedule_contract
@@ -56,6 +58,8 @@
       ~PlatformClient.schedule_platform_partners_async
       ~PlatformClient.update_platform
       ~PlatformClient.update_platform_async
+      ~PlatformClient.update_platform_setting
+      ~PlatformClient.update_platform_setting_async
    
    
 
@@ -72,6 +76,7 @@
       ~PlatformClient.payout
       ~PlatformClient.bulk_payout
       ~PlatformClient.account
+      ~PlatformClient.company
       ~PlatformClient.account_transfer
    
    
