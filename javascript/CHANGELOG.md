@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.10.0
+
+### Minor Changes
+
+- 8bee566: API 업데이트
+
 ## 0.9.0
 
 ### Minor Changes
