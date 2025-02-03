@@ -52,7 +52,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            GetPaymentScheduleError
+            GetPaymentScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -110,7 +111,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            GetPaymentScheduleError
+            GetPaymentScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -179,7 +181,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            GetPaymentSchedulesError
+            GetPaymentSchedulesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -248,7 +251,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            GetPaymentSchedulesError
+            GetPaymentSchedulesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -314,7 +318,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            RevokePaymentSchedulesError
+            RevokePaymentSchedulesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -410,7 +415,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            RevokePaymentSchedulesError
+            RevokePaymentSchedulesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -504,7 +510,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            CreatePaymentScheduleError
+            CreatePaymentScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["payment"] = _serialize_billing_key_payment_input(payment)
@@ -594,7 +601,8 @@ class PaymentScheduleClient:
 
 
         Raises:
-            CreatePaymentScheduleError
+            CreatePaymentScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["payment"] = _serialize_billing_key_payment_input(payment)

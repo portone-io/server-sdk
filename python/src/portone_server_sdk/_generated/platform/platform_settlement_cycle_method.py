@@ -40,4 +40,4 @@ def _deserialize_platform_settlement_cycle_method(obj: Any) -> PlatformSettlemen
         return _deserialize_platform_settlement_cycle_method_weekly(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformSettlementCycleMethod")

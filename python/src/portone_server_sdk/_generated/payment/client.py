@@ -112,7 +112,8 @@ class PaymentClient:
 
 
         Raises:
-            PreRegisterPaymentError
+            PreRegisterPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -187,7 +188,8 @@ class PaymentClient:
 
 
         Raises:
-            PreRegisterPaymentError
+            PreRegisterPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -253,7 +255,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentError
+            GetPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -311,7 +314,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentError
+            GetPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -369,7 +373,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentTransactionsError
+            GetPaymentTransactionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -427,7 +432,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentTransactionsError
+            GetPaymentTransactionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -492,7 +498,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentsError
+            GetPaymentsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -555,7 +562,8 @@ class PaymentClient:
 
 
         Raises:
-            GetPaymentsError
+            GetPaymentsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -628,7 +636,8 @@ class PaymentClient:
 
 
         Raises:
-            GetAllPaymentsError
+            GetAllPaymentsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -707,7 +716,8 @@ class PaymentClient:
 
 
         Raises:
-            GetAllPaymentsError
+            GetAllPaymentsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -810,7 +820,8 @@ class PaymentClient:
 
 
         Raises:
-            CancelPaymentError
+            CancelPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -986,7 +997,8 @@ class PaymentClient:
 
 
         Raises:
-            CancelPaymentError
+            CancelPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -1186,7 +1198,8 @@ class PaymentClient:
 
 
         Raises:
-            PayWithBillingKeyError
+            PayWithBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -1399,7 +1412,8 @@ class PaymentClient:
 
 
         Raises:
-            PayWithBillingKeyError
+            PayWithBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -1612,7 +1626,8 @@ class PaymentClient:
 
 
         Raises:
-            PayInstantlyError
+            PayInstantlyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -1809,7 +1824,8 @@ class PaymentClient:
 
 
         Raises:
-            PayInstantlyError
+            PayInstantlyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -1941,7 +1957,8 @@ class PaymentClient:
 
 
         Raises:
-            CloseVirtualAccountError
+            CloseVirtualAccountError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -2011,7 +2028,8 @@ class PaymentClient:
 
 
         Raises:
-            CloseVirtualAccountError
+            CloseVirtualAccountError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -2098,7 +2116,8 @@ class PaymentClient:
 
 
         Raises:
-            ApplyEscrowLogisticsError
+            ApplyEscrowLogisticsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2196,7 +2215,8 @@ class PaymentClient:
 
 
         Raises:
-            ApplyEscrowLogisticsError
+            ApplyEscrowLogisticsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2294,7 +2314,8 @@ class PaymentClient:
 
 
         Raises:
-            ModifyEscrowLogisticsError
+            ModifyEscrowLogisticsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2392,7 +2413,8 @@ class PaymentClient:
 
 
         Raises:
-            ModifyEscrowLogisticsError
+            ModifyEscrowLogisticsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2479,7 +2501,8 @@ class PaymentClient:
 
 
         Raises:
-            ConfirmEscrowError
+            ConfirmEscrowError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2559,7 +2582,8 @@ class PaymentClient:
 
 
         Raises:
-            ConfirmEscrowError
+            ConfirmEscrowError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2638,7 +2662,8 @@ class PaymentClient:
 
 
         Raises:
-            ResendWebhookError
+            ResendWebhookError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2717,7 +2742,8 @@ class PaymentClient:
 
 
         Raises:
-            ResendWebhookError
+            ResendWebhookError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -2796,7 +2822,8 @@ class PaymentClient:
 
 
         Raises:
-            RegisterStoreReceiptError
+            RegisterStoreReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["items"] = items
@@ -2874,7 +2901,8 @@ class PaymentClient:
 
 
         Raises:
-            RegisterStoreReceiptError
+            RegisterStoreReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["items"] = items

@@ -45,4 +45,4 @@ def _deserialize_reschedule_additional_fee_policy_error(obj: Any) -> RescheduleA
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not RescheduleAdditionalFeePolicyError")

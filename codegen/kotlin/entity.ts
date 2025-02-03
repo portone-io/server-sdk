@@ -244,7 +244,7 @@ export function generateEntity(
       serializerWriter.writeLine("}")
       writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
       crossRef.add("kotlinx.serialization.Serializable")
-      writer.writeLine(`public sealed interface ${definition.name} {`)
+      writer.writeLine(`${visibility} sealed interface ${definition.name} {`)
       writer.indent()
       writer.writeLine("@Serializable")
       writer.writeLine(

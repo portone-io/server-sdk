@@ -20,6 +20,9 @@ import type { PageInput } from "../../../generated/common/PageInput"
 import type { PaymentScheduleAlreadyExistsError } from "../../../generated/common/PaymentScheduleAlreadyExistsError"
 import type { PgProviderError } from "../../../generated/common/PgProviderError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

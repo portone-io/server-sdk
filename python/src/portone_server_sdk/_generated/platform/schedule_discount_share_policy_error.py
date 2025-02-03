@@ -59,4 +59,4 @@ def _deserialize_schedule_discount_share_policy_error(obj: Any) -> ScheduleDisco
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ScheduleDiscountSharePolicyError")

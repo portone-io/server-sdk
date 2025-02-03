@@ -113,7 +113,8 @@ class PlatformClient:
         요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 
         Raises:
-            GetPlatformError
+            GetPlatformError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -155,7 +156,8 @@ class PlatformClient:
         요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 
         Raises:
-            GetPlatformError
+            GetPlatformError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -210,7 +212,8 @@ class PlatformClient:
 
 
         Raises:
-            UpdatePlatformError
+            UpdatePlatformError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if round_type is not None:
@@ -285,7 +288,8 @@ class PlatformClient:
 
 
         Raises:
-            UpdatePlatformError
+            UpdatePlatformError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if round_type is not None:
@@ -355,7 +359,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyFilterOptionsError
+            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if is_archived is not None:
@@ -413,7 +418,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyFilterOptionsError
+            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if is_archived is not None:
@@ -469,7 +475,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyScheduleError
+            GetPlatformDiscountSharePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -529,7 +536,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyScheduleError
+            GetPlatformDiscountSharePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -595,7 +603,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleDiscountSharePolicyError
+            RescheduleDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
@@ -665,7 +674,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleDiscountSharePolicyError
+            RescheduleDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
@@ -735,7 +745,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleDiscountSharePolicyError
+            ScheduleDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
@@ -817,7 +828,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleDiscountSharePolicyError
+            ScheduleDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
@@ -893,7 +905,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformDiscountSharePolicyScheduleError
+            CancelPlatformDiscountSharePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -953,7 +966,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformDiscountSharePolicyScheduleError
+            CancelPlatformDiscountSharePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1013,7 +1027,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyScheduleError
+            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1073,7 +1088,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyScheduleError
+            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1137,7 +1153,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleAdditionalFeePolicyError
+            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
@@ -1205,7 +1222,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleAdditionalFeePolicyError
+            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
@@ -1275,7 +1293,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleAdditionalFeePolicyError
+            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
@@ -1357,7 +1376,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleAdditionalFeePolicyError
+            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
@@ -1433,7 +1453,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformAdditionalFeePolicyScheduleError
+            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1493,7 +1514,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformAdditionalFeePolicyScheduleError
+            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1555,7 +1577,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformPartnerFilterOptionsError
+            GetPlatformPartnerFilterOptionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if is_archived is not None:
@@ -1613,7 +1636,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformPartnerFilterOptionsError
+            GetPlatformPartnerFilterOptionsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if is_archived is not None:
@@ -1669,7 +1693,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformPartnerScheduleError
+            GetPlatformPartnerScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1729,7 +1754,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformPartnerScheduleError
+            GetPlatformPartnerScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1795,7 +1821,8 @@ class PlatformClient:
 
 
         Raises:
-            ReschedulePartnerError
+            ReschedulePartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update)
@@ -1877,7 +1904,8 @@ class PlatformClient:
 
 
         Raises:
-            ReschedulePartnerError
+            ReschedulePartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update)
@@ -1959,7 +1987,8 @@ class PlatformClient:
 
 
         Raises:
-            SchedulePartnerError
+            SchedulePartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update)
@@ -2101,7 +2130,8 @@ class PlatformClient:
 
 
         Raises:
-            SchedulePartnerError
+            SchedulePartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_partner_body(update)
@@ -2237,7 +2267,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformPartnerScheduleError
+            CancelPlatformPartnerScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -2297,7 +2328,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformPartnerScheduleError
+            CancelPlatformPartnerScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -2361,7 +2393,8 @@ class PlatformClient:
 
 
         Raises:
-            SchedulePlatformPartnersError
+            SchedulePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if filter is not None:
@@ -2455,7 +2488,8 @@ class PlatformClient:
 
 
         Raises:
-            SchedulePlatformPartnersError
+            SchedulePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if filter is not None:
@@ -2545,7 +2579,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformContractScheduleError
+            GetPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -2605,7 +2640,8 @@ class PlatformClient:
 
 
         Raises:
-            GetPlatformContractScheduleError
+            GetPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -2671,7 +2707,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleContractError
+            RescheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update)
@@ -2741,7 +2778,8 @@ class PlatformClient:
 
 
         Raises:
-            RescheduleContractError
+            RescheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update)
@@ -2811,7 +2849,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleContractError
+            ScheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update)
@@ -2893,7 +2932,8 @@ class PlatformClient:
 
 
         Raises:
-            ScheduleContractError
+            ScheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["update"] = _serialize_update_platform_contract_body(update)
@@ -2969,7 +3009,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformContractScheduleError
+            CancelPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -3029,7 +3070,8 @@ class PlatformClient:
 
 
         Raises:
-            CancelPlatformContractScheduleError
+            CancelPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -3084,7 +3126,8 @@ class PlatformClient:
         설정 정보를 조회합니다.
 
         Raises:
-            GetPlatformSettingError
+            GetPlatformSettingError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -3133,7 +3176,8 @@ class PlatformClient:
         설정 정보를 조회합니다.
 
         Raises:
-            GetPlatformSettingError
+            GetPlatformSettingError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -3192,7 +3236,8 @@ class PlatformClient:
 
 
         Raises:
-            UpdatePlatformSettingError
+            UpdatePlatformSettingError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if default_withdrawal_memo is not None:
@@ -3257,7 +3302,8 @@ class PlatformClient:
 
 
         Raises:
-            UpdatePlatformSettingError
+            UpdatePlatformSettingError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if default_withdrawal_memo is not None:

@@ -87,4 +87,4 @@ def _deserialize_pay_instantly_error(obj: Any) -> PayInstantlyError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PayInstantlyError")

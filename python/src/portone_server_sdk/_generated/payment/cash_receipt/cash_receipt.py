@@ -33,4 +33,4 @@ def _deserialize_cash_receipt(obj: Any) -> CashReceipt:
         return _deserialize_issue_failed_cash_receipt(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not CashReceipt")

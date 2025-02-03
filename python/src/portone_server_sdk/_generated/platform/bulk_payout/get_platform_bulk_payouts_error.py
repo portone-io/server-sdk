@@ -38,4 +38,4 @@ def _deserialize_get_platform_bulk_payouts_error(obj: Any) -> GetPlatformBulkPay
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not GetPlatformBulkPayoutsError")

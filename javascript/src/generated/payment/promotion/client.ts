@@ -6,6 +6,9 @@ import type { InvalidRequestError } from "../../../generated/common/InvalidReque
 import type { Promotion } from "../../../generated/payment/promotion/Promotion"
 import type { PromotionNotFoundError } from "../../../generated/payment/promotion/PromotionNotFoundError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PromotionClient(init: PortOneClientInit): PromotionClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

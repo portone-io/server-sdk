@@ -57,6 +57,80 @@ dependencies:
   - io.portone:server-sdk:x.y.z:all
 ```
 
+## 사용법
+
+### 포트원 REST API
+
+먼저 [포트원 개발자콘솔](https://admin.portone.io/integration-v2/manage/api-keys?version=v2)에서 API Secret을 발급받습니다.
+
+발급받은 API Secret을 사용해 필요한 API에 맞는 Client를 생성합니다.
+
+```kotlin
+// 결제 관련 API를 사용하는 경우
+val paymentClient = PaymentClient(apiSecret = PORTONE_API_SECRET)
+paymentClient.getPayment(/* ... */)
+
+// 전체 API를 사용하는 경우
+val portoneClient = PortOneClient(apiSecret = PORTONE_API_SECRET)
+// 상위 Client를 생성한 경우 하위 Client에 접근 가능합니다.
+portoneClient.payment.getPayment(/* ... */)
+```
+
+Client의 각 메서드는 메서드마다 고유한 Exception 인터페이스를 가집니다.
+
+```kotlin
+val payment = try {
+    paymentClient.getPayment(/* ... */)
+} catch (error: PortOneException) {
+    if (error is GetPaymentException) {
+        when (error) {
+            is UnknownException -> /* ... */
+            is ForbiddenException -> /* ... */
+            is InvalidRequestException -> /* ... */
+            is PaymentNotFoundException -> /* ... */
+            is UnauthorizedException -> /* ... */
+        }
+    }
+    throw error
+}
+```
+
+포트원 REST API로부터 현재 SDK 버전에서 지원하지 않는 응답을 받을 수 있습니다.
+이 경우를 구분하기 위하여 `Recognized` 및 `Unrecognized` 타입인지를 체크해야 합니다.
+
+```kotlin
+println(payment.amount.total) // Error: Unresolved reference 'amount'.
+if (payment is Payment.Recognized) {
+    println(payment.amount.total)
+}
+```
+
+### 웹훅 검증
+
+먼저 [포트원 개발자콘솔](https://admin.portone.io/integration-v2/manage/webhook?version=V2)에서 웹훅 시크릿을 발급받습니다.
+
+WebhookVerifier.verify 메서드로 웹훅 내용을 검증할 수 있습니다.
+
+```kotlin
+val payload = """{"type":"BillingKey.Issued","timestamp":"2024-04-25T10:00:00.000Z","data":{"storeId":"store-61e0db3d-b967-47db-8b50-96002da90d55","billingKey":"billing-key-75ae3cab-6afe-422d-bf34-3a7b1762451d"}}"""
+val webhookVerifier = WebhookVerifier(PORTONE_WEBHOOK_SECRET)
+val webhook = webhookVerifier.verify(
+    msgBody = payload,
+    msgId = "test-id", // webhook-id 헤더 값
+    msgSignature = "v1,aW52YWxpZCBzaWduYXR1cmU=", // webhook-signature 헤더 값
+    msgTimestamp = "100", // webhook-timestamp 헤더 값
+)
+```
+
+WebhookVerifier.verify 메서드는 body를 Webhook 타입으로 변환하여 반환합니다.
+
+```kotlin
+println(webhook.data.paymentId) // Error: Unresolved reference 'data'.
+if (webhook is WebhookTransaction) {
+    println(webhook.data.paymentId)
+}
+```
+
 ## 버전
 
 [유의적 버전 2.0.0](https://semver.org/spec/v2.0.0.html)을 사용합니다.

@@ -197,6 +197,9 @@ function generateClient(
       name: clientName,
     }
     collected.push(client)
+    writer.writeLine("/**")
+    writer.writeLine(" * 포트원 API 클라이언트를 생성합니다.")
+    writer.writeLine(" */")
     writer.writeLine(
       `export function ${clientName}(init: PortOneClientInit): ${clientName} {`,
     )

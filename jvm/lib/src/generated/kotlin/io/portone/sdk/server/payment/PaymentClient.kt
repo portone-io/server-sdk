@@ -154,6 +154,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
+/**
+ * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ */
 public class PaymentClient(
   private val apiSecret: String,
   private val apiBase: String = "https://api.portone.io",

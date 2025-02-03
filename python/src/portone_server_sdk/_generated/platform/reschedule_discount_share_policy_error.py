@@ -45,4 +45,4 @@ def _deserialize_reschedule_discount_share_policy_error(obj: Any) -> RescheduleD
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not RescheduleDiscountSharePolicyError")

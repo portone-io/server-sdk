@@ -10,7 +10,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 @Serializable(GetPlatformPartnerScheduleErrorSerializer::class)
-public sealed interface GetPlatformPartnerScheduleError {
+internal sealed interface GetPlatformPartnerScheduleError {
   @Serializable
   @JsonClassDiscriminator("type")
   /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */

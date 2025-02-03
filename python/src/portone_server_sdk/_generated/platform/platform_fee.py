@@ -26,4 +26,4 @@ def _deserialize_platform_fee(obj: Any) -> PlatformFee:
         return _deserialize_platform_fixed_rate_fee(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformFee")

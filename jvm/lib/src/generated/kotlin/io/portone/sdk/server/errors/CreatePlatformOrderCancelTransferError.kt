@@ -10,7 +10,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 @Serializable(CreatePlatformOrderCancelTransferErrorSerializer::class)
-public sealed interface CreatePlatformOrderCancelTransferError {
+internal sealed interface CreatePlatformOrderCancelTransferError {
   @Serializable
   @JsonClassDiscriminator("type")
   /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */

@@ -52,4 +52,4 @@ def _deserialize_modify_escrow_logistics_error(obj: Any) -> ModifyEscrowLogistic
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ModifyEscrowLogisticsError")

@@ -55,6 +55,9 @@ import type { PlatformUserDefinedPropertyKeyValue } from "../../../generated/pla
 import type { PlatformUserDefinedPropertyNotFoundError } from "../../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { TransferParameters } from "../../../generated/platform/transfer/TransferParameters"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function TransferClient(init: PortOneClientInit): TransferClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

@@ -24,4 +24,4 @@ def _deserialize_channel_specific_failure(obj: Any) -> ChannelSpecificFailure:
         return _deserialize_channel_specific_failure_pg_provider(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ChannelSpecificFailure")

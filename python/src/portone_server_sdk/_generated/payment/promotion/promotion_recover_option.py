@@ -24,4 +24,4 @@ def _deserialize_promotion_recover_option(obj: Any) -> PromotionRecoverOption:
         return _deserialize_promotion_recover_option_recover(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PromotionRecoverOption")

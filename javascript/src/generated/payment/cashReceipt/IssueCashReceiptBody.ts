@@ -1,6 +1,7 @@
 import type { CashReceiptType } from "./../../common/CashReceiptType"
 import type { Currency } from "./../../common/Currency"
 import type { IssueCashReceiptCustomerInput } from "./../../payment/cashReceipt/IssueCashReceiptCustomerInput"
+import type { IssueCashReceiptPaymentMethodType } from "./../../payment/cashReceipt/IssueCashReceiptPaymentMethodType"
 import type { PaymentAmountInput } from "./../../common/PaymentAmountInput"
 import type { PaymentProductType } from "./../../common/PaymentProductType"
 /** 현금영수증 발급 요청 양식 */
@@ -36,4 +37,16 @@ export type IssueCashReceiptBody = {
 	 * (RFC 3339 date-time)
 	 */
 	paidAt?: string
+	/**
+	 * 사업자등록번호
+	 *
+	 * 웰컴페이먼츠의 경우에만 입력합니다.
+	 */
+	businessRegistrationNumber?: string
+	/**
+	 * 결제 수단
+	 *
+	 * 웰컴페이먼츠의 경우에만 입력합니다.
+	 */
+	paymentMethod?: IssueCashReceiptPaymentMethodType
 }

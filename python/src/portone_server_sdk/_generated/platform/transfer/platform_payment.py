@@ -26,4 +26,4 @@ def _deserialize_platform_payment(obj: Any) -> PlatformPayment:
         return _deserialize_platform_port_one_payment(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformPayment")

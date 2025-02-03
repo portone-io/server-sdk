@@ -115,4 +115,4 @@ def _deserialize_update_platform_partner_error(obj: Any) -> UpdatePlatformPartne
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not UpdatePlatformPartnerError")

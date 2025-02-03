@@ -33,6 +33,9 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
+/**
+ * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ */
 public class AccountTransferClient(
   private val apiSecret: String,
   private val apiBase: String = "https://api.portone.io",

@@ -63,4 +63,4 @@ def _deserialize_payment_escrow(obj: Any) -> PaymentEscrow:
         return _deserialize_reject_confirmed_payment_escrow(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PaymentEscrow")

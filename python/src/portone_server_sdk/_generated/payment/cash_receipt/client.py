@@ -18,6 +18,7 @@ from ...payment.cash_receipt.cash_receipt import CashReceipt, _deserialize_cash_
 from ...common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...payment.cash_receipt.issue_cash_receipt_customer_input import IssueCashReceiptCustomerInput, _deserialize_issue_cash_receipt_customer_input, _serialize_issue_cash_receipt_customer_input
+from ...payment.cash_receipt.issue_cash_receipt_payment_method_type import IssueCashReceiptPaymentMethodType, _deserialize_issue_cash_receipt_payment_method_type, _serialize_issue_cash_receipt_payment_method_type
 from ...payment.cash_receipt.issue_cash_receipt_response import IssueCashReceiptResponse, _deserialize_issue_cash_receipt_response, _serialize_issue_cash_receipt_response
 from ...common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
 from ...common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
@@ -49,7 +50,8 @@ class CashReceiptClient:
 
 
         Raises:
-            GetCashReceiptError
+            GetCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -107,7 +109,8 @@ class CashReceiptClient:
 
 
         Raises:
-            GetCashReceiptError
+            GetCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -162,6 +165,8 @@ class CashReceiptClient:
         product_type: Optional[PaymentProductType] = None,
         customer: IssueCashReceiptCustomerInput,
         paid_at: Optional[str] = None,
+        business_registration_number: Optional[str] = None,
+        payment_method: Optional[IssueCashReceiptPaymentMethodType] = None,
     ) -> IssueCashReceiptResponse:
         """현금 영수증 수동 발급
 
@@ -188,10 +193,19 @@ class CashReceiptClient:
                 고객 정보
             paid_at (str, optional):
                 결제 일자
+            business_registration_number (str, optional):
+                사업자등록번호
+
+                웰컴페이먼츠의 경우에만 입력합니다.
+            payment_method (IssueCashReceiptPaymentMethodType, optional):
+                결제 수단
+
+                웰컴페이먼츠의 경우에만 입력합니다.
 
 
         Raises:
-            IssueCashReceiptError
+            IssueCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -207,6 +221,10 @@ class CashReceiptClient:
         request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer)
         if paid_at is not None:
             request_body["paidAt"] = paid_at
+        if business_registration_number is not None:
+            request_body["businessRegistrationNumber"] = business_registration_number
+        if payment_method is not None:
+            request_body["paymentMethod"] = _serialize_issue_cash_receipt_payment_method_type(payment_method)
         query = []
         response = httpx.request(
             "POST",
@@ -271,6 +289,8 @@ class CashReceiptClient:
         product_type: Optional[PaymentProductType] = None,
         customer: IssueCashReceiptCustomerInput,
         paid_at: Optional[str] = None,
+        business_registration_number: Optional[str] = None,
+        payment_method: Optional[IssueCashReceiptPaymentMethodType] = None,
     ) -> IssueCashReceiptResponse:
         """현금 영수증 수동 발급
 
@@ -297,10 +317,19 @@ class CashReceiptClient:
                 고객 정보
             paid_at (str, optional):
                 결제 일자
+            business_registration_number (str, optional):
+                사업자등록번호
+
+                웰컴페이먼츠의 경우에만 입력합니다.
+            payment_method (IssueCashReceiptPaymentMethodType, optional):
+                결제 수단
+
+                웰컴페이먼츠의 경우에만 입력합니다.
 
 
         Raises:
-            IssueCashReceiptError
+            IssueCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -316,6 +345,10 @@ class CashReceiptClient:
         request_body["customer"] = _serialize_issue_cash_receipt_customer_input(customer)
         if paid_at is not None:
             request_body["paidAt"] = paid_at
+        if business_registration_number is not None:
+            request_body["businessRegistrationNumber"] = business_registration_number
+        if payment_method is not None:
+            request_body["paymentMethod"] = _serialize_issue_cash_receipt_payment_method_type(payment_method)
         query = []
         response = await self._client.request(
             "POST",
@@ -383,7 +416,8 @@ class CashReceiptClient:
 
 
         Raises:
-            CancelCashReceiptError
+            CancelCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -453,7 +487,8 @@ class CashReceiptClient:
 
 
         Raises:
-            CancelCashReceiptError
+            CancelCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:

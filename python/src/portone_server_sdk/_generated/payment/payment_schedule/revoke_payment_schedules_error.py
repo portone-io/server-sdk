@@ -66,4 +66,4 @@ def _deserialize_revoke_payment_schedules_error(obj: Any) -> RevokePaymentSchedu
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not RevokePaymentSchedulesError")

@@ -8,6 +8,9 @@ import type { PageInput } from "../../../generated/common/PageInput"
 import type { PlatformAccountTransferFilter } from "../../../generated/platform/accountTransfer/PlatformAccountTransferFilter"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function AccountTransferClient(init: PortOneClientInit): AccountTransferClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

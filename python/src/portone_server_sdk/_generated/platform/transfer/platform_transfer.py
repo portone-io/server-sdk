@@ -36,4 +36,4 @@ def _deserialize_platform_transfer(obj: Any) -> PlatformTransfer:
         return _deserialize_platform_order_cancel_transfer(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformTransfer")

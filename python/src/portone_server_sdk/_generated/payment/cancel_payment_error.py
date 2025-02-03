@@ -108,4 +108,4 @@ def _deserialize_cancel_payment_error(obj: Any) -> CancelPaymentError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not CancelPaymentError")

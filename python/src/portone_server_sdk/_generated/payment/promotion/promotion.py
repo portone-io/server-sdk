@@ -19,4 +19,4 @@ def _deserialize_promotion(obj: Any) -> Promotion:
         return _deserialize_card_promotion(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not Promotion")

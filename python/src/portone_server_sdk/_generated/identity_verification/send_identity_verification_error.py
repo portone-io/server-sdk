@@ -73,4 +73,4 @@ def _deserialize_send_identity_verification_error(obj: Any) -> SendIdentityVerif
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not SendIdentityVerificationError")

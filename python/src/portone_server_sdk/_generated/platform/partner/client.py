@@ -74,7 +74,8 @@ class PartnerClient:
 
 
         Raises:
-            GetPlatformPartnersError
+            GetPlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -139,7 +140,8 @@ class PartnerClient:
 
 
         Raises:
-            GetPlatformPartnersError
+            GetPlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -237,7 +239,8 @@ class PartnerClient:
 
 
         Raises:
-            CreatePlatformPartnerError
+            CreatePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -391,7 +394,8 @@ class PartnerClient:
 
 
         Raises:
-            CreatePlatformPartnerError
+            CreatePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -509,7 +513,8 @@ class PartnerClient:
 
 
         Raises:
-            GetPlatformPartnerError
+            GetPlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -571,7 +576,8 @@ class PartnerClient:
 
 
         Raises:
-            GetPlatformPartnerError
+            GetPlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -657,7 +663,8 @@ class PartnerClient:
 
 
         Raises:
-            UpdatePlatformPartnerError
+            UpdatePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -821,7 +828,8 @@ class PartnerClient:
 
 
         Raises:
-            UpdatePlatformPartnerError
+            UpdatePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -961,7 +969,8 @@ class PartnerClient:
 
 
         Raises:
-            CreatePlatformPartnersError
+            CreatePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["partners"] = partners
@@ -1050,7 +1059,8 @@ class PartnerClient:
 
 
         Raises:
-            CreatePlatformPartnersError
+            CreatePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         request_body["partners"] = partners
@@ -1139,7 +1149,8 @@ class PartnerClient:
 
 
         Raises:
-            ArchivePlatformPartnerError
+            ArchivePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1207,7 +1218,8 @@ class PartnerClient:
 
 
         Raises:
-            ArchivePlatformPartnerError
+            ArchivePlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1275,7 +1287,8 @@ class PartnerClient:
 
 
         Raises:
-            RecoverPlatformPartnerError
+            RecoverPlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1337,7 +1350,8 @@ class PartnerClient:
 
 
         Raises:
-            RecoverPlatformPartnerError
+            RecoverPlatformPartnerError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(

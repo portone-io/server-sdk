@@ -33,4 +33,4 @@ def _deserialize_platform_partner_type(obj: Any) -> PlatformPartnerType:
         return _deserialize_platform_partner_type_wht_payer(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformPartnerType")

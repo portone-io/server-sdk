@@ -31,4 +31,4 @@ def _deserialize_get_billing_key_infos_error(obj: Any) -> GetBillingKeyInfosErro
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not GetBillingKeyInfosError")

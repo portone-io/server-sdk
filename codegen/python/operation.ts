@@ -83,7 +83,10 @@ export function writeOperation(
   const errorWriter = PythonWriter()
   errorWriter.writeLine("Raises:")
   errorWriter.indent()
-  errorWriter.writeLine(operation.errors)
+  errorWriter.writeLine(`${operation.errors}: API 호출이 실패한 경우`)
+  errorWriter.writeLine(
+    "ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우",
+  )
   const description = ([] as string[]).concat(
     operation.description?.trimEnd() ?? [],
   ).concat(

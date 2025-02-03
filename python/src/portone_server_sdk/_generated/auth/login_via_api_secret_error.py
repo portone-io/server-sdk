@@ -24,4 +24,4 @@ def _deserialize_login_via_api_secret_error(obj: Any) -> LoginViaApiSecretError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not LoginViaApiSecretError")

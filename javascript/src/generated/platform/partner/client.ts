@@ -39,6 +39,9 @@ import type { UpdatePlatformPartnerBodyAccount } from "../../../generated/platfo
 import type { UpdatePlatformPartnerBodyContact } from "../../../generated/platform/UpdatePlatformPartnerBodyContact"
 import type { UpdatePlatformPartnerBodyType } from "../../../generated/platform/UpdatePlatformPartnerBodyType"
 import type { UpdatePlatformPartnerResponse } from "../../../generated/platform/partner/UpdatePlatformPartnerResponse"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PartnerClient(init: PortOneClientInit): PartnerClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

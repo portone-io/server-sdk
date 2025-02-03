@@ -71,6 +71,9 @@ import type { UpdatePlatformDiscountSharePolicyBody } from "../../generated/plat
 import type { UpdatePlatformPartnerBody } from "../../generated/platform/UpdatePlatformPartnerBody"
 import type { UpdatePlatformResponse } from "../../generated/platform/UpdatePlatformResponse"
 import type { UpdatePlatformSettingResponse } from "../../generated/platform/UpdatePlatformSettingResponse"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PlatformClient(init: PortOneClientInit): PlatformClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

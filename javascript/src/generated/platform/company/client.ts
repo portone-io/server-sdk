@@ -8,6 +8,9 @@ import type { PlatformCompanyNotFoundError } from "../../../generated/platform/c
 import type { PlatformExternalApiFailedError } from "../../../generated/platform/PlatformExternalApiFailedError"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function CompanyClient(init: PortOneClientInit): CompanyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

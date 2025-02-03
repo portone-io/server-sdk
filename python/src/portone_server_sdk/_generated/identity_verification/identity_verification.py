@@ -33,4 +33,4 @@ def _deserialize_identity_verification(obj: Any) -> IdentityVerification:
         return _deserialize_verified_identity_verification(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not IdentityVerification")

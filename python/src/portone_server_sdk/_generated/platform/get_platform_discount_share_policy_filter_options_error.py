@@ -38,4 +38,4 @@ def _deserialize_get_platform_discount_share_policy_filter_options_error(obj: An
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not GetPlatformDiscountSharePolicyFilterOptionsError")

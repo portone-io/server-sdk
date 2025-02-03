@@ -414,7 +414,9 @@ function generateDeserializeEntity(
         writer.writeLine("pass")
         writer.outdent()
       }
-      writer.writeLine("return obj")
+      writer.writeLine(
+        `raise ValueError(f"{repr(obj)} is not ${definition.name}")`,
+      )
       break
     }
     case "enum":

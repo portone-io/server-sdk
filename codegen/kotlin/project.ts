@@ -425,10 +425,13 @@ function generateExceptions(
 }
 
 const PortOneClientHeader = `
+/**
+ * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ */
 public class PortOneClient(
   private val apiSecret: String,
-  private val storeId: String? = null,
   private val apiBase: String = "https://api.portone.io",
+  private val storeId: String? = null,
 ) : Closeable {
   private val client: HttpClient = HttpClient(OkHttp)
 
@@ -511,6 +514,9 @@ function generateClient(
     "io.ktor.client.engine.okhttp.OkHttp",
   ])
   const writer = KotlinWriter()
+  writer.writeLine("/**")
+  writer.writeLine(" * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.")
+  writer.writeLine(" */")
   writer.writeLine(
     `public class ${toPascalCase(pack.category)}Client(`,
   )

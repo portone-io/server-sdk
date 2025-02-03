@@ -24,4 +24,4 @@ def _deserialize_refresh_token_error(obj: Any) -> RefreshTokenError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not RefreshTokenError")

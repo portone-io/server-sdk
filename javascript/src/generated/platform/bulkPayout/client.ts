@@ -8,6 +8,9 @@ import type { PageInput } from "../../../generated/common/PageInput"
 import type { PlatformBulkPayoutFilterInput } from "../../../generated/platform/bulkPayout/PlatformBulkPayoutFilterInput"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function BulkPayoutClient(init: PortOneClientInit): BulkPayoutClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

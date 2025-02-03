@@ -45,4 +45,4 @@ def _deserialize_get_platform_contract_schedule_error(obj: Any) -> GetPlatformCo
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not GetPlatformContractScheduleError")

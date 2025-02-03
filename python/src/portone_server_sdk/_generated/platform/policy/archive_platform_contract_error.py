@@ -52,4 +52,4 @@ def _deserialize_archive_platform_contract_error(obj: Any) -> ArchivePlatformCon
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ArchivePlatformContractError")

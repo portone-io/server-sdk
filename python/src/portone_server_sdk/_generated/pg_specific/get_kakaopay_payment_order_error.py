@@ -24,4 +24,4 @@ def _deserialize_get_kakaopay_payment_order_error(obj: Any) -> GetKakaopayPaymen
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not GetKakaopayPaymentOrderError")

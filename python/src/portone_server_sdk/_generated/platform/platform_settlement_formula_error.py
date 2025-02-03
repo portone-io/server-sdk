@@ -59,4 +59,4 @@ def _deserialize_platform_settlement_formula_error(obj: Any) -> PlatformSettleme
         return _deserialize_platform_settlement_formula_unsupported_variable(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformSettlementFormulaError")

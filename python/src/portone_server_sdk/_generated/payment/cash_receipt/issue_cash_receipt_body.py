@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from ...common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...payment.cash_receipt.issue_cash_receipt_customer_input import IssueCashReceiptCustomerInput, _deserialize_issue_cash_receipt_customer_input, _serialize_issue_cash_receipt_customer_input
+from ...payment.cash_receipt.issue_cash_receipt_payment_method_type import IssueCashReceiptPaymentMethodType, _deserialize_issue_cash_receipt_payment_method_type, _serialize_issue_cash_receipt_payment_method_type
 from ...common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
 from ...common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
 
@@ -47,6 +48,16 @@ class IssueCashReceiptBody:
     """결제 일자
     (RFC 3339 date-time)
     """
+    business_registration_number: Optional[str] = field(default=None)
+    """사업자등록번호
+
+    웰컴페이먼츠의 경우에만 입력합니다.
+    """
+    payment_method: Optional[IssueCashReceiptPaymentMethodType] = field(default=None)
+    """결제 수단
+
+    웰컴페이먼츠의 경우에만 입력합니다.
+    """
 
 
 def _serialize_issue_cash_receipt_body(obj: IssueCashReceiptBody) -> Any:
@@ -66,6 +77,10 @@ def _serialize_issue_cash_receipt_body(obj: IssueCashReceiptBody) -> Any:
         entity["productType"] = _serialize_payment_product_type(obj.product_type)
     if obj.paid_at is not None:
         entity["paidAt"] = obj.paid_at
+    if obj.business_registration_number is not None:
+        entity["businessRegistrationNumber"] = obj.business_registration_number
+    if obj.payment_method is not None:
+        entity["paymentMethod"] = _serialize_issue_cash_receipt_payment_method_type(obj.payment_method)
     return entity
 
 
@@ -120,4 +135,15 @@ def _deserialize_issue_cash_receipt_body(obj: Any) -> IssueCashReceiptBody:
             raise ValueError(f"{repr(paid_at)} is not str")
     else:
         paid_at = None
-    return IssueCashReceiptBody(payment_id, channel_key, type, order_name, currency, amount, customer, store_id, product_type, paid_at)
+    if "businessRegistrationNumber" in obj:
+        business_registration_number = obj["businessRegistrationNumber"]
+        if not isinstance(business_registration_number, str):
+            raise ValueError(f"{repr(business_registration_number)} is not str")
+    else:
+        business_registration_number = None
+    if "paymentMethod" in obj:
+        payment_method = obj["paymentMethod"]
+        payment_method = _deserialize_issue_cash_receipt_payment_method_type(payment_method)
+    else:
+        payment_method = None
+    return IssueCashReceiptBody(payment_id, channel_key, type, order_name, currency, amount, customer, store_id, product_type, paid_at, business_registration_number, payment_method)

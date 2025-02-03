@@ -5,6 +5,7 @@ import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProductType
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptCustomerInput
+import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptPaymentMethodType
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -41,6 +42,18 @@ internal data class IssueCashReceiptBody(
   val customer: IssueCashReceiptCustomerInput,
   /** 결제 일자 */
   val paidAt: @Serializable(InstantSerializer::class) Instant? = null,
+  /**
+   * 사업자등록번호
+   *
+   * 웰컴페이먼츠의 경우에만 입력합니다.
+   */
+  val businessRegistrationNumber: String? = null,
+  /**
+   * 결제 수단
+   *
+   * 웰컴페이먼츠의 경우에만 입력합니다.
+   */
+  val paymentMethod: IssueCashReceiptPaymentMethodType? = null,
 )
 
 

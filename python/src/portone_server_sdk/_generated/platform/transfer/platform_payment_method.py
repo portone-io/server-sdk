@@ -54,4 +54,4 @@ def _deserialize_platform_payment_method(obj: Any) -> PlatformPaymentMethod:
         return _deserialize_platform_payment_method_virtual_account(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformPaymentMethod")

@@ -4,6 +4,9 @@ import { USER_AGENT, type PortOneClientInit } from "../../client"
 import type { GetKakaopayPaymentOrderResponse } from "../../generated/pgSpecific/GetKakaopayPaymentOrderResponse"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PgSpecificClient(init: PortOneClientInit): PgSpecificClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

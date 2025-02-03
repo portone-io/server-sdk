@@ -73,4 +73,4 @@ def _deserialize_schedule_platform_partners_error(obj: Any) -> SchedulePlatformP
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not SchedulePlatformPartnersError")

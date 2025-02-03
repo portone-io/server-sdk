@@ -45,6 +45,7 @@ import io.portone.sdk.server.payment.cashreceipt.CancelCashReceiptResponse
 import io.portone.sdk.server.payment.cashreceipt.CashReceipt
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptBody
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptCustomerInput
+import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptPaymentMethodType
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptResponse
 import java.io.Closeable
 import java.time.Instant
@@ -55,6 +56,9 @@ import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
+/**
+ * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ */
 public class CashReceiptClient(
   private val apiSecret: String,
   private val apiBase: String = "https://api.portone.io",
@@ -145,6 +149,14 @@ public class CashReceiptClient(
    * 고객 정보
    * @param paidAt
    * 결제 일자
+   * @param businessRegistrationNumber
+   * 사업자등록번호
+   *
+   * 웰컴페이먼츠의 경우에만 입력합니다.
+   * @param paymentMethod
+   * 결제 수단
+   *
+   * 웰컴페이먼츠의 경우에만 입력합니다.
    *
    * @throws IssueCashReceiptException
    */
@@ -159,6 +171,8 @@ public class CashReceiptClient(
     productType: PaymentProductType? = null,
     customer: IssueCashReceiptCustomerInput,
     paidAt: Instant? = null,
+    businessRegistrationNumber: String? = null,
+    paymentMethod: IssueCashReceiptPaymentMethodType? = null,
   ): IssueCashReceiptResponse {
     val requestBody = IssueCashReceiptBody(
       storeId = storeId,
@@ -171,6 +185,8 @@ public class CashReceiptClient(
       productType = productType,
       customer = customer,
       paidAt = paidAt,
+      businessRegistrationNumber = businessRegistrationNumber,
+      paymentMethod = paymentMethod,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -222,7 +238,9 @@ public class CashReceiptClient(
     productType: PaymentProductType? = null,
     customer: IssueCashReceiptCustomerInput,
     paidAt: Instant? = null,
-  ): CompletableFuture<IssueCashReceiptResponse> = GlobalScope.future { issueCashReceipt(paymentId, channelKey, type, orderName, currency, amount, productType, customer, paidAt) }
+    businessRegistrationNumber: String? = null,
+    paymentMethod: IssueCashReceiptPaymentMethodType? = null,
+  ): CompletableFuture<IssueCashReceiptResponse> = GlobalScope.future { issueCashReceipt(paymentId, channelKey, type, orderName, currency, amount, productType, customer, paidAt, businessRegistrationNumber, paymentMethod) }
 
 
   /**

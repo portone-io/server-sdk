@@ -38,4 +38,4 @@ def _deserialize_update_platform_setting_error(obj: Any) -> UpdatePlatformSettin
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not UpdatePlatformSettingError")

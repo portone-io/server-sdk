@@ -24,4 +24,4 @@ def _deserialize_promotion_spare_budget(obj: Any) -> PromotionSpareBudget:
         return _deserialize_promotion_spare_budget_percent(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PromotionSpareBudget")

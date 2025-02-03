@@ -63,6 +63,9 @@ import type { SumOfPartsExceedsCancelAmountError } from "../../generated/payment
 import type { SumOfPartsExceedsTotalAmountError } from "../../generated/common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 import type { WebhookNotFoundError } from "../../generated/payment/WebhookNotFoundError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PaymentClient(init: PortOneClientInit): PaymentClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

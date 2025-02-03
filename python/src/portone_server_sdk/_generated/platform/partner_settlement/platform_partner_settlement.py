@@ -31,4 +31,4 @@ def _deserialize_platform_partner_settlement(obj: Any) -> PlatformPartnerSettlem
         return _deserialize_platform_partner_order_cancel_settlement(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformPartnerSettlement")

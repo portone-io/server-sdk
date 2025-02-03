@@ -31,4 +31,4 @@ def _deserialize_platform_transfer_summary(obj: Any) -> PlatformTransferSummary:
         return _deserialize_platform_order_cancel_transfer_summary(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not PlatformTransferSummary")

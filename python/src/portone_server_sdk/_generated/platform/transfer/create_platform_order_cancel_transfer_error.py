@@ -171,4 +171,4 @@ def _deserialize_create_platform_order_cancel_transfer_error(obj: Any) -> Create
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not CreatePlatformOrderCancelTransferError")

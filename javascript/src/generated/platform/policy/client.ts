@@ -42,6 +42,9 @@ import type { UnauthorizedError } from "../../../generated/common/UnauthorizedEr
 import type { UpdatePlatformAdditionalFeePolicyResponse } from "../../../generated/platform/policy/UpdatePlatformAdditionalFeePolicyResponse"
 import type { UpdatePlatformContractResponse } from "../../../generated/platform/policy/UpdatePlatformContractResponse"
 import type { UpdatePlatformDiscountSharePolicyResponse } from "../../../generated/platform/policy/UpdatePlatformDiscountSharePolicyResponse"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PolicyClient(init: PortOneClientInit): PolicyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

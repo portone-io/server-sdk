@@ -59,4 +59,4 @@ def _deserialize_reschedule_partner_error(obj: Any) -> ReschedulePartnerError:
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ReschedulePartnerError")

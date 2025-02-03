@@ -5,6 +5,9 @@ import type { InvalidRequestError } from "../../generated/common/InvalidRequestE
 import type { LoginViaApiSecretResponse } from "../../generated/auth/LoginViaApiSecretResponse"
 import type { RefreshTokenResponse } from "../../generated/auth/RefreshTokenResponse"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function AuthClient(init: PortOneClientInit): AuthClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

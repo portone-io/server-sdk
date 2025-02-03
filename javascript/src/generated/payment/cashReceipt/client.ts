@@ -12,11 +12,15 @@ import type { Currency } from "../../../generated/common/Currency"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { IssueCashReceiptCustomerInput } from "../../../generated/payment/cashReceipt/IssueCashReceiptCustomerInput"
+import type { IssueCashReceiptPaymentMethodType } from "../../../generated/payment/cashReceipt/IssueCashReceiptPaymentMethodType"
 import type { IssueCashReceiptResponse } from "../../../generated/payment/cashReceipt/IssueCashReceiptResponse"
 import type { PaymentAmountInput } from "../../../generated/common/PaymentAmountInput"
 import type { PaymentProductType } from "../../../generated/common/PaymentProductType"
 import type { PgProviderError } from "../../../generated/common/PgProviderError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
@@ -63,6 +67,8 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				productType?: PaymentProductType,
 				customer: IssueCashReceiptCustomerInput,
 				paidAt?: string,
+				businessRegistrationNumber?: string,
+				paymentMethod?: IssueCashReceiptPaymentMethodType,
 			}
 		): Promise<IssueCashReceiptResponse> => {
 			const {
@@ -76,6 +82,8 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				productType,
 				customer,
 				paidAt,
+				businessRegistrationNumber,
+				paymentMethod,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -88,6 +96,8 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 				productType,
 				customer,
 				paidAt,
+				businessRegistrationNumber,
+				paymentMethod,
 			})
 			const response = await fetch(
 				new URL("/cash-receipts", baseUrl),
@@ -197,6 +207,18 @@ export type CashReceiptClient = {
 			 * (RFC 3339 date-time)
 			 */
 			paidAt?: string,
+			/**
+			 * 사업자등록번호
+			 *
+			 * 웰컴페이먼츠의 경우에만 입력합니다.
+			 */
+			businessRegistrationNumber?: string,
+			/**
+			 * 결제 수단
+			 *
+			 * 웰컴페이먼츠의 경우에만 입력합니다.
+			 */
+			paymentMethod?: IssueCashReceiptPaymentMethodType,
 		}
 	) => Promise<IssueCashReceiptResponse>
 	/**

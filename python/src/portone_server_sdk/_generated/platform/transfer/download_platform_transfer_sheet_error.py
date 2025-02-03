@@ -24,4 +24,4 @@ def _deserialize_download_platform_transfer_sheet_error(obj: Any) -> DownloadPla
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not DownloadPlatformTransferSheetError")

@@ -77,7 +77,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformDiscountSharePoliciesError
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -142,7 +143,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformDiscountSharePoliciesError
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -215,7 +217,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformDiscountSharePolicyError
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -296,7 +299,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformDiscountSharePolicyError
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -366,7 +370,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyError
+            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -428,7 +433,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformDiscountSharePolicyError
+            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -501,7 +507,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformDiscountSharePolicyError
+            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -588,7 +595,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformDiscountSharePolicyError
+            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -664,7 +672,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformDiscountSharePolicyError
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -732,7 +741,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformDiscountSharePolicyError
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -800,7 +810,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformDiscountSharePolicyError
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -862,7 +873,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformDiscountSharePolicyError
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -927,7 +939,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePoliciesError
+            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -992,7 +1005,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePoliciesError
+            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -1068,7 +1082,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformAdditionalFeePolicyError
+            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -1153,7 +1168,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformAdditionalFeePolicyError
+            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -1224,7 +1240,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyError
+            GetPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1286,7 +1303,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyError
+            GetPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1360,7 +1378,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformAdditionalFeePolicyError
+            UpdatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if fee is not None:
@@ -1450,7 +1469,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformAdditionalFeePolicyError
+            UpdatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if fee is not None:
@@ -1528,7 +1548,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformAdditionalFeePolicyError
+            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1596,7 +1617,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformAdditionalFeePolicyError
+            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1664,7 +1686,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformAdditionalFeePolicyError
+            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -1726,7 +1749,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformAdditionalFeePolicyError
+            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -1791,7 +1815,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformContractsError
+            GetPlatformContractsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -1856,7 +1881,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformContractsError
+            GetPlatformContractsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
@@ -1938,7 +1964,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformContractError
+            CreatePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -2031,7 +2058,8 @@ class PolicyClient:
 
 
         Raises:
-            CreatePlatformContractError
+            CreatePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
@@ -2104,7 +2132,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformContractError
+            GetPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -2166,7 +2195,8 @@ class PolicyClient:
 
 
         Raises:
-            GetPlatformContractError
+            GetPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -2246,7 +2276,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformContractError
+            UpdatePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -2346,7 +2377,8 @@ class PolicyClient:
 
 
         Raises:
-            UpdatePlatformContractError
+            UpdatePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if name is not None:
@@ -2428,7 +2460,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformContractError
+            ArchivePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -2496,7 +2529,8 @@ class PolicyClient:
 
 
         Raises:
-            ArchivePlatformContractError
+            ArchivePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(
@@ -2564,7 +2598,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformContractError
+            RecoverPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = httpx.request(
@@ -2626,7 +2661,8 @@ class PolicyClient:
 
 
         Raises:
-            RecoverPlatformContractError
+            RecoverPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         response = await self._client.request(

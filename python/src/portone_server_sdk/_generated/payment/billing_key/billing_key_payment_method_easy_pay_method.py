@@ -33,4 +33,4 @@ def _deserialize_billing_key_payment_method_easy_pay_method(obj: Any) -> Billing
         return _deserialize_billing_key_payment_method_transfer(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not BillingKeyPaymentMethodEasyPayMethod")

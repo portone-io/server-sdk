@@ -50,7 +50,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            GetIdentityVerificationError
+            GetIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -108,7 +109,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            GetIdentityVerificationError
+            GetIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -184,7 +186,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            SendIdentityVerificationError
+            SendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -300,7 +303,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            SendIdentityVerificationError
+            SendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -403,7 +407,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            ConfirmIdentityVerificationError
+            ConfirmIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -488,7 +493,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            ConfirmIdentityVerificationError
+            ConfirmIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if self._store_id is not None:
@@ -568,7 +574,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            ResendIdentityVerificationError
+            ResendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:
@@ -644,7 +651,8 @@ class IdentityVerificationClient:
 
 
         Raises:
-            ResendIdentityVerificationError
+            ResendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if self._store_id is not None:

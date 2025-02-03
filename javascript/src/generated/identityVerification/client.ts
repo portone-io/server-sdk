@@ -18,6 +18,9 @@ import type { ResendIdentityVerificationResponse } from "../../generated/identit
 import type { SendIdentityVerificationBodyCustomer } from "../../generated/identityVerification/SendIdentityVerificationBodyCustomer"
 import type { SendIdentityVerificationResponse } from "../../generated/identityVerification/SendIdentityVerificationResponse"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function IdentityVerificationClient(init: PortOneClientInit): IdentityVerificationClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

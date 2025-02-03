@@ -52,4 +52,4 @@ def _deserialize_archive_platform_partner_error(obj: Any) -> ArchivePlatformPart
         return _deserialize_unauthorized_error(obj)
     except Exception:
         pass
-    return obj
+    raise ValueError(f"{repr(obj)} is not ArchivePlatformPartnerError")

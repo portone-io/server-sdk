@@ -40,7 +40,8 @@ class PgSpecificClient:
 
 
         Raises:
-            GetKakaopayPaymentOrderError
+            GetKakaopayPaymentOrderError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if pg_tx_id is not None:
@@ -92,7 +93,8 @@ class PgSpecificClient:
 
 
         Raises:
-            GetKakaopayPaymentOrderError
+            GetKakaopayPaymentOrderError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
         if pg_tx_id is not None:

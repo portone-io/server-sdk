@@ -10,6 +10,9 @@ import type { PlatformExternalApiTemporarilyFailedError } from "../../../generat
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformNotSupportedBankError } from "../../../generated/platform/account/PlatformNotSupportedBankError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function AccountClient(init: PortOneClientInit): AccountClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

@@ -20,6 +20,9 @@ import type { PaymentScheduleSortInput } from "../../../generated/payment/paymen
 import type { RevokePaymentSchedulesResponse } from "../../../generated/payment/paymentSchedule/RevokePaymentSchedulesResponse"
 import type { SumOfPartsExceedsTotalAmountError } from "../../../generated/common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError } from "../../../generated/common/UnauthorizedError"
+/**
+ * 포트원 API 클라이언트를 생성합니다.
+ */
 export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret

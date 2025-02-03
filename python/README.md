@@ -31,6 +31,76 @@ poetry add portone-server-sdk
 portone-server-sdk == x.x.x
 ```
 
+## 사용법
+
+### 포트원 REST API
+
+먼저 [포트원 개발자콘솔](https://admin.portone.io/integration-v2/manage/api-keys?version=v2)에서 API Secret을 발급받습니다.
+
+발급받은 API Secret을 사용해 필요한 API에 맞는 Client를 생성합니다.
+
+```python
+# 결제 관련 API를 사용하는 경우
+from portone_server_sdk import PaymentClient
+payment_client = PaymentClient(secret=PORTONE_API_SECRET)
+payment_client.get_payment(...)
+
+# 전체 API를 사용하는 경우
+from portone_server_sdk import PortOneClient
+portone_client = PortOneClient(secret=PORTONE_API_SECRET)
+# 상위 Client를 생성한 경우 하위 Client에 접근 가능합니다.
+portone_client.payment.get_payment(...)
+```
+
+Client의 각 메서드는 메서드마다 고유한 Error와 ValueError을 발생시킬 수 있습니다.
+현재 SDK 버전에서 지원하지 않는 응답을 받을 경우 ValueError가 발생합니다.
+
+```python
+from portone_server_sdk.errors import UnknownError, ForbiddenError, InvalidRequestError, PaymentNotFoundError, UnauthorizedError
+from portone_server_sdk.payment import GetPaymentError
+
+try:
+    payment = payment_client.get_payment(...)
+except ValueError:
+    pass
+except GetPaymentError as e:
+    if isinstance(e, UnknownError):
+        ...
+    elif isinstance(e, ForbiddenError):
+        ...
+    elif isinstance(e, InvalidRequestError):
+        ...
+    elif isinstance(e, PaymentNotFoundError):
+        ...
+    elif isinstance(e, UnauthorizedError):
+        ...
+```
+
+### 웹훅 검증
+
+먼저 [포트원 개발자콘솔](https://admin.portone.io/integration-v2/manage/webhook?version=V2)에서 웹훅 시크릿을 발급받습니다.
+
+webhook.verify 함수로 웹훅 내용을 검증할 수 있습니다.
+
+```python
+import portone_server_sdk as portone
+
+payload = '{"type":"BillingKey.Issued","timestamp":"2024-04-25T10:00:00.000Z","data":{"storeId":"store-61e0db3d-b967-47db-8b50-96002da90d55","billingKey":"billing-key-75ae3cab-6afe-422d-bf34-3a7b1762451d"}}'
+headers = {
+    "webhook-id": "test-id",
+    "webhook-signature": "v1,aW52YWxpZCBzaWduYXR1cmU=",
+    "webhook-timestamp": "100",
+}
+webhook = portone.webhook.verify(PORTONE_WEBHOOK_SECRET, payload, headers)
+```
+
+webhook.verify 함수는 웹훅 내용을 Webhook 타입으로 변환하여 반환합니다.
+
+```python
+if isinstance(webhook, portone.webhook.WebhookTransactionPaid):
+    println(webhook.data.paymentId)
+```
+
 ## 버전
 
 [유의적 버전 2.0.0](https://semver.org/spec/v2.0.0.html)을 사용합니다.
