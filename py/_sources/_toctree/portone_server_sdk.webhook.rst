@@ -46,6 +46,12 @@
       WebhookTransactionPayPending
       WebhookTransactionReady
       WebhookTransactionVirtualAccountIssued
+      WebhookTransactionConfirm
+      WebhookTransactionDataConfirm
+      WebhookTransactionChargebackCreated
+      WebhookTransactionDataChargebackCreated
+      WebhookTransactionChargebackResolved
+      WebhookTransactionDataChargebackResolved
    
    .. rubric:: Exceptions
 
