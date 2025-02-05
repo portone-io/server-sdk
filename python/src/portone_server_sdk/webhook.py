@@ -68,8 +68,26 @@ from ._generated.webhook.webhook_transaction_cancelled_data_partial_cancelled im
 from ._generated.webhook.webhook_transaction_cancelled_partial_cancelled import (
     WebhookTransactionCancelledPartialCancelled,
 )
+from ._generated.webhook.webhook_transaction_chargeback_created import (
+    WebhookTransactionChargebackCreated,
+)
+from ._generated.webhook.webhook_transaction_chargeback_resolved import (
+    WebhookTransactionChargebackResolved,
+)
+from ._generated.webhook.webhook_transaction_confirm import (
+    WebhookTransactionConfirm,
+)
 from ._generated.webhook.webhook_transaction_data import (
     WebhookTransactionData,
+)
+from ._generated.webhook.webhook_transaction_data_chargeback_created import (
+    WebhookTransactionDataChargebackCreated,
+)
+from ._generated.webhook.webhook_transaction_data_chargeback_resolved import (
+    WebhookTransactionDataChargebackResolved,
+)
+from ._generated.webhook.webhook_transaction_data_confirm import (
+    WebhookTransactionDataConfirm,
 )
 from ._generated.webhook.webhook_transaction_data_failed import (
     WebhookTransactionDataFailed,
@@ -290,4 +308,10 @@ __all__ = [
     "WebhookTransactionPayPending",
     "WebhookTransactionReady",
     "WebhookTransactionVirtualAccountIssued",
+    "WebhookTransactionConfirm",
+    "WebhookTransactionDataConfirm",
+    "WebhookTransactionChargebackCreated",
+    "WebhookTransactionDataChargebackCreated",
+    "WebhookTransactionChargebackResolved",
+    "WebhookTransactionDataChargebackResolved",
 ]

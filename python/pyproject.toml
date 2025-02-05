@@ -1,6 +1,6 @@
 [project]
 name = "portone-server-sdk"
-version = "0.11.0"
+version = "0.12.0"
 description = "PortOne Python SDK for server-side usage"
 authors = [
     { name = "portone", email = "tech.support@portone.io" },
@@ -32,7 +32,7 @@ packages = ["src/portone_server_sdk"]
 
 [tool.uv]
 dev-dependencies = [
-    "pyright>=1.1.390",
+    "pyright>=1.1.393",
     "ruff>=0.8.3",
     "sphinx>=7.4.7",
     "sphinx-book-theme>=1.1.3",

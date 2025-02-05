@@ -173,5 +173,5 @@
   ],
   "sideEffects": false,
   "license": "(Apache-2.0 OR MIT)",
-  "packageManager": "pnpm@9.14.2"
+  "packageManager": "pnpm@10.2.0"
 }
