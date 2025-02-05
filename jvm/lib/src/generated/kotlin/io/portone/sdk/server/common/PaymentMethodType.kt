@@ -102,6 +102,21 @@ public sealed interface PaymentMethodType {
     }
     override fun serialize(encoder: Encoder, value: EasyPay) = encoder.encodeString(value.value)
   }
+  @Serializable(ConvenienceStoreSerializer::class)
+  public data object ConvenienceStore : PaymentMethodType {
+    override val value: String = "CONVENIENCE_STORE"
+  }
+  private object ConvenienceStoreSerializer : KSerializer<ConvenienceStore> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConvenienceStore::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): ConvenienceStore = decoder.decodeString().let {
+      if (it != "CONVENIENCE_STORE") {
+        throw SerializationException(it)
+      } else {
+        return ConvenienceStore
+      }
+    }
+    override fun serialize(encoder: Encoder, value: ConvenienceStore) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentMethodType
@@ -119,6 +134,7 @@ private object PaymentMethodTypeSerializer : KSerializer<PaymentMethodType> {
       "GIFT_CERTIFICATE" -> PaymentMethodType.GiftCertificate
       "MOBILE" -> PaymentMethodType.Mobile
       "EASY_PAY" -> PaymentMethodType.EasyPay
+      "CONVENIENCE_STORE" -> PaymentMethodType.ConvenienceStore
       else -> PaymentMethodType.Unrecognized(value)
     }
   }

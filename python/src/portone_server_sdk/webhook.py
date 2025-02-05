@@ -68,26 +68,20 @@ from ._generated.webhook.webhook_transaction_cancelled_data_partial_cancelled im
 from ._generated.webhook.webhook_transaction_cancelled_partial_cancelled import (
     WebhookTransactionCancelledPartialCancelled,
 )
-from ._generated.webhook.webhook_transaction_chargeback_created import (
-    WebhookTransactionChargebackCreated,
-)
-from ._generated.webhook.webhook_transaction_chargeback_resolved import (
-    WebhookTransactionChargebackResolved,
-)
 from ._generated.webhook.webhook_transaction_confirm import (
     WebhookTransactionConfirm,
 )
 from ._generated.webhook.webhook_transaction_data import (
     WebhookTransactionData,
 )
-from ._generated.webhook.webhook_transaction_data_chargeback_created import (
-    WebhookTransactionDataChargebackCreated,
-)
-from ._generated.webhook.webhook_transaction_data_chargeback_resolved import (
-    WebhookTransactionDataChargebackResolved,
-)
 from ._generated.webhook.webhook_transaction_data_confirm import (
     WebhookTransactionDataConfirm,
+)
+from ._generated.webhook.webhook_transaction_data_dispute_created import (
+    WebhookTransactionDataDisputeCreated,
+)
+from ._generated.webhook.webhook_transaction_data_dispute_resolved import (
+    WebhookTransactionDataDisputeResolved,
 )
 from ._generated.webhook.webhook_transaction_data_failed import (
     WebhookTransactionDataFailed,
@@ -103,6 +97,12 @@ from ._generated.webhook.webhook_transaction_data_ready import (
 )
 from ._generated.webhook.webhook_transaction_data_virtual_account_issued import (
     WebhookTransactionDataVirtualAccountIssued,
+)
+from ._generated.webhook.webhook_transaction_dispute_created import (
+    WebhookTransactionDisputeCreated,
+)
+from ._generated.webhook.webhook_transaction_dispute_resolved import (
+    WebhookTransactionDisputeResolved,
 )
 from ._generated.webhook.webhook_transaction_failed import (
     WebhookTransactionFailed,
@@ -310,8 +310,8 @@ __all__ = [
     "WebhookTransactionVirtualAccountIssued",
     "WebhookTransactionConfirm",
     "WebhookTransactionDataConfirm",
-    "WebhookTransactionChargebackCreated",
-    "WebhookTransactionDataChargebackCreated",
-    "WebhookTransactionChargebackResolved",
-    "WebhookTransactionDataChargebackResolved",
+    "WebhookTransactionDisputeCreated",
+    "WebhookTransactionDataDisputeCreated",
+    "WebhookTransactionDisputeResolved",
+    "WebhookTransactionDataDisputeResolved",
 ]

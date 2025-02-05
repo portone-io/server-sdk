@@ -25,6 +25,7 @@ public sealed interface PaymentMethod {
 private object PaymentMethodSerializer : JsonContentPolymorphicSerializer<PaymentMethod>(PaymentMethod::class) {
   override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
     "PaymentMethodCard" -> PaymentMethodCard.serializer()
+    "PaymentMethodConvenienceStore" -> PaymentMethodConvenienceStore.serializer()
     "PaymentMethodEasyPay" -> PaymentMethodEasyPay.serializer()
     "PaymentMethodGiftCertificate" -> PaymentMethodGiftCertificate.serializer()
     "PaymentMethodMobile" -> PaymentMethodMobile.serializer()

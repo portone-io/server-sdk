@@ -5,10 +5,10 @@ import kotlin.ConsistentCopyVisibility
 import kotlin.String
 import kotlinx.serialization.Serializable
 
-/** 차지백이 제기되었을 때 이벤트의 실제 세부 내용입니다. */
+/** 분쟁이 발생되었을 때 이벤트의 실제 세부 내용입니다. */
 @Serializable
 @ConsistentCopyVisibility
-public data class WebhookTransactionDataChargebackCreated internal constructor(
+public data class WebhookTransactionDataDisputeCreated internal constructor(
   /** 고객사에서 채번한 결제 건의 고유 주문 번호입니다. */
   override val paymentId: String,
   /** 웹훅을 트리거한 상점의 아이디입니다. */

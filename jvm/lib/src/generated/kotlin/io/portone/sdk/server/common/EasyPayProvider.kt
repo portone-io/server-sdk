@@ -283,6 +283,156 @@ public sealed interface EasyPayProvider {
     }
     override fun serialize(encoder: Encoder, value: Tmoney) = encoder.encodeString(value.value)
   }
+  @Serializable(PaypalSerializer::class)
+  public data object Paypal : EasyPayProvider {
+    override val value: String = "PAYPAL"
+  }
+  private object PaypalSerializer : KSerializer<Paypal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Paypal = decoder.decodeString().let {
+      if (it != "PAYPAL") {
+        throw SerializationException(it)
+      } else {
+        return Paypal
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Paypal) = encoder.encodeString(value.value)
+  }
+  @Serializable(SmilepaySerializer::class)
+  public data object Smilepay : EasyPayProvider {
+    override val value: String = "SMILEPAY"
+  }
+  private object SmilepaySerializer : KSerializer<Smilepay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Smilepay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Smilepay = decoder.decodeString().let {
+      if (it != "SMILEPAY") {
+        throw SerializationException(it)
+      } else {
+        return Smilepay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Smilepay) = encoder.encodeString(value.value)
+  }
+  @Serializable(MirSerializer::class)
+  public data object Mir : EasyPayProvider {
+    override val value: String = "MIR"
+  }
+  private object MirSerializer : KSerializer<Mir> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mir::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Mir = decoder.decodeString().let {
+      if (it != "MIR") {
+        throw SerializationException(it)
+      } else {
+        return Mir
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Mir) = encoder.encodeString(value.value)
+  }
+  @Serializable(WechatSerializer::class)
+  public data object Wechat : EasyPayProvider {
+    override val value: String = "WECHAT"
+  }
+  private object WechatSerializer : KSerializer<Wechat> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wechat::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Wechat = decoder.decodeString().let {
+      if (it != "WECHAT") {
+        throw SerializationException(it)
+      } else {
+        return Wechat
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Wechat) = encoder.encodeString(value.value)
+  }
+  @Serializable(LinepaySerializer::class)
+  public data object Linepay : EasyPayProvider {
+    override val value: String = "LINEPAY"
+  }
+  private object LinepaySerializer : KSerializer<Linepay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Linepay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Linepay = decoder.decodeString().let {
+      if (it != "LINEPAY") {
+        throw SerializationException(it)
+      } else {
+        return Linepay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Linepay) = encoder.encodeString(value.value)
+  }
+  @Serializable(KlarnaSerializer::class)
+  public data object Klarna : EasyPayProvider {
+    override val value: String = "KLARNA"
+  }
+  private object KlarnaSerializer : KSerializer<Klarna> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Klarna::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Klarna = decoder.decodeString().let {
+      if (it != "KLARNA") {
+        throw SerializationException(it)
+      } else {
+        return Klarna
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Klarna) = encoder.encodeString(value.value)
+  }
+  @Serializable(GrabpaySerializer::class)
+  public data object Grabpay : EasyPayProvider {
+    override val value: String = "GRABPAY"
+  }
+  private object GrabpaySerializer : KSerializer<Grabpay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Grabpay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Grabpay = decoder.decodeString().let {
+      if (it != "GRABPAY") {
+        throw SerializationException(it)
+      } else {
+        return Grabpay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Grabpay) = encoder.encodeString(value.value)
+  }
+  @Serializable(ShopeepaySerializer::class)
+  public data object Shopeepay : EasyPayProvider {
+    override val value: String = "SHOPEEPAY"
+  }
+  private object ShopeepaySerializer : KSerializer<Shopeepay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Shopeepay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Shopeepay = decoder.decodeString().let {
+      if (it != "SHOPEEPAY") {
+        throw SerializationException(it)
+      } else {
+        return Shopeepay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Shopeepay) = encoder.encodeString(value.value)
+  }
+  @Serializable(JkopaySerializer::class)
+  public data object Jkopay : EasyPayProvider {
+    override val value: String = "JKOPAY"
+  }
+  private object JkopaySerializer : KSerializer<Jkopay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jkopay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Jkopay = decoder.decodeString().let {
+      if (it != "JKOPAY") {
+        throw SerializationException(it)
+      } else {
+        return Jkopay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Jkopay) = encoder.encodeString(value.value)
+  }
+  @Serializable(PaypaySerializer::class)
+  public data object Paypay : EasyPayProvider {
+    override val value: String = "PAYPAY"
+  }
+  private object PaypaySerializer : KSerializer<Paypay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Paypay = decoder.decodeString().let {
+      if (it != "PAYPAY") {
+        throw SerializationException(it)
+      } else {
+        return Paypay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Paypay) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : EasyPayProvider
@@ -312,6 +462,16 @@ private object EasyPayProviderSerializer : KSerializer<EasyPayProvider> {
       "ALIPAY" -> EasyPayProvider.Alipay
       "HYPHEN" -> EasyPayProvider.Hyphen
       "TMONEY" -> EasyPayProvider.Tmoney
+      "PAYPAL" -> EasyPayProvider.Paypal
+      "SMILEPAY" -> EasyPayProvider.Smilepay
+      "MIR" -> EasyPayProvider.Mir
+      "WECHAT" -> EasyPayProvider.Wechat
+      "LINEPAY" -> EasyPayProvider.Linepay
+      "KLARNA" -> EasyPayProvider.Klarna
+      "GRABPAY" -> EasyPayProvider.Grabpay
+      "SHOPEEPAY" -> EasyPayProvider.Shopeepay
+      "JKOPAY" -> EasyPayProvider.Jkopay
+      "PAYPAY" -> EasyPayProvider.Paypay
       else -> EasyPayProvider.Unrecognized(value)
     }
   }

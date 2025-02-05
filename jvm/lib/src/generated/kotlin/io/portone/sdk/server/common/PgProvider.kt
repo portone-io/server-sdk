@@ -733,6 +733,21 @@ public sealed interface PgProvider {
     }
     override fun serialize(encoder: Encoder, value: Hyphen) = encoder.encodeString(value.value)
   }
+  @Serializable(EximbayV2Serializer::class)
+  public data object EximbayV2 : PgProvider {
+    override val value: String = "EXIMBAY_V2"
+  }
+  private object EximbayV2Serializer : KSerializer<EximbayV2> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(EximbayV2::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): EximbayV2 = decoder.decodeString().let {
+      if (it != "EXIMBAY_V2") {
+        throw SerializationException(it)
+      } else {
+        return EximbayV2
+      }
+    }
+    override fun serialize(encoder: Encoder, value: EximbayV2) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgProvider
@@ -792,6 +807,7 @@ private object PgProviderSerializer : KSerializer<PgProvider> {
       "KPN" -> PgProvider.Kpn
       "KCP_V2" -> PgProvider.KcpV2
       "HYPHEN" -> PgProvider.Hyphen
+      "EXIMBAY_V2" -> PgProvider.EximbayV2
       else -> PgProvider.Unrecognized(value)
     }
   }

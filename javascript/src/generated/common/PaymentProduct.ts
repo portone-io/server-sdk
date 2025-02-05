@@ -26,4 +26,6 @@ export type PaymentProduct = {
 	 * (int32)
 	 */
 	quantity: number
+	/** 판매 링크 */
+	link?: string
 }

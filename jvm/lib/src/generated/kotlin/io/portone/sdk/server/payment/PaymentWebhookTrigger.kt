@@ -107,6 +107,36 @@ public sealed interface PaymentWebhookTrigger {
     }
     override fun serialize(encoder: Encoder, value: AsyncPayFailed) = encoder.encodeString(value.value)
   }
+  @Serializable(DisputeCreatedSerializer::class)
+  public data object DisputeCreated : PaymentWebhookTrigger {
+    override val value: String = "DISPUTE_CREATED"
+  }
+  private object DisputeCreatedSerializer : KSerializer<DisputeCreated> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeCreated::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): DisputeCreated = decoder.decodeString().let {
+      if (it != "DISPUTE_CREATED") {
+        throw SerializationException(it)
+      } else {
+        return DisputeCreated
+      }
+    }
+    override fun serialize(encoder: Encoder, value: DisputeCreated) = encoder.encodeString(value.value)
+  }
+  @Serializable(DisputeResolvedSerializer::class)
+  public data object DisputeResolved : PaymentWebhookTrigger {
+    override val value: String = "DISPUTE_RESOLVED"
+  }
+  private object DisputeResolvedSerializer : KSerializer<DisputeResolved> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeResolved::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): DisputeResolved = decoder.decodeString().let {
+      if (it != "DISPUTE_RESOLVED") {
+        throw SerializationException(it)
+      } else {
+        return DisputeResolved
+      }
+    }
+    override fun serialize(encoder: Encoder, value: DisputeResolved) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentWebhookTrigger
@@ -124,6 +154,8 @@ private object PaymentWebhookTriggerSerializer : KSerializer<PaymentWebhookTrigg
       "ASYNC_CANCEL_FAILED" -> PaymentWebhookTrigger.AsyncCancelFailed
       "ASYNC_PAY_APPROVED" -> PaymentWebhookTrigger.AsyncPayApproved
       "ASYNC_PAY_FAILED" -> PaymentWebhookTrigger.AsyncPayFailed
+      "DISPUTE_CREATED" -> PaymentWebhookTrigger.DisputeCreated
+      "DISPUTE_RESOLVED" -> PaymentWebhookTrigger.DisputeResolved
       else -> PaymentWebhookTrigger.Unrecognized(value)
     }
   }

@@ -1,7 +1,7 @@
 import type { WebhookTransactionCancelledData } from "./WebhookTransactionCancelledData"
-import type { WebhookTransactionDataChargebackCreated } from "./WebhookTransactionDataChargebackCreated"
-import type { WebhookTransactionDataChargebackResolved } from "./WebhookTransactionDataChargebackResolved"
 import type { WebhookTransactionDataConfirm } from "./WebhookTransactionDataConfirm"
+import type { WebhookTransactionDataDisputeCreated } from "./WebhookTransactionDataDisputeCreated"
+import type { WebhookTransactionDataDisputeResolved } from "./WebhookTransactionDataDisputeResolved"
 import type { WebhookTransactionDataFailed } from "./WebhookTransactionDataFailed"
 import type { WebhookTransactionDataPaid } from "./WebhookTransactionDataPaid"
 import type { WebhookTransactionDataPayPending } from "./WebhookTransactionDataPayPending"
@@ -15,6 +15,6 @@ export type WebhookTransactionData =
 	| WebhookTransactionDataFailed
 	| WebhookTransactionDataPayPending
 	| WebhookTransactionDataConfirm
-	| WebhookTransactionDataChargebackCreated
-	| WebhookTransactionDataChargebackResolved
+	| WebhookTransactionDataDisputeCreated
+	| WebhookTransactionDataDisputeResolved
 	| WebhookTransactionCancelledData

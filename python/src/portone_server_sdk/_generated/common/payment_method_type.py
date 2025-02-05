@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PaymentMethodType = Union[Literal["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "GIFT_CERTIFICATE", "MOBILE", "EASY_PAY"], str]
+PaymentMethodType = Union[Literal["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "GIFT_CERTIFICATE", "MOBILE", "EASY_PAY", "CONVENIENCE_STORE"], str]
 
 
 def _serialize_payment_method_type(obj: PaymentMethodType) -> Any:

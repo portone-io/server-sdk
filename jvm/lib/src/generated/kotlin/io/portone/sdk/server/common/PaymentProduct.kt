@@ -26,6 +26,8 @@ public data class PaymentProduct(
   val amount: Long,
   /** 주문 수량 */
   val quantity: Int,
+  /** 판매 링크 */
+  val link: String? = null,
 )
 
 

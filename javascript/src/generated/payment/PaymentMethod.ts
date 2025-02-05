@@ -1,5 +1,6 @@
 import type { Unrecognized } from "./../../utils/unrecognized"
 import type { PaymentMethodCard } from "./../payment/PaymentMethodCard"
+import type { PaymentMethodConvenienceStore } from "./../payment/PaymentMethodConvenienceStore"
 import type { PaymentMethodEasyPay } from "./../payment/PaymentMethodEasyPay"
 import type { PaymentMethodGiftCertificate } from "./../payment/PaymentMethodGiftCertificate"
 import type { PaymentMethodMobile } from "./../payment/PaymentMethodMobile"
@@ -9,6 +10,8 @@ import type { PaymentMethodVirtualAccount } from "./../payment/PaymentMethodVirt
 export type PaymentMethod =
 	/** 결제수단 카드 정보 */
 	| PaymentMethodCard
+	/** 편의점 결제 상세 정보 */
+	| PaymentMethodConvenienceStore
 	/** 간편 결제 상세 정보 */
 	| PaymentMethodEasyPay
 	/** 상품권 상세 정보 */
@@ -23,6 +26,7 @@ export type PaymentMethod =
 
 export function isUnrecognizedPaymentMethod(entity: PaymentMethod): entity is { readonly type: Unrecognized } {
 	return entity.type !== "PaymentMethodCard"
+		&& entity.type !== "PaymentMethodConvenienceStore"
 		&& entity.type !== "PaymentMethodEasyPay"
 		&& entity.type !== "PaymentMethodGiftCertificate"
 		&& entity.type !== "PaymentMethodMobile"

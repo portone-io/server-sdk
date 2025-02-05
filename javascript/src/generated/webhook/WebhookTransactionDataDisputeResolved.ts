@@ -1,5 +1,5 @@
-/** 차지백이 제기되었을 때 이벤트의 실제 세부 내용입니다. */
-export type WebhookTransactionDataChargebackCreated = {
+/** 분쟁이 해소되었을 때 이벤트의 실제 세부 내용입니다. */
+export type WebhookTransactionDataDisputeResolved = {
 	/** 고객사에서 채번한 결제 건의 고유 주문 번호입니다. */
 	paymentId: string
 	/** 웹훅을 트리거한 상점의 아이디입니다. */

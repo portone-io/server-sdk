@@ -3,8 +3,8 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
-class WebhookTransactionDataChargebackResolved:
-    """차지백이 해소되었을 때 이벤트의 실제 세부 내용입니다.
+class WebhookTransactionDataDisputeResolved:
+    """분쟁이 해소되었을 때 이벤트의 실제 세부 내용입니다.
     """
     payment_id: str
     """고객사에서 채번한 결제 건의 고유 주문 번호입니다.
@@ -17,7 +17,7 @@ class WebhookTransactionDataChargebackResolved:
     """
 
 
-def _deserialize_webhook_transaction_data_chargeback_resolved(obj: Any) -> WebhookTransactionDataChargebackResolved:
+def _deserialize_webhook_transaction_data_dispute_resolved(obj: Any) -> WebhookTransactionDataDisputeResolved:
     if not isinstance(obj, dict):
         raise ValueError(f"{repr(obj)} is not dict")
     if "paymentId" not in obj:
@@ -35,4 +35,4 @@ def _deserialize_webhook_transaction_data_chargeback_resolved(obj: Any) -> Webho
     transaction_id = obj["transactionId"]
     if not isinstance(transaction_id, str):
         raise ValueError(f"{repr(transaction_id)} is not str")
-    return WebhookTransactionDataChargebackResolved(payment_id, store_id, transaction_id)
+    return WebhookTransactionDataDisputeResolved(payment_id, store_id, transaction_id)

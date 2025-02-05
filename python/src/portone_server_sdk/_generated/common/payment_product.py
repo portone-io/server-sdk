@@ -31,6 +31,9 @@ class PaymentProduct:
     code: Optional[str] = field(default=None)
     """상품 코드
     """
+    link: Optional[str] = field(default=None)
+    """판매 링크
+    """
 
 
 def _serialize_payment_product(obj: PaymentProduct) -> Any:
@@ -45,6 +48,8 @@ def _serialize_payment_product(obj: PaymentProduct) -> Any:
         entity["tag"] = obj.tag
     if obj.code is not None:
         entity["code"] = obj.code
+    if obj.link is not None:
+        entity["link"] = obj.link
     return entity
 
 
@@ -83,4 +88,10 @@ def _deserialize_payment_product(obj: Any) -> PaymentProduct:
             raise ValueError(f"{repr(code)} is not str")
     else:
         code = None
-    return PaymentProduct(id, name, amount, quantity, tag, code)
+    if "link" in obj:
+        link = obj["link"]
+        if not isinstance(link, str):
+            raise ValueError(f"{repr(link)} is not str")
+    else:
+        link = None
+    return PaymentProduct(id, name, amount, quantity, tag, code, link)

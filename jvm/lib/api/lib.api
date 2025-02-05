@@ -5376,8 +5376,26 @@ public final class io/portone/sdk/server/common/EasyPayProvider$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class io/portone/sdk/server/common/EasyPayProvider$Grabpay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Grabpay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/EasyPayProvider$Hyphen : io/portone/sdk/server/common/EasyPayProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Hyphen;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/EasyPayProvider$Jkopay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Jkopay;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -5403,6 +5421,15 @@ public final class io/portone/sdk/server/common/EasyPayProvider$KbApp : io/porto
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class io/portone/sdk/server/common/EasyPayProvider$Klarna : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Klarna;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/EasyPayProvider$Kpay : io/portone/sdk/server/common/EasyPayProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Kpay;
 	public fun equals (Ljava/lang/Object;)Z
@@ -5421,8 +5448,26 @@ public final class io/portone/sdk/server/common/EasyPayProvider$Lgpay : io/porto
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class io/portone/sdk/server/common/EasyPayProvider$Linepay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Linepay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/EasyPayProvider$Lpay : io/portone/sdk/server/common/EasyPayProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Lpay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/EasyPayProvider$Mir : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Mir;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -5448,6 +5493,24 @@ public final class io/portone/sdk/server/common/EasyPayProvider$Payco : io/porto
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class io/portone/sdk/server/common/EasyPayProvider$Paypal : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Paypal;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/EasyPayProvider$Paypay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Paypay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/EasyPayProvider$Pinpay : io/portone/sdk/server/common/EasyPayProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Pinpay;
 	public fun equals (Ljava/lang/Object;)Z
@@ -5466,8 +5529,26 @@ public final class io/portone/sdk/server/common/EasyPayProvider$Samsungpay : io/
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class io/portone/sdk/server/common/EasyPayProvider$Shopeepay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Shopeepay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/EasyPayProvider$Skpay : io/portone/sdk/server/common/EasyPayProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Skpay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/EasyPayProvider$Smilepay : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Smilepay;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -5516,6 +5597,15 @@ public final class io/portone/sdk/server/common/EasyPayProvider$Unrecognized : i
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/EasyPayProvider$Wechat : io/portone/sdk/server/common/EasyPayProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/EasyPayProvider$Wechat;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -5742,6 +5832,15 @@ public final class io/portone/sdk/server/common/PaymentMethodType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class io/portone/sdk/server/common/PaymentMethodType$ConvenienceStore : io/portone/sdk/server/common/PaymentMethodType {
+	public static final field INSTANCE Lio/portone/sdk/server/common/PaymentMethodType$ConvenienceStore;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/common/PaymentMethodType$EasyPay : io/portone/sdk/server/common/PaymentMethodType {
 	public static final field INSTANCE Lio/portone/sdk/server/common/PaymentMethodType$EasyPay;
 	public fun equals (Ljava/lang/Object;)Z
@@ -5797,20 +5896,22 @@ public final class io/portone/sdk/server/common/PaymentMethodType$VirtualAccount
 
 public final class io/portone/sdk/server/common/PaymentProduct {
 	public static final field Companion Lio/portone/sdk/server/common/PaymentProduct$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JI)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()J
 	public final fun component6 ()I
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JI)Lio/portone/sdk/server/common/PaymentProduct;
-	public static synthetic fun copy$default (Lio/portone/sdk/server/common/PaymentProduct;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JIILjava/lang/Object;)Lio/portone/sdk/server/common/PaymentProduct;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;)Lio/portone/sdk/server/common/PaymentProduct;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/common/PaymentProduct;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;ILjava/lang/Object;)Lio/portone/sdk/server/common/PaymentProduct;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAmount ()J
 	public final fun getCode ()Ljava/lang/String;
 	public final fun getId ()Ljava/lang/String;
+	public final fun getLink ()Ljava/lang/String;
 	public final fun getName ()Ljava/lang/String;
 	public final fun getQuantity ()I
 	public final fun getTag ()Ljava/lang/String;
@@ -5932,6 +6033,15 @@ public final class io/portone/sdk/server/common/PgProvider$Daou : io/portone/sdk
 
 public final class io/portone/sdk/server/common/PgProvider$Eximbay : io/portone/sdk/server/common/PgProvider {
 	public static final field INSTANCE Lio/portone/sdk/server/common/PgProvider$Eximbay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/common/PgProvider$EximbayV2 : io/portone/sdk/server/common/PgProvider {
+	public static final field INSTANCE Lio/portone/sdk/server/common/PgProvider$EximbayV2;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -10510,6 +10620,14 @@ public final class io/portone/sdk/server/payment/PaymentMethodCard$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class io/portone/sdk/server/payment/PaymentMethodConvenienceStore : io/portone/sdk/server/payment/PaymentMethod$Recognized {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/PaymentMethodConvenienceStore;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/portone/sdk/server/payment/PaymentMethodEasyPay : io/portone/sdk/server/payment/PaymentMethod$Recognized {
 	public static final field Companion Lio/portone/sdk/server/payment/PaymentMethodEasyPay$Companion;
 	public fun <init> ()V
@@ -11679,6 +11797,24 @@ public final class io/portone/sdk/server/payment/PaymentWebhookTrigger$AsyncPayF
 
 public final class io/portone/sdk/server/payment/PaymentWebhookTrigger$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/payment/PaymentWebhookTrigger$DisputeCreated : io/portone/sdk/server/payment/PaymentWebhookTrigger {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/PaymentWebhookTrigger$DisputeCreated;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/payment/PaymentWebhookTrigger$DisputeResolved : io/portone/sdk/server/payment/PaymentWebhookTrigger {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/PaymentWebhookTrigger$DisputeResolved;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/payment/PaymentWebhookTrigger$Manual : io/portone/sdk/server/payment/PaymentWebhookTrigger {
@@ -23935,58 +24071,6 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionCancelledPart
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/webhook/WebhookTransactionChargebackCreated : io/portone/sdk/server/webhook/WebhookTransaction {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionChargebackCreated$Companion;
-	public final fun component1 ()Ljava/time/Instant;
-	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated;
-	public fun equals (Ljava/lang/Object;)Z
-	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
-	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated;
-	public fun getTimestamp ()Ljava/time/Instant;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionChargebackCreated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionChargebackCreated$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionChargebackCreated;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionChargebackCreated;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionChargebackCreated$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionChargebackResolved : io/portone/sdk/server/webhook/WebhookTransaction {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionChargebackResolved$Companion;
-	public final fun component1 ()Ljava/time/Instant;
-	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved;
-	public fun equals (Ljava/lang/Object;)Z
-	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
-	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved;
-	public fun getTimestamp ()Ljava/time/Instant;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionChargebackResolved$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionChargebackResolved$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionChargebackResolved;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionChargebackResolved;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionChargebackResolved$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
 public final class io/portone/sdk/server/webhook/WebhookTransactionConfirm : io/portone/sdk/server/webhook/WebhookTransaction {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionConfirm$Companion;
 	public final fun component1 ()Ljava/time/Instant;
@@ -24024,60 +24108,6 @@ public final class io/portone/sdk/server/webhook/WebhookTransactionData$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated : io/portone/sdk/server/webhook/WebhookTransactionData {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated$Companion;
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getPaymentId ()Ljava/lang/String;
-	public fun getStoreId ()Ljava/lang/String;
-	public fun getTransactionId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackCreated$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved : io/portone/sdk/server/webhook/WebhookTransactionData {
-	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved$Companion;
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getPaymentId ()Ljava/lang/String;
-	public fun getStoreId ()Ljava/lang/String;
-	public fun getTransactionId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-}
-
-public final class io/portone/sdk/server/webhook/WebhookTransactionDataChargebackResolved$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
 public final class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm : io/portone/sdk/server/webhook/WebhookTransactionData {
 	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataConfirm$Companion;
 	public final fun component1 ()Ljava/lang/String;
@@ -24104,6 +24134,60 @@ public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataConfi
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionDataConfirm$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated : io/portone/sdk/server/webhook/WebhookTransactionData {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated$Companion;
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
+	public fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved : io/portone/sdk/server/webhook/WebhookTransactionData {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved$Companion;
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getPaymentId ()Ljava/lang/String;
+	public fun getStoreId ()Ljava/lang/String;
+	public fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -24239,6 +24323,58 @@ public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDataVirtu
 }
 
 public final class io/portone/sdk/server/webhook/WebhookTransactionDataVirtualAccountIssued$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDisputeCreated : io/portone/sdk/server/webhook/WebhookTransaction {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDisputeCreated$Companion;
+	public final fun component1 ()Ljava/time/Instant;
+	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated;
+	public fun equals (Ljava/lang/Object;)Z
+	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
+	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeCreated;
+	public fun getTimestamp ()Ljava/time/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDisputeCreated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDisputeCreated$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDisputeCreated;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDisputeCreated;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDisputeCreated$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDisputeResolved : io/portone/sdk/server/webhook/WebhookTransaction {
+	public static final field Companion Lio/portone/sdk/server/webhook/WebhookTransactionDisputeResolved$Companion;
+	public final fun component1 ()Ljava/time/Instant;
+	public final fun component2 ()Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved;
+	public fun equals (Ljava/lang/Object;)Z
+	public synthetic fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionData;
+	public fun getData ()Lio/portone/sdk/server/webhook/WebhookTransactionDataDisputeResolved;
+	public fun getTimestamp ()Ljava/time/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/webhook/WebhookTransactionDisputeResolved$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/webhook/WebhookTransactionDisputeResolved$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/webhook/WebhookTransactionDisputeResolved;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/webhook/WebhookTransactionDisputeResolved;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class io/portone/sdk/server/webhook/WebhookTransactionDisputeResolved$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

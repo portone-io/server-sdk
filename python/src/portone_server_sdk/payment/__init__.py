@@ -133,6 +133,9 @@ from .._generated.payment.payment_logistics import PaymentLogistics
 from .._generated.payment.payment_logistics_company import PaymentLogisticsCompany
 from .._generated.payment.payment_method import PaymentMethod
 from .._generated.payment.payment_method_card import PaymentMethodCard
+from .._generated.payment.payment_method_convenience_store import (
+    PaymentMethodConvenienceStore,
+)
 from .._generated.payment.payment_method_easy_pay import PaymentMethodEasyPay
 from .._generated.payment.payment_method_easy_pay_method import (
     PaymentMethodEasyPayMethod,
@@ -293,6 +296,7 @@ __all__ = [
     "PaymentLogisticsCompany",
     "PaymentMethod",
     "PaymentMethodCard",
+    "PaymentMethodConvenienceStore",
     "PaymentMethodEasyPay",
     "PaymentMethodEasyPayMethod",
     "PaymentMethodEasyPayMethodCharge",
