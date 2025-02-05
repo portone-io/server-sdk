@@ -48,10 +48,10 @@
       WebhookTransactionVirtualAccountIssued
       WebhookTransactionConfirm
       WebhookTransactionDataConfirm
-      WebhookTransactionChargebackCreated
-      WebhookTransactionDataChargebackCreated
-      WebhookTransactionChargebackResolved
-      WebhookTransactionDataChargebackResolved
+      WebhookTransactionDisputeCreated
+      WebhookTransactionDataDisputeCreated
+      WebhookTransactionDisputeResolved
+      WebhookTransactionDataDisputeResolved
    
    .. rubric:: Exceptions
 

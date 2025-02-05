@@ -59,6 +59,7 @@
       PaymentInstallment
       PaymentLogistics
       PaymentMethodCard
+      PaymentMethodConvenienceStore
       PaymentMethodEasyPay
       PaymentMethodEasyPayMethodCharge
       PaymentMethodGiftCertificate
