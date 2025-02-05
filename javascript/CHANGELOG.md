@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.11.0
+
+### Minor Changes
+
+- b2494a8: 웹훅 타입 추가
+
 ## 0.10.0
 
 ### Minor Changes
