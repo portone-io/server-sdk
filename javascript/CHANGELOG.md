@@ -1,5 +1,12 @@
 # @portone/server-sdk
 
+## 0.12.0
+
+### Minor Changes
+
+- 15de65b: 분쟁 웹훅 타입 변경
+- 15de65b: API 업데이트
+
 ## 0.11.0
 
 ### Minor Changes
