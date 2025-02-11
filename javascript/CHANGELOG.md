@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.12.1
+
+### Patch Changes
+
+- 8f68742: 의존성 업데이트
+
 ## 0.12.0
 
 ### Minor Changes
