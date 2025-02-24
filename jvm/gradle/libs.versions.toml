@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.0.21"
-ktor = "3.0.3"
+ktor = "3.1.1"
 kotlin-test = "2.0.0"
 kotlinx-coroutines = "1.10.1"
 
