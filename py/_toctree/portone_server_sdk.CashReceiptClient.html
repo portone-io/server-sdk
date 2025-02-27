@@ -326,6 +326,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.__init__"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipt_by_payment_id()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipt_by_payment_id_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipts_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.issue_cash_receipt"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.issue_cash_receipt()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.issue_cash_receipt_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.issue_cash_receipt_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.cancel_cash_receipt_by_payment_id"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.cancel_cash_receipt_by_payment_id()</span></code></a></li>
@@ -353,6 +355,15 @@
 <dt class="sig sig-object py" id="portone_server_sdk.CashReceiptClient.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.CashReceiptClient.__init__" title="Link to this definition">#</a></dt>
 <dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 포트원 API Secret입니다.</p></li>
+<li><p><strong>base_url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 포트원 REST API 주소입니다. 기본값은 <a href="#id1"><span class="problematic" id="id2">`</span></a>”<a class="reference external" href="https://api.portone.io">https://api.portone.io</a>”<a href="#id3"><span class="problematic" id="id4">`</span></a>입니다.</p></li>
+<li><p><strong>store_id</strong> – 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -372,6 +383,12 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id_async" title="portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cash_receipt_by_payment_id_async</span></code></a>(*, ...)</p></td>
 <td><p>현금 영수증 단건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts" title="portone_server_sdk.CashReceiptClient.get_cash_receipts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cash_receipts</span></code></a>(*[, page, sort, filter])</p></td>
+<td><p>현금영수증 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts_async" title="portone_server_sdk.CashReceiptClient.get_cash_receipts_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cash_receipts_async</span></code></a>(*[, page, sort, filter])</p></td>
+<td><p>현금영수증 다건 조회</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.CashReceiptClient.issue_cash_receipt" title="portone_server_sdk.CashReceiptClient.issue_cash_receipt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">issue_cash_receipt</span></code></a>(*, payment_id, ...[, ...])</p></td>
 <td><p>현금 영수증 수동 발급</p></td>
@@ -412,6 +429,58 @@
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.GetCashReceiptError" title="portone_server_sdk.payment.cash_receipt.GetCashReceiptError"><strong>GetCashReceiptError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.CashReceiptClient.get_cash_receipts">
+<span class="sig-name descname"><span class="pre">get_cash_receipts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CashReceiptSortInput" title="portone_server_sdk._generated.payment.cash_receipt.cash_receipt_sort_input.CashReceiptSortInput"><span class="pre">CashReceiptSortInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput" title="portone_server_sdk._generated.payment.cash_receipt.cash_receipt_filter_input.CashReceiptFilterInput"><span class="pre">CashReceiptFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.GetCashReceiptsResponse" title="portone_server_sdk._generated.payment.cash_receipt.get_cash_receipts_response.GetCashReceiptsResponse"><span class="pre">GetCashReceiptsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts" title="Link to this definition">#</a></dt>
+<dd><p>현금영수증 다건 조회</p>
+<p>주어진 조건에 맞는 현금영수증들을 페이지 기반으로 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – <p>요청할 페이지 정보</p>
+<p>미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>sort</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CashReceiptSortInput,</span> <span class="pre">optional</span></code>) – <p>정렬 조건</p>
+<p>미 입력 시 sortBy: ISSUED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CashReceiptFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 현금영수증 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.GetCashReceiptsError" title="portone_server_sdk.payment.cash_receipt.GetCashReceiptsError"><strong>GetCashReceiptsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.CashReceiptClient.get_cash_receipts_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_cash_receipts_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CashReceiptSortInput" title="portone_server_sdk._generated.payment.cash_receipt.cash_receipt_sort_input.CashReceiptSortInput"><span class="pre">CashReceiptSortInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput" title="portone_server_sdk._generated.payment.cash_receipt.cash_receipt_filter_input.CashReceiptFilterInput"><span class="pre">CashReceiptFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.GetCashReceiptsResponse" title="portone_server_sdk._generated.payment.cash_receipt.get_cash_receipts_response.GetCashReceiptsResponse"><span class="pre">GetCashReceiptsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts_async" title="Link to this definition">#</a></dt>
+<dd><p>현금영수증 다건 조회</p>
+<p>주어진 조건에 맞는 현금영수증들을 페이지 기반으로 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – <p>요청할 페이지 정보</p>
+<p>미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>sort</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CashReceiptSortInput,</span> <span class="pre">optional</span></code>) – <p>정렬 조건</p>
+<p>미 입력 시 sortBy: ISSUED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CashReceiptFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 현금영수증 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.GetCashReceiptsError" title="portone_server_sdk.payment.cash_receipt.GetCashReceiptsError"><strong>GetCashReceiptsError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -580,6 +649,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.__init__"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipt_by_payment_id()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipt_by_payment_id_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipt_by_payment_id_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.get_cash_receipts_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.get_cash_receipts_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.issue_cash_receipt"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.issue_cash_receipt()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.issue_cash_receipt_async"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.issue_cash_receipt_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CashReceiptClient.cancel_cash_receipt_by_payment_id"><code class="docutils literal notranslate"><span class="pre">CashReceiptClient.cancel_cash_receipt_by_payment_id()</span></code></a></li>

@@ -23,6 +23,7 @@
       ConfirmEscrowResponse
       ConfirmedPaymentEscrow
       DeliveredPaymentEscrow
+      Dispute
       FailedPayment
       FailedPaymentCancellation
       FailedPaymentTransaction

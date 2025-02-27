@@ -11,8 +11,13 @@
       ConfirmIdentityVerificationBody
       ConfirmIdentityVerificationResponse
       FailedIdentityVerification
+      GetIdentityVerificationsBody
+      GetIdentityVerificationsResponse
       IdentityVerificationFailure
+      IdentityVerificationFilterCustomerInput
+      IdentityVerificationFilterInput
       IdentityVerificationRequestedCustomer
+      IdentityVerificationSortInput
       IdentityVerificationVerifiedCustomer
       ReadyIdentityVerification
       ResendIdentityVerificationResponse
@@ -28,6 +33,7 @@
    
       ConfirmIdentityVerificationError
       GetIdentityVerificationError
+      GetIdentityVerificationsError
       ResendIdentityVerificationError
       SendIdentityVerificationError
    

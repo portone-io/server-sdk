@@ -9,6 +9,9 @@ portone\_server\_sdk.platform.partner
    .. autosummary::
    
       ArchivePlatformPartnerResponse
+      ConnectBulkPartnerMemberCompanyBody
+      ConnectBulkPartnerMemberCompanyResponse
+      ConnectPartnerMemberCompanyResponse
       CreatePlatformPartnerBody
       CreatePlatformPartnerBodyAccount
       CreatePlatformPartnerBodyContact
@@ -19,8 +22,13 @@ portone\_server\_sdk.platform.partner
       CreatePlatformPartnerResponse
       CreatePlatformPartnersBody
       CreatePlatformPartnersResponse
+      DisconnectBulkPartnerMemberCompanyBody
+      DisconnectBulkPartnerMemberCompanyResponse
+      DisconnectPartnerMemberCompanyResponse
       GetPlatformPartnersBody
       GetPlatformPartnersResponse
+      PlatformBulkTask
+      PlatformBulkTaskProgressStats
       RecoverPlatformPartnerResponse
       UpdatePlatformPartnerResponse
       PartnerClient
@@ -30,8 +38,12 @@ portone\_server\_sdk.platform.partner
    .. autosummary::
    
       ArchivePlatformPartnerError
+      ConnectBulkPartnerMemberCompanyError
+      ConnectPartnerMemberCompanyError
       CreatePlatformPartnerError
       CreatePlatformPartnersError
+      DisconnectBulkPartnerMemberCompanyError
+      DisconnectPartnerMemberCompanyError
       GetPlatformPartnerError
       GetPlatformPartnersError
       RecoverPlatformPartnerError

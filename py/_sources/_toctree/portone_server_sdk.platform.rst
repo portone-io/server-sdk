@@ -47,16 +47,8 @@
       PlatformSettlementCycleMethodMonthlyInput
       PlatformSettlementCycleMethodWeekly
       PlatformSettlementCycleMethodWeeklyInput
-      PlatformSettlementFormula
-      PlatformSettlementFormulaInvalidFunction
-      PlatformSettlementFormulaInvalidOperator
-      PlatformSettlementFormulaInvalidSyntax
-      PlatformSettlementFormulaInvalidVariable
-      PlatformSettlementFormulaPosition
-      PlatformSettlementFormulaUnexpectedFunctionArguments
-      PlatformSettlementFormulaUnknownError
-      PlatformSettlementFormulaUnsupportedVariable
       PlatformSettlementRule
+      PlatformUserDefinedFormulaResults
       PlatformUserDefinedPropertyValue
       ReschedulePlatformAdditionalFeePolicyBody
       ReschedulePlatformAdditionalFeePolicyResponse
@@ -85,7 +77,6 @@
       SchedulePlatformPartnersResponse
       UpdatePlatformAdditionalFeePolicyBody
       UpdatePlatformBody
-      UpdatePlatformBodySettlementFormula
       UpdatePlatformBodySettlementRule
       UpdatePlatformContractBody
       UpdatePlatformDiscountSharePolicyBody

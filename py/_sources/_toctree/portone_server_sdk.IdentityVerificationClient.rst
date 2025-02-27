@@ -18,6 +18,8 @@
       ~IdentityVerificationClient.confirm_identity_verification_async
       ~IdentityVerificationClient.get_identity_verification
       ~IdentityVerificationClient.get_identity_verification_async
+      ~IdentityVerificationClient.get_identity_verifications
+      ~IdentityVerificationClient.get_identity_verifications_async
       ~IdentityVerificationClient.resend_identity_verification
       ~IdentityVerificationClient.resend_identity_verification_async
       ~IdentityVerificationClient.send_identity_verification

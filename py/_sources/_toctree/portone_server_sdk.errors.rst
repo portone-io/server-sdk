@@ -55,6 +55,7 @@
       PlatformArchivedDiscountSharePolicyError
       PlatformArchivedPartnerError
       PlatformArchivedPartnersCannotBeScheduledError
+      PlatformBtxNotEnabledError
       PlatformCancelOrderTransfersExistsError
       PlatformCancellableAmountExceededError
       PlatformCancellableDiscountAmountExceededError
@@ -83,13 +84,15 @@
       PlatformExternalApiFailedError
       PlatformExternalApiTemporarilyFailedError
       PlatformInsufficientDataToChangePartnerTypeError
-      PlatformInvalidSettlementFormulaError
       PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
       PlatformMemberCompanyConnectedPartnerCannotBeScheduledError
       PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
       PlatformMemberCompanyConnectedPartnersCannotBeScheduledError
+      PlatformMemberCompanyNotConnectableStatusError
+      PlatformMemberCompanyNotConnectedError
       PlatformNotEnabledError
       PlatformNotSupportedBankError
+      PlatformOngoingTaxInvoiceExistsError
       PlatformOrderDetailMismatchedError
       PlatformOrderTransferAlreadyCancelledError
       PlatformPartnerIdAlreadyExistsError
@@ -97,7 +100,10 @@
       PlatformPartnerIdsDuplicatedError
       PlatformPartnerNotFoundError
       PlatformPartnerScheduleAlreadyExistsError
+      PlatformPartnerScheduleExistsError
       PlatformPartnerSchedulesAlreadyExistError
+      PlatformPartnerTaxationTypeIsSimpleError
+      PlatformPartnerTypeIsNotBusinessError
       PlatformPaymentNotFoundError
       PlatformProductIdDuplicatedError
       PlatformProductIdNotFoundError
@@ -107,6 +113,7 @@
       PlatformSettlementPaymentAmountExceededPortOnePaymentError
       PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError
       PlatformSettlementTaxFreeAmountExceededPortOnePaymentError
+      PlatformTargetPartnerNotFoundError
       PlatformTransferAlreadyExistsError
       PlatformTransferDiscountSharePolicyNotFoundError
       PlatformTransferNonDeletableStatusError

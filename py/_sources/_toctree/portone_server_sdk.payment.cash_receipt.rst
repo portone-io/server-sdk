@@ -10,7 +10,11 @@ portone\_server\_sdk.payment.cash\_receipt
    
       CancelCashReceiptResponse
       CancelledCashReceipt
+      CashReceiptFilterInput
+      CashReceiptSortInput
       CashReceiptSummary
+      GetCashReceiptsBody
+      GetCashReceiptsResponse
       IssueCashReceiptBody
       IssueCashReceiptCustomerInput
       IssueCashReceiptResponse
@@ -24,5 +28,6 @@ portone\_server\_sdk.payment.cash\_receipt
    
       CancelCashReceiptError
       GetCashReceiptError
+      GetCashReceiptsError
       IssueCashReceiptError
    

@@ -16,10 +16,18 @@
       ~PartnerClient.__init__
       ~PartnerClient.archive_platform_partner
       ~PartnerClient.archive_platform_partner_async
+      ~PartnerClient.connect_bulk_partner_member_company
+      ~PartnerClient.connect_bulk_partner_member_company_async
+      ~PartnerClient.connect_partner_member_company
+      ~PartnerClient.connect_partner_member_company_async
       ~PartnerClient.create_platform_partner
       ~PartnerClient.create_platform_partner_async
       ~PartnerClient.create_platform_partners
       ~PartnerClient.create_platform_partners_async
+      ~PartnerClient.disconnect_bulk_partner_member_company
+      ~PartnerClient.disconnect_bulk_partner_member_company_async
+      ~PartnerClient.disconnect_partner_member_company
+      ~PartnerClient.disconnect_partner_member_company_async
       ~PartnerClient.get_platform_partner
       ~PartnerClient.get_platform_partner_async
       ~PartnerClient.get_platform_partners

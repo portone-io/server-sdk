@@ -744,8 +744,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters"><code class="docutils literal notranslate"><span class="pre">TransferParameters</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal_scale"><code class="docutils literal notranslate"><span class="pre">TransferParameters.decimal_scale</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal"><code class="docutils literal notranslate"><span class="pre">TransferParameters.decimal</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.additional_properties"><code class="docutils literal notranslate"><span class="pre">TransferParameters.additional_properties</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferClient"><code class="docutils literal notranslate"><span class="pre">TransferClient</span></code></a><ul class="nav section-nav flex-column">
@@ -2956,21 +2955,11 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py class">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.TransferParameters">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.transfer.</span></span><span class="sig-name descname"><span class="pre">TransferParameters</span></span><a class="headerlink" href="#portone_server_sdk.platform.transfer.TransferParameters" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#portone_server_sdk.platform.transfer.PlatformSettlementParameterValue" title="portone_server_sdk._generated.platform.transfer.platform_settlement_parameter_value.PlatformSettlementParameterValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformSettlementParameterValue</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.TransferParameters.decimal_scale">
-<span class="sig-name descname"><span class="pre">decimal_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal_scale" title="Link to this definition">#</a></dt>
-<dd><p>소수 자리수</p>
-<p>정산 시 필요한 <a href="#id3"><span class="problematic" id="id4">`</span></a>decimalScale`이 지정되지 않은 경우 기본값으로 0을 사용합니다.
-입력 가능한 법위는 0 ~ 5 입니다.
-(int32)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.TransferParameters.decimal">
-<span class="sig-name descname"><span class="pre">decimal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal" title="Link to this definition">#</a></dt>
-<dd><p>크기가 조정되지 않은 숫자
-(int64)</p>
+<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.TransferParameters.additional_properties">
+<span class="sig-name descname"><span class="pre">additional_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.transfer.PlatformSettlementParameterValue" title="portone_server_sdk._generated.platform.transfer.platform_settlement_parameter_value.PlatformSettlementParameterValue"><span class="pre">PlatformSettlementParameterValue</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.TransferParameters.additional_properties" title="Link to this definition">#</a></dt>
+<dd><p>추가 데이터</p>
 </dd></dl>
 
 </dd></dl>
@@ -3831,8 +3820,7 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters"><code class="docutils literal notranslate"><span class="pre">TransferParameters</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal_scale"><code class="docutils literal notranslate"><span class="pre">TransferParameters.decimal_scale</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.decimal"><code class="docutils literal notranslate"><span class="pre">TransferParameters.decimal</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferParameters.additional_properties"><code class="docutils literal notranslate"><span class="pre">TransferParameters.additional_properties</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.TransferClient"><code class="docutils literal notranslate"><span class="pre">TransferClient</span></code></a><ul class="nav section-nav flex-column">

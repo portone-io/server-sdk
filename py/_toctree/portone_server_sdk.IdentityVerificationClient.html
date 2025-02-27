@@ -326,6 +326,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.__init__"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verification()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verification_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verification_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verifications()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verifications_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.send_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.send_identity_verification()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.send_identity_verification_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.send_identity_verification_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.confirm_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.confirm_identity_verification()</span></code></a></li>
@@ -355,6 +357,15 @@
 <dt class="sig sig-object py" id="portone_server_sdk.IdentityVerificationClient.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.IdentityVerificationClient.__init__" title="Link to this definition">#</a></dt>
 <dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 포트원 API Secret입니다.</p></li>
+<li><p><strong>base_url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 포트원 REST API 주소입니다. 기본값은 <a href="#id1"><span class="problematic" id="id2">`</span></a>”<a class="reference external" href="https://api.portone.io">https://api.portone.io</a>”<a href="#id3"><span class="problematic" id="id4">`</span></a>입니다.</p></li>
+<li><p><strong>store_id</strong> – 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -374,6 +385,12 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verification_async" title="portone_server_sdk.IdentityVerificationClient.get_identity_verification_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_identity_verification_async</span></code></a>(*, ...)</p></td>
 <td><p>본인인증 단건 조회</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications" title="portone_server_sdk.IdentityVerificationClient.get_identity_verifications"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_identity_verifications</span></code></a>(*[, page, sort, ...])</p></td>
+<td><p>본인인증 내역 다건 조회</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async" title="portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_identity_verifications_async</span></code></a>(*[, page, ...])</p></td>
+<td><p>본인인증 내역 다건 조회</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.IdentityVerificationClient.resend_identity_verification" title="portone_server_sdk.IdentityVerificationClient.resend_identity_verification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resend_identity_verification</span></code></a>(*, ...)</p></td>
 <td><p>SMS 본인인증 요청 재전송</p></td>
@@ -420,6 +437,58 @@
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.GetIdentityVerificationError" title="portone_server_sdk.identity_verification.GetIdentityVerificationError"><strong>GetIdentityVerificationError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.IdentityVerificationClient.get_identity_verifications">
+<span class="sig-name descname"><span class="pre">get_identity_verifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationSortInput" title="portone_server_sdk._generated.identity_verification.identity_verification_sort_input.IdentityVerificationSortInput"><span class="pre">IdentityVerificationSortInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationFilterInput" title="portone_server_sdk._generated.identity_verification.identity_verification_filter_input.IdentityVerificationFilterInput"><span class="pre">IdentityVerificationFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.GetIdentityVerificationsResponse" title="portone_server_sdk._generated.identity_verification.get_identity_verifications_response.GetIdentityVerificationsResponse"><span class="pre">GetIdentityVerificationsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications" title="Link to this definition">#</a></dt>
+<dd><p>본인인증 내역 다건 조회</p>
+<p>주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – <p>요청할 페이지 정보</p>
+<p>미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>sort</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">IdentityVerificationSortInput,</span> <span class="pre">optional</span></code>) – <p>정렬 조건</p>
+<p>미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">IdentityVerificationFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 본인인증 내역 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.GetIdentityVerificationsError" title="portone_server_sdk.identity_verification.GetIdentityVerificationsError"><strong>GetIdentityVerificationsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_identity_verifications_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationSortInput" title="portone_server_sdk._generated.identity_verification.identity_verification_sort_input.IdentityVerificationSortInput"><span class="pre">IdentityVerificationSortInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationFilterInput" title="portone_server_sdk._generated.identity_verification.identity_verification_filter_input.IdentityVerificationFilterInput"><span class="pre">IdentityVerificationFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.GetIdentityVerificationsResponse" title="portone_server_sdk._generated.identity_verification.get_identity_verifications_response.GetIdentityVerificationsResponse"><span class="pre">GetIdentityVerificationsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async" title="Link to this definition">#</a></dt>
+<dd><p>본인인증 내역 다건 조회</p>
+<p>주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>) – <p>요청할 페이지 정보</p>
+<p>미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>sort</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">IdentityVerificationSortInput,</span> <span class="pre">optional</span></code>) – <p>정렬 조건</p>
+<p>미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.</p>
+</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">IdentityVerificationFilterInput,</span> <span class="pre">optional</span></code>) – 조회할 본인인증 내역 조건 필터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.GetIdentityVerificationsError" title="portone_server_sdk.identity_verification.GetIdentityVerificationsError"><strong>GetIdentityVerificationsError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -614,6 +683,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.__init__"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verification()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verification_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verification_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verifications()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.get_identity_verifications_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.get_identity_verifications_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.send_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.send_identity_verification()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.send_identity_verification_async"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.send_identity_verification_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.IdentityVerificationClient.confirm_identity_verification"><code class="docutils literal notranslate"><span class="pre">IdentityVerificationClient.confirm_identity_verification()</span></code></a></li>

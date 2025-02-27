@@ -18,6 +18,8 @@
       ~CashReceiptClient.cancel_cash_receipt_by_payment_id_async
       ~CashReceiptClient.get_cash_receipt_by_payment_id
       ~CashReceiptClient.get_cash_receipt_by_payment_id_async
+      ~CashReceiptClient.get_cash_receipts
+      ~CashReceiptClient.get_cash_receipts_async
       ~CashReceiptClient.issue_cash_receipt
       ~CashReceiptClient.issue_cash_receipt_async
    
