@@ -140,7 +140,6 @@ from .._generated.platform.platform_payer import PlatformPayer
 from .._generated.platform.platform_payout_method import PlatformPayoutMethod
 from .._generated.platform.platform_payout_status_stats import PlatformPayoutStatusStats
 from .._generated.platform.platform_properties import PlatformProperties
-from .._generated.platform.platform_round_type import PlatformRoundType
 from .._generated.platform.platform_setting import PlatformSetting
 from .._generated.platform.platform_settlement_cycle import PlatformSettlementCycle
 from .._generated.platform.platform_settlement_cycle_date_policy import (
@@ -179,35 +178,10 @@ from .._generated.platform.platform_settlement_cycle_method_weekly import (
 from .._generated.platform.platform_settlement_cycle_method_weekly_input import (
     PlatformSettlementCycleMethodWeeklyInput,
 )
-from .._generated.platform.platform_settlement_formula import PlatformSettlementFormula
-from .._generated.platform.platform_settlement_formula_error import (
-    PlatformSettlementFormulaError,
-)
-from .._generated.platform.platform_settlement_formula_invalid_function import (
-    PlatformSettlementFormulaInvalidFunction,
-)
-from .._generated.platform.platform_settlement_formula_invalid_operator import (
-    PlatformSettlementFormulaInvalidOperator,
-)
-from .._generated.platform.platform_settlement_formula_invalid_syntax import (
-    PlatformSettlementFormulaInvalidSyntax,
-)
-from .._generated.platform.platform_settlement_formula_invalid_variable import (
-    PlatformSettlementFormulaInvalidVariable,
-)
-from .._generated.platform.platform_settlement_formula_position import (
-    PlatformSettlementFormulaPosition,
-)
-from .._generated.platform.platform_settlement_formula_unexpected_function_arguments import (
-    PlatformSettlementFormulaUnexpectedFunctionArguments,
-)
-from .._generated.platform.platform_settlement_formula_unknown_error import (
-    PlatformSettlementFormulaUnknownError,
-)
-from .._generated.platform.platform_settlement_formula_unsupported_variable import (
-    PlatformSettlementFormulaUnsupportedVariable,
-)
 from .._generated.platform.platform_settlement_rule import PlatformSettlementRule
+from .._generated.platform.platform_user_defined_formula_results import (
+    PlatformUserDefinedFormulaResults,
+)
 from .._generated.platform.platform_user_defined_property_value import (
     PlatformUserDefinedPropertyValue,
 )
@@ -290,9 +264,6 @@ from .._generated.platform.update_platform_additional_fee_policy_body import (
     UpdatePlatformAdditionalFeePolicyBody,
 )
 from .._generated.platform.update_platform_body import UpdatePlatformBody
-from .._generated.platform.update_platform_body_settlement_formula import (
-    UpdatePlatformBodySettlementFormula,
-)
 from .._generated.platform.update_platform_body_settlement_rule import (
     UpdatePlatformBodySettlementRule,
 )
@@ -399,7 +370,6 @@ __all__ = [
     "PlatformPayoutMethod",
     "PlatformPayoutStatusStats",
     "PlatformProperties",
-    "PlatformRoundType",
     "PlatformSetting",
     "PlatformSettlementCycle",
     "PlatformSettlementCycleDatePolicy",
@@ -414,17 +384,8 @@ __all__ = [
     "PlatformSettlementCycleMethodMonthlyInput",
     "PlatformSettlementCycleMethodWeekly",
     "PlatformSettlementCycleMethodWeeklyInput",
-    "PlatformSettlementFormula",
-    "PlatformSettlementFormulaError",
-    "PlatformSettlementFormulaInvalidFunction",
-    "PlatformSettlementFormulaInvalidOperator",
-    "PlatformSettlementFormulaInvalidSyntax",
-    "PlatformSettlementFormulaInvalidVariable",
-    "PlatformSettlementFormulaPosition",
-    "PlatformSettlementFormulaUnexpectedFunctionArguments",
-    "PlatformSettlementFormulaUnknownError",
-    "PlatformSettlementFormulaUnsupportedVariable",
     "PlatformSettlementRule",
+    "PlatformUserDefinedFormulaResults",
     "PlatformUserDefinedPropertyValue",
     "ReschedulePlatformAdditionalFeePolicyBody",
     "ReschedulePlatformAdditionalFeePolicyResponse",
@@ -453,7 +414,6 @@ __all__ = [
     "SchedulePlatformPartnersResponse",
     "UpdatePlatformAdditionalFeePolicyBody",
     "UpdatePlatformBody",
-    "UpdatePlatformBodySettlementFormula",
     "UpdatePlatformBodySettlementRule",
     "UpdatePlatformContractBody",
     "UpdatePlatformDiscountSharePolicyBody",

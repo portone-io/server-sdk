@@ -4,15 +4,19 @@ import { USER_AGENT, type PortOneClientInit } from "../../client"
 import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { ConfirmIdentityVerificationResponse } from "../../generated/identityVerification/ConfirmIdentityVerificationResponse"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
+import type { GetIdentityVerificationsResponse } from "../../generated/identityVerification/GetIdentityVerificationsResponse"
 import type { IdentityVerification } from "../../generated/identityVerification/IdentityVerification"
 import type { IdentityVerificationAlreadySentError } from "../../generated/identityVerification/IdentityVerificationAlreadySentError"
 import type { IdentityVerificationAlreadyVerifiedError } from "../../generated/identityVerification/IdentityVerificationAlreadyVerifiedError"
+import type { IdentityVerificationFilterInput } from "../../generated/identityVerification/IdentityVerificationFilterInput"
 import type { IdentityVerificationMethod } from "../../generated/identityVerification/IdentityVerificationMethod"
 import type { IdentityVerificationNotFoundError } from "../../generated/identityVerification/IdentityVerificationNotFoundError"
 import type { IdentityVerificationNotSentError } from "../../generated/identityVerification/IdentityVerificationNotSentError"
 import type { IdentityVerificationOperator } from "../../generated/identityVerification/IdentityVerificationOperator"
+import type { IdentityVerificationSortInput } from "../../generated/identityVerification/IdentityVerificationSortInput"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
+import type { PageInput } from "../../generated/common/PageInput"
 import type { PgProviderError } from "../../generated/common/PgProviderError"
 import type { ResendIdentityVerificationResponse } from "../../generated/identityVerification/ResendIdentityVerificationResponse"
 import type { SendIdentityVerificationBodyCustomer } from "../../generated/identityVerification/SendIdentityVerificationBodyCustomer"
@@ -52,6 +56,41 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 			)
 			if (!response.ok) {
 				throw new GetIdentityVerificationError(await response.json())
+			}
+			return response.json()
+		},
+		getIdentityVerifications: async (
+			options?: {
+				page?: PageInput,
+				sort?: IdentityVerificationSortInput,
+				filter?: IdentityVerificationFilterInput,
+			}
+		): Promise<GetIdentityVerificationsResponse> => {
+			const page = options?.page
+			const sort = options?.sort
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				sort,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/identity-verifications?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetIdentityVerificationsError(await response.json())
 			}
 			return response.json()
 		},
@@ -187,6 +226,31 @@ export type IdentityVerificationClient = {
 		}
 	) => Promise<IdentityVerification>
 	/**
+	 * 본인인증 내역 다건 조회
+	 *
+	 * 주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+	 *
+	 * @throws {@link GetIdentityVerificationsError}
+	 */
+	getIdentityVerifications: (
+		options?: {
+			/**
+			 * 요청할 페이지 정보
+			 *
+			 * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+			 */
+			page?: PageInput,
+			/**
+			 * 정렬 조건
+			 *
+			 * 미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+			 */
+			sort?: IdentityVerificationSortInput,
+			/** 조회할 본인인증 내역 조건 필터 */
+			filter?: IdentityVerificationFilterInput,
+		}
+	) => Promise<GetIdentityVerificationsResponse>
+	/**
 	 * 본인인증 요청 전송
 	 *
 	 * SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
@@ -269,6 +333,15 @@ export class GetIdentityVerificationError extends IdentityVerificationError {
 		super(data)
 		Object.setPrototypeOf(this, GetIdentityVerificationError.prototype)
 		this.name = "GetIdentityVerificationError"
+	}
+}
+export class GetIdentityVerificationsError extends IdentityVerificationError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetIdentityVerificationsError.prototype)
+		this.name = "GetIdentityVerificationsError"
 	}
 }
 export class SendIdentityVerificationError extends IdentityVerificationError {

@@ -1,5 +1,6 @@
 package io.portone.sdk.server.identityverification
 
+import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
 import java.time.Instant
 import kotlin.String
@@ -30,6 +31,8 @@ public sealed interface IdentityVerification {
     public val updatedAt: Instant
     /** 상태 업데이트 시점 */
     public val statusChangedAt: Instant
+    /** 포트원 버전 */
+    public val version: PortOneVersion
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

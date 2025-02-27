@@ -1,5 +1,6 @@
 package io.portone.sdk.server.identityverification
 
+import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.identityverification.IdentityVerificationRequestedCustomer
 import io.portone.sdk.server.serializers.InstantSerializer
@@ -26,6 +27,8 @@ public data class ReadyIdentityVerification(
   override val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 상태 업데이트 시점 */
   override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 포트원 버전 */
+  override val version: PortOneVersion,
 ) : IdentityVerification.Recognized
 
 

@@ -3,7 +3,7 @@ import type { BillingKeyStatus } from "./../../payment/billingKey/BillingKeyStat
 import type { BillingKeyTextSearch } from "./../../payment/billingKey/BillingKeyTextSearch"
 import type { BillingKeyTimeRangeField } from "./../../payment/billingKey/BillingKeyTimeRangeField"
 import type { PaymentClientType } from "./../../common/PaymentClientType"
-import type { PgCompany } from "./../../payment/billingKey/PgCompany"
+import type { PgCompany } from "./../../common/PgCompany"
 import type { PgProvider } from "./../../common/PgProvider"
 import type { PortOneVersion } from "./../../common/PortOneVersion"
 /** 빌링키 다건 조회를 위한 입력 정보 */

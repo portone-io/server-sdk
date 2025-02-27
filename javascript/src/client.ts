@@ -11,6 +11,8 @@ export type PortOneClientInit = {
 	baseUrl?: string;
 	/**
 	 * 상점 ID
+	 *
+	 * 하위 상점을 대상으로 포트원 기능을 사용할 때 필수입니다.
 	 */
 	storeId?: string;
 };

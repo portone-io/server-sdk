@@ -4,6 +4,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 from ..identity_verification.identity_verification_failure import IdentityVerificationFailure, _deserialize_identity_verification_failure, _serialize_identity_verification_failure
 from ..identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
+from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
 from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
@@ -33,6 +34,9 @@ class FailedIdentityVerification:
     failure: IdentityVerificationFailure
     """본인인증 실패 정보
     """
+    version: PortOneVersion
+    """포트원 버전
+    """
     channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
@@ -52,6 +56,7 @@ def _serialize_failed_identity_verification(obj: FailedIdentityVerification) -> 
     entity["updatedAt"] = obj.updated_at
     entity["statusChangedAt"] = obj.status_changed_at
     entity["failure"] = _serialize_identity_verification_failure(obj.failure)
+    entity["version"] = _serialize_port_one_version(obj.version)
     if obj.channel is not None:
         entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.custom_data is not None:
@@ -95,6 +100,10 @@ def _deserialize_failed_identity_verification(obj: Any) -> FailedIdentityVerific
         raise KeyError(f"'failure' is not in {obj}")
     failure = obj["failure"]
     failure = _deserialize_identity_verification_failure(failure)
+    if "version" not in obj:
+        raise KeyError(f"'version' is not in {obj}")
+    version = obj["version"]
+    version = _deserialize_port_one_version(version)
     if "channel" in obj:
         channel = obj["channel"]
         channel = _deserialize_selected_channel(channel)
@@ -106,4 +115,4 @@ def _deserialize_failed_identity_verification(obj: Any) -> FailedIdentityVerific
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return FailedIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, failure, channel, custom_data)
+    return FailedIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, failure, version, channel, custom_data)

@@ -1,18 +1,34 @@
 package io.portone.sdk.server.platform.transfer
 
+import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonTransformingSerializer
+import kotlinx.serialization.json.jsonObject
 
-@Serializable
-public data class TransferParameters(
-  /** 크기가 조정되지 않은 숫자 */
-  val decimal: Long,
-  /**
-   * 소수 자리수
-   *
-   * 정산 시 필요한 `decimalScale`이 지정되지 않은 경우 기본값으로 0을 사용합니다.
-   * 입력 가능한 법위는 0 ~ 5 입니다.
-   */
-  val decimalScale: Int? = null,
-)
+@Serializable(TransferParametersSerializer::class)
+@KeepGeneratedSerializer
+public data object TransferParameters
 
 
+private class TransferParametersSerializer : JsonTransformingSerializer<TransferParameters>(TransferParameters.generatedSerializer()) {
+  companion object {
+    private val KNOWN_KEYS = setOf<String>()
+  }
+  override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)
+    JsonObject(buildMap {
+      putAll(element.filterKeys { it != "additionalProperties" })
+      putAll(element.getValue("additionalProperties").jsonObject)
+    })
+  else element
+  override fun transformDeserialize(element: JsonElement): JsonElement = if (element is JsonObject)
+    JsonObject(buildMap {
+      val additionalProperties = mutableMapOf<String, JsonElement>()
+      element.forEach { key, value ->
+        if (KNOWN_KEYS.contains(key)) put(key, value) else additionalProperties.put(key, value)
+      }
+      put("additionalProperties", JsonObject(additionalProperties))
+    })
+  else element
+}

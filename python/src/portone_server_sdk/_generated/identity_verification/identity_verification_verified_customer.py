@@ -12,11 +12,6 @@ class IdentityVerificationVerifiedCustomer:
     name: str
     """이름
     """
-    birth_date: str
-    """생년월일 (yyyy-MM-dd)
-
-    날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-    """
     id: Optional[str] = field(default=None)
     """식별 아이디
     """
@@ -32,6 +27,11 @@ class IdentityVerificationVerifiedCustomer:
     특수 문자(-) 없이 숫자로만 이루어진 번호 형식입니다.
     다날: 별도 계약이 필요합니다.
     KG이니시스: 항상 제공합니다.
+    """
+    birth_date: Optional[str] = field(default=None)
+    """생년월일 (yyyy-MM-dd)
+
+    포트원 V2 본인인증 건의 경우 항상 존재합니다.
     """
     gender: Optional[Gender] = field(default=None)
     """성별
@@ -66,13 +66,14 @@ def _serialize_identity_verification_verified_customer(obj: IdentityVerification
         return obj
     entity = {}
     entity["name"] = obj.name
-    entity["birthDate"] = obj.birth_date
     if obj.id is not None:
         entity["id"] = obj.id
     if obj.operator is not None:
         entity["operator"] = _serialize_identity_verification_operator(obj.operator)
     if obj.phone_number is not None:
         entity["phoneNumber"] = obj.phone_number
+    if obj.birth_date is not None:
+        entity["birthDate"] = obj.birth_date
     if obj.gender is not None:
         entity["gender"] = _serialize_gender(obj.gender)
     if obj.is_foreigner is not None:
@@ -92,11 +93,6 @@ def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVe
     name = obj["name"]
     if not isinstance(name, str):
         raise ValueError(f"{repr(name)} is not str")
-    if "birthDate" not in obj:
-        raise KeyError(f"'birthDate' is not in {obj}")
-    birth_date = obj["birthDate"]
-    if not isinstance(birth_date, str):
-        raise ValueError(f"{repr(birth_date)} is not str")
     if "id" in obj:
         id = obj["id"]
         if not isinstance(id, str):
@@ -114,6 +110,12 @@ def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVe
             raise ValueError(f"{repr(phone_number)} is not str")
     else:
         phone_number = None
+    if "birthDate" in obj:
+        birth_date = obj["birthDate"]
+        if not isinstance(birth_date, str):
+            raise ValueError(f"{repr(birth_date)} is not str")
+    else:
+        birth_date = None
     if "gender" in obj:
         gender = obj["gender"]
         gender = _deserialize_gender(gender)
@@ -137,4 +139,4 @@ def _deserialize_identity_verification_verified_customer(obj: Any) -> IdentityVe
             raise ValueError(f"{repr(di)} is not str")
     else:
         di = None
-    return IdentityVerificationVerifiedCustomer(name, birth_date, id, operator, phone_number, gender, is_foreigner, ci, di)
+    return IdentityVerificationVerifiedCustomer(name, id, operator, phone_number, birth_date, gender, is_foreigner, ci, di)

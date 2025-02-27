@@ -4,35 +4,48 @@ import json
 from httpx import AsyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformNotEnabledError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformBtxNotEnabledError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformExternalApiFailedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyNotConnectableStatusError, PlatformMemberCompanyNotConnectedError, PlatformNotEnabledError, PlatformOngoingTaxInvoiceExistsError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformPartnerScheduleExistsError, PlatformPartnerTaxationTypeIsSimpleError, PlatformPartnerTypeIsNotBusinessError, PlatformTargetPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.platform_account_verification_already_used_error import _deserialize_platform_account_verification_already_used_error
 from ...platform.platform_account_verification_failed_error import _deserialize_platform_account_verification_failed_error
 from ...platform.platform_account_verification_not_found_error import _deserialize_platform_account_verification_not_found_error
 from ...platform.platform_archived_partner_error import _deserialize_platform_archived_partner_error
+from ...platform.partner.platform_btx_not_enabled_error import _deserialize_platform_btx_not_enabled_error
 from ...platform.partner.platform_cannot_archive_scheduled_partner_error import _deserialize_platform_cannot_archive_scheduled_partner_error
 from ...platform.platform_company_verification_already_used_error import _deserialize_platform_company_verification_already_used_error
 from ...platform.platform_contract_not_found_error import _deserialize_platform_contract_not_found_error
 from ...platform.partner.platform_contracts_not_found_error import _deserialize_platform_contracts_not_found_error
 from ...platform.platform_currency_not_supported_error import _deserialize_platform_currency_not_supported_error
+from ...platform.platform_external_api_failed_error import _deserialize_platform_external_api_failed_error
 from ...platform.platform_insufficient_data_to_change_partner_type_error import _deserialize_platform_insufficient_data_to_change_partner_type_error
 from ...platform.platform_member_company_connected_partner_brn_unchangeable_error import _deserialize_platform_member_company_connected_partner_brn_unchangeable_error
 from ...platform.platform_member_company_connected_partner_type_unchangeable_error import _deserialize_platform_member_company_connected_partner_type_unchangeable_error
+from ...platform.partner.platform_member_company_not_connectable_status_error import _deserialize_platform_member_company_not_connectable_status_error
+from ...platform.partner.platform_member_company_not_connected_error import _deserialize_platform_member_company_not_connected_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
+from ...platform.partner.platform_ongoing_tax_invoice_exists_error import _deserialize_platform_ongoing_tax_invoice_exists_error
 from ...platform.partner.platform_partner_id_already_exists_error import _deserialize_platform_partner_id_already_exists_error
 from ...platform.partner.platform_partner_ids_already_exist_error import _deserialize_platform_partner_ids_already_exist_error
 from ...platform.partner.platform_partner_ids_duplicated_error import _deserialize_platform_partner_ids_duplicated_error
 from ...platform.platform_partner_not_found_error import _deserialize_platform_partner_not_found_error
+from ...platform.partner.platform_partner_schedule_exists_error import _deserialize_platform_partner_schedule_exists_error
+from ...platform.partner.platform_partner_taxation_type_is_simple_error import _deserialize_platform_partner_taxation_type_is_simple_error
+from ...platform.partner.platform_partner_type_is_not_business_error import _deserialize_platform_partner_type_is_not_business_error
+from ...platform.partner.platform_target_partner_not_found_error import _deserialize_platform_target_partner_not_found_error
 from ...platform.platform_user_defined_property_not_found_error import _deserialize_platform_user_defined_property_not_found_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...platform.partner.archive_platform_partner_response import ArchivePlatformPartnerResponse, _deserialize_archive_platform_partner_response, _serialize_archive_platform_partner_response
+from ...platform.partner.connect_bulk_partner_member_company_response import ConnectBulkPartnerMemberCompanyResponse, _deserialize_connect_bulk_partner_member_company_response, _serialize_connect_bulk_partner_member_company_response
+from ...platform.partner.connect_partner_member_company_response import ConnectPartnerMemberCompanyResponse, _deserialize_connect_partner_member_company_response, _serialize_connect_partner_member_company_response
 from ...platform.partner.create_platform_partner_body import CreatePlatformPartnerBody, _deserialize_create_platform_partner_body, _serialize_create_platform_partner_body
 from ...platform.partner.create_platform_partner_body_account import CreatePlatformPartnerBodyAccount, _deserialize_create_platform_partner_body_account, _serialize_create_platform_partner_body_account
 from ...platform.partner.create_platform_partner_body_contact import CreatePlatformPartnerBodyContact, _deserialize_create_platform_partner_body_contact, _serialize_create_platform_partner_body_contact
 from ...platform.partner.create_platform_partner_body_type import CreatePlatformPartnerBodyType, _deserialize_create_platform_partner_body_type, _serialize_create_platform_partner_body_type
 from ...platform.partner.create_platform_partner_response import CreatePlatformPartnerResponse, _deserialize_create_platform_partner_response, _serialize_create_platform_partner_response
 from ...platform.partner.create_platform_partners_response import CreatePlatformPartnersResponse, _deserialize_create_platform_partners_response, _serialize_create_platform_partners_response
+from ...platform.partner.disconnect_bulk_partner_member_company_response import DisconnectBulkPartnerMemberCompanyResponse, _deserialize_disconnect_bulk_partner_member_company_response, _serialize_disconnect_bulk_partner_member_company_response
+from ...platform.partner.disconnect_partner_member_company_response import DisconnectPartnerMemberCompanyResponse, _deserialize_disconnect_partner_member_company_response, _serialize_disconnect_partner_member_company_response
 from ...platform.partner.get_platform_partners_response import GetPlatformPartnersResponse, _deserialize_get_platform_partners_response, _serialize_get_platform_partners_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
@@ -51,7 +64,14 @@ class PartnerClient:
     _client: AsyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
-        """API Secret을 사용해 포트원 API 클라이언트를 생성합니다."""
+        """
+        API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+
+        Args:
+            secret (str): 포트원 API Secret입니다.
+            base_url (str, optional): 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+            store_id: 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
+            """
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
@@ -1398,3 +1418,739 @@ class PartnerClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_recover_platform_partner_response(response.json())
+    def connect_partner_member_company(
+        self,
+        *,
+        id: str,
+    ) -> ConnectPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 연동
+
+        파트너를 연동 사업자로 연동합니다.
+
+        Args:
+            id (str):
+                파트너 아이디
+
+
+        Raises:
+            ConnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_member_company_not_connectable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyNotConnectableStatusError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_schedule_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerScheduleExistsError(error)
+            try:
+                error = _deserialize_platform_partner_taxation_type_is_simple_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTaxationTypeIsSimpleError(error)
+            try:
+                error = _deserialize_platform_partner_type_is_not_business_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTypeIsNotBusinessError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_connect_partner_member_company_response(response.json())
+    async def connect_partner_member_company_async(
+        self,
+        *,
+        id: str,
+    ) -> ConnectPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 연동
+
+        파트너를 연동 사업자로 연동합니다.
+
+        Args:
+            id (str):
+                파트너 아이디
+
+
+        Raises:
+            ConnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_member_company_not_connectable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyNotConnectableStatusError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_schedule_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerScheduleExistsError(error)
+            try:
+                error = _deserialize_platform_partner_taxation_type_is_simple_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTaxationTypeIsSimpleError(error)
+            try:
+                error = _deserialize_platform_partner_type_is_not_business_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTypeIsNotBusinessError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_connect_partner_member_company_response(response.json())
+    def disconnect_partner_member_company(
+        self,
+        *,
+        id: str,
+    ) -> DisconnectPartnerMemberCompanyResponse:
+        """연동 사업자 연동 해제
+
+        파트너를 연동 사업자에서 연동 해제합니다.
+
+        Args:
+            id (str):
+                파트너 아이디
+
+
+        Raises:
+            DisconnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_member_company_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyNotConnectedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_ongoing_tax_invoice_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformOngoingTaxInvoiceExistsError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_taxation_type_is_simple_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTaxationTypeIsSimpleError(error)
+            try:
+                error = _deserialize_platform_partner_type_is_not_business_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTypeIsNotBusinessError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_disconnect_partner_member_company_response(response.json())
+    async def disconnect_partner_member_company_async(
+        self,
+        *,
+        id: str,
+    ) -> DisconnectPartnerMemberCompanyResponse:
+        """연동 사업자 연동 해제
+
+        파트너를 연동 사업자에서 연동 해제합니다.
+
+        Args:
+            id (str):
+                파트너 아이디
+
+
+        Raises:
+            DisconnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_member_company_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyNotConnectedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_ongoing_tax_invoice_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformOngoingTaxInvoiceExistsError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_taxation_type_is_simple_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTaxationTypeIsSimpleError(error)
+            try:
+                error = _deserialize_platform_partner_type_is_not_business_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerTypeIsNotBusinessError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_disconnect_partner_member_company_response(response.json())
+    def connect_bulk_partner_member_company(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+    ) -> ConnectBulkPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 일괄 연동
+
+        파트너들을 연동 사업자로 일괄 연동합니다.
+
+        Args:
+            filter (PlatformPartnerFilterInput, optional):
+                연동 사업자로 일괄 연동할 파트너 조건 필터
+
+
+        Raises:
+            ConnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-connect",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_target_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTargetPartnerNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_connect_bulk_partner_member_company_response(response.json())
+    async def connect_bulk_partner_member_company_async(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+    ) -> ConnectBulkPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 일괄 연동
+
+        파트너들을 연동 사업자로 일괄 연동합니다.
+
+        Args:
+            filter (PlatformPartnerFilterInput, optional):
+                연동 사업자로 일괄 연동할 파트너 조건 필터
+
+
+        Raises:
+            ConnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-connect",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_target_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTargetPartnerNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_connect_bulk_partner_member_company_response(response.json())
+    def disconnect_bulk_partner_member_company(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+    ) -> DisconnectBulkPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 연동 해제
+
+        파트너들을 연동 사업자에서 일괄 연동 해제합니다.
+
+        Args:
+            filter (PlatformPartnerFilterInput, optional):
+                연동 사업자에서 일괄 연동 해제할 파트너 조건 필터
+
+
+        Raises:
+            DisconnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-disconnect",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_target_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTargetPartnerNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_disconnect_bulk_partner_member_company_response(response.json())
+    async def disconnect_bulk_partner_member_company_async(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+    ) -> DisconnectBulkPartnerMemberCompanyResponse:
+        """파트너 연동 사업자 연동 해제
+
+        파트너들을 연동 사업자에서 일괄 연동 해제합니다.
+
+        Args:
+            filter (PlatformPartnerFilterInput, optional):
+                연동 사업자에서 일괄 연동 해제할 파트너 조건 필터
+
+
+        Raises:
+            DisconnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/partners/member-company-disconnect",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_btx_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformBtxNotEnabledError(error)
+            try:
+                error = _deserialize_platform_external_api_failed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformExternalApiFailedError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_target_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTargetPartnerNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_disconnect_bulk_partner_member_company_response(response.json())

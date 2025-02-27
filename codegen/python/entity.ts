@@ -21,27 +21,7 @@ export function generateEntity(
   switch (definition.type) {
     case "object": {
       writer.writeLine("@dataclass")
-      if (definition.additionalProperties) {
-        const additionalDefinition = entityMap.get(
-          definition.additionalProperties,
-        )
-        if (!additionalDefinition) {
-          throw new Error("unrecognized additional properties", {
-            cause: { additionalProperties: definition.additionalProperties },
-          })
-        }
-        if (additionalDefinition.type !== "object") {
-          throw new Error("unsupported additional properties type", {
-            cause: { additionalDefinition },
-          })
-        }
-        writer.writeLine(
-          `class ${name}(${definition.additionalProperties}):`,
-        )
-        crossRef.add(definition.additionalProperties)
-      } else {
-        writer.writeLine(`class ${name}:`)
-      }
+      writer.writeLine(`class ${name}:`)
       writer.indent()
       writeDescription(
         writer,
@@ -51,7 +31,8 @@ export function generateEntity(
         required
       ).concat(definition.properties.filter(({ required }) => !required))
       if (
-        properties.filter(({ type }) => type !== "discriminant").length === 0
+        properties.filter(({ type }) => type !== "discriminant").length === 0 &&
+        definition.additionalProperties === null
       ) {
         writer.writeLine("pass")
       }
@@ -145,6 +126,31 @@ export function generateEntity(
         const description = ([] as string[]).concat(property.title ?? [])
           .concat(property.description ?? []).join("\n\n")
         writeDescription(writer, annotateDescription(description, property))
+      }
+      if (definition.additionalProperties) {
+        switch (definition.additionalProperties.type) {
+          case "ref":
+            crossRef.add(definition.additionalProperties.value)
+            writer.writeLine(
+              `additional_properties: dict[str, ${definition.additionalProperties.value}]`,
+            )
+            break
+          case "integer":
+            writer.writeLine("additional_properties: dict[str, int]")
+            break
+          case "string":
+          case "number":
+          case "boolean":
+          case "object":
+          case "oneOf":
+          case "discriminant":
+          case "enum":
+          case "array":
+            throw new Error("unsupported additionalProperties type", {
+              cause: { definition },
+            })
+        }
+        writeDescription(writer, "추가 데이터")
       }
       writer.outdent()
       break
@@ -268,34 +274,6 @@ function generateDeserializeEntity(
     case "object": {
       checkType("dict")
       const allProperties = []
-      if (definition.additionalProperties) {
-        const additionalDefinition = entityMap.get(
-          definition.additionalProperties,
-        )
-        if (!additionalDefinition) {
-          throw new Error("unrecognized additional properties", {
-            cause: { additionalProperties: definition.additionalProperties },
-          })
-        }
-        if (additionalDefinition.type !== "object") {
-          throw new Error("unsupported additional properties type", {
-            cause: { additionalDefinition },
-          })
-        }
-        writer.writeLine(
-          `additional = _deserialize_${
-            toSnakeCase(definition.additionalProperties)
-          }(obj)`,
-        )
-        for (const property of additionalDefinition.properties) {
-          writer.writeLine(
-            `${filterName(property.name)} = additional.${
-              filterName(property.name)
-            }`,
-          )
-          allProperties.push(filterName(property.name))
-        }
-      }
       const properties = definition.properties.filter(({ required }) =>
         required
       ).concat(definition.properties.filter(({ required }) => !required))
@@ -398,6 +376,45 @@ function generateDeserializeEntity(
           writer.outdent()
         }
       }
+      if (definition.additionalProperties) {
+        writer.writeLine("additional_properties = {}")
+        writer.writeLine("for key, value in obj.items():")
+        writer.indent()
+        writer.writeLine(
+          `if key in [${
+            properties.map(({ name }) => `"${name}"`).join(", ")
+          }]:`,
+        )
+        writer.indent()
+        writer.writeLine("continue")
+        writer.outdent()
+        switch (definition.additionalProperties.type) {
+          case "ref":
+            writer.writeLine(
+              `additional_properties[key] = _deserialize_${
+                toSnakeCase(definition.additionalProperties.value)
+              }(value)`,
+            )
+            break
+          case "integer":
+            checkType("int", "value")
+            writer.writeLine("additional_properties[key] = value")
+            break
+          case "string":
+          case "number":
+          case "boolean":
+          case "object":
+          case "oneOf":
+          case "discriminant":
+          case "enum":
+          case "array":
+            throw new Error("unsupported additionalProperties type", {
+              cause: { definition },
+            })
+        }
+        writer.outdent()
+        allProperties.push("additional_properties")
+      }
       writer.writeLine(`return ${definition.name}(${allProperties.join(", ")})`)
       break
     }
@@ -453,14 +470,33 @@ function generateSerializeEntity(definition: Definition) {
       writer.writeLine("return obj")
       break
     case "object": {
+      writer.writeLine("entity = {}")
       if (definition.additionalProperties) {
-        writer.writeLine(
-          `entity = _serialize_${
-            toSnakeCase(definition.additionalProperties)
-          }(obj)`,
-        )
-      } else {
-        writer.writeLine("entity = {}")
+        switch (definition.additionalProperties.type) {
+          case "ref":
+            writer.writeLine(
+              "for key, value in obj.additional_properties.items():",
+            )
+            writer.indent()
+            writer.writeLine(
+              `entity[key] = _serialize_${
+                toSnakeCase(definition.additionalProperties.value)
+              }(value)`,
+            )
+            writer.outdent()
+            break
+          case "integer":
+            writer.writeLine("entity.update(obj.additional_properties)")
+            break
+          case "string":
+          case "number":
+          case "boolean":
+          case "object":
+          case "oneOf":
+          case "discriminant":
+          case "enum":
+          case "array":
+        }
       }
       const properties = definition.properties.filter(({ required }) =>
         required

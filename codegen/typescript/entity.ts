@@ -93,8 +93,28 @@ export function generateEntity(
       }
       writer.outdent()
       if (definition.additionalProperties) {
-        crossRef.add(definition.additionalProperties)
-        writer.writeLine(`} & ${definition.additionalProperties}`)
+        switch (definition.additionalProperties.type) {
+          case "ref":
+            crossRef.add(definition.additionalProperties.value)
+            writer.writeLine(
+              `} & Record<PropertyKey, ${definition.additionalProperties.value}>`,
+            )
+            break
+          case "integer":
+            writer.writeLine(`} & Record<PropertyKey, number>`)
+            break
+          case "string":
+          case "number":
+          case "boolean":
+          case "object":
+          case "oneOf":
+          case "discriminant":
+          case "enum":
+          case "array":
+            throw new Error("unsupported additionalProperties type", {
+              cause: { definition },
+            })
+        }
       } else {
         writer.writeLine("}")
       }

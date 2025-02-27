@@ -1,3 +1,4 @@
+import type { PlatformUserDefinedFormulaResults } from "./../platform/PlatformUserDefinedFormulaResults"
 /**
  * 정산 금액 정보
  *
@@ -100,4 +101,6 @@ export type PlatformOrderSettlementAmount = {
 	 * (int64)
 	 */
 	discountShareTaxFree: number
+	/** 사용자 정의 수식 결과 */
+	userDefinedFormulas: PlatformUserDefinedFormulaResults
 }

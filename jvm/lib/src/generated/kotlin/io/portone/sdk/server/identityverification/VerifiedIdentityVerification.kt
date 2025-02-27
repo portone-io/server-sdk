@@ -1,5 +1,6 @@
 package io.portone.sdk.server.identityverification
 
+import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.identityverification.IdentityVerificationVerifiedCustomer
 import io.portone.sdk.server.serializers.InstantSerializer
@@ -32,6 +33,8 @@ public data class VerifiedIdentityVerification(
   val pgTxId: String,
   /** PG사 응답 데이터 */
   val pgRawResponse: String,
+  /** 포트원 버전 */
+  override val version: PortOneVersion,
 ) : IdentityVerification.Recognized
 
 

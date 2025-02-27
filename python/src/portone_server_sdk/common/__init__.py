@@ -27,6 +27,7 @@ from .._generated.common.payment_client_type import PaymentClientType
 from .._generated.common.payment_method_type import PaymentMethodType
 from .._generated.common.payment_product import PaymentProduct
 from .._generated.common.payment_product_type import PaymentProductType
+from .._generated.common.pg_company import PgCompany
 from .._generated.common.pg_provider import PgProvider
 from .._generated.common.port_one_version import PortOneVersion
 from .._generated.common.selected_channel import SelectedChannel
@@ -65,6 +66,7 @@ __all__ = [
     "PaymentMethodType",
     "PaymentProduct",
     "PaymentProductType",
+    "PgCompany",
     "PgProvider",
     "PortOneVersion",
     "SelectedChannel",

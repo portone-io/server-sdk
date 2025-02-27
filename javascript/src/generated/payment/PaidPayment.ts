@@ -2,6 +2,7 @@ import type { ChannelGroupSummary } from "./../common/ChannelGroupSummary"
 import type { Country } from "./../common/Country"
 import type { Currency } from "./../common/Currency"
 import type { Customer } from "./../common/Customer"
+import type { Dispute } from "./../payment/Dispute"
 import type { PaymentAmount } from "./../payment/PaymentAmount"
 import type { PaymentCashReceipt } from "./../payment/PaymentCashReceipt"
 import type { PaymentEscrow } from "./../payment/PaymentEscrow"
@@ -105,4 +106,6 @@ export type PaidPayment = {
 	cashReceipt?: PaymentCashReceipt
 	/** 거래 영수증 URL */
 	receiptUrl?: string
+	/** 분쟁 목록 */
+	disputes: Dispute[]
 }

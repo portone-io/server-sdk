@@ -5,7 +5,6 @@ import { writeDescription } from "./description.ts"
 
 export function generateEntity(
   hierarchy: string,
-  entityMap: Map<string, Definition>,
   categoryMap: Map<string, string>,
   parentsMap: Map<string, Property[]>,
   childrenMap: Map<string, Extends>,
@@ -29,22 +28,72 @@ export function generateEntity(
     : ""
   switch (definition.type) {
     case "object": {
-      let properties = definition.properties
+      const properties = definition.properties
       if (definition.additionalProperties) {
-        const entity = entityMap.get(definition.additionalProperties)
-        if (!entity) {
-          throw new Error("unrecognized additionalProperties", {
-            cause: { ref: properties },
-          })
-        }
-        if (entity.type !== "object") {
-          throw new Error("unsupported additionalProperties type", {
-            cause: { entity },
-          })
-        }
-        properties = properties.concat(entity.properties)
+        writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
+        writer.writeLine("@KeepGeneratedSerializer")
+        crossRef.add("kotlinx.serialization.KeepGeneratedSerializer")
+        crossRef.add("kotlinx.serialization.json.JsonElement")
+        crossRef.add("kotlinx.serialization.json.JsonObject")
+        crossRef.add("kotlinx.serialization.json.JsonTransformingSerializer")
+        crossRef.add("kotlinx.serialization.json.jsonObject")
+        serializerWriter.writeLine(
+          `private class ${definition.name}Serializer : JsonTransformingSerializer<${definition.name}>(${definition.name}.generatedSerializer()) {`,
+        )
+        serializerWriter.indent()
+        serializerWriter.writeLine("companion object {")
+        serializerWriter.indent()
+        serializerWriter.writeLine(
+          `private val KNOWN_KEYS = setOf<String>(${
+            properties.map(({ name }) => `"${name}"`).join(", ")
+          })`,
+        )
+        serializerWriter.outdent()
+        serializerWriter.writeLine("}")
+        serializerWriter.writeLine(
+          "override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)",
+        )
+        serializerWriter.indent()
+        serializerWriter.writeLine("JsonObject(buildMap {")
+        serializerWriter.indent()
+        serializerWriter.writeLine(
+          `putAll(element.filterKeys { it != "additionalProperties" })`,
+        )
+        serializerWriter.writeLine(
+          `putAll(element.getValue("additionalProperties").jsonObject)`,
+        )
+        serializerWriter.outdent()
+        serializerWriter.writeLine("})")
+        serializerWriter.outdent()
+        serializerWriter.writeLine("else element")
+        serializerWriter.writeLine(
+          "override fun transformDeserialize(element: JsonElement): JsonElement = if (element is JsonObject)",
+        )
+        serializerWriter.indent()
+        serializerWriter.writeLine("JsonObject(buildMap {")
+        serializerWriter.indent()
+        serializerWriter.writeLine(
+          "val additionalProperties = mutableMapOf<String, JsonElement>()",
+        )
+        serializerWriter.writeLine("element.forEach { key, value ->")
+        serializerWriter.indent()
+        serializerWriter.writeLine(
+          "if (KNOWN_KEYS.contains(key)) put(key, value) else additionalProperties.put(key, value)",
+        )
+        serializerWriter.outdent()
+        serializerWriter.writeLine("}")
+        serializerWriter.writeLine(
+          `put("additionalProperties", JsonObject(additionalProperties))`,
+        )
+        serializerWriter.outdent()
+        serializerWriter.writeLine("})")
+        serializerWriter.outdent()
+        serializerWriter.writeLine("else element")
+        serializerWriter.outdent()
+        serializerWriter.writeLine("}")
+      } else {
+        writer.writeLine("@Serializable")
       }
-      writer.writeLine("@Serializable")
       crossRef.add("kotlinx.serialization.Serializable")
       const firstProperty = properties[0]
       if (firstProperty?.type === "discriminant") {
@@ -71,7 +120,6 @@ export function generateEntity(
         `${visibility} data class ${definition.name}${constructor_}(`,
       )
       writer.indent()
-
       for (const property of nonDiscriminant) {
         const description = ([] as string[]).concat(property.title ?? [])
           .concat(property.description ?? []).join("\n\n")
@@ -316,8 +364,9 @@ export function generateEntity(
                 cause: { definition: property },
               })
             }
-            crossRef.add("kotlinx.serialization.json.JsonObject")
-            writer.writeLine(`public val ${name}: JsonObject${optional}`)
+            crossRef.add("kotlinx.serialization.Polymorphic")
+            writer.writeLine("@Polymorphic")
+            writer.writeLine(`public val ${name}: Map<String, Any>${optional}`)
             break
           case "array":
             writeDescription(writer, description)

@@ -52,4 +52,9 @@ export type CancelledCashReceipt = {
 	 * (RFC 3339 date-time)
 	 */
 	cancelledAt: string
+	/**
+	 * 상태 업데이트 시점
+	 * (RFC 3339 date-time)
+	 */
+	statusUpdatedAt?: string
 }

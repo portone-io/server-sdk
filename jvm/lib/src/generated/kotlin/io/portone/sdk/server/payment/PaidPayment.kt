@@ -7,6 +7,7 @@ import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
+import io.portone.sdk.server.payment.Dispute
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentCashReceipt
 import io.portone.sdk.server.payment.PaymentEscrow
@@ -98,6 +99,8 @@ public data class PaidPayment(
   val cashReceipt: PaymentCashReceipt? = null,
   /** 거래 영수증 URL */
   val receiptUrl: String? = null,
+  /** 분쟁 목록 */
+  val disputes: List<Dispute>,
 ) : Payment.Recognized
 
 

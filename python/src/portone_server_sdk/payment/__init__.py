@@ -58,6 +58,8 @@ from .._generated.payment.confirm_escrow_body import ConfirmEscrowBody
 from .._generated.payment.confirm_escrow_response import ConfirmEscrowResponse
 from .._generated.payment.confirmed_payment_escrow import ConfirmedPaymentEscrow
 from .._generated.payment.delivered_payment_escrow import DeliveredPaymentEscrow
+from .._generated.payment.dispute import Dispute
+from .._generated.payment.dispute_status import DisputeStatus
 from .._generated.payment.failed_payment import FailedPayment
 from .._generated.payment.failed_payment_cancellation import FailedPaymentCancellation
 from .._generated.payment.failed_payment_transaction import FailedPaymentTransaction
@@ -251,6 +253,8 @@ __all__ = [
     "ConfirmEscrowResponse",
     "ConfirmedPaymentEscrow",
     "DeliveredPaymentEscrow",
+    "Dispute",
+    "DisputeStatus",
     "FailedPayment",
     "FailedPaymentCancellation",
     "FailedPaymentTransaction",

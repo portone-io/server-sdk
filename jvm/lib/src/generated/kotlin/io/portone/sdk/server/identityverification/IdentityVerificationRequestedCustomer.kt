@@ -16,6 +16,12 @@ public data class IdentityVerificationRequestedCustomer(
    * 특수 문자(-) 없이 숫자로만 이루어진 번호 형식입니다.
    */
   val phoneNumber: String? = null,
+  /** 출생연도 */
+  val birthYear: String? = null,
+  /** 출생월 */
+  val birthMonth: String? = null,
+  /** 출생일 */
+  val birthDay: String? = null,
 )
 
 

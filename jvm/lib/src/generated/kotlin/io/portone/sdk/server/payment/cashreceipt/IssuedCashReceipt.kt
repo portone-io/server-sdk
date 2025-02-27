@@ -43,6 +43,8 @@ public data class IssuedCashReceipt(
   val url: String? = null,
   /** 발급 시점 */
   val issuedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 상태 업데이트 시점 */
+  override val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant? = null,
 ) : CashReceipt.Recognized
 
 

@@ -1,6 +1,8 @@
 package io.portone.sdk.server.payment.cashreceipt
 
 import io.portone.sdk.server.common.SelectedChannel
+import io.portone.sdk.server.serializers.InstantSerializer
+import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -21,6 +23,8 @@ public data class IssueFailedCashReceipt(
   override val orderName: String,
   /** 수동 발급 여부 */
   override val isManual: Boolean,
+  /** 상태 업데이트 시점 */
+  override val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant? = null,
 ) : CashReceipt.Recognized
 
 

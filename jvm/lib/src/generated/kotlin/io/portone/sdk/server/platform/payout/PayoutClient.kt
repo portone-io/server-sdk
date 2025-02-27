@@ -35,6 +35,10 @@ import kotlinx.serialization.json.Json
 
 /**
  * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ *
+ * @param apiSecret 포트원 API Secret입니다.
+ * @param apiBase 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+ * @param storeId 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
  */
 public class PayoutClient(
   private val apiSecret: String,

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ..platform.platform_user_defined_formula_results import PlatformUserDefinedFormulaResults, _deserialize_platform_user_defined_formula_results, _serialize_platform_user_defined_formula_results
 
 @dataclass
 class PlatformOrderSettlementAmount:
@@ -86,6 +87,9 @@ class PlatformOrderSettlementAmount:
     """면세 할인 분담 금액
     (int64)
     """
+    user_defined_formulas: PlatformUserDefinedFormulaResults
+    """사용자 정의 수식 결과
+    """
 
 
 def _serialize_platform_order_settlement_amount(obj: PlatformOrderSettlementAmount) -> Any:
@@ -110,6 +114,7 @@ def _serialize_platform_order_settlement_amount(obj: PlatformOrderSettlementAmou
     entity["discountTaxFree"] = obj.discount_tax_free
     entity["discountShare"] = obj.discount_share
     entity["discountShareTaxFree"] = obj.discount_share_tax_free
+    entity["userDefinedFormulas"] = _serialize_platform_user_defined_formula_results(obj.user_defined_formulas)
     return entity
 
 
@@ -206,4 +211,8 @@ def _deserialize_platform_order_settlement_amount(obj: Any) -> PlatformOrderSett
     discount_share_tax_free = obj["discountShareTaxFree"]
     if not isinstance(discount_share_tax_free, int):
         raise ValueError(f"{repr(discount_share_tax_free)} is not int")
-    return PlatformOrderSettlementAmount(settlement, payment, payment_vat, payment_vat_burden, tax_free, supply, payment_tax_free, payment_supply, order, order_tax_free, platform_fee, platform_fee_vat, additional_fee, additional_fee_vat, discount, discount_tax_free, discount_share, discount_share_tax_free)
+    if "userDefinedFormulas" not in obj:
+        raise KeyError(f"'userDefinedFormulas' is not in {obj}")
+    user_defined_formulas = obj["userDefinedFormulas"]
+    user_defined_formulas = _deserialize_platform_user_defined_formula_results(user_defined_formulas)
+    return PlatformOrderSettlementAmount(settlement, payment, payment_vat, payment_vat_burden, tax_free, supply, payment_tax_free, payment_supply, order, order_tax_free, platform_fee, platform_fee_vat, additional_fee, additional_fee_vat, discount, discount_tax_free, discount_share, discount_share_tax_free, user_defined_formulas)

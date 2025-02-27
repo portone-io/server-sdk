@@ -1,4 +1,5 @@
 import type { IdentityVerificationVerifiedCustomer } from "./../identityVerification/IdentityVerificationVerifiedCustomer"
+import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
 /** 완료된 본인인증 내역 */
 export type VerifiedIdentityVerification = {
@@ -36,4 +37,6 @@ export type VerifiedIdentityVerification = {
 	pgTxId: string
 	/** PG사 응답 데이터 */
 	pgRawResponse: string
+	/** 포트원 버전 */
+	version: PortOneVersion
 }

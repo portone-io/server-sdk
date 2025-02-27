@@ -18,10 +18,18 @@ import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ArchivePlatformPartnerError
 import io.portone.sdk.server.errors.ArchivePlatformPartnerException
+import io.portone.sdk.server.errors.ConnectBulkPartnerMemberCompanyError
+import io.portone.sdk.server.errors.ConnectBulkPartnerMemberCompanyException
+import io.portone.sdk.server.errors.ConnectPartnerMemberCompanyError
+import io.portone.sdk.server.errors.ConnectPartnerMemberCompanyException
 import io.portone.sdk.server.errors.CreatePlatformPartnerError
 import io.portone.sdk.server.errors.CreatePlatformPartnerException
 import io.portone.sdk.server.errors.CreatePlatformPartnersError
 import io.portone.sdk.server.errors.CreatePlatformPartnersException
+import io.portone.sdk.server.errors.DisconnectBulkPartnerMemberCompanyError
+import io.portone.sdk.server.errors.DisconnectBulkPartnerMemberCompanyException
+import io.portone.sdk.server.errors.DisconnectPartnerMemberCompanyError
+import io.portone.sdk.server.errors.DisconnectPartnerMemberCompanyException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPlatformPartnerError
@@ -38,6 +46,8 @@ import io.portone.sdk.server.errors.PlatformAccountVerificationNotFoundError
 import io.portone.sdk.server.errors.PlatformAccountVerificationNotFoundException
 import io.portone.sdk.server.errors.PlatformArchivedPartnerError
 import io.portone.sdk.server.errors.PlatformArchivedPartnerException
+import io.portone.sdk.server.errors.PlatformBtxNotEnabledError
+import io.portone.sdk.server.errors.PlatformBtxNotEnabledException
 import io.portone.sdk.server.errors.PlatformCannotArchiveScheduledPartnerError
 import io.portone.sdk.server.errors.PlatformCannotArchiveScheduledPartnerException
 import io.portone.sdk.server.errors.PlatformCompanyVerificationAlreadyUsedError
@@ -48,14 +58,22 @@ import io.portone.sdk.server.errors.PlatformContractsNotFoundError
 import io.portone.sdk.server.errors.PlatformContractsNotFoundException
 import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedError
 import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedException
+import io.portone.sdk.server.errors.PlatformExternalApiFailedError
+import io.portone.sdk.server.errors.PlatformExternalApiFailedException
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeError
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeException
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableException
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableException
+import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectableStatusError
+import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectableStatusException
+import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectedError
+import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectedException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
+import io.portone.sdk.server.errors.PlatformOngoingTaxInvoiceExistsError
+import io.portone.sdk.server.errors.PlatformOngoingTaxInvoiceExistsException
 import io.portone.sdk.server.errors.PlatformPartnerIdAlreadyExistsError
 import io.portone.sdk.server.errors.PlatformPartnerIdAlreadyExistsException
 import io.portone.sdk.server.errors.PlatformPartnerIdsAlreadyExistError
@@ -64,6 +82,14 @@ import io.portone.sdk.server.errors.PlatformPartnerIdsDuplicatedError
 import io.portone.sdk.server.errors.PlatformPartnerIdsDuplicatedException
 import io.portone.sdk.server.errors.PlatformPartnerNotFoundError
 import io.portone.sdk.server.errors.PlatformPartnerNotFoundException
+import io.portone.sdk.server.errors.PlatformPartnerScheduleExistsError
+import io.portone.sdk.server.errors.PlatformPartnerScheduleExistsException
+import io.portone.sdk.server.errors.PlatformPartnerTaxationTypeIsSimpleError
+import io.portone.sdk.server.errors.PlatformPartnerTaxationTypeIsSimpleException
+import io.portone.sdk.server.errors.PlatformPartnerTypeIsNotBusinessError
+import io.portone.sdk.server.errors.PlatformPartnerTypeIsNotBusinessException
+import io.portone.sdk.server.errors.PlatformTargetPartnerNotFoundError
+import io.portone.sdk.server.errors.PlatformTargetPartnerNotFoundException
 import io.portone.sdk.server.errors.PlatformUserDefinedPropertyNotFoundError
 import io.portone.sdk.server.errors.PlatformUserDefinedPropertyNotFoundException
 import io.portone.sdk.server.errors.RecoverPlatformPartnerError
@@ -81,6 +107,9 @@ import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyAccount
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyContact
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyType
 import io.portone.sdk.server.platform.partner.ArchivePlatformPartnerResponse
+import io.portone.sdk.server.platform.partner.ConnectBulkPartnerMemberCompanyBody
+import io.portone.sdk.server.platform.partner.ConnectBulkPartnerMemberCompanyResponse
+import io.portone.sdk.server.platform.partner.ConnectPartnerMemberCompanyResponse
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBody
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyAccount
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyContact
@@ -88,6 +117,9 @@ import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyType
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerResponse
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnersBody
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnersResponse
+import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerMemberCompanyBody
+import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerMemberCompanyResponse
+import io.portone.sdk.server.platform.partner.DisconnectPartnerMemberCompanyResponse
 import io.portone.sdk.server.platform.partner.GetPlatformPartnersBody
 import io.portone.sdk.server.platform.partner.GetPlatformPartnersResponse
 import io.portone.sdk.server.platform.partner.RecoverPlatformPartnerResponse
@@ -103,6 +135,10 @@ import kotlinx.serialization.json.Json
 
 /**
  * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ *
+ * @param apiSecret 포트원 API Secret입니다.
+ * @param apiBase 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+ * @param storeId 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
  */
 public class PartnerClient(
   private val apiSecret: String,
@@ -639,6 +675,258 @@ public class PartnerClient(
   public fun recoverPlatformPartnerFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
+
+
+  /**
+   * 파트너 연동 사업자 연동
+   *
+   * 파트너를 연동 사업자로 연동합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   *
+   * @throws ConnectPartnerMemberCompanyException
+   */
+  @JvmName("connectPartnerMemberCompanySuspend")
+  public suspend fun connectPartnerMemberCompany(
+    id: String,
+  ): ConnectPartnerMemberCompanyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-connect", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConnectPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformMemberCompanyNotConnectableStatusError -> throw PlatformMemberCompanyNotConnectableStatusException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerScheduleExistsError -> throw PlatformPartnerScheduleExistsException(httpBodyDecoded)
+        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
+        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConnectPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("connectPartnerMemberCompany")
+  public fun connectPartnerMemberCompanyFuture(
+    id: String,
+  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id) }
+
+
+  /**
+   * 연동 사업자 연동 해제
+   *
+   * 파트너를 연동 사업자에서 연동 해제합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   *
+   * @throws DisconnectPartnerMemberCompanyException
+   */
+  @JvmName("disconnectPartnerMemberCompanySuspend")
+  public suspend fun disconnectPartnerMemberCompany(
+    id: String,
+  ): DisconnectPartnerMemberCompanyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DisconnectPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformMemberCompanyNotConnectedError -> throw PlatformMemberCompanyNotConnectedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformOngoingTaxInvoiceExistsError -> throw PlatformOngoingTaxInvoiceExistsException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
+        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DisconnectPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("disconnectPartnerMemberCompany")
+  public fun disconnectPartnerMemberCompanyFuture(
+    id: String,
+  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id) }
+
+
+  /**
+   * 파트너 연동 사업자 일괄 연동
+   *
+   * 파트너들을 연동 사업자로 일괄 연동합니다.
+   *
+   * @param filter
+   * 연동 사업자로 일괄 연동할 파트너 조건 필터
+   *
+   * @throws ConnectBulkPartnerMemberCompanyException
+   */
+  @JvmName("connectBulkPartnerMemberCompanySuspend")
+  public suspend fun connectBulkPartnerMemberCompany(
+    filter: PlatformPartnerFilterInput? = null,
+  ): ConnectBulkPartnerMemberCompanyResponse {
+    val requestBody = ConnectBulkPartnerMemberCompanyBody(
+      filter = filter,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-connect")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("connectBulkPartnerMemberCompany")
+  public fun connectBulkPartnerMemberCompanyFuture(
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(filter) }
+
+
+  /**
+   * 파트너 연동 사업자 연동 해제
+   *
+   * 파트너들을 연동 사업자에서 일괄 연동 해제합니다.
+   *
+   * @param filter
+   * 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터
+   *
+   * @throws DisconnectBulkPartnerMemberCompanyException
+   */
+  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
+  public suspend fun disconnectBulkPartnerMemberCompany(
+    filter: PlatformPartnerFilterInput? = null,
+  ): DisconnectBulkPartnerMemberCompanyResponse {
+    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
+      filter = filter,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-disconnect")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("disconnectBulkPartnerMemberCompany")
+  public fun disconnectBulkPartnerMemberCompanyFuture(
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(filter) }
 
   override fun close() {
     client.close()

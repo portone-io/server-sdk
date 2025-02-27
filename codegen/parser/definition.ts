@@ -27,7 +27,6 @@ const OneOfSchema = BaseDefinitionSchema.extend({
 const BaseObjectSchema = BaseDefinitionSchema.extend({
   type: z.literal("object"),
   required: z.array(z.string()).optional(),
-  additionalProperties: RefSchema.optional(),
 }).strict()
 
 type ObjectSchema = z.infer<typeof BaseObjectSchema> & {
@@ -35,10 +34,12 @@ type ObjectSchema = z.infer<typeof BaseObjectSchema> & {
     string,
     z.infer<typeof DefinitionSchema>
   >
+  additionalProperties?: z.infer<typeof DefinitionSchema>
 }
 
 const ObjectSchema: z.ZodType<ObjectSchema> = BaseObjectSchema.extend({
   properties: z.lazy(() => z.record(DefinitionSchema)).optional(),
+  additionalProperties: z.lazy(() => DefinitionSchema).optional(),
 }).strict()
 
 const StringSchema = BaseDefinitionSchema.extend({
@@ -109,7 +110,7 @@ export type Property = {
 export type ObjectDefinition = {
   type: "object"
   properties: Property[]
-  additionalProperties: string | null
+  additionalProperties: Definition | null
 }
 
 export type StringDefinition = {
@@ -219,15 +220,16 @@ export function parseDefinition(name: string, definition: unknown): Definition {
       required: required.has(name),
       ...parseDefinition(name, definition),
     }))
+    const additionalProperties = data.additionalProperties === undefined
+      ? null
+      : parseDefinition("additionalProperties", data.additionalProperties)
     return {
       name,
       title,
       description,
       type: "object",
       properties,
-      additionalProperties: data.additionalProperties?.$ref
-        ? stripRefPrefix(data.additionalProperties.$ref)
-        : null,
+      additionalProperties,
     }
   }
   if (data.type === "string") {

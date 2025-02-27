@@ -18,6 +18,15 @@ class IdentityVerificationRequestedCustomer:
 
     특수 문자(-) 없이 숫자로만 이루어진 번호 형식입니다.
     """
+    birth_year: Optional[str] = field(default=None)
+    """출생연도
+    """
+    birth_month: Optional[str] = field(default=None)
+    """출생월
+    """
+    birth_day: Optional[str] = field(default=None)
+    """출생일
+    """
 
 
 def _serialize_identity_verification_requested_customer(obj: IdentityVerificationRequestedCustomer) -> Any:
@@ -30,6 +39,12 @@ def _serialize_identity_verification_requested_customer(obj: IdentityVerificatio
         entity["name"] = obj.name
     if obj.phone_number is not None:
         entity["phoneNumber"] = obj.phone_number
+    if obj.birth_year is not None:
+        entity["birthYear"] = obj.birth_year
+    if obj.birth_month is not None:
+        entity["birthMonth"] = obj.birth_month
+    if obj.birth_day is not None:
+        entity["birthDay"] = obj.birth_day
     return entity
 
 
@@ -54,4 +69,22 @@ def _deserialize_identity_verification_requested_customer(obj: Any) -> IdentityV
             raise ValueError(f"{repr(phone_number)} is not str")
     else:
         phone_number = None
-    return IdentityVerificationRequestedCustomer(id, name, phone_number)
+    if "birthYear" in obj:
+        birth_year = obj["birthYear"]
+        if not isinstance(birth_year, str):
+            raise ValueError(f"{repr(birth_year)} is not str")
+    else:
+        birth_year = None
+    if "birthMonth" in obj:
+        birth_month = obj["birthMonth"]
+        if not isinstance(birth_month, str):
+            raise ValueError(f"{repr(birth_month)} is not str")
+    else:
+        birth_month = None
+    if "birthDay" in obj:
+        birth_day = obj["birthDay"]
+        if not isinstance(birth_day, str):
+            raise ValueError(f"{repr(birth_day)} is not str")
+    else:
+        birth_day = None
+    return IdentityVerificationRequestedCustomer(id, name, phone_number, birth_year, birth_month, birth_day)

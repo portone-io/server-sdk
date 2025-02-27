@@ -24,9 +24,9 @@ export type IdentityVerificationVerifiedCustomer = {
 	/**
 	 * 생년월일 (yyyy-MM-dd)
 	 *
-	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * 포트원 V2 본인인증 건의 경우 항상 존재합니다.
 	 */
-	birthDate: string
+	birthDate?: string
 	/**
 	 * 성별
 	 *

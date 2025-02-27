@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformInvalidSettlementFormulaError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerCannotBeScheduledError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerCannotBeScheduledError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ..common.forbidden_error import _deserialize_forbidden_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
 from ..platform.platform_account_verification_already_used_error import _deserialize_platform_account_verification_already_used_error
@@ -23,7 +23,6 @@ from ..platform.platform_contract_schedule_already_exists_error import _deserial
 from ..platform.platform_discount_share_policy_not_found_error import _deserialize_platform_discount_share_policy_not_found_error
 from ..platform.platform_discount_share_policy_schedule_already_exists_error import _deserialize_platform_discount_share_policy_schedule_already_exists_error
 from ..platform.platform_insufficient_data_to_change_partner_type_error import _deserialize_platform_insufficient_data_to_change_partner_type_error
-from ..platform.platform_invalid_settlement_formula_error import _deserialize_platform_invalid_settlement_formula_error
 from ..platform.platform_member_company_connected_partner_brn_unchangeable_error import _deserialize_platform_member_company_connected_partner_brn_unchangeable_error
 from ..platform.platform_member_company_connected_partner_cannot_be_scheduled_error import _deserialize_platform_member_company_connected_partner_cannot_be_scheduled_error
 from ..platform.platform_member_company_connected_partner_type_unchangeable_error import _deserialize_platform_member_company_connected_partner_type_unchangeable_error
@@ -46,7 +45,6 @@ from ..platform.platform_discount_share_policy_filter_options import PlatformDis
 from ..platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
 from ..platform.platform_partner_filter_input import PlatformPartnerFilterInput, _deserialize_platform_partner_filter_input, _serialize_platform_partner_filter_input
 from ..platform.platform_partner_filter_options import PlatformPartnerFilterOptions, _deserialize_platform_partner_filter_options, _serialize_platform_partner_filter_options
-from ..platform.platform_round_type import PlatformRoundType, _deserialize_platform_round_type, _serialize_platform_round_type
 from ..platform.platform_setting import PlatformSetting, _deserialize_platform_setting, _serialize_platform_setting
 from ..platform.reschedule_platform_additional_fee_policy_response import ReschedulePlatformAdditionalFeePolicyResponse, _deserialize_reschedule_platform_additional_fee_policy_response, _serialize_reschedule_platform_additional_fee_policy_response
 from ..platform.reschedule_platform_contract_response import ReschedulePlatformContractResponse, _deserialize_reschedule_platform_contract_response, _serialize_reschedule_platform_contract_response
@@ -59,7 +57,6 @@ from ..platform.schedule_platform_partner_response import SchedulePlatformPartne
 from ..platform.schedule_platform_partners_body_update import SchedulePlatformPartnersBodyUpdate, _deserialize_schedule_platform_partners_body_update, _serialize_schedule_platform_partners_body_update
 from ..platform.schedule_platform_partners_response import SchedulePlatformPartnersResponse, _deserialize_schedule_platform_partners_response, _serialize_schedule_platform_partners_response
 from ..platform.update_platform_additional_fee_policy_body import UpdatePlatformAdditionalFeePolicyBody, _deserialize_update_platform_additional_fee_policy_body, _serialize_update_platform_additional_fee_policy_body
-from ..platform.update_platform_body_settlement_formula import UpdatePlatformBodySettlementFormula, _deserialize_update_platform_body_settlement_formula, _serialize_update_platform_body_settlement_formula
 from ..platform.update_platform_body_settlement_rule import UpdatePlatformBodySettlementRule, _deserialize_update_platform_body_settlement_rule, _serialize_update_platform_body_settlement_rule
 from ..platform.update_platform_contract_body import UpdatePlatformContractBody, _deserialize_update_platform_contract_body, _serialize_update_platform_contract_body
 from ..platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
@@ -92,7 +89,14 @@ class PlatformClient:
     account_transfer: AccountTransferClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
-        """API Secret을 사용해 포트원 API 클라이언트를 생성합니다."""
+        """
+        API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+
+        Args:
+            secret (str): 포트원 API Secret입니다.
+            base_url (str, optional): 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+            store_id: 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
+            """
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
@@ -195,18 +199,12 @@ class PlatformClient:
     def update_platform(
         self,
         *,
-        round_type: Optional[PlatformRoundType] = None,
-        settlement_formula: Optional[UpdatePlatformBodySettlementFormula] = None,
         settlement_rule: Optional[UpdatePlatformBodySettlementRule] = None,
     ) -> UpdatePlatformResponse:
         """고객사의 플랫폼 관련 정보를 업데이트합니다.
         요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 
         Args:
-            round_type (PlatformRoundType, optional):
-                파트너 정산금액의 소수점 처리 방식
-            settlement_formula (UpdatePlatformBodySettlementFormula, optional):
-                수수료 및 할인 분담 정책 관련 계산식
             settlement_rule (UpdatePlatformBodySettlementRule, optional):
                 정산 규칙
 
@@ -216,10 +214,6 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        if round_type is not None:
-            request_body["roundType"] = _serialize_platform_round_type(round_type)
-        if settlement_formula is not None:
-            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula)
         if settlement_rule is not None:
             request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
         query = []
@@ -249,12 +243,6 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_invalid_settlement_formula_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformInvalidSettlementFormulaError(error)
-            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -271,18 +259,12 @@ class PlatformClient:
     async def update_platform_async(
         self,
         *,
-        round_type: Optional[PlatformRoundType] = None,
-        settlement_formula: Optional[UpdatePlatformBodySettlementFormula] = None,
         settlement_rule: Optional[UpdatePlatformBodySettlementRule] = None,
     ) -> UpdatePlatformResponse:
         """고객사의 플랫폼 관련 정보를 업데이트합니다.
         요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
 
         Args:
-            round_type (PlatformRoundType, optional):
-                파트너 정산금액의 소수점 처리 방식
-            settlement_formula (UpdatePlatformBodySettlementFormula, optional):
-                수수료 및 할인 분담 정책 관련 계산식
             settlement_rule (UpdatePlatformBodySettlementRule, optional):
                 정산 규칙
 
@@ -292,10 +274,6 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        if round_type is not None:
-            request_body["roundType"] = _serialize_platform_round_type(round_type)
-        if settlement_formula is not None:
-            request_body["settlementFormula"] = _serialize_update_platform_body_settlement_formula(settlement_formula)
         if settlement_rule is not None:
             request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
         query = []
@@ -324,12 +302,6 @@ class PlatformClient:
                 pass
             if error is not None:
                 raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_invalid_settlement_formula_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformInvalidSettlementFormulaError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:

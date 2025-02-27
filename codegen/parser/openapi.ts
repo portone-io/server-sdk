@@ -43,8 +43,13 @@ export function packageSchema(): Package {
         for (const property of definition.properties) {
           shakeDefinition(category, property)
         }
-        if (definition.additionalProperties) {
-          const usage = definitionUsages.get(definition.additionalProperties)
+        if (
+          definition.additionalProperties &&
+          definition.additionalProperties.type === "ref"
+        ) {
+          const usage = definitionUsages.get(
+            definition.additionalProperties.value,
+          )
           if (!usage) {
             throw new Error(
               `type ${definition.additionalProperties} was referenced by additionalProperties but not found`,

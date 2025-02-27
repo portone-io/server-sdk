@@ -14,6 +14,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
 import io.portone.sdk.server.errors.ConfirmIdentityVerificationError
@@ -22,6 +23,8 @@ import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetIdentityVerificationError
 import io.portone.sdk.server.errors.GetIdentityVerificationException
+import io.portone.sdk.server.errors.GetIdentityVerificationsError
+import io.portone.sdk.server.errors.GetIdentityVerificationsException
 import io.portone.sdk.server.errors.IdentityVerificationAlreadySentError
 import io.portone.sdk.server.errors.IdentityVerificationAlreadySentException
 import io.portone.sdk.server.errors.IdentityVerificationAlreadyVerifiedError
@@ -45,9 +48,13 @@ import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.identityverification.ConfirmIdentityVerificationBody
 import io.portone.sdk.server.identityverification.ConfirmIdentityVerificationResponse
+import io.portone.sdk.server.identityverification.GetIdentityVerificationsBody
+import io.portone.sdk.server.identityverification.GetIdentityVerificationsResponse
 import io.portone.sdk.server.identityverification.IdentityVerification
+import io.portone.sdk.server.identityverification.IdentityVerificationFilterInput
 import io.portone.sdk.server.identityverification.IdentityVerificationMethod
 import io.portone.sdk.server.identityverification.IdentityVerificationOperator
+import io.portone.sdk.server.identityverification.IdentityVerificationSortInput
 import io.portone.sdk.server.identityverification.ResendIdentityVerificationResponse
 import io.portone.sdk.server.identityverification.SendIdentityVerificationBody
 import io.portone.sdk.server.identityverification.SendIdentityVerificationBodyCustomer
@@ -63,6 +70,10 @@ import kotlinx.serialization.json.JsonObject
 
 /**
  * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ *
+ * @param apiSecret 포트원 API Secret입니다.
+ * @param apiBase 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+ * @param storeId 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
  */
 public class IdentityVerificationClient(
   private val apiSecret: String,
@@ -127,6 +138,78 @@ public class IdentityVerificationClient(
   public fun getIdentityVerificationFuture(
     identityVerificationId: String,
   ): CompletableFuture<IdentityVerification> = GlobalScope.future { getIdentityVerification(identityVerificationId) }
+
+
+  /**
+   * 본인인증 내역 다건 조회
+   *
+   * 주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+   *
+   * @param page
+   * 요청할 페이지 정보
+   *
+   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+   * @param sort
+   * 정렬 조건
+   *
+   * 미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+   * @param filter
+   * 조회할 본인인증 내역 조건 필터
+   *
+   * @throws GetIdentityVerificationsException
+   */
+  @JvmName("getIdentityVerificationsSuspend")
+  public suspend fun getIdentityVerifications(
+    page: PageInput? = null,
+    sort: IdentityVerificationSortInput? = null,
+    filter: IdentityVerificationFilterInput? = null,
+  ): GetIdentityVerificationsResponse {
+    val requestBody = GetIdentityVerificationsBody(
+      page = page,
+      sort = sort,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("identity-verifications")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetIdentityVerificationsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetIdentityVerificationsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getIdentityVerifications")
+  public fun getIdentityVerificationsFuture(
+    page: PageInput? = null,
+    sort: IdentityVerificationSortInput? = null,
+    filter: IdentityVerificationFilterInput? = null,
+  ): CompletableFuture<GetIdentityVerificationsResponse> = GlobalScope.future { getIdentityVerifications(page, sort, filter) }
 
 
   /**

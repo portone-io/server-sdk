@@ -37,7 +37,6 @@ import type { PlatformDiscountSharePolicyFilterOptions } from "../../generated/p
 import type { PlatformDiscountSharePolicyNotFoundError } from "../../generated/platform/PlatformDiscountSharePolicyNotFoundError"
 import type { PlatformDiscountSharePolicyScheduleAlreadyExistsError } from "../../generated/platform/PlatformDiscountSharePolicyScheduleAlreadyExistsError"
 import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
-import type { PlatformInvalidSettlementFormulaError } from "../../generated/platform/PlatformInvalidSettlementFormulaError"
 import type { PlatformMemberCompanyConnectedPartnerBrnUnchangeableError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerBrnUnchangeableError"
 import type { PlatformMemberCompanyConnectedPartnerCannotBeScheduledError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerCannotBeScheduledError"
 import type { PlatformMemberCompanyConnectedPartnerTypeUnchangeableError } from "../../generated/platform/PlatformMemberCompanyConnectedPartnerTypeUnchangeableError"
@@ -49,7 +48,6 @@ import type { PlatformPartnerFilterOptions } from "../../generated/platform/Plat
 import type { PlatformPartnerNotFoundError } from "../../generated/platform/PlatformPartnerNotFoundError"
 import type { PlatformPartnerScheduleAlreadyExistsError } from "../../generated/platform/PlatformPartnerScheduleAlreadyExistsError"
 import type { PlatformPartnerSchedulesAlreadyExistError } from "../../generated/platform/PlatformPartnerSchedulesAlreadyExistError"
-import type { PlatformRoundType } from "../../generated/platform/PlatformRoundType"
 import type { PlatformSetting } from "../../generated/platform/PlatformSetting"
 import type { PlatformUserDefinedPropertyNotFoundError } from "../../generated/platform/PlatformUserDefinedPropertyNotFoundError"
 import type { ReschedulePlatformAdditionalFeePolicyResponse } from "../../generated/platform/ReschedulePlatformAdditionalFeePolicyResponse"
@@ -64,7 +62,6 @@ import type { SchedulePlatformPartnersBodyUpdate } from "../../generated/platfor
 import type { SchedulePlatformPartnersResponse } from "../../generated/platform/SchedulePlatformPartnersResponse"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 import type { UpdatePlatformAdditionalFeePolicyBody } from "../../generated/platform/UpdatePlatformAdditionalFeePolicyBody"
-import type { UpdatePlatformBodySettlementFormula } from "../../generated/platform/UpdatePlatformBodySettlementFormula"
 import type { UpdatePlatformBodySettlementRule } from "../../generated/platform/UpdatePlatformBodySettlementRule"
 import type { UpdatePlatformContractBody } from "../../generated/platform/UpdatePlatformContractBody"
 import type { UpdatePlatformDiscountSharePolicyBody } from "../../generated/platform/UpdatePlatformDiscountSharePolicyBody"
@@ -99,17 +96,11 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 		},
 		updatePlatform: async (
 			options?: {
-				roundType?: PlatformRoundType,
-				settlementFormula?: UpdatePlatformBodySettlementFormula,
 				settlementRule?: UpdatePlatformBodySettlementRule,
 			}
 		): Promise<UpdatePlatformResponse> => {
-			const roundType = options?.roundType
-			const settlementFormula = options?.settlementFormula
 			const settlementRule = options?.settlementRule
 			const requestBody = JSON.stringify({
-				roundType,
-				settlementFormula,
 				settlementRule,
 			})
 			const response = await fetch(
@@ -730,10 +721,6 @@ export type PlatformClient = {
 	 */
 	updatePlatform: (
 		options?: {
-			/** 파트너 정산금액의 소수점 처리 방식 */
-			roundType?: PlatformRoundType,
-			/** 수수료 및 할인 분담 정책 관련 계산식 */
-			settlementFormula?: UpdatePlatformBodySettlementFormula,
 			/** 정산 규칙 */
 			settlementRule?: UpdatePlatformBodySettlementRule,
 		}
@@ -1051,9 +1038,9 @@ export class GetPlatformError extends PlatformError {
 	}
 }
 export class UpdatePlatformError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformInvalidSettlementFormulaError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformInvalidSettlementFormulaError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, UpdatePlatformError.prototype)
 		this.name = "UpdatePlatformError"

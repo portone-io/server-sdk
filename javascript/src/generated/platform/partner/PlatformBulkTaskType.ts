@@ -1,0 +1,6 @@
+export type PlatformBulkTaskType =
+	| "CREATE_TRANSFERS"
+	| "CREATE_PARTNERS"
+	| "CONNECT_MEMBER_COMPANIES"
+	| "DISCONNECT_MEMBER_COMPANIES"
+	| string & {}

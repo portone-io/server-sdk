@@ -7,5 +7,5 @@ import java.lang.Exception
 /** 외부 api 오류 */
 public class PlatformExternalApiFailedException internal constructor(
   cause: PlatformExternalApiFailedError
-) : PortOneException(cause.message), GetPlatformAccountHolderException, GetPlatformCompanyStateException {
+) : PortOneException(cause.message), ConnectBulkPartnerMemberCompanyException, ConnectPartnerMemberCompanyException, DisconnectBulkPartnerMemberCompanyException, DisconnectPartnerMemberCompanyException, GetPlatformAccountHolderException, GetPlatformCompanyStateException {
 }

@@ -27,7 +27,6 @@ private object UpdatePlatformErrorSerializer : JsonContentPolymorphicSerializer<
   override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
     "FORBIDDEN" -> ForbiddenError.serializer()
     "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_INVALID_SETTLEMENT_FORMULA" -> PlatformInvalidSettlementFormulaError.serializer()
     "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
     "UNAUTHORIZED" -> UnauthorizedError.serializer()
     else -> UpdatePlatformError.Unrecognized.serializer()

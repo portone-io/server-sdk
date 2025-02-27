@@ -3,6 +3,7 @@ from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ..identity_verification.identity_verification_verified_customer import IdentityVerificationVerifiedCustomer, _deserialize_identity_verification_verified_customer, _serialize_identity_verification_verified_customer
+from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
 from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
@@ -39,6 +40,9 @@ class VerifiedIdentityVerification:
     pg_raw_response: str
     """PG사 응답 데이터
     """
+    version: PortOneVersion
+    """포트원 버전
+    """
     channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
@@ -60,6 +64,7 @@ def _serialize_verified_identity_verification(obj: VerifiedIdentityVerification)
     entity["verifiedAt"] = obj.verified_at
     entity["pgTxId"] = obj.pg_tx_id
     entity["pgRawResponse"] = obj.pg_raw_response
+    entity["version"] = _serialize_port_one_version(obj.version)
     if obj.channel is not None:
         entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.custom_data is not None:
@@ -114,6 +119,10 @@ def _deserialize_verified_identity_verification(obj: Any) -> VerifiedIdentityVer
     pg_raw_response = obj["pgRawResponse"]
     if not isinstance(pg_raw_response, str):
         raise ValueError(f"{repr(pg_raw_response)} is not str")
+    if "version" not in obj:
+        raise KeyError(f"'version' is not in {obj}")
+    version = obj["version"]
+    version = _deserialize_port_one_version(version)
     if "channel" in obj:
         channel = obj["channel"]
         channel = _deserialize_selected_channel(channel)
@@ -125,4 +134,4 @@ def _deserialize_verified_identity_verification(obj: Any) -> VerifiedIdentityVer
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return VerifiedIdentityVerification(id, verified_customer, requested_at, updated_at, status_changed_at, verified_at, pg_tx_id, pg_raw_response, channel, custom_data)
+    return VerifiedIdentityVerification(id, verified_customer, requested_at, updated_at, status_changed_at, verified_at, pg_tx_id, pg_raw_response, version, channel, custom_data)

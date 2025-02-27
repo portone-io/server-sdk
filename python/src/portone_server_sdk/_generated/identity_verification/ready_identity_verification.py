@@ -3,6 +3,7 @@ from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ..identity_verification.identity_verification_requested_customer import IdentityVerificationRequestedCustomer, _deserialize_identity_verification_requested_customer, _serialize_identity_verification_requested_customer
+from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
 from ..common.selected_channel import SelectedChannel, _deserialize_selected_channel, _serialize_selected_channel
 
 @dataclass
@@ -29,6 +30,9 @@ class ReadyIdentityVerification:
     """상태 업데이트 시점
     (RFC 3339 date-time)
     """
+    version: PortOneVersion
+    """포트원 버전
+    """
     channel: Optional[SelectedChannel] = field(default=None)
     """사용된 본인인증 채널
     """
@@ -47,6 +51,7 @@ def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> An
     entity["requestedAt"] = obj.requested_at
     entity["updatedAt"] = obj.updated_at
     entity["statusChangedAt"] = obj.status_changed_at
+    entity["version"] = _serialize_port_one_version(obj.version)
     if obj.channel is not None:
         entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.custom_data is not None:
@@ -86,6 +91,10 @@ def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerificat
     status_changed_at = obj["statusChangedAt"]
     if not isinstance(status_changed_at, str):
         raise ValueError(f"{repr(status_changed_at)} is not str")
+    if "version" not in obj:
+        raise KeyError(f"'version' is not in {obj}")
+    version = obj["version"]
+    version = _deserialize_port_one_version(version)
     if "channel" in obj:
         channel = obj["channel"]
         channel = _deserialize_selected_channel(channel)
@@ -97,4 +106,4 @@ def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerificat
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, channel, custom_data)
+    return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, version, channel, custom_data)

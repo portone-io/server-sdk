@@ -1,5 +1,6 @@
 import type { IdentityVerificationFailure } from "./../identityVerification/IdentityVerificationFailure"
 import type { IdentityVerificationRequestedCustomer } from "./../identityVerification/IdentityVerificationRequestedCustomer"
+import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SelectedChannel } from "./../common/SelectedChannel"
 /** 실패한 본인인증 내역 */
 export type FailedIdentityVerification = {
@@ -30,4 +31,6 @@ export type FailedIdentityVerification = {
 	statusChangedAt: string
 	/** 본인인증 실패 정보 */
 	failure: IdentityVerificationFailure
+	/** 포트원 버전 */
+	version: PortOneVersion
 }

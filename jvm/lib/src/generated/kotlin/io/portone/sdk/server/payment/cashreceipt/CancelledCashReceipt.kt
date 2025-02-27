@@ -45,6 +45,8 @@ public data class CancelledCashReceipt(
   val issuedAt: @Serializable(InstantSerializer::class) Instant,
   /** 취소 시점 */
   val cancelledAt: @Serializable(InstantSerializer::class) Instant,
+  /** 상태 업데이트 시점 */
+  override val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant? = null,
 ) : CashReceipt.Recognized
 
 

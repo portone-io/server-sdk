@@ -15,4 +15,9 @@ export type IssueFailedCashReceipt = {
 	orderName: string
 	/** 수동 발급 여부 */
 	isManual: boolean
+	/**
+	 * 상태 업데이트 시점
+	 * (RFC 3339 date-time)
+	 */
+	statusUpdatedAt?: string
 }

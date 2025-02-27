@@ -100,7 +100,6 @@ from ..._generated.payment.billing_key.issued_pg_billing_key_issue_response impo
 from ..._generated.payment.billing_key.pg_billing_key_issue_response import (
     PgBillingKeyIssueResponse,
 )
-from ..._generated.payment.billing_key.pg_company import PgCompany
 from ..._generated.payment.billing_key.client import BillingKeyClient
 
 __all__ = [
@@ -142,6 +141,5 @@ __all__ = [
     "IssuedBillingKeyInfo",
     "IssuedPgBillingKeyIssueResponse",
     "PgBillingKeyIssueResponse",
-    "PgCompany",
     "BillingKeyClient",
 ]

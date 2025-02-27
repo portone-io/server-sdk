@@ -7,7 +7,7 @@ from ...payment.billing_key.billing_key_status import BillingKeyStatus, _deseria
 from ...payment.billing_key.billing_key_text_search import BillingKeyTextSearch, _deserialize_billing_key_text_search, _serialize_billing_key_text_search
 from ...payment.billing_key.billing_key_time_range_field import BillingKeyTimeRangeField, _deserialize_billing_key_time_range_field, _serialize_billing_key_time_range_field
 from ...common.payment_client_type import PaymentClientType, _deserialize_payment_client_type, _serialize_payment_client_type
-from ...payment.billing_key.pg_company import PgCompany, _deserialize_pg_company, _serialize_pg_company
+from ...common.pg_company import PgCompany, _deserialize_pg_company, _serialize_pg_company
 from ...common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
 from ...common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
 

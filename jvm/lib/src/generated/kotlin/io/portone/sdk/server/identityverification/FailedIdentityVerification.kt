@@ -1,5 +1,6 @@
 package io.portone.sdk.server.identityverification
 
+import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.identityverification.IdentityVerificationFailure
 import io.portone.sdk.server.identityverification.IdentityVerificationRequestedCustomer
@@ -29,6 +30,8 @@ public data class FailedIdentityVerification(
   override val statusChangedAt: @Serializable(InstantSerializer::class) Instant,
   /** 본인인증 실패 정보 */
   val failure: IdentityVerificationFailure,
+  /** 포트원 버전 */
+  override val version: PortOneVersion,
 ) : IdentityVerification.Recognized
 
 

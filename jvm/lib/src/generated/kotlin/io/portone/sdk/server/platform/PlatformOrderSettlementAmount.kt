@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import io.portone.sdk.server.platform.PlatformUserDefinedFormulaResults
 import kotlinx.serialization.Serializable
 
 /**
@@ -57,6 +58,8 @@ public data class PlatformOrderSettlementAmount(
   val discountShare: Long,
   /** 면세 할인 분담 금액 */
   val discountShareTaxFree: Long,
+  /** 사용자 정의 수식 결과 */
+  val userDefinedFormulas: PlatformUserDefinedFormulaResults,
 )
 
 

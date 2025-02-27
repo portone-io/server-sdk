@@ -16,9 +16,13 @@ from ..common.max_transaction_count_reached_error import _deserialize_max_transa
 from ..common.pg_provider_error import _deserialize_pg_provider_error
 from ..common.unauthorized_error import _deserialize_unauthorized_error
 from ..identity_verification.confirm_identity_verification_response import ConfirmIdentityVerificationResponse, _deserialize_confirm_identity_verification_response, _serialize_confirm_identity_verification_response
+from ..identity_verification.get_identity_verifications_response import GetIdentityVerificationsResponse, _deserialize_get_identity_verifications_response, _serialize_get_identity_verifications_response
 from ..identity_verification.identity_verification import IdentityVerification, _deserialize_identity_verification, _serialize_identity_verification
+from ..identity_verification.identity_verification_filter_input import IdentityVerificationFilterInput, _deserialize_identity_verification_filter_input, _serialize_identity_verification_filter_input
 from ..identity_verification.identity_verification_method import IdentityVerificationMethod, _deserialize_identity_verification_method, _serialize_identity_verification_method
 from ..identity_verification.identity_verification_operator import IdentityVerificationOperator, _deserialize_identity_verification_operator, _serialize_identity_verification_operator
+from ..identity_verification.identity_verification_sort_input import IdentityVerificationSortInput, _deserialize_identity_verification_sort_input, _serialize_identity_verification_sort_input
+from ..common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ..identity_verification.resend_identity_verification_response import ResendIdentityVerificationResponse, _deserialize_resend_identity_verification_response, _serialize_resend_identity_verification_response
 from ..identity_verification.send_identity_verification_body_customer import SendIdentityVerificationBodyCustomer, _deserialize_send_identity_verification_body_customer, _serialize_send_identity_verification_body_customer
 from ..identity_verification.send_identity_verification_response import SendIdentityVerificationResponse, _deserialize_send_identity_verification_response, _serialize_send_identity_verification_response
@@ -30,7 +34,14 @@ class IdentityVerificationClient:
     _client: AsyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
-        """API Secret을 사용해 포트원 API 클라이언트를 생성합니다."""
+        """
+        API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+
+        Args:
+            secret (str): 포트원 API Secret입니다.
+            base_url (str, optional): 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+            store_id: 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
+            """
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
@@ -153,6 +164,144 @@ class IdentityVerificationClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_identity_verification(response.json())
+    def get_identity_verifications(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        sort: Optional[IdentityVerificationSortInput] = None,
+        filter: Optional[IdentityVerificationFilterInput] = None,
+    ) -> GetIdentityVerificationsResponse:
+        """본인인증 내역 다건 조회
+
+        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+
+                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+            sort (IdentityVerificationSortInput, optional):
+                정렬 조건
+
+                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+            filter (IdentityVerificationFilterInput, optional):
+                조회할 본인인증 내역 조건 필터
+
+
+        Raises:
+            GetIdentityVerificationsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if sort is not None:
+            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
+        if filter is not None:
+            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/identity-verifications",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_identity_verifications_response(response.json())
+    async def get_identity_verifications_async(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        sort: Optional[IdentityVerificationSortInput] = None,
+        filter: Optional[IdentityVerificationFilterInput] = None,
+    ) -> GetIdentityVerificationsResponse:
+        """본인인증 내역 다건 조회
+
+        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+
+                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+            sort (IdentityVerificationSortInput, optional):
+                정렬 조건
+
+                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+            filter (IdentityVerificationFilterInput, optional):
+                조회할 본인인증 내역 조건 필터
+
+
+        Raises:
+            GetIdentityVerificationsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if sort is not None:
+            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
+        if filter is not None:
+            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/identity-verifications",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_identity_verifications_response(response.json())
     def send_identity_verification(
         self,
         *,

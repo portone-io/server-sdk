@@ -65,6 +65,10 @@ class CancelledCashReceipt:
     url: Optional[str] = field(default=None)
     """현금영수증 URL
     """
+    status_updated_at: Optional[str] = field(default=None)
+    """상태 업데이트 시점
+    (RFC 3339 date-time)
+    """
 
 
 def _serialize_cancelled_cash_receipt(obj: CancelledCashReceipt) -> Any:
@@ -93,6 +97,8 @@ def _serialize_cancelled_cash_receipt(obj: CancelledCashReceipt) -> Any:
         entity["pgReceiptId"] = obj.pg_receipt_id
     if obj.url is not None:
         entity["url"] = obj.url
+    if obj.status_updated_at is not None:
+        entity["statusUpdatedAt"] = obj.status_updated_at
     return entity
 
 
@@ -186,4 +192,10 @@ def _deserialize_cancelled_cash_receipt(obj: Any) -> CancelledCashReceipt:
             raise ValueError(f"{repr(url)} is not str")
     else:
         url = None
-    return CancelledCashReceipt(merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, cancelled_at, tax_free_amount, vat_amount, type, pg_receipt_id, url)
+    if "statusUpdatedAt" in obj:
+        status_updated_at = obj["statusUpdatedAt"]
+        if not isinstance(status_updated_at, str):
+            raise ValueError(f"{repr(status_updated_at)} is not str")
+    else:
+        status_updated_at = None
+    return CancelledCashReceipt(merchant_id, store_id, payment_id, channel, amount, currency, order_name, is_manual, issue_number, issued_at, cancelled_at, tax_free_amount, vat_amount, type, pg_receipt_id, url, status_updated_at)

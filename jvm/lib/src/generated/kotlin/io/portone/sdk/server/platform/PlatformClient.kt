@@ -77,8 +77,6 @@ import io.portone.sdk.server.errors.PlatformDiscountSharePolicyScheduleAlreadyEx
 import io.portone.sdk.server.errors.PlatformDiscountSharePolicyScheduleAlreadyExistsException
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeError
 import io.portone.sdk.server.errors.PlatformInsufficientDataToChangePartnerTypeException
-import io.portone.sdk.server.errors.PlatformInvalidSettlementFormulaError
-import io.portone.sdk.server.errors.PlatformInvalidSettlementFormulaException
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableError
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableException
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerCannotBeScheduledError
@@ -134,7 +132,6 @@ import io.portone.sdk.server.platform.PlatformDiscountSharePolicyFilterOptions
 import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.PlatformPartnerFilterInput
 import io.portone.sdk.server.platform.PlatformPartnerFilterOptions
-import io.portone.sdk.server.platform.PlatformRoundType
 import io.portone.sdk.server.platform.PlatformSetting
 import io.portone.sdk.server.platform.ReschedulePlatformAdditionalFeePolicyBody
 import io.portone.sdk.server.platform.ReschedulePlatformAdditionalFeePolicyResponse
@@ -157,7 +154,6 @@ import io.portone.sdk.server.platform.SchedulePlatformPartnersBodyUpdate
 import io.portone.sdk.server.platform.SchedulePlatformPartnersResponse
 import io.portone.sdk.server.platform.UpdatePlatformAdditionalFeePolicyBody
 import io.portone.sdk.server.platform.UpdatePlatformBody
-import io.portone.sdk.server.platform.UpdatePlatformBodySettlementFormula
 import io.portone.sdk.server.platform.UpdatePlatformBodySettlementRule
 import io.portone.sdk.server.platform.UpdatePlatformContractBody
 import io.portone.sdk.server.platform.UpdatePlatformDiscountSharePolicyBody
@@ -185,6 +181,10 @@ import kotlinx.serialization.json.Json
 
 /**
  * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ *
+ * @param apiSecret 포트원 API Secret입니다.
+ * @param apiBase 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+ * @param storeId 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
  */
 public class PlatformClient(
   private val apiSecret: String,
@@ -249,10 +249,6 @@ public class PlatformClient(
    * 고객사의 플랫폼 관련 정보를 업데이트합니다.
    * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
    *
-   * @param roundType
-   * 파트너 정산금액의 소수점 처리 방식
-   * @param settlementFormula
-   * 수수료 및 할인 분담 정책 관련 계산식
    * @param settlementRule
    * 정산 규칙
    *
@@ -260,13 +256,9 @@ public class PlatformClient(
    */
   @JvmName("updatePlatformSuspend")
   public suspend fun updatePlatform(
-    roundType: PlatformRoundType? = null,
-    settlementFormula: UpdatePlatformBodySettlementFormula? = null,
     settlementRule: UpdatePlatformBodySettlementRule? = null,
   ): UpdatePlatformResponse {
     val requestBody = UpdatePlatformBody(
-      roundType = roundType,
-      settlementFormula = settlementFormula,
       settlementRule = settlementRule,
     )
     val httpResponse = client.patch(apiBase) {
@@ -292,7 +284,6 @@ public class PlatformClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformInvalidSettlementFormulaError -> throw PlatformInvalidSettlementFormulaException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
@@ -309,10 +300,8 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("updatePlatform")
   public fun updatePlatformFuture(
-    roundType: PlatformRoundType? = null,
-    settlementFormula: UpdatePlatformBodySettlementFormula? = null,
     settlementRule: UpdatePlatformBodySettlementRule? = null,
-  ): CompletableFuture<UpdatePlatformResponse> = GlobalScope.future { updatePlatform(roundType, settlementFormula, settlementRule) }
+  ): CompletableFuture<UpdatePlatformResponse> = GlobalScope.future { updatePlatform(settlementRule) }
 
 
   /**

@@ -16,6 +16,7 @@ import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProductType
 import io.portone.sdk.server.errors.CancelCashReceiptError
@@ -32,6 +33,8 @@ import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetCashReceiptError
 import io.portone.sdk.server.errors.GetCashReceiptException
+import io.portone.sdk.server.errors.GetCashReceiptsError
+import io.portone.sdk.server.errors.GetCashReceiptsException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.IssueCashReceiptError
@@ -43,6 +46,10 @@ import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.payment.cashreceipt.CancelCashReceiptResponse
 import io.portone.sdk.server.payment.cashreceipt.CashReceipt
+import io.portone.sdk.server.payment.cashreceipt.CashReceiptFilterInput
+import io.portone.sdk.server.payment.cashreceipt.CashReceiptSortInput
+import io.portone.sdk.server.payment.cashreceipt.GetCashReceiptsBody
+import io.portone.sdk.server.payment.cashreceipt.GetCashReceiptsResponse
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptBody
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptCustomerInput
 import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptPaymentMethodType
@@ -58,6 +65,10 @@ import kotlinx.serialization.json.Json
 
 /**
  * API Secret을 사용해 포트원 API 클라이언트를 생성합니다.
+ *
+ * @param apiSecret 포트원 API Secret입니다.
+ * @param apiBase 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
+ * @param storeId 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
  */
 public class CashReceiptClient(
   private val apiSecret: String,
@@ -122,6 +133,78 @@ public class CashReceiptClient(
   public fun getCashReceiptByPaymentIdFuture(
     paymentId: String,
   ): CompletableFuture<CashReceipt> = GlobalScope.future { getCashReceiptByPaymentId(paymentId) }
+
+
+  /**
+   * 현금영수증 다건 조회
+   *
+   * 주어진 조건에 맞는 현금영수증들을 페이지 기반으로 조회합니다.
+   *
+   * @param page
+   * 요청할 페이지 정보
+   *
+   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+   * @param sort
+   * 정렬 조건
+   *
+   * 미 입력 시 sortBy: ISSUED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+   * @param filter
+   * 조회할 현금영수증 조건 필터
+   *
+   * @throws GetCashReceiptsException
+   */
+  @JvmName("getCashReceiptsSuspend")
+  public suspend fun getCashReceipts(
+    page: PageInput? = null,
+    sort: CashReceiptSortInput? = null,
+    filter: CashReceiptFilterInput? = null,
+  ): GetCashReceiptsResponse {
+    val requestBody = GetCashReceiptsBody(
+      page = page,
+      sort = sort,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("cash-receipts")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetCashReceiptsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetCashReceiptsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getCashReceipts")
+  public fun getCashReceiptsFuture(
+    page: PageInput? = null,
+    sort: CashReceiptSortInput? = null,
+    filter: CashReceiptFilterInput? = null,
+  ): CompletableFuture<GetCashReceiptsResponse> = GlobalScope.future { getCashReceipts(page, sort, filter) }
 
 
   /**

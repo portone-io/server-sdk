@@ -28,6 +28,10 @@ class IssueFailedCashReceipt:
     channel: Optional[SelectedChannel] = field(default=None)
     """현금영수증 발급에 사용된 채널
     """
+    status_updated_at: Optional[str] = field(default=None)
+    """상태 업데이트 시점
+    (RFC 3339 date-time)
+    """
 
 
 def _serialize_issue_failed_cash_receipt(obj: IssueFailedCashReceipt) -> Any:
@@ -42,6 +46,8 @@ def _serialize_issue_failed_cash_receipt(obj: IssueFailedCashReceipt) -> Any:
     entity["isManual"] = obj.is_manual
     if obj.channel is not None:
         entity["channel"] = _serialize_selected_channel(obj.channel)
+    if obj.status_updated_at is not None:
+        entity["statusUpdatedAt"] = obj.status_updated_at
     return entity
 
 
@@ -83,4 +89,10 @@ def _deserialize_issue_failed_cash_receipt(obj: Any) -> IssueFailedCashReceipt:
         channel = _deserialize_selected_channel(channel)
     else:
         channel = None
-    return IssueFailedCashReceipt(merchant_id, store_id, payment_id, order_name, is_manual, channel)
+    if "statusUpdatedAt" in obj:
+        status_updated_at = obj["statusUpdatedAt"]
+        if not isinstance(status_updated_at, str):
+            raise ValueError(f"{repr(status_updated_at)} is not str")
+    else:
+        status_updated_at = None
+    return IssueFailedCashReceipt(merchant_id, store_id, payment_id, order_name, is_manual, channel, status_updated_at)

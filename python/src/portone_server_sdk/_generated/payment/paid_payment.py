@@ -6,6 +6,7 @@ from ..common.channel_group_summary import ChannelGroupSummary, _deserialize_cha
 from ..common.country import Country, _deserialize_country, _serialize_country
 from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 from ..common.customer import Customer, _deserialize_customer, _serialize_customer
+from ..payment.dispute import Dispute, _deserialize_dispute, _serialize_dispute
 from ..payment.payment_amount import PaymentAmount, _deserialize_payment_amount, _serialize_payment_amount
 from ..payment.payment_cash_receipt import PaymentCashReceipt, _deserialize_payment_cash_receipt, _serialize_payment_cash_receipt
 from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
@@ -68,6 +69,9 @@ class PaidPayment:
     paid_at: str
     """결제 완료 시점
     (RFC 3339 date-time)
+    """
+    disputes: list[Dispute]
+    """분쟁 목록
     """
     method: Optional[PaymentMethod] = field(default=None)
     """결제수단 정보
@@ -145,6 +149,7 @@ def _serialize_paid_payment(obj: PaidPayment) -> Any:
     entity["currency"] = _serialize_currency(obj.currency)
     entity["customer"] = _serialize_customer(obj.customer)
     entity["paidAt"] = obj.paid_at
+    entity["disputes"] = list(map(_serialize_dispute, obj.disputes))
     if obj.method is not None:
         entity["method"] = _serialize_payment_method(obj.method)
     if obj.channel_group is not None:
@@ -253,6 +258,14 @@ def _deserialize_paid_payment(obj: Any) -> PaidPayment:
     paid_at = obj["paidAt"]
     if not isinstance(paid_at, str):
         raise ValueError(f"{repr(paid_at)} is not str")
+    if "disputes" not in obj:
+        raise KeyError(f"'disputes' is not in {obj}")
+    disputes = obj["disputes"]
+    if not isinstance(disputes, list):
+        raise ValueError(f"{repr(disputes)} is not list")
+    for i, item in enumerate(disputes):
+        item = _deserialize_dispute(item)
+        disputes[i] = item
     if "method" in obj:
         method = obj["method"]
         method = _deserialize_payment_method(method)
@@ -350,4 +363,4 @@ def _deserialize_paid_payment(obj: Any) -> PaidPayment:
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return PaidPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, paid_at, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id, pg_response, cash_receipt, receipt_url)
+    return PaidPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, paid_at, disputes, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id, pg_response, cash_receipt, receipt_url)

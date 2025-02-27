@@ -1,6 +1,7 @@
 package io.portone.sdk.server.payment.cashreceipt
 
 import io.portone.sdk.server.common.SelectedChannel
+import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
@@ -29,6 +30,8 @@ public sealed interface CashReceipt {
     public val orderName: String
     /** 수동 발급 여부 */
     public val isManual: Boolean
+    /** 상태 업데이트 시점 */
+    public val statusUpdatedAt: Instant?
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
