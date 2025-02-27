@@ -1,5 +1,16 @@
 # @portone/server-sdk
 
+## 0.13.0
+
+### Minor Changes
+
+- 29fd545: additionalProperties가 Record 형식으로 처리되도록 수정
+- 29fd545: API 업데이트
+
+### Patch Changes
+
+- 8f68742: 의존성 업데이트
+
 ## 0.12.0
 
 ### Minor Changes
