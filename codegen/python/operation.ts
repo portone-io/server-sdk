@@ -5,6 +5,7 @@ import type {
   Property,
 } from "../parser/definition.ts"
 import type { Operation } from "../parser/operation.ts"
+import { annotateDescription } from "../python/description.ts"
 import {
   filterName,
   intoInlineTypeName,
@@ -64,7 +65,9 @@ export function writeOperation(
     paramWriter.indent()
     for (const param of params) {
       const lines = ([] as string[]).concat(param.title ?? []).concat(
-        param.description ?? [],
+        param.description === null
+          ? []
+          : annotateDescription(param.description, param),
       ).join("\n\n").split("\n")
       const optionalMark = param.required ? "" : ", optional"
       paramWriter.writeLine(
@@ -256,6 +259,12 @@ function writeRequestBody(writer: Writer, body: Property[]) {
         `request_body["${property.name}"] = _serialize_${
           toSnakeCase(property.value)
         }(${name})`,
+      )
+    } else if (property.type === "array" && property.item.type === "ref") {
+      writer.writeLine(
+        `request_body["${property.name}"] = [_serialize_${
+          toSnakeCase(property.item.value)
+        }(item) for item in ${name}]`,
       )
     } else {
       writer.writeLine(`request_body["${property.name}"] = ${name}`)

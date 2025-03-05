@@ -993,7 +993,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["partners"] = partners
+        request_body["partners"] = [_serialize_create_platform_partner_body(item) for item in partners]
         query = []
         response = httpx.request(
             "POST",
@@ -1083,7 +1083,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["partners"] = partners
+        request_body["partners"] = [_serialize_create_platform_partner_body(item) for item in partners]
         query = []
         response = await self._client.request(
             "POST",

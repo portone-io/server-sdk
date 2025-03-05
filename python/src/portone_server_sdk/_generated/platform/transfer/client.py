@@ -525,6 +525,7 @@ class TransferClient:
                 주문 면세 금액
 
                 주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+                (int64)
             settlement_start_date (str, optional):
                 정산 시작일
 
@@ -563,8 +564,8 @@ class TransferClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if settlement_start_date is not None:
             request_body["settlementStartDate"] = settlement_start_date
-        request_body["discounts"] = discounts
-        request_body["additionalFees"] = additional_fees
+        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
+        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
         if external_payment_detail is not None:
             request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
         if is_for_test is not None:
@@ -572,7 +573,7 @@ class TransferClient:
         if parameters is not None:
             request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = httpx.request(
             "POST",
@@ -747,6 +748,7 @@ class TransferClient:
                 주문 면세 금액
 
                 주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+                (int64)
             settlement_start_date (str, optional):
                 정산 시작일
 
@@ -785,8 +787,8 @@ class TransferClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if settlement_start_date is not None:
             request_body["settlementStartDate"] = settlement_start_date
-        request_body["discounts"] = discounts
-        request_body["additionalFees"] = additional_fees
+        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
+        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
         if external_payment_detail is not None:
             request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
         if is_for_test is not None:
@@ -794,7 +796,7 @@ class TransferClient:
         if parameters is not None:
             request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = await self._client.request(
             "POST",
@@ -968,6 +970,7 @@ class TransferClient:
                 주문 취소 면세 금액
 
                 주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
+                (int64)
             discounts (list[CreatePlatformOrderCancelTransferBodyDiscount]):
                 할인 정보
             settlement_start_date (str, optional):
@@ -1004,7 +1007,7 @@ class TransferClient:
             request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
             request_body["taxFreeAmount"] = tax_free_amount
-        request_body["discounts"] = discounts
+        request_body["discounts"] = [_serialize_create_platform_order_cancel_transfer_body_discount(item) for item in discounts]
         if settlement_start_date is not None:
             request_body["settlementStartDate"] = settlement_start_date
         if external_cancellation_detail is not None:
@@ -1012,7 +1015,7 @@ class TransferClient:
         if is_for_test is not None:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = httpx.request(
             "POST",
@@ -1204,6 +1207,7 @@ class TransferClient:
                 주문 취소 면세 금액
 
                 주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
+                (int64)
             discounts (list[CreatePlatformOrderCancelTransferBodyDiscount]):
                 할인 정보
             settlement_start_date (str, optional):
@@ -1240,7 +1244,7 @@ class TransferClient:
             request_body["orderDetail"] = _serialize_create_platform_order_cancel_transfer_body_order_detail(order_detail)
         if tax_free_amount is not None:
             request_body["taxFreeAmount"] = tax_free_amount
-        request_body["discounts"] = discounts
+        request_body["discounts"] = [_serialize_create_platform_order_cancel_transfer_body_discount(item) for item in discounts]
         if settlement_start_date is not None:
             request_body["settlementStartDate"] = settlement_start_date
         if external_cancellation_detail is not None:
@@ -1248,7 +1252,7 @@ class TransferClient:
         if is_for_test is not None:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = await self._client.request(
             "POST",
@@ -1449,7 +1453,7 @@ class TransferClient:
         if is_for_test is not None:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = httpx.request(
             "POST",
@@ -1548,7 +1552,7 @@ class TransferClient:
         if is_for_test is not None:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = user_defined_properties
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
         response = await self._client.request(
             "POST",
@@ -1632,7 +1636,7 @@ class TransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         if fields is not None:
-            request_body["fields"] = fields
+            request_body["fields"] = [_serialize_platform_transfer_sheet_field(item) for item in fields]
         if transfer_user_defined_property_keys is not None:
             request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys
         if partner_user_defined_property_keys is not None:
@@ -1696,7 +1700,7 @@ class TransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         if fields is not None:
-            request_body["fields"] = fields
+            request_body["fields"] = [_serialize_platform_transfer_sheet_field(item) for item in fields]
         if transfer_user_defined_property_keys is not None:
             request_body["transferUserDefinedPropertyKeys"] = transfer_user_defined_property_keys
         if partner_user_defined_property_keys is not None:

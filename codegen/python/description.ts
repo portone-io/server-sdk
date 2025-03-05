@@ -20,7 +20,7 @@ export function writeDescription(writer: Writer, description: string | null) {
 export function annotateDescription(
   description: string,
   definition: Annotated,
-): string | null {
+): string {
   if ("format" in definition) {
     switch (definition.format) {
       case null:

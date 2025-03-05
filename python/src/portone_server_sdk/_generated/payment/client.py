@@ -628,10 +628,12 @@ class PaymentClient:
                 결제 건 생성시점 범위 조건의 시작
 
                 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+                (RFC 3339 date-time)
             until (str, optional):
                 결제 건 생성시점 범위 조건의 끝
 
                 값을 입력하지 않으면 현재 시점으로 설정됩니다.
+                (RFC 3339 date-time)
             cursor (str, optional):
                 커서
 
@@ -640,6 +642,7 @@ class PaymentClient:
                 페이지 크기
 
                 미입력 시 기본값은 10 이며 최대 1000까지 허용
+                (int32)
 
 
         Raises:
@@ -708,10 +711,12 @@ class PaymentClient:
                 결제 건 생성시점 범위 조건의 시작
 
                 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+                (RFC 3339 date-time)
             until (str, optional):
                 결제 건 생성시점 범위 조건의 끝
 
                 값을 입력하지 않으면 현재 시점으로 설정됩니다.
+                (RFC 3339 date-time)
             cursor (str, optional):
                 커서
 
@@ -720,6 +725,7 @@ class PaymentClient:
                 페이지 크기
 
                 미입력 시 기본값은 10 이며 최대 1000까지 허용
+                (int32)
 
 
         Raises:
@@ -795,14 +801,17 @@ class PaymentClient:
                 취소 총 금액
 
                 값을 입력하지 않으면 전액 취소됩니다.
+                (int64)
             tax_free_amount (int, optional):
                 취소 금액 중 면세 금액
 
                 값을 입력하지 않으면 전액 과세 취소됩니다.
+                (int64)
             vat_amount (int, optional):
                 취소 금액 중 부가세액
 
                 값을 입력하지 않으면 자동 계산됩니다.
+                (int64)
             reason (str):
                 취소 사유
             requester (CancelRequester, optional):
@@ -820,6 +829,7 @@ class PaymentClient:
                 결제 건의 취소 가능 잔액
 
                 본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.
+                (int64)
             refund_account (CancelPaymentBodyRefundAccount, optional):
                 환불 계좌
 
@@ -972,14 +982,17 @@ class PaymentClient:
                 취소 총 금액
 
                 값을 입력하지 않으면 전액 취소됩니다.
+                (int64)
             tax_free_amount (int, optional):
                 취소 금액 중 면세 금액
 
                 값을 입력하지 않으면 전액 과세 취소됩니다.
+                (int64)
             vat_amount (int, optional):
                 취소 금액 중 부가세액
 
                 값을 입력하지 않으면 자동 계산됩니다.
+                (int64)
             reason (str):
                 취소 사유
             requester (CancelRequester, optional):
@@ -997,6 +1010,7 @@ class PaymentClient:
                 결제 건의 취소 가능 잔액
 
                 본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.
+                (int64)
             refund_account (CancelPaymentBodyRefundAccount, optional):
                 환불 계좌
 
@@ -1234,7 +1248,7 @@ class PaymentClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         if product_count is not None:
             request_body["productCount"] = product_count
         if product_type is not None:
@@ -1448,7 +1462,7 @@ class PaymentClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         if product_count is not None:
             request_body["productCount"] = product_count
         if product_type is not None:
@@ -1660,7 +1674,7 @@ class PaymentClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         if product_count is not None:
             request_body["productCount"] = product_count
         if product_type is not None:
@@ -1858,7 +1872,7 @@ class PaymentClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         if product_count is not None:
             request_body["productCount"] = product_count
         if product_type is not None:
@@ -2137,7 +2151,7 @@ class PaymentClient:
         if send_email is not None:
             request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         query = []
         response = httpx.request(
             "POST",
@@ -2236,7 +2250,7 @@ class PaymentClient:
         if send_email is not None:
             request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         query = []
         response = await self._client.request(
             "POST",
@@ -2335,7 +2349,7 @@ class PaymentClient:
         if send_email is not None:
             request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         query = []
         response = httpx.request(
             "PATCH",
@@ -2434,7 +2448,7 @@ class PaymentClient:
         if send_email is not None:
             request_body["sendEmail"] = send_email
         if products is not None:
-            request_body["products"] = products
+            request_body["products"] = [_serialize_payment_product(item) for item in products]
         query = []
         response = await self._client.request(
             "PATCH",
@@ -2833,7 +2847,7 @@ class PaymentClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["items"] = items
+        request_body["items"] = [_serialize_register_store_receipt_body_item(item) for item in items]
         if self._store_id is not None:
             request_body["storeId"] = self._store_id
         query = []
@@ -2912,7 +2926,7 @@ class PaymentClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["items"] = items
+        request_body["items"] = [_serialize_register_store_receipt_body_item(item) for item in items]
         if self._store_id is not None:
             request_body["storeId"] = self._store_id
         query = []
