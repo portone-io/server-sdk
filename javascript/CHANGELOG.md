@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.13.1
+
+### Patch Changes
+
+- 40a5eb9: 의존성 업데이트
+
 ## 0.13.0
 
 ### Minor Changes
