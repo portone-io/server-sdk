@@ -3098,7 +3098,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 아이디</p></li>
 <li><p><strong>order_detail</strong> (<a class="reference internal" href="#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyOrderDetail" title="portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyOrderDetail"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderTransferBodyOrderDetail</span></code></a>) – 주문 정보</p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>주문 면세 금액</p>
-<p>주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.</p>
+<p>주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
 <p>기본값은 결제 일시 입니다.</p>
@@ -3140,7 +3141,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 아이디</p></li>
 <li><p><strong>order_detail</strong> (<a class="reference internal" href="#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyOrderDetail" title="portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBodyOrderDetail"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderTransferBodyOrderDetail</span></code></a>) – 주문 정보</p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>주문 면세 금액</p>
-<p>주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.</p>
+<p>주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
 <p>기본값은 결제 일시 입니다.</p>
@@ -3181,7 +3183,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
 <li><p><strong>order_detail</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderCancelTransferBodyOrderDetail,</span> <span class="pre">optional</span></code>) – 주문 취소 정보</p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>주문 취소 면세 금액</p>
-<p>주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.</p>
+<p>주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderCancelTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
@@ -3220,7 +3223,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
 <li><p><strong>order_detail</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderCancelTransferBodyOrderDetail,</span> <span class="pre">optional</span></code>) – 주문 취소 정보</p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>주문 취소 면세 금액</p>
-<p>주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.</p>
+<p>주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderCancelTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>

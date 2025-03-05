@@ -7067,16 +7067,19 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>from</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>결제 건 생성시점 범위 조건의 시작</p>
-<p>값을 입력하지 않으면 end의 90일 전으로 설정됩니다.</p>
+<p>값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+(RFC 3339 date-time)</p>
 </p></li>
 <li><p><strong>until</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>결제 건 생성시점 범위 조건의 끝</p>
-<p>값을 입력하지 않으면 현재 시점으로 설정됩니다.</p>
+<p>값을 입력하지 않으면 현재 시점으로 설정됩니다.
+(RFC 3339 date-time)</p>
 </p></li>
 <li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>커서</p>
 <p>결제 건 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.</p>
 </p></li>
 <li><p><strong>size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>페이지 크기</p>
-<p>미입력 시 기본값은 10 이며 최대 1000까지 허용</p>
+<p>미입력 시 기본값은 10 이며 최대 1000까지 허용
+(int32)</p>
 </p></li>
 </ul>
 </dd>
@@ -7098,16 +7101,19 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>from</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>결제 건 생성시점 범위 조건의 시작</p>
-<p>값을 입력하지 않으면 end의 90일 전으로 설정됩니다.</p>
+<p>값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+(RFC 3339 date-time)</p>
 </p></li>
 <li><p><strong>until</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>결제 건 생성시점 범위 조건의 끝</p>
-<p>값을 입력하지 않으면 현재 시점으로 설정됩니다.</p>
+<p>값을 입력하지 않으면 현재 시점으로 설정됩니다.
+(RFC 3339 date-time)</p>
 </p></li>
 <li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>커서</p>
 <p>결제 건 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.</p>
 </p></li>
 <li><p><strong>size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>페이지 크기</p>
-<p>미입력 시 기본값은 10 이며 최대 1000까지 허용</p>
+<p>미입력 시 기본값은 10 이며 최대 1000까지 허용
+(int32)</p>
 </p></li>
 </ul>
 </dd>
@@ -7130,13 +7136,16 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p></li>
 <li><p><strong>amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 총 금액</p>
-<p>값을 입력하지 않으면 전액 취소됩니다.</p>
+<p>값을 입력하지 않으면 전액 취소됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 금액 중 면세 금액</p>
-<p>값을 입력하지 않으면 전액 과세 취소됩니다.</p>
+<p>값을 입력하지 않으면 전액 과세 취소됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 금액 중 부가세액</p>
-<p>값을 입력하지 않으면 자동 계산됩니다.</p>
+<p>값을 입력하지 않으면 자동 계산됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>reason</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 취소 사유</p></li>
 <li><p><strong>requester</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CancelRequester,</span> <span class="pre">optional</span></code>) – <p>취소 요청자</p>
@@ -7149,7 +7158,8 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 값을 입력하지 않으면 RELEASE 로 취급합니다.</p>
 </p></li>
 <li><p><strong>current_cancellable_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>결제 건의 취소 가능 잔액</p>
-<p>본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.</p>
+<p>본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.
+(int64)</p>
 </p></li>
 <li><p><strong>refund_account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CancelPaymentBodyRefundAccount,</span> <span class="pre">optional</span></code>) – <p>환불 계좌</p>
 <p>계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.</p>
@@ -7175,13 +7185,16 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p></li>
 <li><p><strong>amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 총 금액</p>
-<p>값을 입력하지 않으면 전액 취소됩니다.</p>
+<p>값을 입력하지 않으면 전액 취소됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>tax_free_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 금액 중 면세 금액</p>
-<p>값을 입력하지 않으면 전액 과세 취소됩니다.</p>
+<p>값을 입력하지 않으면 전액 과세 취소됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>vat_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>취소 금액 중 부가세액</p>
-<p>값을 입력하지 않으면 자동 계산됩니다.</p>
+<p>값을 입력하지 않으면 자동 계산됩니다.
+(int64)</p>
 </p></li>
 <li><p><strong>reason</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 취소 사유</p></li>
 <li><p><strong>requester</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CancelRequester,</span> <span class="pre">optional</span></code>) – <p>취소 요청자</p>
@@ -7194,7 +7207,8 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 값을 입력하지 않으면 RELEASE 로 취급합니다.</p>
 </p></li>
 <li><p><strong>current_cancellable_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – <p>결제 건의 취소 가능 잔액</p>
-<p>본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.</p>
+<p>본 취소 요청 이전의 취소 가능 잔액으로써, 값을 입력하면 잔액이 일치하는 경우에만 취소가 진행됩니다. 값을 입력하지 않으면 별도의 검증 처리를 수행하지 않습니다.
+(int64)</p>
 </p></li>
 <li><p><strong>refund_account</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CancelPaymentBodyRefundAccount,</span> <span class="pre">optional</span></code>) – <p>환불 계좌</p>
 <p>계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.</p>
