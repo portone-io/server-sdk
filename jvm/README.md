@@ -111,6 +111,8 @@ if (payment is Payment.Recognized) {
 
 WebhookVerifier.verify 메서드로 웹훅 내용을 검증할 수 있습니다.
 
+**주의: 웹훅 내용은 서버에서 전달한 body를 JSON 형태로 파싱하지 않고, 문자열 형태로 그대로 입력합니다.**
+
 ```kotlin
 val payload = """{"type":"BillingKey.Issued","timestamp":"2024-04-25T10:00:00.000Z","data":{"storeId":"store-61e0db3d-b967-47db-8b50-96002da90d55","billingKey":"billing-key-75ae3cab-6afe-422d-bf34-3a7b1762451d"}}"""
 val webhookVerifier = WebhookVerifier(PORTONE_WEBHOOK_SECRET)

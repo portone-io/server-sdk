@@ -82,6 +82,8 @@ except GetPaymentError as e:
 
 webhook.verify 함수로 웹훅 내용을 검증할 수 있습니다.
 
+**주의: 웹훅 내용은 서버에서 전달한 body를 JSON 형태로 파싱하지 않고, 문자열 형태로 그대로 입력합니다.**
+
 ```python
 import portone_server_sdk as portone
 
