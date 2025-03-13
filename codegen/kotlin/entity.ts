@@ -1,7 +1,7 @@
 import { toPascalCase } from "@std/text"
 import type { Definition, Property } from "../parser/definition.ts"
 import { Extends, filterName, KotlinWriter, toPackageCase } from "./common.ts"
-import { writeDescription } from "./description.ts"
+import { annotateDescription, writeDescription } from "./description.ts"
 
 export function generateEntity(
   hierarchy: string,
@@ -122,7 +122,11 @@ export function generateEntity(
       writer.indent()
       for (const property of nonDiscriminant) {
         const description = ([] as string[]).concat(property.title ?? [])
-          .concat(property.description ?? []).join("\n\n")
+          .concat(
+            property.description
+              ? annotateDescription(property.description, property)
+              : [],
+          ).join("\n\n")
         const name = filterName(property.name)
         const overrides = extension?.properties?.has(property.name)
           ? "override "

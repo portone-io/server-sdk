@@ -31,6 +31,7 @@ public data class IdentityVerificationVerifiedCustomer(
    * 생년월일 (yyyy-MM-dd)
    *
    * 포트원 V2 본인인증 건의 경우 항상 존재합니다.
+   * (yyyy-MM-dd)
    */
   val birthDate: String? = null,
   /**

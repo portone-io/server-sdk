@@ -11,9 +11,11 @@ class PlatformCompanyState:
     business_status: PlatformBusinessStatus
     taxation_type_date: Optional[str] = field(default=None)
     """날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
     """
     closed_suspended_date: Optional[str] = field(default=None)
     """날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
     """
 
 

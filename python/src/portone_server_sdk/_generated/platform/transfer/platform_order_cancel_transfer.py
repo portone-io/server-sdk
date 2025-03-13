@@ -33,6 +33,7 @@ class PlatformOrderCancelTransfer:
     """정산 일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
     """
     settlement_currency: Currency
     """정산 통화
@@ -56,6 +57,7 @@ class PlatformOrderCancelTransfer:
     """정산 시작일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
     """
     order_lines: list[PlatformOrderTransferOrderLine]
     """주문 항목 리스트

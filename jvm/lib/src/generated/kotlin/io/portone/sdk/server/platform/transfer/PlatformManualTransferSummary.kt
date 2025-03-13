@@ -16,7 +16,10 @@ public data class PlatformManualTransferSummary(
   override val partner: PlatformTransferSummaryPartner,
   override val status: PlatformTransferStatus,
   override val memo: String? = null,
-  /** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+  /**
+   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
+   */
   override val settlementDate: String,
   override val settlementCurrency: Currency,
   override val isForTest: Boolean,

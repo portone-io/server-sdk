@@ -1,3 +1,4 @@
+import { toCamelCase } from "@std/text"
 import type { Definition } from "../parser/definition.ts"
 import { TypescriptWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
@@ -175,7 +176,7 @@ export function generateEntity(
   const sortedRef = [...crossRef]
   sortedRef.sort()
   for (const ref of sortedRef) {
-    const path = categoryMap.get(ref)?.replace(".", "/")
+    const path = categoryMap.get(ref)?.split(".").map(toCamelCase).join("/")
     if (!path) {
       throw new Error("unrecognized reference", { cause: { definition } })
     }

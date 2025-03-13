@@ -1,6 +1,8 @@
 from ._generated.errors import (
     AlreadyPaidError,
     AlreadyPaidOrWaitingError,
+    B2bExternalServiceError,
+    B2bNotEnabledError,
     BillingKeyAlreadyDeletedError,
     BillingKeyNotFoundError,
     BillingKeyNotIssuedError,
@@ -124,6 +126,8 @@ __all__ = [
     "PortOneError",
     "AlreadyPaidError",
     "AlreadyPaidOrWaitingError",
+    "B2bExternalServiceError",
+    "B2bNotEnabledError",
     "BillingKeyAlreadyDeletedError",
     "BillingKeyNotFoundError",
     "BillingKeyNotIssuedError",

@@ -421,6 +421,7 @@ export type TransferClient = {
 			 * 정산 시작일
 			 *
 			 * 기본값은 결제 일시 입니다.
+			 * (yyyy-MM-dd)
 			 */
 			settlementStartDate?: string,
 			/** 할인 정보 */
@@ -479,6 +480,7 @@ export type TransferClient = {
 			 * 정산 시작일
 			 *
 			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+			 * (yyyy-MM-dd)
 			 */
 			settlementStartDate?: string,
 			/**
@@ -519,6 +521,7 @@ export type TransferClient = {
 			 * 정산 일
 			 *
 			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+			 * (yyyy-MM-dd)
 			 */
 			settlementDate: string,
 			/**

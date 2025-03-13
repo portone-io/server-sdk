@@ -48,11 +48,19 @@ export function generateProject(projectRoot: string, pack: Package): string[] {
     "",
     "PortOneError",
   )
-  const entrypoints = [
-    ...categoryMap.values(),
-  ].map((category) => category.replace(".", "/"))
+  const entrypoints = collectEntrypoints(pack.subpackages)
   entrypoints.sort()
   return entrypoints
+}
+
+function collectEntrypoints(packs: Package[]): string[] {
+  return packs.map((pack) => toCamelCase(pack.category)).concat(
+    packs.flatMap((pack) =>
+      collectEntrypoints(pack.subpackages).map((category) =>
+        `${toCamelCase(pack.category)}/${category}`
+      )
+    ),
+  )
 }
 
 function generateIndex(srcPath: string, pack: Package, clients: Client[]) {
@@ -60,7 +68,7 @@ function generateIndex(srcPath: string, pack: Package, clients: Client[]) {
   writer.writeLine(`export { RestError } from "./RestError"`)
   for (const subpackage of pack.subpackages) {
     writer.writeLine(
-      `export * as ${toCamelCase(subpackage.category)} from "./${
+      `export * as ${toPascalCase(subpackage.category)} from "./${
         toCamelCase(subpackage.category)
       }"`,
     )
@@ -231,14 +239,16 @@ function generateClient(
         `${packagePath}/${toCamelCase(subpackage.category)}`,
         subpackage,
         `../${hierarchyToSrc}`,
-        `${hierarchy}/${subpackage.category}`,
+        `${hierarchy}/${toCamelCase(subpackage.category)}`,
         categoryMap,
         entityMap,
         collected,
       )
       if (subclient) {
         importWriter.writeLine(
-          `import { ${subclient.name} } from "./${subpackage.category}/client"`,
+          `import { ${subclient.name} } from "./${
+            toCamelCase(subpackage.category)
+          }/client"`,
         )
         writer.writeLine(
           `${toCamelCase(subpackage.category)}: ${subclient.name}(init),`,
@@ -267,13 +277,13 @@ function generateClient(
       if (name === rename) {
         importWriter.writeLine(
           `import type { ${name} } from "${hierarchyToSrc}/generated/${
-            category.replaceAll(".", "/")
+            category.split(".").map(toCamelCase).join("/")
           }/${name}"`,
         )
       } else {
         importWriter.writeLine(
           `import type { ${name} as ${rename} } from "${hierarchyToSrc}/generated/${
-            category.replaceAll(".", "/")
+            category.split(".").map(toCamelCase).join("/")
           }/${name}"`,
         )
       }
@@ -304,7 +314,7 @@ function generateEntityDirectory(
     )
   }
   for (const subpackage of pack.subpackages) {
-    const subPath = path.join(packagePath, subpackage.category)
+    const subPath = path.join(packagePath, toCamelCase(subpackage.category))
     fs.ensureDirSync(subPath)
     generateEntityDirectory(
       subPath,
@@ -355,7 +365,7 @@ function generateCategoryIndex(
       errorWriter.writeLine(
         `import type { ${error} } from "${
           depth === 0 ? "./" : "../".repeat(depth)
-        }${category.replaceAll(".", "/")}/${error}"`,
+        }${category.split(".").map(toCamelCase).join("/")}/${error}"`,
       )
     }
     errorWriter.writeLine(
@@ -407,7 +417,7 @@ function generateCategoryIndex(
     )
   }
   for (const subpackage of pack.subpackages) {
-    const subPath = path.join(packagePath, subpackage.category)
+    const subPath = path.join(packagePath, toCamelCase(subpackage.category))
     fs.ensureDirSync(subPath)
     generateCategoryIndex(
       subPath,
@@ -416,11 +426,11 @@ function generateCategoryIndex(
       entityMap,
       omitEntities,
       depth + 1,
-      `${canonicalCategory}/${subpackage.category}`,
+      `${canonicalCategory}/${toCamelCase(subpackage.category)}`,
       error,
     )
     writer.writeLine(
-      `export * as ${toCamelCase(subpackage.category)} from "./${
+      `export * as ${toPascalCase(subpackage.category)} from "./${
         toCamelCase(subpackage.category)
       }"`,
     )
@@ -434,15 +444,15 @@ function generateCategoryIndex(
     }
     importWriter.writeLine(
       `import type { ${ref} } from "${"../".repeat(depth)}/${
-        category.split(".").join("/")
+        category.split(".").map(toCamelCase).join("/")
       }/${ref}"`,
     )
   }
   for (const subpackage of pack.subpackages) {
     importWriter.writeLine(
-      `import * as ${
-        toPascalCase(subpackage.category)
-      } from "./${subpackage.category}"`,
+      `import * as ${toPascalCase(subpackage.category)} from "./${
+        toCamelCase(subpackage.category)
+      }"`,
     )
   }
   if (pack.category !== "root") {

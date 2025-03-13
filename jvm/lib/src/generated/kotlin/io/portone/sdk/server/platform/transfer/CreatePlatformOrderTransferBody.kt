@@ -36,6 +36,7 @@ internal data class CreatePlatformOrderTransferBody(
    * 정산 시작일
    *
    * 기본값은 결제 일시 입니다.
+   * (yyyy-MM-dd)
    */
   val settlementStartDate: String? = null,
   /** 할인 정보 */

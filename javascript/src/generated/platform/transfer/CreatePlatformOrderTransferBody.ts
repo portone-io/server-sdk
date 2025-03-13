@@ -31,6 +31,7 @@ export type CreatePlatformOrderTransferBody = {
 	 * 정산 시작일
 	 *
 	 * 기본값은 결제 일시 입니다.
+	 * (yyyy-MM-dd)
 	 */
 	settlementStartDate?: string
 	/** 할인 정보 */

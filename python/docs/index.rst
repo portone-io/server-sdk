@@ -26,6 +26,8 @@ portone_server_sdk
    PolicyClient
    TransferClient
    CompanyClient
+   B2BClient
+   BusinessClient
    auth
    common
    errors
@@ -34,3 +36,4 @@ portone_server_sdk
    pg_specific
    platform
    webhook
+   b2b

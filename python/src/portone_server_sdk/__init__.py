@@ -22,6 +22,8 @@ from portone_server_sdk.platform.partner_settlement import (
 from portone_server_sdk.platform.payout import PayoutClient
 from portone_server_sdk.platform.policy import PolicyClient
 from portone_server_sdk.platform.transfer import TransferClient
+from portone_server_sdk.b2b import B2BClient
+from portone_server_sdk.b2b.business import BusinessClient
 
 from . import (
     auth,
@@ -32,6 +34,7 @@ from . import (
     pg_specific,
     platform,
     webhook,
+    b2b,
 )
 from ._generated.client import PortOneClient
 
@@ -44,6 +47,7 @@ __all__ = [
     "pg_specific",
     "platform",
     "webhook",
+    "b2b",
     "AuthClient",
     "PortOneClient",
     "IdentityVerificationClient",
@@ -63,4 +67,6 @@ __all__ = [
     "PolicyClient",
     "TransferClient",
     "CompanyClient",
+    "B2BClient",
+    "BusinessClient",
 ]

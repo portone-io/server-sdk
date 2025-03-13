@@ -46,6 +46,7 @@ class CreatePlatformOrderCancelTransferBody:
     """정산 시작일
 
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
     """
     external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail] = field(default=None)
     """외부 결제 상세 정보

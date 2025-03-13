@@ -2,9 +2,15 @@ import type { PlatformBusinessStatus } from "./../../platform/company/PlatformBu
 import type { PlatformTaxationType } from "./../../platform/company/PlatformTaxationType"
 export type PlatformCompanyState = {
 	taxationType: PlatformTaxationType
-	/** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+	/**
+	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * (yyyy-MM-dd)
+	 */
 	taxationTypeDate?: string
 	businessStatus: PlatformBusinessStatus
-	/** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+	/**
+	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * (yyyy-MM-dd)
+	 */
 	closedSuspendedDate?: string
 }

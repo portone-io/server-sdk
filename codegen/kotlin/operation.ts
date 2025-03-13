@@ -11,7 +11,7 @@ import {
   toException,
   toPackageCase,
 } from "./common.ts"
-import { writeDescription } from "./description.ts"
+import { annotateDescription, writeDescription } from "./description.ts"
 
 export function writeOperation(
   writer: Writer,
@@ -63,7 +63,9 @@ export function writeOperation(
   ).filter(({ name }) => name !== "storeId")
   const paramDescription = params.map((property) => {
     const block = ([] as string[]).concat(property.title ?? []).concat(
-      property.description ?? [],
+      property.description
+        ? annotateDescription(property.description, property)
+        : [],
     ).join("\n\n")
     return `@param ${property.name}\n${block}`
   }).join("\n")

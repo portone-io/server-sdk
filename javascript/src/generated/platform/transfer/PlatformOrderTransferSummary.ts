@@ -12,7 +12,10 @@ export type PlatformOrderTransferSummary = {
 	partner: PlatformTransferSummaryPartner
 	status: PlatformTransferStatus
 	memo?: string
-	/** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+	/**
+	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * (yyyy-MM-dd)
+	 */
 	settlementDate: string
 	settlementCurrency: Currency
 	isForTest: boolean
@@ -22,6 +25,9 @@ export type PlatformOrderTransferSummary = {
 	userDefinedProperties: PlatformUserDefinedPropertyKeyValue[]
 	amount: PlatformOrderSettlementAmount
 	payment: PlatformTransferSummaryPayment
-	/** 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다. */
+	/**
+	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * (yyyy-MM-dd)
+	 */
 	settlementStartDate: string
 }

@@ -20,6 +20,8 @@
     ".": "./src/index.ts",
     "./webhook": "./src/webhook.ts",
     "./auth": "./src/generated/auth/index.ts",
+    "./b2B": "./src/generated/b2B/index.ts",
+    "./b2B/business": "./src/generated/b2B/business/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
     "./payment": "./src/generated/payment/index.ts",
@@ -55,6 +57,16 @@
         "types": "./dist/generated/auth/index.d.ts",
         "require": "./dist/generated/auth/index.cjs",
         "import": "./dist/generated/auth/index.mjs"
+      },
+      "./b2B": {
+        "types": "./dist/generated/b2B/index.d.ts",
+        "require": "./dist/generated/b2B/index.cjs",
+        "import": "./dist/generated/b2B/index.mjs"
+      },
+      "./b2B/business": {
+        "types": "./dist/generated/b2B/business/index.d.ts",
+        "require": "./dist/generated/b2B/business/index.cjs",
+        "import": "./dist/generated/b2B/business/index.mjs"
       },
       "./common": {
         "types": "./dist/generated/common/index.d.ts",

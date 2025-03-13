@@ -5,6 +5,7 @@ from .auth.client import AuthClient
 from .platform.client import PlatformClient
 from .identity_verification.client import IdentityVerificationClient
 from .payment.client import PaymentClient
+from .b2b.client import B2BClient
 from .pg_specific.client import PgSpecificClient
 
 class PortOneClient:
@@ -16,6 +17,7 @@ class PortOneClient:
     platform: PlatformClient
     identity_verification: IdentityVerificationClient
     payment: PaymentClient
+    b2b: B2BClient
     pg_specific: PgSpecificClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None) -> None:
@@ -35,4 +37,5 @@ class PortOneClient:
         self.platform = PlatformClient(secret=secret, base_url=base_url, store_id=store_id)
         self.identity_verification = IdentityVerificationClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment = PaymentClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.b2b = B2BClient(secret=secret, base_url=base_url, store_id=store_id)
         self.pg_specific = PgSpecificClient(secret=secret, base_url=base_url, store_id=store_id)

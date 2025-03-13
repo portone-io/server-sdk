@@ -46,6 +46,7 @@ class CreatePlatformOrderTransferBody:
     """정산 시작일
 
     기본값은 결제 일시 입니다.
+    (yyyy-MM-dd)
     """
     external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = field(default=None)
     """외부 결제 상세 정보

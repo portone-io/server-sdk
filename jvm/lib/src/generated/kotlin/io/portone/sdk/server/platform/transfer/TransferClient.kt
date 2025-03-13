@@ -353,6 +353,7 @@ public class TransferClient(
    * 정산 시작일
    *
    * 기본값은 결제 일시 입니다.
+   * (yyyy-MM-dd)
    * @param discounts
    * 할인 정보
    * @param additionalFees
@@ -501,6 +502,7 @@ public class TransferClient(
    * 정산 시작일
    *
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
    * @param externalCancellationDetail
    * 외부 결제 상세 정보
    *
@@ -631,6 +633,7 @@ public class TransferClient(
    * 정산 일
    *
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
    * @param isForTest
    * 테스트 모드 여부
    *

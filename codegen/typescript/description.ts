@@ -30,6 +30,10 @@ export function annotateDescription(
         return [description?.trimEnd() ?? []].flat().concat(
           `(${definition.format})`,
         ).join("\n")
+      case "date":
+        return [description?.trimEnd() ?? []].flat().concat(
+          "(yyyy-MM-dd)",
+        ).join("\n")
       case "date-time":
         return [description?.trimEnd() ?? []].flat().concat(
           "(RFC 3339 date-time)",
