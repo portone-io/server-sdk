@@ -156,6 +156,8 @@
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.B2BClient.html">portone_server_sdk.B2BClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.BusinessClient.html">portone_server_sdk.BusinessClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -181,6 +183,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="_toctree/portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.b2b.business.html">portone_server_sdk.b2b.business</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -315,9 +321,13 @@
 </li>
         <li><a href="_toctree/portone_server_sdk.AuthClient.html#portone_server_sdk.AuthClient.__init__">(portone_server_sdk.AuthClient method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.B2BClient.html#portone_server_sdk.B2BClient.__init__">(portone_server_sdk.B2BClient method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.BillingKeyClient.html#portone_server_sdk.BillingKeyClient.__init__">(portone_server_sdk.BillingKeyClient method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.BulkPayoutClient.html#portone_server_sdk.BulkPayoutClient.__init__">(portone_server_sdk.BulkPayoutClient method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.BusinessClient.html#portone_server_sdk.BusinessClient.__init__">(portone_server_sdk.BusinessClient method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.CashReceiptClient.html#portone_server_sdk.CashReceiptClient.__init__">(portone_server_sdk.CashReceiptClient method)</a>
 </li>
@@ -460,9 +470,11 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.TransferParameters.additional_properties">(portone_server_sdk.platform.transfer.TransferParameters attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.address">address (portone_server_sdk.common.Customer attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.address">address (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.address">(portone_server_sdk.common.Customer attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.CustomerInput.address">(portone_server_sdk.common.CustomerInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentEscrowReceiverInput.address">(portone_server_sdk.payment.PaymentEscrowReceiverInput attribute)</a>
@@ -735,9 +747,15 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenError.args">(portone_server_sdk.auth.RefreshTokenError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosError.args">(portone_server_sdk.b2b.business.GetB2bBusinessInfosError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidError.args">(portone_server_sdk.errors.AlreadyPaidError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidOrWaitingError.args">(portone_server_sdk.errors.AlreadyPaidOrWaitingError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError.args">(portone_server_sdk.errors.B2bExternalServiceError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError.args">(portone_server_sdk.errors.B2bNotEnabledError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.BillingKeyAlreadyDeletedError.args">(portone_server_sdk.errors.BillingKeyAlreadyDeletedError attribute)</a>
 </li>
@@ -1190,6 +1208,22 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_toctree/portone_server_sdk.PortOneClient.html#portone_server_sdk.PortOneClient.b2b">b2b (portone_server_sdk.PortOneClient attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo">B2bBusinessInfo (class in portone_server_sdk.b2b.business)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfoResult">B2bBusinessInfoResult (class in portone_server_sdk.b2b.business)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.B2BClient.html#portone_server_sdk.B2BClient">B2BClient (class in portone_server_sdk)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.b2b.html#portone_server_sdk.b2b.B2BClient">(class in portone_server_sdk.b2b)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError">B2bExternalServiceError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError">B2bNotEnabledError</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.account_transfer.html#portone_server_sdk.platform.account_transfer.PlatformPartnerPayoutAccountTransfer.balance">balance (portone_server_sdk.platform.account_transfer.PlatformPartnerPayoutAccountTransfer attribute)</a>
 
       <ul>
@@ -1328,14 +1362,14 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.BillingKeyPaymentSummary">BillingKeyPaymentSummary (class in portone_server_sdk.payment)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeySortInput">BillingKeySortInput (class in portone_server_sdk.payment.billing_key)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.BillingKeyTextSearch">BillingKeyTextSearch (class in portone_server_sdk.payment.billing_key)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Card.bin">bin (portone_server_sdk.common.Card attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationVerifiedCustomer.birth_date">birth_date (portone_server_sdk.identity_verification.IdentityVerificationVerifiedCustomer attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.CustomerInput.birth_day">birth_day (portone_server_sdk.common.CustomerInput attribute)</a>
@@ -1394,6 +1428,14 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Card.brand">brand (portone_server_sdk.common.Card attribute)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.brn">brn (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfoResult.brn">(portone_server_sdk.b2b.business.B2bBusinessInfoResult attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosBody.brn_list">brn_list (portone_server_sdk.b2b.business.GetB2bBusinessInfosBody attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformClient.bulk_payout">bulk_payout (portone_server_sdk.platform.PlatformClient attribute)</a>
 
       <ul>
@@ -1424,17 +1466,25 @@
         <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.BulkPayoutClient">(class in portone_server_sdk.platform.bulk_payout)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType.business">business (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.html#portone_server_sdk.b2b.B2BClient.business">business (portone_server_sdk.b2b.B2BClient attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.B2BClient.html#portone_server_sdk.B2BClient.business">(portone_server_sdk.B2BClient attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType.business">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyType attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType.business">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyType.business">(portone_server_sdk.platform.UpdatePlatformPartnerBodyType attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class">business_class (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.business_category_code">business_category_code (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.business_class">business_class (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_class">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.business_class">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness.business_class">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness attribute)</a>
@@ -1442,6 +1492,10 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.business_class">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.business_entity_type">business_entity_type (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfoResult.business_info">business_info (portone_server_sdk.b2b.business.B2bBusinessInfoResult attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.CustomerInput.business_registration_number">business_registration_number (portone_server_sdk.common.CustomerInput attribute)</a>
 
       <ul>
@@ -1458,22 +1512,32 @@
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.business_registration_number">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.business_status">business_status (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.business_status">business_status (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.business_status">(portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.business_status">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput.business_statuses">business_statuses (portone_server_sdk.platform.PlatformPartnerFilterInput attribute)</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_type">business_type (portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.business_type">business_type (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.business_type">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.business_type">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness.business_type">(portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness.business_type">(portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.BusinessClient.html#portone_server_sdk.BusinessClient">BusinessClient (class in portone_server_sdk)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.BusinessClient">(class in portone_server_sdk.b2b.business)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationSortInput.by">by (portone_server_sdk.identity_verification.IdentityVerificationSortInput attribute)</a>
@@ -1774,6 +1838,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.cash_receipt.html#portone_server_sdk.payment.cash_receipt.CashReceiptSummary">CashReceiptSummary (class in portone_server_sdk.payment.cash_receipt)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.ceo_name">ceo_name (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.FailedIdentityVerification.channel">channel (portone_server_sdk.identity_verification.FailedIdentityVerification attribute)</a>
 
       <ul>
@@ -1929,6 +1995,8 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CloseVirtualAccountError">CloseVirtualAccountError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CloseVirtualAccountResponse">CloseVirtualAccountResponse (class in portone_server_sdk.payment)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.closing_date">closing_date (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.PaymentProduct.code">code (portone_server_sdk.common.PaymentProduct attribute)</a>
 
@@ -2119,6 +2187,8 @@
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterOptions.contract_summary">contract_summary (portone_server_sdk.platform.PlatformPartnerFilterOptions attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.corp_reg_no">corp_reg_no (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStats.count">count (portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStats attribute)</a>
 </li>
@@ -2974,8 +3044,12 @@
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.promotion.html#portone_server_sdk.payment.promotion.CardPromotion.end_at">end_at (portone_server_sdk.payment.promotion.CardPromotion attribute)</a>
 </li>
-      <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError.error">error (portone_server_sdk.errors.UnknownError attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfoResult.error">error (portone_server_sdk.b2b.business.B2bBusinessInfoResult attribute)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.UnknownError.error">(portone_server_sdk.errors.UnknownError attribute)</a>
 </li>
+      </ul></li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPayment.escrow">escrow (portone_server_sdk.payment.CancelledPayment attribute)</a>
 
       <ul>
@@ -3192,6 +3266,18 @@
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient.get_all_payments_by_cursor_async">(portone_server_sdk.PaymentClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.BusinessClient.get_b2b_business_infos">get_b2b_business_infos() (portone_server_sdk.b2b.business.BusinessClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.BusinessClient.html#portone_server_sdk.BusinessClient.get_b2b_business_infos">(portone_server_sdk.BusinessClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.BusinessClient.get_b2b_business_infos_async">get_b2b_business_infos_async() (portone_server_sdk.b2b.business.BusinessClient method)</a>
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.BusinessClient.html#portone_server_sdk.BusinessClient.get_b2b_business_infos_async">(portone_server_sdk.BusinessClient method)</a>
 </li>
       </ul></li>
       <li><a href="_toctree/portone_server_sdk.BillingKeyClient.html#portone_server_sdk.BillingKeyClient.get_billing_key_info">get_billing_key_info() (portone_server_sdk.BillingKeyClient method)</a>
@@ -3649,6 +3735,12 @@
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetAllPaymentsByCursorResponse">GetAllPaymentsByCursorResponse (class in portone_server_sdk.payment)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.GetAllPaymentsError">GetAllPaymentsError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosBody">GetB2bBusinessInfosBody (class in portone_server_sdk.b2b.business)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosError">GetB2bBusinessInfosError</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosResponse">GetB2bBusinessInfosResponse (class in portone_server_sdk.b2b.business)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.billing_key.html#portone_server_sdk.payment.billing_key.GetBillingKeyInfoError">GetBillingKeyInfoError</a>
 </li>
@@ -4673,9 +4765,15 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenError.message">(portone_server_sdk.auth.RefreshTokenError attribute)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosError.message">(portone_server_sdk.b2b.business.GetB2bBusinessInfosError attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidError.message">(portone_server_sdk.errors.AlreadyPaidError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidOrWaitingError.message">(portone_server_sdk.errors.AlreadyPaidOrWaitingError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError.message">(portone_server_sdk.errors.B2bExternalServiceError attribute)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError.message">(portone_server_sdk.errors.B2bNotEnabledError attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.BillingKeyAlreadyDeletedError.message">(portone_server_sdk.errors.BillingKeyAlreadyDeletedError attribute)</a>
 </li>
@@ -5224,6 +5322,10 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.auth.html#module-portone_server_sdk.auth">portone_server_sdk.auth</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.b2b.html#module-portone_server_sdk.b2b">portone_server_sdk.b2b</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#module-portone_server_sdk.b2b.business">portone_server_sdk.b2b.business</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.common.html#module-portone_server_sdk.common">portone_server_sdk.common</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#module-portone_server_sdk.errors">portone_server_sdk.errors</a>
@@ -5281,9 +5383,11 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Card.name">name (portone_server_sdk.common.Card attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.name">name (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Card.name">(portone_server_sdk.common.Card attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.ChannelGroupSummary.name">(portone_server_sdk.common.ChannelGroupSummary attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.name">(portone_server_sdk.common.Customer attribute)</a>
@@ -5432,6 +5536,8 @@
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.OneLineAddress">OneLineAddress (class in portone_server_sdk.common)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats.ongoing">ongoing (portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutStatusStats attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.opening_date">opening_date (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationVerifiedCustomer.operator">operator (portone_server_sdk.identity_verification.IdentityVerificationVerifiedCustomer attribute)</a>
 
@@ -6203,9 +6309,11 @@
         <li><a href="_toctree/portone_server_sdk.pg_specific.html#portone_server_sdk.pg_specific.PgSpecificClient">(class in portone_server_sdk.pg_specific)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.phone_number">phone_number (portone_server_sdk.common.Customer attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.phone_number">phone_number (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.phone_number">(portone_server_sdk.common.Customer attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.CustomerInput.phone_number">(portone_server_sdk.common.CustomerInput attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.identity_verification.html#portone_server_sdk.identity_verification.IdentityVerificationFilterCustomerInput.phone_number">(portone_server_sdk.identity_verification.IdentityVerificationFilterCustomerInput attribute)</a>
@@ -6295,12 +6403,12 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformAdditionalFeePolicyNotFoundError">PlatformAdditionalFeePolicyNotFoundError</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformAdditionalFeePolicyScheduleAlreadyExistsError">PlatformAdditionalFeePolicyScheduleAlreadyExistsError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError">PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedAdditionalFeePolicyError">PlatformArchivedAdditionalFeePolicyError</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.PlatformArchivedContractError">PlatformArchivedContractError</a>
@@ -6658,6 +6766,20 @@
 
       <ul>
         <li><a href="_toctree/portone_server_sdk.auth.html#module-portone_server_sdk.auth">module</a>
+</li>
+      </ul></li>
+      <li>
+    portone_server_sdk.b2b
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.b2b.html#module-portone_server_sdk.b2b">module</a>
+</li>
+      </ul></li>
+      <li>
+    portone_server_sdk.b2b.business
+
+      <ul>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#module-portone_server_sdk.b2b.business">module</a>
 </li>
       </ul></li>
       <li>
@@ -7462,6 +7584,8 @@
 </li>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentWebhook.response">response (portone_server_sdk.payment.PaymentWebhook attribute)</a>
 </li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosResponse.result">result (portone_server_sdk.b2b.business.GetB2bBusinessInfosResponse attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.PaymentScheduleClient.revoke_payment_schedules">revoke_payment_schedules() (portone_server_sdk.payment.payment_schedule.PaymentScheduleClient method)</a>
 
       <ul>
@@ -7862,6 +7986,8 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.InstantPaymentInput.shipping_address">(portone_server_sdk.payment.InstantPaymentInput attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.simplified_taxation_type_date">simplified_taxation_type_date (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.PageInfo.size">size (portone_server_sdk.common.PageInfo attribute)</a>
 
       <ul>
@@ -8282,9 +8408,15 @@
         <li><a href="_toctree/portone_server_sdk.platform.transfer.html#portone_server_sdk.platform.transfer.PlatformOrderTransferProduct.tax_free_amount">(portone_server_sdk.platform.transfer.PlatformOrderTransferProduct attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.taxation_type">taxation_type (portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.tax_office_code">tax_office_code (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.tax_office_name">tax_office_name (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.taxation_type">taxation_type (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
 
       <ul>
+        <li><a href="_toctree/portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.PlatformCompanyState.taxation_type">(portone_server_sdk.platform.company.PlatformCompanyState attribute)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness.taxation_type">(portone_server_sdk.platform.partner.CreatePlatformPartnerBodyTypeBusiness attribute)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerTypeBusiness.taxation_type">(portone_server_sdk.platform.PlatformPartnerTypeBusiness attribute)</a>
@@ -8372,6 +8504,8 @@
         <li><a href="_toctree/portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.timestamp_range">(portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentFilterInput.timestamp_type">timestamp_type (portone_server_sdk.payment.PaymentFilterInput attribute)</a>
 </li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.PaymentAmountInput.total">total (portone_server_sdk.common.PaymentAmountInput attribute)</a>
@@ -8380,8 +8514,6 @@
         <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentAmount.total">(portone_server_sdk.payment.PaymentAmount attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_toctree/portone_server_sdk.payment.html#portone_server_sdk.payment.CancelledPaymentCashReceipt.total_amount">total_amount (portone_server_sdk.payment.CancelledPaymentCashReceipt attribute)</a>
 
       <ul>
@@ -9077,9 +9209,15 @@
       <ul>
         <li><a href="_toctree/portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenError.with_traceback">(portone_server_sdk.auth.RefreshTokenError method)</a>
 </li>
+        <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.GetB2bBusinessInfosError.with_traceback">(portone_server_sdk.b2b.business.GetB2bBusinessInfosError method)</a>
+</li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidError.with_traceback">(portone_server_sdk.errors.AlreadyPaidError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.AlreadyPaidOrWaitingError.with_traceback">(portone_server_sdk.errors.AlreadyPaidOrWaitingError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bExternalServiceError.with_traceback">(portone_server_sdk.errors.B2bExternalServiceError method)</a>
+</li>
+        <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.B2bNotEnabledError.with_traceback">(portone_server_sdk.errors.B2bNotEnabledError method)</a>
 </li>
         <li><a href="_toctree/portone_server_sdk.errors.html#portone_server_sdk.errors.BillingKeyAlreadyDeletedError.with_traceback">(portone_server_sdk.errors.BillingKeyAlreadyDeletedError method)</a>
 </li>
@@ -9532,6 +9670,8 @@
 <h2 id="Z">Z</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_toctree/portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.B2bBusinessInfo.zip_code">zip_code (portone_server_sdk.b2b.business.B2bBusinessInfo attribute)</a>
+</li>
       <li><a href="_toctree/portone_server_sdk.common.html#portone_server_sdk.common.Customer.zipcode">zipcode (portone_server_sdk.common.Customer attribute)</a>
 
       <ul>

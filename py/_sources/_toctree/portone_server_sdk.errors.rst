@@ -11,6 +11,8 @@
       PortOneError
       AlreadyPaidError
       AlreadyPaidOrWaitingError
+      B2bExternalServiceError
+      B2bNotEnabledError
       BillingKeyAlreadyDeletedError
       BillingKeyNotFoundError
       BillingKeyNotIssuedError

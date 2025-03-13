@@ -27,6 +27,7 @@
       ~PortOneClient.platform
       ~PortOneClient.identity_verification
       ~PortOneClient.payment
+      ~PortOneClient.b2b
       ~PortOneClient.pg_specific
    
    

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>portone_server_sdk.AuthClient &#8212; portone-server-sdk  documentation</title>
+    <title>portone_server_sdk.b2b &#8212; portone-server-sdk  documentation</title>
   
   
   
@@ -43,11 +43,11 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.AuthClient';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.b2b';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.PortOneClient" href="portone_server_sdk.PortOneClient.html" />
-    <link rel="prev" title="portone_server_sdk" href="../index.html" />
+    <link rel="next" title="portone_server_sdk.b2b.business" href="portone_server_sdk.b2b.business.html" />
+    <link rel="prev" title="portone_server_sdk.webhook" href="portone_server_sdk.webhook.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -138,7 +138,7 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
@@ -184,7 +184,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">portone_server_sdk.b2b</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.business.html">portone_server_sdk.b2b.business</a></li>
 </ul>
 </details></li>
@@ -242,7 +242,7 @@
       
       
       
-      <li><a href="../_sources/_toctree/portone_server_sdk.AuthClient.rst" target="_blank"
+      <li><a href="../_sources/_toctree/portone_server_sdk.b2b.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -318,7 +318,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>portone_server_sdk.AuthClient</h1>
+    <h1>portone_server_sdk.b2b</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -328,12 +328,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient"><code class="docutils literal notranslate"><span class="pre">AuthClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.__init__"><code class="docutils literal notranslate"><span class="pre">AuthClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.login_via_api_secret"><code class="docutils literal notranslate"><span class="pre">AuthClient.login_via_api_secret()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.login_via_api_secret_async"><code class="docutils literal notranslate"><span class="pre">AuthClient.login_via_api_secret_async()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthClient.refresh_token()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.refresh_token_async"><code class="docutils literal notranslate"><span class="pre">AuthClient.refresh_token_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2BClient"><code class="docutils literal notranslate"><span class="pre">B2BClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2BClient.business"><code class="docutils literal notranslate"><span class="pre">B2BClient.business</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -347,122 +343,37 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="portone-server-sdk-authclient">
-<h1>portone_server_sdk.AuthClient<a class="headerlink" href="#portone-server-sdk-authclient" title="Link to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">AuthClient</span></span><a class="headerlink" href="#portone_server_sdk.AuthClient" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.AuthClient.__init__" title="Link to this definition">#</a></dt>
-<dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>secret</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 포트원 API Secret입니다.</p></li>
-<li><p><strong>base_url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 포트원 REST API 주소입니다. 기본값은 <a href="#id1"><span class="problematic" id="id2">`</span></a>”<a class="reference external" href="https://api.portone.io">https://api.portone.io</a>”<a href="#id3"><span class="problematic" id="id4">`</span></a>입니다.</p></li>
-<li><p><strong>store_id</strong> – 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<p class="rubric">Methods</p>
+  <section id="module-portone_server_sdk.b2b">
+<span id="portone-server-sdk-b2b"></span><h1>portone_server_sdk.b2b<a class="headerlink" href="#module-portone_server_sdk.b2b" title="Link to this heading">#</a></h1>
+<p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.AuthClient.__init__" title="portone_server_sdk.AuthClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
-<td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.AuthClient.login_via_api_secret" title="portone_server_sdk.AuthClient.login_via_api_secret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">login_via_api_secret</span></code></a>(*, api_secret)</p></td>
-<td><p>API secret 를 사용한 토큰 발급</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.AuthClient.login_via_api_secret_async" title="portone_server_sdk.AuthClient.login_via_api_secret_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">login_via_api_secret_async</span></code></a>(*, api_secret)</p></td>
-<td><p>API secret 를 사용한 토큰 발급</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.AuthClient.refresh_token" title="portone_server_sdk.AuthClient.refresh_token"><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_token</span></code></a>(*, refresh_token)</p></td>
-<td><p>토큰 갱신</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.AuthClient.refresh_token_async" title="portone_server_sdk.AuthClient.refresh_token_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_token_async</span></code></a>(*, refresh_token)</p></td>
-<td><p>토큰 갱신</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.b2b.B2BClient" title="portone_server_sdk.b2b.B2BClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2BClient</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient.login_via_api_secret">
-<span class="sig-name descname"><span class="pre">login_via_api_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.LoginViaApiSecretResponse" title="portone_server_sdk._generated.auth.login_via_api_secret_response.LoginViaApiSecretResponse"><span class="pre">LoginViaApiSecretResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AuthClient.login_via_api_secret" title="Link to this definition">#</a></dt>
-<dd><p>API secret 를 사용한 토큰 발급</p>
-<p>API secret 를 통해 API 인증에 사용할 토큰을 가져옵니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>api_secret</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 발급받은 API secret</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.LoginViaApiSecretError" title="portone_server_sdk.auth.LoginViaApiSecretError"><strong>LoginViaApiSecretError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient.login_via_api_secret_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">login_via_api_secret_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.LoginViaApiSecretResponse" title="portone_server_sdk._generated.auth.login_via_api_secret_response.LoginViaApiSecretResponse"><span class="pre">LoginViaApiSecretResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AuthClient.login_via_api_secret_async" title="Link to this definition">#</a></dt>
-<dd><p>API secret 를 사용한 토큰 발급</p>
-<p>API secret 를 통해 API 인증에 사용할 토큰을 가져옵니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>api_secret</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 발급받은 API secret</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.LoginViaApiSecretError" title="portone_server_sdk.auth.LoginViaApiSecretError"><strong>LoginViaApiSecretError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient.refresh_token">
-<span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenResponse" title="portone_server_sdk._generated.auth.refresh_token_response.RefreshTokenResponse"><span class="pre">RefreshTokenResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AuthClient.refresh_token" title="Link to this definition">#</a></dt>
-<dd><p>토큰 갱신</p>
-<p>리프레시 토큰을 사용해 유효기간이 연장된 새로운 토큰을 재발급합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>refresh_token</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 리프레시 토큰</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenError" title="portone_server_sdk.auth.RefreshTokenError"><strong>RefreshTokenError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.AuthClient.refresh_token_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refresh_token_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenResponse" title="portone_server_sdk._generated.auth.refresh_token_response.RefreshTokenResponse"><span class="pre">RefreshTokenResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AuthClient.refresh_token_async" title="Link to this definition">#</a></dt>
-<dd><p>토큰 갱신</p>
-<p>리프레시 토큰을 사용해 유효기간이 연장된 새로운 토큰을 재발급합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>refresh_token</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 리프레시 토큰</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.RefreshTokenError" title="portone_server_sdk.auth.RefreshTokenError"><strong>RefreshTokenError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.B2BClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.b2b.</span></span><span class="sig-name descname"><span class="pre">B2BClient</span></span><a class="headerlink" href="#portone_server_sdk.b2b.B2BClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.B2BClient.business">
+<span class="sig-name descname"><span class="pre">business</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.b2b.business.html#portone_server_sdk.b2b.business.BusinessClient" title="portone_server_sdk._generated.b2b.business.client.BusinessClient"><span class="pre">BusinessClient</span></a></em><a class="headerlink" href="#portone_server_sdk.b2b.B2BClient.business" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
+<p class="rubric">Modules</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="portone_server_sdk.b2b.business.html#module-portone_server_sdk.b2b.business" title="portone_server_sdk.b2b.business"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 
 
@@ -477,20 +388,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="portone_server_sdk.webhook.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk</p>
+        <p class="prev-next-title">portone_server_sdk.webhook</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.PortOneClient.html"
+       href="portone_server_sdk.b2b.business.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.PortOneClient</p>
+        <p class="prev-next-title">portone_server_sdk.b2b.business</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -511,12 +422,8 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient"><code class="docutils literal notranslate"><span class="pre">AuthClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.__init__"><code class="docutils literal notranslate"><span class="pre">AuthClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.login_via_api_secret"><code class="docutils literal notranslate"><span class="pre">AuthClient.login_via_api_secret()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.login_via_api_secret_async"><code class="docutils literal notranslate"><span class="pre">AuthClient.login_via_api_secret_async()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthClient.refresh_token()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AuthClient.refresh_token_async"><code class="docutils literal notranslate"><span class="pre">AuthClient.refresh_token_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2BClient"><code class="docutils literal notranslate"><span class="pre">B2BClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2BClient.business"><code class="docutils literal notranslate"><span class="pre">B2BClient.business</span></code></a></li>
 </ul>
 </li>
 </ul>

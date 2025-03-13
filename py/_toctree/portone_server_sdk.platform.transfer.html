@@ -157,6 +157,8 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2BClient.html">portone_server_sdk.B2BClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BusinessClient.html">portone_server_sdk.BusinessClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -182,6 +184,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.business.html">portone_server_sdk.b2b.business</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -1194,7 +1200,8 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.CreatePlatformManualTransferBody.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.CreatePlatformManualTransferBody.settlement_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1280,7 +1287,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBody.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.CreatePlatformOrderCancelTransferBody.settlement_start_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 시작일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1466,7 +1474,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.CreatePlatformOrderTransferBody.settlement_start_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 시작일</p>
-<p>기본값은 결제 일시 입니다.</p>
+<p>기본값은 결제 일시 입니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1799,7 +1808,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformManualTransfer.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformManualTransfer.settlement_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1872,7 +1882,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformManualTransferSummary.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformManualTransferSummary.settlement_date" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1942,7 +1953,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransfer.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransfer.settlement_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1985,7 +1997,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransfer.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransfer.settlement_start_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 시작일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2068,7 +2081,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_date" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2106,7 +2120,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_start_date" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2148,7 +2163,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransfer.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransfer.settlement_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2191,7 +2207,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransfer.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransfer.settlement_start_date" title="Link to this definition">#</a></dt>
 <dd><p>정산 시작일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2433,7 +2450,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_date">
 <span class="sig-name descname"><span class="pre">settlement_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_date" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2471,7 +2489,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_start_date">
 <span class="sig-name descname"><span class="pre">settlement_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_start_date" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3102,7 +3121,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 (int64)</p>
 </p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
-<p>기본값은 결제 일시 입니다.</p>
+<p>기본값은 결제 일시 입니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>additional_fees</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderTransferBodyAdditionalFee]</span></code>) – 추가 수수료 정보</p></li>
@@ -3145,7 +3165,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 (int64)</p>
 </p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
-<p>기본값은 결제 일시 입니다.</p>
+<p>기본값은 결제 일시 입니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>additional_fees</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderTransferBodyAdditionalFee]</span></code>) – 추가 수수료 정보</p></li>
@@ -3188,7 +3209,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderCancelTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>external_cancellation_detail</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,</span> <span class="pre">optional</span></code>) – <p>외부 결제 상세 정보</p>
 <p>해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.</p>
@@ -3228,7 +3250,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 </p></li>
 <li><p><strong>discounts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[CreatePlatformOrderCancelTransferBodyDiscount]</span></code>) – 할인 정보</p></li>
 <li><p><strong>settlement_start_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – <p>정산 시작일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>external_cancellation_detail</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,</span> <span class="pre">optional</span></code>) – <p>외부 결제 상세 정보</p>
 <p>해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.</p>
@@ -3260,7 +3283,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
 <li><p><strong>settlement_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – 정산 금액</p></li>
 <li><p><strong>settlement_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
 <p>기본값은 false 입니다.</p>
@@ -3289,7 +3313,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p><strong>memo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 메모</p></li>
 <li><p><strong>settlement_amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – 정산 금액</p></li>
 <li><p><strong>settlement_date</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>정산 일</p>
-<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.</p>
+<p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p>
 </p></li>
 <li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
 <p>기본값은 false 입니다.</p>

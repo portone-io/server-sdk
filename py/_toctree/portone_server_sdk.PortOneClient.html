@@ -157,6 +157,8 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2BClient.html">portone_server_sdk.B2BClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BusinessClient.html">portone_server_sdk.BusinessClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
@@ -182,6 +184,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.business.html">portone_server_sdk.b2b.business</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -328,6 +334,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.platform"><code class="docutils literal notranslate"><span class="pre">PortOneClient.platform</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.identity_verification"><code class="docutils literal notranslate"><span class="pre">PortOneClient.identity_verification</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.payment"><code class="docutils literal notranslate"><span class="pre">PortOneClient.payment</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.b2b"><code class="docutils literal notranslate"><span class="pre">PortOneClient.b2b</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.pg_specific"><code class="docutils literal notranslate"><span class="pre">PortOneClient.pg_specific</span></code></a></li>
 </ul>
 </li>
@@ -387,7 +394,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.payment" title="portone_server_sdk.PortOneClient.payment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payment</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.pg_specific" title="portone_server_sdk.PortOneClient.pg_specific"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pg_specific</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.b2b" title="portone_server_sdk.PortOneClient.b2b"><code class="xref py py-obj docutils literal notranslate"><span class="pre">b2b</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.pg_specific" title="portone_server_sdk.PortOneClient.pg_specific"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pg_specific</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -411,6 +421,11 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.PortOneClient.payment">
 <span class="sig-name descname"><span class="pre">payment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.PaymentClient" title="portone_server_sdk._generated.payment.client.PaymentClient"><span class="pre">PaymentClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PortOneClient.payment" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.PortOneClient.b2b">
+<span class="sig-name descname"><span class="pre">b2b</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.b2b.html#portone_server_sdk.b2b.B2BClient" title="portone_server_sdk._generated.b2b.client.B2BClient"><span class="pre">B2BClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PortOneClient.b2b" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -474,6 +489,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.platform"><code class="docutils literal notranslate"><span class="pre">PortOneClient.platform</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.identity_verification"><code class="docutils literal notranslate"><span class="pre">PortOneClient.identity_verification</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.payment"><code class="docutils literal notranslate"><span class="pre">PortOneClient.payment</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.b2b"><code class="docutils literal notranslate"><span class="pre">PortOneClient.b2b</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.pg_specific"><code class="docutils literal notranslate"><span class="pre">PortOneClient.pg_specific</span></code></a></li>
 </ul>
 </li>
