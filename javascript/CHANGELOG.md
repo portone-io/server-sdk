@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.14.0
+
+### Minor Changes
+
+- 8086e4a: API 업데이트
+
+### Patch Changes
+
+- 79388f9: 의존성 업데이트
+
 ## 0.13.0
 
 ### Minor Changes
