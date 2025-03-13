@@ -14,6 +14,44 @@ $dokka.location:io.portone.sdk.server.auth/RefreshTokenResponse///PointingToDecl
 $dokka.location:io.portone.sdk.server.auth/RefreshTokenResponse/RefreshTokenResponse/#kotlin.String#kotlin.String/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.auth/-refresh-token-response/-refresh-token-response.html
 $dokka.location:io.portone.sdk.server.auth/RefreshTokenResponse/accessToken/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.auth/-refresh-token-response/access-token.html
 $dokka.location:io.portone.sdk.server.auth/RefreshTokenResponse/refreshToken/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.auth/-refresh-token-response/refresh-token.html
+$dokka.location:io.portone.sdk.server.b2b.business////PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/index.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/index.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/B2bBusinessInfo/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#kotlin.String?#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/-b2b-business-info.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/address/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/address.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/brn/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/brn.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/businessCategoryCode/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/business-category-code.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/businessClass/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/business-class.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/businessEntityType/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/business-entity-type.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/businessStatus/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/business-status.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/businessType/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/business-type.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/ceoName/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/ceo-name.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/closingDate/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/closing-date.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/corpRegNo/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/corp-reg-no.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/name/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/name.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/openingDate/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/opening-date.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/phoneNumber/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/phone-number.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/simplifiedTaxationTypeDate/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/simplified-taxation-type-date.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/taxOfficeCode/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/tax-office-code.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/taxOfficeName/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/tax-office-name.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/taxationType/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/taxation-type.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfo/zipCode/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info/zip-code.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfoResult///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info-result/index.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfoResult/B2bBusinessInfoResult/#kotlin.String#io.portone.sdk.server.b2b.business.B2bBusinessInfo?#kotlin.String?/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info-result/-b2b-business-info-result.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfoResult/brn/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info-result/brn.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfoResult/businessInfo/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info-result/business-info.html
+$dokka.location:io.portone.sdk.server.b2b.business/B2bBusinessInfoResult/error/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-b2b-business-info-result/error.html
+$dokka.location:io.portone.sdk.server.b2b.business/BusinessClient///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-business-client/index.html
+$dokka.location:io.portone.sdk.server.b2b.business/BusinessClient/BusinessClient/#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-business-client/-business-client.html
+$dokka.location:io.portone.sdk.server.b2b.business/BusinessClient/close/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-business-client/close.html
+$dokka.location:io.portone.sdk.server.b2b.business/BusinessClient/getB2bBusinessInfos/#kotlin.collections.List[kotlin.String]/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-business-client/get-b2b-business-infos.html
+$dokka.location:io.portone.sdk.server.b2b.business/GetB2bBusinessInfosResponse///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-get-b2b-business-infos-response/index.html
+$dokka.location:io.portone.sdk.server.b2b.business/GetB2bBusinessInfosResponse/GetB2bBusinessInfosResponse/#kotlin.collections.List[io.portone.sdk.server.b2b.business.B2bBusinessInfoResult]/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-get-b2b-business-infos-response/-get-b2b-business-infos-response.html
+$dokka.location:io.portone.sdk.server.b2b.business/GetB2bBusinessInfosResponse/result/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b.business/-get-b2b-business-infos-response/result.html
+$dokka.location:io.portone.sdk.server.b2b////PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b/index.html
+$dokka.location:io.portone.sdk.server.b2b/B2BClient///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b/-b2-b-client/index.html
+$dokka.location:io.portone.sdk.server.b2b/B2BClient/B2BClient/#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b/-b2-b-client/-b2-b-client.html
+$dokka.location:io.portone.sdk.server.b2b/B2BClient/business/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b/-b2-b-client/business.html
+$dokka.location:io.portone.sdk.server.b2b/B2BClient/close/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.b2b/-b2-b-client/close.html
 $dokka.location:io.portone.sdk.server.common////PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.common/index.html
 $dokka.location:io.portone.sdk.server.common/Address.Recognized///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.common/-address/-recognized/index.html
 $dokka.location:io.portone.sdk.server.common/Address.Recognized/oneLine/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.common/-address/-recognized/one-line.html
@@ -1545,6 +1583,12 @@ $dokka.location:io.portone.sdk.server.errors/ArchivePlatformPartnerException///P
 $dokka.location:io.portone.sdk.server.errors/ArchivePlatformPartnerException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-archive-platform-partner-exception/message.html
 $dokka.location:io.portone.sdk.server.errors/AuthException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-auth-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/AuthException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-auth-exception/message.html
+$dokka.location:io.portone.sdk.server.errors/B2BBusinessException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2-b-business-exception/index.html
+$dokka.location:io.portone.sdk.server.errors/B2BBusinessException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2-b-business-exception/message.html
+$dokka.location:io.portone.sdk.server.errors/B2BException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2-b-exception/index.html
+$dokka.location:io.portone.sdk.server.errors/B2BException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2-b-exception/message.html
+$dokka.location:io.portone.sdk.server.errors/B2bExternalServiceException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2b-external-service-exception/index.html
+$dokka.location:io.portone.sdk.server.errors/B2bNotEnabledException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-b2b-not-enabled-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/BillingKeyAlreadyDeletedException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-billing-key-already-deleted-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/BillingKeyNotFoundException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-billing-key-not-found-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/BillingKeyNotIssuedException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-billing-key-not-issued-exception/index.html
@@ -1613,6 +1657,8 @@ $dokka.location:io.portone.sdk.server.errors/DownloadPlatformTransferSheetExcept
 $dokka.location:io.portone.sdk.server.errors/ForbiddenException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-forbidden-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/GetAllPaymentsException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-all-payments-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/GetAllPaymentsException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-all-payments-exception/message.html
+$dokka.location:io.portone.sdk.server.errors/GetB2bBusinessInfosException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-b2b-business-infos-exception/index.html
+$dokka.location:io.portone.sdk.server.errors/GetB2bBusinessInfosException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-b2b-business-infos-exception/message.html
 $dokka.location:io.portone.sdk.server.errors/GetBillingKeyInfoException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-billing-key-info-exception/index.html
 $dokka.location:io.portone.sdk.server.errors/GetBillingKeyInfoException/message/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-billing-key-info-exception/message.html
 $dokka.location:io.portone.sdk.server.errors/GetBillingKeyInfosException///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server.errors/-get-billing-key-infos-exception/index.html
@@ -5798,6 +5844,7 @@ $dokka.location:io.portone.sdk.server////PointingToDeclaration/-port-one -serve
 $dokka.location:io.portone.sdk.server/PortOneClient///PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/index.html
 $dokka.location:io.portone.sdk.server/PortOneClient/PortOneClient/#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/-port-one-client.html
 $dokka.location:io.portone.sdk.server/PortOneClient/auth/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/auth.html
+$dokka.location:io.portone.sdk.server/PortOneClient/b2b/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/b2b.html
 $dokka.location:io.portone.sdk.server/PortOneClient/close/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/close.html
 $dokka.location:io.portone.sdk.server/PortOneClient/identityVerification/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/identity-verification.html
 $dokka.location:io.portone.sdk.server/PortOneClient/payment/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/payment.html
@@ -5805,6 +5852,8 @@ $dokka.location:io.portone.sdk.server/PortOneClient/pgSpecific/#/PointingToDecla
 $dokka.location:io.portone.sdk.server/PortOneClient/platform/#/PointingToDeclaration/-port-one -server -s-d-k for -j-v-m/io.portone.sdk.server/-port-one-client/platform.html
 io.portone.sdk.server
 io.portone.sdk.server.auth
+io.portone.sdk.server.b2b
+io.portone.sdk.server.b2b.business
 io.portone.sdk.server.common
 io.portone.sdk.server.errors
 io.portone.sdk.server.identityverification
