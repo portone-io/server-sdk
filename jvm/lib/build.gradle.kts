@@ -67,6 +67,7 @@ kotlin {
             "-Xjsr305=strict",
             "-opt-in=kotlinx.coroutines.DelicateCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            "-Xjvm-default=all-compatibility",
         )
     }
 }
