@@ -16,6 +16,7 @@ import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
+import { isClientPackage } from "../common/package.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const srcPath = path.join(projectRoot, "src/portone_server_sdk/_generated")
@@ -52,6 +53,67 @@ export function generateProject(projectRoot: string, pack: Package) {
     entityMap,
     omitEntities,
   )
+  generateIndex(path.join(projectRoot, "docs"), publicPath, pack)
+}
+
+function generateIndex(
+  docsPath: string,
+  srcPath: string,
+  pack: Package,
+) {
+  const clients = Array<{ path: string; name: string }>()
+  const collectClients = (pack: Package, hierarchy: string) => {
+    for (const subpackage of pack.subpackages) {
+      if (isClientPackage(subpackage)) {
+        clients.push({
+          path: `${hierarchy}.${toSnakeCase(subpackage.category)}`,
+          name: `${toPascalCase(subpackage.category)}Client`,
+        })
+      }
+      collectClients(
+        subpackage,
+        `${hierarchy}.${toSnakeCase(subpackage.category)}`,
+      )
+    }
+  }
+  collectClients(pack, "portone_server_sdk")
+  clients.sort()
+  const subpackages = pack.subpackages.map(({ category }) =>
+    toSnakeCase(category)
+  ).concat("webhook", "errors").toSorted()
+
+  const all = subpackages.concat(clients.map(({ name }) => name)).concat(
+    "PortOneClient",
+  )
+
+  const index = `${
+    clients.map(({ path, name }) => `from ${path} import ${name}`).join("\n")
+  }
+
+from . import (
+${subpackages.map((sub) => `    ${sub},`).join("\n")}
+)
+
+from ._generated.client import PortOneClient
+
+__all__ = [
+${all.toSorted().map((item) => `    "${item}",`).join("\n")}
+]
+`
+
+  Deno.writeTextFileSync(path.join(srcPath, "__init__.py"), index)
+
+  const rst = `portone_server_sdk
+==================
+
+.. currentmodule:: portone_server_sdk
+
+.. autosummary::
+   :toctree: _toctree
+   :recursive:
+${all.map((item) => `   ${item}`).join("\n")}
+`
+  Deno.writeTextFileSync(path.join(docsPath, "index.rst"), rst)
 }
 
 function generateWebhook(
@@ -78,7 +140,7 @@ function generateCategoryIndex(
   hierarchy: string = "",
 ) {
   const toRoot = ".".repeat(hierarchy.split(".").length)
-  const hasClient = pack.operations.length > 0 || pack.subpackages.length > 0
+  const hasClient = isClientPackage(pack)
   const crossRef = new Set<string>()
   const errorRef = new Set<string>()
   const writer = PythonWriter()
@@ -152,7 +214,7 @@ function generateCategoryIndex(
     importWriter.writeLine("from urllib.parse import quote")
     for (const subpackage of pack.subpackages) {
       if (
-        subpackage.operations.length > 0 || subpackage.subpackages.length > 0
+        isClientPackage(subpackage)
       ) {
         importWriter.writeLine(
           `from .${toSnakeCase(subpackage.category)}.client import ${
@@ -250,9 +312,7 @@ function writeClientObject(
   errorRef: Set<string>,
   typing: Set<string>,
 ) {
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
+  const subpackages = pack.subpackages.filter(isClientPackage)
   implWriter.writeLine(`class ${toPascalCase(pack.category)}Client:`)
   implWriter.indent()
   implWriter.writeLine("_secret: str")
@@ -570,7 +630,7 @@ function generateClient(
   writer.writeLine("from typing import Optional")
   writer.writeLine("from httpx import AsyncClient")
   for (const subpackage of pack.subpackages) {
-    if (subpackage.operations.length > 0 || subpackage.subpackages.length > 0) {
+    if (isClientPackage(subpackage)) {
       writer.writeLine(
         `from .${toSnakeCase(subpackage.category)}.client import ${
           toPascalCase(subpackage.category)
@@ -609,9 +669,7 @@ function writeRootClientObject(
   writer.writeLine("_store_id: Optional[str]")
   writer.writeLine("_base_url: str")
   writer.writeLine("_client: AsyncClient")
-  const subpackages = pack.subpackages.filter(({ operations, subpackages }) =>
-    operations.length > 0 || subpackages.length > 0
-  )
+  const subpackages = pack.subpackages.filter(isClientPackage)
   for (const subpackage of subpackages) {
     writer.writeLine(
       `${toSnakeCase(subpackage.category)}: ${
