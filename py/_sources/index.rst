@@ -6,29 +6,8 @@ portone_server_sdk
 .. autosummary::
    :toctree: _toctree
    :recursive:
-
-   AuthClient
-   PortOneClient
-   IdentityVerificationClient
-   PaymentClient
-   BillingKeyClient
-   CashReceiptClient
-   PaymentScheduleClient
-   PromotionClient
-   PgSpecificClient
-   PlatformClient
-   AccountClient
-   AccountTransferClient
-   BulkPayoutClient
-   PartnerClient
-   PartnerSettlementClient
-   PayoutClient
-   PolicyClient
-   TransferClient
-   CompanyClient
-   B2BClient
-   BusinessClient
    auth
+   b2b
    common
    errors
    identity_verification
@@ -36,4 +15,24 @@ portone_server_sdk
    pg_specific
    platform
    webhook
-   b2b
+   AuthClient
+   PlatformClient
+   PolicyClient
+   PartnerClient
+   TransferClient
+   PartnerSettlementClient
+   PayoutClient
+   BulkPayoutClient
+   AccountClient
+   CompanyClient
+   AccountTransferClient
+   IdentityVerificationClient
+   PaymentClient
+   BillingKeyClient
+   CashReceiptClient
+   PaymentScheduleClient
+   PromotionClient
+   B2BClient
+   BusinessClient
+   PgSpecificClient
+   PortOneClient
