@@ -19,6 +19,7 @@ import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
+import { isClientPackage } from "../common/package.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const packagePath = path.join(
@@ -456,9 +457,7 @@ function generateRootClient(
     "java.io.Closeable",
     "io.ktor.client.engine.okhttp.OkHttp",
   ])
-  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
-    subpackages.length > 0 || operations.length > 0
-  )
+  const subpackages = pack.subpackages.filter(isClientPackage)
   for (const subpackage of subpackages) {
     crossRef.add(
       `io.portone.sdk.server.${toPackageCase(subpackage.category)}.${
@@ -545,9 +544,7 @@ function generateClient(
   for (const operation of pack.operations) {
     writeOperation(writer, operation, entityMap, categoryMap, crossRef)
   }
-  const subpackages = pack.subpackages.filter(({ subpackages, operations }) =>
-    subpackages.length > 0 || operations.length > 0
-  )
+  const subpackages = pack.subpackages.filter(isClientPackage)
   for (const subpackage of subpackages) {
     writer.writeLine(
       `public val ${subpackage.category}: ${

@@ -12,6 +12,7 @@ import { TypescriptWriter } from "./common.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
+import { isClientPackage } from "../common/package.ts"
 
 /**
  * @returns entrypoints
@@ -177,7 +178,7 @@ function generateClient(
   collected: Client[],
 ): Client | null {
   let client = null
-  const hasClient = pack.subpackages.length > 0 || pack.operations.length > 0
+  const hasClient = isClientPackage(pack)
   if (hasClient) {
     const error = `${toPascalCase(pack.category)}Error`
     const importWriter = TypescriptWriter()
@@ -342,7 +343,7 @@ function generateCategoryIndex(
     ? "RestError"
     : `${toPascalCase(pack.category)}Error`
   if (
-    pack.operations.length > 0 || pack.subpackages.length > 0
+    isClientPackage(pack)
   ) {
     const errorWriter = TypescriptWriter()
     errorWriter.writeLine(
