@@ -1,14 +1,12 @@
 package io.portone.sdk.server.webhook
 
 import io.portone.sdk.server.webhook.WebhookTransactionData
-import kotlin.ConsistentCopyVisibility
 import kotlin.Int
 import kotlin.String
 import kotlinx.serialization.Serializable
 
 /** (결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다. */
 @Serializable
-@ConsistentCopyVisibility
 public data class WebhookTransactionDataConfirm internal constructor(
   /** 고객사에서 채번한 결제 건의 고유 주문 번호입니다. */
   override val paymentId: String,

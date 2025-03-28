@@ -51,6 +51,7 @@ kotlin {
             "-Xjsr305=strict",
             "-opt-in=kotlinx.coroutines.DelicateCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            "-opt-in=kotlinx.serialization.InternalSerializationApi",
             "-Xjvm-default=all-compatibility",
         )
     }
@@ -77,6 +78,16 @@ dependencies {
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation("io.mockk:mockk:1.13.9")
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+        force("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.6.3")
+        force("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3")
+        force("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.3")
+        force("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.3")
+    }
 }
 
 repositories {
@@ -107,6 +118,9 @@ tasks.jar {
 }
 
 tasks.shadowJar {
+    include("**/*.kotlin_module")
+    include("**/*.class")
+    include("**/*.kotlin_metadata")
     relocate("kotlinx.serialization", "kr.rapportlabs.portone.sdk.internal.serialization")
     relocate("kotlinx.coroutines", "kr.rapportlabs.portone.sdk.internal.coroutines")
     relocate("io.ktor", "kr.rapportlabs.portone.sdk.internal.ktor")
@@ -118,14 +132,12 @@ publishing {
         archiveClassifier.set("sources")
         from(sourceSets.main.get().allSource)
     }
-
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
             groupId = "kr.rapportlabs"
             artifactId = "portone-server-sdk"
             version = project.version.toString()
-            // artifact(sourcesJar.get())
         }
 
         create<MavenPublication>("shadow") {
@@ -133,10 +145,12 @@ publishing {
             groupId = "kr.rapportlabs"
             version = project.version.toString()
             artifactId = "portone-server-sdk-all"
+            // artifact(sourcesJar.get())
         }
     }
 
     repositories {
+        mavenLocal()
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/rapportlabs/portone-server-sdk")
