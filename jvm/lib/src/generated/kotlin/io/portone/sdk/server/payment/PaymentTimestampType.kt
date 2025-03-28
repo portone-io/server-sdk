@@ -57,7 +57,6 @@ public sealed interface PaymentTimestampType {
     override fun serialize(encoder: Encoder, value: StatusChangedAt) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
-  @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentTimestampType
 }
 

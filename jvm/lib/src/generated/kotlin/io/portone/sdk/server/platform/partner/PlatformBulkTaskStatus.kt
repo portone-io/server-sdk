@@ -73,7 +73,6 @@ public sealed interface PlatformBulkTaskStatus {
     override fun serialize(encoder: Encoder, value: Canceled) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
-  @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PlatformBulkTaskStatus
 }
 
