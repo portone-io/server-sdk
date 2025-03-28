@@ -1,11 +1,7 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import io.portone.sdk.server.build.GenerateVersionCodeTask
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
-import java.io.ByteArrayOutputStream
-import java.nio.charset.StandardCharsets
 
 plugins {
     `java-library`
@@ -15,7 +11,6 @@ plugins {
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.binary.compatibility.validator)
-    alias(libs.plugins.dokka)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.shadow)
 }
@@ -23,23 +18,12 @@ plugins {
 group = "io.portone"
 description = "JVM library for integrating PortOne payment infrastructure."
 
-version =
-    run {
-        val output = ByteArrayOutputStream()
-        exec {
-            workingDir = rootProject.projectDir
-            executable = "git"
-            args = listOf("describe", "--dirty", "--tags", "--match", "jvm-v*", "--first-parent")
-            standardOutput = output
-        }
-        output.toString(StandardCharsets.UTF_8).trimEnd('\n', '\r').substring("jvm-v".length)
-    }
+version = project.findProperty("version") as String
 
 val generateVersionCode =
     tasks.register<GenerateVersionCodeTask>("generateVersionCode") {
         version = project.version.toString()
         outputDirectory = layout.buildDirectory.dir("generated/sources/versionCode/kotlin/main")
-        outputs.upToDateWhen { false }
     }
 
 sourceSets {
@@ -59,11 +43,11 @@ kotlin {
     jvmToolchain(21)
     explicitApi()
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_1_8
+        jvmTarget = JvmTarget.JVM_21
         progressiveMode = true
         allWarningsAsErrors = true
         freeCompilerArgs.addAll(
-            "-Xjdk-release=1.8",
+            "-Xjdk-release=21",
             "-Xjsr305=strict",
             "-opt-in=kotlinx.coroutines.DelicateCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
@@ -73,8 +57,8 @@ kotlin {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks.compileJava {
@@ -92,6 +76,7 @@ dependencies {
     implementation(libs.ktor.client.okhttp)
 
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation("io.mockk:mockk:1.13.9")
 }
 
 repositories {
@@ -113,118 +98,52 @@ tasks.apiBuild {
 tasks.jar {
     manifest {
         attributes(
-            "Implementation-Title" to "PortOne Server SDK for JVM",
+            "Implementation-Title" to "PortOne Server SDK for Rapportlabs JVM",
             "Implementation-Version" to project.version,
-            "Implementation-Vendor" to "PortOne",
+            "Implementation-Vendor" to "Rapportlabs",
             "Sealed" to "true",
         )
     }
 }
 
-tasks.withType<DokkaTask> {
-    moduleName = "PortOne Server SDK for JVM"
-
-    dokkaSourceSets.configureEach {
-        jdkVersion = 23
-        includes.from("Module.md")
-        suppressGeneratedFiles = false
-    }
-}
-
-tasks.register<Jar>("dokkaHtmlJar") {
-    dependsOn(tasks.dokkaHtml)
-    from(tasks.dokkaHtml.flatMap { it.outputDirectory })
-    archiveClassifier = "html-docs"
-}
-
-mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
-    coordinates(artifactId = "server-sdk")
-
-    pom {
-        name = "PortOne Server SDK for JVM"
-        description = project.description
-        url = "https://github.com/portone-io/server-sdk"
-        inceptionYear = "2024"
-
-        licenses {
-            license {
-                name = "Apache License 2.0"
-                url = "https://apache.org/licenses/LICENSE-2.0"
-                distribution = "repo"
-            }
-            license {
-                name = "MIT License"
-                url = "https://opensource.org/licenses/mit"
-                distribution = "repo"
-            }
-        }
-
-        organization {
-            name = "PortOne"
-            url = "https://portone.io"
-        }
-
-        developers {
-            developer {
-                id = "fina"
-                email = "fina@portone.io"
-                organization = "PortOne"
-                organizationUrl = "https://portone.io"
-            }
-            developer {
-                id = "kai"
-                email = "kai@portone.io"
-                organization = "PortOne"
-                organizationUrl = "https://portone.io"
-            }
-            developer {
-                id = "cosmo"
-                email = "cosmo@portone.io"
-                organization = "PortOne"
-                organizationUrl = "https://portone.io"
-            }
-            developer {
-                id = "kiwiyou"
-                email = "kiwiyou@portone.io"
-                organization = "PortOne"
-                organizationUrl = "https://portone.io"
-            }
-        }
-
-        scm {
-            connection = "scm:git:https://github.com/portone-io/server-sdk.git"
-            developerConnection = "scm:git:https://github.com/portone-io/server-sdk.git"
-            url = "https://github.com/portone-io/server-sdk"
-        }
-
-        issueManagement {
-            system = "GitHub"
-            url = "https://github.com/portone-io/server-sdk/issues"
-        }
-
-        ciManagement {
-            system = "GitHub Actions"
-            url = "https://github.com/portone-io/server-sdk/actions"
-        }
-    }
+tasks.shadowJar {
+    relocate("kotlinx.serialization", "kr.rapportlabs.portone.sdk.internal.serialization")
+    relocate("kotlinx.coroutines", "kr.rapportlabs.portone.sdk.internal.coroutines")
+    relocate("io.ktor", "kr.rapportlabs.portone.sdk.internal.ktor")
+    relocate("kotlin", "kr.rapportlabs.portone.sdk.internal.kotlin")
 }
 
 publishing {
+    val sourcesJar by tasks.registering(Jar::class) {
+        archiveClassifier.set("sources")
+        from(sourceSets.main.get().allSource)
+    }
+
     publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = "kr.rapportlabs"
+            artifactId = "portone-server-sdk"
+            version = project.version.toString()
+            // artifact(sourcesJar.get())
+        }
+
         create<MavenPublication>("shadow") {
             from(components["shadow"])
+            groupId = "kr.rapportlabs"
+            version = project.version.toString()
+            artifactId = "portone-server-sdk-all"
         }
     }
-    afterEvaluate {
-        tasks.named("publishMavenPublicationToMavenCentralRepository").configure {
-            dependsOn("signShadowPublication")
-            dependsOn("signMavenPublication")
-        }
-        tasks.named("publishShadowPublicationToMavenCentralRepository").configure {
-            dependsOn("signShadowPublication")
-            dependsOn("signMavenPublication")
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/rapportlabs/portone-server-sdk")
+            credentials {
+                username = System.getenv("API_MVN_USERNAME")
+                password = System.getenv("API_MVN_TOKEN")
+            }
         }
     }
 }
