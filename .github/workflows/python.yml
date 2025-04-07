@@ -113,7 +113,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync
       - name: Replace version placeholder
-        run: sed -i "s/__USER_AGENT__/$(git describe --dirty --tags --match py-v* --first-parent | cut -c 4-)/" src/portone_server_sdk/_generated/client.py
+        run: sed -i "s/__USER_AGENT__/$(git describe --dirty --tags --match py-v* --first-parent | cut -c 4-)/" src/portone_server_sdk/_user_agent.py
       - name: Build distribution
         run: uv build
       - name: Build distribution
