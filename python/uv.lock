@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.9"
 
 [[package]]
@@ -363,7 +364,7 @@ wheels = [
 
 [[package]]
 name = "portone-server-sdk"
-version = "0.15.0"
+version = "0.15.1"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
