@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.14.1
+
+### Patch Changes
+
+- da25b4f: 의존성 업데이트
+
 ## 0.14.0
 
 ### Minor Changes
