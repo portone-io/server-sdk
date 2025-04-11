@@ -210,21 +210,3 @@ mavenPublishing {
         }
     }
 }
-
-publishing {
-    publications {
-        create<MavenPublication>("shadow") {
-            from(components["shadow"])
-        }
-    }
-    afterEvaluate {
-        tasks.named("publishMavenPublicationToMavenCentralRepository").configure {
-            dependsOn("signShadowPublication")
-            dependsOn("signMavenPublication")
-        }
-        tasks.named("publishShadowPublicationToMavenCentralRepository").configure {
-            dependsOn("signShadowPublication")
-            dependsOn("signMavenPublication")
-        }
-    }
-}
