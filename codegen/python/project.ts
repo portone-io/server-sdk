@@ -2,7 +2,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
-import { entities as webhookEntities } from "../common/webhook.ts"
+import { entities as webhookEntities } from "../common/webhook/index.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
@@ -111,6 +111,7 @@ ${all.toSorted().map((item) => `    "${item}",`).join("\n")}
 .. autosummary::
    :toctree: _toctree
    :recursive:
+
 ${all.map((item) => `   ${item}`).join("\n")}
 `
   Deno.writeTextFileSync(path.join(docsPath, "index.rst"), rst)

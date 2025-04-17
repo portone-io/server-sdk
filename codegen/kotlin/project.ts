@@ -5,7 +5,7 @@ import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import {
   entities as webhookEntities,
   types as webhookTypes,
-} from "../common/webhook.ts"
+} from "../common/webhook/index.ts"
 import type { Definition, Property } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
 import {

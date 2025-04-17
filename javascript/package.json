@@ -170,13 +170,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@changesets/cli": "^2.28.1",
+    "@changesets/cli": "^2.29.0",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.14.1",
     "@vitest/ui": "^3.0.8",
     "jsr": "^0.13.4",
-    "typedoc": "^0.28.1",
-    "typescript": "^5.8.2",
+    "typedoc": "^0.28.2",
+    "typescript": "^5.8.3",
     "unbuild": "^3.5.0",
     "vitest": "^3.0.8"
   },

@@ -1,4 +1,4 @@
-import type { Definition } from "../common/webhook.ts"
+import type { Definition } from "../common/webhook/definition.ts"
 import { TypescriptWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 

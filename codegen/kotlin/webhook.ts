@@ -1,4 +1,4 @@
-import { Definition } from "../common/webhook.ts"
+import { Definition } from "../common/webhook/definition.ts"
 import { filterName, KotlinWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
 
