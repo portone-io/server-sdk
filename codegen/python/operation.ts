@@ -377,7 +377,7 @@ function writePropertyList(
             cause: { property },
           })
         }
-        writer.writeLine(`${name}: dict,`)
+        writer.writeLine(`${name}: ${toOptional("dict")},`)
         break
       case "oneOf":
       case "discriminant":

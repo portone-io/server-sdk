@@ -504,7 +504,7 @@ class BillingKeyClient:
         channel_group_id: Optional[str] = None,
         customer: Optional[CustomerInput] = None,
         custom_data: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
         notice_urls: Optional[list[str]] = None,
     ) -> IssueBillingKeyResponse:
         """빌링키 발급
@@ -616,7 +616,7 @@ class BillingKeyClient:
         channel_group_id: Optional[str] = None,
         customer: Optional[CustomerInput] = None,
         custom_data: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
         notice_urls: Optional[list[str]] = None,
     ) -> IssueBillingKeyResponse:
         """빌링키 발급

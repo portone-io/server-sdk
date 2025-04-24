@@ -1161,7 +1161,7 @@ class PaymentClient:
         product_type: Optional[PaymentProductType] = None,
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
     ) -> PayWithBillingKeyResponse:
         """빌링키 결제
 
@@ -1375,7 +1375,7 @@ class PaymentClient:
         product_type: Optional[PaymentProductType] = None,
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
     ) -> PayWithBillingKeyResponse:
         """빌링키 결제
 

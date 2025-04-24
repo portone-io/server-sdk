@@ -309,7 +309,7 @@ class IdentityVerificationClient:
         channel_key: str,
         customer: SendIdentityVerificationBodyCustomer,
         custom_data: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
         operator: IdentityVerificationOperator,
         method: IdentityVerificationMethod,
     ) -> SendIdentityVerificationResponse:
@@ -426,7 +426,7 @@ class IdentityVerificationClient:
         channel_key: str,
         customer: SendIdentityVerificationBodyCustomer,
         custom_data: Optional[str] = None,
-        bypass: dict,
+        bypass: Optional[dict] = None,
         operator: IdentityVerificationOperator,
         method: IdentityVerificationMethod,
     ) -> SendIdentityVerificationResponse:
