@@ -121,6 +121,11 @@ tasks.jar {
     }
 }
 
+tasks.shadowJar {
+    setEnableRelocation(true)
+    setRelocationPrefix("io.portone.shadow")
+}
+
 tasks.withType<DokkaTask> {
     moduleName = "PortOne Server SDK for JVM"
 
