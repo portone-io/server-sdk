@@ -8,12 +8,11 @@ portone\_server\_sdk.platform.account\_transfer
 
    .. autosummary::
    
-      GetAccountTransfersBody
+      GetAccountTransfersBody1
       GetPlatformAccountTransfersResponse
       PlatformAccountTransferFilter
       PlatformDepositAccountTransfer
-      PlatformPartnerPayoutAccountTransfer
-      PlatformRemitAccountTransfer
+      PlatformWithdrawalAccountTransfer
       AccountTransferClient
    
    .. rubric:: Exceptions

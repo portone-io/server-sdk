@@ -111,6 +111,7 @@
       PlatformProductIdNotFoundError
       PlatformSettlementAmountExceededError
       PlatformSettlementCancelAmountExceededPortOneCancelError
+      PlatformSettlementDateEarlierThanSettlementStartDateError
       PlatformSettlementParameterNotFoundError
       PlatformSettlementPaymentAmountExceededPortOnePaymentError
       PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError

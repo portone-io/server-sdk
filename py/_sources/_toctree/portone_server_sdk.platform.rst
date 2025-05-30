@@ -47,7 +47,6 @@
       PlatformSettlementCycleMethodMonthlyInput
       PlatformSettlementCycleMethodWeekly
       PlatformSettlementCycleMethodWeeklyInput
-      PlatformSettlementRule
       PlatformUserDefinedFormulaResults
       PlatformUserDefinedPropertyValue
       ReschedulePlatformAdditionalFeePolicyBody
@@ -76,8 +75,6 @@
       SchedulePlatformPartnersBodyUpdateTypeWhtPayer
       SchedulePlatformPartnersResponse
       UpdatePlatformAdditionalFeePolicyBody
-      UpdatePlatformBody
-      UpdatePlatformBodySettlementRule
       UpdatePlatformContractBody
       UpdatePlatformDiscountSharePolicyBody
       UpdatePlatformPartnerBody
@@ -87,7 +84,6 @@
       UpdatePlatformPartnerBodyTypeBusiness
       UpdatePlatformPartnerBodyTypeNonWhtPayer
       UpdatePlatformPartnerBodyTypeWhtPayer
-      UpdatePlatformResponse
       UpdatePlatformSettingBody
       UpdatePlatformSettingResponse
       PlatformClient
@@ -117,7 +113,6 @@
       ScheduleDiscountSharePolicyError
       SchedulePartnerError
       SchedulePlatformPartnersError
-      UpdatePlatformError
       UpdatePlatformSettingError
    
 .. rubric:: Modules
@@ -126,12 +121,12 @@
    :toctree:
    :recursive:
 
-   policy
-   partner
-   transfer
-   partner_settlement
-   payout
-   bulk_payout
-   account
    company
    account_transfer
+   policy
+   account
+   bulk_payout
+   partner_settlement
+   partner
+   payout
+   transfer

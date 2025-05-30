@@ -8,6 +8,10 @@ portone\_server\_sdk.platform.company
 
    .. autosummary::
    
+      B2bBusinessInfo
+      B2bBusinessInfoResult
+      GetB2bBusinessInfosBody
+      GetB2bBusinessInfosResponse
       GetPlatformCompanyStatePayload
       PlatformCompanyState
       CompanyClient
@@ -16,5 +20,6 @@ portone\_server\_sdk.platform.company
 
    .. autosummary::
    
+      GetB2bBusinessInfosError
       GetPlatformCompanyStateError
    

@@ -56,8 +56,6 @@
       ~PlatformClient.schedule_partner_async
       ~PlatformClient.schedule_platform_partners
       ~PlatformClient.schedule_platform_partners_async
-      ~PlatformClient.update_platform
-      ~PlatformClient.update_platform_async
       ~PlatformClient.update_platform_setting
       ~PlatformClient.update_platform_setting_async
    
@@ -69,14 +67,14 @@
 
    .. autosummary::
    
-      ~PlatformClient.policy
-      ~PlatformClient.partner
-      ~PlatformClient.transfer
-      ~PlatformClient.partner_settlement
-      ~PlatformClient.payout
-      ~PlatformClient.bulk_payout
-      ~PlatformClient.account
       ~PlatformClient.company
       ~PlatformClient.account_transfer
+      ~PlatformClient.policy
+      ~PlatformClient.account
+      ~PlatformClient.bulk_payout
+      ~PlatformClient.partner_settlement
+      ~PlatformClient.partner
+      ~PlatformClient.payout
+      ~PlatformClient.transfer
    
    

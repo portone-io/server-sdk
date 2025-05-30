@@ -23,11 +23,10 @@
 
    .. autosummary::
    
-      ~PortOneClient.auth
       ~PortOneClient.platform
-      ~PortOneClient.identity_verification
       ~PortOneClient.payment
-      ~PortOneClient.b2b
+      ~PortOneClient.identity_verification
       ~PortOneClient.pg_specific
+      ~PortOneClient.auth
    
    

@@ -8,7 +8,6 @@ portone_server_sdk
    :recursive:
 
    auth
-   b2b
    common
    errors
    identity_verification
@@ -16,24 +15,22 @@ portone_server_sdk
    pg_specific
    platform
    webhook
-   AuthClient
    PlatformClient
-   PolicyClient
-   PartnerClient
-   TransferClient
-   PartnerSettlementClient
-   PayoutClient
-   BulkPayoutClient
-   AccountClient
    CompanyClient
    AccountTransferClient
-   IdentityVerificationClient
+   PolicyClient
+   AccountClient
+   BulkPayoutClient
+   PartnerSettlementClient
+   PartnerClient
+   PayoutClient
+   TransferClient
    PaymentClient
    BillingKeyClient
    CashReceiptClient
    PaymentScheduleClient
    PromotionClient
-   B2BClient
-   BusinessClient
+   IdentityVerificationClient
    PgSpecificClient
+   AuthClient
    PortOneClient
