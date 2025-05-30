@@ -66,870 +66,6 @@ class PolicyClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
-    def get_platform_discount_share_policies(
-        self,
-        *,
-        page: Optional[PageInput] = None,
-        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
-    ) -> GetPlatformDiscountSharePoliciesResponse:
-        """할인 분담 정책 다건 조회
-
-        여러 할인 분담을 조회합니다.
-
-        Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-            filter (PlatformDiscountSharePolicyFilterInput, optional):
-                조회할 할인 분담 정책 조건 필터
-
-
-        Raises:
-            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
-        query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/platform/discount-share-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_platform_discount_share_policies_response(response.json())
-    async def get_platform_discount_share_policies_async(
-        self,
-        *,
-        page: Optional[PageInput] = None,
-        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
-    ) -> GetPlatformDiscountSharePoliciesResponse:
-        """할인 분담 정책 다건 조회
-
-        여러 할인 분담을 조회합니다.
-
-        Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-            filter (PlatformDiscountSharePolicyFilterInput, optional):
-                조회할 할인 분담 정책 조건 필터
-
-
-        Raises:
-            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
-        query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/platform/discount-share-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_platform_discount_share_policies_response(response.json())
-    def create_platform_discount_share_policy(
-        self,
-        *,
-        id: Optional[str] = None,
-        name: str,
-        partner_share_rate: int,
-        memo: Optional[str] = None,
-    ) -> CreatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 생성
-
-        새로운 할인 분담을 생성합니다.
-
-        Args:
-            id (str, optional):
-                할인 분담에 부여할 고유 아이디
-
-                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-            name (str):
-                할인 분담에 부여할 이름
-            partner_share_rate (int):
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-            memo (str, optional):
-                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
-
-
-        Raises:
-            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if id is not None:
-            request_body["id"] = id
-        request_body["name"] = name
-        request_body["partnerShareRate"] = partner_share_rate
-        if memo is not None:
-            request_body["memo"] = memo
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_create_platform_discount_share_policy_response(response.json())
-    async def create_platform_discount_share_policy_async(
-        self,
-        *,
-        id: Optional[str] = None,
-        name: str,
-        partner_share_rate: int,
-        memo: Optional[str] = None,
-    ) -> CreatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 생성
-
-        새로운 할인 분담을 생성합니다.
-
-        Args:
-            id (str, optional):
-                할인 분담에 부여할 고유 아이디
-
-                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-            name (str):
-                할인 분담에 부여할 이름
-            partner_share_rate (int):
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-            memo (str, optional):
-                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
-
-
-        Raises:
-            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if id is not None:
-            request_body["id"] = id
-        request_body["name"] = name
-        request_body["partnerShareRate"] = partner_share_rate
-        if memo is not None:
-            request_body["memo"] = memo
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_create_platform_discount_share_policy_response(response.json())
-    def get_platform_discount_share_policy(
-        self,
-        *,
-        id: str,
-    ) -> PlatformDiscountSharePolicy:
-        """할인 분담 정책 조회
-
-        주어진 아이디에 대응되는 할인 분담을 조회합니다.
-
-        Args:
-            id (str):
-                조회할 할인 분담 정책 아이디
-
-
-        Raises:
-            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform_discount_share_policy(response.json())
-    async def get_platform_discount_share_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> PlatformDiscountSharePolicy:
-        """할인 분담 정책 조회
-
-        주어진 아이디에 대응되는 할인 분담을 조회합니다.
-
-        Args:
-            id (str):
-                조회할 할인 분담 정책 아이디
-
-
-        Raises:
-            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform_discount_share_policy(response.json())
-    def update_platform_discount_share_policy(
-        self,
-        *,
-        id: str,
-        name: Optional[str] = None,
-        partner_share_rate: Optional[int] = None,
-        memo: Optional[str] = None,
-    ) -> UpdatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 수정
-
-        주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
-
-        Args:
-            id (str):
-                업데이트할 할인 분담 정책 아이디
-            name (str, optional):
-                할인 분담 정책 이름
-            partner_share_rate (int, optional):
-                할인 분담율
-
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-                (int32)
-            memo (str, optional):
-                해당 할인 분담에 대한 메모
-
-
-        Raises:
-            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if name is not None:
-            request_body["name"] = name
-        if partner_share_rate is not None:
-            request_body["partnerShareRate"] = partner_share_rate
-        if memo is not None:
-            request_body["memo"] = memo
-        query = []
-        response = httpx.request(
-            "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_update_platform_discount_share_policy_response(response.json())
-    async def update_platform_discount_share_policy_async(
-        self,
-        *,
-        id: str,
-        name: Optional[str] = None,
-        partner_share_rate: Optional[int] = None,
-        memo: Optional[str] = None,
-    ) -> UpdatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 수정
-
-        주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
-
-        Args:
-            id (str):
-                업데이트할 할인 분담 정책 아이디
-            name (str, optional):
-                할인 분담 정책 이름
-            partner_share_rate (int, optional):
-                할인 분담율
-
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-                (int32)
-            memo (str, optional):
-                해당 할인 분담에 대한 메모
-
-
-        Raises:
-            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if name is not None:
-            request_body["name"] = name
-        if partner_share_rate is not None:
-            request_body["partnerShareRate"] = partner_share_rate
-        if memo is not None:
-            request_body["memo"] = memo
-        query = []
-        response = await self._client.request(
-            "PATCH",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_update_platform_discount_share_policy_response(response.json())
-    def archive_platform_discount_share_policy(
-        self,
-        *,
-        id: str,
-    ) -> ArchivePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 보관
-
-        주어진 아이디에 대응되는 할인 분담을 보관합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_discount_share_policy_response(response.json())
-    async def archive_platform_discount_share_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> ArchivePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 보관
-
-        주어진 아이디에 대응되는 할인 분담을 보관합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_discount_share_policy_response(response.json())
-    def recover_platform_discount_share_policy(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 복원
-
-        주어진 아이디에 대응되는 할인 분담을 복원합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_discount_share_policy_response(response.json())
-    async def recover_platform_discount_share_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 복원
-
-        주어진 아이디에 대응되는 할인 분담을 복원합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_discount_share_policy_response(response.json())
     def get_platform_additional_fee_policies(
         self,
         *,
@@ -2718,3 +1854,867 @@ class PolicyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_recover_platform_contract_response(response.json())
+    def get_platform_discount_share_policies(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
+    ) -> GetPlatformDiscountSharePoliciesResponse:
+        """할인 분담 정책 다건 조회
+
+        여러 할인 분담을 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+            filter (PlatformDiscountSharePolicyFilterInput, optional):
+                조회할 할인 분담 정책 조건 필터
+
+
+        Raises:
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_platform_discount_share_policies_response(response.json())
+    async def get_platform_discount_share_policies_async(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
+    ) -> GetPlatformDiscountSharePoliciesResponse:
+        """할인 분담 정책 다건 조회
+
+        여러 할인 분담을 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+            filter (PlatformDiscountSharePolicyFilterInput, optional):
+                조회할 할인 분담 정책 조건 필터
+
+
+        Raises:
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_platform_discount_share_policies_response(response.json())
+    def create_platform_discount_share_policy(
+        self,
+        *,
+        id: Optional[str] = None,
+        name: str,
+        partner_share_rate: int,
+        memo: Optional[str] = None,
+    ) -> CreatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 생성
+
+        새로운 할인 분담을 생성합니다.
+
+        Args:
+            id (str, optional):
+                할인 분담에 부여할 고유 아이디
+
+                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+            name (str):
+                할인 분담에 부여할 이름
+            partner_share_rate (int):
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+            memo (str, optional):
+                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+
+
+        Raises:
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if id is not None:
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_create_platform_discount_share_policy_response(response.json())
+    async def create_platform_discount_share_policy_async(
+        self,
+        *,
+        id: Optional[str] = None,
+        name: str,
+        partner_share_rate: int,
+        memo: Optional[str] = None,
+    ) -> CreatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 생성
+
+        새로운 할인 분담을 생성합니다.
+
+        Args:
+            id (str, optional):
+                할인 분담에 부여할 고유 아이디
+
+                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+            name (str):
+                할인 분담에 부여할 이름
+            partner_share_rate (int):
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+            memo (str, optional):
+                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+
+
+        Raises:
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if id is not None:
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_create_platform_discount_share_policy_response(response.json())
+    def get_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+    ) -> PlatformDiscountSharePolicy:
+        """할인 분담 정책 조회
+
+        주어진 아이디에 대응되는 할인 분담을 조회합니다.
+
+        Args:
+            id (str):
+                조회할 할인 분담 정책 아이디
+
+
+        Raises:
+            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_discount_share_policy(response.json())
+    async def get_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+    ) -> PlatformDiscountSharePolicy:
+        """할인 분담 정책 조회
+
+        주어진 아이디에 대응되는 할인 분담을 조회합니다.
+
+        Args:
+            id (str):
+                조회할 할인 분담 정책 아이디
+
+
+        Raises:
+            GetPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_discount_share_policy(response.json())
+    def update_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+        name: Optional[str] = None,
+        partner_share_rate: Optional[int] = None,
+        memo: Optional[str] = None,
+    ) -> UpdatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 수정
+
+        주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
+
+        Args:
+            id (str):
+                업데이트할 할인 분담 정책 아이디
+            name (str, optional):
+                할인 분담 정책 이름
+            partner_share_rate (int, optional):
+                할인 분담율
+
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+                (int32)
+            memo (str, optional):
+                해당 할인 분담에 대한 메모
+
+
+        Raises:
+            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if name is not None:
+            request_body["name"] = name
+        if partner_share_rate is not None:
+            request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
+        query = []
+        response = httpx.request(
+            "PATCH",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_update_platform_discount_share_policy_response(response.json())
+    async def update_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+        name: Optional[str] = None,
+        partner_share_rate: Optional[int] = None,
+        memo: Optional[str] = None,
+    ) -> UpdatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 수정
+
+        주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
+
+        Args:
+            id (str):
+                업데이트할 할인 분담 정책 아이디
+            name (str, optional):
+                할인 분담 정책 이름
+            partner_share_rate (int, optional):
+                할인 분담율
+
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+                (int32)
+            memo (str, optional):
+                해당 할인 분담에 대한 메모
+
+
+        Raises:
+            UpdatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if name is not None:
+            request_body["name"] = name
+        if partner_share_rate is not None:
+            request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
+        query = []
+        response = await self._client.request(
+            "PATCH",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_update_platform_discount_share_policy_response(response.json())
+    def archive_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+    ) -> ArchivePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 보관
+
+        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+
+
+        Raises:
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_discount_share_policy_response(response.json())
+    async def archive_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+    ) -> ArchivePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 보관
+
+        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+
+
+        Raises:
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_discount_share_policy_response(response.json())
+    def recover_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+    ) -> RecoverPlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 복원
+
+        주어진 아이디에 대응되는 할인 분담을 복원합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+
+
+        Raises:
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_discount_share_policy_response(response.json())
+    async def recover_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+    ) -> RecoverPlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 복원
+
+        주어진 아이디에 대응되는 할인 분담을 복원합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+
+
+        Raises:
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_discount_share_policy_response(response.json())

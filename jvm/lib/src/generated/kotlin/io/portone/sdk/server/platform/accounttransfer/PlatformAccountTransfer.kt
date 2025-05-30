@@ -28,13 +28,16 @@ public sealed interface PlatformAccountTransfer {
     public val currency: Currency
     /** 금액 */
     public val amount: Long
-    /** 입금 계좌 적요 */
+    /** 받는 이 통장 메모 */
     public val depositMemo: String?
-    public val isForTest: Boolean
-    /** 생성 일자 */
+    /** 이체 일시 */
+    public val tradedAt: Instant?
+    /** 생성 일시 */
     public val createdAt: Instant
-    /** 수정 일자 */
+    /** 수정 일시 */
     public val updatedAt: Instant
+    /** 테스트 모드 여부 */
+    public val isForTest: Boolean
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable
@@ -45,8 +48,7 @@ public sealed interface PlatformAccountTransfer {
 private object PlatformAccountTransferSerializer : JsonContentPolymorphicSerializer<PlatformAccountTransfer>(PlatformAccountTransfer::class) {
   override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
     "DEPOSIT" -> PlatformDepositAccountTransfer.serializer()
-    "PARTNER_PAYOUT" -> PlatformPartnerPayoutAccountTransfer.serializer()
-    "REMIT" -> PlatformRemitAccountTransfer.serializer()
+    "WITHDRAWAL" -> PlatformWithdrawalAccountTransfer.serializer()
     else -> PlatformAccountTransfer.Unrecognized.serializer()
   }
 }

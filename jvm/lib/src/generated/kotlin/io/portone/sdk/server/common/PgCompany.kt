@@ -463,6 +463,21 @@ public sealed interface PgCompany {
     }
     override fun serialize(encoder: Encoder, value: Hyphen) = encoder.encodeString(value.value)
   }
+  @Serializable(PayletterSerializer::class)
+  public data object Payletter : PgCompany {
+    override val value: String = "PAYLETTER"
+  }
+  private object PayletterSerializer : KSerializer<Payletter> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Payletter::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Payletter = decoder.decodeString().let {
+      if (it != "PAYLETTER") {
+        throw SerializationException(it)
+      } else {
+        return Payletter
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Payletter) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgCompany
@@ -504,6 +519,7 @@ private object PgCompanySerializer : KSerializer<PgCompany> {
       "JTNET" -> PgCompany.Jtnet
       "KPN" -> PgCompany.Kpn
       "HYPHEN" -> PgCompany.Hyphen
+      "PAYLETTER" -> PgCompany.Payletter
       else -> PgCompany.Unrecognized(value)
     }
   }

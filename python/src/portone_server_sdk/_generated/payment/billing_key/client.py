@@ -44,316 +44,6 @@ class BillingKeyClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
-    def get_billing_key_info(
-        self,
-        *,
-        billing_key: str,
-    ) -> BillingKeyInfo:
-        """빌링키 단건 조회
-
-        주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
-
-        Args:
-            billing_key (str):
-                조회할 빌링키
-
-
-        Raises:
-            GetBillingKeyInfoError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_billing_key_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_billing_key_info(response.json())
-    async def get_billing_key_info_async(
-        self,
-        *,
-        billing_key: str,
-    ) -> BillingKeyInfo:
-        """빌링키 단건 조회
-
-        주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
-
-        Args:
-            billing_key (str):
-                조회할 빌링키
-
-
-        Raises:
-            GetBillingKeyInfoError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_billing_key_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_billing_key_info(response.json())
-    def delete_billing_key(
-        self,
-        *,
-        billing_key: str,
-        reason: Optional[str] = None,
-    ) -> DeleteBillingKeyResponse:
-        """빌링키 삭제
-
-        빌링키를 삭제합니다.
-
-        Args:
-            billing_key (str):
-                삭제할 빌링키
-            reason (str, optional):
-                사유
-
-                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
-
-
-        Raises:
-            DeleteBillingKeyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        if reason is not None:
-            query.append(("reason", reason))
-        response = httpx.request(
-            "DELETE",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_billing_key_already_deleted_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyAlreadyDeletedError(error)
-            try:
-                error = _deserialize_billing_key_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotFoundError(error)
-            try:
-                error = _deserialize_billing_key_not_issued_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotIssuedError(error)
-            try:
-                error = _deserialize_channel_specific_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ChannelSpecificError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_payment_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PaymentScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_pg_provider_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PgProviderError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_delete_billing_key_response(response.json())
-    async def delete_billing_key_async(
-        self,
-        *,
-        billing_key: str,
-        reason: Optional[str] = None,
-    ) -> DeleteBillingKeyResponse:
-        """빌링키 삭제
-
-        빌링키를 삭제합니다.
-
-        Args:
-            billing_key (str):
-                삭제할 빌링키
-            reason (str, optional):
-                사유
-
-                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
-
-
-        Raises:
-            DeleteBillingKeyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        if reason is not None:
-            query.append(("reason", reason))
-        response = await self._client.request(
-            "DELETE",
-            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_billing_key_already_deleted_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyAlreadyDeletedError(error)
-            try:
-                error = _deserialize_billing_key_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotFoundError(error)
-            try:
-                error = _deserialize_billing_key_not_issued_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise BillingKeyNotIssuedError(error)
-            try:
-                error = _deserialize_channel_specific_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ChannelSpecificError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_payment_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PaymentScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_pg_provider_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PgProviderError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_delete_billing_key_response(response.json())
     def get_billing_key_infos(
         self,
         *,
@@ -720,3 +410,313 @@ class BillingKeyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_issue_billing_key_response(response.json())
+    def get_billing_key_info(
+        self,
+        *,
+        billing_key: str,
+    ) -> BillingKeyInfo:
+        """빌링키 단건 조회
+
+        주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
+
+        Args:
+            billing_key (str):
+                조회할 빌링키
+
+
+        Raises:
+            GetBillingKeyInfoError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_billing_key_info(response.json())
+    async def get_billing_key_info_async(
+        self,
+        *,
+        billing_key: str,
+    ) -> BillingKeyInfo:
+        """빌링키 단건 조회
+
+        주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
+
+        Args:
+            billing_key (str):
+                조회할 빌링키
+
+
+        Raises:
+            GetBillingKeyInfoError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_billing_key_info(response.json())
+    def delete_billing_key(
+        self,
+        *,
+        billing_key: str,
+        reason: Optional[str] = None,
+    ) -> DeleteBillingKeyResponse:
+        """빌링키 삭제
+
+        빌링키를 삭제합니다.
+
+        Args:
+            billing_key (str):
+                삭제할 빌링키
+            reason (str, optional):
+                사유
+
+                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+
+
+        Raises:
+            DeleteBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        if reason is not None:
+            query.append(("reason", reason))
+        response = httpx.request(
+            "DELETE",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_deleted_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyDeletedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_billing_key_not_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotIssuedError(error)
+            try:
+                error = _deserialize_channel_specific_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ChannelSpecificError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_delete_billing_key_response(response.json())
+    async def delete_billing_key_async(
+        self,
+        *,
+        billing_key: str,
+        reason: Optional[str] = None,
+    ) -> DeleteBillingKeyResponse:
+        """빌링키 삭제
+
+        빌링키를 삭제합니다.
+
+        Args:
+            billing_key (str):
+                삭제할 빌링키
+            reason (str, optional):
+                사유
+
+                네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+
+
+        Raises:
+            DeleteBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        if reason is not None:
+            query.append(("reason", reason))
+        response = await self._client.request(
+            "DELETE",
+            f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_deleted_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyDeletedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_billing_key_not_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotIssuedError(error)
+            try:
+                error = _deserialize_channel_specific_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ChannelSpecificError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_delete_billing_key_response(response.json())

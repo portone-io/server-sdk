@@ -1,24 +1,22 @@
 from __future__ import annotations
 from typing import Optional
 from httpx import AsyncClient
-from .auth.client import AuthClient
 from .platform.client import PlatformClient
-from .identity_verification.client import IdentityVerificationClient
 from .payment.client import PaymentClient
-from .b2b.client import B2BClient
+from .identity_verification.client import IdentityVerificationClient
 from .pg_specific.client import PgSpecificClient
+from .auth.client import AuthClient
 
 class PortOneClient:
     _secret: str
     _store_id: Optional[str]
     _base_url: str
     _client: AsyncClient
-    auth: AuthClient
     platform: PlatformClient
-    identity_verification: IdentityVerificationClient
     payment: PaymentClient
-    b2b: B2BClient
+    identity_verification: IdentityVerificationClient
     pg_specific: PgSpecificClient
+    auth: AuthClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None) -> None:
         """
@@ -33,9 +31,8 @@ class PortOneClient:
         self._store_id = store_id
         self._client = AsyncClient()
 
-        self.auth = AuthClient(secret=secret, base_url=base_url, store_id=store_id)
         self.platform = PlatformClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.identity_verification = IdentityVerificationClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment = PaymentClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.b2b = B2BClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.identity_verification = IdentityVerificationClient(secret=secret, base_url=base_url, store_id=store_id)
         self.pg_specific = PgSpecificClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.auth = AuthClient(secret=secret, base_url=base_url, store_id=store_id)

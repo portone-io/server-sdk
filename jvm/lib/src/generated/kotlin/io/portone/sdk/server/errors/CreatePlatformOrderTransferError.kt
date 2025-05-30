@@ -38,6 +38,7 @@ private object CreatePlatformOrderTransferErrorSerializer : JsonContentPolymorph
     "PLATFORM_PAYMENT_NOT_FOUND" -> PlatformPaymentNotFoundError.serializer()
     "PLATFORM_PRODUCT_ID_DUPLICATED" -> PlatformProductIdDuplicatedError.serializer()
     "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED" -> PlatformSettlementAmountExceededError.serializer()
+    "PLATFORM_SETTLEMENT_DATE_EARLIER_THAN_SETTLEMENT_START_DATE" -> PlatformSettlementDateEarlierThanSettlementStartDateError.serializer()
     "PLATFORM_SETTLEMENT_PARAMETER_NOT_FOUND" -> PlatformSettlementParameterNotFoundError.serializer()
     "PLATFORM_SETTLEMENT_PAYMENT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT" -> PlatformSettlementPaymentAmountExceededPortOnePaymentError.serializer()
     "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT" -> PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError.serializer()

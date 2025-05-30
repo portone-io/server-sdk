@@ -4,6 +4,7 @@ import io.portone.sdk.server.common.CashReceiptInput
 import io.portone.sdk.server.common.Country
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.CustomerInput
+import io.portone.sdk.server.common.Locale
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PaymentProductType
@@ -72,6 +73,12 @@ public data class BillingKeyPaymentInput(
   val shippingAddress: SeparatedAddressInput? = null,
   /** 해당 결제에 적용할 프로모션 아이디 */
   val promotionId: String? = null,
+  /**
+   * 결제 시 사용할 언어
+   *
+   * 엑심베이의 경우 필수 입력입니다.
+   */
+  val locale: Locale? = null,
   val bypass: JsonObject? = null,
 )
 

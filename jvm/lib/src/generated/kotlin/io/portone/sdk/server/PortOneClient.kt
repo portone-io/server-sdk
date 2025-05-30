@@ -3,7 +3,6 @@ package io.portone.sdk.server
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.portone.sdk.server.auth.AuthClient
-import io.portone.sdk.server.b2b.B2BClient
 import io.portone.sdk.server.identityverification.IdentityVerificationClient
 import io.portone.sdk.server.payment.PaymentClient
 import io.portone.sdk.server.pgspecific.PgSpecificClient
@@ -28,19 +27,17 @@ public class PortOneClient(
 
   private val json: Json = Json { ignoreUnknownKeys = true }
 
-  public val auth: AuthClient = AuthClient(apiSecret, apiBase, storeId)
   public val platform: PlatformClient = PlatformClient(apiSecret, apiBase, storeId)
-  public val identityVerification: IdentityVerificationClient = IdentityVerificationClient(apiSecret, apiBase, storeId)
   public val payment: PaymentClient = PaymentClient(apiSecret, apiBase, storeId)
-  public val b2b: B2BClient = B2BClient(apiSecret, apiBase, storeId)
+  public val identityVerification: IdentityVerificationClient = IdentityVerificationClient(apiSecret, apiBase, storeId)
   public val pgSpecific: PgSpecificClient = PgSpecificClient(apiSecret, apiBase, storeId)
+  public val auth: AuthClient = AuthClient(apiSecret, apiBase, storeId)
   override fun close() {
-    auth.close()
     platform.close()
-    identityVerification.close()
     payment.close()
-    b2b.close()
+    identityVerification.close()
     pgSpecific.close()
+    auth.close()
     client.close()
   }
 }

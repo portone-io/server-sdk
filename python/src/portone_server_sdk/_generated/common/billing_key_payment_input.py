@@ -6,6 +6,7 @@ from ..common.cash_receipt_input import CashReceiptInput, _deserialize_cash_rece
 from ..common.country import Country, _deserialize_country, _serialize_country
 from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 from ..common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
+from ..common.locale import Locale, _deserialize_locale, _serialize_locale
 from ..common.payment_amount_input import PaymentAmountInput, _deserialize_payment_amount_input, _serialize_payment_amount_input
 from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from ..common.payment_product_type import PaymentProductType, _deserialize_payment_product_type, _serialize_payment_product_type
@@ -84,6 +85,11 @@ class BillingKeyPaymentInput:
     promotion_id: Optional[str] = field(default=None)
     """해당 결제에 적용할 프로모션 아이디
     """
+    locale: Optional[Locale] = field(default=None)
+    """결제 시 사용할 언어
+
+    엑심베이의 경우 필수 입력입니다.
+    """
     bypass: Optional[dict] = field(default=None)
     """PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
     """
@@ -127,6 +133,8 @@ def _serialize_billing_key_payment_input(obj: BillingKeyPaymentInput) -> Any:
         entity["shippingAddress"] = _serialize_separated_address_input(obj.shipping_address)
     if obj.promotion_id is not None:
         entity["promotionId"] = obj.promotion_id
+    if obj.locale is not None:
+        entity["locale"] = _serialize_locale(obj.locale)
     if obj.bypass is not None:
         entity["bypass"] = obj.bypass
     return entity
@@ -244,10 +252,15 @@ def _deserialize_billing_key_payment_input(obj: Any) -> BillingKeyPaymentInput:
             raise ValueError(f"{repr(promotion_id)} is not str")
     else:
         promotion_id = None
+    if "locale" in obj:
+        locale = obj["locale"]
+        locale = _deserialize_locale(locale)
+    else:
+        locale = None
     if "bypass" in obj:
         bypass = obj["bypass"]
         if not isinstance(bypass, dict):
             raise ValueError(f"{repr(bypass)} is not dict")
     else:
         bypass = None
-    return BillingKeyPaymentInput(billing_key, order_name, amount, currency, store_id, channel_key, customer, custom_data, installment_month, use_free_interest_from_merchant, use_card_point, cash_receipt, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, bypass)
+    return BillingKeyPaymentInput(billing_key, order_name, amount, currency, store_id, channel_key, customer, custom_data, installment_month, use_free_interest_from_merchant, use_card_point, cash_receipt, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, locale, bypass)

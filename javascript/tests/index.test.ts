@@ -27,10 +27,14 @@ beforeAll(async () => {
 });
 
 describe.concurrent("can be imported", () => {
-	test("import", async () => {
-		const sdk = await import(`../temp/${uuid}/package`);
-		expect(sdk).toMatchObject({});
-	});
+	test(
+		"import",
+		async () => {
+			const sdk = await import(`../temp/${uuid}/package`);
+			expect(sdk).toMatchObject({});
+		},
+		{ timeout: 10000 },
+	);
 	test("require", async () => {
 		const require = createRequire(import.meta.url);
 		const sdk = require(`../temp/${uuid}/package`);

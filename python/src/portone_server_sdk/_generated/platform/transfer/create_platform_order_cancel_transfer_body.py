@@ -48,6 +48,12 @@ class CreatePlatformOrderCancelTransferBody:
     날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
     (yyyy-MM-dd)
     """
+    settlement_date: Optional[str] = field(default=None)
+    """정산일
+
+    날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
+    """
     external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail] = field(default=None)
     """외부 결제 상세 정보
 
@@ -83,6 +89,8 @@ def _serialize_create_platform_order_cancel_transfer_body(obj: CreatePlatformOrd
         entity["taxFreeAmount"] = obj.tax_free_amount
     if obj.settlement_start_date is not None:
         entity["settlementStartDate"] = obj.settlement_start_date
+    if obj.settlement_date is not None:
+        entity["settlementDate"] = obj.settlement_date
     if obj.external_cancellation_detail is not None:
         entity["externalCancellationDetail"] = _serialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(obj.external_cancellation_detail)
     if obj.is_for_test is not None:
@@ -149,6 +157,12 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
             raise ValueError(f"{repr(settlement_start_date)} is not str")
     else:
         settlement_start_date = None
+    if "settlementDate" in obj:
+        settlement_date = obj["settlementDate"]
+        if not isinstance(settlement_date, str):
+            raise ValueError(f"{repr(settlement_date)} is not str")
+    else:
+        settlement_date = None
     if "externalCancellationDetail" in obj:
         external_cancellation_detail = obj["externalCancellationDetail"]
         external_cancellation_detail = _deserialize_create_platform_order_cancel_transfer_body_external_cancellation_detail(external_cancellation_detail)
@@ -169,4 +183,4 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformOrderCancelTransferBody(cancellation_id, discounts, partner_id, payment_id, transfer_id, memo, order_detail, tax_free_amount, settlement_start_date, external_cancellation_detail, is_for_test, user_defined_properties)
+    return CreatePlatformOrderCancelTransferBody(cancellation_id, discounts, partner_id, payment_id, transfer_id, memo, order_detail, tax_free_amount, settlement_start_date, settlement_date, external_cancellation_detail, is_for_test, user_defined_properties)

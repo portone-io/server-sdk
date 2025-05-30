@@ -49,178 +49,6 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
-		getPlatformDiscountSharePolicies: async (
-			options?: {
-				page?: PageInput,
-				filter?: PlatformDiscountSharePolicyFilterInput,
-			}
-		): Promise<GetPlatformDiscountSharePoliciesResponse> => {
-			const page = options?.page
-			const filter = options?.filter
-			const requestBody = JSON.stringify({
-				page,
-				filter,
-			})
-			const query = [
-				["requestBody", requestBody],
-			]
-				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
-				.join("&")
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies?${query}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformDiscountSharePoliciesError(await response.json())
-			}
-			return response.json()
-		},
-		createPlatformDiscountSharePolicy: async (
-			options: {
-				id?: string,
-				name: string,
-				partnerShareRate: number,
-				memo?: string,
-			}
-		): Promise<CreatePlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-				name,
-				partnerShareRate,
-				memo,
-			} = options
-			const requestBody = JSON.stringify({
-				id,
-				name,
-				partnerShareRate,
-				memo,
-			})
-			const response = await fetch(
-				new URL("/platform/discount-share-policies", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new CreatePlatformDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		getPlatformDiscountSharePolicy: async (
-			options: {
-				id: string,
-			}
-		): Promise<PlatformDiscountSharePolicy> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		updatePlatformDiscountSharePolicy: async (
-			options: {
-				id: string,
-				name?: string,
-				partnerShareRate?: number,
-				memo?: string,
-			}
-		): Promise<UpdatePlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-				name,
-				partnerShareRate,
-				memo,
-			} = options
-			const requestBody = JSON.stringify({
-				name,
-				partnerShareRate,
-				memo,
-			})
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "PATCH",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new UpdatePlatformDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		archivePlatformDiscountSharePolicy: async (
-			options: {
-				id: string,
-			}
-		): Promise<ArchivePlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new ArchivePlatformDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		recoverPlatformDiscountSharePolicy: async (
-			options: {
-				id: string,
-			}
-		): Promise<RecoverPlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new RecoverPlatformDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
 		getPlatformAdditionalFeePolicies: async (
 			options?: {
 				page?: PageInput,
@@ -589,113 +417,181 @@ export function PolicyClient(init: PortOneClientInit): PolicyClient {
 			}
 			return response.json()
 		},
+		getPlatformDiscountSharePolicies: async (
+			options?: {
+				page?: PageInput,
+				filter?: PlatformDiscountSharePolicyFilterInput,
+			}
+		): Promise<GetPlatformDiscountSharePoliciesResponse> => {
+			const page = options?.page
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				page,
+				filter,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformDiscountSharePoliciesError(await response.json())
+			}
+			return response.json()
+		},
+		createPlatformDiscountSharePolicy: async (
+			options: {
+				id?: string,
+				name: string,
+				partnerShareRate: number,
+				memo?: string,
+			}
+		): Promise<CreatePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			} = options
+			const requestBody = JSON.stringify({
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			})
+			const response = await fetch(
+				new URL("/platform/discount-share-policies", baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new CreatePlatformDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicy: async (
+			options: {
+				id: string,
+			}
+		): Promise<PlatformDiscountSharePolicy> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		updatePlatformDiscountSharePolicy: async (
+			options: {
+				id: string,
+				name?: string,
+				partnerShareRate?: number,
+				memo?: string,
+			}
+		): Promise<UpdatePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				name,
+				partnerShareRate,
+				memo,
+			} = options
+			const requestBody = JSON.stringify({
+				name,
+				partnerShareRate,
+				memo,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}`, baseUrl),
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new UpdatePlatformDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		archivePlatformDiscountSharePolicy: async (
+			options: {
+				id: string,
+			}
+		): Promise<ArchivePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/archive`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new ArchivePlatformDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		recoverPlatformDiscountSharePolicy: async (
+			options: {
+				id: string,
+			}
+		): Promise<RecoverPlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/recover`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new RecoverPlatformDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
 	}
 }
 export type PolicyClient = {
-	/**
-	 * 할인 분담 정책 다건 조회
-	 *
-	 * 여러 할인 분담을 조회합니다.
-	 *
-	 * @throws {@link GetPlatformDiscountSharePoliciesError}
-	 */
-	getPlatformDiscountSharePolicies: (
-		options?: {
-			/** 요청할 페이지 정보 */
-			page?: PageInput,
-			/** 조회할 할인 분담 정책 조건 필터 */
-			filter?: PlatformDiscountSharePolicyFilterInput,
-		}
-	) => Promise<GetPlatformDiscountSharePoliciesResponse>
-	/**
-	 * 할인 분담 정책 생성
-	 *
-	 * 새로운 할인 분담을 생성합니다.
-	 *
-	 * @throws {@link CreatePlatformDiscountSharePolicyError}
-	 */
-	createPlatformDiscountSharePolicy: (
-		options: {
-			/**
-			 * 할인 분담에 부여할 고유 아이디
-			 *
-			 * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-			 */
-			id?: string,
-			/** 할인 분담에 부여할 이름 */
-			name: string,
-			/**
-			 * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-			 * (int32)
-			 */
-			partnerShareRate: number,
-			/** 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰 */
-			memo?: string,
-		}
-	) => Promise<CreatePlatformDiscountSharePolicyResponse>
-	/**
-	 * 할인 분담 정책 조회
-	 *
-	 * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
-	 *
-	 * @throws {@link GetPlatformDiscountSharePolicyError}
-	 */
-	getPlatformDiscountSharePolicy: (
-		options: {
-			/** 조회할 할인 분담 정책 아이디 */
-			id: string,
-		}
-	) => Promise<PlatformDiscountSharePolicy>
-	/**
-	 * 할인 분담 정책 수정
-	 *
-	 * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
-	 *
-	 * @throws {@link UpdatePlatformDiscountSharePolicyError}
-	 */
-	updatePlatformDiscountSharePolicy: (
-		options: {
-			/** 업데이트할 할인 분담 정책 아이디 */
-			id: string,
-			/** 할인 분담 정책 이름 */
-			name?: string,
-			/**
-			 * 할인 분담율
-			 *
-			 * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-			 * (int32)
-			 */
-			partnerShareRate?: number,
-			/** 해당 할인 분담에 대한 메모 */
-			memo?: string,
-		}
-	) => Promise<UpdatePlatformDiscountSharePolicyResponse>
-	/**
-	 * 할인 분담 정책 보관
-	 *
-	 * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
-	 *
-	 * @throws {@link ArchivePlatformDiscountSharePolicyError}
-	 */
-	archivePlatformDiscountSharePolicy: (
-		options: {
-			/** 할인 분담 아이디 */
-			id: string,
-		}
-	) => Promise<ArchivePlatformDiscountSharePolicyResponse>
-	/**
-	 * 할인 분담 정책 복원
-	 *
-	 * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
-	 *
-	 * @throws {@link RecoverPlatformDiscountSharePolicyError}
-	 */
-	recoverPlatformDiscountSharePolicy: (
-		options: {
-			/** 할인 분담 아이디 */
-			id: string,
-		}
-	) => Promise<RecoverPlatformDiscountSharePolicyResponse>
 	/**
 	 * 추가 수수료 정책 다건 조회
 	 *
@@ -904,60 +800,110 @@ export type PolicyClient = {
 			id: string,
 		}
 	) => Promise<RecoverPlatformContractResponse>
-}
-export class GetPlatformDiscountSharePoliciesError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformDiscountSharePoliciesError.prototype)
-		this.name = "GetPlatformDiscountSharePoliciesError"
-	}
-}
-export class CreatePlatformDiscountSharePolicyError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, CreatePlatformDiscountSharePolicyError.prototype)
-		this.name = "CreatePlatformDiscountSharePolicyError"
-	}
-}
-export class GetPlatformDiscountSharePolicyError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyError.prototype)
-		this.name = "GetPlatformDiscountSharePolicyError"
-	}
-}
-export class UpdatePlatformDiscountSharePolicyError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, UpdatePlatformDiscountSharePolicyError.prototype)
-		this.name = "UpdatePlatformDiscountSharePolicyError"
-	}
-}
-export class ArchivePlatformDiscountSharePolicyError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, ArchivePlatformDiscountSharePolicyError.prototype)
-		this.name = "ArchivePlatformDiscountSharePolicyError"
-	}
-}
-export class RecoverPlatformDiscountSharePolicyError extends PolicyError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, RecoverPlatformDiscountSharePolicyError.prototype)
-		this.name = "RecoverPlatformDiscountSharePolicyError"
-	}
+	/**
+	 * 할인 분담 정책 다건 조회
+	 *
+	 * 여러 할인 분담을 조회합니다.
+	 *
+	 * @throws {@link GetPlatformDiscountSharePoliciesError}
+	 */
+	getPlatformDiscountSharePolicies: (
+		options?: {
+			/** 요청할 페이지 정보 */
+			page?: PageInput,
+			/** 조회할 할인 분담 정책 조건 필터 */
+			filter?: PlatformDiscountSharePolicyFilterInput,
+		}
+	) => Promise<GetPlatformDiscountSharePoliciesResponse>
+	/**
+	 * 할인 분담 정책 생성
+	 *
+	 * 새로운 할인 분담을 생성합니다.
+	 *
+	 * @throws {@link CreatePlatformDiscountSharePolicyError}
+	 */
+	createPlatformDiscountSharePolicy: (
+		options: {
+			/**
+			 * 할인 분담에 부여할 고유 아이디
+			 *
+			 * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+			 */
+			id?: string,
+			/** 할인 분담에 부여할 이름 */
+			name: string,
+			/**
+			 * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+			 * (int32)
+			 */
+			partnerShareRate: number,
+			/** 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰 */
+			memo?: string,
+		}
+	) => Promise<CreatePlatformDiscountSharePolicyResponse>
+	/**
+	 * 할인 분담 정책 조회
+	 *
+	 * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
+	 *
+	 * @throws {@link GetPlatformDiscountSharePolicyError}
+	 */
+	getPlatformDiscountSharePolicy: (
+		options: {
+			/** 조회할 할인 분담 정책 아이디 */
+			id: string,
+		}
+	) => Promise<PlatformDiscountSharePolicy>
+	/**
+	 * 할인 분담 정책 수정
+	 *
+	 * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
+	 *
+	 * @throws {@link UpdatePlatformDiscountSharePolicyError}
+	 */
+	updatePlatformDiscountSharePolicy: (
+		options: {
+			/** 업데이트할 할인 분담 정책 아이디 */
+			id: string,
+			/** 할인 분담 정책 이름 */
+			name?: string,
+			/**
+			 * 할인 분담율
+			 *
+			 * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+			 * (int32)
+			 */
+			partnerShareRate?: number,
+			/** 해당 할인 분담에 대한 메모 */
+			memo?: string,
+		}
+	) => Promise<UpdatePlatformDiscountSharePolicyResponse>
+	/**
+	 * 할인 분담 정책 보관
+	 *
+	 * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
+	 *
+	 * @throws {@link ArchivePlatformDiscountSharePolicyError}
+	 */
+	archivePlatformDiscountSharePolicy: (
+		options: {
+			/** 할인 분담 아이디 */
+			id: string,
+		}
+	) => Promise<ArchivePlatformDiscountSharePolicyResponse>
+	/**
+	 * 할인 분담 정책 복원
+	 *
+	 * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
+	 *
+	 * @throws {@link RecoverPlatformDiscountSharePolicyError}
+	 */
+	recoverPlatformDiscountSharePolicy: (
+		options: {
+			/** 할인 분담 아이디 */
+			id: string,
+		}
+	) => Promise<RecoverPlatformDiscountSharePolicyResponse>
 }
 export class GetPlatformAdditionalFeePoliciesError extends PolicyError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
@@ -1065,5 +1011,59 @@ export class RecoverPlatformContractError extends PolicyError {
 		super(data)
 		Object.setPrototypeOf(this, RecoverPlatformContractError.prototype)
 		this.name = "RecoverPlatformContractError"
+	}
+}
+export class GetPlatformDiscountSharePoliciesError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePoliciesError.prototype)
+		this.name = "GetPlatformDiscountSharePoliciesError"
+	}
+}
+export class CreatePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformDiscountSharePolicyError.prototype)
+		this.name = "CreatePlatformDiscountSharePolicyError"
+	}
+}
+export class GetPlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyError"
+	}
+}
+export class UpdatePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, UpdatePlatformDiscountSharePolicyError.prototype)
+		this.name = "UpdatePlatformDiscountSharePolicyError"
+	}
+}
+export class ArchivePlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformDiscountSharePolicyError.prototype)
+		this.name = "ArchivePlatformDiscountSharePolicyError"
+	}
+}
+export class RecoverPlatformDiscountSharePolicyError extends PolicyError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformDiscountSharePolicyError.prototype)
+		this.name = "RecoverPlatformDiscountSharePolicyError"
 	}
 }

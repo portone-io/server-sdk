@@ -13,6 +13,8 @@ internal data class CreatePlatformManualTransferBody(
   val memo: String? = null,
   /** 정산 금액 */
   val settlementAmount: Long,
+  /** 정산 면세 금액 */
+  val settlementTaxFreeAmount: Long? = null,
   /**
    * 정산 일
    *

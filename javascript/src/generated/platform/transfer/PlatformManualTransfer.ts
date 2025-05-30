@@ -34,4 +34,9 @@ export type PlatformManualTransfer = {
 	 * (int64)
 	 */
 	settlementAmount: number
+	/**
+	 * 정산 면세 금액
+	 * (int64)
+	 */
+	settlementTaxFreeAmount: number
 }

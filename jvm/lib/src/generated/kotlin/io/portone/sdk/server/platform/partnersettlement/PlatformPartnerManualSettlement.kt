@@ -30,6 +30,8 @@ public data class PlatformPartnerManualSettlement(
   override val memo: String? = null,
   /** 정산 금액 */
   val amount: Long,
+  /** 정산 면세 금액 */
+  val taxFreeAmount: Long,
   /** 테스트 모드 여부 */
   override val isForTest: Boolean,
 ) : PlatformPartnerSettlement.Recognized

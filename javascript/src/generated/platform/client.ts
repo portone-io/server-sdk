@@ -1,15 +1,15 @@
 import { PlatformError } from "./PlatformError"
 import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
-import { PolicyClient } from "./policy/client"
-import { PartnerClient } from "./partner/client"
-import { TransferClient } from "./transfer/client"
-import { PartnerSettlementClient } from "./partnerSettlement/client"
-import { PayoutClient } from "./payout/client"
-import { BulkPayoutClient } from "./bulkPayout/client"
-import { AccountClient } from "./account/client"
 import { CompanyClient } from "./company/client"
 import { AccountTransferClient } from "./accountTransfer/client"
+import { PolicyClient } from "./policy/client"
+import { AccountClient } from "./account/client"
+import { BulkPayoutClient } from "./bulkPayout/client"
+import { PartnerSettlementClient } from "./partnerSettlement/client"
+import { PartnerClient } from "./partner/client"
+import { PayoutClient } from "./payout/client"
+import { TransferClient } from "./transfer/client"
 import type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "../../generated/platform/CancelPlatformAdditionalFeePolicyScheduleResponse"
 import type { CancelPlatformContractScheduleResponse } from "../../generated/platform/CancelPlatformContractScheduleResponse"
 import type { CancelPlatformDiscountSharePolicyScheduleResponse } from "../../generated/platform/CancelPlatformDiscountSharePolicyScheduleResponse"
@@ -60,13 +60,12 @@ import type { SchedulePlatformDiscountSharePolicyResponse } from "../../generate
 import type { SchedulePlatformPartnerResponse } from "../../generated/platform/SchedulePlatformPartnerResponse"
 import type { SchedulePlatformPartnersBodyUpdate } from "../../generated/platform/SchedulePlatformPartnersBodyUpdate"
 import type { SchedulePlatformPartnersResponse } from "../../generated/platform/SchedulePlatformPartnersResponse"
+import type { SettlementAmountType } from "../../generated/platform/SettlementAmountType"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
 import type { UpdatePlatformAdditionalFeePolicyBody } from "../../generated/platform/UpdatePlatformAdditionalFeePolicyBody"
-import type { UpdatePlatformBodySettlementRule } from "../../generated/platform/UpdatePlatformBodySettlementRule"
 import type { UpdatePlatformContractBody } from "../../generated/platform/UpdatePlatformContractBody"
 import type { UpdatePlatformDiscountSharePolicyBody } from "../../generated/platform/UpdatePlatformDiscountSharePolicyBody"
 import type { UpdatePlatformPartnerBody } from "../../generated/platform/UpdatePlatformPartnerBody"
-import type { UpdatePlatformResponse } from "../../generated/platform/UpdatePlatformResponse"
 import type { UpdatePlatformSettingResponse } from "../../generated/platform/UpdatePlatformSettingResponse"
 /**
  * 포트원 API 클라이언트를 생성합니다.
@@ -91,167 +90,6 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			)
 			if (!response.ok) {
 				throw new GetPlatformError(await response.json())
-			}
-			return response.json()
-		},
-		updatePlatform: async (
-			options?: {
-				settlementRule?: UpdatePlatformBodySettlementRule,
-			}
-		): Promise<UpdatePlatformResponse> => {
-			const settlementRule = options?.settlementRule
-			const requestBody = JSON.stringify({
-				settlementRule,
-			})
-			const response = await fetch(
-				new URL("/platform", baseUrl),
-				{
-					method: "PATCH",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new UpdatePlatformError(await response.json())
-			}
-			return response.json()
-		},
-		getPlatformDiscountSharePolicyFilterOptions: async (
-			options?: {
-				isArchived?: boolean,
-			}
-		): Promise<PlatformDiscountSharePolicyFilterOptions> => {
-			const isArchived = options?.isArchived
-			const query = [
-				["isArchived", isArchived],
-			]
-				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
-				.join("&")
-			const response = await fetch(
-				new URL(`/platform/discount-share-policy-filter-options?${query}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyFilterOptionsError(await response.json())
-			}
-			return response.json()
-		},
-		getPlatformDiscountSharePolicySchedule: async (
-			options: {
-				id: string,
-			}
-		): Promise<PlatformDiscountSharePolicy> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformDiscountSharePolicyScheduleError(await response.json())
-			}
-			return response.json()
-		},
-		rescheduleDiscountSharePolicy: async (
-			options: {
-				id: string,
-				update: UpdatePlatformDiscountSharePolicyBody,
-				appliedAt: string,
-			}
-		): Promise<ReschedulePlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-				update,
-				appliedAt,
-			} = options
-			const requestBody = JSON.stringify({
-				update,
-				appliedAt,
-			})
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "PUT",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new RescheduleDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		scheduleDiscountSharePolicy: async (
-			options: {
-				id: string,
-				update: UpdatePlatformDiscountSharePolicyBody,
-				appliedAt: string,
-			}
-		): Promise<SchedulePlatformDiscountSharePolicyResponse> => {
-			const {
-				id,
-				update,
-				appliedAt,
-			} = options
-			const requestBody = JSON.stringify({
-				update,
-				appliedAt,
-			})
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new ScheduleDiscountSharePolicyError(await response.json())
-			}
-			return response.json()
-		},
-		cancelPlatformDiscountSharePolicySchedule: async (
-			options: {
-				id: string,
-			}
-		): Promise<CancelPlatformDiscountSharePolicyScheduleResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "DELETE",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new CancelPlatformDiscountSharePolicyScheduleError(await response.json())
 			}
 			return response.json()
 		},
@@ -365,6 +203,252 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			}
 			return response.json()
 		},
+		getPlatformContractSchedule: async (
+			options: {
+				id: string,
+			}
+		): Promise<PlatformContract> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformContractScheduleError(await response.json())
+			}
+			return response.json()
+		},
+		rescheduleContract: async (
+			options: {
+				id: string,
+				update: UpdatePlatformContractBody,
+				appliedAt: string,
+			}
+		): Promise<ReschedulePlatformContractResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "PUT",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new RescheduleContractError(await response.json())
+			}
+			return response.json()
+		},
+		scheduleContract: async (
+			options: {
+				id: string,
+				update: UpdatePlatformContractBody,
+				appliedAt: string,
+			}
+		): Promise<SchedulePlatformContractResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ScheduleContractError(await response.json())
+			}
+			return response.json()
+		},
+		cancelPlatformContractSchedule: async (
+			options: {
+				id: string,
+			}
+		): Promise<CancelPlatformContractScheduleResponse> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new CancelPlatformContractScheduleError(await response.json())
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicySchedule: async (
+			options: {
+				id: string,
+			}
+		): Promise<PlatformDiscountSharePolicy> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformDiscountSharePolicyScheduleError(await response.json())
+			}
+			return response.json()
+		},
+		rescheduleDiscountSharePolicy: async (
+			options: {
+				id: string,
+				update: UpdatePlatformDiscountSharePolicyBody,
+				appliedAt: string,
+			}
+		): Promise<ReschedulePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "PUT",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new RescheduleDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		scheduleDiscountSharePolicy: async (
+			options: {
+				id: string,
+				update: UpdatePlatformDiscountSharePolicyBody,
+				appliedAt: string,
+			}
+		): Promise<SchedulePlatformDiscountSharePolicyResponse> => {
+			const {
+				id,
+				update,
+				appliedAt,
+			} = options
+			const requestBody = JSON.stringify({
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ScheduleDiscountSharePolicyError(await response.json())
+			}
+			return response.json()
+		},
+		cancelPlatformDiscountSharePolicySchedule: async (
+			options: {
+				id: string,
+			}
+		): Promise<CancelPlatformDiscountSharePolicyScheduleResponse> => {
+			const {
+				id,
+			} = options
+			const response = await fetch(
+				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule`, baseUrl),
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new CancelPlatformDiscountSharePolicyScheduleError(await response.json())
+			}
+			return response.json()
+		},
+		getPlatformDiscountSharePolicyFilterOptions: async (
+			options?: {
+				isArchived?: boolean,
+			}
+		): Promise<PlatformDiscountSharePolicyFilterOptions> => {
+			const isArchived = options?.isArchived
+			const query = [
+				["isArchived", isArchived],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/discount-share-policy-filter-options?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformDiscountSharePolicyFilterOptionsError(await response.json())
+			}
+			return response.json()
+		},
 		getPlatformPartnerFilterOptions: async (
 			options?: {
 				isArchived?: boolean,
@@ -388,6 +472,39 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			)
 			if (!response.ok) {
 				throw new GetPlatformPartnerFilterOptionsError(await response.json())
+			}
+			return response.json()
+		},
+		schedulePlatformPartners: async (
+			options: {
+				filter?: PlatformPartnerFilterInput,
+				update: SchedulePlatformPartnersBodyUpdate,
+				appliedAt: string,
+			}
+		): Promise<SchedulePlatformPartnersResponse> => {
+			const {
+				filter,
+				update,
+				appliedAt,
+			} = options
+			const requestBody = JSON.stringify({
+				filter,
+				update,
+				appliedAt,
+			})
+			const response = await fetch(
+				new URL("/platform/partners/schedule", baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new SchedulePlatformPartnersError(await response.json())
 			}
 			return response.json()
 		},
@@ -501,149 +618,6 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			}
 			return response.json()
 		},
-		schedulePlatformPartners: async (
-			options: {
-				filter?: PlatformPartnerFilterInput,
-				update: SchedulePlatformPartnersBodyUpdate,
-				appliedAt: string,
-			}
-		): Promise<SchedulePlatformPartnersResponse> => {
-			const {
-				filter,
-				update,
-				appliedAt,
-			} = options
-			const requestBody = JSON.stringify({
-				filter,
-				update,
-				appliedAt,
-			})
-			const response = await fetch(
-				new URL("/platform/partners/schedule", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new SchedulePlatformPartnersError(await response.json())
-			}
-			return response.json()
-		},
-		getPlatformContractSchedule: async (
-			options: {
-				id: string,
-			}
-		): Promise<PlatformContract> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformContractScheduleError(await response.json())
-			}
-			return response.json()
-		},
-		rescheduleContract: async (
-			options: {
-				id: string,
-				update: UpdatePlatformContractBody,
-				appliedAt: string,
-			}
-		): Promise<ReschedulePlatformContractResponse> => {
-			const {
-				id,
-				update,
-				appliedAt,
-			} = options
-			const requestBody = JSON.stringify({
-				update,
-				appliedAt,
-			})
-			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "PUT",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new RescheduleContractError(await response.json())
-			}
-			return response.json()
-		},
-		scheduleContract: async (
-			options: {
-				id: string,
-				update: UpdatePlatformContractBody,
-				appliedAt: string,
-			}
-		): Promise<SchedulePlatformContractResponse> => {
-			const {
-				id,
-				update,
-				appliedAt,
-			} = options
-			const requestBody = JSON.stringify({
-				update,
-				appliedAt,
-			})
-			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new ScheduleContractError(await response.json())
-			}
-			return response.json()
-		},
-		cancelPlatformContractSchedule: async (
-			options: {
-				id: string,
-			}
-		): Promise<CancelPlatformContractScheduleResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule`, baseUrl),
-				{
-					method: "DELETE",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new CancelPlatformContractScheduleError(await response.json())
-			}
-			return response.json()
-		},
 		getPlatformSetting: async (
 			options?: {
 			}
@@ -667,13 +641,25 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			options?: {
 				defaultWithdrawalMemo?: string,
 				defaultDepositMemo?: string,
+				supportsMultipleOrderTransfersPerPartner?: boolean,
+				adjustSettlementDateAfterHolidayIfEarlier?: boolean,
+				deductWht?: boolean,
+				settlementAmountType?: SettlementAmountType,
 			}
 		): Promise<UpdatePlatformSettingResponse> => {
 			const defaultWithdrawalMemo = options?.defaultWithdrawalMemo
 			const defaultDepositMemo = options?.defaultDepositMemo
+			const supportsMultipleOrderTransfersPerPartner = options?.supportsMultipleOrderTransfersPerPartner
+			const adjustSettlementDateAfterHolidayIfEarlier = options?.adjustSettlementDateAfterHolidayIfEarlier
+			const deductWht = options?.deductWht
+			const settlementAmountType = options?.settlementAmountType
 			const requestBody = JSON.stringify({
 				defaultWithdrawalMemo,
 				defaultDepositMemo,
+				supportsMultipleOrderTransfersPerPartner,
+				adjustSettlementDateAfterHolidayIfEarlier,
+				deductWht,
+				settlementAmountType,
 			})
 			const response = await fetch(
 				new URL("/platform/setting", baseUrl),
@@ -691,15 +677,15 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			}
 			return response.json()
 		},
-		policy: PolicyClient(init),
-		partner: PartnerClient(init),
-		transfer: TransferClient(init),
-		partnerSettlement: PartnerSettlementClient(init),
-		payout: PayoutClient(init),
-		bulkPayout: BulkPayoutClient(init),
-		account: AccountClient(init),
 		company: CompanyClient(init),
 		accountTransfer: AccountTransferClient(init),
+		policy: PolicyClient(init),
+		account: AccountClient(init),
+		bulkPayout: BulkPayoutClient(init),
+		partnerSettlement: PartnerSettlementClient(init),
+		partner: PartnerClient(init),
+		payout: PayoutClient(init),
+		transfer: TransferClient(init),
 	}
 }
 export type PlatformClient = {
@@ -713,91 +699,6 @@ export type PlatformClient = {
 		options?: {
 		}
 	) => Promise<Platform>
-	/**
-	 * 고객사의 플랫폼 관련 정보를 업데이트합니다.
-	 * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
-	 *
-	 * @throws {@link UpdatePlatformError}
-	 */
-	updatePlatform: (
-		options?: {
-			/** 정산 규칙 */
-			settlementRule?: UpdatePlatformBodySettlementRule,
-		}
-	) => Promise<UpdatePlatformResponse>
-	/**
-	 * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
-	 *
-	 * @throws {@link GetPlatformDiscountSharePolicyFilterOptionsError}
-	 */
-	getPlatformDiscountSharePolicyFilterOptions: (
-		options?: {
-			/**
-			 * 보관 조회 여부
-			 *
-			 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-			 */
-			isArchived?: boolean,
-		}
-	) => Promise<PlatformDiscountSharePolicyFilterOptions>
-	/**
-	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
-	 *
-	 * @throws {@link GetPlatformDiscountSharePolicyScheduleError}
-	 */
-	getPlatformDiscountSharePolicySchedule: (
-		options: {
-			/** 할인 분담 정책 아이디 */
-			id: string,
-		}
-	) => Promise<PlatformDiscountSharePolicy>
-	/**
-	 * 주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
-	 *
-	 * @throws {@link RescheduleDiscountSharePolicyError}
-	 */
-	rescheduleDiscountSharePolicy: (
-		options: {
-			/** 할인 분담 정책 아이디 */
-			id: string,
-			/** 반영할 업데이트 내용 */
-			update: UpdatePlatformDiscountSharePolicyBody,
-			/**
-			 * 업데이트 적용 시점
-			 * (RFC 3339 date-time)
-			 */
-			appliedAt: string,
-		}
-	) => Promise<ReschedulePlatformDiscountSharePolicyResponse>
-	/**
-	 * 주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
-	 *
-	 * @throws {@link ScheduleDiscountSharePolicyError}
-	 */
-	scheduleDiscountSharePolicy: (
-		options: {
-			/** 할인 분담 정책 아이디 */
-			id: string,
-			/** 반영할 업데이트 내용 */
-			update: UpdatePlatformDiscountSharePolicyBody,
-			/**
-			 * 업데이트 적용 시점
-			 * (RFC 3339 date-time)
-			 */
-			appliedAt: string,
-		}
-	) => Promise<SchedulePlatformDiscountSharePolicyResponse>
-	/**
-	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
-	 *
-	 * @throws {@link CancelPlatformDiscountSharePolicyScheduleError}
-	 */
-	cancelPlatformDiscountSharePolicySchedule: (
-		options: {
-			/** 할인 분담 정책 아이디 */
-			id: string,
-		}
-	) => Promise<CancelPlatformDiscountSharePolicyScheduleResponse>
 	/**
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 	 *
@@ -852,88 +753,6 @@ export type PlatformClient = {
 			id: string,
 		}
 	) => Promise<CancelPlatformAdditionalFeePolicyScheduleResponse>
-	/**
-	 * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
-	 *
-	 * @throws {@link GetPlatformPartnerFilterOptionsError}
-	 */
-	getPlatformPartnerFilterOptions: (
-		options?: {
-			/**
-			 * 보관 조회 여부
-			 *
-			 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-			 */
-			isArchived?: boolean,
-		}
-	) => Promise<PlatformPartnerFilterOptions>
-	/**
-	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
-	 *
-	 * @throws {@link GetPlatformPartnerScheduleError}
-	 */
-	getPlatformPartnerSchedule: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<PlatformPartner>
-	/**
-	 * 주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
-	 *
-	 * @throws {@link ReschedulePartnerError}
-	 */
-	reschedulePartner: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-			/** 반영할 업데이트 내용 */
-			update: UpdatePlatformPartnerBody,
-			/**
-			 * 업데이트 적용 시점
-			 * (RFC 3339 date-time)
-			 */
-			appliedAt: string,
-		}
-	) => Promise<ReschedulePlatformPartnerResponse>
-	/**
-	 * 주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
-	 *
-	 * @throws {@link SchedulePartnerError}
-	 */
-	schedulePartner: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-			/** 반영할 업데이트 내용 */
-			update: UpdatePlatformPartnerBody,
-			/**
-			 * 업데이트 적용 시점
-			 * (RFC 3339 date-time)
-			 */
-			appliedAt: string,
-		}
-	) => Promise<SchedulePlatformPartnerResponse>
-	/**
-	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
-	 *
-	 * @throws {@link CancelPlatformPartnerScheduleError}
-	 */
-	cancelPlatformPartnerSchedule: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<CancelPlatformPartnerScheduleResponse>
-	/** @throws {@link SchedulePlatformPartnersError} */
-	schedulePlatformPartners: (
-		options: {
-			filter?: PlatformPartnerFilterInput,
-			update: SchedulePlatformPartnersBodyUpdate,
-			/** (RFC 3339 date-time) */
-			appliedAt: string,
-		}
-	) => Promise<SchedulePlatformPartnersResponse>
 	/**
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 	 *
@@ -993,6 +812,161 @@ export type PlatformClient = {
 		}
 	) => Promise<CancelPlatformContractScheduleResponse>
 	/**
+	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
+	 *
+	 * @throws {@link GetPlatformDiscountSharePolicyScheduleError}
+	 */
+	getPlatformDiscountSharePolicySchedule: (
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+		}
+	) => Promise<PlatformDiscountSharePolicy>
+	/**
+	 * 주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
+	 *
+	 * @throws {@link RescheduleDiscountSharePolicyError}
+	 */
+	rescheduleDiscountSharePolicy: (
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformDiscountSharePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
+	) => Promise<ReschedulePlatformDiscountSharePolicyResponse>
+	/**
+	 * 주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
+	 *
+	 * @throws {@link ScheduleDiscountSharePolicyError}
+	 */
+	scheduleDiscountSharePolicy: (
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformDiscountSharePolicyBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
+	) => Promise<SchedulePlatformDiscountSharePolicyResponse>
+	/**
+	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
+	 *
+	 * @throws {@link CancelPlatformDiscountSharePolicyScheduleError}
+	 */
+	cancelPlatformDiscountSharePolicySchedule: (
+		options: {
+			/** 할인 분담 정책 아이디 */
+			id: string,
+		}
+	) => Promise<CancelPlatformDiscountSharePolicyScheduleResponse>
+	/**
+	 * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
+	 *
+	 * @throws {@link GetPlatformDiscountSharePolicyFilterOptionsError}
+	 */
+	getPlatformDiscountSharePolicyFilterOptions: (
+		options?: {
+			/**
+			 * 보관 조회 여부
+			 *
+			 * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+			 */
+			isArchived?: boolean,
+		}
+	) => Promise<PlatformDiscountSharePolicyFilterOptions>
+	/**
+	 * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
+	 *
+	 * @throws {@link GetPlatformPartnerFilterOptionsError}
+	 */
+	getPlatformPartnerFilterOptions: (
+		options?: {
+			/**
+			 * 보관 조회 여부
+			 *
+			 * true 이면 보관된 파트너의 필터 옵션을 조회하고, false 이면 보관되지 않은 파트너의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+			 */
+			isArchived?: boolean,
+		}
+	) => Promise<PlatformPartnerFilterOptions>
+	/** @throws {@link SchedulePlatformPartnersError} */
+	schedulePlatformPartners: (
+		options: {
+			filter?: PlatformPartnerFilterInput,
+			update: SchedulePlatformPartnersBodyUpdate,
+			/** (RFC 3339 date-time) */
+			appliedAt: string,
+		}
+	) => Promise<SchedulePlatformPartnersResponse>
+	/**
+	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
+	 *
+	 * @throws {@link GetPlatformPartnerScheduleError}
+	 */
+	getPlatformPartnerSchedule: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
+	) => Promise<PlatformPartner>
+	/**
+	 * 주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
+	 *
+	 * @throws {@link ReschedulePartnerError}
+	 */
+	reschedulePartner: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformPartnerBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
+	) => Promise<ReschedulePlatformPartnerResponse>
+	/**
+	 * 주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
+	 *
+	 * @throws {@link SchedulePartnerError}
+	 */
+	schedulePartner: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/** 반영할 업데이트 내용 */
+			update: UpdatePlatformPartnerBody,
+			/**
+			 * 업데이트 적용 시점
+			 * (RFC 3339 date-time)
+			 */
+			appliedAt: string,
+		}
+	) => Promise<SchedulePlatformPartnerResponse>
+	/**
+	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
+	 *
+	 * @throws {@link CancelPlatformPartnerScheduleError}
+	 */
+	cancelPlatformPartnerSchedule: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+		}
+	) => Promise<CancelPlatformPartnerScheduleResponse>
+	/**
 	 * 플랫폼 설정 조회
 	 *
 	 * 설정 정보를 조회합니다.
@@ -1016,17 +990,25 @@ export type PlatformClient = {
 			defaultWithdrawalMemo?: string,
 			/** 기본 받는 이 통장 메모 */
 			defaultDepositMemo?: string,
+			/** paymentId, storeId, partnerId가 같은 주문 정산건에 대한 중복 정산 지원 여부 */
+			supportsMultipleOrderTransfersPerPartner?: boolean,
+			/** 정산일이 정산시작일보다 작거나 같을 경우 공휴일 후 영업일로 정산일 다시 계산 여부 */
+			adjustSettlementDateAfterHolidayIfEarlier?: boolean,
+			/** 지급 금액에서 원천징수세 차감 여부 */
+			deductWht?: boolean,
+			/** 정산 금액 취급 기준 */
+			settlementAmountType?: SettlementAmountType,
 		}
 	) => Promise<UpdatePlatformSettingResponse>
-	policy: PolicyClient
-	partner: PartnerClient
-	transfer: TransferClient
-	partnerSettlement: PartnerSettlementClient
-	payout: PayoutClient
-	bulkPayout: BulkPayoutClient
-	account: AccountClient
 	company: CompanyClient
 	accountTransfer: AccountTransferClient
+	policy: PolicyClient
+	account: AccountClient
+	bulkPayout: BulkPayoutClient
+	partnerSettlement: PartnerSettlementClient
+	partner: PartnerClient
+	payout: PayoutClient
+	transfer: TransferClient
 }
 export class GetPlatformError extends PlatformError {
 	declare readonly data: InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
@@ -1035,60 +1017,6 @@ export class GetPlatformError extends PlatformError {
 		super(data)
 		Object.setPrototypeOf(this, GetPlatformError.prototype)
 		this.name = "GetPlatformError"
-	}
-}
-export class UpdatePlatformError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, UpdatePlatformError.prototype)
-		this.name = "UpdatePlatformError"
-	}
-}
-export class GetPlatformDiscountSharePolicyFilterOptionsError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyFilterOptionsError.prototype)
-		this.name = "GetPlatformDiscountSharePolicyFilterOptionsError"
-	}
-}
-export class GetPlatformDiscountSharePolicyScheduleError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyScheduleError.prototype)
-		this.name = "GetPlatformDiscountSharePolicyScheduleError"
-	}
-}
-export class RescheduleDiscountSharePolicyError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, RescheduleDiscountSharePolicyError.prototype)
-		this.name = "RescheduleDiscountSharePolicyError"
-	}
-}
-export class ScheduleDiscountSharePolicyError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, ScheduleDiscountSharePolicyError.prototype)
-		this.name = "ScheduleDiscountSharePolicyError"
-	}
-}
-export class CancelPlatformDiscountSharePolicyScheduleError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, CancelPlatformDiscountSharePolicyScheduleError.prototype)
-		this.name = "CancelPlatformDiscountSharePolicyScheduleError"
 	}
 }
 export class GetPlatformAdditionalFeePolicyScheduleError extends PlatformError {
@@ -1127,6 +1055,87 @@ export class CancelPlatformAdditionalFeePolicyScheduleError extends PlatformErro
 		this.name = "CancelPlatformAdditionalFeePolicyScheduleError"
 	}
 }
+export class GetPlatformContractScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformContractScheduleError.prototype)
+		this.name = "GetPlatformContractScheduleError"
+	}
+}
+export class RescheduleContractError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RescheduleContractError.prototype)
+		this.name = "RescheduleContractError"
+	}
+}
+export class ScheduleContractError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ScheduleContractError.prototype)
+		this.name = "ScheduleContractError"
+	}
+}
+export class CancelPlatformContractScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformContractScheduleError.prototype)
+		this.name = "CancelPlatformContractScheduleError"
+	}
+}
+export class GetPlatformDiscountSharePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyScheduleError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyScheduleError"
+	}
+}
+export class RescheduleDiscountSharePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RescheduleDiscountSharePolicyError.prototype)
+		this.name = "RescheduleDiscountSharePolicyError"
+	}
+}
+export class ScheduleDiscountSharePolicyError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedDiscountSharePolicyError | PlatformDiscountSharePolicyNotFoundError | PlatformDiscountSharePolicyScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ScheduleDiscountSharePolicyError.prototype)
+		this.name = "ScheduleDiscountSharePolicyError"
+	}
+}
+export class CancelPlatformDiscountSharePolicyScheduleError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformDiscountSharePolicyNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CancelPlatformDiscountSharePolicyScheduleError.prototype)
+		this.name = "CancelPlatformDiscountSharePolicyScheduleError"
+	}
+}
+export class GetPlatformDiscountSharePolicyFilterOptionsError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetPlatformDiscountSharePolicyFilterOptionsError.prototype)
+		this.name = "GetPlatformDiscountSharePolicyFilterOptionsError"
+	}
+}
 export class GetPlatformPartnerFilterOptionsError extends PlatformError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
@@ -1134,6 +1143,15 @@ export class GetPlatformPartnerFilterOptionsError extends PlatformError {
 		super(data)
 		Object.setPrototypeOf(this, GetPlatformPartnerFilterOptionsError.prototype)
 		this.name = "GetPlatformPartnerFilterOptionsError"
+	}
+}
+export class SchedulePlatformPartnersError extends PlatformError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, SchedulePlatformPartnersError.prototype)
+		this.name = "SchedulePlatformPartnersError"
 	}
 }
 export class GetPlatformPartnerScheduleError extends PlatformError {
@@ -1170,51 +1188,6 @@ export class CancelPlatformPartnerScheduleError extends PlatformError {
 		super(data)
 		Object.setPrototypeOf(this, CancelPlatformPartnerScheduleError.prototype)
 		this.name = "CancelPlatformPartnerScheduleError"
-	}
-}
-export class SchedulePlatformPartnersError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnersCannotBeScheduledError | PlatformContractNotFoundError | PlatformMemberCompanyConnectedPartnersCannotBeScheduledError | PlatformNotEnabledError | PlatformPartnerSchedulesAlreadyExistError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, SchedulePlatformPartnersError.prototype)
-		this.name = "SchedulePlatformPartnersError"
-	}
-}
-export class GetPlatformContractScheduleError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformContractScheduleError.prototype)
-		this.name = "GetPlatformContractScheduleError"
-	}
-}
-export class RescheduleContractError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, RescheduleContractError.prototype)
-		this.name = "RescheduleContractError"
-	}
-}
-export class ScheduleContractError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedContractError | PlatformContractNotFoundError | PlatformContractScheduleAlreadyExistsError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, ScheduleContractError.prototype)
-		this.name = "ScheduleContractError"
-	}
-}
-export class CancelPlatformContractScheduleError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformContractNotFoundError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, CancelPlatformContractScheduleError.prototype)
-		this.name = "CancelPlatformContractScheduleError"
 	}
 }
 export class GetPlatformSettingError extends PlatformError {

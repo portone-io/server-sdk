@@ -46,496 +46,6 @@ class IdentityVerificationClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
-    def get_identity_verification(
-        self,
-        *,
-        identity_verification_id: str,
-    ) -> IdentityVerification:
-        """본인인증 단건 조회
-
-        주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
-
-        Args:
-            identity_verification_id (str):
-                조회할 본인인증 아이디
-
-
-        Raises:
-            GetIdentityVerificationError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_identity_verification_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationNotFoundError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_identity_verification(response.json())
-    async def get_identity_verification_async(
-        self,
-        *,
-        identity_verification_id: str,
-    ) -> IdentityVerification:
-        """본인인증 단건 조회
-
-        주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
-
-        Args:
-            identity_verification_id (str):
-                조회할 본인인증 아이디
-
-
-        Raises:
-            GetIdentityVerificationError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_identity_verification_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationNotFoundError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_identity_verification(response.json())
-    def get_identity_verifications(
-        self,
-        *,
-        page: Optional[PageInput] = None,
-        sort: Optional[IdentityVerificationSortInput] = None,
-        filter: Optional[IdentityVerificationFilterInput] = None,
-    ) -> GetIdentityVerificationsResponse:
-        """본인인증 내역 다건 조회
-
-        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
-
-        Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-
-                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
-            sort (IdentityVerificationSortInput, optional):
-                정렬 조건
-
-                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
-            filter (IdentityVerificationFilterInput, optional):
-                조회할 본인인증 내역 조건 필터
-
-
-        Raises:
-            GetIdentityVerificationsError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if sort is not None:
-            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
-        if filter is not None:
-            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
-        query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/identity-verifications",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_identity_verifications_response(response.json())
-    async def get_identity_verifications_async(
-        self,
-        *,
-        page: Optional[PageInput] = None,
-        sort: Optional[IdentityVerificationSortInput] = None,
-        filter: Optional[IdentityVerificationFilterInput] = None,
-    ) -> GetIdentityVerificationsResponse:
-        """본인인증 내역 다건 조회
-
-        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
-
-        Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-
-                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
-            sort (IdentityVerificationSortInput, optional):
-                정렬 조건
-
-                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
-            filter (IdentityVerificationFilterInput, optional):
-                조회할 본인인증 내역 조건 필터
-
-
-        Raises:
-            GetIdentityVerificationsError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if sort is not None:
-            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
-        if filter is not None:
-            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
-        query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/identity-verifications",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_identity_verifications_response(response.json())
-    def send_identity_verification(
-        self,
-        *,
-        identity_verification_id: str,
-        channel_key: str,
-        customer: SendIdentityVerificationBodyCustomer,
-        custom_data: Optional[str] = None,
-        bypass: Optional[dict] = None,
-        operator: IdentityVerificationOperator,
-        method: IdentityVerificationMethod,
-    ) -> SendIdentityVerificationResponse:
-        """본인인증 요청 전송
-
-        SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
-
-        Args:
-            identity_verification_id (str):
-                본인인증 아이디
-            channel_key (str):
-                채널 키
-            customer (SendIdentityVerificationBodyCustomer):
-                고객 정보
-            custom_data (str, optional):
-                사용자 지정 데이터
-            bypass (dict, optional):
-                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
-            operator (IdentityVerificationOperator):
-                통신사
-            method (IdentityVerificationMethod):
-                본인인증 방식
-
-
-        Raises:
-            SendIdentityVerificationError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if self._store_id is not None:
-            request_body["storeId"] = self._store_id
-        request_body["channelKey"] = channel_key
-        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
-        if custom_data is not None:
-            request_body["customData"] = custom_data
-        if bypass is not None:
-            request_body["bypass"] = bypass
-        request_body["operator"] = _serialize_identity_verification_operator(operator)
-        request_body["method"] = _serialize_identity_verification_method(method)
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_channel_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ChannelNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_identity_verification_already_sent_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationAlreadySentError(error)
-            try:
-                error = _deserialize_identity_verification_already_verified_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationAlreadyVerifiedError(error)
-            try:
-                error = _deserialize_identity_verification_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationNotFoundError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_max_transaction_count_reached_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise MaxTransactionCountReachedError(error)
-            try:
-                error = _deserialize_pg_provider_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PgProviderError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_send_identity_verification_response(response.json())
-    async def send_identity_verification_async(
-        self,
-        *,
-        identity_verification_id: str,
-        channel_key: str,
-        customer: SendIdentityVerificationBodyCustomer,
-        custom_data: Optional[str] = None,
-        bypass: Optional[dict] = None,
-        operator: IdentityVerificationOperator,
-        method: IdentityVerificationMethod,
-    ) -> SendIdentityVerificationResponse:
-        """본인인증 요청 전송
-
-        SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
-
-        Args:
-            identity_verification_id (str):
-                본인인증 아이디
-            channel_key (str):
-                채널 키
-            customer (SendIdentityVerificationBodyCustomer):
-                고객 정보
-            custom_data (str, optional):
-                사용자 지정 데이터
-            bypass (dict, optional):
-                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
-            operator (IdentityVerificationOperator):
-                통신사
-            method (IdentityVerificationMethod):
-                본인인증 방식
-
-
-        Raises:
-            SendIdentityVerificationError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if self._store_id is not None:
-            request_body["storeId"] = self._store_id
-        request_body["channelKey"] = channel_key
-        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
-        if custom_data is not None:
-            request_body["customData"] = custom_data
-        if bypass is not None:
-            request_body["bypass"] = bypass
-        request_body["operator"] = _serialize_identity_verification_operator(operator)
-        request_body["method"] = _serialize_identity_verification_method(method)
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_channel_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ChannelNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_identity_verification_already_sent_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationAlreadySentError(error)
-            try:
-                error = _deserialize_identity_verification_already_verified_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationAlreadyVerifiedError(error)
-            try:
-                error = _deserialize_identity_verification_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise IdentityVerificationNotFoundError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_max_transaction_count_reached_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise MaxTransactionCountReachedError(error)
-            try:
-                error = _deserialize_pg_provider_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PgProviderError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_send_identity_verification_response(response.json())
     def confirm_identity_verification(
         self,
         *,
@@ -862,3 +372,493 @@ class IdentityVerificationClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_resend_identity_verification_response(response.json())
+    def send_identity_verification(
+        self,
+        *,
+        identity_verification_id: str,
+        channel_key: str,
+        customer: SendIdentityVerificationBodyCustomer,
+        custom_data: Optional[str] = None,
+        bypass: Optional[dict] = None,
+        operator: IdentityVerificationOperator,
+        method: IdentityVerificationMethod,
+    ) -> SendIdentityVerificationResponse:
+        """본인인증 요청 전송
+
+        SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
+
+        Args:
+            identity_verification_id (str):
+                본인인증 아이디
+            channel_key (str):
+                채널 키
+            customer (SendIdentityVerificationBodyCustomer):
+                고객 정보
+            custom_data (str, optional):
+                사용자 지정 데이터
+            bypass (dict, optional):
+                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            operator (IdentityVerificationOperator):
+                통신사
+            method (IdentityVerificationMethod):
+                본인인증 방식
+
+
+        Raises:
+            SendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["channelKey"] = channel_key
+        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
+        if custom_data is not None:
+            request_body["customData"] = custom_data
+        if bypass is not None:
+            request_body["bypass"] = bypass
+        request_body["operator"] = _serialize_identity_verification_operator(operator)
+        request_body["method"] = _serialize_identity_verification_method(method)
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ChannelNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_identity_verification_already_sent_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationAlreadySentError(error)
+            try:
+                error = _deserialize_identity_verification_already_verified_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationAlreadyVerifiedError(error)
+            try:
+                error = _deserialize_identity_verification_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationNotFoundError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_send_identity_verification_response(response.json())
+    async def send_identity_verification_async(
+        self,
+        *,
+        identity_verification_id: str,
+        channel_key: str,
+        customer: SendIdentityVerificationBodyCustomer,
+        custom_data: Optional[str] = None,
+        bypass: Optional[dict] = None,
+        operator: IdentityVerificationOperator,
+        method: IdentityVerificationMethod,
+    ) -> SendIdentityVerificationResponse:
+        """본인인증 요청 전송
+
+        SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
+
+        Args:
+            identity_verification_id (str):
+                본인인증 아이디
+            channel_key (str):
+                채널 키
+            customer (SendIdentityVerificationBodyCustomer):
+                고객 정보
+            custom_data (str, optional):
+                사용자 지정 데이터
+            bypass (dict, optional):
+                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            operator (IdentityVerificationOperator):
+                통신사
+            method (IdentityVerificationMethod):
+                본인인증 방식
+
+
+        Raises:
+            SendIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["channelKey"] = channel_key
+        request_body["customer"] = _serialize_send_identity_verification_body_customer(customer)
+        if custom_data is not None:
+            request_body["customData"] = custom_data
+        if bypass is not None:
+            request_body["bypass"] = bypass
+        request_body["operator"] = _serialize_identity_verification_operator(operator)
+        request_body["method"] = _serialize_identity_verification_method(method)
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_channel_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ChannelNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_identity_verification_already_sent_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationAlreadySentError(error)
+            try:
+                error = _deserialize_identity_verification_already_verified_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationAlreadyVerifiedError(error)
+            try:
+                error = _deserialize_identity_verification_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationNotFoundError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_max_transaction_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise MaxTransactionCountReachedError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_send_identity_verification_response(response.json())
+    def get_identity_verification(
+        self,
+        *,
+        identity_verification_id: str,
+    ) -> IdentityVerification:
+        """본인인증 단건 조회
+
+        주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
+
+        Args:
+            identity_verification_id (str):
+                조회할 본인인증 아이디
+
+
+        Raises:
+            GetIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_identity_verification_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationNotFoundError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_identity_verification(response.json())
+    async def get_identity_verification_async(
+        self,
+        *,
+        identity_verification_id: str,
+    ) -> IdentityVerification:
+        """본인인증 단건 조회
+
+        주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
+
+        Args:
+            identity_verification_id (str):
+                조회할 본인인증 아이디
+
+
+        Raises:
+            GetIdentityVerificationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_identity_verification_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise IdentityVerificationNotFoundError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_identity_verification(response.json())
+    def get_identity_verifications(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        sort: Optional[IdentityVerificationSortInput] = None,
+        filter: Optional[IdentityVerificationFilterInput] = None,
+    ) -> GetIdentityVerificationsResponse:
+        """본인인증 내역 다건 조회
+
+        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+
+                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+            sort (IdentityVerificationSortInput, optional):
+                정렬 조건
+
+                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+            filter (IdentityVerificationFilterInput, optional):
+                조회할 본인인증 내역 조건 필터
+
+
+        Raises:
+            GetIdentityVerificationsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if sort is not None:
+            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
+        if filter is not None:
+            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/identity-verifications",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_identity_verifications_response(response.json())
+    async def get_identity_verifications_async(
+        self,
+        *,
+        page: Optional[PageInput] = None,
+        sort: Optional[IdentityVerificationSortInput] = None,
+        filter: Optional[IdentityVerificationFilterInput] = None,
+    ) -> GetIdentityVerificationsResponse:
+        """본인인증 내역 다건 조회
+
+        주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+
+        Args:
+            page (PageInput, optional):
+                요청할 페이지 정보
+
+                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+            sort (IdentityVerificationSortInput, optional):
+                정렬 조건
+
+                미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+            filter (IdentityVerificationFilterInput, optional):
+                조회할 본인인증 내역 조건 필터
+
+
+        Raises:
+            GetIdentityVerificationsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if sort is not None:
+            request_body["sort"] = _serialize_identity_verification_sort_input(sort)
+        if filter is not None:
+            request_body["filter"] = _serialize_identity_verification_filter_input(filter)
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/identity-verifications",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_identity_verifications_response(response.json())

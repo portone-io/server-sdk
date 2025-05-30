@@ -43,6 +43,7 @@ private object CreatePlatformOrderCancelTransferErrorSerializer : JsonContentPol
     "PLATFORM_PRODUCT_ID_NOT_FOUND" -> PlatformProductIdNotFoundError.serializer()
     "PLATFORM_SETTLEMENT_AMOUNT_EXCEEDED" -> PlatformSettlementAmountExceededError.serializer()
     "PLATFORM_SETTLEMENT_CANCEL_AMOUNT_EXCEEDED_PORT_ONE_CANCEL" -> PlatformSettlementCancelAmountExceededPortOneCancelError.serializer()
+    "PLATFORM_SETTLEMENT_DATE_EARLIER_THAN_SETTLEMENT_START_DATE" -> PlatformSettlementDateEarlierThanSettlementStartDateError.serializer()
     "PLATFORM_TRANSFER_ALREADY_EXISTS" -> PlatformTransferAlreadyExistsError.serializer()
     "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformTransferDiscountSharePolicyNotFoundError.serializer()
     "PLATFORM_TRANSFER_NOT_FOUND" -> PlatformTransferNotFoundError.serializer()

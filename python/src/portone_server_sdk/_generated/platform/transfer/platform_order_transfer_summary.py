@@ -24,6 +24,8 @@ class PlatformOrderTransferSummary:
     is_for_test: bool
     partner_user_defined_properties: list[PlatformUserDefinedPropertyKeyValue]
     """사용자 정의 속성
+
+    5월 삭제 예정 필드입니다. partner.userDefinedProperties를 사용해주시길 바랍니다.
     """
     user_defined_properties: list[PlatformUserDefinedPropertyKeyValue]
     """사용자 정의 속성

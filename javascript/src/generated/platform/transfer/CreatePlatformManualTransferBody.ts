@@ -11,6 +11,11 @@ export type CreatePlatformManualTransferBody = {
 	 */
 	settlementAmount: number
 	/**
+	 * 정산 면세 금액
+	 * (int64)
+	 */
+	settlementTaxFreeAmount?: number
+	/**
 	 * 정산 일
 	 *
 	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.

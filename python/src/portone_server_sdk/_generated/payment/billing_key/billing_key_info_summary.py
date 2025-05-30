@@ -10,7 +10,7 @@ class BillingKeyInfoSummary:
     """발급된 빌링키
     """
     issued_at: str
-    """빌링크 발급 완료 시점
+    """빌링키 발급 완료 시점
     (RFC 3339 date-time)
     """
     channels: Optional[list[SelectedChannel]] = field(default=None)

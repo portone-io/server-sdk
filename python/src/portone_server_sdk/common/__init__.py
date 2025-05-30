@@ -19,6 +19,7 @@ from .._generated.common.customer_separated_name import CustomerSeparatedName
 from .._generated.common.date_time_range import DateTimeRange
 from .._generated.common.easy_pay_provider import EasyPayProvider
 from .._generated.common.gender import Gender
+from .._generated.common.locale import Locale
 from .._generated.common.one_line_address import OneLineAddress
 from .._generated.common.page_info import PageInfo
 from .._generated.common.page_input import PageInput
@@ -58,6 +59,7 @@ __all__ = [
     "DateTimeRange",
     "EasyPayProvider",
     "Gender",
+    "Locale",
     "OneLineAddress",
     "PageInfo",
     "PageInput",

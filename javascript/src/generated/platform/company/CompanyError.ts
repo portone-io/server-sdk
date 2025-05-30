@@ -1,5 +1,7 @@
 import type { Unrecognized } from "../../../utils/unrecognized"
 import { PlatformError } from "../PlatformError"
+import type { B2bExternalServiceError } from "../../platform/company/B2bExternalServiceError"
+import type { B2bNotEnabledError } from "../../platform/company/B2bNotEnabledError"
 import type { ForbiddenError } from "../../common/ForbiddenError"
 import type { InvalidRequestError } from "../../common/InvalidRequestError"
 import type { PlatformCompanyNotFoundError } from "../../platform/company/PlatformCompanyNotFoundError"
@@ -7,5 +9,5 @@ import type { PlatformExternalApiFailedError } from "../../platform/PlatformExte
 import type { PlatformNotEnabledError } from "../../platform/PlatformNotEnabledError"
 import type { UnauthorizedError } from "../../common/UnauthorizedError"
 export abstract class CompanyError extends PlatformError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCompanyNotFoundError | PlatformExternalApiFailedError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2bExternalServiceError | B2bNotEnabledError | ForbiddenError | InvalidRequestError | PlatformCompanyNotFoundError | PlatformExternalApiFailedError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
 }

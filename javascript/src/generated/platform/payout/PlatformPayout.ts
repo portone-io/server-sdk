@@ -3,6 +3,7 @@ import type { PlatformPartner } from "./../../platform/PlatformPartner"
 import type { PlatformPayoutAccount } from "./../../platform/payout/PlatformPayoutAccount"
 import type { PlatformPayoutMethod } from "./../../platform/PlatformPayoutMethod"
 import type { PlatformPayoutStatus } from "./../../platform/payout/PlatformPayoutStatus"
+import type { SettlementAmountType } from "./../../platform/SettlementAmountType"
 export type PlatformPayout = {
 	/** 지급 고유 아이디 */
 	id: string
@@ -15,13 +16,45 @@ export type PlatformPayout = {
 	partner: PlatformPartner
 	account: PlatformPayoutAccount
 	currency: Currency
-	/** (int64) */
+	/**
+	 * 지급금액
+	 * (int64)
+	 */
 	amount: number
-	/** (int64) */
+	/**
+	 * 공급가액
+	 * (int64)
+	 */
+	supplyAmount: number
+	/**
+	 * 면세 금액
+	 * (int64)
+	 */
+	taxFreeAmount: number
+	/**
+	 * 부가세
+	 * (int64)
+	 */
+	vatAmount: number
+	/**
+	 * 정산 금액
+	 * (int64)
+	 */
 	settlementAmount: number
-	/** (int64) */
+	/**
+	 * 정산 면세 금액
+	 * (int64)
+	 */
+	settlementTaxFreeAmount: number
+	/**
+	 * 원천징수세액 (소득세)
+	 * (int64)
+	 */
 	incomeTaxAmount: number
-	/** (int64) */
+	/**
+	 * 원천징수세액 (지방소득세)
+	 * (int64)
+	 */
 	localIncomeTaxAmount: number
 	withdrawalMemo?: string
 	depositMemo?: string
@@ -29,4 +62,10 @@ export type PlatformPayout = {
 	createdAt: string
 	/** (RFC 3339 date-time) */
 	scheduledAt?: string
+	/** 실패 사유 */
+	failReason?: string
+	/** 지급 금액에서 원천징수세 차감 여부 */
+	deductWht: boolean
+	/** 정산 금액 취급 기준 */
+	settlementAmountType: SettlementAmountType
 }

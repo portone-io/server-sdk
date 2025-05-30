@@ -748,6 +748,36 @@ public sealed interface PgProvider {
     }
     override fun serialize(encoder: Encoder, value: EximbayV2) = encoder.encodeString(value.value)
   }
+  @Serializable(InicisJpSerializer::class)
+  public data object InicisJp : PgProvider {
+    override val value: String = "INICIS_JP"
+  }
+  private object InicisJpSerializer : KSerializer<InicisJp> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InicisJp::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): InicisJp = decoder.decodeString().let {
+      if (it != "INICIS_JP") {
+        throw SerializationException(it)
+      } else {
+        return InicisJp
+      }
+    }
+    override fun serialize(encoder: Encoder, value: InicisJp) = encoder.encodeString(value.value)
+  }
+  @Serializable(PayletterGlobalSerializer::class)
+  public data object PayletterGlobal : PgProvider {
+    override val value: String = "PAYLETTER_GLOBAL"
+  }
+  private object PayletterGlobalSerializer : KSerializer<PayletterGlobal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayletterGlobal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): PayletterGlobal = decoder.decodeString().let {
+      if (it != "PAYLETTER_GLOBAL") {
+        throw SerializationException(it)
+      } else {
+        return PayletterGlobal
+      }
+    }
+    override fun serialize(encoder: Encoder, value: PayletterGlobal) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgProvider
@@ -808,6 +838,8 @@ private object PgProviderSerializer : KSerializer<PgProvider> {
       "KCP_V2" -> PgProvider.KcpV2
       "HYPHEN" -> PgProvider.Hyphen
       "EXIMBAY_V2" -> PgProvider.EximbayV2
+      "INICIS_JP" -> PgProvider.InicisJp
+      "PAYLETTER_GLOBAL" -> PgProvider.PayletterGlobal
       else -> PgProvider.Unrecognized(value)
     }
   }

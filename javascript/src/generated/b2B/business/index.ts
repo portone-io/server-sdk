@@ -1,8 +1,0 @@
-export { BusinessError } from "./BusinessError"
-export * from "./B2bBusinessInfo"
-export * from "./B2bBusinessInfoResult"
-export * from "./B2bExternalServiceError"
-export * from "./B2bNotEnabledError"
-export * from "./GetB2bBusinessInfosBody"
-export * from "./GetB2bBusinessInfosResponse"
-export * from "./client"

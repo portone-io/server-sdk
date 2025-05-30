@@ -85,229 +85,6 @@ public class IdentityVerificationClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 본인인증 단건 조회
-   *
-   * 주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
-   *
-   * @param identityVerificationId
-   * 조회할 본인인증 아이디
-   *
-   * @throws GetIdentityVerificationException
-   */
-  @JvmName("getIdentityVerificationSuspend")
-  public suspend fun getIdentityVerification(
-    identityVerificationId: String,
-  ): IdentityVerification {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<IdentityVerification>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getIdentityVerification")
-  public fun getIdentityVerificationFuture(
-    identityVerificationId: String,
-  ): CompletableFuture<IdentityVerification> = GlobalScope.future { getIdentityVerification(identityVerificationId) }
-
-
-  /**
-   * 본인인증 내역 다건 조회
-   *
-   * 주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
-   *
-   * @param page
-   * 요청할 페이지 정보
-   *
-   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
-   * @param sort
-   * 정렬 조건
-   *
-   * 미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
-   * @param filter
-   * 조회할 본인인증 내역 조건 필터
-   *
-   * @throws GetIdentityVerificationsException
-   */
-  @JvmName("getIdentityVerificationsSuspend")
-  public suspend fun getIdentityVerifications(
-    page: PageInput? = null,
-    sort: IdentityVerificationSortInput? = null,
-    filter: IdentityVerificationFilterInput? = null,
-  ): GetIdentityVerificationsResponse {
-    val requestBody = GetIdentityVerificationsBody(
-      page = page,
-      sort = sort,
-      filter = filter,
-    )
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("identity-verifications")
-        parameters.append("requestBody", json.encodeToString(requestBody))
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetIdentityVerificationsError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetIdentityVerificationsResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getIdentityVerifications")
-  public fun getIdentityVerificationsFuture(
-    page: PageInput? = null,
-    sort: IdentityVerificationSortInput? = null,
-    filter: IdentityVerificationFilterInput? = null,
-  ): CompletableFuture<GetIdentityVerificationsResponse> = GlobalScope.future { getIdentityVerifications(page, sort, filter) }
-
-
-  /**
-   * 본인인증 요청 전송
-   *
-   * SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
-   *
-   * @param identityVerificationId
-   * 본인인증 아이디
-   * @param channelKey
-   * 채널 키
-   * @param customer
-   * 고객 정보
-   * @param customData
-   * 사용자 지정 데이터
-   * @param bypass
-   * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
-   * @param operator
-   * 통신사
-   * @param method
-   * 본인인증 방식
-   *
-   * @throws SendIdentityVerificationException
-   */
-  @JvmName("sendIdentityVerificationSuspend")
-  public suspend fun sendIdentityVerification(
-    identityVerificationId: String,
-    channelKey: String,
-    customer: SendIdentityVerificationBodyCustomer,
-    customData: String? = null,
-    bypass: JsonObject? = null,
-    `operator`: IdentityVerificationOperator,
-    method: IdentityVerificationMethod,
-  ): SendIdentityVerificationResponse {
-    val requestBody = SendIdentityVerificationBody(
-      storeId = storeId,
-      channelKey = channelKey,
-      customer = customer,
-      customData = customData,
-      bypass = bypass,
-      operator = operator,
-      method = method,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is IdentityVerificationAlreadySentError -> throw IdentityVerificationAlreadySentException(httpBodyDecoded)
-        is IdentityVerificationAlreadyVerifiedError -> throw IdentityVerificationAlreadyVerifiedException(httpBodyDecoded)
-        is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
-        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<SendIdentityVerificationResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("sendIdentityVerification")
-  public fun sendIdentityVerificationFuture(
-    identityVerificationId: String,
-    channelKey: String,
-    customer: SendIdentityVerificationBodyCustomer,
-    customData: String? = null,
-    bypass: JsonObject? = null,
-    `operator`: IdentityVerificationOperator,
-    method: IdentityVerificationMethod,
-  ): CompletableFuture<SendIdentityVerificationResponse> = GlobalScope.future { sendIdentityVerification(identityVerificationId, channelKey, customer, customData, bypass, operator, method) }
-
-
-  /**
    * 본인인증 확인
    *
    * 요청된 본인인증에 대한 확인을 진행합니다.
@@ -434,6 +211,229 @@ public class IdentityVerificationClient(
   public fun resendIdentityVerificationFuture(
     identityVerificationId: String,
   ): CompletableFuture<ResendIdentityVerificationResponse> = GlobalScope.future { resendIdentityVerification(identityVerificationId) }
+
+
+  /**
+   * 본인인증 요청 전송
+   *
+   * SMS 또는 APP 방식을 이용하여 본인인증 요청을 전송합니다.
+   *
+   * @param identityVerificationId
+   * 본인인증 아이디
+   * @param channelKey
+   * 채널 키
+   * @param customer
+   * 고객 정보
+   * @param customData
+   * 사용자 지정 데이터
+   * @param bypass
+   * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+   * @param operator
+   * 통신사
+   * @param method
+   * 본인인증 방식
+   *
+   * @throws SendIdentityVerificationException
+   */
+  @JvmName("sendIdentityVerificationSuspend")
+  public suspend fun sendIdentityVerification(
+    identityVerificationId: String,
+    channelKey: String,
+    customer: SendIdentityVerificationBodyCustomer,
+    customData: String? = null,
+    bypass: JsonObject? = null,
+    `operator`: IdentityVerificationOperator,
+    method: IdentityVerificationMethod,
+  ): SendIdentityVerificationResponse {
+    val requestBody = SendIdentityVerificationBody(
+      storeId = storeId,
+      channelKey = channelKey,
+      customer = customer,
+      customData = customData,
+      bypass = bypass,
+      operator = operator,
+      method = method,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<SendIdentityVerificationError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is IdentityVerificationAlreadySentError -> throw IdentityVerificationAlreadySentException(httpBodyDecoded)
+        is IdentityVerificationAlreadyVerifiedError -> throw IdentityVerificationAlreadyVerifiedException(httpBodyDecoded)
+        is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<SendIdentityVerificationResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("sendIdentityVerification")
+  public fun sendIdentityVerificationFuture(
+    identityVerificationId: String,
+    channelKey: String,
+    customer: SendIdentityVerificationBodyCustomer,
+    customData: String? = null,
+    bypass: JsonObject? = null,
+    `operator`: IdentityVerificationOperator,
+    method: IdentityVerificationMethod,
+  ): CompletableFuture<SendIdentityVerificationResponse> = GlobalScope.future { sendIdentityVerification(identityVerificationId, channelKey, customer, customData, bypass, operator, method) }
+
+
+  /**
+   * 본인인증 단건 조회
+   *
+   * 주어진 아이디에 대응되는 본인인증 내역을 조회합니다.
+   *
+   * @param identityVerificationId
+   * 조회할 본인인증 아이디
+   *
+   * @throws GetIdentityVerificationException
+   */
+  @JvmName("getIdentityVerificationSuspend")
+  public suspend fun getIdentityVerification(
+    identityVerificationId: String,
+  ): IdentityVerification {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("identity-verifications", identityVerificationId.toString())
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetIdentityVerificationError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is IdentityVerificationNotFoundError -> throw IdentityVerificationNotFoundException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<IdentityVerification>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getIdentityVerification")
+  public fun getIdentityVerificationFuture(
+    identityVerificationId: String,
+  ): CompletableFuture<IdentityVerification> = GlobalScope.future { getIdentityVerification(identityVerificationId) }
+
+
+  /**
+   * 본인인증 내역 다건 조회
+   *
+   * 주어진 조건에 맞는 본인인증 내역들을 페이지 기반으로 조회합니다.
+   *
+   * @param page
+   * 요청할 페이지 정보
+   *
+   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+   * @param sort
+   * 정렬 조건
+   *
+   * 미 입력 시 sortBy: REQUESTED_AT, sortOrder: DESC 으로 기본값이 적용됩니다.
+   * @param filter
+   * 조회할 본인인증 내역 조건 필터
+   *
+   * @throws GetIdentityVerificationsException
+   */
+  @JvmName("getIdentityVerificationsSuspend")
+  public suspend fun getIdentityVerifications(
+    page: PageInput? = null,
+    sort: IdentityVerificationSortInput? = null,
+    filter: IdentityVerificationFilterInput? = null,
+  ): GetIdentityVerificationsResponse {
+    val requestBody = GetIdentityVerificationsBody(
+      page = page,
+      sort = sort,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("identity-verifications")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetIdentityVerificationsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetIdentityVerificationsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getIdentityVerifications")
+  public fun getIdentityVerificationsFuture(
+    page: PageInput? = null,
+    sort: IdentityVerificationSortInput? = null,
+    filter: IdentityVerificationFilterInput? = null,
+  ): CompletableFuture<GetIdentityVerificationsResponse> = GlobalScope.future { getIdentityVerifications(page, sort, filter) }
 
   override fun close() {
     client.close()

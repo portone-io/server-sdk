@@ -13,7 +13,7 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformAccountTransferTypeSerializer::class)
 public sealed interface PlatformAccountTransferType {
   public val value: String
-  /** 충전 */
+  /** 입금 */
   @Serializable(DepositSerializer::class)
   public data object Deposit : PlatformAccountTransferType {
     override val value: String = "DEPOSIT"
@@ -29,37 +29,21 @@ public sealed interface PlatformAccountTransferType {
     }
     override fun serialize(encoder: Encoder, value: Deposit) = encoder.encodeString(value.value)
   }
-  /** 파트너 정산 송금 */
-  @Serializable(WithdrawalPartnerPayoutSerializer::class)
-  public data object WithdrawalPartnerPayout : PlatformAccountTransferType {
-    override val value: String = "WITHDRAWAL_PARTNER_PAYOUT"
+  /** 출금 */
+  @Serializable(WithdrawalSerializer::class)
+  public data object Withdrawal : PlatformAccountTransferType {
+    override val value: String = "WITHDRAWAL"
   }
-  private object WithdrawalPartnerPayoutSerializer : KSerializer<WithdrawalPartnerPayout> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WithdrawalPartnerPayout::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): WithdrawalPartnerPayout = decoder.decodeString().let {
-      if (it != "WITHDRAWAL_PARTNER_PAYOUT") {
+  private object WithdrawalSerializer : KSerializer<Withdrawal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Withdrawal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Withdrawal = decoder.decodeString().let {
+      if (it != "WITHDRAWAL") {
         throw SerializationException(it)
       } else {
-        return WithdrawalPartnerPayout
+        return Withdrawal
       }
     }
-    override fun serialize(encoder: Encoder, value: WithdrawalPartnerPayout) = encoder.encodeString(value.value)
-  }
-  /** 송금 */
-  @Serializable(WithdrawalRemitSerializer::class)
-  public data object WithdrawalRemit : PlatformAccountTransferType {
-    override val value: String = "WITHDRAWAL_REMIT"
-  }
-  private object WithdrawalRemitSerializer : KSerializer<WithdrawalRemit> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WithdrawalRemit::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): WithdrawalRemit = decoder.decodeString().let {
-      if (it != "WITHDRAWAL_REMIT") {
-        throw SerializationException(it)
-      } else {
-        return WithdrawalRemit
-      }
-    }
-    override fun serialize(encoder: Encoder, value: WithdrawalRemit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Withdrawal) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -73,8 +57,7 @@ private object PlatformAccountTransferTypeSerializer : KSerializer<PlatformAccou
     val value = decoder.decodeString()
     return when (value) {
       "DEPOSIT" -> PlatformAccountTransferType.Deposit
-      "WITHDRAWAL_PARTNER_PAYOUT" -> PlatformAccountTransferType.WithdrawalPartnerPayout
-      "WITHDRAWAL_REMIT" -> PlatformAccountTransferType.WithdrawalRemit
+      "WITHDRAWAL" -> PlatformAccountTransferType.Withdrawal
       else -> PlatformAccountTransferType.Unrecognized(value)
     }
   }

@@ -143,395 +143,6 @@ public class PolicyClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 할인 분담 정책 다건 조회
-   *
-   * 여러 할인 분담을 조회합니다.
-   *
-   * @param page
-   * 요청할 페이지 정보
-   * @param filter
-   * 조회할 할인 분담 정책 조건 필터
-   *
-   * @throws GetPlatformDiscountSharePoliciesException
-   */
-  @JvmName("getPlatformDiscountSharePoliciesSuspend")
-  public suspend fun getPlatformDiscountSharePolicies(
-    page: PageInput? = null,
-    filter: PlatformDiscountSharePolicyFilterInput? = null,
-  ): GetPlatformDiscountSharePoliciesResponse {
-    val requestBody = GetPlatformDiscountSharePoliciesBody(
-      page = page,
-      filter = filter,
-    )
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies")
-        parameters.append("requestBody", json.encodeToString(requestBody))
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetPlatformDiscountSharePoliciesResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformDiscountSharePolicies")
-  public fun getPlatformDiscountSharePoliciesFuture(
-    page: PageInput? = null,
-    filter: PlatformDiscountSharePolicyFilterInput? = null,
-  ): CompletableFuture<GetPlatformDiscountSharePoliciesResponse> = GlobalScope.future { getPlatformDiscountSharePolicies(page, filter) }
-
-
-  /**
-   * 할인 분담 정책 생성
-   *
-   * 새로운 할인 분담을 생성합니다.
-   *
-   * @param id
-   * 할인 분담에 부여할 고유 아이디
-   *
-   * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-   * @param name
-   * 할인 분담에 부여할 이름
-   * @param partnerShareRate
-   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-   * @param memo
-   * 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
-   *
-   * @throws CreatePlatformDiscountSharePolicyException
-   */
-  @JvmName("createPlatformDiscountSharePolicySuspend")
-  public suspend fun createPlatformDiscountSharePolicy(
-    id: String? = null,
-    name: String,
-    partnerShareRate: Int,
-    memo: String? = null,
-  ): CreatePlatformDiscountSharePolicyResponse {
-    val requestBody = CreatePlatformDiscountSharePolicyBody(
-      id = id,
-      name = name,
-      partnerShareRate = partnerShareRate,
-      memo = memo,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyAlreadyExistsError -> throw PlatformDiscountSharePolicyAlreadyExistsException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CreatePlatformDiscountSharePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("createPlatformDiscountSharePolicy")
-  public fun createPlatformDiscountSharePolicyFuture(
-    id: String? = null,
-    name: String,
-    partnerShareRate: Int,
-    memo: String? = null,
-  ): CompletableFuture<CreatePlatformDiscountSharePolicyResponse> = GlobalScope.future { createPlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
-
-
-  /**
-   * 할인 분담 정책 조회
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
-   *
-   * @param id
-   * 조회할 할인 분담 정책 아이디
-   *
-   * @throws GetPlatformDiscountSharePolicyException
-   */
-  @JvmName("getPlatformDiscountSharePolicySuspend")
-  public suspend fun getPlatformDiscountSharePolicy(
-    id: String,
-  ): PlatformDiscountSharePolicy {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformDiscountSharePolicy")
-  public fun getPlatformDiscountSharePolicyFuture(
-    id: String,
-  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicy(id) }
-
-
-  /**
-   * 할인 분담 정책 수정
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
-   *
-   * @param id
-   * 업데이트할 할인 분담 정책 아이디
-   * @param name
-   * 할인 분담 정책 이름
-   * @param partnerShareRate
-   * 할인 분담율
-   *
-   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-   * @param memo
-   * 해당 할인 분담에 대한 메모
-   *
-   * @throws UpdatePlatformDiscountSharePolicyException
-   */
-  @JvmName("updatePlatformDiscountSharePolicySuspend")
-  public suspend fun updatePlatformDiscountSharePolicy(
-    id: String,
-    name: String? = null,
-    partnerShareRate: Int? = null,
-    memo: String? = null,
-  ): UpdatePlatformDiscountSharePolicyResponse {
-    val requestBody = UpdatePlatformDiscountSharePolicyBody(
-      name = name,
-      partnerShareRate = partnerShareRate,
-      memo = memo,
-    )
-    val httpResponse = client.patch(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformArchivedDiscountSharePolicyError -> throw PlatformArchivedDiscountSharePolicyException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<UpdatePlatformDiscountSharePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("updatePlatformDiscountSharePolicy")
-  public fun updatePlatformDiscountSharePolicyFuture(
-    id: String,
-    name: String? = null,
-    partnerShareRate: Int? = null,
-    memo: String? = null,
-  ): CompletableFuture<UpdatePlatformDiscountSharePolicyResponse> = GlobalScope.future { updatePlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
-
-
-  /**
-   * 할인 분담 정책 보관
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
-   *
-   * @param id
-   * 할인 분담 아이디
-   *
-   * @throws ArchivePlatformDiscountSharePolicyException
-   */
-  @JvmName("archivePlatformDiscountSharePolicySuspend")
-  public suspend fun archivePlatformDiscountSharePolicy(
-    id: String,
-  ): ArchivePlatformDiscountSharePolicyResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformCannotArchiveScheduledDiscountSharePolicyError -> throw PlatformCannotArchiveScheduledDiscountSharePolicyException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ArchivePlatformDiscountSharePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("archivePlatformDiscountSharePolicy")
-  public fun archivePlatformDiscountSharePolicyFuture(
-    id: String,
-  ): CompletableFuture<ArchivePlatformDiscountSharePolicyResponse> = GlobalScope.future { archivePlatformDiscountSharePolicy(id) }
-
-
-  /**
-   * 할인 분담 정책 복원
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
-   *
-   * @param id
-   * 할인 분담 아이디
-   *
-   * @throws RecoverPlatformDiscountSharePolicyException
-   */
-  @JvmName("recoverPlatformDiscountSharePolicySuspend")
-  public suspend fun recoverPlatformDiscountSharePolicy(
-    id: String,
-  ): RecoverPlatformDiscountSharePolicyResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<RecoverPlatformDiscountSharePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("recoverPlatformDiscountSharePolicy")
-  public fun recoverPlatformDiscountSharePolicyFuture(
-    id: String,
-  ): CompletableFuture<RecoverPlatformDiscountSharePolicyResponse> = GlobalScope.future { recoverPlatformDiscountSharePolicy(id) }
-
-
-  /**
    * 추가 수수료 정책 다건 조회
    *
    * 여러 추가 수수료 정책을 조회합니다.
@@ -1343,6 +954,395 @@ public class PolicyClient(
   public fun recoverPlatformContractFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformContractResponse> = GlobalScope.future { recoverPlatformContract(id) }
+
+
+  /**
+   * 할인 분담 정책 다건 조회
+   *
+   * 여러 할인 분담을 조회합니다.
+   *
+   * @param page
+   * 요청할 페이지 정보
+   * @param filter
+   * 조회할 할인 분담 정책 조건 필터
+   *
+   * @throws GetPlatformDiscountSharePoliciesException
+   */
+  @JvmName("getPlatformDiscountSharePoliciesSuspend")
+  public suspend fun getPlatformDiscountSharePolicies(
+    page: PageInput? = null,
+    filter: PlatformDiscountSharePolicyFilterInput? = null,
+  ): GetPlatformDiscountSharePoliciesResponse {
+    val requestBody = GetPlatformDiscountSharePoliciesBody(
+      page = page,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetPlatformDiscountSharePoliciesResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformDiscountSharePolicies")
+  public fun getPlatformDiscountSharePoliciesFuture(
+    page: PageInput? = null,
+    filter: PlatformDiscountSharePolicyFilterInput? = null,
+  ): CompletableFuture<GetPlatformDiscountSharePoliciesResponse> = GlobalScope.future { getPlatformDiscountSharePolicies(page, filter) }
+
+
+  /**
+   * 할인 분담 정책 생성
+   *
+   * 새로운 할인 분담을 생성합니다.
+   *
+   * @param id
+   * 할인 분담에 부여할 고유 아이디
+   *
+   * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+   * @param name
+   * 할인 분담에 부여할 이름
+   * @param partnerShareRate
+   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+   * @param memo
+   * 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+   *
+   * @throws CreatePlatformDiscountSharePolicyException
+   */
+  @JvmName("createPlatformDiscountSharePolicySuspend")
+  public suspend fun createPlatformDiscountSharePolicy(
+    id: String? = null,
+    name: String,
+    partnerShareRate: Int,
+    memo: String? = null,
+  ): CreatePlatformDiscountSharePolicyResponse {
+    val requestBody = CreatePlatformDiscountSharePolicyBody(
+      id = id,
+      name = name,
+      partnerShareRate = partnerShareRate,
+      memo = memo,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyAlreadyExistsError -> throw PlatformDiscountSharePolicyAlreadyExistsException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CreatePlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("createPlatformDiscountSharePolicy")
+  public fun createPlatformDiscountSharePolicyFuture(
+    id: String? = null,
+    name: String,
+    partnerShareRate: Int,
+    memo: String? = null,
+  ): CompletableFuture<CreatePlatformDiscountSharePolicyResponse> = GlobalScope.future { createPlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
+
+
+  /**
+   * 할인 분담 정책 조회
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
+   *
+   * @param id
+   * 조회할 할인 분담 정책 아이디
+   *
+   * @throws GetPlatformDiscountSharePolicyException
+   */
+  @JvmName("getPlatformDiscountSharePolicySuspend")
+  public suspend fun getPlatformDiscountSharePolicy(
+    id: String,
+  ): PlatformDiscountSharePolicy {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformDiscountSharePolicy")
+  public fun getPlatformDiscountSharePolicyFuture(
+    id: String,
+  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicy(id) }
+
+
+  /**
+   * 할인 분담 정책 수정
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
+   *
+   * @param id
+   * 업데이트할 할인 분담 정책 아이디
+   * @param name
+   * 할인 분담 정책 이름
+   * @param partnerShareRate
+   * 할인 분담율
+   *
+   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+   * @param memo
+   * 해당 할인 분담에 대한 메모
+   *
+   * @throws UpdatePlatformDiscountSharePolicyException
+   */
+  @JvmName("updatePlatformDiscountSharePolicySuspend")
+  public suspend fun updatePlatformDiscountSharePolicy(
+    id: String,
+    name: String? = null,
+    partnerShareRate: Int? = null,
+    memo: String? = null,
+  ): UpdatePlatformDiscountSharePolicyResponse {
+    val requestBody = UpdatePlatformDiscountSharePolicyBody(
+      name = name,
+      partnerShareRate = partnerShareRate,
+      memo = memo,
+    )
+    val httpResponse = client.patch(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedDiscountSharePolicyError -> throw PlatformArchivedDiscountSharePolicyException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<UpdatePlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("updatePlatformDiscountSharePolicy")
+  public fun updatePlatformDiscountSharePolicyFuture(
+    id: String,
+    name: String? = null,
+    partnerShareRate: Int? = null,
+    memo: String? = null,
+  ): CompletableFuture<UpdatePlatformDiscountSharePolicyResponse> = GlobalScope.future { updatePlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
+
+
+  /**
+   * 할인 분담 정책 보관
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 보관합니다.
+   *
+   * @param id
+   * 할인 분담 아이디
+   *
+   * @throws ArchivePlatformDiscountSharePolicyException
+   */
+  @JvmName("archivePlatformDiscountSharePolicySuspend")
+  public suspend fun archivePlatformDiscountSharePolicy(
+    id: String,
+  ): ArchivePlatformDiscountSharePolicyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ArchivePlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformCannotArchiveScheduledDiscountSharePolicyError -> throw PlatformCannotArchiveScheduledDiscountSharePolicyException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ArchivePlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("archivePlatformDiscountSharePolicy")
+  public fun archivePlatformDiscountSharePolicyFuture(
+    id: String,
+  ): CompletableFuture<ArchivePlatformDiscountSharePolicyResponse> = GlobalScope.future { archivePlatformDiscountSharePolicy(id) }
+
+
+  /**
+   * 할인 분담 정책 복원
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 복원합니다.
+   *
+   * @param id
+   * 할인 분담 아이디
+   *
+   * @throws RecoverPlatformDiscountSharePolicyException
+   */
+  @JvmName("recoverPlatformDiscountSharePolicySuspend")
+  public suspend fun recoverPlatformDiscountSharePolicy(
+    id: String,
+  ): RecoverPlatformDiscountSharePolicyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<RecoverPlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<RecoverPlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("recoverPlatformDiscountSharePolicy")
+  public fun recoverPlatformDiscountSharePolicyFuture(
+    id: String,
+  ): CompletableFuture<RecoverPlatformDiscountSharePolicyResponse> = GlobalScope.future { recoverPlatformDiscountSharePolicy(id) }
 
   override fun close() {
     client.close()

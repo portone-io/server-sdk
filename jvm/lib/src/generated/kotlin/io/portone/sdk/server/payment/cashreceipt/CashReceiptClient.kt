@@ -80,62 +80,6 @@ public class CashReceiptClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 현금 영수증 단건 조회
-   *
-   * 주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
-   *
-   * @param paymentId
-   * 결제 건 아이디
-   *
-   * @throws GetCashReceiptException
-   */
-  @JvmName("getCashReceiptByPaymentIdSuspend")
-  public suspend fun getCashReceiptByPaymentId(
-    paymentId: String,
-  ): CashReceipt {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString(), "cash-receipt")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetCashReceiptError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is CashReceiptNotFoundError -> throw CashReceiptNotFoundException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CashReceipt>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getCashReceiptByPaymentId")
-  public fun getCashReceiptByPaymentIdFuture(
-    paymentId: String,
-  ): CompletableFuture<CashReceipt> = GlobalScope.future { getCashReceiptByPaymentId(paymentId) }
-
-
-  /**
    * 현금영수증 다건 조회
    *
    * 주어진 조건에 맞는 현금영수증들을 페이지 기반으로 조회합니다.
@@ -382,6 +326,62 @@ public class CashReceiptClient(
   public fun cancelCashReceiptByPaymentIdFuture(
     paymentId: String,
   ): CompletableFuture<CancelCashReceiptResponse> = GlobalScope.future { cancelCashReceiptByPaymentId(paymentId) }
+
+
+  /**
+   * 현금 영수증 단건 조회
+   *
+   * 주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   *
+   * @throws GetCashReceiptException
+   */
+  @JvmName("getCashReceiptByPaymentIdSuspend")
+  public suspend fun getCashReceiptByPaymentId(
+    paymentId: String,
+  ): CashReceipt {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "cash-receipt")
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetCashReceiptError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is CashReceiptNotFoundError -> throw CashReceiptNotFoundException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CashReceipt>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getCashReceiptByPaymentId")
+  public fun getCashReceiptByPaymentIdFuture(
+    paymentId: String,
+  ): CompletableFuture<CashReceipt> = GlobalScope.future { getCashReceiptByPaymentId(paymentId) }
 
   override fun close() {
     client.close()

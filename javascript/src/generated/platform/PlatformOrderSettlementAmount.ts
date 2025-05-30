@@ -11,6 +11,11 @@ export type PlatformOrderSettlementAmount = {
 	 */
 	settlement: number
 	/**
+	 * 정산 면세 금액
+	 * (int64)
+	 */
+	settlementTaxFree: number
+	/**
 	 * 결제 금액
 	 * (int64)
 	 */
@@ -27,20 +32,6 @@ export type PlatformOrderSettlementAmount = {
 	 * (int64)
 	 */
 	paymentVatBurden: number
-	/**
-	 * 결제 면세 금액
-	 *
-	 * 해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 paymentTaxFree 필드를 사용해주세요.
-	 * (int64)
-	 */
-	taxFree: number
-	/**
-	 * 결제 공급가액
-	 *
-	 * 해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 paymentSupply 필드를 사용해주세요.
-	 * (int64)
-	 */
-	supply: number
 	/**
 	 * 결제 면세 금액
 	 * (int64)

@@ -56,37 +56,36 @@ from ..platform.schedule_platform_discount_share_policy_response import Schedule
 from ..platform.schedule_platform_partner_response import SchedulePlatformPartnerResponse, _deserialize_schedule_platform_partner_response, _serialize_schedule_platform_partner_response
 from ..platform.schedule_platform_partners_body_update import SchedulePlatformPartnersBodyUpdate, _deserialize_schedule_platform_partners_body_update, _serialize_schedule_platform_partners_body_update
 from ..platform.schedule_platform_partners_response import SchedulePlatformPartnersResponse, _deserialize_schedule_platform_partners_response, _serialize_schedule_platform_partners_response
+from ..platform.settlement_amount_type import SettlementAmountType, _deserialize_settlement_amount_type, _serialize_settlement_amount_type
 from ..platform.update_platform_additional_fee_policy_body import UpdatePlatformAdditionalFeePolicyBody, _deserialize_update_platform_additional_fee_policy_body, _serialize_update_platform_additional_fee_policy_body
-from ..platform.update_platform_body_settlement_rule import UpdatePlatformBodySettlementRule, _deserialize_update_platform_body_settlement_rule, _serialize_update_platform_body_settlement_rule
 from ..platform.update_platform_contract_body import UpdatePlatformContractBody, _deserialize_update_platform_contract_body, _serialize_update_platform_contract_body
 from ..platform.update_platform_discount_share_policy_body import UpdatePlatformDiscountSharePolicyBody, _deserialize_update_platform_discount_share_policy_body, _serialize_update_platform_discount_share_policy_body
 from ..platform.update_platform_partner_body import UpdatePlatformPartnerBody, _deserialize_update_platform_partner_body, _serialize_update_platform_partner_body
-from ..platform.update_platform_response import UpdatePlatformResponse, _deserialize_update_platform_response, _serialize_update_platform_response
 from ..platform.update_platform_setting_response import UpdatePlatformSettingResponse, _deserialize_update_platform_setting_response, _serialize_update_platform_setting_response
 from urllib.parse import quote
-from .policy.client import PolicyClient
-from .partner.client import PartnerClient
-from .transfer.client import TransferClient
-from .partner_settlement.client import PartnerSettlementClient
-from .payout.client import PayoutClient
-from .bulk_payout.client import BulkPayoutClient
-from .account.client import AccountClient
 from .company.client import CompanyClient
 from .account_transfer.client import AccountTransferClient
+from .policy.client import PolicyClient
+from .account.client import AccountClient
+from .bulk_payout.client import BulkPayoutClient
+from .partner_settlement.client import PartnerSettlementClient
+from .partner.client import PartnerClient
+from .payout.client import PayoutClient
+from .transfer.client import TransferClient
 class PlatformClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
     _client: AsyncClient
-    policy: PolicyClient
-    partner: PartnerClient
-    transfer: TransferClient
-    partner_settlement: PartnerSettlementClient
-    payout: PayoutClient
-    bulk_payout: BulkPayoutClient
-    account: AccountClient
     company: CompanyClient
     account_transfer: AccountTransferClient
+    policy: PolicyClient
+    account: AccountClient
+    bulk_payout: BulkPayoutClient
+    partner_settlement: PartnerSettlementClient
+    partner: PartnerClient
+    payout: PayoutClient
+    transfer: TransferClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -101,15 +100,15 @@ class PlatformClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
-        self.policy = PolicyClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.transfer = TransferClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.partner_settlement = PartnerSettlementClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.bulk_payout = BulkPayoutClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.account = AccountClient(secret=secret, base_url=base_url, store_id=store_id)
         self.company = CompanyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account_transfer = AccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.policy = PolicyClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.account = AccountClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.bulk_payout = BulkPayoutClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.partner_settlement = PartnerSettlementClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.transfer = TransferClient(secret=secret, base_url=base_url, store_id=store_id)
     def get_platform(
         self,
     ) -> Platform:
@@ -196,30 +195,155 @@ class PlatformClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_platform(response.json())
-    def update_platform(
+    def get_platform_additional_fee_policy_schedule(
         self,
         *,
-        settlement_rule: Optional[UpdatePlatformBodySettlementRule] = None,
-    ) -> UpdatePlatformResponse:
-        """고객사의 플랫폼 관련 정보를 업데이트합니다.
-        요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
+        id: str,
+    ) -> PlatformAdditionalFeePolicy:
+        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 
         Args:
-            settlement_rule (UpdatePlatformBodySettlementRule, optional):
-                정산 규칙
+            id (str):
+                추가 수수료 정책 아이디
 
 
         Raises:
-            UpdatePlatformError: API 호출이 실패한 경우
+            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_additional_fee_policy(response.json())
+    async def get_platform_additional_fee_policy_schedule_async(
+        self,
+        *,
+        id: str,
+    ) -> PlatformAdditionalFeePolicy:
+        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+
+
+        Raises:
+            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_platform_additional_fee_policy(response.json())
+    def reschedule_additional_fee_policy(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformAdditionalFeePolicyBody,
+        applied_at: str,
+    ) -> ReschedulePlatformAdditionalFeePolicyResponse:
+        """Args:
+            id (str):
+                추가 수수료 정책 아이디
+            update (UpdatePlatformAdditionalFeePolicyBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        if settlement_rule is not None:
-            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = httpx.request(
-            "PATCH",
-            f"{self._base_url}/platform",
+            "PUT",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -243,6 +367,12 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -255,31 +385,34 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_update_platform_response(response.json())
-    async def update_platform_async(
+        return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
+    async def reschedule_additional_fee_policy_async(
         self,
         *,
-        settlement_rule: Optional[UpdatePlatformBodySettlementRule] = None,
-    ) -> UpdatePlatformResponse:
-        """고객사의 플랫폼 관련 정보를 업데이트합니다.
-        요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
-
-        Args:
-            settlement_rule (UpdatePlatformBodySettlementRule, optional):
-                정산 규칙
+        id: str,
+        update: UpdatePlatformAdditionalFeePolicyBody,
+        applied_at: str,
+    ) -> ReschedulePlatformAdditionalFeePolicyResponse:
+        """Args:
+            id (str):
+                추가 수수료 정책 아이디
+            update (UpdatePlatformAdditionalFeePolicyBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
 
 
         Raises:
-            UpdatePlatformError: API 호출이 실패한 경우
+            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        if settlement_rule is not None:
-            request_body["settlementRule"] = _serialize_update_platform_body_settlement_rule(settlement_rule)
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
         query = []
         response = await self._client.request(
-            "PATCH",
-            f"{self._base_url}/platform",
+            "PUT",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -303,6 +436,12 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -315,31 +454,315 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_update_platform_response(response.json())
-    def get_platform_discount_share_policy_filter_options(
+        return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
+    def schedule_additional_fee_policy(
         self,
         *,
-        is_archived: Optional[bool] = None,
-    ) -> PlatformDiscountSharePolicyFilterOptions:
-        """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
+        id: str,
+        update: UpdatePlatformAdditionalFeePolicyBody,
+        applied_at: str,
+    ) -> SchedulePlatformAdditionalFeePolicyResponse:
+        """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
 
         Args:
-            is_archived (bool, optional):
-                보관 조회 여부
-
-                true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+            id (str):
+                추가 수수료 정책 아이디
+            update (UpdatePlatformAdditionalFeePolicyBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
 
 
         Raises:
-            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
+            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
+    async def schedule_additional_fee_policy_async(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformAdditionalFeePolicyBody,
+        applied_at: str,
+    ) -> SchedulePlatformAdditionalFeePolicyResponse:
+        """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+            update (UpdatePlatformAdditionalFeePolicyBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedAdditionalFeePolicyError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
+    def cancel_platform_additional_fee_policy_schedule(
+        self,
+        *,
+        id: str,
+    ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
+        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+
+
+        Raises:
+            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        if is_archived is not None:
-            query.append(("isArchived", is_archived))
+        response = httpx.request(
+            "DELETE",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
+    async def cancel_platform_additional_fee_policy_schedule_async(
+        self,
+        *,
+        id: str,
+    ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
+        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+
+
+        Raises:
+            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "DELETE",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
+    def get_platform_contract_schedule(
+        self,
+        *,
+        id: str,
+    ) -> PlatformContract:
+        """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+
+
+        Raises:
+            GetPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policy-filter-options",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -362,6 +785,12 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -374,31 +803,27 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_platform_discount_share_policy_filter_options(response.json())
-    async def get_platform_discount_share_policy_filter_options_async(
+        return _deserialize_platform_contract(response.json())
+    async def get_platform_contract_schedule_async(
         self,
         *,
-        is_archived: Optional[bool] = None,
-    ) -> PlatformDiscountSharePolicyFilterOptions:
-        """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
+        id: str,
+    ) -> PlatformContract:
+        """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 
         Args:
-            is_archived (bool, optional):
-                보관 조회 여부
-
-                true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+            id (str):
+                계약 아이디
 
 
         Raises:
-            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
+            GetPlatformContractScheduleError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        if is_archived is not None:
-            query.append(("isArchived", is_archived))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policy-filter-options",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -421,6 +846,12 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -433,7 +864,437 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_platform_discount_share_policy_filter_options(response.json())
+        return _deserialize_platform_contract(response.json())
+    def reschedule_contract(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformContractBody,
+        applied_at: str,
+    ) -> ReschedulePlatformContractResponse:
+        """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            update (UpdatePlatformContractBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            RescheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = httpx.request(
+            "PUT",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_reschedule_platform_contract_response(response.json())
+    async def reschedule_contract_async(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformContractBody,
+        applied_at: str,
+    ) -> ReschedulePlatformContractResponse:
+        """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            update (UpdatePlatformContractBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            RescheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = await self._client.request(
+            "PUT",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_reschedule_platform_contract_response(response.json())
+    def schedule_contract(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformContractBody,
+        applied_at: str,
+    ) -> SchedulePlatformContractResponse:
+        """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            update (UpdatePlatformContractBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            ScheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_contract_response(response.json())
+    async def schedule_contract_async(
+        self,
+        *,
+        id: str,
+        update: UpdatePlatformContractBody,
+        applied_at: str,
+    ) -> SchedulePlatformContractResponse:
+        """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            update (UpdatePlatformContractBody):
+                반영할 업데이트 내용
+            applied_at (str):
+                업데이트 적용 시점
+
+
+        Raises:
+            ScheduleContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["update"] = _serialize_update_platform_contract_body(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_schedule_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractScheduleAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_contract_response(response.json())
+    def cancel_platform_contract_schedule(
+        self,
+        *,
+        id: str,
+    ) -> CancelPlatformContractScheduleResponse:
+        """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+
+
+        Raises:
+            CancelPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = httpx.request(
+            "DELETE",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cancel_platform_contract_schedule_response(response.json())
+    async def cancel_platform_contract_schedule_async(
+        self,
+        *,
+        id: str,
+    ) -> CancelPlatformContractScheduleResponse:
+        """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+
+
+        Raises:
+            CancelPlatformContractScheduleError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        response = await self._client.request(
+            "DELETE",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cancel_platform_contract_schedule_response(response.json())
     def get_platform_discount_share_policy_schedule(
         self,
         *,
@@ -986,26 +1847,30 @@ class PlatformClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_platform_discount_share_policy_schedule_response(response.json())
-    def get_platform_additional_fee_policy_schedule(
+    def get_platform_discount_share_policy_filter_options(
         self,
         *,
-        id: str,
-    ) -> PlatformAdditionalFeePolicy:
-        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
+        is_archived: Optional[bool] = None,
+    ) -> PlatformDiscountSharePolicyFilterOptions:
+        """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
-            id (str):
-                추가 수수료 정책 아이디
+            is_archived (bool, optional):
+                보관 조회 여부
+
+                true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if is_archived is not None:
+            query.append(("isArchived", is_archived))
         response = httpx.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policy-filter-options",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1028,12 +1893,6 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -1046,27 +1905,31 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_platform_additional_fee_policy(response.json())
-    async def get_platform_additional_fee_policy_schedule_async(
+        return _deserialize_platform_discount_share_policy_filter_options(response.json())
+    async def get_platform_discount_share_policy_filter_options_async(
         self,
         *,
-        id: str,
-    ) -> PlatformAdditionalFeePolicy:
-        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
+        is_archived: Optional[bool] = None,
+    ) -> PlatformDiscountSharePolicyFilterOptions:
+        """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
-            id (str):
-                추가 수수료 정책 아이디
+            is_archived (bool, optional):
+                보관 조회 여부
+
+                true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
 
 
         Raises:
-            GetPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
+            GetPlatformDiscountSharePolicyFilterOptionsError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if is_archived is not None:
+            query.append(("isArchived", is_archived))
         response = await self._client.request(
             "GET",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
+            f"{self._base_url}/platform/discount-share-policy-filter-options",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1089,12 +1952,6 @@ class PlatformClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -1107,433 +1964,7 @@ class PlatformClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_platform_additional_fee_policy(response.json())
-    def reschedule_additional_fee_policy(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformAdditionalFeePolicyBody,
-        applied_at: str,
-    ) -> ReschedulePlatformAdditionalFeePolicyResponse:
-        """Args:
-            id (str):
-                추가 수수료 정책 아이디
-            update (UpdatePlatformAdditionalFeePolicyBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = httpx.request(
-            "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
-    async def reschedule_additional_fee_policy_async(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformAdditionalFeePolicyBody,
-        applied_at: str,
-    ) -> ReschedulePlatformAdditionalFeePolicyResponse:
-        """Args:
-            id (str):
-                추가 수수료 정책 아이디
-            update (UpdatePlatformAdditionalFeePolicyBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            RescheduleAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = await self._client.request(
-            "PUT",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_reschedule_platform_additional_fee_policy_response(response.json())
-    def schedule_additional_fee_policy(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformAdditionalFeePolicyBody,
-        applied_at: str,
-    ) -> SchedulePlatformAdditionalFeePolicyResponse:
-        """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-            update (UpdatePlatformAdditionalFeePolicyBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedAdditionalFeePolicyError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
-    async def schedule_additional_fee_policy_async(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformAdditionalFeePolicyBody,
-        applied_at: str,
-    ) -> SchedulePlatformAdditionalFeePolicyResponse:
-        """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-            update (UpdatePlatformAdditionalFeePolicyBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            ScheduleAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_archived_additional_fee_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedAdditionalFeePolicyError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_additional_fee_policy_response(response.json())
-    def cancel_platform_additional_fee_policy_schedule(
-        self,
-        *,
-        id: str,
-    ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
-        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
-    async def cancel_platform_additional_fee_policy_schedule_async(
-        self,
-        *,
-        id: str,
-    ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
-        """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            CancelPlatformAdditionalFeePolicyScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "DELETE",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cancel_platform_additional_fee_policy_schedule_response(response.json())
+        return _deserialize_platform_discount_share_policy_filter_options(response.json())
     def get_platform_partner_filter_options(
         self,
         *,
@@ -1652,6 +2083,196 @@ class PlatformClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_platform_partner_filter_options(response.json())
+    def schedule_platform_partners(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+        update: SchedulePlatformPartnersBodyUpdate,
+        applied_at: str,
+    ) -> SchedulePlatformPartnersResponse:
+        """Args:
+            filter (PlatformPartnerFilterInput, optional):
+
+            update (SchedulePlatformPartnersBodyUpdate):
+
+            applied_at (str):
+
+
+
+        Raises:
+            SchedulePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = httpx.request(
+            "POST",
+            f"{self._base_url}/platform/partners/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnersCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_schedules_already_exist_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerSchedulesAlreadyExistError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_partners_response(response.json())
+    async def schedule_platform_partners_async(
+        self,
+        *,
+        filter: Optional[PlatformPartnerFilterInput] = None,
+        update: SchedulePlatformPartnersBodyUpdate,
+        applied_at: str,
+    ) -> SchedulePlatformPartnersResponse:
+        """Args:
+            filter (PlatformPartnerFilterInput, optional):
+
+            update (SchedulePlatformPartnersBodyUpdate):
+
+            applied_at (str):
+
+
+
+        Raises:
+            SchedulePlatformPartnersError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
+        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
+        request_body["appliedAt"] = applied_at
+        query = []
+        response = await self._client.request(
+            "POST",
+            f"{self._base_url}/platform/partners/schedule",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnersCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_schedules_already_exist_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerSchedulesAlreadyExistError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_schedule_platform_partners_response(response.json())
     def get_platform_partner_schedule(
         self,
         *,
@@ -2348,748 +2969,6 @@ class PlatformClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_platform_partner_schedule_response(response.json())
-    def schedule_platform_partners(
-        self,
-        *,
-        filter: Optional[PlatformPartnerFilterInput] = None,
-        update: SchedulePlatformPartnersBodyUpdate,
-        applied_at: str,
-    ) -> SchedulePlatformPartnersResponse:
-        """Args:
-            filter (PlatformPartnerFilterInput, optional):
-
-            update (SchedulePlatformPartnersBodyUpdate):
-
-            applied_at (str):
-
-
-
-        Raises:
-            SchedulePlatformPartnersError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
-        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/partners/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedPartnersCannotBeScheduledError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_platform_partner_schedules_already_exist_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPartnerSchedulesAlreadyExistError(error)
-            try:
-                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformUserDefinedPropertyNotFoundError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_partners_response(response.json())
-    async def schedule_platform_partners_async(
-        self,
-        *,
-        filter: Optional[PlatformPartnerFilterInput] = None,
-        update: SchedulePlatformPartnersBodyUpdate,
-        applied_at: str,
-    ) -> SchedulePlatformPartnersResponse:
-        """Args:
-            filter (PlatformPartnerFilterInput, optional):
-
-            update (SchedulePlatformPartnersBodyUpdate):
-
-            applied_at (str):
-
-
-
-        Raises:
-            SchedulePlatformPartnersError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_partner_filter_input(filter)
-        request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/partners/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_partners_cannot_be_scheduled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedPartnersCannotBeScheduledError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_member_company_connected_partners_cannot_be_scheduled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyConnectedPartnersCannotBeScheduledError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_platform_partner_schedules_already_exist_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPartnerSchedulesAlreadyExistError(error)
-            try:
-                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformUserDefinedPropertyNotFoundError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_partners_response(response.json())
-    def get_platform_contract_schedule(
-        self,
-        *,
-        id: str,
-    ) -> PlatformContract:
-        """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            GetPlatformContractScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform_contract(response.json())
-    async def get_platform_contract_schedule_async(
-        self,
-        *,
-        id: str,
-    ) -> PlatformContract:
-        """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            GetPlatformContractScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform_contract(response.json())
-    def reschedule_contract(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformContractBody,
-        applied_at: str,
-    ) -> ReschedulePlatformContractResponse:
-        """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-            update (UpdatePlatformContractBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            RescheduleContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = httpx.request(
-            "PUT",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_reschedule_platform_contract_response(response.json())
-    async def reschedule_contract_async(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformContractBody,
-        applied_at: str,
-    ) -> ReschedulePlatformContractResponse:
-        """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-            update (UpdatePlatformContractBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            RescheduleContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = await self._client.request(
-            "PUT",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_reschedule_platform_contract_response(response.json())
-    def schedule_contract(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformContractBody,
-        applied_at: str,
-    ) -> SchedulePlatformContractResponse:
-        """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-            update (UpdatePlatformContractBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            ScheduleContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = httpx.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_contract_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedContractError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_contract_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_contract_response(response.json())
-    async def schedule_contract_async(
-        self,
-        *,
-        id: str,
-        update: UpdatePlatformContractBody,
-        applied_at: str,
-    ) -> SchedulePlatformContractResponse:
-        """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-            update (UpdatePlatformContractBody):
-                반영할 업데이트 내용
-            applied_at (str):
-                업데이트 적용 시점
-
-
-        Raises:
-            ScheduleContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["update"] = _serialize_update_platform_contract_body(update)
-        request_body["appliedAt"] = applied_at
-        query = []
-        response = await self._client.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_archived_contract_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformArchivedContractError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_contract_schedule_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractScheduleAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_schedule_platform_contract_response(response.json())
-    def cancel_platform_contract_schedule(
-        self,
-        *,
-        id: str,
-    ) -> CancelPlatformContractScheduleResponse:
-        """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            CancelPlatformContractScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = httpx.request(
-            "DELETE",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cancel_platform_contract_schedule_response(response.json())
-    async def cancel_platform_contract_schedule_async(
-        self,
-        *,
-        id: str,
-    ) -> CancelPlatformContractScheduleResponse:
-        """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            CancelPlatformContractScheduleError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._client.request(
-            "DELETE",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cancel_platform_contract_schedule_response(response.json())
     def get_platform_setting(
         self,
     ) -> PlatformSetting:
@@ -3195,6 +3074,10 @@ class PlatformClient:
         *,
         default_withdrawal_memo: Optional[str] = None,
         default_deposit_memo: Optional[str] = None,
+        supports_multiple_order_transfers_per_partner: Optional[bool] = None,
+        adjust_settlement_date_after_holiday_if_earlier: Optional[bool] = None,
+        deduct_wht: Optional[bool] = None,
+        settlement_amount_type: Optional[SettlementAmountType] = None,
     ) -> UpdatePlatformSettingResponse:
         """플랫폼 설정 업데이트
 
@@ -3205,6 +3088,14 @@ class PlatformClient:
                 기본 보내는 이 통장 메모
             default_deposit_memo (str, optional):
                 기본 받는 이 통장 메모
+            supports_multiple_order_transfers_per_partner (bool, optional):
+                paymentId, storeId, partnerId가 같은 주문 정산건에 대한 중복 정산 지원 여부
+            adjust_settlement_date_after_holiday_if_earlier (bool, optional):
+                정산일이 정산시작일보다 작거나 같을 경우 공휴일 후 영업일로 정산일 다시 계산 여부
+            deduct_wht (bool, optional):
+                지급 금액에서 원천징수세 차감 여부
+            settlement_amount_type (SettlementAmountType, optional):
+                정산 금액 취급 기준
 
 
         Raises:
@@ -3216,6 +3107,14 @@ class PlatformClient:
             request_body["defaultWithdrawalMemo"] = default_withdrawal_memo
         if default_deposit_memo is not None:
             request_body["defaultDepositMemo"] = default_deposit_memo
+        if supports_multiple_order_transfers_per_partner is not None:
+            request_body["supportsMultipleOrderTransfersPerPartner"] = supports_multiple_order_transfers_per_partner
+        if adjust_settlement_date_after_holiday_if_earlier is not None:
+            request_body["adjustSettlementDateAfterHolidayIfEarlier"] = adjust_settlement_date_after_holiday_if_earlier
+        if deduct_wht is not None:
+            request_body["deductWht"] = deduct_wht
+        if settlement_amount_type is not None:
+            request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
         response = httpx.request(
             "PATCH",
@@ -3261,6 +3160,10 @@ class PlatformClient:
         *,
         default_withdrawal_memo: Optional[str] = None,
         default_deposit_memo: Optional[str] = None,
+        supports_multiple_order_transfers_per_partner: Optional[bool] = None,
+        adjust_settlement_date_after_holiday_if_earlier: Optional[bool] = None,
+        deduct_wht: Optional[bool] = None,
+        settlement_amount_type: Optional[SettlementAmountType] = None,
     ) -> UpdatePlatformSettingResponse:
         """플랫폼 설정 업데이트
 
@@ -3271,6 +3174,14 @@ class PlatformClient:
                 기본 보내는 이 통장 메모
             default_deposit_memo (str, optional):
                 기본 받는 이 통장 메모
+            supports_multiple_order_transfers_per_partner (bool, optional):
+                paymentId, storeId, partnerId가 같은 주문 정산건에 대한 중복 정산 지원 여부
+            adjust_settlement_date_after_holiday_if_earlier (bool, optional):
+                정산일이 정산시작일보다 작거나 같을 경우 공휴일 후 영업일로 정산일 다시 계산 여부
+            deduct_wht (bool, optional):
+                지급 금액에서 원천징수세 차감 여부
+            settlement_amount_type (SettlementAmountType, optional):
+                정산 금액 취급 기준
 
 
         Raises:
@@ -3282,6 +3193,14 @@ class PlatformClient:
             request_body["defaultWithdrawalMemo"] = default_withdrawal_memo
         if default_deposit_memo is not None:
             request_body["defaultDepositMemo"] = default_deposit_memo
+        if supports_multiple_order_transfers_per_partner is not None:
+            request_body["supportsMultipleOrderTransfersPerPartner"] = supports_multiple_order_transfers_per_partner
+        if adjust_settlement_date_after_holiday_if_earlier is not None:
+            request_body["adjustSettlementDateAfterHolidayIfEarlier"] = adjust_settlement_date_after_holiday_if_earlier
+        if deduct_wht is not None:
+            request_body["deductWht"] = deduct_wht
+        if settlement_amount_type is not None:
+            request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
         response = await self._client.request(
             "PATCH",

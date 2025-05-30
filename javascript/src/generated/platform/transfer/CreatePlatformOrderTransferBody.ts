@@ -34,6 +34,13 @@ export type CreatePlatformOrderTransferBody = {
 	 * (yyyy-MM-dd)
 	 */
 	settlementStartDate?: string
+	/**
+	 * 정산일
+	 *
+	 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+	 * (yyyy-MM-dd)
+	 */
+	settlementDate?: string
 	/** 할인 정보 */
 	discounts: CreatePlatformOrderTransferBodyDiscount[]
 	/** 추가 수수료 정보 */

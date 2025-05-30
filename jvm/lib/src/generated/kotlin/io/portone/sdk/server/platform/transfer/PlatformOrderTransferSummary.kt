@@ -26,7 +26,11 @@ public data class PlatformOrderTransferSummary(
   override val settlementDate: String,
   override val settlementCurrency: Currency,
   override val isForTest: Boolean,
-  /** 사용자 정의 속성 */
+  /**
+   * 사용자 정의 속성
+   *
+   * 5월 삭제 예정 필드입니다. partner.userDefinedProperties를 사용해주시길 바랍니다.
+   */
   override val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 사용자 정의 속성 */
   override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,

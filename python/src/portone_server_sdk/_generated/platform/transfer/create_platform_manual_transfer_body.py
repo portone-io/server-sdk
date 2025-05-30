@@ -24,6 +24,10 @@ class CreatePlatformManualTransferBody:
     memo: Optional[str] = field(default=None)
     """메모
     """
+    settlement_tax_free_amount: Optional[int] = field(default=None)
+    """정산 면세 금액
+    (int64)
+    """
     is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
 
@@ -43,6 +47,8 @@ def _serialize_create_platform_manual_transfer_body(obj: CreatePlatformManualTra
     entity["settlementDate"] = obj.settlement_date
     if obj.memo is not None:
         entity["memo"] = obj.memo
+    if obj.settlement_tax_free_amount is not None:
+        entity["settlementTaxFreeAmount"] = obj.settlement_tax_free_amount
     if obj.is_for_test is not None:
         entity["isForTest"] = obj.is_for_test
     if obj.user_defined_properties is not None:
@@ -74,6 +80,12 @@ def _deserialize_create_platform_manual_transfer_body(obj: Any) -> CreatePlatfor
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
+    if "settlementTaxFreeAmount" in obj:
+        settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
+        if not isinstance(settlement_tax_free_amount, int):
+            raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
+    else:
+        settlement_tax_free_amount = None
     if "isForTest" in obj:
         is_for_test = obj["isForTest"]
         if not isinstance(is_for_test, bool):
@@ -89,4 +101,4 @@ def _deserialize_create_platform_manual_transfer_body(obj: Any) -> CreatePlatfor
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformManualTransferBody(partner_id, settlement_amount, settlement_date, memo, is_for_test, user_defined_properties)
+    return CreatePlatformManualTransferBody(partner_id, settlement_amount, settlement_date, memo, settlement_tax_free_amount, is_for_test, user_defined_properties)

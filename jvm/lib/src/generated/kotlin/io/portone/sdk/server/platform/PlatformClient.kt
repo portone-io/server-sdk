@@ -116,8 +116,6 @@ import io.portone.sdk.server.errors.SchedulePlatformPartnersException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
-import io.portone.sdk.server.errors.UpdatePlatformError
-import io.portone.sdk.server.errors.UpdatePlatformException
 import io.portone.sdk.server.errors.UpdatePlatformSettingError
 import io.portone.sdk.server.errors.UpdatePlatformSettingException
 import io.portone.sdk.server.platform.CancelPlatformAdditionalFeePolicyScheduleResponse
@@ -152,13 +150,11 @@ import io.portone.sdk.server.platform.SchedulePlatformPartnerResponse
 import io.portone.sdk.server.platform.SchedulePlatformPartnersBody
 import io.portone.sdk.server.platform.SchedulePlatformPartnersBodyUpdate
 import io.portone.sdk.server.platform.SchedulePlatformPartnersResponse
+import io.portone.sdk.server.platform.SettlementAmountType
 import io.portone.sdk.server.platform.UpdatePlatformAdditionalFeePolicyBody
-import io.portone.sdk.server.platform.UpdatePlatformBody
-import io.portone.sdk.server.platform.UpdatePlatformBodySettlementRule
 import io.portone.sdk.server.platform.UpdatePlatformContractBody
 import io.portone.sdk.server.platform.UpdatePlatformDiscountSharePolicyBody
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBody
-import io.portone.sdk.server.platform.UpdatePlatformResponse
 import io.portone.sdk.server.platform.UpdatePlatformSettingBody
 import io.portone.sdk.server.platform.UpdatePlatformSettingResponse
 import io.portone.sdk.server.platform.account.AccountClient
@@ -246,24 +242,82 @@ public class PlatformClient(
 
 
   /**
-   * 고객사의 플랫폼 관련 정보를 업데이트합니다.
-   * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
+   * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
    *
-   * @param settlementRule
-   * 정산 규칙
+   * @param id
+   * 추가 수수료 정책 아이디
    *
-   * @throws UpdatePlatformException
+   * @throws GetPlatformAdditionalFeePolicyScheduleException
    */
-  @JvmName("updatePlatformSuspend")
-  public suspend fun updatePlatform(
-    settlementRule: UpdatePlatformBodySettlementRule? = null,
-  ): UpdatePlatformResponse {
-    val requestBody = UpdatePlatformBody(
-      settlementRule = settlementRule,
-    )
-    val httpResponse = client.patch(apiBase) {
+  @JvmName("getPlatformAdditionalFeePolicyScheduleSuspend")
+  public suspend fun getPlatformAdditionalFeePolicySchedule(
+    id: String,
+  ): PlatformAdditionalFeePolicy {
+    val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform")
+        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformAdditionalFeePolicySchedule")
+  public fun getPlatformAdditionalFeePolicyScheduleFuture(
+    id: String,
+  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicySchedule(id) }
+
+
+  /**
+   * @param id
+   * 추가 수수료 정책 아이디
+   * @param update
+   * 반영할 업데이트 내용
+   * @param appliedAt
+   * 업데이트 적용 시점
+   *
+   * @throws RescheduleAdditionalFeePolicyException
+   */
+  @JvmName("rescheduleAdditionalFeePolicySuspend")
+  public suspend fun rescheduleAdditionalFeePolicy(
+    id: String,
+    update: UpdatePlatformAdditionalFeePolicyBody,
+    appliedAt: Instant,
+  ): ReschedulePlatformAdditionalFeePolicyResponse {
+    val requestBody = ReschedulePlatformAdditionalFeePolicyBody(
+      update = update,
+      appliedAt = appliedAt,
+    )
+    val httpResponse = client.put(apiBase) {
+      url {
+        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -276,7 +330,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformError.Recognized>(httpBody)
+        json.decodeFromString<RescheduleAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -284,13 +338,14 @@ public class PlatformClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<UpdatePlatformResponse>(httpBody)
+      json.decodeFromString<ReschedulePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -298,30 +353,99 @@ public class PlatformClient(
   }
 
   /** @suppress */
-  @JvmName("updatePlatform")
-  public fun updatePlatformFuture(
-    settlementRule: UpdatePlatformBodySettlementRule? = null,
-  ): CompletableFuture<UpdatePlatformResponse> = GlobalScope.future { updatePlatform(settlementRule) }
+  @JvmName("rescheduleAdditionalFeePolicy")
+  public fun rescheduleAdditionalFeePolicyFuture(
+    id: String,
+    update: UpdatePlatformAdditionalFeePolicyBody,
+    appliedAt: Instant,
+  ): CompletableFuture<ReschedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { rescheduleAdditionalFeePolicy(id, update, appliedAt) }
 
 
   /**
-   * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
+   * 주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
    *
-   * @param isArchived
-   * 보관 조회 여부
+   * @param id
+   * 추가 수수료 정책 아이디
+   * @param update
+   * 반영할 업데이트 내용
+   * @param appliedAt
+   * 업데이트 적용 시점
    *
-   * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
-   *
-   * @throws GetPlatformDiscountSharePolicyFilterOptionsException
+   * @throws ScheduleAdditionalFeePolicyException
    */
-  @JvmName("getPlatformDiscountSharePolicyFilterOptionsSuspend")
-  public suspend fun getPlatformDiscountSharePolicyFilterOptions(
-    isArchived: Boolean? = null,
-  ): PlatformDiscountSharePolicyFilterOptions {
-    val httpResponse = client.get(apiBase) {
+  @JvmName("scheduleAdditionalFeePolicySuspend")
+  public suspend fun scheduleAdditionalFeePolicy(
+    id: String,
+    update: UpdatePlatformAdditionalFeePolicyBody,
+    appliedAt: Instant,
+  ): SchedulePlatformAdditionalFeePolicyResponse {
+    val requestBody = SchedulePlatformAdditionalFeePolicyBody(
+      update = update,
+      appliedAt = appliedAt,
+    )
+    val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policy-filter-options")
-        if (isArchived != null) parameters.append("isArchived", isArchived.toString())
+        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ScheduleAdditionalFeePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyScheduleAlreadyExistsError -> throw PlatformAdditionalFeePolicyScheduleAlreadyExistsException(httpBodyDecoded)
+        is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<SchedulePlatformAdditionalFeePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("scheduleAdditionalFeePolicy")
+  public fun scheduleAdditionalFeePolicyFuture(
+    id: String,
+    update: UpdatePlatformAdditionalFeePolicyBody,
+    appliedAt: Instant,
+  ): CompletableFuture<SchedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { scheduleAdditionalFeePolicy(id, update, appliedAt) }
+
+
+  /**
+   * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
+   *
+   * @param id
+   * 추가 수수료 정책 아이디
+   *
+   * @throws CancelPlatformAdditionalFeePolicyScheduleException
+   */
+  @JvmName("cancelPlatformAdditionalFeePolicyScheduleSuspend")
+  public suspend fun cancelPlatformAdditionalFeePolicySchedule(
+    id: String,
+  ): CancelPlatformAdditionalFeePolicyScheduleResponse {
+    val httpResponse = client.delete(apiBase) {
+      url {
+        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -332,7 +456,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError.Recognized>(httpBody)
+        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -340,13 +464,14 @@ public class PlatformClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<PlatformDiscountSharePolicyFilterOptions>(httpBody)
+      json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -354,10 +479,256 @@ public class PlatformClient(
   }
 
   /** @suppress */
-  @JvmName("getPlatformDiscountSharePolicyFilterOptions")
-  public fun getPlatformDiscountSharePolicyFilterOptionsFuture(
-    isArchived: Boolean? = null,
-  ): CompletableFuture<PlatformDiscountSharePolicyFilterOptions> = GlobalScope.future { getPlatformDiscountSharePolicyFilterOptions(isArchived) }
+  @JvmName("cancelPlatformAdditionalFeePolicySchedule")
+  public fun cancelPlatformAdditionalFeePolicyScheduleFuture(
+    id: String,
+  ): CompletableFuture<CancelPlatformAdditionalFeePolicyScheduleResponse> = GlobalScope.future { cancelPlatformAdditionalFeePolicySchedule(id) }
+
+
+  /**
+   * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
+   *
+   * @param id
+   * 계약 아이디
+   *
+   * @throws GetPlatformContractScheduleException
+   */
+  @JvmName("getPlatformContractScheduleSuspend")
+  public suspend fun getPlatformContractSchedule(
+    id: String,
+  ): PlatformContract {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformContractScheduleError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformContract>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformContractSchedule")
+  public fun getPlatformContractScheduleFuture(
+    id: String,
+  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContractSchedule(id) }
+
+
+  /**
+   * 주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
+   *
+   * @param id
+   * 계약 아이디
+   * @param update
+   * 반영할 업데이트 내용
+   * @param appliedAt
+   * 업데이트 적용 시점
+   *
+   * @throws RescheduleContractException
+   */
+  @JvmName("rescheduleContractSuspend")
+  public suspend fun rescheduleContract(
+    id: String,
+    update: UpdatePlatformContractBody,
+    appliedAt: Instant,
+  ): ReschedulePlatformContractResponse {
+    val requestBody = ReschedulePlatformContractBody(
+      update = update,
+      appliedAt = appliedAt,
+    )
+    val httpResponse = client.put(apiBase) {
+      url {
+        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<RescheduleContractError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ReschedulePlatformContractResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("rescheduleContract")
+  public fun rescheduleContractFuture(
+    id: String,
+    update: UpdatePlatformContractBody,
+    appliedAt: Instant,
+  ): CompletableFuture<ReschedulePlatformContractResponse> = GlobalScope.future { rescheduleContract(id, update, appliedAt) }
+
+
+  /**
+   * 주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
+   *
+   * @param id
+   * 계약 아이디
+   * @param update
+   * 반영할 업데이트 내용
+   * @param appliedAt
+   * 업데이트 적용 시점
+   *
+   * @throws ScheduleContractException
+   */
+  @JvmName("scheduleContractSuspend")
+  public suspend fun scheduleContract(
+    id: String,
+    update: UpdatePlatformContractBody,
+    appliedAt: Instant,
+  ): SchedulePlatformContractResponse {
+    val requestBody = SchedulePlatformContractBody(
+      update = update,
+      appliedAt = appliedAt,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ScheduleContractError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedContractError -> throw PlatformArchivedContractException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformContractScheduleAlreadyExistsError -> throw PlatformContractScheduleAlreadyExistsException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<SchedulePlatformContractResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("scheduleContract")
+  public fun scheduleContractFuture(
+    id: String,
+    update: UpdatePlatformContractBody,
+    appliedAt: Instant,
+  ): CompletableFuture<SchedulePlatformContractResponse> = GlobalScope.future { scheduleContract(id, update, appliedAt) }
+
+
+  /**
+   * 주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
+   *
+   * @param id
+   * 계약 아이디
+   *
+   * @throws CancelPlatformContractScheduleException
+   */
+  @JvmName("cancelPlatformContractScheduleSuspend")
+  public suspend fun cancelPlatformContractSchedule(
+    id: String,
+  ): CancelPlatformContractScheduleResponse {
+    val httpResponse = client.delete(apiBase) {
+      url {
+        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CancelPlatformContractScheduleError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CancelPlatformContractScheduleResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("cancelPlatformContractSchedule")
+  public fun cancelPlatformContractScheduleFuture(
+    id: String,
+  ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id) }
 
 
   /**
@@ -607,20 +978,23 @@ public class PlatformClient(
 
 
   /**
-   * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
+   * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
    *
-   * @param id
-   * 추가 수수료 정책 아이디
+   * @param isArchived
+   * 보관 조회 여부
    *
-   * @throws GetPlatformAdditionalFeePolicyScheduleException
+   * true 이면 보관된 할인 분담의 필터 옵션을 조회하고, false 이면 보관되지 않은 할인 분담의 필터 옵션을 조회합니다. 기본값은 false 입니다.
+   *
+   * @throws GetPlatformDiscountSharePolicyFilterOptionsException
    */
-  @JvmName("getPlatformAdditionalFeePolicyScheduleSuspend")
-  public suspend fun getPlatformAdditionalFeePolicySchedule(
-    id: String,
-  ): PlatformAdditionalFeePolicy {
+  @JvmName("getPlatformDiscountSharePolicyFilterOptionsSuspend")
+  public suspend fun getPlatformDiscountSharePolicyFilterOptions(
+    isArchived: Boolean? = null,
+  ): PlatformDiscountSharePolicyFilterOptions {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        appendPathSegments("platform", "discount-share-policy-filter-options")
+        if (isArchived != null) parameters.append("isArchived", isArchived.toString())
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -631,7 +1005,7 @@ public class PlatformClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
+        json.decodeFromString<GetPlatformDiscountSharePolicyFilterOptionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -639,14 +1013,13 @@ public class PlatformClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
+      json.decodeFromString<PlatformDiscountSharePolicyFilterOptions>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -654,200 +1027,10 @@ public class PlatformClient(
   }
 
   /** @suppress */
-  @JvmName("getPlatformAdditionalFeePolicySchedule")
-  public fun getPlatformAdditionalFeePolicyScheduleFuture(
-    id: String,
-  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicySchedule(id) }
-
-
-  /**
-   * @param id
-   * 추가 수수료 정책 아이디
-   * @param update
-   * 반영할 업데이트 내용
-   * @param appliedAt
-   * 업데이트 적용 시점
-   *
-   * @throws RescheduleAdditionalFeePolicyException
-   */
-  @JvmName("rescheduleAdditionalFeePolicySuspend")
-  public suspend fun rescheduleAdditionalFeePolicy(
-    id: String,
-    update: UpdatePlatformAdditionalFeePolicyBody,
-    appliedAt: Instant,
-  ): ReschedulePlatformAdditionalFeePolicyResponse {
-    val requestBody = ReschedulePlatformAdditionalFeePolicyBody(
-      update = update,
-      appliedAt = appliedAt,
-    )
-    val httpResponse = client.put(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleAdditionalFeePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ReschedulePlatformAdditionalFeePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("rescheduleAdditionalFeePolicy")
-  public fun rescheduleAdditionalFeePolicyFuture(
-    id: String,
-    update: UpdatePlatformAdditionalFeePolicyBody,
-    appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { rescheduleAdditionalFeePolicy(id, update, appliedAt) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
-   *
-   * @param id
-   * 추가 수수료 정책 아이디
-   * @param update
-   * 반영할 업데이트 내용
-   * @param appliedAt
-   * 업데이트 적용 시점
-   *
-   * @throws ScheduleAdditionalFeePolicyException
-   */
-  @JvmName("scheduleAdditionalFeePolicySuspend")
-  public suspend fun scheduleAdditionalFeePolicy(
-    id: String,
-    update: UpdatePlatformAdditionalFeePolicyBody,
-    appliedAt: Instant,
-  ): SchedulePlatformAdditionalFeePolicyResponse {
-    val requestBody = SchedulePlatformAdditionalFeePolicyBody(
-      update = update,
-      appliedAt = appliedAt,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleAdditionalFeePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyScheduleAlreadyExistsError -> throw PlatformAdditionalFeePolicyScheduleAlreadyExistsException(httpBodyDecoded)
-        is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<SchedulePlatformAdditionalFeePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("scheduleAdditionalFeePolicy")
-  public fun scheduleAdditionalFeePolicyFuture(
-    id: String,
-    update: UpdatePlatformAdditionalFeePolicyBody,
-    appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { scheduleAdditionalFeePolicy(id, update, appliedAt) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
-   *
-   * @param id
-   * 추가 수수료 정책 아이디
-   *
-   * @throws CancelPlatformAdditionalFeePolicyScheduleException
-   */
-  @JvmName("cancelPlatformAdditionalFeePolicyScheduleSuspend")
-  public suspend fun cancelPlatformAdditionalFeePolicySchedule(
-    id: String,
-  ): CancelPlatformAdditionalFeePolicyScheduleResponse {
-    val httpResponse = client.delete(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CancelPlatformAdditionalFeePolicyScheduleResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("cancelPlatformAdditionalFeePolicySchedule")
-  public fun cancelPlatformAdditionalFeePolicyScheduleFuture(
-    id: String,
-  ): CompletableFuture<CancelPlatformAdditionalFeePolicyScheduleResponse> = GlobalScope.future { cancelPlatformAdditionalFeePolicySchedule(id) }
+  @JvmName("getPlatformDiscountSharePolicyFilterOptions")
+  public fun getPlatformDiscountSharePolicyFilterOptionsFuture(
+    isArchived: Boolean? = null,
+  ): CompletableFuture<PlatformDiscountSharePolicyFilterOptions> = GlobalScope.future { getPlatformDiscountSharePolicyFilterOptions(isArchived) }
 
 
   /**
@@ -904,6 +1087,77 @@ public class PlatformClient(
   public fun getPlatformPartnerFilterOptionsFuture(
     isArchived: Boolean? = null,
   ): CompletableFuture<PlatformPartnerFilterOptions> = GlobalScope.future { getPlatformPartnerFilterOptions(isArchived) }
+
+
+  /**
+   * @param filter
+   *
+   * @param update
+   *
+   * @param appliedAt
+   *
+   *
+   * @throws SchedulePlatformPartnersException
+   */
+  @JvmName("schedulePlatformPartnersSuspend")
+  public suspend fun schedulePlatformPartners(
+    filter: PlatformPartnerFilterInput? = null,
+    update: SchedulePlatformPartnersBodyUpdate,
+    appliedAt: Instant,
+  ): SchedulePlatformPartnersResponse {
+    val requestBody = SchedulePlatformPartnersBody(
+      filter = filter,
+      update = update,
+      appliedAt = appliedAt,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "schedule")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<SchedulePlatformPartnersError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedPartnersCannotBeScheduledError -> throw PlatformArchivedPartnersCannotBeScheduledException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformMemberCompanyConnectedPartnersCannotBeScheduledError -> throw PlatformMemberCompanyConnectedPartnersCannotBeScheduledException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerSchedulesAlreadyExistError -> throw PlatformPartnerSchedulesAlreadyExistException(httpBodyDecoded)
+        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<SchedulePlatformPartnersResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("schedulePlatformPartners")
+  public fun schedulePlatformPartnersFuture(
+    filter: PlatformPartnerFilterInput? = null,
+    update: SchedulePlatformPartnersBodyUpdate,
+    appliedAt: Instant,
+  ): CompletableFuture<SchedulePlatformPartnersResponse> = GlobalScope.future { schedulePlatformPartners(filter, update, appliedAt) }
 
 
   /**
@@ -1165,323 +1419,6 @@ public class PlatformClient(
 
 
   /**
-   * @param filter
-   *
-   * @param update
-   *
-   * @param appliedAt
-   *
-   *
-   * @throws SchedulePlatformPartnersException
-   */
-  @JvmName("schedulePlatformPartnersSuspend")
-  public suspend fun schedulePlatformPartners(
-    filter: PlatformPartnerFilterInput? = null,
-    update: SchedulePlatformPartnersBodyUpdate,
-    appliedAt: Instant,
-  ): SchedulePlatformPartnersResponse {
-    val requestBody = SchedulePlatformPartnersBody(
-      filter = filter,
-      update = update,
-      appliedAt = appliedAt,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<SchedulePlatformPartnersError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformArchivedPartnersCannotBeScheduledError -> throw PlatformArchivedPartnersCannotBeScheduledException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformMemberCompanyConnectedPartnersCannotBeScheduledError -> throw PlatformMemberCompanyConnectedPartnersCannotBeScheduledException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerSchedulesAlreadyExistError -> throw PlatformPartnerSchedulesAlreadyExistException(httpBodyDecoded)
-        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<SchedulePlatformPartnersResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("schedulePlatformPartners")
-  public fun schedulePlatformPartnersFuture(
-    filter: PlatformPartnerFilterInput? = null,
-    update: SchedulePlatformPartnersBodyUpdate,
-    appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformPartnersResponse> = GlobalScope.future { schedulePlatformPartners(filter, update, appliedAt) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
-   *
-   * @param id
-   * 계약 아이디
-   *
-   * @throws GetPlatformContractScheduleException
-   */
-  @JvmName("getPlatformContractScheduleSuspend")
-  public suspend fun getPlatformContractSchedule(
-    id: String,
-  ): PlatformContract {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractScheduleError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PlatformContract>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformContractSchedule")
-  public fun getPlatformContractScheduleFuture(
-    id: String,
-  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContractSchedule(id) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
-   *
-   * @param id
-   * 계약 아이디
-   * @param update
-   * 반영할 업데이트 내용
-   * @param appliedAt
-   * 업데이트 적용 시점
-   *
-   * @throws RescheduleContractException
-   */
-  @JvmName("rescheduleContractSuspend")
-  public suspend fun rescheduleContract(
-    id: String,
-    update: UpdatePlatformContractBody,
-    appliedAt: Instant,
-  ): ReschedulePlatformContractResponse {
-    val requestBody = ReschedulePlatformContractBody(
-      update = update,
-      appliedAt = appliedAt,
-    )
-    val httpResponse = client.put(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<RescheduleContractError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ReschedulePlatformContractResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("rescheduleContract")
-  public fun rescheduleContractFuture(
-    id: String,
-    update: UpdatePlatformContractBody,
-    appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformContractResponse> = GlobalScope.future { rescheduleContract(id, update, appliedAt) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
-   *
-   * @param id
-   * 계약 아이디
-   * @param update
-   * 반영할 업데이트 내용
-   * @param appliedAt
-   * 업데이트 적용 시점
-   *
-   * @throws ScheduleContractException
-   */
-  @JvmName("scheduleContractSuspend")
-  public suspend fun scheduleContract(
-    id: String,
-    update: UpdatePlatformContractBody,
-    appliedAt: Instant,
-  ): SchedulePlatformContractResponse {
-    val requestBody = SchedulePlatformContractBody(
-      update = update,
-      appliedAt = appliedAt,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ScheduleContractError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformArchivedContractError -> throw PlatformArchivedContractException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformContractScheduleAlreadyExistsError -> throw PlatformContractScheduleAlreadyExistsException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<SchedulePlatformContractResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("scheduleContract")
-  public fun scheduleContractFuture(
-    id: String,
-    update: UpdatePlatformContractBody,
-    appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformContractResponse> = GlobalScope.future { scheduleContract(id, update, appliedAt) }
-
-
-  /**
-   * 주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
-   *
-   * @param id
-   * 계약 아이디
-   *
-   * @throws CancelPlatformContractScheduleException
-   */
-  @JvmName("cancelPlatformContractScheduleSuspend")
-  public suspend fun cancelPlatformContractSchedule(
-    id: String,
-  ): CancelPlatformContractScheduleResponse {
-    val httpResponse = client.delete(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CancelPlatformContractScheduleError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CancelPlatformContractScheduleResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("cancelPlatformContractSchedule")
-  public fun cancelPlatformContractScheduleFuture(
-    id: String,
-  ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id) }
-
-
-  /**
    * 플랫폼 설정 조회
    *
    * 설정 정보를 조회합니다.
@@ -1542,6 +1479,14 @@ public class PlatformClient(
    * 기본 보내는 이 통장 메모
    * @param defaultDepositMemo
    * 기본 받는 이 통장 메모
+   * @param supportsMultipleOrderTransfersPerPartner
+   * paymentId, storeId, partnerId가 같은 주문 정산건에 대한 중복 정산 지원 여부
+   * @param adjustSettlementDateAfterHolidayIfEarlier
+   * 정산일이 정산시작일보다 작거나 같을 경우 공휴일 후 영업일로 정산일 다시 계산 여부
+   * @param deductWht
+   * 지급 금액에서 원천징수세 차감 여부
+   * @param settlementAmountType
+   * 정산 금액 취급 기준
    *
    * @throws UpdatePlatformSettingException
    */
@@ -1549,10 +1494,18 @@ public class PlatformClient(
   public suspend fun updatePlatformSetting(
     defaultWithdrawalMemo: String? = null,
     defaultDepositMemo: String? = null,
+    supportsMultipleOrderTransfersPerPartner: Boolean? = null,
+    adjustSettlementDateAfterHolidayIfEarlier: Boolean? = null,
+    deductWht: Boolean? = null,
+    settlementAmountType: SettlementAmountType? = null,
   ): UpdatePlatformSettingResponse {
     val requestBody = UpdatePlatformSettingBody(
       defaultWithdrawalMemo = defaultWithdrawalMemo,
       defaultDepositMemo = defaultDepositMemo,
+      supportsMultipleOrderTransfersPerPartner = supportsMultipleOrderTransfersPerPartner,
+      adjustSettlementDateAfterHolidayIfEarlier = adjustSettlementDateAfterHolidayIfEarlier,
+      deductWht = deductWht,
+      settlementAmountType = settlementAmountType,
     )
     val httpResponse = client.patch(apiBase) {
       url {
@@ -1595,27 +1548,31 @@ public class PlatformClient(
   public fun updatePlatformSettingFuture(
     defaultWithdrawalMemo: String? = null,
     defaultDepositMemo: String? = null,
-  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(defaultWithdrawalMemo, defaultDepositMemo) }
+    supportsMultipleOrderTransfersPerPartner: Boolean? = null,
+    adjustSettlementDateAfterHolidayIfEarlier: Boolean? = null,
+    deductWht: Boolean? = null,
+    settlementAmountType: SettlementAmountType? = null,
+  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(defaultWithdrawalMemo, defaultDepositMemo, supportsMultipleOrderTransfersPerPartner, adjustSettlementDateAfterHolidayIfEarlier, deductWht, settlementAmountType) }
 
-  public val policy: PolicyClient = PolicyClient(apiSecret, apiBase, storeId)
-  public val partner: PartnerClient = PartnerClient(apiSecret, apiBase, storeId)
-  public val transfer: TransferClient = TransferClient(apiSecret, apiBase, storeId)
-  public val partnerSettlement: PartnerSettlementClient = PartnerSettlementClient(apiSecret, apiBase, storeId)
-  public val payout: PayoutClient = PayoutClient(apiSecret, apiBase, storeId)
-  public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
-  public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
   public val company: CompanyClient = CompanyClient(apiSecret, apiBase, storeId)
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)
+  public val policy: PolicyClient = PolicyClient(apiSecret, apiBase, storeId)
+  public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
+  public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
+  public val partnerSettlement: PartnerSettlementClient = PartnerSettlementClient(apiSecret, apiBase, storeId)
+  public val partner: PartnerClient = PartnerClient(apiSecret, apiBase, storeId)
+  public val payout: PayoutClient = PayoutClient(apiSecret, apiBase, storeId)
+  public val transfer: TransferClient = TransferClient(apiSecret, apiBase, storeId)
   override fun close() {
-    policy.close()
-    partner.close()
-    transfer.close()
-    partnerSettlement.close()
-    payout.close()
-    bulkPayout.close()
-    account.close()
     company.close()
     accountTransfer.close()
+    policy.close()
+    account.close()
+    bulkPayout.close()
+    partnerSettlement.close()
+    partner.close()
+    payout.close()
+    transfer.close()
     client.close()
   }
 }

@@ -40,6 +40,10 @@ class PlatformManualTransfer:
     """정산 금액
     (int64)
     """
+    settlement_tax_free_amount: int
+    """정산 면세 금액
+    (int64)
+    """
     memo: Optional[str] = field(default=None)
     """메모
     """
@@ -61,6 +65,7 @@ def _serialize_platform_manual_transfer(obj: PlatformManualTransfer) -> Any:
     entity["isForTest"] = obj.is_for_test
     entity["userDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.user_defined_properties))
     entity["settlementAmount"] = obj.settlement_amount
+    entity["settlementTaxFreeAmount"] = obj.settlement_tax_free_amount
     if obj.memo is not None:
         entity["memo"] = obj.memo
     if obj.payout_id is not None:
@@ -123,6 +128,11 @@ def _deserialize_platform_manual_transfer(obj: Any) -> PlatformManualTransfer:
     settlement_amount = obj["settlementAmount"]
     if not isinstance(settlement_amount, int):
         raise ValueError(f"{repr(settlement_amount)} is not int")
+    if "settlementTaxFreeAmount" not in obj:
+        raise KeyError(f"'settlementTaxFreeAmount' is not in {obj}")
+    settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
+    if not isinstance(settlement_tax_free_amount, int):
+        raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
@@ -141,4 +151,4 @@ def _deserialize_platform_manual_transfer(obj: Any) -> PlatformManualTransfer:
             raise ValueError(f"{repr(payout_graphql_id)} is not str")
     else:
         payout_graphql_id = None
-    return PlatformManualTransfer(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, settlement_amount, memo, payout_id, payout_graphql_id)
+    return PlatformManualTransfer(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, user_defined_properties, settlement_amount, settlement_tax_free_amount, memo, payout_id, payout_graphql_id)

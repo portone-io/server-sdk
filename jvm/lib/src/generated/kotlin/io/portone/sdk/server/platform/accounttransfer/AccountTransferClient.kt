@@ -23,7 +23,7 @@ import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
-import io.portone.sdk.server.platform.accounttransfer.GetAccountTransfersBody
+import io.portone.sdk.server.platform.accounttransfer.GetAccountTransfersBody1
 import io.portone.sdk.server.platform.accounttransfer.GetPlatformAccountTransfersResponse
 import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferFilter
 import java.io.Closeable
@@ -69,7 +69,7 @@ public class AccountTransferClient(
     page: PageInput? = null,
     filter: PlatformAccountTransferFilter? = null,
   ): GetPlatformAccountTransfersResponse {
-    val requestBody = GetAccountTransfersBody(
+    val requestBody = GetAccountTransfersBody1(
       isForTest = isForTest,
       page = page,
       filter = filter,

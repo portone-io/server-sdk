@@ -48,6 +48,12 @@ class CreatePlatformOrderTransferBody:
     기본값은 결제 일시 입니다.
     (yyyy-MM-dd)
     """
+    settlement_date: Optional[str] = field(default=None)
+    """정산일
+
+    날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+    (yyyy-MM-dd)
+    """
     external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = field(default=None)
     """외부 결제 상세 정보
 
@@ -83,6 +89,8 @@ def _serialize_create_platform_order_transfer_body(obj: CreatePlatformOrderTrans
         entity["taxFreeAmount"] = obj.tax_free_amount
     if obj.settlement_start_date is not None:
         entity["settlementStartDate"] = obj.settlement_start_date
+    if obj.settlement_date is not None:
+        entity["settlementDate"] = obj.settlement_date
     if obj.external_payment_detail is not None:
         entity["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(obj.external_payment_detail)
     if obj.is_for_test is not None:
@@ -151,6 +159,12 @@ def _deserialize_create_platform_order_transfer_body(obj: Any) -> CreatePlatform
             raise ValueError(f"{repr(settlement_start_date)} is not str")
     else:
         settlement_start_date = None
+    if "settlementDate" in obj:
+        settlement_date = obj["settlementDate"]
+        if not isinstance(settlement_date, str):
+            raise ValueError(f"{repr(settlement_date)} is not str")
+    else:
+        settlement_date = None
     if "externalPaymentDetail" in obj:
         external_payment_detail = obj["externalPaymentDetail"]
         external_payment_detail = _deserialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
@@ -176,4 +190,4 @@ def _deserialize_create_platform_order_transfer_body(obj: Any) -> CreatePlatform
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformOrderTransferBody(partner_id, payment_id, order_detail, discounts, additional_fees, contract_id, memo, tax_free_amount, settlement_start_date, external_payment_detail, is_for_test, parameters, user_defined_properties)
+    return CreatePlatformOrderTransferBody(partner_id, payment_id, order_detail, discounts, additional_fees, contract_id, memo, tax_free_amount, settlement_start_date, settlement_date, external_payment_detail, is_for_test, parameters, user_defined_properties)

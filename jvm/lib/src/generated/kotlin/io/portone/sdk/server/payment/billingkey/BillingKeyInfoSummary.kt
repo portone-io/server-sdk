@@ -12,7 +12,7 @@ public data class BillingKeyInfoSummary(
   val billingKey: String,
   /** 발급된 채널 */
   val channels: List<SelectedChannel>? = null,
-  /** 빌링크 발급 완료 시점 */
+  /** 빌링키 발급 완료 시점 */
   val issuedAt: @Serializable(InstantSerializer::class) Instant,
 )
 

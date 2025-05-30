@@ -57,6 +57,7 @@ from .._generated.payment.close_virtual_account_response import (
 from .._generated.payment.confirm_escrow_body import ConfirmEscrowBody
 from .._generated.payment.confirm_escrow_response import ConfirmEscrowResponse
 from .._generated.payment.confirmed_payment_escrow import ConfirmedPaymentEscrow
+from .._generated.payment.convenience_store_brand import ConvenienceStoreBrand
 from .._generated.payment.delivered_payment_escrow import DeliveredPaymentEscrow
 from .._generated.payment.dispute import Dispute
 from .._generated.payment.dispute_status import DisputeStatus
@@ -252,6 +253,7 @@ __all__ = [
     "ConfirmEscrowBody",
     "ConfirmEscrowResponse",
     "ConfirmedPaymentEscrow",
+    "ConvenienceStoreBrand",
     "DeliveredPaymentEscrow",
     "Dispute",
     "DisputeStatus",

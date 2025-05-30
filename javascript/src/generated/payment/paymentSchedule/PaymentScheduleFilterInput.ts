@@ -29,4 +29,6 @@ export type PaymentScheduleFilterInput = {
 	 * 값을 입력하지 않으면 상태 필터링이 적용되지 않습니다.
 	 */
 	status?: PaymentScheduleStatus[]
+	/** 테스트 결제 여부 */
+	isForTest?: boolean
 }

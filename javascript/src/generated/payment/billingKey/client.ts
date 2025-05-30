@@ -27,69 +27,6 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
-		getBillingKeyInfo: async (
-			options: {
-				billingKey: string,
-				storeId?: string,
-			}
-		): Promise<BillingKeyInfo> => {
-			const {
-				billingKey,
-				storeId,
-			} = options
-			const query = [
-				["storeId", storeId],
-			]
-				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
-				.join("&")
-			const response = await fetch(
-				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetBillingKeyInfoError(await response.json())
-			}
-			return response.json()
-		},
-		deleteBillingKey: async (
-			options: {
-				billingKey: string,
-				storeId?: string,
-				reason?: string,
-			}
-		): Promise<DeleteBillingKeyResponse> => {
-			const {
-				billingKey,
-				storeId,
-				reason,
-			} = options
-			const query = [
-				["storeId", storeId],
-				["reason", reason],
-			]
-				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
-				.join("&")
-			const response = await fetch(
-				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
-				{
-					method: "DELETE",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new DeleteBillingKeyError(await response.json())
-			}
-			return response.json()
-		},
 		getBillingKeyInfos: async (
 			options?: {
 				page?: PageInput,
@@ -173,53 +110,72 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 			}
 			return response.json()
 		},
+		getBillingKeyInfo: async (
+			options: {
+				billingKey: string,
+				storeId?: string,
+			}
+		): Promise<BillingKeyInfo> => {
+			const {
+				billingKey,
+				storeId,
+			} = options
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetBillingKeyInfoError(await response.json())
+			}
+			return response.json()
+		},
+		deleteBillingKey: async (
+			options: {
+				billingKey: string,
+				storeId?: string,
+				reason?: string,
+			}
+		): Promise<DeleteBillingKeyResponse> => {
+			const {
+				billingKey,
+				storeId,
+				reason,
+			} = options
+			const query = [
+				["storeId", storeId],
+				["reason", reason],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new DeleteBillingKeyError(await response.json())
+			}
+			return response.json()
+		},
 	}
 }
 export type BillingKeyClient = {
-	/**
-	 * 빌링키 단건 조회
-	 *
-	 * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
-	 *
-	 * @throws {@link GetBillingKeyInfoError}
-	 */
-	getBillingKeyInfo: (
-		options: {
-			/** 조회할 빌링키 */
-			billingKey: string,
-			/**
-			 * 상점 아이디
-			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
-			 */
-			storeId?: string,
-		}
-	) => Promise<BillingKeyInfo>
-	/**
-	 * 빌링키 삭제
-	 *
-	 * 빌링키를 삭제합니다.
-	 *
-	 * @throws {@link DeleteBillingKeyError}
-	 */
-	deleteBillingKey: (
-		options: {
-			/** 삭제할 빌링키 */
-			billingKey: string,
-			/**
-			 * 상점 아이디
-			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
-			 */
-			storeId?: string,
-			/**
-			 * 사유
-			 *
-			 * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
-			 */
-			reason?: string,
-		}
-	) => Promise<DeleteBillingKeyResponse>
 	/**
 	 * 빌링키 다건 조회
 	 *
@@ -294,24 +250,50 @@ export type BillingKeyClient = {
 			noticeUrls?: string[],
 		}
 	) => Promise<IssueBillingKeyResponse>
-}
-export class GetBillingKeyInfoError extends BillingKeyError {
-	declare readonly data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetBillingKeyInfoError.prototype)
-		this.name = "GetBillingKeyInfoError"
-	}
-}
-export class DeleteBillingKeyError extends BillingKeyError {
-	declare readonly data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, DeleteBillingKeyError.prototype)
-		this.name = "DeleteBillingKeyError"
-	}
+	/**
+	 * 빌링키 단건 조회
+	 *
+	 * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
+	 *
+	 * @throws {@link GetBillingKeyInfoError}
+	 */
+	getBillingKeyInfo: (
+		options: {
+			/** 조회할 빌링키 */
+			billingKey: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+		}
+	) => Promise<BillingKeyInfo>
+	/**
+	 * 빌링키 삭제
+	 *
+	 * 빌링키를 삭제합니다.
+	 *
+	 * @throws {@link DeleteBillingKeyError}
+	 */
+	deleteBillingKey: (
+		options: {
+			/** 삭제할 빌링키 */
+			billingKey: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+			/**
+			 * 사유
+			 *
+			 * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+			 */
+			reason?: string,
+		}
+	) => Promise<DeleteBillingKeyResponse>
 }
 export class GetBillingKeyInfosError extends BillingKeyError {
 	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
@@ -329,5 +311,23 @@ export class IssueBillingKeyError extends BillingKeyError {
 		super(data)
 		Object.setPrototypeOf(this, IssueBillingKeyError.prototype)
 		this.name = "IssueBillingKeyError"
+	}
+}
+export class GetBillingKeyInfoError extends BillingKeyError {
+	declare readonly data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetBillingKeyInfoError.prototype)
+		this.name = "GetBillingKeyInfoError"
+	}
+}
+export class DeleteBillingKeyError extends BillingKeyError {
+	declare readonly data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | ChannelSpecificError | ForbiddenError | InvalidRequestError | PaymentScheduleAlreadyExistsError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, DeleteBillingKeyError.prototype)
+		this.name = "DeleteBillingKeyError"
 	}
 }

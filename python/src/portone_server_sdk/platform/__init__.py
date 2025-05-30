@@ -53,19 +53,18 @@ from .._generated.platform.errors.schedule_partner_error import SchedulePartnerE
 from .._generated.platform.errors.schedule_platform_partners_error import (
     SchedulePlatformPartnersError,
 )
-from .._generated.platform.errors.update_platform_error import UpdatePlatformError
 from .._generated.platform.errors.update_platform_setting_error import (
     UpdatePlatformSettingError,
 )
-from . import policy
-from . import partner
-from . import transfer
-from . import partner_settlement
-from . import payout
-from . import bulk_payout
-from . import account
 from . import company
 from . import account_transfer
+from . import policy
+from . import account
+from . import bulk_payout
+from . import partner_settlement
+from . import partner
+from . import payout
+from . import transfer
 from .._generated.platform.cancel_platform_additional_fee_policy_schedule_response import (
     CancelPlatformAdditionalFeePolicyScheduleResponse,
 )
@@ -178,7 +177,6 @@ from .._generated.platform.platform_settlement_cycle_method_weekly import (
 from .._generated.platform.platform_settlement_cycle_method_weekly_input import (
     PlatformSettlementCycleMethodWeeklyInput,
 )
-from .._generated.platform.platform_settlement_rule import PlatformSettlementRule
 from .._generated.platform.platform_user_defined_formula_results import (
     PlatformUserDefinedFormulaResults,
 )
@@ -260,12 +258,9 @@ from .._generated.platform.schedule_platform_partners_body_update_type_wht_payer
 from .._generated.platform.schedule_platform_partners_response import (
     SchedulePlatformPartnersResponse,
 )
+from .._generated.platform.settlement_amount_type import SettlementAmountType
 from .._generated.platform.update_platform_additional_fee_policy_body import (
     UpdatePlatformAdditionalFeePolicyBody,
-)
-from .._generated.platform.update_platform_body import UpdatePlatformBody
-from .._generated.platform.update_platform_body_settlement_rule import (
-    UpdatePlatformBodySettlementRule,
 )
 from .._generated.platform.update_platform_contract_body import (
     UpdatePlatformContractBody,
@@ -292,7 +287,6 @@ from .._generated.platform.update_platform_partner_body_type_non_wht_payer impor
 from .._generated.platform.update_platform_partner_body_type_wht_payer import (
     UpdatePlatformPartnerBodyTypeWhtPayer,
 )
-from .._generated.platform.update_platform_response import UpdatePlatformResponse
 from .._generated.platform.update_platform_setting_body import UpdatePlatformSettingBody
 from .._generated.platform.update_platform_setting_response import (
     UpdatePlatformSettingResponse,
@@ -321,17 +315,16 @@ __all__ = [
     "ScheduleDiscountSharePolicyError",
     "SchedulePartnerError",
     "SchedulePlatformPartnersError",
-    "UpdatePlatformError",
     "UpdatePlatformSettingError",
-    "policy",
-    "partner",
-    "transfer",
-    "partner_settlement",
-    "payout",
-    "bulk_payout",
-    "account",
     "company",
     "account_transfer",
+    "policy",
+    "account",
+    "bulk_payout",
+    "partner_settlement",
+    "partner",
+    "payout",
+    "transfer",
     "CancelPlatformAdditionalFeePolicyScheduleResponse",
     "CancelPlatformContractScheduleResponse",
     "CancelPlatformDiscountSharePolicyScheduleResponse",
@@ -384,7 +377,6 @@ __all__ = [
     "PlatformSettlementCycleMethodMonthlyInput",
     "PlatformSettlementCycleMethodWeekly",
     "PlatformSettlementCycleMethodWeeklyInput",
-    "PlatformSettlementRule",
     "PlatformUserDefinedFormulaResults",
     "PlatformUserDefinedPropertyValue",
     "ReschedulePlatformAdditionalFeePolicyBody",
@@ -412,9 +404,8 @@ __all__ = [
     "SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer",
     "SchedulePlatformPartnersBodyUpdateTypeWhtPayer",
     "SchedulePlatformPartnersResponse",
+    "SettlementAmountType",
     "UpdatePlatformAdditionalFeePolicyBody",
-    "UpdatePlatformBody",
-    "UpdatePlatformBodySettlementRule",
     "UpdatePlatformContractBody",
     "UpdatePlatformDiscountSharePolicyBody",
     "UpdatePlatformPartnerBody",
@@ -424,7 +415,6 @@ __all__ = [
     "UpdatePlatformPartnerBodyTypeBusiness",
     "UpdatePlatformPartnerBodyTypeNonWhtPayer",
     "UpdatePlatformPartnerBodyTypeWhtPayer",
-    "UpdatePlatformResponse",
     "UpdatePlatformSettingBody",
     "UpdatePlatformSettingResponse",
     "PlatformClient",

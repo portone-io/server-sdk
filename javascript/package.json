@@ -20,8 +20,6 @@
     ".": "./src/index.ts",
     "./webhook": "./src/webhook.ts",
     "./auth": "./src/generated/auth/index.ts",
-    "./b2B": "./src/generated/b2B/index.ts",
-    "./b2B/business": "./src/generated/b2B/business/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
     "./payment": "./src/generated/payment/index.ts",
@@ -57,16 +55,6 @@
         "types": "./dist/generated/auth/index.d.ts",
         "require": "./dist/generated/auth/index.cjs",
         "import": "./dist/generated/auth/index.mjs"
-      },
-      "./b2B": {
-        "types": "./dist/generated/b2B/index.d.ts",
-        "require": "./dist/generated/b2B/index.cjs",
-        "import": "./dist/generated/b2B/index.mjs"
-      },
-      "./b2B/business": {
-        "types": "./dist/generated/b2B/business/index.d.ts",
-        "require": "./dist/generated/b2B/business/index.cjs",
-        "import": "./dist/generated/b2B/business/index.mjs"
       },
       "./common": {
         "types": "./dist/generated/common/index.d.ts",
@@ -170,15 +158,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@changesets/cli": "^2.29.0",
+    "@changesets/cli": "^2.29.4",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^22.14.1",
-    "@vitest/ui": "^3.0.8",
+    "@types/node": "^22.15.27",
+    "@vitest/ui": "^3.1.4",
     "jsr": "^0.13.4",
-    "typedoc": "^0.28.2",
+    "typedoc": "^0.28.5",
     "typescript": "^5.8.3",
     "unbuild": "^3.5.0",
-    "vitest": "^3.0.8"
+    "vitest": "^3.1.4"
   },
   "files": [
     "dist"

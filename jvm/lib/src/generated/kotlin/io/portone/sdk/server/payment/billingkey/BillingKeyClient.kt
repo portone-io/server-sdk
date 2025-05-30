@@ -82,130 +82,6 @@ public class BillingKeyClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 빌링키 단건 조회
-   *
-   * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
-   *
-   * @param billingKey
-   * 조회할 빌링키
-   *
-   * @throws GetBillingKeyInfoException
-   */
-  @JvmName("getBillingKeyInfoSuspend")
-  public suspend fun getBillingKeyInfo(
-    billingKey: String,
-  ): BillingKeyInfo {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("billing-keys", billingKey.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetBillingKeyInfoError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<BillingKeyInfo>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getBillingKeyInfo")
-  public fun getBillingKeyInfoFuture(
-    billingKey: String,
-  ): CompletableFuture<BillingKeyInfo> = GlobalScope.future { getBillingKeyInfo(billingKey) }
-
-
-  /**
-   * 빌링키 삭제
-   *
-   * 빌링키를 삭제합니다.
-   *
-   * @param billingKey
-   * 삭제할 빌링키
-   * @param reason
-   * 사유
-   *
-   * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
-   *
-   * @throws DeleteBillingKeyException
-   */
-  @JvmName("deleteBillingKeySuspend")
-  public suspend fun deleteBillingKey(
-    billingKey: String,
-    reason: String? = null,
-  ): DeleteBillingKeyResponse {
-    val httpResponse = client.delete(apiBase) {
-      url {
-        appendPathSegments("billing-keys", billingKey.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-        if (reason != null) parameters.append("reason", reason.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<DeleteBillingKeyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
-        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
-        is BillingKeyNotIssuedError -> throw BillingKeyNotIssuedException(httpBodyDecoded)
-        is ChannelSpecificError -> throw ChannelSpecificException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
-        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<DeleteBillingKeyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("deleteBillingKey")
-  public fun deleteBillingKeyFuture(
-    billingKey: String,
-    reason: String? = null,
-  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason) }
-
-
-  /**
    * 빌링키 다건 조회
    *
    * 주어진 조건에 맞는 빌링키들을 페이지 기반으로 조회합니다.
@@ -378,6 +254,130 @@ public class BillingKeyClient(
     bypass: JsonObject? = null,
     noticeUrls: List<String>? = null,
   ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
+
+
+  /**
+   * 빌링키 단건 조회
+   *
+   * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
+   *
+   * @param billingKey
+   * 조회할 빌링키
+   *
+   * @throws GetBillingKeyInfoException
+   */
+  @JvmName("getBillingKeyInfoSuspend")
+  public suspend fun getBillingKeyInfo(
+    billingKey: String,
+  ): BillingKeyInfo {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("billing-keys", billingKey.toString())
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetBillingKeyInfoError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<BillingKeyInfo>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getBillingKeyInfo")
+  public fun getBillingKeyInfoFuture(
+    billingKey: String,
+  ): CompletableFuture<BillingKeyInfo> = GlobalScope.future { getBillingKeyInfo(billingKey) }
+
+
+  /**
+   * 빌링키 삭제
+   *
+   * 빌링키를 삭제합니다.
+   *
+   * @param billingKey
+   * 삭제할 빌링키
+   * @param reason
+   * 사유
+   *
+   * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+   *
+   * @throws DeleteBillingKeyException
+   */
+  @JvmName("deleteBillingKeySuspend")
+  public suspend fun deleteBillingKey(
+    billingKey: String,
+    reason: String? = null,
+  ): DeleteBillingKeyResponse {
+    val httpResponse = client.delete(apiBase) {
+      url {
+        appendPathSegments("billing-keys", billingKey.toString())
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+        if (reason != null) parameters.append("reason", reason.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DeleteBillingKeyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
+        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
+        is BillingKeyNotIssuedError -> throw BillingKeyNotIssuedException(httpBodyDecoded)
+        is ChannelSpecificError -> throw ChannelSpecificException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DeleteBillingKeyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("deleteBillingKey")
+  public fun deleteBillingKeyFuture(
+    billingKey: String,
+    reason: String? = null,
+  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason) }
 
   override fun close() {
     client.close()

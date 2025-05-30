@@ -13,17 +13,23 @@ export type PlatformDepositAccountTransfer = {
 	amount: number
 	/** 입금 계좌 적요 */
 	depositMemo?: string
-	isForTest: boolean
 	/**
-	 * 생성 일자
+	 * 이체 일시
+	 * (RFC 3339 date-time)
+	 */
+	tradedAt?: string
+	/**
+	 * 생성 일시
 	 * (RFC 3339 date-time)
 	 */
 	createdAt: string
 	/**
-	 * 수정 일자
+	 * 수정 일시
 	 * (RFC 3339 date-time)
 	 */
 	updatedAt: string
 	/** 입금자명 */
 	depositorName: string
+	/** 테스트 모드 여부 */
+	isForTest: boolean
 }

@@ -46,124 +46,6 @@ class CashReceiptClient:
         self._base_url = base_url
         self._store_id = store_id
         self._client = AsyncClient()
-    def get_cash_receipt_by_payment_id(
-        self,
-        *,
-        payment_id: str,
-    ) -> CashReceipt:
-        """현금 영수증 단건 조회
-
-        주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
-
-        Args:
-            payment_id (str):
-                결제 건 아이디
-
-
-        Raises:
-            GetCashReceiptError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = httpx.request(
-            "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_cash_receipt_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise CashReceiptNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cash_receipt(response.json())
-    async def get_cash_receipt_by_payment_id_async(
-        self,
-        *,
-        payment_id: str,
-    ) -> CashReceipt:
-        """현금 영수증 단건 조회
-
-        주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
-
-        Args:
-            payment_id (str):
-                결제 건 아이디
-
-
-        Raises:
-            GetCashReceiptError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        if self._store_id is not None:
-            query.append(("storeId", self._store_id))
-        response = await self._client.request(
-            "GET",
-            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_cash_receipt_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise CashReceiptNotFoundError(error)
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_cash_receipt(response.json())
     def get_cash_receipts(
         self,
         *,
@@ -692,3 +574,121 @@ class CashReceiptClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_cash_receipt_response(response.json())
+    def get_cash_receipt_by_payment_id(
+        self,
+        *,
+        payment_id: str,
+    ) -> CashReceipt:
+        """현금 영수증 단건 조회
+
+        주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+
+
+        Raises:
+            GetCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = httpx.request(
+            "GET",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cash_receipt(response.json())
+    async def get_cash_receipt_by_payment_id_async(
+        self,
+        *,
+        payment_id: str,
+    ) -> CashReceipt:
+        """현금 영수증 단건 조회
+
+        주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+
+
+        Raises:
+            GetCashReceiptError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if self._store_id is not None:
+            query.append(("storeId", self._store_id))
+        response = await self._client.request(
+            "GET",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_cash_receipt_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise CashReceiptNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_cash_receipt(response.json())

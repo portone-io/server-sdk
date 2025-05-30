@@ -28,7 +28,11 @@ public sealed interface PlatformTransferSummary {
     public val settlementDate: String
     public val settlementCurrency: Currency
     public val isForTest: Boolean
-    /** 사용자 정의 속성 */
+    /**
+     * 사용자 정의 속성
+     *
+     * 5월 삭제 예정 필드입니다. partner.userDefinedProperties를 사용해주시길 바랍니다.
+     */
     public val partnerUserDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>
     /** 사용자 정의 속성 */
     public val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>

@@ -1,7 +1,6 @@
 import type { Unrecognized } from "./../../../utils/unrecognized"
 import type { PlatformDepositAccountTransfer } from "./../../platform/accountTransfer/PlatformDepositAccountTransfer"
-import type { PlatformPartnerPayoutAccountTransfer } from "./../../platform/accountTransfer/PlatformPartnerPayoutAccountTransfer"
-import type { PlatformRemitAccountTransfer } from "./../../platform/accountTransfer/PlatformRemitAccountTransfer"
+import type { PlatformWithdrawalAccountTransfer } from "./../../platform/accountTransfer/PlatformWithdrawalAccountTransfer"
 /**
  * 계좌 이체
  *
@@ -9,12 +8,10 @@ import type { PlatformRemitAccountTransfer } from "./../../platform/accountTrans
  */
 export type PlatformAccountTransfer =
 	| PlatformDepositAccountTransfer
-	| PlatformPartnerPayoutAccountTransfer
-	| PlatformRemitAccountTransfer
+	| PlatformWithdrawalAccountTransfer
 	| { readonly type: Unrecognized }
 
 export function isUnrecognizedPlatformAccountTransfer(entity: PlatformAccountTransfer): entity is { readonly type: Unrecognized } {
 	return entity.type !== "DEPOSIT"
-		&& entity.type !== "PARTNER_PAYOUT"
-		&& entity.type !== "REMIT"
+		&& entity.type !== "WITHDRAWAL"
 }

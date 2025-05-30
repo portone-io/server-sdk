@@ -31,6 +31,10 @@ class PlatformPartnerManualSettlement:
     """정산 금액
     (int64)
     """
+    tax_free_amount: int
+    """정산 면세 금액
+    (int64)
+    """
     is_for_test: bool
     """테스트 모드 여부
     """
@@ -51,6 +55,7 @@ def _serialize_platform_partner_manual_settlement(obj: PlatformPartnerManualSett
     entity["settlementCurrency"] = _serialize_currency(obj.settlement_currency)
     entity["status"] = _serialize_platform_partner_settlement_status(obj.status)
     entity["amount"] = obj.amount
+    entity["taxFreeAmount"] = obj.tax_free_amount
     entity["isForTest"] = obj.is_for_test
     if obj.memo is not None:
         entity["memo"] = obj.memo
@@ -97,6 +102,11 @@ def _deserialize_platform_partner_manual_settlement(obj: Any) -> PlatformPartner
     amount = obj["amount"]
     if not isinstance(amount, int):
         raise ValueError(f"{repr(amount)} is not int")
+    if "taxFreeAmount" not in obj:
+        raise KeyError(f"'taxFreeAmount' is not in {obj}")
+    tax_free_amount = obj["taxFreeAmount"]
+    if not isinstance(tax_free_amount, int):
+        raise ValueError(f"{repr(tax_free_amount)} is not int")
     if "isForTest" not in obj:
         raise KeyError(f"'isForTest' is not in {obj}")
     is_for_test = obj["isForTest"]
@@ -108,4 +118,4 @@ def _deserialize_platform_partner_manual_settlement(obj: Any) -> PlatformPartner
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformPartnerManualSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, amount, is_for_test, memo)
+    return PlatformPartnerManualSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, amount, tax_free_amount, is_for_test, memo)

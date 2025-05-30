@@ -28,4 +28,9 @@ export type EasyPayProvider =
 	| "SHOPEEPAY"
 	| "JKOPAY"
 	| "PAYPAY"
+	| "AMAZONPAY"
+	| "RAKUTENPAY"
+	| "DBARAI"
+	| "AUPAY"
+	| "MERPAY"
 	| string & {}

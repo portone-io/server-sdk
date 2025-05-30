@@ -44,6 +44,13 @@ internal data class CreatePlatformOrderCancelTransferBody(
    */
   val settlementStartDate: String? = null,
   /**
+   * 정산일
+   *
+   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
+   */
+  val settlementDate: String? = null,
+  /**
    * 외부 결제 상세 정보
    *
    * 해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.

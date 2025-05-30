@@ -38,6 +38,8 @@ public data class PlatformManualTransfer(
   override val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>,
   /** 정산 금액 */
   val settlementAmount: Long,
+  /** 정산 면세 금액 */
+  val settlementTaxFreeAmount: Long,
 ) : PlatformTransfer.Recognized
 
 

@@ -67,7 +67,7 @@ public data class PaymentFilterInput(
    * 값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
    */
   val pgProvider: List<PgProvider>? = null,
-  /** 테스트 결제 필터링 */
+  /** 테스트 결제 여부 */
   val isTest: Boolean? = null,
   /** 결제 예약 건 필터링 */
   val isScheduled: Boolean? = null,

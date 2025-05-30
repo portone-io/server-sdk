@@ -65,7 +65,7 @@ class PaymentFilterInput:
     값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
     """
     is_test: Optional[bool] = field(default=None)
-    """테스트 결제 필터링
+    """테스트 결제 여부
     """
     is_scheduled: Optional[bool] = field(default=None)
     """결제 예약 건 필터링

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from ..platform.platform_settlement_rule import PlatformSettlementRule, _deserialize_platform_settlement_rule, _serialize_platform_settlement_rule
 
 @dataclass
 class Platform:
@@ -11,9 +10,6 @@ class Platform:
     """해당 플랫폼의 고객사 아이디
     """
     graphql_id: str
-    settlement_rule: PlatformSettlementRule
-    """정산 규칙
-    """
 
 
 def _serialize_platform(obj: Platform) -> Any:
@@ -22,7 +18,6 @@ def _serialize_platform(obj: Platform) -> Any:
     entity = {}
     entity["merchantId"] = obj.merchant_id
     entity["graphqlId"] = obj.graphql_id
-    entity["settlementRule"] = _serialize_platform_settlement_rule(obj.settlement_rule)
     return entity
 
 
@@ -39,8 +34,4 @@ def _deserialize_platform(obj: Any) -> Platform:
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
         raise ValueError(f"{repr(graphql_id)} is not str")
-    if "settlementRule" not in obj:
-        raise KeyError(f"'settlementRule' is not in {obj}")
-    settlement_rule = obj["settlementRule"]
-    settlement_rule = _deserialize_platform_settlement_rule(settlement_rule)
-    return Platform(merchant_id, graphql_id, settlement_rule)
+    return Platform(merchant_id, graphql_id)

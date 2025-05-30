@@ -334,6 +334,323 @@ public class PartnerClient(
 
 
   /**
+   * 파트너 다건 생성
+   *
+   * 새로운 파트너를 다건 생성합니다.
+   *
+   * @param partners
+   * 생성할 파트너 리스트 정보
+   *
+   * @throws CreatePlatformPartnersException
+   */
+  @JvmName("createPlatformPartnersSuspend")
+  public suspend fun createPlatformPartners(
+    partners: List<CreatePlatformPartnerBody>,
+  ): CreatePlatformPartnersResponse {
+    val requestBody = CreatePlatformPartnersBody(
+      partners = partners,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "batch")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CreatePlatformPartnersError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformContractsNotFoundError -> throw PlatformContractsNotFoundException(httpBodyDecoded)
+        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerIdsAlreadyExistError -> throw PlatformPartnerIdsAlreadyExistException(httpBodyDecoded)
+        is PlatformPartnerIdsDuplicatedError -> throw PlatformPartnerIdsDuplicatedException(httpBodyDecoded)
+        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CreatePlatformPartnersResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("createPlatformPartners")
+  public fun createPlatformPartnersFuture(
+    partners: List<CreatePlatformPartnerBody>,
+  ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(partners) }
+
+
+  /**
+   * 파트너 연동 사업자 일괄 연동
+   *
+   * 파트너들을 연동 사업자로 일괄 연동합니다.
+   *
+   * @param filter
+   * 연동 사업자로 일괄 연동할 파트너 조건 필터
+   *
+   * @throws ConnectBulkPartnerMemberCompanyException
+   */
+  @JvmName("connectBulkPartnerMemberCompanySuspend")
+  public suspend fun connectBulkPartnerMemberCompany(
+    filter: PlatformPartnerFilterInput? = null,
+  ): ConnectBulkPartnerMemberCompanyResponse {
+    val requestBody = ConnectBulkPartnerMemberCompanyBody(
+      filter = filter,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-connect")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("connectBulkPartnerMemberCompany")
+  public fun connectBulkPartnerMemberCompanyFuture(
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(filter) }
+
+
+  /**
+   * 파트너 연동 사업자 연동
+   *
+   * 파트너를 연동 사업자로 연동합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   *
+   * @throws ConnectPartnerMemberCompanyException
+   */
+  @JvmName("connectPartnerMemberCompanySuspend")
+  public suspend fun connectPartnerMemberCompany(
+    id: String,
+  ): ConnectPartnerMemberCompanyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-connect", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConnectPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformMemberCompanyNotConnectableStatusError -> throw PlatformMemberCompanyNotConnectableStatusException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerScheduleExistsError -> throw PlatformPartnerScheduleExistsException(httpBodyDecoded)
+        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
+        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConnectPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("connectPartnerMemberCompany")
+  public fun connectPartnerMemberCompanyFuture(
+    id: String,
+  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id) }
+
+
+  /**
+   * 파트너 연동 사업자 연동 해제
+   *
+   * 파트너들을 연동 사업자에서 일괄 연동 해제합니다.
+   *
+   * @param filter
+   * 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터
+   *
+   * @throws DisconnectBulkPartnerMemberCompanyException
+   */
+  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
+  public suspend fun disconnectBulkPartnerMemberCompany(
+    filter: PlatformPartnerFilterInput? = null,
+  ): DisconnectBulkPartnerMemberCompanyResponse {
+    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
+      filter = filter,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-disconnect")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("disconnectBulkPartnerMemberCompany")
+  public fun disconnectBulkPartnerMemberCompanyFuture(
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(filter) }
+
+
+  /**
+   * 연동 사업자 연동 해제
+   *
+   * 파트너를 연동 사업자에서 연동 해제합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   *
+   * @throws DisconnectPartnerMemberCompanyException
+   */
+  @JvmName("disconnectPartnerMemberCompanySuspend")
+  public suspend fun disconnectPartnerMemberCompany(
+    id: String,
+  ): DisconnectPartnerMemberCompanyResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DisconnectPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformMemberCompanyNotConnectedError -> throw PlatformMemberCompanyNotConnectedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformOngoingTaxInvoiceExistsError -> throw PlatformOngoingTaxInvoiceExistsException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
+        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DisconnectPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("disconnectPartnerMemberCompany")
+  public fun disconnectPartnerMemberCompanyFuture(
+    id: String,
+  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id) }
+
+
+  /**
    * 파트너 조회
    *
    * 파트너 객체를 조회합니다.
@@ -500,71 +817,6 @@ public class PartnerClient(
 
 
   /**
-   * 파트너 다건 생성
-   *
-   * 새로운 파트너를 다건 생성합니다.
-   *
-   * @param partners
-   * 생성할 파트너 리스트 정보
-   *
-   * @throws CreatePlatformPartnersException
-   */
-  @JvmName("createPlatformPartnersSuspend")
-  public suspend fun createPlatformPartners(
-    partners: List<CreatePlatformPartnerBody>,
-  ): CreatePlatformPartnersResponse {
-    val requestBody = CreatePlatformPartnersBody(
-      partners = partners,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "batch")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformPartnersError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractsNotFoundError -> throw PlatformContractsNotFoundException(httpBodyDecoded)
-        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerIdsAlreadyExistError -> throw PlatformPartnerIdsAlreadyExistException(httpBodyDecoded)
-        is PlatformPartnerIdsDuplicatedError -> throw PlatformPartnerIdsDuplicatedException(httpBodyDecoded)
-        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CreatePlatformPartnersResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("createPlatformPartners")
-  public fun createPlatformPartnersFuture(
-    partners: List<CreatePlatformPartnerBody>,
-  ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(partners) }
-
-
-  /**
    * 파트너 복원
    *
    * 주어진 아이디에 대응되는 파트너를 보관합니다.
@@ -675,258 +927,6 @@ public class PartnerClient(
   public fun recoverPlatformPartnerFuture(
     id: String,
   ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
-
-
-  /**
-   * 파트너 연동 사업자 연동
-   *
-   * 파트너를 연동 사업자로 연동합니다.
-   *
-   * @param id
-   * 파트너 아이디
-   *
-   * @throws ConnectPartnerMemberCompanyException
-   */
-  @JvmName("connectPartnerMemberCompanySuspend")
-  public suspend fun connectPartnerMemberCompany(
-    id: String,
-  ): ConnectPartnerMemberCompanyResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "member-company-connect", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ConnectPartnerMemberCompanyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
-        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformMemberCompanyNotConnectableStatusError -> throw PlatformMemberCompanyNotConnectableStatusException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformPartnerScheduleExistsError -> throw PlatformPartnerScheduleExistsException(httpBodyDecoded)
-        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
-        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ConnectPartnerMemberCompanyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("connectPartnerMemberCompany")
-  public fun connectPartnerMemberCompanyFuture(
-    id: String,
-  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id) }
-
-
-  /**
-   * 연동 사업자 연동 해제
-   *
-   * 파트너를 연동 사업자에서 연동 해제합니다.
-   *
-   * @param id
-   * 파트너 아이디
-   *
-   * @throws DisconnectPartnerMemberCompanyException
-   */
-  @JvmName("disconnectPartnerMemberCompanySuspend")
-  public suspend fun disconnectPartnerMemberCompany(
-    id: String,
-  ): DisconnectPartnerMemberCompanyResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<DisconnectPartnerMemberCompanyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
-        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformMemberCompanyNotConnectedError -> throw PlatformMemberCompanyNotConnectedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformOngoingTaxInvoiceExistsError -> throw PlatformOngoingTaxInvoiceExistsException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformPartnerTaxationTypeIsSimpleError -> throw PlatformPartnerTaxationTypeIsSimpleException(httpBodyDecoded)
-        is PlatformPartnerTypeIsNotBusinessError -> throw PlatformPartnerTypeIsNotBusinessException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<DisconnectPartnerMemberCompanyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("disconnectPartnerMemberCompany")
-  public fun disconnectPartnerMemberCompanyFuture(
-    id: String,
-  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id) }
-
-
-  /**
-   * 파트너 연동 사업자 일괄 연동
-   *
-   * 파트너들을 연동 사업자로 일괄 연동합니다.
-   *
-   * @param filter
-   * 연동 사업자로 일괄 연동할 파트너 조건 필터
-   *
-   * @throws ConnectBulkPartnerMemberCompanyException
-   */
-  @JvmName("connectBulkPartnerMemberCompanySuspend")
-  public suspend fun connectBulkPartnerMemberCompany(
-    filter: PlatformPartnerFilterInput? = null,
-  ): ConnectBulkPartnerMemberCompanyResponse {
-    val requestBody = ConnectBulkPartnerMemberCompanyBody(
-      filter = filter,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "member-company-connect")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
-        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("connectBulkPartnerMemberCompany")
-  public fun connectBulkPartnerMemberCompanyFuture(
-    filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(filter) }
-
-
-  /**
-   * 파트너 연동 사업자 연동 해제
-   *
-   * 파트너들을 연동 사업자에서 일괄 연동 해제합니다.
-   *
-   * @param filter
-   * 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터
-   *
-   * @throws DisconnectBulkPartnerMemberCompanyException
-   */
-  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
-  public suspend fun disconnectBulkPartnerMemberCompany(
-    filter: PlatformPartnerFilterInput? = null,
-  ): DisconnectBulkPartnerMemberCompanyResponse {
-    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
-      filter = filter,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "member-company-disconnect")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
-        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("disconnectBulkPartnerMemberCompany")
-  public fun disconnectBulkPartnerMemberCompanyFuture(
-    filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(filter) }
 
   override fun close() {
     client.close()

@@ -21,11 +21,16 @@ class PlatformManualTransferSummary:
     is_for_test: bool
     partner_user_defined_properties: list[PlatformUserDefinedPropertyKeyValue]
     """사용자 정의 속성
+
+    5월 삭제 예정 필드입니다. partner.userDefinedProperties를 사용해주시길 바랍니다.
     """
     user_defined_properties: list[PlatformUserDefinedPropertyKeyValue]
     """사용자 정의 속성
     """
     settlement_amount: int
+    """(int64)
+    """
+    settlement_tax_free_amount: int
     """(int64)
     """
     memo: Optional[str] = field(default=None)
@@ -46,6 +51,7 @@ def _serialize_platform_manual_transfer_summary(obj: PlatformManualTransferSumma
     entity["partnerUserDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.partner_user_defined_properties))
     entity["userDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.user_defined_properties))
     entity["settlementAmount"] = obj.settlement_amount
+    entity["settlementTaxFreeAmount"] = obj.settlement_tax_free_amount
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -112,10 +118,15 @@ def _deserialize_platform_manual_transfer_summary(obj: Any) -> PlatformManualTra
     settlement_amount = obj["settlementAmount"]
     if not isinstance(settlement_amount, int):
         raise ValueError(f"{repr(settlement_amount)} is not int")
+    if "settlementTaxFreeAmount" not in obj:
+        raise KeyError(f"'settlementTaxFreeAmount' is not in {obj}")
+    settlement_tax_free_amount = obj["settlementTaxFreeAmount"]
+    if not isinstance(settlement_tax_free_amount, int):
+        raise ValueError(f"{repr(settlement_tax_free_amount)} is not int")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformManualTransferSummary(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, settlement_amount, memo)
+    return PlatformManualTransferSummary(id, graphql_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, settlement_amount, settlement_tax_free_amount, memo)

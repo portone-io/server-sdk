@@ -181,9 +181,6 @@ from ..._generated.platform.transfer.platform_transfer_filter_input import (
 from ..._generated.platform.transfer.platform_transfer_filter_input_keyword import (
     PlatformTransferFilterInputKeyword,
 )
-from ..._generated.platform.transfer.platform_transfer_sheet_field import (
-    PlatformTransferSheetField,
-)
 from ..._generated.platform.transfer.platform_transfer_status import (
     PlatformTransferStatus,
 )
@@ -276,7 +273,6 @@ __all__ = [
     "PlatformTransfer",
     "PlatformTransferFilterInput",
     "PlatformTransferFilterInputKeyword",
-    "PlatformTransferSheetField",
     "PlatformTransferStatus",
     "PlatformTransferSummary",
     "PlatformTransferSummaryExternalPayment",

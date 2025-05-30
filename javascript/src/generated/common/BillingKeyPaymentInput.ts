@@ -2,6 +2,7 @@ import type { CashReceiptInput } from "./../common/CashReceiptInput"
 import type { Country } from "./../common/Country"
 import type { Currency } from "./../common/Currency"
 import type { CustomerInput } from "./../common/CustomerInput"
+import type { Locale } from "./../common/Locale"
 import type { PaymentAmountInput } from "./../common/PaymentAmountInput"
 import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentProductType } from "./../common/PaymentProductType"
@@ -70,6 +71,12 @@ export type BillingKeyPaymentInput = {
 	shippingAddress?: SeparatedAddressInput
 	/** 해당 결제에 적용할 프로모션 아이디 */
 	promotionId?: string
+	/**
+	 * 결제 시 사용할 언어
+	 *
+	 * 엑심베이의 경우 필수 입력입니다.
+	 */
+	locale?: Locale
 	/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
 	bypass?: object
 }

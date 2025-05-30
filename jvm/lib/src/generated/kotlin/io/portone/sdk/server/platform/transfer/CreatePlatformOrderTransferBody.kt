@@ -39,6 +39,13 @@ internal data class CreatePlatformOrderTransferBody(
    * (yyyy-MM-dd)
    */
   val settlementStartDate: String? = null,
+  /**
+   * 정산일
+   *
+   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
+   */
+  val settlementDate: String? = null,
   /** 할인 정보 */
   val discounts: List<CreatePlatformOrderTransferBodyDiscount>,
   /** 추가 수수료 정보 */

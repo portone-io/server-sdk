@@ -29,36 +29,6 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
-		getCashReceiptByPaymentId: async (
-			options: {
-				paymentId: string,
-				storeId?: string,
-			}
-		): Promise<CashReceipt> => {
-			const {
-				paymentId,
-				storeId,
-			} = options
-			const query = [
-				["storeId", storeId],
-			]
-				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
-				.join("&")
-			const response = await fetch(
-				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt?${query}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetCashReceiptError(await response.json())
-			}
-			return response.json()
-		},
 		getCashReceipts: async (
 			options?: {
 				page?: PageInput,
@@ -184,28 +154,39 @@ export function CashReceiptClient(init: PortOneClientInit): CashReceiptClient {
 			}
 			return response.json()
 		},
+		getCashReceiptByPaymentId: async (
+			options: {
+				paymentId: string,
+				storeId?: string,
+			}
+		): Promise<CashReceipt> => {
+			const {
+				paymentId,
+				storeId,
+			} = options
+			const query = [
+				["storeId", storeId],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payments/${encodeURIComponent(paymentId)}/cash-receipt?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetCashReceiptError(await response.json())
+			}
+			return response.json()
+		},
 	}
 }
 export type CashReceiptClient = {
-	/**
-	 * 현금 영수증 단건 조회
-	 *
-	 * 주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
-	 *
-	 * @throws {@link GetCashReceiptError}
-	 */
-	getCashReceiptByPaymentId: (
-		options: {
-			/** 결제 건 아이디 */
-			paymentId: string,
-			/**
-			 * 상점 아이디
-			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
-			 */
-			storeId?: string,
-		}
-	) => Promise<CashReceipt>
 	/**
 	 * 현금영수증 다건 조회
 	 *
@@ -304,15 +285,25 @@ export type CashReceiptClient = {
 			storeId?: string,
 		}
 	) => Promise<CancelCashReceiptResponse>
-}
-export class GetCashReceiptError extends CashReceiptError {
-	declare readonly data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetCashReceiptError.prototype)
-		this.name = "GetCashReceiptError"
-	}
+	/**
+	 * 현금 영수증 단건 조회
+	 *
+	 * 주어진 결제 아이디에 대응되는 현금 영수증 내역을 조회합니다.
+	 *
+	 * @throws {@link GetCashReceiptError}
+	 */
+	getCashReceiptByPaymentId: (
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+		}
+	) => Promise<CashReceipt>
 }
 export class GetCashReceiptsError extends CashReceiptError {
 	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
@@ -339,5 +330,14 @@ export class CancelCashReceiptError extends CashReceiptError {
 		super(data)
 		Object.setPrototypeOf(this, CancelCashReceiptError.prototype)
 		this.name = "CancelCashReceiptError"
+	}
+}
+export class GetCashReceiptError extends CashReceiptError {
+	declare readonly data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: CashReceiptNotFoundError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetCashReceiptError.prototype)
+		this.name = "GetCashReceiptError"
 	}
 }

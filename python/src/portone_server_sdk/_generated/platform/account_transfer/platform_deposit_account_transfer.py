@@ -18,20 +18,26 @@ class PlatformDepositAccountTransfer:
     """금액
     (int64)
     """
-    is_for_test: bool
     created_at: str
-    """생성 일자
+    """생성 일시
     (RFC 3339 date-time)
     """
     updated_at: str
-    """수정 일자
+    """수정 일시
     (RFC 3339 date-time)
     """
     depositor_name: str
     """입금자명
     """
+    is_for_test: bool
+    """테스트 모드 여부
+    """
     deposit_memo: Optional[str] = field(default=None)
     """입금 계좌 적요
+    """
+    traded_at: Optional[str] = field(default=None)
+    """이체 일시
+    (RFC 3339 date-time)
     """
 
 
@@ -43,12 +49,14 @@ def _serialize_platform_deposit_account_transfer(obj: PlatformDepositAccountTran
     entity["id"] = obj.id
     entity["currency"] = _serialize_currency(obj.currency)
     entity["amount"] = obj.amount
-    entity["isForTest"] = obj.is_for_test
     entity["createdAt"] = obj.created_at
     entity["updatedAt"] = obj.updated_at
     entity["depositorName"] = obj.depositor_name
+    entity["isForTest"] = obj.is_for_test
     if obj.deposit_memo is not None:
         entity["depositMemo"] = obj.deposit_memo
+    if obj.traded_at is not None:
+        entity["tradedAt"] = obj.traded_at
     return entity
 
 
@@ -74,11 +82,6 @@ def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositA
     amount = obj["amount"]
     if not isinstance(amount, int):
         raise ValueError(f"{repr(amount)} is not int")
-    if "isForTest" not in obj:
-        raise KeyError(f"'isForTest' is not in {obj}")
-    is_for_test = obj["isForTest"]
-    if not isinstance(is_for_test, bool):
-        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "createdAt" not in obj:
         raise KeyError(f"'createdAt' is not in {obj}")
     created_at = obj["createdAt"]
@@ -94,10 +97,21 @@ def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositA
     depositor_name = obj["depositorName"]
     if not isinstance(depositor_name, str):
         raise ValueError(f"{repr(depositor_name)} is not str")
+    if "isForTest" not in obj:
+        raise KeyError(f"'isForTest' is not in {obj}")
+    is_for_test = obj["isForTest"]
+    if not isinstance(is_for_test, bool):
+        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "depositMemo" in obj:
         deposit_memo = obj["depositMemo"]
         if not isinstance(deposit_memo, str):
             raise ValueError(f"{repr(deposit_memo)} is not str")
     else:
         deposit_memo = None
-    return PlatformDepositAccountTransfer(id, currency, amount, is_for_test, created_at, updated_at, depositor_name, deposit_memo)
+    if "tradedAt" in obj:
+        traded_at = obj["tradedAt"]
+        if not isinstance(traded_at, str):
+            raise ValueError(f"{repr(traded_at)} is not str")
+    else:
+        traded_at = None
+    return PlatformDepositAccountTransfer(id, currency, amount, created_at, updated_at, depositor_name, is_for_test, deposit_memo, traded_at)

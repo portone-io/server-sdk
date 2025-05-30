@@ -1,7 +1,10 @@
 import { CompanyError } from "./CompanyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import type { B2bExternalServiceError } from "../../../generated/platform/company/B2bExternalServiceError"
+import type { B2bNotEnabledError } from "../../../generated/platform/company/B2bNotEnabledError"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
+import type { GetB2bBusinessInfosResponse } from "../../../generated/platform/company/GetB2bBusinessInfosResponse"
 import type { GetPlatformCompanyStatePayload } from "../../../generated/platform/company/GetPlatformCompanyStatePayload"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { PlatformCompanyNotFoundError } from "../../../generated/platform/company/PlatformCompanyNotFoundError"
@@ -15,6 +18,33 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
+		getB2bBusinessInfos: async (
+			options: {
+				brnList: string[],
+			}
+		): Promise<GetB2bBusinessInfosResponse> => {
+			const {
+				brnList,
+			} = options
+			const requestBody = JSON.stringify({
+				brnList,
+			})
+			const response = await fetch(
+				new URL("/b2b/companies/business-info", baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new GetB2bBusinessInfosError(await response.json())
+			}
+			return response.json()
+		},
 		getPlatformCompanyState: async (
 			options: {
 				businessRegistrationNumber: string,
@@ -42,6 +72,20 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 }
 export type CompanyClient = {
 	/**
+	 * 사업자등록 정보조회
+	 *
+	 * 요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
+	 * 해당 API 사용을 위해서는 별도 문의가 필요합니다.
+	 *
+	 * @throws {@link GetB2bBusinessInfosError}
+	 */
+	getB2bBusinessInfos: (
+		options: {
+			/** 조회할 사업자등록번호 리스트 */
+			brnList: string[],
+		}
+	) => Promise<GetB2bBusinessInfosResponse>
+	/**
 	 * 사업자 조회
 	 *
 	 * 사업자 정보를 조회합니다. 포트원 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.
@@ -54,6 +98,15 @@ export type CompanyClient = {
 			businessRegistrationNumber: string,
 		}
 	) => Promise<GetPlatformCompanyStatePayload>
+}
+export class GetB2bBusinessInfosError extends CompanyError {
+	declare readonly data: B2bExternalServiceError | B2bNotEnabledError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: B2bExternalServiceError | B2bNotEnabledError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetB2bBusinessInfosError.prototype)
+		this.name = "GetB2bBusinessInfosError"
+	}
 }
 export class GetPlatformCompanyStateError extends CompanyError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCompanyNotFoundError | PlatformExternalApiFailedError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }

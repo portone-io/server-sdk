@@ -33,6 +33,9 @@ class PaymentScheduleFilterInput:
 
     값을 입력하지 않으면 상태 필터링이 적용되지 않습니다.
     """
+    is_for_test: Optional[bool] = field(default=None)
+    """테스트 결제 여부
+    """
 
 
 def _serialize_payment_schedule_filter_input(obj: PaymentScheduleFilterInput) -> Any:
@@ -49,6 +52,8 @@ def _serialize_payment_schedule_filter_input(obj: PaymentScheduleFilterInput) ->
         entity["until"] = obj.until
     if obj.status is not None:
         entity["status"] = list(map(_serialize_payment_schedule_status, obj.status))
+    if obj.is_for_test is not None:
+        entity["isForTest"] = obj.is_for_test
     return entity
 
 
@@ -88,4 +93,10 @@ def _deserialize_payment_schedule_filter_input(obj: Any) -> PaymentScheduleFilte
             status[i] = item
     else:
         status = None
-    return PaymentScheduleFilterInput(store_id, billing_key, from_, until, status)
+    if "isForTest" in obj:
+        is_for_test = obj["isForTest"]
+        if not isinstance(is_for_test, bool):
+            raise ValueError(f"{repr(is_for_test)} is not bool")
+    else:
+        is_for_test = None
+    return PaymentScheduleFilterInput(store_id, billing_key, from_, until, status, is_for_test)

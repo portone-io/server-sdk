@@ -20,6 +20,7 @@ import io.portone.sdk.server.common.CashReceiptInput
 import io.portone.sdk.server.common.Country
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.CustomerInput
+import io.portone.sdk.server.common.Locale
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.common.PaymentAmountInput
 import io.portone.sdk.server.common.PaymentProduct
@@ -171,260 +172,6 @@ public class PaymentClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 결제 정보 사전 등록
-   *
-   * 결제 정보를 사전 등록합니다.
-   *
-   * @param paymentId
-   * 결제 건 아이디
-   * @param totalAmount
-   * 결제 총 금액
-   * @param taxFreeAmount
-   * 결제 면세 금액
-   * @param currency
-   * 통화 단위
-   *
-   * @throws PreRegisterPaymentException
-   */
-  @JvmName("preRegisterPaymentSuspend")
-  public suspend fun preRegisterPayment(
-    paymentId: String,
-    totalAmount: Long? = null,
-    taxFreeAmount: Long? = null,
-    currency: Currency? = null,
-  ): PreRegisterPaymentResponse {
-    val requestBody = PreRegisterPaymentBody(
-      storeId = storeId,
-      totalAmount = totalAmount,
-      taxFreeAmount = taxFreeAmount,
-      currency = currency,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString(), "pre-register")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<PreRegisterPaymentError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PreRegisterPaymentResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("preRegisterPayment")
-  public fun preRegisterPaymentFuture(
-    paymentId: String,
-    totalAmount: Long? = null,
-    taxFreeAmount: Long? = null,
-    currency: Currency? = null,
-  ): CompletableFuture<PreRegisterPaymentResponse> = GlobalScope.future { preRegisterPayment(paymentId, totalAmount, taxFreeAmount, currency) }
-
-
-  /**
-   * 결제 단건 조회
-   *
-   * 주어진 아이디에 대응되는 결제 건을 조회합니다.
-   *
-   * @param paymentId
-   * 조회할 결제 아이디
-   *
-   * @throws GetPaymentException
-   */
-  @JvmName("getPaymentSuspend")
-  public suspend fun getPayment(
-    paymentId: String,
-  ): Payment {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<Payment>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPayment")
-  public fun getPaymentFuture(
-    paymentId: String,
-  ): CompletableFuture<Payment> = GlobalScope.future { getPayment(paymentId) }
-
-
-  /**
-   * 결제 시도 내역 조회
-   *
-   * 주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
-   *
-   * @param paymentId
-   * 조회할 결제 아이디
-   *
-   * @throws GetPaymentTransactionsException
-   */
-  @JvmName("getPaymentTransactionsSuspend")
-  public suspend fun getPaymentTransactions(
-    paymentId: String,
-  ): GetPaymentTransactionsResponse {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString(), "transactions")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentTransactionsError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetPaymentTransactionsResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPaymentTransactions")
-  public fun getPaymentTransactionsFuture(
-    paymentId: String,
-  ): CompletableFuture<GetPaymentTransactionsResponse> = GlobalScope.future { getPaymentTransactions(paymentId) }
-
-
-  /**
-   * 결제 다건 조회(페이지 기반)
-   *
-   * 주어진 조건에 맞는 결제 건들을 페이지 기반으로 조회합니다.
-   *
-   * @param page
-   * 요청할 페이지 정보
-   *
-   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
-   * @param filter
-   * 조회할 결제 건 조건 필터
-   *
-   * V1 결제 건의 경우 일부 필드에 대해 필터가 적용되지 않을 수 있습니다.
-   *
-   * @throws GetPaymentsException
-   */
-  @JvmName("getPaymentsSuspend")
-  public suspend fun getPayments(
-    page: PageInput? = null,
-    filter: PaymentFilterInput? = null,
-  ): GetPaymentsResponse {
-    val requestBody = GetPaymentsBody(
-      page = page,
-      filter = filter,
-    )
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("payments")
-        parameters.append("requestBody", json.encodeToString(requestBody))
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPaymentsError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetPaymentsResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPayments")
-  public fun getPaymentsFuture(
-    page: PageInput? = null,
-    filter: PaymentFilterInput? = null,
-  ): CompletableFuture<GetPaymentsResponse> = GlobalScope.future { getPayments(page, filter) }
-
-
-  /**
    * 결제 대용량 다건 조회(커서 기반)
    *
    * 기간 내 모든 결제 건을 커서 기반으로 조회합니다. 결제 건의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 건이 조회됩니다.
@@ -504,6 +251,185 @@ public class PaymentClient(
     cursor: String? = null,
     size: Int? = null,
   ): CompletableFuture<GetAllPaymentsByCursorResponse> = GlobalScope.future { getAllPaymentsByCursor(from, until, cursor, size) }
+
+
+  /**
+   * 빌링키 결제
+   *
+   * 빌링키로 결제를 진행합니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   * @param billingKey
+   * 빌링키 결제에 사용할 빌링키
+   * @param channelKey
+   * 채널 키
+   *
+   * 다수 채널에 대해 발급된 빌링키에 대해, 결제 채널을 특정하고 싶을 때 명시
+   * @param orderName
+   * 주문명
+   * @param customer
+   * 고객 정보
+   * @param customData
+   * 사용자 지정 데이터
+   * @param amount
+   * 결제 금액 세부 입력 정보
+   * @param currency
+   * 통화
+   * @param installmentMonth
+   * 할부 개월 수
+   * @param useFreeInterestFromMerchant
+   * 무이자 할부 이자를 고객사가 부담할지 여부
+   * @param useCardPoint
+   * 카드 포인트 사용 여부
+   * @param cashReceipt
+   * 현금영수증 정보
+   * @param country
+   * 결제 국가
+   * @param noticeUrls
+   * 웹훅 주소
+   *
+   * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+   * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
+   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * @param products
+   * 상품 정보
+   *
+   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * @param productCount
+   * 상품 개수
+   * @param productType
+   * 상품 유형
+   * @param shippingAddress
+   * 배송지 주소
+   * @param promotionId
+   * 해당 결제에 적용할 프로모션 아이디
+   * @param locale
+   * 결제 시 사용할 언어
+   *
+   * 엑심베이의 경우 필수 입력입니다.
+   * @param bypass
+   * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+   *
+   * @throws PayWithBillingKeyException
+   */
+  @JvmName("payWithBillingKeySuspend")
+  public suspend fun payWithBillingKey(
+    paymentId: String,
+    billingKey: String,
+    channelKey: String? = null,
+    orderName: String,
+    customer: CustomerInput? = null,
+    customData: String? = null,
+    amount: PaymentAmountInput,
+    currency: Currency,
+    installmentMonth: Int? = null,
+    useFreeInterestFromMerchant: Boolean? = null,
+    useCardPoint: Boolean? = null,
+    cashReceipt: CashReceiptInput? = null,
+    country: Country? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
+    productCount: Int? = null,
+    productType: PaymentProductType? = null,
+    shippingAddress: SeparatedAddressInput? = null,
+    promotionId: String? = null,
+    locale: Locale? = null,
+    bypass: JsonObject? = null,
+  ): PayWithBillingKeyResponse {
+    val requestBody = BillingKeyPaymentInput(
+      storeId = storeId,
+      billingKey = billingKey,
+      channelKey = channelKey,
+      orderName = orderName,
+      customer = customer,
+      customData = customData,
+      amount = amount,
+      currency = currency,
+      installmentMonth = installmentMonth,
+      useFreeInterestFromMerchant = useFreeInterestFromMerchant,
+      useCardPoint = useCardPoint,
+      cashReceipt = cashReceipt,
+      country = country,
+      noticeUrls = noticeUrls,
+      products = products,
+      productCount = productCount,
+      productType = productType,
+      shippingAddress = shippingAddress,
+      promotionId = promotionId,
+      locale = locale,
+      bypass = bypass,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "billing-key")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<PayWithBillingKeyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
+        is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
+        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
+        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
+        is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
+        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
+        is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PayWithBillingKeyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("payWithBillingKey")
+  public fun payWithBillingKeyFuture(
+    paymentId: String,
+    billingKey: String,
+    channelKey: String? = null,
+    orderName: String,
+    customer: CustomerInput? = null,
+    customData: String? = null,
+    amount: PaymentAmountInput,
+    currency: Currency,
+    installmentMonth: Int? = null,
+    useFreeInterestFromMerchant: Boolean? = null,
+    useCardPoint: Boolean? = null,
+    cashReceipt: CashReceiptInput? = null,
+    country: Country? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
+    productCount: Int? = null,
+    productType: PaymentProductType? = null,
+    shippingAddress: SeparatedAddressInput? = null,
+    promotionId: String? = null,
+    locale: Locale? = null,
+    bypass: JsonObject? = null,
+  ): CompletableFuture<PayWithBillingKeyResponse> = GlobalScope.future { payWithBillingKey(paymentId, billingKey, channelKey, orderName, customer, customData, amount, currency, installmentMonth, useFreeInterestFromMerchant, useCardPoint, cashReceipt, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, locale, bypass) }
 
 
   /**
@@ -634,109 +560,32 @@ public class PaymentClient(
 
 
   /**
-   * 빌링키 결제
+   * 에스크로 구매 확정
    *
-   * 빌링키로 결제를 진행합니다.
+   * 에스크로 결제를 구매 확정 처리합니다
    *
    * @param paymentId
    * 결제 건 아이디
-   * @param billingKey
-   * 빌링키 결제에 사용할 빌링키
-   * @param channelKey
-   * 채널 키
+   * @param fromStore
+   * 확인 주체가 상점인지 여부
    *
-   * 다수 채널에 대해 발급된 빌링키에 대해, 결제 채널을 특정하고 싶을 때 명시
-   * @param orderName
-   * 주문명
-   * @param customer
-   * 고객 정보
-   * @param customData
-   * 사용자 지정 데이터
-   * @param amount
-   * 결제 금액 세부 입력 정보
-   * @param currency
-   * 통화
-   * @param installmentMonth
-   * 할부 개월 수
-   * @param useFreeInterestFromMerchant
-   * 무이자 할부 이자를 고객사가 부담할지 여부
-   * @param useCardPoint
-   * 카드 포인트 사용 여부
-   * @param cashReceipt
-   * 현금영수증 정보
-   * @param country
-   * 결제 국가
-   * @param noticeUrls
-   * 웹훅 주소
+   * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
+   * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
    *
-   * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
-   * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
-   * @param products
-   * 상품 정보
-   *
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
-   * @param productCount
-   * 상품 개수
-   * @param productType
-   * 상품 유형
-   * @param shippingAddress
-   * 배송지 주소
-   * @param promotionId
-   * 해당 결제에 적용할 프로모션 아이디
-   * @param bypass
-   * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
-   *
-   * @throws PayWithBillingKeyException
+   * @throws ConfirmEscrowException
    */
-  @JvmName("payWithBillingKeySuspend")
-  public suspend fun payWithBillingKey(
+  @JvmName("confirmEscrowSuspend")
+  public suspend fun confirmEscrow(
     paymentId: String,
-    billingKey: String,
-    channelKey: String? = null,
-    orderName: String,
-    customer: CustomerInput? = null,
-    customData: String? = null,
-    amount: PaymentAmountInput,
-    currency: Currency,
-    installmentMonth: Int? = null,
-    useFreeInterestFromMerchant: Boolean? = null,
-    useCardPoint: Boolean? = null,
-    cashReceipt: CashReceiptInput? = null,
-    country: Country? = null,
-    noticeUrls: List<String>? = null,
-    products: List<PaymentProduct>? = null,
-    productCount: Int? = null,
-    productType: PaymentProductType? = null,
-    shippingAddress: SeparatedAddressInput? = null,
-    promotionId: String? = null,
-    bypass: JsonObject? = null,
-  ): PayWithBillingKeyResponse {
-    val requestBody = BillingKeyPaymentInput(
+    fromStore: Boolean? = null,
+  ): ConfirmEscrowResponse {
+    val requestBody = ConfirmEscrowBody(
       storeId = storeId,
-      billingKey = billingKey,
-      channelKey = channelKey,
-      orderName = orderName,
-      customer = customer,
-      customData = customData,
-      amount = amount,
-      currency = currency,
-      installmentMonth = installmentMonth,
-      useFreeInterestFromMerchant = useFreeInterestFromMerchant,
-      useCardPoint = useCardPoint,
-      cashReceipt = cashReceipt,
-      country = country,
-      noticeUrls = noticeUrls,
-      products = products,
-      productCount = productCount,
-      productType = productType,
-      shippingAddress = shippingAddress,
-      promotionId = promotionId,
-      bypass = bypass,
+      fromStore = fromStore,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "billing-key")
+        appendPathSegments("payments", paymentId.toString(), "escrow", "complete")
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -749,257 +598,7 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<PayWithBillingKeyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
-        is BillingKeyAlreadyDeletedError -> throw BillingKeyAlreadyDeletedException(httpBodyDecoded)
-        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
-        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
-        is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
-        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
-        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
-        is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PayWithBillingKeyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("payWithBillingKey")
-  public fun payWithBillingKeyFuture(
-    paymentId: String,
-    billingKey: String,
-    channelKey: String? = null,
-    orderName: String,
-    customer: CustomerInput? = null,
-    customData: String? = null,
-    amount: PaymentAmountInput,
-    currency: Currency,
-    installmentMonth: Int? = null,
-    useFreeInterestFromMerchant: Boolean? = null,
-    useCardPoint: Boolean? = null,
-    cashReceipt: CashReceiptInput? = null,
-    country: Country? = null,
-    noticeUrls: List<String>? = null,
-    products: List<PaymentProduct>? = null,
-    productCount: Int? = null,
-    productType: PaymentProductType? = null,
-    shippingAddress: SeparatedAddressInput? = null,
-    promotionId: String? = null,
-    bypass: JsonObject? = null,
-  ): CompletableFuture<PayWithBillingKeyResponse> = GlobalScope.future { payWithBillingKey(paymentId, billingKey, channelKey, orderName, customer, customData, amount, currency, installmentMonth, useFreeInterestFromMerchant, useCardPoint, cashReceipt, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, bypass) }
-
-
-  /**
-   * 수기 결제
-   *
-   * 수기 결제를 진행합니다.
-   *
-   * @param paymentId
-   * 결제 건 아이디
-   * @param channelKey
-   * 채널 키
-   *
-   * 채널 키 또는 채널 그룹 ID 필수
-   * @param channelGroupId
-   * 채널 그룹 ID
-   *
-   * 채널 키 또는 채널 그룹 ID 필수
-   * @param method
-   * 결제수단 정보
-   * @param orderName
-   * 주문명
-   * @param isCulturalExpense
-   * 문화비 지출 여부
-   *
-   * 기본값은 false 입니다.
-   * @param isEscrow
-   * 에스크로 결제 여부
-   *
-   * 기본값은 false 입니다.
-   * @param customer
-   * 고객 정보
-   * @param customData
-   * 사용자 지정 데이터
-   * @param amount
-   * 결제 금액 세부 입력 정보
-   * @param currency
-   * 통화
-   * @param country
-   * 결제 국가
-   * @param noticeUrls
-   * 웹훅 주소
-   *
-   * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
-   * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
-   * @param products
-   * 상품 정보
-   *
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
-   * @param productCount
-   * 상품 개수
-   * @param productType
-   * 상품 유형
-   * @param shippingAddress
-   * 배송지 주소
-   * @param promotionId
-   * 해당 결제에 적용할 프로모션 아이디
-   *
-   * @throws PayInstantlyException
-   */
-  @JvmName("payInstantlySuspend")
-  public suspend fun payInstantly(
-    paymentId: String,
-    channelKey: String? = null,
-    channelGroupId: String? = null,
-    method: InstantPaymentMethodInput,
-    orderName: String,
-    isCulturalExpense: Boolean? = null,
-    isEscrow: Boolean? = null,
-    customer: CustomerInput? = null,
-    customData: String? = null,
-    amount: PaymentAmountInput,
-    currency: Currency,
-    country: Country? = null,
-    noticeUrls: List<String>? = null,
-    products: List<PaymentProduct>? = null,
-    productCount: Int? = null,
-    productType: PaymentProductType? = null,
-    shippingAddress: SeparatedAddressInput? = null,
-    promotionId: String? = null,
-  ): PayInstantlyResponse {
-    val requestBody = InstantPaymentInput(
-      storeId = storeId,
-      channelKey = channelKey,
-      channelGroupId = channelGroupId,
-      method = method,
-      orderName = orderName,
-      isCulturalExpense = isCulturalExpense,
-      isEscrow = isEscrow,
-      customer = customer,
-      customData = customData,
-      amount = amount,
-      currency = currency,
-      country = country,
-      noticeUrls = noticeUrls,
-      products = products,
-      productCount = productCount,
-      productType = productType,
-      shippingAddress = shippingAddress,
-      promotionId = promotionId,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString(), "instant")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<PayInstantlyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
-        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
-        is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
-        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
-        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
-        is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
-        is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PayInstantlyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("payInstantly")
-  public fun payInstantlyFuture(
-    paymentId: String,
-    channelKey: String? = null,
-    channelGroupId: String? = null,
-    method: InstantPaymentMethodInput,
-    orderName: String,
-    isCulturalExpense: Boolean? = null,
-    isEscrow: Boolean? = null,
-    customer: CustomerInput? = null,
-    customData: String? = null,
-    amount: PaymentAmountInput,
-    currency: Currency,
-    country: Country? = null,
-    noticeUrls: List<String>? = null,
-    products: List<PaymentProduct>? = null,
-    productCount: Int? = null,
-    productType: PaymentProductType? = null,
-    shippingAddress: SeparatedAddressInput? = null,
-    promotionId: String? = null,
-  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId) }
-
-
-  /**
-   * 가상계좌 말소
-   *
-   * 발급된 가상계좌를 말소합니다.
-   *
-   * @param paymentId
-   * 결제 건 아이디
-   *
-   * @throws CloseVirtualAccountException
-   */
-  @JvmName("closeVirtualAccountSuspend")
-  public suspend fun closeVirtualAccount(
-    paymentId: String,
-  ): CloseVirtualAccountResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("payments", paymentId.toString(), "virtual-account", "close")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CloseVirtualAccountError.Recognized>(httpBody)
+        json.decodeFromString<ConfirmEscrowError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1008,14 +607,14 @@ public class PaymentClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
-        is PaymentNotWaitingForDepositError -> throw PaymentNotWaitingForDepositException(httpBodyDecoded)
+        is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
         is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<CloseVirtualAccountResponse>(httpBody)
+      json.decodeFromString<ConfirmEscrowResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -1023,10 +622,11 @@ public class PaymentClient(
   }
 
   /** @suppress */
-  @JvmName("closeVirtualAccount")
-  public fun closeVirtualAccountFuture(
+  @JvmName("confirmEscrow")
+  public fun confirmEscrowFuture(
     paymentId: String,
-  ): CompletableFuture<CloseVirtualAccountResponse> = GlobalScope.future { closeVirtualAccount(paymentId) }
+    fromStore: Boolean? = null,
+  ): CompletableFuture<ConfirmEscrowResponse> = GlobalScope.future { confirmEscrow(paymentId, fromStore) }
 
 
   /**
@@ -1208,32 +808,107 @@ public class PaymentClient(
 
 
   /**
-   * 에스크로 구매 확정
+   * 수기 결제
    *
-   * 에스크로 결제를 구매 확정 처리합니다
+   * 수기 결제를 진행합니다.
    *
    * @param paymentId
    * 결제 건 아이디
-   * @param fromStore
-   * 확인 주체가 상점인지 여부
+   * @param channelKey
+   * 채널 키
    *
-   * 구매확정요청 주체가 고객사 관리자인지 구매자인지 구분하기 위한 필드입니다.
-   * 네이버페이 전용 파라미터이며, 구분이 모호한 경우 고객사 관리자(true)로 입력합니다.
+   * 채널 키 또는 채널 그룹 ID 필수
+   * @param channelGroupId
+   * 채널 그룹 ID
    *
-   * @throws ConfirmEscrowException
+   * 채널 키 또는 채널 그룹 ID 필수
+   * @param method
+   * 결제수단 정보
+   * @param orderName
+   * 주문명
+   * @param isCulturalExpense
+   * 문화비 지출 여부
+   *
+   * 기본값은 false 입니다.
+   * @param isEscrow
+   * 에스크로 결제 여부
+   *
+   * 기본값은 false 입니다.
+   * @param customer
+   * 고객 정보
+   * @param customData
+   * 사용자 지정 데이터
+   * @param amount
+   * 결제 금액 세부 입력 정보
+   * @param currency
+   * 통화
+   * @param country
+   * 결제 국가
+   * @param noticeUrls
+   * 웹훅 주소
+   *
+   * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+   * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
+   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * @param products
+   * 상품 정보
+   *
+   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * @param productCount
+   * 상품 개수
+   * @param productType
+   * 상품 유형
+   * @param shippingAddress
+   * 배송지 주소
+   * @param promotionId
+   * 해당 결제에 적용할 프로모션 아이디
+   *
+   * @throws PayInstantlyException
    */
-  @JvmName("confirmEscrowSuspend")
-  public suspend fun confirmEscrow(
+  @JvmName("payInstantlySuspend")
+  public suspend fun payInstantly(
     paymentId: String,
-    fromStore: Boolean? = null,
-  ): ConfirmEscrowResponse {
-    val requestBody = ConfirmEscrowBody(
+    channelKey: String? = null,
+    channelGroupId: String? = null,
+    method: InstantPaymentMethodInput,
+    orderName: String,
+    isCulturalExpense: Boolean? = null,
+    isEscrow: Boolean? = null,
+    customer: CustomerInput? = null,
+    customData: String? = null,
+    amount: PaymentAmountInput,
+    currency: Currency,
+    country: Country? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
+    productCount: Int? = null,
+    productType: PaymentProductType? = null,
+    shippingAddress: SeparatedAddressInput? = null,
+    promotionId: String? = null,
+  ): PayInstantlyResponse {
+    val requestBody = InstantPaymentInput(
       storeId = storeId,
-      fromStore = fromStore,
+      channelKey = channelKey,
+      channelGroupId = channelGroupId,
+      method = method,
+      orderName = orderName,
+      isCulturalExpense = isCulturalExpense,
+      isEscrow = isEscrow,
+      customer = customer,
+      customData = customData,
+      amount = amount,
+      currency = currency,
+      country = country,
+      noticeUrls = noticeUrls,
+      products = products,
+      productCount = productCount,
+      productType = productType,
+      shippingAddress = shippingAddress,
+      promotionId = promotionId,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "escrow", "complete")
+        appendPathSegments("payments", paymentId.toString(), "instant")
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -1246,7 +921,172 @@ public class PaymentClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConfirmEscrowError.Recognized>(httpBody)
+        json.decodeFromString<PayInstantlyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
+        is ChannelNotFoundError -> throw ChannelNotFoundException(httpBodyDecoded)
+        is DiscountAmountExceedsTotalAmountError -> throw DiscountAmountExceedsTotalAmountException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxTransactionCountReachedError -> throw MaxTransactionCountReachedException(httpBodyDecoded)
+        is PaymentScheduleAlreadyExistsError -> throw PaymentScheduleAlreadyExistsException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is PromotionPayMethodDoesNotMatchError -> throw PromotionPayMethodDoesNotMatchException(httpBodyDecoded)
+        is SumOfPartsExceedsTotalAmountError -> throw SumOfPartsExceedsTotalAmountException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PayInstantlyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("payInstantly")
+  public fun payInstantlyFuture(
+    paymentId: String,
+    channelKey: String? = null,
+    channelGroupId: String? = null,
+    method: InstantPaymentMethodInput,
+    orderName: String,
+    isCulturalExpense: Boolean? = null,
+    isEscrow: Boolean? = null,
+    customer: CustomerInput? = null,
+    customData: String? = null,
+    amount: PaymentAmountInput,
+    currency: Currency,
+    country: Country? = null,
+    noticeUrls: List<String>? = null,
+    products: List<PaymentProduct>? = null,
+    productCount: Int? = null,
+    productType: PaymentProductType? = null,
+    shippingAddress: SeparatedAddressInput? = null,
+    promotionId: String? = null,
+  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId) }
+
+
+  /**
+   * 결제 정보 사전 등록
+   *
+   * 결제 정보를 사전 등록합니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   * @param totalAmount
+   * 결제 총 금액
+   * @param taxFreeAmount
+   * 결제 면세 금액
+   * @param currency
+   * 통화 단위
+   *
+   * @throws PreRegisterPaymentException
+   */
+  @JvmName("preRegisterPaymentSuspend")
+  public suspend fun preRegisterPayment(
+    paymentId: String,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    currency: Currency? = null,
+  ): PreRegisterPaymentResponse {
+    val requestBody = PreRegisterPaymentBody(
+      storeId = storeId,
+      totalAmount = totalAmount,
+      taxFreeAmount = taxFreeAmount,
+      currency = currency,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "pre-register")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<PreRegisterPaymentError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PreRegisterPaymentResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("preRegisterPayment")
+  public fun preRegisterPaymentFuture(
+    paymentId: String,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    currency: Currency? = null,
+  ): CompletableFuture<PreRegisterPaymentResponse> = GlobalScope.future { preRegisterPayment(paymentId, totalAmount, taxFreeAmount, currency) }
+
+
+  /**
+   * 영수증 내 하위 상점 거래 등록
+   *
+   * 결제 내역 매출전표에 하위 상점의 거래를 등록합니다.
+   * 지원되는 PG사:
+   * KG이니시스(이용 전 콘솔 -> 결제연동 탭에서 INIApi Key 등록 필요)
+   *
+   * @param paymentId
+   * 등록할 하위 상점 결제 건 아이디
+   * @param items
+   * 하위 상점 거래 목록
+   *
+   * @throws RegisterStoreReceiptException
+   */
+  @JvmName("registerStoreReceiptSuspend")
+  public suspend fun registerStoreReceipt(
+    paymentId: String,
+    items: List<RegisterStoreReceiptBodyItem>,
+  ): RegisterStoreReceiptResponse {
+    val requestBody = RegisterStoreReceiptBody(
+      items = items,
+      storeId = storeId,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "register-store-receipt")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<RegisterStoreReceiptError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1262,7 +1102,7 @@ public class PaymentClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<ConfirmEscrowResponse>(httpBody)
+      json.decodeFromString<RegisterStoreReceiptResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -1270,11 +1110,11 @@ public class PaymentClient(
   }
 
   /** @suppress */
-  @JvmName("confirmEscrow")
-  public fun confirmEscrowFuture(
+  @JvmName("registerStoreReceipt")
+  public fun registerStoreReceiptFuture(
     paymentId: String,
-    fromStore: Boolean? = null,
-  ): CompletableFuture<ConfirmEscrowResponse> = GlobalScope.future { confirmEscrow(paymentId, fromStore) }
+    items: List<RegisterStoreReceiptBodyItem>,
+  ): CompletableFuture<RegisterStoreReceiptResponse> = GlobalScope.future { registerStoreReceipt(paymentId, items) }
 
 
   /**
@@ -1347,44 +1187,34 @@ public class PaymentClient(
 
 
   /**
-   * 영수증 내 하위 상점 거래 등록
+   * 결제 시도 내역 조회
    *
-   * 결제 내역 매출전표에 하위 상점의 거래를 등록합니다.
-   * 지원되는 PG사:
-   * KG이니시스(이용 전 콘솔 -> 결제연동 탭에서 INIApi Key 등록 필요)
+   * 주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
    *
    * @param paymentId
-   * 등록할 하위 상점 결제 건 아이디
-   * @param items
-   * 하위 상점 거래 목록
+   * 조회할 결제 아이디
    *
-   * @throws RegisterStoreReceiptException
+   * @throws GetPaymentTransactionsException
    */
-  @JvmName("registerStoreReceiptSuspend")
-  public suspend fun registerStoreReceipt(
+  @JvmName("getPaymentTransactionsSuspend")
+  public suspend fun getPaymentTransactions(
     paymentId: String,
-    items: List<RegisterStoreReceiptBodyItem>,
-  ): RegisterStoreReceiptResponse {
-    val requestBody = RegisterStoreReceiptBody(
-      items = items,
-      storeId = storeId,
-    )
-    val httpResponse = client.post(apiBase) {
+  ): GetPaymentTransactionsResponse {
+    val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "register-store-receipt")
+        appendPathSegments("payments", paymentId.toString(), "transactions")
+        if (storeId != null) parameters.append("storeId", storeId.toString())
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
       accept(ContentType.Application.Json)
       userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<RegisterStoreReceiptError.Recognized>(httpBody)
+        json.decodeFromString<GetPaymentTransactionsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1393,14 +1223,12 @@ public class PaymentClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
-        is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
-        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<RegisterStoreReceiptResponse>(httpBody)
+      json.decodeFromString<GetPaymentTransactionsResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -1408,11 +1236,191 @@ public class PaymentClient(
   }
 
   /** @suppress */
-  @JvmName("registerStoreReceipt")
-  public fun registerStoreReceiptFuture(
+  @JvmName("getPaymentTransactions")
+  public fun getPaymentTransactionsFuture(
     paymentId: String,
-    items: List<RegisterStoreReceiptBodyItem>,
-  ): CompletableFuture<RegisterStoreReceiptResponse> = GlobalScope.future { registerStoreReceipt(paymentId, items) }
+  ): CompletableFuture<GetPaymentTransactionsResponse> = GlobalScope.future { getPaymentTransactions(paymentId) }
+
+
+  /**
+   * 가상계좌 말소
+   *
+   * 발급된 가상계좌를 말소합니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   *
+   * @throws CloseVirtualAccountException
+   */
+  @JvmName("closeVirtualAccountSuspend")
+  public suspend fun closeVirtualAccount(
+    paymentId: String,
+  ): CloseVirtualAccountResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "virtual-account", "close")
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CloseVirtualAccountError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is PaymentNotWaitingForDepositError -> throw PaymentNotWaitingForDepositException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CloseVirtualAccountResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("closeVirtualAccount")
+  public fun closeVirtualAccountFuture(
+    paymentId: String,
+  ): CompletableFuture<CloseVirtualAccountResponse> = GlobalScope.future { closeVirtualAccount(paymentId) }
+
+
+  /**
+   * 결제 단건 조회
+   *
+   * 주어진 아이디에 대응되는 결제 건을 조회합니다.
+   *
+   * @param paymentId
+   * 조회할 결제 아이디
+   *
+   * @throws GetPaymentException
+   */
+  @JvmName("getPaymentSuspend")
+  public suspend fun getPayment(
+    paymentId: String,
+  ): Payment {
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString())
+        if (storeId != null) parameters.append("storeId", storeId.toString())
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPaymentError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<Payment>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPayment")
+  public fun getPaymentFuture(
+    paymentId: String,
+  ): CompletableFuture<Payment> = GlobalScope.future { getPayment(paymentId) }
+
+
+  /**
+   * 결제 다건 조회(페이지 기반)
+   *
+   * 주어진 조건에 맞는 결제 건들을 페이지 기반으로 조회합니다.
+   *
+   * @param page
+   * 요청할 페이지 정보
+   *
+   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+   * @param filter
+   * 조회할 결제 건 조건 필터
+   *
+   * V1 결제 건의 경우 일부 필드에 대해 필터가 적용되지 않을 수 있습니다.
+   *
+   * @throws GetPaymentsException
+   */
+  @JvmName("getPaymentsSuspend")
+  public suspend fun getPayments(
+    page: PageInput? = null,
+    filter: PaymentFilterInput? = null,
+  ): GetPaymentsResponse {
+    val requestBody = GetPaymentsBody(
+      page = page,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("payments")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPaymentsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetPaymentsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPayments")
+  public fun getPaymentsFuture(
+    page: PageInput? = null,
+    filter: PaymentFilterInput? = null,
+  ): CompletableFuture<GetPaymentsResponse> = GlobalScope.future { getPayments(page, filter) }
 
   public val billingKey: BillingKeyClient = BillingKeyClient(apiSecret, apiBase, storeId)
   public val cashReceipt: CashReceiptClient = CashReceiptClient(apiSecret, apiBase, storeId)

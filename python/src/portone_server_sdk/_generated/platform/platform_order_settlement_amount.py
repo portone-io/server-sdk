@@ -13,6 +13,10 @@ class PlatformOrderSettlementAmount:
     """정산 금액
     (int64)
     """
+    settlement_tax_free: int
+    """정산 면세 금액
+    (int64)
+    """
     payment: int
     """결제 금액
     (int64)
@@ -25,18 +29,6 @@ class PlatformOrderSettlementAmount:
     """결제 금액 부가세 부담금액
 
     참조된 계약의 결제 금액 부가세 감액 여부에 따라 false인 경우 0원, true인 경우 결제 금액 부가세입니다.
-    (int64)
-    """
-    tax_free: int
-    """결제 면세 금액
-
-    해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 paymentTaxFree 필드를 사용해주세요.
-    (int64)
-    """
-    supply: int
-    """결제 공급가액
-
-    해당 필드는 deprecated되어 9월까지만 유지되고 이후 삭제될 예정입니다. 대신 paymentSupply 필드를 사용해주세요.
     (int64)
     """
     payment_tax_free: int
@@ -97,11 +89,10 @@ def _serialize_platform_order_settlement_amount(obj: PlatformOrderSettlementAmou
         return obj
     entity = {}
     entity["settlement"] = obj.settlement
+    entity["settlementTaxFree"] = obj.settlement_tax_free
     entity["payment"] = obj.payment
     entity["paymentVat"] = obj.payment_vat
     entity["paymentVatBurden"] = obj.payment_vat_burden
-    entity["taxFree"] = obj.tax_free
-    entity["supply"] = obj.supply
     entity["paymentTaxFree"] = obj.payment_tax_free
     entity["paymentSupply"] = obj.payment_supply
     entity["order"] = obj.order
@@ -126,6 +117,11 @@ def _deserialize_platform_order_settlement_amount(obj: Any) -> PlatformOrderSett
     settlement = obj["settlement"]
     if not isinstance(settlement, int):
         raise ValueError(f"{repr(settlement)} is not int")
+    if "settlementTaxFree" not in obj:
+        raise KeyError(f"'settlementTaxFree' is not in {obj}")
+    settlement_tax_free = obj["settlementTaxFree"]
+    if not isinstance(settlement_tax_free, int):
+        raise ValueError(f"{repr(settlement_tax_free)} is not int")
     if "payment" not in obj:
         raise KeyError(f"'payment' is not in {obj}")
     payment = obj["payment"]
@@ -141,16 +137,6 @@ def _deserialize_platform_order_settlement_amount(obj: Any) -> PlatformOrderSett
     payment_vat_burden = obj["paymentVatBurden"]
     if not isinstance(payment_vat_burden, int):
         raise ValueError(f"{repr(payment_vat_burden)} is not int")
-    if "taxFree" not in obj:
-        raise KeyError(f"'taxFree' is not in {obj}")
-    tax_free = obj["taxFree"]
-    if not isinstance(tax_free, int):
-        raise ValueError(f"{repr(tax_free)} is not int")
-    if "supply" not in obj:
-        raise KeyError(f"'supply' is not in {obj}")
-    supply = obj["supply"]
-    if not isinstance(supply, int):
-        raise ValueError(f"{repr(supply)} is not int")
     if "paymentTaxFree" not in obj:
         raise KeyError(f"'paymentTaxFree' is not in {obj}")
     payment_tax_free = obj["paymentTaxFree"]
@@ -215,4 +201,4 @@ def _deserialize_platform_order_settlement_amount(obj: Any) -> PlatformOrderSett
         raise KeyError(f"'userDefinedFormulas' is not in {obj}")
     user_defined_formulas = obj["userDefinedFormulas"]
     user_defined_formulas = _deserialize_platform_user_defined_formula_results(user_defined_formulas)
-    return PlatformOrderSettlementAmount(settlement, payment, payment_vat, payment_vat_burden, tax_free, supply, payment_tax_free, payment_supply, order, order_tax_free, platform_fee, platform_fee_vat, additional_fee, additional_fee_vat, discount, discount_tax_free, discount_share, discount_share_tax_free, user_defined_formulas)
+    return PlatformOrderSettlementAmount(settlement, settlement_tax_free, payment, payment_vat, payment_vat_burden, payment_tax_free, payment_supply, order, order_tax_free, platform_fee, platform_fee_vat, additional_fee, additional_fee_vat, discount, discount_tax_free, discount_share, discount_share_tax_free, user_defined_formulas)

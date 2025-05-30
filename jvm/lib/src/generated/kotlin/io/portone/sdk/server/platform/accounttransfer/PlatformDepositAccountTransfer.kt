@@ -18,13 +18,16 @@ public data class PlatformDepositAccountTransfer(
   override val amount: Long,
   /** 입금 계좌 적요 */
   override val depositMemo: String? = null,
-  override val isForTest: Boolean,
-  /** 생성 일자 */
+  /** 이체 일시 */
+  override val tradedAt: @Serializable(InstantSerializer::class) Instant? = null,
+  /** 생성 일시 */
   override val createdAt: @Serializable(InstantSerializer::class) Instant,
-  /** 수정 일자 */
+  /** 수정 일시 */
   override val updatedAt: @Serializable(InstantSerializer::class) Instant,
   /** 입금자명 */
   val depositorName: String,
+  /** 테스트 모드 여부 */
+  override val isForTest: Boolean,
 ) : PlatformAccountTransfer.Recognized
 
 

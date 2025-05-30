@@ -6,13 +6,22 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.request.`get`
 import io.ktor.client.request.accept
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.appendPathSegments
+import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.errors.B2bExternalServiceError
+import io.portone.sdk.server.errors.B2bExternalServiceException
+import io.portone.sdk.server.errors.B2bNotEnabledError
+import io.portone.sdk.server.errors.B2bNotEnabledException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
+import io.portone.sdk.server.errors.GetB2bBusinessInfosError
+import io.portone.sdk.server.errors.GetB2bBusinessInfosException
 import io.portone.sdk.server.errors.GetPlatformCompanyStateError
 import io.portone.sdk.server.errors.GetPlatformCompanyStateException
 import io.portone.sdk.server.errors.InvalidRequestError
@@ -26,12 +35,16 @@ import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
+import io.portone.sdk.server.platform.company.GetB2bBusinessInfosBody
+import io.portone.sdk.server.platform.company.GetB2bBusinessInfosResponse
 import io.portone.sdk.server.platform.company.GetPlatformCompanyStatePayload
 import java.io.Closeable
 import java.util.concurrent.CompletableFuture
+import kotlin.Array
 import kotlin.String
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 /**
@@ -49,6 +62,68 @@ public class CompanyClient(
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
+
+  /**
+   * 사업자등록 정보조회
+   *
+   * 요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
+   * 해당 API 사용을 위해서는 별도 문의가 필요합니다.
+   *
+   * @param brnList
+   * 조회할 사업자등록번호 리스트
+   *
+   * @throws GetB2bBusinessInfosException
+   */
+  @JvmName("getB2bBusinessInfosSuspend")
+  public suspend fun getB2bBusinessInfos(
+    brnList: List<String>,
+  ): GetB2bBusinessInfosResponse {
+    val requestBody = GetB2bBusinessInfosBody(
+      brnList = brnList,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("b2b", "companies", "business-info")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetB2bBusinessInfosError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
+        is B2bNotEnabledError -> throw B2bNotEnabledException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetB2bBusinessInfosResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getB2bBusinessInfos")
+  public fun getB2bBusinessInfosFuture(
+    brnList: List<String>,
+  ): CompletableFuture<GetB2bBusinessInfosResponse> = GlobalScope.future { getB2bBusinessInfos(brnList) }
+
 
   /**
    * 사업자 조회

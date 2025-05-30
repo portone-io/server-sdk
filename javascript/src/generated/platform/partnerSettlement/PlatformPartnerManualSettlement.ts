@@ -26,6 +26,11 @@ export type PlatformPartnerManualSettlement = {
 	 * (int64)
 	 */
 	amount: number
+	/**
+	 * 정산 면세 금액
+	 * (int64)
+	 */
+	taxFreeAmount: number
 	/** 테스트 모드 여부 */
 	isForTest: boolean
 }
