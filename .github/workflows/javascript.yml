@@ -129,9 +129,9 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v1.5.2
         with:
-          cwd: ./javascript
+          cwd: ${{ github.workspace }}/javascript
           publish: pnpm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
