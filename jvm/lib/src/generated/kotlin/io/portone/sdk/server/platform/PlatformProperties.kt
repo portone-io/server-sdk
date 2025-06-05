@@ -9,7 +9,9 @@ import kotlinx.serialization.json.jsonObject
 
 @Serializable(PlatformPropertiesSerializer::class)
 @KeepGeneratedSerializer
-public data object PlatformProperties
+public data class PlatformProperties(
+  val additionalProperties: Map<String, PlatformUserDefinedPropertyValue>,
+)
 
 
 private class PlatformPropertiesSerializer : JsonTransformingSerializer<PlatformProperties>(PlatformProperties.generatedSerializer()) {

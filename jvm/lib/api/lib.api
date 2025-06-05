@@ -18241,11 +18241,30 @@ public final class io/portone/sdk/server/platform/PlatformPayoutStatusStats$Comp
 }
 
 public final class io/portone/sdk/server/platform/PlatformProperties {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformProperties;
+	public static final field Companion Lio/portone/sdk/server/platform/PlatformProperties$Companion;
+	public fun <init> (Ljava/util/Map;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun copy (Ljava/util/Map;)Lio/portone/sdk/server/platform/PlatformProperties;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/platform/PlatformProperties;Ljava/util/Map;ILjava/lang/Object;)Lio/portone/sdk/server/platform/PlatformProperties;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalProperties ()Ljava/util/Map;
 	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/platform/PlatformProperties$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformProperties$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/platform/PlatformProperties;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/platform/PlatformProperties;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/platform/PlatformProperties$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/portone/sdk/server/platform/PlatformSetting {
@@ -18630,11 +18649,30 @@ public final class io/portone/sdk/server/platform/PlatformSettlementCycleMethodW
 }
 
 public final class io/portone/sdk/server/platform/PlatformUserDefinedFormulaResults {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;
+	public static final field Companion Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults$Companion;
+	public fun <init> (Ljava/util/Map;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun copy (Ljava/util/Map;)Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;Ljava/util/Map;ILjava/lang/Object;)Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalProperties ()Ljava/util/Map;
 	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/platform/PlatformUserDefinedFormulaResults$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/platform/PlatformUserDefinedFormulaResults;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/platform/PlatformUserDefinedFormulaResults$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/portone/sdk/server/platform/PlatformUserDefinedPropertyValue {
@@ -24671,11 +24709,30 @@ public final class io/portone/sdk/server/platform/transfer/TransferClient : java
 }
 
 public final class io/portone/sdk/server/platform/transfer/TransferParameters {
-	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/TransferParameters;
+	public static final field Companion Lio/portone/sdk/server/platform/transfer/TransferParameters$Companion;
+	public fun <init> (Ljava/util/Map;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun copy (Ljava/util/Map;)Lio/portone/sdk/server/platform/transfer/TransferParameters;
+	public static synthetic fun copy$default (Lio/portone/sdk/server/platform/transfer/TransferParameters;Ljava/util/Map;ILjava/lang/Object;)Lio/portone/sdk/server/platform/transfer/TransferParameters;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalProperties ()Ljava/util/Map;
 	public fun hashCode ()I
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/portone/sdk/server/platform/transfer/TransferParameters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/portone/sdk/server/platform/transfer/TransferParameters$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/portone/sdk/server/platform/transfer/TransferParameters;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/portone/sdk/server/platform/transfer/TransferParameters;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/platform/transfer/TransferParameters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public abstract interface class io/portone/sdk/server/webhook/Webhook {

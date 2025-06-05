@@ -9,7 +9,9 @@ import kotlinx.serialization.json.jsonObject
 
 @Serializable(PlatformUserDefinedFormulaResultsSerializer::class)
 @KeepGeneratedSerializer
-public data object PlatformUserDefinedFormulaResults
+public data class PlatformUserDefinedFormulaResults(
+  val additionalProperties: Map<String, Long>,
+)
 
 
 private class PlatformUserDefinedFormulaResultsSerializer : JsonTransformingSerializer<PlatformUserDefinedFormulaResults>(PlatformUserDefinedFormulaResults.generatedSerializer()) {

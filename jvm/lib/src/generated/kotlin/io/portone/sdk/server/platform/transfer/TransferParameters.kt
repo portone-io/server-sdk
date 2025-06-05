@@ -9,7 +9,9 @@ import kotlinx.serialization.json.jsonObject
 
 @Serializable(TransferParametersSerializer::class)
 @KeepGeneratedSerializer
-public data object TransferParameters
+public data class TransferParameters(
+  val additionalProperties: Map<String, PlatformSettlementParameterValue>,
+)
 
 
 private class TransferParametersSerializer : JsonTransformingSerializer<TransferParameters>(TransferParameters.generatedSerializer()) {

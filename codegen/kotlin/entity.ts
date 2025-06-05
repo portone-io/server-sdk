@@ -107,7 +107,9 @@ export function generateEntity(
       const nonDiscriminant = properties.filter(({ type }) =>
         type !== "discriminant"
       )
-      if (nonDiscriminant.length === 0) {
+      const isObject = nonDiscriminant.length === 0 &&
+        definition.additionalProperties === null
+      if (isObject) {
         writer.writeLine(
           `${visibility} data object ${definition.name}${extendList}`,
         )
@@ -260,6 +262,40 @@ export function generateEntity(
           case "enum":
           case "oneOf":
             throw new Error("unsupported property type", {
+              cause: { definition },
+            })
+        }
+      }
+      if (definition.additionalProperties) {
+        switch (definition.additionalProperties.type) {
+          case "ref":
+            writer.writeLine(
+              `val additionalProperties: Map<String, ${definition.additionalProperties.value}>,`,
+            )
+            break
+          case "integer":
+            switch (definition.additionalProperties.format) {
+              case null:
+                writer.writeLine(`val additionalProperties: Map<String, Int>,`)
+                break
+              case "int64":
+                writer.writeLine(`val additionalProperties: Map<String, Long>,`)
+                break
+              default:
+                throw new Error("unsupported additionalProperties format", {
+                  cause: { definition },
+                })
+            }
+            break
+          case "string":
+          case "number":
+          case "boolean":
+          case "object":
+          case "oneOf":
+          case "discriminant":
+          case "enum":
+          case "array":
+            throw new Error("unsupported additionalProperties type", {
               cause: { definition },
             })
         }
