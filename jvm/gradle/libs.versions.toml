@@ -13,7 +13,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version = "2.0.21" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "13.0.0" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.17.0" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
