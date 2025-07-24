@@ -82,7 +82,7 @@ public class AccountClient(
   ): PlatformAccountHolder {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "bank-accounts", bank.toString(), accountNumber.toString(), "holder")
+        appendPathSegments("platform", "bank-accounts", bank.value, accountNumber.toString(), "holder")
         if (birthdate != null) parameters.append("birthdate", birthdate.toString())
         if (businessRegistrationNumber != null) parameters.append("businessRegistrationNumber", businessRegistrationNumber.toString())
       }

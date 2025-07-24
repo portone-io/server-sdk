@@ -167,11 +167,44 @@ export function writeOperation(
   writer.indent()
   writer.writeLine("url {")
   writer.indent()
-  const path = operation.path.split("/").slice(1).map((segment) =>
-    segment.startsWith("{") && segment.endsWith("}")
-      ? `${segment.slice(1, -1)}.toString()`
-      : `"${segment}"`
-  ).join(", ")
+  const path = operation.path.split("/").slice(1).map((segment) => {
+    if (segment.startsWith("{") && segment.endsWith("}")) {
+      const name = segment.slice(1, -1)
+      const pathParam = operation.params.path.find((param) =>
+        param.name === name
+      )
+      if (pathParam == null) {
+        throw new Error("unrecognized path parameter", {
+          cause: { operation },
+        })
+      }
+      switch (pathParam.type) {
+        case "string":
+          return `${name}.toString()`
+        case "ref":
+          const entity = entityMap.get(pathParam.value)
+          if (entity == null) {
+            throw new Error("unrecognized param ref", {
+              cause: { parameter: pathParam },
+            })
+          }
+          switch (entity.type) {
+            case "enum":
+              return `${name}.value`
+            default:
+              throw new Error("unsupported path parameter type", {
+                cause: { parameter: pathParam },
+              })
+          }
+        default:
+          throw new Error("unsupported path parameter type", {
+            cause: { parameter: pathParam },
+          })
+      }
+    } else {
+      return `"${segment}"`
+    }
+  }).join(", ")
   crossRef.add("io.ktor.http.appendPathSegments")
   writer.writeLine(`appendPathSegments(${path})`)
   for (const property of operation.params.query) {
