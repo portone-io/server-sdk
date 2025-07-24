@@ -2,6 +2,7 @@ package io.portone.sdk.server
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpTimeout
 import io.portone.sdk.server.auth.AuthClient
 import io.portone.sdk.server.identityverification.IdentityVerificationClient
 import io.portone.sdk.server.payment.PaymentClient
@@ -23,7 +24,11 @@ public class PortOneClient(
   private val apiBase: String = "https://api.portone.io",
   private val storeId: String? = null,
 ) : Closeable {
-  private val client: HttpClient = HttpClient(OkHttp)
+  private val client: HttpClient = HttpClient(OkHttp) {
+      install(HttpTimeout) {
+          requestTimeoutMillis = 60_000
+      }
+  }
 
   private val json: Json = Json { ignoreUnknownKeys = true }
 

@@ -99,7 +99,7 @@ class PlatformClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient()
+        self._client = AsyncClient(timeout=60.0)
         self.company = CompanyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account_transfer = AccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
         self.policy = PolicyClient(secret=secret, base_url=base_url, store_id=store_id)

@@ -91,7 +91,7 @@ class PaymentClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient()
+        self._client = AsyncClient(timeout=60.0)
         self.billing_key = BillingKeyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.cash_receipt = CashReceiptClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment_schedule = PaymentScheduleClient(secret=secret, base_url=base_url, store_id=store_id)

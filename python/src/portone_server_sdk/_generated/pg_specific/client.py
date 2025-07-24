@@ -27,7 +27,7 @@ class PgSpecificClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient()
+        self._client = AsyncClient(timeout=60.0)
     def get_kakaopay_payment_order(
         self,
         *,

@@ -2,6 +2,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { isClientPackage } from "../common/package.ts"
 import { entities as webhookEntities } from "../common/webhook/index.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
@@ -16,7 +17,6 @@ import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
-import { isClientPackage } from "../common/package.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const srcPath = path.join(projectRoot, "src/portone_server_sdk/_generated")
@@ -353,7 +353,7 @@ function writeClientObject(
   implWriter.writeLine("self._secret = secret")
   implWriter.writeLine("self._base_url = base_url")
   implWriter.writeLine("self._store_id = store_id")
-  implWriter.writeLine("self._client = AsyncClient()")
+  implWriter.writeLine("self._client = AsyncClient(timeout=60.0)")
   for (const subpackage of subpackages) {
     implWriter.writeLine(
       `self.${toSnakeCase(subpackage.category)} = ${

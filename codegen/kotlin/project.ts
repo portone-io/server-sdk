@@ -2,6 +2,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 import { toPascalCase } from "@std/text"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { isClientPackage } from "../common/package.ts"
 import {
   entities as webhookEntities,
   types as webhookTypes,
@@ -19,7 +20,6 @@ import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
-import { isClientPackage } from "../common/package.ts"
 
 export function generateProject(projectRoot: string, pack: Package) {
   const packagePath = path.join(
@@ -438,7 +438,11 @@ public class PortOneClient(
   private val apiBase: String = "https://api.portone.io",
   private val storeId: String? = null,
 ) : Closeable {
-  private val client: HttpClient = HttpClient(OkHttp)
+  private val client: HttpClient = HttpClient(OkHttp) {
+      install(HttpTimeout) {
+          requestTimeoutMillis = 60_000
+      }
+  }
 
   private val json: Json = Json { ignoreUnknownKeys = true }
 `
@@ -456,6 +460,7 @@ function generateRootClient(
     "kotlinx.serialization.json.Json",
     "java.io.Closeable",
     "io.ktor.client.engine.okhttp.OkHttp",
+    "io.ktor.client.plugins.HttpTimeout",
   ])
   const subpackages = pack.subpackages.filter(isClientPackage)
   for (const subpackage of subpackages) {
