@@ -1,6 +1,6 @@
 [project]
 name = "portone-server-sdk"
-version = "0.16.1"
+version = "0.16.2"
 description = "PortOne Python SDK for server-side usage"
 authors = [
     { name = "portone", email = "tech.support@portone.io" },
