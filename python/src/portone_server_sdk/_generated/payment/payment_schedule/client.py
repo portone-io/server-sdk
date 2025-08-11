@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import AlreadyPaidOrWaitingError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, PaymentScheduleAlreadyProcessedError, PaymentScheduleAlreadyRevokedError, PaymentScheduleNotFoundError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError
@@ -29,7 +29,8 @@ class PaymentScheduleClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -43,7 +44,8 @@ class PaymentScheduleClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_payment_schedule(
         self,
         *,
@@ -65,7 +67,7 @@ class PaymentScheduleClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/payment-schedules/{quote(payment_schedule_id, safe='')}",
             params=query,
@@ -124,7 +126,7 @@ class PaymentScheduleClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/payment-schedules/{quote(payment_schedule_id, safe='')}",
             params=query,
@@ -200,7 +202,7 @@ class PaymentScheduleClient:
             request_body["filter"] = _serialize_payment_schedule_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/payment-schedules",
             params=query,
@@ -270,7 +272,7 @@ class PaymentScheduleClient:
             request_body["filter"] = _serialize_payment_schedule_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/payment-schedules",
             params=query,
@@ -337,7 +339,7 @@ class PaymentScheduleClient:
             request_body["scheduleIds"] = schedule_ids
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/payment-schedules",
             params=query,
@@ -434,7 +436,7 @@ class PaymentScheduleClient:
             request_body["scheduleIds"] = schedule_ids
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/payment-schedules",
             params=query,
@@ -524,7 +526,7 @@ class PaymentScheduleClient:
         request_body["payment"] = _serialize_billing_key_payment_input(payment)
         request_body["timeToPay"] = time_to_pay
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/schedule",
             params=query,
@@ -615,7 +617,7 @@ class PaymentScheduleClient:
         request_body["payment"] = _serialize_billing_key_payment_input(payment)
         request_body["timeToPay"] = time_to_pay
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/schedule",
             params=query,

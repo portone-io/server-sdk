@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import CashReceiptAlreadyIssuedError, CashReceiptNotFoundError, CashReceiptNotIssuedError, ChannelNotFoundError, ForbiddenError, InvalidRequestError, PgProviderError, UnauthorizedError, UnknownError
@@ -31,7 +31,8 @@ class CashReceiptClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -45,7 +46,8 @@ class CashReceiptClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_cash_receipts(
         self,
         *,
@@ -83,7 +85,7 @@ class CashReceiptClient:
             request_body["filter"] = _serialize_cash_receipt_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/cash-receipts",
             params=query,
@@ -152,7 +154,7 @@ class CashReceiptClient:
             request_body["filter"] = _serialize_cash_receipt_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/cash-receipts",
             params=query,
@@ -257,7 +259,7 @@ class CashReceiptClient:
         if payment_method is not None:
             request_body["paymentMethod"] = _serialize_issue_cash_receipt_payment_method_type(payment_method)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/cash-receipts",
             params=query,
@@ -381,7 +383,7 @@ class CashReceiptClient:
         if payment_method is not None:
             request_body["paymentMethod"] = _serialize_issue_cash_receipt_payment_method_type(payment_method)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/cash-receipts",
             params=query,
@@ -453,7 +455,7 @@ class CashReceiptClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
             params=query,
@@ -524,7 +526,7 @@ class CashReceiptClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt/cancel",
             params=query,
@@ -595,7 +597,7 @@ class CashReceiptClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
             params=query,
@@ -654,7 +656,7 @@ class CashReceiptClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/payments/{quote(payment_id, safe='')}/cash-receipt",
             params=query,

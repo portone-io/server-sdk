@@ -167,7 +167,9 @@ function generateCategoryIndex(
   if (hasClient) {
     importWriter.writeLine("import httpx")
     importWriter.writeLine("import json")
-    importWriter.writeLine("from httpx import AsyncClient")
+    importWriter.writeLine(
+      "from httpx import AsyncClient, Client as SyncClient",
+    )
     importWriter.writeLine(
       `from ${toRoot}._user_agent import USER_AGENT`,
     )
@@ -319,7 +321,8 @@ function writeClientObject(
   implWriter.writeLine("_secret: str")
   implWriter.writeLine("_base_url: str")
   implWriter.writeLine("_store_id: Optional[str]")
-  implWriter.writeLine("_client: AsyncClient")
+  implWriter.writeLine("_async_client: AsyncClient")
+  implWriter.writeLine("_sync_client: SyncClient")
   for (const subpackage of subpackages) {
     implWriter.writeLine(
       `${toSnakeCase(subpackage.category)}: ${
@@ -353,7 +356,8 @@ function writeClientObject(
   implWriter.writeLine("self._secret = secret")
   implWriter.writeLine("self._base_url = base_url")
   implWriter.writeLine("self._store_id = store_id")
-  implWriter.writeLine("self._client = AsyncClient(timeout=60.0)")
+  implWriter.writeLine("self._async_client = AsyncClient(timeout=60.0)")
+  implWriter.writeLine("self._sync_client = SyncClient(timeout=60.0)")
   for (const subpackage of subpackages) {
     implWriter.writeLine(
       `self.${toSnakeCase(subpackage.category)} = ${
@@ -629,7 +633,6 @@ function generateClient(
   const writer = PythonWriter()
   writer.writeLine("from __future__ import annotations")
   writer.writeLine("from typing import Optional")
-  writer.writeLine("from httpx import AsyncClient")
   for (const subpackage of pack.subpackages) {
     if (isClientPackage(subpackage)) {
       writer.writeLine(
@@ -654,9 +657,6 @@ def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", sto
         base_url (str, optional): 포트원 REST API 주소입니다. 기본값은 \`"https://api.portone.io"\`입니다.
         store_id (str, optional): 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
     """
-    self._secret = secret
-    self._store_id = store_id
-    self._client = AsyncClient()
 `
 
 function writeRootClientObject(
@@ -666,10 +666,6 @@ function writeRootClientObject(
   writer.writeLine("")
   writer.writeLine("class PortOneClient:")
   writer.indent()
-  writer.writeLine("_secret: str")
-  writer.writeLine("_store_id: Optional[str]")
-  writer.writeLine("_base_url: str")
-  writer.writeLine("_client: AsyncClient")
   const subpackages = pack.subpackages.filter(isClientPackage)
   for (const subpackage of subpackages) {
     writer.writeLine(

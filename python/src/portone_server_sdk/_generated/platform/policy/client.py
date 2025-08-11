@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import ForbiddenError, InvalidRequestError, PlatformAdditionalFeePolicyAlreadyExistsError, PlatformAdditionalFeePolicyNotFoundError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformCannotArchiveScheduledAdditionalFeePolicyError, PlatformCannotArchiveScheduledContractError, PlatformCannotArchiveScheduledDiscountSharePolicyError, PlatformContractAlreadyExistsError, PlatformContractNotFoundError, PlatformDiscountSharePolicyAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformNotEnabledError, UnauthorizedError, UnknownError
@@ -51,7 +51,8 @@ class PolicyClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -65,7 +66,8 @@ class PolicyClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_platform_additional_fee_policies(
         self,
         *,
@@ -94,7 +96,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies",
             params=query,
@@ -160,7 +162,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies",
             params=query,
@@ -239,7 +241,7 @@ class PolicyClient:
             request_body["memo"] = memo
         request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies",
             params=query,
@@ -325,7 +327,7 @@ class PolicyClient:
             request_body["memo"] = memo
         request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies",
             params=query,
@@ -389,7 +391,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
@@ -452,7 +454,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
@@ -536,7 +538,7 @@ class PolicyClient:
         if vat_payer is not None:
             request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
@@ -627,7 +629,7 @@ class PolicyClient:
         if vat_payer is not None:
             request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
             params=query,
@@ -697,7 +699,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
@@ -766,7 +768,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
@@ -835,7 +837,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
             params=query,
@@ -898,7 +900,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
             params=query,
@@ -970,7 +972,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/contracts",
             params=query,
@@ -1036,7 +1038,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/contracts",
             params=query,
@@ -1123,7 +1125,7 @@ class PolicyClient:
         request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
         request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/contracts",
             params=query,
@@ -1217,7 +1219,7 @@ class PolicyClient:
         request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
         request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/contracts",
             params=query,
@@ -1281,7 +1283,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
@@ -1344,7 +1346,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
@@ -1438,7 +1440,7 @@ class PolicyClient:
         if subtract_payment_vat_amount is not None:
             request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
@@ -1539,7 +1541,7 @@ class PolicyClient:
         if subtract_payment_vat_amount is not None:
             request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
             params=query,
@@ -1609,7 +1611,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
             params=query,
@@ -1678,7 +1680,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
             params=query,
@@ -1747,7 +1749,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
             params=query,
@@ -1810,7 +1812,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
             params=query,
@@ -1882,7 +1884,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies",
             params=query,
@@ -1948,7 +1950,7 @@ class PolicyClient:
             request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies",
             params=query,
@@ -2023,7 +2025,7 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies",
             params=query,
@@ -2105,7 +2107,7 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies",
             params=query,
@@ -2169,7 +2171,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
@@ -2232,7 +2234,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
@@ -2314,7 +2316,7 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
@@ -2403,7 +2405,7 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
             params=query,
@@ -2473,7 +2475,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
             params=query,
@@ -2542,7 +2544,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
             params=query,
@@ -2611,7 +2613,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
             params=query,
@@ -2674,7 +2676,7 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
             params=query,

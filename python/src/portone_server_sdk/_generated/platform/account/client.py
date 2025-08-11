@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import ForbiddenError, InvalidRequestError, PlatformExternalApiFailedError, PlatformExternalApiTemporarilyFailedError, PlatformNotEnabledError, PlatformNotSupportedBankError, UnauthorizedError, UnknownError
@@ -19,7 +19,8 @@ class AccountClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -33,7 +34,8 @@ class AccountClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_platform_account_holder(
         self,
         *,
@@ -70,7 +72,7 @@ class AccountClient:
             query.append(("birthdate", birthdate))
         if business_registration_number is not None:
             query.append(("businessRegistrationNumber", business_registration_number))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
             params=query,
@@ -162,7 +164,7 @@ class AccountClient:
             query.append(("birthdate", birthdate))
         if business_registration_number is not None:
             query.append(("businessRegistrationNumber", business_registration_number))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/bank-accounts/{quote(bank, safe='')}/{quote(account_number, safe='')}/holder",
             params=query,

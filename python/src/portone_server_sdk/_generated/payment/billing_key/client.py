@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, BillingKeyNotIssuedError, ChannelNotFoundError, ChannelSpecificError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, PgProviderError, UnauthorizedError, UnknownError
@@ -29,7 +29,8 @@ class BillingKeyClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -43,7 +44,8 @@ class BillingKeyClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_billing_key_infos(
         self,
         *,
@@ -83,7 +85,7 @@ class BillingKeyClient:
             request_body["filter"] = _serialize_billing_key_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/billing-keys",
             params=query,
@@ -154,7 +156,7 @@ class BillingKeyClient:
             request_body["filter"] = _serialize_billing_key_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/billing-keys",
             params=query,
@@ -247,7 +249,7 @@ class BillingKeyClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/billing-keys",
             params=query,
@@ -359,7 +361,7 @@ class BillingKeyClient:
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/billing-keys",
             params=query,
@@ -431,7 +433,7 @@ class BillingKeyClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
@@ -490,7 +492,7 @@ class BillingKeyClient:
         query = []
         if self._store_id is not None:
             query.append(("storeId", self._store_id))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
@@ -556,7 +558,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         if reason is not None:
             query.append(("reason", reason))
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,
@@ -652,7 +654,7 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         if reason is not None:
             query.append(("reason", reason))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
             params=query,

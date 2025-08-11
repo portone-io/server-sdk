@@ -117,9 +117,9 @@ export function writeOperation(
       throw new Error("unrecognized operation method", { cause: { operation } })
   }
   if (async) {
-    writer.writeLine("response = await self._client.request(")
+    writer.writeLine("response = await self._async_client.request(")
   } else {
-    writer.writeLine("response = httpx.request(")
+    writer.writeLine("response = self._sync_client.request(")
   }
   writer.indent()
   writer.writeLine(`"${operation.method.toUpperCase()}",`)

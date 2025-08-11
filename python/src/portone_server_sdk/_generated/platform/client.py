@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
 from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerCannotBeScheduledError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
@@ -76,7 +76,8 @@ class PlatformClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
     company: CompanyClient
     account_transfer: AccountTransferClient
     policy: PolicyClient
@@ -99,7 +100,8 @@ class PlatformClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
         self.company = CompanyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account_transfer = AccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
         self.policy = PolicyClient(secret=secret, base_url=base_url, store_id=store_id)
@@ -120,7 +122,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform",
             params=query,
@@ -163,7 +165,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform",
             params=query,
@@ -212,7 +214,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -273,7 +275,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -341,7 +343,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -410,7 +412,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -481,7 +483,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -564,7 +566,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -638,7 +640,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -699,7 +701,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -760,7 +762,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -821,7 +823,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -891,7 +893,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -962,7 +964,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -1033,7 +1035,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -1116,7 +1118,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -1190,7 +1192,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -1251,7 +1253,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
             params=query,
@@ -1312,7 +1314,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1373,7 +1375,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1443,7 +1445,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1514,7 +1516,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1585,7 +1587,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1668,7 +1670,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1742,7 +1744,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1803,7 +1805,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
             params=query,
@@ -1868,7 +1870,7 @@ class PlatformClient:
         query = []
         if is_archived is not None:
             query.append(("isArchived", is_archived))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policy-filter-options",
             params=query,
@@ -1927,7 +1929,7 @@ class PlatformClient:
         query = []
         if is_archived is not None:
             query.append(("isArchived", is_archived))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policy-filter-options",
             params=query,
@@ -1986,7 +1988,7 @@ class PlatformClient:
         query = []
         if is_archived is not None:
             query.append(("isArchived", is_archived))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/partner-filter-options",
             params=query,
@@ -2045,7 +2047,7 @@ class PlatformClient:
         query = []
         if is_archived is not None:
             query.append(("isArchived", is_archived))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/partner-filter-options",
             params=query,
@@ -2109,7 +2111,7 @@ class PlatformClient:
         request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/schedule",
             params=query,
@@ -2204,7 +2206,7 @@ class PlatformClient:
         request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/schedule",
             params=query,
@@ -2290,7 +2292,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2351,7 +2353,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2421,7 +2423,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2504,7 +2506,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2587,7 +2589,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2730,7 +2732,7 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2864,7 +2866,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2925,7 +2927,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
             params=query,
@@ -2981,7 +2983,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/setting",
             params=query,
@@ -3031,7 +3033,7 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/setting",
             params=query,
@@ -3116,7 +3118,7 @@ class PlatformClient:
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/setting",
             params=query,
@@ -3202,7 +3204,7 @@ class PlatformClient:
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/setting",
             params=query,

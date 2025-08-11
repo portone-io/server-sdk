@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformBtxNotEnabledError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformExternalApiFailedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyNotConnectableStatusError, PlatformMemberCompanyNotConnectedError, PlatformNotEnabledError, PlatformOngoingTaxInvoiceExistsError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformPartnerScheduleExistsError, PlatformPartnerTaxationTypeIsSimpleError, PlatformPartnerTypeIsNotBusinessError, PlatformTargetPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
@@ -61,7 +61,8 @@ class PartnerClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -75,7 +76,8 @@ class PartnerClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def get_platform_partners(
         self,
         *,
@@ -104,7 +106,7 @@ class PartnerClient:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/partners",
             params=query,
@@ -170,7 +172,7 @@ class PartnerClient:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/partners",
             params=query,
@@ -276,7 +278,7 @@ class PartnerClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners",
             params=query,
@@ -431,7 +433,7 @@ class PartnerClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners",
             params=query,
@@ -539,7 +541,7 @@ class PartnerClient:
         request_body = {}
         request_body["partners"] = [_serialize_create_platform_partner_body(item) for item in partners]
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/batch",
             params=query,
@@ -629,7 +631,7 @@ class PartnerClient:
         request_body = {}
         request_body["partners"] = [_serialize_create_platform_partner_body(item) for item in partners]
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/batch",
             params=query,
@@ -720,7 +722,7 @@ class PartnerClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-connect",
             params=query,
@@ -805,7 +807,7 @@ class PartnerClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-connect",
             params=query,
@@ -887,7 +889,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
             params=query,
@@ -986,7 +988,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
             params=query,
@@ -1088,7 +1090,7 @@ class PartnerClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-disconnect",
             params=query,
@@ -1173,7 +1175,7 @@ class PartnerClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_partner_filter_input(filter)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-disconnect",
             params=query,
@@ -1255,7 +1257,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
             params=query,
@@ -1354,7 +1356,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
             params=query,
@@ -1453,7 +1455,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
@@ -1516,7 +1518,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
@@ -1620,7 +1622,7 @@ class PartnerClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
@@ -1785,7 +1787,7 @@ class PartnerClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = _serialize_platform_properties(user_defined_properties)
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}",
             params=query,
@@ -1909,7 +1911,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
             params=query,
@@ -1978,7 +1980,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/archive",
             params=query,
@@ -2047,7 +2049,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
             params=query,
@@ -2110,7 +2112,7 @@ class PartnerClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/recover",
             params=query,

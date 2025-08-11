@@ -1,6 +1,5 @@
 from __future__ import annotations
 from typing import Optional
-from httpx import AsyncClient
 from .platform.client import PlatformClient
 from .payment.client import PaymentClient
 from .identity_verification.client import IdentityVerificationClient
@@ -8,10 +7,6 @@ from .pg_specific.client import PgSpecificClient
 from .auth.client import AuthClient
 
 class PortOneClient:
-    _secret: str
-    _store_id: Optional[str]
-    _base_url: str
-    _client: AsyncClient
     platform: PlatformClient
     payment: PaymentClient
     identity_verification: IdentityVerificationClient
@@ -27,9 +22,6 @@ class PortOneClient:
             base_url (str, optional): 포트원 REST API 주소입니다. 기본값은 `"https://api.portone.io"`입니다.
             store_id (str, optional): 하위 상점에 대해 기능을 사용할 때 필요한 하위 상점의 ID입니다.
         """
-        self._secret = secret
-        self._store_id = store_id
-        self._client = AsyncClient()
 
         self.platform = PlatformClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment = PaymentClient(secret=secret, base_url=base_url, store_id=store_id)

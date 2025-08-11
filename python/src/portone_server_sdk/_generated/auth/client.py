@@ -1,7 +1,7 @@
 from __future__ import annotations
 import httpx
 import json
-from httpx import AsyncClient
+from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
 from ..errors import InvalidRequestError, UnauthorizedError, UnknownError
@@ -14,7 +14,8 @@ class AuthClient:
     _secret: str
     _base_url: str
     _store_id: Optional[str]
-    _client: AsyncClient
+    _async_client: AsyncClient
+    _sync_client: SyncClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -28,7 +29,8 @@ class AuthClient:
         self._secret = secret
         self._base_url = base_url
         self._store_id = store_id
-        self._client = AsyncClient(timeout=60.0)
+        self._async_client = AsyncClient(timeout=60.0)
+        self._sync_client = SyncClient(timeout=60.0)
     def login_via_api_secret(
         self,
         *,
@@ -50,7 +52,7 @@ class AuthClient:
         request_body = {}
         request_body["apiSecret"] = api_secret
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/login/api-secret",
             params=query,
@@ -98,7 +100,7 @@ class AuthClient:
         request_body = {}
         request_body["apiSecret"] = api_secret
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/login/api-secret",
             params=query,
@@ -146,7 +148,7 @@ class AuthClient:
         request_body = {}
         request_body["refreshToken"] = refresh_token
         query = []
-        response = httpx.request(
+        response = self._sync_client.request(
             "POST",
             f"{self._base_url}/token/refresh",
             params=query,
@@ -194,7 +196,7 @@ class AuthClient:
         request_body = {}
         request_body["refreshToken"] = refresh_token
         query = []
-        response = await self._client.request(
+        response = await self._async_client.request(
             "POST",
             f"{self._base_url}/token/refresh",
             params=query,
