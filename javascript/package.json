@@ -157,7 +157,7 @@
     "publish": "jsr publish --allow-dirty"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.2.0",
     "@changesets/cli": "^2.29.4",
     "@expo/spawn-async": "^1.7.2",
     "@types/node": "^22.15.27",
