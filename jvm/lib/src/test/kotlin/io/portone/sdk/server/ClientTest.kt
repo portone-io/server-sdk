@@ -6,6 +6,9 @@ import io.portone.sdk.server.errors.PaymentNotFoundException
 import io.portone.sdk.server.payment.CancelledPayment
 import io.portone.sdk.server.payment.GetPaymentsResponse
 import io.portone.sdk.server.payment.PaymentClient
+import io.portone.sdk.server.webhook.Webhook
+import io.portone.sdk.server.webhook.WebhookBillingKey
+import io.portone.sdk.server.webhook.WebhookTransaction
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
@@ -21,6 +24,17 @@ class ClientTest {
         runTest {
             val payments = client.getPayments()
             assertIs<GetPaymentsResponse>(payments)
+
+            var a: Webhook
+            when (a) {
+                is WebhookTransaction -> {
+                    a.data.paymentId
+                }
+                is WebhookBillingKey -> {
+                    a.data.billingKey
+                }
+                else -> {}
+            }
         }
 
     @Test
