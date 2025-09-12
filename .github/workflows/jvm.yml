@@ -23,7 +23,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.10" # cannot set working directory
+          gradle-version: "9.0.0" # cannot set working directory
       - name: Build
         run: gradle build
         env:
