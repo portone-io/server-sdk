@@ -59,6 +59,10 @@ const EnumSchema = BaseDefinitionSchema.extend({
 const BaseArraySchema = BaseDefinitionSchema.extend({
   type: z.literal("array"),
   properties: z.any().optional(),
+  "x-portone-enum": z.record(z.strictObject({
+    title: z.string().optional(),
+    description: z.string().optional(),
+  })).optional().describe("when item is enum"),
 }).strict()
 
 type ArraySchema = z.infer<typeof BaseArraySchema> & {
