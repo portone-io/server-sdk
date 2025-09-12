@@ -4,7 +4,6 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
-import java.io.ByteArrayOutputStream
 import java.nio.charset.StandardCharsets
 
 plugins {
@@ -24,16 +23,10 @@ group = "io.portone"
 description = "JVM library for integrating PortOne payment infrastructure."
 
 version =
-    run {
-        val output = ByteArrayOutputStream()
-        exec {
-            workingDir = rootProject.projectDir
-            executable = "git"
-            args = listOf("describe", "--dirty", "--tags", "--match", "jvm-v*", "--first-parent")
-            standardOutput = output
-        }
-        output.toString(StandardCharsets.UTF_8).trimEnd('\n', '\r').substring("jvm-v".length)
-    }
+    ProcessBuilder("git", "describe", "--dirty", "--tags", "--match", "jvm-v*", "--first-parent")
+        .directory(rootProject.projectDir)
+        .redirectOutput(ProcessBuilder.Redirect.PIPE)
+        .start().inputStream.readBytes().toString(StandardCharsets.UTF_8).trimEnd('\n', '\r').substring("jvm-v".length)
 
 val generateVersionCode =
     tasks.register<GenerateVersionCodeTask>("generateVersionCode") {
