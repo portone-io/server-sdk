@@ -8,6 +8,8 @@ public data class PlatformPartnerSettlementStatusStats(
   val payoutPrepared: Long,
   val payoutWithheld: Long,
   val payoutFailed: Long,
+  val payoutCancelled: Long,
+  val payoutConfirmed: Long,
   val inPayout: Long,
   val paidOut: Long,
 )

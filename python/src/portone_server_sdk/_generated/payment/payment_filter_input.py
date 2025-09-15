@@ -24,7 +24,7 @@ from ..common.sort_order import SortOrder, _deserialize_sort_order, _serialize_s
 
 @dataclass
 class PaymentFilterInput:
-    """결제 건 다건 조회를 위한 입력 정보
+    """결제 다건 조회를 위한 입력 정보
     """
     merchant_id: Optional[str] = field(default=None)
     """고객사 아이디
@@ -60,9 +60,9 @@ class PaymentFilterInput:
     값을 입력하지 않으면 결제수단 필터링이 적용되지 않습니다.
     """
     pg_provider: Optional[list[PgProvider]] = field(default=None)
-    """PG사 리스트
+    """PG사 결제 모듈 리스트
 
-    값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
+    값을 입력하지 않으면 PG사 결제 모듈 필터링이 적용되지 않습니다.
     """
     is_test: Optional[bool] = field(default=None)
     """테스트 결제 여부
@@ -80,7 +80,7 @@ class PaymentFilterInput:
     """포트원 버전
     """
     webhook_status: Optional[PaymentWebhookStatus] = field(default=None)
-    """웹훅 상태
+    """최종 결제 상태의 웹훅 상태
     """
     platform_type: Optional[PaymentClientType] = field(default=None)
     """플랫폼 유형

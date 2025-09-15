@@ -31,6 +31,8 @@ internal data class DownloadPlatformTransferSheetBody(
    * - TRANSFER_PAYMENT_VAT_BURDEN_AMOUNT: 결제 부가세 부담금
    * - TRANSFER_PLATFORM_FEE:  중개수수료
    * - TRANSFER_PLATFORM_FEE_VAT: 중개수수료 부가세 부담금
+   * - TRANSFER_CONTRACT_ID: 계약 아이디
+   * - TRANSFER_CONTRACT_NAME: 계약 이름
    * - TRANSFER_DISCOUNT_AMOUNT: 할인 금액
    * - TRANSFER_DISCOUNT_TAX_FREE_AMOUNT: 할인 면세액
    * - TRANSFER_DISCOUNT_SHARE_AMOUNT: 할인 분담금

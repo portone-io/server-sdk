@@ -3,6 +3,7 @@ from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
+from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
 from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
 from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
 from ...platform.transfer.platform_transfer_summary_partner import PlatformTransferSummaryPartner, _deserialize_platform_transfer_summary_partner, _serialize_platform_transfer_summary_partner
@@ -15,6 +16,7 @@ class PlatformOrderCancelTransferSummary:
     graphql_id: str
     store_id: str
     partner: PlatformTransferSummaryPartner
+    contract: PlatformContract
     status: PlatformTransferStatus
     settlement_date: str
     """날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
@@ -48,6 +50,7 @@ def _serialize_platform_order_cancel_transfer_summary(obj: PlatformOrderCancelTr
     entity["graphqlId"] = obj.graphql_id
     entity["storeId"] = obj.store_id
     entity["partner"] = _serialize_platform_transfer_summary_partner(obj.partner)
+    entity["contract"] = _serialize_platform_contract(obj.contract)
     entity["status"] = _serialize_platform_transfer_status(obj.status)
     entity["settlementDate"] = obj.settlement_date
     entity["settlementCurrency"] = _serialize_currency(obj.settlement_currency)
@@ -89,6 +92,10 @@ def _deserialize_platform_order_cancel_transfer_summary(obj: Any) -> PlatformOrd
         raise KeyError(f"'partner' is not in {obj}")
     partner = obj["partner"]
     partner = _deserialize_platform_transfer_summary_partner(partner)
+    if "contract" not in obj:
+        raise KeyError(f"'contract' is not in {obj}")
+    contract = obj["contract"]
+    contract = _deserialize_platform_contract(contract)
     if "status" not in obj:
         raise KeyError(f"'status' is not in {obj}")
     status = obj["status"]
@@ -142,4 +149,4 @@ def _deserialize_platform_order_cancel_transfer_summary(obj: Any) -> PlatformOrd
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformOrderCancelTransferSummary(id, graphql_id, store_id, partner, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, amount, payment, settlement_start_date, memo)
+    return PlatformOrderCancelTransferSummary(id, graphql_id, store_id, partner, contract, status, settlement_date, settlement_currency, is_for_test, partner_user_defined_properties, user_defined_properties, amount, payment, settlement_start_date, memo)

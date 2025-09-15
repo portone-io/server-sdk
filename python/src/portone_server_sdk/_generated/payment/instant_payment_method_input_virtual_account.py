@@ -20,7 +20,7 @@ class InstantPaymentMethodInputVirtualAccount:
     option: InstantPaymentMethodInputVirtualAccountOption
     """가상계좌 유형
     """
-    cash_receipt: InstantPaymentMethodInputVirtualAccountCashReceiptInfo
+    cash_receipt: Optional[InstantPaymentMethodInputVirtualAccountCashReceiptInfo] = field(default=None)
     """현금영수증 정보
     """
     remittee_name: Optional[str] = field(default=None)
@@ -35,7 +35,8 @@ def _serialize_instant_payment_method_input_virtual_account(obj: InstantPaymentM
     entity["bank"] = _serialize_bank(obj.bank)
     entity["expiry"] = _serialize_instant_payment_method_input_virtual_account_expiry(obj.expiry)
     entity["option"] = _serialize_instant_payment_method_input_virtual_account_option(obj.option)
-    entity["cashReceipt"] = _serialize_instant_payment_method_input_virtual_account_cash_receipt_info(obj.cash_receipt)
+    if obj.cash_receipt is not None:
+        entity["cashReceipt"] = _serialize_instant_payment_method_input_virtual_account_cash_receipt_info(obj.cash_receipt)
     if obj.remittee_name is not None:
         entity["remitteeName"] = obj.remittee_name
     return entity
@@ -56,10 +57,11 @@ def _deserialize_instant_payment_method_input_virtual_account(obj: Any) -> Insta
         raise KeyError(f"'option' is not in {obj}")
     option = obj["option"]
     option = _deserialize_instant_payment_method_input_virtual_account_option(option)
-    if "cashReceipt" not in obj:
-        raise KeyError(f"'cashReceipt' is not in {obj}")
-    cash_receipt = obj["cashReceipt"]
-    cash_receipt = _deserialize_instant_payment_method_input_virtual_account_cash_receipt_info(cash_receipt)
+    if "cashReceipt" in obj:
+        cash_receipt = obj["cashReceipt"]
+        cash_receipt = _deserialize_instant_payment_method_input_virtual_account_cash_receipt_info(cash_receipt)
+    else:
+        cash_receipt = None
     if "remitteeName" in obj:
         remittee_name = obj["remitteeName"]
         if not isinstance(remittee_name, str):

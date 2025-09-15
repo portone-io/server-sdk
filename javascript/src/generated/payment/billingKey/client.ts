@@ -2,6 +2,7 @@ import { BillingKeyError } from "./BillingKeyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyAlreadyIssuedError } from "../../../generated/payment/billingKey/BillingKeyAlreadyIssuedError"
 import type { BillingKeyFilterInput } from "../../../generated/payment/billingKey/BillingKeyFilterInput"
 import type { BillingKeyInfo } from "../../../generated/payment/billingKey/BillingKeyInfo"
 import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
@@ -9,10 +10,14 @@ import type { BillingKeyNotIssuedError } from "../../../generated/payment/billin
 import type { BillingKeySortInput } from "../../../generated/payment/billingKey/BillingKeySortInput"
 import type { ChannelNotFoundError } from "../../../generated/common/ChannelNotFoundError"
 import type { ChannelSpecificError } from "../../../generated/payment/billingKey/ChannelSpecificError"
+import type { ConfirmedBillingKeyIssueAndPaySummary } from "../../../generated/payment/billingKey/ConfirmedBillingKeyIssueAndPaySummary"
+import type { ConfirmedBillingKeySummary } from "../../../generated/payment/billingKey/ConfirmedBillingKeySummary"
+import type { Currency } from "../../../generated/common/Currency"
 import type { CustomerInput } from "../../../generated/common/CustomerInput"
 import type { DeleteBillingKeyResponse } from "../../../generated/payment/billingKey/DeleteBillingKeyResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetBillingKeyInfosResponse } from "../../../generated/payment/billingKey/GetBillingKeyInfosResponse"
+import type { InformationMismatchError } from "../../../generated/common/InformationMismatchError"
 import type { InstantBillingKeyPaymentMethodInput } from "../../../generated/payment/billingKey/InstantBillingKeyPaymentMethodInput"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
 import type { IssueBillingKeyResponse } from "../../../generated/payment/billingKey/IssueBillingKeyResponse"
@@ -107,6 +112,84 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 			)
 			if (!response.ok) {
 				throw new IssueBillingKeyError(await response.json())
+			}
+			return response.json()
+		},
+		confirmBillingKey: async (
+			options: {
+				storeId?: string,
+				billingIssueToken: string,
+				isTest?: boolean,
+			}
+		): Promise<ConfirmedBillingKeySummary> => {
+			const {
+				storeId,
+				billingIssueToken,
+				isTest,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+				billingIssueToken,
+				isTest,
+			})
+			const response = await fetch(
+				new URL("/billing-keys/confirm", baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ConfirmBillingKeyError(await response.json())
+			}
+			return response.json()
+		},
+		confirmBillingKeyIssueAndPay: async (
+			options: {
+				storeId?: string,
+				billingIssueToken: string,
+				paymentId?: string,
+				currency?: Currency,
+				totalAmount?: number,
+				taxFreeAmount?: number,
+				isTest?: boolean,
+			}
+		): Promise<ConfirmedBillingKeyIssueAndPaySummary> => {
+			const {
+				storeId,
+				billingIssueToken,
+				paymentId,
+				currency,
+				totalAmount,
+				taxFreeAmount,
+				isTest,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+				billingIssueToken,
+				paymentId,
+				currency,
+				totalAmount,
+				taxFreeAmount,
+				isTest,
+			})
+			const response = await fetch(
+				new URL("/billing-keys/confirm-issue-and-pay", baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ConfirmBillingKeyIssueAndPayError(await response.json())
 			}
 			return response.json()
 		},
@@ -217,7 +300,7 @@ export type BillingKeyClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/** 빌링키 결제 수단 정보 */
@@ -251,6 +334,90 @@ export type BillingKeyClient = {
 		}
 	) => Promise<IssueBillingKeyResponse>
 	/**
+	 * 빌링키 발급 수동 승인
+	 *
+	 * 수동 승인으로 설정된 빌링키 발급에 대해, 빌링키 발급을 완료 처리합니다.
+	 *
+	 * @throws {@link ConfirmBillingKeyError}
+	 */
+	confirmBillingKey: (
+		options: {
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+			/**
+			 * 빌링키 발급 토큰
+			 *
+			 * 빌링키 발급 요청 완료 시 발급된 토큰입니다.
+			 */
+			billingIssueToken: string,
+			/**
+			 * 테스트 결제 여부
+			 *
+			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+			 */
+			isTest?: boolean,
+		}
+	) => Promise<ConfirmedBillingKeySummary>
+	/**
+	 * 빌링키 발급 및 초회 결제 수동 승인
+	 *
+	 * 수동 승인으로 설정된 빌링키 발급 및 초회 결제에 대해, 빌링키 발급과 결제를 완료 처리합니다.
+	 *
+	 * @throws {@link ConfirmBillingKeyIssueAndPayError}
+	 */
+	confirmBillingKeyIssueAndPay: (
+		options: {
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+			/**
+			 * 빌링키 발급 토큰
+			 *
+			 * 빌링키 발급 및 초회 결제 요청 완료 시 발급된 토큰입니다.
+			 */
+			billingIssueToken: string,
+			/**
+			 * 결제 건 아이디
+			 *
+			 * 검증용 파라미터로, 결제 건 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+			 */
+			paymentId?: string,
+			/**
+			 * 통화
+			 *
+			 * 검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다.
+			 */
+			currency?: Currency,
+			/**
+			 * 결제 금액
+			 *
+			 * 검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다.
+			 * (int64)
+			 */
+			totalAmount?: number,
+			/**
+			 * 면세 금액
+			 *
+			 * 검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+			 * (int64)
+			 */
+			taxFreeAmount?: number,
+			/**
+			 * 테스트 결제 여부
+			 *
+			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+			 */
+			isTest?: boolean,
+		}
+	) => Promise<ConfirmedBillingKeyIssueAndPaySummary>
+	/**
 	 * 빌링키 단건 조회
 	 *
 	 * 주어진 빌링키에 대응되는 빌링키 정보를 조회합니다.
@@ -264,7 +431,7 @@ export type BillingKeyClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 		}
@@ -283,7 +450,7 @@ export type BillingKeyClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -311,6 +478,24 @@ export class IssueBillingKeyError extends BillingKeyError {
 		super(data)
 		Object.setPrototypeOf(this, IssueBillingKeyError.prototype)
 		this.name = "IssueBillingKeyError"
+	}
+}
+export class ConfirmBillingKeyError extends BillingKeyError {
+	declare readonly data: BillingKeyAlreadyIssuedError | BillingKeyNotFoundError | ForbiddenError | InformationMismatchError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyAlreadyIssuedError | BillingKeyNotFoundError | ForbiddenError | InformationMismatchError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ConfirmBillingKeyError.prototype)
+		this.name = "ConfirmBillingKeyError"
+	}
+}
+export class ConfirmBillingKeyIssueAndPayError extends BillingKeyError {
+	declare readonly data: BillingKeyAlreadyIssuedError | BillingKeyNotFoundError | ForbiddenError | InformationMismatchError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: BillingKeyAlreadyIssuedError | BillingKeyNotFoundError | ForbiddenError | InformationMismatchError | InvalidRequestError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ConfirmBillingKeyIssueAndPayError.prototype)
+		this.name = "ConfirmBillingKeyIssueAndPayError"
 	}
 }
 export class GetBillingKeyInfoError extends BillingKeyError {

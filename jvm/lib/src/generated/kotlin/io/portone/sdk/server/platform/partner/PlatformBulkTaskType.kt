@@ -12,6 +12,7 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformBulkTaskTypeSerializer::class)
 public sealed interface PlatformBulkTaskType {
   public val value: String
+  /** 정산건 일괄 등록 */
   @Serializable(CreateTransfersSerializer::class)
   public data object CreateTransfers : PlatformBulkTaskType {
     override val value: String = "CREATE_TRANSFERS"
@@ -27,6 +28,7 @@ public sealed interface PlatformBulkTaskType {
     }
     override fun serialize(encoder: Encoder, value: CreateTransfers) = encoder.encodeString(value.value)
   }
+  /** 파트너 일괄 등록 */
   @Serializable(CreatePartnersSerializer::class)
   public data object CreatePartners : PlatformBulkTaskType {
     override val value: String = "CREATE_PARTNERS"
@@ -42,6 +44,7 @@ public sealed interface PlatformBulkTaskType {
     }
     override fun serialize(encoder: Encoder, value: CreatePartners) = encoder.encodeString(value.value)
   }
+  /** 파트너 일괄 국세청 연동 */
   @Serializable(ConnectMemberCompaniesSerializer::class)
   public data object ConnectMemberCompanies : PlatformBulkTaskType {
     override val value: String = "CONNECT_MEMBER_COMPANIES"
@@ -57,6 +60,7 @@ public sealed interface PlatformBulkTaskType {
     }
     override fun serialize(encoder: Encoder, value: ConnectMemberCompanies) = encoder.encodeString(value.value)
   }
+  /** 파트너 일괄 국세청 연동 해제 */
   @Serializable(DisconnectMemberCompaniesSerializer::class)
   public data object DisconnectMemberCompanies : PlatformBulkTaskType {
     override val value: String = "DISCONNECT_MEMBER_COMPANIES"
@@ -71,6 +75,22 @@ public sealed interface PlatformBulkTaskType {
       }
     }
     override fun serialize(encoder: Encoder, value: DisconnectMemberCompanies) = encoder.encodeString(value.value)
+  }
+  /** 정산 내역서 일괄 발송 */
+  @Serializable(SendPayoutSettlementStatementsSerializer::class)
+  public data object SendPayoutSettlementStatements : PlatformBulkTaskType {
+    override val value: String = "SEND_PAYOUT_SETTLEMENT_STATEMENTS"
+  }
+  private object SendPayoutSettlementStatementsSerializer : KSerializer<SendPayoutSettlementStatements> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendPayoutSettlementStatements::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SendPayoutSettlementStatements = decoder.decodeString().let {
+      if (it != "SEND_PAYOUT_SETTLEMENT_STATEMENTS") {
+        throw SerializationException(it)
+      } else {
+        return SendPayoutSettlementStatements
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SendPayoutSettlementStatements) = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -87,6 +107,7 @@ private object PlatformBulkTaskTypeSerializer : KSerializer<PlatformBulkTaskType
       "CREATE_PARTNERS" -> PlatformBulkTaskType.CreatePartners
       "CONNECT_MEMBER_COMPANIES" -> PlatformBulkTaskType.ConnectMemberCompanies
       "DISCONNECT_MEMBER_COMPANIES" -> PlatformBulkTaskType.DisconnectMemberCompanies
+      "SEND_PAYOUT_SETTLEMENT_STATEMENTS" -> PlatformBulkTaskType.SendPayoutSettlementStatements
       else -> PlatformBulkTaskType.Unrecognized(value)
     }
   }

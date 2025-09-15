@@ -1,7 +1,8 @@
 import * as fs from "@std/fs"
 import * as path from "@std/path"
-import { toCamelCase, toPascalCase } from "@std/text"
+import { toCamelCase, toPascalCase } from "../common/casing.ts"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
+import { isClientPackage } from "../common/package.ts"
 import {
   entities as webhookEntities,
   types as webhookTypes,
@@ -12,7 +13,6 @@ import { TypescriptWriter } from "./common.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"
 import { generateEntity as generateWebhookEntity } from "./webhook.ts"
-import { isClientPackage } from "../common/package.ts"
 
 /**
  * @returns entrypoints

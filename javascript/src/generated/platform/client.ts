@@ -5,6 +5,7 @@ import { CompanyClient } from "./company/client"
 import { AccountTransferClient } from "./accountTransfer/client"
 import { PolicyClient } from "./policy/client"
 import { AccountClient } from "./account/client"
+import { BulkAccountTransferClient } from "./bulkAccountTransfer/client"
 import { BulkPayoutClient } from "./bulkPayout/client"
 import { PartnerSettlementClient } from "./partnerSettlement/client"
 import { PartnerClient } from "./partner/client"
@@ -681,6 +682,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 		accountTransfer: AccountTransferClient(init),
 		policy: PolicyClient(init),
 		account: AccountClient(init),
+		bulkAccountTransfer: BulkAccountTransferClient(init),
 		bulkPayout: BulkPayoutClient(init),
 		partnerSettlement: PartnerSettlementClient(init),
 		partner: PartnerClient(init),
@@ -1004,6 +1006,7 @@ export type PlatformClient = {
 	accountTransfer: AccountTransferClient
 	policy: PolicyClient
 	account: AccountClient
+	bulkAccountTransfer: BulkAccountTransferClient
 	bulkPayout: BulkPayoutClient
 	partnerSettlement: PartnerSettlementClient
 	partner: PartnerClient

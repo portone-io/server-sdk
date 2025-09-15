@@ -36,6 +36,12 @@ class PlatformTransferFilterInputKeyword:
     partner_memo: Optional[str] = field(default=None)
     """해당 값이 포함된 partnerMemo 를 가진 정산건만 조회합니다.
     """
+    partner_settlement_id: Optional[str] = field(default=None)
+    """해당 값이 포함된 partnerSettlementId 를 가진 정산건만 조회합니다.
+    """
+    payout_id: Optional[str] = field(default=None)
+    """해당 값과 일치하는 지급건에 연관된 정산건만 조회합니다.
+    """
 
 
 def _serialize_platform_transfer_filter_input_keyword(obj: PlatformTransferFilterInputKeyword) -> Any:
@@ -60,6 +66,10 @@ def _serialize_platform_transfer_filter_input_keyword(obj: PlatformTransferFilte
         entity["partnerName"] = obj.partner_name
     if obj.partner_memo is not None:
         entity["partnerMemo"] = obj.partner_memo
+    if obj.partner_settlement_id is not None:
+        entity["partnerSettlementId"] = obj.partner_settlement_id
+    if obj.payout_id is not None:
+        entity["payoutId"] = obj.payout_id
     return entity
 
 
@@ -120,4 +130,16 @@ def _deserialize_platform_transfer_filter_input_keyword(obj: Any) -> PlatformTra
             raise ValueError(f"{repr(partner_memo)} is not str")
     else:
         partner_memo = None
-    return PlatformTransferFilterInputKeyword(all, payment_id, transfer_id, transfer_memo, product_id, product_name, partner_id, partner_name, partner_memo)
+    if "partnerSettlementId" in obj:
+        partner_settlement_id = obj["partnerSettlementId"]
+        if not isinstance(partner_settlement_id, str):
+            raise ValueError(f"{repr(partner_settlement_id)} is not str")
+    else:
+        partner_settlement_id = None
+    if "payoutId" in obj:
+        payout_id = obj["payoutId"]
+        if not isinstance(payout_id, str):
+            raise ValueError(f"{repr(payout_id)} is not str")
+    else:
+        payout_id = None
+    return PlatformTransferFilterInputKeyword(all, payment_id, transfer_id, transfer_memo, product_id, product_name, partner_id, partner_name, partner_memo, partner_settlement_id, payout_id)

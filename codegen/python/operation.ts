@@ -1,3 +1,4 @@
+import { toSnakeCase } from "../common/casing.ts"
 import type { Writer } from "../common/writer.ts"
 import type {
   Definition,
@@ -6,12 +7,7 @@ import type {
 } from "../parser/definition.ts"
 import type { Operation } from "../parser/operation.ts"
 import { annotateDescription } from "../python/description.ts"
-import {
-  filterName,
-  intoInlineTypeName,
-  PythonWriter,
-  toSnakeCase,
-} from "./common.ts"
+import { filterName, intoInlineTypeName, PythonWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
 
 export function writeOperation(

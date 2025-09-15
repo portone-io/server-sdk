@@ -4,6 +4,9 @@ from dataclasses import dataclass, field
 
 @dataclass
 class PlatformPayoutStatusStats:
+    confirmed: int
+    """(int64)
+    """
     prepared: int
     """(int64)
     """
@@ -31,6 +34,7 @@ def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> A
     if isinstance(obj, dict):
         return obj
     entity = {}
+    entity["confirmed"] = obj.confirmed
     entity["prepared"] = obj.prepared
     entity["cancelled"] = obj.cancelled
     entity["stopped"] = obj.stopped
@@ -44,6 +48,11 @@ def _serialize_platform_payout_status_stats(obj: PlatformPayoutStatusStats) -> A
 def _deserialize_platform_payout_status_stats(obj: Any) -> PlatformPayoutStatusStats:
     if not isinstance(obj, dict):
         raise ValueError(f"{repr(obj)} is not dict")
+    if "confirmed" not in obj:
+        raise KeyError(f"'confirmed' is not in {obj}")
+    confirmed = obj["confirmed"]
+    if not isinstance(confirmed, int):
+        raise ValueError(f"{repr(confirmed)} is not int")
     if "prepared" not in obj:
         raise KeyError(f"'prepared' is not in {obj}")
     prepared = obj["prepared"]
@@ -79,4 +88,4 @@ def _deserialize_platform_payout_status_stats(obj: Any) -> PlatformPayoutStatusS
     scheduled = obj["scheduled"]
     if not isinstance(scheduled, int):
         raise ValueError(f"{repr(scheduled)} is not int")
-    return PlatformPayoutStatusStats(prepared, cancelled, stopped, processing, succeeded, failed, scheduled)
+    return PlatformPayoutStatusStats(confirmed, prepared, cancelled, stopped, processing, succeeded, failed, scheduled)

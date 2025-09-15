@@ -4,6 +4,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...payment.cash_receipt.cash_receipt_status import CashReceiptStatus, _deserialize_cash_receipt_status, _serialize_cash_receipt_status
 from ...payment.cash_receipt.cash_receipt_time_range_field import CashReceiptTimeRangeField, _deserialize_cash_receipt_time_range_field, _serialize_cash_receipt_time_range_field
+from ...common.cash_receipt_type import CashReceiptType, _deserialize_cash_receipt_type, _serialize_cash_receipt_type
 from ...common.pg_company import PgCompany, _deserialize_pg_company, _serialize_pg_company
 from ...common.pg_provider import PgProvider, _deserialize_pg_provider, _serialize_pg_provider
 from ...common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
@@ -70,6 +71,11 @@ class CashReceiptFilterInput:
     version: Optional[PortOneVersion] = field(default=None)
     """포트원 버전
     """
+    types: Optional[list[CashReceiptType]] = field(default=None)
+    """현금영수증 유형 리스트
+
+    값을 입력하지 않으면 필터링이 적용되지 않습니다.
+    """
 
 
 def _serialize_cash_receipt_filter_input(obj: CashReceiptFilterInput) -> Any:
@@ -104,6 +110,8 @@ def _serialize_cash_receipt_filter_input(obj: CashReceiptFilterInput) -> Any:
         entity["pgCompanies"] = list(map(_serialize_pg_company, obj.pg_companies))
     if obj.version is not None:
         entity["version"] = _serialize_port_one_version(obj.version)
+    if obj.types is not None:
+        entity["types"] = list(map(_serialize_cash_receipt_type, obj.types))
     return entity
 
 
@@ -201,4 +209,13 @@ def _deserialize_cash_receipt_filter_input(obj: Any) -> CashReceiptFilterInput:
         version = _deserialize_port_one_version(version)
     else:
         version = None
-    return CashReceiptFilterInput(store_id, time_range_field, from_, until, payment_id, is_test, order_name, statuses, is_manual, pg_receipt_id, pg_merchant_id, pg_providers, pg_companies, version)
+    if "types" in obj:
+        types = obj["types"]
+        if not isinstance(types, list):
+            raise ValueError(f"{repr(types)} is not list")
+        for i, item in enumerate(types):
+            item = _deserialize_cash_receipt_type(item)
+            types[i] = item
+    else:
+        types = None
+    return CashReceiptFilterInput(store_id, time_range_field, from_, until, payment_id, is_test, order_name, statuses, is_manual, pg_receipt_id, pg_merchant_id, pg_providers, pg_companies, version, types)

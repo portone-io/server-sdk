@@ -1,4 +1,4 @@
-import { toSnakeCase as toSnakeCaseDeno } from "@std/text"
+import { toSnakeCase } from "../common/casing.ts"
 import { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 
@@ -38,10 +38,6 @@ export function intoInlineTypeName(definition: Definition): string {
 
 export function PythonWriter() {
   return Writer(" ".repeat(4))
-}
-
-export function toSnakeCase(name: string): string {
-  return toSnakeCaseDeno(name).replace("b_2_b", "b2b")
 }
 
 const keywords = new Set([

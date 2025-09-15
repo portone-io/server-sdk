@@ -37,7 +37,9 @@ import javax.crypto.spec.SecretKeySpec
  * }
  * ```
  */
-public class WebhookVerifier private constructor(private val secretKeySpec: SecretKeySpec) {
+public class WebhookVerifier private constructor(
+    private val secretKeySpec: SecretKeySpec,
+) {
     private val json = Json { ignoreUnknownKeys = true }
 
     /**

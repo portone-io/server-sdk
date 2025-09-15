@@ -4,13 +4,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class PlatformBulkPayoutStatusStats(
-  val scheduled: Long,
   val preparing: Long,
   val prepared: Long,
   val ongoing: Long,
-  val stopped: Long,
-  val cancelled: Long,
+  val postProcessPending: Long,
   val completed: Long,
+  val cancelled: Long,
 )
 
 

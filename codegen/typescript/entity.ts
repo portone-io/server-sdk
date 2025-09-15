@@ -1,4 +1,4 @@
-import { toCamelCase } from "@std/text"
+import { toCamelCase } from "../common/casing.ts"
 import type { Definition } from "../parser/definition.ts"
 import { TypescriptWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"

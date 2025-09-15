@@ -20,15 +20,19 @@ import type { CashReceiptInput } from "../../generated/common/CashReceiptInput"
 import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { CloseVirtualAccountResponse } from "../../generated/payment/CloseVirtualAccountResponse"
 import type { ConfirmEscrowResponse } from "../../generated/payment/ConfirmEscrowResponse"
+import type { ConfirmedPaymentSummary } from "../../generated/payment/ConfirmedPaymentSummary"
 import type { Country } from "../../generated/common/Country"
 import type { Currency } from "../../generated/common/Currency"
 import type { CustomerInput } from "../../generated/common/CustomerInput"
 import type { DiscountAmountExceedsTotalAmountError } from "../../generated/payment/DiscountAmountExceedsTotalAmountError"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
+import type { GetAllPaymentEventsByCursorResponse } from "../../generated/payment/GetAllPaymentEventsByCursorResponse"
 import type { GetAllPaymentsByCursorResponse } from "../../generated/payment/GetAllPaymentsByCursorResponse"
 import type { GetPaymentTransactionsResponse } from "../../generated/payment/GetPaymentTransactionsResponse"
 import type { GetPaymentsResponse } from "../../generated/payment/GetPaymentsResponse"
+import type { InformationMismatchError } from "../../generated/common/InformationMismatchError"
 import type { InstantPaymentMethodInput } from "../../generated/payment/InstantPaymentMethodInput"
+import type { InvalidPaymentTokenError } from "../../generated/payment/InvalidPaymentTokenError"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { Locale } from "../../generated/common/Locale"
 import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
@@ -71,6 +75,47 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
+		getAllPaymentEventsByCursor: async (
+			options?: {
+				storeId?: string,
+				from?: string,
+				until?: string,
+				cursor?: string,
+				size?: number,
+			}
+		): Promise<GetAllPaymentEventsByCursorResponse> => {
+			const storeId = options?.storeId
+			const from = options?.from
+			const until = options?.until
+			const cursor = options?.cursor
+			const size = options?.size
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+				from,
+				until,
+				cursor,
+				size,
+			})
+			const query = [
+				["requestBody", requestBody],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/payment-events-by-cursor?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetAllPaymentEventsError(await response.json())
+			}
+			return response.json()
+		},
 		getAllPaymentsByCursor: async (
 			options?: {
 				storeId?: string,
@@ -251,6 +296,53 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 			)
 			if (!response.ok) {
 				throw new CancelPaymentError(await response.json())
+			}
+			return response.json()
+		},
+		confirmPayment: async (
+			options: {
+				paymentId: string,
+				storeId?: string,
+				paymentToken: string,
+				txId?: string,
+				currency?: Currency,
+				totalAmount?: number,
+				taxFreeAmount?: number,
+				isTest?: boolean,
+			}
+		): Promise<ConfirmedPaymentSummary> => {
+			const {
+				paymentId,
+				storeId,
+				paymentToken,
+				txId,
+				currency,
+				totalAmount,
+				taxFreeAmount,
+				isTest,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+				paymentToken,
+				txId,
+				currency,
+				totalAmount,
+				taxFreeAmount,
+				isTest,
+			})
+			const response = await fetch(
+				new URL(`/payments/${encodeURIComponent(paymentId)}/confirm`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ConfirmPaymentError(await response.json())
 			}
 			return response.json()
 		},
@@ -686,6 +778,50 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 }
 export type PaymentClient = {
 	/**
+	 * 결제 이벤트 대용량 다건 조회(커서 기반)
+	 *
+	 * 기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
+	 *
+	 * @throws {@link GetAllPaymentEventsError}
+	 */
+	getAllPaymentEventsByCursor: (
+		options?: {
+			/**
+			 * 상점 아이디
+			 *
+			 * Merchant 사용자만 사용가능하며, 지정되지 않은 경우 고객사 전체 결제 이벤트를 조회합니다.
+			 */
+			storeId?: string,
+			/**
+			 * 결제 이벤트 생성시점 범위 조건의 시작
+			 *
+			 * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+			 * (RFC 3339 date-time)
+			 */
+			from?: string,
+			/**
+			 * 결제 이벤트 생성시점 범위 조건의 끝
+			 *
+			 * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
+			 * (RFC 3339 date-time)
+			 */
+			until?: string,
+			/**
+			 * 커서
+			 *
+			 * 결제 이벤트 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.
+			 */
+			cursor?: string,
+			/**
+			 * 페이지 크기
+			 *
+			 * 미입력 시 기본값은 10 이며 최대 1000까지 허용
+			 * (int32)
+			 */
+			size?: number,
+		}
+	) => Promise<GetAllPaymentEventsByCursorResponse>
+	/**
 	 * 결제 대용량 다건 조회(커서 기반)
 	 *
 	 * 기간 내 모든 결제 건을 커서 기반으로 조회합니다. 결제 건의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 건이 조회됩니다.
@@ -697,7 +833,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -743,7 +879,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/** 빌링키 결제에 사용할 빌링키 */
@@ -773,7 +909,11 @@ export type PaymentClient = {
 			useFreeInterestFromMerchant?: boolean,
 			/** 카드 포인트 사용 여부 */
 			useCardPoint?: boolean,
-			/** 현금영수증 정보 */
+			/**
+			 * 현금영수증 정보
+			 *
+			 * 나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)
+			 */
 			cashReceipt?: CashReceiptInput,
 			/** 결제 국가 */
 			country?: Country,
@@ -782,7 +922,7 @@ export type PaymentClient = {
 			 *
 			 * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
 			 * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-			 * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+			 * 빈 배열은 무시됩니다.
 			 */
 			noticeUrls?: string[],
 			/**
@@ -826,7 +966,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -883,6 +1023,63 @@ export type PaymentClient = {
 		}
 	) => Promise<CancelPaymentResponse>
 	/**
+	 * 인증 결제 수동 승인
+	 *
+	 * 수동 승인으로 설정된 인증 결제에 대해, 결제를 완료 처리합니다.
+	 *
+	 * @throws {@link ConfirmPaymentError}
+	 */
+	confirmPayment: (
+		options: {
+			/** 결제 아이디 */
+			paymentId: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+			/**
+			 * 결제 토큰
+			 *
+			 * 인증 완료 시 발급된 토큰입니다.
+			 */
+			paymentToken: string,
+			/**
+			 * 결제 시도 아이디
+			 *
+			 * 검증용 파라미터로, 결제 시도 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+			 */
+			txId?: string,
+			/**
+			 * 통화
+			 *
+			 * 검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+			 */
+			currency?: Currency,
+			/**
+			 * 결제 금액
+			 *
+			 * 검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+			 * (int64)
+			 */
+			totalAmount?: number,
+			/**
+			 * 면세 금액
+			 *
+			 * 검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+			 * (int64)
+			 */
+			taxFreeAmount?: number,
+			/**
+			 * 테스트 결제 여부
+			 *
+			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+			 */
+			isTest?: boolean,
+		}
+	) => Promise<ConfirmedPaymentSummary>
+	/**
 	 * 에스크로 구매 확정
 	 *
 	 * 에스크로 결제를 구매 확정 처리합니다
@@ -896,7 +1093,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -922,7 +1119,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/** 에스크로 발송자 정보 */
@@ -955,7 +1152,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/** 에스크로 발송자 정보 */
@@ -977,7 +1174,7 @@ export type PaymentClient = {
 	/**
 	 * 수기 결제
 	 *
-	 * 수기 결제를 진행합니다.
+	 * 카드 비인증 결제 또는 가상 계좌 발급을 API로 요청합니다.
 	 *
 	 * @throws {@link PayInstantlyError}
 	 */
@@ -988,7 +1185,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -1032,9 +1229,9 @@ export type PaymentClient = {
 			/**
 			 * 웹훅 주소
 			 *
-			 * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+			 * 결제 웹훅 주소입니다.
 			 * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-			 * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+			 * 빈 배열은 무시됩니다.
 			 */
 			noticeUrls?: string[],
 			/**
@@ -1070,7 +1267,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -1120,7 +1317,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 			/**
@@ -1160,7 +1357,7 @@ export type PaymentClient = {
 			/**
 			 * 상점 아이디
 			 *
-			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
 			 */
 			storeId?: string,
 		}
@@ -1176,7 +1373,11 @@ export type PaymentClient = {
 		options: {
 			/** 조회할 결제 아이디 */
 			paymentId: string,
-			/** 상점 아이디 */
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
 			storeId?: string,
 		}
 	) => Promise<Payment>
@@ -1208,6 +1409,15 @@ export type PaymentClient = {
 	paymentSchedule: PaymentScheduleClient
 	promotion: PromotionClient
 }
+export class GetAllPaymentEventsError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, GetAllPaymentEventsError.prototype)
+		this.name = "GetAllPaymentEventsError"
+	}
+}
 export class GetAllPaymentsError extends PaymentError {
 	declare readonly data: ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
@@ -1233,6 +1443,15 @@ export class CancelPaymentError extends PaymentError {
 		super(data)
 		Object.setPrototypeOf(this, CancelPaymentError.prototype)
 		this.name = "CancelPaymentError"
+	}
+}
+export class ConfirmPaymentError extends PaymentError {
+	declare readonly data: AlreadyPaidError | ForbiddenError | InformationMismatchError | InvalidPaymentTokenError | InvalidRequestError | PaymentNotFoundError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: AlreadyPaidError | ForbiddenError | InformationMismatchError | InvalidPaymentTokenError | InvalidRequestError | PaymentNotFoundError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ConfirmPaymentError.prototype)
+		this.name = "ConfirmPaymentError"
 	}
 }
 export class ConfirmEscrowError extends PaymentError {

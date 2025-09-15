@@ -13,7 +13,7 @@ class SelectedChannel:
     """채널 타입
     """
     pg_provider: PgProvider
-    """PG사
+    """PG사 결제 모듈
     """
     pg_merchant_id: str
     """PG사 고객사 식별 아이디

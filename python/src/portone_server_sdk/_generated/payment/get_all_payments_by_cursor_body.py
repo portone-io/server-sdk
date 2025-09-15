@@ -10,7 +10,7 @@ class GetAllPaymentsByCursorBody:
     store_id: Optional[str] = field(default=None)
     """상점 아이디
 
-    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
     """
     from_: Optional[str] = field(default=None)
     """결제 건 생성시점 범위 조건의 시작

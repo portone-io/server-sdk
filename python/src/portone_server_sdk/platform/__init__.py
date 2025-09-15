@@ -60,6 +60,7 @@ from . import company
 from . import account_transfer
 from . import policy
 from . import account
+from . import bulk_account_transfer
 from . import bulk_payout
 from . import partner_settlement
 from . import partner
@@ -83,6 +84,9 @@ from .._generated.platform.month_day import MonthDay
 from .._generated.platform.platform import Platform
 from .._generated.platform.platform_account import PlatformAccount
 from .._generated.platform.platform_account_status import PlatformAccountStatus
+from .._generated.platform.platform_account_transfer_status_stats import (
+    PlatformAccountTransferStatusStats,
+)
 from .._generated.platform.platform_additional_fee_policy import (
     PlatformAdditionalFeePolicy,
 )
@@ -320,6 +324,7 @@ __all__ = [
     "account_transfer",
     "policy",
     "account",
+    "bulk_account_transfer",
     "bulk_payout",
     "partner_settlement",
     "partner",
@@ -335,6 +340,7 @@ __all__ = [
     "Platform",
     "PlatformAccount",
     "PlatformAccountStatus",
+    "PlatformAccountTransferStatusStats",
     "PlatformAdditionalFeePolicy",
     "PlatformContact",
     "PlatformContract",

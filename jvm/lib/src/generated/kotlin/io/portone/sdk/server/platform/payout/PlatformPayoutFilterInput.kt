@@ -2,8 +2,12 @@ package io.portone.sdk.server.platform.payout
 
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.platform.PlatformPartnerTaxationType
+import io.portone.sdk.server.platform.PlatformPartnerTypeName
 import io.portone.sdk.server.platform.payout.PlatformPayoutFilterInputCriteria
+import io.portone.sdk.server.platform.payout.PlatformPayoutSettlementStatementStatus
 import io.portone.sdk.server.platform.payout.PlatformPayoutStatus
+import io.portone.sdk.server.platform.payout.PlatformPayoutTaxInvoiceStatus
 import kotlin.Array
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -43,6 +47,36 @@ public data class PlatformPayoutFilterInput(
    * 값이 존재하는 경우 해당 리스트에 포함되는 지급 통화를 가진 지급 내역을 조회합니다.
    */
   val payoutCurrencies: List<Currency>? = null,
+  /**
+   * 지급 아이디
+   *
+   * 값이 존재하는 경우 해당 리스트에 포함되는 지급 아이디를 가진 지급 내역을 조회합니다.
+   */
+  val payoutIds: List<String>? = null,
+  /**
+   * 세금계산서 상태
+   *
+   * 값이 존재하는 경우 해당 리스트에 포함되는 세금계산서 상태를 가진 지급 내역을 조회합니다.
+   */
+  val taxInvoiceStatuses: List<PlatformPayoutTaxInvoiceStatus>? = null,
+  /**
+   * 파트너 유형
+   *
+   * 값이 존재하는 경우 해당 리스트에 포함되는 파트너 유형을 가진 지급 내역을 조회합니다.
+   */
+  val partnerTypes: List<PlatformPartnerTypeName>? = null,
+  /**
+   * 파트너 과세 유형
+   *
+   * 값이 존재하는 경우 해당 리스트에 포함되는 파트너 과세 유형을 가진 지급 내역을 조회합니다.
+   */
+  val partnerTaxationTypes: List<PlatformPartnerTaxationType>? = null,
+  /**
+   * 정산 내역서 상태
+   *
+   * 값이 존재하는 경우 해당 리스트에 포함되는 정산 내역서 상태를 가진 지급 내역을 조회합니다.
+   */
+  val settlementStatementStatuses: List<PlatformPayoutSettlementStatementStatus>? = null,
 )
 
 

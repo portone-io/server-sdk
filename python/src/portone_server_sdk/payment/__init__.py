@@ -6,6 +6,10 @@ from .._generated.payment.errors.close_virtual_account_error import (
     CloseVirtualAccountError,
 )
 from .._generated.payment.errors.confirm_escrow_error import ConfirmEscrowError
+from .._generated.payment.errors.confirm_payment_error import ConfirmPaymentError
+from .._generated.payment.errors.get_all_payment_events_error import (
+    GetAllPaymentEventsError,
+)
 from .._generated.payment.errors.get_all_payments_error import GetAllPaymentsError
 from .._generated.payment.errors.get_payment_error import GetPaymentError
 from .._generated.payment.errors.get_payment_transactions_error import (
@@ -48,6 +52,7 @@ from .._generated.payment.cancelled_payment_cash_receipt import (
     CancelledPaymentCashReceipt,
 )
 from .._generated.payment.cancelled_payment_escrow import CancelledPaymentEscrow
+from .._generated.payment.cancelled_payment_event import CancelledPaymentEvent
 from .._generated.payment.cancelled_payment_transaction import (
     CancelledPaymentTransaction,
 )
@@ -56,7 +61,9 @@ from .._generated.payment.close_virtual_account_response import (
 )
 from .._generated.payment.confirm_escrow_body import ConfirmEscrowBody
 from .._generated.payment.confirm_escrow_response import ConfirmEscrowResponse
+from .._generated.payment.confirm_payment_body import ConfirmPaymentBody
 from .._generated.payment.confirmed_payment_escrow import ConfirmedPaymentEscrow
+from .._generated.payment.confirmed_payment_summary import ConfirmedPaymentSummary
 from .._generated.payment.convenience_store_brand import ConvenienceStoreBrand
 from .._generated.payment.delivered_payment_escrow import DeliveredPaymentEscrow
 from .._generated.payment.dispute import Dispute
@@ -64,6 +71,12 @@ from .._generated.payment.dispute_status import DisputeStatus
 from .._generated.payment.failed_payment import FailedPayment
 from .._generated.payment.failed_payment_cancellation import FailedPaymentCancellation
 from .._generated.payment.failed_payment_transaction import FailedPaymentTransaction
+from .._generated.payment.get_all_payment_events_by_cursor_body import (
+    GetAllPaymentEventsByCursorBody,
+)
+from .._generated.payment.get_all_payment_events_by_cursor_response import (
+    GetAllPaymentEventsByCursorResponse,
+)
 from .._generated.payment.get_all_payments_by_cursor_body import (
     GetAllPaymentsByCursorBody,
 )
@@ -105,8 +118,12 @@ from .._generated.payment.modify_escrow_logistics_response import (
     ModifyEscrowLogisticsResponse,
 )
 from .._generated.payment.paid_payment import PaidPayment
+from .._generated.payment.paid_payment_event import PaidPaymentEvent
 from .._generated.payment.paid_payment_transaction import PaidPaymentTransaction
 from .._generated.payment.partial_cancelled_payment import PartialCancelledPayment
+from .._generated.payment.partial_cancelled_payment_event import (
+    PartialCancelledPaymentEvent,
+)
 from .._generated.payment.partial_cancelled_payment_transaction import (
     PartialCancelledPaymentTransaction,
 )
@@ -126,6 +143,8 @@ from .._generated.payment.payment_escrow_receiver_input import (
     PaymentEscrowReceiverInput,
 )
 from .._generated.payment.payment_escrow_sender_input import PaymentEscrowSenderInput
+from .._generated.payment.payment_event import PaymentEvent
+from .._generated.payment.payment_event_with_cursor import PaymentEventWithCursor
 from .._generated.payment.payment_failure import PaymentFailure
 from .._generated.payment.payment_filter_input import PaymentFilterInput
 from .._generated.payment.payment_filter_input_escrow_status import (
@@ -224,6 +243,8 @@ __all__ = [
     "CancelPaymentError",
     "CloseVirtualAccountError",
     "ConfirmEscrowError",
+    "ConfirmPaymentError",
+    "GetAllPaymentEventsError",
     "GetAllPaymentsError",
     "GetPaymentError",
     "GetPaymentTransactionsError",
@@ -248,11 +269,14 @@ __all__ = [
     "CancelledPayment",
     "CancelledPaymentCashReceipt",
     "CancelledPaymentEscrow",
+    "CancelledPaymentEvent",
     "CancelledPaymentTransaction",
     "CloseVirtualAccountResponse",
     "ConfirmEscrowBody",
     "ConfirmEscrowResponse",
+    "ConfirmPaymentBody",
     "ConfirmedPaymentEscrow",
+    "ConfirmedPaymentSummary",
     "ConvenienceStoreBrand",
     "DeliveredPaymentEscrow",
     "Dispute",
@@ -260,6 +284,8 @@ __all__ = [
     "FailedPayment",
     "FailedPaymentCancellation",
     "FailedPaymentTransaction",
+    "GetAllPaymentEventsByCursorBody",
+    "GetAllPaymentEventsByCursorResponse",
     "GetAllPaymentsByCursorBody",
     "GetAllPaymentsByCursorResponse",
     "GetPaymentTransactionsResponse",
@@ -279,8 +305,10 @@ __all__ = [
     "ModifyEscrowLogisticsBody",
     "ModifyEscrowLogisticsResponse",
     "PaidPayment",
+    "PaidPaymentEvent",
     "PaidPaymentTransaction",
     "PartialCancelledPayment",
+    "PartialCancelledPaymentEvent",
     "PartialCancelledPaymentTransaction",
     "PayInstantlyResponse",
     "PayPendingPayment",
@@ -294,6 +322,8 @@ __all__ = [
     "PaymentEscrow",
     "PaymentEscrowReceiverInput",
     "PaymentEscrowSenderInput",
+    "PaymentEvent",
+    "PaymentEventWithCursor",
     "PaymentFailure",
     "PaymentFilterInput",
     "PaymentFilterInputEscrowStatus",

@@ -7,5 +7,5 @@ import java.lang.Exception
 /** 외부 서비스에서 에러가 발생한 경우 */
 public class B2bExternalServiceException internal constructor(
   cause: B2bExternalServiceError
-) : PortOneException(cause.message), GetB2bBusinessInfosException {
+) : PortOneException(cause.message), AttachB2bTaxInvoiceFileException, CancelB2bTaxInvoiceIssuanceException, CancelB2bTaxInvoiceRequestException, CreateB2bFileUploadUrlException, DeleteB2bTaxInvoiceAttachmentException, DeleteB2bTaxInvoiceException, DraftB2bTaxInvoiceException, GetB2bBulkTaxInvoiceException, GetB2bBusinessInfosException, GetB2bTaxInvoiceAttachmentsException, GetB2bTaxInvoiceException, GetB2bTaxInvoicePdfDownloadUrlException, GetB2bTaxInvoicePopupUrlException, GetB2bTaxInvoicePrintUrlException, GetB2bTaxInvoicesException, IssueB2bTaxInvoiceException, IssueB2bTaxInvoiceImmediatelyException, RefuseB2bTaxInvoiceRequestException, RequestB2bTaxInvoiceReverseIssuanceException, SendToNtsB2bTaxInvoiceException, UpdateB2bTaxInvoiceDraftException, requestB2bTaxInvoiceException {
 }

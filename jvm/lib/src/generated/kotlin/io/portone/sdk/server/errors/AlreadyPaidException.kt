@@ -7,5 +7,5 @@ import java.lang.Exception
 /** 결제가 이미 완료된 경우 */
 public class AlreadyPaidException internal constructor(
   cause: AlreadyPaidError
-) : PortOneException(cause.message), PayInstantlyException, PayWithBillingKeyException, PreRegisterPaymentException {
+) : PortOneException(cause.message), ConfirmPaymentException, PayInstantlyException, PayWithBillingKeyException, PreRegisterPaymentException {
 }

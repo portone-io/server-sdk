@@ -13,7 +13,7 @@ class VerifiedIdentityVerification:
     """본인인증 상태
     """
     id: str
-    """본인인증 내역 아이디
+    """고객사 본인인증 번호
     """
     verified_customer: IdentityVerificationVerifiedCustomer
     """인증된 고객 정보

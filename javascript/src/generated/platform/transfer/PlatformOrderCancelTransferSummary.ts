@@ -1,4 +1,5 @@
 import type { Currency } from "./../../common/Currency"
+import type { PlatformContract } from "./../../platform/PlatformContract"
 import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
 import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
 import type { PlatformTransferSummaryPartner } from "./../../platform/transfer/PlatformTransferSummaryPartner"
@@ -10,6 +11,7 @@ export type PlatformOrderCancelTransferSummary = {
 	graphqlId: string
 	storeId: string
 	partner: PlatformTransferSummaryPartner
+	contract: PlatformContract
 	status: PlatformTransferStatus
 	memo?: string
 	/**

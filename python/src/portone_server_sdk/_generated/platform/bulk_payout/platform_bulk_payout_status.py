@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformBulkPayoutStatus = Union[Literal["SCHEDULED", "PREPARING", "PREPARED", "ONGOING", "CANCELLED", "STOPPED", "COMPLETED"], str]
+PlatformBulkPayoutStatus = Union[Literal["PREPARING", "PREPARED", "ONGOING", "POST_PROCESS_PENDING", "CANCELLED", "COMPLETED"], str]
 
 
 def _serialize_platform_bulk_payout_status(obj: PlatformBulkPayoutStatus) -> Any:

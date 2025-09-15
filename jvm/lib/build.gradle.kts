@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import io.portone.sdk.server.build.GenerateVersionCodeTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -26,7 +25,12 @@ version =
     ProcessBuilder("git", "describe", "--dirty", "--tags", "--match", "jvm-v*", "--first-parent")
         .directory(rootProject.projectDir)
         .redirectOutput(ProcessBuilder.Redirect.PIPE)
-        .start().inputStream.readBytes().toString(StandardCharsets.UTF_8).trimEnd('\n', '\r').substring("jvm-v".length)
+        .start()
+        .inputStream
+        .readBytes()
+        .toString(StandardCharsets.UTF_8)
+        .trimEnd('\n', '\r')
+        .substring("jvm-v".length)
 
 val generateVersionCode =
     tasks.register<GenerateVersionCodeTask>("generateVersionCode") {
@@ -136,7 +140,7 @@ tasks.register<Jar>("dokkaHtmlJar") {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
     signAllPublications()
     coordinates(artifactId = "server-sdk")
 

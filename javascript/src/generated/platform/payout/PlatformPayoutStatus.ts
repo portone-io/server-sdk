@@ -1,4 +1,5 @@
 export type PlatformPayoutStatus =
+	| "CONFIRMED"
 	| "PREPARED"
 	| "CANCELLED"
 	| "STOPPED"

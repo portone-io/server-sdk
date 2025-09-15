@@ -6,7 +6,9 @@ from ...common.currency import Currency, _deserialize_currency, _serialize_curre
 from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
 from ...platform.payout.platform_payout_account import PlatformPayoutAccount, _deserialize_platform_payout_account, _serialize_platform_payout_account
 from ...platform.platform_payout_method import PlatformPayoutMethod, _deserialize_platform_payout_method, _serialize_platform_payout_method
+from ...platform.payout.platform_payout_settlement_statement_summary import PlatformPayoutSettlementStatementSummary, _deserialize_platform_payout_settlement_statement_summary, _serialize_platform_payout_settlement_statement_summary
 from ...platform.payout.platform_payout_status import PlatformPayoutStatus, _deserialize_platform_payout_status, _serialize_platform_payout_status
+from ...platform.payout.platform_payout_tax_invoice_status import PlatformPayoutTaxInvoiceStatus, _deserialize_platform_payout_tax_invoice_status, _serialize_platform_payout_tax_invoice_status
 from ...platform.settlement_amount_type import SettlementAmountType, _deserialize_settlement_amount_type, _serialize_settlement_amount_type
 
 @dataclass
@@ -15,6 +17,8 @@ class PlatformPayout:
     """지급 고유 아이디
     """
     graphql_id: str
+    bulk_payout_id: str
+    bulk_payout_graphql_id: str
     method: PlatformPayoutMethod
     status: PlatformPayoutStatus
     status_updated_at: str
@@ -22,6 +26,9 @@ class PlatformPayout:
     """
     partner: PlatformPartner
     account: PlatformPayoutAccount
+    tax_invoice_status: PlatformPayoutTaxInvoiceStatus
+    """세금계산서 상태
+    """
     currency: Currency
     amount: int
     """지급금액
@@ -64,7 +71,13 @@ class PlatformPayout:
     settlement_amount_type: SettlementAmountType
     """정산 금액 취급 기준
     """
+    settlement_statement: PlatformPayoutSettlementStatementSummary
+    """정산 내역서 요약 정보
+    """
     memo: Optional[str] = field(default=None)
+    tax_invoice_id: Optional[str] = field(default=None)
+    """세금계산서 아이디
+    """
     withdrawal_memo: Optional[str] = field(default=None)
     deposit_memo: Optional[str] = field(default=None)
     scheduled_at: Optional[str] = field(default=None)
@@ -81,11 +94,14 @@ def _serialize_platform_payout(obj: PlatformPayout) -> Any:
     entity = {}
     entity["id"] = obj.id
     entity["graphqlId"] = obj.graphql_id
+    entity["bulkPayoutId"] = obj.bulk_payout_id
+    entity["bulkPayoutGraphqlId"] = obj.bulk_payout_graphql_id
     entity["method"] = _serialize_platform_payout_method(obj.method)
     entity["status"] = _serialize_platform_payout_status(obj.status)
     entity["statusUpdatedAt"] = obj.status_updated_at
     entity["partner"] = _serialize_platform_partner(obj.partner)
     entity["account"] = _serialize_platform_payout_account(obj.account)
+    entity["taxInvoiceStatus"] = _serialize_platform_payout_tax_invoice_status(obj.tax_invoice_status)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["amount"] = obj.amount
     entity["supplyAmount"] = obj.supply_amount
@@ -98,8 +114,11 @@ def _serialize_platform_payout(obj: PlatformPayout) -> Any:
     entity["createdAt"] = obj.created_at
     entity["deductWht"] = obj.deduct_wht
     entity["settlementAmountType"] = _serialize_settlement_amount_type(obj.settlement_amount_type)
+    entity["settlementStatement"] = _serialize_platform_payout_settlement_statement_summary(obj.settlement_statement)
     if obj.memo is not None:
         entity["memo"] = obj.memo
+    if obj.tax_invoice_id is not None:
+        entity["taxInvoiceId"] = obj.tax_invoice_id
     if obj.withdrawal_memo is not None:
         entity["withdrawalMemo"] = obj.withdrawal_memo
     if obj.deposit_memo is not None:
@@ -124,6 +143,16 @@ def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
     graphql_id = obj["graphqlId"]
     if not isinstance(graphql_id, str):
         raise ValueError(f"{repr(graphql_id)} is not str")
+    if "bulkPayoutId" not in obj:
+        raise KeyError(f"'bulkPayoutId' is not in {obj}")
+    bulk_payout_id = obj["bulkPayoutId"]
+    if not isinstance(bulk_payout_id, str):
+        raise ValueError(f"{repr(bulk_payout_id)} is not str")
+    if "bulkPayoutGraphqlId" not in obj:
+        raise KeyError(f"'bulkPayoutGraphqlId' is not in {obj}")
+    bulk_payout_graphql_id = obj["bulkPayoutGraphqlId"]
+    if not isinstance(bulk_payout_graphql_id, str):
+        raise ValueError(f"{repr(bulk_payout_graphql_id)} is not str")
     if "method" not in obj:
         raise KeyError(f"'method' is not in {obj}")
     method = obj["method"]
@@ -145,6 +174,10 @@ def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
         raise KeyError(f"'account' is not in {obj}")
     account = obj["account"]
     account = _deserialize_platform_payout_account(account)
+    if "taxInvoiceStatus" not in obj:
+        raise KeyError(f"'taxInvoiceStatus' is not in {obj}")
+    tax_invoice_status = obj["taxInvoiceStatus"]
+    tax_invoice_status = _deserialize_platform_payout_tax_invoice_status(tax_invoice_status)
     if "currency" not in obj:
         raise KeyError(f"'currency' is not in {obj}")
     currency = obj["currency"]
@@ -203,12 +236,22 @@ def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
         raise KeyError(f"'settlementAmountType' is not in {obj}")
     settlement_amount_type = obj["settlementAmountType"]
     settlement_amount_type = _deserialize_settlement_amount_type(settlement_amount_type)
+    if "settlementStatement" not in obj:
+        raise KeyError(f"'settlementStatement' is not in {obj}")
+    settlement_statement = obj["settlementStatement"]
+    settlement_statement = _deserialize_platform_payout_settlement_statement_summary(settlement_statement)
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
+    if "taxInvoiceId" in obj:
+        tax_invoice_id = obj["taxInvoiceId"]
+        if not isinstance(tax_invoice_id, str):
+            raise ValueError(f"{repr(tax_invoice_id)} is not str")
+    else:
+        tax_invoice_id = None
     if "withdrawalMemo" in obj:
         withdrawal_memo = obj["withdrawalMemo"]
         if not isinstance(withdrawal_memo, str):
@@ -233,4 +276,4 @@ def _deserialize_platform_payout(obj: Any) -> PlatformPayout:
             raise ValueError(f"{repr(fail_reason)} is not str")
     else:
         fail_reason = None
-    return PlatformPayout(id, graphql_id, method, status, status_updated_at, partner, account, currency, amount, supply_amount, tax_free_amount, vat_amount, settlement_amount, settlement_tax_free_amount, income_tax_amount, local_income_tax_amount, created_at, deduct_wht, settlement_amount_type, memo, withdrawal_memo, deposit_memo, scheduled_at, fail_reason)
+    return PlatformPayout(id, graphql_id, bulk_payout_id, bulk_payout_graphql_id, method, status, status_updated_at, partner, account, tax_invoice_status, currency, amount, supply_amount, tax_free_amount, vat_amount, settlement_amount, settlement_tax_free_amount, income_tax_amount, local_income_tax_amount, created_at, deduct_wht, settlement_amount_type, settlement_statement, memo, tax_invoice_id, withdrawal_memo, deposit_memo, scheduled_at, fail_reason)

@@ -16,9 +16,9 @@ class PaymentAmount:
     (int64)
     """
     discount: int
-    """할인금액
+    """총 할인금액
 
-    카드사 프로모션, 포트원 프로모션, 적립형 포인트 결제, 쿠폰 할인 등을 포함합니다.
+    카드사 할인금액, 포트원 프로모션 할인금액, 간편결제 할인금액(적립형 포인트 결제, 쿠폰 할인) 등을 포함합니다.
     (int64)
     """
     paid: int
@@ -26,11 +26,11 @@ class PaymentAmount:
     (int64)
     """
     cancelled: int
-    """취소금액
+    """총 취소금액
     (int64)
     """
     cancelled_tax_free: int
-    """취소금액 중 면세액
+    """총 취소금액 중 면세액
     (int64)
     """
     vat: Optional[int] = field(default=None)

@@ -31,7 +31,7 @@ class BillingKeyPaymentInput:
     store_id: Optional[str] = field(default=None)
     """상점 아이디
 
-    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
     """
     channel_key: Optional[str] = field(default=None)
     """채널 키
@@ -56,6 +56,8 @@ class BillingKeyPaymentInput:
     """
     cash_receipt: Optional[CashReceiptInput] = field(default=None)
     """현금영수증 정보
+
+    나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)
     """
     country: Optional[Country] = field(default=None)
     """결제 국가
@@ -65,7 +67,7 @@ class BillingKeyPaymentInput:
 
     결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
     상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-    입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+    빈 배열은 무시됩니다.
     """
     products: Optional[list[PaymentProduct]] = field(default=None)
     """상품 정보

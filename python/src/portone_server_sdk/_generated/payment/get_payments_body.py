@@ -7,7 +7,7 @@ from ..payment.payment_filter_input import PaymentFilterInput, _deserialize_paym
 
 @dataclass
 class GetPaymentsBody:
-    """결제 건 다건 조회를 위한 입력 정보
+    """결제 다건 조회를 위한 입력 정보
     """
     page: Optional[PageInput] = field(default=None)
     """요청할 페이지 정보

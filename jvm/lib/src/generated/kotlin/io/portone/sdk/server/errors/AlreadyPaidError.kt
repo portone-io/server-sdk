@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("ALREADY_PAID")
 internal data class AlreadyPaidError(
   override val message: String? = null,
-) : PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized, PreRegisterPaymentError.Recognized
+) : ConfirmPaymentError.Recognized, PayInstantlyError.Recognized, PayWithBillingKeyError.Recognized, PreRegisterPaymentError.Recognized
 
 

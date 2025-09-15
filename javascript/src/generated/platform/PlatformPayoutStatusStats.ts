@@ -1,5 +1,7 @@
 export type PlatformPayoutStatusStats = {
 	/** (int64) */
+	confirmed: number
+	/** (int64) */
 	prepared: number
 	/** (int64) */
 	cancelled: number

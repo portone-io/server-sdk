@@ -19,7 +19,7 @@ public sealed interface IdentityVerification {
   @JsonClassDiscriminator("status")
   /** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */
   public sealed interface Recognized : IdentityVerification {
-    /** 본인인증 내역 아이디 */
+    /** 고객사 본인인증 번호 */
     public val id: String
     /** 사용된 본인인증 채널 */
     public val channel: SelectedChannel?

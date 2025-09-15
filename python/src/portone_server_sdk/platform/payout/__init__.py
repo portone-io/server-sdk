@@ -15,7 +15,16 @@ from ..._generated.platform.payout.platform_payout_filter_input import (
 from ..._generated.platform.payout.platform_payout_filter_input_criteria import (
     PlatformPayoutFilterInputCriteria,
 )
+from ..._generated.platform.payout.platform_payout_settlement_statement_status import (
+    PlatformPayoutSettlementStatementStatus,
+)
+from ..._generated.platform.payout.platform_payout_settlement_statement_summary import (
+    PlatformPayoutSettlementStatementSummary,
+)
 from ..._generated.platform.payout.platform_payout_status import PlatformPayoutStatus
+from ..._generated.platform.payout.platform_payout_tax_invoice_status import (
+    PlatformPayoutTaxInvoiceStatus,
+)
 from ..._generated.platform.payout.client import PayoutClient
 
 __all__ = [
@@ -26,6 +35,9 @@ __all__ = [
     "PlatformPayoutAccount",
     "PlatformPayoutFilterInput",
     "PlatformPayoutFilterInputCriteria",
+    "PlatformPayoutSettlementStatementStatus",
+    "PlatformPayoutSettlementStatementSummary",
     "PlatformPayoutStatus",
+    "PlatformPayoutTaxInvoiceStatus",
     "PayoutClient",
 ]

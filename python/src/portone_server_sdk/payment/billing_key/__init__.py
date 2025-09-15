@@ -1,3 +1,9 @@
+from ..._generated.payment.billing_key.errors.confirm_billing_key_error import (
+    ConfirmBillingKeyError,
+)
+from ..._generated.payment.billing_key.errors.confirm_billing_key_issue_and_pay_error import (
+    ConfirmBillingKeyIssueAndPayError,
+)
 from ..._generated.payment.billing_key.errors.delete_billing_key_error import (
     DeleteBillingKeyError,
 )
@@ -66,6 +72,18 @@ from ..._generated.payment.billing_key.channel_specific_failure_invalid_request 
 from ..._generated.payment.billing_key.channel_specific_failure_pg_provider import (
     ChannelSpecificFailurePgProvider,
 )
+from ..._generated.payment.billing_key.confirm_billing_key_body import (
+    ConfirmBillingKeyBody,
+)
+from ..._generated.payment.billing_key.confirm_billing_key_issue_and_pay_body import (
+    ConfirmBillingKeyIssueAndPayBody,
+)
+from ..._generated.payment.billing_key.confirmed_billing_key_issue_and_pay_summary import (
+    ConfirmedBillingKeyIssueAndPaySummary,
+)
+from ..._generated.payment.billing_key.confirmed_billing_key_summary import (
+    ConfirmedBillingKeySummary,
+)
 from ..._generated.payment.billing_key.delete_billing_key_response import (
     DeleteBillingKeyResponse,
 )
@@ -103,6 +121,8 @@ from ..._generated.payment.billing_key.pg_billing_key_issue_response import (
 from ..._generated.payment.billing_key.client import BillingKeyClient
 
 __all__ = [
+    "ConfirmBillingKeyError",
+    "ConfirmBillingKeyIssueAndPayError",
     "DeleteBillingKeyError",
     "GetBillingKeyInfoError",
     "GetBillingKeyInfosError",
@@ -129,6 +149,10 @@ __all__ = [
     "ChannelSpecificFailure",
     "ChannelSpecificFailureInvalidRequest",
     "ChannelSpecificFailurePgProvider",
+    "ConfirmBillingKeyBody",
+    "ConfirmBillingKeyIssueAndPayBody",
+    "ConfirmedBillingKeyIssueAndPaySummary",
+    "ConfirmedBillingKeySummary",
     "DeleteBillingKeyResponse",
     "DeletedBillingKeyInfo",
     "FailedPgBillingKeyIssueResponse",

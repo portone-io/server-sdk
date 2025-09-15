@@ -17,7 +17,7 @@ import type { PaymentWebhookStatus } from "./../payment/PaymentWebhookStatus"
 import type { PgProvider } from "./../common/PgProvider"
 import type { PortOneVersion } from "./../common/PortOneVersion"
 import type { SortOrder } from "./../common/SortOrder"
-/** 결제 건 다건 조회를 위한 입력 정보 */
+/** 결제 다건 조회를 위한 입력 정보 */
 export type PaymentFilterInput = {
 	/** 고객사 아이디 */
 	merchantId?: string
@@ -56,9 +56,9 @@ export type PaymentFilterInput = {
 	 */
 	methods?: PaymentMethodType[]
 	/**
-	 * PG사 리스트
+	 * PG사 결제 모듈 리스트
 	 *
-	 * 값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
+	 * 값을 입력하지 않으면 PG사 결제 모듈 필터링이 적용되지 않습니다.
 	 */
 	pgProvider?: PgProvider[]
 	/** 테스트 결제 여부 */
@@ -71,7 +71,7 @@ export type PaymentFilterInput = {
 	sortOrder?: SortOrder
 	/** 포트원 버전 */
 	version?: PortOneVersion
-	/** 웹훅 상태 */
+	/** 최종 결제 상태의 웹훅 상태 */
 	webhookStatus?: PaymentWebhookStatus
 	/** 플랫폼 유형 */
 	platformType?: PaymentClientType

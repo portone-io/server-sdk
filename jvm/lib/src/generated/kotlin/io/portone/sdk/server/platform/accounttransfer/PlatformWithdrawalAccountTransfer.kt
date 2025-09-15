@@ -2,6 +2,7 @@ package io.portone.sdk.server.platform.accounttransfer
 
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferStatus
 import io.portone.sdk.server.platform.accounttransfer.Type
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -14,8 +15,11 @@ import kotlinx.serialization.Serializable
 public data class PlatformWithdrawalAccountTransfer(
   /** 계좌 이체 아이디 */
   override val id: String,
+  /** 출금 계좌 아이디 */
+  override val bankAccountId: String,
+  override val bankAccountGraphqlId: String,
   /** 거래 일련번호 */
-  val sequenceNumber: Int,
+  val sequenceNumber: Int? = null,
   /** 통화 */
   override val currency: Currency,
   /** 이체 계좌 은행 */
@@ -53,8 +57,16 @@ public data class PlatformWithdrawalAccountTransfer(
   /** 지급 고유 아이디 */
   val payoutId: String? = null,
   val payoutGraphqlId: String? = null,
+  val bulkAccountTransferId: String? = null,
+  val bulkAccountTransferGraphqlId: String? = null,
   /** 전자서명 아이디 */
   val documentId: String? = null,
+  /** 상태 업데이트 일시 */
+  override val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 상태 */
+  override val status: PlatformAccountTransferStatus,
+  /** 예정 일시 */
+  val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 ) : PlatformAccountTransfer.Recognized
 
 

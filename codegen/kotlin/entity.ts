@@ -1,4 +1,4 @@
-import { toPascalCase } from "@std/text"
+import { toPascalCase } from "../common/casing.ts"
 import type { Definition, Property } from "../parser/definition.ts"
 import { Extends, filterName, KotlinWriter, toPackageCase } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"

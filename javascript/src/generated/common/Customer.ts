@@ -12,6 +12,10 @@ export type Customer = {
 	name?: string
 	/** 출생 연도 */
 	birthYear?: string
+	/** 출생 월 */
+	birthMonth?: string
+	/** 출생 일자 */
+	birthDay?: string
 	/** 성별 */
 	gender?: Gender
 	/** 이메일 */

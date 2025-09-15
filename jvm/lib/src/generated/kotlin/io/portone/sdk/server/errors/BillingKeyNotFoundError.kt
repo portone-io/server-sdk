@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("BILLING_KEY_NOT_FOUND")
 internal data class BillingKeyNotFoundError(
   override val message: String? = null,
-) : CreatePaymentScheduleError.Recognized, DeleteBillingKeyError.Recognized, GetBillingKeyInfoError.Recognized, PayWithBillingKeyError.Recognized, RevokePaymentSchedulesError.Recognized
+) : ConfirmBillingKeyError.Recognized, ConfirmBillingKeyIssueAndPayError.Recognized, CreatePaymentScheduleError.Recognized, DeleteBillingKeyError.Recognized, GetBillingKeyInfoError.Recognized, PayWithBillingKeyError.Recognized, RevokePaymentSchedulesError.Recognized
 
 

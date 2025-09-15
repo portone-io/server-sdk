@@ -17,7 +17,7 @@ public data class InstantPaymentMethodInputVirtualAccount(
   /** 가상계좌 유형 */
   val option: InstantPaymentMethodInputVirtualAccountOption,
   /** 현금영수증 정보 */
-  val cashReceipt: InstantPaymentMethodInputVirtualAccountCashReceiptInfo,
+  val cashReceipt: InstantPaymentMethodInputVirtualAccountCashReceiptInfo? = null,
   /** 예금주명 */
   val remitteeName: String? = null,
 )

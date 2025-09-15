@@ -15,10 +15,13 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.CustomerInput
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.BillingKeyAlreadyDeletedError
 import io.portone.sdk.server.errors.BillingKeyAlreadyDeletedException
+import io.portone.sdk.server.errors.BillingKeyAlreadyIssuedError
+import io.portone.sdk.server.errors.BillingKeyAlreadyIssuedException
 import io.portone.sdk.server.errors.BillingKeyNotFoundError
 import io.portone.sdk.server.errors.BillingKeyNotFoundException
 import io.portone.sdk.server.errors.BillingKeyNotIssuedError
@@ -27,6 +30,10 @@ import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
 import io.portone.sdk.server.errors.ChannelSpecificError
 import io.portone.sdk.server.errors.ChannelSpecificException
+import io.portone.sdk.server.errors.ConfirmBillingKeyError
+import io.portone.sdk.server.errors.ConfirmBillingKeyException
+import io.portone.sdk.server.errors.ConfirmBillingKeyIssueAndPayError
+import io.portone.sdk.server.errors.ConfirmBillingKeyIssueAndPayException
 import io.portone.sdk.server.errors.DeleteBillingKeyError
 import io.portone.sdk.server.errors.DeleteBillingKeyException
 import io.portone.sdk.server.errors.ForbiddenError
@@ -35,6 +42,8 @@ import io.portone.sdk.server.errors.GetBillingKeyInfoError
 import io.portone.sdk.server.errors.GetBillingKeyInfoException
 import io.portone.sdk.server.errors.GetBillingKeyInfosError
 import io.portone.sdk.server.errors.GetBillingKeyInfosException
+import io.portone.sdk.server.errors.InformationMismatchError
+import io.portone.sdk.server.errors.InformationMismatchException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.IssueBillingKeyError
@@ -49,6 +58,10 @@ import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.payment.billingkey.BillingKeyFilterInput
 import io.portone.sdk.server.payment.billingkey.BillingKeyInfo
 import io.portone.sdk.server.payment.billingkey.BillingKeySortInput
+import io.portone.sdk.server.payment.billingkey.ConfirmBillingKeyBody
+import io.portone.sdk.server.payment.billingkey.ConfirmBillingKeyIssueAndPayBody
+import io.portone.sdk.server.payment.billingkey.ConfirmedBillingKeyIssueAndPaySummary
+import io.portone.sdk.server.payment.billingkey.ConfirmedBillingKeySummary
 import io.portone.sdk.server.payment.billingkey.DeleteBillingKeyResponse
 import io.portone.sdk.server.payment.billingkey.GetBillingKeyInfosBody
 import io.portone.sdk.server.payment.billingkey.GetBillingKeyInfosResponse
@@ -254,6 +267,180 @@ public class BillingKeyClient(
     bypass: JsonObject? = null,
     noticeUrls: List<String>? = null,
   ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
+
+
+  /**
+   * 빌링키 발급 수동 승인
+   *
+   * 수동 승인으로 설정된 빌링키 발급에 대해, 빌링키 발급을 완료 처리합니다.
+   *
+   * @param billingIssueToken
+   * 빌링키 발급 토큰
+   *
+   * 빌링키 발급 요청 완료 시 발급된 토큰입니다.
+   * @param isTest
+   * 테스트 결제 여부
+   *
+   * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+   *
+   * @throws ConfirmBillingKeyException
+   */
+  @JvmName("confirmBillingKeySuspend")
+  public suspend fun confirmBillingKey(
+    billingIssueToken: String,
+    isTest: Boolean? = null,
+  ): ConfirmedBillingKeySummary {
+    val requestBody = ConfirmBillingKeyBody(
+      storeId = storeId,
+      billingIssueToken = billingIssueToken,
+      isTest = isTest,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("billing-keys", "confirm")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConfirmBillingKeyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is BillingKeyAlreadyIssuedError -> throw BillingKeyAlreadyIssuedException(httpBodyDecoded)
+        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InformationMismatchError -> throw InformationMismatchException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConfirmedBillingKeySummary>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("confirmBillingKey")
+  public fun confirmBillingKeyFuture(
+    billingIssueToken: String,
+    isTest: Boolean? = null,
+  ): CompletableFuture<ConfirmedBillingKeySummary> = GlobalScope.future { confirmBillingKey(billingIssueToken, isTest) }
+
+
+  /**
+   * 빌링키 발급 및 초회 결제 수동 승인
+   *
+   * 수동 승인으로 설정된 빌링키 발급 및 초회 결제에 대해, 빌링키 발급과 결제를 완료 처리합니다.
+   *
+   * @param billingIssueToken
+   * 빌링키 발급 토큰
+   *
+   * 빌링키 발급 및 초회 결제 요청 완료 시 발급된 토큰입니다.
+   * @param paymentId
+   * 결제 건 아이디
+   *
+   * 검증용 파라미터로, 결제 건 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+   * @param currency
+   * 통화
+   *
+   * 검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다.
+   * @param totalAmount
+   * 결제 금액
+   *
+   * 검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다.
+   * @param taxFreeAmount
+   * 면세 금액
+   *
+   * 검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+   * @param isTest
+   * 테스트 결제 여부
+   *
+   * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+   *
+   * @throws ConfirmBillingKeyIssueAndPayException
+   */
+  @JvmName("confirmBillingKeyIssueAndPaySuspend")
+  public suspend fun confirmBillingKeyIssueAndPay(
+    billingIssueToken: String,
+    paymentId: String? = null,
+    currency: Currency? = null,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    isTest: Boolean? = null,
+  ): ConfirmedBillingKeyIssueAndPaySummary {
+    val requestBody = ConfirmBillingKeyIssueAndPayBody(
+      storeId = storeId,
+      billingIssueToken = billingIssueToken,
+      paymentId = paymentId,
+      currency = currency,
+      totalAmount = totalAmount,
+      taxFreeAmount = taxFreeAmount,
+      isTest = isTest,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("billing-keys", "confirm-issue-and-pay")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConfirmBillingKeyIssueAndPayError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is BillingKeyAlreadyIssuedError -> throw BillingKeyAlreadyIssuedException(httpBodyDecoded)
+        is BillingKeyNotFoundError -> throw BillingKeyNotFoundException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InformationMismatchError -> throw InformationMismatchException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConfirmedBillingKeyIssueAndPaySummary>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("confirmBillingKeyIssueAndPay")
+  public fun confirmBillingKeyIssueAndPayFuture(
+    billingIssueToken: String,
+    paymentId: String? = null,
+    currency: Currency? = null,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    isTest: Boolean? = null,
+  ): CompletableFuture<ConfirmedBillingKeyIssueAndPaySummary> = GlobalScope.future { confirmBillingKeyIssueAndPay(billingIssueToken, paymentId, currency, totalAmount, taxFreeAmount, isTest) }
 
 
   /**

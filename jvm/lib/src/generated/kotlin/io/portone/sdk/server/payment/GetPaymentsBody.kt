@@ -4,7 +4,7 @@ import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.payment.PaymentFilterInput
 import kotlinx.serialization.Serializable
 
-/** 결제 건 다건 조회를 위한 입력 정보 */
+/** 결제 다건 조회를 위한 입력 정보 */
 @Serializable
 internal data class GetPaymentsBody(
   /**

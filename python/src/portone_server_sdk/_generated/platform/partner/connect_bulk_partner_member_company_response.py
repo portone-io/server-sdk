@@ -5,7 +5,7 @@ from ...platform.partner.platform_bulk_task import PlatformBulkTask, _deserializ
 
 @dataclass
 class ConnectBulkPartnerMemberCompanyResponse:
-    """파트너 연동 사업자 일괄 연동 요청 응답
+    """파트너 일괄 국세청 연동 응답
     """
     bulk_task: PlatformBulkTask
 

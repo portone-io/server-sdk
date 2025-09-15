@@ -5,8 +5,8 @@ from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
 from ...errors import B2bExternalServiceError, B2bNotEnabledError, ForbiddenError, InvalidRequestError, PlatformCompanyNotFoundError, PlatformExternalApiFailedError, PlatformNotEnabledError, UnauthorizedError, UnknownError
-from ...platform.company.b2b_external_service_error import _deserialize_b2b_external_service_error
-from ...platform.company.b2b_not_enabled_error import _deserialize_b2b_not_enabled_error
+from ...common.b2b_external_service_error import _deserialize_b2b_external_service_error
+from ...common.b2b_not_enabled_error import _deserialize_b2b_not_enabled_error
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.company.platform_company_not_found_error import _deserialize_platform_company_not_found_error

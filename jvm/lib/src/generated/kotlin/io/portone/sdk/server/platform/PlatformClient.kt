@@ -159,6 +159,7 @@ import io.portone.sdk.server.platform.UpdatePlatformSettingBody
 import io.portone.sdk.server.platform.UpdatePlatformSettingResponse
 import io.portone.sdk.server.platform.account.AccountClient
 import io.portone.sdk.server.platform.accounttransfer.AccountTransferClient
+import io.portone.sdk.server.platform.bulkaccounttransfer.BulkAccountTransferClient
 import io.portone.sdk.server.platform.bulkpayout.BulkPayoutClient
 import io.portone.sdk.server.platform.company.CompanyClient
 import io.portone.sdk.server.platform.partner.PartnerClient
@@ -1558,6 +1559,7 @@ public class PlatformClient(
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)
   public val policy: PolicyClient = PolicyClient(apiSecret, apiBase, storeId)
   public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
+  public val bulkAccountTransfer: BulkAccountTransferClient = BulkAccountTransferClient(apiSecret, apiBase, storeId)
   public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
   public val partnerSettlement: PartnerSettlementClient = PartnerSettlementClient(apiSecret, apiBase, storeId)
   public val partner: PartnerClient = PartnerClient(apiSecret, apiBase, storeId)
@@ -1568,6 +1570,7 @@ public class PlatformClient(
     accountTransfer.close()
     policy.close()
     account.close()
+    bulkAccountTransfer.close()
     bulkPayout.close()
     partnerSettlement.close()
     partner.close()

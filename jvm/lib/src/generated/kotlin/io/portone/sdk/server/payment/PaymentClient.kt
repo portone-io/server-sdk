@@ -50,10 +50,14 @@ import io.portone.sdk.server.errors.CloseVirtualAccountError
 import io.portone.sdk.server.errors.CloseVirtualAccountException
 import io.portone.sdk.server.errors.ConfirmEscrowError
 import io.portone.sdk.server.errors.ConfirmEscrowException
+import io.portone.sdk.server.errors.ConfirmPaymentError
+import io.portone.sdk.server.errors.ConfirmPaymentException
 import io.portone.sdk.server.errors.DiscountAmountExceedsTotalAmountError
 import io.portone.sdk.server.errors.DiscountAmountExceedsTotalAmountException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
+import io.portone.sdk.server.errors.GetAllPaymentEventsError
+import io.portone.sdk.server.errors.GetAllPaymentEventsException
 import io.portone.sdk.server.errors.GetAllPaymentsError
 import io.portone.sdk.server.errors.GetAllPaymentsException
 import io.portone.sdk.server.errors.GetPaymentError
@@ -62,6 +66,10 @@ import io.portone.sdk.server.errors.GetPaymentTransactionsError
 import io.portone.sdk.server.errors.GetPaymentTransactionsException
 import io.portone.sdk.server.errors.GetPaymentsError
 import io.portone.sdk.server.errors.GetPaymentsException
+import io.portone.sdk.server.errors.InformationMismatchError
+import io.portone.sdk.server.errors.InformationMismatchException
+import io.portone.sdk.server.errors.InvalidPaymentTokenError
+import io.portone.sdk.server.errors.InvalidPaymentTokenException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
 import io.portone.sdk.server.errors.MaxTransactionCountReachedError
@@ -115,6 +123,10 @@ import io.portone.sdk.server.payment.CancelRequester
 import io.portone.sdk.server.payment.CloseVirtualAccountResponse
 import io.portone.sdk.server.payment.ConfirmEscrowBody
 import io.portone.sdk.server.payment.ConfirmEscrowResponse
+import io.portone.sdk.server.payment.ConfirmPaymentBody
+import io.portone.sdk.server.payment.ConfirmedPaymentSummary
+import io.portone.sdk.server.payment.GetAllPaymentEventsByCursorBody
+import io.portone.sdk.server.payment.GetAllPaymentEventsByCursorResponse
 import io.portone.sdk.server.payment.GetAllPaymentsByCursorBody
 import io.portone.sdk.server.payment.GetAllPaymentsByCursorResponse
 import io.portone.sdk.server.payment.GetPaymentTransactionsResponse
@@ -170,6 +182,88 @@ public class PaymentClient(
   private val client: HttpClient = HttpClient(OkHttp)
 
   private val json: Json = Json { ignoreUnknownKeys = true }
+
+  /**
+   * 결제 이벤트 대용량 다건 조회(커서 기반)
+   *
+   * 기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
+   *
+   * @param from
+   * 결제 이벤트 생성시점 범위 조건의 시작
+   *
+   * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+   * @param until
+   * 결제 이벤트 생성시점 범위 조건의 끝
+   *
+   * 값을 입력하지 않으면 현재 시점으로 설정됩니다.
+   * @param cursor
+   * 커서
+   *
+   * 결제 이벤트 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.
+   * @param size
+   * 페이지 크기
+   *
+   * 미입력 시 기본값은 10 이며 최대 1000까지 허용
+   *
+   * @throws GetAllPaymentEventsException
+   */
+  @JvmName("getAllPaymentEventsByCursorSuspend")
+  public suspend fun getAllPaymentEventsByCursor(
+    `from`: Instant? = null,
+    until: Instant? = null,
+    cursor: String? = null,
+    size: Int? = null,
+  ): GetAllPaymentEventsByCursorResponse {
+    val requestBody = GetAllPaymentEventsByCursorBody(
+      storeId = storeId,
+      from = from,
+      until = until,
+      cursor = cursor,
+      size = size,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        appendPathSegments("payment-events-by-cursor")
+        parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetAllPaymentEventsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetAllPaymentEventsByCursorResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getAllPaymentEventsByCursor")
+  public fun getAllPaymentEventsByCursorFuture(
+    `from`: Instant? = null,
+    until: Instant? = null,
+    cursor: String? = null,
+    size: Int? = null,
+  ): CompletableFuture<GetAllPaymentEventsByCursorResponse> = GlobalScope.future { getAllPaymentEventsByCursor(from, until, cursor, size) }
+
 
   /**
    * 결제 대용량 다건 조회(커서 기반)
@@ -284,6 +378,8 @@ public class PaymentClient(
    * 카드 포인트 사용 여부
    * @param cashReceipt
    * 현금영수증 정보
+   *
+   * 나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)
    * @param country
    * 결제 국가
    * @param noticeUrls
@@ -291,7 +387,7 @@ public class PaymentClient(
    *
    * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
    * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * 빈 배열은 무시됩니다.
    * @param products
    * 상품 정보
    *
@@ -560,6 +656,112 @@ public class PaymentClient(
 
 
   /**
+   * 인증 결제 수동 승인
+   *
+   * 수동 승인으로 설정된 인증 결제에 대해, 결제를 완료 처리합니다.
+   *
+   * @param paymentId
+   * 결제 아이디
+   * @param paymentToken
+   * 결제 토큰
+   *
+   * 인증 완료 시 발급된 토큰입니다.
+   * @param txId
+   * 결제 시도 아이디
+   *
+   * 검증용 파라미터로, 결제 시도 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+   * @param currency
+   * 통화
+   *
+   * 검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+   * @param totalAmount
+   * 결제 금액
+   *
+   * 검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+   * @param taxFreeAmount
+   * 면세 금액
+   *
+   * 검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+   * @param isTest
+   * 테스트 결제 여부
+   *
+   * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+   *
+   * @throws ConfirmPaymentException
+   */
+  @JvmName("confirmPaymentSuspend")
+  public suspend fun confirmPayment(
+    paymentId: String,
+    paymentToken: String,
+    txId: String? = null,
+    currency: Currency? = null,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    isTest: Boolean? = null,
+  ): ConfirmedPaymentSummary {
+    val requestBody = ConfirmPaymentBody(
+      storeId = storeId,
+      paymentToken = paymentToken,
+      txId = txId,
+      currency = currency,
+      totalAmount = totalAmount,
+      taxFreeAmount = taxFreeAmount,
+      isTest = isTest,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        appendPathSegments("payments", paymentId.toString(), "confirm")
+      }
+      headers {
+        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      contentType(ContentType.Application.Json)
+      accept(ContentType.Application.Json)
+      userAgent(USER_AGENT)
+      setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ConfirmPaymentError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is AlreadyPaidError -> throw AlreadyPaidException(httpBodyDecoded)
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InformationMismatchError -> throw InformationMismatchException(httpBodyDecoded)
+        is InvalidPaymentTokenError -> throw InvalidPaymentTokenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ConfirmedPaymentSummary>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("confirmPayment")
+  public fun confirmPaymentFuture(
+    paymentId: String,
+    paymentToken: String,
+    txId: String? = null,
+    currency: Currency? = null,
+    totalAmount: Long? = null,
+    taxFreeAmount: Long? = null,
+    isTest: Boolean? = null,
+  ): CompletableFuture<ConfirmedPaymentSummary> = GlobalScope.future { confirmPayment(paymentId, paymentToken, txId, currency, totalAmount, taxFreeAmount, isTest) }
+
+
+  /**
    * 에스크로 구매 확정
    *
    * 에스크로 결제를 구매 확정 처리합니다
@@ -810,7 +1012,7 @@ public class PaymentClient(
   /**
    * 수기 결제
    *
-   * 수기 결제를 진행합니다.
+   * 카드 비인증 결제 또는 가상 계좌 발급을 API로 요청합니다.
    *
    * @param paymentId
    * 결제 건 아이디
@@ -847,9 +1049,9 @@ public class PaymentClient(
    * @param noticeUrls
    * 웹훅 주소
    *
-   * 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+   * 결제 웹훅 주소입니다.
    * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-   * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * 빈 배열은 무시됩니다.
    * @param products
    * 상품 정보
    *

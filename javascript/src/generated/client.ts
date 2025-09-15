@@ -1,4 +1,5 @@
 import type { PortOneClientInit } from "../client"
+import { B2bClient } from "./b2b/client"
 import { PlatformClient } from "./platform/client"
 import { PaymentClient } from "./payment/client"
 import { IdentityVerificationClient } from "./identityVerification/client"
@@ -9,6 +10,7 @@ import { AuthClient } from "./auth/client"
  */
 export function PortOneClient(init: PortOneClientInit): PortOneClient {
 	return {
+		b2b: B2bClient(init),
 		platform: PlatformClient(init),
 		payment: PaymentClient(init),
 		identityVerification: IdentityVerificationClient(init),
@@ -17,6 +19,7 @@ export function PortOneClient(init: PortOneClientInit): PortOneClient {
 	}
 }
 export type PortOneClient = {
+	b2b: B2bClient
 	platform: PlatformClient
 	payment: PaymentClient
 	identityVerification: IdentityVerificationClient

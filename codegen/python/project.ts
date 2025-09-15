@@ -1,18 +1,13 @@
 import * as fs from "@std/fs"
 import * as path from "@std/path"
-import { toPascalCase } from "@std/text"
+import { toPascalCase, toSnakeCase } from "../common/casing.ts"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import { isClientPackage } from "../common/package.ts"
 import { entities as webhookEntities } from "../common/webhook/index.ts"
 import type { Writer } from "../common/writer.ts"
 import type { Definition } from "../parser/definition.ts"
 import type { Package } from "../parser/openapi.ts"
-import {
-  filterName,
-  intoInlineTypeName,
-  PythonWriter,
-  toSnakeCase,
-} from "./common.ts"
+import { filterName, intoInlineTypeName, PythonWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
 import { generateEntity } from "./entity.ts"
 import { writeOperation } from "./operation.ts"

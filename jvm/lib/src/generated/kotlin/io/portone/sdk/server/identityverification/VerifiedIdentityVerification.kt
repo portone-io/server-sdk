@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("VERIFIED")
 public data class VerifiedIdentityVerification(
-  /** 본인인증 내역 아이디 */
+  /** 고객사 본인인증 번호 */
   override val id: String,
   /** 사용된 본인인증 채널 */
   override val channel: SelectedChannel? = null,

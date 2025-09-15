@@ -22,4 +22,8 @@ export type PlatformTransferFilterInputKeyword = {
 	partnerName?: string
 	/** 해당 값이 포함된 partnerMemo 를 가진 정산건만 조회합니다. */
 	partnerMemo?: string
+	/** 해당 값이 포함된 partnerSettlementId 를 가진 정산건만 조회합니다. */
+	partnerSettlementId?: string
+	/** 해당 값과 일치하는 지급건에 연관된 정산건만 조회합니다. */
+	payoutId?: string
 }

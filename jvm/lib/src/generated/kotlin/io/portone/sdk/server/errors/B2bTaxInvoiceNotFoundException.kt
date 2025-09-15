@@ -1,0 +1,11 @@
+package io.portone.sdk.server.errors
+
+import io.portone.sdk.server.errors.B2bTaxInvoiceNotFoundError
+import java.lang.Exception
+
+
+/** 세금계산서가 존재하지 않은 경우 */
+public class B2bTaxInvoiceNotFoundException internal constructor(
+  cause: B2bTaxInvoiceNotFoundError
+) : PortOneException(cause.message), AttachB2bTaxInvoiceFileException, CancelB2bTaxInvoiceIssuanceException, CancelB2bTaxInvoiceRequestException, DeleteB2bTaxInvoiceAttachmentException, DeleteB2bTaxInvoiceException, DraftB2bTaxInvoiceException, GetB2bTaxInvoiceAttachmentsException, GetB2bTaxInvoiceException, GetB2bTaxInvoicePdfDownloadUrlException, GetB2bTaxInvoicePopupUrlException, GetB2bTaxInvoicePrintUrlException, GetB2bTaxInvoicesException, IssueB2bTaxInvoiceException, IssueB2bTaxInvoiceImmediatelyException, RefuseB2bTaxInvoiceRequestException, RequestB2bTaxInvoiceReverseIssuanceException, SendToNtsB2bTaxInvoiceException, UpdateB2bTaxInvoiceDraftException, requestB2bTaxInvoiceException {
+}

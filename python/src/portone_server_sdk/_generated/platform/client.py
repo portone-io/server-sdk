@@ -67,6 +67,7 @@ from .company.client import CompanyClient
 from .account_transfer.client import AccountTransferClient
 from .policy.client import PolicyClient
 from .account.client import AccountClient
+from .bulk_account_transfer.client import BulkAccountTransferClient
 from .bulk_payout.client import BulkPayoutClient
 from .partner_settlement.client import PartnerSettlementClient
 from .partner.client import PartnerClient
@@ -82,6 +83,7 @@ class PlatformClient:
     account_transfer: AccountTransferClient
     policy: PolicyClient
     account: AccountClient
+    bulk_account_transfer: BulkAccountTransferClient
     bulk_payout: BulkPayoutClient
     partner_settlement: PartnerSettlementClient
     partner: PartnerClient
@@ -106,6 +108,7 @@ class PlatformClient:
         self.account_transfer = AccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
         self.policy = PolicyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.account = AccountClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.bulk_account_transfer = BulkAccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
         self.bulk_payout = BulkPayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.partner_settlement = PartnerSettlementClient(secret=secret, base_url=base_url, store_id=store_id)
         self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)

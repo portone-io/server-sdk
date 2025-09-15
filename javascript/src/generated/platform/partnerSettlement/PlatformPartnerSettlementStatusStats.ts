@@ -8,6 +8,10 @@ export type PlatformPartnerSettlementStatusStats = {
 	/** (int64) */
 	payoutFailed: number
 	/** (int64) */
+	payoutCancelled: number
+	/** (int64) */
+	payoutConfirmed: number
+	/** (int64) */
 	inPayout: number
 	/** (int64) */
 	paidOut: number

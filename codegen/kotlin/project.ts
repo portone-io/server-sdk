@@ -1,6 +1,6 @@
 import * as fs from "@std/fs"
 import * as path from "@std/path"
-import { toPascalCase } from "@std/text"
+import { toPascalCase } from "../common/casing.ts"
 import { makeCategoryMap, makeEntityMap } from "../common/maps.ts"
 import { isClientPackage } from "../common/package.ts"
 import {

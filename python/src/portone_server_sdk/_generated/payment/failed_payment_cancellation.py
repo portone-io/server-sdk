@@ -14,7 +14,7 @@ class FailedPaymentCancellation:
     """취소 내역 아이디
     """
     total_amount: int
-    """취소 총 금액
+    """취소 금액
     (int64)
     """
     tax_free_amount: int

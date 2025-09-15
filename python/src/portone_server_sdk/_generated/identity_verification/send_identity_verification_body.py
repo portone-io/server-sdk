@@ -25,7 +25,7 @@ class SendIdentityVerificationBody:
     store_id: Optional[str] = field(default=None)
     """상점 아이디
 
-    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.
+    접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
     """
     custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터

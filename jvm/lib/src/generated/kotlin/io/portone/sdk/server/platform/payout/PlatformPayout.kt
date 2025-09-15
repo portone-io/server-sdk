@@ -5,7 +5,9 @@ import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.PlatformPayoutMethod
 import io.portone.sdk.server.platform.SettlementAmountType
 import io.portone.sdk.server.platform.payout.PlatformPayoutAccount
+import io.portone.sdk.server.platform.payout.PlatformPayoutSettlementStatementSummary
 import io.portone.sdk.server.platform.payout.PlatformPayoutStatus
+import io.portone.sdk.server.platform.payout.PlatformPayoutTaxInvoiceStatus
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlin.String
@@ -16,12 +18,18 @@ public data class PlatformPayout(
   /** 지급 고유 아이디 */
   val id: String,
   val graphqlId: String,
+  val bulkPayoutId: String,
+  val bulkPayoutGraphqlId: String,
   val method: PlatformPayoutMethod,
   val status: PlatformPayoutStatus,
   val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
   val memo: String? = null,
   val partner: PlatformPartner,
   val account: PlatformPayoutAccount,
+  /** 세금계산서 아이디 */
+  val taxInvoiceId: String? = null,
+  /** 세금계산서 상태 */
+  val taxInvoiceStatus: PlatformPayoutTaxInvoiceStatus,
   val currency: Currency,
   /** 지급금액 */
   val amount: Long,
@@ -49,6 +57,8 @@ public data class PlatformPayout(
   val deductWht: Boolean,
   /** 정산 금액 취급 기준 */
   val settlementAmountType: SettlementAmountType,
+  /** 정산 내역서 요약 정보 */
+  val settlementStatement: PlatformPayoutSettlementStatementSummary,
 )
 
 

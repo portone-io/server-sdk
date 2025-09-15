@@ -109,6 +109,38 @@ public sealed interface PlatformPartnerSettlementStatus {
     }
     override fun serialize(encoder: Encoder, value: PaidOut) = encoder.encodeString(value.value)
   }
+  /** 지급 취소 */
+  @Serializable(CancelledSerializer::class)
+  public data object Cancelled : PlatformPartnerSettlementStatus {
+    override val value: String = "CANCELLED"
+  }
+  private object CancelledSerializer : KSerializer<Cancelled> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
+      if (it != "CANCELLED") {
+        throw SerializationException(it)
+      } else {
+        return Cancelled
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Cancelled) = encoder.encodeString(value.value)
+  }
+  /** 지급 확정 */
+  @Serializable(ConfirmedSerializer::class)
+  public data object Confirmed : PlatformPartnerSettlementStatus {
+    override val value: String = "CONFIRMED"
+  }
+  private object ConfirmedSerializer : KSerializer<Confirmed> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Confirmed::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Confirmed = decoder.decodeString().let {
+      if (it != "CONFIRMED") {
+        throw SerializationException(it)
+      } else {
+        return Confirmed
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Confirmed) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PlatformPartnerSettlementStatus
@@ -126,6 +158,8 @@ private object PlatformPartnerSettlementStatusSerializer : KSerializer<PlatformP
       "PAYOUT_FAILED" -> PlatformPartnerSettlementStatus.PayoutFailed
       "IN_PAYOUT" -> PlatformPartnerSettlementStatus.InPayout
       "PAID_OUT" -> PlatformPartnerSettlementStatus.PaidOut
+      "CANCELLED" -> PlatformPartnerSettlementStatus.Cancelled
+      "CONFIRMED" -> PlatformPartnerSettlementStatus.Confirmed
       else -> PlatformPartnerSettlementStatus.Unrecognized(value)
     }
   }

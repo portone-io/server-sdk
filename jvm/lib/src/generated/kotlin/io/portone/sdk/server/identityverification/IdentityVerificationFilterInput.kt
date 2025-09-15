@@ -40,7 +40,7 @@ public data class IdentityVerificationFilterInput(
    */
   val until: @Serializable(InstantSerializer::class) Instant? = null,
   /**
-   * 고객사 본인인증 아이디
+   * 고객사 본인인증 번호
    *
    * V1 본인인증 건의 경우 `imp_uid`에 대응됩니다.
    */

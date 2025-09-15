@@ -7,5 +7,5 @@ import java.lang.Exception
 /** B2B 기능이 활성화되지 않은 경우 */
 public class B2bNotEnabledException internal constructor(
   cause: B2bNotEnabledError
-) : PortOneException(cause.message), GetB2bBusinessInfosException {
+) : PortOneException(cause.message), AttachB2bTaxInvoiceFileException, CancelB2bTaxInvoiceIssuanceException, CancelB2bTaxInvoiceRequestException, CreateB2bFileUploadUrlException, DeleteB2bTaxInvoiceAttachmentException, DeleteB2bTaxInvoiceException, DraftB2bTaxInvoiceException, GetB2bBulkTaxInvoiceException, GetB2bBusinessInfosException, GetB2bTaxInvoiceAttachmentsException, GetB2bTaxInvoiceException, GetB2bTaxInvoicePdfDownloadUrlException, GetB2bTaxInvoicePopupUrlException, GetB2bTaxInvoicePrintUrlException, GetB2bTaxInvoicesException, IssueB2bTaxInvoiceException, IssueB2bTaxInvoiceImmediatelyException, RefuseB2bTaxInvoiceRequestException, RequestB2bTaxInvoiceReverseIssuanceException, SendToNtsB2bTaxInvoiceException, UpdateB2bTaxInvoiceDraftException, requestB2bTaxInvoiceException {
 }

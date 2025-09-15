@@ -3,6 +3,7 @@ import { RestError } from "../RestError"
 import type { AlreadyPaidError } from "../payment/AlreadyPaidError"
 import type { AlreadyPaidOrWaitingError } from "../payment/paymentSchedule/AlreadyPaidOrWaitingError"
 import type { BillingKeyAlreadyDeletedError } from "../common/BillingKeyAlreadyDeletedError"
+import type { BillingKeyAlreadyIssuedError } from "../payment/billingKey/BillingKeyAlreadyIssuedError"
 import type { BillingKeyNotFoundError } from "../common/BillingKeyNotFoundError"
 import type { BillingKeyNotIssuedError } from "../payment/billingKey/BillingKeyNotIssuedError"
 import type { CancelAmountExceedsCancellableAmountError } from "../payment/CancelAmountExceedsCancellableAmountError"
@@ -16,6 +17,8 @@ import type { ChannelNotFoundError } from "../common/ChannelNotFoundError"
 import type { ChannelSpecificError } from "../payment/billingKey/ChannelSpecificError"
 import type { DiscountAmountExceedsTotalAmountError } from "../payment/DiscountAmountExceedsTotalAmountError"
 import type { ForbiddenError } from "../common/ForbiddenError"
+import type { InformationMismatchError } from "../common/InformationMismatchError"
+import type { InvalidPaymentTokenError } from "../payment/InvalidPaymentTokenError"
 import type { InvalidRequestError } from "../common/InvalidRequestError"
 import type { MaxTransactionCountReachedError } from "../common/MaxTransactionCountReachedError"
 import type { MaxWebhookRetryCountReachedError } from "../payment/MaxWebhookRetryCountReachedError"
@@ -37,5 +40,5 @@ import type { SumOfPartsExceedsTotalAmountError } from "../common/SumOfPartsExce
 import type { UnauthorizedError } from "../common/UnauthorizedError"
 import type { WebhookNotFoundError } from "../payment/WebhookNotFoundError"
 export abstract class PaymentError extends RestError {
-	declare readonly data: AlreadyPaidError | AlreadyPaidOrWaitingError | BillingKeyAlreadyDeletedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | CancellableAmountConsistencyBrokenError | CashReceiptAlreadyIssuedError | CashReceiptNotFoundError | CashReceiptNotIssuedError | ChannelNotFoundError | ChannelSpecificError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InvalidRequestError | MaxTransactionCountReachedError | MaxWebhookRetryCountReachedError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PaymentNotWaitingForDepositError | PaymentScheduleAlreadyExistsError | PaymentScheduleAlreadyProcessedError | PaymentScheduleAlreadyRevokedError | PaymentScheduleNotFoundError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | PromotionNotFoundError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsCancelAmountError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | WebhookNotFoundError | { readonly type: Unrecognized }
+	declare readonly data: AlreadyPaidError | AlreadyPaidOrWaitingError | BillingKeyAlreadyDeletedError | BillingKeyAlreadyIssuedError | BillingKeyNotFoundError | BillingKeyNotIssuedError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | CancellableAmountConsistencyBrokenError | CashReceiptAlreadyIssuedError | CashReceiptNotFoundError | CashReceiptNotIssuedError | ChannelNotFoundError | ChannelSpecificError | DiscountAmountExceedsTotalAmountError | ForbiddenError | InformationMismatchError | InvalidPaymentTokenError | InvalidRequestError | MaxTransactionCountReachedError | MaxWebhookRetryCountReachedError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PaymentNotWaitingForDepositError | PaymentScheduleAlreadyExistsError | PaymentScheduleAlreadyProcessedError | PaymentScheduleAlreadyRevokedError | PaymentScheduleNotFoundError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | PromotionNotFoundError | PromotionPayMethodDoesNotMatchError | SumOfPartsExceedsCancelAmountError | SumOfPartsExceedsTotalAmountError | UnauthorizedError | WebhookNotFoundError | { readonly type: Unrecognized }
 }

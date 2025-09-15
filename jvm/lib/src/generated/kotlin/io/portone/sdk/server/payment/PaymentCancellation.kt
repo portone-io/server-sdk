@@ -22,7 +22,7 @@ public sealed interface PaymentCancellation {
     public val id: String
     /** PG사 결제 취소 내역 아이디 */
     public val pgCancellationId: String?
-    /** 취소 총 금액 */
+    /** 취소 금액 */
     public val totalAmount: Long
     /** 취소 금액 중 면세 금액 */
     public val taxFreeAmount: Long

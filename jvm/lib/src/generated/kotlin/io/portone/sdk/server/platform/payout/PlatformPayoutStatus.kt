@@ -12,6 +12,21 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformPayoutStatusSerializer::class)
 public sealed interface PlatformPayoutStatus {
   public val value: String
+  @Serializable(ConfirmedSerializer::class)
+  public data object Confirmed : PlatformPayoutStatus {
+    override val value: String = "CONFIRMED"
+  }
+  private object ConfirmedSerializer : KSerializer<Confirmed> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Confirmed::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Confirmed = decoder.decodeString().let {
+      if (it != "CONFIRMED") {
+        throw SerializationException(it)
+      } else {
+        return Confirmed
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Confirmed) = encoder.encodeString(value.value)
+  }
   @Serializable(PreparedSerializer::class)
   public data object Prepared : PlatformPayoutStatus {
     override val value: String = "PREPARED"
@@ -128,6 +143,7 @@ private object PlatformPayoutStatusSerializer : KSerializer<PlatformPayoutStatus
   override fun deserialize(decoder: Decoder): PlatformPayoutStatus {
     val value = decoder.decodeString()
     return when (value) {
+      "CONFIRMED" -> PlatformPayoutStatus.Confirmed
       "PREPARED" -> PlatformPayoutStatus.Prepared
       "CANCELLED" -> PlatformPayoutStatus.Cancelled
       "STOPPED" -> PlatformPayoutStatus.Stopped

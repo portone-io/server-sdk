@@ -12,4 +12,8 @@ export type PlatformPartnerSettlementStatus =
 	| "IN_PAYOUT"
 	/** 지급 완료 */
 	| "PAID_OUT"
+	/** 지급 취소 */
+	| "CANCELLED"
+	/** 지급 확정 */
+	| "CONFIRMED"
 	| string & {}

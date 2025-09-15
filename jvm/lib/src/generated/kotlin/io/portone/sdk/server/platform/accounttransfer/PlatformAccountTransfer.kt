@@ -1,6 +1,7 @@
 package io.portone.sdk.server.platform.accounttransfer
 
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferStatus
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -24,6 +25,9 @@ public sealed interface PlatformAccountTransfer {
   public sealed interface Recognized : PlatformAccountTransfer {
     /** 계좌 이체 아이디 */
     public val id: String
+    /** 출금 계좌 아이디 */
+    public val bankAccountId: String
+    public val bankAccountGraphqlId: String
     /** 통화 */
     public val currency: Currency
     /** 금액 */
@@ -38,6 +42,10 @@ public sealed interface PlatformAccountTransfer {
     public val updatedAt: Instant
     /** 테스트 모드 여부 */
     public val isForTest: Boolean
+    /** 상태 업데이트 일시 */
+    public val statusUpdatedAt: Instant
+    /** 상태 */
+    public val status: PlatformAccountTransferStatus
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

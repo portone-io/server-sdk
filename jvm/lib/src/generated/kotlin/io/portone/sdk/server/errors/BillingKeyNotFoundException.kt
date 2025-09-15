@@ -7,5 +7,5 @@ import java.lang.Exception
 /** 빌링키가 존재하지 않는 경우 */
 public class BillingKeyNotFoundException internal constructor(
   cause: BillingKeyNotFoundError
-) : PortOneException(cause.message), CreatePaymentScheduleException, DeleteBillingKeyException, GetBillingKeyInfoException, PayWithBillingKeyException, RevokePaymentSchedulesException {
+) : PortOneException(cause.message), ConfirmBillingKeyException, ConfirmBillingKeyIssueAndPayException, CreatePaymentScheduleException, DeleteBillingKeyException, GetBillingKeyInfoException, PayWithBillingKeyException, RevokePaymentSchedulesException {
 }

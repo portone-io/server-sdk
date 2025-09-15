@@ -124,7 +124,6 @@ describe("error cases", () => {
 
 	it("missing id on header", async () => {
 		const testWebhook = await makeWebhook();
-		// biome-ignore lint/performance/noDelete: testing runtime validations
 		delete testWebhook.header["webhook-id"];
 
 		await expect(() =>
@@ -134,7 +133,6 @@ describe("error cases", () => {
 
 	it("missing timestamp on header", async () => {
 		const testWebhook = await makeWebhook();
-		// biome-ignore lint/performance/noDelete: testing runtime validations
 		delete testWebhook.header["webhook-timestamp"];
 
 		await expect(() =>
@@ -153,7 +151,6 @@ describe("error cases", () => {
 
 	it("missing signature on header", async () => {
 		const testWebhook = await makeWebhook();
-		// biome-ignore lint/performance/noDelete: testing runtime validations
 		delete testWebhook.header["webhook-signature"];
 
 		await expect(() =>

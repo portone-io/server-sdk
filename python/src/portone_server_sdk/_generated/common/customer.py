@@ -20,6 +20,12 @@ class Customer:
     birth_year: Optional[str] = field(default=None)
     """출생 연도
     """
+    birth_month: Optional[str] = field(default=None)
+    """출생 월
+    """
+    birth_day: Optional[str] = field(default=None)
+    """출생 일자
+    """
     gender: Optional[Gender] = field(default=None)
     """성별
     """
@@ -47,6 +53,10 @@ def _serialize_customer(obj: Customer) -> Any:
         entity["name"] = obj.name
     if obj.birth_year is not None:
         entity["birthYear"] = obj.birth_year
+    if obj.birth_month is not None:
+        entity["birthMonth"] = obj.birth_month
+    if obj.birth_day is not None:
+        entity["birthDay"] = obj.birth_day
     if obj.gender is not None:
         entity["gender"] = _serialize_gender(obj.gender)
     if obj.email is not None:
@@ -81,6 +91,18 @@ def _deserialize_customer(obj: Any) -> Customer:
             raise ValueError(f"{repr(birth_year)} is not str")
     else:
         birth_year = None
+    if "birthMonth" in obj:
+        birth_month = obj["birthMonth"]
+        if not isinstance(birth_month, str):
+            raise ValueError(f"{repr(birth_month)} is not str")
+    else:
+        birth_month = None
+    if "birthDay" in obj:
+        birth_day = obj["birthDay"]
+        if not isinstance(birth_day, str):
+            raise ValueError(f"{repr(birth_day)} is not str")
+    else:
+        birth_day = None
     if "gender" in obj:
         gender = obj["gender"]
         gender = _deserialize_gender(gender)
@@ -109,4 +131,4 @@ def _deserialize_customer(obj: Any) -> Customer:
             raise ValueError(f"{repr(zipcode)} is not str")
     else:
         zipcode = None
-    return Customer(id, name, birth_year, gender, email, phone_number, address, zipcode)
+    return Customer(id, name, birth_year, birth_month, birth_day, gender, email, phone_number, address, zipcode)

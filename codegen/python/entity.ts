@@ -1,6 +1,7 @@
 import * as path from "@std/path"
+import { toSnakeCase } from "../common/casing.ts"
 import type { Definition } from "../parser/definition.ts"
-import { filterName, PythonWriter, toSnakeCase } from "./common.ts"
+import { filterName, PythonWriter } from "./common.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
 
 export function generateEntity(

@@ -16,7 +16,7 @@ public data class SelectedChannel(
   val key: String? = null,
   /** 채널 명 */
   val name: String? = null,
-  /** PG사 */
+  /** PG사 결제 모듈 */
   val pgProvider: PgProvider,
   /** PG사 고객사 식별 아이디 */
   val pgMerchantId: String,

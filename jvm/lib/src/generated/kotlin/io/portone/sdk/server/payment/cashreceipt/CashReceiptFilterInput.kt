@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment.cashreceipt
 
+import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.PgCompany
 import io.portone.sdk.server.common.PgProvider
 import io.portone.sdk.server.common.PortOneVersion
@@ -69,6 +70,12 @@ public data class CashReceiptFilterInput(
   val pgCompanies: List<PgCompany>? = null,
   /** 포트원 버전 */
   val version: PortOneVersion? = null,
+  /**
+   * 현금영수증 유형 리스트
+   *
+   * 값을 입력하지 않으면 필터링이 적용되지 않습니다.
+   */
+  val types: List<CashReceiptType>? = null,
 )
 
 

@@ -6,7 +6,7 @@ import type { SelectedChannel } from "./../common/SelectedChannel"
 export type FailedIdentityVerification = {
 	/** 본인인증 상태 */
 	status: "FAILED"
-	/** 본인인증 내역 아이디 */
+	/** 고객사 본인인증 번호 */
 	id: string
 	/** 사용된 본인인증 채널 */
 	channel?: SelectedChannel

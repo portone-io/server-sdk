@@ -1,5 +1,6 @@
 import type { CashReceiptStatus } from "./../../payment/cashReceipt/CashReceiptStatus"
 import type { CashReceiptTimeRangeField } from "./../../payment/cashReceipt/CashReceiptTimeRangeField"
+import type { CashReceiptType } from "./../../common/CashReceiptType"
 import type { PgCompany } from "./../../common/PgCompany"
 import type { PgProvider } from "./../../common/PgProvider"
 import type { PortOneVersion } from "./../../common/PortOneVersion"
@@ -63,4 +64,10 @@ export type CashReceiptFilterInput = {
 	pgCompanies?: PgCompany[]
 	/** 포트원 버전 */
 	version?: PortOneVersion
+	/**
+	 * 현금영수증 유형 리스트
+	 *
+	 * 값을 입력하지 않으면 필터링이 적용되지 않습니다.
+	 */
+	types?: CashReceiptType[]
 }

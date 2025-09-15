@@ -10,7 +10,7 @@ export type SelectedChannel = {
 	key?: string
 	/** 채널 명 */
 	name?: string
-	/** PG사 */
+	/** PG사 결제 모듈 */
 	pgProvider: PgProvider
 	/** PG사 고객사 식별 아이디 */
 	pgMerchantId: string

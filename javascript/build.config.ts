@@ -1,6 +1,6 @@
 import childProcess from "node:child_process";
 import fs from "node:fs/promises";
-import { type MkdistBuildEntry, defineBuildConfig } from "unbuild";
+import { defineBuildConfig, type MkdistBuildEntry } from "unbuild";
 import tsConfig from "./tsconfig.json";
 
 export default defineBuildConfig({

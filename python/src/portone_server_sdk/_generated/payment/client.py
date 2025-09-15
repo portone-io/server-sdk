@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
+from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
 from ..payment.already_paid_error import _deserialize_already_paid_error
 from ..common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
 from ..common.billing_key_not_found_error import _deserialize_billing_key_not_found_error
@@ -15,6 +15,8 @@ from ..payment.cancellable_amount_consistency_broken_error import _deserialize_c
 from ..common.channel_not_found_error import _deserialize_channel_not_found_error
 from ..payment.discount_amount_exceeds_total_amount_error import _deserialize_discount_amount_exceeds_total_amount_error
 from ..common.forbidden_error import _deserialize_forbidden_error
+from ..common.information_mismatch_error import _deserialize_information_mismatch_error
+from ..payment.invalid_payment_token_error import _deserialize_invalid_payment_token_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
 from ..common.max_transaction_count_reached_error import _deserialize_max_transaction_count_reached_error
 from ..payment.max_webhook_retry_count_reached_error import _deserialize_max_webhook_retry_count_reached_error
@@ -38,9 +40,11 @@ from ..payment.cancel_requester import CancelRequester, _deserialize_cancel_requ
 from ..common.cash_receipt_input import CashReceiptInput, _deserialize_cash_receipt_input, _serialize_cash_receipt_input
 from ..payment.close_virtual_account_response import CloseVirtualAccountResponse, _deserialize_close_virtual_account_response, _serialize_close_virtual_account_response
 from ..payment.confirm_escrow_response import ConfirmEscrowResponse, _deserialize_confirm_escrow_response, _serialize_confirm_escrow_response
+from ..payment.confirmed_payment_summary import ConfirmedPaymentSummary, _deserialize_confirmed_payment_summary, _serialize_confirmed_payment_summary
 from ..common.country import Country, _deserialize_country, _serialize_country
 from ..common.currency import Currency, _deserialize_currency, _serialize_currency
 from ..common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
+from ..payment.get_all_payment_events_by_cursor_response import GetAllPaymentEventsByCursorResponse, _deserialize_get_all_payment_events_by_cursor_response, _serialize_get_all_payment_events_by_cursor_response
 from ..payment.get_all_payments_by_cursor_response import GetAllPaymentsByCursorResponse, _deserialize_get_all_payments_by_cursor_response, _serialize_get_all_payments_by_cursor_response
 from ..payment.get_payment_transactions_response import GetPaymentTransactionsResponse, _deserialize_get_payment_transactions_response, _serialize_get_payment_transactions_response
 from ..payment.get_payments_response import GetPaymentsResponse, _deserialize_get_payments_response, _serialize_get_payments_response
@@ -98,6 +102,172 @@ class PaymentClient:
         self.cash_receipt = CashReceiptClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment_schedule = PaymentScheduleClient(secret=secret, base_url=base_url, store_id=store_id)
         self.promotion = PromotionClient(secret=secret, base_url=base_url, store_id=store_id)
+    def get_all_payment_events_by_cursor(
+        self,
+        *,
+        from_: Optional[str] = None,
+        until: Optional[str] = None,
+        cursor: Optional[str] = None,
+        size: Optional[int] = None,
+    ) -> GetAllPaymentEventsByCursorResponse:
+        """결제 이벤트 대용량 다건 조회(커서 기반)
+
+        기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
+
+        Args:
+            from_ (str, optional):
+                결제 이벤트 생성시점 범위 조건의 시작
+
+                값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+                (RFC 3339 date-time)
+            until (str, optional):
+                결제 이벤트 생성시점 범위 조건의 끝
+
+                값을 입력하지 않으면 현재 시점으로 설정됩니다.
+                (RFC 3339 date-time)
+            cursor (str, optional):
+                커서
+
+                결제 이벤트 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.
+            size (int, optional):
+                페이지 크기
+
+                미입력 시 기본값은 10 이며 최대 1000까지 허용
+                (int32)
+
+
+        Raises:
+            GetAllPaymentEventsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        if from_ is not None:
+            request_body["from"] = from_
+        if until is not None:
+            request_body["until"] = until
+        if cursor is not None:
+            request_body["cursor"] = cursor
+        if size is not None:
+            request_body["size"] = size
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = self._sync_client.request(
+            "GET",
+            f"{self._base_url}/payment-events-by-cursor",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_all_payment_events_by_cursor_response(response.json())
+    async def get_all_payment_events_by_cursor_async(
+        self,
+        *,
+        from_: Optional[str] = None,
+        until: Optional[str] = None,
+        cursor: Optional[str] = None,
+        size: Optional[int] = None,
+    ) -> GetAllPaymentEventsByCursorResponse:
+        """결제 이벤트 대용량 다건 조회(커서 기반)
+
+        기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
+
+        Args:
+            from_ (str, optional):
+                결제 이벤트 생성시점 범위 조건의 시작
+
+                값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
+                (RFC 3339 date-time)
+            until (str, optional):
+                결제 이벤트 생성시점 범위 조건의 끝
+
+                값을 입력하지 않으면 현재 시점으로 설정됩니다.
+                (RFC 3339 date-time)
+            cursor (str, optional):
+                커서
+
+                결제 이벤트 리스트 중 어디서부터 읽어야 할지 가리키는 값입니다. 최초 요청일 경우 값을 입력하지 마시되, 두번째 요청 부터는 이전 요청 응답값의 cursor를 입력해주시면 됩니다.
+            size (int, optional):
+                페이지 크기
+
+                미입력 시 기본값은 10 이며 최대 1000까지 허용
+                (int32)
+
+
+        Raises:
+            GetAllPaymentEventsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        if from_ is not None:
+            request_body["from"] = from_
+        if until is not None:
+            request_body["until"] = until
+        if cursor is not None:
+            request_body["cursor"] = cursor
+        if size is not None:
+            request_body["size"] = size
+        query = []
+        query.append(("requestBody", json.dumps(request_body)))
+        response = await self._async_client.request(
+            "GET",
+            f"{self._base_url}/payment-events-by-cursor",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_all_payment_events_by_cursor_response(response.json())
     def get_all_payments_by_cursor(
         self,
         *,
@@ -320,6 +490,8 @@ class PaymentClient:
                 카드 포인트 사용 여부
             cash_receipt (CashReceiptInput, optional):
                 현금영수증 정보
+
+                나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)
             country (Country, optional):
                 결제 국가
             notice_urls (list[str], optional):
@@ -327,7 +499,7 @@ class PaymentClient:
 
                 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-                입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+                빈 배열은 무시됩니다.
             products (list[PaymentProduct], optional):
                 상품 정보
 
@@ -541,6 +713,8 @@ class PaymentClient:
                 카드 포인트 사용 여부
             cash_receipt (CashReceiptInput, optional):
                 현금영수증 정보
+
+                나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)
             country (Country, optional):
                 결제 국가
             notice_urls (list[str], optional):
@@ -548,7 +722,7 @@ class PaymentClient:
 
                 결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-                입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+                빈 배열은 무시됩니다.
             products (list[PaymentProduct], optional):
                 상품 정보
 
@@ -1068,6 +1242,262 @@ class PaymentClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
+    def confirm_payment(
+        self,
+        *,
+        payment_id: str,
+        payment_token: str,
+        tx_id: Optional[str] = None,
+        currency: Optional[Currency] = None,
+        total_amount: Optional[int] = None,
+        tax_free_amount: Optional[int] = None,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedPaymentSummary:
+        """인증 결제 수동 승인
+
+        수동 승인으로 설정된 인증 결제에 대해, 결제를 완료 처리합니다.
+
+        Args:
+            payment_id (str):
+                결제 아이디
+            payment_token (str):
+                결제 토큰
+
+                인증 완료 시 발급된 토큰입니다.
+            tx_id (str, optional):
+                결제 시도 아이디
+
+                검증용 파라미터로, 결제 시도 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+            currency (Currency, optional):
+                통화
+
+                검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+            total_amount (int, optional):
+                결제 금액
+
+                검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+                (int64)
+            tax_free_amount (int, optional):
+                면세 금액
+
+                검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+
+
+        Raises:
+            ConfirmPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["paymentToken"] = payment_token
+        if tx_id is not None:
+            request_body["txId"] = tx_id
+        if currency is not None:
+            request_body["currency"] = _serialize_currency(currency)
+        if total_amount is not None:
+            request_body["totalAmount"] = total_amount
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/confirm",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise AlreadyPaidError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_payment_token_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidPaymentTokenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_payment_summary(response.json())
+    async def confirm_payment_async(
+        self,
+        *,
+        payment_id: str,
+        payment_token: str,
+        tx_id: Optional[str] = None,
+        currency: Optional[Currency] = None,
+        total_amount: Optional[int] = None,
+        tax_free_amount: Optional[int] = None,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedPaymentSummary:
+        """인증 결제 수동 승인
+
+        수동 승인으로 설정된 인증 결제에 대해, 결제를 완료 처리합니다.
+
+        Args:
+            payment_id (str):
+                결제 아이디
+            payment_token (str):
+                결제 토큰
+
+                인증 완료 시 발급된 토큰입니다.
+            tx_id (str, optional):
+                결제 시도 아이디
+
+                검증용 파라미터로, 결제 시도 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+            currency (Currency, optional):
+                통화
+
+                검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+            total_amount (int, optional):
+                결제 금액
+
+                검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+                (int64)
+            tax_free_amount (int, optional):
+                면세 금액
+
+                검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+
+
+        Raises:
+            ConfirmPaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["paymentToken"] = payment_token
+        if tx_id is not None:
+            request_body["txId"] = tx_id
+        if currency is not None:
+            request_body["currency"] = _serialize_currency(currency)
+        if total_amount is not None:
+            request_body["totalAmount"] = total_amount
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/confirm",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_already_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise AlreadyPaidError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_payment_token_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidPaymentTokenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_payment_summary(response.json())
     def confirm_escrow(
         self,
         *,
@@ -1650,7 +2080,7 @@ class PaymentClient:
     ) -> PayInstantlyResponse:
         """수기 결제
 
-        수기 결제를 진행합니다.
+        카드 비인증 결제 또는 가상 계좌 발급을 API로 요청합니다.
 
         Args:
             payment_id (str):
@@ -1688,9 +2118,9 @@ class PaymentClient:
             notice_urls (list[str], optional):
                 웹훅 주소
 
-                결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+                결제 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-                입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+                빈 배열은 무시됩니다.
             products (list[PaymentProduct], optional):
                 상품 정보
 
@@ -1848,7 +2278,7 @@ class PaymentClient:
     ) -> PayInstantlyResponse:
         """수기 결제
 
-        수기 결제를 진행합니다.
+        카드 비인증 결제 또는 가상 계좌 발급을 API로 요청합니다.
 
         Args:
             payment_id (str):
@@ -1886,9 +2316,9 @@ class PaymentClient:
             notice_urls (list[str], optional):
                 웹훅 주소
 
-                결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
+                결제 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-                입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+                빈 배열은 무시됩니다.
             products (list[PaymentProduct], optional):
                 상품 정보
 

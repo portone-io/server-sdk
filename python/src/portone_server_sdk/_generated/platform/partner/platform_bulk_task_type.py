@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformBulkTaskType = Union[Literal["CREATE_TRANSFERS", "CREATE_PARTNERS", "CONNECT_MEMBER_COMPANIES", "DISCONNECT_MEMBER_COMPANIES"], str]
+PlatformBulkTaskType = Union[Literal["CREATE_TRANSFERS", "CREATE_PARTNERS", "CONNECT_MEMBER_COMPANIES", "DISCONNECT_MEMBER_COMPANIES", "SEND_PAYOUT_SETTLEMENT_STATEMENTS"], str]
 
 
 def _serialize_platform_bulk_task_type(obj: PlatformBulkTaskType) -> Any:

@@ -8,7 +8,7 @@ export type RequestedPaymentCancellation = {
 	/** PG사 결제 취소 내역 아이디 */
 	pgCancellationId?: string
 	/**
-	 * 취소 총 금액
+	 * 취소 금액
 	 * (int64)
 	 */
 	totalAmount: number

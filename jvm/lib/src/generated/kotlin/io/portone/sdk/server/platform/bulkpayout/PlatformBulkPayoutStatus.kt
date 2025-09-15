@@ -12,21 +12,6 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable(PlatformBulkPayoutStatusSerializer::class)
 public sealed interface PlatformBulkPayoutStatus {
   public val value: String
-  @Serializable(ScheduledSerializer::class)
-  public data object Scheduled : PlatformBulkPayoutStatus {
-    override val value: String = "SCHEDULED"
-  }
-  private object ScheduledSerializer : KSerializer<Scheduled> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
-      if (it != "SCHEDULED") {
-        throw SerializationException(it)
-      } else {
-        return Scheduled
-      }
-    }
-    override fun serialize(encoder: Encoder, value: Scheduled) = encoder.encodeString(value.value)
-  }
   @Serializable(PreparingSerializer::class)
   public data object Preparing : PlatformBulkPayoutStatus {
     override val value: String = "PREPARING"
@@ -72,6 +57,21 @@ public sealed interface PlatformBulkPayoutStatus {
     }
     override fun serialize(encoder: Encoder, value: Ongoing) = encoder.encodeString(value.value)
   }
+  @Serializable(PostProcessPendingSerializer::class)
+  public data object PostProcessPending : PlatformBulkPayoutStatus {
+    override val value: String = "POST_PROCESS_PENDING"
+  }
+  private object PostProcessPendingSerializer : KSerializer<PostProcessPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PostProcessPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): PostProcessPending = decoder.decodeString().let {
+      if (it != "POST_PROCESS_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return PostProcessPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: PostProcessPending) = encoder.encodeString(value.value)
+  }
   @Serializable(CancelledSerializer::class)
   public data object Cancelled : PlatformBulkPayoutStatus {
     override val value: String = "CANCELLED"
@@ -86,21 +86,6 @@ public sealed interface PlatformBulkPayoutStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: Cancelled) = encoder.encodeString(value.value)
-  }
-  @Serializable(StoppedSerializer::class)
-  public data object Stopped : PlatformBulkPayoutStatus {
-    override val value: String = "STOPPED"
-  }
-  private object StoppedSerializer : KSerializer<Stopped> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Stopped::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): Stopped = decoder.decodeString().let {
-      if (it != "STOPPED") {
-        throw SerializationException(it)
-      } else {
-        return Stopped
-      }
-    }
-    override fun serialize(encoder: Encoder, value: Stopped) = encoder.encodeString(value.value)
   }
   @Serializable(CompletedSerializer::class)
   public data object Completed : PlatformBulkPayoutStatus {
@@ -128,12 +113,11 @@ private object PlatformBulkPayoutStatusSerializer : KSerializer<PlatformBulkPayo
   override fun deserialize(decoder: Decoder): PlatformBulkPayoutStatus {
     val value = decoder.decodeString()
     return when (value) {
-      "SCHEDULED" -> PlatformBulkPayoutStatus.Scheduled
       "PREPARING" -> PlatformBulkPayoutStatus.Preparing
       "PREPARED" -> PlatformBulkPayoutStatus.Prepared
       "ONGOING" -> PlatformBulkPayoutStatus.Ongoing
+      "POST_PROCESS_PENDING" -> PlatformBulkPayoutStatus.PostProcessPending
       "CANCELLED" -> PlatformBulkPayoutStatus.Cancelled
-      "STOPPED" -> PlatformBulkPayoutStatus.Stopped
       "COMPLETED" -> PlatformBulkPayoutStatus.Completed
       else -> PlatformBulkPayoutStatus.Unrecognized(value)
     }

@@ -469,22 +469,22 @@ export type PartnerClient = {
 		}
 	) => Promise<CreatePlatformPartnersResponse>
 	/**
-	 * 파트너 연동 사업자 일괄 연동
+	 * 파트너 일괄 국세청 연동
 	 *
-	 * 파트너들을 연동 사업자로 일괄 연동합니다.
+	 * 파트너들을 일괄 국세청 연동합니다.
 	 *
 	 * @throws {@link ConnectBulkPartnerMemberCompanyError}
 	 */
 	connectBulkPartnerMemberCompany: (
 		options?: {
-			/** 연동 사업자로 일괄 연동할 파트너 조건 필터 */
+			/** 일괄 국세청 연동할 파트너 조건 필터 */
 			filter?: PlatformPartnerFilterInput,
 		}
 	) => Promise<ConnectBulkPartnerMemberCompanyResponse>
 	/**
-	 * 파트너 연동 사업자 연동
+	 * 파트너 국세청 연동
 	 *
-	 * 파트너를 연동 사업자로 연동합니다.
+	 * 파트너를 국세청 연동합니다.
 	 *
 	 * @throws {@link ConnectPartnerMemberCompanyError}
 	 */
@@ -495,22 +495,22 @@ export type PartnerClient = {
 		}
 	) => Promise<ConnectPartnerMemberCompanyResponse>
 	/**
-	 * 파트너 연동 사업자 연동 해제
+	 * 파트너 일괄 국세청 연동 해제
 	 *
-	 * 파트너들을 연동 사업자에서 일괄 연동 해제합니다.
+	 * 파트너들을 일괄 국세청 연동 해제합니다.
 	 *
 	 * @throws {@link DisconnectBulkPartnerMemberCompanyError}
 	 */
 	disconnectBulkPartnerMemberCompany: (
 		options?: {
-			/** 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터 */
+			/** 일괄 국세청 연동 해제할 파트너 조건 필터 */
 			filter?: PlatformPartnerFilterInput,
 		}
 	) => Promise<DisconnectBulkPartnerMemberCompanyResponse>
 	/**
-	 * 연동 사업자 연동 해제
+	 * 파트너 국세청 연동 해제
 	 *
-	 * 파트너를 연동 사업자에서 연동 해제합니다.
+	 * 파트너를 국세청 연동 해제합니다.
 	 *
 	 * @throws {@link DisconnectPartnerMemberCompanyError}
 	 */
@@ -563,7 +563,7 @@ export type PartnerClient = {
 		}
 	) => Promise<UpdatePlatformPartnerResponse>
 	/**
-	 * 파트너 복원
+	 * 파트너 보관
 	 *
 	 * 주어진 아이디에 대응되는 파트너를 보관합니다.
 	 *

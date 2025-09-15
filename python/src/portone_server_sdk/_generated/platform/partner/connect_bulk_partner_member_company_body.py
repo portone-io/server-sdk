@@ -6,12 +6,12 @@ from ...platform.platform_partner_filter_input import PlatformPartnerFilterInput
 
 @dataclass
 class ConnectBulkPartnerMemberCompanyBody:
-    """파트너 연동 사업자 일괄 연동 요청 정보
+    """파트너 일괄 국세청 연동 요청 정보
 
-    파트너들을 연동 사업자로 일괄 연동합니다.
+    파트너들을 일괄 국세청 연동합니다.
     """
     filter: Optional[PlatformPartnerFilterInput] = field(default=None)
-    """연동 사업자로 일괄 연동할 파트너 조건 필터
+    """일괄 국세청 연동할 파트너 조건 필터
     """
 
 

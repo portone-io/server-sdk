@@ -11,7 +11,7 @@ export type InstantPaymentMethodInputVirtualAccount = {
 	/** 가상계좌 유형 */
 	option: InstantPaymentMethodInputVirtualAccountOption
 	/** 현금영수증 정보 */
-	cashReceipt: InstantPaymentMethodInputVirtualAccountCashReceiptInfo
+	cashReceipt?: InstantPaymentMethodInputVirtualAccountCashReceiptInfo
 	/** 예금주명 */
 	remitteeName?: string
 }

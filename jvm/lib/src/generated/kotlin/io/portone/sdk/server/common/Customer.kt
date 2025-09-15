@@ -18,6 +18,10 @@ public data class Customer(
   val name: String? = null,
   /** 출생 연도 */
   val birthYear: String? = null,
+  /** 출생 월 */
+  val birthMonth: String? = null,
+  /** 출생 일자 */
+  val birthDay: String? = null,
   /** 성별 */
   val gender: Gender? = null,
   /** 이메일 */

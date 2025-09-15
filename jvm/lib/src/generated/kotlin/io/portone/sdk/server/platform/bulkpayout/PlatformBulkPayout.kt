@@ -13,17 +13,26 @@ public data class PlatformBulkPayout(
   /** 일괄 지급 고유 아이디 */
   val id: String,
   val graphqlId: String,
+  /** 이름 */
   val name: String,
+  /** 생성자 아이디 */
   val creatorId: String,
+  /** 지급 유형 */
   val method: PlatformPayoutMethod,
-  val arePayoutsGenerated: Boolean,
+  /** 총 지급 금액 */
   val totalPayoutAmount: Long,
+  /** 총 정산 금액 */
+  val totalSettlementAmount: Long,
+  /** 상태 */
   val status: PlatformBulkPayoutStatus,
+  /** 지급 통계 */
   val payoutStats: PlatformBulkPayoutStats,
+  /** 상태 업데이트 일시 */
   val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant,
+  /** 생성 일시 */
   val createdAt: @Serializable(InstantSerializer::class) Instant,
+  /** 업데이트 일시 */
   val updatedAt: @Serializable(InstantSerializer::class) Instant,
-  val scheduledAt: @Serializable(InstantSerializer::class) Instant? = null,
 )
 
 

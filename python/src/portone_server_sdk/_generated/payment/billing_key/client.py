@@ -4,13 +4,15 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, BillingKeyNotIssuedError, ChannelNotFoundError, ChannelSpecificError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, PgProviderError, UnauthorizedError, UnknownError
+from ...errors import BillingKeyAlreadyDeletedError, BillingKeyAlreadyIssuedError, BillingKeyNotFoundError, BillingKeyNotIssuedError, ChannelNotFoundError, ChannelSpecificError, ForbiddenError, InformationMismatchError, InvalidRequestError, PaymentScheduleAlreadyExistsError, PgProviderError, UnauthorizedError, UnknownError
 from ...common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
+from ...payment.billing_key.billing_key_already_issued_error import _deserialize_billing_key_already_issued_error
 from ...common.billing_key_not_found_error import _deserialize_billing_key_not_found_error
 from ...payment.billing_key.billing_key_not_issued_error import _deserialize_billing_key_not_issued_error
 from ...common.channel_not_found_error import _deserialize_channel_not_found_error
 from ...payment.billing_key.channel_specific_error import _deserialize_channel_specific_error
 from ...common.forbidden_error import _deserialize_forbidden_error
+from ...common.information_mismatch_error import _deserialize_information_mismatch_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...common.payment_schedule_already_exists_error import _deserialize_payment_schedule_already_exists_error
 from ...common.pg_provider_error import _deserialize_pg_provider_error
@@ -18,6 +20,9 @@ from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...payment.billing_key.billing_key_filter_input import BillingKeyFilterInput, _deserialize_billing_key_filter_input, _serialize_billing_key_filter_input
 from ...payment.billing_key.billing_key_info import BillingKeyInfo, _deserialize_billing_key_info, _serialize_billing_key_info
 from ...payment.billing_key.billing_key_sort_input import BillingKeySortInput, _deserialize_billing_key_sort_input, _serialize_billing_key_sort_input
+from ...payment.billing_key.confirmed_billing_key_issue_and_pay_summary import ConfirmedBillingKeyIssueAndPaySummary, _deserialize_confirmed_billing_key_issue_and_pay_summary, _serialize_confirmed_billing_key_issue_and_pay_summary
+from ...payment.billing_key.confirmed_billing_key_summary import ConfirmedBillingKeySummary, _deserialize_confirmed_billing_key_summary, _serialize_confirmed_billing_key_summary
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...common.customer_input import CustomerInput, _deserialize_customer_input, _serialize_customer_input
 from ...payment.billing_key.delete_billing_key_response import DeleteBillingKeyResponse, _deserialize_delete_billing_key_response, _serialize_delete_billing_key_response
 from ...payment.billing_key.get_billing_key_infos_response import GetBillingKeyInfosResponse, _deserialize_get_billing_key_infos_response, _serialize_get_billing_key_infos_response
@@ -412,6 +417,422 @@ class BillingKeyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_issue_billing_key_response(response.json())
+    def confirm_billing_key(
+        self,
+        *,
+        billing_issue_token: str,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedBillingKeySummary:
+        """빌링키 발급 수동 승인
+
+        수동 승인으로 설정된 빌링키 발급에 대해, 빌링키 발급을 완료 처리합니다.
+
+        Args:
+            billing_issue_token (str):
+                빌링키 발급 토큰
+
+                빌링키 발급 요청 완료 시 발급된 토큰입니다.
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+
+
+        Raises:
+            ConfirmBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["billingIssueToken"] = billing_issue_token
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/billing-keys/confirm",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyIssuedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_billing_key_summary(response.json())
+    async def confirm_billing_key_async(
+        self,
+        *,
+        billing_issue_token: str,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedBillingKeySummary:
+        """빌링키 발급 수동 승인
+
+        수동 승인으로 설정된 빌링키 발급에 대해, 빌링키 발급을 완료 처리합니다.
+
+        Args:
+            billing_issue_token (str):
+                빌링키 발급 토큰
+
+                빌링키 발급 요청 완료 시 발급된 토큰입니다.
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+
+
+        Raises:
+            ConfirmBillingKeyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["billingIssueToken"] = billing_issue_token
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/billing-keys/confirm",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyIssuedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_billing_key_summary(response.json())
+    def confirm_billing_key_issue_and_pay(
+        self,
+        *,
+        billing_issue_token: str,
+        payment_id: Optional[str] = None,
+        currency: Optional[Currency] = None,
+        total_amount: Optional[int] = None,
+        tax_free_amount: Optional[int] = None,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedBillingKeyIssueAndPaySummary:
+        """빌링키 발급 및 초회 결제 수동 승인
+
+        수동 승인으로 설정된 빌링키 발급 및 초회 결제에 대해, 빌링키 발급과 결제를 완료 처리합니다.
+
+        Args:
+            billing_issue_token (str):
+                빌링키 발급 토큰
+
+                빌링키 발급 및 초회 결제 요청 완료 시 발급된 토큰입니다.
+            payment_id (str, optional):
+                결제 건 아이디
+
+                검증용 파라미터로, 결제 건 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+            currency (Currency, optional):
+                통화
+
+                검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다.
+            total_amount (int, optional):
+                결제 금액
+
+                검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            tax_free_amount (int, optional):
+                면세 금액
+
+                검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+
+
+        Raises:
+            ConfirmBillingKeyIssueAndPayError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["billingIssueToken"] = billing_issue_token
+        if payment_id is not None:
+            request_body["paymentId"] = payment_id
+        if currency is not None:
+            request_body["currency"] = _serialize_currency(currency)
+        if total_amount is not None:
+            request_body["totalAmount"] = total_amount
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/billing-keys/confirm-issue-and-pay",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyIssuedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_billing_key_issue_and_pay_summary(response.json())
+    async def confirm_billing_key_issue_and_pay_async(
+        self,
+        *,
+        billing_issue_token: str,
+        payment_id: Optional[str] = None,
+        currency: Optional[Currency] = None,
+        total_amount: Optional[int] = None,
+        tax_free_amount: Optional[int] = None,
+        is_test: Optional[bool] = None,
+    ) -> ConfirmedBillingKeyIssueAndPaySummary:
+        """빌링키 발급 및 초회 결제 수동 승인
+
+        수동 승인으로 설정된 빌링키 발급 및 초회 결제에 대해, 빌링키 발급과 결제를 완료 처리합니다.
+
+        Args:
+            billing_issue_token (str):
+                빌링키 발급 토큰
+
+                빌링키 발급 및 초회 결제 요청 완료 시 발급된 토큰입니다.
+            payment_id (str, optional):
+                결제 건 아이디
+
+                검증용 파라미터로, 결제 건 아이디와 일치하지 않을 경우 오류가 반환됩니다.
+            currency (Currency, optional):
+                통화
+
+                검증용 파라미터로, 결제 건 화폐와 일치하지 않을 경우 오류가 반환됩니다.
+            total_amount (int, optional):
+                결제 금액
+
+                검증용 파라미터로, 결제 건 총 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            tax_free_amount (int, optional):
+                면세 금액
+
+                검증용 파라미터로, 결제 건 면세 금액과 일치하지 않을 경우 오류가 반환됩니다.
+                (int64)
+            is_test (bool, optional):
+                테스트 결제 여부
+
+                검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+
+
+        Raises:
+            ConfirmBillingKeyIssueAndPayError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        request_body["billingIssueToken"] = billing_issue_token
+        if payment_id is not None:
+            request_body["paymentId"] = payment_id
+        if currency is not None:
+            request_body["currency"] = _serialize_currency(currency)
+        if total_amount is not None:
+            request_body["totalAmount"] = total_amount
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if is_test is not None:
+            request_body["isTest"] = is_test
+        query = []
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/billing-keys/confirm-issue-and-pay",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_billing_key_already_issued_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyAlreadyIssuedError(error)
+            try:
+                error = _deserialize_billing_key_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise BillingKeyNotFoundError(error)
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_information_mismatch_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InformationMismatchError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_confirmed_billing_key_issue_and_pay_summary(response.json())
     def get_billing_key_info(
         self,
         *,

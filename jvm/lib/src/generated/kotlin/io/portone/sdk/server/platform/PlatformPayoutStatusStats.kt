@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class PlatformPayoutStatusStats(
+  val confirmed: Long,
   val prepared: Long,
   val cancelled: Long,
   val stopped: Long,

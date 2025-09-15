@@ -1,6 +1,7 @@
 export * from "./generated/webhook";
-import { PortOneError } from "./PortOneError";
+
 import type { Webhook } from "./generated/webhook";
+import { PortOneError } from "./PortOneError";
 import { timingSafeEqual } from "./utils/timingSafeEqual";
 import { tryCatch } from "./utils/try";
 
@@ -110,7 +111,7 @@ function findHeaderValue(headers: unknown, name: string): string | undefined {
 
 	const nameLowerCase = name.toLowerCase();
 
-	let found: string | undefined = undefined;
+	let found: string | undefined;
 	for (const [key, value] of Object.entries(headers)) {
 		if (key.toLowerCase() === nameLowerCase) {
 			for (const v of Array.isArray(value) ? value : [value]) {

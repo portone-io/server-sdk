@@ -1,16 +1,20 @@
 import type { Bank } from "./../../common/Bank"
 import type { Currency } from "./../../common/Currency"
+import type { PlatformAccountTransferStatus } from "./../../platform/accountTransfer/PlatformAccountTransferStatus"
 import type { Type } from "./../../platform/accountTransfer/Type"
 export type PlatformWithdrawalAccountTransfer = {
 	/** 계좌 이체 유형 */
 	type: "WITHDRAWAL"
 	/** 계좌 이체 아이디 */
 	id: string
+	/** 출금 계좌 아이디 */
+	bankAccountId: string
+	bankAccountGraphqlId: string
 	/**
 	 * 거래 일련번호
 	 * (int32)
 	 */
-	sequenceNumber: number
+	sequenceNumber?: number
 	/** 통화 */
 	currency: Currency
 	/** 이체 계좌 은행 */
@@ -63,6 +67,20 @@ export type PlatformWithdrawalAccountTransfer = {
 	/** 지급 고유 아이디 */
 	payoutId?: string
 	payoutGraphqlId?: string
+	bulkAccountTransferId?: string
+	bulkAccountTransferGraphqlId?: string
 	/** 전자서명 아이디 */
 	documentId?: string
+	/**
+	 * 상태 업데이트 일시
+	 * (RFC 3339 date-time)
+	 */
+	statusUpdatedAt: string
+	/** 상태 */
+	status: PlatformAccountTransferStatus
+	/**
+	 * 예정 일시
+	 * (RFC 3339 date-time)
+	 */
+	scheduledAt?: string
 }

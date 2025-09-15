@@ -24,7 +24,7 @@ import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.Serializable
 
-/** 결제 건 다건 조회를 위한 입력 정보 */
+/** 결제 다건 조회를 위한 입력 정보 */
 @Serializable
 public data class PaymentFilterInput(
   /** 고객사 아이디 */
@@ -62,9 +62,9 @@ public data class PaymentFilterInput(
    */
   val methods: List<PaymentMethodType>? = null,
   /**
-   * PG사 리스트
+   * PG사 결제 모듈 리스트
    *
-   * 값을 입력하지 않으면 결제대행사 필터링이 적용되지 않습니다.
+   * 값을 입력하지 않으면 PG사 결제 모듈 필터링이 적용되지 않습니다.
    */
   val pgProvider: List<PgProvider>? = null,
   /** 테스트 결제 여부 */
@@ -77,7 +77,7 @@ public data class PaymentFilterInput(
   val sortOrder: SortOrder? = null,
   /** 포트원 버전 */
   val version: PortOneVersion? = null,
-  /** 웹훅 상태 */
+  /** 최종 결제 상태의 웹훅 상태 */
   val webhookStatus: PaymentWebhookStatus? = null,
   /** 플랫폼 유형 */
   val platformType: PaymentClientType? = null,

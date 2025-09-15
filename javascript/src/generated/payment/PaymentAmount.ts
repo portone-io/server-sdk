@@ -21,9 +21,9 @@ export type PaymentAmount = {
 	 */
 	supply?: number
 	/**
-	 * 할인금액
+	 * 총 할인금액
 	 *
-	 * 카드사 프로모션, 포트원 프로모션, 적립형 포인트 결제, 쿠폰 할인 등을 포함합니다.
+	 * 카드사 할인금액, 포트원 프로모션 할인금액, 간편결제 할인금액(적립형 포인트 결제, 쿠폰 할인) 등을 포함합니다.
 	 * (int64)
 	 */
 	discount: number
@@ -33,12 +33,12 @@ export type PaymentAmount = {
 	 */
 	paid: number
 	/**
-	 * 취소금액
+	 * 총 취소금액
 	 * (int64)
 	 */
 	cancelled: number
 	/**
-	 * 취소금액 중 면세액
+	 * 총 취소금액 중 면세액
 	 * (int64)
 	 */
 	cancelledTaxFree: number

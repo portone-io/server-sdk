@@ -1,6 +1,7 @@
 package io.portone.sdk.server.platform.transfer
 
 import io.portone.sdk.server.common.Currency
+import io.portone.sdk.server.platform.PlatformContract
 import io.portone.sdk.server.platform.PlatformOrderSettlementAmount
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformTransferSummaryPartner
@@ -17,6 +18,7 @@ public data class PlatformOrderCancelTransferSummary(
   override val graphqlId: String,
   val storeId: String,
   override val partner: PlatformTransferSummaryPartner,
+  val contract: PlatformContract,
   override val status: PlatformTransferStatus,
   override val memo: String? = null,
   /**

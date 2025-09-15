@@ -1,5 +1,4 @@
 from __future__ import annotations
-from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...platform.bulk_payout.platform_bulk_payout_stats import PlatformBulkPayoutStats, _deserialize_platform_bulk_payout_stats, _serialize_platform_bulk_payout_stats
@@ -13,25 +12,39 @@ class PlatformBulkPayout:
     """
     graphql_id: str
     name: str
+    """이름
+    """
     creator_id: str
+    """생성자 아이디
+    """
     method: PlatformPayoutMethod
-    are_payouts_generated: bool
+    """지급 유형
+    """
     total_payout_amount: int
-    """(int64)
+    """총 지급 금액
+    (int64)
+    """
+    total_settlement_amount: int
+    """총 정산 금액
+    (int64)
     """
     status: PlatformBulkPayoutStatus
+    """상태
+    """
     payout_stats: PlatformBulkPayoutStats
+    """지급 통계
+    """
     status_updated_at: str
-    """(RFC 3339 date-time)
+    """상태 업데이트 일시
+    (RFC 3339 date-time)
     """
     created_at: str
-    """(RFC 3339 date-time)
+    """생성 일시
+    (RFC 3339 date-time)
     """
     updated_at: str
-    """(RFC 3339 date-time)
-    """
-    scheduled_at: Optional[str] = field(default=None)
-    """(RFC 3339 date-time)
+    """업데이트 일시
+    (RFC 3339 date-time)
     """
 
 
@@ -44,15 +57,13 @@ def _serialize_platform_bulk_payout(obj: PlatformBulkPayout) -> Any:
     entity["name"] = obj.name
     entity["creatorId"] = obj.creator_id
     entity["method"] = _serialize_platform_payout_method(obj.method)
-    entity["arePayoutsGenerated"] = obj.are_payouts_generated
     entity["totalPayoutAmount"] = obj.total_payout_amount
+    entity["totalSettlementAmount"] = obj.total_settlement_amount
     entity["status"] = _serialize_platform_bulk_payout_status(obj.status)
     entity["payoutStats"] = _serialize_platform_bulk_payout_stats(obj.payout_stats)
     entity["statusUpdatedAt"] = obj.status_updated_at
     entity["createdAt"] = obj.created_at
     entity["updatedAt"] = obj.updated_at
-    if obj.scheduled_at is not None:
-        entity["scheduledAt"] = obj.scheduled_at
     return entity
 
 
@@ -83,16 +94,16 @@ def _deserialize_platform_bulk_payout(obj: Any) -> PlatformBulkPayout:
         raise KeyError(f"'method' is not in {obj}")
     method = obj["method"]
     method = _deserialize_platform_payout_method(method)
-    if "arePayoutsGenerated" not in obj:
-        raise KeyError(f"'arePayoutsGenerated' is not in {obj}")
-    are_payouts_generated = obj["arePayoutsGenerated"]
-    if not isinstance(are_payouts_generated, bool):
-        raise ValueError(f"{repr(are_payouts_generated)} is not bool")
     if "totalPayoutAmount" not in obj:
         raise KeyError(f"'totalPayoutAmount' is not in {obj}")
     total_payout_amount = obj["totalPayoutAmount"]
     if not isinstance(total_payout_amount, int):
         raise ValueError(f"{repr(total_payout_amount)} is not int")
+    if "totalSettlementAmount" not in obj:
+        raise KeyError(f"'totalSettlementAmount' is not in {obj}")
+    total_settlement_amount = obj["totalSettlementAmount"]
+    if not isinstance(total_settlement_amount, int):
+        raise ValueError(f"{repr(total_settlement_amount)} is not int")
     if "status" not in obj:
         raise KeyError(f"'status' is not in {obj}")
     status = obj["status"]
@@ -116,10 +127,4 @@ def _deserialize_platform_bulk_payout(obj: Any) -> PlatformBulkPayout:
     updated_at = obj["updatedAt"]
     if not isinstance(updated_at, str):
         raise ValueError(f"{repr(updated_at)} is not str")
-    if "scheduledAt" in obj:
-        scheduled_at = obj["scheduledAt"]
-        if not isinstance(scheduled_at, str):
-            raise ValueError(f"{repr(scheduled_at)} is not str")
-    else:
-        scheduled_at = None
-    return PlatformBulkPayout(id, graphql_id, name, creator_id, method, are_payouts_generated, total_payout_amount, status, payout_stats, status_updated_at, created_at, updated_at, scheduled_at)
+    return PlatformBulkPayout(id, graphql_id, name, creator_id, method, total_payout_amount, total_settlement_amount, status, payout_stats, status_updated_at, created_at, updated_at)
