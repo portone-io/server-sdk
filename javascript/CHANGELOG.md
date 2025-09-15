@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.16.0
+
+### Minor Changes
+
+- 2f9addb: API 업데이트
+
+### Patch Changes
+
+- 2f9addb: 의존성 업데이트
+
 ## 0.15.0
 
 ### Minor Changes
