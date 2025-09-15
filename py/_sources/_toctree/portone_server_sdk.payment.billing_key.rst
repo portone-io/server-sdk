@@ -21,6 +21,10 @@ portone\_server\_sdk.payment.billing\_key
       BillingKeyTextSearch
       ChannelSpecificFailureInvalidRequest
       ChannelSpecificFailurePgProvider
+      ConfirmBillingKeyBody
+      ConfirmBillingKeyIssueAndPayBody
+      ConfirmedBillingKeyIssueAndPaySummary
+      ConfirmedBillingKeySummary
       DeleteBillingKeyResponse
       DeletedBillingKeyInfo
       FailedPgBillingKeyIssueResponse
@@ -38,6 +42,8 @@ portone\_server\_sdk.payment.billing\_key
 
    .. autosummary::
    
+      ConfirmBillingKeyError
+      ConfirmBillingKeyIssueAndPayError
       DeleteBillingKeyError
       GetBillingKeyInfoError
       GetBillingKeyInfosError

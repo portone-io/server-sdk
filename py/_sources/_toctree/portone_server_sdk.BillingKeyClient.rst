@@ -14,6 +14,10 @@
    .. autosummary::
    
       ~BillingKeyClient.__init__
+      ~BillingKeyClient.confirm_billing_key
+      ~BillingKeyClient.confirm_billing_key_async
+      ~BillingKeyClient.confirm_billing_key_issue_and_pay
+      ~BillingKeyClient.confirm_billing_key_issue_and_pay_async
       ~BillingKeyClient.delete_billing_key
       ~BillingKeyClient.delete_billing_key_async
       ~BillingKeyClient.get_billing_key_info

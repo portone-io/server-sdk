@@ -23,6 +23,7 @@
 
    .. autosummary::
    
+      ~PortOneClient.b2b
       ~PortOneClient.platform
       ~PortOneClient.payment
       ~PortOneClient.identity_verification

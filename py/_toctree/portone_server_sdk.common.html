@@ -47,7 +47,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="portone_server_sdk.errors" href="portone_server_sdk.errors.html" />
-    <link rel="prev" title="portone_server_sdk.auth" href="portone_server_sdk.auth.html" />
+    <link rel="prev" title="portone_server_sdk.b2b.tax_invoice" href="portone_server_sdk.b2b.tax_invoice.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -139,6 +139,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
@@ -155,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
@@ -163,11 +168,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
@@ -380,6 +388,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.id"><code class="docutils literal notranslate"><span class="pre">Customer.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.name"><code class="docutils literal notranslate"><span class="pre">Customer.name</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_year"><code class="docutils literal notranslate"><span class="pre">Customer.birth_year</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_month"><code class="docutils literal notranslate"><span class="pre">Customer.birth_month</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_day"><code class="docutils literal notranslate"><span class="pre">Customer.birth_day</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.gender"><code class="docutils literal notranslate"><span class="pre">Customer.gender</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.email"><code class="docutils literal notranslate"><span class="pre">Customer.email</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.phone_number"><code class="docutils literal notranslate"><span class="pre">Customer.phone_number</span></code></a></li>
@@ -580,7 +590,7 @@
 <dt class="sig sig-object py" id="portone_server_sdk.common.BillingKeyPaymentInput.store_id">
 <span class="sig-name descname"><span class="pre">store_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.common.BillingKeyPaymentInput.store_id" title="Link to this definition">#</a></dt>
 <dd><p>상점 아이디</p>
-<p>접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.</p>
+<p>접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -625,6 +635,7 @@
 <dt class="sig sig-object py" id="portone_server_sdk.common.BillingKeyPaymentInput.cash_receipt">
 <span class="sig-name descname"><span class="pre">cash_receipt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.common.CashReceiptInput" title="portone_server_sdk._generated.common.cash_receipt_input.CashReceiptInput"><span class="pre">CashReceiptInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.common.BillingKeyPaymentInput.cash_receipt" title="Link to this definition">#</a></dt>
 <dd><p>현금영수증 정보</p>
+<p>나이스페이먼츠를 통해 네이버페이 포인트 빌링결제 시, 현금영수증 발급을 위해 입력 가능 (신청 필요)</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -639,7 +650,7 @@
 <dd><p>웹훅 주소</p>
 <p>결제 승인/실패 시 요청을 받을 웹훅 주소입니다.
 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
-입력된 값이 없을 경우에는 빈 배열로 해석됩니다.</p>
+빈 배열은 무시됩니다.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -848,6 +859,18 @@
 <dt class="sig sig-object py" id="portone_server_sdk.common.Customer.birth_year">
 <span class="sig-name descname"><span class="pre">birth_year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.common.Customer.birth_year" title="Link to this definition">#</a></dt>
 <dd><p>출생 연도</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.common.Customer.birth_month">
+<span class="sig-name descname"><span class="pre">birth_month</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.common.Customer.birth_month" title="Link to this definition">#</a></dt>
+<dd><p>출생 월</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.common.Customer.birth_day">
+<span class="sig-name descname"><span class="pre">birth_day</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.common.Customer.birth_day" title="Link to this definition">#</a></dt>
+<dd><p>출생 일자</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1180,7 +1203,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.common.SelectedChannel.pg_provider">
 <span class="sig-name descname"><span class="pre">pg_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'HTML5_INICIS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYPAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYPAL_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INICIS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DANAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NICE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DANAL_TPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'JTNET'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'UPLUS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NAVERPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KAKAO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SETTLE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MOBILIANS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KAKAOPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NAVERCO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SYRUP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KICC'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'EXIMBAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SMILEPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYCO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP_BILLING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ALIPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYPLE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CHAI'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'BLUEWALNUT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SMARTRO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SMARTRO_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYMENTWALL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSSPAYMENTS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP_QUICK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DAOU'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'GALAXIA'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSSPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP_DIRECT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SETTLE_ACC'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SETTLE_FIRM'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INICIS_UNIFIED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KSNET'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PINPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NICE_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSS_BRANDPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WELCOME'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSSPAY_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INICIS_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KPN'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HYPHEN'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'EXIMBAY_V2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INICIS_JP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYLETTER_GLOBAL'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.common.SelectedChannel.pg_provider" title="Link to this definition">#</a></dt>
-<dd><p>PG사</p>
+<dd><p>PG사 결제 모듈</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1305,12 +1328,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.auth.html"
+       href="portone_server_sdk.b2b.tax_invoice.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.auth</p>
+        <p class="prev-next-title">portone_server_sdk.b2b.tax_invoice</p>
       </div>
     </a>
     <a class="right-next"
@@ -1397,6 +1420,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.id"><code class="docutils literal notranslate"><span class="pre">Customer.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.name"><code class="docutils literal notranslate"><span class="pre">Customer.name</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_year"><code class="docutils literal notranslate"><span class="pre">Customer.birth_year</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_month"><code class="docutils literal notranslate"><span class="pre">Customer.birth_month</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.birth_day"><code class="docutils literal notranslate"><span class="pre">Customer.birth_day</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.gender"><code class="docutils literal notranslate"><span class="pre">Customer.gender</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.email"><code class="docutils literal notranslate"><span class="pre">Customer.email</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.common.Customer.phone_number"><code class="docutils literal notranslate"><span class="pre">Customer.phone_number</span></code></a></li>

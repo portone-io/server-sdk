@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>portone_server_sdk.BulkPayoutClient &#8212; portone-server-sdk  documentation</title>
+    <title>portone_server_sdk.BulkAccountTransferClient &#8212; portone-server-sdk  documentation</title>
   
   
   
@@ -43,11 +43,11 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.BulkPayoutClient';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.BulkAccountTransferClient';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.PartnerSettlementClient" href="portone_server_sdk.PartnerSettlementClient.html" />
-    <link rel="prev" title="portone_server_sdk.BulkAccountTransferClient" href="portone_server_sdk.BulkAccountTransferClient.html" />
+    <link rel="next" title="portone_server_sdk.BulkPayoutClient" href="portone_server_sdk.BulkPayoutClient.html" />
+    <link rel="prev" title="portone_server_sdk.AccountClient" href="portone_server_sdk.AccountClient.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -175,8 +175,8 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.BulkAccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
@@ -244,7 +244,7 @@
       
       
       
-      <li><a href="../_sources/_toctree/portone_server_sdk.BulkPayoutClient.rst" target="_blank"
+      <li><a href="../_sources/_toctree/portone_server_sdk.BulkAccountTransferClient.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>portone_server_sdk.BulkPayoutClient</h1>
+    <h1>portone_server_sdk.BulkAccountTransferClient</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -330,10 +330,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.get_platform_bulk_payouts()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.get_platform_bulk_payouts_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.__init__"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -347,15 +347,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="portone-server-sdk-bulkpayoutclient">
-<h1>portone_server_sdk.BulkPayoutClient<a class="headerlink" href="#portone-server-sdk-bulkpayoutclient" title="Link to this heading">#</a></h1>
+  <section id="portone-server-sdk-bulkaccounttransferclient">
+<h1>portone_server_sdk.BulkAccountTransferClient<a class="headerlink" href="#portone-server-sdk-bulkaccounttransferclient" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.BulkPayoutClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">BulkPayoutClient</span></span><a class="headerlink" href="#portone_server_sdk.BulkPayoutClient" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.BulkAccountTransferClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">BulkAccountTransferClient</span></span><a class="headerlink" href="#portone_server_sdk.BulkAccountTransferClient" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.BulkPayoutClient.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.BulkPayoutClient.__init__" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.BulkAccountTransferClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.BulkAccountTransferClient.__init__" title="Link to this definition">#</a></dt>
 <dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -371,34 +371,34 @@
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.BulkPayoutClient.__init__" title="portone_server_sdk.BulkPayoutClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.BulkAccountTransferClient.__init__" title="portone_server_sdk.BulkAccountTransferClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
 <td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts" title="portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_bulk_payouts</span></code></a>(*[, is_for_test, ...])</p></td>
-<td><p>일괄 지급 내역 다건 조회</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers" title="portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_bulk_account_transfers</span></code></a>(*[, ...])</p></td>
+<td><p>일괄 이체 내역 다건 조회</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async" title="portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_bulk_payouts_async</span></code></a>(*[, ...])</p></td>
-<td><p>일괄 지급 내역 다건 조회</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async" title="portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_bulk_account_transfers_async</span></code></a>(*)</p></td>
+<td><p>일괄 이체 내역 다건 조회</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts">
-<span class="sig-name descname"><span class="pre">get_platform_bulk_payouts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput" title="portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_filter_input.PlatformBulkPayoutFilterInput"><span class="pre">PlatformBulkPayoutFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsResponse" title="portone_server_sdk._generated.platform.bulk_payout.get_platform_bulk_payouts_response.GetPlatformBulkPayoutsResponse"><span class="pre">GetPlatformBulkPayoutsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts" title="Link to this definition">#</a></dt>
-<dd><p>일괄 지급 내역 다건 조회</p>
-<p>성공 응답으로 조회된 일괄 지급 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers">
+<span class="sig-name descname"><span class="pre">get_platform_bulk_account_transfers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input.PlatformBulkAccountTransferFilterInput"><span class="pre">PlatformBulkAccountTransferFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="portone_server_sdk._generated.platform.bulk_account_transfer.get_platform_bulk_account_transfers_response.GetPlatformBulkAccountTransfersResponse"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 내역 다건 조회</p>
+<p>성공 응답으로 조회된 일괄 이체 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
 <li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkPayoutFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsError" title="portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsError"><strong>GetPlatformBulkPayoutsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><strong>GetPlatformBulkAccountTransfersError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -406,21 +406,21 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_bulk_payouts_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.PlatformBulkPayoutFilterInput" title="portone_server_sdk._generated.platform.bulk_payout.platform_bulk_payout_filter_input.PlatformBulkPayoutFilterInput"><span class="pre">PlatformBulkPayoutFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsResponse" title="portone_server_sdk._generated.platform.bulk_payout.get_platform_bulk_payouts_response.GetPlatformBulkPayoutsResponse"><span class="pre">GetPlatformBulkPayoutsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async" title="Link to this definition">#</a></dt>
-<dd><p>일괄 지급 내역 다건 조회</p>
-<p>성공 응답으로 조회된 일괄 지급 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_bulk_account_transfers_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input.PlatformBulkAccountTransferFilterInput"><span class="pre">PlatformBulkAccountTransferFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="portone_server_sdk._generated.platform.bulk_account_transfer.get_platform_bulk_account_transfers_response.GetPlatformBulkAccountTransfersResponse"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 내역 다건 조회</p>
+<p>성공 응답으로 조회된 일괄 이체 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
 <li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
-<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkPayoutFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsError" title="portone_server_sdk.platform.bulk_payout.GetPlatformBulkPayoutsError"><strong>GetPlatformBulkPayoutsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><strong>GetPlatformBulkAccountTransfersError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -443,20 +443,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.BulkAccountTransferClient.html"
+       href="portone_server_sdk.AccountClient.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.BulkAccountTransferClient</p>
+        <p class="prev-next-title">portone_server_sdk.AccountClient</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.PartnerSettlementClient.html"
+       href="portone_server_sdk.BulkPayoutClient.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.PartnerSettlementClient</p>
+        <p class="prev-next-title">portone_server_sdk.BulkPayoutClient</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -477,10 +477,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.get_platform_bulk_payouts()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkPayoutClient.get_platform_bulk_payouts_async"><code class="docutils literal notranslate"><span class="pre">BulkPayoutClient.get_platform_bulk_payouts_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.__init__"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.BulkAccountTransferClient.get_platform_bulk_account_transfers_async"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers_async()</span></code></a></li>
 </ul>
 </li>
 </ul>

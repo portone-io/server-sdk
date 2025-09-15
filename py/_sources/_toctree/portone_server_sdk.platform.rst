@@ -16,6 +16,7 @@
       MonthDay
       Platform
       PlatformAccount
+      PlatformAccountTransferStatusStats
       PlatformAdditionalFeePolicy
       PlatformContact
       PlatformContract
@@ -125,6 +126,7 @@
    account_transfer
    policy
    account
+   bulk_account_transfer
    bulk_payout
    partner_settlement
    partner

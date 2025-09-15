@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>portone_server_sdk.platform.bulk_account_transfer &#8212; portone-server-sdk  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.platform.bulk_account_transfer';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="portone_server_sdk.platform.bulk_payout" href="portone_server_sdk.platform.bulk_payout.html" />
+    <link rel="prev" title="portone_server_sdk.platform.account" href="portone_server_sdk.platform.account.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">portone-server-sdk  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">portone_server_sdk.platform.bulk_account_transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_toctree/portone_server_sdk.platform.bulk_account_transfer.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>portone_server_sdk.platform.bulk_account_transfer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.args"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.message"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.is_for_test"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.is_for_test</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.page"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.page</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.page"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.page</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.counts"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.counts</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.creator_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.creator_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.bank_account_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.bank_account_graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.total_amount"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.total_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.stats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.stats</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.status_updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.created_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.scheduled_at</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.statuses"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput.statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.criteria"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput.criteria</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.amount"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats.amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.count"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats.count</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.prepared"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.prepared</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.scheduled"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.scheduled</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.ongoing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.ongoing</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.completed"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.completed</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers_async"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-portone_server_sdk.platform.bulk_account_transfer">
+<span id="portone-server-sdk-platform-bulk-account-transfer"></span><h1>portone_server_sdk.platform.bulk_account_transfer<a class="headerlink" href="#module-portone_server_sdk.platform.bulk_account_transfer" title="Link to this heading">#</a></h1>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer" title="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria" title="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats" title="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats" title="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient" title="portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Exceptions</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">GetPlatformBulkAccountTransfersError</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError" title="portone_server_sdk._portone_error.PortOneError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PortOneError</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">GetPlatformBulkAccountTransfersBody</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.is_for_test">
+<span class="sig-name descname"><span class="pre">is_for_test</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.is_for_test" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.page" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input.PlatformBulkAccountTransferFilterInput"><span class="pre">PlatformBulkAccountTransferFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.filter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.items">
+<span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer.PlatformBulkAccountTransfer"><span class="pre">PlatformBulkAccountTransfer</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.items" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInfo" title="portone_server_sdk._generated.common.page_info.PageInfo"><span class="pre">PageInfo</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.page" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.counts">
+<span class="sig-name descname"><span class="pre">counts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_status_stats.PlatformBulkAccountTransferStatusStats"><span class="pre">PlatformBulkAccountTransferStatusStats</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.counts" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkAccountTransfer</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.id" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 고유 아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.graphql_id">
+<span class="sig-name descname"><span class="pre">graphql_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.graphql_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.creator_id">
+<span class="sig-name descname"><span class="pre">creator_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.creator_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_id">
+<span class="sig-name descname"><span class="pre">bank_account_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_id" title="Link to this definition">#</a></dt>
+<dd><p>출금 계좌 아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_graphql_id">
+<span class="sig-name descname"><span class="pre">bank_account_graphql_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_graphql_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.total_amount">
+<span class="sig-name descname"><span class="pre">total_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.total_amount" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_stats.PlatformBulkAccountTransferStats"><span class="pre">PlatformBulkAccountTransferStats</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.stats" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status_updated_at">
+<span class="sig-name descname"><span class="pre">status_updated_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status_updated_at" title="Link to this definition">#</a></dt>
+<dd><p>(RFC 3339 date-time)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.created_at" title="Link to this definition">#</a></dt>
+<dd><p>(RFC 3339 date-time)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.updated_at" title="Link to this definition">#</a></dt>
+<dd><p>(RFC 3339 date-time)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.scheduled_at">
+<span class="sig-name descname"><span class="pre">scheduled_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.scheduled_at" title="Link to this definition">#</a></dt>
+<dd><p>(RFC 3339 date-time)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkAccountTransferFilterInput</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.statuses">
+<span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ONGOING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'COMPLETED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.statuses" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.criteria">
+<span class="sig-name descname"><span class="pre">criteria</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input_criteria.PlatformBulkAccountTransferFilterInputCriteria"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.criteria" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.timestamp_range">
+<span class="sig-name descname"><span class="pre">timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.timestamp_range" title="Link to this definition">#</a></dt>
+<dd><p>생성 일시 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range">
+<span class="sig-name descname"><span class="pre">status_updated_timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range" title="Link to this definition">#</a></dt>
+<dd><p>상태 업데이트 일시 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id">
+<span class="sig-name descname"><span class="pre">bulk_account_transfer_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 아이디</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkAccountTransferStats</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformAccountTransferStatusStats" title="portone_server_sdk._generated.platform.platform_account_transfer_status_stats.PlatformAccountTransferStatusStats"><span class="pre">PlatformAccountTransferStatusStats</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.amount" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.count">
+<span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformAccountTransferStatusStats" title="portone_server_sdk._generated.platform.platform_account_transfer_status_stats.PlatformAccountTransferStatusStats"><span class="pre">PlatformAccountTransferStatusStats</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">PlatformBulkAccountTransferStatusStats</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.prepared">
+<span class="sig-name descname"><span class="pre">prepared</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.prepared" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.scheduled">
+<span class="sig-name descname"><span class="pre">scheduled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.scheduled" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.ongoing">
+<span class="sig-name descname"><span class="pre">ongoing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.ongoing" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.completed">
+<span class="sig-name descname"><span class="pre">completed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.completed" title="Link to this definition">#</a></dt>
+<dd><p>(int64)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.bulk_account_transfer.</span></span><span class="sig-name descname"><span class="pre">BulkAccountTransferClient</span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers">
+<span class="sig-name descname"><span class="pre">get_platform_bulk_account_transfers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input.PlatformBulkAccountTransferFilterInput"><span class="pre">PlatformBulkAccountTransferFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="portone_server_sdk._generated.platform.bulk_account_transfer.get_platform_bulk_account_transfers_response.GetPlatformBulkAccountTransfersResponse"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 내역 다건 조회</p>
+<p>성공 응답으로 조회된 일괄 이체 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><strong>GetPlatformBulkAccountTransfersError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_bulk_account_transfers_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput" title="portone_server_sdk._generated.platform.bulk_account_transfer.platform_bulk_account_transfer_filter_input.PlatformBulkAccountTransferFilterInput"><span class="pre">PlatformBulkAccountTransferFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse" title="portone_server_sdk._generated.platform.bulk_account_transfer.get_platform_bulk_account_transfers_response.GetPlatformBulkAccountTransfersResponse"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers_async" title="Link to this definition">#</a></dt>
+<dd><p>일괄 이체 내역 다건 조회</p>
+<p>성공 응답으로 조회된 일괄 이체 내역 리스트와 페이지 정보 및 상태 별 개수 정보를 반환합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>page</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PageInput,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError" title="portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><strong>GetPlatformBulkAccountTransfersError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portone_server_sdk.platform.account.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">portone_server_sdk.platform.account</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="portone_server_sdk.platform.bulk_payout.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">portone_server_sdk.platform.bulk_payout</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.args"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersError.message"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.is_for_test"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.is_for_test</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.page"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.page</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.page"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.page</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.GetPlatformBulkAccountTransfersResponse.counts"><code class="docutils literal notranslate"><span class="pre">GetPlatformBulkAccountTransfersResponse.counts</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.creator_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.creator_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.bank_account_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.bank_account_graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.bank_account_graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.total_amount"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.total_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.stats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.stats</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.status_updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.created_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.updated_at</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransfer.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransfer.scheduled_at</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.statuses"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput.statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInput.criteria"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInput.criteria</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.status_updated_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferFilterInputCriteria.bulk_account_transfer_id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.amount"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats.amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStats.count"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStats.count</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.prepared"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.prepared</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.scheduled"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.scheduled</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.ongoing"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.ongoing</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.PlatformBulkAccountTransferStatusStats.completed"><code class="docutils literal notranslate"><span class="pre">PlatformBulkAccountTransferStatusStats.completed</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.bulk_account_transfer.BulkAccountTransferClient.get_platform_bulk_account_transfers_async"><code class="docutils literal notranslate"><span class="pre">BulkAccountTransferClient.get_platform_bulk_account_transfers_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By portone <tech.support@portone.io>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, PortOne.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -139,6 +139,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
@@ -155,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
@@ -163,11 +168,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
@@ -386,6 +394,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.pg_providers"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.pg_providers</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.pg_companies"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.pg_companies</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.version"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.version</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.types"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.types</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptSortInput"><code class="docutils literal notranslate"><span class="pre">CashReceiptSortInput</span></code></a><ul class="nav section-nav flex-column">
@@ -878,6 +887,13 @@ set self.__traceback__ to tb and return self.</p>
 <dd><p>포트원 버전</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.types">
+<span class="sig-name descname"><span class="pre">types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PERSONAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CORPORATE'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.types" title="Link to this definition">#</a></dt>
+<dd><p>현금영수증 유형 리스트</p>
+<p>값을 입력하지 않으면 필터링이 적용되지 않습니다.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1024,7 +1040,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.store_id">
 <span class="sig-name descname"><span class="pre">store_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.payment.cash_receipt.IssueCashReceiptBody.store_id" title="Link to this definition">#</a></dt>
 <dd><p>상점 아이디</p>
-<p>접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 토큰에 담긴 상점 아이디를 사용합니다.</p>
+<p>접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1571,6 +1587,7 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.pg_providers"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.pg_providers</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.pg_companies"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.pg_companies</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.version"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.version</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptFilterInput.types"><code class="docutils literal notranslate"><span class="pre">CashReceiptFilterInput.types</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.payment.cash_receipt.CashReceiptSortInput"><code class="docutils literal notranslate"><span class="pre">CashReceiptSortInput</span></code></a><ul class="nav section-nav flex-column">

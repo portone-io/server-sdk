@@ -139,6 +139,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
@@ -155,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">portone_server_sdk.platform.partner</a></li>
@@ -163,11 +168,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
@@ -562,13 +570,13 @@
 <td><p>파트너 보관 성공 응답</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody" title="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectBulkPartnerMemberCompanyBody</span></code></a></p></td>
-<td><p>파트너 연동 사업자 일괄 연동 요청 정보</p></td>
+<td><p>파트너 일괄 국세청 연동 요청 정보</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectBulkPartnerMemberCompanyResponse</span></code></a></p></td>
-<td><p>파트너 연동 사업자 일괄 연동 요청 응답</p></td>
+<td><p>파트너 일괄 국세청 연동 응답</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse" title="portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectPartnerMemberCompanyResponse</span></code></a></p></td>
-<td><p>파트너 연동 사업자 연동 요청 응답</p></td>
+<td><p>파트너 국세청 연동 응답</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.CreatePlatformPartnerBody" title="portone_server_sdk.platform.partner.CreatePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreatePlatformPartnerBody</span></code></a></p></td>
 <td><p>파트너 생성을 위한 입력 정보</p></td>
@@ -601,13 +609,13 @@
 <td><p>파트너 다건 생성 성공 응답</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody" title="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DisconnectBulkPartnerMemberCompanyBody</span></code></a></p></td>
-<td><p>파트너 연동 사업자 일괄 연동 해제 요청 정보</p></td>
+<td><p>파트너 일괄 국세청 연동 해제 요청 정보</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DisconnectBulkPartnerMemberCompanyResponse</span></code></a></p></td>
-<td><p>파트너 연동 사업자 일괄 연동 해제 요청 응답</p></td>
+<td><p>파트너 일괄 국세청 연동 해제 응답</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse" title="portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DisconnectPartnerMemberCompanyResponse</span></code></a></p></td>
-<td><p>연동 사업자 연동 해제 요청 응답</p></td>
+<td><p>파트너 국세청 연동 해제 응답</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.partner.GetPlatformPartnersBody" title="portone_server_sdk.platform.partner.GetPlatformPartnersBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlatformPartnersBody</span></code></a></p></td>
 <td><p>파트너 다건 조회를 위한 입력 정보</p></td>
@@ -942,12 +950,12 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">ConnectBulkPartnerMemberCompanyBody</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>파트너 연동 사업자 일괄 연동 요청 정보</p>
-<p>파트너들을 연동 사업자로 일괄 연동합니다.</p>
+<p>파트너 일괄 국세청 연동 요청 정보</p>
+<p>파트너들을 일괄 국세청 연동합니다.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody.filter">
 <span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyBody.filter" title="Link to this definition">#</a></dt>
-<dd><p>연동 사업자로 일괄 연동할 파트너 조건 필터</p>
+<dd><p>일괄 국세청 연동할 파트너 조건 필터</p>
 </dd></dl>
 
 </dd></dl>
@@ -956,7 +964,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">ConnectBulkPartnerMemberCompanyResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>파트너 연동 사업자 일괄 연동 요청 응답</p>
+<p>파트너 일괄 국세청 연동 응답</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse.bulk_task">
 <span class="sig-name descname"><span class="pre">bulk_task</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.partner.PlatformBulkTask" title="portone_server_sdk._generated.platform.partner.platform_bulk_task.PlatformBulkTask"><span class="pre">PlatformBulkTask</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse.bulk_task" title="Link to this definition">#</a></dt>
@@ -968,7 +976,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">ConnectPartnerMemberCompanyResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>파트너 연동 사업자 연동 요청 응답</p>
+<p>파트너 국세청 연동 응답</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse.partner">
 <span class="sig-name descname"><span class="pre">partner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse.partner" title="Link to this definition">#</a></dt>
@@ -1256,12 +1264,12 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">DisconnectBulkPartnerMemberCompanyBody</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>파트너 연동 사업자 일괄 연동 해제 요청 정보</p>
-<p>파트너들을 연동 사업자에서 일괄 연동 해제합니다.</p>
+<p>파트너 일괄 국세청 연동 해제 요청 정보</p>
+<p>파트너들을 일괄 국세청 연동 해제합니다.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody.filter">
 <span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyBody.filter" title="Link to this definition">#</a></dt>
-<dd><p>연동 사업자에서 일괄 연동 해제할 파트너 조건 필터</p>
+<dd><p>일괄 국세청 연동 해제할 파트너 조건 필터</p>
 </dd></dl>
 
 </dd></dl>
@@ -1270,7 +1278,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">DisconnectBulkPartnerMemberCompanyResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>파트너 연동 사업자 일괄 연동 해제 요청 응답</p>
+<p>파트너 일괄 국세청 연동 해제 응답</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse.bulk_task">
 <span class="sig-name descname"><span class="pre">bulk_task</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.partner.PlatformBulkTask" title="portone_server_sdk._generated.platform.partner.platform_bulk_task.PlatformBulkTask"><span class="pre">PlatformBulkTask</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse.bulk_task" title="Link to this definition">#</a></dt>
@@ -1282,7 +1290,7 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.partner.</span></span><span class="sig-name descname"><span class="pre">DisconnectPartnerMemberCompanyResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>연동 사업자 연동 해제 요청 응답</p>
+<p>파트너 국세청 연동 해제 응답</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse.partner">
 <span class="sig-name descname"><span class="pre">partner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse.partner" title="Link to this definition">#</a></dt>
@@ -1349,7 +1357,7 @@ set self.__traceback__ to tb and return self.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PlatformBulkTask.type">
-<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CREATE_TRANSFERS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CREATE_PARTNERS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CONNECT_MEMBER_COMPANIES'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DISCONNECT_MEMBER_COMPANIES'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.PlatformBulkTask.type" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CREATE_TRANSFERS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CREATE_PARTNERS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CONNECT_MEMBER_COMPANIES'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DISCONNECT_MEMBER_COMPANIES'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SEND_PAYOUT_SETTLEMENT_STATEMENTS'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.partner.PlatformBulkTask.type" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1609,11 +1617,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.connect_bulk_partner_member_company">
 <span class="sig-name descname"><span class="pre">connect_bulk_partner_member_company</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.connect_bulk_partner_member_company_response.ConnectBulkPartnerMemberCompanyResponse"><span class="pre">ConnectBulkPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.connect_bulk_partner_member_company" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 일괄 연동</p>
-<p>파트너들을 연동 사업자로 일괄 연동합니다.</p>
+<dd><p>파트너 일괄 국세청 연동</p>
+<p>파트너들을 일괄 국세청 연동합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 연동 사업자로 일괄 연동할 파트너 조건 필터</p>
+<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 일괄 국세청 연동할 파트너 조건 필터</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -1627,11 +1635,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.connect_bulk_partner_member_company_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect_bulk_partner_member_company_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.connect_bulk_partner_member_company_response.ConnectBulkPartnerMemberCompanyResponse"><span class="pre">ConnectBulkPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.connect_bulk_partner_member_company_async" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 일괄 연동</p>
-<p>파트너들을 연동 사업자로 일괄 연동합니다.</p>
+<dd><p>파트너 일괄 국세청 연동</p>
+<p>파트너들을 일괄 국세청 연동합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 연동 사업자로 일괄 연동할 파트너 조건 필터</p>
+<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 일괄 국세청 연동할 파트너 조건 필터</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -1645,8 +1653,8 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.connect_partner_member_company">
 <span class="sig-name descname"><span class="pre">connect_partner_member_company</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.connect_partner_member_company_response.ConnectPartnerMemberCompanyResponse"><span class="pre">ConnectPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.connect_partner_member_company" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 연동</p>
-<p>파트너를 연동 사업자로 연동합니다.</p>
+<dd><p>파트너 국세청 연동</p>
+<p>파트너를 국세청 연동합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
@@ -1663,8 +1671,8 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.connect_partner_member_company_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect_partner_member_company_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ConnectPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.connect_partner_member_company_response.ConnectPartnerMemberCompanyResponse"><span class="pre">ConnectPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.connect_partner_member_company_async" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 연동</p>
-<p>파트너를 연동 사업자로 연동합니다.</p>
+<dd><p>파트너 국세청 연동</p>
+<p>파트너를 국세청 연동합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
@@ -1681,11 +1689,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.disconnect_bulk_partner_member_company">
 <span class="sig-name descname"><span class="pre">disconnect_bulk_partner_member_company</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.disconnect_bulk_partner_member_company_response.DisconnectBulkPartnerMemberCompanyResponse"><span class="pre">DisconnectBulkPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.disconnect_bulk_partner_member_company" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 연동 해제</p>
-<p>파트너들을 연동 사업자에서 일괄 연동 해제합니다.</p>
+<dd><p>파트너 일괄 국세청 연동 해제</p>
+<p>파트너들을 일괄 국세청 연동 해제합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터</p>
+<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 일괄 국세청 연동 해제할 파트너 조건 필터</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -1699,11 +1707,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.disconnect_bulk_partner_member_company_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">disconnect_bulk_partner_member_company_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectBulkPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.disconnect_bulk_partner_member_company_response.DisconnectBulkPartnerMemberCompanyResponse"><span class="pre">DisconnectBulkPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.disconnect_bulk_partner_member_company_async" title="Link to this definition">#</a></dt>
-<dd><p>파트너 연동 사업자 연동 해제</p>
-<p>파트너들을 연동 사업자에서 일괄 연동 해제합니다.</p>
+<dd><p>파트너 일괄 국세청 연동 해제</p>
+<p>파트너들을 일괄 국세청 연동 해제합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 연동 사업자에서 일괄 연동 해제할 파트너 조건 필터</p>
+<dd class="field-odd"><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput,</span> <span class="pre">optional</span></code>) – 일괄 국세청 연동 해제할 파트너 조건 필터</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -1717,8 +1725,8 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.disconnect_partner_member_company">
 <span class="sig-name descname"><span class="pre">disconnect_partner_member_company</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.disconnect_partner_member_company_response.DisconnectPartnerMemberCompanyResponse"><span class="pre">DisconnectPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.disconnect_partner_member_company" title="Link to this definition">#</a></dt>
-<dd><p>연동 사업자 연동 해제</p>
-<p>파트너를 연동 사업자에서 연동 해제합니다.</p>
+<dd><p>파트너 국세청 연동 해제</p>
+<p>파트너를 국세청 연동 해제합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
@@ -1735,8 +1743,8 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.disconnect_partner_member_company_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">disconnect_partner_member_company_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.DisconnectPartnerMemberCompanyResponse" title="portone_server_sdk._generated.platform.partner.disconnect_partner_member_company_response.DisconnectPartnerMemberCompanyResponse"><span class="pre">DisconnectPartnerMemberCompanyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.disconnect_partner_member_company_async" title="Link to this definition">#</a></dt>
-<dd><p>연동 사업자 연동 해제</p>
-<p>파트너를 연동 사업자에서 연동 해제합니다.</p>
+<dd><p>파트너 국세청 연동 해제</p>
+<p>파트너를 국세청 연동 해제합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 파트너 아이디</p>
@@ -1845,7 +1853,7 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.archive_platform_partner">
 <span class="sig-name descname"><span class="pre">archive_platform_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.archive_platform_partner_response.ArchivePlatformPartnerResponse"><span class="pre">ArchivePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.archive_platform_partner" title="Link to this definition">#</a></dt>
-<dd><p>파트너 복원</p>
+<dd><p>파트너 보관</p>
 <p>주어진 아이디에 대응되는 파트너를 보관합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1863,7 +1871,7 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.partner.PartnerClient.archive_platform_partner_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_platform_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.partner.ArchivePlatformPartnerResponse" title="portone_server_sdk._generated.platform.partner.archive_platform_partner_response.ArchivePlatformPartnerResponse"><span class="pre">ArchivePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.partner.PartnerClient.archive_platform_partner_async" title="Link to this definition">#</a></dt>
-<dd><p>파트너 복원</p>
+<dd><p>파트너 보관</p>
 <p>주어진 아이디에 대응되는 파트너를 보관합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

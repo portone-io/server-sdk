@@ -11,9 +11,31 @@
       PortOneError
       AlreadyPaidError
       AlreadyPaidOrWaitingError
+      B2BCannotChangeTaxTypeError
+      B2BTaxInvoiceStatusNotSendingCompletedError
+      B2bBulkTaxInvoiceNotFoundError
+      B2bDocumentKeyCannotBeChangedError
       B2bExternalServiceError
+      B2bFileNotFoundError
+      B2bIdAlreadyExistsError
+      B2bIssuanceTypeMismatchError
+      B2bModificationNotProvidedError
       B2bNotEnabledError
+      B2bOriginalTaxInvoiceNotFoundError
+      B2bRecipientNotFoundError
+      B2bSupplierNotFoundError
+      B2bTaxInvoiceAttachmentNotFoundError
+      B2bTaxInvoiceNoRecipientDocumentKeyError
+      B2bTaxInvoiceNoSupplierDocumentKeyError
+      B2bTaxInvoiceNonDeletableStatusError
+      B2bTaxInvoiceNotDraftedStatusError
+      B2bTaxInvoiceNotFoundError
+      B2bTaxInvoiceNotIssuedStatusError
+      B2bTaxInvoiceNotRequestedStatusError
+      B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError
+      B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError
       BillingKeyAlreadyDeletedError
+      BillingKeyAlreadyIssuedError
       BillingKeyNotFoundError
       BillingKeyNotIssuedError
       CancelAmountExceedsCancellableAmountError
@@ -31,6 +53,8 @@
       IdentityVerificationAlreadyVerifiedError
       IdentityVerificationNotFoundError
       IdentityVerificationNotSentError
+      InformationMismatchError
+      InvalidPaymentTokenError
       InvalidRequestError
       MaxTransactionCountReachedError
       MaxWebhookRetryCountReachedError

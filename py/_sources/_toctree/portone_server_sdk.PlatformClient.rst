@@ -71,6 +71,7 @@
       ~PlatformClient.account_transfer
       ~PlatformClient.policy
       ~PlatformClient.account
+      ~PlatformClient.bulk_account_transfer
       ~PlatformClient.bulk_payout
       ~PlatformClient.partner_settlement
       ~PlatformClient.partner

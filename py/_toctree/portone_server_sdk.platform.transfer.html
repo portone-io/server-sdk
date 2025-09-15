@@ -139,6 +139,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
@@ -155,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
@@ -163,11 +168,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
@@ -562,6 +570,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.store_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.partner"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.partner</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.contract"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.contract</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_date"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.settlement_date</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_currency"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.settlement_currency</span></code></a></li>
@@ -636,6 +645,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.store_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.partner"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.partner</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.contract"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.contract</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_date"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.settlement_date</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_currency"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.settlement_currency</span></code></a></li>
@@ -717,6 +727,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_name"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_name</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_memo"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_memo</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_settlement_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_settlement_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.payout_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferSummaryExternalPayment"><code class="docutils literal notranslate"><span class="pre">PlatformTransferSummaryExternalPayment</span></code></a><ul class="nav section-nav flex-column">
@@ -1727,6 +1739,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p>TRANSFER_PAYMENT_VAT_BURDEN_AMOUNT: 결제 부가세 부담금</p></li>
 <li><p>TRANSFER_PLATFORM_FEE:  중개수수료</p></li>
 <li><p>TRANSFER_PLATFORM_FEE_VAT: 중개수수료 부가세 부담금</p></li>
+<li><p>TRANSFER_CONTRACT_ID: 계약 아이디</p></li>
+<li><p>TRANSFER_CONTRACT_NAME: 계약 이름</p></li>
 <li><p>TRANSFER_DISCOUNT_AMOUNT: 할인 금액</p></li>
 <li><p>TRANSFER_DISCOUNT_TAX_FREE_AMOUNT: 할인 면세액</p></li>
 <li><p>TRANSFER_DISCOUNT_SHARE_AMOUNT: 할인 분담금</p></li>
@@ -2131,6 +2145,11 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.contract">
+<span class="sig-name descname"><span class="pre">contract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.contract" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.status">
 <span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'IN_PROCESS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SETTLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'IN_PAYOUT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAID_OUT'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.status" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -2498,6 +2517,11 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.partner">
 <span class="sig-name descname"><span class="pre">partner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.transfer.PlatformTransferSummaryPartner" title="portone_server_sdk._generated.platform.transfer.platform_transfer_summary_partner.PlatformTransferSummaryPartner"><span class="pre">PlatformTransferSummaryPartner</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.partner" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.contract">
+<span class="sig-name descname"><span class="pre">contract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.html#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.contract" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -2926,6 +2950,18 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <dd><p>해당 값이 포함된 partnerMemo 를 가진 정산건만 조회합니다.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_settlement_id">
+<span class="sig-name descname"><span class="pre">partner_settlement_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_settlement_id" title="Link to this definition">#</a></dt>
+<dd><p>해당 값이 포함된 partnerSettlementId 를 가진 정산건만 조회합니다.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.payout_id">
+<span class="sig-name descname"><span class="pre">payout_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.payout_id" title="Link to this definition">#</a></dt>
+<dd><p>해당 값과 일치하는 지급건에 연관된 정산건만 조회합니다.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -3083,6 +3119,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p>TRANSFER_PAYMENT_VAT_BURDEN_AMOUNT: 결제 부가세 부담금</p></li>
 <li><p>TRANSFER_PLATFORM_FEE:  중개수수료</p></li>
 <li><p>TRANSFER_PLATFORM_FEE_VAT: 중개수수료 부가세 부담금</p></li>
+<li><p>TRANSFER_CONTRACT_ID: 계약 아이디</p></li>
+<li><p>TRANSFER_CONTRACT_NAME: 계약 이름</p></li>
 <li><p>TRANSFER_DISCOUNT_AMOUNT: 할인 금액</p></li>
 <li><p>TRANSFER_DISCOUNT_TAX_FREE_AMOUNT: 할인 면세액</p></li>
 <li><p>TRANSFER_DISCOUNT_SHARE_AMOUNT: 할인 분담금</p></li>
@@ -3137,6 +3175,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li><p>TRANSFER_PAYMENT_VAT_BURDEN_AMOUNT: 결제 부가세 부담금</p></li>
 <li><p>TRANSFER_PLATFORM_FEE:  중개수수료</p></li>
 <li><p>TRANSFER_PLATFORM_FEE_VAT: 중개수수료 부가세 부담금</p></li>
+<li><p>TRANSFER_CONTRACT_ID: 계약 아이디</p></li>
+<li><p>TRANSFER_CONTRACT_NAME: 계약 이름</p></li>
 <li><p>TRANSFER_DISCOUNT_AMOUNT: 할인 금액</p></li>
 <li><p>TRANSFER_DISCOUNT_TAX_FREE_AMOUNT: 할인 면세액</p></li>
 <li><p>TRANSFER_DISCOUNT_SHARE_AMOUNT: 할인 분담금</p></li>
@@ -3812,6 +3852,7 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.store_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.partner"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.partner</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.contract"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.contract</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_date"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.settlement_date</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderCancelTransferSummary.settlement_currency"><code class="docutils literal notranslate"><span class="pre">PlatformOrderCancelTransferSummary.settlement_currency</span></code></a></li>
@@ -3886,6 +3927,7 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.store_id"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.store_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.partner"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.partner</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.contract"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.contract</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_date"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.settlement_date</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformOrderTransferSummary.settlement_currency"><code class="docutils literal notranslate"><span class="pre">PlatformOrderTransferSummary.settlement_currency</span></code></a></li>
@@ -3967,6 +4009,8 @@ transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_name"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_name</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_memo"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_memo</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.partner_settlement_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.partner_settlement_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferFilterInputKeyword.payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformTransferFilterInputKeyword.payout_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.transfer.PlatformTransferSummaryExternalPayment"><code class="docutils literal notranslate"><span class="pre">PlatformTransferSummaryExternalPayment</span></code></a><ul class="nav section-nav flex-column">

@@ -17,16 +17,21 @@
       CancelledPayment
       CancelledPaymentCashReceipt
       CancelledPaymentEscrow
+      CancelledPaymentEvent
       CancelledPaymentTransaction
       CloseVirtualAccountResponse
       ConfirmEscrowBody
       ConfirmEscrowResponse
+      ConfirmPaymentBody
       ConfirmedPaymentEscrow
+      ConfirmedPaymentSummary
       DeliveredPaymentEscrow
       Dispute
       FailedPayment
       FailedPaymentCancellation
       FailedPaymentTransaction
+      GetAllPaymentEventsByCursorBody
+      GetAllPaymentEventsByCursorResponse
       GetAllPaymentsByCursorBody
       GetAllPaymentsByCursorResponse
       GetPaymentTransactionsResponse
@@ -45,8 +50,10 @@
       ModifyEscrowLogisticsBody
       ModifyEscrowLogisticsResponse
       PaidPayment
+      PaidPaymentEvent
       PaidPaymentTransaction
       PartialCancelledPayment
+      PartialCancelledPaymentEvent
       PartialCancelledPaymentTransaction
       PayInstantlyResponse
       PayPendingPayment
@@ -55,6 +62,7 @@
       PaymentAmount
       PaymentEscrowReceiverInput
       PaymentEscrowSenderInput
+      PaymentEventWithCursor
       PaymentFailure
       PaymentFilterInput
       PaymentInstallment
@@ -99,6 +107,8 @@
       CancelPaymentError
       CloseVirtualAccountError
       ConfirmEscrowError
+      ConfirmPaymentError
+      GetAllPaymentEventsError
       GetAllPaymentsError
       GetPaymentError
       GetPaymentTransactionsError

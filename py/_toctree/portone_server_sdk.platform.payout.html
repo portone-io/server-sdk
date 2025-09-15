@@ -139,6 +139,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
@@ -155,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
@@ -163,11 +168,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
@@ -343,11 +351,14 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout"><code class="docutils literal notranslate"><span class="pre">PlatformPayout</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.bulk_payout_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.bulk_payout_graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.method"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.method</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.status"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.status_updated_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.partner"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.partner</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.account"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.account</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_status"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.tax_invoice_status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.currency"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.currency</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.amount"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.supply_amount"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.supply_amount</span></code></a></li>
@@ -360,7 +371,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.created_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.deduct_wht"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.deduct_wht</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.settlement_amount_type"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.settlement_amount_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.settlement_statement"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.settlement_statement</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.memo</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.tax_invoice_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.withdrawal_memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.withdrawal_memo</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.deposit_memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.deposit_memo</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.scheduled_at</span></code></a></li>
@@ -380,13 +393,28 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_account_banks"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_account_banks</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_tags"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_tags</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_currencies"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_currencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_ids"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_ids</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.tax_invoice_statuses"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.tax_invoice_statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_types"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_types</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_taxation_types"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_taxation_types</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.settlement_statement_statuses"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.settlement_statement_statuses</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.timestamp_range</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.status_updated_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.status_updated_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.scheduled_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.scheduled_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.payout_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.bulk_payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.bulk_payout_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.tax_invoice_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.tax_invoice_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.settlement_statement_id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.issued_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.issued_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">
@@ -428,7 +456,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria" title="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria</span></code></a></p></td>
 <td><p>검색 기준 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.payout.PayoutClient" title="portone_server_sdk.platform.payout.PayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PayoutClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary" title="portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary</span></code></a></p></td>
+<td><p>정산 내역서 요약 정보</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.payout.PayoutClient" title="portone_server_sdk.platform.payout.PayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PayoutClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -524,13 +555,23 @@ set self.__traceback__ to tb and return self.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_id">
+<span class="sig-name descname"><span class="pre">bulk_payout_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_graphql_id">
+<span class="sig-name descname"><span class="pre">bulk_payout_graphql_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_graphql_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.method">
 <span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'DIRECT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'AGENCY'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.method" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.status">
-<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PROCESSING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUCCEEDED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.status" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CONFIRMED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PROCESSING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUCCEEDED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.status" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -548,6 +589,12 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.account">
 <span class="sig-name descname"><span class="pre">account</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.payout.PlatformPayoutAccount" title="portone_server_sdk._generated.platform.payout.platform_payout_account.PlatformPayoutAccount"><span class="pre">PlatformPayoutAccount</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.account" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_status">
+<span class="sig-name descname"><span class="pre">tax_invoice_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'NONE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFTED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFT_PENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFT_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUESTED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_PENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_REFUSED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ISSUED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ISSUANCE_CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'BEFORE_SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WAITING_SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING_COMPLETED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING_FAILED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_status" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 상태</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.currency">
@@ -629,9 +676,21 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.settlement_statement">
+<span class="sig-name descname"><span class="pre">settlement_statement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary" title="portone_server_sdk._generated.platform.payout.platform_payout_settlement_statement_summary.PlatformPayoutSettlementStatementSummary"><span class="pre">PlatformPayoutSettlementStatementSummary</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.settlement_statement" title="Link to this definition">#</a></dt>
+<dd><p>정산 내역서 요약 정보</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.memo">
 <span class="sig-name descname"><span class="pre">memo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.memo" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_id">
+<span class="sig-name descname"><span class="pre">tax_invoice_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_id" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 아이디</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayout.withdrawal_memo">
@@ -691,7 +750,7 @@ set self.__traceback__ to tb and return self.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.statuses">
-<span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PROCESSING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUCCEEDED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.statuses" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CONFIRMED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PREPARED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'STOPPED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PROCESSING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUCCEEDED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SCHEDULED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.statuses" title="Link to this definition">#</a></dt>
 <dd><p>지급 상태</p>
 <p>값이 존재하는 경우 해당 리스트에 포함되는 지급 상태를 가진 지급 내역을 조회합니다.</p>
 </dd></dl>
@@ -724,6 +783,41 @@ set self.__traceback__ to tb and return self.</p>
 <p>값이 존재하는 경우 해당 리스트에 포함되는 지급 통화를 가진 지급 내역을 조회합니다.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_ids">
+<span class="sig-name descname"><span class="pre">payout_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_ids" title="Link to this definition">#</a></dt>
+<dd><p>지급 아이디</p>
+<p>값이 존재하는 경우 해당 리스트에 포함되는 지급 아이디를 가진 지급 내역을 조회합니다.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.tax_invoice_statuses">
+<span class="sig-name descname"><span class="pre">tax_invoice_statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'NONE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFTED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFT_PENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DRAFT_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUESTED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_PENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'REQUEST_REFUSED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ISSUED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ISSUANCE_CANCELLED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'BEFORE_SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WAITING_SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING_COMPLETED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENDING_FAILED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.tax_invoice_statuses" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 상태</p>
+<p>값이 존재하는 경우 해당 리스트에 포함되는 세금계산서 상태를 가진 지급 내역을 조회합니다.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_types">
+<span class="sig-name descname"><span class="pre">partner_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'BUSINESS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WHT_PAYER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NON_WHT_PAYER'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_types" title="Link to this definition">#</a></dt>
+<dd><p>파트너 유형</p>
+<p>값이 존재하는 경우 해당 리스트에 포함되는 파트너 유형을 가진 지급 내역을 조회합니다.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_taxation_types">
+<span class="sig-name descname"><span class="pre">partner_taxation_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'NORMAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SIMPLE_TAX_INVOICE_ISSUER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SIMPLE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TAX_FREE'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_taxation_types" title="Link to this definition">#</a></dt>
+<dd><p>파트너 과세 유형</p>
+<p>값이 존재하는 경우 해당 리스트에 포함되는 파트너 과세 유형을 가진 지급 내역을 조회합니다.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInput.settlement_statement_statuses">
+<span class="sig-name descname"><span class="pre">settlement_statement_statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'UNSENT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SEND_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SEND_PREPARED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.settlement_statement_statuses" title="Link to this definition">#</a></dt>
+<dd><p>정산 내역서 상태</p>
+<p>값이 존재하는 경우 해당 리스트에 포함되는 정산 내역서 상태를 가진 지급 내역을 조회합니다.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -734,13 +828,25 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.timestamp_range">
 <span class="sig-name descname"><span class="pre">timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.timestamp_range" title="Link to this definition">#</a></dt>
-<dd><p>생성 시간 범위</p>
+<dd><p>생성 일시 범위</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.status_updated_timestamp_range">
 <span class="sig-name descname"><span class="pre">status_updated_timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.status_updated_timestamp_range" title="Link to this definition">#</a></dt>
-<dd><p>상태값 업데이트 시간 범위</p>
+<dd><p>상태 업데이트 일시 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.scheduled_timestamp_range">
+<span class="sig-name descname"><span class="pre">scheduled_timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.scheduled_timestamp_range" title="Link to this definition">#</a></dt>
+<dd><p>지급 예정 일시 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range">
+<span class="sig-name descname"><span class="pre">settlement_statement_issued_timestamp_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateTimeRange" title="portone_server_sdk._generated.common.date_time_range.DateTimeRange"><span class="pre">DateTimeRange</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range" title="Link to this definition">#</a></dt>
+<dd><p>정산 내역서 발송 일시 범위</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -753,6 +859,44 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.bulk_payout_id">
 <span class="sig-name descname"><span class="pre">bulk_payout_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.bulk_payout_id" title="Link to this definition">#</a></dt>
 <dd><p>일괄 지급 아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.tax_invoice_id">
+<span class="sig-name descname"><span class="pre">tax_invoice_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.tax_invoice_id" title="Link to this definition">#</a></dt>
+<dd><p>세금계산서 아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_id">
+<span class="sig-name descname"><span class="pre">settlement_statement_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_id" title="Link to this definition">#</a></dt>
+<dd><p>정산 내역서 아이디</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.payout.</span></span><span class="sig-name descname"><span class="pre">PlatformPayoutSettlementStatementSummary</span></span><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>정산 내역서 요약 정보</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'UNSENT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SENT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SEND_FAILED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SEND_PREPARED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.status" title="Link to this definition">#</a></dt>
+<dd><p>상태</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.id" title="Link to this definition">#</a></dt>
+<dd><p>아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.issued_at">
+<span class="sig-name descname"><span class="pre">issued_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.issued_at" title="Link to this definition">#</a></dt>
+<dd><p>발송 일시
+(RFC 3339 date-time)</p>
 </dd></dl>
 
 </dd></dl>
@@ -876,11 +1020,14 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout"><code class="docutils literal notranslate"><span class="pre">PlatformPayout</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.graphql_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.bulk_payout_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.bulk_payout_graphql_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.bulk_payout_graphql_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.method"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.method</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.status"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.status_updated_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.status_updated_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.partner"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.partner</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.account"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.account</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_status"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.tax_invoice_status</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.currency"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.currency</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.amount"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.amount</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.supply_amount"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.supply_amount</span></code></a></li>
@@ -893,7 +1040,9 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.created_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.created_at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.deduct_wht"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.deduct_wht</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.settlement_amount_type"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.settlement_amount_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.settlement_statement"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.settlement_statement</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.memo</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.tax_invoice_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.tax_invoice_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.withdrawal_memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.withdrawal_memo</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.deposit_memo"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.deposit_memo</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayout.scheduled_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayout.scheduled_at</span></code></a></li>
@@ -913,13 +1062,28 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_account_banks"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_account_banks</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_tags"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_tags</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_currencies"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_currencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.payout_ids"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.payout_ids</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.tax_invoice_statuses"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.tax_invoice_statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_types"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_types</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.partner_taxation_types"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.partner_taxation_types</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInput.settlement_statement_statuses"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInput.settlement_statement_statuses</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.timestamp_range</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.status_updated_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.status_updated_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.scheduled_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.scheduled_timestamp_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.settlement_statement_issued_timestamp_range</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.payout_id</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.bulk_payout_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.bulk_payout_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.tax_invoice_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.tax_invoice_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutFilterInputCriteria.settlement_statement_id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutFilterInputCriteria.settlement_statement_id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.status"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.id"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PlatformPayoutSettlementStatementSummary.issued_at"><code class="docutils literal notranslate"><span class="pre">PlatformPayoutSettlementStatementSummary.issued_at</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.payout.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">

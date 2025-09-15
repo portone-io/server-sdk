@@ -22,6 +22,10 @@
       ~PaymentClient.close_virtual_account_async
       ~PaymentClient.confirm_escrow
       ~PaymentClient.confirm_escrow_async
+      ~PaymentClient.confirm_payment
+      ~PaymentClient.confirm_payment_async
+      ~PaymentClient.get_all_payment_events_by_cursor
+      ~PaymentClient.get_all_payment_events_by_cursor_async
       ~PaymentClient.get_all_payments_by_cursor
       ~PaymentClient.get_all_payments_by_cursor_async
       ~PaymentClient.get_payment

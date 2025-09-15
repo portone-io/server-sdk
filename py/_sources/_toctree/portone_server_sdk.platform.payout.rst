@@ -14,6 +14,7 @@ portone\_server\_sdk.platform.payout
       PlatformPayoutAccount
       PlatformPayoutFilterInput
       PlatformPayoutFilterInputCriteria
+      PlatformPayoutSettlementStatementSummary
       PayoutClient
    
    .. rubric:: Exceptions
