@@ -119,8 +119,8 @@ tasks.jar {
 }
 
 tasks.shadowJar {
-    setEnableRelocation(true)
-    setRelocationPrefix("io.portone.shadow")
+    enableAutoRelocation = true
+    relocationPrefix = "io.portone.shadow"
 }
 
 tasks.withType<DokkaTask> {
