@@ -1,5 +1,6 @@
 export { BillingKeyError } from "./BillingKeyError"
 export * from "./BillingKeyAlreadyIssuedError"
+export * from "./BillingKeyDeleteRequester"
 export * from "./BillingKeyFailure"
 export * from "./BillingKeyFilterInput"
 export * from "./BillingKeyInfo"

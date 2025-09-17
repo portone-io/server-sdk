@@ -17,6 +17,7 @@ from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...common.payment_schedule_already_exists_error import _deserialize_payment_schedule_already_exists_error
 from ...common.pg_provider_error import _deserialize_pg_provider_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
+from ...payment.billing_key.billing_key_delete_requester import BillingKeyDeleteRequester, _deserialize_billing_key_delete_requester, _serialize_billing_key_delete_requester
 from ...payment.billing_key.billing_key_filter_input import BillingKeyFilterInput, _deserialize_billing_key_filter_input, _serialize_billing_key_filter_input
 from ...payment.billing_key.billing_key_info import BillingKeyInfo, _deserialize_billing_key_info, _serialize_billing_key_info
 from ...payment.billing_key.billing_key_sort_input import BillingKeySortInput, _deserialize_billing_key_sort_input, _serialize_billing_key_sort_input
@@ -956,6 +957,7 @@ class BillingKeyClient:
         *,
         billing_key: str,
         reason: Optional[str] = None,
+        requester: Optional[BillingKeyDeleteRequester] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -968,6 +970,10 @@ class BillingKeyClient:
                 사유
 
                 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+            requester (BillingKeyDeleteRequester, optional):
+                요청 주체
+
+                네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
 
 
         Raises:
@@ -979,6 +985,8 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         if reason is not None:
             query.append(("reason", reason))
+        if requester is not None:
+            query.append(("requester", requester))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
@@ -1052,6 +1060,7 @@ class BillingKeyClient:
         *,
         billing_key: str,
         reason: Optional[str] = None,
+        requester: Optional[BillingKeyDeleteRequester] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -1064,6 +1073,10 @@ class BillingKeyClient:
                 사유
 
                 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+            requester (BillingKeyDeleteRequester, optional):
+                요청 주체
+
+                네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
 
 
         Raises:
@@ -1075,6 +1088,8 @@ class BillingKeyClient:
             query.append(("storeId", self._store_id))
         if reason is not None:
             query.append(("reason", reason))
+        if requester is not None:
+            query.append(("requester", requester))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
