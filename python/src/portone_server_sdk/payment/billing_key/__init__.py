@@ -16,6 +16,9 @@ from ..._generated.payment.billing_key.errors.get_billing_key_infos_error import
 from ..._generated.payment.billing_key.errors.issue_billing_key_error import (
     IssueBillingKeyError,
 )
+from ..._generated.payment.billing_key.billing_key_delete_requester import (
+    BillingKeyDeleteRequester,
+)
 from ..._generated.payment.billing_key.billing_key_failure import BillingKeyFailure
 from ..._generated.payment.billing_key.billing_key_filter_input import (
     BillingKeyFilterInput,
@@ -127,6 +130,7 @@ __all__ = [
     "GetBillingKeyInfoError",
     "GetBillingKeyInfosError",
     "IssueBillingKeyError",
+    "BillingKeyDeleteRequester",
     "BillingKeyFailure",
     "BillingKeyFilterInput",
     "BillingKeyInfo",

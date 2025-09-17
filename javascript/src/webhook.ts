@@ -212,9 +212,9 @@ async function getCryptoKeyFromSecret(secret: string | Uint8Array) {
 	const cryptoKeyCached = secrets.get(secret); // cache based on argument
 	if (cryptoKeyCached !== undefined) return cryptoKeyCached;
 
-	let rawSecret: Uint8Array;
+	let rawSecret: Uint8Array<ArrayBuffer>;
 	if (secret instanceof Uint8Array) {
-		rawSecret = secret;
+		rawSecret = new Uint8Array(secret);
 	} else if (typeof secret === "string") {
 		const secretBase64 = secret.startsWith(prefix)
 			? secret.substring(prefix.length)
@@ -237,7 +237,7 @@ async function getCryptoKeyFromSecret(secret: string | Uint8Array) {
 
 	const cryptoKey = await crypto.subtle.importKey(
 		"raw",
-		rawSecret,
+		rawSecret.buffer,
 		{ name: "HMAC", hash: "SHA-256" },
 		false,
 		["sign"],
