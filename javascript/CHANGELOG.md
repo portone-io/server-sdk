@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.17.0
+
+### Minor Changes
+
+- 494da12: 빌링키 삭제 시 requester 필드 추가
+
+### Patch Changes
+
+- 494da12: 의존성 업데이트
+
 ## 0.16.0
 
 ### Minor Changes
