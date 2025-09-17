@@ -42,11 +42,11 @@
 
 ### Minor Changes
 
-- 494da12: 빌링키 삭제 시 requester 필드 추가
+- 00f7634: 빌링키 삭제 시 requester 필드 추가
 
 ### Patch Changes
 
-- 494da12: 의존성 업데이트
+- 00f7634: 의존성 업데이트
 
 ## 0.16.0
 
