@@ -1,4 +1,4 @@
-package io.portone.sdk.server.payment
+package io.portone.sdk.server.payment.billingkey
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -9,13 +9,13 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/** 결제 취소 요청 주체 */
-@Serializable(CancelRequesterSerializer::class)
-public sealed interface CancelRequester {
+/** 빌링키 삭제 요청 주체 */
+@Serializable(BillingKeyDeleteRequesterSerializer::class)
+public sealed interface BillingKeyDeleteRequester {
   public val value: String
   /** 구매자 */
   @Serializable(CustomerSerializer::class)
-  public data object Customer : CancelRequester {
+  public data object Customer : BillingKeyDeleteRequester {
     override val value: String = "CUSTOMER"
   }
   private object CustomerSerializer : KSerializer<Customer> {
@@ -31,7 +31,7 @@ public sealed interface CancelRequester {
   }
   /** 관리자 */
   @Serializable(AdminSerializer::class)
-  public data object Admin : CancelRequester {
+  public data object Admin : BillingKeyDeleteRequester {
     override val value: String = "ADMIN"
   }
   private object AdminSerializer : KSerializer<Admin> {
@@ -47,19 +47,19 @@ public sealed interface CancelRequester {
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
-  public data class Unrecognized internal constructor(override val value: String) : CancelRequester
+  public data class Unrecognized internal constructor(override val value: String) : BillingKeyDeleteRequester
 }
 
 
-private object CancelRequesterSerializer : KSerializer<CancelRequester> {
-  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelRequester::class.java.name, PrimitiveKind.STRING)
-  override fun deserialize(decoder: Decoder): CancelRequester {
+private object BillingKeyDeleteRequesterSerializer : KSerializer<BillingKeyDeleteRequester> {
+  override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKeyDeleteRequester::class.java.name, PrimitiveKind.STRING)
+  override fun deserialize(decoder: Decoder): BillingKeyDeleteRequester {
     val value = decoder.decodeString()
     return when (value) {
-      "CUSTOMER" -> CancelRequester.Customer
-      "ADMIN" -> CancelRequester.Admin
-      else -> CancelRequester.Unrecognized(value)
+      "CUSTOMER" -> BillingKeyDeleteRequester.Customer
+      "ADMIN" -> BillingKeyDeleteRequester.Admin
+      else -> BillingKeyDeleteRequester.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: CancelRequester) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: BillingKeyDeleteRequester) = encoder.encodeString(value.value)
 }

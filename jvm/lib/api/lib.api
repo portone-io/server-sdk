@@ -16552,10 +16552,10 @@ public final class io/portone/sdk/server/payment/billingkey/BillingKeyClient : j
 	public static synthetic fun confirmBillingKeyIssueAndPaySuspend$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/common/Currency;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun confirmBillingKeySuspend (Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun confirmBillingKeySuspend$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun deleteBillingKey (Ljava/lang/String;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-	public static synthetic fun deleteBillingKey$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
-	public final fun deleteBillingKeySuspend (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun deleteBillingKeySuspend$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun deleteBillingKey (Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun deleteBillingKey$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public final fun deleteBillingKeySuspend (Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun deleteBillingKeySuspend$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun getBillingKeyInfo (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 	public final fun getBillingKeyInfoSuspend (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBillingKeyInfos (Lio/portone/sdk/server/common/PageInput;Lio/portone/sdk/server/payment/billingkey/BillingKeySortInput;Lio/portone/sdk/server/payment/billingkey/BillingKeyFilterInput;)Ljava/util/concurrent/CompletableFuture;
@@ -16566,6 +16566,41 @@ public final class io/portone/sdk/server/payment/billingkey/BillingKeyClient : j
 	public static synthetic fun issueBillingKey$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Lio/portone/sdk/server/payment/billingkey/InstantBillingKeyPaymentMethodInput;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/common/CustomerInput;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/util/List;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public final fun issueBillingKeySuspend (Lio/portone/sdk/server/payment/billingkey/InstantBillingKeyPaymentMethodInput;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/common/CustomerInput;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun issueBillingKeySuspend$default (Lio/portone/sdk/server/payment/billingkey/BillingKeyClient;Lio/portone/sdk/server/payment/billingkey/InstantBillingKeyPaymentMethodInput;Ljava/lang/String;Ljava/lang/String;Lio/portone/sdk/server/common/CustomerInput;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester {
+	public static final field Companion Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Companion;
+	public abstract fun getValue ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Admin : io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Admin;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Customer : io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester {
+	public static final field INSTANCE Lio/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Customer;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester$Unrecognized : io/portone/sdk/server/payment/billingkey/BillingKeyDeleteRequester {
+	public final fun component1 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/portone/sdk/server/payment/billingkey/BillingKeyFailure {

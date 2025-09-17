@@ -182,8 +182,8 @@
     "@vitest/ui": "^3.1.4",
     "jsr": "^0.13.5",
     "typedoc": "^0.28.12",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.5.0",
+    "typescript": "^5.9.2",
+    "unbuild": "^3.6.0",
     "vitest": "^3.1.4"
   },
   "files": [

@@ -2,6 +2,8 @@ from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
 CancelRequester = Union[Literal["CUSTOMER", "ADMIN"], str]
+"""결제 취소 요청 주체
+"""
 
 
 def _serialize_cancel_requester(obj: CancelRequester) -> Any:

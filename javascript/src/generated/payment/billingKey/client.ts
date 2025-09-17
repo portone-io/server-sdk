@@ -3,6 +3,7 @@ import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyAlreadyIssuedError } from "../../../generated/payment/billingKey/BillingKeyAlreadyIssuedError"
+import type { BillingKeyDeleteRequester } from "../../../generated/payment/billingKey/BillingKeyDeleteRequester"
 import type { BillingKeyFilterInput } from "../../../generated/payment/billingKey/BillingKeyFilterInput"
 import type { BillingKeyInfo } from "../../../generated/payment/billingKey/BillingKeyInfo"
 import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
@@ -228,16 +229,19 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				billingKey: string,
 				storeId?: string,
 				reason?: string,
+				requester?: BillingKeyDeleteRequester,
 			}
 		): Promise<DeleteBillingKeyResponse> => {
 			const {
 				billingKey,
 				storeId,
 				reason,
+				requester,
 			} = options
 			const query = [
 				["storeId", storeId],
 				["reason", reason],
+				["requester", requester],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
@@ -459,6 +463,12 @@ export type BillingKeyClient = {
 			 * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
 			 */
 			reason?: string,
+			/**
+			 * 요청 주체
+			 *
+			 * 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
+			 */
+			requester?: BillingKeyDeleteRequester,
 		}
 	) => Promise<DeleteBillingKeyResponse>
 }

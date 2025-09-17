@@ -55,6 +55,7 @@ import io.portone.sdk.server.errors.PgProviderException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
+import io.portone.sdk.server.payment.billingkey.BillingKeyDeleteRequester
 import io.portone.sdk.server.payment.billingkey.BillingKeyFilterInput
 import io.portone.sdk.server.payment.billingkey.BillingKeyInfo
 import io.portone.sdk.server.payment.billingkey.BillingKeySortInput
@@ -510,6 +511,10 @@ public class BillingKeyClient(
    * 사유
    *
    * 네이버페이: 자동결제 해지 사유입니다. 명시가 필요합니다.
+   * @param requester
+   * 요청 주체
+   *
+   * 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
    *
    * @throws DeleteBillingKeyException
    */
@@ -517,12 +522,14 @@ public class BillingKeyClient(
   public suspend fun deleteBillingKey(
     billingKey: String,
     reason: String? = null,
+    requester: BillingKeyDeleteRequester? = null,
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
         appendPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) parameters.append("storeId", storeId.toString())
         if (reason != null) parameters.append("reason", reason.toString())
+        if (requester != null) parameters.append("requester", requester.toString())
       }
       headers {
         append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -564,7 +571,8 @@ public class BillingKeyClient(
   public fun deleteBillingKeyFuture(
     billingKey: String,
     reason: String? = null,
-  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason) }
+    requester: BillingKeyDeleteRequester? = null,
+  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason, requester) }
 
   override fun close() {
     client.close()
