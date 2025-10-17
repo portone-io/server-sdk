@@ -2,6 +2,7 @@ package io.portone.sdk.server.b2b
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpTimeout
 import io.portone.sdk.server.b2b.taxinvoice.TaxInvoiceClient
 import java.io.Closeable
 import kotlinx.serialization.json.Json
@@ -18,7 +19,13 @@ public class B2bClient(
   private val apiBase: String = "https://api.portone.io",
   private val storeId: String? = null,
 ): Closeable {
-  private val client: HttpClient = HttpClient(OkHttp)
+  private val client: HttpClient = HttpClient(OkHttp) {
+    install(HttpTimeout) {
+      requestTimeoutMillis = 60_000
+      connectTimeoutMillis = 60_000
+      socketTimeoutMillis = 60_000
+    }
+  }
 
   private val json: Json = Json { ignoreUnknownKeys = true }
   public val taxInvoice: TaxInvoiceClient = TaxInvoiceClient(apiSecret, apiBase, storeId)

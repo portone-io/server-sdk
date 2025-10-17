@@ -441,6 +441,8 @@ public class PortOneClient(
   private val client: HttpClient = HttpClient(OkHttp) {
       install(HttpTimeout) {
           requestTimeoutMillis = 60_000
+          connectTimeoutMillis = 60_000
+          socketTimeoutMillis = 60_000
       }
   }
 
@@ -520,6 +522,7 @@ function generateClient(
     "kotlinx.serialization.json.Json",
     "java.io.Closeable",
     "io.ktor.client.engine.okhttp.OkHttp",
+    "io.ktor.client.plugins.HttpTimeout",
   ])
   const writer = KotlinWriter()
   writer.writeLine("/**")
@@ -543,7 +546,17 @@ function generateClient(
   writer.outdent()
   writer.writeLine("): Closeable {")
   writer.indent()
-  writer.writeLine("private val client: HttpClient = HttpClient(OkHttp)")
+  writer.writeLine("private val client: HttpClient = HttpClient(OkHttp) {")
+  writer.indent()
+  writer.writeLine("install(HttpTimeout) {")
+  writer.indent()
+  writer.writeLine("requestTimeoutMillis = 60_000")
+  writer.writeLine("connectTimeoutMillis = 60_000")
+  writer.writeLine("socketTimeoutMillis = 60_000")
+  writer.outdent()
+  writer.writeLine("}")
+  writer.outdent()
+  writer.writeLine("}")
   writer.writeLine("")
   writer.writeLine("private val json: Json = Json { ignoreUnknownKeys = true }")
   for (const operation of pack.operations) {

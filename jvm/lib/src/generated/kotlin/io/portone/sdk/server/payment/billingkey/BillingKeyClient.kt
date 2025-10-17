@@ -3,6 +3,7 @@ package io.portone.sdk.server.payment.billingkey
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.request.`get`
 import io.ktor.client.request.accept
 import io.ktor.client.request.delete
@@ -91,7 +92,13 @@ public class BillingKeyClient(
   private val apiBase: String = "https://api.portone.io",
   private val storeId: String? = null,
 ): Closeable {
-  private val client: HttpClient = HttpClient(OkHttp)
+  private val client: HttpClient = HttpClient(OkHttp) {
+    install(HttpTimeout) {
+      requestTimeoutMillis = 60_000
+      connectTimeoutMillis = 60_000
+      socketTimeoutMillis = 60_000
+    }
+  }
 
   private val json: Json = Json { ignoreUnknownKeys = true }
 
