@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>DeletedBillingKeyInfo</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
@@ -25,20 +25,18 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
                     PortOne Server SDK for JVM
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -46,11 +44,11 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.21.1-2-g9cbf86876c        </div>
+0.21.1-4-g2d3ee1b1f4        </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":lib:dokkaHtml/main">jvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
                         data-role="dropdown-toggle"
@@ -59,16 +57,16 @@
                         aria-expanded="false"
                         aria-label="Toggle source sets"
                 ></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":lib:dokkaHtml/main"
-                                       data-filter=":lib:dokkaHtml/main"/>
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
                                 <span class="checkbox--icon"></span>
                                 jvm
                             </label>
@@ -76,7 +74,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
             </button>
@@ -84,48 +82,50 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     PortOne Server SDK for JVM
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment.billingkey/DeletedBillingKeyInfo///PointingToDeclaration//1440829338">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment.billingkey/DeletedBillingKeyInfo///PointingToDeclaration//-1895836109">
   <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.payment.billingkey</a><span class="delimiter">/</span><span class="current">DeletedBillingKeyInfo</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Deleted</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Info</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;DELETED&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">DeletedBillingKeyInfo</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>billingKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>merchantId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>storeId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>methods<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>channels<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>customer<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>customData<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issueId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issueName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>requestedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issuedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>channelGroup<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>pgBillingKeyIssueResponses<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>deletedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></span></span><span class="token punctuation">)</span> : <a href="../-billing-key-info/-recognized/index.html">BillingKeyInfo.Recognized</a></div><p class="paragraph">빌링키 삭제 완료 상태 건</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;DELETED&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">DeletedBillingKeyInfo</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>billingKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>merchantId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>storeId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>methods<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>channels<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>customer<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>customData<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issueId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issueName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>requestedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issuedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>channelGroup<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>pgBillingKeyIssueResponses<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>deletedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></span></span><span class="token punctuation">)</span> : <a href="../-billing-key-info/-recognized/index.html">BillingKeyInfo.Recognized</a></div><p class="paragraph">빌링키 삭제 완료 상태 건</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="-768124752%2FConstructors%2F1440829338" anchor-label="DeletedBillingKeyInfo" id="-768124752%2FConstructors%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-768124752%2FConstructors%2F-1895836109" anchor-label="DeletedBillingKeyInfo" id="-768124752%2FConstructors%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-deleted-billing-key-info.html"><span>Deleted</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Info</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-768124752%2FConstructors%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-768124752%2FConstructors%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">billingKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">merchantId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">storeId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">methods<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">channels<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">customer<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a><span class="token punctuation">, </span></span><span class="parameter ">customData<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issueId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issueName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">requestedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issuedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter ">channelGroup<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pgBillingKeyIssueResponses<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">deletedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">billingKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">merchantId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">storeId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">methods<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">channels<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">customer<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a><span class="token punctuation">, </span></span><span class="parameter ">customData<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issueId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issueName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">requestedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">issuedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter ">channelGroup<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pgBillingKeyIssueResponses<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">deletedAt<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -133,213 +133,213 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="1100728728%2FProperties%2F1440829338" anchor-label="billingKey" id="1100728728%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1100728728%2FProperties%2F-1895836109" anchor-label="billingKey" id="1100728728%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="billing-key.html"><span>billing</span><wbr></wbr><span><span>Key</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1100728728%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1100728728%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="billing-key.html">billingKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">빌링키</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="billing-key.html">billingKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">빌링키</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-756767872%2FProperties%2F1440829338" anchor-label="channelGroup" id="-756767872%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-756767872%2FProperties%2F-1895836109" anchor-label="channelGroup" id="-756767872%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="channel-group.html"><span>channel</span><wbr></wbr><span><span>Group</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-756767872%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-756767872%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="channel-group.html">channelGroup</a><span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">채널 그룹</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="channel-group.html">channelGroup</a><span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-channel-group-summary/index.html">ChannelGroupSummary</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">채널 그룹</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1786291988%2FProperties%2F1440829338" anchor-label="channels" id="-1786291988%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1786291988%2FProperties%2F-1895836109" anchor-label="channels" id="-1786291988%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="channels.html"><span><span>channels</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1786291988%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1786291988%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="channels.html">channels</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">빌링키 발급 시 사용된 채널</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="channels.html">channels</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../io.portone.sdk.server.common/-selected-channel/index.html">SelectedChannel</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">빌링키 발급 시 사용된 채널</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-259229535%2FProperties%2F1440829338" anchor-label="customData" id="-259229535%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-259229535%2FProperties%2F-1895836109" anchor-label="customData" id="-259229535%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="custom-data.html"><span>custom</span><wbr></wbr><span><span>Data</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-259229535%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-259229535%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="custom-data.html">customData</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">사용자 지정 데이터</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="custom-data.html">customData</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">사용자 지정 데이터</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="422316190%2FProperties%2F1440829338" anchor-label="customer" id="422316190%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="422316190%2FProperties%2F-1895836109" anchor-label="customer" id="422316190%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="customer.html"><span><span>customer</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="422316190%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="422316190%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="customer.html">customer</a><span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a></div><div class="brief "><p class="paragraph">고객 정보</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="customer.html">customer</a><span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-customer/index.html">Customer</a></div><div class="brief "><p class="paragraph">고객 정보</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1480390670%2FProperties%2F1440829338" anchor-label="deletedAt" id="-1480390670%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1480390670%2FProperties%2F-1895836109" anchor-label="deletedAt" id="-1480390670%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="deleted-at.html"><span>deleted</span><wbr></wbr><span><span>At</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1480390670%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1480390670%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="deleted-at.html">deletedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></div><div class="brief "><p class="paragraph">발급 삭제 시점</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="deleted-at.html">deletedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></div><div class="brief "><p class="paragraph">발급 삭제 시점</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-598034370%2FProperties%2F1440829338" anchor-label="issuedAt" id="-598034370%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-598034370%2FProperties%2F-1895836109" anchor-label="issuedAt" id="-598034370%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="issued-at.html"><span>issued</span><wbr></wbr><span><span>At</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-598034370%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-598034370%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issued-at.html">issuedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></div><div class="brief "><p class="paragraph">발급 시점</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issued-at.html">issuedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a></div><div class="brief "><p class="paragraph">발급 시점</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-980013174%2FProperties%2F1440829338" anchor-label="issueId" id="-980013174%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-980013174%2FProperties%2F-1895836109" anchor-label="issueId" id="-980013174%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="issue-id.html"><span>issue</span><wbr></wbr><span><span>Id</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-980013174%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-980013174%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issue-id.html">issueId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">고객사가 채번하는 빌링키 발급 건 고유 아이디</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issue-id.html">issueId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">고객사가 채번하는 빌링키 발급 건 고유 아이디</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-293552614%2FProperties%2F1440829338" anchor-label="issueName" id="-293552614%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-293552614%2FProperties%2F-1895836109" anchor-label="issueName" id="-293552614%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="issue-name.html"><span>issue</span><wbr></wbr><span><span>Name</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-293552614%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-293552614%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issue-name.html">issueName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">빌링키 발급 건 이름</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="issue-name.html">issueName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">빌링키 발급 건 이름</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="185821017%2FProperties%2F1440829338" anchor-label="merchantId" id="185821017%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="185821017%2FProperties%2F-1895836109" anchor-label="merchantId" id="185821017%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="merchant-id.html"><span>merchant</span><wbr></wbr><span><span>Id</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="185821017%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="185821017%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="merchant-id.html">merchantId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">고객사 아이디</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="merchant-id.html">merchantId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">고객사 아이디</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="950876524%2FProperties%2F1440829338" anchor-label="methods" id="950876524%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="950876524%2FProperties%2F-1895836109" anchor-label="methods" id="950876524%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="methods.html"><span><span>methods</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="950876524%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="950876524%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="methods.html">methods</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">빌링키 결제수단 상세 정보</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="methods.html">methods</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-billing-key-payment-method/index.html">BillingKeyPaymentMethod</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">빌링키 결제수단 상세 정보</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1362577432%2FProperties%2F1440829338" anchor-label="pgBillingKeyIssueResponses" id="-1362577432%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1362577432%2FProperties%2F-1895836109" anchor-label="pgBillingKeyIssueResponses" id="-1362577432%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pg-billing-key-issue-responses.html"><span>pg</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Issue</span><wbr></wbr><span><span>Responses</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1362577432%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1362577432%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="pg-billing-key-issue-responses.html">pgBillingKeyIssueResponses</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">채널 별 빌링키 발급 응답</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="pg-billing-key-issue-responses.html">pgBillingKeyIssueResponses</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-pg-billing-key-issue-response/index.html">PgBillingKeyIssueResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">채널 별 빌링키 발급 응답</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1611202755%2FProperties%2F1440829338" anchor-label="requestedAt" id="-1611202755%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1611202755%2FProperties%2F-1895836109" anchor-label="requestedAt" id="-1611202755%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="requested-at.html"><span>requested</span><wbr></wbr><span><span>At</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1611202755%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1611202755%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="requested-at.html">requestedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">발급 요청 시점</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="requested-at.html">requestedAt</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.serializers/InstantSerializer///PointingToDeclaration/">InstantSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span> </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">발급 요청 시점</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1379984766%2FProperties%2F1440829338" anchor-label="storeId" id="-1379984766%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1379984766%2FProperties%2F-1895836109" anchor-label="storeId" id="-1379984766%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="store-id.html"><span>store</span><wbr></wbr><span><span>Id</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1379984766%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1379984766%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="store-id.html">storeId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">상점 아이디</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="store-id.html">storeId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">상점 아이디</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -350,17 +350,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

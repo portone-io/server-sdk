@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>PaymentLogisticsCompany</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
@@ -25,20 +25,18 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
                     PortOne Server SDK for JVM
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -46,11 +44,11 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.21.1-2-g9cbf86876c        </div>
+0.21.1-4-g2d3ee1b1f4        </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":lib:dokkaHtml/main">jvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
                         data-role="dropdown-toggle"
@@ -59,16 +57,16 @@
                         aria-expanded="false"
                         aria-label="Toggle source sets"
                 ></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":lib:dokkaHtml/main"
-                                       data-filter=":lib:dokkaHtml/main"/>
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
                                 <span class="checkbox--icon"></span>
                                 jvm
                             </label>
@@ -76,7 +74,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
             </button>
@@ -84,498 +82,500 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     PortOne Server SDK for JVM
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment/PaymentLogisticsCompany///PointingToDeclaration//1440829338">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment/PaymentLogisticsCompany///PointingToDeclaration//-1895836109">
   <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.payment</a><span class="delimiter">/</span><span class="current">PaymentLogisticsCompany</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Payment</span><wbr></wbr><span>Logistics</span><wbr></wbr><span><span>Company</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompanySerializer///PointingToDeclaration/">PaymentLogisticsCompanySerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PaymentLogisticsCompany</a></div><p class="paragraph">물류 회사</p><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-lotte/index.html">Lotte</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-logen/index.html">Logen</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-dongwon/index.html">Dongwon</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-post/index.html">Post</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-cj/index.html">Cj</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hanjin/index.html">Hanjin</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-daesin/index.html">Daesin</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ilyang/index.html">Ilyang</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kyungdong/index.html">Kyungdong</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-chunil/index.html">Chunil</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-post-registered/index.html">PostRegistered</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-gs/index.html">Gs</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-woori/index.html">Woori</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hapdong/index.html">Hapdong</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-fedex/index.html">Fedex</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ups/index.html">Ups</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-gsm-nton/index.html">GsmNton</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-sungwon/index.html">Sungwon</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-lx-pantos/index.html">LxPantos</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-aci/index.html">Aci</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-cj-intl/index.html">CjIntl</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-usps/index.html">Usps</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ems/index.html">Ems</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-dhl/index.html">Dhl</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kgl/index.html">Kgl</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-goodstoluck/index.html">Goodstoluck</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kunyoung/index.html">Kunyoung</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-slx/index.html">Slx</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-sf/index.html">Sf</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-etc/index.html">Etc</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompanySerializer///PointingToDeclaration/">PaymentLogisticsCompanySerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PaymentLogisticsCompany</a></div><p class="paragraph">물류 회사</p><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-lotte/index.html">Lotte</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-logen/index.html">Logen</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-dongwon/index.html">Dongwon</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-post/index.html">Post</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-cj/index.html">Cj</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hanjin/index.html">Hanjin</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-daesin/index.html">Daesin</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ilyang/index.html">Ilyang</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kyungdong/index.html">Kyungdong</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-chunil/index.html">Chunil</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-post-registered/index.html">PostRegistered</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-gs/index.html">Gs</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-woori/index.html">Woori</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hapdong/index.html">Hapdong</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-fedex/index.html">Fedex</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ups/index.html">Ups</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-gsm-nton/index.html">GsmNton</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-sungwon/index.html">Sungwon</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-lx-pantos/index.html">LxPantos</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-aci/index.html">Aci</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-cj-intl/index.html">CjIntl</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-usps/index.html">Usps</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ems/index.html">Ems</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-dhl/index.html">Dhl</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kgl/index.html">Kgl</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-goodstoluck/index.html">Goodstoluck</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kunyoung/index.html">Kunyoung</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-slx/index.html">Slx</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-sf/index.html">Sf</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-etc/index.html">Etc</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
-        <div class="table"><a data-name="2019638263%2FClasslikes%2F1440829338" anchor-label="Aci" id="2019638263%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="2019638263%2FClasslikes%2F-1895836109" anchor-label="Aci" id="2019638263%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-aci/index.html"><span><span>Aci</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2019638263%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2019638263%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.AciSerializer///PointingToDeclaration/">PaymentLogisticsCompany.AciSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-aci/index.html">Aci</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">ACI</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.AciSerializer///PointingToDeclaration/">PaymentLogisticsCompany.AciSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-aci/index.html">Aci</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">ACI</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="416747107%2FClasslikes%2F1440829338" anchor-label="Chunil" id="416747107%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="416747107%2FClasslikes%2F-1895836109" anchor-label="Chunil" id="416747107%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chunil/index.html"><span><span>Chunil</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="416747107%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="416747107%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.ChunilSerializer///PointingToDeclaration/">PaymentLogisticsCompany.ChunilSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-chunil/index.html">Chunil</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">천일택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.ChunilSerializer///PointingToDeclaration/">PaymentLogisticsCompany.ChunilSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-chunil/index.html">Chunil</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">천일택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1384091235%2FClasslikes%2F1440829338" anchor-label="Cj" id="-1384091235%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1384091235%2FClasslikes%2F-1895836109" anchor-label="Cj" id="-1384091235%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cj/index.html"><span><span>Cj</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1384091235%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1384091235%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.CjSerializer///PointingToDeclaration/">PaymentLogisticsCompany.CjSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-cj/index.html">Cj</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">대한통운</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.CjSerializer///PointingToDeclaration/">PaymentLogisticsCompany.CjSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-cj/index.html">Cj</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">대한통운</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1995495360%2FClasslikes%2F1440829338" anchor-label="CjIntl" id="1995495360%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1995495360%2FClasslikes%2F-1895836109" anchor-label="CjIntl" id="1995495360%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cj-intl/index.html"><span>Cj</span><wbr></wbr><span><span>Intl</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1995495360%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1995495360%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.CjIntlSerializer///PointingToDeclaration/">PaymentLogisticsCompany.CjIntlSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-cj-intl/index.html">CjIntl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">CJ대한통운 국제특송</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.CjIntlSerializer///PointingToDeclaration/">PaymentLogisticsCompany.CjIntlSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-cj-intl/index.html">CjIntl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">CJ대한통운 국제특송</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1271965780%2FClasslikes%2F1440829338" anchor-label="Daesin" id="1271965780%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1271965780%2FClasslikes%2F-1895836109" anchor-label="Daesin" id="1271965780%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-daesin/index.html"><span><span>Daesin</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1271965780%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1271965780%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DaesinSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DaesinSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-daesin/index.html">Daesin</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">대신택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DaesinSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DaesinSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-daesin/index.html">Daesin</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">대신택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1861590838%2FClasslikes%2F1440829338" anchor-label="Dhl" id="1861590838%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1861590838%2FClasslikes%2F-1895836109" anchor-label="Dhl" id="1861590838%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-dhl/index.html"><span><span>Dhl</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1861590838%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1861590838%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DhlSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DhlSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-dhl/index.html">Dhl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">DHL</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DhlSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DhlSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-dhl/index.html">Dhl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">DHL</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1073889844%2FClasslikes%2F1440829338" anchor-label="Dongwon" id="-1073889844%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1073889844%2FClasslikes%2F-1895836109" anchor-label="Dongwon" id="-1073889844%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-dongwon/index.html"><span><span>Dongwon</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1073889844%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1073889844%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DongwonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DongwonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-dongwon/index.html">Dongwon</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">동원로엑스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.DongwonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.DongwonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-dongwon/index.html">Dongwon</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">동원로엑스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1957871565%2FClasslikes%2F1440829338" anchor-label="Ems" id="-1957871565%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1957871565%2FClasslikes%2F-1895836109" anchor-label="Ems" id="-1957871565%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ems/index.html"><span><span>Ems</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1957871565%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1957871565%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.EmsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.EmsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ems/index.html">Ems</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">EMS</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.EmsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.EmsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ems/index.html">Ems</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">EMS</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-17857654%2FClasslikes%2F1440829338" anchor-label="Etc" id="-17857654%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-17857654%2FClasslikes%2F-1895836109" anchor-label="Etc" id="-17857654%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-etc/index.html"><span><span>Etc</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-17857654%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-17857654%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.EtcSerializer///PointingToDeclaration/">PaymentLogisticsCompany.EtcSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-etc/index.html">Etc</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">기타</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.EtcSerializer///PointingToDeclaration/">PaymentLogisticsCompany.EtcSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-etc/index.html">Etc</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">기타</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-754748570%2FClasslikes%2F1440829338" anchor-label="Fedex" id="-754748570%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-754748570%2FClasslikes%2F-1895836109" anchor-label="Fedex" id="-754748570%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-fedex/index.html"><span><span>Fedex</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-754748570%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-754748570%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.FedexSerializer///PointingToDeclaration/">PaymentLogisticsCompany.FedexSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-fedex/index.html">Fedex</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">FedEx</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.FedexSerializer///PointingToDeclaration/">PaymentLogisticsCompany.FedexSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-fedex/index.html">Fedex</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">FedEx</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="146031708%2FClasslikes%2F1440829338" anchor-label="Goodstoluck" id="146031708%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="146031708%2FClasslikes%2F-1895836109" anchor-label="Goodstoluck" id="146031708%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-goodstoluck/index.html"><span><span>Goodstoluck</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="146031708%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="146031708%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GoodstoluckSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GoodstoluckSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-goodstoluck/index.html">Goodstoluck</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">굿투럭</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GoodstoluckSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GoodstoluckSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-goodstoluck/index.html">Goodstoluck</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">굿투럭</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1553424200%2FClasslikes%2F1440829338" anchor-label="Gs" id="-1553424200%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1553424200%2FClasslikes%2F-1895836109" anchor-label="Gs" id="-1553424200%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-gs/index.html"><span><span>Gs</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1553424200%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1553424200%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-gs/index.html">Gs</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">GS네트웍스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-gs/index.html">Gs</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">GS네트웍스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-800814056%2FClasslikes%2F1440829338" anchor-label="GsmNton" id="-800814056%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-800814056%2FClasslikes%2F-1895836109" anchor-label="GsmNton" id="-800814056%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-gsm-nton/index.html"><span>Gsm</span><wbr></wbr><span><span>Nton</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-800814056%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-800814056%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GsmNtonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GsmNtonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-gsm-nton/index.html">GsmNton</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">GSM NtoN</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.GsmNtonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.GsmNtonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-gsm-nton/index.html">GsmNton</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">GSM NtoN</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1679192182%2FClasslikes%2F1440829338" anchor-label="Hanjin" id="-1679192182%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1679192182%2FClasslikes%2F-1895836109" anchor-label="Hanjin" id="-1679192182%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-hanjin/index.html"><span><span>Hanjin</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1679192182%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1679192182%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.HanjinSerializer///PointingToDeclaration/">PaymentLogisticsCompany.HanjinSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hanjin/index.html">Hanjin</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">한진택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.HanjinSerializer///PointingToDeclaration/">PaymentLogisticsCompany.HanjinSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hanjin/index.html">Hanjin</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">한진택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1956831715%2FClasslikes%2F1440829338" anchor-label="Hapdong" id="1956831715%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1956831715%2FClasslikes%2F-1895836109" anchor-label="Hapdong" id="1956831715%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-hapdong/index.html"><span><span>Hapdong</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1956831715%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1956831715%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.HapdongSerializer///PointingToDeclaration/">PaymentLogisticsCompany.HapdongSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hapdong/index.html">Hapdong</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">합동택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.HapdongSerializer///PointingToDeclaration/">PaymentLogisticsCompany.HapdongSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hapdong/index.html">Hapdong</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">합동택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="418862272%2FClasslikes%2F1440829338" anchor-label="Ilyang" id="418862272%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="418862272%2FClasslikes%2F-1895836109" anchor-label="Ilyang" id="418862272%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ilyang/index.html"><span><span>Ilyang</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="418862272%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="418862272%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.IlyangSerializer///PointingToDeclaration/">PaymentLogisticsCompany.IlyangSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ilyang/index.html">Ilyang</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">일양로지스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.IlyangSerializer///PointingToDeclaration/">PaymentLogisticsCompany.IlyangSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ilyang/index.html">Ilyang</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">일양로지스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-883178994%2FClasslikes%2F1440829338" anchor-label="Kgl" id="-883178994%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-883178994%2FClasslikes%2F-1895836109" anchor-label="Kgl" id="-883178994%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-kgl/index.html"><span><span>Kgl</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-883178994%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-883178994%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KglSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KglSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kgl/index.html">Kgl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">KGL네트웍스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KglSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KglSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kgl/index.html">Kgl</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">KGL네트웍스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="759631888%2FClasslikes%2F1440829338" anchor-label="Kunyoung" id="759631888%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="759631888%2FClasslikes%2F-1895836109" anchor-label="Kunyoung" id="759631888%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-kunyoung/index.html"><span><span>Kunyoung</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759631888%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759631888%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KunyoungSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KunyoungSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kunyoung/index.html">Kunyoung</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">건영택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KunyoungSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KunyoungSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kunyoung/index.html">Kunyoung</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">건영택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-375762662%2FClasslikes%2F1440829338" anchor-label="Kyungdong" id="-375762662%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-375762662%2FClasslikes%2F-1895836109" anchor-label="Kyungdong" id="-375762662%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-kyungdong/index.html"><span><span>Kyungdong</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-375762662%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-375762662%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KyungdongSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KyungdongSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kyungdong/index.html">Kyungdong</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">경동택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.KyungdongSerializer///PointingToDeclaration/">PaymentLogisticsCompany.KyungdongSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kyungdong/index.html">Kyungdong</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">경동택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="874790161%2FClasslikes%2F1440829338" anchor-label="Logen" id="874790161%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="874790161%2FClasslikes%2F-1895836109" anchor-label="Logen" id="874790161%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-logen/index.html"><span><span>Logen</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="874790161%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="874790161%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LogenSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LogenSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-logen/index.html">Logen</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">로젠택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LogenSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LogenSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-logen/index.html">Logen</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">로젠택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1176654820%2FClasslikes%2F1440829338" anchor-label="Lotte" id="-1176654820%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1176654820%2FClasslikes%2F-1895836109" anchor-label="Lotte" id="-1176654820%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-lotte/index.html"><span><span>Lotte</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1176654820%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1176654820%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LotteSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LotteSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-lotte/index.html">Lotte</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">롯데글로벌로지스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LotteSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LotteSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-lotte/index.html">Lotte</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">롯데글로벌로지스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-174585987%2FClasslikes%2F1440829338" anchor-label="LxPantos" id="-174585987%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-174585987%2FClasslikes%2F-1895836109" anchor-label="LxPantos" id="-174585987%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-lx-pantos/index.html"><span>Lx</span><wbr></wbr><span><span>Pantos</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-174585987%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-174585987%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LxPantosSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LxPantosSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-lx-pantos/index.html">LxPantos</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">LX판토스</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.LxPantosSerializer///PointingToDeclaration/">PaymentLogisticsCompany.LxPantosSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-lx-pantos/index.html">LxPantos</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">LX판토스</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2089863484%2FClasslikes%2F1440829338" anchor-label="Post" id="-2089863484%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-2089863484%2FClasslikes%2F-1895836109" anchor-label="Post" id="-2089863484%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-post/index.html"><span><span>Post</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2089863484%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2089863484%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.PostSerializer///PointingToDeclaration/">PaymentLogisticsCompany.PostSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-post/index.html">Post</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">우체국택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.PostSerializer///PointingToDeclaration/">PaymentLogisticsCompany.PostSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-post/index.html">Post</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">우체국택배</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="687913634%2FClasslikes%2F1440829338" anchor-label="PostRegistered" id="687913634%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="687913634%2FClasslikes%2F-1895836109" anchor-label="PostRegistered" id="687913634%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-post-registered/index.html"><span>Post</span><wbr></wbr><span><span>Registered</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="687913634%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="687913634%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.PostRegisteredSerializer///PointingToDeclaration/">PaymentLogisticsCompany.PostRegisteredSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-post-registered/index.html">PostRegistered</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">등기우편</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.PostRegisteredSerializer///PointingToDeclaration/">PaymentLogisticsCompany.PostRegisteredSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-post-registered/index.html">PostRegistered</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">등기우편</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="992751921%2FClasslikes%2F1440829338" anchor-label="Sf" id="992751921%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="992751921%2FClasslikes%2F-1895836109" anchor-label="Sf" id="992751921%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-sf/index.html"><span><span>Sf</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="992751921%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="992751921%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SfSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SfSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-sf/index.html">Sf</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">SF Express</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SfSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SfSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-sf/index.html">Sf</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">SF Express</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2035730881%2FClasslikes%2F1440829338" anchor-label="Slx" id="-2035730881%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-2035730881%2FClasslikes%2F-1895836109" anchor-label="Slx" id="-2035730881%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-slx/index.html"><span><span>Slx</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2035730881%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2035730881%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SlxSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SlxSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-slx/index.html">Slx</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">SLX</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SlxSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SlxSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-slx/index.html">Slx</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">SLX</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="944123235%2FClasslikes%2F1440829338" anchor-label="Sungwon" id="944123235%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="944123235%2FClasslikes%2F-1895836109" anchor-label="Sungwon" id="944123235%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-sungwon/index.html"><span><span>Sungwon</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="944123235%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="944123235%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SungwonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SungwonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-sungwon/index.html">Sungwon</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">성원글로벌카고</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.SungwonSerializer///PointingToDeclaration/">PaymentLogisticsCompany.SungwonSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-sungwon/index.html">Sungwon</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">성원글로벌카고</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="748922453%2FClasslikes%2F1440829338" anchor-label="Unrecognized" id="748922453%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="748922453%2FClasslikes%2F-1895836109" anchor-label="Unrecognized" id="748922453%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unrecognized/index.html"><span><span>Unrecognized</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="748922453%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="748922453%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1146153062%2FClasslikes%2F1440829338" anchor-label="Ups" id="1146153062%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1146153062%2FClasslikes%2F-1895836109" anchor-label="Ups" id="1146153062%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ups/index.html"><span><span>Ups</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1146153062%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1146153062%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.UpsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.UpsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ups/index.html">Ups</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">UPS</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.UpsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.UpsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ups/index.html">Ups</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">UPS</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1735804259%2FClasslikes%2F1440829338" anchor-label="Usps" id="1735804259%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1735804259%2FClasslikes%2F-1895836109" anchor-label="Usps" id="1735804259%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-usps/index.html"><span><span>Usps</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1735804259%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1735804259%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.UspsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.UspsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-usps/index.html">Usps</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">USPS</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.UspsSerializer///PointingToDeclaration/">PaymentLogisticsCompany.UspsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-usps/index.html">Usps</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">USPS</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1577643504%2FClasslikes%2F1440829338" anchor-label="Woori" id="-1577643504%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1577643504%2FClasslikes%2F-1895836109" anchor-label="Woori" id="-1577643504%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-woori/index.html"><span><span>Woori</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1577643504%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1577643504%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.WooriSerializer///PointingToDeclaration/">PaymentLogisticsCompany.WooriSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-woori/index.html">Woori</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">우리택배</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentLogisticsCompany.WooriSerializer///PointingToDeclaration/">PaymentLogisticsCompany.WooriSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-woori/index.html">Woori</a> : <a href="index.html">PaymentLogisticsCompany</a></div><div class="brief "><p class="paragraph">우리택배</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -583,18 +583,18 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-1955446598%2FProperties%2F1440829338" anchor-label="value" id="-1955446598%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1955446598%2FProperties%2F-1895836109" anchor-label="value" id="-1955446598%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="value.html"><span><span>value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1955446598%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1955446598%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -605,17 +605,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

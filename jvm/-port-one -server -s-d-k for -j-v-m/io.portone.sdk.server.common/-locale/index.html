@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Locale</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
@@ -25,20 +25,18 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
                     PortOne Server SDK for JVM
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -46,11 +44,11 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.21.1-2-g9cbf86876c        </div>
+0.21.1-4-g2d3ee1b1f4        </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":lib:dokkaHtml/main">jvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
                         data-role="dropdown-toggle"
@@ -59,16 +57,16 @@
                         aria-expanded="false"
                         aria-label="Toggle source sets"
                 ></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":lib:dokkaHtml/main"
-                                       data-filter=":lib:dokkaHtml/main"/>
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
                                 <span class="checkbox--icon"></span>
                                 jvm
                             </label>
@@ -76,7 +74,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
             </button>
@@ -84,168 +82,170 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     PortOne Server SDK for JVM
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.common/Locale///PointingToDeclaration//1440829338">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.common/Locale///PointingToDeclaration//-1895836109">
   <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.common</a><span class="delimiter">/</span><span class="current">Locale</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Locale</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/LocaleSerializer///PointingToDeclaration/">LocaleSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">Locale</a></div><p class="paragraph">결제 언어</p><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ko-kr/index.html">KoKr</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-en-us/index.html">EnUs</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-zh-cn/index.html">ZhCn</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-zh-tw/index.html">ZhTw</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ja-jp/index.html">JaJp</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ru-ru/index.html">RuRu</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-th-th/index.html">ThTh</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-vi-vn/index.html">ViVn</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/LocaleSerializer///PointingToDeclaration/">LocaleSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">Locale</a></div><p class="paragraph">결제 언어</p><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ko-kr/index.html">KoKr</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-en-us/index.html">EnUs</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-zh-cn/index.html">ZhCn</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-zh-tw/index.html">ZhTw</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ja-jp/index.html">JaJp</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-ru-ru/index.html">RuRu</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-th-th/index.html">ThTh</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-vi-vn/index.html">ViVn</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
-        <div class="table"><a data-name="1736688532%2FClasslikes%2F1440829338" anchor-label="EnUs" id="1736688532%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1736688532%2FClasslikes%2F-1895836109" anchor-label="EnUs" id="1736688532%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-en-us/index.html"><span>En</span><wbr></wbr><span><span>Us</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1736688532%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1736688532%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.EnUsSerializer///PointingToDeclaration/">Locale.EnUsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-en-us/index.html">EnUs</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">영어 (미국)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.EnUsSerializer///PointingToDeclaration/">Locale.EnUsSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-en-us/index.html">EnUs</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">영어 (미국)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2137925790%2FClasslikes%2F1440829338" anchor-label="JaJp" id="2137925790%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="2137925790%2FClasslikes%2F-1895836109" anchor-label="JaJp" id="2137925790%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ja-jp/index.html"><span>Ja</span><wbr></wbr><span><span>Jp</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2137925790%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2137925790%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.JaJpSerializer///PointingToDeclaration/">Locale.JaJpSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ja-jp/index.html">JaJp</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">일본어 (일본)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.JaJpSerializer///PointingToDeclaration/">Locale.JaJpSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ja-jp/index.html">JaJp</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">일본어 (일본)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="288369488%2FClasslikes%2F1440829338" anchor-label="KoKr" id="288369488%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="288369488%2FClasslikes%2F-1895836109" anchor-label="KoKr" id="288369488%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ko-kr/index.html"><span>Ko</span><wbr></wbr><span><span>Kr</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="288369488%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="288369488%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.KoKrSerializer///PointingToDeclaration/">Locale.KoKrSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ko-kr/index.html">KoKr</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">한국어 (대한민국)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.KoKrSerializer///PointingToDeclaration/">Locale.KoKrSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ko-kr/index.html">KoKr</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">한국어 (대한민국)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1846085045%2FClasslikes%2F1440829338" anchor-label="RuRu" id="1846085045%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1846085045%2FClasslikes%2F-1895836109" anchor-label="RuRu" id="1846085045%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ru-ru/index.html"><span>Ru</span><wbr></wbr><span><span>Ru</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1846085045%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1846085045%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.RuRuSerializer///PointingToDeclaration/">Locale.RuRuSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ru-ru/index.html">RuRu</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">러시아어 (러시아)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.RuRuSerializer///PointingToDeclaration/">Locale.RuRuSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-ru-ru/index.html">RuRu</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">러시아어 (러시아)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-526100525%2FClasslikes%2F1440829338" anchor-label="ThTh" id="-526100525%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-526100525%2FClasslikes%2F-1895836109" anchor-label="ThTh" id="-526100525%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-th-th/index.html"><span>Th</span><wbr></wbr><span><span>Th</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-526100525%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-526100525%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ThThSerializer///PointingToDeclaration/">Locale.ThThSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-th-th/index.html">ThTh</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">타이어 (타이)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ThThSerializer///PointingToDeclaration/">Locale.ThThSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-th-th/index.html">ThTh</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">타이어 (타이)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="939650764%2FClasslikes%2F1440829338" anchor-label="Unrecognized" id="939650764%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="939650764%2FClasslikes%2F-1895836109" anchor-label="Unrecognized" id="939650764%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unrecognized/index.html"><span><span>Unrecognized</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="939650764%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="939650764%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1580254096%2FClasslikes%2F1440829338" anchor-label="ViVn" id="-1580254096%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1580254096%2FClasslikes%2F-1895836109" anchor-label="ViVn" id="-1580254096%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-vi-vn/index.html"><span>Vi</span><wbr></wbr><span><span>Vn</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1580254096%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1580254096%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ViVnSerializer///PointingToDeclaration/">Locale.ViVnSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-vi-vn/index.html">ViVn</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">베트남어 (베트남)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ViVnSerializer///PointingToDeclaration/">Locale.ViVnSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-vi-vn/index.html">ViVn</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">베트남어 (베트남)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="356092098%2FClasslikes%2F1440829338" anchor-label="ZhCn" id="356092098%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="356092098%2FClasslikes%2F-1895836109" anchor-label="ZhCn" id="356092098%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-zh-cn/index.html"><span>Zh</span><wbr></wbr><span><span>Cn</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="356092098%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="356092098%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ZhCnSerializer///PointingToDeclaration/">Locale.ZhCnSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-zh-cn/index.html">ZhCn</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">중국어 (중국)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ZhCnSerializer///PointingToDeclaration/">Locale.ZhCnSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-zh-cn/index.html">ZhCn</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">중국어 (중국)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-197160534%2FClasslikes%2F1440829338" anchor-label="ZhTw" id="-197160534%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-197160534%2FClasslikes%2F-1895836109" anchor-label="ZhTw" id="-197160534%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-zh-tw/index.html"><span>Zh</span><wbr></wbr><span><span>Tw</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-197160534%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-197160534%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ZhTwSerializer///PointingToDeclaration/">Locale.ZhTwSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-zh-tw/index.html">ZhTw</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">중국어 (대만)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.common/Locale.ZhTwSerializer///PointingToDeclaration/">Locale.ZhTwSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-zh-tw/index.html">ZhTw</a> : <a href="index.html">Locale</a></div><div class="brief "><p class="paragraph">중국어 (대만)</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -253,18 +253,18 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-864387037%2FProperties%2F1440829338" anchor-label="value" id="-864387037%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-864387037%2FProperties%2F-1895836109" anchor-label="value" id="-864387037%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="value.html"><span><span>value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-864387037%2FProperties%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-864387037%2FProperties%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -275,17 +275,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

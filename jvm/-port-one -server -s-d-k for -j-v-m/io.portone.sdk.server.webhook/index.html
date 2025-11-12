@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.portone.sdk.server.webhook</title>
     <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
@@ -25,20 +25,18 @@
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
                     PortOne Server SDK for JVM
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -46,11 +44,11 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.21.1-2-g9cbf86876c        </div>
+0.21.1-4-g2d3ee1b1f4        </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":lib:dokkaHtml/main">jvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
                         data-role="dropdown-toggle"
@@ -59,16 +57,16 @@
                         aria-expanded="false"
                         aria-label="Toggle source sets"
                 ></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":lib:dokkaHtml/main"
-                                       data-filter=":lib:dokkaHtml/main"/>
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
                                 <span class="checkbox--icon"></span>
                                 jvm
                             </label>
@@ -76,7 +74,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
             </button>
@@ -84,633 +82,635 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     PortOne Server SDK for JVM
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="package" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.webhook////PointingToDeclaration//1440829338">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.webhook////PointingToDeclaration//-1895836109">
   <div class="breadcrumbs"><a href="../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><span class="current">io.portone.sdk.server.webhook</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
-    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><p class="paragraph">Starting from June 2024, webhook messages from PortOne includes headers as specified in <a href="https://www.standardwebhooks.com/">Standard Webhooks</a>. This provides an easy way of securing webhook endpoints. Instead of relying on the IP addresses of the origin, the message itself can be verified. (i.e. It is NOT required to set up IP filters when the messages are verified by itself.)</p><p class="paragraph">The <a href="-webhook-verifier/index.html">WebhookVerifier</a> class implements a simple webhook verification logic. The WebhookVerificationException is thrown when the verification fails.</p><p class="paragraph">After a new webhook secret is issued to replace the existing secret, multiple signatures are included in the messages for a certain amount of time during which verifiers with either secret can verify the message. This grace period can be used to migrate your server to the new secret.</p></div></div>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><p class="paragraph">Starting from June 2024, webhook messages from PortOne includes headers as specified in <a href="https://www.standardwebhooks.com/">Standard Webhooks</a>. This provides an easy way of securing webhook endpoints. Instead of relying on the IP addresses of the origin, the message itself can be verified. (i.e. It is NOT required to set up IP filters when the messages are verified by itself.)</p><p class="paragraph">The <a href="-webhook-verifier/index.html">WebhookVerifier</a> class implements a simple webhook verification logic. The <a href="../io.portone.sdk.server.errors/-webhook-verification-exception/index.html">io.portone.sdk.server.errors.WebhookVerificationException</a> is thrown when the verification fails.</p><p class="paragraph">After a new webhook secret is issued to replace the existing secret, multiple signatures are included in the messages for a certain amount of time during which verifiers with either secret can verify the message. This grace period can be used to migrate your server to the new secret.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
-        <div class="table"><a data-name="-1639415048%2FClasslikes%2F1440829338" anchor-label="Webhook" id="-1639415048%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-1639415048%2FClasslikes%2F-1895836109" anchor-label="Webhook" id="-1639415048%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook/index.html"><span><span>Webhook</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1639415048%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1639415048%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">2024-04-25 버전의 웹훅 형식</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">2024-04-25 버전의 웹훅 형식</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-179210060%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKey" id="-179210060%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-179210060%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKey" id="-179210060%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span><span>Key</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-179210060%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-179210060%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-billing-key/index.html">WebhookBillingKey</a> : <a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">빌링키 발급 관련</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-billing-key/index.html">WebhookBillingKey</a> : <a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">빌링키 발급 관련</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1264119126%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyData" id="-1264119126%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1264119126%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyData" id="-1264119126%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Data</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264119126%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264119126%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1353531839%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDataDeleted" id="1353531839%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1353531839%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDataDeleted" id="1353531839%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data-deleted/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Deleted</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1353531839%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1353531839%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-deleted/index.html">WebhookBillingKeyDataDeleted</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 삭제되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-deleted/index.html">WebhookBillingKeyDataDeleted</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 삭제되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1528576467%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDataFailed" id="-1528576467%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1528576467%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDataFailed" id="-1528576467%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data-failed/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Failed</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1528576467%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1528576467%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-failed/index.html">WebhookBillingKeyDataFailed</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급이 실패했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-failed/index.html">WebhookBillingKeyDataFailed</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급이 실패했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="70934399%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDataIssued" id="70934399%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="70934399%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDataIssued" id="70934399%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data-issued/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Issued</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="70934399%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="70934399%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-issued/index.html">WebhookBillingKeyDataIssued</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 발급되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-issued/index.html">WebhookBillingKeyDataIssued</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 발급되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1465369291%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDataReady" id="-1465369291%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1465369291%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDataReady" id="-1465369291%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data-ready/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Ready</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1465369291%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1465369291%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-ready/index.html">WebhookBillingKeyDataReady</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급창이 열렸을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-ready/index.html">WebhookBillingKeyDataReady</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키 발급창이 열렸을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1757598883%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDataUpdated" id="-1757598883%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1757598883%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDataUpdated" id="-1757598883%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-data-updated/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Updated</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1757598883%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1757598883%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-updated/index.html">WebhookBillingKeyDataUpdated</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 업데이트되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-data-updated/index.html">WebhookBillingKeyDataUpdated</a> : <a href="-webhook-billing-key-data/index.html">WebhookBillingKeyData</a></div><div class="brief "><p class="paragraph">빌링키가 업데이트되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1552950155%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyDeleted" id="-1552950155%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1552950155%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyDeleted" id="-1552950155%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-deleted/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Deleted</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1552950155%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1552950155%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Deleted&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-deleted/index.html">WebhookBillingKeyDeleted</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 삭제되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Deleted&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-deleted/index.html">WebhookBillingKeyDeleted</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 삭제되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="178781367%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyFailed" id="178781367%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="178781367%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyFailed" id="178781367%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-failed/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Failed</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="178781367%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="178781367%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Failed&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-failed/index.html">WebhookBillingKeyFailed</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키 발급이 실패했을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Failed&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-failed/index.html">WebhookBillingKeyFailed</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키 발급이 실패했을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1778292233%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyIssued" id="1778292233%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1778292233%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyIssued" id="1778292233%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-issued/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Issued</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1778292233%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1778292233%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Issued&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-issued/index.html">WebhookBillingKeyIssued</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 발급되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Issued&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-issued/index.html">WebhookBillingKeyIssued</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 발급되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1637748075%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyReady" id="1637748075%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1637748075%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyReady" id="1637748075%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-ready/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Ready</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1637748075%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1637748075%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Ready&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-ready/index.html">WebhookBillingKeyReady</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키 발급창이 열렸을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Ready&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-ready/index.html">WebhookBillingKeyReady</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키 발급창이 열렸을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-369113581%2FClasslikes%2F1440829338" anchor-label="WebhookBillingKeyUpdated" id="-369113581%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-369113581%2FClasslikes%2F-1895836109" anchor-label="WebhookBillingKeyUpdated" id="-369113581%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-billing-key-updated/index.html"><span>Webhook</span><wbr></wbr><span>Billing</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Updated</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369113581%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369113581%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Updated&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-updated/index.html">WebhookBillingKeyUpdated</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 업데이트되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;BillingKey.Updated&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-billing-key-updated/index.html">WebhookBillingKeyUpdated</a> : <a href="-webhook-billing-key/index.html">WebhookBillingKey</a></div><div class="brief "><p class="paragraph">빌링키가 업데이트되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="795782668%2FClasslikes%2F1440829338" anchor-label="WebhookTransaction" id="795782668%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="795782668%2FClasslikes%2F-1895836109" anchor-label="WebhookTransaction" id="795782668%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction/index.html"><span>Webhook</span><wbr></wbr><span><span>Transaction</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="795782668%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="795782668%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction/index.html">WebhookTransaction</a> : <a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">결제 관련</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction/index.html">WebhookTransaction</a> : <a href="-webhook/index.html">Webhook</a></div><div class="brief "><p class="paragraph">결제 관련</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="31351973%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelled" id="31351973%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="31351973%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelled" id="31351973%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Cancelled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="31351973%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="31351973%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제 취소 관련</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제 취소 관련</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1298134484%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledCancelled" id="-1298134484%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1298134484%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledCancelled" id="-1298134484%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-cancelled/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span><span>Cancelled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298134484%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298134484%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Cancelled&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-cancelled/index.html">WebhookTransactionCancelledCancelled</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">결제가 완전 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Cancelled&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-cancelled/index.html">WebhookTransactionCancelledCancelled</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">결제가 완전 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1576126144%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledCancelPending" id="-1576126144%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1576126144%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledCancelPending" id="-1576126144%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-cancel-pending/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span>Cancel</span><wbr></wbr><span><span>Pending</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1576126144%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1576126144%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.CancelPending&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-cancel-pending/index.html">WebhookTransactionCancelledCancelPending</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.CancelPending&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-cancel-pending/index.html">WebhookTransactionCancelledCancelPending</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1744134629%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledData" id="-1744134629%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1744134629%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledData" id="-1744134629%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-data/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span><span>Data</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1744134629%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1744134629%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 취소 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 취소 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1107170678%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledDataCancelled" id="1107170678%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1107170678%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledDataCancelled" id="1107170678%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-data-cancelled/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Cancelled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1107170678%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1107170678%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-cancelled/index.html">WebhookTransactionCancelledDataCancelled</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">결제가 완전 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-cancelled/index.html">WebhookTransactionCancelledDataCancelled</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">결제가 완전 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-243167350%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledDataCancelPending" id="-243167350%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-243167350%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledDataCancelPending" id="-243167350%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-data-cancel-pending/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span>Data</span><wbr></wbr><span>Cancel</span><wbr></wbr><span><span>Pending</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-243167350%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-243167350%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-cancel-pending/index.html">WebhookTransactionCancelledDataCancelPending</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-cancel-pending/index.html">WebhookTransactionCancelledDataCancelPending</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="672273195%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledDataPartialCancelled" id="672273195%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="672273195%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledDataPartialCancelled" id="672273195%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-data-partial-cancelled/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span>Data</span><wbr></wbr><span>Partial</span><wbr></wbr><span><span>Cancelled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="672273195%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="672273195%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-partial-cancelled/index.html">WebhookTransactionCancelledDataPartialCancelled</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">결제가 부분 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-data-partial-cancelled/index.html">WebhookTransactionCancelledDataPartialCancelled</a> : <a href="-webhook-transaction-cancelled-data/index.html">WebhookTransactionCancelledData</a></div><div class="brief "><p class="paragraph">결제가 부분 취소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1764459957%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionCancelledPartialCancelled" id="1764459957%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1764459957%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionCancelledPartialCancelled" id="1764459957%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-cancelled-partial-cancelled/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Cancelled</span><wbr></wbr><span>Partial</span><wbr></wbr><span><span>Cancelled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1764459957%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1764459957%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.PartialCancelled&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-partial-cancelled/index.html">WebhookTransactionCancelledPartialCancelled</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">결제가 부분 취소되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.PartialCancelled&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-cancelled-partial-cancelled/index.html">WebhookTransactionCancelledPartialCancelled</a> : <a href="-webhook-transaction-cancelled/index.html">WebhookTransactionCancelled</a></div><div class="brief "><p class="paragraph">결제가 부분 취소되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1497647274%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionConfirm" id="-1497647274%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1497647274%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionConfirm" id="-1497647274%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-confirm/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Confirm</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1497647274%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1497647274%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Confirm&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-confirm/index.html">WebhookTransactionConfirm</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">컨펌 프로세스에서 승인 요청을 받았을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Confirm&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-confirm/index.html">WebhookTransactionConfirm</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">컨펌 프로세스에서 승인 요청을 받았을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2013668350%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionData" id="-2013668350%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-2013668350%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionData" id="-2013668350%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Data</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2013668350%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2013668350%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 관련 웹훅을 트리거한 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="320145568%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataConfirm" id="320145568%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="320145568%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataConfirm" id="320145568%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-confirm/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Confirm</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="320145568%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="320145568%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-confirm/index.html">WebhookTransactionDataConfirm</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-confirm/index.html">WebhookTransactionDataConfirm</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">(결제 취소가 비동기로 수행되는 경우) 결제 취소를 요청했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1226291486%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataDisputeCreated" id="1226291486%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1226291486%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataDisputeCreated" id="1226291486%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-dispute-created/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span>Dispute</span><wbr></wbr><span><span>Created</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1226291486%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1226291486%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-dispute-created/index.html">WebhookTransactionDataDisputeCreated</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">분쟁이 발생되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-dispute-created/index.html">WebhookTransactionDataDisputeCreated</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">분쟁이 발생되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1230917380%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataDisputeResolved" id="1230917380%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1230917380%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataDisputeResolved" id="1230917380%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-dispute-resolved/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span>Dispute</span><wbr></wbr><span><span>Resolved</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230917380%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230917380%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-dispute-resolved/index.html">WebhookTransactionDataDisputeResolved</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">분쟁이 해소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-dispute-resolved/index.html">WebhookTransactionDataDisputeResolved</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">분쟁이 해소되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="643837317%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataFailed" id="643837317%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="643837317%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataFailed" id="643837317%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-failed/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Failed</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="643837317%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="643837317%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-failed/index.html">WebhookTransactionDataFailed</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 실패했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-failed/index.html">WebhookTransactionDataFailed</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 실패했을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1451223530%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataPaid" id="-1451223530%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1451223530%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataPaid" id="-1451223530%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-paid/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Paid</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1451223530%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1451223530%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-paid/index.html">WebhookTransactionDataPaid</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 승인되었을 때 이벤트의 실제 세부 내용입니다. (모든 결제 수단)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-paid/index.html">WebhookTransactionDataPaid</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 승인되었을 때 이벤트의 실제 세부 내용입니다. (모든 결제 수단)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="165561779%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataPayPending" id="165561779%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="165561779%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataPayPending" id="165561779%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-pay-pending/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span>Pay</span><wbr></wbr><span><span>Pending</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="165561779%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="165561779%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-pay-pending/index.html">WebhookTransactionDataPayPending</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 승인 대기 상태가 되었을 때 이벤트의 실제 세부 내용입니다. (해외 결제시 발생 가능)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-pay-pending/index.html">WebhookTransactionDataPayPending</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제 승인 대기 상태가 되었을 때 이벤트의 실제 세부 내용입니다. (해외 결제시 발생 가능)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1395291427%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataReady" id="-1395291427%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1395291427%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataReady" id="-1395291427%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-ready/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Ready</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1395291427%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1395291427%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-ready/index.html">WebhookTransactionDataReady</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제창이 열렸을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-ready/index.html">WebhookTransactionDataReady</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">결제창이 열렸을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-512548843%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDataVirtualAccountIssued" id="-512548843%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-512548843%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDataVirtualAccountIssued" id="-512548843%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-data-virtual-account-issued/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Data</span><wbr></wbr><span>Virtual</span><wbr></wbr><span>Account</span><wbr></wbr><span><span>Issued</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-512548843%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-512548843%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-virtual-account-issued/index.html">WebhookTransactionDataVirtualAccountIssued</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">가상계좌가 발급되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-data-virtual-account-issued/index.html">WebhookTransactionDataVirtualAccountIssued</a> : <a href="-webhook-transaction-data/index.html">WebhookTransactionData</a></div><div class="brief "><p class="paragraph">가상계좌가 발급되었을 때 이벤트의 실제 세부 내용입니다.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1430729128%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDisputeCreated" id="1430729128%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1430729128%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDisputeCreated" id="1430729128%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-dispute-created/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Dispute</span><wbr></wbr><span><span>Created</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1430729128%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1430729128%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.DisputeCreated&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-dispute-created/index.html">WebhookTransactionDisputeCreated</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">분쟁이 발생되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.DisputeCreated&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-dispute-created/index.html">WebhookTransactionDisputeCreated</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">분쟁이 발생되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1021450310%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionDisputeResolved" id="-1021450310%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1021450310%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionDisputeResolved" id="-1021450310%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-dispute-resolved/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Dispute</span><wbr></wbr><span><span>Resolved</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1021450310%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1021450310%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.DisputeResolved&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-dispute-resolved/index.html">WebhookTransactionDisputeResolved</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">분쟁이 해소되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.DisputeResolved&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-dispute-resolved/index.html">WebhookTransactionDisputeResolved</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">분쟁이 해소되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1416482831%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionFailed" id="1416482831%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1416482831%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionFailed" id="1416482831%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-failed/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Failed</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1416482831%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1416482831%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Failed&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-failed/index.html">WebhookTransactionFailed</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 실패했을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Failed&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-failed/index.html">WebhookTransactionFailed</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 실패했을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="113824544%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionPaid" id="113824544%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="113824544%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionPaid" id="113824544%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-paid/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Paid</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="113824544%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="113824544%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Paid&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-paid/index.html">WebhookTransactionPaid</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 승인되었을 때 (모든 결제 수단)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Paid&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-paid/index.html">WebhookTransactionPaid</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제(예약 결제 포함)가 승인되었을 때 (모든 결제 수단)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1541641021%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionPayPending" id="1541641021%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1541641021%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionPayPending" id="1541641021%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-pay-pending/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Pay</span><wbr></wbr><span><span>Pending</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1541641021%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1541641021%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.PayPending&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-pay-pending/index.html">WebhookTransactionPayPending</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제 승인 대기 상태가 되었을 때 (해외 결제시 발생 가능)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.PayPending&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-pay-pending/index.html">WebhookTransactionPayPending</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제 승인 대기 상태가 되었을 때 (해외 결제시 발생 가능)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-123441389%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionReady" id="-123441389%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-123441389%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionReady" id="-123441389%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-ready/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span><span>Ready</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-123441389%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-123441389%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Ready&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-ready/index.html">WebhookTransactionReady</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제창이 열렸을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.Ready&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-ready/index.html">WebhookTransactionReady</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">결제창이 열렸을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1044678943%2FClasslikes%2F1440829338" anchor-label="WebhookTransactionVirtualAccountIssued" id="1044678943%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="1044678943%2FClasslikes%2F-1895836109" anchor-label="WebhookTransactionVirtualAccountIssued" id="1044678943%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-transaction-virtual-account-issued/index.html"><span>Webhook</span><wbr></wbr><span>Transaction</span><wbr></wbr><span>Virtual</span><wbr></wbr><span>Account</span><wbr></wbr><span><span>Issued</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1044678943%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1044678943%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.VirtualAccountIssued&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-virtual-account-issued/index.html">WebhookTransactionVirtualAccountIssued</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">가상계좌가 발급되었을 때</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Transaction.VirtualAccountIssued&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-webhook-transaction-virtual-account-issued/index.html">WebhookTransactionVirtualAccountIssued</a> : <a href="-webhook-transaction/index.html">WebhookTransaction</a></div><div class="brief "><p class="paragraph">가상계좌가 발급되었을 때</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1478465086%2FClasslikes%2F1440829338" anchor-label="WebhookVerifier" id="-1478465086%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-          <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+<a data-name="-1478465086%2FClasslikes%2F-1895836109" anchor-label="WebhookVerifier" id="-1478465086%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-webhook-verifier/index.html"><span>Webhook</span><wbr></wbr><span><span>Verifier</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478465086%2FClasslikes%2F1440829338"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478465086%2FClasslikes%2F-1895836109"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-webhook-verifier/index.html">WebhookVerifier</a></div><div class="brief "><p class="paragraph">Verifies webhook messages as specified in <a href="https://www.standardwebhooks.com/">Standard Webhooks</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-webhook-verifier/index.html">WebhookVerifier</a></div><div class="brief "><p class="paragraph">Verifies webhook messages as specified in <a href="https://www.standardwebhooks.com/">Standard Webhooks</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -721,17 +721,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
