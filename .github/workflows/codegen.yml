@@ -3,8 +3,8 @@ name: Codegen
 on:
   push:
     paths:
-      - 'codegen/**'
-      - '.github/workflows/codegen.yml'
+      - "codegen/**"
+      - ".github/workflows/codegen.yml"
 
 jobs:
   check:
@@ -14,7 +14,7 @@ jobs:
       run:
         working-directory: ./codegen
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
