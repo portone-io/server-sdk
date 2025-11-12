@@ -44,7 +44,9 @@ export function writeOperation(
       canHaveBody = true
       break
     default:
-      throw new Error("unrecognized operation method", { cause: { operation } })
+      throw new Error("unrecognized operation method", {
+        cause: { operation },
+      })
   }
   const errors = fetchErrors(operation, entityMap)
   crossRef.add(`io.portone.sdk.server.errors.${toException(operation.errors)}`)
@@ -58,24 +60,28 @@ export function writeOperation(
     crossRef.add(`io.portone.sdk.server.errors.${exception}`)
   }
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
-  const params = operation.params.path.concat(operation.params.query).concat(
-    requestBody,
-  ).filter(({ name }) => name !== "storeId")
-  const paramDescription = params.map((property) => {
-    const block = ([] as string[]).concat(property.title ?? []).concat(
-      property.description
-        ? annotateDescription(property.description, property)
-        : [],
-    ).join("\n\n")
-    return `@param ${property.name}\n${block}`
-  }).join("\n")
-  const description = ([] as string[]).concat(
-    operation.description?.trimEnd() ?? [],
-  ).concat(
-    paramDescription,
-  ).concat(
-    `@throws ${toException(operation.errors)}`,
-  ).join("\n\n")
+  const params = operation.params.path
+    .concat(operation.params.query)
+    .concat(requestBody)
+    .filter(({ name }) => name !== "storeId")
+  const paramDescription = params
+    .map((property) => {
+      const block = ([] as string[])
+        .concat(property.title ?? [])
+        .concat(
+          property.description
+            ? annotateDescription(property.description, property)
+            : [],
+        )
+        .join("\n\n")
+      return `@param ${property.name}\n${block}`
+    })
+    .join("\n")
+  const description = ([] as string[])
+    .concat(operation.description?.trimEnd() ?? [])
+    .concat(paramDescription)
+    .concat(`@throws ${toException(operation.errors)}`)
+    .join("\n\n")
   crossRef.add("io.portone.sdk.server.errors.UnknownException")
   writeDescription(writer, description)
   const futureWriter = KotlinWriter()
@@ -101,12 +107,12 @@ export function writeOperation(
       }
       crossRef.add(
         `io.portone.sdk.server.${
-          toPackageCase(category)
+          toPackageCase(
+            category,
+          )
         }.${operation.response.schema}`,
       )
-      writer.writeLine(
-        `): ${operation.response.schema} {`,
-      )
+      writer.writeLine(`): ${operation.response.schema} {`)
       futureWriter.writeLine(
         `): CompletableFuture<${operation.response.schema}> = GlobalScope.future { ${operation.id}(${paramList}) }`,
       )
@@ -152,7 +158,9 @@ export function writeOperation(
     }
     crossRef.add(
       `io.portone.sdk.server.${
-        toPackageCase(category)
+        toPackageCase(
+          category,
+        )
       }.${operation.params.body.value}`,
     )
     writer.writeLine(`val requestBody = ${operation.params.body.value}(`)
@@ -167,61 +175,65 @@ export function writeOperation(
   writer.indent()
   writer.writeLine("url {")
   writer.indent()
-  const path = operation.path.split("/").slice(1).map((segment) => {
-    if (segment.startsWith("{") && segment.endsWith("}")) {
-      const name = segment.slice(1, -1)
-      const pathParam = operation.params.path.find((param) =>
-        param.name === name
-      )
-      if (pathParam == null) {
-        throw new Error("unrecognized path parameter", {
-          cause: { operation },
-        })
-      }
-      switch (pathParam.type) {
-        case "string":
-          return `${name}.toString()`
-        case "ref":
-          const entity = entityMap.get(pathParam.value)
-          if (entity == null) {
-            throw new Error("unrecognized param ref", {
-              cause: { parameter: pathParam },
-            })
-          }
-          switch (entity.type) {
-            case "enum":
-              return `${name}.value`
-            default:
-              throw new Error("unsupported path parameter type", {
+  const path = operation.path
+    .split("/")
+    .slice(1)
+    .map((segment) => {
+      if (segment.startsWith("{") && segment.endsWith("}")) {
+        const name = segment.slice(1, -1)
+        const pathParam = operation.params.path.find(
+          (param) => param.name === name,
+        )
+        if (pathParam == null) {
+          throw new Error("unrecognized path parameter", {
+            cause: { operation },
+          })
+        }
+        switch (pathParam.type) {
+          case "string":
+            return `${name}.toString()`
+          case "ref":
+            const entity = entityMap.get(pathParam.value)
+            if (entity == null) {
+              throw new Error("unrecognized param ref", {
                 cause: { parameter: pathParam },
               })
-          }
-        default:
-          throw new Error("unsupported path parameter type", {
-            cause: { parameter: pathParam },
-          })
+            }
+            switch (entity.type) {
+              case "enum":
+                return `${name}.value`
+              default:
+                throw new Error("unsupported path parameter type", {
+                  cause: { parameter: pathParam },
+                })
+            }
+          default:
+            throw new Error("unsupported path parameter type", {
+              cause: { parameter: pathParam },
+            })
+        }
+      } else {
+        return `"${segment}"`
       }
-    } else {
-      return `"${segment}"`
-    }
-  }).join(", ")
+    })
+    .join(", ")
   crossRef.add("io.ktor.http.appendPathSegments")
-  writer.writeLine(`appendPathSegments(${path})`)
+  writer.writeLine(`this.appendPathSegments(${path})`)
   for (const property of operation.params.query) {
     if (property.required) {
       writer.writeLine(
-        `parameters.append("${property.name}", ${property.name}.toString())`,
+        `this.parameters.append("${property.name}", ${property.name}.toString())`,
       )
     } else {
       writer.writeLine(
-        `if (${property.name} != null) parameters.append("${property.name}", ${property.name}.toString())`,
+        `if (${property.name} != null) this.parameters.append("${property.name}", ${property.name}.toString())`,
       )
     }
   }
   if (operation.params.body && !canHaveBody) {
     crossRef.add("kotlinx.serialization.encodeToString")
     writer.writeLine(
-      `parameters.append("requestBody", json.encodeToString(requestBody))`,
+      `this.parameters.append("requestBody", json.encodeToString(requestBody))`,
     )
   }
   writer.outdent()
@@ -230,24 +242,26 @@ export function writeOperation(
   writer.writeLine("headers {")
   writer.indent()
   crossRef.add("io.ktor.http.HttpHeaders")
-  writer.writeLine(`append(HttpHeaders.Authorization, "PortOne $apiSecret")`)
+  writer.writeLine(
+    `this.append(HttpHeaders.Authorization, "PortOne $apiSecret")`,
+  )
   writer.outdent()
   writer.writeLine("}")
   if (canHaveBody && operation.params.body) {
     crossRef.add("io.ktor.http.contentType")
     crossRef.add("io.ktor.http.ContentType")
-    writer.writeLine("contentType(ContentType.Application.Json)")
+    writer.writeLine("this.contentType(ContentType.Application.Json)")
   }
   switch (operation.response?.type) {
     case "application/json":
       crossRef.add("io.ktor.client.request.accept")
       crossRef.add("io.ktor.http.ContentType")
-      writer.writeLine("accept(ContentType.Application.Json)")
+      writer.writeLine("this.accept(ContentType.Application.Json)")
       break
     case "text/csv":
       crossRef.add("io.ktor.client.request.accept")
       crossRef.add("io.ktor.http.ContentType")
-      writer.writeLine("accept(ContentType.Text.CSV)")
+      writer.writeLine("this.accept(ContentType.Text.CSV)")
       break
     case undefined:
       break
@@ -258,11 +272,11 @@ export function writeOperation(
   }
   crossRef.add("io.ktor.http.userAgent")
   crossRef.add("io.portone.sdk.server.USER_AGENT")
-  writer.writeLine("userAgent(USER_AGENT)")
+  writer.writeLine("this.userAgent(USER_AGENT)")
   if (operation.params.body && canHaveBody) {
     crossRef.add("io.ktor.client.request.setBody")
     crossRef.add("kotlinx.serialization.encodeToString")
-    writer.writeLine("setBody(json.encodeToString(requestBody))")
+    writer.writeLine("this.setBody(json.encodeToString(requestBody))")
   }
   writer.outdent()
   writer.writeLine("}")
@@ -432,9 +446,7 @@ function writePropertyList(
         crossRef.add(
           `io.portone.sdk.server.${toPackageCase(category)}.${property.value}`,
         )
-        writer.writeLine(
-          `${name}: ${wrapOptional(property.value)},`,
-        )
+        writer.writeLine(`${name}: ${wrapOptional(property.value)},`)
         break
       }
       case "array":
@@ -478,7 +490,9 @@ function writePropertyList(
             }
             crossRef.add(
               `io.portone.sdk.server.${
-                toPackageCase(category)
+                toPackageCase(
+                  category,
+                )
               }.${property.item.value}`,
             )
             break
