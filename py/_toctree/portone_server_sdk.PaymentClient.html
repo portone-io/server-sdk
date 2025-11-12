@@ -344,6 +344,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.pay_with_billing_key_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.pay_with_billing_key_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.cancel_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.cancel_payment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.cancel_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.cancel_payment_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.capture_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.capture_payment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.capture_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.capture_payment_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_payment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_payment_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_escrow"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_escrow()</span></code></a></li>
@@ -419,6 +421,12 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PaymentClient.cancel_payment_async" title="portone_server_sdk.PaymentClient.cancel_payment_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cancel_payment_async</span></code></a>(*, payment_id[, ...])</p></td>
 <td><p>결제 취소</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PaymentClient.capture_payment" title="portone_server_sdk.PaymentClient.capture_payment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">capture_payment</span></code></a>(*, payment_id)</p></td>
+<td><p>수동 매입</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PaymentClient.capture_payment_async" title="portone_server_sdk.PaymentClient.capture_payment_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">capture_payment_async</span></code></a>(*, payment_id)</p></td>
+<td><p>수동 매입</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PaymentClient.close_virtual_account" title="portone_server_sdk.PaymentClient.close_virtual_account"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close_virtual_account</span></code></a>(*, payment_id)</p></td>
 <td><p>가상계좌 말소</p></td>
@@ -877,6 +885,42 @@ RELEASE 으로 설정 시, 취소 후 남은 금액이 속한 구간에 맞게 �
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.CancelPaymentError" title="portone_server_sdk.payment.CancelPaymentError"><strong>CancelPaymentError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PaymentClient.capture_payment">
+<span class="sig-name descname"><span class="pre">capture_payment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.CapturePaymentResponse" title="portone_server_sdk._generated.payment.capture_payment_response.CapturePaymentResponse"><span class="pre">CapturePaymentResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentClient.capture_payment" title="Link to this definition">#</a></dt>
+<dd><p>수동 매입</p>
+<p>수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.CapturePaymentError" title="portone_server_sdk.payment.CapturePaymentError"><strong>CapturePaymentError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PaymentClient.capture_payment_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">capture_payment_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.CapturePaymentResponse" title="portone_server_sdk._generated.payment.capture_payment_response.CapturePaymentResponse"><span class="pre">CapturePaymentResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentClient.capture_payment_async" title="Link to this definition">#</a></dt>
+<dd><p>수동 매입</p>
+<p>수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.payment.html#portone_server_sdk.payment.CapturePaymentError" title="portone_server_sdk.payment.CapturePaymentError"><strong>CapturePaymentError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -1581,6 +1625,8 @@ KG이니시스(이용 전 콘솔 -&gt; 결제연동 탭에서 INIApi Key 등록 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.pay_with_billing_key_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.pay_with_billing_key_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.cancel_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.cancel_payment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.cancel_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.cancel_payment_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.capture_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.capture_payment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.capture_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.capture_payment_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_payment"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_payment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_payment_async"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_payment_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PaymentClient.confirm_escrow"><code class="docutils literal notranslate"><span class="pre">PaymentClient.confirm_escrow()</span></code></a></li>

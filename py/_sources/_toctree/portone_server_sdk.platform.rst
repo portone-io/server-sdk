@@ -14,7 +14,6 @@
       CancelPlatformPartnerScheduleResponse
       DateRange
       MonthDay
-      Platform
       PlatformAccount
       PlatformAccountTransferStatusStats
       PlatformAdditionalFeePolicy
@@ -101,7 +100,6 @@
       GetPlatformContractScheduleError
       GetPlatformDiscountSharePolicyFilterOptionsError
       GetPlatformDiscountSharePolicyScheduleError
-      GetPlatformError
       GetPlatformPartnerFilterOptionsError
       GetPlatformPartnerScheduleError
       GetPlatformSettingError

@@ -18,6 +18,8 @@
       ~PaymentClient.apply_escrow_logistics_async
       ~PaymentClient.cancel_payment
       ~PaymentClient.cancel_payment_async
+      ~PaymentClient.capture_payment
+      ~PaymentClient.capture_payment_async
       ~PaymentClient.close_virtual_account
       ~PaymentClient.close_virtual_account_async
       ~PaymentClient.confirm_escrow

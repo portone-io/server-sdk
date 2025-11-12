@@ -22,10 +22,8 @@
       ~PlatformClient.cancel_platform_discount_share_policy_schedule_async
       ~PlatformClient.cancel_platform_partner_schedule
       ~PlatformClient.cancel_platform_partner_schedule_async
-      ~PlatformClient.get_platform
       ~PlatformClient.get_platform_additional_fee_policy_schedule
       ~PlatformClient.get_platform_additional_fee_policy_schedule_async
-      ~PlatformClient.get_platform_async
       ~PlatformClient.get_platform_contract_schedule
       ~PlatformClient.get_platform_contract_schedule_async
       ~PlatformClient.get_platform_discount_share_policy_filter_options

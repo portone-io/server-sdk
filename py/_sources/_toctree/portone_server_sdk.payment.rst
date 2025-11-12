@@ -19,6 +19,8 @@
       CancelledPaymentEscrow
       CancelledPaymentEvent
       CancelledPaymentTransaction
+      CapturePaymentBody
+      CapturePaymentResponse
       CloseVirtualAccountResponse
       ConfirmEscrowBody
       ConfirmEscrowResponse
@@ -105,6 +107,7 @@
    
       ApplyEscrowLogisticsError
       CancelPaymentError
+      CapturePaymentError
       CloseVirtualAccountError
       ConfirmEscrowError
       ConfirmPaymentError
