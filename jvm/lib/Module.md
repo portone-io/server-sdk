@@ -12,7 +12,7 @@ addresses of the origin, the message itself can be verified. (i.e. It is NOT
 required to set up IP filters when the messages are verified by itself.)
 
 The [WebhookVerifier] class implements a simple webhook verification logic. The
-[WebhookVerificationException] is thrown when the verification fails.
+[io.portone.sdk.server.errors.WebhookVerificationException] is thrown when the verification fails.
 
 After a new webhook secret is issued to replace the existing secret, multiple
 signatures are included in the messages for a certain amount of time during

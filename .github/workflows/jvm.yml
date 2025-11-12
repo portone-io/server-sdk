@@ -44,7 +44,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Run dokka
-        run: gradle dokkaHtml
+        run: gradle dokkaGenerateHtml
       - name: Deploy on GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

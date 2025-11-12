@@ -1,5 +1,4 @@
 import io.portone.sdk.server.build.GenerateVersionCodeTask
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
@@ -123,19 +122,23 @@ tasks.shadowJar {
     relocationPrefix = "io.portone.shadow"
 }
 
-tasks.withType<DokkaTask> {
-    moduleName = "PortOne Server SDK for JVM"
+dokka {
+    moduleName.set("PortOne Server SDK for JVM")
 
     dokkaSourceSets.configureEach {
         jdkVersion = 23
         includes.from("Module.md")
         suppressGeneratedFiles = false
     }
+
+    pluginsConfiguration.html {
+        footerMessage.set("Copyright © 2025 PortOne Korea Corp. All rights reserved.")
+    }
 }
 
 tasks.register<Jar>("dokkaHtmlJar") {
-    dependsOn(tasks.dokkaHtml)
-    from(tasks.dokkaHtml.flatMap { it.outputDirectory })
+    dependsOn(tasks.dokkaGenerateHtml)
+    from(tasks.dokkaGeneratePublicationHtml.flatMap { it.outputDirectory })
     archiveClassifier = "html-docs"
 }
 

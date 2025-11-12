@@ -18,6 +18,7 @@ import javax.crypto.spec.SecretKeySpec
  *
  * Example:
  * ```kotlin
+ * import io.portone.sdk.server.errors.WebhookVerificationException
  * import io.portone.sdk.server.webhook.WebhookVerifier
  *
  * // The webhook secret can be issued from the PortOne admin console.
