@@ -4,6 +4,18 @@
 
 ### Minor Changes
 
+- 9cbf868: 플랫폼 API 변경
+- 9cbf868: 수동매입 API 추가
+- 9cbf868: 수협중앙회 은행 코드 추가
+
+### Patch Changes
+
+- 33b449e: @biomejs/biome, @types/node, typedoc, typescript 의존성 업데이트
+
+## 0.18.0
+
+### Minor Changes
+
 - 00f7634: 빌링키 삭제 시 requester 필드 추가
 
 ### Patch Changes
