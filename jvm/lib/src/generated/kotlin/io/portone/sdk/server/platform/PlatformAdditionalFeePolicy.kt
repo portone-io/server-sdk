@@ -29,6 +29,7 @@ public data class PlatformAdditionalFeePolicy(
   val isArchived: Boolean,
   /** 변경 적용 시점 */
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
+  val isForTest: Boolean,
 )
 
 

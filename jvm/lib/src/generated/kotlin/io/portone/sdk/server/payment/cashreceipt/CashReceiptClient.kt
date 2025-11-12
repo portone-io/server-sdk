@@ -117,14 +117,14 @@ public class CashReceiptClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("cash-receipts")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("cash-receipts")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -224,15 +224,15 @@ public class CashReceiptClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("cash-receipts")
+        this.appendPathSegments("cash-receipts")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -293,14 +293,14 @@ public class CashReceiptClient(
   ): CancelCashReceiptResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt", "cancel")
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -351,14 +351,14 @@ public class CashReceiptClient(
   ): CashReceipt {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "cash-receipt")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payments", paymentId.toString(), "cash-receipt")
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

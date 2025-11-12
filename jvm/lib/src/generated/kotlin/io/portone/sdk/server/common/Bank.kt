@@ -189,6 +189,22 @@ public sealed interface Bank {
     }
     override fun serialize(encoder: Encoder, value: Citi) = encoder.encodeString(value.value)
   }
+  /** 수협중앙회 */
+  @Serializable(SuhyupFederationSerializer::class)
+  public data object SuhyupFederation : Bank {
+    override val value: String = "SUHYUP_FEDERATION"
+  }
+  private object SuhyupFederationSerializer : KSerializer<SuhyupFederation> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SuhyupFederation::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SuhyupFederation = decoder.decodeString().let {
+      if (it != "SUHYUP_FEDERATION") {
+        throw SerializationException(it)
+      } else {
+        return SuhyupFederation
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SuhyupFederation) = encoder.encodeString(value.value)
+  }
   /** 아이엠뱅크 */
   @Serializable(DaeguSerializer::class)
   public data object Daegu : Bank {
@@ -1283,6 +1299,7 @@ private object BankSerializer : KSerializer<Bank> {
       "WOORI" -> Bank.Woori
       "STANDARD_CHARTERED" -> Bank.StandardChartered
       "CITI" -> Bank.Citi
+      "SUHYUP_FEDERATION" -> Bank.SuhyupFederation
       "DAEGU" -> Bank.Daegu
       "BUSAN" -> Bank.Busan
       "KWANGJU" -> Bank.Kwangju

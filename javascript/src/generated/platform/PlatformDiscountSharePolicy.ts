@@ -25,4 +25,5 @@ export type PlatformDiscountSharePolicy = {
 	 * (RFC 3339 date-time)
 	 */
 	appliedAt: string
+	isForTest: boolean
 }

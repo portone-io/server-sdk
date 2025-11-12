@@ -64,10 +64,12 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 	return {
 		downloadPlatformTransferSheet: async (
 			options?: {
+				test?: boolean,
 				filter?: PlatformTransferFilterInput,
 				fields?: string[],
 			}
 		): Promise<string> => {
+			const test = options?.test
 			const filter = options?.filter
 			const fields = options?.fields
 			const requestBody = JSON.stringify({
@@ -75,6 +77,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				fields,
 			})
 			const query = [
+				["test", test],
 				["requestBody", requestBody],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
@@ -96,10 +99,12 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 		},
 		getPlatformTransferSummaries: async (
 			options?: {
+				test?: boolean,
 				page?: PageInput,
 				filter?: PlatformTransferFilterInput,
 			}
 		): Promise<GetPlatformTransferSummariesResponse> => {
+			const test = options?.test
 			const page = options?.page
 			const filter = options?.filter
 			const requestBody = JSON.stringify({
@@ -107,6 +112,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				filter,
 			})
 			const query = [
+				["test", test],
 				["requestBody", requestBody],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
@@ -128,6 +134,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 		},
 		createPlatformManualTransfer: async (
 			options: {
+				test?: boolean,
 				partnerId: string,
 				memo?: string,
 				settlementAmount: number,
@@ -138,6 +145,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 			}
 		): Promise<CreateManualTransferResponse> => {
 			const {
+				test,
 				partnerId,
 				memo,
 				settlementAmount,
@@ -155,8 +163,13 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				isForTest,
 				userDefinedProperties,
 			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL("/platform/transfers/manual", baseUrl),
+				new URL(`/platform/transfers/manual?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -171,8 +184,79 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 			}
 			return response.json()
 		},
+		createPlatformOrderCancelTransfer: async (
+			options: {
+				test?: boolean,
+				partnerId?: string,
+				paymentId?: string,
+				transferId?: string,
+				cancellationId: string,
+				memo?: string,
+				orderDetail?: CreatePlatformOrderCancelTransferBodyOrderDetail,
+				taxFreeAmount?: number,
+				discounts: CreatePlatformOrderCancelTransferBodyDiscount[],
+				settlementStartDate?: string,
+				settlementDate?: string,
+				externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
+				isForTest?: boolean,
+				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			}
+		): Promise<CreateOrderCancelTransferResponse> => {
+			const {
+				test,
+				partnerId,
+				paymentId,
+				transferId,
+				cancellationId,
+				memo,
+				orderDetail,
+				taxFreeAmount,
+				discounts,
+				settlementStartDate,
+				settlementDate,
+				externalCancellationDetail,
+				isForTest,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				partnerId,
+				paymentId,
+				transferId,
+				cancellationId,
+				memo,
+				orderDetail,
+				taxFreeAmount,
+				discounts,
+				settlementStartDate,
+				settlementDate,
+				externalCancellationDetail,
+				isForTest,
+				userDefinedProperties,
+			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/transfers/order-cancel?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new CreatePlatformOrderCancelTransferError(await response.json())
+			}
+			return response.json()
+		},
 		createPlatformOrderTransfer: async (
 			options: {
+				test?: boolean,
 				partnerId: string,
 				contractId?: string,
 				memo?: string,
@@ -190,6 +274,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 			}
 		): Promise<CreateOrderTransferResponse> => {
 			const {
+				test,
 				partnerId,
 				contractId,
 				memo,
@@ -221,8 +306,13 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				parameters,
 				userDefinedProperties,
 			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL("/platform/transfers/order", baseUrl),
+				new URL(`/platform/transfers/order?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -237,79 +327,23 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 			}
 			return response.json()
 		},
-		createPlatformOrderCancelTransfer: async (
-			options: {
-				partnerId?: string,
-				paymentId?: string,
-				transferId?: string,
-				cancellationId: string,
-				memo?: string,
-				orderDetail?: CreatePlatformOrderCancelTransferBodyOrderDetail,
-				taxFreeAmount?: number,
-				discounts: CreatePlatformOrderCancelTransferBodyDiscount[],
-				settlementStartDate?: string,
-				settlementDate?: string,
-				externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
-				isForTest?: boolean,
-				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
-			}
-		): Promise<CreateOrderCancelTransferResponse> => {
-			const {
-				partnerId,
-				paymentId,
-				transferId,
-				cancellationId,
-				memo,
-				orderDetail,
-				taxFreeAmount,
-				discounts,
-				settlementStartDate,
-				settlementDate,
-				externalCancellationDetail,
-				isForTest,
-				userDefinedProperties,
-			} = options
-			const requestBody = JSON.stringify({
-				partnerId,
-				paymentId,
-				transferId,
-				cancellationId,
-				memo,
-				orderDetail,
-				taxFreeAmount,
-				discounts,
-				settlementStartDate,
-				settlementDate,
-				externalCancellationDetail,
-				isForTest,
-				userDefinedProperties,
-			})
-			const response = await fetch(
-				new URL("/platform/transfers/order-cancel", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new CreatePlatformOrderCancelTransferError(await response.json())
-			}
-			return response.json()
-		},
 		getPlatformTransfer: async (
 			options: {
 				id: string,
+				test?: boolean,
 			}
 		): Promise<PlatformTransfer> => {
 			const {
 				id,
+				test,
 			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
+				new URL(`/platform/transfers/${encodeURIComponent(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -326,13 +360,20 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 		deletePlatformTransfer: async (
 			options: {
 				id: string,
+				test?: boolean,
 			}
 		): Promise<DeletePlatformTransferResponse> => {
 			const {
 				id,
+				test,
 			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL(`/platform/transfers/${encodeURIComponent(id)}`, baseUrl),
+				new URL(`/platform/transfers/${encodeURIComponent(id)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -358,6 +399,12 @@ export type TransferClient = {
 	 */
 	downloadPlatformTransferSheet: (
 		options?: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/**
 			 * 컬럼 키 목록
 			 *
@@ -407,6 +454,12 @@ export type TransferClient = {
 	 */
 	getPlatformTransferSummaries: (
 		options?: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/** 요청할 페이지 정보 */
 			page?: PageInput,
 			/** 조회할 정산건 조건 필터 */
@@ -422,6 +475,12 @@ export type TransferClient = {
 	 */
 	createPlatformManualTransfer: (
 		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/** 파트너 아이디 */
 			partnerId: string,
 			/** 메모 */
@@ -446,13 +505,81 @@ export type TransferClient = {
 			/**
 			 * 테스트 모드 여부
 			 *
-			 * 기본값은 false 입니다.
+			 * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+			 * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 			 */
 			isForTest?: boolean,
 			/** 사용자 정의 속성 */
 			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
 		}
 	) => Promise<CreateManualTransferResponse>
+	/**
+	 * 주문 취소 정산건 생성
+	 *
+	 * 성공 응답으로 생성된 주문 취소 정산건 객체가 반환됩니다.
+	 *
+	 * @throws {@link CreatePlatformOrderCancelTransferError}
+	 */
+	createPlatformOrderCancelTransfer: (
+		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+			/** 파트너 아이디 */
+			partnerId?: string,
+			/** 결제 아이디 */
+			paymentId?: string,
+			/** 정산건 아이디 */
+			transferId?: string,
+			/** 취소 내역 아이디 */
+			cancellationId: string,
+			/** 메모 */
+			memo?: string,
+			/** 주문 취소 정보 */
+			orderDetail?: CreatePlatformOrderCancelTransferBodyOrderDetail,
+			/**
+			 * 주문 취소 면세 금액
+			 *
+			 * 주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
+			 * (int64)
+			 */
+			taxFreeAmount?: number,
+			/** 할인 정보 */
+			discounts: CreatePlatformOrderCancelTransferBodyDiscount[],
+			/**
+			 * 정산 시작일
+			 *
+			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+			 * (yyyy-MM-dd)
+			 */
+			settlementStartDate?: string,
+			/**
+			 * 정산일
+			 *
+			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+			 * (yyyy-MM-dd)
+			 */
+			settlementDate?: string,
+			/**
+			 * 외부 결제 상세 정보
+			 *
+			 * 해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.
+			 */
+			externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+			 * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			isForTest?: boolean,
+			/** 사용자 정의 속성 */
+			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+		}
+	) => Promise<CreateOrderCancelTransferResponse>
 	/**
 	 * 주문 정산건 생성
 	 *
@@ -462,6 +589,12 @@ export type TransferClient = {
 	 */
 	createPlatformOrderTransfer: (
 		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/** 파트너 아이디 */
 			partnerId: string,
 			/**
@@ -510,7 +643,8 @@ export type TransferClient = {
 			/**
 			 * 테스트 모드 여부
 			 *
-			 * 기본값은 false 입니다.
+			 * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+			 * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 			 */
 			isForTest?: boolean,
 			/** 정산 파라미터 (실험기능) */
@@ -519,66 +653,6 @@ export type TransferClient = {
 			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
 		}
 	) => Promise<CreateOrderTransferResponse>
-	/**
-	 * 주문 취소 정산건 생성
-	 *
-	 * 성공 응답으로 생성된 주문 취소 정산건 객체가 반환됩니다.
-	 *
-	 * @throws {@link CreatePlatformOrderCancelTransferError}
-	 */
-	createPlatformOrderCancelTransfer: (
-		options: {
-			/** 파트너 아이디 */
-			partnerId?: string,
-			/** 결제 아이디 */
-			paymentId?: string,
-			/** 정산건 아이디 */
-			transferId?: string,
-			/** 취소 내역 아이디 */
-			cancellationId: string,
-			/** 메모 */
-			memo?: string,
-			/** 주문 취소 정보 */
-			orderDetail?: CreatePlatformOrderCancelTransferBodyOrderDetail,
-			/**
-			 * 주문 취소 면세 금액
-			 *
-			 * 주문 취소 항목과 취소 면세 금액을 같이 전달하시면 최종 취소 면세 금액은 주문 취소 항목의 면세 금액이 아닌 전달해주신 취소 면세 금액으로 적용됩니다.
-			 * (int64)
-			 */
-			taxFreeAmount?: number,
-			/** 할인 정보 */
-			discounts: CreatePlatformOrderCancelTransferBodyDiscount[],
-			/**
-			 * 정산 시작일
-			 *
-			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-			 * (yyyy-MM-dd)
-			 */
-			settlementStartDate?: string,
-			/**
-			 * 정산일
-			 *
-			 * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-			 * (yyyy-MM-dd)
-			 */
-			settlementDate?: string,
-			/**
-			 * 외부 결제 상세 정보
-			 *
-			 * 해당 정보가 존재하는 경우 외부 결제 취소 정산건으로 등록되고, 존재하지않은 경우 포트원 결제 취소 정산건으로 등록됩니다.
-			 */
-			externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
-			/**
-			 * 테스트 모드 여부
-			 *
-			 * 기본값은 false 입니다.
-			 */
-			isForTest?: boolean,
-			/** 사용자 정의 속성 */
-			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
-		}
-	) => Promise<CreateOrderCancelTransferResponse>
 	/**
 	 * 정산건 조회
 	 *
@@ -590,6 +664,12 @@ export type TransferClient = {
 		options: {
 			/** 조회하고 싶은 정산건 아이디 */
 			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 		}
 	) => Promise<PlatformTransfer>
 	/**
@@ -603,6 +683,12 @@ export type TransferClient = {
 		options: {
 			/** 정산건 아이디 */
 			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 		}
 	) => Promise<DeletePlatformTransferResponse>
 }
@@ -633,15 +719,6 @@ export class CreatePlatformManualTransferError extends TransferError {
 		this.name = "CreatePlatformManualTransferError"
 	}
 }
-export class CreatePlatformOrderTransferError extends TransferError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, CreatePlatformOrderTransferError.prototype)
-		this.name = "CreatePlatformOrderTransferError"
-	}
-}
 export class CreatePlatformOrderCancelTransferError extends TransferError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
@@ -649,6 +726,15 @@ export class CreatePlatformOrderCancelTransferError extends TransferError {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformOrderCancelTransferError.prototype)
 		this.name = "CreatePlatformOrderCancelTransferError"
+	}
+}
+export class CreatePlatformOrderTransferError extends TransferError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CreatePlatformOrderTransferError.prototype)
+		this.name = "CreatePlatformOrderTransferError"
 	}
 }
 export class GetPlatformTransferError extends TransferError {

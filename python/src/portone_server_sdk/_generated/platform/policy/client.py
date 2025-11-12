@@ -68,188 +68,40 @@ class PolicyClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
-    def get_platform_additional_fee_policies(
+    def archive_platform_additional_fee_policy(
         self,
         *,
-        page: Optional[PageInput] = None,
-        filter: Optional[PlatformAdditionalFeePolicyFilterInput] = None,
-    ) -> GetPlatformAdditionalFeePoliciesResponse:
-        """추가 수수료 정책 다건 조회
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 보관
 
-        여러 추가 수수료 정책을 조회합니다.
+        주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
 
         Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-            filter (PlatformAdditionalFeePolicyFilterInput, optional):
-                조회할 추가 수수료 정책 조건 필터
+            id (str):
+                추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
-            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
+            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = self._sync_client.request(
-            "GET",
-            f"{self._base_url}/platform/additional-fee-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_platform_additional_fee_policies_response(response.json())
-    async def get_platform_additional_fee_policies_async(
-        self,
-        *,
-        page: Optional[PageInput] = None,
-        filter: Optional[PlatformAdditionalFeePolicyFilterInput] = None,
-    ) -> GetPlatformAdditionalFeePoliciesResponse:
-        """추가 수수료 정책 다건 조회
-
-        여러 추가 수수료 정책을 조회합니다.
-
-        Args:
-            page (PageInput, optional):
-                요청할 페이지 정보
-            filter (PlatformAdditionalFeePolicyFilterInput, optional):
-                조회할 추가 수수료 정책 조건 필터
-
-
-        Raises:
-            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if page is not None:
-            request_body["page"] = _serialize_page_input(page)
-        if filter is not None:
-            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
-        query = []
-        query.append(("requestBody", json.dumps(request_body)))
-        response = await self._async_client.request(
-            "GET",
-            f"{self._base_url}/platform/additional-fee-policies",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_get_platform_additional_fee_policies_response(response.json())
-    def create_platform_additional_fee_policy(
-        self,
-        *,
-        id: Optional[str] = None,
-        name: str,
-        fee: PlatformFeeInput,
-        memo: Optional[str] = None,
-        vat_payer: PlatformPayer,
-    ) -> CreatePlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 생성
-
-        새로운 추가 수수료 정책을 생성합니다.
-
-        Args:
-            id (str, optional):
-                생성할 추가 수수료 정책 아이디
-
-                명시하지 않으면 id 가 임의로 생성됩니다.
-            name (str):
-                이름
-            fee (PlatformFeeInput):
-                수수료 정보
-            memo (str, optional):
-                메모
-            vat_payer (PlatformPayer):
-                부가세 부담 주체
-
-
-        Raises:
-            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        if id is not None:
-            request_body["id"] = id
-        request_body["name"] = name
-        request_body["fee"] = _serialize_platform_fee_input(fee)
-        if memo is not None:
-            request_body["memo"] = memo
-        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
-        query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
                 "User-Agent": USER_AGENT,
             },
-            json=request_body,
         )
         if response.status_code != 200:
             error_response = response.json()
@@ -267,11 +119,17 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformAdditionalFeePolicyAlreadyExistsError(error)
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -285,57 +143,41 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_additional_fee_policy_response(response.json())
-    async def create_platform_additional_fee_policy_async(
+        return _deserialize_archive_platform_additional_fee_policy_response(response.json())
+    async def archive_platform_additional_fee_policy_async(
         self,
         *,
-        id: Optional[str] = None,
-        name: str,
-        fee: PlatformFeeInput,
-        memo: Optional[str] = None,
-        vat_payer: PlatformPayer,
-    ) -> CreatePlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 생성
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 보관
 
-        새로운 추가 수수료 정책을 생성합니다.
+        주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
 
         Args:
-            id (str, optional):
-                생성할 추가 수수료 정책 아이디
+            id (str):
+                추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
 
-                명시하지 않으면 id 가 임의로 생성됩니다.
-            name (str):
-                이름
-            fee (PlatformFeeInput):
-                수수료 정보
-            memo (str, optional):
-                메모
-            vat_payer (PlatformPayer):
-                부가세 부담 주체
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
-            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
-        request_body = {}
-        if id is not None:
-            request_body["id"] = id
-        request_body["name"] = name
-        request_body["fee"] = _serialize_platform_fee_input(fee)
-        if memo is not None:
-            request_body["memo"] = memo
-        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/additional-fee-policies",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
                 "User-Agent": USER_AGENT,
             },
-            json=request_body,
         )
         if response.status_code != 200:
             error_response = response.json()
@@ -353,11 +195,17 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformAdditionalFeePolicyAlreadyExistsError(error)
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -371,11 +219,152 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_additional_fee_policy_response(response.json())
+        return _deserialize_archive_platform_additional_fee_policy_response(response.json())
+    def recover_platform_additional_fee_policy(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 복원
+
+        주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_additional_fee_policy_response(response.json())
+    async def recover_platform_additional_fee_policy_async(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 복원
+
+        주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
+
+        Args:
+            id (str):
+                추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_additional_fee_policy_response(response.json())
     def get_platform_additional_fee_policy(
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformAdditionalFeePolicy:
         """추가 수수료 정책 조회
 
@@ -384,6 +373,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -391,6 +384,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
@@ -439,6 +434,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformAdditionalFeePolicy:
         """추가 수수료 정책 조회
 
@@ -447,6 +443,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -454,6 +454,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
@@ -502,6 +504,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         fee: Optional[PlatformFeeInput] = None,
         name: Optional[str] = None,
         memo: Optional[str] = None,
@@ -514,6 +517,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             fee (PlatformFeeInput, optional):
                 책정 수수료
             name (str, optional):
@@ -538,6 +545,8 @@ class PolicyClient:
         if vat_payer is not None:
             request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
@@ -593,6 +602,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         fee: Optional[PlatformFeeInput] = None,
         name: Optional[str] = None,
         memo: Optional[str] = None,
@@ -605,6 +615,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             fee (PlatformFeeInput, optional):
                 책정 수수료
             name (str, optional):
@@ -629,6 +643,8 @@ class PolicyClient:
         if vat_payer is not None:
             request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}",
@@ -680,301 +696,44 @@ class PolicyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_update_platform_additional_fee_policy_response(response.json())
-    def archive_platform_additional_fee_policy(
+    def get_platform_additional_fee_policies(
         self,
         *,
-        id: str,
-    ) -> ArchivePlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 보관
-
-        주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_additional_fee_policy_response(response.json())
-    async def archive_platform_additional_fee_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> ArchivePlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 보관
-
-        주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            ArchivePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_additional_fee_policy_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledAdditionalFeePolicyError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_additional_fee_policy_response(response.json())
-    def recover_platform_additional_fee_policy(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 복원
-
-        주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_additional_fee_policy_response(response.json())
-    async def recover_platform_additional_fee_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformAdditionalFeePolicyResponse:
-        """추가 수수료 정책 복원
-
-        주어진 아이디에 대응되는 추가 수수료 정책을 복원합니다.
-
-        Args:
-            id (str):
-                추가 수수료 정책 아이디
-
-
-        Raises:
-            RecoverPlatformAdditionalFeePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_additional_fee_policy_response(response.json())
-    def get_platform_contracts(
-        self,
-        *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformContractFilterInput] = None,
-    ) -> GetPlatformContractsResponse:
-        """계약 다건 조회
+        filter: Optional[PlatformAdditionalFeePolicyFilterInput] = None,
+    ) -> GetPlatformAdditionalFeePoliciesResponse:
+        """추가 수수료 정책 다건 조회
 
-        여러 계약을 조회합니다.
+        여러 추가 수수료 정책을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformContractFilterInput, optional):
-                조회할 계약 조건 필터
+            filter (PlatformAdditionalFeePolicyFilterInput, optional):
+                조회할 추가 수수료 정책 조건 필터
 
 
         Raises:
-            GetPlatformContractsError: API 호출이 실패한 경우
+            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
+            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts",
+            f"{self._base_url}/platform/additional-fee-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1009,38 +768,45 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_get_platform_contracts_response(response.json())
-    async def get_platform_contracts_async(
+        return _deserialize_get_platform_additional_fee_policies_response(response.json())
+    async def get_platform_additional_fee_policies_async(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformContractFilterInput] = None,
-    ) -> GetPlatformContractsResponse:
-        """계약 다건 조회
+        filter: Optional[PlatformAdditionalFeePolicyFilterInput] = None,
+    ) -> GetPlatformAdditionalFeePoliciesResponse:
+        """추가 수수료 정책 다건 조회
 
-        여러 계약을 조회합니다.
+        여러 추가 수수료 정책을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformContractFilterInput, optional):
-                조회할 계약 조건 필터
+            filter (PlatformAdditionalFeePolicyFilterInput, optional):
+                조회할 추가 수수료 정책 조건 필터
 
 
         Raises:
-            GetPlatformContractsError: API 호출이 실패한 경우
+            GetPlatformAdditionalFeePoliciesError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
+            request_body["filter"] = _serialize_platform_additional_fee_policy_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/contracts",
+            f"{self._base_url}/platform/additional-fee-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1075,59 +841,58 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_get_platform_contracts_response(response.json())
-    def create_platform_contract(
+        return _deserialize_get_platform_additional_fee_policies_response(response.json())
+    def create_platform_additional_fee_policy(
         self,
         *,
+        test: Optional[bool] = None,
         id: Optional[str] = None,
         name: str,
+        fee: PlatformFeeInput,
         memo: Optional[str] = None,
-        platform_fee: PlatformFeeInput,
-        settlement_cycle: PlatformSettlementCycleInput,
-        platform_fee_vat_payer: PlatformPayer,
-        subtract_payment_vat_amount: bool,
-    ) -> CreatePlatformContractResponse:
-        """계약 생성
+        vat_payer: PlatformPayer,
+    ) -> CreatePlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 생성
 
-        새로운 계약을 생성합니다.
+        새로운 추가 수수료 정책을 생성합니다.
 
         Args:
-            id (str, optional):
-                계약에 부여할 고유 아이디
+            test (bool, optional):
+                테스트 모드 여부
 
-                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            id (str, optional):
+                생성할 추가 수수료 정책 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
             name (str):
-                계약 이름
+                이름
+            fee (PlatformFeeInput):
+                수수료 정보
             memo (str, optional):
-                계약 내부 표기를 위한 메모
-            platform_fee (PlatformFeeInput):
-                중개수수료
-            settlement_cycle (PlatformSettlementCycleInput):
-                정산 주기
-            platform_fee_vat_payer (PlatformPayer):
-                중개수수료에 대한 부가세 부담 주체
-            subtract_payment_vat_amount (bool):
-                정산 시 결제금액 부가세 감액 여부
+                메모
+            vat_payer (PlatformPayer):
+                부가세 부담 주체
 
 
         Raises:
-            CreatePlatformContractError: API 호출이 실패한 경우
+            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
             request_body["id"] = id
         request_body["name"] = name
+        request_body["fee"] = _serialize_platform_fee_input(fee)
         if memo is not None:
             request_body["memo"] = memo
-        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
-        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
-        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
-        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
+        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts",
+            f"{self._base_url}/platform/additional-fee-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1151,11 +916,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_contract_already_exists_error(error_response)
+                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformContractAlreadyExistsError(error)
+                raise PlatformAdditionalFeePolicyAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -1169,59 +934,58 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_contract_response(response.json())
-    async def create_platform_contract_async(
+        return _deserialize_create_platform_additional_fee_policy_response(response.json())
+    async def create_platform_additional_fee_policy_async(
         self,
         *,
+        test: Optional[bool] = None,
         id: Optional[str] = None,
         name: str,
+        fee: PlatformFeeInput,
         memo: Optional[str] = None,
-        platform_fee: PlatformFeeInput,
-        settlement_cycle: PlatformSettlementCycleInput,
-        platform_fee_vat_payer: PlatformPayer,
-        subtract_payment_vat_amount: bool,
-    ) -> CreatePlatformContractResponse:
-        """계약 생성
+        vat_payer: PlatformPayer,
+    ) -> CreatePlatformAdditionalFeePolicyResponse:
+        """추가 수수료 정책 생성
 
-        새로운 계약을 생성합니다.
+        새로운 추가 수수료 정책을 생성합니다.
 
         Args:
-            id (str, optional):
-                계약에 부여할 고유 아이디
+            test (bool, optional):
+                테스트 모드 여부
 
-                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            id (str, optional):
+                생성할 추가 수수료 정책 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
             name (str):
-                계약 이름
+                이름
+            fee (PlatformFeeInput):
+                수수료 정보
             memo (str, optional):
-                계약 내부 표기를 위한 메모
-            platform_fee (PlatformFeeInput):
-                중개수수료
-            settlement_cycle (PlatformSettlementCycleInput):
-                정산 주기
-            platform_fee_vat_payer (PlatformPayer):
-                중개수수료에 대한 부가세 부담 주체
-            subtract_payment_vat_amount (bool):
-                정산 시 결제금액 부가세 감액 여부
+                메모
+            vat_payer (PlatformPayer):
+                부가세 부담 주체
 
 
         Raises:
-            CreatePlatformContractError: API 호출이 실패한 경우
+            CreatePlatformAdditionalFeePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
             request_body["id"] = id
         request_body["name"] = name
+        request_body["fee"] = _serialize_platform_fee_input(fee)
         if memo is not None:
             request_body["memo"] = memo
-        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
-        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
-        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
-        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
+        request_body["vatPayer"] = _serialize_platform_payer(vat_payer)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/contracts",
+            f"{self._base_url}/platform/additional-fee-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1245,11 +1009,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_contract_already_exists_error(error_response)
+                error = _deserialize_platform_additional_fee_policy_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformContractAlreadyExistsError(error)
+                raise PlatformAdditionalFeePolicyAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -1263,11 +1027,304 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_contract_response(response.json())
+        return _deserialize_create_platform_additional_fee_policy_response(response.json())
+    def archive_platform_contract(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformContractResponse:
+        """계약 보관
+
+        주어진 아이디에 대응되는 계약을 보관합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            ArchivePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_contract_response(response.json())
+    async def archive_platform_contract_async(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformContractResponse:
+        """계약 보관
+
+        주어진 아이디에 대응되는 계약을 보관합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            ArchivePlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledContractError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_contract_response(response.json())
+    def recover_platform_contract(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformContractResponse:
+        """계약 복원
+
+        주어진 아이디에 대응되는 계약을 복원합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_contract_response(response.json())
+    async def recover_platform_contract_async(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformContractResponse:
+        """계약 복원
+
+        주어진 아이디에 대응되는 계약을 복원합니다.
+
+        Args:
+            id (str):
+                계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformContractError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_contract_response(response.json())
     def get_platform_contract(
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformContract:
         """계약 조회
 
@@ -1276,6 +1333,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1283,6 +1344,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
@@ -1331,6 +1394,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformContract:
         """계약 조회
 
@@ -1339,6 +1403,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1346,6 +1414,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
@@ -1394,6 +1464,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         name: Optional[str] = None,
         memo: Optional[str] = None,
         platform_fee: Optional[PlatformFeeInput] = None,
@@ -1408,6 +1479,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             name (str, optional):
                 계약 이름
             memo (str, optional):
@@ -1440,6 +1515,8 @@ class PolicyClient:
         if subtract_payment_vat_amount is not None:
             request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
@@ -1495,6 +1572,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         name: Optional[str] = None,
         memo: Optional[str] = None,
         platform_fee: Optional[PlatformFeeInput] = None,
@@ -1509,6 +1587,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             name (str, optional):
                 계약 이름
             memo (str, optional):
@@ -1541,6 +1623,8 @@ class PolicyClient:
         if subtract_payment_vat_amount is not None:
             request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}",
@@ -1592,301 +1676,44 @@ class PolicyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_update_platform_contract_response(response.json())
-    def archive_platform_contract(
+    def get_platform_contracts(
         self,
         *,
-        id: str,
-    ) -> ArchivePlatformContractResponse:
-        """계약 보관
-
-        주어진 아이디에 대응되는 계약을 보관합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            ArchivePlatformContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledContractError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_contract_response(response.json())
-    async def archive_platform_contract_async(
-        self,
-        *,
-        id: str,
-    ) -> ArchivePlatformContractResponse:
-        """계약 보관
-
-        주어진 아이디에 대응되는 계약을 보관합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            ArchivePlatformContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/archive",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_cannot_archive_scheduled_contract_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCannotArchiveScheduledContractError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_archive_platform_contract_response(response.json())
-    def recover_platform_contract(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformContractResponse:
-        """계약 복원
-
-        주어진 아이디에 대응되는 계약을 복원합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            RecoverPlatformContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_contract_response(response.json())
-    async def recover_platform_contract_async(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformContractResponse:
-        """계약 복원
-
-        주어진 아이디에 대응되는 계약을 복원합니다.
-
-        Args:
-            id (str):
-                계약 아이디
-
-
-        Raises:
-            RecoverPlatformContractError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/contracts/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_contract_response(response.json())
-    def get_platform_discount_share_policies(
-        self,
-        *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
-    ) -> GetPlatformDiscountSharePoliciesResponse:
-        """할인 분담 정책 다건 조회
+        filter: Optional[PlatformContractFilterInput] = None,
+    ) -> GetPlatformContractsResponse:
+        """계약 다건 조회
 
-        여러 할인 분담을 조회합니다.
+        여러 계약을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformDiscountSharePolicyFilterInput, optional):
-                조회할 할인 분담 정책 조건 필터
+            filter (PlatformContractFilterInput, optional):
+                조회할 계약 조건 필터
 
 
         Raises:
-            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            GetPlatformContractsError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
+            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies",
+            f"{self._base_url}/platform/contracts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1921,38 +1748,45 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_get_platform_discount_share_policies_response(response.json())
-    async def get_platform_discount_share_policies_async(
+        return _deserialize_get_platform_contracts_response(response.json())
+    async def get_platform_contracts_async(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
-        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
-    ) -> GetPlatformDiscountSharePoliciesResponse:
-        """할인 분담 정책 다건 조회
+        filter: Optional[PlatformContractFilterInput] = None,
+    ) -> GetPlatformContractsResponse:
+        """계약 다건 조회
 
-        여러 할인 분담을 조회합니다.
+        여러 계약을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
-            filter (PlatformDiscountSharePolicyFilterInput, optional):
-                조회할 할인 분담 정책 조건 필터
+            filter (PlatformContractFilterInput, optional):
+                조회할 계약 조건 필터
 
 
         Raises:
-            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            GetPlatformContractsError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         if filter is not None:
-            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
+            request_body["filter"] = _serialize_platform_contract_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/platform/discount-share-policies",
+            f"{self._base_url}/platform/contracts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1987,47 +1821,66 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_get_platform_discount_share_policies_response(response.json())
-    def create_platform_discount_share_policy(
+        return _deserialize_get_platform_contracts_response(response.json())
+    def create_platform_contract(
         self,
         *,
+        test: Optional[bool] = None,
         id: Optional[str] = None,
         name: str,
-        partner_share_rate: int,
         memo: Optional[str] = None,
-    ) -> CreatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 생성
+        platform_fee: PlatformFeeInput,
+        settlement_cycle: PlatformSettlementCycleInput,
+        platform_fee_vat_payer: PlatformPayer,
+        subtract_payment_vat_amount: bool,
+    ) -> CreatePlatformContractResponse:
+        """계약 생성
 
-        새로운 할인 분담을 생성합니다.
+        새로운 계약을 생성합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             id (str, optional):
-                할인 분담에 부여할 고유 아이디
+                계약에 부여할 고유 아이디
 
                 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
             name (str):
-                할인 분담에 부여할 이름
-            partner_share_rate (int):
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+                계약 이름
             memo (str, optional):
-                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+                계약 내부 표기를 위한 메모
+            platform_fee (PlatformFeeInput):
+                중개수수료
+            settlement_cycle (PlatformSettlementCycleInput):
+                정산 주기
+            platform_fee_vat_payer (PlatformPayer):
+                중개수수료에 대한 부가세 부담 주체
+            subtract_payment_vat_amount (bool):
+                정산 시 결제금액 부가세 감액 여부
 
 
         Raises:
-            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            CreatePlatformContractError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
             request_body["id"] = id
         request_body["name"] = name
-        request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
             request_body["memo"] = memo
+        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
+        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
+        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
+        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies",
+            f"{self._base_url}/platform/contracts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2051,11 +1904,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+                error = _deserialize_platform_contract_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
+                raise PlatformContractAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2069,47 +1922,66 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_discount_share_policy_response(response.json())
-    async def create_platform_discount_share_policy_async(
+        return _deserialize_create_platform_contract_response(response.json())
+    async def create_platform_contract_async(
         self,
         *,
+        test: Optional[bool] = None,
         id: Optional[str] = None,
         name: str,
-        partner_share_rate: int,
         memo: Optional[str] = None,
-    ) -> CreatePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 생성
+        platform_fee: PlatformFeeInput,
+        settlement_cycle: PlatformSettlementCycleInput,
+        platform_fee_vat_payer: PlatformPayer,
+        subtract_payment_vat_amount: bool,
+    ) -> CreatePlatformContractResponse:
+        """계약 생성
 
-        새로운 할인 분담을 생성합니다.
+        새로운 계약을 생성합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             id (str, optional):
-                할인 분담에 부여할 고유 아이디
+                계약에 부여할 고유 아이디
 
                 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
             name (str):
-                할인 분담에 부여할 이름
-            partner_share_rate (int):
-                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+                계약 이름
             memo (str, optional):
-                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+                계약 내부 표기를 위한 메모
+            platform_fee (PlatformFeeInput):
+                중개수수료
+            settlement_cycle (PlatformSettlementCycleInput):
+                정산 주기
+            platform_fee_vat_payer (PlatformPayer):
+                중개수수료에 대한 부가세 부담 주체
+            subtract_payment_vat_amount (bool):
+                정산 시 결제금액 부가세 감액 여부
 
 
         Raises:
-            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            CreatePlatformContractError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
         if id is not None:
             request_body["id"] = id
         request_body["name"] = name
-        request_body["partnerShareRate"] = partner_share_rate
         if memo is not None:
             request_body["memo"] = memo
+        request_body["platformFee"] = _serialize_platform_fee_input(platform_fee)
+        request_body["settlementCycle"] = _serialize_platform_settlement_cycle_input(settlement_cycle)
+        request_body["platformFeeVatPayer"] = _serialize_platform_payer(platform_fee_vat_payer)
+        request_body["subtractPaymentVatAmount"] = subtract_payment_vat_amount
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies",
+            f"{self._base_url}/platform/contracts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2133,11 +2005,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
+                error = _deserialize_platform_contract_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
+                raise PlatformContractAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2151,11 +2023,304 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_create_platform_discount_share_policy_response(response.json())
+        return _deserialize_create_platform_contract_response(response.json())
+    def archive_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 보관
+
+        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_discount_share_policy_response(response.json())
+    async def archive_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> ArchivePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 보관
+
+        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_archive_platform_discount_share_policy_response(response.json())
+    def recover_platform_discount_share_policy(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 복원
+
+        주어진 아이디에 대응되는 할인 분담을 복원합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_discount_share_policy_response(response.json())
+    async def recover_platform_discount_share_policy_async(
+        self,
+        *,
+        id: str,
+        test: Optional[bool] = None,
+    ) -> RecoverPlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 복원
+
+        주어진 아이디에 대응되는 할인 분담을 복원합니다.
+
+        Args:
+            id (str):
+                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_recover_platform_discount_share_policy_response(response.json())
     def get_platform_discount_share_policy(
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicy:
         """할인 분담 정책 조회
 
@@ -2164,6 +2329,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2171,6 +2340,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
@@ -2219,6 +2390,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicy:
         """할인 분담 정책 조회
 
@@ -2227,6 +2399,10 @@ class PolicyClient:
         Args:
             id (str):
                 조회할 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2234,6 +2410,8 @@ class PolicyClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
@@ -2282,6 +2460,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         name: Optional[str] = None,
         partner_share_rate: Optional[int] = None,
         memo: Optional[str] = None,
@@ -2293,6 +2472,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             name (str, optional):
                 할인 분담 정책 이름
             partner_share_rate (int, optional):
@@ -2316,6 +2499,8 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
@@ -2371,6 +2556,7 @@ class PolicyClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         name: Optional[str] = None,
         partner_share_rate: Optional[int] = None,
         memo: Optional[str] = None,
@@ -2382,6 +2568,10 @@ class PolicyClient:
         Args:
             id (str):
                 업데이트할 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             name (str, optional):
                 할인 분담 정책 이름
             partner_share_rate (int, optional):
@@ -2405,6 +2595,8 @@ class PolicyClient:
         if memo is not None:
             request_body["memo"] = memo
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}",
@@ -2456,33 +2648,205 @@ class PolicyClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_update_platform_discount_share_policy_response(response.json())
-    def archive_platform_discount_share_policy(
+    def get_platform_discount_share_policies(
         self,
         *,
-        id: str,
-    ) -> ArchivePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 보관
+        test: Optional[bool] = None,
+        page: Optional[PageInput] = None,
+        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
+    ) -> GetPlatformDiscountSharePoliciesResponse:
+        """할인 분담 정책 다건 조회
 
-        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+        여러 할인 분담을 조회합니다.
 
         Args:
-            id (str):
-                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            page (PageInput, optional):
+                요청할 페이지 정보
+            filter (PlatformDiscountSharePolicyFilterInput, optional):
+                조회할 할인 분담 정책 조건 필터
 
 
         Raises:
-            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
+        query.append(("requestBody", json.dumps(request_body)))
+        response = self._sync_client.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_platform_discount_share_policies_response(response.json())
+    async def get_platform_discount_share_policies_async(
+        self,
+        *,
+        test: Optional[bool] = None,
+        page: Optional[PageInput] = None,
+        filter: Optional[PlatformDiscountSharePolicyFilterInput] = None,
+    ) -> GetPlatformDiscountSharePoliciesResponse:
+        """할인 분담 정책 다건 조회
+
+        여러 할인 분담을 조회합니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            page (PageInput, optional):
+                요청할 페이지 정보
+            filter (PlatformDiscountSharePolicyFilterInput, optional):
+                조회할 할인 분담 정책 조건 필터
+
+
+        Raises:
+            GetPlatformDiscountSharePoliciesError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if page is not None:
+            request_body["page"] = _serialize_page_input(page)
+        if filter is not None:
+            request_body["filter"] = _serialize_platform_discount_share_policy_filter_input(filter)
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        query.append(("requestBody", json.dumps(request_body)))
+        response = await self._async_client.request(
+            "GET",
+            f"{self._base_url}/platform/discount-share-policies",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_get_platform_discount_share_policies_response(response.json())
+    def create_platform_discount_share_policy(
+        self,
+        *,
+        test: Optional[bool] = None,
+        id: Optional[str] = None,
+        name: str,
+        partner_share_rate: int,
+        memo: Optional[str] = None,
+    ) -> CreatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 생성
+
+        새로운 할인 분담을 생성합니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            id (str, optional):
+                할인 분담에 부여할 고유 아이디
+
+                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+            name (str):
+                할인 분담에 부여할 이름
+            partner_share_rate (int):
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+            memo (str, optional):
+                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+
+
+        Raises:
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if id is not None:
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
+        query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/discount-share-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
                 "User-Agent": USER_AGENT,
             },
+            json=request_body,
         )
         if response.status_code != 200:
             error_response = response.json()
@@ -2500,17 +2864,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
+                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2524,34 +2882,60 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_archive_platform_discount_share_policy_response(response.json())
-    async def archive_platform_discount_share_policy_async(
+        return _deserialize_create_platform_discount_share_policy_response(response.json())
+    async def create_platform_discount_share_policy_async(
         self,
         *,
-        id: str,
-    ) -> ArchivePlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 보관
+        test: Optional[bool] = None,
+        id: Optional[str] = None,
+        name: str,
+        partner_share_rate: int,
+        memo: Optional[str] = None,
+    ) -> CreatePlatformDiscountSharePolicyResponse:
+        """할인 분담 정책 생성
 
-        주어진 아이디에 대응되는 할인 분담을 보관합니다.
+        새로운 할인 분담을 생성합니다.
 
         Args:
-            id (str):
-                할인 분담 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            id (str, optional):
+                할인 분담에 부여할 고유 아이디
+
+                명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+            name (str):
+                할인 분담에 부여할 이름
+            partner_share_rate (int):
+                파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+            memo (str, optional):
+                해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
 
 
         Raises:
-            ArchivePlatformDiscountSharePolicyError: API 호출이 실패한 경우
+            CreatePlatformDiscountSharePolicyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
+        request_body = {}
+        if id is not None:
+            request_body["id"] = id
+        request_body["name"] = name
+        request_body["partnerShareRate"] = partner_share_rate
+        if memo is not None:
+            request_body["memo"] = memo
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/archive",
+            f"{self._base_url}/platform/discount-share-policies",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
                 "User-Agent": USER_AGENT,
             },
+            json=request_body,
         )
         if response.status_code != 200:
             error_response = response.json()
@@ -2569,17 +2953,11 @@ class PolicyClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
-                error = _deserialize_platform_cannot_archive_scheduled_discount_share_policy_error(error_response)
+                error = _deserialize_platform_discount_share_policy_already_exists_error(error_response)
             except Exception:
                 pass
             if error is not None:
-                raise PlatformCannotArchiveScheduledDiscountSharePolicyError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
+                raise PlatformDiscountSharePolicyAlreadyExistsError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -2593,130 +2971,4 @@ class PolicyClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_archive_platform_discount_share_policy_response(response.json())
-    def recover_platform_discount_share_policy(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 복원
-
-        주어진 아이디에 대응되는 할인 분담을 복원합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_discount_share_policy_response(response.json())
-    async def recover_platform_discount_share_policy_async(
-        self,
-        *,
-        id: str,
-    ) -> RecoverPlatformDiscountSharePolicyResponse:
-        """할인 분담 정책 복원
-
-        주어진 아이디에 대응되는 할인 분담을 복원합니다.
-
-        Args:
-            id (str):
-                할인 분담 아이디
-
-
-        Raises:
-            RecoverPlatformDiscountSharePolicyError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/recover",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_discount_share_policy_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePolicyNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_recover_platform_discount_share_policy_response(response.json())
+        return _deserialize_create_platform_discount_share_policy_response(response.json())

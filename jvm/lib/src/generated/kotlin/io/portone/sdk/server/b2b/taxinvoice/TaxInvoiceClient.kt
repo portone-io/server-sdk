@@ -201,14 +201,14 @@ public class TaxInvoiceClient(
   ): B2bBulkTaxInvoice {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "bulk-tax-invoices", bulkTaxInvoiceId.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "bulk-tax-invoices", bulkTaxInvoiceId.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -268,16 +268,16 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "file-upload-url")
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "file-upload-url")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -339,14 +339,14 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices-sheet")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("b2b", "tax-invoices-sheet")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Text.CSV)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Text.CSV)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -417,16 +417,16 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", "draft")
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", "draft")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -510,16 +510,16 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", "draft")
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", "draft")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -599,16 +599,16 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", "issue-immediately")
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", "issue-immediately")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -688,16 +688,16 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", "request-reverse-issuance")
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", "request-reverse-issuance")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -780,17 +780,17 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attach-file")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attach-file")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -856,15 +856,15 @@ public class TaxInvoiceClient(
   ) {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments", attachmentId.toString())
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments", attachmentId.toString())
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      userAgent(USER_AGENT)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -927,16 +927,16 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoiceAttachmentsResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1009,18 +1009,18 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-issuance")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-issuance")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1095,18 +1095,18 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-request")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-request")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1186,18 +1186,18 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "issue")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "issue")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1269,16 +1269,16 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePdfDownloadUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "pdf-download-url")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "pdf-download-url")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1350,17 +1350,17 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePopupUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "popup-url")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (includeMenu != null) parameters.append("includeMenu", includeMenu.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "popup-url")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (includeMenu != null) this.parameters.append("includeMenu", includeMenu.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1428,16 +1428,16 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePrintUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "print-url")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "print-url")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1510,18 +1510,18 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "refuse-request")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "refuse-request")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1591,16 +1591,16 @@ public class TaxInvoiceClient(
   ): RequestB2bTaxInvoiceResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "request")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "request")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1674,16 +1674,16 @@ public class TaxInvoiceClient(
   ): SendToNtsB2bTaxInvoiceResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "send-to-nts")
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "send-to-nts")
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1751,16 +1751,16 @@ public class TaxInvoiceClient(
   ): B2bTaxInvoice {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1827,16 +1827,16 @@ public class TaxInvoiceClient(
   ): DeleteB2bTaxInvoiceResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
-        if (brn != null) parameters.append("brn", brn.toString())
-        if (taxInvoiceKeyType != null) parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
-        if (test != null) parameters.append("test", test.toString())
+        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
+        if (brn != null) this.parameters.append("brn", brn.toString())
+        if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1913,14 +1913,14 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("b2b", "tax-invoices")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("b2b", "tax-invoices")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

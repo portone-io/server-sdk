@@ -37,21 +37,29 @@ class PartnerSettlementClient:
     def get_platform_partner_settlements(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: PlatformPartnerSettlementFilterInput,
-        is_for_test: bool,
+        is_for_test: Optional[bool] = None,
     ) -> GetPlatformPartnerSettlementsResponse:
         """정산 내역 다건 조회
 
         여러 정산 내역을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
             filter (PlatformPartnerSettlementFilterInput):
                 조회할 정산내역 조건 필터
-            is_for_test (bool):
+            is_for_test (bool, optional):
+                테스트 모드 여부
 
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -62,8 +70,11 @@ class PartnerSettlementClient:
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter)
-        request_body["isForTest"] = is_for_test
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
@@ -106,21 +117,29 @@ class PartnerSettlementClient:
     async def get_platform_partner_settlements_async(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: PlatformPartnerSettlementFilterInput,
-        is_for_test: bool,
+        is_for_test: Optional[bool] = None,
     ) -> GetPlatformPartnerSettlementsResponse:
         """정산 내역 다건 조회
 
         여러 정산 내역을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
             filter (PlatformPartnerSettlementFilterInput):
                 조회할 정산내역 조건 필터
-            is_for_test (bool):
+            is_for_test (bool, optional):
+                테스트 모드 여부
 
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -131,8 +150,11 @@ class PartnerSettlementClient:
         if page is not None:
             request_body["page"] = _serialize_page_input(page)
         request_body["filter"] = _serialize_platform_partner_settlement_filter_input(filter)
-        request_body["isForTest"] = is_for_test
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",

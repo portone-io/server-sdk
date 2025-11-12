@@ -116,15 +116,15 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -177,14 +177,14 @@ public class IdentityVerificationClient(
   ): ResendIdentityVerificationResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -263,15 +263,15 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "send")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -331,14 +331,14 @@ public class IdentityVerificationClient(
   ): IdentityVerification {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("identity-verifications", identityVerificationId.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("identity-verifications", identityVerificationId.toString())
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -402,14 +402,14 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("identity-verifications")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("identity-verifications")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

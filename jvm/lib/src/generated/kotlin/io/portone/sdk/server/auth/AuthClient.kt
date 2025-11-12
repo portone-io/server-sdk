@@ -76,15 +76,15 @@ public class AuthClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("login", "api-secret")
+        this.appendPathSegments("login", "api-secret")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -134,15 +134,15 @@ public class AuthClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("token", "refresh")
+        this.appendPathSegments("token", "refresh")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

@@ -48,13 +48,20 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 		getPlatformCompanyState: async (
 			options: {
 				businessRegistrationNumber: string,
+				test?: boolean,
 			}
 		): Promise<GetPlatformCompanyStatePayload> => {
 			const {
 				businessRegistrationNumber,
+				test,
 			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL(`/platform/companies/${encodeURIComponent(businessRegistrationNumber)}/state`, baseUrl),
+				new URL(`/platform/companies/${encodeURIComponent(businessRegistrationNumber)}/state?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -96,6 +103,12 @@ export type CompanyClient = {
 		options: {
 			/** 사업자등록번호 */
 			businessRegistrationNumber: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 		}
 	) => Promise<GetPlatformCompanyStatePayload>
 }

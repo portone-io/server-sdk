@@ -37,7 +37,6 @@ from ..platform.cancel_platform_additional_fee_policy_schedule_response import C
 from ..platform.cancel_platform_contract_schedule_response import CancelPlatformContractScheduleResponse, _deserialize_cancel_platform_contract_schedule_response, _serialize_cancel_platform_contract_schedule_response
 from ..platform.cancel_platform_discount_share_policy_schedule_response import CancelPlatformDiscountSharePolicyScheduleResponse, _deserialize_cancel_platform_discount_share_policy_schedule_response, _serialize_cancel_platform_discount_share_policy_schedule_response
 from ..platform.cancel_platform_partner_schedule_response import CancelPlatformPartnerScheduleResponse, _deserialize_cancel_platform_partner_schedule_response, _serialize_cancel_platform_partner_schedule_response
-from ..platform.platform import Platform, _deserialize_platform, _serialize_platform
 from ..platform.platform_additional_fee_policy import PlatformAdditionalFeePolicy, _deserialize_platform_additional_fee_policy, _serialize_platform_additional_fee_policy
 from ..platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
 from ..platform.platform_discount_share_policy import PlatformDiscountSharePolicy, _deserialize_platform_discount_share_policy, _serialize_platform_discount_share_policy
@@ -114,102 +113,21 @@ class PlatformClient:
         self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.transfer = TransferClient(secret=secret, base_url=base_url, store_id=store_id)
-    def get_platform(
-        self,
-    ) -> Platform:
-        """고객사의 플랫폼 정보를 조회합니다.
-        요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
-
-        Raises:
-            GetPlatformError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = self._sync_client.request(
-            "GET",
-            f"{self._base_url}/platform",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform(response.json())
-    async def get_platform_async(
-        self,
-    ) -> Platform:
-        """고객사의 플랫폼 정보를 조회합니다.
-        요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
-
-        Raises:
-            GetPlatformError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        query = []
-        response = await self._async_client.request(
-            "GET",
-            f"{self._base_url}/platform",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_platform(response.json())
     def get_platform_additional_fee_policy_schedule(
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformAdditionalFeePolicy:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -217,6 +135,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -265,12 +185,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformAdditionalFeePolicy:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -278,6 +203,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -326,12 +253,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformAdditionalFeePolicyResponse:
         """Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformAdditionalFeePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -346,6 +278,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -395,12 +329,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformAdditionalFeePolicyResponse:
         """Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformAdditionalFeePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -415,6 +354,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -464,6 +405,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> SchedulePlatformAdditionalFeePolicyResponse:
@@ -472,6 +414,10 @@ class PlatformClient:
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformAdditionalFeePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -486,6 +432,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -547,6 +495,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> SchedulePlatformAdditionalFeePolicyResponse:
@@ -555,6 +504,10 @@ class PlatformClient:
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformAdditionalFeePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -569,6 +522,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_additional_fee_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -630,12 +585,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -643,6 +603,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -691,12 +653,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 추가 수수료 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -704,6 +671,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/additional-fee-policies/{quote(id, safe='')}/schedule",
@@ -752,12 +721,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformContract:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -765,6 +739,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -813,12 +789,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformContract:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -826,6 +807,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -874,6 +857,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformContractBody,
         applied_at: str,
     ) -> ReschedulePlatformContractResponse:
@@ -882,6 +866,10 @@ class PlatformClient:
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformContractBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -896,6 +884,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -945,6 +935,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformContractBody,
         applied_at: str,
     ) -> ReschedulePlatformContractResponse:
@@ -953,6 +944,10 @@ class PlatformClient:
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformContractBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -967,6 +962,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -1016,6 +1013,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformContractBody,
         applied_at: str,
     ) -> SchedulePlatformContractResponse:
@@ -1024,6 +1022,10 @@ class PlatformClient:
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformContractBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1038,6 +1040,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -1099,6 +1103,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformContractBody,
         applied_at: str,
     ) -> SchedulePlatformContractResponse:
@@ -1107,6 +1112,10 @@ class PlatformClient:
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformContractBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1121,6 +1130,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_contract_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -1182,12 +1193,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformContractScheduleResponse:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1195,6 +1211,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -1243,12 +1261,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformContractScheduleResponse:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 계약 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1256,6 +1279,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/contracts/{quote(id, safe='')}/schedule",
@@ -1304,12 +1329,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicy:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1317,6 +1347,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1365,12 +1397,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicy:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1378,6 +1415,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1426,6 +1465,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformDiscountSharePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformDiscountSharePolicyResponse:
@@ -1434,6 +1474,10 @@ class PlatformClient:
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformDiscountSharePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1448,6 +1492,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1497,6 +1543,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformDiscountSharePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformDiscountSharePolicyResponse:
@@ -1505,6 +1552,10 @@ class PlatformClient:
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformDiscountSharePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1519,6 +1570,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1568,6 +1621,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformDiscountSharePolicyBody,
         applied_at: str,
     ) -> SchedulePlatformDiscountSharePolicyResponse:
@@ -1576,6 +1630,10 @@ class PlatformClient:
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformDiscountSharePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1590,6 +1648,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1651,6 +1711,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformDiscountSharePolicyBody,
         applied_at: str,
     ) -> SchedulePlatformDiscountSharePolicyResponse:
@@ -1659,6 +1720,10 @@ class PlatformClient:
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformDiscountSharePolicyBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -1673,6 +1738,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_discount_share_policy_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1734,12 +1801,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformDiscountSharePolicyScheduleResponse:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1747,6 +1819,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1795,12 +1869,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformDiscountSharePolicyScheduleResponse:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 할인 분담 정책 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1808,6 +1887,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/discount-share-policies/{quote(id, safe='')}/schedule",
@@ -1855,11 +1936,16 @@ class PlatformClient:
     def get_platform_discount_share_policy_filter_options(
         self,
         *,
+        test: Optional[bool] = None,
         is_archived: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicyFilterOptions:
         """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             is_archived (bool, optional):
                 보관 조회 여부
 
@@ -1871,6 +1957,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if is_archived is not None:
             query.append(("isArchived", is_archived))
         response = self._sync_client.request(
@@ -1914,11 +2002,16 @@ class PlatformClient:
     async def get_platform_discount_share_policy_filter_options_async(
         self,
         *,
+        test: Optional[bool] = None,
         is_archived: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicyFilterOptions:
         """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             is_archived (bool, optional):
                 보관 조회 여부
 
@@ -1930,6 +2023,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if is_archived is not None:
             query.append(("isArchived", is_archived))
         response = await self._async_client.request(
@@ -1973,11 +2068,16 @@ class PlatformClient:
     def get_platform_partner_filter_options(
         self,
         *,
+        test: Optional[bool] = None,
         is_archived: Optional[bool] = None,
     ) -> PlatformPartnerFilterOptions:
         """파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             is_archived (bool, optional):
                 보관 조회 여부
 
@@ -1989,6 +2089,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if is_archived is not None:
             query.append(("isArchived", is_archived))
         response = self._sync_client.request(
@@ -2032,11 +2134,16 @@ class PlatformClient:
     async def get_platform_partner_filter_options_async(
         self,
         *,
+        test: Optional[bool] = None,
         is_archived: Optional[bool] = None,
     ) -> PlatformPartnerFilterOptions:
         """파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             is_archived (bool, optional):
                 보관 조회 여부
 
@@ -2048,6 +2155,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if is_archived is not None:
             query.append(("isArchived", is_archived))
         response = await self._async_client.request(
@@ -2091,11 +2200,16 @@ class PlatformClient:
     def schedule_platform_partners(
         self,
         *,
+        test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
         update: SchedulePlatformPartnersBodyUpdate,
         applied_at: str,
     ) -> SchedulePlatformPartnersResponse:
         """Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
 
             update (SchedulePlatformPartnersBodyUpdate):
@@ -2114,6 +2228,8 @@ class PlatformClient:
         request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/schedule",
@@ -2186,11 +2302,16 @@ class PlatformClient:
     async def schedule_platform_partners_async(
         self,
         *,
+        test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
         update: SchedulePlatformPartnersBodyUpdate,
         applied_at: str,
     ) -> SchedulePlatformPartnersResponse:
         """Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
 
             update (SchedulePlatformPartnersBodyUpdate):
@@ -2209,6 +2330,8 @@ class PlatformClient:
         request_body["update"] = _serialize_schedule_platform_partners_body_update(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/schedule",
@@ -2282,12 +2405,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformPartner:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2295,6 +2423,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2343,12 +2473,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformPartner:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
 
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2356,6 +2491,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2404,6 +2541,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformPartnerBody,
         applied_at: str,
     ) -> ReschedulePlatformPartnerResponse:
@@ -2412,6 +2550,10 @@ class PlatformClient:
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformPartnerBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -2426,6 +2568,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PUT",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2487,6 +2631,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformPartnerBody,
         applied_at: str,
     ) -> ReschedulePlatformPartnerResponse:
@@ -2495,6 +2640,10 @@ class PlatformClient:
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformPartnerBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -2509,6 +2658,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PUT",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2570,6 +2721,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformPartnerBody,
         applied_at: str,
     ) -> SchedulePlatformPartnerResponse:
@@ -2578,6 +2730,10 @@ class PlatformClient:
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformPartnerBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -2592,6 +2748,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2713,6 +2871,7 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
         update: UpdatePlatformPartnerBody,
         applied_at: str,
     ) -> SchedulePlatformPartnerResponse:
@@ -2721,6 +2880,10 @@ class PlatformClient:
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             update (UpdatePlatformPartnerBody):
                 반영할 업데이트 내용
             applied_at (str):
@@ -2735,6 +2898,8 @@ class PlatformClient:
         request_body["update"] = _serialize_update_platform_partner_body(update)
         request_body["appliedAt"] = applied_at
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2856,12 +3021,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformPartnerScheduleResponse:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2869,6 +3039,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2917,12 +3089,17 @@ class PlatformClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> CancelPlatformPartnerScheduleResponse:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
 
         Args:
             id (str):
                 파트너 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -2930,6 +3107,8 @@ class PlatformClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/partners/{quote(id, safe='')}/schedule",
@@ -2976,16 +3155,27 @@ class PlatformClient:
         return _deserialize_cancel_platform_partner_schedule_response(response.json())
     def get_platform_setting(
         self,
+        *,
+        test: Optional[bool] = None,
     ) -> PlatformSetting:
         """플랫폼 설정 조회
 
         설정 정보를 조회합니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
 
         Raises:
             GetPlatformSettingError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/setting",
@@ -3026,16 +3216,27 @@ class PlatformClient:
         return _deserialize_platform_setting(response.json())
     async def get_platform_setting_async(
         self,
+        *,
+        test: Optional[bool] = None,
     ) -> PlatformSetting:
         """플랫폼 설정 조회
 
         설정 정보를 조회합니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
 
         Raises:
             GetPlatformSettingError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/setting",
@@ -3077,6 +3278,7 @@ class PlatformClient:
     def update_platform_setting(
         self,
         *,
+        test: Optional[bool] = None,
         default_withdrawal_memo: Optional[str] = None,
         default_deposit_memo: Optional[str] = None,
         supports_multiple_order_transfers_per_partner: Optional[bool] = None,
@@ -3089,6 +3291,10 @@ class PlatformClient:
         설정 정보를 업데이트합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             default_withdrawal_memo (str, optional):
                 기본 보내는 이 통장 메모
             default_deposit_memo (str, optional):
@@ -3121,6 +3327,8 @@ class PlatformClient:
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
             f"{self._base_url}/platform/setting",
@@ -3163,6 +3371,7 @@ class PlatformClient:
     async def update_platform_setting_async(
         self,
         *,
+        test: Optional[bool] = None,
         default_withdrawal_memo: Optional[str] = None,
         default_deposit_memo: Optional[str] = None,
         supports_multiple_order_transfers_per_partner: Optional[bool] = None,
@@ -3175,6 +3384,10 @@ class PlatformClient:
         설정 정보를 업데이트합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             default_withdrawal_memo (str, optional):
                 기본 보내는 이 통장 메모
             default_deposit_memo (str, optional):
@@ -3207,6 +3420,8 @@ class PlatformClient:
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
             f"{self._base_url}/platform/setting",

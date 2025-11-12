@@ -135,14 +135,14 @@ public class BillingKeyClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("billing-keys")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("billing-keys")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -228,15 +228,15 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("billing-keys")
+        this.appendPathSegments("billing-keys")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -305,15 +305,15 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("billing-keys", "confirm")
+        this.appendPathSegments("billing-keys", "confirm")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -402,15 +402,15 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("billing-keys", "confirm-issue-and-pay")
+        this.appendPathSegments("billing-keys", "confirm-issue-and-pay")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -467,14 +467,14 @@ public class BillingKeyClient(
   ): BillingKeyInfo {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("billing-keys", billingKey.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("billing-keys", billingKey.toString())
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -533,16 +533,16 @@ public class BillingKeyClient(
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("billing-keys", billingKey.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
-        if (reason != null) parameters.append("reason", reason.toString())
-        if (requester != null) parameters.append("requester", requester.toString())
+        this.appendPathSegments("billing-keys", billingKey.toString())
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
+        if (reason != null) this.parameters.append("reason", reason.toString())
+        if (requester != null) this.parameters.append("requester", requester.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

@@ -24,4 +24,5 @@ export type PlatformAdditionalFeePolicy = {
 	 * (RFC 3339 date-time)
 	 */
 	appliedAt: string
+	isForTest: boolean
 }

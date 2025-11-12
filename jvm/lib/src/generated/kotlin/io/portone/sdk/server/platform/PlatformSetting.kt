@@ -19,6 +19,7 @@ public data class PlatformSetting(
   val deductWht: Boolean,
   /** 정산 금액 취급 기준 */
   val settlementAmountType: SettlementAmountType,
+  val isForTest: Boolean,
 )
 
 

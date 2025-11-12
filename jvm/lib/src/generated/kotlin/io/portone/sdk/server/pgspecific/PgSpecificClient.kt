@@ -69,15 +69,15 @@ public class PgSpecificClient(
   ): GetKakaopayPaymentOrderResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("kakaopay", "payment", "order")
-        parameters.append("pgTxId", pgTxId.toString())
-        parameters.append("channelKey", channelKey.toString())
+        this.appendPathSegments("kakaopay", "payment", "order")
+        this.parameters.append("pgTxId", pgTxId.toString())
+        this.parameters.append("channelKey", channelKey.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

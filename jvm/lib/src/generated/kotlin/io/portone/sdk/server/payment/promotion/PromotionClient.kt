@@ -69,13 +69,13 @@ public class PromotionClient(
   ): Promotion {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("promotions", promotionId.toString())
+        this.appendPathSegments("promotions", promotionId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

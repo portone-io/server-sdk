@@ -28,6 +28,7 @@ class PlatformDiscountSharePolicy:
     """변경 적용 시점
     (RFC 3339 date-time)
     """
+    is_for_test: bool
     memo: Optional[str] = field(default=None)
     """해당 할인 분담에 대한 메모
     """
@@ -43,6 +44,7 @@ def _serialize_platform_discount_share_policy(obj: PlatformDiscountSharePolicy) 
     entity["partnerShareRate"] = obj.partner_share_rate
     entity["isArchived"] = obj.is_archived
     entity["appliedAt"] = obj.applied_at
+    entity["isForTest"] = obj.is_for_test
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -81,10 +83,15 @@ def _deserialize_platform_discount_share_policy(obj: Any) -> PlatformDiscountSha
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
         raise ValueError(f"{repr(applied_at)} is not str")
+    if "isForTest" not in obj:
+        raise KeyError(f"'isForTest' is not in {obj}")
+    is_for_test = obj["isForTest"]
+    if not isinstance(is_for_test, bool):
+        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformDiscountSharePolicy(id, graphql_id, name, partner_share_rate, is_archived, applied_at, memo)
+    return PlatformDiscountSharePolicy(id, graphql_id, name, partner_share_rate, is_archived, applied_at, is_for_test, memo)

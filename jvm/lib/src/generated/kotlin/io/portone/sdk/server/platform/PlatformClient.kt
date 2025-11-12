@@ -36,8 +36,6 @@ import io.portone.sdk.server.errors.GetPlatformDiscountSharePolicyFilterOptionsE
 import io.portone.sdk.server.errors.GetPlatformDiscountSharePolicyFilterOptionsException
 import io.portone.sdk.server.errors.GetPlatformDiscountSharePolicyScheduleError
 import io.portone.sdk.server.errors.GetPlatformDiscountSharePolicyScheduleException
-import io.portone.sdk.server.errors.GetPlatformError
-import io.portone.sdk.server.errors.GetPlatformException
 import io.portone.sdk.server.errors.GetPlatformPartnerFilterOptionsError
 import io.portone.sdk.server.errors.GetPlatformPartnerFilterOptionsException
 import io.portone.sdk.server.errors.GetPlatformPartnerScheduleError
@@ -123,7 +121,6 @@ import io.portone.sdk.server.platform.CancelPlatformAdditionalFeePolicyScheduleR
 import io.portone.sdk.server.platform.CancelPlatformContractScheduleResponse
 import io.portone.sdk.server.platform.CancelPlatformDiscountSharePolicyScheduleResponse
 import io.portone.sdk.server.platform.CancelPlatformPartnerScheduleResponse
-import io.portone.sdk.server.platform.Platform
 import io.portone.sdk.server.platform.PlatformAdditionalFeePolicy
 import io.portone.sdk.server.platform.PlatformContract
 import io.portone.sdk.server.platform.PlatformDiscountSharePolicy
@@ -200,76 +197,32 @@ public class PlatformClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 고객사의 플랫폼 정보를 조회합니다.
-   * 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.
-   *
-   *
-   *
-   * @throws GetPlatformException
-   */
-  @JvmName("getPlatformSuspend")
-  public suspend fun getPlatform(
-  ): Platform {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<Platform>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatform")
-  public fun getPlatformFuture(
-  ): CompletableFuture<Platform> = GlobalScope.future { getPlatform() }
-
-
-  /**
    * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
    *
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformAdditionalFeePolicyScheduleException
    */
   @JvmName("getPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun getPlatformAdditionalFeePolicySchedule(
     id: String,
+    test: Boolean? = null,
   ): PlatformAdditionalFeePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -300,12 +253,17 @@ public class PlatformClient(
   @JvmName("getPlatformAdditionalFeePolicySchedule")
   public fun getPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
-  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicySchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicySchedule(id, test) }
 
 
   /**
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -316,6 +274,7 @@ public class PlatformClient(
   @JvmName("rescheduleAdditionalFeePolicySuspend")
   public suspend fun rescheduleAdditionalFeePolicy(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
   ): ReschedulePlatformAdditionalFeePolicyResponse {
@@ -325,15 +284,16 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -364,9 +324,10 @@ public class PlatformClient(
   @JvmName("rescheduleAdditionalFeePolicy")
   public fun rescheduleAdditionalFeePolicyFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { rescheduleAdditionalFeePolicy(id, update, appliedAt) }
+  ): CompletableFuture<ReschedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { rescheduleAdditionalFeePolicy(id, test, update, appliedAt) }
 
 
   /**
@@ -374,6 +335,10 @@ public class PlatformClient(
    *
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -384,6 +349,7 @@ public class PlatformClient(
   @JvmName("scheduleAdditionalFeePolicySuspend")
   public suspend fun scheduleAdditionalFeePolicy(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
   ): SchedulePlatformAdditionalFeePolicyResponse {
@@ -393,15 +359,16 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -434,9 +401,10 @@ public class PlatformClient(
   @JvmName("scheduleAdditionalFeePolicy")
   public fun scheduleAdditionalFeePolicyFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformAdditionalFeePolicyBody,
     appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { scheduleAdditionalFeePolicy(id, update, appliedAt) }
+  ): CompletableFuture<SchedulePlatformAdditionalFeePolicyResponse> = GlobalScope.future { scheduleAdditionalFeePolicy(id, test, update, appliedAt) }
 
 
   /**
@@ -444,22 +412,28 @@ public class PlatformClient(
    *
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws CancelPlatformAdditionalFeePolicyScheduleException
    */
   @JvmName("cancelPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun cancelPlatformAdditionalFeePolicySchedule(
     id: String,
+    test: Boolean? = null,
   ): CancelPlatformAdditionalFeePolicyScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -490,7 +464,8 @@ public class PlatformClient(
   @JvmName("cancelPlatformAdditionalFeePolicySchedule")
   public fun cancelPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
-  ): CompletableFuture<CancelPlatformAdditionalFeePolicyScheduleResponse> = GlobalScope.future { cancelPlatformAdditionalFeePolicySchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<CancelPlatformAdditionalFeePolicyScheduleResponse> = GlobalScope.future { cancelPlatformAdditionalFeePolicySchedule(id, test) }
 
 
   /**
@@ -498,22 +473,28 @@ public class PlatformClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformContractScheduleException
    */
   @JvmName("getPlatformContractScheduleSuspend")
   public suspend fun getPlatformContractSchedule(
     id: String,
+    test: Boolean? = null,
   ): PlatformContract {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -544,7 +525,8 @@ public class PlatformClient(
   @JvmName("getPlatformContractSchedule")
   public fun getPlatformContractScheduleFuture(
     id: String,
-  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContractSchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContractSchedule(id, test) }
 
 
   /**
@@ -552,6 +534,10 @@ public class PlatformClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -562,6 +548,7 @@ public class PlatformClient(
   @JvmName("rescheduleContractSuspend")
   public suspend fun rescheduleContract(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
   ): ReschedulePlatformContractResponse {
@@ -571,15 +558,16 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -610,9 +598,10 @@ public class PlatformClient(
   @JvmName("rescheduleContract")
   public fun rescheduleContractFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformContractResponse> = GlobalScope.future { rescheduleContract(id, update, appliedAt) }
+  ): CompletableFuture<ReschedulePlatformContractResponse> = GlobalScope.future { rescheduleContract(id, test, update, appliedAt) }
 
 
   /**
@@ -620,6 +609,10 @@ public class PlatformClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -630,6 +623,7 @@ public class PlatformClient(
   @JvmName("scheduleContractSuspend")
   public suspend fun scheduleContract(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
   ): SchedulePlatformContractResponse {
@@ -639,15 +633,16 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -680,9 +675,10 @@ public class PlatformClient(
   @JvmName("scheduleContract")
   public fun scheduleContractFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformContractBody,
     appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformContractResponse> = GlobalScope.future { scheduleContract(id, update, appliedAt) }
+  ): CompletableFuture<SchedulePlatformContractResponse> = GlobalScope.future { scheduleContract(id, test, update, appliedAt) }
 
 
   /**
@@ -690,22 +686,28 @@ public class PlatformClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws CancelPlatformContractScheduleException
    */
   @JvmName("cancelPlatformContractScheduleSuspend")
   public suspend fun cancelPlatformContractSchedule(
     id: String,
+    test: Boolean? = null,
   ): CancelPlatformContractScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        this.appendPathSegments("platform", "contracts", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -736,7 +738,8 @@ public class PlatformClient(
   @JvmName("cancelPlatformContractSchedule")
   public fun cancelPlatformContractScheduleFuture(
     id: String,
-  ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<CancelPlatformContractScheduleResponse> = GlobalScope.future { cancelPlatformContractSchedule(id, test) }
 
 
   /**
@@ -744,22 +747,28 @@ public class PlatformClient(
    *
    * @param id
    * 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformDiscountSharePolicyScheduleException
    */
   @JvmName("getPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun getPlatformDiscountSharePolicySchedule(
     id: String,
+    test: Boolean? = null,
   ): PlatformDiscountSharePolicy {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -790,7 +799,8 @@ public class PlatformClient(
   @JvmName("getPlatformDiscountSharePolicySchedule")
   public fun getPlatformDiscountSharePolicyScheduleFuture(
     id: String,
-  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicySchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicySchedule(id, test) }
 
 
   /**
@@ -798,6 +808,10 @@ public class PlatformClient(
    *
    * @param id
    * 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -808,6 +822,7 @@ public class PlatformClient(
   @JvmName("rescheduleDiscountSharePolicySuspend")
   public suspend fun rescheduleDiscountSharePolicy(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
   ): ReschedulePlatformDiscountSharePolicyResponse {
@@ -817,15 +832,16 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -856,9 +872,10 @@ public class PlatformClient(
   @JvmName("rescheduleDiscountSharePolicy")
   public fun rescheduleDiscountSharePolicyFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformDiscountSharePolicyResponse> = GlobalScope.future { rescheduleDiscountSharePolicy(id, update, appliedAt) }
+  ): CompletableFuture<ReschedulePlatformDiscountSharePolicyResponse> = GlobalScope.future { rescheduleDiscountSharePolicy(id, test, update, appliedAt) }
 
 
   /**
@@ -866,6 +883,10 @@ public class PlatformClient(
    *
    * @param id
    * 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -876,6 +897,7 @@ public class PlatformClient(
   @JvmName("scheduleDiscountSharePolicySuspend")
   public suspend fun scheduleDiscountSharePolicy(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
   ): SchedulePlatformDiscountSharePolicyResponse {
@@ -885,15 +907,16 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -926,9 +949,10 @@ public class PlatformClient(
   @JvmName("scheduleDiscountSharePolicy")
   public fun scheduleDiscountSharePolicyFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformDiscountSharePolicyBody,
     appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformDiscountSharePolicyResponse> = GlobalScope.future { scheduleDiscountSharePolicy(id, update, appliedAt) }
+  ): CompletableFuture<SchedulePlatformDiscountSharePolicyResponse> = GlobalScope.future { scheduleDiscountSharePolicy(id, test, update, appliedAt) }
 
 
   /**
@@ -936,22 +960,28 @@ public class PlatformClient(
    *
    * @param id
    * 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws CancelPlatformDiscountSharePolicyScheduleException
    */
   @JvmName("cancelPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun cancelPlatformDiscountSharePolicySchedule(
     id: String,
+    test: Boolean? = null,
   ): CancelPlatformDiscountSharePolicyScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -982,12 +1012,17 @@ public class PlatformClient(
   @JvmName("cancelPlatformDiscountSharePolicySchedule")
   public fun cancelPlatformDiscountSharePolicyScheduleFuture(
     id: String,
-  ): CompletableFuture<CancelPlatformDiscountSharePolicyScheduleResponse> = GlobalScope.future { cancelPlatformDiscountSharePolicySchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<CancelPlatformDiscountSharePolicyScheduleResponse> = GlobalScope.future { cancelPlatformDiscountSharePolicySchedule(id, test) }
 
 
   /**
    * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param isArchived
    * 보관 조회 여부
    *
@@ -997,18 +1032,20 @@ public class PlatformClient(
    */
   @JvmName("getPlatformDiscountSharePolicyFilterOptionsSuspend")
   public suspend fun getPlatformDiscountSharePolicyFilterOptions(
+    test: Boolean? = null,
     isArchived: Boolean? = null,
   ): PlatformDiscountSharePolicyFilterOptions {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policy-filter-options")
-        if (isArchived != null) parameters.append("isArchived", isArchived.toString())
+        this.appendPathSegments("platform", "discount-share-policy-filter-options")
+        if (test != null) this.parameters.append("test", test.toString())
+        if (isArchived != null) this.parameters.append("isArchived", isArchived.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1037,13 +1074,18 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("getPlatformDiscountSharePolicyFilterOptions")
   public fun getPlatformDiscountSharePolicyFilterOptionsFuture(
+    test: Boolean? = null,
     isArchived: Boolean? = null,
-  ): CompletableFuture<PlatformDiscountSharePolicyFilterOptions> = GlobalScope.future { getPlatformDiscountSharePolicyFilterOptions(isArchived) }
+  ): CompletableFuture<PlatformDiscountSharePolicyFilterOptions> = GlobalScope.future { getPlatformDiscountSharePolicyFilterOptions(test, isArchived) }
 
 
   /**
    * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param isArchived
    * 보관 조회 여부
    *
@@ -1053,18 +1095,20 @@ public class PlatformClient(
    */
   @JvmName("getPlatformPartnerFilterOptionsSuspend")
   public suspend fun getPlatformPartnerFilterOptions(
+    test: Boolean? = null,
     isArchived: Boolean? = null,
   ): PlatformPartnerFilterOptions {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "partner-filter-options")
-        if (isArchived != null) parameters.append("isArchived", isArchived.toString())
+        this.appendPathSegments("platform", "partner-filter-options")
+        if (test != null) this.parameters.append("test", test.toString())
+        if (isArchived != null) this.parameters.append("isArchived", isArchived.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1093,11 +1137,16 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("getPlatformPartnerFilterOptions")
   public fun getPlatformPartnerFilterOptionsFuture(
+    test: Boolean? = null,
     isArchived: Boolean? = null,
-  ): CompletableFuture<PlatformPartnerFilterOptions> = GlobalScope.future { getPlatformPartnerFilterOptions(isArchived) }
+  ): CompletableFuture<PlatformPartnerFilterOptions> = GlobalScope.future { getPlatformPartnerFilterOptions(test, isArchived) }
 
 
   /**
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param filter
    *
    * @param update
@@ -1109,6 +1158,7 @@ public class PlatformClient(
    */
   @JvmName("schedulePlatformPartnersSuspend")
   public suspend fun schedulePlatformPartners(
+    test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
     update: SchedulePlatformPartnersBodyUpdate,
     appliedAt: Instant,
@@ -1120,15 +1170,16 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", "schedule")
+        this.appendPathSegments("platform", "partners", "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1162,10 +1213,11 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("schedulePlatformPartners")
   public fun schedulePlatformPartnersFuture(
+    test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
     update: SchedulePlatformPartnersBodyUpdate,
     appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformPartnersResponse> = GlobalScope.future { schedulePlatformPartners(filter, update, appliedAt) }
+  ): CompletableFuture<SchedulePlatformPartnersResponse> = GlobalScope.future { schedulePlatformPartners(test, filter, update, appliedAt) }
 
 
   /**
@@ -1173,22 +1225,28 @@ public class PlatformClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformPartnerScheduleException
    */
   @JvmName("getPlatformPartnerScheduleSuspend")
   public suspend fun getPlatformPartnerSchedule(
     id: String,
+    test: Boolean? = null,
   ): PlatformPartner {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1219,7 +1277,8 @@ public class PlatformClient(
   @JvmName("getPlatformPartnerSchedule")
   public fun getPlatformPartnerScheduleFuture(
     id: String,
-  ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartnerSchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartnerSchedule(id, test) }
 
 
   /**
@@ -1227,6 +1286,10 @@ public class PlatformClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -1237,6 +1300,7 @@ public class PlatformClient(
   @JvmName("reschedulePartnerSuspend")
   public suspend fun reschedulePartner(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
   ): ReschedulePlatformPartnerResponse {
@@ -1246,15 +1310,16 @@ public class PlatformClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1287,9 +1352,10 @@ public class PlatformClient(
   @JvmName("reschedulePartner")
   public fun reschedulePartnerFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
-  ): CompletableFuture<ReschedulePlatformPartnerResponse> = GlobalScope.future { reschedulePartner(id, update, appliedAt) }
+  ): CompletableFuture<ReschedulePlatformPartnerResponse> = GlobalScope.future { reschedulePartner(id, test, update, appliedAt) }
 
 
   /**
@@ -1297,6 +1363,10 @@ public class PlatformClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param update
    * 반영할 업데이트 내용
    * @param appliedAt
@@ -1307,6 +1377,7 @@ public class PlatformClient(
   @JvmName("schedulePartnerSuspend")
   public suspend fun schedulePartner(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
   ): SchedulePlatformPartnerResponse {
@@ -1316,15 +1387,16 @@ public class PlatformClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1367,9 +1439,10 @@ public class PlatformClient(
   @JvmName("schedulePartner")
   public fun schedulePartnerFuture(
     id: String,
+    test: Boolean? = null,
     update: UpdatePlatformPartnerBody,
     appliedAt: Instant,
-  ): CompletableFuture<SchedulePlatformPartnerResponse> = GlobalScope.future { schedulePartner(id, update, appliedAt) }
+  ): CompletableFuture<SchedulePlatformPartnerResponse> = GlobalScope.future { schedulePartner(id, test, update, appliedAt) }
 
 
   /**
@@ -1377,22 +1450,28 @@ public class PlatformClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws CancelPlatformPartnerScheduleException
    */
   @JvmName("cancelPlatformPartnerScheduleSuspend")
   public suspend fun cancelPlatformPartnerSchedule(
     id: String,
+    test: Boolean? = null,
   ): CancelPlatformPartnerScheduleResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString(), "schedule")
+        this.appendPathSegments("platform", "partners", id.toString(), "schedule")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1423,7 +1502,8 @@ public class PlatformClient(
   @JvmName("cancelPlatformPartnerSchedule")
   public fun cancelPlatformPartnerScheduleFuture(
     id: String,
-  ): CompletableFuture<CancelPlatformPartnerScheduleResponse> = GlobalScope.future { cancelPlatformPartnerSchedule(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<CancelPlatformPartnerScheduleResponse> = GlobalScope.future { cancelPlatformPartnerSchedule(id, test) }
 
 
   /**
@@ -1431,22 +1511,27 @@ public class PlatformClient(
    *
    * 설정 정보를 조회합니다.
    *
+   * @param test
+   * 테스트 모드 여부
    *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformSettingException
    */
   @JvmName("getPlatformSettingSuspend")
   public suspend fun getPlatformSetting(
+    test: Boolean? = null,
   ): PlatformSetting {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "setting")
+        this.appendPathSegments("platform", "setting")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1475,7 +1560,8 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("getPlatformSetting")
   public fun getPlatformSettingFuture(
-  ): CompletableFuture<PlatformSetting> = GlobalScope.future { getPlatformSetting() }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformSetting> = GlobalScope.future { getPlatformSetting(test) }
 
 
   /**
@@ -1483,6 +1569,10 @@ public class PlatformClient(
    *
    * 설정 정보를 업데이트합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param defaultWithdrawalMemo
    * 기본 보내는 이 통장 메모
    * @param defaultDepositMemo
@@ -1500,6 +1590,7 @@ public class PlatformClient(
    */
   @JvmName("updatePlatformSettingSuspend")
   public suspend fun updatePlatformSetting(
+    test: Boolean? = null,
     defaultWithdrawalMemo: String? = null,
     defaultDepositMemo: String? = null,
     supportsMultipleOrderTransfersPerPartner: Boolean? = null,
@@ -1517,15 +1608,16 @@ public class PlatformClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        appendPathSegments("platform", "setting")
+        this.appendPathSegments("platform", "setting")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1554,13 +1646,14 @@ public class PlatformClient(
   /** @suppress */
   @JvmName("updatePlatformSetting")
   public fun updatePlatformSettingFuture(
+    test: Boolean? = null,
     defaultWithdrawalMemo: String? = null,
     defaultDepositMemo: String? = null,
     supportsMultipleOrderTransfersPerPartner: Boolean? = null,
     adjustSettlementDateAfterHolidayIfEarlier: Boolean? = null,
     deductWht: Boolean? = null,
     settlementAmountType: SettlementAmountType? = null,
-  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(defaultWithdrawalMemo, defaultDepositMemo, supportsMultipleOrderTransfersPerPartner, adjustSettlementDateAfterHolidayIfEarlier, deductWht, settlementAmountType) }
+  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(test, defaultWithdrawalMemo, defaultDepositMemo, supportsMultipleOrderTransfersPerPartner, adjustSettlementDateAfterHolidayIfEarlier, deductWht, settlementAmountType) }
 
   public val company: CompanyClient = CompanyClient(apiSecret, apiBase, storeId)
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)

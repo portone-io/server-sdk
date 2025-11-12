@@ -61,20 +61,28 @@ public class PartnerSettlementClient(
    *
    * 여러 정산 내역을 조회합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param page
    * 요청할 페이지 정보
    * @param filter
    * 조회할 정산내역 조건 필터
    * @param isForTest
+   * 테스트 모드 여부
    *
+   * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+   * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformPartnerSettlementsException
    */
   @JvmName("getPlatformPartnerSettlementsSuspend")
   public suspend fun getPlatformPartnerSettlements(
+    test: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformPartnerSettlementFilterInput,
-    isForTest: Boolean,
+    isForTest: Boolean? = null,
   ): GetPlatformPartnerSettlementsResponse {
     val requestBody = GetPlatformPartnerSettlementsBody(
       page = page,
@@ -83,14 +91,15 @@ public class PartnerSettlementClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "partner-settlements")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("platform", "partner-settlements")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -119,10 +128,11 @@ public class PartnerSettlementClient(
   /** @suppress */
   @JvmName("getPlatformPartnerSettlements")
   public fun getPlatformPartnerSettlementsFuture(
+    test: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformPartnerSettlementFilterInput,
-    isForTest: Boolean,
-  ): CompletableFuture<GetPlatformPartnerSettlementsResponse> = GlobalScope.future { getPlatformPartnerSettlements(page, filter, isForTest) }
+    isForTest: Boolean? = null,
+  ): CompletableFuture<GetPlatformPartnerSettlementsResponse> = GlobalScope.future { getPlatformPartnerSettlements(test, page, filter, isForTest) }
 
   override fun close() {
     client.close()

@@ -41,6 +41,7 @@ class PlatformContract:
     """변경 적용 시점
     (RFC 3339 date-time)
     """
+    is_for_test: bool
     memo: Optional[str] = field(default=None)
     """계약 내부 표기를 위한 메모
     """
@@ -59,6 +60,7 @@ def _serialize_platform_contract(obj: PlatformContract) -> Any:
     entity["subtractPaymentVatAmount"] = obj.subtract_payment_vat_amount
     entity["isArchived"] = obj.is_archived
     entity["appliedAt"] = obj.applied_at
+    entity["isForTest"] = obj.is_for_test
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -109,10 +111,15 @@ def _deserialize_platform_contract(obj: Any) -> PlatformContract:
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
         raise ValueError(f"{repr(applied_at)} is not str")
+    if "isForTest" not in obj:
+        raise KeyError(f"'isForTest' is not in {obj}")
+    is_for_test = obj["isForTest"]
+    if not isinstance(is_for_test, bool):
+        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformContract(id, graphql_id, name, platform_fee, settlement_cycle, platform_fee_vat_payer, subtract_payment_vat_amount, is_archived, applied_at, memo)
+    return PlatformContract(id, graphql_id, name, platform_fee, settlement_cycle, platform_fee_vat_payer, subtract_payment_vat_amount, is_archived, applied_at, is_for_test, memo)

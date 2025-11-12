@@ -57,6 +57,21 @@ public sealed interface Trigger {
     }
     override fun serialize(encoder: Encoder, value: PortoneAdmin) = encoder.encodeString(value.value)
   }
+  @Serializable(ChargebackSerializer::class)
+  public data object Chargeback : Trigger {
+    override val value: String = "CHARGEBACK"
+  }
+  private object ChargebackSerializer : KSerializer<Chargeback> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chargeback::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Chargeback = decoder.decodeString().let {
+      if (it != "CHARGEBACK") {
+        throw SerializationException(it)
+      } else {
+        return Chargeback
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Chargeback) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : Trigger
@@ -71,6 +86,7 @@ private object TriggerSerializer : KSerializer<Trigger> {
       "CONSOLE" -> Trigger.Console
       "API" -> Trigger.Api
       "PORTONE_ADMIN" -> Trigger.PortoneAdmin
+      "CHARGEBACK" -> Trigger.Chargeback
       else -> Trigger.Unrecognized(value)
     }
   }

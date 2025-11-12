@@ -50,6 +50,7 @@ class PlatformPartner:
     user_defined_properties: PlatformProperties
     """사용자 정의 속성
     """
+    is_for_test: bool
     memo: Optional[str] = field(default=None)
     """파트너에 대한 메모
     """
@@ -71,6 +72,7 @@ def _serialize_platform_partner(obj: PlatformPartner) -> Any:
     entity["isArchived"] = obj.is_archived
     entity["appliedAt"] = obj.applied_at
     entity["userDefinedProperties"] = _serialize_platform_properties(obj.user_defined_properties)
+    entity["isForTest"] = obj.is_for_test
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -137,10 +139,15 @@ def _deserialize_platform_partner(obj: Any) -> PlatformPartner:
         raise KeyError(f"'userDefinedProperties' is not in {obj}")
     user_defined_properties = obj["userDefinedProperties"]
     user_defined_properties = _deserialize_platform_properties(user_defined_properties)
+    if "isForTest" not in obj:
+        raise KeyError(f"'isForTest' is not in {obj}")
+    is_for_test = obj["isForTest"]
+    if not isinstance(is_for_test, bool):
+        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformPartner(id, graphql_id, name, contact, account, status, default_contract_id, tags, type, is_archived, applied_at, user_defined_properties, memo)
+    return PlatformPartner(id, graphql_id, name, contact, account, status, default_contract_id, tags, type, is_archived, applied_at, user_defined_properties, is_for_test, memo)

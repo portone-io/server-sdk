@@ -59,12 +59,319 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 	const baseUrl = init.baseUrl ?? "https://api.portone.io"
 	const secret = init.secret
 	return {
+		createPlatformPartners: async (
+			options: {
+				test?: boolean,
+				partners: CreatePlatformPartnerBody[],
+			}
+		): Promise<CreatePlatformPartnersResponse> => {
+			const {
+				test,
+				partners,
+			} = options
+			const requestBody = JSON.stringify({
+				partners,
+			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/batch?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new CreatePlatformPartnersError(await response.json())
+			}
+			return response.json()
+		},
+		connectPartnerMemberCompany: async (
+			options: {
+				id: string,
+				test?: boolean,
+			}
+		): Promise<ConnectPartnerMemberCompanyResponse> => {
+			const {
+				id,
+				test,
+			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/member-company-connect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new ConnectPartnerMemberCompanyError(await response.json())
+			}
+			return response.json()
+		},
+		connectBulkPartnerMemberCompany: async (
+			options?: {
+				test?: boolean,
+				filter?: PlatformPartnerFilterInput,
+			}
+		): Promise<ConnectBulkPartnerMemberCompanyResponse> => {
+			const test = options?.test
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				filter,
+			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/member-company-connect?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new ConnectBulkPartnerMemberCompanyError(await response.json())
+			}
+			return response.json()
+		},
+		disconnectPartnerMemberCompany: async (
+			options: {
+				id: string,
+				test?: boolean,
+			}
+		): Promise<DisconnectPartnerMemberCompanyResponse> => {
+			const {
+				id,
+				test,
+			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/member-company-disconnect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new DisconnectPartnerMemberCompanyError(await response.json())
+			}
+			return response.json()
+		},
+		disconnectBulkPartnerMemberCompany: async (
+			options?: {
+				test?: boolean,
+				filter?: PlatformPartnerFilterInput,
+			}
+		): Promise<DisconnectBulkPartnerMemberCompanyResponse> => {
+			const test = options?.test
+			const filter = options?.filter
+			const requestBody = JSON.stringify({
+				filter,
+			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/member-company-disconnect?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new DisconnectBulkPartnerMemberCompanyError(await response.json())
+			}
+			return response.json()
+		},
+		archivePlatformPartner: async (
+			options: {
+				id: string,
+				test?: boolean,
+			}
+		): Promise<ArchivePlatformPartnerResponse> => {
+			const {
+				id,
+				test,
+			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/${encodeURIComponent(id)}/archive?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new ArchivePlatformPartnerError(await response.json())
+			}
+			return response.json()
+		},
+		recoverPlatformPartner: async (
+			options: {
+				id: string,
+				test?: boolean,
+			}
+		): Promise<RecoverPlatformPartnerResponse> => {
+			const {
+				id,
+				test,
+			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/${encodeURIComponent(id)}/recover?${query}`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new RecoverPlatformPartnerError(await response.json())
+			}
+			return response.json()
+		},
+		getPlatformPartner: async (
+			options: {
+				id: string,
+				test?: boolean,
+			}
+		): Promise<PlatformPartner> => {
+			const {
+				id,
+				test,
+			} = options
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/${encodeURIComponent(id)}?${query}`, baseUrl),
+				{
+					method: "GET",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+				},
+			)
+			if (!response.ok) {
+				throw new GetPlatformPartnerError(await response.json())
+			}
+			return response.json()
+		},
+		updatePlatformPartner: async (
+			options: {
+				id: string,
+				test?: boolean,
+				name?: string,
+				contact?: UpdatePlatformPartnerBodyContact,
+				account?: UpdatePlatformPartnerBodyAccount,
+				defaultContractId?: string,
+				memo?: string,
+				tags?: string[],
+				type?: UpdatePlatformPartnerBodyType,
+				userDefinedProperties?: PlatformProperties,
+			}
+		): Promise<UpdatePlatformPartnerResponse> => {
+			const {
+				id,
+				test,
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			} = options
+			const requestBody = JSON.stringify({
+				name,
+				contact,
+				account,
+				defaultContractId,
+				memo,
+				tags,
+				type,
+				userDefinedProperties,
+			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
+			const response = await fetch(
+				new URL(`/platform/partners/${encodeURIComponent(id)}?${query}`, baseUrl),
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new UpdatePlatformPartnerError(await response.json())
+			}
+			return response.json()
+		},
 		getPlatformPartners: async (
 			options?: {
+				test?: boolean,
 				page?: PageInput,
 				filter?: PlatformPartnerFilterInput,
 			}
 		): Promise<GetPlatformPartnersResponse> => {
+			const test = options?.test
 			const page = options?.page
 			const filter = options?.filter
 			const requestBody = JSON.stringify({
@@ -72,6 +379,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				filter,
 			})
 			const query = [
+				["test", test],
 				["requestBody", requestBody],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
@@ -93,6 +401,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 		},
 		createPlatformPartner: async (
 			options: {
+				test?: boolean,
 				id?: string,
 				name: string,
 				contact: CreatePlatformPartnerBodyContact,
@@ -105,6 +414,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 			}
 		): Promise<CreatePlatformPartnerResponse> => {
 			const {
+				test,
 				id,
 				name,
 				contact,
@@ -126,8 +436,13 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				type,
 				userDefinedProperties,
 			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL("/platform/partners", baseUrl),
+				new URL(`/platform/partners?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -142,251 +457,196 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 			}
 			return response.json()
 		},
-		createPlatformPartners: async (
-			options: {
-				partners: CreatePlatformPartnerBody[],
-			}
-		): Promise<CreatePlatformPartnersResponse> => {
-			const {
-				partners,
-			} = options
-			const requestBody = JSON.stringify({
-				partners,
-			})
-			const response = await fetch(
-				new URL("/platform/partners/batch", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new CreatePlatformPartnersError(await response.json())
-			}
-			return response.json()
-		},
-		connectBulkPartnerMemberCompany: async (
-			options?: {
-				filter?: PlatformPartnerFilterInput,
-			}
-		): Promise<ConnectBulkPartnerMemberCompanyResponse> => {
-			const filter = options?.filter
-			const requestBody = JSON.stringify({
-				filter,
-			})
-			const response = await fetch(
-				new URL("/platform/partners/member-company-connect", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new ConnectBulkPartnerMemberCompanyError(await response.json())
-			}
-			return response.json()
-		},
-		connectPartnerMemberCompany: async (
-			options: {
-				id: string,
-			}
-		): Promise<ConnectPartnerMemberCompanyResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/partners/member-company-connect/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new ConnectPartnerMemberCompanyError(await response.json())
-			}
-			return response.json()
-		},
-		disconnectBulkPartnerMemberCompany: async (
-			options?: {
-				filter?: PlatformPartnerFilterInput,
-			}
-		): Promise<DisconnectBulkPartnerMemberCompanyResponse> => {
-			const filter = options?.filter
-			const requestBody = JSON.stringify({
-				filter,
-			})
-			const response = await fetch(
-				new URL("/platform/partners/member-company-disconnect", baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new DisconnectBulkPartnerMemberCompanyError(await response.json())
-			}
-			return response.json()
-		},
-		disconnectPartnerMemberCompany: async (
-			options: {
-				id: string,
-			}
-		): Promise<DisconnectPartnerMemberCompanyResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/partners/member-company-disconnect/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new DisconnectPartnerMemberCompanyError(await response.json())
-			}
-			return response.json()
-		},
-		getPlatformPartner: async (
-			options: {
-				id: string,
-			}
-		): Promise<PlatformPartner> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "GET",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new GetPlatformPartnerError(await response.json())
-			}
-			return response.json()
-		},
-		updatePlatformPartner: async (
-			options: {
-				id: string,
-				name?: string,
-				contact?: UpdatePlatformPartnerBodyContact,
-				account?: UpdatePlatformPartnerBodyAccount,
-				defaultContractId?: string,
-				memo?: string,
-				tags?: string[],
-				type?: UpdatePlatformPartnerBodyType,
-				userDefinedProperties?: PlatformProperties,
-			}
-		): Promise<UpdatePlatformPartnerResponse> => {
-			const {
-				id,
-				name,
-				contact,
-				account,
-				defaultContractId,
-				memo,
-				tags,
-				type,
-				userDefinedProperties,
-			} = options
-			const requestBody = JSON.stringify({
-				name,
-				contact,
-				account,
-				defaultContractId,
-				memo,
-				tags,
-				type,
-				userDefinedProperties,
-			})
-			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}`, baseUrl),
-				{
-					method: "PATCH",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-					body: requestBody,
-				},
-			)
-			if (!response.ok) {
-				throw new UpdatePlatformPartnerError(await response.json())
-			}
-			return response.json()
-		},
-		archivePlatformPartner: async (
-			options: {
-				id: string,
-			}
-		): Promise<ArchivePlatformPartnerResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/archive`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new ArchivePlatformPartnerError(await response.json())
-			}
-			return response.json()
-		},
-		recoverPlatformPartner: async (
-			options: {
-				id: string,
-			}
-		): Promise<RecoverPlatformPartnerResponse> => {
-			const {
-				id,
-			} = options
-			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/recover`, baseUrl),
-				{
-					method: "POST",
-					headers: {
-						Authorization: `PortOne ${secret}`,
-						"User-Agent": USER_AGENT,
-					},
-				},
-			)
-			if (!response.ok) {
-				throw new RecoverPlatformPartnerError(await response.json())
-			}
-			return response.json()
-		},
 	}
 }
 export type PartnerClient = {
+	/**
+	 * 파트너 다건 생성
+	 *
+	 * 새로운 파트너를 다건 생성합니다.
+	 *
+	 * @throws {@link CreatePlatformPartnersError}
+	 */
+	createPlatformPartners: (
+		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+			/** 생성할 파트너 리스트 정보 */
+			partners: CreatePlatformPartnerBody[],
+		}
+	) => Promise<CreatePlatformPartnersResponse>
+	/**
+	 * 파트너 국세청 연동
+	 *
+	 * 파트너를 국세청 연동합니다.
+	 *
+	 * @throws {@link ConnectPartnerMemberCompanyError}
+	 */
+	connectPartnerMemberCompany: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+		}
+	) => Promise<ConnectPartnerMemberCompanyResponse>
+	/**
+	 * 파트너 일괄 국세청 연동
+	 *
+	 * 파트너들을 일괄 국세청 연동합니다.
+	 *
+	 * @throws {@link ConnectBulkPartnerMemberCompanyError}
+	 */
+	connectBulkPartnerMemberCompany: (
+		options?: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+			/** 일괄 국세청 연동할 파트너 조건 필터 */
+			filter?: PlatformPartnerFilterInput,
+		}
+	) => Promise<ConnectBulkPartnerMemberCompanyResponse>
+	/**
+	 * 파트너 국세청 연동 해제
+	 *
+	 * 파트너를 국세청 연동 해제합니다.
+	 *
+	 * @throws {@link DisconnectPartnerMemberCompanyError}
+	 */
+	disconnectPartnerMemberCompany: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+		}
+	) => Promise<DisconnectPartnerMemberCompanyResponse>
+	/**
+	 * 파트너 일괄 국세청 연동 해제
+	 *
+	 * 파트너들을 일괄 국세청 연동 해제합니다.
+	 *
+	 * @throws {@link DisconnectBulkPartnerMemberCompanyError}
+	 */
+	disconnectBulkPartnerMemberCompany: (
+		options?: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+			/** 일괄 국세청 연동 해제할 파트너 조건 필터 */
+			filter?: PlatformPartnerFilterInput,
+		}
+	) => Promise<DisconnectBulkPartnerMemberCompanyResponse>
+	/**
+	 * 파트너 보관
+	 *
+	 * 주어진 아이디에 대응되는 파트너를 보관합니다.
+	 *
+	 * @throws {@link ArchivePlatformPartnerError}
+	 */
+	archivePlatformPartner: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+		}
+	) => Promise<ArchivePlatformPartnerResponse>
+	/**
+	 * 파트너 복원
+	 *
+	 * 주어진 아이디에 대응되는 파트너를 복원합니다.
+	 *
+	 * @throws {@link RecoverPlatformPartnerError}
+	 */
+	recoverPlatformPartner: (
+		options: {
+			/** 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+		}
+	) => Promise<RecoverPlatformPartnerResponse>
+	/**
+	 * 파트너 조회
+	 *
+	 * 파트너 객체를 조회합니다.
+	 *
+	 * @throws {@link GetPlatformPartnerError}
+	 */
+	getPlatformPartner: (
+		options: {
+			/** 조회하고 싶은 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+		}
+	) => Promise<PlatformPartner>
+	/**
+	 * 파트너 수정
+	 *
+	 * 주어진 아이디에 대응되는 파트너 정보를 업데이트합니다.
+	 *
+	 * @throws {@link UpdatePlatformPartnerError}
+	 */
+	updatePlatformPartner: (
+		options: {
+			/** 업데이트할 파트너 아이디 */
+			id: string,
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
+			/** 파트너 법인명 혹은 이름 */
+			name?: string,
+			/** 파트너 담당자 연락 정보 */
+			contact?: UpdatePlatformPartnerBodyContact,
+			/** 정산 계좌 */
+			account?: UpdatePlatformPartnerBodyAccount,
+			/** 파트너에 설정된 기본 계약 아이디 */
+			defaultContractId?: string,
+			/** 파트너에 대한 메모 */
+			memo?: string,
+			/** 파트너의 태그 리스트 */
+			tags?: string[],
+			/** 파트너 유형별 정보 */
+			type?: UpdatePlatformPartnerBodyType,
+			/** 사용자 정의 속성 */
+			userDefinedProperties?: PlatformProperties,
+		}
+	) => Promise<UpdatePlatformPartnerResponse>
 	/**
 	 * 파트너 다건 조회
 	 *
@@ -396,6 +656,12 @@ export type PartnerClient = {
 	 */
 	getPlatformPartners: (
 		options?: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/** 요청할 페이지 정보 */
 			page?: PageInput,
 			/** 조회할 파트너 조건 필터 */
@@ -411,6 +677,12 @@ export type PartnerClient = {
 	 */
 	createPlatformPartner: (
 		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+			 */
+			test?: boolean,
 			/**
 			 * 파트너에 부여할 고유 아이디
 			 *
@@ -455,157 +727,6 @@ export type PartnerClient = {
 			userDefinedProperties?: PlatformProperties,
 		}
 	) => Promise<CreatePlatformPartnerResponse>
-	/**
-	 * 파트너 다건 생성
-	 *
-	 * 새로운 파트너를 다건 생성합니다.
-	 *
-	 * @throws {@link CreatePlatformPartnersError}
-	 */
-	createPlatformPartners: (
-		options: {
-			/** 생성할 파트너 리스트 정보 */
-			partners: CreatePlatformPartnerBody[],
-		}
-	) => Promise<CreatePlatformPartnersResponse>
-	/**
-	 * 파트너 일괄 국세청 연동
-	 *
-	 * 파트너들을 일괄 국세청 연동합니다.
-	 *
-	 * @throws {@link ConnectBulkPartnerMemberCompanyError}
-	 */
-	connectBulkPartnerMemberCompany: (
-		options?: {
-			/** 일괄 국세청 연동할 파트너 조건 필터 */
-			filter?: PlatformPartnerFilterInput,
-		}
-	) => Promise<ConnectBulkPartnerMemberCompanyResponse>
-	/**
-	 * 파트너 국세청 연동
-	 *
-	 * 파트너를 국세청 연동합니다.
-	 *
-	 * @throws {@link ConnectPartnerMemberCompanyError}
-	 */
-	connectPartnerMemberCompany: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<ConnectPartnerMemberCompanyResponse>
-	/**
-	 * 파트너 일괄 국세청 연동 해제
-	 *
-	 * 파트너들을 일괄 국세청 연동 해제합니다.
-	 *
-	 * @throws {@link DisconnectBulkPartnerMemberCompanyError}
-	 */
-	disconnectBulkPartnerMemberCompany: (
-		options?: {
-			/** 일괄 국세청 연동 해제할 파트너 조건 필터 */
-			filter?: PlatformPartnerFilterInput,
-		}
-	) => Promise<DisconnectBulkPartnerMemberCompanyResponse>
-	/**
-	 * 파트너 국세청 연동 해제
-	 *
-	 * 파트너를 국세청 연동 해제합니다.
-	 *
-	 * @throws {@link DisconnectPartnerMemberCompanyError}
-	 */
-	disconnectPartnerMemberCompany: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<DisconnectPartnerMemberCompanyResponse>
-	/**
-	 * 파트너 조회
-	 *
-	 * 파트너 객체를 조회합니다.
-	 *
-	 * @throws {@link GetPlatformPartnerError}
-	 */
-	getPlatformPartner: (
-		options: {
-			/** 조회하고 싶은 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<PlatformPartner>
-	/**
-	 * 파트너 수정
-	 *
-	 * 주어진 아이디에 대응되는 파트너 정보를 업데이트합니다.
-	 *
-	 * @throws {@link UpdatePlatformPartnerError}
-	 */
-	updatePlatformPartner: (
-		options: {
-			/** 업데이트할 파트너 아이디 */
-			id: string,
-			/** 파트너 법인명 혹은 이름 */
-			name?: string,
-			/** 파트너 담당자 연락 정보 */
-			contact?: UpdatePlatformPartnerBodyContact,
-			/** 정산 계좌 */
-			account?: UpdatePlatformPartnerBodyAccount,
-			/** 파트너에 설정된 기본 계약 아이디 */
-			defaultContractId?: string,
-			/** 파트너에 대한 메모 */
-			memo?: string,
-			/** 파트너의 태그 리스트 */
-			tags?: string[],
-			/** 파트너 유형별 정보 */
-			type?: UpdatePlatformPartnerBodyType,
-			/** 사용자 정의 속성 */
-			userDefinedProperties?: PlatformProperties,
-		}
-	) => Promise<UpdatePlatformPartnerResponse>
-	/**
-	 * 파트너 보관
-	 *
-	 * 주어진 아이디에 대응되는 파트너를 보관합니다.
-	 *
-	 * @throws {@link ArchivePlatformPartnerError}
-	 */
-	archivePlatformPartner: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<ArchivePlatformPartnerResponse>
-	/**
-	 * 파트너 복원
-	 *
-	 * 주어진 아이디에 대응되는 파트너를 복원합니다.
-	 *
-	 * @throws {@link RecoverPlatformPartnerError}
-	 */
-	recoverPlatformPartner: (
-		options: {
-			/** 파트너 아이디 */
-			id: string,
-		}
-	) => Promise<RecoverPlatformPartnerResponse>
-}
-export class GetPlatformPartnersError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, GetPlatformPartnersError.prototype)
-		this.name = "GetPlatformPartnersError"
-	}
-}
-export class CreatePlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, CreatePlatformPartnerError.prototype)
-		this.name = "CreatePlatformPartnerError"
-	}
 }
 export class CreatePlatformPartnersError extends PartnerError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformContractsNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdsAlreadyExistError | PlatformPartnerIdsDuplicatedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
@@ -614,15 +735,6 @@ export class CreatePlatformPartnersError extends PartnerError {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformPartnersError.prototype)
 		this.name = "CreatePlatformPartnersError"
-	}
-}
-export class ConnectBulkPartnerMemberCompanyError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
-	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
-		super(data)
-		Object.setPrototypeOf(this, ConnectBulkPartnerMemberCompanyError.prototype)
-		this.name = "ConnectBulkPartnerMemberCompanyError"
 	}
 }
 export class ConnectPartnerMemberCompanyError extends PartnerError {
@@ -634,13 +746,13 @@ export class ConnectPartnerMemberCompanyError extends PartnerError {
 		this.name = "ConnectPartnerMemberCompanyError"
 	}
 }
-export class DisconnectBulkPartnerMemberCompanyError extends PartnerError {
+export class ConnectBulkPartnerMemberCompanyError extends PartnerError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
 	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, DisconnectBulkPartnerMemberCompanyError.prototype)
-		this.name = "DisconnectBulkPartnerMemberCompanyError"
+		Object.setPrototypeOf(this, ConnectBulkPartnerMemberCompanyError.prototype)
+		this.name = "ConnectBulkPartnerMemberCompanyError"
 	}
 }
 export class DisconnectPartnerMemberCompanyError extends PartnerError {
@@ -650,6 +762,33 @@ export class DisconnectPartnerMemberCompanyError extends PartnerError {
 		super(data)
 		Object.setPrototypeOf(this, DisconnectPartnerMemberCompanyError.prototype)
 		this.name = "DisconnectPartnerMemberCompanyError"
+	}
+}
+export class DisconnectBulkPartnerMemberCompanyError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, DisconnectBulkPartnerMemberCompanyError.prototype)
+		this.name = "DisconnectBulkPartnerMemberCompanyError"
+	}
+}
+export class ArchivePlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, ArchivePlatformPartnerError.prototype)
+		this.name = "ArchivePlatformPartnerError"
+	}
+}
+export class RecoverPlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, RecoverPlatformPartnerError.prototype)
+		this.name = "RecoverPlatformPartnerError"
 	}
 }
 export class GetPlatformPartnerError extends PartnerError {
@@ -670,21 +809,21 @@ export class UpdatePlatformPartnerError extends PartnerError {
 		this.name = "UpdatePlatformPartnerError"
 	}
 }
-export class ArchivePlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+export class GetPlatformPartnersError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, ArchivePlatformPartnerError.prototype)
-		this.name = "ArchivePlatformPartnerError"
+		Object.setPrototypeOf(this, GetPlatformPartnersError.prototype)
+		this.name = "GetPlatformPartnersError"
 	}
 }
-export class RecoverPlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+export class CreatePlatformPartnerError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAccountVerificationAlreadyUsedError | PlatformAccountVerificationFailedError | PlatformAccountVerificationNotFoundError | PlatformCompanyVerificationAlreadyUsedError | PlatformContractNotFoundError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerIdAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, RecoverPlatformPartnerError.prototype)
-		this.name = "RecoverPlatformPartnerError"
+		Object.setPrototypeOf(this, CreatePlatformPartnerError.prototype)
+		this.name = "CreatePlatformPartnerError"
 	}
 }

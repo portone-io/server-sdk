@@ -41,6 +41,7 @@ class AccountClient:
         *,
         bank: Bank,
         account_number: str,
+        test: Optional[bool] = None,
         birthdate: Optional[str] = None,
         business_registration_number: Optional[str] = None,
     ) -> PlatformAccountHolder:
@@ -53,6 +54,10 @@ class AccountClient:
                 은행
             account_number (str):
                 '-'를 제외한 계좌 번호
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             birthdate (str, optional):
                 생년월일
 
@@ -68,6 +73,8 @@ class AccountClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if birthdate is not None:
             query.append(("birthdate", birthdate))
         if business_registration_number is not None:
@@ -133,6 +140,7 @@ class AccountClient:
         *,
         bank: Bank,
         account_number: str,
+        test: Optional[bool] = None,
         birthdate: Optional[str] = None,
         business_registration_number: Optional[str] = None,
     ) -> PlatformAccountHolder:
@@ -145,6 +153,10 @@ class AccountClient:
                 은행
             account_number (str):
                 '-'를 제외한 계좌 번호
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             birthdate (str, optional):
                 생년월일
 
@@ -160,6 +172,8 @@ class AccountClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         if birthdate is not None:
             query.append(("birthdate", birthdate))
         if business_registration_number is not None:

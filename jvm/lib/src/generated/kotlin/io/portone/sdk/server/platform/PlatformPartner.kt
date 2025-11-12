@@ -44,6 +44,7 @@ public data class PlatformPartner(
   val appliedAt: @Serializable(InstantSerializer::class) Instant,
   /** 사용자 정의 속성 */
   val userDefinedProperties: PlatformProperties,
+  val isForTest: Boolean,
 )
 
 

@@ -22,6 +22,8 @@ export type Bank =
 	| "STANDARD_CHARTERED"
 	/** 한국씨티은행 */
 	| "CITI"
+	/** 수협중앙회 */
+	| "SUHYUP_FEDERATION"
 	/** 아이엠뱅크 */
 	| "DAEGU"
 	/** 부산은행 */

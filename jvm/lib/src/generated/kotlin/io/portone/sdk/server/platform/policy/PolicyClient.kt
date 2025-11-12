@@ -150,312 +150,34 @@ public class PolicyClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 추가 수수료 정책 다건 조회
-   *
-   * 여러 추가 수수료 정책을 조회합니다.
-   *
-   * @param page
-   * 요청할 페이지 정보
-   * @param filter
-   * 조회할 추가 수수료 정책 조건 필터
-   *
-   * @throws GetPlatformAdditionalFeePoliciesException
-   */
-  @JvmName("getPlatformAdditionalFeePoliciesSuspend")
-  public suspend fun getPlatformAdditionalFeePolicies(
-    page: PageInput? = null,
-    filter: PlatformAdditionalFeePolicyFilterInput? = null,
-  ): GetPlatformAdditionalFeePoliciesResponse {
-    val requestBody = GetPlatformAdditionalFeePoliciesBody(
-      page = page,
-      filter = filter,
-    )
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies")
-        parameters.append("requestBody", json.encodeToString(requestBody))
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePoliciesError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetPlatformAdditionalFeePoliciesResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformAdditionalFeePolicies")
-  public fun getPlatformAdditionalFeePoliciesFuture(
-    page: PageInput? = null,
-    filter: PlatformAdditionalFeePolicyFilterInput? = null,
-  ): CompletableFuture<GetPlatformAdditionalFeePoliciesResponse> = GlobalScope.future { getPlatformAdditionalFeePolicies(page, filter) }
-
-
-  /**
-   * 추가 수수료 정책 생성
-   *
-   * 새로운 추가 수수료 정책을 생성합니다.
-   *
-   * @param id
-   * 생성할 추가 수수료 정책 아이디
-   *
-   * 명시하지 않으면 id 가 임의로 생성됩니다.
-   * @param name
-   * 이름
-   * @param fee
-   * 수수료 정보
-   * @param memo
-   * 메모
-   * @param vatPayer
-   * 부가세 부담 주체
-   *
-   * @throws CreatePlatformAdditionalFeePolicyException
-   */
-  @JvmName("createPlatformAdditionalFeePolicySuspend")
-  public suspend fun createPlatformAdditionalFeePolicy(
-    id: String? = null,
-    name: String,
-    fee: PlatformFeeInput,
-    memo: String? = null,
-    vatPayer: PlatformPayer,
-  ): CreatePlatformAdditionalFeePolicyResponse {
-    val requestBody = CreatePlatformAdditionalFeePolicyBody(
-      id = id,
-      name = name,
-      fee = fee,
-      memo = memo,
-      vatPayer = vatPayer,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyAlreadyExistsError -> throw PlatformAdditionalFeePolicyAlreadyExistsException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CreatePlatformAdditionalFeePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("createPlatformAdditionalFeePolicy")
-  public fun createPlatformAdditionalFeePolicyFuture(
-    id: String? = null,
-    name: String,
-    fee: PlatformFeeInput,
-    memo: String? = null,
-    vatPayer: PlatformPayer,
-  ): CompletableFuture<CreatePlatformAdditionalFeePolicyResponse> = GlobalScope.future { createPlatformAdditionalFeePolicy(id, name, fee, memo, vatPayer) }
-
-
-  /**
-   * 추가 수수료 정책 조회
-   *
-   * 주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.
-   *
-   * @param id
-   * 조회할 추가 수수료 정책 아이디
-   *
-   * @throws GetPlatformAdditionalFeePolicyException
-   */
-  @JvmName("getPlatformAdditionalFeePolicySuspend")
-  public suspend fun getPlatformAdditionalFeePolicy(
-    id: String,
-  ): PlatformAdditionalFeePolicy {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformAdditionalFeePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformAdditionalFeePolicy")
-  public fun getPlatformAdditionalFeePolicyFuture(
-    id: String,
-  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicy(id) }
-
-
-  /**
-   * 추가 수수료 정책 수정
-   *
-   * 주어진 아이디에 대응되는 추가 수수료 정책을 업데이트합니다.
-   *
-   * @param id
-   * 업데이트할 추가 수수료 정책 아이디
-   * @param fee
-   * 책정 수수료
-   * @param name
-   * 추가 수수료 정책 이름
-   * @param memo
-   * 해당 추가 수수료 정책에 대한 메모
-   * @param vatPayer
-   * 부가세를 부담할 주체
-   *
-   * @throws UpdatePlatformAdditionalFeePolicyException
-   */
-  @JvmName("updatePlatformAdditionalFeePolicySuspend")
-  public suspend fun updatePlatformAdditionalFeePolicy(
-    id: String,
-    fee: PlatformFeeInput? = null,
-    name: String? = null,
-    memo: String? = null,
-    vatPayer: PlatformPayer? = null,
-  ): UpdatePlatformAdditionalFeePolicyResponse {
-    val requestBody = UpdatePlatformAdditionalFeePolicyBody(
-      fee = fee,
-      name = name,
-      memo = memo,
-      vatPayer = vatPayer,
-    )
-    val httpResponse = client.patch(apiBase) {
-      url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
-        is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<UpdatePlatformAdditionalFeePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("updatePlatformAdditionalFeePolicy")
-  public fun updatePlatformAdditionalFeePolicyFuture(
-    id: String,
-    fee: PlatformFeeInput? = null,
-    name: String? = null,
-    memo: String? = null,
-    vatPayer: PlatformPayer? = null,
-  ): CompletableFuture<UpdatePlatformAdditionalFeePolicyResponse> = GlobalScope.future { updatePlatformAdditionalFeePolicy(id, fee, name, memo, vatPayer) }
-
-
-  /**
    * 추가 수수료 정책 보관
    *
    * 주어진 아이디에 대응되는 추가 수수료 정책을 보관합니다.
    *
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws ArchivePlatformAdditionalFeePolicyException
    */
   @JvmName("archivePlatformAdditionalFeePolicySuspend")
   public suspend fun archivePlatformAdditionalFeePolicy(
     id: String,
+    test: Boolean? = null,
   ): ArchivePlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "archive")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -487,7 +209,8 @@ public class PolicyClient(
   @JvmName("archivePlatformAdditionalFeePolicy")
   public fun archivePlatformAdditionalFeePolicyFuture(
     id: String,
-  ): CompletableFuture<ArchivePlatformAdditionalFeePolicyResponse> = GlobalScope.future { archivePlatformAdditionalFeePolicy(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<ArchivePlatformAdditionalFeePolicyResponse> = GlobalScope.future { archivePlatformAdditionalFeePolicy(id, test) }
 
 
   /**
@@ -497,22 +220,28 @@ public class PolicyClient(
    *
    * @param id
    * 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws RecoverPlatformAdditionalFeePolicyException
    */
   @JvmName("recoverPlatformAdditionalFeePolicySuspend")
   public suspend fun recoverPlatformAdditionalFeePolicy(
     id: String,
+    test: Boolean? = null,
   ): RecoverPlatformAdditionalFeePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString(), "recover")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -543,45 +272,203 @@ public class PolicyClient(
   @JvmName("recoverPlatformAdditionalFeePolicy")
   public fun recoverPlatformAdditionalFeePolicyFuture(
     id: String,
-  ): CompletableFuture<RecoverPlatformAdditionalFeePolicyResponse> = GlobalScope.future { recoverPlatformAdditionalFeePolicy(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<RecoverPlatformAdditionalFeePolicyResponse> = GlobalScope.future { recoverPlatformAdditionalFeePolicy(id, test) }
 
 
   /**
-   * 계약 다건 조회
+   * 추가 수수료 정책 조회
    *
-   * 여러 계약을 조회합니다.
+   * 주어진 아이디에 대응되는 추가 수수료 정책을 조회합니다.
    *
+   * @param id
+   * 조회할 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws GetPlatformAdditionalFeePolicyException
+   */
+  @JvmName("getPlatformAdditionalFeePolicySuspend")
+  public suspend fun getPlatformAdditionalFeePolicy(
+    id: String,
+    test: Boolean? = null,
+  ): PlatformAdditionalFeePolicy {
+    val httpResponse = client.get(apiBase) {
+      url {
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformAdditionalFeePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformAdditionalFeePolicy>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformAdditionalFeePolicy")
+  public fun getPlatformAdditionalFeePolicyFuture(
+    id: String,
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformAdditionalFeePolicy> = GlobalScope.future { getPlatformAdditionalFeePolicy(id, test) }
+
+
+  /**
+   * 추가 수수료 정책 수정
+   *
+   * 주어진 아이디에 대응되는 추가 수수료 정책을 업데이트합니다.
+   *
+   * @param id
+   * 업데이트할 추가 수수료 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param fee
+   * 책정 수수료
+   * @param name
+   * 추가 수수료 정책 이름
+   * @param memo
+   * 해당 추가 수수료 정책에 대한 메모
+   * @param vatPayer
+   * 부가세를 부담할 주체
+   *
+   * @throws UpdatePlatformAdditionalFeePolicyException
+   */
+  @JvmName("updatePlatformAdditionalFeePolicySuspend")
+  public suspend fun updatePlatformAdditionalFeePolicy(
+    id: String,
+    test: Boolean? = null,
+    fee: PlatformFeeInput? = null,
+    name: String? = null,
+    memo: String? = null,
+    vatPayer: PlatformPayer? = null,
+  ): UpdatePlatformAdditionalFeePolicyResponse {
+    val requestBody = UpdatePlatformAdditionalFeePolicyBody(
+      fee = fee,
+      name = name,
+      memo = memo,
+      vatPayer = vatPayer,
+    )
+    val httpResponse = client.patch(apiBase) {
+      url {
+        this.appendPathSegments("platform", "additional-fee-policies", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<UpdatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyNotFoundError -> throw PlatformAdditionalFeePolicyNotFoundException(httpBodyDecoded)
+        is PlatformArchivedAdditionalFeePolicyError -> throw PlatformArchivedAdditionalFeePolicyException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<UpdatePlatformAdditionalFeePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("updatePlatformAdditionalFeePolicy")
+  public fun updatePlatformAdditionalFeePolicyFuture(
+    id: String,
+    test: Boolean? = null,
+    fee: PlatformFeeInput? = null,
+    name: String? = null,
+    memo: String? = null,
+    vatPayer: PlatformPayer? = null,
+  ): CompletableFuture<UpdatePlatformAdditionalFeePolicyResponse> = GlobalScope.future { updatePlatformAdditionalFeePolicy(id, test, fee, name, memo, vatPayer) }
+
+
+  /**
+   * 추가 수수료 정책 다건 조회
+   *
+   * 여러 추가 수수료 정책을 조회합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param page
    * 요청할 페이지 정보
    * @param filter
-   * 조회할 계약 조건 필터
+   * 조회할 추가 수수료 정책 조건 필터
    *
-   * @throws GetPlatformContractsException
+   * @throws GetPlatformAdditionalFeePoliciesException
    */
-  @JvmName("getPlatformContractsSuspend")
-  public suspend fun getPlatformContracts(
+  @JvmName("getPlatformAdditionalFeePoliciesSuspend")
+  public suspend fun getPlatformAdditionalFeePolicies(
+    test: Boolean? = null,
     page: PageInput? = null,
-    filter: PlatformContractFilterInput? = null,
-  ): GetPlatformContractsResponse {
-    val requestBody = GetPlatformContractsBody(
+    filter: PlatformAdditionalFeePolicyFilterInput? = null,
+  ): GetPlatformAdditionalFeePoliciesResponse {
+    val requestBody = GetPlatformAdditionalFeePoliciesBody(
       page = page,
       filter = filter,
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "contracts")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("platform", "additional-fee-policies")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractsError.Recognized>(httpBody)
+        json.decodeFromString<GetPlatformAdditionalFeePoliciesError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -595,7 +482,7 @@ public class PolicyClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<GetPlatformContractsResponse>(httpBody)
+      json.decodeFromString<GetPlatformAdditionalFeePoliciesResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -603,72 +490,71 @@ public class PolicyClient(
   }
 
   /** @suppress */
-  @JvmName("getPlatformContracts")
-  public fun getPlatformContractsFuture(
+  @JvmName("getPlatformAdditionalFeePolicies")
+  public fun getPlatformAdditionalFeePoliciesFuture(
+    test: Boolean? = null,
     page: PageInput? = null,
-    filter: PlatformContractFilterInput? = null,
-  ): CompletableFuture<GetPlatformContractsResponse> = GlobalScope.future { getPlatformContracts(page, filter) }
+    filter: PlatformAdditionalFeePolicyFilterInput? = null,
+  ): CompletableFuture<GetPlatformAdditionalFeePoliciesResponse> = GlobalScope.future { getPlatformAdditionalFeePolicies(test, page, filter) }
 
 
   /**
-   * 계약 생성
+   * 추가 수수료 정책 생성
    *
-   * 새로운 계약을 생성합니다.
+   * 새로운 추가 수수료 정책을 생성합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param id
-   * 계약에 부여할 고유 아이디
+   * 생성할 추가 수수료 정책 아이디
    *
-   * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+   * 명시하지 않으면 id 가 임의로 생성됩니다.
    * @param name
-   * 계약 이름
+   * 이름
+   * @param fee
+   * 수수료 정보
    * @param memo
-   * 계약 내부 표기를 위한 메모
-   * @param platformFee
-   * 중개수수료
-   * @param settlementCycle
-   * 정산 주기
-   * @param platformFeeVatPayer
-   * 중개수수료에 대한 부가세 부담 주체
-   * @param subtractPaymentVatAmount
-   * 정산 시 결제금액 부가세 감액 여부
+   * 메모
+   * @param vatPayer
+   * 부가세 부담 주체
    *
-   * @throws CreatePlatformContractException
+   * @throws CreatePlatformAdditionalFeePolicyException
    */
-  @JvmName("createPlatformContractSuspend")
-  public suspend fun createPlatformContract(
+  @JvmName("createPlatformAdditionalFeePolicySuspend")
+  public suspend fun createPlatformAdditionalFeePolicy(
+    test: Boolean? = null,
     id: String? = null,
     name: String,
+    fee: PlatformFeeInput,
     memo: String? = null,
-    platformFee: PlatformFeeInput,
-    settlementCycle: PlatformSettlementCycleInput,
-    platformFeeVatPayer: PlatformPayer,
-    subtractPaymentVatAmount: Boolean,
-  ): CreatePlatformContractResponse {
-    val requestBody = CreatePlatformContractBody(
+    vatPayer: PlatformPayer,
+  ): CreatePlatformAdditionalFeePolicyResponse {
+    val requestBody = CreatePlatformAdditionalFeePolicyBody(
       id = id,
       name = name,
+      fee = fee,
       memo = memo,
-      platformFee = platformFee,
-      settlementCycle = settlementCycle,
-      platformFeeVatPayer = platformFeeVatPayer,
-      subtractPaymentVatAmount = subtractPaymentVatAmount,
+      vatPayer = vatPayer,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "contracts")
+        this.appendPathSegments("platform", "additional-fee-policies")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformContractError.Recognized>(httpBody)
+        json.decodeFromString<CreatePlatformAdditionalFeePolicyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -676,14 +562,14 @@ public class PolicyClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractAlreadyExistsError -> throw PlatformContractAlreadyExistsException(httpBodyDecoded)
+        is PlatformAdditionalFeePolicyAlreadyExistsError -> throw PlatformAdditionalFeePolicyAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<CreatePlatformContractResponse>(httpBody)
+      json.decodeFromString<CreatePlatformAdditionalFeePolicyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -691,163 +577,15 @@ public class PolicyClient(
   }
 
   /** @suppress */
-  @JvmName("createPlatformContract")
-  public fun createPlatformContractFuture(
+  @JvmName("createPlatformAdditionalFeePolicy")
+  public fun createPlatformAdditionalFeePolicyFuture(
+    test: Boolean? = null,
     id: String? = null,
     name: String,
+    fee: PlatformFeeInput,
     memo: String? = null,
-    platformFee: PlatformFeeInput,
-    settlementCycle: PlatformSettlementCycleInput,
-    platformFeeVatPayer: PlatformPayer,
-    subtractPaymentVatAmount: Boolean,
-  ): CompletableFuture<CreatePlatformContractResponse> = GlobalScope.future { createPlatformContract(id, name, memo, platformFee, settlementCycle, platformFeeVatPayer, subtractPaymentVatAmount) }
-
-
-  /**
-   * 계약 조회
-   *
-   * 주어진 아이디에 대응되는 계약을 조회합니다.
-   *
-   * @param id
-   * 조회할 계약 아이디
-   *
-   * @throws GetPlatformContractException
-   */
-  @JvmName("getPlatformContractSuspend")
-  public suspend fun getPlatformContract(
-    id: String,
-  ): PlatformContract {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformContractError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PlatformContract>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformContract")
-  public fun getPlatformContractFuture(
-    id: String,
-  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContract(id) }
-
-
-  /**
-   * 계약 수정
-   *
-   * 주어진 아이디에 대응되는 계약을 업데이트합니다.
-   *
-   * @param id
-   * 업데이트할 계약 아이디
-   * @param name
-   * 계약 이름
-   * @param memo
-   * 계약 내부 표기를 위한 메모
-   * @param platformFee
-   * 중개수수료
-   * @param settlementCycle
-   * 정산 주기
-   * @param platformFeeVatPayer
-   * 중개수수료에 대한 부가세 부담 주체
-   * @param subtractPaymentVatAmount
-   * 정산 시 결제금액 부가세 감액 여부
-   *
-   * @throws UpdatePlatformContractException
-   */
-  @JvmName("updatePlatformContractSuspend")
-  public suspend fun updatePlatformContract(
-    id: String,
-    name: String? = null,
-    memo: String? = null,
-    platformFee: PlatformFeeInput? = null,
-    settlementCycle: PlatformSettlementCycleInput? = null,
-    platformFeeVatPayer: PlatformPayer? = null,
-    subtractPaymentVatAmount: Boolean? = null,
-  ): UpdatePlatformContractResponse {
-    val requestBody = UpdatePlatformContractBody(
-      name = name,
-      memo = memo,
-      platformFee = platformFee,
-      settlementCycle = settlementCycle,
-      platformFeeVatPayer = platformFeeVatPayer,
-      subtractPaymentVatAmount = subtractPaymentVatAmount,
-    )
-    val httpResponse = client.patch(apiBase) {
-      url {
-        appendPathSegments("platform", "contracts", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformContractError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformArchivedContractError -> throw PlatformArchivedContractException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<UpdatePlatformContractResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("updatePlatformContract")
-  public fun updatePlatformContractFuture(
-    id: String,
-    name: String? = null,
-    memo: String? = null,
-    platformFee: PlatformFeeInput? = null,
-    settlementCycle: PlatformSettlementCycleInput? = null,
-    platformFeeVatPayer: PlatformPayer? = null,
-    subtractPaymentVatAmount: Boolean? = null,
-  ): CompletableFuture<UpdatePlatformContractResponse> = GlobalScope.future { updatePlatformContract(id, name, memo, platformFee, settlementCycle, platformFeeVatPayer, subtractPaymentVatAmount) }
+    vatPayer: PlatformPayer,
+  ): CompletableFuture<CreatePlatformAdditionalFeePolicyResponse> = GlobalScope.future { createPlatformAdditionalFeePolicy(test, id, name, fee, memo, vatPayer) }
 
 
   /**
@@ -857,22 +595,28 @@ public class PolicyClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws ArchivePlatformContractException
    */
   @JvmName("archivePlatformContractSuspend")
   public suspend fun archivePlatformContract(
     id: String,
+    test: Boolean? = null,
   ): ArchivePlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "archive")
+        this.appendPathSegments("platform", "contracts", id.toString(), "archive")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -904,7 +648,8 @@ public class PolicyClient(
   @JvmName("archivePlatformContract")
   public fun archivePlatformContractFuture(
     id: String,
-  ): CompletableFuture<ArchivePlatformContractResponse> = GlobalScope.future { archivePlatformContract(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<ArchivePlatformContractResponse> = GlobalScope.future { archivePlatformContract(id, test) }
 
 
   /**
@@ -914,22 +659,28 @@ public class PolicyClient(
    *
    * @param id
    * 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws RecoverPlatformContractException
    */
   @JvmName("recoverPlatformContractSuspend")
   public suspend fun recoverPlatformContract(
     id: String,
+    test: Boolean? = null,
   ): RecoverPlatformContractResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "contracts", id.toString(), "recover")
+        this.appendPathSegments("platform", "contracts", id.toString(), "recover")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -960,45 +711,213 @@ public class PolicyClient(
   @JvmName("recoverPlatformContract")
   public fun recoverPlatformContractFuture(
     id: String,
-  ): CompletableFuture<RecoverPlatformContractResponse> = GlobalScope.future { recoverPlatformContract(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<RecoverPlatformContractResponse> = GlobalScope.future { recoverPlatformContract(id, test) }
 
 
   /**
-   * 할인 분담 정책 다건 조회
+   * 계약 조회
    *
-   * 여러 할인 분담을 조회합니다.
+   * 주어진 아이디에 대응되는 계약을 조회합니다.
    *
+   * @param id
+   * 조회할 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws GetPlatformContractException
+   */
+  @JvmName("getPlatformContractSuspend")
+  public suspend fun getPlatformContract(
+    id: String,
+    test: Boolean? = null,
+  ): PlatformContract {
+    val httpResponse = client.get(apiBase) {
+      url {
+        this.appendPathSegments("platform", "contracts", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformContractError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformContract>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformContract")
+  public fun getPlatformContractFuture(
+    id: String,
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformContract> = GlobalScope.future { getPlatformContract(id, test) }
+
+
+  /**
+   * 계약 수정
+   *
+   * 주어진 아이디에 대응되는 계약을 업데이트합니다.
+   *
+   * @param id
+   * 업데이트할 계약 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param name
+   * 계약 이름
+   * @param memo
+   * 계약 내부 표기를 위한 메모
+   * @param platformFee
+   * 중개수수료
+   * @param settlementCycle
+   * 정산 주기
+   * @param platformFeeVatPayer
+   * 중개수수료에 대한 부가세 부담 주체
+   * @param subtractPaymentVatAmount
+   * 정산 시 결제금액 부가세 감액 여부
+   *
+   * @throws UpdatePlatformContractException
+   */
+  @JvmName("updatePlatformContractSuspend")
+  public suspend fun updatePlatformContract(
+    id: String,
+    test: Boolean? = null,
+    name: String? = null,
+    memo: String? = null,
+    platformFee: PlatformFeeInput? = null,
+    settlementCycle: PlatformSettlementCycleInput? = null,
+    platformFeeVatPayer: PlatformPayer? = null,
+    subtractPaymentVatAmount: Boolean? = null,
+  ): UpdatePlatformContractResponse {
+    val requestBody = UpdatePlatformContractBody(
+      name = name,
+      memo = memo,
+      platformFee = platformFee,
+      settlementCycle = settlementCycle,
+      platformFeeVatPayer = platformFeeVatPayer,
+      subtractPaymentVatAmount = subtractPaymentVatAmount,
+    )
+    val httpResponse = client.patch(apiBase) {
+      url {
+        this.appendPathSegments("platform", "contracts", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<UpdatePlatformContractError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedContractError -> throw PlatformArchivedContractException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<UpdatePlatformContractResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("updatePlatformContract")
+  public fun updatePlatformContractFuture(
+    id: String,
+    test: Boolean? = null,
+    name: String? = null,
+    memo: String? = null,
+    platformFee: PlatformFeeInput? = null,
+    settlementCycle: PlatformSettlementCycleInput? = null,
+    platformFeeVatPayer: PlatformPayer? = null,
+    subtractPaymentVatAmount: Boolean? = null,
+  ): CompletableFuture<UpdatePlatformContractResponse> = GlobalScope.future { updatePlatformContract(id, test, name, memo, platformFee, settlementCycle, platformFeeVatPayer, subtractPaymentVatAmount) }
+
+
+  /**
+   * 계약 다건 조회
+   *
+   * 여러 계약을 조회합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param page
    * 요청할 페이지 정보
    * @param filter
-   * 조회할 할인 분담 정책 조건 필터
+   * 조회할 계약 조건 필터
    *
-   * @throws GetPlatformDiscountSharePoliciesException
+   * @throws GetPlatformContractsException
    */
-  @JvmName("getPlatformDiscountSharePoliciesSuspend")
-  public suspend fun getPlatformDiscountSharePolicies(
+  @JvmName("getPlatformContractsSuspend")
+  public suspend fun getPlatformContracts(
+    test: Boolean? = null,
     page: PageInput? = null,
-    filter: PlatformDiscountSharePolicyFilterInput? = null,
-  ): GetPlatformDiscountSharePoliciesResponse {
-    val requestBody = GetPlatformDiscountSharePoliciesBody(
+    filter: PlatformContractFilterInput? = null,
+  ): GetPlatformContractsResponse {
+    val requestBody = GetPlatformContractsBody(
       page = page,
       filter = filter,
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("platform", "contracts")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
+        json.decodeFromString<GetPlatformContractsError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1012,7 +931,7 @@ public class PolicyClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<GetPlatformDiscountSharePoliciesResponse>(httpBody)
+      json.decodeFromString<GetPlatformContractsResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -1020,60 +939,79 @@ public class PolicyClient(
   }
 
   /** @suppress */
-  @JvmName("getPlatformDiscountSharePolicies")
-  public fun getPlatformDiscountSharePoliciesFuture(
+  @JvmName("getPlatformContracts")
+  public fun getPlatformContractsFuture(
+    test: Boolean? = null,
     page: PageInput? = null,
-    filter: PlatformDiscountSharePolicyFilterInput? = null,
-  ): CompletableFuture<GetPlatformDiscountSharePoliciesResponse> = GlobalScope.future { getPlatformDiscountSharePolicies(page, filter) }
+    filter: PlatformContractFilterInput? = null,
+  ): CompletableFuture<GetPlatformContractsResponse> = GlobalScope.future { getPlatformContracts(test, page, filter) }
 
 
   /**
-   * 할인 분담 정책 생성
+   * 계약 생성
    *
-   * 새로운 할인 분담을 생성합니다.
+   * 새로운 계약을 생성합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param id
-   * 할인 분담에 부여할 고유 아이디
+   * 계약에 부여할 고유 아이디
    *
    * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
    * @param name
-   * 할인 분담에 부여할 이름
-   * @param partnerShareRate
-   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+   * 계약 이름
    * @param memo
-   * 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+   * 계약 내부 표기를 위한 메모
+   * @param platformFee
+   * 중개수수료
+   * @param settlementCycle
+   * 정산 주기
+   * @param platformFeeVatPayer
+   * 중개수수료에 대한 부가세 부담 주체
+   * @param subtractPaymentVatAmount
+   * 정산 시 결제금액 부가세 감액 여부
    *
-   * @throws CreatePlatformDiscountSharePolicyException
+   * @throws CreatePlatformContractException
    */
-  @JvmName("createPlatformDiscountSharePolicySuspend")
-  public suspend fun createPlatformDiscountSharePolicy(
+  @JvmName("createPlatformContractSuspend")
+  public suspend fun createPlatformContract(
+    test: Boolean? = null,
     id: String? = null,
     name: String,
-    partnerShareRate: Int,
     memo: String? = null,
-  ): CreatePlatformDiscountSharePolicyResponse {
-    val requestBody = CreatePlatformDiscountSharePolicyBody(
+    platformFee: PlatformFeeInput,
+    settlementCycle: PlatformSettlementCycleInput,
+    platformFeeVatPayer: PlatformPayer,
+    subtractPaymentVatAmount: Boolean,
+  ): CreatePlatformContractResponse {
+    val requestBody = CreatePlatformContractBody(
       id = id,
       name = name,
-      partnerShareRate = partnerShareRate,
       memo = memo,
+      platformFee = platformFee,
+      settlementCycle = settlementCycle,
+      platformFeeVatPayer = platformFeeVatPayer,
+      subtractPaymentVatAmount = subtractPaymentVatAmount,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies")
+        this.appendPathSegments("platform", "contracts")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
+        json.decodeFromString<CreatePlatformContractError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -1081,14 +1019,14 @@ public class PolicyClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyAlreadyExistsError -> throw PlatformDiscountSharePolicyAlreadyExistsException(httpBodyDecoded)
+        is PlatformContractAlreadyExistsError -> throw PlatformContractAlreadyExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<CreatePlatformDiscountSharePolicyResponse>(httpBody)
+      json.decodeFromString<CreatePlatformContractResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -1096,147 +1034,17 @@ public class PolicyClient(
   }
 
   /** @suppress */
-  @JvmName("createPlatformDiscountSharePolicy")
-  public fun createPlatformDiscountSharePolicyFuture(
+  @JvmName("createPlatformContract")
+  public fun createPlatformContractFuture(
+    test: Boolean? = null,
     id: String? = null,
     name: String,
-    partnerShareRate: Int,
     memo: String? = null,
-  ): CompletableFuture<CreatePlatformDiscountSharePolicyResponse> = GlobalScope.future { createPlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
-
-
-  /**
-   * 할인 분담 정책 조회
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
-   *
-   * @param id
-   * 조회할 할인 분담 정책 아이디
-   *
-   * @throws GetPlatformDiscountSharePolicyException
-   */
-  @JvmName("getPlatformDiscountSharePolicySuspend")
-  public suspend fun getPlatformDiscountSharePolicy(
-    id: String,
-  ): PlatformDiscountSharePolicy {
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformDiscountSharePolicy")
-  public fun getPlatformDiscountSharePolicyFuture(
-    id: String,
-  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicy(id) }
-
-
-  /**
-   * 할인 분담 정책 수정
-   *
-   * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
-   *
-   * @param id
-   * 업데이트할 할인 분담 정책 아이디
-   * @param name
-   * 할인 분담 정책 이름
-   * @param partnerShareRate
-   * 할인 분담율
-   *
-   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
-   * @param memo
-   * 해당 할인 분담에 대한 메모
-   *
-   * @throws UpdatePlatformDiscountSharePolicyException
-   */
-  @JvmName("updatePlatformDiscountSharePolicySuspend")
-  public suspend fun updatePlatformDiscountSharePolicy(
-    id: String,
-    name: String? = null,
-    partnerShareRate: Int? = null,
-    memo: String? = null,
-  ): UpdatePlatformDiscountSharePolicyResponse {
-    val requestBody = UpdatePlatformDiscountSharePolicyBody(
-      name = name,
-      partnerShareRate = partnerShareRate,
-      memo = memo,
-    )
-    val httpResponse = client.patch(apiBase) {
-      url {
-        appendPathSegments("platform", "discount-share-policies", id.toString())
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformArchivedDiscountSharePolicyError -> throw PlatformArchivedDiscountSharePolicyException(httpBodyDecoded)
-        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<UpdatePlatformDiscountSharePolicyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("updatePlatformDiscountSharePolicy")
-  public fun updatePlatformDiscountSharePolicyFuture(
-    id: String,
-    name: String? = null,
-    partnerShareRate: Int? = null,
-    memo: String? = null,
-  ): CompletableFuture<UpdatePlatformDiscountSharePolicyResponse> = GlobalScope.future { updatePlatformDiscountSharePolicy(id, name, partnerShareRate, memo) }
+    platformFee: PlatformFeeInput,
+    settlementCycle: PlatformSettlementCycleInput,
+    platformFeeVatPayer: PlatformPayer,
+    subtractPaymentVatAmount: Boolean,
+  ): CompletableFuture<CreatePlatformContractResponse> = GlobalScope.future { createPlatformContract(test, id, name, memo, platformFee, settlementCycle, platformFeeVatPayer, subtractPaymentVatAmount) }
 
 
   /**
@@ -1246,22 +1054,28 @@ public class PolicyClient(
    *
    * @param id
    * 할인 분담 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws ArchivePlatformDiscountSharePolicyException
    */
   @JvmName("archivePlatformDiscountSharePolicySuspend")
   public suspend fun archivePlatformDiscountSharePolicy(
     id: String,
+    test: Boolean? = null,
   ): ArchivePlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "archive")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1293,7 +1107,8 @@ public class PolicyClient(
   @JvmName("archivePlatformDiscountSharePolicy")
   public fun archivePlatformDiscountSharePolicyFuture(
     id: String,
-  ): CompletableFuture<ArchivePlatformDiscountSharePolicyResponse> = GlobalScope.future { archivePlatformDiscountSharePolicy(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<ArchivePlatformDiscountSharePolicyResponse> = GlobalScope.future { archivePlatformDiscountSharePolicy(id, test) }
 
 
   /**
@@ -1303,22 +1118,28 @@ public class PolicyClient(
    *
    * @param id
    * 할인 분담 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws RecoverPlatformDiscountSharePolicyException
    */
   @JvmName("recoverPlatformDiscountSharePolicySuspend")
   public suspend fun recoverPlatformDiscountSharePolicy(
     id: String,
+    test: Boolean? = null,
   ): RecoverPlatformDiscountSharePolicyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
+        this.appendPathSegments("platform", "discount-share-policies", id.toString(), "recover")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1349,7 +1170,312 @@ public class PolicyClient(
   @JvmName("recoverPlatformDiscountSharePolicy")
   public fun recoverPlatformDiscountSharePolicyFuture(
     id: String,
-  ): CompletableFuture<RecoverPlatformDiscountSharePolicyResponse> = GlobalScope.future { recoverPlatformDiscountSharePolicy(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<RecoverPlatformDiscountSharePolicyResponse> = GlobalScope.future { recoverPlatformDiscountSharePolicy(id, test) }
+
+
+  /**
+   * 할인 분담 정책 조회
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 조회합니다.
+   *
+   * @param id
+   * 조회할 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws GetPlatformDiscountSharePolicyException
+   */
+  @JvmName("getPlatformDiscountSharePolicySuspend")
+  public suspend fun getPlatformDiscountSharePolicy(
+    id: String,
+    test: Boolean? = null,
+  ): PlatformDiscountSharePolicy {
+    val httpResponse = client.get(apiBase) {
+      url {
+        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<PlatformDiscountSharePolicy>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformDiscountSharePolicy")
+  public fun getPlatformDiscountSharePolicyFuture(
+    id: String,
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformDiscountSharePolicy> = GlobalScope.future { getPlatformDiscountSharePolicy(id, test) }
+
+
+  /**
+   * 할인 분담 정책 수정
+   *
+   * 주어진 아이디에 대응되는 할인 분담을 업데이트합니다.
+   *
+   * @param id
+   * 업데이트할 할인 분담 정책 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param name
+   * 할인 분담 정책 이름
+   * @param partnerShareRate
+   * 할인 분담율
+   *
+   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+   * @param memo
+   * 해당 할인 분담에 대한 메모
+   *
+   * @throws UpdatePlatformDiscountSharePolicyException
+   */
+  @JvmName("updatePlatformDiscountSharePolicySuspend")
+  public suspend fun updatePlatformDiscountSharePolicy(
+    id: String,
+    test: Boolean? = null,
+    name: String? = null,
+    partnerShareRate: Int? = null,
+    memo: String? = null,
+  ): UpdatePlatformDiscountSharePolicyResponse {
+    val requestBody = UpdatePlatformDiscountSharePolicyBody(
+      name = name,
+      partnerShareRate = partnerShareRate,
+      memo = memo,
+    )
+    val httpResponse = client.patch(apiBase) {
+      url {
+        this.appendPathSegments("platform", "discount-share-policies", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<UpdatePlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedDiscountSharePolicyError -> throw PlatformArchivedDiscountSharePolicyException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyNotFoundError -> throw PlatformDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<UpdatePlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("updatePlatformDiscountSharePolicy")
+  public fun updatePlatformDiscountSharePolicyFuture(
+    id: String,
+    test: Boolean? = null,
+    name: String? = null,
+    partnerShareRate: Int? = null,
+    memo: String? = null,
+  ): CompletableFuture<UpdatePlatformDiscountSharePolicyResponse> = GlobalScope.future { updatePlatformDiscountSharePolicy(id, test, name, partnerShareRate, memo) }
+
+
+  /**
+   * 할인 분담 정책 다건 조회
+   *
+   * 여러 할인 분담을 조회합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param page
+   * 요청할 페이지 정보
+   * @param filter
+   * 조회할 할인 분담 정책 조건 필터
+   *
+   * @throws GetPlatformDiscountSharePoliciesException
+   */
+  @JvmName("getPlatformDiscountSharePoliciesSuspend")
+  public suspend fun getPlatformDiscountSharePolicies(
+    test: Boolean? = null,
+    page: PageInput? = null,
+    filter: PlatformDiscountSharePolicyFilterInput? = null,
+  ): GetPlatformDiscountSharePoliciesResponse {
+    val requestBody = GetPlatformDiscountSharePoliciesBody(
+      page = page,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
+      url {
+        this.appendPathSegments("platform", "discount-share-policies")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<GetPlatformDiscountSharePoliciesError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<GetPlatformDiscountSharePoliciesResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("getPlatformDiscountSharePolicies")
+  public fun getPlatformDiscountSharePoliciesFuture(
+    test: Boolean? = null,
+    page: PageInput? = null,
+    filter: PlatformDiscountSharePolicyFilterInput? = null,
+  ): CompletableFuture<GetPlatformDiscountSharePoliciesResponse> = GlobalScope.future { getPlatformDiscountSharePolicies(test, page, filter) }
+
+
+  /**
+   * 할인 분담 정책 생성
+   *
+   * 새로운 할인 분담을 생성합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param id
+   * 할인 분담에 부여할 고유 아이디
+   *
+   * 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+   * @param name
+   * 할인 분담에 부여할 이름
+   * @param partnerShareRate
+   * 파트너가 분담할 할인금액의 비율을 의미하는 밀리 퍼센트 단위 (10^-5) 의 음이 아닌 정수이며, 파트너가 부담할 금액은 `할인금액 * partnerShareRate * 10^5` 로 책정합니다.
+   * @param memo
+   * 해당 할인 분담에 대한 메모 ex) 파트너 브랜드 쿠폰
+   *
+   * @throws CreatePlatformDiscountSharePolicyException
+   */
+  @JvmName("createPlatformDiscountSharePolicySuspend")
+  public suspend fun createPlatformDiscountSharePolicy(
+    test: Boolean? = null,
+    id: String? = null,
+    name: String,
+    partnerShareRate: Int,
+    memo: String? = null,
+  ): CreatePlatformDiscountSharePolicyResponse {
+    val requestBody = CreatePlatformDiscountSharePolicyBody(
+      id = id,
+      name = name,
+      partnerShareRate = partnerShareRate,
+      memo = memo,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "discount-share-policies")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CreatePlatformDiscountSharePolicyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformDiscountSharePolicyAlreadyExistsError -> throw PlatformDiscountSharePolicyAlreadyExistsException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CreatePlatformDiscountSharePolicyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("createPlatformDiscountSharePolicy")
+  public fun createPlatformDiscountSharePolicyFuture(
+    test: Boolean? = null,
+    id: String? = null,
+    name: String,
+    partnerShareRate: Int,
+    memo: String? = null,
+  ): CompletableFuture<CreatePlatformDiscountSharePolicyResponse> = GlobalScope.future { createPlatformDiscountSharePolicy(test, id, name, partnerShareRate, memo) }
 
   override fun close() {
     client.close()

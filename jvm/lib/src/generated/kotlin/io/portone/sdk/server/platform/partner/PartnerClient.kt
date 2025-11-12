@@ -157,194 +157,14 @@ public class PartnerClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 파트너 다건 조회
-   *
-   * 여러 파트너를 조회합니다.
-   *
-   * @param page
-   * 요청할 페이지 정보
-   * @param filter
-   * 조회할 파트너 조건 필터
-   *
-   * @throws GetPlatformPartnersException
-   */
-  @JvmName("getPlatformPartnersSuspend")
-  public suspend fun getPlatformPartners(
-    page: PageInput? = null,
-    filter: PlatformPartnerFilterInput? = null,
-  ): GetPlatformPartnersResponse {
-    val requestBody = GetPlatformPartnersBody(
-      page = page,
-      filter = filter,
-    )
-    val httpResponse = client.get(apiBase) {
-      url {
-        appendPathSegments("platform", "partners")
-        parameters.append("requestBody", json.encodeToString(requestBody))
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<GetPlatformPartnersError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<GetPlatformPartnersResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("getPlatformPartners")
-  public fun getPlatformPartnersFuture(
-    page: PageInput? = null,
-    filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<GetPlatformPartnersResponse> = GlobalScope.future { getPlatformPartners(page, filter) }
-
-
-  /**
-   * 파트너 생성
-   *
-   * 새로운 파트너를 생성합니다.
-   *
-   * @param id
-   * 파트너에 부여할 고유 아이디
-   *
-   * 고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
-   * @param name
-   * 파트너 법인명 혹은 이름
-   * @param contact
-   * 파트너 담당자 연락 정보
-   * @param account
-   * 정산 계좌
-   *
-   * 파트너의 사업자등록번호가 존재하는 경우 명시합니다. 별도로 검증하지는 않으며, 번호와 기호 모두 입력 가능합니다.
-   * @param defaultContractId
-   * 기본 계약 아이디
-   *
-   * 이미 존재하는 계약 아이디를 등록해야 합니다.
-   * @param memo
-   * 파트너에 대한 메모
-   *
-   * 총 256자까지 입력할 수 있습니다.
-   * @param tags
-   * 파트너에 부여할 태그 리스트
-   *
-   * 최대 10개까지 입력할 수 있습니다.
-   * @param type
-   * 파트너 유형별 추가 정보
-   *
-   * 사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.
-   * @param userDefinedProperties
-   * 사용자 정의 속성
-   *
-   * @throws CreatePlatformPartnerException
-   */
-  @JvmName("createPlatformPartnerSuspend")
-  public suspend fun createPlatformPartner(
-    id: String? = null,
-    name: String,
-    contact: CreatePlatformPartnerBodyContact,
-    account: CreatePlatformPartnerBodyAccount,
-    defaultContractId: String,
-    memo: String? = null,
-    tags: List<String>,
-    type: CreatePlatformPartnerBodyType,
-    userDefinedProperties: PlatformProperties? = null,
-  ): CreatePlatformPartnerResponse {
-    val requestBody = CreatePlatformPartnerBody(
-      id = id,
-      name = name,
-      contact = contact,
-      account = account,
-      defaultContractId = defaultContractId,
-      memo = memo,
-      tags = tags,
-      type = type,
-      userDefinedProperties = userDefinedProperties,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformPartnerError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAccountVerificationAlreadyUsedError -> throw PlatformAccountVerificationAlreadyUsedException(httpBodyDecoded)
-        is PlatformAccountVerificationFailedError -> throw PlatformAccountVerificationFailedException(httpBodyDecoded)
-        is PlatformAccountVerificationNotFoundError -> throw PlatformAccountVerificationNotFoundException(httpBodyDecoded)
-        is PlatformCompanyVerificationAlreadyUsedError -> throw PlatformCompanyVerificationAlreadyUsedException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerIdAlreadyExistsError -> throw PlatformPartnerIdAlreadyExistsException(httpBodyDecoded)
-        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CreatePlatformPartnerResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("createPlatformPartner")
-  public fun createPlatformPartnerFuture(
-    id: String? = null,
-    name: String,
-    contact: CreatePlatformPartnerBodyContact,
-    account: CreatePlatformPartnerBodyAccount,
-    defaultContractId: String,
-    memo: String? = null,
-    tags: List<String>,
-    type: CreatePlatformPartnerBodyType,
-    userDefinedProperties: PlatformProperties? = null,
-  ): CompletableFuture<CreatePlatformPartnerResponse> = GlobalScope.future { createPlatformPartner(id, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
-
-
-  /**
    * 파트너 다건 생성
    *
    * 새로운 파트너를 다건 생성합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param partners
    * 생성할 파트너 리스트 정보
    *
@@ -352,6 +172,7 @@ public class PartnerClient(
    */
   @JvmName("createPlatformPartnersSuspend")
   public suspend fun createPlatformPartners(
+    test: Boolean? = null,
     partners: List<CreatePlatformPartnerBody>,
   ): CreatePlatformPartnersResponse {
     val requestBody = CreatePlatformPartnersBody(
@@ -359,15 +180,16 @@ public class PartnerClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", "batch")
+        this.appendPathSegments("platform", "partners", "batch")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -401,72 +223,9 @@ public class PartnerClient(
   /** @suppress */
   @JvmName("createPlatformPartners")
   public fun createPlatformPartnersFuture(
+    test: Boolean? = null,
     partners: List<CreatePlatformPartnerBody>,
-  ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(partners) }
-
-
-  /**
-   * 파트너 일괄 국세청 연동
-   *
-   * 파트너들을 일괄 국세청 연동합니다.
-   *
-   * @param filter
-   * 일괄 국세청 연동할 파트너 조건 필터
-   *
-   * @throws ConnectBulkPartnerMemberCompanyException
-   */
-  @JvmName("connectBulkPartnerMemberCompanySuspend")
-  public suspend fun connectBulkPartnerMemberCompany(
-    filter: PlatformPartnerFilterInput? = null,
-  ): ConnectBulkPartnerMemberCompanyResponse {
-    val requestBody = ConnectBulkPartnerMemberCompanyBody(
-      filter = filter,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", "member-company-connect")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
-        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("connectBulkPartnerMemberCompany")
-  public fun connectBulkPartnerMemberCompanyFuture(
-    filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(filter) }
+  ): CompletableFuture<CreatePlatformPartnersResponse> = GlobalScope.future { createPlatformPartners(test, partners) }
 
 
   /**
@@ -476,22 +235,28 @@ public class PartnerClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws ConnectPartnerMemberCompanyException
    */
   @JvmName("connectPartnerMemberCompanySuspend")
   public suspend fun connectPartnerMemberCompany(
     id: String,
+    test: Boolean? = null,
   ): ConnectPartnerMemberCompanyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", "member-company-connect", id.toString())
+        this.appendPathSegments("platform", "partners", "member-company-connect", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -528,42 +293,49 @@ public class PartnerClient(
   @JvmName("connectPartnerMemberCompany")
   public fun connectPartnerMemberCompanyFuture(
     id: String,
-  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id, test) }
 
 
   /**
-   * 파트너 일괄 국세청 연동 해제
+   * 파트너 일괄 국세청 연동
    *
-   * 파트너들을 일괄 국세청 연동 해제합니다.
+   * 파트너들을 일괄 국세청 연동합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param filter
-   * 일괄 국세청 연동 해제할 파트너 조건 필터
+   * 일괄 국세청 연동할 파트너 조건 필터
    *
-   * @throws DisconnectBulkPartnerMemberCompanyException
+   * @throws ConnectBulkPartnerMemberCompanyException
    */
-  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
-  public suspend fun disconnectBulkPartnerMemberCompany(
+  @JvmName("connectBulkPartnerMemberCompanySuspend")
+  public suspend fun connectBulkPartnerMemberCompany(
+    test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): DisconnectBulkPartnerMemberCompanyResponse {
-    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
+  ): ConnectBulkPartnerMemberCompanyResponse {
+    val requestBody = ConnectBulkPartnerMemberCompanyBody(
       filter = filter,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", "member-company-disconnect")
+        this.appendPathSegments("platform", "partners", "member-company-connect")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -581,7 +353,7 @@ public class PartnerClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
+      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -589,10 +361,11 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("disconnectBulkPartnerMemberCompany")
-  public fun disconnectBulkPartnerMemberCompanyFuture(
+  @JvmName("connectBulkPartnerMemberCompany")
+  public fun connectBulkPartnerMemberCompanyFuture(
+    test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(filter) }
+  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(test, filter) }
 
 
   /**
@@ -602,22 +375,28 @@ public class PartnerClient(
    *
    * @param id
    * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws DisconnectPartnerMemberCompanyException
    */
   @JvmName("disconnectPartnerMemberCompanySuspend")
   public suspend fun disconnectPartnerMemberCompany(
     id: String,
+    test: Boolean? = null,
   ): DisconnectPartnerMemberCompanyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
+        this.appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -654,7 +433,206 @@ public class PartnerClient(
   @JvmName("disconnectPartnerMemberCompany")
   public fun disconnectPartnerMemberCompanyFuture(
     id: String,
-  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id, test) }
+
+
+  /**
+   * 파트너 일괄 국세청 연동 해제
+   *
+   * 파트너들을 일괄 국세청 연동 해제합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param filter
+   * 일괄 국세청 연동 해제할 파트너 조건 필터
+   *
+   * @throws DisconnectBulkPartnerMemberCompanyException
+   */
+  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
+  public suspend fun disconnectBulkPartnerMemberCompany(
+    test: Boolean? = null,
+    filter: PlatformPartnerFilterInput? = null,
+  ): DisconnectBulkPartnerMemberCompanyResponse {
+    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
+      filter = filter,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "partners", "member-company-disconnect")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTargetPartnerNotFoundError -> throw PlatformTargetPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("disconnectBulkPartnerMemberCompany")
+  public fun disconnectBulkPartnerMemberCompanyFuture(
+    test: Boolean? = null,
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(test, filter) }
+
+
+  /**
+   * 파트너 보관
+   *
+   * 주어진 아이디에 대응되는 파트너를 보관합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws ArchivePlatformPartnerException
+   */
+  @JvmName("archivePlatformPartnerSuspend")
+  public suspend fun archivePlatformPartner(
+    id: String,
+    test: Boolean? = null,
+  ): ArchivePlatformPartnerResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "partners", id.toString(), "archive")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<ArchivePlatformPartnerError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformCannotArchiveScheduledPartnerError -> throw PlatformCannotArchiveScheduledPartnerException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<ArchivePlatformPartnerResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("archivePlatformPartner")
+  public fun archivePlatformPartnerFuture(
+    id: String,
+    test: Boolean? = null,
+  ): CompletableFuture<ArchivePlatformPartnerResponse> = GlobalScope.future { archivePlatformPartner(id, test) }
+
+
+  /**
+   * 파트너 복원
+   *
+   * 주어진 아이디에 대응되는 파트너를 복원합니다.
+   *
+   * @param id
+   * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws RecoverPlatformPartnerException
+   */
+  @JvmName("recoverPlatformPartnerSuspend")
+  public suspend fun recoverPlatformPartner(
+    id: String,
+    test: Boolean? = null,
+  ): RecoverPlatformPartnerResponse {
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "partners", id.toString(), "recover")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<RecoverPlatformPartnerError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<RecoverPlatformPartnerResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("recoverPlatformPartner")
+  public fun recoverPlatformPartnerFuture(
+    id: String,
+    test: Boolean? = null,
+  ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id, test) }
 
 
   /**
@@ -664,22 +642,28 @@ public class PartnerClient(
    *
    * @param id
    * 조회하고 싶은 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformPartnerException
    */
   @JvmName("getPlatformPartnerSuspend")
   public suspend fun getPlatformPartner(
     id: String,
+    test: Boolean? = null,
   ): PlatformPartner {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString())
+        this.appendPathSegments("platform", "partners", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -710,7 +694,8 @@ public class PartnerClient(
   @JvmName("getPlatformPartner")
   public fun getPlatformPartnerFuture(
     id: String,
-  ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartner(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformPartner> = GlobalScope.future { getPlatformPartner(id, test) }
 
 
   /**
@@ -720,6 +705,10 @@ public class PartnerClient(
    *
    * @param id
    * 업데이트할 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param name
    * 파트너 법인명 혹은 이름
    * @param contact
@@ -742,6 +731,7 @@ public class PartnerClient(
   @JvmName("updatePlatformPartnerSuspend")
   public suspend fun updatePlatformPartner(
     id: String,
+    test: Boolean? = null,
     name: String? = null,
     contact: UpdatePlatformPartnerBodyContact? = null,
     account: UpdatePlatformPartnerBodyAccount? = null,
@@ -763,15 +753,16 @@ public class PartnerClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString())
+        this.appendPathSegments("platform", "partners", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -812,6 +803,7 @@ public class PartnerClient(
   @JvmName("updatePlatformPartner")
   public fun updatePlatformPartnerFuture(
     id: String,
+    test: Boolean? = null,
     name: String? = null,
     contact: UpdatePlatformPartnerBodyContact? = null,
     account: UpdatePlatformPartnerBodyAccount? = null,
@@ -820,94 +812,51 @@ public class PartnerClient(
     tags: List<String>? = null,
     type: UpdatePlatformPartnerBodyType? = null,
     userDefinedProperties: PlatformProperties? = null,
-  ): CompletableFuture<UpdatePlatformPartnerResponse> = GlobalScope.future { updatePlatformPartner(id, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
+  ): CompletableFuture<UpdatePlatformPartnerResponse> = GlobalScope.future { updatePlatformPartner(id, test, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
 
 
   /**
-   * 파트너 보관
+   * 파트너 다건 조회
    *
-   * 주어진 아이디에 대응되는 파트너를 보관합니다.
+   * 여러 파트너를 조회합니다.
    *
-   * @param id
-   * 파트너 아이디
+   * @param test
+   * 테스트 모드 여부
    *
-   * @throws ArchivePlatformPartnerException
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param page
+   * 요청할 페이지 정보
+   * @param filter
+   * 조회할 파트너 조건 필터
+   *
+   * @throws GetPlatformPartnersException
    */
-  @JvmName("archivePlatformPartnerSuspend")
-  public suspend fun archivePlatformPartner(
-    id: String,
-  ): ArchivePlatformPartnerResponse {
-    val httpResponse = client.post(apiBase) {
+  @JvmName("getPlatformPartnersSuspend")
+  public suspend fun getPlatformPartners(
+    test: Boolean? = null,
+    page: PageInput? = null,
+    filter: PlatformPartnerFilterInput? = null,
+  ): GetPlatformPartnersResponse {
+    val requestBody = GetPlatformPartnersBody(
+      page = page,
+      filter = filter,
+    )
+    val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "partners", id.toString(), "archive")
+        this.appendPathSegments("platform", "partners")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ArchivePlatformPartnerError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformCannotArchiveScheduledPartnerError -> throw PlatformCannotArchiveScheduledPartnerException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<ArchivePlatformPartnerResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("archivePlatformPartner")
-  public fun archivePlatformPartnerFuture(
-    id: String,
-  ): CompletableFuture<ArchivePlatformPartnerResponse> = GlobalScope.future { archivePlatformPartner(id) }
-
-
-  /**
-   * 파트너 복원
-   *
-   * 주어진 아이디에 대응되는 파트너를 복원합니다.
-   *
-   * @param id
-   * 파트너 아이디
-   *
-   * @throws RecoverPlatformPartnerException
-   */
-  @JvmName("recoverPlatformPartnerSuspend")
-  public suspend fun recoverPlatformPartner(
-    id: String,
-  ): RecoverPlatformPartnerResponse {
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "partners", id.toString(), "recover")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<RecoverPlatformPartnerError.Recognized>(httpBody)
+        json.decodeFromString<GetPlatformPartnersError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -916,13 +865,12 @@ public class PartnerClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<RecoverPlatformPartnerResponse>(httpBody)
+      json.decodeFromString<GetPlatformPartnersResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -930,10 +878,139 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("recoverPlatformPartner")
-  public fun recoverPlatformPartnerFuture(
-    id: String,
-  ): CompletableFuture<RecoverPlatformPartnerResponse> = GlobalScope.future { recoverPlatformPartner(id) }
+  @JvmName("getPlatformPartners")
+  public fun getPlatformPartnersFuture(
+    test: Boolean? = null,
+    page: PageInput? = null,
+    filter: PlatformPartnerFilterInput? = null,
+  ): CompletableFuture<GetPlatformPartnersResponse> = GlobalScope.future { getPlatformPartners(test, page, filter) }
+
+
+  /**
+   * 파트너 생성
+   *
+   * 새로운 파트너를 생성합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param id
+   * 파트너에 부여할 고유 아이디
+   *
+   * 고객사 서버에 등록된 파트너 지칭 아이디와 동일하게 설정하는 것을 권장합니다. 명시하지 않는 경우 포트원이 임의의 아이디를 발급해드립니다.
+   * @param name
+   * 파트너 법인명 혹은 이름
+   * @param contact
+   * 파트너 담당자 연락 정보
+   * @param account
+   * 정산 계좌
+   *
+   * 파트너의 사업자등록번호가 존재하는 경우 명시합니다. 별도로 검증하지는 않으며, 번호와 기호 모두 입력 가능합니다.
+   * @param defaultContractId
+   * 기본 계약 아이디
+   *
+   * 이미 존재하는 계약 아이디를 등록해야 합니다.
+   * @param memo
+   * 파트너에 대한 메모
+   *
+   * 총 256자까지 입력할 수 있습니다.
+   * @param tags
+   * 파트너에 부여할 태그 리스트
+   *
+   * 최대 10개까지 입력할 수 있습니다.
+   * @param type
+   * 파트너 유형별 추가 정보
+   *
+   * 사업자/원천징수 대상자 중 추가할 파트너의 유형에 따른 정보를 입력해야 합니다.
+   * @param userDefinedProperties
+   * 사용자 정의 속성
+   *
+   * @throws CreatePlatformPartnerException
+   */
+  @JvmName("createPlatformPartnerSuspend")
+  public suspend fun createPlatformPartner(
+    test: Boolean? = null,
+    id: String? = null,
+    name: String,
+    contact: CreatePlatformPartnerBodyContact,
+    account: CreatePlatformPartnerBodyAccount,
+    defaultContractId: String,
+    memo: String? = null,
+    tags: List<String>,
+    type: CreatePlatformPartnerBodyType,
+    userDefinedProperties: PlatformProperties? = null,
+  ): CreatePlatformPartnerResponse {
+    val requestBody = CreatePlatformPartnerBody(
+      id = id,
+      name = name,
+      contact = contact,
+      account = account,
+      defaultContractId = defaultContractId,
+      memo = memo,
+      tags = tags,
+      type = type,
+      userDefinedProperties = userDefinedProperties,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "partners")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CreatePlatformPartnerError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAccountVerificationAlreadyUsedError -> throw PlatformAccountVerificationAlreadyUsedException(httpBodyDecoded)
+        is PlatformAccountVerificationFailedError -> throw PlatformAccountVerificationFailedException(httpBodyDecoded)
+        is PlatformAccountVerificationNotFoundError -> throw PlatformAccountVerificationNotFoundException(httpBodyDecoded)
+        is PlatformCompanyVerificationAlreadyUsedError -> throw PlatformCompanyVerificationAlreadyUsedException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerIdAlreadyExistsError -> throw PlatformPartnerIdAlreadyExistsException(httpBodyDecoded)
+        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CreatePlatformPartnerResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("createPlatformPartner")
+  public fun createPlatformPartnerFuture(
+    test: Boolean? = null,
+    id: String? = null,
+    name: String,
+    contact: CreatePlatformPartnerBodyContact,
+    account: CreatePlatformPartnerBodyAccount,
+    defaultContractId: String,
+    memo: String? = null,
+    tags: List<String>,
+    type: CreatePlatformPartnerBodyType,
+    userDefinedProperties: PlatformProperties? = null,
+  ): CompletableFuture<CreatePlatformPartnerResponse> = GlobalScope.future { createPlatformPartner(test, id, name, contact, account, defaultContractId, memo, tags, type, userDefinedProperties) }
 
   override fun close() {
     client.close()

@@ -16,6 +16,7 @@ import type { CancelRequester } from "../../generated/payment/CancelRequester"
 import type { CancelTaxAmountExceedsCancellableTaxAmountError } from "../../generated/payment/CancelTaxAmountExceedsCancellableTaxAmountError"
 import type { CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError } from "../../generated/payment/CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError"
 import type { CancellableAmountConsistencyBrokenError } from "../../generated/payment/CancellableAmountConsistencyBrokenError"
+import type { CapturePaymentResponse } from "../../generated/payment/CapturePaymentResponse"
 import type { CashReceiptInput } from "../../generated/common/CashReceiptInput"
 import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { CloseVirtualAccountResponse } from "../../generated/payment/CloseVirtualAccountResponse"
@@ -296,6 +297,35 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 			)
 			if (!response.ok) {
 				throw new CancelPaymentError(await response.json())
+			}
+			return response.json()
+		},
+		capturePayment: async (
+			options: {
+				paymentId: string,
+				storeId?: string,
+			}
+		): Promise<CapturePaymentResponse> => {
+			const {
+				paymentId,
+				storeId,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+			})
+			const response = await fetch(
+				new URL(`/payments/${encodeURIComponent(paymentId)}/capture`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new CapturePaymentError(await response.json())
 			}
 			return response.json()
 		},
@@ -1023,6 +1053,25 @@ export type PaymentClient = {
 		}
 	) => Promise<CancelPaymentResponse>
 	/**
+	 * 수동 매입
+	 *
+	 * 수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.
+	 *
+	 * @throws {@link CapturePaymentError}
+	 */
+	capturePayment: (
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+		}
+	) => Promise<CapturePaymentResponse>
+	/**
 	 * 인증 결제 수동 승인
 	 *
 	 * 수동 승인으로 설정된 인증 결제에 대해, 결제를 완료 처리합니다.
@@ -1443,6 +1492,15 @@ export class CancelPaymentError extends PaymentError {
 		super(data)
 		Object.setPrototypeOf(this, CancelPaymentError.prototype)
 		this.name = "CancelPaymentError"
+	}
+}
+export class CapturePaymentError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, CapturePaymentError.prototype)
+		this.name = "CapturePaymentError"
 	}
 }
 export class ConfirmPaymentError extends PaymentError {

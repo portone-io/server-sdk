@@ -69,6 +69,10 @@ public class AccountClient(
    * 은행
    * @param accountNumber
    * '-'를 제외한 계좌 번호
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param birthdate
    * 생년월일
    *
@@ -84,20 +88,22 @@ public class AccountClient(
   public suspend fun getPlatformAccountHolder(
     bank: Bank,
     accountNumber: String,
+    test: Boolean? = null,
     birthdate: String? = null,
     businessRegistrationNumber: String? = null,
   ): PlatformAccountHolder {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "bank-accounts", bank.value, accountNumber.toString(), "holder")
-        if (birthdate != null) parameters.append("birthdate", birthdate.toString())
-        if (businessRegistrationNumber != null) parameters.append("businessRegistrationNumber", businessRegistrationNumber.toString())
+        this.appendPathSegments("platform", "bank-accounts", bank.value, accountNumber.toString(), "holder")
+        if (test != null) this.parameters.append("test", test.toString())
+        if (birthdate != null) this.parameters.append("birthdate", birthdate.toString())
+        if (businessRegistrationNumber != null) this.parameters.append("businessRegistrationNumber", businessRegistrationNumber.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -131,9 +137,10 @@ public class AccountClient(
   public fun getPlatformAccountHolderFuture(
     bank: Bank,
     accountNumber: String,
+    test: Boolean? = null,
     birthdate: String? = null,
     businessRegistrationNumber: String? = null,
-  ): CompletableFuture<PlatformAccountHolder> = GlobalScope.future { getPlatformAccountHolder(bank, accountNumber, birthdate, businessRegistrationNumber) }
+  ): CompletableFuture<PlatformAccountHolder> = GlobalScope.future { getPlatformAccountHolder(bank, accountNumber, test, birthdate, businessRegistrationNumber) }
 
   override fun close() {
     client.close()

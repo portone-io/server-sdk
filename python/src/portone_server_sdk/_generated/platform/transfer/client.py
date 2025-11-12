@@ -84,6 +84,7 @@ class TransferClient:
     def download_platform_transfer_sheet(
         self,
         *,
+        test: Optional[bool] = None,
         filter: Optional[PlatformTransferFilterInput] = None,
         fields: Optional[list[str]] = None,
     ) -> str:
@@ -92,6 +93,10 @@ class TransferClient:
         정산 상세 내역을 csv 파일로 다운로드 합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformTransferFilterInput, optional):
                 컬럼 키 목록
 
@@ -141,6 +146,8 @@ class TransferClient:
         if fields is not None:
             request_body["fields"] = fields
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
@@ -171,6 +178,7 @@ class TransferClient:
     async def download_platform_transfer_sheet_async(
         self,
         *,
+        test: Optional[bool] = None,
         filter: Optional[PlatformTransferFilterInput] = None,
         fields: Optional[list[str]] = None,
     ) -> str:
@@ -179,6 +187,10 @@ class TransferClient:
         정산 상세 내역을 csv 파일로 다운로드 합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformTransferFilterInput, optional):
                 컬럼 키 목록
 
@@ -228,6 +240,8 @@ class TransferClient:
         if fields is not None:
             request_body["fields"] = fields
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",
@@ -258,6 +272,7 @@ class TransferClient:
     def get_platform_transfer_summaries(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: Optional[PlatformTransferFilterInput] = None,
     ) -> GetPlatformTransferSummariesResponse:
@@ -266,6 +281,10 @@ class TransferClient:
         성공 응답으로 조회된 정산건 요약 리스트와 페이지 정보가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
             filter (PlatformTransferFilterInput, optional):
@@ -282,6 +301,8 @@ class TransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
@@ -324,6 +345,7 @@ class TransferClient:
     async def get_platform_transfer_summaries_async(
         self,
         *,
+        test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: Optional[PlatformTransferFilterInput] = None,
     ) -> GetPlatformTransferSummariesResponse:
@@ -332,6 +354,10 @@ class TransferClient:
         성공 응답으로 조회된 정산건 요약 리스트와 페이지 정보가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
                 요청할 페이지 정보
             filter (PlatformTransferFilterInput, optional):
@@ -348,6 +374,8 @@ class TransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_transfer_filter_input(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",
@@ -390,6 +418,7 @@ class TransferClient:
     def create_platform_manual_transfer(
         self,
         *,
+        test: Optional[bool] = None,
         partner_id: str,
         memo: Optional[str] = None,
         settlement_amount: int,
@@ -403,6 +432,10 @@ class TransferClient:
         성공 응답으로 생성된 수기 정산건 객체가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             partner_id (str):
                 파트너 아이디
             memo (str, optional):
@@ -419,7 +452,8 @@ class TransferClient:
             is_for_test (bool, optional):
                 테스트 모드 여부
 
-                기본값은 false 입니다.
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
 
@@ -441,6 +475,8 @@ class TransferClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/transfers/manual",
@@ -495,6 +531,7 @@ class TransferClient:
     async def create_platform_manual_transfer_async(
         self,
         *,
+        test: Optional[bool] = None,
         partner_id: str,
         memo: Optional[str] = None,
         settlement_amount: int,
@@ -508,6 +545,10 @@ class TransferClient:
         성공 응답으로 생성된 수기 정산건 객체가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             partner_id (str):
                 파트너 아이디
             memo (str, optional):
@@ -524,7 +565,8 @@ class TransferClient:
             is_for_test (bool, optional):
                 테스트 모드 여부
 
-                기본값은 false 입니다.
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
 
@@ -546,6 +588,8 @@ class TransferClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/transfers/manual",
@@ -597,485 +641,10 @@ class TransferClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_create_manual_transfer_response(response.json())
-    def create_platform_order_transfer(
-        self,
-        *,
-        partner_id: str,
-        contract_id: Optional[str] = None,
-        memo: Optional[str] = None,
-        payment_id: str,
-        order_detail: CreatePlatformOrderTransferBodyOrderDetail,
-        tax_free_amount: Optional[int] = None,
-        settlement_start_date: Optional[str] = None,
-        settlement_date: Optional[str] = None,
-        discounts: list[CreatePlatformOrderTransferBodyDiscount],
-        additional_fees: list[CreatePlatformOrderTransferBodyAdditionalFee],
-        external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = None,
-        is_for_test: Optional[bool] = None,
-        parameters: Optional[TransferParameters] = None,
-        user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
-    ) -> CreateOrderTransferResponse:
-        """주문 정산건 생성
-
-        성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
-
-        Args:
-            partner_id (str):
-                파트너 아이디
-            contract_id (str, optional):
-                계약 아이디
-
-                기본값은 파트너의 기본 계약 아이디 입니다.
-            memo (str, optional):
-                메모
-            payment_id (str):
-                결제 아이디
-            order_detail (CreatePlatformOrderTransferBodyOrderDetail):
-                주문 정보
-            tax_free_amount (int, optional):
-                주문 면세 금액
-
-                주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
-                (int64)
-            settlement_start_date (str, optional):
-                정산 시작일
-
-                기본값은 결제 일시 입니다.
-                (yyyy-MM-dd)
-            settlement_date (str, optional):
-                정산일
-
-                날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-                (yyyy-MM-dd)
-            discounts (list[CreatePlatformOrderTransferBodyDiscount]):
-                할인 정보
-            additional_fees (list[CreatePlatformOrderTransferBodyAdditionalFee]):
-                추가 수수료 정보
-            external_payment_detail (CreatePlatformOrderTransferBodyExternalPaymentDetail, optional):
-                외부 결제 상세 정보
-
-                해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
-            is_for_test (bool, optional):
-                테스트 모드 여부
-
-                기본값은 false 입니다.
-            parameters (TransferParameters, optional):
-                정산 파라미터 (실험기능)
-            user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
-                사용자 정의 속성
-
-
-        Raises:
-            CreatePlatformOrderTransferError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["partnerId"] = partner_id
-        if contract_id is not None:
-            request_body["contractId"] = contract_id
-        if memo is not None:
-            request_body["memo"] = memo
-        request_body["paymentId"] = payment_id
-        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
-        if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount
-        if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date
-        if settlement_date is not None:
-            request_body["settlementDate"] = settlement_date
-        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
-        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
-        if external_payment_detail is not None:
-            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
-        if is_for_test is not None:
-            request_body["isForTest"] = is_for_test
-        if parameters is not None:
-            request_body["parameters"] = _serialize_transfer_parameters(parameters)
-        if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
-        query = []
-        response = self._sync_client.request(
-            "POST",
-            f"{self._base_url}/platform/transfers/order",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePoliciesNotFoundError(error)
-            try:
-                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
-            try:
-                error = _deserialize_platform_currency_not_supported_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCurrencyNotSupportedError(error)
-            try:
-                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePoliciesNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_platform_partner_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPartnerNotFoundError(error)
-            try:
-                error = _deserialize_platform_payment_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPaymentNotFoundError(error)
-            try:
-                error = _deserialize_platform_product_id_duplicated_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformProductIdDuplicatedError(error)
-            try:
-                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementAmountExceededError(error)
-            try:
-                error = _deserialize_platform_settlement_date_earlier_than_settlement_start_date_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementDateEarlierThanSettlementStartDateError(error)
-            try:
-                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementParameterNotFoundError(error)
-            try:
-                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_transfer_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformTransferAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformUserDefinedPropertyNotFoundError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_create_order_transfer_response(response.json())
-    async def create_platform_order_transfer_async(
-        self,
-        *,
-        partner_id: str,
-        contract_id: Optional[str] = None,
-        memo: Optional[str] = None,
-        payment_id: str,
-        order_detail: CreatePlatformOrderTransferBodyOrderDetail,
-        tax_free_amount: Optional[int] = None,
-        settlement_start_date: Optional[str] = None,
-        settlement_date: Optional[str] = None,
-        discounts: list[CreatePlatformOrderTransferBodyDiscount],
-        additional_fees: list[CreatePlatformOrderTransferBodyAdditionalFee],
-        external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = None,
-        is_for_test: Optional[bool] = None,
-        parameters: Optional[TransferParameters] = None,
-        user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
-    ) -> CreateOrderTransferResponse:
-        """주문 정산건 생성
-
-        성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
-
-        Args:
-            partner_id (str):
-                파트너 아이디
-            contract_id (str, optional):
-                계약 아이디
-
-                기본값은 파트너의 기본 계약 아이디 입니다.
-            memo (str, optional):
-                메모
-            payment_id (str):
-                결제 아이디
-            order_detail (CreatePlatformOrderTransferBodyOrderDetail):
-                주문 정보
-            tax_free_amount (int, optional):
-                주문 면세 금액
-
-                주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
-                (int64)
-            settlement_start_date (str, optional):
-                정산 시작일
-
-                기본값은 결제 일시 입니다.
-                (yyyy-MM-dd)
-            settlement_date (str, optional):
-                정산일
-
-                날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-                (yyyy-MM-dd)
-            discounts (list[CreatePlatformOrderTransferBodyDiscount]):
-                할인 정보
-            additional_fees (list[CreatePlatformOrderTransferBodyAdditionalFee]):
-                추가 수수료 정보
-            external_payment_detail (CreatePlatformOrderTransferBodyExternalPaymentDetail, optional):
-                외부 결제 상세 정보
-
-                해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
-            is_for_test (bool, optional):
-                테스트 모드 여부
-
-                기본값은 false 입니다.
-            parameters (TransferParameters, optional):
-                정산 파라미터 (실험기능)
-            user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
-                사용자 정의 속성
-
-
-        Raises:
-            CreatePlatformOrderTransferError: API 호출이 실패한 경우
-            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
-        """
-        request_body = {}
-        request_body["partnerId"] = partner_id
-        if contract_id is not None:
-            request_body["contractId"] = contract_id
-        if memo is not None:
-            request_body["memo"] = memo
-        request_body["paymentId"] = payment_id
-        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
-        if tax_free_amount is not None:
-            request_body["taxFreeAmount"] = tax_free_amount
-        if settlement_start_date is not None:
-            request_body["settlementStartDate"] = settlement_start_date
-        if settlement_date is not None:
-            request_body["settlementDate"] = settlement_date
-        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
-        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
-        if external_payment_detail is not None:
-            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
-        if is_for_test is not None:
-            request_body["isForTest"] = is_for_test
-        if parameters is not None:
-            request_body["parameters"] = _serialize_transfer_parameters(parameters)
-        if user_defined_properties is not None:
-            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
-        query = []
-        response = await self._async_client.request(
-            "POST",
-            f"{self._base_url}/platform/transfers/order",
-            params=query,
-            headers={
-                "Authorization": f"PortOne {self._secret}",
-                "User-Agent": USER_AGENT,
-            },
-            json=request_body,
-        )
-        if response.status_code != 200:
-            error_response = response.json()
-            error = None
-            try:
-                error = _deserialize_forbidden_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise ForbiddenError(error)
-            try:
-                error = _deserialize_invalid_request_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise InvalidRequestError(error)
-            try:
-                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFeePoliciesNotFoundError(error)
-            try:
-                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
-            try:
-                error = _deserialize_platform_contract_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractNotFoundError(error)
-            try:
-                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
-            try:
-                error = _deserialize_platform_currency_not_supported_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformCurrencyNotSupportedError(error)
-            try:
-                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformDiscountSharePoliciesNotFoundError(error)
-            try:
-                error = _deserialize_platform_not_enabled_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformNotEnabledError(error)
-            try:
-                error = _deserialize_platform_partner_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPartnerNotFoundError(error)
-            try:
-                error = _deserialize_platform_payment_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformPaymentNotFoundError(error)
-            try:
-                error = _deserialize_platform_product_id_duplicated_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformProductIdDuplicatedError(error)
-            try:
-                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementAmountExceededError(error)
-            try:
-                error = _deserialize_platform_settlement_date_earlier_than_settlement_start_date_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementDateEarlierThanSettlementStartDateError(error)
-            try:
-                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementParameterNotFoundError(error)
-            try:
-                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
-            try:
-                error = _deserialize_platform_transfer_already_exists_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformTransferAlreadyExistsError(error)
-            try:
-                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformUserDefinedPropertyNotFoundError(error)
-            try:
-                error = _deserialize_unauthorized_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise UnauthorizedError(error)
-            raise UnknownError(error_response)
-        return _deserialize_create_order_transfer_response(response.json())
     def create_platform_order_cancel_transfer(
         self,
         *,
+        test: Optional[bool] = None,
         partner_id: Optional[str] = None,
         payment_id: Optional[str] = None,
         transfer_id: Optional[str] = None,
@@ -1095,6 +664,10 @@ class TransferClient:
         성공 응답으로 생성된 주문 취소 정산건 객체가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             partner_id (str, optional):
                 파트너 아이디
             payment_id (str, optional):
@@ -1131,7 +704,8 @@ class TransferClient:
             is_for_test (bool, optional):
                 테스트 모드 여부
 
-                기본값은 false 입니다.
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
 
@@ -1166,6 +740,8 @@ class TransferClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/platform/transfers/order-cancel",
@@ -1328,6 +904,7 @@ class TransferClient:
     async def create_platform_order_cancel_transfer_async(
         self,
         *,
+        test: Optional[bool] = None,
         partner_id: Optional[str] = None,
         payment_id: Optional[str] = None,
         transfer_id: Optional[str] = None,
@@ -1347,6 +924,10 @@ class TransferClient:
         성공 응답으로 생성된 주문 취소 정산건 객체가 반환됩니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             partner_id (str, optional):
                 파트너 아이디
             payment_id (str, optional):
@@ -1383,7 +964,8 @@ class TransferClient:
             is_for_test (bool, optional):
                 테스트 모드 여부
 
-                기본값은 false 입니다.
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
 
@@ -1418,6 +1000,8 @@ class TransferClient:
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/platform/transfers/order-cancel",
@@ -1577,10 +1161,503 @@ class TransferClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_create_order_cancel_transfer_response(response.json())
+    def create_platform_order_transfer(
+        self,
+        *,
+        test: Optional[bool] = None,
+        partner_id: str,
+        contract_id: Optional[str] = None,
+        memo: Optional[str] = None,
+        payment_id: str,
+        order_detail: CreatePlatformOrderTransferBodyOrderDetail,
+        tax_free_amount: Optional[int] = None,
+        settlement_start_date: Optional[str] = None,
+        settlement_date: Optional[str] = None,
+        discounts: list[CreatePlatformOrderTransferBodyDiscount],
+        additional_fees: list[CreatePlatformOrderTransferBodyAdditionalFee],
+        external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = None,
+        is_for_test: Optional[bool] = None,
+        parameters: Optional[TransferParameters] = None,
+        user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+    ) -> CreateOrderTransferResponse:
+        """주문 정산건 생성
+
+        성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            partner_id (str):
+                파트너 아이디
+            contract_id (str, optional):
+                계약 아이디
+
+                기본값은 파트너의 기본 계약 아이디 입니다.
+            memo (str, optional):
+                메모
+            payment_id (str):
+                결제 아이디
+            order_detail (CreatePlatformOrderTransferBodyOrderDetail):
+                주문 정보
+            tax_free_amount (int, optional):
+                주문 면세 금액
+
+                주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+                (int64)
+            settlement_start_date (str, optional):
+                정산 시작일
+
+                기본값은 결제 일시 입니다.
+                (yyyy-MM-dd)
+            settlement_date (str, optional):
+                정산일
+
+                날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+                (yyyy-MM-dd)
+            discounts (list[CreatePlatformOrderTransferBodyDiscount]):
+                할인 정보
+            additional_fees (list[CreatePlatformOrderTransferBodyAdditionalFee]):
+                추가 수수료 정보
+            external_payment_detail (CreatePlatformOrderTransferBodyExternalPaymentDetail, optional):
+                외부 결제 상세 정보
+
+                해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
+            is_for_test (bool, optional):
+                테스트 모드 여부
+
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            parameters (TransferParameters, optional):
+                정산 파라미터 (실험기능)
+            user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
+                사용자 정의 속성
+
+
+        Raises:
+            CreatePlatformOrderTransferError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["partnerId"] = partner_id
+        if contract_id is not None:
+            request_body["contractId"] = contract_id
+        if memo is not None:
+            request_body["memo"] = memo
+        request_body["paymentId"] = payment_id
+        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if settlement_start_date is not None:
+            request_body["settlementStartDate"] = settlement_start_date
+        if settlement_date is not None:
+            request_body["settlementDate"] = settlement_date
+        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
+        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
+        if external_payment_detail is not None:
+            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
+        if parameters is not None:
+            request_body["parameters"] = _serialize_transfer_parameters(parameters)
+        if user_defined_properties is not None:
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/transfers/order",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCurrencyNotSupportedError(error)
+            try:
+                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_date_earlier_than_settlement_start_date_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementDateEarlierThanSettlementStartDateError(error)
+            try:
+                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementParameterNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_create_order_transfer_response(response.json())
+    async def create_platform_order_transfer_async(
+        self,
+        *,
+        test: Optional[bool] = None,
+        partner_id: str,
+        contract_id: Optional[str] = None,
+        memo: Optional[str] = None,
+        payment_id: str,
+        order_detail: CreatePlatformOrderTransferBodyOrderDetail,
+        tax_free_amount: Optional[int] = None,
+        settlement_start_date: Optional[str] = None,
+        settlement_date: Optional[str] = None,
+        discounts: list[CreatePlatformOrderTransferBodyDiscount],
+        additional_fees: list[CreatePlatformOrderTransferBodyAdditionalFee],
+        external_payment_detail: Optional[CreatePlatformOrderTransferBodyExternalPaymentDetail] = None,
+        is_for_test: Optional[bool] = None,
+        parameters: Optional[TransferParameters] = None,
+        user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+    ) -> CreateOrderTransferResponse:
+        """주문 정산건 생성
+
+        성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            partner_id (str):
+                파트너 아이디
+            contract_id (str, optional):
+                계약 아이디
+
+                기본값은 파트너의 기본 계약 아이디 입니다.
+            memo (str, optional):
+                메모
+            payment_id (str):
+                결제 아이디
+            order_detail (CreatePlatformOrderTransferBodyOrderDetail):
+                주문 정보
+            tax_free_amount (int, optional):
+                주문 면세 금액
+
+                주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+                (int64)
+            settlement_start_date (str, optional):
+                정산 시작일
+
+                기본값은 결제 일시 입니다.
+                (yyyy-MM-dd)
+            settlement_date (str, optional):
+                정산일
+
+                날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+                (yyyy-MM-dd)
+            discounts (list[CreatePlatformOrderTransferBodyDiscount]):
+                할인 정보
+            additional_fees (list[CreatePlatformOrderTransferBodyAdditionalFee]):
+                추가 수수료 정보
+            external_payment_detail (CreatePlatformOrderTransferBodyExternalPaymentDetail, optional):
+                외부 결제 상세 정보
+
+                해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
+            is_for_test (bool, optional):
+                테스트 모드 여부
+
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            parameters (TransferParameters, optional):
+                정산 파라미터 (실험기능)
+            user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
+                사용자 정의 속성
+
+
+        Raises:
+            CreatePlatformOrderTransferError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["partnerId"] = partner_id
+        if contract_id is not None:
+            request_body["contractId"] = contract_id
+        if memo is not None:
+            request_body["memo"] = memo
+        request_body["paymentId"] = payment_id
+        request_body["orderDetail"] = _serialize_create_platform_order_transfer_body_order_detail(order_detail)
+        if tax_free_amount is not None:
+            request_body["taxFreeAmount"] = tax_free_amount
+        if settlement_start_date is not None:
+            request_body["settlementStartDate"] = settlement_start_date
+        if settlement_date is not None:
+            request_body["settlementDate"] = settlement_date
+        request_body["discounts"] = [_serialize_create_platform_order_transfer_body_discount(item) for item in discounts]
+        request_body["additionalFees"] = [_serialize_create_platform_order_transfer_body_additional_fee(item) for item in additional_fees]
+        if external_payment_detail is not None:
+            request_body["externalPaymentDetail"] = _serialize_create_platform_order_transfer_body_external_payment_detail(external_payment_detail)
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
+        if parameters is not None:
+            request_body["parameters"] = _serialize_transfer_parameters(parameters)
+        if user_defined_properties is not None:
+            request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/transfers/order",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_additional_fee_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFeePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_additional_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_contract_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractNotFoundError(error)
+            try:
+                error = _deserialize_platform_contract_platform_fixed_amount_fee_currency_and_settlement_currency_mismatched_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError(error)
+            try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCurrencyNotSupportedError(error)
+            try:
+                error = _deserialize_platform_discount_share_policies_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformDiscountSharePoliciesNotFoundError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPaymentNotFoundError(error)
+            try:
+                error = _deserialize_platform_product_id_duplicated_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformProductIdDuplicatedError(error)
+            try:
+                error = _deserialize_platform_settlement_amount_exceeded_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementAmountExceededError(error)
+            try:
+                error = _deserialize_platform_settlement_date_earlier_than_settlement_start_date_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementDateEarlierThanSettlementStartDateError(error)
+            try:
+                error = _deserialize_platform_settlement_parameter_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementParameterNotFoundError(error)
+            try:
+                error = _deserialize_platform_settlement_payment_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementPaymentAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_supply_with_vat_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformSettlementTaxFreeAmountExceededPortOnePaymentError(error)
+            try:
+                error = _deserialize_platform_transfer_already_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_user_defined_property_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformUserDefinedPropertyNotFoundError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_create_order_transfer_response(response.json())
     def get_platform_transfer(
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformTransfer:
         """정산건 조회
 
@@ -1589,6 +1666,10 @@ class TransferClient:
         Args:
             id (str):
                 조회하고 싶은 정산건 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1596,6 +1677,8 @@ class TransferClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "GET",
             f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
@@ -1644,6 +1727,7 @@ class TransferClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> PlatformTransfer:
         """정산건 조회
 
@@ -1652,6 +1736,10 @@ class TransferClient:
         Args:
             id (str):
                 조회하고 싶은 정산건 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1659,6 +1747,8 @@ class TransferClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "GET",
             f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
@@ -1707,6 +1797,7 @@ class TransferClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> DeletePlatformTransferResponse:
         """정산건 삭제
 
@@ -1715,6 +1806,10 @@ class TransferClient:
         Args:
             id (str):
                 정산건 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1722,6 +1817,8 @@ class TransferClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/platform/transfers/{quote(id, safe='')}",
@@ -1782,6 +1879,7 @@ class TransferClient:
         self,
         *,
         id: str,
+        test: Optional[bool] = None,
     ) -> DeletePlatformTransferResponse:
         """정산건 삭제
 
@@ -1790,6 +1888,10 @@ class TransferClient:
         Args:
             id (str):
                 정산건 아이디
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 
 
         Raises:
@@ -1797,6 +1899,8 @@ class TransferClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/platform/transfers/{quote(id, safe='')}",

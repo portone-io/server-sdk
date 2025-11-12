@@ -163,6 +163,10 @@ public class TransferClient(
    *
    * 정산 상세 내역을 csv 파일로 다운로드 합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param filter
    * 컬럼 키 목록
    *
@@ -205,6 +209,7 @@ public class TransferClient(
    */
   @JvmName("downloadPlatformTransferSheetSuspend")
   public suspend fun downloadPlatformTransferSheet(
+    test: Boolean? = null,
     filter: PlatformTransferFilterInput? = null,
     fields: List<String>? = null,
   ): String {
@@ -214,14 +219,15 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "transfer-summaries", "sheet-file")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("platform", "transfer-summaries", "sheet-file")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Text.CSV)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Text.CSV)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -242,9 +248,10 @@ public class TransferClient(
   /** @suppress */
   @JvmName("downloadPlatformTransferSheet")
   public fun downloadPlatformTransferSheetFuture(
+    test: Boolean? = null,
     filter: PlatformTransferFilterInput? = null,
     fields: List<String>? = null,
-  ): CompletableFuture<String> = GlobalScope.future { downloadPlatformTransferSheet(filter, fields) }
+  ): CompletableFuture<String> = GlobalScope.future { downloadPlatformTransferSheet(test, filter, fields) }
 
 
   /**
@@ -252,6 +259,10 @@ public class TransferClient(
    *
    * 성공 응답으로 조회된 정산건 요약 리스트와 페이지 정보가 반환됩니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param page
    * 요청할 페이지 정보
    * @param filter
@@ -261,6 +272,7 @@ public class TransferClient(
    */
   @JvmName("getPlatformTransferSummariesSuspend")
   public suspend fun getPlatformTransferSummaries(
+    test: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformTransferFilterInput? = null,
   ): GetPlatformTransferSummariesResponse {
@@ -270,14 +282,15 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "transfer-summaries")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("platform", "transfer-summaries")
+        if (test != null) this.parameters.append("test", test.toString())
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -306,9 +319,10 @@ public class TransferClient(
   /** @suppress */
   @JvmName("getPlatformTransferSummaries")
   public fun getPlatformTransferSummariesFuture(
+    test: Boolean? = null,
     page: PageInput? = null,
     filter: PlatformTransferFilterInput? = null,
-  ): CompletableFuture<GetPlatformTransferSummariesResponse> = GlobalScope.future { getPlatformTransferSummaries(page, filter) }
+  ): CompletableFuture<GetPlatformTransferSummariesResponse> = GlobalScope.future { getPlatformTransferSummaries(test, page, filter) }
 
 
   /**
@@ -316,6 +330,10 @@ public class TransferClient(
    *
    * 성공 응답으로 생성된 수기 정산건 객체가 반환됩니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param partnerId
    * 파트너 아이디
    * @param memo
@@ -332,7 +350,8 @@ public class TransferClient(
    * @param isForTest
    * 테스트 모드 여부
    *
-   * 기본값은 false 입니다.
+   * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+   * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
@@ -340,6 +359,7 @@ public class TransferClient(
    */
   @JvmName("createPlatformManualTransferSuspend")
   public suspend fun createPlatformManualTransfer(
+    test: Boolean? = null,
     partnerId: String,
     memo: String? = null,
     settlementAmount: Long,
@@ -359,15 +379,16 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "transfers", "manual")
+        this.appendPathSegments("platform", "transfers", "manual")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -398,6 +419,7 @@ public class TransferClient(
   /** @suppress */
   @JvmName("createPlatformManualTransfer")
   public fun createPlatformManualTransferFuture(
+    test: Boolean? = null,
     partnerId: String,
     memo: String? = null,
     settlementAmount: Long,
@@ -405,163 +427,7 @@ public class TransferClient(
     settlementDate: String,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateManualTransferResponse> = GlobalScope.future { createPlatformManualTransfer(partnerId, memo, settlementAmount, settlementTaxFreeAmount, settlementDate, isForTest, userDefinedProperties) }
-
-
-  /**
-   * 주문 정산건 생성
-   *
-   * 성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
-   *
-   * @param partnerId
-   * 파트너 아이디
-   * @param contractId
-   * 계약 아이디
-   *
-   * 기본값은 파트너의 기본 계약 아이디 입니다.
-   * @param memo
-   * 메모
-   * @param paymentId
-   * 결제 아이디
-   * @param orderDetail
-   * 주문 정보
-   * @param taxFreeAmount
-   * 주문 면세 금액
-   *
-   * 주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
-   * @param settlementStartDate
-   * 정산 시작일
-   *
-   * 기본값은 결제 일시 입니다.
-   * (yyyy-MM-dd)
-   * @param settlementDate
-   * 정산일
-   *
-   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
-   * (yyyy-MM-dd)
-   * @param discounts
-   * 할인 정보
-   * @param additionalFees
-   * 추가 수수료 정보
-   * @param externalPaymentDetail
-   * 외부 결제 상세 정보
-   *
-   * 해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
-   * @param isForTest
-   * 테스트 모드 여부
-   *
-   * 기본값은 false 입니다.
-   * @param parameters
-   * 정산 파라미터 (실험기능)
-   * @param userDefinedProperties
-   * 사용자 정의 속성
-   *
-   * @throws CreatePlatformOrderTransferException
-   */
-  @JvmName("createPlatformOrderTransferSuspend")
-  public suspend fun createPlatformOrderTransfer(
-    partnerId: String,
-    contractId: String? = null,
-    memo: String? = null,
-    paymentId: String,
-    orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
-    taxFreeAmount: Long? = null,
-    settlementStartDate: String? = null,
-    settlementDate: String? = null,
-    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
-    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
-    externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
-    isForTest: Boolean? = null,
-    parameters: TransferParameters? = null,
-    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CreateOrderTransferResponse {
-    val requestBody = CreatePlatformOrderTransferBody(
-      partnerId = partnerId,
-      contractId = contractId,
-      memo = memo,
-      paymentId = paymentId,
-      orderDetail = orderDetail,
-      taxFreeAmount = taxFreeAmount,
-      settlementStartDate = settlementStartDate,
-      settlementDate = settlementDate,
-      discounts = discounts,
-      additionalFees = additionalFees,
-      externalPaymentDetail = externalPaymentDetail,
-      isForTest = isForTest,
-      parameters = parameters,
-      userDefinedProperties = userDefinedProperties,
-    )
-    val httpResponse = client.post(apiBase) {
-      url {
-        appendPathSegments("platform", "transfers", "order")
-      }
-      headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
-      }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
-    }
-    if (httpResponse.status.value !in 200..299) {
-      val httpBody = httpResponse.body<String>()
-      val httpBodyDecoded = try {
-        json.decodeFromString<CreatePlatformOrderTransferError.Recognized>(httpBody)
-      }
-      catch (_: Exception) {
-        throw UnknownException("Unknown API error: $httpBody")
-      }
-      when (httpBodyDecoded) {
-        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
-        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
-        is PlatformAdditionalFeePoliciesNotFoundError -> throw PlatformAdditionalFeePoliciesNotFoundException(httpBodyDecoded)
-        is PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError -> throw PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException(httpBodyDecoded)
-        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
-        is PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError -> throw PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException(httpBodyDecoded)
-        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
-        is PlatformDiscountSharePoliciesNotFoundError -> throw PlatformDiscountSharePoliciesNotFoundException(httpBodyDecoded)
-        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
-        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
-        is PlatformPaymentNotFoundError -> throw PlatformPaymentNotFoundException(httpBodyDecoded)
-        is PlatformProductIdDuplicatedError -> throw PlatformProductIdDuplicatedException(httpBodyDecoded)
-        is PlatformSettlementAmountExceededError -> throw PlatformSettlementAmountExceededException(httpBodyDecoded)
-        is PlatformSettlementDateEarlierThanSettlementStartDateError -> throw PlatformSettlementDateEarlierThanSettlementStartDateException(httpBodyDecoded)
-        is PlatformSettlementParameterNotFoundError -> throw PlatformSettlementParameterNotFoundException(httpBodyDecoded)
-        is PlatformSettlementPaymentAmountExceededPortOnePaymentError -> throw PlatformSettlementPaymentAmountExceededPortOnePaymentException(httpBodyDecoded)
-        is PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError -> throw PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentException(httpBodyDecoded)
-        is PlatformSettlementTaxFreeAmountExceededPortOnePaymentError -> throw PlatformSettlementTaxFreeAmountExceededPortOnePaymentException(httpBodyDecoded)
-        is PlatformTransferAlreadyExistsError -> throw PlatformTransferAlreadyExistsException(httpBodyDecoded)
-        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
-        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
-      }
-    }
-    val httpBody = httpResponse.body<String>()
-    return try {
-      json.decodeFromString<CreateOrderTransferResponse>(httpBody)
-    }
-    catch (_: Exception) {
-      throw UnknownException("Unknown API response: $httpBody")
-    }
-  }
-
-  /** @suppress */
-  @JvmName("createPlatformOrderTransfer")
-  public fun createPlatformOrderTransferFuture(
-    partnerId: String,
-    contractId: String? = null,
-    memo: String? = null,
-    paymentId: String,
-    orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
-    taxFreeAmount: Long? = null,
-    settlementStartDate: String? = null,
-    settlementDate: String? = null,
-    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
-    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
-    externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
-    isForTest: Boolean? = null,
-    parameters: TransferParameters? = null,
-    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateOrderTransferResponse> = GlobalScope.future { createPlatformOrderTransfer(partnerId, contractId, memo, paymentId, orderDetail, taxFreeAmount, settlementStartDate, settlementDate, discounts, additionalFees, externalPaymentDetail, isForTest, parameters, userDefinedProperties) }
+  ): CompletableFuture<CreateManualTransferResponse> = GlobalScope.future { createPlatformManualTransfer(test, partnerId, memo, settlementAmount, settlementTaxFreeAmount, settlementDate, isForTest, userDefinedProperties) }
 
 
   /**
@@ -569,6 +435,10 @@ public class TransferClient(
    *
    * 성공 응답으로 생성된 주문 취소 정산건 객체가 반환됩니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param partnerId
    * 파트너 아이디
    * @param paymentId
@@ -604,7 +474,8 @@ public class TransferClient(
    * @param isForTest
    * 테스트 모드 여부
    *
-   * 기본값은 false 입니다.
+   * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+   * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param userDefinedProperties
    * 사용자 정의 속성
    *
@@ -612,6 +483,7 @@ public class TransferClient(
    */
   @JvmName("createPlatformOrderCancelTransferSuspend")
   public suspend fun createPlatformOrderCancelTransfer(
+    test: Boolean? = null,
     partnerId: String? = null,
     paymentId: String? = null,
     transferId: String? = null,
@@ -643,15 +515,16 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("platform", "transfers", "order-cancel")
+        this.appendPathSegments("platform", "transfers", "order-cancel")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -700,6 +573,7 @@ public class TransferClient(
   /** @suppress */
   @JvmName("createPlatformOrderCancelTransfer")
   public fun createPlatformOrderCancelTransferFuture(
+    test: Boolean? = null,
     partnerId: String? = null,
     paymentId: String? = null,
     transferId: String? = null,
@@ -713,7 +587,171 @@ public class TransferClient(
     externalCancellationDetail: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail? = null,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateOrderCancelTransferResponse> = GlobalScope.future { createPlatformOrderCancelTransfer(partnerId, paymentId, transferId, cancellationId, memo, orderDetail, taxFreeAmount, discounts, settlementStartDate, settlementDate, externalCancellationDetail, isForTest, userDefinedProperties) }
+  ): CompletableFuture<CreateOrderCancelTransferResponse> = GlobalScope.future { createPlatformOrderCancelTransfer(test, partnerId, paymentId, transferId, cancellationId, memo, orderDetail, taxFreeAmount, discounts, settlementStartDate, settlementDate, externalCancellationDetail, isForTest, userDefinedProperties) }
+
+
+  /**
+   * 주문 정산건 생성
+   *
+   * 성공 응답으로 생성된 주문 정산건 객체가 반환됩니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param partnerId
+   * 파트너 아이디
+   * @param contractId
+   * 계약 아이디
+   *
+   * 기본값은 파트너의 기본 계약 아이디 입니다.
+   * @param memo
+   * 메모
+   * @param paymentId
+   * 결제 아이디
+   * @param orderDetail
+   * 주문 정보
+   * @param taxFreeAmount
+   * 주문 면세 금액
+   *
+   * 주문 항목과 면세 금액을 같이 전달하시면 최종 면세 금액은 주문 항목의 면세 금액이 아닌 전달해주신 면세 금액으로 적용됩니다.
+   * @param settlementStartDate
+   * 정산 시작일
+   *
+   * 기본값은 결제 일시 입니다.
+   * (yyyy-MM-dd)
+   * @param settlementDate
+   * 정산일
+   *
+   * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
+   * (yyyy-MM-dd)
+   * @param discounts
+   * 할인 정보
+   * @param additionalFees
+   * 추가 수수료 정보
+   * @param externalPaymentDetail
+   * 외부 결제 상세 정보
+   *
+   * 해당 정보가 존재하는 경우 외부 결제 정산건 으로 등록되고, 존재하지않은 경우 포트원 결제 정산건으로 등록됩니다.
+   * @param isForTest
+   * 테스트 모드 여부
+   *
+   * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+   * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param parameters
+   * 정산 파라미터 (실험기능)
+   * @param userDefinedProperties
+   * 사용자 정의 속성
+   *
+   * @throws CreatePlatformOrderTransferException
+   */
+  @JvmName("createPlatformOrderTransferSuspend")
+  public suspend fun createPlatformOrderTransfer(
+    test: Boolean? = null,
+    partnerId: String,
+    contractId: String? = null,
+    memo: String? = null,
+    paymentId: String,
+    orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
+    taxFreeAmount: Long? = null,
+    settlementStartDate: String? = null,
+    settlementDate: String? = null,
+    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
+    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
+    externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
+    isForTest: Boolean? = null,
+    parameters: TransferParameters? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+  ): CreateOrderTransferResponse {
+    val requestBody = CreatePlatformOrderTransferBody(
+      partnerId = partnerId,
+      contractId = contractId,
+      memo = memo,
+      paymentId = paymentId,
+      orderDetail = orderDetail,
+      taxFreeAmount = taxFreeAmount,
+      settlementStartDate = settlementStartDate,
+      settlementDate = settlementDate,
+      discounts = discounts,
+      additionalFees = additionalFees,
+      externalPaymentDetail = externalPaymentDetail,
+      isForTest = isForTest,
+      parameters = parameters,
+      userDefinedProperties = userDefinedProperties,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "transfers", "order")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CreatePlatformOrderTransferError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformAdditionalFeePoliciesNotFoundError -> throw PlatformAdditionalFeePoliciesNotFoundException(httpBodyDecoded)
+        is PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError -> throw PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException(httpBodyDecoded)
+        is PlatformContractNotFoundError -> throw PlatformContractNotFoundException(httpBodyDecoded)
+        is PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError -> throw PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedException(httpBodyDecoded)
+        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
+        is PlatformDiscountSharePoliciesNotFoundError -> throw PlatformDiscountSharePoliciesNotFoundException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPaymentNotFoundError -> throw PlatformPaymentNotFoundException(httpBodyDecoded)
+        is PlatformProductIdDuplicatedError -> throw PlatformProductIdDuplicatedException(httpBodyDecoded)
+        is PlatformSettlementAmountExceededError -> throw PlatformSettlementAmountExceededException(httpBodyDecoded)
+        is PlatformSettlementDateEarlierThanSettlementStartDateError -> throw PlatformSettlementDateEarlierThanSettlementStartDateException(httpBodyDecoded)
+        is PlatformSettlementParameterNotFoundError -> throw PlatformSettlementParameterNotFoundException(httpBodyDecoded)
+        is PlatformSettlementPaymentAmountExceededPortOnePaymentError -> throw PlatformSettlementPaymentAmountExceededPortOnePaymentException(httpBodyDecoded)
+        is PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError -> throw PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentException(httpBodyDecoded)
+        is PlatformSettlementTaxFreeAmountExceededPortOnePaymentError -> throw PlatformSettlementTaxFreeAmountExceededPortOnePaymentException(httpBodyDecoded)
+        is PlatformTransferAlreadyExistsError -> throw PlatformTransferAlreadyExistsException(httpBodyDecoded)
+        is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CreateOrderTransferResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("createPlatformOrderTransfer")
+  public fun createPlatformOrderTransferFuture(
+    test: Boolean? = null,
+    partnerId: String,
+    contractId: String? = null,
+    memo: String? = null,
+    paymentId: String,
+    orderDetail: CreatePlatformOrderTransferBodyOrderDetail,
+    taxFreeAmount: Long? = null,
+    settlementStartDate: String? = null,
+    settlementDate: String? = null,
+    discounts: List<CreatePlatformOrderTransferBodyDiscount>,
+    additionalFees: List<CreatePlatformOrderTransferBodyAdditionalFee>,
+    externalPaymentDetail: CreatePlatformOrderTransferBodyExternalPaymentDetail? = null,
+    isForTest: Boolean? = null,
+    parameters: TransferParameters? = null,
+    userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+  ): CompletableFuture<CreateOrderTransferResponse> = GlobalScope.future { createPlatformOrderTransfer(test, partnerId, contractId, memo, paymentId, orderDetail, taxFreeAmount, settlementStartDate, settlementDate, discounts, additionalFees, externalPaymentDetail, isForTest, parameters, userDefinedProperties) }
 
 
   /**
@@ -723,22 +761,28 @@ public class TransferClient(
    *
    * @param id
    * 조회하고 싶은 정산건 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformTransferException
    */
   @JvmName("getPlatformTransferSuspend")
   public suspend fun getPlatformTransfer(
     id: String,
+    test: Boolean? = null,
   ): PlatformTransfer {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "transfers", id.toString())
+        this.appendPathSegments("platform", "transfers", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -769,7 +813,8 @@ public class TransferClient(
   @JvmName("getPlatformTransfer")
   public fun getPlatformTransferFuture(
     id: String,
-  ): CompletableFuture<PlatformTransfer> = GlobalScope.future { getPlatformTransfer(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<PlatformTransfer> = GlobalScope.future { getPlatformTransfer(id, test) }
 
 
   /**
@@ -779,22 +824,28 @@ public class TransferClient(
    *
    * @param id
    * 정산건 아이디
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws DeletePlatformTransferException
    */
   @JvmName("deletePlatformTransferSuspend")
   public suspend fun deletePlatformTransfer(
     id: String,
+    test: Boolean? = null,
   ): DeletePlatformTransferResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("platform", "transfers", id.toString())
+        this.appendPathSegments("platform", "transfers", id.toString())
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -827,7 +878,8 @@ public class TransferClient(
   @JvmName("deletePlatformTransfer")
   public fun deletePlatformTransferFuture(
     id: String,
-  ): CompletableFuture<DeletePlatformTransferResponse> = GlobalScope.future { deletePlatformTransfer(id) }
+    test: Boolean? = null,
+  ): CompletableFuture<DeletePlatformTransferResponse> = GlobalScope.future { deletePlatformTransfer(id, test) }
 
   override fun close() {
     client.close()

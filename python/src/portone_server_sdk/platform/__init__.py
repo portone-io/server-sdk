@@ -22,7 +22,6 @@ from .._generated.platform.errors.get_platform_discount_share_policy_filter_opti
 from .._generated.platform.errors.get_platform_discount_share_policy_schedule_error import (
     GetPlatformDiscountSharePolicyScheduleError,
 )
-from .._generated.platform.errors.get_platform_error import GetPlatformError
 from .._generated.platform.errors.get_platform_partner_filter_options_error import (
     GetPlatformPartnerFilterOptionsError,
 )
@@ -81,7 +80,6 @@ from .._generated.platform.cancel_platform_partner_schedule_response import (
 from .._generated.platform.date_range import DateRange
 from .._generated.platform.day_of_week import DayOfWeek
 from .._generated.platform.month_day import MonthDay
-from .._generated.platform.platform import Platform
 from .._generated.platform.platform_account import PlatformAccount
 from .._generated.platform.platform_account_status import PlatformAccountStatus
 from .._generated.platform.platform_account_transfer_status_stats import (
@@ -306,7 +304,6 @@ __all__ = [
     "GetPlatformContractScheduleError",
     "GetPlatformDiscountSharePolicyFilterOptionsError",
     "GetPlatformDiscountSharePolicyScheduleError",
-    "GetPlatformError",
     "GetPlatformPartnerFilterOptionsError",
     "GetPlatformPartnerScheduleError",
     "GetPlatformSettingError",
@@ -337,7 +334,6 @@ __all__ = [
     "DateRange",
     "DayOfWeek",
     "MonthDay",
-    "Platform",
     "PlatformAccount",
     "PlatformAccountStatus",
     "PlatformAccountTransferStatusStats",

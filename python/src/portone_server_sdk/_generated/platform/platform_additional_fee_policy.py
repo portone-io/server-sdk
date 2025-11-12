@@ -31,6 +31,7 @@ class PlatformAdditionalFeePolicy:
     """변경 적용 시점
     (RFC 3339 date-time)
     """
+    is_for_test: bool
     memo: Optional[str] = field(default=None)
     """해당 추가 수수료 정책에 대한 메모
     """
@@ -47,6 +48,7 @@ def _serialize_platform_additional_fee_policy(obj: PlatformAdditionalFeePolicy) 
     entity["vatPayer"] = _serialize_platform_payer(obj.vat_payer)
     entity["isArchived"] = obj.is_archived
     entity["appliedAt"] = obj.applied_at
+    entity["isForTest"] = obj.is_for_test
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -88,10 +90,15 @@ def _deserialize_platform_additional_fee_policy(obj: Any) -> PlatformAdditionalF
     applied_at = obj["appliedAt"]
     if not isinstance(applied_at, str):
         raise ValueError(f"{repr(applied_at)} is not str")
+    if "isForTest" not in obj:
+        raise KeyError(f"'isForTest' is not in {obj}")
+    is_for_test = obj["isForTest"]
+    if not isinstance(is_for_test, bool):
+        raise ValueError(f"{repr(is_for_test)} is not bool")
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformAdditionalFeePolicy(id, graphql_id, name, fee, vat_payer, is_archived, applied_at, memo)
+    return PlatformAdditionalFeePolicy(id, graphql_id, name, fee, vat_payer, is_archived, applied_at, is_for_test, memo)

@@ -65,6 +65,9 @@ class PlatformTransferFilterInput:
     """
     is_for_test: Optional[bool] = field(default=None)
     """테스트 모드 여부
+
+    Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+    Query Parameter의 test와 Filter의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
     """
 
 

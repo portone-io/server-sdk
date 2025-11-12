@@ -45,6 +45,8 @@ import io.portone.sdk.server.errors.CancelTaxFreeAmountExceedsCancellableTaxFree
 import io.portone.sdk.server.errors.CancelTaxFreeAmountExceedsCancellableTaxFreeAmountException
 import io.portone.sdk.server.errors.CancellableAmountConsistencyBrokenError
 import io.portone.sdk.server.errors.CancellableAmountConsistencyBrokenException
+import io.portone.sdk.server.errors.CapturePaymentError
+import io.portone.sdk.server.errors.CapturePaymentException
 import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
 import io.portone.sdk.server.errors.CloseVirtualAccountError
@@ -121,6 +123,8 @@ import io.portone.sdk.server.payment.CancelPaymentBody
 import io.portone.sdk.server.payment.CancelPaymentBodyRefundAccount
 import io.portone.sdk.server.payment.CancelPaymentResponse
 import io.portone.sdk.server.payment.CancelRequester
+import io.portone.sdk.server.payment.CapturePaymentBody
+import io.portone.sdk.server.payment.CapturePaymentResponse
 import io.portone.sdk.server.payment.CloseVirtualAccountResponse
 import io.portone.sdk.server.payment.ConfirmEscrowBody
 import io.portone.sdk.server.payment.ConfirmEscrowResponse
@@ -230,14 +234,14 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payment-events-by-cursor")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("payment-events-by-cursor")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -312,14 +316,14 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments-by-cursor")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("payments-by-cursor")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -465,15 +469,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "billing-key")
+        this.appendPathSegments("payments", paymentId.toString(), "billing-key")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -603,15 +607,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "cancel")
+        this.appendPathSegments("payments", paymentId.toString(), "cancel")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -660,6 +664,68 @@ public class PaymentClient(
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
   ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, promotionDiscountRetainOption, currentCancellableAmount, refundAccount) }
+
+
+  /**
+   * 수동 매입
+   *
+   * 수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   *
+   * @throws CapturePaymentException
+   */
+  @JvmName("capturePaymentSuspend")
+  public suspend fun capturePayment(
+    paymentId: String,
+  ): CapturePaymentResponse {
+    val requestBody = CapturePaymentBody(
+      storeId = storeId,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("payments", paymentId.toString(), "capture")
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<CapturePaymentError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is PaymentNotPaidError -> throw PaymentNotPaidException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<CapturePaymentResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("capturePayment")
+  public fun capturePaymentFuture(
+    paymentId: String,
+  ): CompletableFuture<CapturePaymentResponse> = GlobalScope.future { capturePayment(paymentId) }
 
 
   /**
@@ -717,15 +783,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "confirm")
+        this.appendPathSegments("payments", paymentId.toString(), "confirm")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -794,15 +860,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "escrow", "complete")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "complete")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -879,15 +945,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -968,15 +1034,15 @@ public class PaymentClient(
     )
     val httpResponse = client.patch(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
+        this.appendPathSegments("payments", paymentId.toString(), "escrow", "logistics")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1117,15 +1183,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "instant")
+        this.appendPathSegments("payments", paymentId.toString(), "instant")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1213,15 +1279,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "pre-register")
+        this.appendPathSegments("payments", paymentId.toString(), "pre-register")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1282,15 +1348,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "register-store-receipt")
+        this.appendPathSegments("payments", paymentId.toString(), "register-store-receipt")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1351,15 +1417,15 @@ public class PaymentClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "resend-webhook")
+        this.appendPathSegments("payments", paymentId.toString(), "resend-webhook")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1411,14 +1477,14 @@ public class PaymentClient(
   ): GetPaymentTransactionsResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "transactions")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payments", paymentId.toString(), "transactions")
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1467,14 +1533,14 @@ public class PaymentClient(
   ): CloseVirtualAccountResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "virtual-account", "close")
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payments", paymentId.toString(), "virtual-account", "close")
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1525,14 +1591,14 @@ public class PaymentClient(
   ): Payment {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payments", paymentId.toString())
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -1592,14 +1658,14 @@ public class PaymentClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payments")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("payments")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()

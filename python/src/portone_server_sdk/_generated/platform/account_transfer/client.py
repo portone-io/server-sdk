@@ -37,6 +37,7 @@ class AccountTransferClient:
     def get_platform_account_transfers(
         self,
         *,
+        test: Optional[bool] = None,
         is_for_test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: Optional[PlatformAccountTransferFilter] = None,
@@ -46,8 +47,13 @@ class AccountTransferClient:
         여러 이체 내역을 조회합니다.
 
         Args:
-            is_for_test (bool, optional):
+            test (bool, optional):
+                테스트 모드 여부
 
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            is_for_test (bool, optional):
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
 
             filter (PlatformAccountTransferFilter, optional):
@@ -66,6 +72,8 @@ class AccountTransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_account_transfer_filter(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "GET",
@@ -108,6 +116,7 @@ class AccountTransferClient:
     async def get_platform_account_transfers_async(
         self,
         *,
+        test: Optional[bool] = None,
         is_for_test: Optional[bool] = None,
         page: Optional[PageInput] = None,
         filter: Optional[PlatformAccountTransferFilter] = None,
@@ -117,8 +126,13 @@ class AccountTransferClient:
         여러 이체 내역을 조회합니다.
 
         Args:
-            is_for_test (bool, optional):
+            test (bool, optional):
+                테스트 모드 여부
 
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            is_for_test (bool, optional):
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             page (PageInput, optional):
 
             filter (PlatformAccountTransferFilter, optional):
@@ -137,6 +151,8 @@ class AccountTransferClient:
         if filter is not None:
             request_body["filter"] = _serialize_platform_account_transfer_filter(filter)
         query = []
+        if test is not None:
+            query.append(("test", test))
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "GET",

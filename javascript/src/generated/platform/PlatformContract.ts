@@ -34,4 +34,5 @@ export type PlatformContract = {
 	 * (RFC 3339 date-time)
 	 */
 	appliedAt: string
+	isForTest: boolean
 }

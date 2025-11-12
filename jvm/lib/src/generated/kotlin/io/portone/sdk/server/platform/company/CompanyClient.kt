@@ -90,15 +90,15 @@ public class CompanyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("b2b", "companies", "business-info")
+        this.appendPathSegments("b2b", "companies", "business-info")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -139,22 +139,28 @@ public class CompanyClient(
    *
    * @param businessRegistrationNumber
    * 사업자등록번호
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
    * @throws GetPlatformCompanyStateException
    */
   @JvmName("getPlatformCompanyStateSuspend")
   public suspend fun getPlatformCompanyState(
     businessRegistrationNumber: String,
+    test: Boolean? = null,
   ): GetPlatformCompanyStatePayload {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state")
+        this.appendPathSegments("platform", "companies", businessRegistrationNumber.toString(), "state")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -186,7 +192,8 @@ public class CompanyClient(
   @JvmName("getPlatformCompanyState")
   public fun getPlatformCompanyStateFuture(
     businessRegistrationNumber: String,
-  ): CompletableFuture<GetPlatformCompanyStatePayload> = GlobalScope.future { getPlatformCompanyState(businessRegistrationNumber) }
+    test: Boolean? = null,
+  ): CompletableFuture<GetPlatformCompanyStatePayload> = GlobalScope.future { getPlatformCompanyState(businessRegistrationNumber, test) }
 
   override fun close() {
     client.close()

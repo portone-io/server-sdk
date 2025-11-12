@@ -37,6 +37,7 @@ from ..payment.apply_escrow_logistics_response import ApplyEscrowLogisticsRespon
 from ..payment.cancel_payment_body_refund_account import CancelPaymentBodyRefundAccount, _deserialize_cancel_payment_body_refund_account, _serialize_cancel_payment_body_refund_account
 from ..payment.cancel_payment_response import CancelPaymentResponse, _deserialize_cancel_payment_response, _serialize_cancel_payment_response
 from ..payment.cancel_requester import CancelRequester, _deserialize_cancel_requester, _serialize_cancel_requester
+from ..payment.capture_payment_response import CapturePaymentResponse, _deserialize_capture_payment_response, _serialize_capture_payment_response
 from ..common.cash_receipt_input import CashReceiptInput, _deserialize_cash_receipt_input, _serialize_cash_receipt_input
 from ..payment.close_virtual_account_response import CloseVirtualAccountResponse, _deserialize_close_virtual_account_response, _serialize_close_virtual_account_response
 from ..payment.confirm_escrow_response import ConfirmEscrowResponse, _deserialize_confirm_escrow_response, _serialize_confirm_escrow_response
@@ -1242,6 +1243,152 @@ class PaymentClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
+    def capture_payment(
+        self,
+        *,
+        payment_id: str,
+    ) -> CapturePaymentResponse:
+        """수동 매입
+
+        수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+
+
+        Raises:
+            CapturePaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        query = []
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/capture",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_capture_payment_response(response.json())
+    async def capture_payment_async(
+        self,
+        *,
+        payment_id: str,
+    ) -> CapturePaymentResponse:
+        """수동 매입
+
+        수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+
+
+        Raises:
+            CapturePaymentError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        query = []
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/capture",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_payment_not_paid_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotPaidError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_capture_payment_response(response.json())
     def confirm_payment(
         self,
         *,

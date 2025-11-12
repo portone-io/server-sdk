@@ -2,6 +2,7 @@ from .._generated.payment.errors.apply_escrow_logistics_error import (
     ApplyEscrowLogisticsError,
 )
 from .._generated.payment.errors.cancel_payment_error import CancelPaymentError
+from .._generated.payment.errors.capture_payment_error import CapturePaymentError
 from .._generated.payment.errors.close_virtual_account_error import (
     CloseVirtualAccountError,
 )
@@ -56,6 +57,8 @@ from .._generated.payment.cancelled_payment_event import CancelledPaymentEvent
 from .._generated.payment.cancelled_payment_transaction import (
     CancelledPaymentTransaction,
 )
+from .._generated.payment.capture_payment_body import CapturePaymentBody
+from .._generated.payment.capture_payment_response import CapturePaymentResponse
 from .._generated.payment.close_virtual_account_response import (
     CloseVirtualAccountResponse,
 )
@@ -241,6 +244,7 @@ from .._generated.payment.client import PaymentClient
 __all__ = [
     "ApplyEscrowLogisticsError",
     "CancelPaymentError",
+    "CapturePaymentError",
     "CloseVirtualAccountError",
     "ConfirmEscrowError",
     "ConfirmPaymentError",
@@ -271,6 +275,8 @@ __all__ = [
     "CancelledPaymentEscrow",
     "CancelledPaymentEvent",
     "CancelledPaymentTransaction",
+    "CapturePaymentBody",
+    "CapturePaymentResponse",
     "CloseVirtualAccountResponse",
     "ConfirmEscrowBody",
     "ConfirmEscrowResponse",

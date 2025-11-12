@@ -38,4 +38,5 @@ export type PlatformPartner = {
 	appliedAt: string
 	/** 사용자 정의 속성 */
 	userDefinedProperties: PlatformProperties
+	isForTest: boolean
 }

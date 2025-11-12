@@ -106,14 +106,14 @@ public class PaymentScheduleClient(
   ): PaymentSchedule {
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payment-schedules", paymentScheduleId.toString())
-        if (storeId != null) parameters.append("storeId", storeId.toString())
+        this.appendPathSegments("payment-schedules", paymentScheduleId.toString())
+        if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -178,14 +178,14 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        appendPathSegments("payment-schedules")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("payment-schedules")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -248,14 +248,14 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.delete(apiBase) {
       url {
-        appendPathSegments("payment-schedules")
-        parameters.append("requestBody", json.encodeToString(requestBody))
+        this.appendPathSegments("payment-schedules")
+        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
@@ -319,15 +319,15 @@ public class PaymentScheduleClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        appendPathSegments("payments", paymentId.toString(), "schedule")
+        this.appendPathSegments("payments", paymentId.toString(), "schedule")
       }
       headers {
-        append(HttpHeaders.Authorization, "PortOne $apiSecret")
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
       }
-      contentType(ContentType.Application.Json)
-      accept(ContentType.Application.Json)
-      userAgent(USER_AGENT)
-      setBody(json.encodeToString(requestBody))
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
     }
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
