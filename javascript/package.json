@@ -13,6 +13,11 @@
     "name": "portone-dx",
     "email": "support@portone.io"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/portone-io/server-sdk.git",
+    "directory": "javascript"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

@@ -120,7 +120,8 @@ jobs:
       - name: Setup Node.js 20.x
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          # provenance requires node>=24
+          node-version: 24
           cache: pnpm
           cache-dependency-path: ./javascript/pnpm-lock.yaml
 
