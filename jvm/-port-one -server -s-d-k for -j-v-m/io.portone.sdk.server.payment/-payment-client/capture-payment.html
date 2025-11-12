@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>getPlatform</title>
+    <title>capturePayment</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
@@ -46,7 +46,7 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.21.1        </div>
+0.21.1-2-g9cbf86876c        </div>
         <div class="navigation-controls">
         <div class="filter-section filter-section_loading" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active=""
@@ -104,12 +104,12 @@
                 </div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="member" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.platform/PlatformClient/getPlatform/#/PointingToDeclaration//1440829338">
-  <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.platform</a><span class="delimiter">/</span><a href="index.html">PlatformClient</a><span class="delimiter">/</span><span class="current">getPlatform</span></div>
+<div class="main-content" data-page-type="member" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment/PaymentClient/capturePayment/#kotlin.String/PointingToDeclaration//1440829338">
+  <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.payment</a><span class="delimiter">/</span><a href="index.html">PaymentClient</a><span class="delimiter">/</span><span class="current">capturePayment</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>get</span><wbr></wbr><span><span>Platform</span></span></h1>
+    <h1 class="cover"><span>capture</span><wbr></wbr><span><span>Payment</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;getPlatformSuspend&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-platform.html"><span class="token function">getPlatform</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-platform/index.html">Platform</a></div><p class="paragraph">고객사의 플랫폼 정보를 조회합니다. 요청된 Authorization header 를 통해 자동으로 요청자의 고객사를 특정합니다.</p><h4 class="">Throws</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../io.portone.sdk.server.errors/-get-platform-exception/index.html"><span>Get</span><wbr></wbr><span>Platform</span><wbr></wbr><span><span>Exception</span></span></a></div></span></div><div></div></div></div></div></div></div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;capturePaymentSuspend&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="capture-payment.html"><span class="token function">capturePayment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">paymentId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-capture-payment-response/index.html">CapturePaymentResponse</a></div><p class="paragraph">수동 매입</p><p class="paragraph">수동 매입을 요청합니다. PG 및 포트원과의 사전 협의가 필요합니다.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>payment</span><wbr></wbr><span><span>Id</span></span></u></div></span></div><div><div class="title"><p class="paragraph">결제 건 아이디</p></div></div></div></div></div><h4 class="">Throws</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../io.portone.sdk.server.errors/-capture-payment-exception/index.html"><span>Capture</span><wbr></wbr><span>Payment</span><wbr></wbr><span><span>Exception</span></span></a></div></span></div><div></div></div></div></div></div></div>
 </div>
     <div class="footer">
         <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
