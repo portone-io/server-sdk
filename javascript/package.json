@@ -183,7 +183,7 @@
     "@biomejs/biome": "^2.3.5",
     "@changesets/cli": "^2.29.7",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.2",
     "@vitest/ui": "^3.1.4",
     "jsr": "^0.13.5",
     "typedoc": "^0.28.14",
