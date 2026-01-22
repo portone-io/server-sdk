@@ -17,7 +17,7 @@ public sealed interface PortOneVersion {
   public data object V1 : PortOneVersion {
     override val value: String = "V1"
   }
-  private object V1Serializer : KSerializer<V1> {
+  public object V1Serializer : KSerializer<V1> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(V1::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): V1 = decoder.decodeString().let {
       if (it != "V1") {
@@ -26,13 +26,13 @@ public sealed interface PortOneVersion {
         return V1
       }
     }
-    override fun serialize(encoder: Encoder, value: V1) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: V1): Unit = encoder.encodeString(value.value)
   }
   @Serializable(V2Serializer::class)
   public data object V2 : PortOneVersion {
     override val value: String = "V2"
   }
-  private object V2Serializer : KSerializer<V2> {
+  public object V2Serializer : KSerializer<V2> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(V2::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): V2 = decoder.decodeString().let {
       if (it != "V2") {
@@ -41,7 +41,7 @@ public sealed interface PortOneVersion {
         return V2
       }
     }
-    override fun serialize(encoder: Encoder, value: V2) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: V2): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -49,7 +49,7 @@ public sealed interface PortOneVersion {
 }
 
 
-private object PortOneVersionSerializer : KSerializer<PortOneVersion> {
+public object PortOneVersionSerializer : KSerializer<PortOneVersion> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PortOneVersion::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PortOneVersion {
     val value = decoder.decodeString()
@@ -59,5 +59,5 @@ private object PortOneVersionSerializer : KSerializer<PortOneVersion> {
       else -> PortOneVersion.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PortOneVersion) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PortOneVersion): Unit = encoder.encodeString(value.value)
 }

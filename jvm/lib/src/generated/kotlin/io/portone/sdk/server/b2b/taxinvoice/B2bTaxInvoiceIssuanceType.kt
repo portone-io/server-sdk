@@ -18,7 +18,7 @@ public sealed interface B2bTaxInvoiceIssuanceType {
   public data object Normal : B2bTaxInvoiceIssuanceType {
     override val value: String = "NORMAL"
   }
-  private object NormalSerializer : KSerializer<Normal> {
+  public object NormalSerializer : KSerializer<Normal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
@@ -27,14 +27,14 @@ public sealed interface B2bTaxInvoiceIssuanceType {
         return Normal
       }
     }
-    override fun serialize(encoder: Encoder, value: Normal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Normal): Unit = encoder.encodeString(value.value)
   }
   /** 역발행 */
   @Serializable(ReverseSerializer::class)
   public data object Reverse : B2bTaxInvoiceIssuanceType {
     override val value: String = "REVERSE"
   }
-  private object ReverseSerializer : KSerializer<Reverse> {
+  public object ReverseSerializer : KSerializer<Reverse> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Reverse::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Reverse = decoder.decodeString().let {
       if (it != "REVERSE") {
@@ -43,7 +43,7 @@ public sealed interface B2bTaxInvoiceIssuanceType {
         return Reverse
       }
     }
-    override fun serialize(encoder: Encoder, value: Reverse) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Reverse): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface B2bTaxInvoiceIssuanceType {
 }
 
 
-private object B2bTaxInvoiceIssuanceTypeSerializer : KSerializer<B2bTaxInvoiceIssuanceType> {
+public object B2bTaxInvoiceIssuanceTypeSerializer : KSerializer<B2bTaxInvoiceIssuanceType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(B2bTaxInvoiceIssuanceType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): B2bTaxInvoiceIssuanceType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object B2bTaxInvoiceIssuanceTypeSerializer : KSerializer<B2bTaxInvoiceIs
       else -> B2bTaxInvoiceIssuanceType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: B2bTaxInvoiceIssuanceType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: B2bTaxInvoiceIssuanceType): Unit = encoder.encodeString(value.value)
 }

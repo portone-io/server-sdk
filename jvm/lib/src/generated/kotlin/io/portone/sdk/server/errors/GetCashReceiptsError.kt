@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,11 +24,12 @@ internal sealed interface GetCashReceiptsError {
 }
 
 
-private object GetCashReceiptsErrorSerializer : JsonContentPolymorphicSerializer<GetCashReceiptsError>(GetCashReceiptsError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetCashReceiptsError.Unrecognized.serializer()
-  }
+internal object GetCashReceiptsErrorSerializer : JsonContentPolymorphicSerializer<GetCashReceiptsError>(GetCashReceiptsError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetCashReceiptsError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetCashReceiptsError.Unrecognized.serializer()
+    }
 }

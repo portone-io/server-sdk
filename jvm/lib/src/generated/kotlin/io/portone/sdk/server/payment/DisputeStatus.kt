@@ -22,7 +22,7 @@ public sealed interface DisputeStatus {
   public data object Unresolved : DisputeStatus {
     override val value: String = "UNRESOLVED"
   }
-  private object UnresolvedSerializer : KSerializer<Unresolved> {
+  public object UnresolvedSerializer : KSerializer<Unresolved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unresolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unresolved = decoder.decodeString().let {
       if (it != "UNRESOLVED") {
@@ -31,7 +31,7 @@ public sealed interface DisputeStatus {
         return Unresolved
       }
     }
-    override fun serialize(encoder: Encoder, value: Unresolved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Unresolved): Unit = encoder.encodeString(value.value)
   }
   /**
    * 분쟁 해소 상태
@@ -42,7 +42,7 @@ public sealed interface DisputeStatus {
   public data object Resolved : DisputeStatus {
     override val value: String = "RESOLVED"
   }
-  private object ResolvedSerializer : KSerializer<Resolved> {
+  public object ResolvedSerializer : KSerializer<Resolved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Resolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Resolved = decoder.decodeString().let {
       if (it != "RESOLVED") {
@@ -51,7 +51,7 @@ public sealed interface DisputeStatus {
         return Resolved
       }
     }
-    override fun serialize(encoder: Encoder, value: Resolved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Resolved): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -59,7 +59,7 @@ public sealed interface DisputeStatus {
 }
 
 
-private object DisputeStatusSerializer : KSerializer<DisputeStatus> {
+public object DisputeStatusSerializer : KSerializer<DisputeStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): DisputeStatus {
     val value = decoder.decodeString()
@@ -69,5 +69,5 @@ private object DisputeStatusSerializer : KSerializer<DisputeStatus> {
       else -> DisputeStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: DisputeStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: DisputeStatus): Unit = encoder.encodeString(value.value)
 }

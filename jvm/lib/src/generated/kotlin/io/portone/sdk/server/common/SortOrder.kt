@@ -18,7 +18,7 @@ public sealed interface SortOrder {
   public data object Desc : SortOrder {
     override val value: String = "DESC"
   }
-  private object DescSerializer : KSerializer<Desc> {
+  public object DescSerializer : KSerializer<Desc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Desc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Desc = decoder.decodeString().let {
       if (it != "DESC") {
@@ -27,14 +27,14 @@ public sealed interface SortOrder {
         return Desc
       }
     }
-    override fun serialize(encoder: Encoder, value: Desc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Desc): Unit = encoder.encodeString(value.value)
   }
   /** 오름차순 */
   @Serializable(AscSerializer::class)
   public data object Asc : SortOrder {
     override val value: String = "ASC"
   }
-  private object AscSerializer : KSerializer<Asc> {
+  public object AscSerializer : KSerializer<Asc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Asc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Asc = decoder.decodeString().let {
       if (it != "ASC") {
@@ -43,7 +43,7 @@ public sealed interface SortOrder {
         return Asc
       }
     }
-    override fun serialize(encoder: Encoder, value: Asc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Asc): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface SortOrder {
 }
 
 
-private object SortOrderSerializer : KSerializer<SortOrder> {
+public object SortOrderSerializer : KSerializer<SortOrder> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SortOrder::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): SortOrder {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object SortOrderSerializer : KSerializer<SortOrder> {
       else -> SortOrder.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: SortOrder) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: SortOrder): Unit = encoder.encodeString(value.value)
 }

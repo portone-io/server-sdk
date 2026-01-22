@@ -17,7 +17,7 @@ public sealed interface CardBrand {
   public data object Local : CardBrand {
     override val value: String = "LOCAL"
   }
-  private object LocalSerializer : KSerializer<Local> {
+  public object LocalSerializer : KSerializer<Local> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Local::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Local = decoder.decodeString().let {
       if (it != "LOCAL") {
@@ -26,13 +26,13 @@ public sealed interface CardBrand {
         return Local
       }
     }
-    override fun serialize(encoder: Encoder, value: Local) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Local): Unit = encoder.encodeString(value.value)
   }
   @Serializable(MasterSerializer::class)
   public data object Master : CardBrand {
     override val value: String = "MASTER"
   }
-  private object MasterSerializer : KSerializer<Master> {
+  public object MasterSerializer : KSerializer<Master> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Master::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Master = decoder.decodeString().let {
       if (it != "MASTER") {
@@ -41,13 +41,13 @@ public sealed interface CardBrand {
         return Master
       }
     }
-    override fun serialize(encoder: Encoder, value: Master) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Master): Unit = encoder.encodeString(value.value)
   }
   @Serializable(UnionpaySerializer::class)
   public data object Unionpay : CardBrand {
     override val value: String = "UNIONPAY"
   }
-  private object UnionpaySerializer : KSerializer<Unionpay> {
+  public object UnionpaySerializer : KSerializer<Unionpay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unionpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unionpay = decoder.decodeString().let {
       if (it != "UNIONPAY") {
@@ -56,13 +56,13 @@ public sealed interface CardBrand {
         return Unionpay
       }
     }
-    override fun serialize(encoder: Encoder, value: Unionpay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Unionpay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(VisaSerializer::class)
   public data object Visa : CardBrand {
     override val value: String = "VISA"
   }
-  private object VisaSerializer : KSerializer<Visa> {
+  public object VisaSerializer : KSerializer<Visa> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Visa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Visa = decoder.decodeString().let {
       if (it != "VISA") {
@@ -71,13 +71,13 @@ public sealed interface CardBrand {
         return Visa
       }
     }
-    override fun serialize(encoder: Encoder, value: Visa) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Visa): Unit = encoder.encodeString(value.value)
   }
   @Serializable(JcbSerializer::class)
   public data object Jcb : CardBrand {
     override val value: String = "JCB"
   }
-  private object JcbSerializer : KSerializer<Jcb> {
+  public object JcbSerializer : KSerializer<Jcb> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jcb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jcb = decoder.decodeString().let {
       if (it != "JCB") {
@@ -86,13 +86,13 @@ public sealed interface CardBrand {
         return Jcb
       }
     }
-    override fun serialize(encoder: Encoder, value: Jcb) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Jcb): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AmexSerializer::class)
   public data object Amex : CardBrand {
     override val value: String = "AMEX"
   }
-  private object AmexSerializer : KSerializer<Amex> {
+  public object AmexSerializer : KSerializer<Amex> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Amex::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Amex = decoder.decodeString().let {
       if (it != "AMEX") {
@@ -101,13 +101,13 @@ public sealed interface CardBrand {
         return Amex
       }
     }
-    override fun serialize(encoder: Encoder, value: Amex) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Amex): Unit = encoder.encodeString(value.value)
   }
   @Serializable(DinersSerializer::class)
   public data object Diners : CardBrand {
     override val value: String = "DINERS"
   }
-  private object DinersSerializer : KSerializer<Diners> {
+  public object DinersSerializer : KSerializer<Diners> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Diners::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Diners = decoder.decodeString().let {
       if (it != "DINERS") {
@@ -116,7 +116,7 @@ public sealed interface CardBrand {
         return Diners
       }
     }
-    override fun serialize(encoder: Encoder, value: Diners) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Diners): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -124,7 +124,7 @@ public sealed interface CardBrand {
 }
 
 
-private object CardBrandSerializer : KSerializer<CardBrand> {
+public object CardBrandSerializer : KSerializer<CardBrand> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardBrand::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): CardBrand {
     val value = decoder.decodeString()
@@ -139,5 +139,5 @@ private object CardBrandSerializer : KSerializer<CardBrand> {
       else -> CardBrand.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: CardBrand) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: CardBrand): Unit = encoder.encodeString(value.value)
 }

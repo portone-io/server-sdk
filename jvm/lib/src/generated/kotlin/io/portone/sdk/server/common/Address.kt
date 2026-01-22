@@ -1,6 +1,7 @@
 package io.portone.sdk.server.common
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -29,10 +30,11 @@ public sealed interface Address {
 }
 
 
-private object AddressSerializer : JsonContentPolymorphicSerializer<Address>(Address::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "ONE_LINE" -> OneLineAddress.serializer()
-    "SEPARATED" -> SeparatedAddress.serializer()
-    else -> Address.Unrecognized.serializer()
-  }
+public object AddressSerializer : JsonContentPolymorphicSerializer<Address>(Address::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out Address> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "ONE_LINE" -> OneLineAddress.serializer()
+      "SEPARATED" -> SeparatedAddress.serializer()
+      else -> Address.Unrecognized.serializer()
+    }
 }

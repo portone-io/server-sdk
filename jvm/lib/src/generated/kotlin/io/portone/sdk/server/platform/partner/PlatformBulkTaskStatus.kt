@@ -16,7 +16,7 @@ public sealed interface PlatformBulkTaskStatus {
   public data object Prepared : PlatformBulkTaskStatus {
     override val value: String = "PREPARED"
   }
-  private object PreparedSerializer : KSerializer<Prepared> {
+  public object PreparedSerializer : KSerializer<Prepared> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
@@ -25,13 +25,13 @@ public sealed interface PlatformBulkTaskStatus {
         return Prepared
       }
     }
-    override fun serialize(encoder: Encoder, value: Prepared) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Prepared): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ProcessingSerializer::class)
   public data object Processing : PlatformBulkTaskStatus {
     override val value: String = "PROCESSING"
   }
-  private object ProcessingSerializer : KSerializer<Processing> {
+  public object ProcessingSerializer : KSerializer<Processing> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Processing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Processing = decoder.decodeString().let {
       if (it != "PROCESSING") {
@@ -40,13 +40,13 @@ public sealed interface PlatformBulkTaskStatus {
         return Processing
       }
     }
-    override fun serialize(encoder: Encoder, value: Processing) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Processing): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CompletedSerializer::class)
   public data object Completed : PlatformBulkTaskStatus {
     override val value: String = "COMPLETED"
   }
-  private object CompletedSerializer : KSerializer<Completed> {
+  public object CompletedSerializer : KSerializer<Completed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
@@ -55,13 +55,13 @@ public sealed interface PlatformBulkTaskStatus {
         return Completed
       }
     }
-    override fun serialize(encoder: Encoder, value: Completed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Completed): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CanceledSerializer::class)
   public data object Canceled : PlatformBulkTaskStatus {
     override val value: String = "CANCELED"
   }
-  private object CanceledSerializer : KSerializer<Canceled> {
+  public object CanceledSerializer : KSerializer<Canceled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Canceled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Canceled = decoder.decodeString().let {
       if (it != "CANCELED") {
@@ -70,7 +70,7 @@ public sealed interface PlatformBulkTaskStatus {
         return Canceled
       }
     }
-    override fun serialize(encoder: Encoder, value: Canceled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Canceled): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -78,7 +78,7 @@ public sealed interface PlatformBulkTaskStatus {
 }
 
 
-private object PlatformBulkTaskStatusSerializer : KSerializer<PlatformBulkTaskStatus> {
+public object PlatformBulkTaskStatusSerializer : KSerializer<PlatformBulkTaskStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformBulkTaskStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformBulkTaskStatus {
     val value = decoder.decodeString()
@@ -90,5 +90,5 @@ private object PlatformBulkTaskStatusSerializer : KSerializer<PlatformBulkTaskSt
       else -> PlatformBulkTaskStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformBulkTaskStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformBulkTaskStatus): Unit = encoder.encodeString(value.value)
 }

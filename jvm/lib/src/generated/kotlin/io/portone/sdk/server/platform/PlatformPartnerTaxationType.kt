@@ -18,7 +18,7 @@ public sealed interface PlatformPartnerTaxationType {
   public data object Normal : PlatformPartnerTaxationType {
     override val value: String = "NORMAL"
   }
-  private object NormalSerializer : KSerializer<Normal> {
+  public object NormalSerializer : KSerializer<Normal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPartnerTaxationType {
         return Normal
       }
     }
-    override fun serialize(encoder: Encoder, value: Normal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Normal): Unit = encoder.encodeString(value.value)
   }
   /** 간이과세(세금계산서 발행) */
   @Serializable(SimpleTaxInvoiceIssuerSerializer::class)
   public data object SimpleTaxInvoiceIssuer : PlatformPartnerTaxationType {
     override val value: String = "SIMPLE_TAX_INVOICE_ISSUER"
   }
-  private object SimpleTaxInvoiceIssuerSerializer : KSerializer<SimpleTaxInvoiceIssuer> {
+  public object SimpleTaxInvoiceIssuerSerializer : KSerializer<SimpleTaxInvoiceIssuer> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SimpleTaxInvoiceIssuer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SimpleTaxInvoiceIssuer = decoder.decodeString().let {
       if (it != "SIMPLE_TAX_INVOICE_ISSUER") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPartnerTaxationType {
         return SimpleTaxInvoiceIssuer
       }
     }
-    override fun serialize(encoder: Encoder, value: SimpleTaxInvoiceIssuer) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SimpleTaxInvoiceIssuer): Unit = encoder.encodeString(value.value)
   }
   /** 간이과세(세금계산서 미발행) */
   @Serializable(SimpleSerializer::class)
   public data object Simple : PlatformPartnerTaxationType {
     override val value: String = "SIMPLE"
   }
-  private object SimpleSerializer : KSerializer<Simple> {
+  public object SimpleSerializer : KSerializer<Simple> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Simple::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Simple = decoder.decodeString().let {
       if (it != "SIMPLE") {
@@ -59,14 +59,14 @@ public sealed interface PlatformPartnerTaxationType {
         return Simple
       }
     }
-    override fun serialize(encoder: Encoder, value: Simple) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Simple): Unit = encoder.encodeString(value.value)
   }
   /** 면세 */
   @Serializable(TaxFreeSerializer::class)
   public data object TaxFree : PlatformPartnerTaxationType {
     override val value: String = "TAX_FREE"
   }
-  private object TaxFreeSerializer : KSerializer<TaxFree> {
+  public object TaxFreeSerializer : KSerializer<TaxFree> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxFree::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxFree = decoder.decodeString().let {
       if (it != "TAX_FREE") {
@@ -75,7 +75,7 @@ public sealed interface PlatformPartnerTaxationType {
         return TaxFree
       }
     }
-    override fun serialize(encoder: Encoder, value: TaxFree) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TaxFree): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -83,7 +83,7 @@ public sealed interface PlatformPartnerTaxationType {
 }
 
 
-private object PlatformPartnerTaxationTypeSerializer : KSerializer<PlatformPartnerTaxationType> {
+public object PlatformPartnerTaxationTypeSerializer : KSerializer<PlatformPartnerTaxationType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerTaxationType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerTaxationType {
     val value = decoder.decodeString()
@@ -95,5 +95,5 @@ private object PlatformPartnerTaxationTypeSerializer : KSerializer<PlatformPartn
       else -> PlatformPartnerTaxationType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPartnerTaxationType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPartnerTaxationType): Unit = encoder.encodeString(value.value)
 }

@@ -18,7 +18,7 @@ public sealed interface PlatformAccountTransferStatus {
   public data object Prepared : PlatformAccountTransferStatus {
     override val value: String = "PREPARED"
   }
-  private object PreparedSerializer : KSerializer<Prepared> {
+  public object PreparedSerializer : KSerializer<Prepared> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
@@ -27,14 +27,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Prepared
       }
     }
-    override fun serialize(encoder: Encoder, value: Prepared) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Prepared): Unit = encoder.encodeString(value.value)
   }
   /** 예약 */
   @Serializable(ScheduledSerializer::class)
   public data object Scheduled : PlatformAccountTransferStatus {
     override val value: String = "SCHEDULED"
   }
-  private object ScheduledSerializer : KSerializer<Scheduled> {
+  public object ScheduledSerializer : KSerializer<Scheduled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
@@ -43,14 +43,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Scheduled
       }
     }
-    override fun serialize(encoder: Encoder, value: Scheduled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Scheduled): Unit = encoder.encodeString(value.value)
   }
   /** 취소 */
   @Serializable(CancelledSerializer::class)
   public data object Cancelled : PlatformAccountTransferStatus {
     override val value: String = "CANCELLED"
   }
-  private object CancelledSerializer : KSerializer<Cancelled> {
+  public object CancelledSerializer : KSerializer<Cancelled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
@@ -59,14 +59,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Cancelled
       }
     }
-    override fun serialize(encoder: Encoder, value: Cancelled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cancelled): Unit = encoder.encodeString(value.value)
   }
   /** 중단 */
   @Serializable(StoppedSerializer::class)
   public data object Stopped : PlatformAccountTransferStatus {
     override val value: String = "STOPPED"
   }
-  private object StoppedSerializer : KSerializer<Stopped> {
+  public object StoppedSerializer : KSerializer<Stopped> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Stopped::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Stopped = decoder.decodeString().let {
       if (it != "STOPPED") {
@@ -75,14 +75,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Stopped
       }
     }
-    override fun serialize(encoder: Encoder, value: Stopped) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Stopped): Unit = encoder.encodeString(value.value)
   }
   /** 처리 중 */
   @Serializable(ProcessingSerializer::class)
   public data object Processing : PlatformAccountTransferStatus {
     override val value: String = "PROCESSING"
   }
-  private object ProcessingSerializer : KSerializer<Processing> {
+  public object ProcessingSerializer : KSerializer<Processing> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Processing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Processing = decoder.decodeString().let {
       if (it != "PROCESSING") {
@@ -91,14 +91,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Processing
       }
     }
-    override fun serialize(encoder: Encoder, value: Processing) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Processing): Unit = encoder.encodeString(value.value)
   }
   /** 비동기 처리 중 */
   @Serializable(AsyncProcessingSerializer::class)
   public data object AsyncProcessing : PlatformAccountTransferStatus {
     override val value: String = "ASYNC_PROCESSING"
   }
-  private object AsyncProcessingSerializer : KSerializer<AsyncProcessing> {
+  public object AsyncProcessingSerializer : KSerializer<AsyncProcessing> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncProcessing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncProcessing = decoder.decodeString().let {
       if (it != "ASYNC_PROCESSING") {
@@ -107,14 +107,14 @@ public sealed interface PlatformAccountTransferStatus {
         return AsyncProcessing
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncProcessing) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncProcessing): Unit = encoder.encodeString(value.value)
   }
   /** 성공 */
   @Serializable(SucceededSerializer::class)
   public data object Succeeded : PlatformAccountTransferStatus {
     override val value: String = "SUCCEEDED"
   }
-  private object SucceededSerializer : KSerializer<Succeeded> {
+  public object SucceededSerializer : KSerializer<Succeeded> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Succeeded::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Succeeded = decoder.decodeString().let {
       if (it != "SUCCEEDED") {
@@ -123,14 +123,14 @@ public sealed interface PlatformAccountTransferStatus {
         return Succeeded
       }
     }
-    override fun serialize(encoder: Encoder, value: Succeeded) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Succeeded): Unit = encoder.encodeString(value.value)
   }
   /** 실패 */
   @Serializable(FailedSerializer::class)
   public data object Failed : PlatformAccountTransferStatus {
     override val value: String = "FAILED"
   }
-  private object FailedSerializer : KSerializer<Failed> {
+  public object FailedSerializer : KSerializer<Failed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
@@ -139,7 +139,7 @@ public sealed interface PlatformAccountTransferStatus {
         return Failed
       }
     }
-    override fun serialize(encoder: Encoder, value: Failed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Failed): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -147,7 +147,7 @@ public sealed interface PlatformAccountTransferStatus {
 }
 
 
-private object PlatformAccountTransferStatusSerializer : KSerializer<PlatformAccountTransferStatus> {
+public object PlatformAccountTransferStatusSerializer : KSerializer<PlatformAccountTransferStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformAccountTransferStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformAccountTransferStatus {
     val value = decoder.decodeString()
@@ -163,5 +163,5 @@ private object PlatformAccountTransferStatusSerializer : KSerializer<PlatformAcc
       else -> PlatformAccountTransferStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformAccountTransferStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformAccountTransferStatus): Unit = encoder.encodeString(value.value)
 }

@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,10 +24,11 @@ internal sealed interface DownloadPlatformTransferSheetError {
 }
 
 
-private object DownloadPlatformTransferSheetErrorSerializer : JsonContentPolymorphicSerializer<DownloadPlatformTransferSheetError>(DownloadPlatformTransferSheetError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> DownloadPlatformTransferSheetError.Unrecognized.serializer()
-  }
+internal object DownloadPlatformTransferSheetErrorSerializer : JsonContentPolymorphicSerializer<DownloadPlatformTransferSheetError>(DownloadPlatformTransferSheetError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out DownloadPlatformTransferSheetError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> DownloadPlatformTransferSheetError.Unrecognized.serializer()
+    }
 }

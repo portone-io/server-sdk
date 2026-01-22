@@ -18,7 +18,7 @@ public sealed interface IdentityVerificationTimeRangeField {
   public data object RequestedAt : IdentityVerificationTimeRangeField {
     override val value: String = "REQUESTED_AT"
   }
-  private object RequestedAtSerializer : KSerializer<RequestedAt> {
+  public object RequestedAtSerializer : KSerializer<RequestedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
@@ -27,14 +27,14 @@ public sealed interface IdentityVerificationTimeRangeField {
         return RequestedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: RequestedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: RequestedAt): Unit = encoder.encodeString(value.value)
   }
   /** 완료 시각 */
   @Serializable(VerifiedAtSerializer::class)
   public data object VerifiedAt : IdentityVerificationTimeRangeField {
     override val value: String = "VERIFIED_AT"
   }
-  private object VerifiedAtSerializer : KSerializer<VerifiedAt> {
+  public object VerifiedAtSerializer : KSerializer<VerifiedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifiedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifiedAt = decoder.decodeString().let {
       if (it != "VERIFIED_AT") {
@@ -43,14 +43,14 @@ public sealed interface IdentityVerificationTimeRangeField {
         return VerifiedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: VerifiedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VerifiedAt): Unit = encoder.encodeString(value.value)
   }
   /** 실패 시각 */
   @Serializable(FailedAtSerializer::class)
   public data object FailedAt : IdentityVerificationTimeRangeField {
     override val value: String = "FAILED_AT"
   }
-  private object FailedAtSerializer : KSerializer<FailedAt> {
+  public object FailedAtSerializer : KSerializer<FailedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedAt = decoder.decodeString().let {
       if (it != "FAILED_AT") {
@@ -59,7 +59,7 @@ public sealed interface IdentityVerificationTimeRangeField {
         return FailedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: FailedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: FailedAt): Unit = encoder.encodeString(value.value)
   }
   /**
    * 상태 변경 시각
@@ -70,7 +70,7 @@ public sealed interface IdentityVerificationTimeRangeField {
   public data object StatusUpdatedAt : IdentityVerificationTimeRangeField {
     override val value: String = "STATUS_UPDATED_AT"
   }
-  private object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
+  public object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
@@ -79,7 +79,7 @@ public sealed interface IdentityVerificationTimeRangeField {
         return StatusUpdatedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: StatusUpdatedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: StatusUpdatedAt): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -87,7 +87,7 @@ public sealed interface IdentityVerificationTimeRangeField {
 }
 
 
-private object IdentityVerificationTimeRangeFieldSerializer : KSerializer<IdentityVerificationTimeRangeField> {
+public object IdentityVerificationTimeRangeFieldSerializer : KSerializer<IdentityVerificationTimeRangeField> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IdentityVerificationTimeRangeField::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): IdentityVerificationTimeRangeField {
     val value = decoder.decodeString()
@@ -99,5 +99,5 @@ private object IdentityVerificationTimeRangeFieldSerializer : KSerializer<Identi
       else -> IdentityVerificationTimeRangeField.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: IdentityVerificationTimeRangeField) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: IdentityVerificationTimeRangeField): Unit = encoder.encodeString(value.value)
 }

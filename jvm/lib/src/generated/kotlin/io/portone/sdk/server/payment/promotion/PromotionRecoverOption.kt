@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment.promotion
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -21,10 +22,11 @@ public sealed interface PromotionRecoverOption {
 }
 
 
-private object PromotionRecoverOptionSerializer : JsonContentPolymorphicSerializer<PromotionRecoverOption>(PromotionRecoverOption::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "NO_RECOVER" -> PromotionRecoverOptionNoRecover.serializer()
-    "RECOVER" -> PromotionRecoverOptionRecover.serializer()
-    else -> PromotionRecoverOption.Unrecognized.serializer()
-  }
+public object PromotionRecoverOptionSerializer : JsonContentPolymorphicSerializer<PromotionRecoverOption>(PromotionRecoverOption::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PromotionRecoverOption> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "NO_RECOVER" -> PromotionRecoverOptionNoRecover.serializer()
+      "RECOVER" -> PromotionRecoverOptionRecover.serializer()
+      else -> PromotionRecoverOption.Unrecognized.serializer()
+    }
 }

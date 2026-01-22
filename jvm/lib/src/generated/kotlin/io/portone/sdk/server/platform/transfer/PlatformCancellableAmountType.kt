@@ -22,7 +22,7 @@ public sealed interface PlatformCancellableAmountType {
   public data object SupplyWithVat : PlatformCancellableAmountType {
     override val value: String = "SUPPLY_WITH_VAT"
   }
-  private object SupplyWithVatSerializer : KSerializer<SupplyWithVat> {
+  public object SupplyWithVatSerializer : KSerializer<SupplyWithVat> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplyWithVat::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplyWithVat = decoder.decodeString().let {
       if (it != "SUPPLY_WITH_VAT") {
@@ -31,14 +31,14 @@ public sealed interface PlatformCancellableAmountType {
         return SupplyWithVat
       }
     }
-    override fun serialize(encoder: Encoder, value: SupplyWithVat) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SupplyWithVat): Unit = encoder.encodeString(value.value)
   }
   /** 면세 금액 */
   @Serializable(TaxFreeSerializer::class)
   public data object TaxFree : PlatformCancellableAmountType {
     override val value: String = "TAX_FREE"
   }
-  private object TaxFreeSerializer : KSerializer<TaxFree> {
+  public object TaxFreeSerializer : KSerializer<TaxFree> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxFree::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxFree = decoder.decodeString().let {
       if (it != "TAX_FREE") {
@@ -47,7 +47,7 @@ public sealed interface PlatformCancellableAmountType {
         return TaxFree
       }
     }
-    override fun serialize(encoder: Encoder, value: TaxFree) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TaxFree): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -55,7 +55,7 @@ public sealed interface PlatformCancellableAmountType {
 }
 
 
-private object PlatformCancellableAmountTypeSerializer : KSerializer<PlatformCancellableAmountType> {
+public object PlatformCancellableAmountTypeSerializer : KSerializer<PlatformCancellableAmountType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformCancellableAmountType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformCancellableAmountType {
     val value = decoder.decodeString()
@@ -65,5 +65,5 @@ private object PlatformCancellableAmountTypeSerializer : KSerializer<PlatformCan
       else -> PlatformCancellableAmountType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformCancellableAmountType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformCancellableAmountType): Unit = encoder.encodeString(value.value)
 }

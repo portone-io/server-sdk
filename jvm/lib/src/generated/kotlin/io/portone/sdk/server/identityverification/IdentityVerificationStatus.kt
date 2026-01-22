@@ -18,7 +18,7 @@ public sealed interface IdentityVerificationStatus {
   public data object Ready : IdentityVerificationStatus {
     override val value: String = "READY"
   }
-  private object ReadySerializer : KSerializer<Ready> {
+  public object ReadySerializer : KSerializer<Ready> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ready::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ready = decoder.decodeString().let {
       if (it != "READY") {
@@ -27,14 +27,14 @@ public sealed interface IdentityVerificationStatus {
         return Ready
       }
     }
-    override fun serialize(encoder: Encoder, value: Ready) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ready): Unit = encoder.encodeString(value.value)
   }
   /** 완료 상태 */
   @Serializable(VerifiedSerializer::class)
   public data object Verified : IdentityVerificationStatus {
     override val value: String = "VERIFIED"
   }
-  private object VerifiedSerializer : KSerializer<Verified> {
+  public object VerifiedSerializer : KSerializer<Verified> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Verified = decoder.decodeString().let {
       if (it != "VERIFIED") {
@@ -43,14 +43,14 @@ public sealed interface IdentityVerificationStatus {
         return Verified
       }
     }
-    override fun serialize(encoder: Encoder, value: Verified) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Verified): Unit = encoder.encodeString(value.value)
   }
   /** 실패 상태 */
   @Serializable(FailedSerializer::class)
   public data object Failed : IdentityVerificationStatus {
     override val value: String = "FAILED"
   }
-  private object FailedSerializer : KSerializer<Failed> {
+  public object FailedSerializer : KSerializer<Failed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
@@ -59,7 +59,7 @@ public sealed interface IdentityVerificationStatus {
         return Failed
       }
     }
-    override fun serialize(encoder: Encoder, value: Failed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Failed): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface IdentityVerificationStatus {
 }
 
 
-private object IdentityVerificationStatusSerializer : KSerializer<IdentityVerificationStatus> {
+public object IdentityVerificationStatusSerializer : KSerializer<IdentityVerificationStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IdentityVerificationStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): IdentityVerificationStatus {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object IdentityVerificationStatusSerializer : KSerializer<IdentityVerifi
       else -> IdentityVerificationStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: IdentityVerificationStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: IdentityVerificationStatus): Unit = encoder.encodeString(value.value)
 }

@@ -18,7 +18,7 @@ public sealed interface PlatformAccountTransferType {
   public data object Deposit : PlatformAccountTransferType {
     override val value: String = "DEPOSIT"
   }
-  private object DepositSerializer : KSerializer<Deposit> {
+  public object DepositSerializer : KSerializer<Deposit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Deposit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Deposit = decoder.decodeString().let {
       if (it != "DEPOSIT") {
@@ -27,14 +27,14 @@ public sealed interface PlatformAccountTransferType {
         return Deposit
       }
     }
-    override fun serialize(encoder: Encoder, value: Deposit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Deposit): Unit = encoder.encodeString(value.value)
   }
   /** 출금 */
   @Serializable(WithdrawalSerializer::class)
   public data object Withdrawal : PlatformAccountTransferType {
     override val value: String = "WITHDRAWAL"
   }
-  private object WithdrawalSerializer : KSerializer<Withdrawal> {
+  public object WithdrawalSerializer : KSerializer<Withdrawal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Withdrawal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Withdrawal = decoder.decodeString().let {
       if (it != "WITHDRAWAL") {
@@ -43,7 +43,7 @@ public sealed interface PlatformAccountTransferType {
         return Withdrawal
       }
     }
-    override fun serialize(encoder: Encoder, value: Withdrawal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Withdrawal): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface PlatformAccountTransferType {
 }
 
 
-private object PlatformAccountTransferTypeSerializer : KSerializer<PlatformAccountTransferType> {
+public object PlatformAccountTransferTypeSerializer : KSerializer<PlatformAccountTransferType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformAccountTransferType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformAccountTransferType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object PlatformAccountTransferTypeSerializer : KSerializer<PlatformAccou
       else -> PlatformAccountTransferType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformAccountTransferType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformAccountTransferType): Unit = encoder.encodeString(value.value)
 }

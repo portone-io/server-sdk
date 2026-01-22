@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,15 +24,16 @@ internal sealed interface CancelB2bTaxInvoiceIssuanceError {
 }
 
 
-private object CancelB2bTaxInvoiceIssuanceErrorSerializer : JsonContentPolymorphicSerializer<CancelB2bTaxInvoiceIssuanceError>(CancelB2bTaxInvoiceIssuanceError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
-    "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
-    "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
-    "B2B_TAX_INVOICE_NOT_ISSUED_STATUS" -> B2bTaxInvoiceNotIssuedStatusError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CancelB2bTaxInvoiceIssuanceError.Unrecognized.serializer()
-  }
+internal object CancelB2bTaxInvoiceIssuanceErrorSerializer : JsonContentPolymorphicSerializer<CancelB2bTaxInvoiceIssuanceError>(CancelB2bTaxInvoiceIssuanceError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CancelB2bTaxInvoiceIssuanceError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
+      "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
+      "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
+      "B2B_TAX_INVOICE_NOT_ISSUED_STATUS" -> B2bTaxInvoiceNotIssuedStatusError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CancelB2bTaxInvoiceIssuanceError.Unrecognized.serializer()
+    }
 }

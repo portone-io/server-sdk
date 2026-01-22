@@ -18,7 +18,7 @@ public sealed interface CardOwnerType {
   public data object Personal : CardOwnerType {
     override val value: String = "PERSONAL"
   }
-  private object PersonalSerializer : KSerializer<Personal> {
+  public object PersonalSerializer : KSerializer<Personal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Personal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Personal = decoder.decodeString().let {
       if (it != "PERSONAL") {
@@ -27,14 +27,14 @@ public sealed interface CardOwnerType {
         return Personal
       }
     }
-    override fun serialize(encoder: Encoder, value: Personal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Personal): Unit = encoder.encodeString(value.value)
   }
   /** 법인 */
   @Serializable(CorporateSerializer::class)
   public data object Corporate : CardOwnerType {
     override val value: String = "CORPORATE"
   }
-  private object CorporateSerializer : KSerializer<Corporate> {
+  public object CorporateSerializer : KSerializer<Corporate> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Corporate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Corporate = decoder.decodeString().let {
       if (it != "CORPORATE") {
@@ -43,7 +43,7 @@ public sealed interface CardOwnerType {
         return Corporate
       }
     }
-    override fun serialize(encoder: Encoder, value: Corporate) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Corporate): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface CardOwnerType {
 }
 
 
-private object CardOwnerTypeSerializer : KSerializer<CardOwnerType> {
+public object CardOwnerTypeSerializer : KSerializer<CardOwnerType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardOwnerType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): CardOwnerType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object CardOwnerTypeSerializer : KSerializer<CardOwnerType> {
       else -> CardOwnerType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: CardOwnerType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: CardOwnerType): Unit = encoder.encodeString(value.value)
 }

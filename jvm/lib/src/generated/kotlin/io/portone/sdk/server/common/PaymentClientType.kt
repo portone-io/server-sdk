@@ -17,7 +17,7 @@ public sealed interface PaymentClientType {
   public data object SdkMobile : PaymentClientType {
     override val value: String = "SDK_MOBILE"
   }
-  private object SdkMobileSerializer : KSerializer<SdkMobile> {
+  public object SdkMobileSerializer : KSerializer<SdkMobile> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SdkMobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SdkMobile = decoder.decodeString().let {
       if (it != "SDK_MOBILE") {
@@ -26,13 +26,13 @@ public sealed interface PaymentClientType {
         return SdkMobile
       }
     }
-    override fun serialize(encoder: Encoder, value: SdkMobile) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SdkMobile): Unit = encoder.encodeString(value.value)
   }
   @Serializable(SdkPcSerializer::class)
   public data object SdkPc : PaymentClientType {
     override val value: String = "SDK_PC"
   }
-  private object SdkPcSerializer : KSerializer<SdkPc> {
+  public object SdkPcSerializer : KSerializer<SdkPc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SdkPc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SdkPc = decoder.decodeString().let {
       if (it != "SDK_PC") {
@@ -41,13 +41,13 @@ public sealed interface PaymentClientType {
         return SdkPc
       }
     }
-    override fun serialize(encoder: Encoder, value: SdkPc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SdkPc): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ApiSerializer::class)
   public data object Api : PaymentClientType {
     override val value: String = "API"
   }
-  private object ApiSerializer : KSerializer<Api> {
+  public object ApiSerializer : KSerializer<Api> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Api::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Api = decoder.decodeString().let {
       if (it != "API") {
@@ -56,7 +56,7 @@ public sealed interface PaymentClientType {
         return Api
       }
     }
-    override fun serialize(encoder: Encoder, value: Api) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Api): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -64,7 +64,7 @@ public sealed interface PaymentClientType {
 }
 
 
-private object PaymentClientTypeSerializer : KSerializer<PaymentClientType> {
+public object PaymentClientTypeSerializer : KSerializer<PaymentClientType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentClientType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentClientType {
     val value = decoder.decodeString()
@@ -75,5 +75,5 @@ private object PaymentClientTypeSerializer : KSerializer<PaymentClientType> {
       else -> PaymentClientType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentClientType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentClientType): Unit = encoder.encodeString(value.value)
 }

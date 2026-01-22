@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment.billingkey
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,11 +23,12 @@ public sealed interface BillingKeyPaymentMethodEasyPayMethod {
 }
 
 
-private object BillingKeyPaymentMethodEasyPayMethodSerializer : JsonContentPolymorphicSerializer<BillingKeyPaymentMethodEasyPayMethod>(BillingKeyPaymentMethodEasyPayMethod::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "BillingKeyPaymentMethodCard" -> BillingKeyPaymentMethodCard.serializer()
-    "BillingKeyPaymentMethodEasyPayCharge" -> BillingKeyPaymentMethodEasyPayCharge.serializer()
-    "BillingKeyPaymentMethodTransfer" -> BillingKeyPaymentMethodTransfer.serializer()
-    else -> BillingKeyPaymentMethodEasyPayMethod.Unrecognized.serializer()
-  }
+public object BillingKeyPaymentMethodEasyPayMethodSerializer : JsonContentPolymorphicSerializer<BillingKeyPaymentMethodEasyPayMethod>(BillingKeyPaymentMethodEasyPayMethod::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out BillingKeyPaymentMethodEasyPayMethod> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "BillingKeyPaymentMethodCard" -> BillingKeyPaymentMethodCard.serializer()
+      "BillingKeyPaymentMethodEasyPayCharge" -> BillingKeyPaymentMethodEasyPayCharge.serializer()
+      "BillingKeyPaymentMethodTransfer" -> BillingKeyPaymentMethodTransfer.serializer()
+      else -> BillingKeyPaymentMethodEasyPayMethod.Unrecognized.serializer()
+    }
 }

@@ -18,7 +18,7 @@ public sealed interface PlatformPartnerSettlementType {
   public data object Manual : PlatformPartnerSettlementType {
     override val value: String = "MANUAL"
   }
-  private object ManualSerializer : KSerializer<Manual> {
+  public object ManualSerializer : KSerializer<Manual> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
       if (it != "MANUAL") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPartnerSettlementType {
         return Manual
       }
     }
-    override fun serialize(encoder: Encoder, value: Manual) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Manual): Unit = encoder.encodeString(value.value)
   }
   /** 주문 정산 */
   @Serializable(OrderSerializer::class)
   public data object Order : PlatformPartnerSettlementType {
     override val value: String = "ORDER"
   }
-  private object OrderSerializer : KSerializer<Order> {
+  public object OrderSerializer : KSerializer<Order> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Order::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Order = decoder.decodeString().let {
       if (it != "ORDER") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPartnerSettlementType {
         return Order
       }
     }
-    override fun serialize(encoder: Encoder, value: Order) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Order): Unit = encoder.encodeString(value.value)
   }
   /** 주문 취소 정산 */
   @Serializable(OrderCancelSerializer::class)
   public data object OrderCancel : PlatformPartnerSettlementType {
     override val value: String = "ORDER_CANCEL"
   }
-  private object OrderCancelSerializer : KSerializer<OrderCancel> {
+  public object OrderCancelSerializer : KSerializer<OrderCancel> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderCancel::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): OrderCancel = decoder.decodeString().let {
       if (it != "ORDER_CANCEL") {
@@ -59,7 +59,7 @@ public sealed interface PlatformPartnerSettlementType {
         return OrderCancel
       }
     }
-    override fun serialize(encoder: Encoder, value: OrderCancel) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: OrderCancel): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface PlatformPartnerSettlementType {
 }
 
 
-private object PlatformPartnerSettlementTypeSerializer : KSerializer<PlatformPartnerSettlementType> {
+public object PlatformPartnerSettlementTypeSerializer : KSerializer<PlatformPartnerSettlementType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerSettlementType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerSettlementType {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object PlatformPartnerSettlementTypeSerializer : KSerializer<PlatformPar
       else -> PlatformPartnerSettlementType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPartnerSettlementType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPartnerSettlementType): Unit = encoder.encodeString(value.value)
 }

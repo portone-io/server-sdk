@@ -6,6 +6,7 @@ import io.portone.sdk.server.common.PaymentProduct
 import java.time.Instant
 import kotlin.Array
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -66,14 +67,15 @@ public sealed interface PaymentSchedule {
 }
 
 
-private object PaymentScheduleSerializer : JsonContentPolymorphicSerializer<PaymentSchedule>(PaymentSchedule::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "FAILED" -> FailedPaymentSchedule.serializer()
-    "PENDING" -> PendingPaymentSchedule.serializer()
-    "REVOKED" -> RevokedPaymentSchedule.serializer()
-    "SCHEDULED" -> ScheduledPaymentSchedule.serializer()
-    "STARTED" -> StartedPaymentSchedule.serializer()
-    "SUCCEEDED" -> SucceededPaymentSchedule.serializer()
-    else -> PaymentSchedule.Unrecognized.serializer()
-  }
+public object PaymentScheduleSerializer : JsonContentPolymorphicSerializer<PaymentSchedule>(PaymentSchedule::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PaymentSchedule> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "FAILED" -> FailedPaymentSchedule.serializer()
+      "PENDING" -> PendingPaymentSchedule.serializer()
+      "REVOKED" -> RevokedPaymentSchedule.serializer()
+      "SCHEDULED" -> ScheduledPaymentSchedule.serializer()
+      "STARTED" -> StartedPaymentSchedule.serializer()
+      "SUCCEEDED" -> SucceededPaymentSchedule.serializer()
+      else -> PaymentSchedule.Unrecognized.serializer()
+    }
 }

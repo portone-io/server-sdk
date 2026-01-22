@@ -18,7 +18,7 @@ public sealed interface BillingKeyTimeRangeField {
   public data object RequestedAt : BillingKeyTimeRangeField {
     override val value: String = "REQUESTED_AT"
   }
-  private object RequestedAtSerializer : KSerializer<RequestedAt> {
+  public object RequestedAtSerializer : KSerializer<RequestedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
@@ -27,14 +27,14 @@ public sealed interface BillingKeyTimeRangeField {
         return RequestedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: RequestedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: RequestedAt): Unit = encoder.encodeString(value.value)
   }
   /** 발급 완료 시각 */
   @Serializable(IssuedAtSerializer::class)
   public data object IssuedAt : BillingKeyTimeRangeField {
     override val value: String = "ISSUED_AT"
   }
-  private object IssuedAtSerializer : KSerializer<IssuedAt> {
+  public object IssuedAtSerializer : KSerializer<IssuedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
@@ -43,14 +43,14 @@ public sealed interface BillingKeyTimeRangeField {
         return IssuedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: IssuedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IssuedAt): Unit = encoder.encodeString(value.value)
   }
   /** 삭제 완료 시각 */
   @Serializable(DeletedAtSerializer::class)
   public data object DeletedAt : BillingKeyTimeRangeField {
     override val value: String = "DELETED_AT"
   }
-  private object DeletedAtSerializer : KSerializer<DeletedAt> {
+  public object DeletedAtSerializer : KSerializer<DeletedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DeletedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DeletedAt = decoder.decodeString().let {
       if (it != "DELETED_AT") {
@@ -59,7 +59,7 @@ public sealed interface BillingKeyTimeRangeField {
         return DeletedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: DeletedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DeletedAt): Unit = encoder.encodeString(value.value)
   }
   /**
    * 상태 변경 시각
@@ -70,7 +70,7 @@ public sealed interface BillingKeyTimeRangeField {
   public data object StatusTimestamp : BillingKeyTimeRangeField {
     override val value: String = "STATUS_TIMESTAMP"
   }
-  private object StatusTimestampSerializer : KSerializer<StatusTimestamp> {
+  public object StatusTimestampSerializer : KSerializer<StatusTimestamp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusTimestamp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusTimestamp = decoder.decodeString().let {
       if (it != "STATUS_TIMESTAMP") {
@@ -79,7 +79,7 @@ public sealed interface BillingKeyTimeRangeField {
         return StatusTimestamp
       }
     }
-    override fun serialize(encoder: Encoder, value: StatusTimestamp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: StatusTimestamp): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -87,7 +87,7 @@ public sealed interface BillingKeyTimeRangeField {
 }
 
 
-private object BillingKeyTimeRangeFieldSerializer : KSerializer<BillingKeyTimeRangeField> {
+public object BillingKeyTimeRangeFieldSerializer : KSerializer<BillingKeyTimeRangeField> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKeyTimeRangeField::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): BillingKeyTimeRangeField {
     val value = decoder.decodeString()
@@ -99,5 +99,5 @@ private object BillingKeyTimeRangeFieldSerializer : KSerializer<BillingKeyTimeRa
       else -> BillingKeyTimeRangeField.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: BillingKeyTimeRangeField) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: BillingKeyTimeRangeField): Unit = encoder.encodeString(value.value)
 }

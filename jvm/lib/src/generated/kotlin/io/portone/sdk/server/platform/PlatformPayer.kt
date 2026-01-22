@@ -22,7 +22,7 @@ public sealed interface PlatformPayer {
   public data object Partner : PlatformPayer {
     override val value: String = "PARTNER"
   }
-  private object PartnerSerializer : KSerializer<Partner> {
+  public object PartnerSerializer : KSerializer<Partner> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Partner::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Partner = decoder.decodeString().let {
       if (it != "PARTNER") {
@@ -31,14 +31,14 @@ public sealed interface PlatformPayer {
         return Partner
       }
     }
-    override fun serialize(encoder: Encoder, value: Partner) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Partner): Unit = encoder.encodeString(value.value)
   }
   /** 고객사가 부담하는 경우 */
   @Serializable(MerchantSerializer::class)
   public data object Merchant : PlatformPayer {
     override val value: String = "MERCHANT"
   }
-  private object MerchantSerializer : KSerializer<Merchant> {
+  public object MerchantSerializer : KSerializer<Merchant> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Merchant::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Merchant = decoder.decodeString().let {
       if (it != "MERCHANT") {
@@ -47,7 +47,7 @@ public sealed interface PlatformPayer {
         return Merchant
       }
     }
-    override fun serialize(encoder: Encoder, value: Merchant) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Merchant): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -55,7 +55,7 @@ public sealed interface PlatformPayer {
 }
 
 
-private object PlatformPayerSerializer : KSerializer<PlatformPayer> {
+public object PlatformPayerSerializer : KSerializer<PlatformPayer> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayer::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPayer {
     val value = decoder.decodeString()
@@ -65,5 +65,5 @@ private object PlatformPayerSerializer : KSerializer<PlatformPayer> {
       else -> PlatformPayer.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPayer) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPayer): Unit = encoder.encodeString(value.value)
 }

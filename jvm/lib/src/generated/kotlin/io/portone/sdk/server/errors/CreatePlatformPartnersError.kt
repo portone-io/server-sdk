@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,17 +24,18 @@ internal sealed interface CreatePlatformPartnersError {
 }
 
 
-private object CreatePlatformPartnersErrorSerializer : JsonContentPolymorphicSerializer<CreatePlatformPartnersError>(CreatePlatformPartnersError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_CONTRACTS_NOT_FOUND" -> PlatformContractsNotFoundError.serializer()
-    "PLATFORM_CURRENCY_NOT_SUPPORTED" -> PlatformCurrencyNotSupportedError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "PLATFORM_PARTNER_IDS_ALREADY_EXISTS" -> PlatformPartnerIdsAlreadyExistError.serializer()
-    "PLATFORM_PARTNER_IDS_DUPLICATED" -> PlatformPartnerIdsDuplicatedError.serializer()
-    "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CreatePlatformPartnersError.Unrecognized.serializer()
-  }
+internal object CreatePlatformPartnersErrorSerializer : JsonContentPolymorphicSerializer<CreatePlatformPartnersError>(CreatePlatformPartnersError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CreatePlatformPartnersError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_CONTRACTS_NOT_FOUND" -> PlatformContractsNotFoundError.serializer()
+      "PLATFORM_CURRENCY_NOT_SUPPORTED" -> PlatformCurrencyNotSupportedError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "PLATFORM_PARTNER_IDS_ALREADY_EXISTS" -> PlatformPartnerIdsAlreadyExistError.serializer()
+      "PLATFORM_PARTNER_IDS_DUPLICATED" -> PlatformPartnerIdsDuplicatedError.serializer()
+      "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CreatePlatformPartnersError.Unrecognized.serializer()
+    }
 }

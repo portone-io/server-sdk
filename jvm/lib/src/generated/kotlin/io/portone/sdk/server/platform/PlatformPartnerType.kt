@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,11 +23,12 @@ public sealed interface PlatformPartnerType {
 }
 
 
-private object PlatformPartnerTypeSerializer : JsonContentPolymorphicSerializer<PlatformPartnerType>(PlatformPartnerType::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "BUSINESS" -> PlatformPartnerTypeBusiness.serializer()
-    "NON_WHT_PAYER" -> PlatformPartnerTypeNonWhtPayer.serializer()
-    "WHT_PAYER" -> PlatformPartnerTypeWhtPayer.serializer()
-    else -> PlatformPartnerType.Unrecognized.serializer()
-  }
+public object PlatformPartnerTypeSerializer : JsonContentPolymorphicSerializer<PlatformPartnerType>(PlatformPartnerType::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformPartnerType> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "BUSINESS" -> PlatformPartnerTypeBusiness.serializer()
+      "NON_WHT_PAYER" -> PlatformPartnerTypeNonWhtPayer.serializer()
+      "WHT_PAYER" -> PlatformPartnerTypeWhtPayer.serializer()
+      else -> PlatformPartnerType.Unrecognized.serializer()
+    }
 }

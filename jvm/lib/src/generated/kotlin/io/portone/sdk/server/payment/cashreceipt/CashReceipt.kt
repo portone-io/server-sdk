@@ -3,6 +3,7 @@ package io.portone.sdk.server.payment.cashreceipt
 import io.portone.sdk.server.common.SelectedChannel
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -39,11 +40,12 @@ public sealed interface CashReceipt {
 }
 
 
-private object CashReceiptSerializer : JsonContentPolymorphicSerializer<CashReceipt>(CashReceipt::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "CANCELLED" -> CancelledCashReceipt.serializer()
-    "ISSUED" -> IssuedCashReceipt.serializer()
-    "ISSUE_FAILED" -> IssueFailedCashReceipt.serializer()
-    else -> CashReceipt.Unrecognized.serializer()
-  }
+public object CashReceiptSerializer : JsonContentPolymorphicSerializer<CashReceipt>(CashReceipt::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CashReceipt> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "CANCELLED" -> CancelledCashReceipt.serializer()
+      "ISSUED" -> IssuedCashReceipt.serializer()
+      "ISSUE_FAILED" -> IssueFailedCashReceipt.serializer()
+      else -> CashReceipt.Unrecognized.serializer()
+    }
 }

@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,12 +24,13 @@ internal sealed interface GetPromotionError {
 }
 
 
-private object GetPromotionErrorSerializer : JsonContentPolymorphicSerializer<GetPromotionError>(GetPromotionError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PROMOTION_NOT_FOUND" -> PromotionNotFoundError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetPromotionError.Unrecognized.serializer()
-  }
+internal object GetPromotionErrorSerializer : JsonContentPolymorphicSerializer<GetPromotionError>(GetPromotionError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetPromotionError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PROMOTION_NOT_FOUND" -> PromotionNotFoundError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetPromotionError.Unrecognized.serializer()
+    }
 }

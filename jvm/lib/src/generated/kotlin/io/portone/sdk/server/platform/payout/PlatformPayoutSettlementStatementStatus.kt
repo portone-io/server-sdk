@@ -18,7 +18,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
   public data object Unsent : PlatformPayoutSettlementStatementStatus {
     override val value: String = "UNSENT"
   }
-  private object UnsentSerializer : KSerializer<Unsent> {
+  public object UnsentSerializer : KSerializer<Unsent> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unsent::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unsent = decoder.decodeString().let {
       if (it != "UNSENT") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
         return Unsent
       }
     }
-    override fun serialize(encoder: Encoder, value: Unsent) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Unsent): Unit = encoder.encodeString(value.value)
   }
   /** 발송 성공 */
   @Serializable(SentSerializer::class)
   public data object Sent : PlatformPayoutSettlementStatementStatus {
     override val value: String = "SENT"
   }
-  private object SentSerializer : KSerializer<Sent> {
+  public object SentSerializer : KSerializer<Sent> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sent::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sent = decoder.decodeString().let {
       if (it != "SENT") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
         return Sent
       }
     }
-    override fun serialize(encoder: Encoder, value: Sent) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sent): Unit = encoder.encodeString(value.value)
   }
   /** 발송 실패 */
   @Serializable(SendFailedSerializer::class)
   public data object SendFailed : PlatformPayoutSettlementStatementStatus {
     override val value: String = "SEND_FAILED"
   }
-  private object SendFailedSerializer : KSerializer<SendFailed> {
+  public object SendFailedSerializer : KSerializer<SendFailed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendFailed = decoder.decodeString().let {
       if (it != "SEND_FAILED") {
@@ -59,14 +59,14 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
         return SendFailed
       }
     }
-    override fun serialize(encoder: Encoder, value: SendFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SendFailed): Unit = encoder.encodeString(value.value)
   }
   /** 발송 대기 */
   @Serializable(SendPreparedSerializer::class)
   public data object SendPrepared : PlatformPayoutSettlementStatementStatus {
     override val value: String = "SEND_PREPARED"
   }
-  private object SendPreparedSerializer : KSerializer<SendPrepared> {
+  public object SendPreparedSerializer : KSerializer<SendPrepared> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendPrepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendPrepared = decoder.decodeString().let {
       if (it != "SEND_PREPARED") {
@@ -75,7 +75,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
         return SendPrepared
       }
     }
-    override fun serialize(encoder: Encoder, value: SendPrepared) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SendPrepared): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -83,7 +83,7 @@ public sealed interface PlatformPayoutSettlementStatementStatus {
 }
 
 
-private object PlatformPayoutSettlementStatementStatusSerializer : KSerializer<PlatformPayoutSettlementStatementStatus> {
+public object PlatformPayoutSettlementStatementStatusSerializer : KSerializer<PlatformPayoutSettlementStatementStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayoutSettlementStatementStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPayoutSettlementStatementStatus {
     val value = decoder.decodeString()
@@ -95,5 +95,5 @@ private object PlatformPayoutSettlementStatementStatusSerializer : KSerializer<P
       else -> PlatformPayoutSettlementStatementStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPayoutSettlementStatementStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPayoutSettlementStatementStatus): Unit = encoder.encodeString(value.value)
 }

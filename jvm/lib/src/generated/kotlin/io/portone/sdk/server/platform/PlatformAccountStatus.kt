@@ -18,7 +18,7 @@ public sealed interface PlatformAccountStatus {
   public data object Verified : PlatformAccountStatus {
     override val value: String = "VERIFIED"
   }
-  private object VerifiedSerializer : KSerializer<Verified> {
+  public object VerifiedSerializer : KSerializer<Verified> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Verified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Verified = decoder.decodeString().let {
       if (it != "VERIFIED") {
@@ -27,14 +27,14 @@ public sealed interface PlatformAccountStatus {
         return Verified
       }
     }
-    override fun serialize(encoder: Encoder, value: Verified) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Verified): Unit = encoder.encodeString(value.value)
   }
   /** 계좌주 불일치 */
   @Serializable(VerifyFailedSerializer::class)
   public data object VerifyFailed : PlatformAccountStatus {
     override val value: String = "VERIFY_FAILED"
   }
-  private object VerifyFailedSerializer : KSerializer<VerifyFailed> {
+  public object VerifyFailedSerializer : KSerializer<VerifyFailed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyFailed = decoder.decodeString().let {
       if (it != "VERIFY_FAILED") {
@@ -43,14 +43,14 @@ public sealed interface PlatformAccountStatus {
         return VerifyFailed
       }
     }
-    override fun serialize(encoder: Encoder, value: VerifyFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VerifyFailed): Unit = encoder.encodeString(value.value)
   }
   /** 계좌 인증 오류 */
   @Serializable(VerifyErrorSerializer::class)
   public data object VerifyError : PlatformAccountStatus {
     override val value: String = "VERIFY_ERROR"
   }
-  private object VerifyErrorSerializer : KSerializer<VerifyError> {
+  public object VerifyErrorSerializer : KSerializer<VerifyError> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
       if (it != "VERIFY_ERROR") {
@@ -59,14 +59,14 @@ public sealed interface PlatformAccountStatus {
         return VerifyError
       }
     }
-    override fun serialize(encoder: Encoder, value: VerifyError) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VerifyError): Unit = encoder.encodeString(value.value)
   }
   /** 계좌 인증 안됨 */
   @Serializable(NotVerifiedSerializer::class)
   public data object NotVerified : PlatformAccountStatus {
     override val value: String = "NOT_VERIFIED"
   }
-  private object NotVerifiedSerializer : KSerializer<NotVerified> {
+  public object NotVerifiedSerializer : KSerializer<NotVerified> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotVerified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotVerified = decoder.decodeString().let {
       if (it != "NOT_VERIFIED") {
@@ -75,14 +75,14 @@ public sealed interface PlatformAccountStatus {
         return NotVerified
       }
     }
-    override fun serialize(encoder: Encoder, value: NotVerified) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: NotVerified): Unit = encoder.encodeString(value.value)
   }
   /** 알 수 없는 상태 */
   @Serializable(UnknownSerializer::class)
   public data object Unknown : PlatformAccountStatus {
     override val value: String = "UNKNOWN"
   }
-  private object UnknownSerializer : KSerializer<Unknown> {
+  public object UnknownSerializer : KSerializer<Unknown> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Unknown::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Unknown = decoder.decodeString().let {
       if (it != "UNKNOWN") {
@@ -91,7 +91,7 @@ public sealed interface PlatformAccountStatus {
         return Unknown
       }
     }
-    override fun serialize(encoder: Encoder, value: Unknown) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Unknown): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -99,7 +99,7 @@ public sealed interface PlatformAccountStatus {
 }
 
 
-private object PlatformAccountStatusSerializer : KSerializer<PlatformAccountStatus> {
+public object PlatformAccountStatusSerializer : KSerializer<PlatformAccountStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformAccountStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformAccountStatus {
     val value = decoder.decodeString()
@@ -112,5 +112,5 @@ private object PlatformAccountStatusSerializer : KSerializer<PlatformAccountStat
       else -> PlatformAccountStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformAccountStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformAccountStatus): Unit = encoder.encodeString(value.value)
 }

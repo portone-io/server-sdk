@@ -16,7 +16,7 @@ public sealed interface PlatformTransferType {
   public data object Order : PlatformTransferType {
     override val value: String = "ORDER"
   }
-  private object OrderSerializer : KSerializer<Order> {
+  public object OrderSerializer : KSerializer<Order> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Order::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Order = decoder.decodeString().let {
       if (it != "ORDER") {
@@ -25,13 +25,13 @@ public sealed interface PlatformTransferType {
         return Order
       }
     }
-    override fun serialize(encoder: Encoder, value: Order) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Order): Unit = encoder.encodeString(value.value)
   }
   @Serializable(OrderCancelSerializer::class)
   public data object OrderCancel : PlatformTransferType {
     override val value: String = "ORDER_CANCEL"
   }
-  private object OrderCancelSerializer : KSerializer<OrderCancel> {
+  public object OrderCancelSerializer : KSerializer<OrderCancel> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(OrderCancel::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): OrderCancel = decoder.decodeString().let {
       if (it != "ORDER_CANCEL") {
@@ -40,13 +40,13 @@ public sealed interface PlatformTransferType {
         return OrderCancel
       }
     }
-    override fun serialize(encoder: Encoder, value: OrderCancel) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: OrderCancel): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ManualSerializer::class)
   public data object Manual : PlatformTransferType {
     override val value: String = "MANUAL"
   }
-  private object ManualSerializer : KSerializer<Manual> {
+  public object ManualSerializer : KSerializer<Manual> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
       if (it != "MANUAL") {
@@ -55,7 +55,7 @@ public sealed interface PlatformTransferType {
         return Manual
       }
     }
-    override fun serialize(encoder: Encoder, value: Manual) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Manual): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -63,7 +63,7 @@ public sealed interface PlatformTransferType {
 }
 
 
-private object PlatformTransferTypeSerializer : KSerializer<PlatformTransferType> {
+public object PlatformTransferTypeSerializer : KSerializer<PlatformTransferType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformTransferType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformTransferType {
     val value = decoder.decodeString()
@@ -74,5 +74,5 @@ private object PlatformTransferTypeSerializer : KSerializer<PlatformTransferType
       else -> PlatformTransferType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformTransferType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformTransferType): Unit = encoder.encodeString(value.value)
 }

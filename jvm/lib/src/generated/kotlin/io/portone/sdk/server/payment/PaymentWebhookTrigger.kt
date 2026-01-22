@@ -21,7 +21,7 @@ public sealed interface PaymentWebhookTrigger {
   public data object Manual : PaymentWebhookTrigger {
     override val value: String = "MANUAL"
   }
-  private object ManualSerializer : KSerializer<Manual> {
+  public object ManualSerializer : KSerializer<Manual> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Manual::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Manual = decoder.decodeString().let {
       if (it != "MANUAL") {
@@ -30,13 +30,13 @@ public sealed interface PaymentWebhookTrigger {
         return Manual
       }
     }
-    override fun serialize(encoder: Encoder, value: Manual) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Manual): Unit = encoder.encodeString(value.value)
   }
   @Serializable(VirtualAccountDepositSerializer::class)
   public data object VirtualAccountDeposit : PaymentWebhookTrigger {
     override val value: String = "VIRTUAL_ACCOUNT_DEPOSIT"
   }
-  private object VirtualAccountDepositSerializer : KSerializer<VirtualAccountDeposit> {
+  public object VirtualAccountDepositSerializer : KSerializer<VirtualAccountDeposit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccountDeposit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccountDeposit = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT_DEPOSIT") {
@@ -45,13 +45,13 @@ public sealed interface PaymentWebhookTrigger {
         return VirtualAccountDeposit
       }
     }
-    override fun serialize(encoder: Encoder, value: VirtualAccountDeposit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VirtualAccountDeposit): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AsyncCancelApprovedSerializer::class)
   public data object AsyncCancelApproved : PaymentWebhookTrigger {
     override val value: String = "ASYNC_CANCEL_APPROVED"
   }
-  private object AsyncCancelApprovedSerializer : KSerializer<AsyncCancelApproved> {
+  public object AsyncCancelApprovedSerializer : KSerializer<AsyncCancelApproved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncCancelApproved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncCancelApproved = decoder.decodeString().let {
       if (it != "ASYNC_CANCEL_APPROVED") {
@@ -60,13 +60,13 @@ public sealed interface PaymentWebhookTrigger {
         return AsyncCancelApproved
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncCancelApproved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncCancelApproved): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AsyncCancelFailedSerializer::class)
   public data object AsyncCancelFailed : PaymentWebhookTrigger {
     override val value: String = "ASYNC_CANCEL_FAILED"
   }
-  private object AsyncCancelFailedSerializer : KSerializer<AsyncCancelFailed> {
+  public object AsyncCancelFailedSerializer : KSerializer<AsyncCancelFailed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncCancelFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncCancelFailed = decoder.decodeString().let {
       if (it != "ASYNC_CANCEL_FAILED") {
@@ -75,13 +75,13 @@ public sealed interface PaymentWebhookTrigger {
         return AsyncCancelFailed
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncCancelFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncCancelFailed): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AsyncPayApprovedSerializer::class)
   public data object AsyncPayApproved : PaymentWebhookTrigger {
     override val value: String = "ASYNC_PAY_APPROVED"
   }
-  private object AsyncPayApprovedSerializer : KSerializer<AsyncPayApproved> {
+  public object AsyncPayApprovedSerializer : KSerializer<AsyncPayApproved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayApproved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayApproved = decoder.decodeString().let {
       if (it != "ASYNC_PAY_APPROVED") {
@@ -90,13 +90,13 @@ public sealed interface PaymentWebhookTrigger {
         return AsyncPayApproved
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncPayApproved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncPayApproved): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AsyncPayFailedSerializer::class)
   public data object AsyncPayFailed : PaymentWebhookTrigger {
     override val value: String = "ASYNC_PAY_FAILED"
   }
-  private object AsyncPayFailedSerializer : KSerializer<AsyncPayFailed> {
+  public object AsyncPayFailedSerializer : KSerializer<AsyncPayFailed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayFailed = decoder.decodeString().let {
       if (it != "ASYNC_PAY_FAILED") {
@@ -105,13 +105,13 @@ public sealed interface PaymentWebhookTrigger {
         return AsyncPayFailed
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncPayFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncPayFailed): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AsyncPayPendingSerializer::class)
   public data object AsyncPayPending : PaymentWebhookTrigger {
     override val value: String = "ASYNC_PAY_PENDING"
   }
-  private object AsyncPayPendingSerializer : KSerializer<AsyncPayPending> {
+  public object AsyncPayPendingSerializer : KSerializer<AsyncPayPending> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): AsyncPayPending = decoder.decodeString().let {
       if (it != "ASYNC_PAY_PENDING") {
@@ -120,13 +120,13 @@ public sealed interface PaymentWebhookTrigger {
         return AsyncPayPending
       }
     }
-    override fun serialize(encoder: Encoder, value: AsyncPayPending) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: AsyncPayPending): Unit = encoder.encodeString(value.value)
   }
   @Serializable(DisputeCreatedSerializer::class)
   public data object DisputeCreated : PaymentWebhookTrigger {
     override val value: String = "DISPUTE_CREATED"
   }
-  private object DisputeCreatedSerializer : KSerializer<DisputeCreated> {
+  public object DisputeCreatedSerializer : KSerializer<DisputeCreated> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeCreated::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisputeCreated = decoder.decodeString().let {
       if (it != "DISPUTE_CREATED") {
@@ -135,13 +135,13 @@ public sealed interface PaymentWebhookTrigger {
         return DisputeCreated
       }
     }
-    override fun serialize(encoder: Encoder, value: DisputeCreated) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DisputeCreated): Unit = encoder.encodeString(value.value)
   }
   @Serializable(DisputeResolvedSerializer::class)
   public data object DisputeResolved : PaymentWebhookTrigger {
     override val value: String = "DISPUTE_RESOLVED"
   }
-  private object DisputeResolvedSerializer : KSerializer<DisputeResolved> {
+  public object DisputeResolvedSerializer : KSerializer<DisputeResolved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisputeResolved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisputeResolved = decoder.decodeString().let {
       if (it != "DISPUTE_RESOLVED") {
@@ -150,7 +150,7 @@ public sealed interface PaymentWebhookTrigger {
         return DisputeResolved
       }
     }
-    override fun serialize(encoder: Encoder, value: DisputeResolved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DisputeResolved): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -158,7 +158,7 @@ public sealed interface PaymentWebhookTrigger {
 }
 
 
-private object PaymentWebhookTriggerSerializer : KSerializer<PaymentWebhookTrigger> {
+public object PaymentWebhookTriggerSerializer : KSerializer<PaymentWebhookTrigger> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentWebhookTrigger::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentWebhookTrigger {
     val value = decoder.decodeString()
@@ -175,5 +175,5 @@ private object PaymentWebhookTriggerSerializer : KSerializer<PaymentWebhookTrigg
       else -> PaymentWebhookTrigger.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentWebhookTrigger) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentWebhookTrigger): Unit = encoder.encodeString(value.value)
 }

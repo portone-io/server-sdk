@@ -18,7 +18,7 @@ public sealed interface Locale {
   public data object KoKr : Locale {
     override val value: String = "KO_KR"
   }
-  private object KoKrSerializer : KSerializer<KoKr> {
+  public object KoKrSerializer : KSerializer<KoKr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KoKr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KoKr = decoder.decodeString().let {
       if (it != "KO_KR") {
@@ -27,14 +27,14 @@ public sealed interface Locale {
         return KoKr
       }
     }
-    override fun serialize(encoder: Encoder, value: KoKr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: KoKr): Unit = encoder.encodeString(value.value)
   }
   /** 영어 (미국) */
   @Serializable(EnUsSerializer::class)
   public data object EnUs : Locale {
     override val value: String = "EN_US"
   }
-  private object EnUsSerializer : KSerializer<EnUs> {
+  public object EnUsSerializer : KSerializer<EnUs> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(EnUs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): EnUs = decoder.decodeString().let {
       if (it != "EN_US") {
@@ -43,14 +43,14 @@ public sealed interface Locale {
         return EnUs
       }
     }
-    override fun serialize(encoder: Encoder, value: EnUs) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: EnUs): Unit = encoder.encodeString(value.value)
   }
   /** 중국어 (중국) */
   @Serializable(ZhCnSerializer::class)
   public data object ZhCn : Locale {
     override val value: String = "ZH_CN"
   }
-  private object ZhCnSerializer : KSerializer<ZhCn> {
+  public object ZhCnSerializer : KSerializer<ZhCn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ZhCn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ZhCn = decoder.decodeString().let {
       if (it != "ZH_CN") {
@@ -59,14 +59,14 @@ public sealed interface Locale {
         return ZhCn
       }
     }
-    override fun serialize(encoder: Encoder, value: ZhCn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ZhCn): Unit = encoder.encodeString(value.value)
   }
   /** 중국어 (대만) */
   @Serializable(ZhTwSerializer::class)
   public data object ZhTw : Locale {
     override val value: String = "ZH_TW"
   }
-  private object ZhTwSerializer : KSerializer<ZhTw> {
+  public object ZhTwSerializer : KSerializer<ZhTw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ZhTw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ZhTw = decoder.decodeString().let {
       if (it != "ZH_TW") {
@@ -75,14 +75,14 @@ public sealed interface Locale {
         return ZhTw
       }
     }
-    override fun serialize(encoder: Encoder, value: ZhTw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ZhTw): Unit = encoder.encodeString(value.value)
   }
   /** 일본어 (일본) */
   @Serializable(JaJpSerializer::class)
   public data object JaJp : Locale {
     override val value: String = "JA_JP"
   }
-  private object JaJpSerializer : KSerializer<JaJp> {
+  public object JaJpSerializer : KSerializer<JaJp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(JaJp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): JaJp = decoder.decodeString().let {
       if (it != "JA_JP") {
@@ -91,14 +91,14 @@ public sealed interface Locale {
         return JaJp
       }
     }
-    override fun serialize(encoder: Encoder, value: JaJp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: JaJp): Unit = encoder.encodeString(value.value)
   }
   /** 러시아어 (러시아) */
   @Serializable(RuRuSerializer::class)
   public data object RuRu : Locale {
     override val value: String = "RU_RU"
   }
-  private object RuRuSerializer : KSerializer<RuRu> {
+  public object RuRuSerializer : KSerializer<RuRu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RuRu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RuRu = decoder.decodeString().let {
       if (it != "RU_RU") {
@@ -107,14 +107,14 @@ public sealed interface Locale {
         return RuRu
       }
     }
-    override fun serialize(encoder: Encoder, value: RuRu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: RuRu): Unit = encoder.encodeString(value.value)
   }
   /** 타이어 (타이) */
   @Serializable(ThThSerializer::class)
   public data object ThTh : Locale {
     override val value: String = "TH_TH"
   }
-  private object ThThSerializer : KSerializer<ThTh> {
+  public object ThThSerializer : KSerializer<ThTh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ThTh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ThTh = decoder.decodeString().let {
       if (it != "TH_TH") {
@@ -123,14 +123,14 @@ public sealed interface Locale {
         return ThTh
       }
     }
-    override fun serialize(encoder: Encoder, value: ThTh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ThTh): Unit = encoder.encodeString(value.value)
   }
   /** 베트남어 (베트남) */
   @Serializable(ViVnSerializer::class)
   public data object ViVn : Locale {
     override val value: String = "VI_VN"
   }
-  private object ViVnSerializer : KSerializer<ViVn> {
+  public object ViVnSerializer : KSerializer<ViVn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ViVn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ViVn = decoder.decodeString().let {
       if (it != "VI_VN") {
@@ -139,7 +139,7 @@ public sealed interface Locale {
         return ViVn
       }
     }
-    override fun serialize(encoder: Encoder, value: ViVn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ViVn): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -147,7 +147,7 @@ public sealed interface Locale {
 }
 
 
-private object LocaleSerializer : KSerializer<Locale> {
+public object LocaleSerializer : KSerializer<Locale> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Locale::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): Locale {
     val value = decoder.decodeString()
@@ -163,5 +163,5 @@ private object LocaleSerializer : KSerializer<Locale> {
       else -> Locale.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: Locale) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: Locale): Unit = encoder.encodeString(value.value)
 }

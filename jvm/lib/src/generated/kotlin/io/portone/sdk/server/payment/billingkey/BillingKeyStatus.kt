@@ -17,7 +17,7 @@ public sealed interface BillingKeyStatus {
   public data object Issued : BillingKeyStatus {
     override val value: String = "ISSUED"
   }
-  private object IssuedSerializer : KSerializer<Issued> {
+  public object IssuedSerializer : KSerializer<Issued> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Issued::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Issued = decoder.decodeString().let {
       if (it != "ISSUED") {
@@ -26,13 +26,13 @@ public sealed interface BillingKeyStatus {
         return Issued
       }
     }
-    override fun serialize(encoder: Encoder, value: Issued) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Issued): Unit = encoder.encodeString(value.value)
   }
   @Serializable(DeletedSerializer::class)
   public data object Deleted : BillingKeyStatus {
     override val value: String = "DELETED"
   }
-  private object DeletedSerializer : KSerializer<Deleted> {
+  public object DeletedSerializer : KSerializer<Deleted> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Deleted::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Deleted = decoder.decodeString().let {
       if (it != "DELETED") {
@@ -41,7 +41,7 @@ public sealed interface BillingKeyStatus {
         return Deleted
       }
     }
-    override fun serialize(encoder: Encoder, value: Deleted) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Deleted): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -49,7 +49,7 @@ public sealed interface BillingKeyStatus {
 }
 
 
-private object BillingKeyStatusSerializer : KSerializer<BillingKeyStatus> {
+public object BillingKeyStatusSerializer : KSerializer<BillingKeyStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKeyStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): BillingKeyStatus {
     val value = decoder.decodeString()
@@ -59,5 +59,5 @@ private object BillingKeyStatusSerializer : KSerializer<BillingKeyStatus> {
       else -> BillingKeyStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: BillingKeyStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: BillingKeyStatus): Unit = encoder.encodeString(value.value)
 }

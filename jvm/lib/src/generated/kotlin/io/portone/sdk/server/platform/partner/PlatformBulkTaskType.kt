@@ -17,7 +17,7 @@ public sealed interface PlatformBulkTaskType {
   public data object CreateTransfers : PlatformBulkTaskType {
     override val value: String = "CREATE_TRANSFERS"
   }
-  private object CreateTransfersSerializer : KSerializer<CreateTransfers> {
+  public object CreateTransfersSerializer : KSerializer<CreateTransfers> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreateTransfers::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreateTransfers = decoder.decodeString().let {
       if (it != "CREATE_TRANSFERS") {
@@ -26,14 +26,14 @@ public sealed interface PlatformBulkTaskType {
         return CreateTransfers
       }
     }
-    override fun serialize(encoder: Encoder, value: CreateTransfers) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CreateTransfers): Unit = encoder.encodeString(value.value)
   }
   /** 파트너 일괄 등록 */
   @Serializable(CreatePartnersSerializer::class)
   public data object CreatePartners : PlatformBulkTaskType {
     override val value: String = "CREATE_PARTNERS"
   }
-  private object CreatePartnersSerializer : KSerializer<CreatePartners> {
+  public object CreatePartnersSerializer : KSerializer<CreatePartners> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreatePartners::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreatePartners = decoder.decodeString().let {
       if (it != "CREATE_PARTNERS") {
@@ -42,14 +42,14 @@ public sealed interface PlatformBulkTaskType {
         return CreatePartners
       }
     }
-    override fun serialize(encoder: Encoder, value: CreatePartners) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CreatePartners): Unit = encoder.encodeString(value.value)
   }
   /** 파트너 일괄 국세청 연동 */
   @Serializable(ConnectMemberCompaniesSerializer::class)
   public data object ConnectMemberCompanies : PlatformBulkTaskType {
     override val value: String = "CONNECT_MEMBER_COMPANIES"
   }
-  private object ConnectMemberCompaniesSerializer : KSerializer<ConnectMemberCompanies> {
+  public object ConnectMemberCompaniesSerializer : KSerializer<ConnectMemberCompanies> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectMemberCompanies::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectMemberCompanies = decoder.decodeString().let {
       if (it != "CONNECT_MEMBER_COMPANIES") {
@@ -58,14 +58,14 @@ public sealed interface PlatformBulkTaskType {
         return ConnectMemberCompanies
       }
     }
-    override fun serialize(encoder: Encoder, value: ConnectMemberCompanies) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ConnectMemberCompanies): Unit = encoder.encodeString(value.value)
   }
   /** 파트너 일괄 국세청 연동 해제 */
   @Serializable(DisconnectMemberCompaniesSerializer::class)
   public data object DisconnectMemberCompanies : PlatformBulkTaskType {
     override val value: String = "DISCONNECT_MEMBER_COMPANIES"
   }
-  private object DisconnectMemberCompaniesSerializer : KSerializer<DisconnectMemberCompanies> {
+  public object DisconnectMemberCompaniesSerializer : KSerializer<DisconnectMemberCompanies> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisconnectMemberCompanies::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisconnectMemberCompanies = decoder.decodeString().let {
       if (it != "DISCONNECT_MEMBER_COMPANIES") {
@@ -74,14 +74,14 @@ public sealed interface PlatformBulkTaskType {
         return DisconnectMemberCompanies
       }
     }
-    override fun serialize(encoder: Encoder, value: DisconnectMemberCompanies) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DisconnectMemberCompanies): Unit = encoder.encodeString(value.value)
   }
   /** 정산 내역서 일괄 발송 */
   @Serializable(SendPayoutSettlementStatementsSerializer::class)
   public data object SendPayoutSettlementStatements : PlatformBulkTaskType {
     override val value: String = "SEND_PAYOUT_SETTLEMENT_STATEMENTS"
   }
-  private object SendPayoutSettlementStatementsSerializer : KSerializer<SendPayoutSettlementStatements> {
+  public object SendPayoutSettlementStatementsSerializer : KSerializer<SendPayoutSettlementStatements> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendPayoutSettlementStatements::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SendPayoutSettlementStatements = decoder.decodeString().let {
       if (it != "SEND_PAYOUT_SETTLEMENT_STATEMENTS") {
@@ -90,7 +90,7 @@ public sealed interface PlatformBulkTaskType {
         return SendPayoutSettlementStatements
       }
     }
-    override fun serialize(encoder: Encoder, value: SendPayoutSettlementStatements) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SendPayoutSettlementStatements): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -98,7 +98,7 @@ public sealed interface PlatformBulkTaskType {
 }
 
 
-private object PlatformBulkTaskTypeSerializer : KSerializer<PlatformBulkTaskType> {
+public object PlatformBulkTaskTypeSerializer : KSerializer<PlatformBulkTaskType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformBulkTaskType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformBulkTaskType {
     val value = decoder.decodeString()
@@ -111,5 +111,5 @@ private object PlatformBulkTaskTypeSerializer : KSerializer<PlatformBulkTaskType
       else -> PlatformBulkTaskType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformBulkTaskType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformBulkTaskType): Unit = encoder.encodeString(value.value)
 }

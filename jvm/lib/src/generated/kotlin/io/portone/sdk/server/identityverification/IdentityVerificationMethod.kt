@@ -17,7 +17,7 @@ public sealed interface IdentityVerificationMethod {
   public data object Sms : IdentityVerificationMethod {
     override val value: String = "SMS"
   }
-  private object SmsSerializer : KSerializer<Sms> {
+  public object SmsSerializer : KSerializer<Sms> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sms::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sms = decoder.decodeString().let {
       if (it != "SMS") {
@@ -26,13 +26,13 @@ public sealed interface IdentityVerificationMethod {
         return Sms
       }
     }
-    override fun serialize(encoder: Encoder, value: Sms) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sms): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AppSerializer::class)
   public data object App : IdentityVerificationMethod {
     override val value: String = "APP"
   }
-  private object AppSerializer : KSerializer<App> {
+  public object AppSerializer : KSerializer<App> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(App::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): App = decoder.decodeString().let {
       if (it != "APP") {
@@ -41,7 +41,7 @@ public sealed interface IdentityVerificationMethod {
         return App
       }
     }
-    override fun serialize(encoder: Encoder, value: App) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: App): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -49,7 +49,7 @@ public sealed interface IdentityVerificationMethod {
 }
 
 
-private object IdentityVerificationMethodSerializer : KSerializer<IdentityVerificationMethod> {
+public object IdentityVerificationMethodSerializer : KSerializer<IdentityVerificationMethod> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IdentityVerificationMethod::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): IdentityVerificationMethod {
     val value = decoder.decodeString()
@@ -59,5 +59,5 @@ private object IdentityVerificationMethodSerializer : KSerializer<IdentityVerifi
       else -> IdentityVerificationMethod.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: IdentityVerificationMethod) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: IdentityVerificationMethod): Unit = encoder.encodeString(value.value)
 }

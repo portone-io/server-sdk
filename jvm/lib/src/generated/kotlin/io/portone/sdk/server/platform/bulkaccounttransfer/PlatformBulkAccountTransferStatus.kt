@@ -16,7 +16,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
   public data object Prepared : PlatformBulkAccountTransferStatus {
     override val value: String = "PREPARED"
   }
-  private object PreparedSerializer : KSerializer<Prepared> {
+  public object PreparedSerializer : KSerializer<Prepared> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Prepared::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Prepared = decoder.decodeString().let {
       if (it != "PREPARED") {
@@ -25,13 +25,13 @@ public sealed interface PlatformBulkAccountTransferStatus {
         return Prepared
       }
     }
-    override fun serialize(encoder: Encoder, value: Prepared) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Prepared): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ScheduledSerializer::class)
   public data object Scheduled : PlatformBulkAccountTransferStatus {
     override val value: String = "SCHEDULED"
   }
-  private object ScheduledSerializer : KSerializer<Scheduled> {
+  public object ScheduledSerializer : KSerializer<Scheduled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Scheduled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Scheduled = decoder.decodeString().let {
       if (it != "SCHEDULED") {
@@ -40,13 +40,13 @@ public sealed interface PlatformBulkAccountTransferStatus {
         return Scheduled
       }
     }
-    override fun serialize(encoder: Encoder, value: Scheduled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Scheduled): Unit = encoder.encodeString(value.value)
   }
   @Serializable(OngoingSerializer::class)
   public data object Ongoing : PlatformBulkAccountTransferStatus {
     override val value: String = "ONGOING"
   }
-  private object OngoingSerializer : KSerializer<Ongoing> {
+  public object OngoingSerializer : KSerializer<Ongoing> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ongoing::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ongoing = decoder.decodeString().let {
       if (it != "ONGOING") {
@@ -55,13 +55,13 @@ public sealed interface PlatformBulkAccountTransferStatus {
         return Ongoing
       }
     }
-    override fun serialize(encoder: Encoder, value: Ongoing) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ongoing): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CompletedSerializer::class)
   public data object Completed : PlatformBulkAccountTransferStatus {
     override val value: String = "COMPLETED"
   }
-  private object CompletedSerializer : KSerializer<Completed> {
+  public object CompletedSerializer : KSerializer<Completed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Completed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Completed = decoder.decodeString().let {
       if (it != "COMPLETED") {
@@ -70,7 +70,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
         return Completed
       }
     }
-    override fun serialize(encoder: Encoder, value: Completed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Completed): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -78,7 +78,7 @@ public sealed interface PlatformBulkAccountTransferStatus {
 }
 
 
-private object PlatformBulkAccountTransferStatusSerializer : KSerializer<PlatformBulkAccountTransferStatus> {
+public object PlatformBulkAccountTransferStatusSerializer : KSerializer<PlatformBulkAccountTransferStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformBulkAccountTransferStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformBulkAccountTransferStatus {
     val value = decoder.decodeString()
@@ -90,5 +90,5 @@ private object PlatformBulkAccountTransferStatusSerializer : KSerializer<Platfor
       else -> PlatformBulkAccountTransferStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformBulkAccountTransferStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformBulkAccountTransferStatus): Unit = encoder.encodeString(value.value)
 }

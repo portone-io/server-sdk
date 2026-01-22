@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,16 +24,17 @@ internal sealed interface CreatePaymentScheduleError {
 }
 
 
-private object CreatePaymentScheduleErrorSerializer : JsonContentPolymorphicSerializer<CreatePaymentScheduleError>(CreatePaymentScheduleError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "ALREADY_PAID_OR_WAITING" -> AlreadyPaidOrWaitingError.serializer()
-    "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
-    "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PAYMENT_SCHEDULE_ALREADY_EXISTS" -> PaymentScheduleAlreadyExistsError.serializer()
-    "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT" -> SumOfPartsExceedsTotalAmountError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CreatePaymentScheduleError.Unrecognized.serializer()
-  }
+internal object CreatePaymentScheduleErrorSerializer : JsonContentPolymorphicSerializer<CreatePaymentScheduleError>(CreatePaymentScheduleError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CreatePaymentScheduleError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "ALREADY_PAID_OR_WAITING" -> AlreadyPaidOrWaitingError.serializer()
+      "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
+      "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PAYMENT_SCHEDULE_ALREADY_EXISTS" -> PaymentScheduleAlreadyExistsError.serializer()
+      "SUM_OF_PARTS_EXCEEDS_TOTAL_AMOUNT" -> SumOfPartsExceedsTotalAmountError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CreatePaymentScheduleError.Unrecognized.serializer()
+    }
 }

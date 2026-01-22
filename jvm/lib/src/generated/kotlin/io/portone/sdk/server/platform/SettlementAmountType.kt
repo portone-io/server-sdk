@@ -17,7 +17,7 @@ public sealed interface SettlementAmountType {
   public data object Net : SettlementAmountType {
     override val value: String = "NET"
   }
-  private object NetSerializer : KSerializer<Net> {
+  public object NetSerializer : KSerializer<Net> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Net::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Net = decoder.decodeString().let {
       if (it != "NET") {
@@ -26,14 +26,14 @@ public sealed interface SettlementAmountType {
         return Net
       }
     }
-    override fun serialize(encoder: Encoder, value: Net) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Net): Unit = encoder.encodeString(value.value)
   }
   /** 총액(공급가액, 부가세) */
   @Serializable(GrossSerializer::class)
   public data object Gross : SettlementAmountType {
     override val value: String = "GROSS"
   }
-  private object GrossSerializer : KSerializer<Gross> {
+  public object GrossSerializer : KSerializer<Gross> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gross::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gross = decoder.decodeString().let {
       if (it != "GROSS") {
@@ -42,7 +42,7 @@ public sealed interface SettlementAmountType {
         return Gross
       }
     }
-    override fun serialize(encoder: Encoder, value: Gross) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gross): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -50,7 +50,7 @@ public sealed interface SettlementAmountType {
 }
 
 
-private object SettlementAmountTypeSerializer : KSerializer<SettlementAmountType> {
+public object SettlementAmountTypeSerializer : KSerializer<SettlementAmountType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SettlementAmountType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): SettlementAmountType {
     val value = decoder.decodeString()
@@ -60,5 +60,5 @@ private object SettlementAmountTypeSerializer : KSerializer<SettlementAmountType
       else -> SettlementAmountType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: SettlementAmountType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: SettlementAmountType): Unit = encoder.encodeString(value.value)
 }

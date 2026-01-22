@@ -18,7 +18,7 @@ public sealed interface ConvenienceStoreBrand {
   public data object Lawson : ConvenienceStoreBrand {
     override val value: String = "LAWSON"
   }
-  private object LawsonSerializer : KSerializer<Lawson> {
+  public object LawsonSerializer : KSerializer<Lawson> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lawson::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lawson = decoder.decodeString().let {
       if (it != "LAWSON") {
@@ -27,14 +27,14 @@ public sealed interface ConvenienceStoreBrand {
         return Lawson
       }
     }
-    override fun serialize(encoder: Encoder, value: Lawson) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lawson): Unit = encoder.encodeString(value.value)
   }
   /** 패밀리마트 */
   @Serializable(FamilyMartSerializer::class)
   public data object FamilyMart : ConvenienceStoreBrand {
     override val value: String = "FAMILY_MART"
   }
-  private object FamilyMartSerializer : KSerializer<FamilyMart> {
+  public object FamilyMartSerializer : KSerializer<FamilyMart> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FamilyMart::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FamilyMart = decoder.decodeString().let {
       if (it != "FAMILY_MART") {
@@ -43,14 +43,14 @@ public sealed interface ConvenienceStoreBrand {
         return FamilyMart
       }
     }
-    override fun serialize(encoder: Encoder, value: FamilyMart) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: FamilyMart): Unit = encoder.encodeString(value.value)
   }
   /** 미니스톱 */
   @Serializable(MiniStopSerializer::class)
   public data object MiniStop : ConvenienceStoreBrand {
     override val value: String = "MINI_STOP"
   }
-  private object MiniStopSerializer : KSerializer<MiniStop> {
+  public object MiniStopSerializer : KSerializer<MiniStop> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(MiniStop::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): MiniStop = decoder.decodeString().let {
       if (it != "MINI_STOP") {
@@ -59,14 +59,14 @@ public sealed interface ConvenienceStoreBrand {
         return MiniStop
       }
     }
-    override fun serialize(encoder: Encoder, value: MiniStop) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: MiniStop): Unit = encoder.encodeString(value.value)
   }
   /** 세븐일레븐 */
   @Serializable(SevenElevenSerializer::class)
   public data object SevenEleven : ConvenienceStoreBrand {
     override val value: String = "SEVEN_ELEVEN"
   }
-  private object SevenElevenSerializer : KSerializer<SevenEleven> {
+  public object SevenElevenSerializer : KSerializer<SevenEleven> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SevenEleven::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SevenEleven = decoder.decodeString().let {
       if (it != "SEVEN_ELEVEN") {
@@ -75,14 +75,14 @@ public sealed interface ConvenienceStoreBrand {
         return SevenEleven
       }
     }
-    override fun serialize(encoder: Encoder, value: SevenEleven) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SevenEleven): Unit = encoder.encodeString(value.value)
   }
   /** 세이코마트 */
   @Serializable(SeicomartSerializer::class)
   public data object Seicomart : ConvenienceStoreBrand {
     override val value: String = "SEICOMART"
   }
-  private object SeicomartSerializer : KSerializer<Seicomart> {
+  public object SeicomartSerializer : KSerializer<Seicomart> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Seicomart::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Seicomart = decoder.decodeString().let {
       if (it != "SEICOMART") {
@@ -91,7 +91,7 @@ public sealed interface ConvenienceStoreBrand {
         return Seicomart
       }
     }
-    override fun serialize(encoder: Encoder, value: Seicomart) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Seicomart): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -99,7 +99,7 @@ public sealed interface ConvenienceStoreBrand {
 }
 
 
-private object ConvenienceStoreBrandSerializer : KSerializer<ConvenienceStoreBrand> {
+public object ConvenienceStoreBrandSerializer : KSerializer<ConvenienceStoreBrand> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConvenienceStoreBrand::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): ConvenienceStoreBrand {
     val value = decoder.decodeString()
@@ -112,5 +112,5 @@ private object ConvenienceStoreBrandSerializer : KSerializer<ConvenienceStoreBra
       else -> ConvenienceStoreBrand.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: ConvenienceStoreBrand) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: ConvenienceStoreBrand): Unit = encoder.encodeString(value.value)
 }

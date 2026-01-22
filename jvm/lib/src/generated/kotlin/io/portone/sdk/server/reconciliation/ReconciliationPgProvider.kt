@@ -16,7 +16,7 @@ public sealed interface ReconciliationPgProvider {
   public data object Kakaopay : ReconciliationPgProvider {
     override val value: String = "KAKAOPAY"
   }
-  private object KakaopaySerializer : KSerializer<Kakaopay> {
+  public object KakaopaySerializer : KSerializer<Kakaopay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kakaopay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kakaopay = decoder.decodeString().let {
       if (it != "KAKAOPAY") {
@@ -25,13 +25,13 @@ public sealed interface ReconciliationPgProvider {
         return Kakaopay
       }
     }
-    override fun serialize(encoder: Encoder, value: Kakaopay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kakaopay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(NicepaySerializer::class)
   public data object Nicepay : ReconciliationPgProvider {
     override val value: String = "NICEPAY"
   }
-  private object NicepaySerializer : KSerializer<Nicepay> {
+  public object NicepaySerializer : KSerializer<Nicepay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nicepay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nicepay = decoder.decodeString().let {
       if (it != "NICEPAY") {
@@ -40,13 +40,13 @@ public sealed interface ReconciliationPgProvider {
         return Nicepay
       }
     }
-    override fun serialize(encoder: Encoder, value: Nicepay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nicepay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(NaverpaySerializer::class)
   public data object Naverpay : ReconciliationPgProvider {
     override val value: String = "NAVERPAY"
   }
-  private object NaverpaySerializer : KSerializer<Naverpay> {
+  public object NaverpaySerializer : KSerializer<Naverpay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Naverpay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Naverpay = decoder.decodeString().let {
       if (it != "NAVERPAY") {
@@ -55,13 +55,13 @@ public sealed interface ReconciliationPgProvider {
         return Naverpay
       }
     }
-    override fun serialize(encoder: Encoder, value: Naverpay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Naverpay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(UplusSerializer::class)
   public data object Uplus : ReconciliationPgProvider {
     override val value: String = "UPLUS"
   }
-  private object UplusSerializer : KSerializer<Uplus> {
+  public object UplusSerializer : KSerializer<Uplus> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uplus::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uplus = decoder.decodeString().let {
       if (it != "UPLUS") {
@@ -70,13 +70,13 @@ public sealed interface ReconciliationPgProvider {
         return Uplus
       }
     }
-    override fun serialize(encoder: Encoder, value: Uplus) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Uplus): Unit = encoder.encodeString(value.value)
   }
   @Serializable(TosspaymentsSerializer::class)
   public data object Tosspayments : ReconciliationPgProvider {
     override val value: String = "TOSSPAYMENTS"
   }
-  private object TosspaymentsSerializer : KSerializer<Tosspayments> {
+  public object TosspaymentsSerializer : KSerializer<Tosspayments> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tosspayments::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tosspayments = decoder.decodeString().let {
       if (it != "TOSSPAYMENTS") {
@@ -85,13 +85,13 @@ public sealed interface ReconciliationPgProvider {
         return Tosspayments
       }
     }
-    override fun serialize(encoder: Encoder, value: Tosspayments) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tosspayments): Unit = encoder.encodeString(value.value)
   }
   @Serializable(TosspaySerializer::class)
   public data object Tosspay : ReconciliationPgProvider {
     override val value: String = "TOSSPAY"
   }
-  private object TosspaySerializer : KSerializer<Tosspay> {
+  public object TosspaySerializer : KSerializer<Tosspay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tosspay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tosspay = decoder.decodeString().let {
       if (it != "TOSSPAY") {
@@ -100,13 +100,13 @@ public sealed interface ReconciliationPgProvider {
         return Tosspay
       }
     }
-    override fun serialize(encoder: Encoder, value: Tosspay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tosspay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PaycoSerializer::class)
   public data object Payco : ReconciliationPgProvider {
     override val value: String = "PAYCO"
   }
-  private object PaycoSerializer : KSerializer<Payco> {
+  public object PaycoSerializer : KSerializer<Payco> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Payco::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Payco = decoder.decodeString().let {
       if (it != "PAYCO") {
@@ -115,13 +115,13 @@ public sealed interface ReconciliationPgProvider {
         return Payco
       }
     }
-    override fun serialize(encoder: Encoder, value: Payco) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Payco): Unit = encoder.encodeString(value.value)
   }
   @Serializable(KcpSerializer::class)
   public data object Kcp : ReconciliationPgProvider {
     override val value: String = "KCP"
   }
-  private object KcpSerializer : KSerializer<Kcp> {
+  public object KcpSerializer : KSerializer<Kcp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kcp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kcp = decoder.decodeString().let {
       if (it != "KCP") {
@@ -130,13 +130,13 @@ public sealed interface ReconciliationPgProvider {
         return Kcp
       }
     }
-    override fun serialize(encoder: Encoder, value: Kcp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kcp): Unit = encoder.encodeString(value.value)
   }
   @Serializable(DanalSerializer::class)
   public data object Danal : ReconciliationPgProvider {
     override val value: String = "DANAL"
   }
-  private object DanalSerializer : KSerializer<Danal> {
+  public object DanalSerializer : KSerializer<Danal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Danal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Danal = decoder.decodeString().let {
       if (it != "DANAL") {
@@ -145,13 +145,13 @@ public sealed interface ReconciliationPgProvider {
         return Danal
       }
     }
-    override fun serialize(encoder: Encoder, value: Danal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Danal): Unit = encoder.encodeString(value.value)
   }
   @Serializable(EximbaySerializer::class)
   public data object Eximbay : ReconciliationPgProvider {
     override val value: String = "EXIMBAY"
   }
-  private object EximbaySerializer : KSerializer<Eximbay> {
+  public object EximbaySerializer : KSerializer<Eximbay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eximbay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eximbay = decoder.decodeString().let {
       if (it != "EXIMBAY") {
@@ -160,13 +160,13 @@ public sealed interface ReconciliationPgProvider {
         return Eximbay
       }
     }
-    override fun serialize(encoder: Encoder, value: Eximbay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Eximbay): Unit = encoder.encodeString(value.value)
   }
   @Serializable(InicisSerializer::class)
   public data object Inicis : ReconciliationPgProvider {
     override val value: String = "INICIS"
   }
-  private object InicisSerializer : KSerializer<Inicis> {
+  public object InicisSerializer : KSerializer<Inicis> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Inicis::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Inicis = decoder.decodeString().let {
       if (it != "INICIS") {
@@ -175,13 +175,13 @@ public sealed interface ReconciliationPgProvider {
         return Inicis
       }
     }
-    override fun serialize(encoder: Encoder, value: Inicis) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Inicis): Unit = encoder.encodeString(value.value)
   }
   @Serializable(HectoSerializer::class)
   public data object Hecto : ReconciliationPgProvider {
     override val value: String = "HECTO"
   }
-  private object HectoSerializer : KSerializer<Hecto> {
+  public object HectoSerializer : KSerializer<Hecto> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hecto::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hecto = decoder.decodeString().let {
       if (it != "HECTO") {
@@ -190,13 +190,13 @@ public sealed interface ReconciliationPgProvider {
         return Hecto
       }
     }
-    override fun serialize(encoder: Encoder, value: Hecto) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hecto): Unit = encoder.encodeString(value.value)
   }
   @Serializable(KsnetSerializer::class)
   public data object Ksnet : ReconciliationPgProvider {
     override val value: String = "KSNET"
   }
-  private object KsnetSerializer : KSerializer<Ksnet> {
+  public object KsnetSerializer : KSerializer<Ksnet> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ksnet::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ksnet = decoder.decodeString().let {
       if (it != "KSNET") {
@@ -205,13 +205,13 @@ public sealed interface ReconciliationPgProvider {
         return Ksnet
       }
     }
-    override fun serialize(encoder: Encoder, value: Ksnet) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ksnet): Unit = encoder.encodeString(value.value)
   }
   @Serializable(KpnSerializer::class)
   public data object Kpn : ReconciliationPgProvider {
     override val value: String = "KPN"
   }
-  private object KpnSerializer : KSerializer<Kpn> {
+  public object KpnSerializer : KSerializer<Kpn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kpn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kpn = decoder.decodeString().let {
       if (it != "KPN") {
@@ -220,13 +220,13 @@ public sealed interface ReconciliationPgProvider {
         return Kpn
       }
     }
-    override fun serialize(encoder: Encoder, value: Kpn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kpn): Unit = encoder.encodeString(value.value)
   }
   @Serializable(HyphenSerializer::class)
   public data object Hyphen : ReconciliationPgProvider {
     override val value: String = "HYPHEN"
   }
-  private object HyphenSerializer : KSerializer<Hyphen> {
+  public object HyphenSerializer : KSerializer<Hyphen> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hyphen::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hyphen = decoder.decodeString().let {
       if (it != "HYPHEN") {
@@ -235,13 +235,13 @@ public sealed interface ReconciliationPgProvider {
         return Hyphen
       }
     }
-    override fun serialize(encoder: Encoder, value: Hyphen) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hyphen): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PaypalSerializer::class)
   public data object Paypal : ReconciliationPgProvider {
     override val value: String = "PAYPAL"
   }
-  private object PaypalSerializer : KSerializer<Paypal> {
+  public object PaypalSerializer : KSerializer<Paypal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paypal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paypal = decoder.decodeString().let {
       if (it != "PAYPAL") {
@@ -250,13 +250,13 @@ public sealed interface ReconciliationPgProvider {
         return Paypal
       }
     }
-    override fun serialize(encoder: Encoder, value: Paypal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Paypal): Unit = encoder.encodeString(value.value)
   }
   @Serializable(HectoEasySerializer::class)
   public data object HectoEasy : ReconciliationPgProvider {
     override val value: String = "HECTO_EASY"
   }
-  private object HectoEasySerializer : KSerializer<HectoEasy> {
+  public object HectoEasySerializer : KSerializer<HectoEasy> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HectoEasy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HectoEasy = decoder.decodeString().let {
       if (it != "HECTO_EASY") {
@@ -265,13 +265,13 @@ public sealed interface ReconciliationPgProvider {
         return HectoEasy
       }
     }
-    override fun serialize(encoder: Encoder, value: HectoEasy) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: HectoEasy): Unit = encoder.encodeString(value.value)
   }
   @Serializable(MobiliansSerializer::class)
   public data object Mobilians : ReconciliationPgProvider {
     override val value: String = "MOBILIANS"
   }
-  private object MobiliansSerializer : KSerializer<Mobilians> {
+  public object MobiliansSerializer : KSerializer<Mobilians> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobilians::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobilians = decoder.decodeString().let {
       if (it != "MOBILIANS") {
@@ -280,13 +280,13 @@ public sealed interface ReconciliationPgProvider {
         return Mobilians
       }
     }
-    override fun serialize(encoder: Encoder, value: Mobilians) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mobilians): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PayletterGlobalSerializer::class)
   public data object PayletterGlobal : ReconciliationPgProvider {
     override val value: String = "PAYLETTER_GLOBAL"
   }
-  private object PayletterGlobalSerializer : KSerializer<PayletterGlobal> {
+  public object PayletterGlobalSerializer : KSerializer<PayletterGlobal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayletterGlobal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayletterGlobal = decoder.decodeString().let {
       if (it != "PAYLETTER_GLOBAL") {
@@ -295,7 +295,7 @@ public sealed interface ReconciliationPgProvider {
         return PayletterGlobal
       }
     }
-    override fun serialize(encoder: Encoder, value: PayletterGlobal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PayletterGlobal): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -303,7 +303,7 @@ public sealed interface ReconciliationPgProvider {
 }
 
 
-private object ReconciliationPgProviderSerializer : KSerializer<ReconciliationPgProvider> {
+public object ReconciliationPgProviderSerializer : KSerializer<ReconciliationPgProvider> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ReconciliationPgProvider::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): ReconciliationPgProvider {
     val value = decoder.decodeString()
@@ -330,5 +330,5 @@ private object ReconciliationPgProviderSerializer : KSerializer<ReconciliationPg
       else -> ReconciliationPgProvider.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: ReconciliationPgProvider) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: ReconciliationPgProvider): Unit = encoder.encodeString(value.value)
 }

@@ -18,7 +18,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
   public data object NotConnected : PlatformPartnerMemberCompanyConnectionStatus {
     override val value: String = "NOT_CONNECTED"
   }
-  private object NotConnectedSerializer : KSerializer<NotConnected> {
+  public object NotConnectedSerializer : KSerializer<NotConnected> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotConnected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotConnected = decoder.decodeString().let {
       if (it != "NOT_CONNECTED") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
         return NotConnected
       }
     }
-    override fun serialize(encoder: Encoder, value: NotConnected) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: NotConnected): Unit = encoder.encodeString(value.value)
   }
   /** 연결 대기 */
   @Serializable(ConnectPendingSerializer::class)
   public data object ConnectPending : PlatformPartnerMemberCompanyConnectionStatus {
     override val value: String = "CONNECT_PENDING"
   }
-  private object ConnectPendingSerializer : KSerializer<ConnectPending> {
+  public object ConnectPendingSerializer : KSerializer<ConnectPending> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectPending = decoder.decodeString().let {
       if (it != "CONNECT_PENDING") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
         return ConnectPending
       }
     }
-    override fun serialize(encoder: Encoder, value: ConnectPending) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ConnectPending): Unit = encoder.encodeString(value.value)
   }
   /** 연결됨 */
   @Serializable(ConnectedSerializer::class)
   public data object Connected : PlatformPartnerMemberCompanyConnectionStatus {
     override val value: String = "CONNECTED"
   }
-  private object ConnectedSerializer : KSerializer<Connected> {
+  public object ConnectedSerializer : KSerializer<Connected> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Connected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Connected = decoder.decodeString().let {
       if (it != "CONNECTED") {
@@ -59,14 +59,14 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
         return Connected
       }
     }
-    override fun serialize(encoder: Encoder, value: Connected) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Connected): Unit = encoder.encodeString(value.value)
   }
   /** 연결 실패 */
   @Serializable(ConnectFailedSerializer::class)
   public data object ConnectFailed : PlatformPartnerMemberCompanyConnectionStatus {
     override val value: String = "CONNECT_FAILED"
   }
-  private object ConnectFailedSerializer : KSerializer<ConnectFailed> {
+  public object ConnectFailedSerializer : KSerializer<ConnectFailed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ConnectFailed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ConnectFailed = decoder.decodeString().let {
       if (it != "CONNECT_FAILED") {
@@ -75,14 +75,14 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
         return ConnectFailed
       }
     }
-    override fun serialize(encoder: Encoder, value: ConnectFailed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ConnectFailed): Unit = encoder.encodeString(value.value)
   }
   /** 연결 해제 대기 */
   @Serializable(DisconnectPendingSerializer::class)
   public data object DisconnectPending : PlatformPartnerMemberCompanyConnectionStatus {
     override val value: String = "DISCONNECT_PENDING"
   }
-  private object DisconnectPendingSerializer : KSerializer<DisconnectPending> {
+  public object DisconnectPendingSerializer : KSerializer<DisconnectPending> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DisconnectPending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DisconnectPending = decoder.decodeString().let {
       if (it != "DISCONNECT_PENDING") {
@@ -91,7 +91,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
         return DisconnectPending
       }
     }
-    override fun serialize(encoder: Encoder, value: DisconnectPending) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DisconnectPending): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -99,7 +99,7 @@ public sealed interface PlatformPartnerMemberCompanyConnectionStatus {
 }
 
 
-private object PlatformPartnerMemberCompanyConnectionStatusSerializer : KSerializer<PlatformPartnerMemberCompanyConnectionStatus> {
+public object PlatformPartnerMemberCompanyConnectionStatusSerializer : KSerializer<PlatformPartnerMemberCompanyConnectionStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerMemberCompanyConnectionStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerMemberCompanyConnectionStatus {
     val value = decoder.decodeString()
@@ -112,5 +112,5 @@ private object PlatformPartnerMemberCompanyConnectionStatusSerializer : KSeriali
       else -> PlatformPartnerMemberCompanyConnectionStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPartnerMemberCompanyConnectionStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPartnerMemberCompanyConnectionStatus): Unit = encoder.encodeString(value.value)
 }

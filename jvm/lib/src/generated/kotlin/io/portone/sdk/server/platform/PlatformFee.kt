@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,10 +23,11 @@ public sealed interface PlatformFee {
 }
 
 
-private object PlatformFeeSerializer : JsonContentPolymorphicSerializer<PlatformFee>(PlatformFee::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FIXED_AMOUNT" -> PlatformFixedAmountFee.serializer()
-    "FIXED_RATE" -> PlatformFixedRateFee.serializer()
-    else -> PlatformFee.Unrecognized.serializer()
-  }
+public object PlatformFeeSerializer : JsonContentPolymorphicSerializer<PlatformFee>(PlatformFee::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformFee> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FIXED_AMOUNT" -> PlatformFixedAmountFee.serializer()
+      "FIXED_RATE" -> PlatformFixedRateFee.serializer()
+      else -> PlatformFee.Unrecognized.serializer()
+    }
 }

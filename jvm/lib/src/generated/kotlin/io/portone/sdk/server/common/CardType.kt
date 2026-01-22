@@ -18,7 +18,7 @@ public sealed interface CardType {
   public data object Credit : CardType {
     override val value: String = "CREDIT"
   }
-  private object CreditSerializer : KSerializer<Credit> {
+  public object CreditSerializer : KSerializer<Credit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Credit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Credit = decoder.decodeString().let {
       if (it != "CREDIT") {
@@ -27,14 +27,14 @@ public sealed interface CardType {
         return Credit
       }
     }
-    override fun serialize(encoder: Encoder, value: Credit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Credit): Unit = encoder.encodeString(value.value)
   }
   /** 체크카드 */
   @Serializable(DebitSerializer::class)
   public data object Debit : CardType {
     override val value: String = "DEBIT"
   }
-  private object DebitSerializer : KSerializer<Debit> {
+  public object DebitSerializer : KSerializer<Debit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Debit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Debit = decoder.decodeString().let {
       if (it != "DEBIT") {
@@ -43,14 +43,14 @@ public sealed interface CardType {
         return Debit
       }
     }
-    override fun serialize(encoder: Encoder, value: Debit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Debit): Unit = encoder.encodeString(value.value)
   }
   /** 기프트카드 */
   @Serializable(GiftSerializer::class)
   public data object Gift : CardType {
     override val value: String = "GIFT"
   }
-  private object GiftSerializer : KSerializer<Gift> {
+  public object GiftSerializer : KSerializer<Gift> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gift::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gift = decoder.decodeString().let {
       if (it != "GIFT") {
@@ -59,7 +59,7 @@ public sealed interface CardType {
         return Gift
       }
     }
-    override fun serialize(encoder: Encoder, value: Gift) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gift): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface CardType {
 }
 
 
-private object CardTypeSerializer : KSerializer<CardType> {
+public object CardTypeSerializer : KSerializer<CardType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CardType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): CardType {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object CardTypeSerializer : KSerializer<CardType> {
       else -> CardType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: CardType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: CardType): Unit = encoder.encodeString(value.value)
 }

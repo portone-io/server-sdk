@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,16 +24,17 @@ internal sealed interface DeleteB2bTaxInvoiceAttachmentError {
 }
 
 
-private object DeleteB2bTaxInvoiceAttachmentErrorSerializer : JsonContentPolymorphicSerializer<DeleteB2bTaxInvoiceAttachmentError>(DeleteB2bTaxInvoiceAttachmentError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
-    "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
-    "B2B_TAX_INVOICE_ATTACHMENT_NOT_FOUND" -> B2bTaxInvoiceAttachmentNotFoundError.serializer()
-    "B2B_TAX_INVOICE_NOT_DRAFTED_STATUS" -> B2bTaxInvoiceNotDraftedStatusError.serializer()
-    "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> DeleteB2bTaxInvoiceAttachmentError.Unrecognized.serializer()
-  }
+internal object DeleteB2bTaxInvoiceAttachmentErrorSerializer : JsonContentPolymorphicSerializer<DeleteB2bTaxInvoiceAttachmentError>(DeleteB2bTaxInvoiceAttachmentError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out DeleteB2bTaxInvoiceAttachmentError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
+      "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
+      "B2B_TAX_INVOICE_ATTACHMENT_NOT_FOUND" -> B2bTaxInvoiceAttachmentNotFoundError.serializer()
+      "B2B_TAX_INVOICE_NOT_DRAFTED_STATUS" -> B2bTaxInvoiceNotDraftedStatusError.serializer()
+      "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> DeleteB2bTaxInvoiceAttachmentError.Unrecognized.serializer()
+    }
 }

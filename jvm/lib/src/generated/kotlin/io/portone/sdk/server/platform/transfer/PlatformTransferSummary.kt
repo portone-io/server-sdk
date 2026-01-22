@@ -5,6 +5,7 @@ import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformTransferSummaryPartner
 import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyValue
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -43,11 +44,12 @@ public sealed interface PlatformTransferSummary {
 }
 
 
-private object PlatformTransferSummarySerializer : JsonContentPolymorphicSerializer<PlatformTransferSummary>(PlatformTransferSummary::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "MANUAL" -> PlatformManualTransferSummary.serializer()
-    "ORDER" -> PlatformOrderTransferSummary.serializer()
-    "ORDER_CANCEL" -> PlatformOrderCancelTransferSummary.serializer()
-    else -> PlatformTransferSummary.Unrecognized.serializer()
-  }
+public object PlatformTransferSummarySerializer : JsonContentPolymorphicSerializer<PlatformTransferSummary>(PlatformTransferSummary::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformTransferSummary> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "MANUAL" -> PlatformManualTransferSummary.serializer()
+      "ORDER" -> PlatformOrderTransferSummary.serializer()
+      "ORDER_CANCEL" -> PlatformOrderCancelTransferSummary.serializer()
+      else -> PlatformTransferSummary.Unrecognized.serializer()
+    }
 }

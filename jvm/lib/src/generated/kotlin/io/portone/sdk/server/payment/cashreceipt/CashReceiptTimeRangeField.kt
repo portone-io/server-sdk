@@ -18,7 +18,7 @@ public sealed interface CashReceiptTimeRangeField {
   public data object IssuedAt : CashReceiptTimeRangeField {
     override val value: String = "ISSUED_AT"
   }
-  private object IssuedAtSerializer : KSerializer<IssuedAt> {
+  public object IssuedAtSerializer : KSerializer<IssuedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
@@ -27,14 +27,14 @@ public sealed interface CashReceiptTimeRangeField {
         return IssuedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: IssuedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IssuedAt): Unit = encoder.encodeString(value.value)
   }
   /** 취소 시각 */
   @Serializable(CancelledAtSerializer::class)
   public data object CancelledAt : CashReceiptTimeRangeField {
     override val value: String = "CANCELLED_AT"
   }
-  private object CancelledAtSerializer : KSerializer<CancelledAt> {
+  public object CancelledAtSerializer : KSerializer<CancelledAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelledAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CancelledAt = decoder.decodeString().let {
       if (it != "CANCELLED_AT") {
@@ -43,7 +43,7 @@ public sealed interface CashReceiptTimeRangeField {
         return CancelledAt
       }
     }
-    override fun serialize(encoder: Encoder, value: CancelledAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CancelledAt): Unit = encoder.encodeString(value.value)
   }
   /**
    * 상태 변경 시각
@@ -54,7 +54,7 @@ public sealed interface CashReceiptTimeRangeField {
   public data object StatusUpdatedAt : CashReceiptTimeRangeField {
     override val value: String = "STATUS_UPDATED_AT"
   }
-  private object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
+  public object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
@@ -63,7 +63,7 @@ public sealed interface CashReceiptTimeRangeField {
         return StatusUpdatedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: StatusUpdatedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: StatusUpdatedAt): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -71,7 +71,7 @@ public sealed interface CashReceiptTimeRangeField {
 }
 
 
-private object CashReceiptTimeRangeFieldSerializer : KSerializer<CashReceiptTimeRangeField> {
+public object CashReceiptTimeRangeFieldSerializer : KSerializer<CashReceiptTimeRangeField> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CashReceiptTimeRangeField::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): CashReceiptTimeRangeField {
     val value = decoder.decodeString()
@@ -82,5 +82,5 @@ private object CashReceiptTimeRangeFieldSerializer : KSerializer<CashReceiptTime
       else -> CashReceiptTimeRangeField.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: CashReceiptTimeRangeField) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: CashReceiptTimeRangeField): Unit = encoder.encodeString(value.value)
 }

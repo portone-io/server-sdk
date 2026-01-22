@@ -18,7 +18,7 @@ public sealed interface TaxInvoicesSheetField {
   public data object Status : TaxInvoicesSheetField {
     override val value: String = "STATUS"
   }
-  private object StatusSerializer : KSerializer<Status> {
+  public object StatusSerializer : KSerializer<Status> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Status::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Status = decoder.decodeString().let {
       if (it != "STATUS") {
@@ -27,14 +27,14 @@ public sealed interface TaxInvoicesSheetField {
         return Status
       }
     }
-    override fun serialize(encoder: Encoder, value: Status) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Status): Unit = encoder.encodeString(value.value)
   }
   /** 취소사유 */
   @Serializable(CancelReasonSerializer::class)
   public data object CancelReason : TaxInvoicesSheetField {
     override val value: String = "CANCEL_REASON"
   }
-  private object CancelReasonSerializer : KSerializer<CancelReason> {
+  public object CancelReasonSerializer : KSerializer<CancelReason> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelReason::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CancelReason = decoder.decodeString().let {
       if (it != "CANCEL_REASON") {
@@ -43,14 +43,14 @@ public sealed interface TaxInvoicesSheetField {
         return CancelReason
       }
     }
-    override fun serialize(encoder: Encoder, value: CancelReason) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CancelReason): Unit = encoder.encodeString(value.value)
   }
   /** 발행유형 */
   @Serializable(IssuanceTypeSerializer::class)
   public data object IssuanceType : TaxInvoicesSheetField {
     override val value: String = "ISSUANCE_TYPE"
   }
-  private object IssuanceTypeSerializer : KSerializer<IssuanceType> {
+  public object IssuanceTypeSerializer : KSerializer<IssuanceType> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceType = decoder.decodeString().let {
       if (it != "ISSUANCE_TYPE") {
@@ -59,14 +59,14 @@ public sealed interface TaxInvoicesSheetField {
         return IssuanceType
       }
     }
-    override fun serialize(encoder: Encoder, value: IssuanceType) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IssuanceType): Unit = encoder.encodeString(value.value)
   }
   /** 문서형태 */
   @Serializable(DocumentModificationTypeSerializer::class)
   public data object DocumentModificationType : TaxInvoicesSheetField {
     override val value: String = "DOCUMENT_MODIFICATION_TYPE"
   }
-  private object DocumentModificationTypeSerializer : KSerializer<DocumentModificationType> {
+  public object DocumentModificationTypeSerializer : KSerializer<DocumentModificationType> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DocumentModificationType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): DocumentModificationType = decoder.decodeString().let {
       if (it != "DOCUMENT_MODIFICATION_TYPE") {
@@ -75,14 +75,14 @@ public sealed interface TaxInvoicesSheetField {
         return DocumentModificationType
       }
     }
-    override fun serialize(encoder: Encoder, value: DocumentModificationType) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: DocumentModificationType): Unit = encoder.encodeString(value.value)
   }
   /** 지연발행 */
   @Serializable(IsDelayedSerializer::class)
   public data object IsDelayed : TaxInvoicesSheetField {
     override val value: String = "IS_DELAYED"
   }
-  private object IsDelayedSerializer : KSerializer<IsDelayed> {
+  public object IsDelayedSerializer : KSerializer<IsDelayed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IsDelayed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IsDelayed = decoder.decodeString().let {
       if (it != "IS_DELAYED") {
@@ -91,14 +91,14 @@ public sealed interface TaxInvoicesSheetField {
         return IsDelayed
       }
     }
-    override fun serialize(encoder: Encoder, value: IsDelayed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IsDelayed): Unit = encoder.encodeString(value.value)
   }
   /** 작성일자 */
   @Serializable(WriteDateSerializer::class)
   public data object WriteDate : TaxInvoicesSheetField {
     override val value: String = "WRITE_DATE"
   }
-  private object WriteDateSerializer : KSerializer<WriteDate> {
+  public object WriteDateSerializer : KSerializer<WriteDate> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(WriteDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): WriteDate = decoder.decodeString().let {
       if (it != "WRITE_DATE") {
@@ -107,14 +107,14 @@ public sealed interface TaxInvoicesSheetField {
         return WriteDate
       }
     }
-    override fun serialize(encoder: Encoder, value: WriteDate) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: WriteDate): Unit = encoder.encodeString(value.value)
   }
   /** 발행마감일 */
   @Serializable(IssuanceDueDateSerializer::class)
   public data object IssuanceDueDate : TaxInvoicesSheetField {
     override val value: String = "ISSUANCE_DUE_DATE"
   }
-  private object IssuanceDueDateSerializer : KSerializer<IssuanceDueDate> {
+  public object IssuanceDueDateSerializer : KSerializer<IssuanceDueDate> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuanceDueDate::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuanceDueDate = decoder.decodeString().let {
       if (it != "ISSUANCE_DUE_DATE") {
@@ -123,14 +123,14 @@ public sealed interface TaxInvoicesSheetField {
         return IssuanceDueDate
       }
     }
-    override fun serialize(encoder: Encoder, value: IssuanceDueDate) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IssuanceDueDate): Unit = encoder.encodeString(value.value)
   }
   /** 과세형태 */
   @Serializable(TaxationTypeSerializer::class)
   public data object TaxationType : TaxInvoicesSheetField {
     override val value: String = "TAXATION_TYPE"
   }
-  private object TaxationTypeSerializer : KSerializer<TaxationType> {
+  public object TaxationTypeSerializer : KSerializer<TaxationType> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxationType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TaxationType = decoder.decodeString().let {
       if (it != "TAXATION_TYPE") {
@@ -139,14 +139,14 @@ public sealed interface TaxInvoicesSheetField {
         return TaxationType
       }
     }
-    override fun serialize(encoder: Encoder, value: TaxationType) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TaxationType): Unit = encoder.encodeString(value.value)
   }
   /** 영수/청구 */
   @Serializable(PurposeTypeSerializer::class)
   public data object PurposeType : TaxInvoicesSheetField {
     override val value: String = "PURPOSE_TYPE"
   }
-  private object PurposeTypeSerializer : KSerializer<PurposeType> {
+  public object PurposeTypeSerializer : KSerializer<PurposeType> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PurposeType::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PurposeType = decoder.decodeString().let {
       if (it != "PURPOSE_TYPE") {
@@ -155,14 +155,14 @@ public sealed interface TaxInvoicesSheetField {
         return PurposeType
       }
     }
-    override fun serialize(encoder: Encoder, value: PurposeType) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PurposeType): Unit = encoder.encodeString(value.value)
   }
   /** 거래처 회사명 */
   @Serializable(PartnerNameSerializer::class)
   public data object PartnerName : TaxInvoicesSheetField {
     override val value: String = "PARTNER_NAME"
   }
-  private object PartnerNameSerializer : KSerializer<PartnerName> {
+  public object PartnerNameSerializer : KSerializer<PartnerName> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerName::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartnerName = decoder.decodeString().let {
       if (it != "PARTNER_NAME") {
@@ -171,14 +171,14 @@ public sealed interface TaxInvoicesSheetField {
         return PartnerName
       }
     }
-    override fun serialize(encoder: Encoder, value: PartnerName) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PartnerName): Unit = encoder.encodeString(value.value)
   }
   /** 거래처 사업자등록번호 */
   @Serializable(PartnerBrnSerializer::class)
   public data object PartnerBrn : TaxInvoicesSheetField {
     override val value: String = "PARTNER_BRN"
   }
-  private object PartnerBrnSerializer : KSerializer<PartnerBrn> {
+  public object PartnerBrnSerializer : KSerializer<PartnerBrn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerBrn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartnerBrn = decoder.decodeString().let {
       if (it != "PARTNER_BRN") {
@@ -187,14 +187,14 @@ public sealed interface TaxInvoicesSheetField {
         return PartnerBrn
       }
     }
-    override fun serialize(encoder: Encoder, value: PartnerBrn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PartnerBrn): Unit = encoder.encodeString(value.value)
   }
   /** 합계금액 */
   @Serializable(TotalAmountSerializer::class)
   public data object TotalAmount : TaxInvoicesSheetField {
     override val value: String = "TOTAL_AMOUNT"
   }
-  private object TotalAmountSerializer : KSerializer<TotalAmount> {
+  public object TotalAmountSerializer : KSerializer<TotalAmount> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalAmount = decoder.decodeString().let {
       if (it != "TOTAL_AMOUNT") {
@@ -203,14 +203,14 @@ public sealed interface TaxInvoicesSheetField {
         return TotalAmount
       }
     }
-    override fun serialize(encoder: Encoder, value: TotalAmount) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TotalAmount): Unit = encoder.encodeString(value.value)
   }
   /** 공급가액 */
   @Serializable(TotalSupplyAmountSerializer::class)
   public data object TotalSupplyAmount : TaxInvoicesSheetField {
     override val value: String = "TOTAL_SUPPLY_AMOUNT"
   }
-  private object TotalSupplyAmountSerializer : KSerializer<TotalSupplyAmount> {
+  public object TotalSupplyAmountSerializer : KSerializer<TotalSupplyAmount> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalSupplyAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalSupplyAmount = decoder.decodeString().let {
       if (it != "TOTAL_SUPPLY_AMOUNT") {
@@ -219,14 +219,14 @@ public sealed interface TaxInvoicesSheetField {
         return TotalSupplyAmount
       }
     }
-    override fun serialize(encoder: Encoder, value: TotalSupplyAmount) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TotalSupplyAmount): Unit = encoder.encodeString(value.value)
   }
   /** 세액 */
   @Serializable(TotalTaxAmountSerializer::class)
   public data object TotalTaxAmount : TaxInvoicesSheetField {
     override val value: String = "TOTAL_TAX_AMOUNT"
   }
-  private object TotalTaxAmountSerializer : KSerializer<TotalTaxAmount> {
+  public object TotalTaxAmountSerializer : KSerializer<TotalTaxAmount> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TotalTaxAmount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): TotalTaxAmount = decoder.decodeString().let {
       if (it != "TOTAL_TAX_AMOUNT") {
@@ -235,14 +235,14 @@ public sealed interface TaxInvoicesSheetField {
         return TotalTaxAmount
       }
     }
-    override fun serialize(encoder: Encoder, value: TotalTaxAmount) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: TotalTaxAmount): Unit = encoder.encodeString(value.value)
   }
   /** 관리용 메모 */
   @Serializable(MemoSerializer::class)
   public data object Memo : TaxInvoicesSheetField {
     override val value: String = "MEMO"
   }
-  private object MemoSerializer : KSerializer<Memo> {
+  public object MemoSerializer : KSerializer<Memo> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Memo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Memo = decoder.decodeString().let {
       if (it != "MEMO") {
@@ -251,14 +251,14 @@ public sealed interface TaxInvoicesSheetField {
         return Memo
       }
     }
-    override fun serialize(encoder: Encoder, value: Memo) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Memo): Unit = encoder.encodeString(value.value)
   }
   /** 발행요청일시 */
   @Serializable(RequestedAtSerializer::class)
   public data object RequestedAt : TaxInvoicesSheetField {
     override val value: String = "REQUESTED_AT"
   }
-  private object RequestedAtSerializer : KSerializer<RequestedAt> {
+  public object RequestedAtSerializer : KSerializer<RequestedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RequestedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RequestedAt = decoder.decodeString().let {
       if (it != "REQUESTED_AT") {
@@ -267,14 +267,14 @@ public sealed interface TaxInvoicesSheetField {
         return RequestedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: RequestedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: RequestedAt): Unit = encoder.encodeString(value.value)
   }
   /** 발행완료일시 */
   @Serializable(IssuedAtSerializer::class)
   public data object IssuedAt : TaxInvoicesSheetField {
     override val value: String = "ISSUED_AT"
   }
-  private object IssuedAtSerializer : KSerializer<IssuedAt> {
+  public object IssuedAtSerializer : KSerializer<IssuedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): IssuedAt = decoder.decodeString().let {
       if (it != "ISSUED_AT") {
@@ -283,14 +283,14 @@ public sealed interface TaxInvoicesSheetField {
         return IssuedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: IssuedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: IssuedAt): Unit = encoder.encodeString(value.value)
   }
   /** 국세청 전송일시 */
   @Serializable(NtsSentAtSerializer::class)
   public data object NtsSentAt : TaxInvoicesSheetField {
     override val value: String = "NTS_SENT_AT"
   }
-  private object NtsSentAtSerializer : KSerializer<NtsSentAt> {
+  public object NtsSentAtSerializer : KSerializer<NtsSentAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NtsSentAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NtsSentAt = decoder.decodeString().let {
       if (it != "NTS_SENT_AT") {
@@ -299,14 +299,14 @@ public sealed interface TaxInvoicesSheetField {
         return NtsSentAt
       }
     }
-    override fun serialize(encoder: Encoder, value: NtsSentAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: NtsSentAt): Unit = encoder.encodeString(value.value)
   }
   /** 상태 업데이트 일시 */
   @Serializable(StatusUpdatedAtSerializer::class)
   public data object StatusUpdatedAt : TaxInvoicesSheetField {
     override val value: String = "STATUS_UPDATED_AT"
   }
-  private object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
+  public object StatusUpdatedAtSerializer : KSerializer<StatusUpdatedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusUpdatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusUpdatedAt = decoder.decodeString().let {
       if (it != "STATUS_UPDATED_AT") {
@@ -315,14 +315,14 @@ public sealed interface TaxInvoicesSheetField {
         return StatusUpdatedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: StatusUpdatedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: StatusUpdatedAt): Unit = encoder.encodeString(value.value)
   }
   /** 일괄 세금계산서 아이디 */
   @Serializable(BulkTaxInvoiceIdSerializer::class)
   public data object BulkTaxInvoiceId : TaxInvoicesSheetField {
     override val value: String = "BULK_TAX_INVOICE_ID"
   }
-  private object BulkTaxInvoiceIdSerializer : KSerializer<BulkTaxInvoiceId> {
+  public object BulkTaxInvoiceIdSerializer : KSerializer<BulkTaxInvoiceId> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BulkTaxInvoiceId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): BulkTaxInvoiceId = decoder.decodeString().let {
       if (it != "BULK_TAX_INVOICE_ID") {
@@ -331,14 +331,14 @@ public sealed interface TaxInvoicesSheetField {
         return BulkTaxInvoiceId
       }
     }
-    override fun serialize(encoder: Encoder, value: BulkTaxInvoiceId) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: BulkTaxInvoiceId): Unit = encoder.encodeString(value.value)
   }
   /** 세금계산서 아이디 */
   @Serializable(PlainIdSerializer::class)
   public data object PlainId : TaxInvoicesSheetField {
     override val value: String = "PLAIN_ID"
   }
-  private object PlainIdSerializer : KSerializer<PlainId> {
+  public object PlainIdSerializer : KSerializer<PlainId> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlainId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PlainId = decoder.decodeString().let {
       if (it != "PLAIN_ID") {
@@ -347,14 +347,14 @@ public sealed interface TaxInvoicesSheetField {
         return PlainId
       }
     }
-    override fun serialize(encoder: Encoder, value: PlainId) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PlainId): Unit = encoder.encodeString(value.value)
   }
   /** 공급자 문서번호 */
   @Serializable(SupplierDocumentKeySerializer::class)
   public data object SupplierDocumentKey : TaxInvoicesSheetField {
     override val value: String = "SUPPLIER_DOCUMENT_KEY"
   }
-  private object SupplierDocumentKeySerializer : KSerializer<SupplierDocumentKey> {
+  public object SupplierDocumentKeySerializer : KSerializer<SupplierDocumentKey> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierDocumentKey::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SupplierDocumentKey = decoder.decodeString().let {
       if (it != "SUPPLIER_DOCUMENT_KEY") {
@@ -363,14 +363,14 @@ public sealed interface TaxInvoicesSheetField {
         return SupplierDocumentKey
       }
     }
-    override fun serialize(encoder: Encoder, value: SupplierDocumentKey) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SupplierDocumentKey): Unit = encoder.encodeString(value.value)
   }
   /** 공급받는자 문서번호 */
   @Serializable(RecipientDocumentKeySerializer::class)
   public data object RecipientDocumentKey : TaxInvoicesSheetField {
     override val value: String = "RECIPIENT_DOCUMENT_KEY"
   }
-  private object RecipientDocumentKeySerializer : KSerializer<RecipientDocumentKey> {
+  public object RecipientDocumentKeySerializer : KSerializer<RecipientDocumentKey> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientDocumentKey::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): RecipientDocumentKey = decoder.decodeString().let {
       if (it != "RECIPIENT_DOCUMENT_KEY") {
@@ -379,14 +379,14 @@ public sealed interface TaxInvoicesSheetField {
         return RecipientDocumentKey
       }
     }
-    override fun serialize(encoder: Encoder, value: RecipientDocumentKey) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: RecipientDocumentKey): Unit = encoder.encodeString(value.value)
   }
   /** 지급 아이디 */
   @Serializable(PayoutIdSerializer::class)
   public data object PayoutId : TaxInvoicesSheetField {
     override val value: String = "PAYOUT_ID"
   }
-  private object PayoutIdSerializer : KSerializer<PayoutId> {
+  public object PayoutIdSerializer : KSerializer<PayoutId> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutId::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PayoutId = decoder.decodeString().let {
       if (it != "PAYOUT_ID") {
@@ -395,14 +395,14 @@ public sealed interface TaxInvoicesSheetField {
         return PayoutId
       }
     }
-    override fun serialize(encoder: Encoder, value: PayoutId) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PayoutId): Unit = encoder.encodeString(value.value)
   }
   /** 품목 */
   @Serializable(ItemsSerializer::class)
   public data object Items : TaxInvoicesSheetField {
     override val value: String = "ITEMS"
   }
-  private object ItemsSerializer : KSerializer<Items> {
+  public object ItemsSerializer : KSerializer<Items> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Items::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Items = decoder.decodeString().let {
       if (it != "ITEMS") {
@@ -411,7 +411,7 @@ public sealed interface TaxInvoicesSheetField {
         return Items
       }
     }
-    override fun serialize(encoder: Encoder, value: Items) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Items): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -419,7 +419,7 @@ public sealed interface TaxInvoicesSheetField {
 }
 
 
-private object TaxInvoicesSheetFieldSerializer : KSerializer<TaxInvoicesSheetField> {
+public object TaxInvoicesSheetFieldSerializer : KSerializer<TaxInvoicesSheetField> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TaxInvoicesSheetField::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): TaxInvoicesSheetField {
     val value = decoder.decodeString()
@@ -452,5 +452,5 @@ private object TaxInvoicesSheetFieldSerializer : KSerializer<TaxInvoicesSheetFie
       else -> TaxInvoicesSheetField.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: TaxInvoicesSheetField) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: TaxInvoicesSheetField): Unit = encoder.encodeString(value.value)
 }

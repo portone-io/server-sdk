@@ -18,7 +18,7 @@ public sealed interface IssueCashReceiptPaymentMethodType {
   public data object Transfer : IssueCashReceiptPaymentMethodType {
     override val value: String = "TRANSFER"
   }
-  private object TransferSerializer : KSerializer<Transfer> {
+  public object TransferSerializer : KSerializer<Transfer> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Transfer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Transfer = decoder.decodeString().let {
       if (it != "TRANSFER") {
@@ -27,14 +27,14 @@ public sealed interface IssueCashReceiptPaymentMethodType {
         return Transfer
       }
     }
-    override fun serialize(encoder: Encoder, value: Transfer) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Transfer): Unit = encoder.encodeString(value.value)
   }
   /** 가상계좌 */
   @Serializable(VirtualAccountSerializer::class)
   public data object VirtualAccount : IssueCashReceiptPaymentMethodType {
     override val value: String = "VIRTUAL_ACCOUNT"
   }
-  private object VirtualAccountSerializer : KSerializer<VirtualAccount> {
+  public object VirtualAccountSerializer : KSerializer<VirtualAccount> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccount = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT") {
@@ -43,7 +43,7 @@ public sealed interface IssueCashReceiptPaymentMethodType {
         return VirtualAccount
       }
     }
-    override fun serialize(encoder: Encoder, value: VirtualAccount) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VirtualAccount): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface IssueCashReceiptPaymentMethodType {
 }
 
 
-private object IssueCashReceiptPaymentMethodTypeSerializer : KSerializer<IssueCashReceiptPaymentMethodType> {
+public object IssueCashReceiptPaymentMethodTypeSerializer : KSerializer<IssueCashReceiptPaymentMethodType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssueCashReceiptPaymentMethodType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): IssueCashReceiptPaymentMethodType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object IssueCashReceiptPaymentMethodTypeSerializer : KSerializer<IssueCa
       else -> IssueCashReceiptPaymentMethodType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: IssueCashReceiptPaymentMethodType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: IssueCashReceiptPaymentMethodType): Unit = encoder.encodeString(value.value)
 }

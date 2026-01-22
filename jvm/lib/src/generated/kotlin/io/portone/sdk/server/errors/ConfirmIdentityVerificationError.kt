@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,15 +24,16 @@ internal sealed interface ConfirmIdentityVerificationError {
 }
 
 
-private object ConfirmIdentityVerificationErrorSerializer : JsonContentPolymorphicSerializer<ConfirmIdentityVerificationError>(ConfirmIdentityVerificationError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "IDENTITY_VERIFICATION_ALREADY_VERIFIED" -> IdentityVerificationAlreadyVerifiedError.serializer()
-    "IDENTITY_VERIFICATION_NOT_FOUND" -> IdentityVerificationNotFoundError.serializer()
-    "IDENTITY_VERIFICATION_NOT_SENT" -> IdentityVerificationNotSentError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> ConfirmIdentityVerificationError.Unrecognized.serializer()
-  }
+internal object ConfirmIdentityVerificationErrorSerializer : JsonContentPolymorphicSerializer<ConfirmIdentityVerificationError>(ConfirmIdentityVerificationError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out ConfirmIdentityVerificationError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "IDENTITY_VERIFICATION_ALREADY_VERIFIED" -> IdentityVerificationAlreadyVerifiedError.serializer()
+      "IDENTITY_VERIFICATION_NOT_FOUND" -> IdentityVerificationNotFoundError.serializer()
+      "IDENTITY_VERIFICATION_NOT_SENT" -> IdentityVerificationNotSentError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> ConfirmIdentityVerificationError.Unrecognized.serializer()
+    }
 }

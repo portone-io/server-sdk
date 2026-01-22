@@ -5,6 +5,7 @@ import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformUserDefinedPropertyKeyValue
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -55,11 +56,12 @@ public sealed interface PlatformTransfer {
 }
 
 
-private object PlatformTransferSerializer : JsonContentPolymorphicSerializer<PlatformTransfer>(PlatformTransfer::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "MANUAL" -> PlatformManualTransfer.serializer()
-    "ORDER" -> PlatformOrderTransfer.serializer()
-    "ORDER_CANCEL" -> PlatformOrderCancelTransfer.serializer()
-    else -> PlatformTransfer.Unrecognized.serializer()
-  }
+public object PlatformTransferSerializer : JsonContentPolymorphicSerializer<PlatformTransfer>(PlatformTransfer::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformTransfer> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "MANUAL" -> PlatformManualTransfer.serializer()
+      "ORDER" -> PlatformOrderTransfer.serializer()
+      "ORDER_CANCEL" -> PlatformOrderCancelTransfer.serializer()
+      else -> PlatformTransfer.Unrecognized.serializer()
+    }
 }

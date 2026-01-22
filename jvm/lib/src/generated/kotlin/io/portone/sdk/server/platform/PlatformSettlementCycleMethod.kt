@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,12 +23,13 @@ public sealed interface PlatformSettlementCycleMethod {
 }
 
 
-private object PlatformSettlementCycleMethodSerializer : JsonContentPolymorphicSerializer<PlatformSettlementCycleMethod>(PlatformSettlementCycleMethod::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "DAILY" -> PlatformSettlementCycleMethodDaily.serializer()
-    "MANUAL_DATES" -> PlatformSettlementCycleMethodManualDates.serializer()
-    "MONTHLY" -> PlatformSettlementCycleMethodMonthly.serializer()
-    "WEEKLY" -> PlatformSettlementCycleMethodWeekly.serializer()
-    else -> PlatformSettlementCycleMethod.Unrecognized.serializer()
-  }
+public object PlatformSettlementCycleMethodSerializer : JsonContentPolymorphicSerializer<PlatformSettlementCycleMethod>(PlatformSettlementCycleMethod::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformSettlementCycleMethod> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "DAILY" -> PlatformSettlementCycleMethodDaily.serializer()
+      "MANUAL_DATES" -> PlatformSettlementCycleMethodManualDates.serializer()
+      "MONTHLY" -> PlatformSettlementCycleMethodMonthly.serializer()
+      "WEEKLY" -> PlatformSettlementCycleMethodWeekly.serializer()
+      else -> PlatformSettlementCycleMethod.Unrecognized.serializer()
+    }
 }

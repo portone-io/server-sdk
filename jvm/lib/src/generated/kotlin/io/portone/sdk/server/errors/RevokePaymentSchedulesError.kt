@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,16 +24,17 @@ internal sealed interface RevokePaymentSchedulesError {
 }
 
 
-private object RevokePaymentSchedulesErrorSerializer : JsonContentPolymorphicSerializer<RevokePaymentSchedulesError>(RevokePaymentSchedulesError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
-    "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PAYMENT_SCHEDULE_ALREADY_PROCESSED" -> PaymentScheduleAlreadyProcessedError.serializer()
-    "PAYMENT_SCHEDULE_ALREADY_REVOKED" -> PaymentScheduleAlreadyRevokedError.serializer()
-    "PAYMENT_SCHEDULE_NOT_FOUND" -> PaymentScheduleNotFoundError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> RevokePaymentSchedulesError.Unrecognized.serializer()
-  }
+internal object RevokePaymentSchedulesErrorSerializer : JsonContentPolymorphicSerializer<RevokePaymentSchedulesError>(RevokePaymentSchedulesError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out RevokePaymentSchedulesError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
+      "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PAYMENT_SCHEDULE_ALREADY_PROCESSED" -> PaymentScheduleAlreadyProcessedError.serializer()
+      "PAYMENT_SCHEDULE_ALREADY_REVOKED" -> PaymentScheduleAlreadyRevokedError.serializer()
+      "PAYMENT_SCHEDULE_NOT_FOUND" -> PaymentScheduleNotFoundError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> RevokePaymentSchedulesError.Unrecognized.serializer()
+    }
 }

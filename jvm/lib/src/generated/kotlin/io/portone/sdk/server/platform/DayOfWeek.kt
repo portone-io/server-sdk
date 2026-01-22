@@ -17,7 +17,7 @@ public sealed interface DayOfWeek {
   public data object Sun : DayOfWeek {
     override val value: String = "SUN"
   }
-  private object SunSerializer : KSerializer<Sun> {
+  public object SunSerializer : KSerializer<Sun> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sun::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sun = decoder.decodeString().let {
       if (it != "SUN") {
@@ -26,13 +26,13 @@ public sealed interface DayOfWeek {
         return Sun
       }
     }
-    override fun serialize(encoder: Encoder, value: Sun) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sun): Unit = encoder.encodeString(value.value)
   }
   @Serializable(MonSerializer::class)
   public data object Mon : DayOfWeek {
     override val value: String = "MON"
   }
-  private object MonSerializer : KSerializer<Mon> {
+  public object MonSerializer : KSerializer<Mon> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mon::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mon = decoder.decodeString().let {
       if (it != "MON") {
@@ -41,13 +41,13 @@ public sealed interface DayOfWeek {
         return Mon
       }
     }
-    override fun serialize(encoder: Encoder, value: Mon) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mon): Unit = encoder.encodeString(value.value)
   }
   @Serializable(TueSerializer::class)
   public data object Tue : DayOfWeek {
     override val value: String = "TUE"
   }
-  private object TueSerializer : KSerializer<Tue> {
+  public object TueSerializer : KSerializer<Tue> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tue::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tue = decoder.decodeString().let {
       if (it != "TUE") {
@@ -56,13 +56,13 @@ public sealed interface DayOfWeek {
         return Tue
       }
     }
-    override fun serialize(encoder: Encoder, value: Tue) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tue): Unit = encoder.encodeString(value.value)
   }
   @Serializable(WedSerializer::class)
   public data object Wed : DayOfWeek {
     override val value: String = "WED"
   }
-  private object WedSerializer : KSerializer<Wed> {
+  public object WedSerializer : KSerializer<Wed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wed = decoder.decodeString().let {
       if (it != "WED") {
@@ -71,13 +71,13 @@ public sealed interface DayOfWeek {
         return Wed
       }
     }
-    override fun serialize(encoder: Encoder, value: Wed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Wed): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ThuSerializer::class)
   public data object Thu : DayOfWeek {
     override val value: String = "THU"
   }
-  private object ThuSerializer : KSerializer<Thu> {
+  public object ThuSerializer : KSerializer<Thu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Thu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Thu = decoder.decodeString().let {
       if (it != "THU") {
@@ -86,13 +86,13 @@ public sealed interface DayOfWeek {
         return Thu
       }
     }
-    override fun serialize(encoder: Encoder, value: Thu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Thu): Unit = encoder.encodeString(value.value)
   }
   @Serializable(FriSerializer::class)
   public data object Fri : DayOfWeek {
     override val value: String = "FRI"
   }
-  private object FriSerializer : KSerializer<Fri> {
+  public object FriSerializer : KSerializer<Fri> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fri::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fri = decoder.decodeString().let {
       if (it != "FRI") {
@@ -101,13 +101,13 @@ public sealed interface DayOfWeek {
         return Fri
       }
     }
-    override fun serialize(encoder: Encoder, value: Fri) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fri): Unit = encoder.encodeString(value.value)
   }
   @Serializable(SatSerializer::class)
   public data object Sat : DayOfWeek {
     override val value: String = "SAT"
   }
-  private object SatSerializer : KSerializer<Sat> {
+  public object SatSerializer : KSerializer<Sat> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sat::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sat = decoder.decodeString().let {
       if (it != "SAT") {
@@ -116,7 +116,7 @@ public sealed interface DayOfWeek {
         return Sat
       }
     }
-    override fun serialize(encoder: Encoder, value: Sat) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sat): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -124,7 +124,7 @@ public sealed interface DayOfWeek {
 }
 
 
-private object DayOfWeekSerializer : KSerializer<DayOfWeek> {
+public object DayOfWeekSerializer : KSerializer<DayOfWeek> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(DayOfWeek::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): DayOfWeek {
     val value = decoder.decodeString()
@@ -139,5 +139,5 @@ private object DayOfWeekSerializer : KSerializer<DayOfWeek> {
       else -> DayOfWeek.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: DayOfWeek) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: DayOfWeek): Unit = encoder.encodeString(value.value)
 }

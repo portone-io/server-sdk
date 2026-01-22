@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,17 +24,18 @@ internal sealed interface SendIdentityVerificationError {
 }
 
 
-private object SendIdentityVerificationErrorSerializer : JsonContentPolymorphicSerializer<SendIdentityVerificationError>(SendIdentityVerificationError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "CHANNEL_NOT_FOUND" -> ChannelNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "IDENTITY_VERIFICATION_ALREADY_SENT" -> IdentityVerificationAlreadySentError.serializer()
-    "IDENTITY_VERIFICATION_ALREADY_VERIFIED" -> IdentityVerificationAlreadyVerifiedError.serializer()
-    "IDENTITY_VERIFICATION_NOT_FOUND" -> IdentityVerificationNotFoundError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "MAX_TRANSACTION_COUNT_REACHED" -> MaxTransactionCountReachedError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> SendIdentityVerificationError.Unrecognized.serializer()
-  }
+internal object SendIdentityVerificationErrorSerializer : JsonContentPolymorphicSerializer<SendIdentityVerificationError>(SendIdentityVerificationError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out SendIdentityVerificationError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "CHANNEL_NOT_FOUND" -> ChannelNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "IDENTITY_VERIFICATION_ALREADY_SENT" -> IdentityVerificationAlreadySentError.serializer()
+      "IDENTITY_VERIFICATION_ALREADY_VERIFIED" -> IdentityVerificationAlreadyVerifiedError.serializer()
+      "IDENTITY_VERIFICATION_NOT_FOUND" -> IdentityVerificationNotFoundError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "MAX_TRANSACTION_COUNT_REACHED" -> MaxTransactionCountReachedError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> SendIdentityVerificationError.Unrecognized.serializer()
+    }
 }

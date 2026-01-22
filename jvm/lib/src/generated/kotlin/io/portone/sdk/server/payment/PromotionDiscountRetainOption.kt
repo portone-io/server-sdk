@@ -16,7 +16,7 @@ public sealed interface PromotionDiscountRetainOption {
   public data object Retain : PromotionDiscountRetainOption {
     override val value: String = "RETAIN"
   }
-  private object RetainSerializer : KSerializer<Retain> {
+  public object RetainSerializer : KSerializer<Retain> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Retain::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Retain = decoder.decodeString().let {
       if (it != "RETAIN") {
@@ -25,13 +25,13 @@ public sealed interface PromotionDiscountRetainOption {
         return Retain
       }
     }
-    override fun serialize(encoder: Encoder, value: Retain) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Retain): Unit = encoder.encodeString(value.value)
   }
   @Serializable(ReleaseSerializer::class)
   public data object Release : PromotionDiscountRetainOption {
     override val value: String = "RELEASE"
   }
-  private object ReleaseSerializer : KSerializer<Release> {
+  public object ReleaseSerializer : KSerializer<Release> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Release::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Release = decoder.decodeString().let {
       if (it != "RELEASE") {
@@ -40,7 +40,7 @@ public sealed interface PromotionDiscountRetainOption {
         return Release
       }
     }
-    override fun serialize(encoder: Encoder, value: Release) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Release): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -48,7 +48,7 @@ public sealed interface PromotionDiscountRetainOption {
 }
 
 
-private object PromotionDiscountRetainOptionSerializer : KSerializer<PromotionDiscountRetainOption> {
+public object PromotionDiscountRetainOptionSerializer : KSerializer<PromotionDiscountRetainOption> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PromotionDiscountRetainOption::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PromotionDiscountRetainOption {
     val value = decoder.decodeString()
@@ -58,5 +58,5 @@ private object PromotionDiscountRetainOptionSerializer : KSerializer<PromotionDi
       else -> PromotionDiscountRetainOption.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PromotionDiscountRetainOption) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PromotionDiscountRetainOption): Unit = encoder.encodeString(value.value)
 }

@@ -2,6 +2,7 @@ package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.SelectedChannel
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -25,10 +26,11 @@ public sealed interface ChannelSpecificFailure {
 }
 
 
-private object ChannelSpecificFailureSerializer : JsonContentPolymorphicSerializer<ChannelSpecificFailure>(ChannelSpecificFailure::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "INVALID_REQUEST" -> ChannelSpecificFailureInvalidRequest.serializer()
-    "PG_PROVIDER" -> ChannelSpecificFailurePgProvider.serializer()
-    else -> ChannelSpecificFailure.Unrecognized.serializer()
-  }
+public object ChannelSpecificFailureSerializer : JsonContentPolymorphicSerializer<ChannelSpecificFailure>(ChannelSpecificFailure::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out ChannelSpecificFailure> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "INVALID_REQUEST" -> ChannelSpecificFailureInvalidRequest.serializer()
+      "PG_PROVIDER" -> ChannelSpecificFailurePgProvider.serializer()
+      else -> ChannelSpecificFailure.Unrecognized.serializer()
+    }
 }

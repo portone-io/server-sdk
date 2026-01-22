@@ -4,6 +4,7 @@ import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferStatus
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -53,10 +54,11 @@ public sealed interface PlatformAccountTransfer {
 }
 
 
-private object PlatformAccountTransferSerializer : JsonContentPolymorphicSerializer<PlatformAccountTransfer>(PlatformAccountTransfer::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "DEPOSIT" -> PlatformDepositAccountTransfer.serializer()
-    "WITHDRAWAL" -> PlatformWithdrawalAccountTransfer.serializer()
-    else -> PlatformAccountTransfer.Unrecognized.serializer()
-  }
+public object PlatformAccountTransferSerializer : JsonContentPolymorphicSerializer<PlatformAccountTransfer>(PlatformAccountTransfer::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformAccountTransfer> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "DEPOSIT" -> PlatformDepositAccountTransfer.serializer()
+      "WITHDRAWAL" -> PlatformWithdrawalAccountTransfer.serializer()
+      else -> PlatformAccountTransfer.Unrecognized.serializer()
+    }
 }

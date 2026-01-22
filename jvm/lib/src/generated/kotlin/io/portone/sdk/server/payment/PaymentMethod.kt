@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,16 +23,17 @@ public sealed interface PaymentMethod {
 }
 
 
-private object PaymentMethodSerializer : JsonContentPolymorphicSerializer<PaymentMethod>(PaymentMethod::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "PaymentMethodCard" -> PaymentMethodCard.serializer()
-    "PaymentMethodConvenienceStore" -> PaymentMethodConvenienceStore.serializer()
-    "PaymentMethodCrypto" -> PaymentMethodCrypto.serializer()
-    "PaymentMethodEasyPay" -> PaymentMethodEasyPay.serializer()
-    "PaymentMethodGiftCertificate" -> PaymentMethodGiftCertificate.serializer()
-    "PaymentMethodMobile" -> PaymentMethodMobile.serializer()
-    "PaymentMethodTransfer" -> PaymentMethodTransfer.serializer()
-    "PaymentMethodVirtualAccount" -> PaymentMethodVirtualAccount.serializer()
-    else -> PaymentMethod.Unrecognized.serializer()
-  }
+public object PaymentMethodSerializer : JsonContentPolymorphicSerializer<PaymentMethod>(PaymentMethod::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PaymentMethod> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "PaymentMethodCard" -> PaymentMethodCard.serializer()
+      "PaymentMethodConvenienceStore" -> PaymentMethodConvenienceStore.serializer()
+      "PaymentMethodCrypto" -> PaymentMethodCrypto.serializer()
+      "PaymentMethodEasyPay" -> PaymentMethodEasyPay.serializer()
+      "PaymentMethodGiftCertificate" -> PaymentMethodGiftCertificate.serializer()
+      "PaymentMethodMobile" -> PaymentMethodMobile.serializer()
+      "PaymentMethodTransfer" -> PaymentMethodTransfer.serializer()
+      "PaymentMethodVirtualAccount" -> PaymentMethodVirtualAccount.serializer()
+      else -> PaymentMethod.Unrecognized.serializer()
+    }
 }

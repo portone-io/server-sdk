@@ -18,7 +18,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
   public data object HolidayBefore : PlatformSettlementCycleDatePolicy {
     override val value: String = "HOLIDAY_BEFORE"
   }
-  private object HolidayBeforeSerializer : KSerializer<HolidayBefore> {
+  public object HolidayBeforeSerializer : KSerializer<HolidayBefore> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HolidayBefore::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HolidayBefore = decoder.decodeString().let {
       if (it != "HOLIDAY_BEFORE") {
@@ -27,14 +27,14 @@ public sealed interface PlatformSettlementCycleDatePolicy {
         return HolidayBefore
       }
     }
-    override fun serialize(encoder: Encoder, value: HolidayBefore) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: HolidayBefore): Unit = encoder.encodeString(value.value)
   }
   /** 공휴일 후 영업일 */
   @Serializable(HolidayAfterSerializer::class)
   public data object HolidayAfter : PlatformSettlementCycleDatePolicy {
     override val value: String = "HOLIDAY_AFTER"
   }
-  private object HolidayAfterSerializer : KSerializer<HolidayAfter> {
+  public object HolidayAfterSerializer : KSerializer<HolidayAfter> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HolidayAfter::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): HolidayAfter = decoder.decodeString().let {
       if (it != "HOLIDAY_AFTER") {
@@ -43,14 +43,14 @@ public sealed interface PlatformSettlementCycleDatePolicy {
         return HolidayAfter
       }
     }
-    override fun serialize(encoder: Encoder, value: HolidayAfter) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: HolidayAfter): Unit = encoder.encodeString(value.value)
   }
   /** 달력일 */
   @Serializable(CalendarDaySerializer::class)
   public data object CalendarDay : PlatformSettlementCycleDatePolicy {
     override val value: String = "CALENDAR_DAY"
   }
-  private object CalendarDaySerializer : KSerializer<CalendarDay> {
+  public object CalendarDaySerializer : KSerializer<CalendarDay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CalendarDay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CalendarDay = decoder.decodeString().let {
       if (it != "CALENDAR_DAY") {
@@ -59,7 +59,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
         return CalendarDay
       }
     }
-    override fun serialize(encoder: Encoder, value: CalendarDay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CalendarDay): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface PlatformSettlementCycleDatePolicy {
 }
 
 
-private object PlatformSettlementCycleDatePolicySerializer : KSerializer<PlatformSettlementCycleDatePolicy> {
+public object PlatformSettlementCycleDatePolicySerializer : KSerializer<PlatformSettlementCycleDatePolicy> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformSettlementCycleDatePolicy::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformSettlementCycleDatePolicy {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object PlatformSettlementCycleDatePolicySerializer : KSerializer<Platfor
       else -> PlatformSettlementCycleDatePolicy.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformSettlementCycleDatePolicy) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformSettlementCycleDatePolicy): Unit = encoder.encodeString(value.value)
 }

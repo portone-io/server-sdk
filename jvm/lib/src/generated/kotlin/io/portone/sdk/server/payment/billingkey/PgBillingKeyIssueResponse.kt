@@ -1,6 +1,7 @@
 package io.portone.sdk.server.payment.billingkey
 
 import io.portone.sdk.server.common.SelectedChannel
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -29,10 +30,11 @@ public sealed interface PgBillingKeyIssueResponse {
 }
 
 
-private object PgBillingKeyIssueResponseSerializer : JsonContentPolymorphicSerializer<PgBillingKeyIssueResponse>(PgBillingKeyIssueResponse::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FAILED" -> FailedPgBillingKeyIssueResponse.serializer()
-    "ISSUED" -> IssuedPgBillingKeyIssueResponse.serializer()
-    else -> PgBillingKeyIssueResponse.Unrecognized.serializer()
-  }
+public object PgBillingKeyIssueResponseSerializer : JsonContentPolymorphicSerializer<PgBillingKeyIssueResponse>(PgBillingKeyIssueResponse::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PgBillingKeyIssueResponse> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FAILED" -> FailedPgBillingKeyIssueResponse.serializer()
+      "ISSUED" -> IssuedPgBillingKeyIssueResponse.serializer()
+      else -> PgBillingKeyIssueResponse.Unrecognized.serializer()
+    }
 }

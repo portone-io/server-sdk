@@ -18,7 +18,7 @@ public sealed interface PlatformPartnerBusinessStatus {
   public data object NotVerified : PlatformPartnerBusinessStatus {
     override val value: String = "NOT_VERIFIED"
   }
-  private object NotVerifiedSerializer : KSerializer<NotVerified> {
+  public object NotVerifiedSerializer : KSerializer<NotVerified> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotVerified::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotVerified = decoder.decodeString().let {
       if (it != "NOT_VERIFIED") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPartnerBusinessStatus {
         return NotVerified
       }
     }
-    override fun serialize(encoder: Encoder, value: NotVerified) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: NotVerified): Unit = encoder.encodeString(value.value)
   }
   /** 조회 오류 */
   @Serializable(VerifyErrorSerializer::class)
   public data object VerifyError : PlatformPartnerBusinessStatus {
     override val value: String = "VERIFY_ERROR"
   }
-  private object VerifyErrorSerializer : KSerializer<VerifyError> {
+  public object VerifyErrorSerializer : KSerializer<VerifyError> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VerifyError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VerifyError = decoder.decodeString().let {
       if (it != "VERIFY_ERROR") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPartnerBusinessStatus {
         return VerifyError
       }
     }
-    override fun serialize(encoder: Encoder, value: VerifyError) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VerifyError): Unit = encoder.encodeString(value.value)
   }
   /** 대응되는 사업자 없음 */
   @Serializable(NotFoundSerializer::class)
   public data object NotFound : PlatformPartnerBusinessStatus {
     override val value: String = "NOT_FOUND"
   }
-  private object NotFoundSerializer : KSerializer<NotFound> {
+  public object NotFoundSerializer : KSerializer<NotFound> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(NotFound::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): NotFound = decoder.decodeString().let {
       if (it != "NOT_FOUND") {
@@ -59,14 +59,14 @@ public sealed interface PlatformPartnerBusinessStatus {
         return NotFound
       }
     }
-    override fun serialize(encoder: Encoder, value: NotFound) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: NotFound): Unit = encoder.encodeString(value.value)
   }
   /** 사업 중 */
   @Serializable(InBusinessSerializer::class)
   public data object InBusiness : PlatformPartnerBusinessStatus {
     override val value: String = "IN_BUSINESS"
   }
-  private object InBusinessSerializer : KSerializer<InBusiness> {
+  public object InBusinessSerializer : KSerializer<InBusiness> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InBusiness::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): InBusiness = decoder.decodeString().let {
       if (it != "IN_BUSINESS") {
@@ -75,14 +75,14 @@ public sealed interface PlatformPartnerBusinessStatus {
         return InBusiness
       }
     }
-    override fun serialize(encoder: Encoder, value: InBusiness) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: InBusiness): Unit = encoder.encodeString(value.value)
   }
   /** 폐업 */
   @Serializable(ClosedSerializer::class)
   public data object Closed : PlatformPartnerBusinessStatus {
     override val value: String = "CLOSED"
   }
-  private object ClosedSerializer : KSerializer<Closed> {
+  public object ClosedSerializer : KSerializer<Closed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Closed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Closed = decoder.decodeString().let {
       if (it != "CLOSED") {
@@ -91,14 +91,14 @@ public sealed interface PlatformPartnerBusinessStatus {
         return Closed
       }
     }
-    override fun serialize(encoder: Encoder, value: Closed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Closed): Unit = encoder.encodeString(value.value)
   }
   /** 휴업 */
   @Serializable(SuspendedSerializer::class)
   public data object Suspended : PlatformPartnerBusinessStatus {
     override val value: String = "SUSPENDED"
   }
-  private object SuspendedSerializer : KSerializer<Suspended> {
+  public object SuspendedSerializer : KSerializer<Suspended> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Suspended::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Suspended = decoder.decodeString().let {
       if (it != "SUSPENDED") {
@@ -107,7 +107,7 @@ public sealed interface PlatformPartnerBusinessStatus {
         return Suspended
       }
     }
-    override fun serialize(encoder: Encoder, value: Suspended) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Suspended): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -115,7 +115,7 @@ public sealed interface PlatformPartnerBusinessStatus {
 }
 
 
-private object PlatformPartnerBusinessStatusSerializer : KSerializer<PlatformPartnerBusinessStatus> {
+public object PlatformPartnerBusinessStatusSerializer : KSerializer<PlatformPartnerBusinessStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerBusinessStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerBusinessStatus {
     val value = decoder.decodeString()
@@ -129,5 +129,5 @@ private object PlatformPartnerBusinessStatusSerializer : KSerializer<PlatformPar
       else -> PlatformPartnerBusinessStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPartnerBusinessStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPartnerBusinessStatus): Unit = encoder.encodeString(value.value)
 }

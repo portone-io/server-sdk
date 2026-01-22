@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,13 +24,14 @@ internal sealed interface GetPlatformContractError {
 }
 
 
-private object GetPlatformContractErrorSerializer : JsonContentPolymorphicSerializer<GetPlatformContractError>(GetPlatformContractError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetPlatformContractError.Unrecognized.serializer()
-  }
+internal object GetPlatformContractErrorSerializer : JsonContentPolymorphicSerializer<GetPlatformContractError>(GetPlatformContractError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetPlatformContractError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetPlatformContractError.Unrecognized.serializer()
+    }
 }

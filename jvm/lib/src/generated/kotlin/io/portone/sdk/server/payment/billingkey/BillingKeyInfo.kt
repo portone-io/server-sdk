@@ -7,6 +7,7 @@ import io.portone.sdk.server.payment.billingkey.BillingKeyPaymentMethod
 import io.portone.sdk.server.payment.billingkey.PgBillingKeyIssueResponse
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -67,10 +68,11 @@ public sealed interface BillingKeyInfo {
 }
 
 
-private object BillingKeyInfoSerializer : JsonContentPolymorphicSerializer<BillingKeyInfo>(BillingKeyInfo::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "DELETED" -> DeletedBillingKeyInfo.serializer()
-    "ISSUED" -> IssuedBillingKeyInfo.serializer()
-    else -> BillingKeyInfo.Unrecognized.serializer()
-  }
+public object BillingKeyInfoSerializer : JsonContentPolymorphicSerializer<BillingKeyInfo>(BillingKeyInfo::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out BillingKeyInfo> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "DELETED" -> DeletedBillingKeyInfo.serializer()
+      "ISSUED" -> IssuedBillingKeyInfo.serializer()
+      else -> BillingKeyInfo.Unrecognized.serializer()
+    }
 }

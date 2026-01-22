@@ -3,6 +3,7 @@ package io.portone.sdk.server.platform.transfer
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PaymentMethodType
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -28,10 +29,11 @@ public sealed interface PlatformTransferSummaryPayment {
 }
 
 
-private object PlatformTransferSummaryPaymentSerializer : JsonContentPolymorphicSerializer<PlatformTransferSummaryPayment>(PlatformTransferSummaryPayment::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "EXTERNAL" -> PlatformTransferSummaryExternalPayment.serializer()
-    "PORT_ONE" -> PlatformTransferSummaryPortOnePayment.serializer()
-    else -> PlatformTransferSummaryPayment.Unrecognized.serializer()
-  }
+public object PlatformTransferSummaryPaymentSerializer : JsonContentPolymorphicSerializer<PlatformTransferSummaryPayment>(PlatformTransferSummaryPayment::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformTransferSummaryPayment> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "EXTERNAL" -> PlatformTransferSummaryExternalPayment.serializer()
+      "PORT_ONE" -> PlatformTransferSummaryPortOnePayment.serializer()
+      else -> PlatformTransferSummaryPayment.Unrecognized.serializer()
+    }
 }

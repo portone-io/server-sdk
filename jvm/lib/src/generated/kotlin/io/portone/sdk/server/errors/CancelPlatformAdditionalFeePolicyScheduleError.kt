@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,13 +24,14 @@ internal sealed interface CancelPlatformAdditionalFeePolicyScheduleError {
 }
 
 
-private object CancelPlatformAdditionalFeePolicyScheduleErrorSerializer : JsonContentPolymorphicSerializer<CancelPlatformAdditionalFeePolicyScheduleError>(CancelPlatformAdditionalFeePolicyScheduleError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND" -> PlatformAdditionalFeePolicyNotFoundError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CancelPlatformAdditionalFeePolicyScheduleError.Unrecognized.serializer()
-  }
+internal object CancelPlatformAdditionalFeePolicyScheduleErrorSerializer : JsonContentPolymorphicSerializer<CancelPlatformAdditionalFeePolicyScheduleError>(CancelPlatformAdditionalFeePolicyScheduleError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CancelPlatformAdditionalFeePolicyScheduleError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_ADDITIONAL_FEE_POLICY_NOT_FOUND" -> PlatformAdditionalFeePolicyNotFoundError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CancelPlatformAdditionalFeePolicyScheduleError.Unrecognized.serializer()
+    }
 }

@@ -18,7 +18,7 @@ public sealed interface Gender {
   public data object Male : Gender {
     override val value: String = "MALE"
   }
-  private object MaleSerializer : KSerializer<Male> {
+  public object MaleSerializer : KSerializer<Male> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Male::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Male = decoder.decodeString().let {
       if (it != "MALE") {
@@ -27,14 +27,14 @@ public sealed interface Gender {
         return Male
       }
     }
-    override fun serialize(encoder: Encoder, value: Male) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Male): Unit = encoder.encodeString(value.value)
   }
   /** 여성 */
   @Serializable(FemaleSerializer::class)
   public data object Female : Gender {
     override val value: String = "FEMALE"
   }
-  private object FemaleSerializer : KSerializer<Female> {
+  public object FemaleSerializer : KSerializer<Female> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Female::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Female = decoder.decodeString().let {
       if (it != "FEMALE") {
@@ -43,14 +43,14 @@ public sealed interface Gender {
         return Female
       }
     }
-    override fun serialize(encoder: Encoder, value: Female) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Female): Unit = encoder.encodeString(value.value)
   }
   /** 그 외 성별 */
   @Serializable(OtherSerializer::class)
   public data object Other : Gender {
     override val value: String = "OTHER"
   }
-  private object OtherSerializer : KSerializer<Other> {
+  public object OtherSerializer : KSerializer<Other> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Other::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Other = decoder.decodeString().let {
       if (it != "OTHER") {
@@ -59,7 +59,7 @@ public sealed interface Gender {
         return Other
       }
     }
-    override fun serialize(encoder: Encoder, value: Other) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Other): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface Gender {
 }
 
 
-private object GenderSerializer : KSerializer<Gender> {
+public object GenderSerializer : KSerializer<Gender> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gender::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): Gender {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object GenderSerializer : KSerializer<Gender> {
       else -> Gender.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: Gender) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: Gender): Unit = encoder.encodeString(value.value)
 }

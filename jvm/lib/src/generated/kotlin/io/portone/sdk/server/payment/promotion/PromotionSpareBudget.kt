@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment.promotion
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -21,10 +22,11 @@ public sealed interface PromotionSpareBudget {
 }
 
 
-private object PromotionSpareBudgetSerializer : JsonContentPolymorphicSerializer<PromotionSpareBudget>(PromotionSpareBudget::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "AMOUNT" -> PromotionSpareBudgetAmount.serializer()
-    "PERCENT" -> PromotionSpareBudgetPercent.serializer()
-    else -> PromotionSpareBudget.Unrecognized.serializer()
-  }
+public object PromotionSpareBudgetSerializer : JsonContentPolymorphicSerializer<PromotionSpareBudget>(PromotionSpareBudget::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PromotionSpareBudget> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "AMOUNT" -> PromotionSpareBudgetAmount.serializer()
+      "PERCENT" -> PromotionSpareBudgetPercent.serializer()
+      else -> PromotionSpareBudget.Unrecognized.serializer()
+    }
 }

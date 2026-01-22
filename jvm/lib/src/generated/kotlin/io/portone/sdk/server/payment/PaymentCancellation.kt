@@ -3,6 +3,7 @@ package io.portone.sdk.server.payment
 import io.portone.sdk.server.payment.Trigger
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -45,11 +46,12 @@ public sealed interface PaymentCancellation {
 }
 
 
-private object PaymentCancellationSerializer : JsonContentPolymorphicSerializer<PaymentCancellation>(PaymentCancellation::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "FAILED" -> FailedPaymentCancellation.serializer()
-    "REQUESTED" -> RequestedPaymentCancellation.serializer()
-    "SUCCEEDED" -> SucceededPaymentCancellation.serializer()
-    else -> PaymentCancellation.Unrecognized.serializer()
-  }
+public object PaymentCancellationSerializer : JsonContentPolymorphicSerializer<PaymentCancellation>(PaymentCancellation::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PaymentCancellation> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "FAILED" -> FailedPaymentCancellation.serializer()
+      "REQUESTED" -> RequestedPaymentCancellation.serializer()
+      "SUCCEEDED" -> SucceededPaymentCancellation.serializer()
+      else -> PaymentCancellation.Unrecognized.serializer()
+    }
 }

@@ -18,7 +18,7 @@ public sealed interface Country {
   public data object Ad : Country {
     override val value: String = "AD"
   }
-  private object AdSerializer : KSerializer<Ad> {
+  public object AdSerializer : KSerializer<Ad> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ad::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ad = decoder.decodeString().let {
       if (it != "AD") {
@@ -27,14 +27,14 @@ public sealed interface Country {
         return Ad
       }
     }
-    override fun serialize(encoder: Encoder, value: Ad) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ad): Unit = encoder.encodeString(value.value)
   }
   /** United Arab Emirates (the) */
   @Serializable(AeSerializer::class)
   public data object Ae : Country {
     override val value: String = "AE"
   }
-  private object AeSerializer : KSerializer<Ae> {
+  public object AeSerializer : KSerializer<Ae> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ae::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ae = decoder.decodeString().let {
       if (it != "AE") {
@@ -43,14 +43,14 @@ public sealed interface Country {
         return Ae
       }
     }
-    override fun serialize(encoder: Encoder, value: Ae) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ae): Unit = encoder.encodeString(value.value)
   }
   /** Afghanistan */
   @Serializable(AfSerializer::class)
   public data object Af : Country {
     override val value: String = "AF"
   }
-  private object AfSerializer : KSerializer<Af> {
+  public object AfSerializer : KSerializer<Af> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Af::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Af = decoder.decodeString().let {
       if (it != "AF") {
@@ -59,14 +59,14 @@ public sealed interface Country {
         return Af
       }
     }
-    override fun serialize(encoder: Encoder, value: Af) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Af): Unit = encoder.encodeString(value.value)
   }
   /** Antigua and Barbuda */
   @Serializable(AgSerializer::class)
   public data object Ag : Country {
     override val value: String = "AG"
   }
-  private object AgSerializer : KSerializer<Ag> {
+  public object AgSerializer : KSerializer<Ag> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ag::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ag = decoder.decodeString().let {
       if (it != "AG") {
@@ -75,14 +75,14 @@ public sealed interface Country {
         return Ag
       }
     }
-    override fun serialize(encoder: Encoder, value: Ag) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ag): Unit = encoder.encodeString(value.value)
   }
   /** Anguilla */
   @Serializable(AiSerializer::class)
   public data object Ai : Country {
     override val value: String = "AI"
   }
-  private object AiSerializer : KSerializer<Ai> {
+  public object AiSerializer : KSerializer<Ai> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ai::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ai = decoder.decodeString().let {
       if (it != "AI") {
@@ -91,14 +91,14 @@ public sealed interface Country {
         return Ai
       }
     }
-    override fun serialize(encoder: Encoder, value: Ai) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ai): Unit = encoder.encodeString(value.value)
   }
   /** Albania */
   @Serializable(AlSerializer::class)
   public data object Al : Country {
     override val value: String = "AL"
   }
-  private object AlSerializer : KSerializer<Al> {
+  public object AlSerializer : KSerializer<Al> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Al::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Al = decoder.decodeString().let {
       if (it != "AL") {
@@ -107,14 +107,14 @@ public sealed interface Country {
         return Al
       }
     }
-    override fun serialize(encoder: Encoder, value: Al) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Al): Unit = encoder.encodeString(value.value)
   }
   /** Armenia */
   @Serializable(AmSerializer::class)
   public data object Am : Country {
     override val value: String = "AM"
   }
-  private object AmSerializer : KSerializer<Am> {
+  public object AmSerializer : KSerializer<Am> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Am::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Am = decoder.decodeString().let {
       if (it != "AM") {
@@ -123,14 +123,14 @@ public sealed interface Country {
         return Am
       }
     }
-    override fun serialize(encoder: Encoder, value: Am) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Am): Unit = encoder.encodeString(value.value)
   }
   /** Angola */
   @Serializable(AoSerializer::class)
   public data object Ao : Country {
     override val value: String = "AO"
   }
-  private object AoSerializer : KSerializer<Ao> {
+  public object AoSerializer : KSerializer<Ao> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ao::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ao = decoder.decodeString().let {
       if (it != "AO") {
@@ -139,14 +139,14 @@ public sealed interface Country {
         return Ao
       }
     }
-    override fun serialize(encoder: Encoder, value: Ao) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ao): Unit = encoder.encodeString(value.value)
   }
   /** Antarctica */
   @Serializable(AqSerializer::class)
   public data object Aq : Country {
     override val value: String = "AQ"
   }
-  private object AqSerializer : KSerializer<Aq> {
+  public object AqSerializer : KSerializer<Aq> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aq = decoder.decodeString().let {
       if (it != "AQ") {
@@ -155,14 +155,14 @@ public sealed interface Country {
         return Aq
       }
     }
-    override fun serialize(encoder: Encoder, value: Aq) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Aq): Unit = encoder.encodeString(value.value)
   }
   /** Argentina */
   @Serializable(ArSerializer::class)
   public data object Ar : Country {
     override val value: String = "AR"
   }
-  private object ArSerializer : KSerializer<Ar> {
+  public object ArSerializer : KSerializer<Ar> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ar::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ar = decoder.decodeString().let {
       if (it != "AR") {
@@ -171,14 +171,14 @@ public sealed interface Country {
         return Ar
       }
     }
-    override fun serialize(encoder: Encoder, value: Ar) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ar): Unit = encoder.encodeString(value.value)
   }
   /** American Samoa */
   @Serializable(AsSerializer::class)
   public data object As : Country {
     override val value: String = "AS"
   }
-  private object AsSerializer : KSerializer<As> {
+  public object AsSerializer : KSerializer<As> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(As::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): As = decoder.decodeString().let {
       if (it != "AS") {
@@ -187,14 +187,14 @@ public sealed interface Country {
         return As
       }
     }
-    override fun serialize(encoder: Encoder, value: As) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: As): Unit = encoder.encodeString(value.value)
   }
   /** Austria */
   @Serializable(AtSerializer::class)
   public data object At : Country {
     override val value: String = "AT"
   }
-  private object AtSerializer : KSerializer<At> {
+  public object AtSerializer : KSerializer<At> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(At::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): At = decoder.decodeString().let {
       if (it != "AT") {
@@ -203,14 +203,14 @@ public sealed interface Country {
         return At
       }
     }
-    override fun serialize(encoder: Encoder, value: At) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: At): Unit = encoder.encodeString(value.value)
   }
   /** Australia */
   @Serializable(AuSerializer::class)
   public data object Au : Country {
     override val value: String = "AU"
   }
-  private object AuSerializer : KSerializer<Au> {
+  public object AuSerializer : KSerializer<Au> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Au::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Au = decoder.decodeString().let {
       if (it != "AU") {
@@ -219,14 +219,14 @@ public sealed interface Country {
         return Au
       }
     }
-    override fun serialize(encoder: Encoder, value: Au) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Au): Unit = encoder.encodeString(value.value)
   }
   /** Aruba */
   @Serializable(AwSerializer::class)
   public data object Aw : Country {
     override val value: String = "AW"
   }
-  private object AwSerializer : KSerializer<Aw> {
+  public object AwSerializer : KSerializer<Aw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aw = decoder.decodeString().let {
       if (it != "AW") {
@@ -235,14 +235,14 @@ public sealed interface Country {
         return Aw
       }
     }
-    override fun serialize(encoder: Encoder, value: Aw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Aw): Unit = encoder.encodeString(value.value)
   }
   /** Åland Islands */
   @Serializable(AxSerializer::class)
   public data object Ax : Country {
     override val value: String = "AX"
   }
-  private object AxSerializer : KSerializer<Ax> {
+  public object AxSerializer : KSerializer<Ax> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ax::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ax = decoder.decodeString().let {
       if (it != "AX") {
@@ -251,14 +251,14 @@ public sealed interface Country {
         return Ax
       }
     }
-    override fun serialize(encoder: Encoder, value: Ax) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ax): Unit = encoder.encodeString(value.value)
   }
   /** Azerbaijan */
   @Serializable(AzSerializer::class)
   public data object Az : Country {
     override val value: String = "AZ"
   }
-  private object AzSerializer : KSerializer<Az> {
+  public object AzSerializer : KSerializer<Az> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Az::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Az = decoder.decodeString().let {
       if (it != "AZ") {
@@ -267,14 +267,14 @@ public sealed interface Country {
         return Az
       }
     }
-    override fun serialize(encoder: Encoder, value: Az) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Az): Unit = encoder.encodeString(value.value)
   }
   /** Bosnia and Herzegovina */
   @Serializable(BaSerializer::class)
   public data object Ba : Country {
     override val value: String = "BA"
   }
-  private object BaSerializer : KSerializer<Ba> {
+  public object BaSerializer : KSerializer<Ba> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ba::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ba = decoder.decodeString().let {
       if (it != "BA") {
@@ -283,14 +283,14 @@ public sealed interface Country {
         return Ba
       }
     }
-    override fun serialize(encoder: Encoder, value: Ba) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ba): Unit = encoder.encodeString(value.value)
   }
   /** Barbados */
   @Serializable(BbSerializer::class)
   public data object Bb : Country {
     override val value: String = "BB"
   }
-  private object BbSerializer : KSerializer<Bb> {
+  public object BbSerializer : KSerializer<Bb> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bb = decoder.decodeString().let {
       if (it != "BB") {
@@ -299,14 +299,14 @@ public sealed interface Country {
         return Bb
       }
     }
-    override fun serialize(encoder: Encoder, value: Bb) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bb): Unit = encoder.encodeString(value.value)
   }
   /** Bangladesh */
   @Serializable(BdSerializer::class)
   public data object Bd : Country {
     override val value: String = "BD"
   }
-  private object BdSerializer : KSerializer<Bd> {
+  public object BdSerializer : KSerializer<Bd> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bd = decoder.decodeString().let {
       if (it != "BD") {
@@ -315,14 +315,14 @@ public sealed interface Country {
         return Bd
       }
     }
-    override fun serialize(encoder: Encoder, value: Bd) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bd): Unit = encoder.encodeString(value.value)
   }
   /** Belgium */
   @Serializable(BeSerializer::class)
   public data object Be : Country {
     override val value: String = "BE"
   }
-  private object BeSerializer : KSerializer<Be> {
+  public object BeSerializer : KSerializer<Be> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Be::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Be = decoder.decodeString().let {
       if (it != "BE") {
@@ -331,14 +331,14 @@ public sealed interface Country {
         return Be
       }
     }
-    override fun serialize(encoder: Encoder, value: Be) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Be): Unit = encoder.encodeString(value.value)
   }
   /** Burkina Faso */
   @Serializable(BfSerializer::class)
   public data object Bf : Country {
     override val value: String = "BF"
   }
-  private object BfSerializer : KSerializer<Bf> {
+  public object BfSerializer : KSerializer<Bf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bf = decoder.decodeString().let {
       if (it != "BF") {
@@ -347,14 +347,14 @@ public sealed interface Country {
         return Bf
       }
     }
-    override fun serialize(encoder: Encoder, value: Bf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bf): Unit = encoder.encodeString(value.value)
   }
   /** Bulgaria */
   @Serializable(BgSerializer::class)
   public data object Bg : Country {
     override val value: String = "BG"
   }
-  private object BgSerializer : KSerializer<Bg> {
+  public object BgSerializer : KSerializer<Bg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bg = decoder.decodeString().let {
       if (it != "BG") {
@@ -363,14 +363,14 @@ public sealed interface Country {
         return Bg
       }
     }
-    override fun serialize(encoder: Encoder, value: Bg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bg): Unit = encoder.encodeString(value.value)
   }
   /** Bahrain */
   @Serializable(BhSerializer::class)
   public data object Bh : Country {
     override val value: String = "BH"
   }
-  private object BhSerializer : KSerializer<Bh> {
+  public object BhSerializer : KSerializer<Bh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bh = decoder.decodeString().let {
       if (it != "BH") {
@@ -379,14 +379,14 @@ public sealed interface Country {
         return Bh
       }
     }
-    override fun serialize(encoder: Encoder, value: Bh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bh): Unit = encoder.encodeString(value.value)
   }
   /** Burundi */
   @Serializable(BiSerializer::class)
   public data object Bi : Country {
     override val value: String = "BI"
   }
-  private object BiSerializer : KSerializer<Bi> {
+  public object BiSerializer : KSerializer<Bi> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bi = decoder.decodeString().let {
       if (it != "BI") {
@@ -395,14 +395,14 @@ public sealed interface Country {
         return Bi
       }
     }
-    override fun serialize(encoder: Encoder, value: Bi) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bi): Unit = encoder.encodeString(value.value)
   }
   /** Benin */
   @Serializable(BjSerializer::class)
   public data object Bj : Country {
     override val value: String = "BJ"
   }
-  private object BjSerializer : KSerializer<Bj> {
+  public object BjSerializer : KSerializer<Bj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bj = decoder.decodeString().let {
       if (it != "BJ") {
@@ -411,14 +411,14 @@ public sealed interface Country {
         return Bj
       }
     }
-    override fun serialize(encoder: Encoder, value: Bj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bj): Unit = encoder.encodeString(value.value)
   }
   /** Saint Barthélemy */
   @Serializable(BlSerializer::class)
   public data object Bl : Country {
     override val value: String = "BL"
   }
-  private object BlSerializer : KSerializer<Bl> {
+  public object BlSerializer : KSerializer<Bl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bl = decoder.decodeString().let {
       if (it != "BL") {
@@ -427,14 +427,14 @@ public sealed interface Country {
         return Bl
       }
     }
-    override fun serialize(encoder: Encoder, value: Bl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bl): Unit = encoder.encodeString(value.value)
   }
   /** Bermuda */
   @Serializable(BmSerializer::class)
   public data object Bm : Country {
     override val value: String = "BM"
   }
-  private object BmSerializer : KSerializer<Bm> {
+  public object BmSerializer : KSerializer<Bm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bm = decoder.decodeString().let {
       if (it != "BM") {
@@ -443,14 +443,14 @@ public sealed interface Country {
         return Bm
       }
     }
-    override fun serialize(encoder: Encoder, value: Bm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bm): Unit = encoder.encodeString(value.value)
   }
   /** Brunei Darussalam */
   @Serializable(BnSerializer::class)
   public data object Bn : Country {
     override val value: String = "BN"
   }
-  private object BnSerializer : KSerializer<Bn> {
+  public object BnSerializer : KSerializer<Bn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bn = decoder.decodeString().let {
       if (it != "BN") {
@@ -459,14 +459,14 @@ public sealed interface Country {
         return Bn
       }
     }
-    override fun serialize(encoder: Encoder, value: Bn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bn): Unit = encoder.encodeString(value.value)
   }
   /** Bolivia (Plurinational State of) */
   @Serializable(BoSerializer::class)
   public data object Bo : Country {
     override val value: String = "BO"
   }
-  private object BoSerializer : KSerializer<Bo> {
+  public object BoSerializer : KSerializer<Bo> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bo = decoder.decodeString().let {
       if (it != "BO") {
@@ -475,14 +475,14 @@ public sealed interface Country {
         return Bo
       }
     }
-    override fun serialize(encoder: Encoder, value: Bo) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bo): Unit = encoder.encodeString(value.value)
   }
   /** Bonaire, Sint Eustatius and Saba */
   @Serializable(BqSerializer::class)
   public data object Bq : Country {
     override val value: String = "BQ"
   }
-  private object BqSerializer : KSerializer<Bq> {
+  public object BqSerializer : KSerializer<Bq> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bq = decoder.decodeString().let {
       if (it != "BQ") {
@@ -491,14 +491,14 @@ public sealed interface Country {
         return Bq
       }
     }
-    override fun serialize(encoder: Encoder, value: Bq) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bq): Unit = encoder.encodeString(value.value)
   }
   /** Brazil */
   @Serializable(BrSerializer::class)
   public data object Br : Country {
     override val value: String = "BR"
   }
-  private object BrSerializer : KSerializer<Br> {
+  public object BrSerializer : KSerializer<Br> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Br::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Br = decoder.decodeString().let {
       if (it != "BR") {
@@ -507,14 +507,14 @@ public sealed interface Country {
         return Br
       }
     }
-    override fun serialize(encoder: Encoder, value: Br) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Br): Unit = encoder.encodeString(value.value)
   }
   /** Bahamas (the) */
   @Serializable(BsSerializer::class)
   public data object Bs : Country {
     override val value: String = "BS"
   }
-  private object BsSerializer : KSerializer<Bs> {
+  public object BsSerializer : KSerializer<Bs> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bs = decoder.decodeString().let {
       if (it != "BS") {
@@ -523,14 +523,14 @@ public sealed interface Country {
         return Bs
       }
     }
-    override fun serialize(encoder: Encoder, value: Bs) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bs): Unit = encoder.encodeString(value.value)
   }
   /** Bhutan */
   @Serializable(BtSerializer::class)
   public data object Bt : Country {
     override val value: String = "BT"
   }
-  private object BtSerializer : KSerializer<Bt> {
+  public object BtSerializer : KSerializer<Bt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bt = decoder.decodeString().let {
       if (it != "BT") {
@@ -539,14 +539,14 @@ public sealed interface Country {
         return Bt
       }
     }
-    override fun serialize(encoder: Encoder, value: Bt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bt): Unit = encoder.encodeString(value.value)
   }
   /** Bouvet Island */
   @Serializable(BvSerializer::class)
   public data object Bv : Country {
     override val value: String = "BV"
   }
-  private object BvSerializer : KSerializer<Bv> {
+  public object BvSerializer : KSerializer<Bv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bv = decoder.decodeString().let {
       if (it != "BV") {
@@ -555,14 +555,14 @@ public sealed interface Country {
         return Bv
       }
     }
-    override fun serialize(encoder: Encoder, value: Bv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bv): Unit = encoder.encodeString(value.value)
   }
   /** Botswana */
   @Serializable(BwSerializer::class)
   public data object Bw : Country {
     override val value: String = "BW"
   }
-  private object BwSerializer : KSerializer<Bw> {
+  public object BwSerializer : KSerializer<Bw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bw = decoder.decodeString().let {
       if (it != "BW") {
@@ -571,14 +571,14 @@ public sealed interface Country {
         return Bw
       }
     }
-    override fun serialize(encoder: Encoder, value: Bw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bw): Unit = encoder.encodeString(value.value)
   }
   /** Belarus */
   @Serializable(BySerializer::class)
   public data object By : Country {
     override val value: String = "BY"
   }
-  private object BySerializer : KSerializer<By> {
+  public object BySerializer : KSerializer<By> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(By::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): By = decoder.decodeString().let {
       if (it != "BY") {
@@ -587,14 +587,14 @@ public sealed interface Country {
         return By
       }
     }
-    override fun serialize(encoder: Encoder, value: By) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: By): Unit = encoder.encodeString(value.value)
   }
   /** Belize */
   @Serializable(BzSerializer::class)
   public data object Bz : Country {
     override val value: String = "BZ"
   }
-  private object BzSerializer : KSerializer<Bz> {
+  public object BzSerializer : KSerializer<Bz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Bz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Bz = decoder.decodeString().let {
       if (it != "BZ") {
@@ -603,14 +603,14 @@ public sealed interface Country {
         return Bz
       }
     }
-    override fun serialize(encoder: Encoder, value: Bz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Bz): Unit = encoder.encodeString(value.value)
   }
   /** Canada */
   @Serializable(CaSerializer::class)
   public data object Ca : Country {
     override val value: String = "CA"
   }
-  private object CaSerializer : KSerializer<Ca> {
+  public object CaSerializer : KSerializer<Ca> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ca::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ca = decoder.decodeString().let {
       if (it != "CA") {
@@ -619,14 +619,14 @@ public sealed interface Country {
         return Ca
       }
     }
-    override fun serialize(encoder: Encoder, value: Ca) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ca): Unit = encoder.encodeString(value.value)
   }
   /** Cocos (Keeling) Islands (the) */
   @Serializable(CcSerializer::class)
   public data object Cc : Country {
     override val value: String = "CC"
   }
-  private object CcSerializer : KSerializer<Cc> {
+  public object CcSerializer : KSerializer<Cc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cc = decoder.decodeString().let {
       if (it != "CC") {
@@ -635,14 +635,14 @@ public sealed interface Country {
         return Cc
       }
     }
-    override fun serialize(encoder: Encoder, value: Cc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cc): Unit = encoder.encodeString(value.value)
   }
   /** Congo (the Democratic Republic of the) */
   @Serializable(CdSerializer::class)
   public data object Cd : Country {
     override val value: String = "CD"
   }
-  private object CdSerializer : KSerializer<Cd> {
+  public object CdSerializer : KSerializer<Cd> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cd = decoder.decodeString().let {
       if (it != "CD") {
@@ -651,14 +651,14 @@ public sealed interface Country {
         return Cd
       }
     }
-    override fun serialize(encoder: Encoder, value: Cd) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cd): Unit = encoder.encodeString(value.value)
   }
   /** Central African Republic (the) */
   @Serializable(CfSerializer::class)
   public data object Cf : Country {
     override val value: String = "CF"
   }
-  private object CfSerializer : KSerializer<Cf> {
+  public object CfSerializer : KSerializer<Cf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cf = decoder.decodeString().let {
       if (it != "CF") {
@@ -667,14 +667,14 @@ public sealed interface Country {
         return Cf
       }
     }
-    override fun serialize(encoder: Encoder, value: Cf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cf): Unit = encoder.encodeString(value.value)
   }
   /** Congo (the) */
   @Serializable(CgSerializer::class)
   public data object Cg : Country {
     override val value: String = "CG"
   }
-  private object CgSerializer : KSerializer<Cg> {
+  public object CgSerializer : KSerializer<Cg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cg = decoder.decodeString().let {
       if (it != "CG") {
@@ -683,14 +683,14 @@ public sealed interface Country {
         return Cg
       }
     }
-    override fun serialize(encoder: Encoder, value: Cg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cg): Unit = encoder.encodeString(value.value)
   }
   /** Switzerland */
   @Serializable(ChSerializer::class)
   public data object Ch : Country {
     override val value: String = "CH"
   }
-  private object ChSerializer : KSerializer<Ch> {
+  public object ChSerializer : KSerializer<Ch> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ch::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ch = decoder.decodeString().let {
       if (it != "CH") {
@@ -699,14 +699,14 @@ public sealed interface Country {
         return Ch
       }
     }
-    override fun serialize(encoder: Encoder, value: Ch) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ch): Unit = encoder.encodeString(value.value)
   }
   /** Côte d'Ivoire */
   @Serializable(CiSerializer::class)
   public data object Ci : Country {
     override val value: String = "CI"
   }
-  private object CiSerializer : KSerializer<Ci> {
+  public object CiSerializer : KSerializer<Ci> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ci::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ci = decoder.decodeString().let {
       if (it != "CI") {
@@ -715,14 +715,14 @@ public sealed interface Country {
         return Ci
       }
     }
-    override fun serialize(encoder: Encoder, value: Ci) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ci): Unit = encoder.encodeString(value.value)
   }
   /** Cook Islands (the) */
   @Serializable(CkSerializer::class)
   public data object Ck : Country {
     override val value: String = "CK"
   }
-  private object CkSerializer : KSerializer<Ck> {
+  public object CkSerializer : KSerializer<Ck> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ck::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ck = decoder.decodeString().let {
       if (it != "CK") {
@@ -731,14 +731,14 @@ public sealed interface Country {
         return Ck
       }
     }
-    override fun serialize(encoder: Encoder, value: Ck) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ck): Unit = encoder.encodeString(value.value)
   }
   /** Chile */
   @Serializable(ClSerializer::class)
   public data object Cl : Country {
     override val value: String = "CL"
   }
-  private object ClSerializer : KSerializer<Cl> {
+  public object ClSerializer : KSerializer<Cl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cl = decoder.decodeString().let {
       if (it != "CL") {
@@ -747,14 +747,14 @@ public sealed interface Country {
         return Cl
       }
     }
-    override fun serialize(encoder: Encoder, value: Cl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cl): Unit = encoder.encodeString(value.value)
   }
   /** Cameroon */
   @Serializable(CmSerializer::class)
   public data object Cm : Country {
     override val value: String = "CM"
   }
-  private object CmSerializer : KSerializer<Cm> {
+  public object CmSerializer : KSerializer<Cm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cm = decoder.decodeString().let {
       if (it != "CM") {
@@ -763,14 +763,14 @@ public sealed interface Country {
         return Cm
       }
     }
-    override fun serialize(encoder: Encoder, value: Cm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cm): Unit = encoder.encodeString(value.value)
   }
   /** China */
   @Serializable(CnSerializer::class)
   public data object Cn : Country {
     override val value: String = "CN"
   }
-  private object CnSerializer : KSerializer<Cn> {
+  public object CnSerializer : KSerializer<Cn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cn = decoder.decodeString().let {
       if (it != "CN") {
@@ -779,14 +779,14 @@ public sealed interface Country {
         return Cn
       }
     }
-    override fun serialize(encoder: Encoder, value: Cn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cn): Unit = encoder.encodeString(value.value)
   }
   /** Colombia */
   @Serializable(CoSerializer::class)
   public data object Co : Country {
     override val value: String = "CO"
   }
-  private object CoSerializer : KSerializer<Co> {
+  public object CoSerializer : KSerializer<Co> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Co::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Co = decoder.decodeString().let {
       if (it != "CO") {
@@ -795,14 +795,14 @@ public sealed interface Country {
         return Co
       }
     }
-    override fun serialize(encoder: Encoder, value: Co) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Co): Unit = encoder.encodeString(value.value)
   }
   /** Costa Rica */
   @Serializable(CrSerializer::class)
   public data object Cr : Country {
     override val value: String = "CR"
   }
-  private object CrSerializer : KSerializer<Cr> {
+  public object CrSerializer : KSerializer<Cr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cr = decoder.decodeString().let {
       if (it != "CR") {
@@ -811,14 +811,14 @@ public sealed interface Country {
         return Cr
       }
     }
-    override fun serialize(encoder: Encoder, value: Cr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cr): Unit = encoder.encodeString(value.value)
   }
   /** Cuba */
   @Serializable(CuSerializer::class)
   public data object Cu : Country {
     override val value: String = "CU"
   }
-  private object CuSerializer : KSerializer<Cu> {
+  public object CuSerializer : KSerializer<Cu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cu = decoder.decodeString().let {
       if (it != "CU") {
@@ -827,14 +827,14 @@ public sealed interface Country {
         return Cu
       }
     }
-    override fun serialize(encoder: Encoder, value: Cu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cu): Unit = encoder.encodeString(value.value)
   }
   /** Cabo Verde */
   @Serializable(CvSerializer::class)
   public data object Cv : Country {
     override val value: String = "CV"
   }
-  private object CvSerializer : KSerializer<Cv> {
+  public object CvSerializer : KSerializer<Cv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cv = decoder.decodeString().let {
       if (it != "CV") {
@@ -843,14 +843,14 @@ public sealed interface Country {
         return Cv
       }
     }
-    override fun serialize(encoder: Encoder, value: Cv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cv): Unit = encoder.encodeString(value.value)
   }
   /** Curaçao */
   @Serializable(CwSerializer::class)
   public data object Cw : Country {
     override val value: String = "CW"
   }
-  private object CwSerializer : KSerializer<Cw> {
+  public object CwSerializer : KSerializer<Cw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cw = decoder.decodeString().let {
       if (it != "CW") {
@@ -859,14 +859,14 @@ public sealed interface Country {
         return Cw
       }
     }
-    override fun serialize(encoder: Encoder, value: Cw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cw): Unit = encoder.encodeString(value.value)
   }
   /** Christmas Island */
   @Serializable(CxSerializer::class)
   public data object Cx : Country {
     override val value: String = "CX"
   }
-  private object CxSerializer : KSerializer<Cx> {
+  public object CxSerializer : KSerializer<Cx> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cx = decoder.decodeString().let {
       if (it != "CX") {
@@ -875,14 +875,14 @@ public sealed interface Country {
         return Cx
       }
     }
-    override fun serialize(encoder: Encoder, value: Cx) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cx): Unit = encoder.encodeString(value.value)
   }
   /** Cyprus */
   @Serializable(CySerializer::class)
   public data object Cy : Country {
     override val value: String = "CY"
   }
-  private object CySerializer : KSerializer<Cy> {
+  public object CySerializer : KSerializer<Cy> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cy = decoder.decodeString().let {
       if (it != "CY") {
@@ -891,14 +891,14 @@ public sealed interface Country {
         return Cy
       }
     }
-    override fun serialize(encoder: Encoder, value: Cy) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cy): Unit = encoder.encodeString(value.value)
   }
   /** Czechia */
   @Serializable(CzSerializer::class)
   public data object Cz : Country {
     override val value: String = "CZ"
   }
-  private object CzSerializer : KSerializer<Cz> {
+  public object CzSerializer : KSerializer<Cz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cz = decoder.decodeString().let {
       if (it != "CZ") {
@@ -907,14 +907,14 @@ public sealed interface Country {
         return Cz
       }
     }
-    override fun serialize(encoder: Encoder, value: Cz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cz): Unit = encoder.encodeString(value.value)
   }
   /** Germany */
   @Serializable(DeSerializer::class)
   public data object De : Country {
     override val value: String = "DE"
   }
-  private object DeSerializer : KSerializer<De> {
+  public object DeSerializer : KSerializer<De> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(De::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): De = decoder.decodeString().let {
       if (it != "DE") {
@@ -923,14 +923,14 @@ public sealed interface Country {
         return De
       }
     }
-    override fun serialize(encoder: Encoder, value: De) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: De): Unit = encoder.encodeString(value.value)
   }
   /** Djibouti */
   @Serializable(DjSerializer::class)
   public data object Dj : Country {
     override val value: String = "DJ"
   }
-  private object DjSerializer : KSerializer<Dj> {
+  public object DjSerializer : KSerializer<Dj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dj = decoder.decodeString().let {
       if (it != "DJ") {
@@ -939,14 +939,14 @@ public sealed interface Country {
         return Dj
       }
     }
-    override fun serialize(encoder: Encoder, value: Dj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dj): Unit = encoder.encodeString(value.value)
   }
   /** Denmark */
   @Serializable(DkSerializer::class)
   public data object Dk : Country {
     override val value: String = "DK"
   }
-  private object DkSerializer : KSerializer<Dk> {
+  public object DkSerializer : KSerializer<Dk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dk = decoder.decodeString().let {
       if (it != "DK") {
@@ -955,14 +955,14 @@ public sealed interface Country {
         return Dk
       }
     }
-    override fun serialize(encoder: Encoder, value: Dk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dk): Unit = encoder.encodeString(value.value)
   }
   /** Dominica */
   @Serializable(DmSerializer::class)
   public data object Dm : Country {
     override val value: String = "DM"
   }
-  private object DmSerializer : KSerializer<Dm> {
+  public object DmSerializer : KSerializer<Dm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dm = decoder.decodeString().let {
       if (it != "DM") {
@@ -971,14 +971,14 @@ public sealed interface Country {
         return Dm
       }
     }
-    override fun serialize(encoder: Encoder, value: Dm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dm): Unit = encoder.encodeString(value.value)
   }
   /** Dominican Republic (the) */
   @Serializable(DoSerializer::class)
   public data object Do : Country {
     override val value: String = "DO"
   }
-  private object DoSerializer : KSerializer<Do> {
+  public object DoSerializer : KSerializer<Do> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Do::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Do = decoder.decodeString().let {
       if (it != "DO") {
@@ -987,14 +987,14 @@ public sealed interface Country {
         return Do
       }
     }
-    override fun serialize(encoder: Encoder, value: Do) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Do): Unit = encoder.encodeString(value.value)
   }
   /** Algeria */
   @Serializable(DzSerializer::class)
   public data object Dz : Country {
     override val value: String = "DZ"
   }
-  private object DzSerializer : KSerializer<Dz> {
+  public object DzSerializer : KSerializer<Dz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dz = decoder.decodeString().let {
       if (it != "DZ") {
@@ -1003,14 +1003,14 @@ public sealed interface Country {
         return Dz
       }
     }
-    override fun serialize(encoder: Encoder, value: Dz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dz): Unit = encoder.encodeString(value.value)
   }
   /** Ecuador */
   @Serializable(EcSerializer::class)
   public data object Ec : Country {
     override val value: String = "EC"
   }
-  private object EcSerializer : KSerializer<Ec> {
+  public object EcSerializer : KSerializer<Ec> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ec::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ec = decoder.decodeString().let {
       if (it != "EC") {
@@ -1019,14 +1019,14 @@ public sealed interface Country {
         return Ec
       }
     }
-    override fun serialize(encoder: Encoder, value: Ec) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ec): Unit = encoder.encodeString(value.value)
   }
   /** Estonia */
   @Serializable(EeSerializer::class)
   public data object Ee : Country {
     override val value: String = "EE"
   }
-  private object EeSerializer : KSerializer<Ee> {
+  public object EeSerializer : KSerializer<Ee> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ee::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ee = decoder.decodeString().let {
       if (it != "EE") {
@@ -1035,14 +1035,14 @@ public sealed interface Country {
         return Ee
       }
     }
-    override fun serialize(encoder: Encoder, value: Ee) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ee): Unit = encoder.encodeString(value.value)
   }
   /** Egypt */
   @Serializable(EgSerializer::class)
   public data object Eg : Country {
     override val value: String = "EG"
   }
-  private object EgSerializer : KSerializer<Eg> {
+  public object EgSerializer : KSerializer<Eg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eg = decoder.decodeString().let {
       if (it != "EG") {
@@ -1051,14 +1051,14 @@ public sealed interface Country {
         return Eg
       }
     }
-    override fun serialize(encoder: Encoder, value: Eg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Eg): Unit = encoder.encodeString(value.value)
   }
   /** Western Sahara */
   @Serializable(EhSerializer::class)
   public data object Eh : Country {
     override val value: String = "EH"
   }
-  private object EhSerializer : KSerializer<Eh> {
+  public object EhSerializer : KSerializer<Eh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Eh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Eh = decoder.decodeString().let {
       if (it != "EH") {
@@ -1067,14 +1067,14 @@ public sealed interface Country {
         return Eh
       }
     }
-    override fun serialize(encoder: Encoder, value: Eh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Eh): Unit = encoder.encodeString(value.value)
   }
   /** Eritrea */
   @Serializable(ErSerializer::class)
   public data object Er : Country {
     override val value: String = "ER"
   }
-  private object ErSerializer : KSerializer<Er> {
+  public object ErSerializer : KSerializer<Er> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Er::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Er = decoder.decodeString().let {
       if (it != "ER") {
@@ -1083,14 +1083,14 @@ public sealed interface Country {
         return Er
       }
     }
-    override fun serialize(encoder: Encoder, value: Er) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Er): Unit = encoder.encodeString(value.value)
   }
   /** Spain */
   @Serializable(EsSerializer::class)
   public data object Es : Country {
     override val value: String = "ES"
   }
-  private object EsSerializer : KSerializer<Es> {
+  public object EsSerializer : KSerializer<Es> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Es::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Es = decoder.decodeString().let {
       if (it != "ES") {
@@ -1099,14 +1099,14 @@ public sealed interface Country {
         return Es
       }
     }
-    override fun serialize(encoder: Encoder, value: Es) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Es): Unit = encoder.encodeString(value.value)
   }
   /** Ethiopia */
   @Serializable(EtSerializer::class)
   public data object Et : Country {
     override val value: String = "ET"
   }
-  private object EtSerializer : KSerializer<Et> {
+  public object EtSerializer : KSerializer<Et> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Et::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Et = decoder.decodeString().let {
       if (it != "ET") {
@@ -1115,14 +1115,14 @@ public sealed interface Country {
         return Et
       }
     }
-    override fun serialize(encoder: Encoder, value: Et) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Et): Unit = encoder.encodeString(value.value)
   }
   /** Finland */
   @Serializable(FiSerializer::class)
   public data object Fi : Country {
     override val value: String = "FI"
   }
-  private object FiSerializer : KSerializer<Fi> {
+  public object FiSerializer : KSerializer<Fi> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fi = decoder.decodeString().let {
       if (it != "FI") {
@@ -1131,14 +1131,14 @@ public sealed interface Country {
         return Fi
       }
     }
-    override fun serialize(encoder: Encoder, value: Fi) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fi): Unit = encoder.encodeString(value.value)
   }
   /** Fiji */
   @Serializable(FjSerializer::class)
   public data object Fj : Country {
     override val value: String = "FJ"
   }
-  private object FjSerializer : KSerializer<Fj> {
+  public object FjSerializer : KSerializer<Fj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fj = decoder.decodeString().let {
       if (it != "FJ") {
@@ -1147,14 +1147,14 @@ public sealed interface Country {
         return Fj
       }
     }
-    override fun serialize(encoder: Encoder, value: Fj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fj): Unit = encoder.encodeString(value.value)
   }
   /** Falkland Islands (the) [Malvinas] */
   @Serializable(FkSerializer::class)
   public data object Fk : Country {
     override val value: String = "FK"
   }
-  private object FkSerializer : KSerializer<Fk> {
+  public object FkSerializer : KSerializer<Fk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fk = decoder.decodeString().let {
       if (it != "FK") {
@@ -1163,14 +1163,14 @@ public sealed interface Country {
         return Fk
       }
     }
-    override fun serialize(encoder: Encoder, value: Fk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fk): Unit = encoder.encodeString(value.value)
   }
   /** Micronesia (Federated States of) */
   @Serializable(FmSerializer::class)
   public data object Fm : Country {
     override val value: String = "FM"
   }
-  private object FmSerializer : KSerializer<Fm> {
+  public object FmSerializer : KSerializer<Fm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fm = decoder.decodeString().let {
       if (it != "FM") {
@@ -1179,14 +1179,14 @@ public sealed interface Country {
         return Fm
       }
     }
-    override fun serialize(encoder: Encoder, value: Fm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fm): Unit = encoder.encodeString(value.value)
   }
   /** Faroe Islands (the) */
   @Serializable(FoSerializer::class)
   public data object Fo : Country {
     override val value: String = "FO"
   }
-  private object FoSerializer : KSerializer<Fo> {
+  public object FoSerializer : KSerializer<Fo> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fo = decoder.decodeString().let {
       if (it != "FO") {
@@ -1195,14 +1195,14 @@ public sealed interface Country {
         return Fo
       }
     }
-    override fun serialize(encoder: Encoder, value: Fo) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fo): Unit = encoder.encodeString(value.value)
   }
   /** France */
   @Serializable(FrSerializer::class)
   public data object Fr : Country {
     override val value: String = "FR"
   }
-  private object FrSerializer : KSerializer<Fr> {
+  public object FrSerializer : KSerializer<Fr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fr = decoder.decodeString().let {
       if (it != "FR") {
@@ -1211,14 +1211,14 @@ public sealed interface Country {
         return Fr
       }
     }
-    override fun serialize(encoder: Encoder, value: Fr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fr): Unit = encoder.encodeString(value.value)
   }
   /** Gabon */
   @Serializable(GaSerializer::class)
   public data object Ga : Country {
     override val value: String = "GA"
   }
-  private object GaSerializer : KSerializer<Ga> {
+  public object GaSerializer : KSerializer<Ga> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ga::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ga = decoder.decodeString().let {
       if (it != "GA") {
@@ -1227,14 +1227,14 @@ public sealed interface Country {
         return Ga
       }
     }
-    override fun serialize(encoder: Encoder, value: Ga) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ga): Unit = encoder.encodeString(value.value)
   }
   /** United Kingdom of Great Britain and Northern Ireland (the) */
   @Serializable(GbSerializer::class)
   public data object Gb : Country {
     override val value: String = "GB"
   }
-  private object GbSerializer : KSerializer<Gb> {
+  public object GbSerializer : KSerializer<Gb> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gb = decoder.decodeString().let {
       if (it != "GB") {
@@ -1243,14 +1243,14 @@ public sealed interface Country {
         return Gb
       }
     }
-    override fun serialize(encoder: Encoder, value: Gb) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gb): Unit = encoder.encodeString(value.value)
   }
   /** Grenada */
   @Serializable(GdSerializer::class)
   public data object Gd : Country {
     override val value: String = "GD"
   }
-  private object GdSerializer : KSerializer<Gd> {
+  public object GdSerializer : KSerializer<Gd> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gd = decoder.decodeString().let {
       if (it != "GD") {
@@ -1259,14 +1259,14 @@ public sealed interface Country {
         return Gd
       }
     }
-    override fun serialize(encoder: Encoder, value: Gd) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gd): Unit = encoder.encodeString(value.value)
   }
   /** Georgia */
   @Serializable(GeSerializer::class)
   public data object Ge : Country {
     override val value: String = "GE"
   }
-  private object GeSerializer : KSerializer<Ge> {
+  public object GeSerializer : KSerializer<Ge> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ge::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ge = decoder.decodeString().let {
       if (it != "GE") {
@@ -1275,14 +1275,14 @@ public sealed interface Country {
         return Ge
       }
     }
-    override fun serialize(encoder: Encoder, value: Ge) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ge): Unit = encoder.encodeString(value.value)
   }
   /** French Guiana */
   @Serializable(GfSerializer::class)
   public data object Gf : Country {
     override val value: String = "GF"
   }
-  private object GfSerializer : KSerializer<Gf> {
+  public object GfSerializer : KSerializer<Gf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gf = decoder.decodeString().let {
       if (it != "GF") {
@@ -1291,14 +1291,14 @@ public sealed interface Country {
         return Gf
       }
     }
-    override fun serialize(encoder: Encoder, value: Gf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gf): Unit = encoder.encodeString(value.value)
   }
   /** Guernsey */
   @Serializable(GgSerializer::class)
   public data object Gg : Country {
     override val value: String = "GG"
   }
-  private object GgSerializer : KSerializer<Gg> {
+  public object GgSerializer : KSerializer<Gg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gg = decoder.decodeString().let {
       if (it != "GG") {
@@ -1307,14 +1307,14 @@ public sealed interface Country {
         return Gg
       }
     }
-    override fun serialize(encoder: Encoder, value: Gg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gg): Unit = encoder.encodeString(value.value)
   }
   /** Ghana */
   @Serializable(GhSerializer::class)
   public data object Gh : Country {
     override val value: String = "GH"
   }
-  private object GhSerializer : KSerializer<Gh> {
+  public object GhSerializer : KSerializer<Gh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gh = decoder.decodeString().let {
       if (it != "GH") {
@@ -1323,14 +1323,14 @@ public sealed interface Country {
         return Gh
       }
     }
-    override fun serialize(encoder: Encoder, value: Gh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gh): Unit = encoder.encodeString(value.value)
   }
   /** Gibraltar */
   @Serializable(GiSerializer::class)
   public data object Gi : Country {
     override val value: String = "GI"
   }
-  private object GiSerializer : KSerializer<Gi> {
+  public object GiSerializer : KSerializer<Gi> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gi = decoder.decodeString().let {
       if (it != "GI") {
@@ -1339,14 +1339,14 @@ public sealed interface Country {
         return Gi
       }
     }
-    override fun serialize(encoder: Encoder, value: Gi) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gi): Unit = encoder.encodeString(value.value)
   }
   /** Greenland */
   @Serializable(GlSerializer::class)
   public data object Gl : Country {
     override val value: String = "GL"
   }
-  private object GlSerializer : KSerializer<Gl> {
+  public object GlSerializer : KSerializer<Gl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gl = decoder.decodeString().let {
       if (it != "GL") {
@@ -1355,14 +1355,14 @@ public sealed interface Country {
         return Gl
       }
     }
-    override fun serialize(encoder: Encoder, value: Gl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gl): Unit = encoder.encodeString(value.value)
   }
   /** Gambia (the) */
   @Serializable(GmSerializer::class)
   public data object Gm : Country {
     override val value: String = "GM"
   }
-  private object GmSerializer : KSerializer<Gm> {
+  public object GmSerializer : KSerializer<Gm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gm = decoder.decodeString().let {
       if (it != "GM") {
@@ -1371,14 +1371,14 @@ public sealed interface Country {
         return Gm
       }
     }
-    override fun serialize(encoder: Encoder, value: Gm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gm): Unit = encoder.encodeString(value.value)
   }
   /** Guinea */
   @Serializable(GnSerializer::class)
   public data object Gn : Country {
     override val value: String = "GN"
   }
-  private object GnSerializer : KSerializer<Gn> {
+  public object GnSerializer : KSerializer<Gn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gn = decoder.decodeString().let {
       if (it != "GN") {
@@ -1387,14 +1387,14 @@ public sealed interface Country {
         return Gn
       }
     }
-    override fun serialize(encoder: Encoder, value: Gn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gn): Unit = encoder.encodeString(value.value)
   }
   /** Guadeloupe */
   @Serializable(GpSerializer::class)
   public data object Gp : Country {
     override val value: String = "GP"
   }
-  private object GpSerializer : KSerializer<Gp> {
+  public object GpSerializer : KSerializer<Gp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gp = decoder.decodeString().let {
       if (it != "GP") {
@@ -1403,14 +1403,14 @@ public sealed interface Country {
         return Gp
       }
     }
-    override fun serialize(encoder: Encoder, value: Gp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gp): Unit = encoder.encodeString(value.value)
   }
   /** Equatorial Guinea */
   @Serializable(GqSerializer::class)
   public data object Gq : Country {
     override val value: String = "GQ"
   }
-  private object GqSerializer : KSerializer<Gq> {
+  public object GqSerializer : KSerializer<Gq> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gq = decoder.decodeString().let {
       if (it != "GQ") {
@@ -1419,14 +1419,14 @@ public sealed interface Country {
         return Gq
       }
     }
-    override fun serialize(encoder: Encoder, value: Gq) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gq): Unit = encoder.encodeString(value.value)
   }
   /** Greece */
   @Serializable(GrSerializer::class)
   public data object Gr : Country {
     override val value: String = "GR"
   }
-  private object GrSerializer : KSerializer<Gr> {
+  public object GrSerializer : KSerializer<Gr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gr = decoder.decodeString().let {
       if (it != "GR") {
@@ -1435,14 +1435,14 @@ public sealed interface Country {
         return Gr
       }
     }
-    override fun serialize(encoder: Encoder, value: Gr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gr): Unit = encoder.encodeString(value.value)
   }
   /** South Georgia and the South Sandwich Islands */
   @Serializable(GsSerializer::class)
   public data object Gs : Country {
     override val value: String = "GS"
   }
-  private object GsSerializer : KSerializer<Gs> {
+  public object GsSerializer : KSerializer<Gs> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gs = decoder.decodeString().let {
       if (it != "GS") {
@@ -1451,14 +1451,14 @@ public sealed interface Country {
         return Gs
       }
     }
-    override fun serialize(encoder: Encoder, value: Gs) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gs): Unit = encoder.encodeString(value.value)
   }
   /** Guatemala */
   @Serializable(GtSerializer::class)
   public data object Gt : Country {
     override val value: String = "GT"
   }
-  private object GtSerializer : KSerializer<Gt> {
+  public object GtSerializer : KSerializer<Gt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gt = decoder.decodeString().let {
       if (it != "GT") {
@@ -1467,14 +1467,14 @@ public sealed interface Country {
         return Gt
       }
     }
-    override fun serialize(encoder: Encoder, value: Gt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gt): Unit = encoder.encodeString(value.value)
   }
   /** Guam */
   @Serializable(GuSerializer::class)
   public data object Gu : Country {
     override val value: String = "GU"
   }
-  private object GuSerializer : KSerializer<Gu> {
+  public object GuSerializer : KSerializer<Gu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gu = decoder.decodeString().let {
       if (it != "GU") {
@@ -1483,14 +1483,14 @@ public sealed interface Country {
         return Gu
       }
     }
-    override fun serialize(encoder: Encoder, value: Gu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gu): Unit = encoder.encodeString(value.value)
   }
   /** Guinea-Bissau */
   @Serializable(GwSerializer::class)
   public data object Gw : Country {
     override val value: String = "GW"
   }
-  private object GwSerializer : KSerializer<Gw> {
+  public object GwSerializer : KSerializer<Gw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gw = decoder.decodeString().let {
       if (it != "GW") {
@@ -1499,14 +1499,14 @@ public sealed interface Country {
         return Gw
       }
     }
-    override fun serialize(encoder: Encoder, value: Gw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gw): Unit = encoder.encodeString(value.value)
   }
   /** Guyana */
   @Serializable(GySerializer::class)
   public data object Gy : Country {
     override val value: String = "GY"
   }
-  private object GySerializer : KSerializer<Gy> {
+  public object GySerializer : KSerializer<Gy> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gy = decoder.decodeString().let {
       if (it != "GY") {
@@ -1515,14 +1515,14 @@ public sealed interface Country {
         return Gy
       }
     }
-    override fun serialize(encoder: Encoder, value: Gy) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gy): Unit = encoder.encodeString(value.value)
   }
   /** Hong Kong */
   @Serializable(HkSerializer::class)
   public data object Hk : Country {
     override val value: String = "HK"
   }
-  private object HkSerializer : KSerializer<Hk> {
+  public object HkSerializer : KSerializer<Hk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hk = decoder.decodeString().let {
       if (it != "HK") {
@@ -1531,14 +1531,14 @@ public sealed interface Country {
         return Hk
       }
     }
-    override fun serialize(encoder: Encoder, value: Hk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hk): Unit = encoder.encodeString(value.value)
   }
   /** Heard Island and McDonald Islands */
   @Serializable(HmSerializer::class)
   public data object Hm : Country {
     override val value: String = "HM"
   }
-  private object HmSerializer : KSerializer<Hm> {
+  public object HmSerializer : KSerializer<Hm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hm = decoder.decodeString().let {
       if (it != "HM") {
@@ -1547,14 +1547,14 @@ public sealed interface Country {
         return Hm
       }
     }
-    override fun serialize(encoder: Encoder, value: Hm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hm): Unit = encoder.encodeString(value.value)
   }
   /** Honduras */
   @Serializable(HnSerializer::class)
   public data object Hn : Country {
     override val value: String = "HN"
   }
-  private object HnSerializer : KSerializer<Hn> {
+  public object HnSerializer : KSerializer<Hn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hn = decoder.decodeString().let {
       if (it != "HN") {
@@ -1563,14 +1563,14 @@ public sealed interface Country {
         return Hn
       }
     }
-    override fun serialize(encoder: Encoder, value: Hn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hn): Unit = encoder.encodeString(value.value)
   }
   /** Croatia */
   @Serializable(HrSerializer::class)
   public data object Hr : Country {
     override val value: String = "HR"
   }
-  private object HrSerializer : KSerializer<Hr> {
+  public object HrSerializer : KSerializer<Hr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hr = decoder.decodeString().let {
       if (it != "HR") {
@@ -1579,14 +1579,14 @@ public sealed interface Country {
         return Hr
       }
     }
-    override fun serialize(encoder: Encoder, value: Hr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hr): Unit = encoder.encodeString(value.value)
   }
   /** Haiti */
   @Serializable(HtSerializer::class)
   public data object Ht : Country {
     override val value: String = "HT"
   }
-  private object HtSerializer : KSerializer<Ht> {
+  public object HtSerializer : KSerializer<Ht> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ht::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ht = decoder.decodeString().let {
       if (it != "HT") {
@@ -1595,14 +1595,14 @@ public sealed interface Country {
         return Ht
       }
     }
-    override fun serialize(encoder: Encoder, value: Ht) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ht): Unit = encoder.encodeString(value.value)
   }
   /** Hungary */
   @Serializable(HuSerializer::class)
   public data object Hu : Country {
     override val value: String = "HU"
   }
-  private object HuSerializer : KSerializer<Hu> {
+  public object HuSerializer : KSerializer<Hu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hu = decoder.decodeString().let {
       if (it != "HU") {
@@ -1611,14 +1611,14 @@ public sealed interface Country {
         return Hu
       }
     }
-    override fun serialize(encoder: Encoder, value: Hu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hu): Unit = encoder.encodeString(value.value)
   }
   /** Indonesia */
   @Serializable(IdSerializer::class)
   public data object Id : Country {
     override val value: String = "ID"
   }
-  private object IdSerializer : KSerializer<Id> {
+  public object IdSerializer : KSerializer<Id> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Id::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Id = decoder.decodeString().let {
       if (it != "ID") {
@@ -1627,14 +1627,14 @@ public sealed interface Country {
         return Id
       }
     }
-    override fun serialize(encoder: Encoder, value: Id) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Id): Unit = encoder.encodeString(value.value)
   }
   /** Ireland */
   @Serializable(IeSerializer::class)
   public data object Ie : Country {
     override val value: String = "IE"
   }
-  private object IeSerializer : KSerializer<Ie> {
+  public object IeSerializer : KSerializer<Ie> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ie::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ie = decoder.decodeString().let {
       if (it != "IE") {
@@ -1643,14 +1643,14 @@ public sealed interface Country {
         return Ie
       }
     }
-    override fun serialize(encoder: Encoder, value: Ie) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ie): Unit = encoder.encodeString(value.value)
   }
   /** Israel */
   @Serializable(IlSerializer::class)
   public data object Il : Country {
     override val value: String = "IL"
   }
-  private object IlSerializer : KSerializer<Il> {
+  public object IlSerializer : KSerializer<Il> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Il::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Il = decoder.decodeString().let {
       if (it != "IL") {
@@ -1659,14 +1659,14 @@ public sealed interface Country {
         return Il
       }
     }
-    override fun serialize(encoder: Encoder, value: Il) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Il): Unit = encoder.encodeString(value.value)
   }
   /** Isle of Man */
   @Serializable(ImSerializer::class)
   public data object Im : Country {
     override val value: String = "IM"
   }
-  private object ImSerializer : KSerializer<Im> {
+  public object ImSerializer : KSerializer<Im> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Im::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Im = decoder.decodeString().let {
       if (it != "IM") {
@@ -1675,14 +1675,14 @@ public sealed interface Country {
         return Im
       }
     }
-    override fun serialize(encoder: Encoder, value: Im) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Im): Unit = encoder.encodeString(value.value)
   }
   /** India */
   @Serializable(InSerializer::class)
   public data object In : Country {
     override val value: String = "IN"
   }
-  private object InSerializer : KSerializer<In> {
+  public object InSerializer : KSerializer<In> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(In::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): In = decoder.decodeString().let {
       if (it != "IN") {
@@ -1691,14 +1691,14 @@ public sealed interface Country {
         return In
       }
     }
-    override fun serialize(encoder: Encoder, value: In) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: In): Unit = encoder.encodeString(value.value)
   }
   /** British Indian Ocean Territory (the) */
   @Serializable(IoSerializer::class)
   public data object Io : Country {
     override val value: String = "IO"
   }
-  private object IoSerializer : KSerializer<Io> {
+  public object IoSerializer : KSerializer<Io> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Io::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Io = decoder.decodeString().let {
       if (it != "IO") {
@@ -1707,14 +1707,14 @@ public sealed interface Country {
         return Io
       }
     }
-    override fun serialize(encoder: Encoder, value: Io) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Io): Unit = encoder.encodeString(value.value)
   }
   /** Iraq */
   @Serializable(IqSerializer::class)
   public data object Iq : Country {
     override val value: String = "IQ"
   }
-  private object IqSerializer : KSerializer<Iq> {
+  public object IqSerializer : KSerializer<Iq> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Iq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Iq = decoder.decodeString().let {
       if (it != "IQ") {
@@ -1723,14 +1723,14 @@ public sealed interface Country {
         return Iq
       }
     }
-    override fun serialize(encoder: Encoder, value: Iq) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Iq): Unit = encoder.encodeString(value.value)
   }
   /** Iran (Islamic Republic of) */
   @Serializable(IrSerializer::class)
   public data object Ir : Country {
     override val value: String = "IR"
   }
-  private object IrSerializer : KSerializer<Ir> {
+  public object IrSerializer : KSerializer<Ir> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ir::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ir = decoder.decodeString().let {
       if (it != "IR") {
@@ -1739,14 +1739,14 @@ public sealed interface Country {
         return Ir
       }
     }
-    override fun serialize(encoder: Encoder, value: Ir) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ir): Unit = encoder.encodeString(value.value)
   }
   /** Iceland */
   @Serializable(IsSerializer::class)
   public data object Is : Country {
     override val value: String = "IS"
   }
-  private object IsSerializer : KSerializer<Is> {
+  public object IsSerializer : KSerializer<Is> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Is::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Is = decoder.decodeString().let {
       if (it != "IS") {
@@ -1755,14 +1755,14 @@ public sealed interface Country {
         return Is
       }
     }
-    override fun serialize(encoder: Encoder, value: Is) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Is): Unit = encoder.encodeString(value.value)
   }
   /** Italy */
   @Serializable(ItSerializer::class)
   public data object It : Country {
     override val value: String = "IT"
   }
-  private object ItSerializer : KSerializer<It> {
+  public object ItSerializer : KSerializer<It> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(It::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): It = decoder.decodeString().let {
       if (it != "IT") {
@@ -1771,14 +1771,14 @@ public sealed interface Country {
         return It
       }
     }
-    override fun serialize(encoder: Encoder, value: It) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: It): Unit = encoder.encodeString(value.value)
   }
   /** Jersey */
   @Serializable(JeSerializer::class)
   public data object Je : Country {
     override val value: String = "JE"
   }
-  private object JeSerializer : KSerializer<Je> {
+  public object JeSerializer : KSerializer<Je> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Je::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Je = decoder.decodeString().let {
       if (it != "JE") {
@@ -1787,14 +1787,14 @@ public sealed interface Country {
         return Je
       }
     }
-    override fun serialize(encoder: Encoder, value: Je) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Je): Unit = encoder.encodeString(value.value)
   }
   /** Jamaica */
   @Serializable(JmSerializer::class)
   public data object Jm : Country {
     override val value: String = "JM"
   }
-  private object JmSerializer : KSerializer<Jm> {
+  public object JmSerializer : KSerializer<Jm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jm = decoder.decodeString().let {
       if (it != "JM") {
@@ -1803,14 +1803,14 @@ public sealed interface Country {
         return Jm
       }
     }
-    override fun serialize(encoder: Encoder, value: Jm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Jm): Unit = encoder.encodeString(value.value)
   }
   /** Jordan */
   @Serializable(JoSerializer::class)
   public data object Jo : Country {
     override val value: String = "JO"
   }
-  private object JoSerializer : KSerializer<Jo> {
+  public object JoSerializer : KSerializer<Jo> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jo = decoder.decodeString().let {
       if (it != "JO") {
@@ -1819,14 +1819,14 @@ public sealed interface Country {
         return Jo
       }
     }
-    override fun serialize(encoder: Encoder, value: Jo) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Jo): Unit = encoder.encodeString(value.value)
   }
   /** Japan */
   @Serializable(JpSerializer::class)
   public data object Jp : Country {
     override val value: String = "JP"
   }
-  private object JpSerializer : KSerializer<Jp> {
+  public object JpSerializer : KSerializer<Jp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Jp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Jp = decoder.decodeString().let {
       if (it != "JP") {
@@ -1835,14 +1835,14 @@ public sealed interface Country {
         return Jp
       }
     }
-    override fun serialize(encoder: Encoder, value: Jp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Jp): Unit = encoder.encodeString(value.value)
   }
   /** Kenya */
   @Serializable(KeSerializer::class)
   public data object Ke : Country {
     override val value: String = "KE"
   }
-  private object KeSerializer : KSerializer<Ke> {
+  public object KeSerializer : KSerializer<Ke> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ke::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ke = decoder.decodeString().let {
       if (it != "KE") {
@@ -1851,14 +1851,14 @@ public sealed interface Country {
         return Ke
       }
     }
-    override fun serialize(encoder: Encoder, value: Ke) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ke): Unit = encoder.encodeString(value.value)
   }
   /** Kyrgyzstan */
   @Serializable(KgSerializer::class)
   public data object Kg : Country {
     override val value: String = "KG"
   }
-  private object KgSerializer : KSerializer<Kg> {
+  public object KgSerializer : KSerializer<Kg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kg = decoder.decodeString().let {
       if (it != "KG") {
@@ -1867,14 +1867,14 @@ public sealed interface Country {
         return Kg
       }
     }
-    override fun serialize(encoder: Encoder, value: Kg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kg): Unit = encoder.encodeString(value.value)
   }
   /** Cambodia */
   @Serializable(KhSerializer::class)
   public data object Kh : Country {
     override val value: String = "KH"
   }
-  private object KhSerializer : KSerializer<Kh> {
+  public object KhSerializer : KSerializer<Kh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kh = decoder.decodeString().let {
       if (it != "KH") {
@@ -1883,14 +1883,14 @@ public sealed interface Country {
         return Kh
       }
     }
-    override fun serialize(encoder: Encoder, value: Kh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kh): Unit = encoder.encodeString(value.value)
   }
   /** Kiribati */
   @Serializable(KiSerializer::class)
   public data object Ki : Country {
     override val value: String = "KI"
   }
-  private object KiSerializer : KSerializer<Ki> {
+  public object KiSerializer : KSerializer<Ki> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ki::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ki = decoder.decodeString().let {
       if (it != "KI") {
@@ -1899,14 +1899,14 @@ public sealed interface Country {
         return Ki
       }
     }
-    override fun serialize(encoder: Encoder, value: Ki) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ki): Unit = encoder.encodeString(value.value)
   }
   /** Comoros (the) */
   @Serializable(KmSerializer::class)
   public data object Km : Country {
     override val value: String = "KM"
   }
-  private object KmSerializer : KSerializer<Km> {
+  public object KmSerializer : KSerializer<Km> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Km::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Km = decoder.decodeString().let {
       if (it != "KM") {
@@ -1915,14 +1915,14 @@ public sealed interface Country {
         return Km
       }
     }
-    override fun serialize(encoder: Encoder, value: Km) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Km): Unit = encoder.encodeString(value.value)
   }
   /** Saint Kitts and Nevis */
   @Serializable(KnSerializer::class)
   public data object Kn : Country {
     override val value: String = "KN"
   }
-  private object KnSerializer : KSerializer<Kn> {
+  public object KnSerializer : KSerializer<Kn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kn = decoder.decodeString().let {
       if (it != "KN") {
@@ -1931,14 +1931,14 @@ public sealed interface Country {
         return Kn
       }
     }
-    override fun serialize(encoder: Encoder, value: Kn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kn): Unit = encoder.encodeString(value.value)
   }
   /** Korea (the Democratic People's Republic of) */
   @Serializable(KpSerializer::class)
   public data object Kp : Country {
     override val value: String = "KP"
   }
-  private object KpSerializer : KSerializer<Kp> {
+  public object KpSerializer : KSerializer<Kp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kp = decoder.decodeString().let {
       if (it != "KP") {
@@ -1947,14 +1947,14 @@ public sealed interface Country {
         return Kp
       }
     }
-    override fun serialize(encoder: Encoder, value: Kp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kp): Unit = encoder.encodeString(value.value)
   }
   /** Korea (the Republic of) */
   @Serializable(KrSerializer::class)
   public data object Kr : Country {
     override val value: String = "KR"
   }
-  private object KrSerializer : KSerializer<Kr> {
+  public object KrSerializer : KSerializer<Kr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kr = decoder.decodeString().let {
       if (it != "KR") {
@@ -1963,14 +1963,14 @@ public sealed interface Country {
         return Kr
       }
     }
-    override fun serialize(encoder: Encoder, value: Kr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kr): Unit = encoder.encodeString(value.value)
   }
   /** Kuwait */
   @Serializable(KwSerializer::class)
   public data object Kw : Country {
     override val value: String = "KW"
   }
-  private object KwSerializer : KSerializer<Kw> {
+  public object KwSerializer : KSerializer<Kw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kw = decoder.decodeString().let {
       if (it != "KW") {
@@ -1979,14 +1979,14 @@ public sealed interface Country {
         return Kw
       }
     }
-    override fun serialize(encoder: Encoder, value: Kw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kw): Unit = encoder.encodeString(value.value)
   }
   /** Cayman Islands (the) */
   @Serializable(KySerializer::class)
   public data object Ky : Country {
     override val value: String = "KY"
   }
-  private object KySerializer : KSerializer<Ky> {
+  public object KySerializer : KSerializer<Ky> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ky::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ky = decoder.decodeString().let {
       if (it != "KY") {
@@ -1995,14 +1995,14 @@ public sealed interface Country {
         return Ky
       }
     }
-    override fun serialize(encoder: Encoder, value: Ky) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ky): Unit = encoder.encodeString(value.value)
   }
   /** Kazakhstan */
   @Serializable(KzSerializer::class)
   public data object Kz : Country {
     override val value: String = "KZ"
   }
-  private object KzSerializer : KSerializer<Kz> {
+  public object KzSerializer : KSerializer<Kz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kz = decoder.decodeString().let {
       if (it != "KZ") {
@@ -2011,14 +2011,14 @@ public sealed interface Country {
         return Kz
       }
     }
-    override fun serialize(encoder: Encoder, value: Kz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kz): Unit = encoder.encodeString(value.value)
   }
   /** Lao People's Democratic Republic (the) */
   @Serializable(LaSerializer::class)
   public data object La : Country {
     override val value: String = "LA"
   }
-  private object LaSerializer : KSerializer<La> {
+  public object LaSerializer : KSerializer<La> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(La::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): La = decoder.decodeString().let {
       if (it != "LA") {
@@ -2027,14 +2027,14 @@ public sealed interface Country {
         return La
       }
     }
-    override fun serialize(encoder: Encoder, value: La) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: La): Unit = encoder.encodeString(value.value)
   }
   /** Lebanon */
   @Serializable(LbSerializer::class)
   public data object Lb : Country {
     override val value: String = "LB"
   }
-  private object LbSerializer : KSerializer<Lb> {
+  public object LbSerializer : KSerializer<Lb> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lb = decoder.decodeString().let {
       if (it != "LB") {
@@ -2043,14 +2043,14 @@ public sealed interface Country {
         return Lb
       }
     }
-    override fun serialize(encoder: Encoder, value: Lb) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lb): Unit = encoder.encodeString(value.value)
   }
   /** Saint Lucia */
   @Serializable(LcSerializer::class)
   public data object Lc : Country {
     override val value: String = "LC"
   }
-  private object LcSerializer : KSerializer<Lc> {
+  public object LcSerializer : KSerializer<Lc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lc = decoder.decodeString().let {
       if (it != "LC") {
@@ -2059,14 +2059,14 @@ public sealed interface Country {
         return Lc
       }
     }
-    override fun serialize(encoder: Encoder, value: Lc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lc): Unit = encoder.encodeString(value.value)
   }
   /** Liechtenstein */
   @Serializable(LiSerializer::class)
   public data object Li : Country {
     override val value: String = "LI"
   }
-  private object LiSerializer : KSerializer<Li> {
+  public object LiSerializer : KSerializer<Li> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Li::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Li = decoder.decodeString().let {
       if (it != "LI") {
@@ -2075,14 +2075,14 @@ public sealed interface Country {
         return Li
       }
     }
-    override fun serialize(encoder: Encoder, value: Li) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Li): Unit = encoder.encodeString(value.value)
   }
   /** Sri Lanka */
   @Serializable(LkSerializer::class)
   public data object Lk : Country {
     override val value: String = "LK"
   }
-  private object LkSerializer : KSerializer<Lk> {
+  public object LkSerializer : KSerializer<Lk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lk = decoder.decodeString().let {
       if (it != "LK") {
@@ -2091,14 +2091,14 @@ public sealed interface Country {
         return Lk
       }
     }
-    override fun serialize(encoder: Encoder, value: Lk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lk): Unit = encoder.encodeString(value.value)
   }
   /** Liberia */
   @Serializable(LrSerializer::class)
   public data object Lr : Country {
     override val value: String = "LR"
   }
-  private object LrSerializer : KSerializer<Lr> {
+  public object LrSerializer : KSerializer<Lr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lr = decoder.decodeString().let {
       if (it != "LR") {
@@ -2107,14 +2107,14 @@ public sealed interface Country {
         return Lr
       }
     }
-    override fun serialize(encoder: Encoder, value: Lr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lr): Unit = encoder.encodeString(value.value)
   }
   /** Lesotho */
   @Serializable(LsSerializer::class)
   public data object Ls : Country {
     override val value: String = "LS"
   }
-  private object LsSerializer : KSerializer<Ls> {
+  public object LsSerializer : KSerializer<Ls> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ls::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ls = decoder.decodeString().let {
       if (it != "LS") {
@@ -2123,14 +2123,14 @@ public sealed interface Country {
         return Ls
       }
     }
-    override fun serialize(encoder: Encoder, value: Ls) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ls): Unit = encoder.encodeString(value.value)
   }
   /** Lithuania */
   @Serializable(LtSerializer::class)
   public data object Lt : Country {
     override val value: String = "LT"
   }
-  private object LtSerializer : KSerializer<Lt> {
+  public object LtSerializer : KSerializer<Lt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lt = decoder.decodeString().let {
       if (it != "LT") {
@@ -2139,14 +2139,14 @@ public sealed interface Country {
         return Lt
       }
     }
-    override fun serialize(encoder: Encoder, value: Lt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lt): Unit = encoder.encodeString(value.value)
   }
   /** Luxembourg */
   @Serializable(LuSerializer::class)
   public data object Lu : Country {
     override val value: String = "LU"
   }
-  private object LuSerializer : KSerializer<Lu> {
+  public object LuSerializer : KSerializer<Lu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lu = decoder.decodeString().let {
       if (it != "LU") {
@@ -2155,14 +2155,14 @@ public sealed interface Country {
         return Lu
       }
     }
-    override fun serialize(encoder: Encoder, value: Lu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lu): Unit = encoder.encodeString(value.value)
   }
   /** Latvia */
   @Serializable(LvSerializer::class)
   public data object Lv : Country {
     override val value: String = "LV"
   }
-  private object LvSerializer : KSerializer<Lv> {
+  public object LvSerializer : KSerializer<Lv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lv = decoder.decodeString().let {
       if (it != "LV") {
@@ -2171,14 +2171,14 @@ public sealed interface Country {
         return Lv
       }
     }
-    override fun serialize(encoder: Encoder, value: Lv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lv): Unit = encoder.encodeString(value.value)
   }
   /** Libya */
   @Serializable(LySerializer::class)
   public data object Ly : Country {
     override val value: String = "LY"
   }
-  private object LySerializer : KSerializer<Ly> {
+  public object LySerializer : KSerializer<Ly> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ly = decoder.decodeString().let {
       if (it != "LY") {
@@ -2187,14 +2187,14 @@ public sealed interface Country {
         return Ly
       }
     }
-    override fun serialize(encoder: Encoder, value: Ly) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ly): Unit = encoder.encodeString(value.value)
   }
   /** Morocco */
   @Serializable(MaSerializer::class)
   public data object Ma : Country {
     override val value: String = "MA"
   }
-  private object MaSerializer : KSerializer<Ma> {
+  public object MaSerializer : KSerializer<Ma> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ma::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ma = decoder.decodeString().let {
       if (it != "MA") {
@@ -2203,14 +2203,14 @@ public sealed interface Country {
         return Ma
       }
     }
-    override fun serialize(encoder: Encoder, value: Ma) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ma): Unit = encoder.encodeString(value.value)
   }
   /** Monaco */
   @Serializable(McSerializer::class)
   public data object Mc : Country {
     override val value: String = "MC"
   }
-  private object McSerializer : KSerializer<Mc> {
+  public object McSerializer : KSerializer<Mc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mc = decoder.decodeString().let {
       if (it != "MC") {
@@ -2219,14 +2219,14 @@ public sealed interface Country {
         return Mc
       }
     }
-    override fun serialize(encoder: Encoder, value: Mc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mc): Unit = encoder.encodeString(value.value)
   }
   /** Moldova (the Republic of) */
   @Serializable(MdSerializer::class)
   public data object Md : Country {
     override val value: String = "MD"
   }
-  private object MdSerializer : KSerializer<Md> {
+  public object MdSerializer : KSerializer<Md> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Md::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Md = decoder.decodeString().let {
       if (it != "MD") {
@@ -2235,14 +2235,14 @@ public sealed interface Country {
         return Md
       }
     }
-    override fun serialize(encoder: Encoder, value: Md) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Md): Unit = encoder.encodeString(value.value)
   }
   /** Montenegro */
   @Serializable(MeSerializer::class)
   public data object Me : Country {
     override val value: String = "ME"
   }
-  private object MeSerializer : KSerializer<Me> {
+  public object MeSerializer : KSerializer<Me> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Me::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Me = decoder.decodeString().let {
       if (it != "ME") {
@@ -2251,14 +2251,14 @@ public sealed interface Country {
         return Me
       }
     }
-    override fun serialize(encoder: Encoder, value: Me) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Me): Unit = encoder.encodeString(value.value)
   }
   /** Saint Martin (French part) */
   @Serializable(MfSerializer::class)
   public data object Mf : Country {
     override val value: String = "MF"
   }
-  private object MfSerializer : KSerializer<Mf> {
+  public object MfSerializer : KSerializer<Mf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mf = decoder.decodeString().let {
       if (it != "MF") {
@@ -2267,14 +2267,14 @@ public sealed interface Country {
         return Mf
       }
     }
-    override fun serialize(encoder: Encoder, value: Mf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mf): Unit = encoder.encodeString(value.value)
   }
   /** Madagascar */
   @Serializable(MgSerializer::class)
   public data object Mg : Country {
     override val value: String = "MG"
   }
-  private object MgSerializer : KSerializer<Mg> {
+  public object MgSerializer : KSerializer<Mg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mg = decoder.decodeString().let {
       if (it != "MG") {
@@ -2283,14 +2283,14 @@ public sealed interface Country {
         return Mg
       }
     }
-    override fun serialize(encoder: Encoder, value: Mg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mg): Unit = encoder.encodeString(value.value)
   }
   /** Marshall Islands (the) */
   @Serializable(MhSerializer::class)
   public data object Mh : Country {
     override val value: String = "MH"
   }
-  private object MhSerializer : KSerializer<Mh> {
+  public object MhSerializer : KSerializer<Mh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mh = decoder.decodeString().let {
       if (it != "MH") {
@@ -2299,14 +2299,14 @@ public sealed interface Country {
         return Mh
       }
     }
-    override fun serialize(encoder: Encoder, value: Mh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mh): Unit = encoder.encodeString(value.value)
   }
   /** North Macedonia */
   @Serializable(MkSerializer::class)
   public data object Mk : Country {
     override val value: String = "MK"
   }
-  private object MkSerializer : KSerializer<Mk> {
+  public object MkSerializer : KSerializer<Mk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mk = decoder.decodeString().let {
       if (it != "MK") {
@@ -2315,14 +2315,14 @@ public sealed interface Country {
         return Mk
       }
     }
-    override fun serialize(encoder: Encoder, value: Mk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mk): Unit = encoder.encodeString(value.value)
   }
   /** Mali */
   @Serializable(MlSerializer::class)
   public data object Ml : Country {
     override val value: String = "ML"
   }
-  private object MlSerializer : KSerializer<Ml> {
+  public object MlSerializer : KSerializer<Ml> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ml::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ml = decoder.decodeString().let {
       if (it != "ML") {
@@ -2331,14 +2331,14 @@ public sealed interface Country {
         return Ml
       }
     }
-    override fun serialize(encoder: Encoder, value: Ml) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ml): Unit = encoder.encodeString(value.value)
   }
   /** Myanmar */
   @Serializable(MmSerializer::class)
   public data object Mm : Country {
     override val value: String = "MM"
   }
-  private object MmSerializer : KSerializer<Mm> {
+  public object MmSerializer : KSerializer<Mm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mm = decoder.decodeString().let {
       if (it != "MM") {
@@ -2347,14 +2347,14 @@ public sealed interface Country {
         return Mm
       }
     }
-    override fun serialize(encoder: Encoder, value: Mm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mm): Unit = encoder.encodeString(value.value)
   }
   /** Mongolia */
   @Serializable(MnSerializer::class)
   public data object Mn : Country {
     override val value: String = "MN"
   }
-  private object MnSerializer : KSerializer<Mn> {
+  public object MnSerializer : KSerializer<Mn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mn = decoder.decodeString().let {
       if (it != "MN") {
@@ -2363,14 +2363,14 @@ public sealed interface Country {
         return Mn
       }
     }
-    override fun serialize(encoder: Encoder, value: Mn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mn): Unit = encoder.encodeString(value.value)
   }
   /** Macao */
   @Serializable(MoSerializer::class)
   public data object Mo : Country {
     override val value: String = "MO"
   }
-  private object MoSerializer : KSerializer<Mo> {
+  public object MoSerializer : KSerializer<Mo> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mo::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mo = decoder.decodeString().let {
       if (it != "MO") {
@@ -2379,14 +2379,14 @@ public sealed interface Country {
         return Mo
       }
     }
-    override fun serialize(encoder: Encoder, value: Mo) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mo): Unit = encoder.encodeString(value.value)
   }
   /** Northern Mariana Islands (the) */
   @Serializable(MpSerializer::class)
   public data object Mp : Country {
     override val value: String = "MP"
   }
-  private object MpSerializer : KSerializer<Mp> {
+  public object MpSerializer : KSerializer<Mp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mp::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mp = decoder.decodeString().let {
       if (it != "MP") {
@@ -2395,14 +2395,14 @@ public sealed interface Country {
         return Mp
       }
     }
-    override fun serialize(encoder: Encoder, value: Mp) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mp): Unit = encoder.encodeString(value.value)
   }
   /** Martinique */
   @Serializable(MqSerializer::class)
   public data object Mq : Country {
     override val value: String = "MQ"
   }
-  private object MqSerializer : KSerializer<Mq> {
+  public object MqSerializer : KSerializer<Mq> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mq::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mq = decoder.decodeString().let {
       if (it != "MQ") {
@@ -2411,14 +2411,14 @@ public sealed interface Country {
         return Mq
       }
     }
-    override fun serialize(encoder: Encoder, value: Mq) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mq): Unit = encoder.encodeString(value.value)
   }
   /** Mauritania */
   @Serializable(MrSerializer::class)
   public data object Mr : Country {
     override val value: String = "MR"
   }
-  private object MrSerializer : KSerializer<Mr> {
+  public object MrSerializer : KSerializer<Mr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mr = decoder.decodeString().let {
       if (it != "MR") {
@@ -2427,14 +2427,14 @@ public sealed interface Country {
         return Mr
       }
     }
-    override fun serialize(encoder: Encoder, value: Mr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mr): Unit = encoder.encodeString(value.value)
   }
   /** Montserrat */
   @Serializable(MsSerializer::class)
   public data object Ms : Country {
     override val value: String = "MS"
   }
-  private object MsSerializer : KSerializer<Ms> {
+  public object MsSerializer : KSerializer<Ms> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ms::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ms = decoder.decodeString().let {
       if (it != "MS") {
@@ -2443,14 +2443,14 @@ public sealed interface Country {
         return Ms
       }
     }
-    override fun serialize(encoder: Encoder, value: Ms) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ms): Unit = encoder.encodeString(value.value)
   }
   /** Malta */
   @Serializable(MtSerializer::class)
   public data object Mt : Country {
     override val value: String = "MT"
   }
-  private object MtSerializer : KSerializer<Mt> {
+  public object MtSerializer : KSerializer<Mt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mt = decoder.decodeString().let {
       if (it != "MT") {
@@ -2459,14 +2459,14 @@ public sealed interface Country {
         return Mt
       }
     }
-    override fun serialize(encoder: Encoder, value: Mt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mt): Unit = encoder.encodeString(value.value)
   }
   /** Mauritius */
   @Serializable(MuSerializer::class)
   public data object Mu : Country {
     override val value: String = "MU"
   }
-  private object MuSerializer : KSerializer<Mu> {
+  public object MuSerializer : KSerializer<Mu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mu = decoder.decodeString().let {
       if (it != "MU") {
@@ -2475,14 +2475,14 @@ public sealed interface Country {
         return Mu
       }
     }
-    override fun serialize(encoder: Encoder, value: Mu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mu): Unit = encoder.encodeString(value.value)
   }
   /** Maldives */
   @Serializable(MvSerializer::class)
   public data object Mv : Country {
     override val value: String = "MV"
   }
-  private object MvSerializer : KSerializer<Mv> {
+  public object MvSerializer : KSerializer<Mv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mv = decoder.decodeString().let {
       if (it != "MV") {
@@ -2491,14 +2491,14 @@ public sealed interface Country {
         return Mv
       }
     }
-    override fun serialize(encoder: Encoder, value: Mv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mv): Unit = encoder.encodeString(value.value)
   }
   /** Malawi */
   @Serializable(MwSerializer::class)
   public data object Mw : Country {
     override val value: String = "MW"
   }
-  private object MwSerializer : KSerializer<Mw> {
+  public object MwSerializer : KSerializer<Mw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mw = decoder.decodeString().let {
       if (it != "MW") {
@@ -2507,14 +2507,14 @@ public sealed interface Country {
         return Mw
       }
     }
-    override fun serialize(encoder: Encoder, value: Mw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mw): Unit = encoder.encodeString(value.value)
   }
   /** Mexico */
   @Serializable(MxSerializer::class)
   public data object Mx : Country {
     override val value: String = "MX"
   }
-  private object MxSerializer : KSerializer<Mx> {
+  public object MxSerializer : KSerializer<Mx> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mx = decoder.decodeString().let {
       if (it != "MX") {
@@ -2523,14 +2523,14 @@ public sealed interface Country {
         return Mx
       }
     }
-    override fun serialize(encoder: Encoder, value: Mx) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mx): Unit = encoder.encodeString(value.value)
   }
   /** Malaysia */
   @Serializable(MySerializer::class)
   public data object My : Country {
     override val value: String = "MY"
   }
-  private object MySerializer : KSerializer<My> {
+  public object MySerializer : KSerializer<My> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(My::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): My = decoder.decodeString().let {
       if (it != "MY") {
@@ -2539,14 +2539,14 @@ public sealed interface Country {
         return My
       }
     }
-    override fun serialize(encoder: Encoder, value: My) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: My): Unit = encoder.encodeString(value.value)
   }
   /** Mozambique */
   @Serializable(MzSerializer::class)
   public data object Mz : Country {
     override val value: String = "MZ"
   }
-  private object MzSerializer : KSerializer<Mz> {
+  public object MzSerializer : KSerializer<Mz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mz = decoder.decodeString().let {
       if (it != "MZ") {
@@ -2555,14 +2555,14 @@ public sealed interface Country {
         return Mz
       }
     }
-    override fun serialize(encoder: Encoder, value: Mz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mz): Unit = encoder.encodeString(value.value)
   }
   /** Namibia */
   @Serializable(NaSerializer::class)
   public data object Na : Country {
     override val value: String = "NA"
   }
-  private object NaSerializer : KSerializer<Na> {
+  public object NaSerializer : KSerializer<Na> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Na::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Na = decoder.decodeString().let {
       if (it != "NA") {
@@ -2571,14 +2571,14 @@ public sealed interface Country {
         return Na
       }
     }
-    override fun serialize(encoder: Encoder, value: Na) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Na): Unit = encoder.encodeString(value.value)
   }
   /** New Caledonia */
   @Serializable(NcSerializer::class)
   public data object Nc : Country {
     override val value: String = "NC"
   }
-  private object NcSerializer : KSerializer<Nc> {
+  public object NcSerializer : KSerializer<Nc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nc = decoder.decodeString().let {
       if (it != "NC") {
@@ -2587,14 +2587,14 @@ public sealed interface Country {
         return Nc
       }
     }
-    override fun serialize(encoder: Encoder, value: Nc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nc): Unit = encoder.encodeString(value.value)
   }
   /** Niger (the) */
   @Serializable(NeSerializer::class)
   public data object Ne : Country {
     override val value: String = "NE"
   }
-  private object NeSerializer : KSerializer<Ne> {
+  public object NeSerializer : KSerializer<Ne> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ne::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ne = decoder.decodeString().let {
       if (it != "NE") {
@@ -2603,14 +2603,14 @@ public sealed interface Country {
         return Ne
       }
     }
-    override fun serialize(encoder: Encoder, value: Ne) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ne): Unit = encoder.encodeString(value.value)
   }
   /** Norfolk Island */
   @Serializable(NfSerializer::class)
   public data object Nf : Country {
     override val value: String = "NF"
   }
-  private object NfSerializer : KSerializer<Nf> {
+  public object NfSerializer : KSerializer<Nf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nf = decoder.decodeString().let {
       if (it != "NF") {
@@ -2619,14 +2619,14 @@ public sealed interface Country {
         return Nf
       }
     }
-    override fun serialize(encoder: Encoder, value: Nf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nf): Unit = encoder.encodeString(value.value)
   }
   /** Nigeria */
   @Serializable(NgSerializer::class)
   public data object Ng : Country {
     override val value: String = "NG"
   }
-  private object NgSerializer : KSerializer<Ng> {
+  public object NgSerializer : KSerializer<Ng> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ng::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ng = decoder.decodeString().let {
       if (it != "NG") {
@@ -2635,14 +2635,14 @@ public sealed interface Country {
         return Ng
       }
     }
-    override fun serialize(encoder: Encoder, value: Ng) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ng): Unit = encoder.encodeString(value.value)
   }
   /** Nicaragua */
   @Serializable(NiSerializer::class)
   public data object Ni : Country {
     override val value: String = "NI"
   }
-  private object NiSerializer : KSerializer<Ni> {
+  public object NiSerializer : KSerializer<Ni> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ni::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ni = decoder.decodeString().let {
       if (it != "NI") {
@@ -2651,14 +2651,14 @@ public sealed interface Country {
         return Ni
       }
     }
-    override fun serialize(encoder: Encoder, value: Ni) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ni): Unit = encoder.encodeString(value.value)
   }
   /** Netherlands (Kingdom of the) */
   @Serializable(NlSerializer::class)
   public data object Nl : Country {
     override val value: String = "NL"
   }
-  private object NlSerializer : KSerializer<Nl> {
+  public object NlSerializer : KSerializer<Nl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nl = decoder.decodeString().let {
       if (it != "NL") {
@@ -2667,14 +2667,14 @@ public sealed interface Country {
         return Nl
       }
     }
-    override fun serialize(encoder: Encoder, value: Nl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nl): Unit = encoder.encodeString(value.value)
   }
   /** Norway */
   @Serializable(NoSerializer::class)
   public data object No : Country {
     override val value: String = "NO"
   }
-  private object NoSerializer : KSerializer<No> {
+  public object NoSerializer : KSerializer<No> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(No::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): No = decoder.decodeString().let {
       if (it != "NO") {
@@ -2683,14 +2683,14 @@ public sealed interface Country {
         return No
       }
     }
-    override fun serialize(encoder: Encoder, value: No) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: No): Unit = encoder.encodeString(value.value)
   }
   /** Nepal */
   @Serializable(NpSerializer::class)
   public data object Np : Country {
     override val value: String = "NP"
   }
-  private object NpSerializer : KSerializer<Np> {
+  public object NpSerializer : KSerializer<Np> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Np::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Np = decoder.decodeString().let {
       if (it != "NP") {
@@ -2699,14 +2699,14 @@ public sealed interface Country {
         return Np
       }
     }
-    override fun serialize(encoder: Encoder, value: Np) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Np): Unit = encoder.encodeString(value.value)
   }
   /** Nauru */
   @Serializable(NrSerializer::class)
   public data object Nr : Country {
     override val value: String = "NR"
   }
-  private object NrSerializer : KSerializer<Nr> {
+  public object NrSerializer : KSerializer<Nr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nr = decoder.decodeString().let {
       if (it != "NR") {
@@ -2715,14 +2715,14 @@ public sealed interface Country {
         return Nr
       }
     }
-    override fun serialize(encoder: Encoder, value: Nr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nr): Unit = encoder.encodeString(value.value)
   }
   /** Niue */
   @Serializable(NuSerializer::class)
   public data object Nu : Country {
     override val value: String = "NU"
   }
-  private object NuSerializer : KSerializer<Nu> {
+  public object NuSerializer : KSerializer<Nu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nu = decoder.decodeString().let {
       if (it != "NU") {
@@ -2731,14 +2731,14 @@ public sealed interface Country {
         return Nu
       }
     }
-    override fun serialize(encoder: Encoder, value: Nu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nu): Unit = encoder.encodeString(value.value)
   }
   /** New Zealand */
   @Serializable(NzSerializer::class)
   public data object Nz : Country {
     override val value: String = "NZ"
   }
-  private object NzSerializer : KSerializer<Nz> {
+  public object NzSerializer : KSerializer<Nz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Nz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Nz = decoder.decodeString().let {
       if (it != "NZ") {
@@ -2747,14 +2747,14 @@ public sealed interface Country {
         return Nz
       }
     }
-    override fun serialize(encoder: Encoder, value: Nz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Nz): Unit = encoder.encodeString(value.value)
   }
   /** Oman */
   @Serializable(OmSerializer::class)
   public data object Om : Country {
     override val value: String = "OM"
   }
-  private object OmSerializer : KSerializer<Om> {
+  public object OmSerializer : KSerializer<Om> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Om::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Om = decoder.decodeString().let {
       if (it != "OM") {
@@ -2763,14 +2763,14 @@ public sealed interface Country {
         return Om
       }
     }
-    override fun serialize(encoder: Encoder, value: Om) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Om): Unit = encoder.encodeString(value.value)
   }
   /** Panama */
   @Serializable(PaSerializer::class)
   public data object Pa : Country {
     override val value: String = "PA"
   }
-  private object PaSerializer : KSerializer<Pa> {
+  public object PaSerializer : KSerializer<Pa> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pa = decoder.decodeString().let {
       if (it != "PA") {
@@ -2779,14 +2779,14 @@ public sealed interface Country {
         return Pa
       }
     }
-    override fun serialize(encoder: Encoder, value: Pa) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pa): Unit = encoder.encodeString(value.value)
   }
   /** Peru */
   @Serializable(PeSerializer::class)
   public data object Pe : Country {
     override val value: String = "PE"
   }
-  private object PeSerializer : KSerializer<Pe> {
+  public object PeSerializer : KSerializer<Pe> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pe::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pe = decoder.decodeString().let {
       if (it != "PE") {
@@ -2795,14 +2795,14 @@ public sealed interface Country {
         return Pe
       }
     }
-    override fun serialize(encoder: Encoder, value: Pe) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pe): Unit = encoder.encodeString(value.value)
   }
   /** French Polynesia */
   @Serializable(PfSerializer::class)
   public data object Pf : Country {
     override val value: String = "PF"
   }
-  private object PfSerializer : KSerializer<Pf> {
+  public object PfSerializer : KSerializer<Pf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pf = decoder.decodeString().let {
       if (it != "PF") {
@@ -2811,14 +2811,14 @@ public sealed interface Country {
         return Pf
       }
     }
-    override fun serialize(encoder: Encoder, value: Pf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pf): Unit = encoder.encodeString(value.value)
   }
   /** Papua New Guinea */
   @Serializable(PgSerializer::class)
   public data object Pg : Country {
     override val value: String = "PG"
   }
-  private object PgSerializer : KSerializer<Pg> {
+  public object PgSerializer : KSerializer<Pg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pg = decoder.decodeString().let {
       if (it != "PG") {
@@ -2827,14 +2827,14 @@ public sealed interface Country {
         return Pg
       }
     }
-    override fun serialize(encoder: Encoder, value: Pg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pg): Unit = encoder.encodeString(value.value)
   }
   /** Philippines (the) */
   @Serializable(PhSerializer::class)
   public data object Ph : Country {
     override val value: String = "PH"
   }
-  private object PhSerializer : KSerializer<Ph> {
+  public object PhSerializer : KSerializer<Ph> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ph::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ph = decoder.decodeString().let {
       if (it != "PH") {
@@ -2843,14 +2843,14 @@ public sealed interface Country {
         return Ph
       }
     }
-    override fun serialize(encoder: Encoder, value: Ph) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ph): Unit = encoder.encodeString(value.value)
   }
   /** Pakistan */
   @Serializable(PkSerializer::class)
   public data object Pk : Country {
     override val value: String = "PK"
   }
-  private object PkSerializer : KSerializer<Pk> {
+  public object PkSerializer : KSerializer<Pk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pk = decoder.decodeString().let {
       if (it != "PK") {
@@ -2859,14 +2859,14 @@ public sealed interface Country {
         return Pk
       }
     }
-    override fun serialize(encoder: Encoder, value: Pk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pk): Unit = encoder.encodeString(value.value)
   }
   /** Poland */
   @Serializable(PlSerializer::class)
   public data object Pl : Country {
     override val value: String = "PL"
   }
-  private object PlSerializer : KSerializer<Pl> {
+  public object PlSerializer : KSerializer<Pl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pl = decoder.decodeString().let {
       if (it != "PL") {
@@ -2875,14 +2875,14 @@ public sealed interface Country {
         return Pl
       }
     }
-    override fun serialize(encoder: Encoder, value: Pl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pl): Unit = encoder.encodeString(value.value)
   }
   /** Saint Pierre and Miquelon */
   @Serializable(PmSerializer::class)
   public data object Pm : Country {
     override val value: String = "PM"
   }
-  private object PmSerializer : KSerializer<Pm> {
+  public object PmSerializer : KSerializer<Pm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pm = decoder.decodeString().let {
       if (it != "PM") {
@@ -2891,14 +2891,14 @@ public sealed interface Country {
         return Pm
       }
     }
-    override fun serialize(encoder: Encoder, value: Pm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pm): Unit = encoder.encodeString(value.value)
   }
   /** Pitcairn */
   @Serializable(PnSerializer::class)
   public data object Pn : Country {
     override val value: String = "PN"
   }
-  private object PnSerializer : KSerializer<Pn> {
+  public object PnSerializer : KSerializer<Pn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pn = decoder.decodeString().let {
       if (it != "PN") {
@@ -2907,14 +2907,14 @@ public sealed interface Country {
         return Pn
       }
     }
-    override fun serialize(encoder: Encoder, value: Pn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pn): Unit = encoder.encodeString(value.value)
   }
   /** Puerto Rico */
   @Serializable(PrSerializer::class)
   public data object Pr : Country {
     override val value: String = "PR"
   }
-  private object PrSerializer : KSerializer<Pr> {
+  public object PrSerializer : KSerializer<Pr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pr = decoder.decodeString().let {
       if (it != "PR") {
@@ -2923,14 +2923,14 @@ public sealed interface Country {
         return Pr
       }
     }
-    override fun serialize(encoder: Encoder, value: Pr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pr): Unit = encoder.encodeString(value.value)
   }
   /** Palestine, State of */
   @Serializable(PsSerializer::class)
   public data object Ps : Country {
     override val value: String = "PS"
   }
-  private object PsSerializer : KSerializer<Ps> {
+  public object PsSerializer : KSerializer<Ps> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ps::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ps = decoder.decodeString().let {
       if (it != "PS") {
@@ -2939,14 +2939,14 @@ public sealed interface Country {
         return Ps
       }
     }
-    override fun serialize(encoder: Encoder, value: Ps) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ps): Unit = encoder.encodeString(value.value)
   }
   /** Portugal */
   @Serializable(PtSerializer::class)
   public data object Pt : Country {
     override val value: String = "PT"
   }
-  private object PtSerializer : KSerializer<Pt> {
+  public object PtSerializer : KSerializer<Pt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pt = decoder.decodeString().let {
       if (it != "PT") {
@@ -2955,14 +2955,14 @@ public sealed interface Country {
         return Pt
       }
     }
-    override fun serialize(encoder: Encoder, value: Pt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pt): Unit = encoder.encodeString(value.value)
   }
   /** Palau */
   @Serializable(PwSerializer::class)
   public data object Pw : Country {
     override val value: String = "PW"
   }
-  private object PwSerializer : KSerializer<Pw> {
+  public object PwSerializer : KSerializer<Pw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pw = decoder.decodeString().let {
       if (it != "PW") {
@@ -2971,14 +2971,14 @@ public sealed interface Country {
         return Pw
       }
     }
-    override fun serialize(encoder: Encoder, value: Pw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pw): Unit = encoder.encodeString(value.value)
   }
   /** Paraguay */
   @Serializable(PySerializer::class)
   public data object Py : Country {
     override val value: String = "PY"
   }
-  private object PySerializer : KSerializer<Py> {
+  public object PySerializer : KSerializer<Py> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Py::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Py = decoder.decodeString().let {
       if (it != "PY") {
@@ -2987,14 +2987,14 @@ public sealed interface Country {
         return Py
       }
     }
-    override fun serialize(encoder: Encoder, value: Py) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Py): Unit = encoder.encodeString(value.value)
   }
   /** Qatar */
   @Serializable(QaSerializer::class)
   public data object Qa : Country {
     override val value: String = "QA"
   }
-  private object QaSerializer : KSerializer<Qa> {
+  public object QaSerializer : KSerializer<Qa> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Qa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Qa = decoder.decodeString().let {
       if (it != "QA") {
@@ -3003,14 +3003,14 @@ public sealed interface Country {
         return Qa
       }
     }
-    override fun serialize(encoder: Encoder, value: Qa) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Qa): Unit = encoder.encodeString(value.value)
   }
   /** Réunion */
   @Serializable(ReSerializer::class)
   public data object Re : Country {
     override val value: String = "RE"
   }
-  private object ReSerializer : KSerializer<Re> {
+  public object ReSerializer : KSerializer<Re> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Re::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Re = decoder.decodeString().let {
       if (it != "RE") {
@@ -3019,14 +3019,14 @@ public sealed interface Country {
         return Re
       }
     }
-    override fun serialize(encoder: Encoder, value: Re) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Re): Unit = encoder.encodeString(value.value)
   }
   /** Romania */
   @Serializable(RoSerializer::class)
   public data object Ro : Country {
     override val value: String = "RO"
   }
-  private object RoSerializer : KSerializer<Ro> {
+  public object RoSerializer : KSerializer<Ro> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ro::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ro = decoder.decodeString().let {
       if (it != "RO") {
@@ -3035,14 +3035,14 @@ public sealed interface Country {
         return Ro
       }
     }
-    override fun serialize(encoder: Encoder, value: Ro) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ro): Unit = encoder.encodeString(value.value)
   }
   /** Serbia */
   @Serializable(RsSerializer::class)
   public data object Rs : Country {
     override val value: String = "RS"
   }
-  private object RsSerializer : KSerializer<Rs> {
+  public object RsSerializer : KSerializer<Rs> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rs = decoder.decodeString().let {
       if (it != "RS") {
@@ -3051,14 +3051,14 @@ public sealed interface Country {
         return Rs
       }
     }
-    override fun serialize(encoder: Encoder, value: Rs) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Rs): Unit = encoder.encodeString(value.value)
   }
   /** Russian Federation (the) */
   @Serializable(RuSerializer::class)
   public data object Ru : Country {
     override val value: String = "RU"
   }
-  private object RuSerializer : KSerializer<Ru> {
+  public object RuSerializer : KSerializer<Ru> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ru::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ru = decoder.decodeString().let {
       if (it != "RU") {
@@ -3067,14 +3067,14 @@ public sealed interface Country {
         return Ru
       }
     }
-    override fun serialize(encoder: Encoder, value: Ru) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ru): Unit = encoder.encodeString(value.value)
   }
   /** Rwanda */
   @Serializable(RwSerializer::class)
   public data object Rw : Country {
     override val value: String = "RW"
   }
-  private object RwSerializer : KSerializer<Rw> {
+  public object RwSerializer : KSerializer<Rw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rw = decoder.decodeString().let {
       if (it != "RW") {
@@ -3083,14 +3083,14 @@ public sealed interface Country {
         return Rw
       }
     }
-    override fun serialize(encoder: Encoder, value: Rw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Rw): Unit = encoder.encodeString(value.value)
   }
   /** Saudi Arabia */
   @Serializable(SaSerializer::class)
   public data object Sa : Country {
     override val value: String = "SA"
   }
-  private object SaSerializer : KSerializer<Sa> {
+  public object SaSerializer : KSerializer<Sa> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sa::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sa = decoder.decodeString().let {
       if (it != "SA") {
@@ -3099,14 +3099,14 @@ public sealed interface Country {
         return Sa
       }
     }
-    override fun serialize(encoder: Encoder, value: Sa) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sa): Unit = encoder.encodeString(value.value)
   }
   /** Solomon Islands */
   @Serializable(SbSerializer::class)
   public data object Sb : Country {
     override val value: String = "SB"
   }
-  private object SbSerializer : KSerializer<Sb> {
+  public object SbSerializer : KSerializer<Sb> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sb::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sb = decoder.decodeString().let {
       if (it != "SB") {
@@ -3115,14 +3115,14 @@ public sealed interface Country {
         return Sb
       }
     }
-    override fun serialize(encoder: Encoder, value: Sb) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sb): Unit = encoder.encodeString(value.value)
   }
   /** Seychelles */
   @Serializable(ScSerializer::class)
   public data object Sc : Country {
     override val value: String = "SC"
   }
-  private object ScSerializer : KSerializer<Sc> {
+  public object ScSerializer : KSerializer<Sc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sc = decoder.decodeString().let {
       if (it != "SC") {
@@ -3131,14 +3131,14 @@ public sealed interface Country {
         return Sc
       }
     }
-    override fun serialize(encoder: Encoder, value: Sc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sc): Unit = encoder.encodeString(value.value)
   }
   /** Sudan (the) */
   @Serializable(SdSerializer::class)
   public data object Sd : Country {
     override val value: String = "SD"
   }
-  private object SdSerializer : KSerializer<Sd> {
+  public object SdSerializer : KSerializer<Sd> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sd::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sd = decoder.decodeString().let {
       if (it != "SD") {
@@ -3147,14 +3147,14 @@ public sealed interface Country {
         return Sd
       }
     }
-    override fun serialize(encoder: Encoder, value: Sd) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sd): Unit = encoder.encodeString(value.value)
   }
   /** Sweden */
   @Serializable(SeSerializer::class)
   public data object Se : Country {
     override val value: String = "SE"
   }
-  private object SeSerializer : KSerializer<Se> {
+  public object SeSerializer : KSerializer<Se> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Se::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Se = decoder.decodeString().let {
       if (it != "SE") {
@@ -3163,14 +3163,14 @@ public sealed interface Country {
         return Se
       }
     }
-    override fun serialize(encoder: Encoder, value: Se) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Se): Unit = encoder.encodeString(value.value)
   }
   /** Singapore */
   @Serializable(SgSerializer::class)
   public data object Sg : Country {
     override val value: String = "SG"
   }
-  private object SgSerializer : KSerializer<Sg> {
+  public object SgSerializer : KSerializer<Sg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sg = decoder.decodeString().let {
       if (it != "SG") {
@@ -3179,14 +3179,14 @@ public sealed interface Country {
         return Sg
       }
     }
-    override fun serialize(encoder: Encoder, value: Sg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sg): Unit = encoder.encodeString(value.value)
   }
   /** Saint Helena, Ascension and Tristan da Cunha */
   @Serializable(ShSerializer::class)
   public data object Sh : Country {
     override val value: String = "SH"
   }
-  private object ShSerializer : KSerializer<Sh> {
+  public object ShSerializer : KSerializer<Sh> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sh::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sh = decoder.decodeString().let {
       if (it != "SH") {
@@ -3195,14 +3195,14 @@ public sealed interface Country {
         return Sh
       }
     }
-    override fun serialize(encoder: Encoder, value: Sh) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sh): Unit = encoder.encodeString(value.value)
   }
   /** Slovenia */
   @Serializable(SiSerializer::class)
   public data object Si : Country {
     override val value: String = "SI"
   }
-  private object SiSerializer : KSerializer<Si> {
+  public object SiSerializer : KSerializer<Si> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Si::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Si = decoder.decodeString().let {
       if (it != "SI") {
@@ -3211,14 +3211,14 @@ public sealed interface Country {
         return Si
       }
     }
-    override fun serialize(encoder: Encoder, value: Si) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Si): Unit = encoder.encodeString(value.value)
   }
   /** Svalbard and Jan Mayen */
   @Serializable(SjSerializer::class)
   public data object Sj : Country {
     override val value: String = "SJ"
   }
-  private object SjSerializer : KSerializer<Sj> {
+  public object SjSerializer : KSerializer<Sj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sj = decoder.decodeString().let {
       if (it != "SJ") {
@@ -3227,14 +3227,14 @@ public sealed interface Country {
         return Sj
       }
     }
-    override fun serialize(encoder: Encoder, value: Sj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sj): Unit = encoder.encodeString(value.value)
   }
   /** Slovakia */
   @Serializable(SkSerializer::class)
   public data object Sk : Country {
     override val value: String = "SK"
   }
-  private object SkSerializer : KSerializer<Sk> {
+  public object SkSerializer : KSerializer<Sk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sk = decoder.decodeString().let {
       if (it != "SK") {
@@ -3243,14 +3243,14 @@ public sealed interface Country {
         return Sk
       }
     }
-    override fun serialize(encoder: Encoder, value: Sk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sk): Unit = encoder.encodeString(value.value)
   }
   /** Sierra Leone */
   @Serializable(SlSerializer::class)
   public data object Sl : Country {
     override val value: String = "SL"
   }
-  private object SlSerializer : KSerializer<Sl> {
+  public object SlSerializer : KSerializer<Sl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sl = decoder.decodeString().let {
       if (it != "SL") {
@@ -3259,14 +3259,14 @@ public sealed interface Country {
         return Sl
       }
     }
-    override fun serialize(encoder: Encoder, value: Sl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sl): Unit = encoder.encodeString(value.value)
   }
   /** San Marino */
   @Serializable(SmSerializer::class)
   public data object Sm : Country {
     override val value: String = "SM"
   }
-  private object SmSerializer : KSerializer<Sm> {
+  public object SmSerializer : KSerializer<Sm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sm = decoder.decodeString().let {
       if (it != "SM") {
@@ -3275,14 +3275,14 @@ public sealed interface Country {
         return Sm
       }
     }
-    override fun serialize(encoder: Encoder, value: Sm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sm): Unit = encoder.encodeString(value.value)
   }
   /** Senegal */
   @Serializable(SnSerializer::class)
   public data object Sn : Country {
     override val value: String = "SN"
   }
-  private object SnSerializer : KSerializer<Sn> {
+  public object SnSerializer : KSerializer<Sn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sn = decoder.decodeString().let {
       if (it != "SN") {
@@ -3291,14 +3291,14 @@ public sealed interface Country {
         return Sn
       }
     }
-    override fun serialize(encoder: Encoder, value: Sn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sn): Unit = encoder.encodeString(value.value)
   }
   /** Somalia */
   @Serializable(SoSerializer::class)
   public data object So : Country {
     override val value: String = "SO"
   }
-  private object SoSerializer : KSerializer<So> {
+  public object SoSerializer : KSerializer<So> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(So::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): So = decoder.decodeString().let {
       if (it != "SO") {
@@ -3307,14 +3307,14 @@ public sealed interface Country {
         return So
       }
     }
-    override fun serialize(encoder: Encoder, value: So) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: So): Unit = encoder.encodeString(value.value)
   }
   /** Suriname */
   @Serializable(SrSerializer::class)
   public data object Sr : Country {
     override val value: String = "SR"
   }
-  private object SrSerializer : KSerializer<Sr> {
+  public object SrSerializer : KSerializer<Sr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sr = decoder.decodeString().let {
       if (it != "SR") {
@@ -3323,14 +3323,14 @@ public sealed interface Country {
         return Sr
       }
     }
-    override fun serialize(encoder: Encoder, value: Sr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sr): Unit = encoder.encodeString(value.value)
   }
   /** South Sudan */
   @Serializable(SsSerializer::class)
   public data object Ss : Country {
     override val value: String = "SS"
   }
-  private object SsSerializer : KSerializer<Ss> {
+  public object SsSerializer : KSerializer<Ss> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ss::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ss = decoder.decodeString().let {
       if (it != "SS") {
@@ -3339,14 +3339,14 @@ public sealed interface Country {
         return Ss
       }
     }
-    override fun serialize(encoder: Encoder, value: Ss) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ss): Unit = encoder.encodeString(value.value)
   }
   /** Sao Tome and Principe */
   @Serializable(StSerializer::class)
   public data object St : Country {
     override val value: String = "ST"
   }
-  private object StSerializer : KSerializer<St> {
+  public object StSerializer : KSerializer<St> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(St::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): St = decoder.decodeString().let {
       if (it != "ST") {
@@ -3355,14 +3355,14 @@ public sealed interface Country {
         return St
       }
     }
-    override fun serialize(encoder: Encoder, value: St) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: St): Unit = encoder.encodeString(value.value)
   }
   /** El Salvador */
   @Serializable(SvSerializer::class)
   public data object Sv : Country {
     override val value: String = "SV"
   }
-  private object SvSerializer : KSerializer<Sv> {
+  public object SvSerializer : KSerializer<Sv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sv = decoder.decodeString().let {
       if (it != "SV") {
@@ -3371,14 +3371,14 @@ public sealed interface Country {
         return Sv
       }
     }
-    override fun serialize(encoder: Encoder, value: Sv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sv): Unit = encoder.encodeString(value.value)
   }
   /** Sint Maarten (Dutch part) */
   @Serializable(SxSerializer::class)
   public data object Sx : Country {
     override val value: String = "SX"
   }
-  private object SxSerializer : KSerializer<Sx> {
+  public object SxSerializer : KSerializer<Sx> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sx = decoder.decodeString().let {
       if (it != "SX") {
@@ -3387,14 +3387,14 @@ public sealed interface Country {
         return Sx
       }
     }
-    override fun serialize(encoder: Encoder, value: Sx) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sx): Unit = encoder.encodeString(value.value)
   }
   /** Syrian Arab Republic (the) */
   @Serializable(SySerializer::class)
   public data object Sy : Country {
     override val value: String = "SY"
   }
-  private object SySerializer : KSerializer<Sy> {
+  public object SySerializer : KSerializer<Sy> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sy = decoder.decodeString().let {
       if (it != "SY") {
@@ -3403,14 +3403,14 @@ public sealed interface Country {
         return Sy
       }
     }
-    override fun serialize(encoder: Encoder, value: Sy) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sy): Unit = encoder.encodeString(value.value)
   }
   /** Eswatini */
   @Serializable(SzSerializer::class)
   public data object Sz : Country {
     override val value: String = "SZ"
   }
-  private object SzSerializer : KSerializer<Sz> {
+  public object SzSerializer : KSerializer<Sz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sz = decoder.decodeString().let {
       if (it != "SZ") {
@@ -3419,14 +3419,14 @@ public sealed interface Country {
         return Sz
       }
     }
-    override fun serialize(encoder: Encoder, value: Sz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sz): Unit = encoder.encodeString(value.value)
   }
   /** Turks and Caicos Islands (the) */
   @Serializable(TcSerializer::class)
   public data object Tc : Country {
     override val value: String = "TC"
   }
-  private object TcSerializer : KSerializer<Tc> {
+  public object TcSerializer : KSerializer<Tc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tc = decoder.decodeString().let {
       if (it != "TC") {
@@ -3435,14 +3435,14 @@ public sealed interface Country {
         return Tc
       }
     }
-    override fun serialize(encoder: Encoder, value: Tc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tc): Unit = encoder.encodeString(value.value)
   }
   /** Chad */
   @Serializable(TdSerializer::class)
   public data object Td : Country {
     override val value: String = "TD"
   }
-  private object TdSerializer : KSerializer<Td> {
+  public object TdSerializer : KSerializer<Td> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Td::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Td = decoder.decodeString().let {
       if (it != "TD") {
@@ -3451,14 +3451,14 @@ public sealed interface Country {
         return Td
       }
     }
-    override fun serialize(encoder: Encoder, value: Td) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Td): Unit = encoder.encodeString(value.value)
   }
   /** French Southern Territories (the) */
   @Serializable(TfSerializer::class)
   public data object Tf : Country {
     override val value: String = "TF"
   }
-  private object TfSerializer : KSerializer<Tf> {
+  public object TfSerializer : KSerializer<Tf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tf = decoder.decodeString().let {
       if (it != "TF") {
@@ -3467,14 +3467,14 @@ public sealed interface Country {
         return Tf
       }
     }
-    override fun serialize(encoder: Encoder, value: Tf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tf): Unit = encoder.encodeString(value.value)
   }
   /** Togo */
   @Serializable(TgSerializer::class)
   public data object Tg : Country {
     override val value: String = "TG"
   }
-  private object TgSerializer : KSerializer<Tg> {
+  public object TgSerializer : KSerializer<Tg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tg = decoder.decodeString().let {
       if (it != "TG") {
@@ -3483,14 +3483,14 @@ public sealed interface Country {
         return Tg
       }
     }
-    override fun serialize(encoder: Encoder, value: Tg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tg): Unit = encoder.encodeString(value.value)
   }
   /** Thailand */
   @Serializable(ThSerializer::class)
   public data object Th : Country {
     override val value: String = "TH"
   }
-  private object ThSerializer : KSerializer<Th> {
+  public object ThSerializer : KSerializer<Th> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Th::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Th = decoder.decodeString().let {
       if (it != "TH") {
@@ -3499,14 +3499,14 @@ public sealed interface Country {
         return Th
       }
     }
-    override fun serialize(encoder: Encoder, value: Th) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Th): Unit = encoder.encodeString(value.value)
   }
   /** Tajikistan */
   @Serializable(TjSerializer::class)
   public data object Tj : Country {
     override val value: String = "TJ"
   }
-  private object TjSerializer : KSerializer<Tj> {
+  public object TjSerializer : KSerializer<Tj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tj = decoder.decodeString().let {
       if (it != "TJ") {
@@ -3515,14 +3515,14 @@ public sealed interface Country {
         return Tj
       }
     }
-    override fun serialize(encoder: Encoder, value: Tj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tj): Unit = encoder.encodeString(value.value)
   }
   /** Tokelau */
   @Serializable(TkSerializer::class)
   public data object Tk : Country {
     override val value: String = "TK"
   }
-  private object TkSerializer : KSerializer<Tk> {
+  public object TkSerializer : KSerializer<Tk> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tk::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tk = decoder.decodeString().let {
       if (it != "TK") {
@@ -3531,14 +3531,14 @@ public sealed interface Country {
         return Tk
       }
     }
-    override fun serialize(encoder: Encoder, value: Tk) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tk): Unit = encoder.encodeString(value.value)
   }
   /** Timor-Leste */
   @Serializable(TlSerializer::class)
   public data object Tl : Country {
     override val value: String = "TL"
   }
-  private object TlSerializer : KSerializer<Tl> {
+  public object TlSerializer : KSerializer<Tl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tl = decoder.decodeString().let {
       if (it != "TL") {
@@ -3547,14 +3547,14 @@ public sealed interface Country {
         return Tl
       }
     }
-    override fun serialize(encoder: Encoder, value: Tl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tl): Unit = encoder.encodeString(value.value)
   }
   /** Turkmenistan */
   @Serializable(TmSerializer::class)
   public data object Tm : Country {
     override val value: String = "TM"
   }
-  private object TmSerializer : KSerializer<Tm> {
+  public object TmSerializer : KSerializer<Tm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tm = decoder.decodeString().let {
       if (it != "TM") {
@@ -3563,14 +3563,14 @@ public sealed interface Country {
         return Tm
       }
     }
-    override fun serialize(encoder: Encoder, value: Tm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tm): Unit = encoder.encodeString(value.value)
   }
   /** Tunisia */
   @Serializable(TnSerializer::class)
   public data object Tn : Country {
     override val value: String = "TN"
   }
-  private object TnSerializer : KSerializer<Tn> {
+  public object TnSerializer : KSerializer<Tn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tn = decoder.decodeString().let {
       if (it != "TN") {
@@ -3579,14 +3579,14 @@ public sealed interface Country {
         return Tn
       }
     }
-    override fun serialize(encoder: Encoder, value: Tn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tn): Unit = encoder.encodeString(value.value)
   }
   /** Tonga */
   @Serializable(ToSerializer::class)
   public data object To : Country {
     override val value: String = "TO"
   }
-  private object ToSerializer : KSerializer<To> {
+  public object ToSerializer : KSerializer<To> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(To::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): To = decoder.decodeString().let {
       if (it != "TO") {
@@ -3595,14 +3595,14 @@ public sealed interface Country {
         return To
       }
     }
-    override fun serialize(encoder: Encoder, value: To) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: To): Unit = encoder.encodeString(value.value)
   }
   /** Türkiye */
   @Serializable(TrSerializer::class)
   public data object Tr : Country {
     override val value: String = "TR"
   }
-  private object TrSerializer : KSerializer<Tr> {
+  public object TrSerializer : KSerializer<Tr> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tr::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tr = decoder.decodeString().let {
       if (it != "TR") {
@@ -3611,14 +3611,14 @@ public sealed interface Country {
         return Tr
       }
     }
-    override fun serialize(encoder: Encoder, value: Tr) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tr): Unit = encoder.encodeString(value.value)
   }
   /** Trinidad and Tobago */
   @Serializable(TtSerializer::class)
   public data object Tt : Country {
     override val value: String = "TT"
   }
-  private object TtSerializer : KSerializer<Tt> {
+  public object TtSerializer : KSerializer<Tt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tt = decoder.decodeString().let {
       if (it != "TT") {
@@ -3627,14 +3627,14 @@ public sealed interface Country {
         return Tt
       }
     }
-    override fun serialize(encoder: Encoder, value: Tt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tt): Unit = encoder.encodeString(value.value)
   }
   /** Tuvalu */
   @Serializable(TvSerializer::class)
   public data object Tv : Country {
     override val value: String = "TV"
   }
-  private object TvSerializer : KSerializer<Tv> {
+  public object TvSerializer : KSerializer<Tv> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tv::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tv = decoder.decodeString().let {
       if (it != "TV") {
@@ -3643,14 +3643,14 @@ public sealed interface Country {
         return Tv
       }
     }
-    override fun serialize(encoder: Encoder, value: Tv) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tv): Unit = encoder.encodeString(value.value)
   }
   /** Taiwan (Province of China) */
   @Serializable(TwSerializer::class)
   public data object Tw : Country {
     override val value: String = "TW"
   }
-  private object TwSerializer : KSerializer<Tw> {
+  public object TwSerializer : KSerializer<Tw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tw = decoder.decodeString().let {
       if (it != "TW") {
@@ -3659,14 +3659,14 @@ public sealed interface Country {
         return Tw
       }
     }
-    override fun serialize(encoder: Encoder, value: Tw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tw): Unit = encoder.encodeString(value.value)
   }
   /** Tanzania, the United Republic of */
   @Serializable(TzSerializer::class)
   public data object Tz : Country {
     override val value: String = "TZ"
   }
-  private object TzSerializer : KSerializer<Tz> {
+  public object TzSerializer : KSerializer<Tz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Tz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Tz = decoder.decodeString().let {
       if (it != "TZ") {
@@ -3675,14 +3675,14 @@ public sealed interface Country {
         return Tz
       }
     }
-    override fun serialize(encoder: Encoder, value: Tz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Tz): Unit = encoder.encodeString(value.value)
   }
   /** Ukraine */
   @Serializable(UaSerializer::class)
   public data object Ua : Country {
     override val value: String = "UA"
   }
-  private object UaSerializer : KSerializer<Ua> {
+  public object UaSerializer : KSerializer<Ua> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ua::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ua = decoder.decodeString().let {
       if (it != "UA") {
@@ -3691,14 +3691,14 @@ public sealed interface Country {
         return Ua
       }
     }
-    override fun serialize(encoder: Encoder, value: Ua) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ua): Unit = encoder.encodeString(value.value)
   }
   /** Uganda */
   @Serializable(UgSerializer::class)
   public data object Ug : Country {
     override val value: String = "UG"
   }
-  private object UgSerializer : KSerializer<Ug> {
+  public object UgSerializer : KSerializer<Ug> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ug::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ug = decoder.decodeString().let {
       if (it != "UG") {
@@ -3707,14 +3707,14 @@ public sealed interface Country {
         return Ug
       }
     }
-    override fun serialize(encoder: Encoder, value: Ug) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ug): Unit = encoder.encodeString(value.value)
   }
   /** United States Minor Outlying Islands (the) */
   @Serializable(UmSerializer::class)
   public data object Um : Country {
     override val value: String = "UM"
   }
-  private object UmSerializer : KSerializer<Um> {
+  public object UmSerializer : KSerializer<Um> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Um::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Um = decoder.decodeString().let {
       if (it != "UM") {
@@ -3723,14 +3723,14 @@ public sealed interface Country {
         return Um
       }
     }
-    override fun serialize(encoder: Encoder, value: Um) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Um): Unit = encoder.encodeString(value.value)
   }
   /** United States of America (the) */
   @Serializable(UsSerializer::class)
   public data object Us : Country {
     override val value: String = "US"
   }
-  private object UsSerializer : KSerializer<Us> {
+  public object UsSerializer : KSerializer<Us> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Us::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Us = decoder.decodeString().let {
       if (it != "US") {
@@ -3739,14 +3739,14 @@ public sealed interface Country {
         return Us
       }
     }
-    override fun serialize(encoder: Encoder, value: Us) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Us): Unit = encoder.encodeString(value.value)
   }
   /** Uruguay */
   @Serializable(UySerializer::class)
   public data object Uy : Country {
     override val value: String = "UY"
   }
-  private object UySerializer : KSerializer<Uy> {
+  public object UySerializer : KSerializer<Uy> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uy::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uy = decoder.decodeString().let {
       if (it != "UY") {
@@ -3755,14 +3755,14 @@ public sealed interface Country {
         return Uy
       }
     }
-    override fun serialize(encoder: Encoder, value: Uy) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Uy): Unit = encoder.encodeString(value.value)
   }
   /** Uzbekistan */
   @Serializable(UzSerializer::class)
   public data object Uz : Country {
     override val value: String = "UZ"
   }
-  private object UzSerializer : KSerializer<Uz> {
+  public object UzSerializer : KSerializer<Uz> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Uz::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Uz = decoder.decodeString().let {
       if (it != "UZ") {
@@ -3771,14 +3771,14 @@ public sealed interface Country {
         return Uz
       }
     }
-    override fun serialize(encoder: Encoder, value: Uz) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Uz): Unit = encoder.encodeString(value.value)
   }
   /** Holy See (the) */
   @Serializable(VaSerializer::class)
   public data object Va : Country {
     override val value: String = "VA"
   }
-  private object VaSerializer : KSerializer<Va> {
+  public object VaSerializer : KSerializer<Va> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Va::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Va = decoder.decodeString().let {
       if (it != "VA") {
@@ -3787,14 +3787,14 @@ public sealed interface Country {
         return Va
       }
     }
-    override fun serialize(encoder: Encoder, value: Va) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Va): Unit = encoder.encodeString(value.value)
   }
   /** Saint Vincent and the Grenadines */
   @Serializable(VcSerializer::class)
   public data object Vc : Country {
     override val value: String = "VC"
   }
-  private object VcSerializer : KSerializer<Vc> {
+  public object VcSerializer : KSerializer<Vc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vc = decoder.decodeString().let {
       if (it != "VC") {
@@ -3803,14 +3803,14 @@ public sealed interface Country {
         return Vc
       }
     }
-    override fun serialize(encoder: Encoder, value: Vc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Vc): Unit = encoder.encodeString(value.value)
   }
   /** Venezuela (Bolivarian Republic of) */
   @Serializable(VeSerializer::class)
   public data object Ve : Country {
     override val value: String = "VE"
   }
-  private object VeSerializer : KSerializer<Ve> {
+  public object VeSerializer : KSerializer<Ve> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ve::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ve = decoder.decodeString().let {
       if (it != "VE") {
@@ -3819,14 +3819,14 @@ public sealed interface Country {
         return Ve
       }
     }
-    override fun serialize(encoder: Encoder, value: Ve) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ve): Unit = encoder.encodeString(value.value)
   }
   /** Virgin Islands (British) */
   @Serializable(VgSerializer::class)
   public data object Vg : Country {
     override val value: String = "VG"
   }
-  private object VgSerializer : KSerializer<Vg> {
+  public object VgSerializer : KSerializer<Vg> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vg::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vg = decoder.decodeString().let {
       if (it != "VG") {
@@ -3835,14 +3835,14 @@ public sealed interface Country {
         return Vg
       }
     }
-    override fun serialize(encoder: Encoder, value: Vg) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Vg): Unit = encoder.encodeString(value.value)
   }
   /** Virgin Islands (U.S.) */
   @Serializable(ViSerializer::class)
   public data object Vi : Country {
     override val value: String = "VI"
   }
-  private object ViSerializer : KSerializer<Vi> {
+  public object ViSerializer : KSerializer<Vi> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vi::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vi = decoder.decodeString().let {
       if (it != "VI") {
@@ -3851,14 +3851,14 @@ public sealed interface Country {
         return Vi
       }
     }
-    override fun serialize(encoder: Encoder, value: Vi) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Vi): Unit = encoder.encodeString(value.value)
   }
   /** Viet Nam */
   @Serializable(VnSerializer::class)
   public data object Vn : Country {
     override val value: String = "VN"
   }
-  private object VnSerializer : KSerializer<Vn> {
+  public object VnSerializer : KSerializer<Vn> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vn::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vn = decoder.decodeString().let {
       if (it != "VN") {
@@ -3867,14 +3867,14 @@ public sealed interface Country {
         return Vn
       }
     }
-    override fun serialize(encoder: Encoder, value: Vn) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Vn): Unit = encoder.encodeString(value.value)
   }
   /** Vanuatu */
   @Serializable(VuSerializer::class)
   public data object Vu : Country {
     override val value: String = "VU"
   }
-  private object VuSerializer : KSerializer<Vu> {
+  public object VuSerializer : KSerializer<Vu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Vu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Vu = decoder.decodeString().let {
       if (it != "VU") {
@@ -3883,14 +3883,14 @@ public sealed interface Country {
         return Vu
       }
     }
-    override fun serialize(encoder: Encoder, value: Vu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Vu): Unit = encoder.encodeString(value.value)
   }
   /** Wallis and Futuna */
   @Serializable(WfSerializer::class)
   public data object Wf : Country {
     override val value: String = "WF"
   }
-  private object WfSerializer : KSerializer<Wf> {
+  public object WfSerializer : KSerializer<Wf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Wf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Wf = decoder.decodeString().let {
       if (it != "WF") {
@@ -3899,14 +3899,14 @@ public sealed interface Country {
         return Wf
       }
     }
-    override fun serialize(encoder: Encoder, value: Wf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Wf): Unit = encoder.encodeString(value.value)
   }
   /** Samoa */
   @Serializable(WsSerializer::class)
   public data object Ws : Country {
     override val value: String = "WS"
   }
-  private object WsSerializer : KSerializer<Ws> {
+  public object WsSerializer : KSerializer<Ws> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ws::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ws = decoder.decodeString().let {
       if (it != "WS") {
@@ -3915,14 +3915,14 @@ public sealed interface Country {
         return Ws
       }
     }
-    override fun serialize(encoder: Encoder, value: Ws) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ws): Unit = encoder.encodeString(value.value)
   }
   /** Yemen */
   @Serializable(YeSerializer::class)
   public data object Ye : Country {
     override val value: String = "YE"
   }
-  private object YeSerializer : KSerializer<Ye> {
+  public object YeSerializer : KSerializer<Ye> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ye::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ye = decoder.decodeString().let {
       if (it != "YE") {
@@ -3931,14 +3931,14 @@ public sealed interface Country {
         return Ye
       }
     }
-    override fun serialize(encoder: Encoder, value: Ye) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ye): Unit = encoder.encodeString(value.value)
   }
   /** Mayotte */
   @Serializable(YtSerializer::class)
   public data object Yt : Country {
     override val value: String = "YT"
   }
-  private object YtSerializer : KSerializer<Yt> {
+  public object YtSerializer : KSerializer<Yt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Yt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Yt = decoder.decodeString().let {
       if (it != "YT") {
@@ -3947,14 +3947,14 @@ public sealed interface Country {
         return Yt
       }
     }
-    override fun serialize(encoder: Encoder, value: Yt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Yt): Unit = encoder.encodeString(value.value)
   }
   /** South Africa */
   @Serializable(ZaSerializer::class)
   public data object Za : Country {
     override val value: String = "ZA"
   }
-  private object ZaSerializer : KSerializer<Za> {
+  public object ZaSerializer : KSerializer<Za> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Za::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Za = decoder.decodeString().let {
       if (it != "ZA") {
@@ -3963,14 +3963,14 @@ public sealed interface Country {
         return Za
       }
     }
-    override fun serialize(encoder: Encoder, value: Za) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Za): Unit = encoder.encodeString(value.value)
   }
   /** Zambia */
   @Serializable(ZmSerializer::class)
   public data object Zm : Country {
     override val value: String = "ZM"
   }
-  private object ZmSerializer : KSerializer<Zm> {
+  public object ZmSerializer : KSerializer<Zm> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zm::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zm = decoder.decodeString().let {
       if (it != "ZM") {
@@ -3979,14 +3979,14 @@ public sealed interface Country {
         return Zm
       }
     }
-    override fun serialize(encoder: Encoder, value: Zm) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Zm): Unit = encoder.encodeString(value.value)
   }
   /** Zimbabwe */
   @Serializable(ZwSerializer::class)
   public data object Zw : Country {
     override val value: String = "ZW"
   }
-  private object ZwSerializer : KSerializer<Zw> {
+  public object ZwSerializer : KSerializer<Zw> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Zw::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Zw = decoder.decodeString().let {
       if (it != "ZW") {
@@ -3995,7 +3995,7 @@ public sealed interface Country {
         return Zw
       }
     }
-    override fun serialize(encoder: Encoder, value: Zw) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Zw): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -4003,7 +4003,7 @@ public sealed interface Country {
 }
 
 
-private object CountrySerializer : KSerializer<Country> {
+public object CountrySerializer : KSerializer<Country> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Country::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): Country {
     val value = decoder.decodeString()
@@ -4260,5 +4260,5 @@ private object CountrySerializer : KSerializer<Country> {
       else -> Country.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: Country) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: Country): Unit = encoder.encodeString(value.value)
 }

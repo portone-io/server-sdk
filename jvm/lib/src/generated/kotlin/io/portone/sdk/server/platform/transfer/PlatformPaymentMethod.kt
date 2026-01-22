@@ -1,5 +1,6 @@
 package io.portone.sdk.server.platform.transfer
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -22,14 +23,15 @@ public sealed interface PlatformPaymentMethod {
 }
 
 
-private object PlatformPaymentMethodSerializer : JsonContentPolymorphicSerializer<PlatformPaymentMethod>(PlatformPaymentMethod::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "CARD" -> PlatformPaymentMethodCard.serializer()
-    "EASY_PAY" -> PlatformPaymentMethodEasyPay.serializer()
-    "GIFT_CERTIFICATE" -> PlatformPaymentMethodGiftCertificate.serializer()
-    "MOBILE" -> PlatformPaymentMethodMobile.serializer()
-    "TRANSFER" -> PlatformPaymentMethodTransfer.serializer()
-    "VIRTUAL_ACCOUNT" -> PlatformPaymentMethodVirtualAccount.serializer()
-    else -> PlatformPaymentMethod.Unrecognized.serializer()
-  }
+public object PlatformPaymentMethodSerializer : JsonContentPolymorphicSerializer<PlatformPaymentMethod>(PlatformPaymentMethod::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformPaymentMethod> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "CARD" -> PlatformPaymentMethodCard.serializer()
+      "EASY_PAY" -> PlatformPaymentMethodEasyPay.serializer()
+      "GIFT_CERTIFICATE" -> PlatformPaymentMethodGiftCertificate.serializer()
+      "MOBILE" -> PlatformPaymentMethodMobile.serializer()
+      "TRANSFER" -> PlatformPaymentMethodTransfer.serializer()
+      "VIRTUAL_ACCOUNT" -> PlatformPaymentMethodVirtualAccount.serializer()
+      else -> PlatformPaymentMethod.Unrecognized.serializer()
+    }
 }

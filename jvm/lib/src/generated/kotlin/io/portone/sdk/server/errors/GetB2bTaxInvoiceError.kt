@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,14 +24,15 @@ internal sealed interface GetB2bTaxInvoiceError {
 }
 
 
-private object GetB2bTaxInvoiceErrorSerializer : JsonContentPolymorphicSerializer<GetB2bTaxInvoiceError>(GetB2bTaxInvoiceError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
-    "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
-    "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetB2bTaxInvoiceError.Unrecognized.serializer()
-  }
+internal object GetB2bTaxInvoiceErrorSerializer : JsonContentPolymorphicSerializer<GetB2bTaxInvoiceError>(GetB2bTaxInvoiceError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetB2bTaxInvoiceError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
+      "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
+      "B2B_TAX_INVOICE_NOT_FOUND" -> B2bTaxInvoiceNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetB2bTaxInvoiceError.Unrecognized.serializer()
+    }
 }

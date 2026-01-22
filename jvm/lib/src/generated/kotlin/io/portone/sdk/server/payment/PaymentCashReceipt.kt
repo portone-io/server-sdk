@@ -4,6 +4,7 @@ import io.portone.sdk.server.common.CashReceiptType
 import io.portone.sdk.server.common.Currency
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -42,10 +43,11 @@ public sealed interface PaymentCashReceipt {
 }
 
 
-private object PaymentCashReceiptSerializer : JsonContentPolymorphicSerializer<PaymentCashReceipt>(PaymentCashReceipt::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "CANCELLED" -> CancelledPaymentCashReceipt.serializer()
-    "ISSUED" -> IssuedPaymentCashReceipt.serializer()
-    else -> PaymentCashReceipt.Unrecognized.serializer()
-  }
+public object PaymentCashReceiptSerializer : JsonContentPolymorphicSerializer<PaymentCashReceipt>(PaymentCashReceipt::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PaymentCashReceipt> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "CANCELLED" -> CancelledPaymentCashReceipt.serializer()
+      "ISSUED" -> IssuedPaymentCashReceipt.serializer()
+      else -> PaymentCashReceipt.Unrecognized.serializer()
+    }
 }

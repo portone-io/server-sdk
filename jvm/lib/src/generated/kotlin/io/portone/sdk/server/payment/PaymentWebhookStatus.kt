@@ -17,7 +17,7 @@ public sealed interface PaymentWebhookStatus {
   public data object Succeeded : PaymentWebhookStatus {
     override val value: String = "SUCCEEDED"
   }
-  private object SucceededSerializer : KSerializer<Succeeded> {
+  public object SucceededSerializer : KSerializer<Succeeded> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Succeeded::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Succeeded = decoder.decodeString().let {
       if (it != "SUCCEEDED") {
@@ -26,13 +26,13 @@ public sealed interface PaymentWebhookStatus {
         return Succeeded
       }
     }
-    override fun serialize(encoder: Encoder, value: Succeeded) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Succeeded): Unit = encoder.encodeString(value.value)
   }
   @Serializable(FailedNotOkResponseSerializer::class)
   public data object FailedNotOkResponse : PaymentWebhookStatus {
     override val value: String = "FAILED_NOT_OK_RESPONSE"
   }
-  private object FailedNotOkResponseSerializer : KSerializer<FailedNotOkResponse> {
+  public object FailedNotOkResponseSerializer : KSerializer<FailedNotOkResponse> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedNotOkResponse::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedNotOkResponse = decoder.decodeString().let {
       if (it != "FAILED_NOT_OK_RESPONSE") {
@@ -41,13 +41,13 @@ public sealed interface PaymentWebhookStatus {
         return FailedNotOkResponse
       }
     }
-    override fun serialize(encoder: Encoder, value: FailedNotOkResponse) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: FailedNotOkResponse): Unit = encoder.encodeString(value.value)
   }
   @Serializable(FailedUnexpectedErrorSerializer::class)
   public data object FailedUnexpectedError : PaymentWebhookStatus {
     override val value: String = "FAILED_UNEXPECTED_ERROR"
   }
-  private object FailedUnexpectedErrorSerializer : KSerializer<FailedUnexpectedError> {
+  public object FailedUnexpectedErrorSerializer : KSerializer<FailedUnexpectedError> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(FailedUnexpectedError::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): FailedUnexpectedError = decoder.decodeString().let {
       if (it != "FAILED_UNEXPECTED_ERROR") {
@@ -56,7 +56,7 @@ public sealed interface PaymentWebhookStatus {
         return FailedUnexpectedError
       }
     }
-    override fun serialize(encoder: Encoder, value: FailedUnexpectedError) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: FailedUnexpectedError): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -64,7 +64,7 @@ public sealed interface PaymentWebhookStatus {
 }
 
 
-private object PaymentWebhookStatusSerializer : KSerializer<PaymentWebhookStatus> {
+public object PaymentWebhookStatusSerializer : KSerializer<PaymentWebhookStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentWebhookStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentWebhookStatus {
     val value = decoder.decodeString()
@@ -75,5 +75,5 @@ private object PaymentWebhookStatusSerializer : KSerializer<PaymentWebhookStatus
       else -> PaymentWebhookStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentWebhookStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentWebhookStatus): Unit = encoder.encodeString(value.value)
 }

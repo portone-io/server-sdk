@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,14 +24,15 @@ internal sealed interface UpdatePlatformDiscountSharePolicyError {
 }
 
 
-private object UpdatePlatformDiscountSharePolicyErrorSerializer : JsonContentPolymorphicSerializer<UpdatePlatformDiscountSharePolicyError>(UpdatePlatformDiscountSharePolicyError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY" -> PlatformArchivedDiscountSharePolicyError.serializer()
-    "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformDiscountSharePolicyNotFoundError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> UpdatePlatformDiscountSharePolicyError.Unrecognized.serializer()
-  }
+internal object UpdatePlatformDiscountSharePolicyErrorSerializer : JsonContentPolymorphicSerializer<UpdatePlatformDiscountSharePolicyError>(UpdatePlatformDiscountSharePolicyError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out UpdatePlatformDiscountSharePolicyError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_ARCHIVED_DISCOUNT_SHARE_POLICY" -> PlatformArchivedDiscountSharePolicyError.serializer()
+      "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformDiscountSharePolicyNotFoundError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> UpdatePlatformDiscountSharePolicyError.Unrecognized.serializer()
+    }
 }

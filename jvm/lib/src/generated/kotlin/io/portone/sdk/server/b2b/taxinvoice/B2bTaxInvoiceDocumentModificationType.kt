@@ -18,7 +18,7 @@ public sealed interface B2bTaxInvoiceDocumentModificationType {
   public data object Normal : B2bTaxInvoiceDocumentModificationType {
     override val value: String = "NORMAL"
   }
-  private object NormalSerializer : KSerializer<Normal> {
+  public object NormalSerializer : KSerializer<Normal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
@@ -27,14 +27,14 @@ public sealed interface B2bTaxInvoiceDocumentModificationType {
         return Normal
       }
     }
-    override fun serialize(encoder: Encoder, value: Normal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Normal): Unit = encoder.encodeString(value.value)
   }
   /** 수정발행 */
   @Serializable(ModificationSerializer::class)
   public data object Modification : B2bTaxInvoiceDocumentModificationType {
     override val value: String = "MODIFICATION"
   }
-  private object ModificationSerializer : KSerializer<Modification> {
+  public object ModificationSerializer : KSerializer<Modification> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Modification::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Modification = decoder.decodeString().let {
       if (it != "MODIFICATION") {
@@ -43,7 +43,7 @@ public sealed interface B2bTaxInvoiceDocumentModificationType {
         return Modification
       }
     }
-    override fun serialize(encoder: Encoder, value: Modification) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Modification): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface B2bTaxInvoiceDocumentModificationType {
 }
 
 
-private object B2bTaxInvoiceDocumentModificationTypeSerializer : KSerializer<B2bTaxInvoiceDocumentModificationType> {
+public object B2bTaxInvoiceDocumentModificationTypeSerializer : KSerializer<B2bTaxInvoiceDocumentModificationType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(B2bTaxInvoiceDocumentModificationType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): B2bTaxInvoiceDocumentModificationType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object B2bTaxInvoiceDocumentModificationTypeSerializer : KSerializer<B2b
       else -> B2bTaxInvoiceDocumentModificationType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: B2bTaxInvoiceDocumentModificationType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: B2bTaxInvoiceDocumentModificationType): Unit = encoder.encodeString(value.value)
 }

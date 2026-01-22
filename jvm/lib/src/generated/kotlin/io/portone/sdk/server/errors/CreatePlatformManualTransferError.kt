@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,14 +24,15 @@ internal sealed interface CreatePlatformManualTransferError {
 }
 
 
-private object CreatePlatformManualTransferErrorSerializer : JsonContentPolymorphicSerializer<CreatePlatformManualTransferError>(CreatePlatformManualTransferError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
-    "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CreatePlatformManualTransferError.Unrecognized.serializer()
-  }
+internal object CreatePlatformManualTransferErrorSerializer : JsonContentPolymorphicSerializer<CreatePlatformManualTransferError>(CreatePlatformManualTransferError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CreatePlatformManualTransferError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
+      "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CreatePlatformManualTransferError.Unrecognized.serializer()
+    }
 }

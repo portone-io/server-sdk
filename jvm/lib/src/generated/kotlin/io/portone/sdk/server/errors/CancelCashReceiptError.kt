@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,14 +24,15 @@ internal sealed interface CancelCashReceiptError {
 }
 
 
-private object CancelCashReceiptErrorSerializer : JsonContentPolymorphicSerializer<CancelCashReceiptError>(CancelCashReceiptError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "CASH_RECEIPT_NOT_FOUND" -> CashReceiptNotFoundError.serializer()
-    "CASH_RECEIPT_NOT_ISSUED" -> CashReceiptNotIssuedError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CancelCashReceiptError.Unrecognized.serializer()
-  }
+internal object CancelCashReceiptErrorSerializer : JsonContentPolymorphicSerializer<CancelCashReceiptError>(CancelCashReceiptError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CancelCashReceiptError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "CASH_RECEIPT_NOT_FOUND" -> CashReceiptNotFoundError.serializer()
+      "CASH_RECEIPT_NOT_ISSUED" -> CashReceiptNotIssuedError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CancelCashReceiptError.Unrecognized.serializer()
+    }
 }

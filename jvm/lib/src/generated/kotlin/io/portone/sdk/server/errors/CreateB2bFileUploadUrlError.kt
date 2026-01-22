@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,13 +24,14 @@ internal sealed interface CreateB2bFileUploadUrlError {
 }
 
 
-private object CreateB2bFileUploadUrlErrorSerializer : JsonContentPolymorphicSerializer<CreateB2bFileUploadUrlError>(CreateB2bFileUploadUrlError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
-    "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CreateB2bFileUploadUrlError.Unrecognized.serializer()
-  }
+internal object CreateB2bFileUploadUrlErrorSerializer : JsonContentPolymorphicSerializer<CreateB2bFileUploadUrlError>(CreateB2bFileUploadUrlError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CreateB2bFileUploadUrlError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
+      "B2B_NOT_ENABLED" -> B2bNotEnabledError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CreateB2bFileUploadUrlError.Unrecognized.serializer()
+    }
 }

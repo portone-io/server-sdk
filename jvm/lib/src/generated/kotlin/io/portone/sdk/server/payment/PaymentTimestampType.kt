@@ -29,7 +29,7 @@ public sealed interface PaymentTimestampType {
   public data object CreatedAt : PaymentTimestampType {
     override val value: String = "CREATED_AT"
   }
-  private object CreatedAtSerializer : KSerializer<CreatedAt> {
+  public object CreatedAtSerializer : KSerializer<CreatedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CreatedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CreatedAt = decoder.decodeString().let {
       if (it != "CREATED_AT") {
@@ -38,14 +38,14 @@ public sealed interface PaymentTimestampType {
         return CreatedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: CreatedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CreatedAt): Unit = encoder.encodeString(value.value)
   }
   /** 상태 변경 시점 */
   @Serializable(StatusChangedAtSerializer::class)
   public data object StatusChangedAt : PaymentTimestampType {
     override val value: String = "STATUS_CHANGED_AT"
   }
-  private object StatusChangedAtSerializer : KSerializer<StatusChangedAt> {
+  public object StatusChangedAtSerializer : KSerializer<StatusChangedAt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusChangedAt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): StatusChangedAt = decoder.decodeString().let {
       if (it != "STATUS_CHANGED_AT") {
@@ -54,7 +54,7 @@ public sealed interface PaymentTimestampType {
         return StatusChangedAt
       }
     }
-    override fun serialize(encoder: Encoder, value: StatusChangedAt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: StatusChangedAt): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -62,7 +62,7 @@ public sealed interface PaymentTimestampType {
 }
 
 
-private object PaymentTimestampTypeSerializer : KSerializer<PaymentTimestampType> {
+public object PaymentTimestampTypeSerializer : KSerializer<PaymentTimestampType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentTimestampType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentTimestampType {
     val value = decoder.decodeString()
@@ -72,5 +72,5 @@ private object PaymentTimestampTypeSerializer : KSerializer<PaymentTimestampType
       else -> PaymentTimestampType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentTimestampType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentTimestampType): Unit = encoder.encodeString(value.value)
 }

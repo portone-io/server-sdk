@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,11 +24,12 @@ internal sealed interface GetBillingKeyInfosError {
 }
 
 
-private object GetBillingKeyInfosErrorSerializer : JsonContentPolymorphicSerializer<GetBillingKeyInfosError>(GetBillingKeyInfosError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetBillingKeyInfosError.Unrecognized.serializer()
-  }
+internal object GetBillingKeyInfosErrorSerializer : JsonContentPolymorphicSerializer<GetBillingKeyInfosError>(GetBillingKeyInfosError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetBillingKeyInfosError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetBillingKeyInfosError.Unrecognized.serializer()
+    }
 }

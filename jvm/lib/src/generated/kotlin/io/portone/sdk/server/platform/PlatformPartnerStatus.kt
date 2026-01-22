@@ -18,7 +18,7 @@ public sealed interface PlatformPartnerStatus {
   public data object Pending : PlatformPartnerStatus {
     override val value: String = "PENDING"
   }
-  private object PendingSerializer : KSerializer<Pending> {
+  public object PendingSerializer : KSerializer<Pending> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pending = decoder.decodeString().let {
       if (it != "PENDING") {
@@ -27,14 +27,14 @@ public sealed interface PlatformPartnerStatus {
         return Pending
       }
     }
-    override fun serialize(encoder: Encoder, value: Pending) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pending): Unit = encoder.encodeString(value.value)
   }
   /** 승인 완료 */
   @Serializable(ApprovedSerializer::class)
   public data object Approved : PlatformPartnerStatus {
     override val value: String = "APPROVED"
   }
-  private object ApprovedSerializer : KSerializer<Approved> {
+  public object ApprovedSerializer : KSerializer<Approved> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Approved::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Approved = decoder.decodeString().let {
       if (it != "APPROVED") {
@@ -43,14 +43,14 @@ public sealed interface PlatformPartnerStatus {
         return Approved
       }
     }
-    override fun serialize(encoder: Encoder, value: Approved) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Approved): Unit = encoder.encodeString(value.value)
   }
   /** 승인 거절 */
   @Serializable(RejectedSerializer::class)
   public data object Rejected : PlatformPartnerStatus {
     override val value: String = "REJECTED"
   }
-  private object RejectedSerializer : KSerializer<Rejected> {
+  public object RejectedSerializer : KSerializer<Rejected> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Rejected::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Rejected = decoder.decodeString().let {
       if (it != "REJECTED") {
@@ -59,7 +59,7 @@ public sealed interface PlatformPartnerStatus {
         return Rejected
       }
     }
-    override fun serialize(encoder: Encoder, value: Rejected) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Rejected): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface PlatformPartnerStatus {
 }
 
 
-private object PlatformPartnerStatusSerializer : KSerializer<PlatformPartnerStatus> {
+public object PlatformPartnerStatusSerializer : KSerializer<PlatformPartnerStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPartnerStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPartnerStatus {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object PlatformPartnerStatusSerializer : KSerializer<PlatformPartnerStat
       else -> PlatformPartnerStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPartnerStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPartnerStatus): Unit = encoder.encodeString(value.value)
 }

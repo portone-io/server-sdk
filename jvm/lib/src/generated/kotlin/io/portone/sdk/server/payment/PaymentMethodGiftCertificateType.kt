@@ -17,7 +17,7 @@ public sealed interface PaymentMethodGiftCertificateType {
   public data object Booknlife : PaymentMethodGiftCertificateType {
     override val value: String = "BOOKNLIFE"
   }
-  private object BooknlifeSerializer : KSerializer<Booknlife> {
+  public object BooknlifeSerializer : KSerializer<Booknlife> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Booknlife::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Booknlife = decoder.decodeString().let {
       if (it != "BOOKNLIFE") {
@@ -26,13 +26,13 @@ public sealed interface PaymentMethodGiftCertificateType {
         return Booknlife
       }
     }
-    override fun serialize(encoder: Encoder, value: Booknlife) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Booknlife): Unit = encoder.encodeString(value.value)
   }
   @Serializable(SmartMunsangSerializer::class)
   public data object SmartMunsang : PaymentMethodGiftCertificateType {
     override val value: String = "SMART_MUNSANG"
   }
-  private object SmartMunsangSerializer : KSerializer<SmartMunsang> {
+  public object SmartMunsangSerializer : KSerializer<SmartMunsang> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SmartMunsang::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SmartMunsang = decoder.decodeString().let {
       if (it != "SMART_MUNSANG") {
@@ -41,13 +41,13 @@ public sealed interface PaymentMethodGiftCertificateType {
         return SmartMunsang
       }
     }
-    override fun serialize(encoder: Encoder, value: SmartMunsang) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SmartMunsang): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CulturelandSerializer::class)
   public data object Cultureland : PaymentMethodGiftCertificateType {
     override val value: String = "CULTURELAND"
   }
-  private object CulturelandSerializer : KSerializer<Cultureland> {
+  public object CulturelandSerializer : KSerializer<Cultureland> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cultureland::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cultureland = decoder.decodeString().let {
       if (it != "CULTURELAND") {
@@ -56,13 +56,13 @@ public sealed interface PaymentMethodGiftCertificateType {
         return Cultureland
       }
     }
-    override fun serialize(encoder: Encoder, value: Cultureland) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cultureland): Unit = encoder.encodeString(value.value)
   }
   @Serializable(HappymoneySerializer::class)
   public data object Happymoney : PaymentMethodGiftCertificateType {
     override val value: String = "HAPPYMONEY"
   }
-  private object HappymoneySerializer : KSerializer<Happymoney> {
+  public object HappymoneySerializer : KSerializer<Happymoney> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Happymoney::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Happymoney = decoder.decodeString().let {
       if (it != "HAPPYMONEY") {
@@ -71,13 +71,13 @@ public sealed interface PaymentMethodGiftCertificateType {
         return Happymoney
       }
     }
-    override fun serialize(encoder: Encoder, value: Happymoney) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Happymoney): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CulturegiftSerializer::class)
   public data object Culturegift : PaymentMethodGiftCertificateType {
     override val value: String = "CULTUREGIFT"
   }
-  private object CulturegiftSerializer : KSerializer<Culturegift> {
+  public object CulturegiftSerializer : KSerializer<Culturegift> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Culturegift::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Culturegift = decoder.decodeString().let {
       if (it != "CULTUREGIFT") {
@@ -86,7 +86,7 @@ public sealed interface PaymentMethodGiftCertificateType {
         return Culturegift
       }
     }
-    override fun serialize(encoder: Encoder, value: Culturegift) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Culturegift): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -94,7 +94,7 @@ public sealed interface PaymentMethodGiftCertificateType {
 }
 
 
-private object PaymentMethodGiftCertificateTypeSerializer : KSerializer<PaymentMethodGiftCertificateType> {
+public object PaymentMethodGiftCertificateTypeSerializer : KSerializer<PaymentMethodGiftCertificateType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentMethodGiftCertificateType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentMethodGiftCertificateType {
     val value = decoder.decodeString()
@@ -107,5 +107,5 @@ private object PaymentMethodGiftCertificateTypeSerializer : KSerializer<PaymentM
       else -> PaymentMethodGiftCertificateType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentMethodGiftCertificateType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentMethodGiftCertificateType): Unit = encoder.encodeString(value.value)
 }

@@ -14,8 +14,8 @@ public data class PlatformProperties(
 )
 
 
-private class PlatformPropertiesSerializer : JsonTransformingSerializer<PlatformProperties>(PlatformProperties.generatedSerializer()) {
-  companion object {
+public class PlatformPropertiesSerializer : JsonTransformingSerializer<PlatformProperties>(PlatformProperties.generatedSerializer()) {
+  private companion object {
     private val KNOWN_KEYS = setOf<String>()
   }
   override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)

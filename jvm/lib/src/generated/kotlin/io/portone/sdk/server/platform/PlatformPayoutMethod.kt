@@ -16,7 +16,7 @@ public sealed interface PlatformPayoutMethod {
   public data object Direct : PlatformPayoutMethod {
     override val value: String = "DIRECT"
   }
-  private object DirectSerializer : KSerializer<Direct> {
+  public object DirectSerializer : KSerializer<Direct> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Direct::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Direct = decoder.decodeString().let {
       if (it != "DIRECT") {
@@ -25,13 +25,13 @@ public sealed interface PlatformPayoutMethod {
         return Direct
       }
     }
-    override fun serialize(encoder: Encoder, value: Direct) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Direct): Unit = encoder.encodeString(value.value)
   }
   @Serializable(AgencySerializer::class)
   public data object Agency : PlatformPayoutMethod {
     override val value: String = "AGENCY"
   }
-  private object AgencySerializer : KSerializer<Agency> {
+  public object AgencySerializer : KSerializer<Agency> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Agency::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Agency = decoder.decodeString().let {
       if (it != "AGENCY") {
@@ -40,7 +40,7 @@ public sealed interface PlatformPayoutMethod {
         return Agency
       }
     }
-    override fun serialize(encoder: Encoder, value: Agency) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Agency): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -48,7 +48,7 @@ public sealed interface PlatformPayoutMethod {
 }
 
 
-private object PlatformPayoutMethodSerializer : KSerializer<PlatformPayoutMethod> {
+public object PlatformPayoutMethodSerializer : KSerializer<PlatformPayoutMethod> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformPayoutMethod::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformPayoutMethod {
     val value = decoder.decodeString()
@@ -58,5 +58,5 @@ private object PlatformPayoutMethodSerializer : KSerializer<PlatformPayoutMethod
       else -> PlatformPayoutMethod.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformPayoutMethod) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformPayoutMethod): Unit = encoder.encodeString(value.value)
 }

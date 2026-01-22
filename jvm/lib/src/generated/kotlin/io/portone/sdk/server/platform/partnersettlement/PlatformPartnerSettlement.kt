@@ -4,6 +4,7 @@ import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementStatus
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -44,11 +45,12 @@ public sealed interface PlatformPartnerSettlement {
 }
 
 
-private object PlatformPartnerSettlementSerializer : JsonContentPolymorphicSerializer<PlatformPartnerSettlement>(PlatformPartnerSettlement::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "MANUAL" -> PlatformPartnerManualSettlement.serializer()
-    "ORDER" -> PlatformPartnerOrderSettlement.serializer()
-    "ORDER_CANCEL" -> PlatformPartnerOrderCancelSettlement.serializer()
-    else -> PlatformPartnerSettlement.Unrecognized.serializer()
-  }
+public object PlatformPartnerSettlementSerializer : JsonContentPolymorphicSerializer<PlatformPartnerSettlement>(PlatformPartnerSettlement::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PlatformPartnerSettlement> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "MANUAL" -> PlatformPartnerManualSettlement.serializer()
+      "ORDER" -> PlatformPartnerOrderSettlement.serializer()
+      "ORDER_CANCEL" -> PlatformPartnerOrderCancelSettlement.serializer()
+      else -> PlatformPartnerSettlement.Unrecognized.serializer()
+    }
 }

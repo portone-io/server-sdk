@@ -18,7 +18,7 @@ public sealed interface B2bTaxInvoicePurposeType {
   public data object Receipt : B2bTaxInvoicePurposeType {
     override val value: String = "RECEIPT"
   }
-  private object ReceiptSerializer : KSerializer<Receipt> {
+  public object ReceiptSerializer : KSerializer<Receipt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Receipt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Receipt = decoder.decodeString().let {
       if (it != "RECEIPT") {
@@ -27,14 +27,14 @@ public sealed interface B2bTaxInvoicePurposeType {
         return Receipt
       }
     }
-    override fun serialize(encoder: Encoder, value: Receipt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Receipt): Unit = encoder.encodeString(value.value)
   }
   /** 청구 */
   @Serializable(InvoiceSerializer::class)
   public data object Invoice : B2bTaxInvoicePurposeType {
     override val value: String = "INVOICE"
   }
-  private object InvoiceSerializer : KSerializer<Invoice> {
+  public object InvoiceSerializer : KSerializer<Invoice> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Invoice::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Invoice = decoder.decodeString().let {
       if (it != "INVOICE") {
@@ -43,14 +43,14 @@ public sealed interface B2bTaxInvoicePurposeType {
         return Invoice
       }
     }
-    override fun serialize(encoder: Encoder, value: Invoice) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Invoice): Unit = encoder.encodeString(value.value)
   }
   /** 없음 */
   @Serializable(NoneSerializer::class)
   public data object None : B2bTaxInvoicePurposeType {
     override val value: String = "NONE"
   }
-  private object NoneSerializer : KSerializer<None> {
+  public object NoneSerializer : KSerializer<None> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(None::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): None = decoder.decodeString().let {
       if (it != "NONE") {
@@ -59,7 +59,7 @@ public sealed interface B2bTaxInvoicePurposeType {
         return None
       }
     }
-    override fun serialize(encoder: Encoder, value: None) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: None): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface B2bTaxInvoicePurposeType {
 }
 
 
-private object B2bTaxInvoicePurposeTypeSerializer : KSerializer<B2bTaxInvoicePurposeType> {
+public object B2bTaxInvoicePurposeTypeSerializer : KSerializer<B2bTaxInvoicePurposeType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(B2bTaxInvoicePurposeType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): B2bTaxInvoicePurposeType {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object B2bTaxInvoicePurposeTypeSerializer : KSerializer<B2bTaxInvoicePur
       else -> B2bTaxInvoicePurposeType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: B2bTaxInvoicePurposeType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: B2bTaxInvoicePurposeType): Unit = encoder.encodeString(value.value)
 }

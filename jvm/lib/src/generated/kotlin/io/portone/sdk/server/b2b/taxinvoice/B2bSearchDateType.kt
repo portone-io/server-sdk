@@ -18,7 +18,7 @@ public sealed interface B2bSearchDateType {
   public data object Register : B2bSearchDateType {
     override val value: String = "REGISTER"
   }
-  private object RegisterSerializer : KSerializer<Register> {
+  public object RegisterSerializer : KSerializer<Register> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Register::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Register = decoder.decodeString().let {
       if (it != "REGISTER") {
@@ -27,14 +27,14 @@ public sealed interface B2bSearchDateType {
         return Register
       }
     }
-    override fun serialize(encoder: Encoder, value: Register) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Register): Unit = encoder.encodeString(value.value)
   }
   /** 작성일 */
   @Serializable(WriteSerializer::class)
   public data object Write : B2bSearchDateType {
     override val value: String = "WRITE"
   }
-  private object WriteSerializer : KSerializer<Write> {
+  public object WriteSerializer : KSerializer<Write> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Write::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Write = decoder.decodeString().let {
       if (it != "WRITE") {
@@ -43,14 +43,14 @@ public sealed interface B2bSearchDateType {
         return Write
       }
     }
-    override fun serialize(encoder: Encoder, value: Write) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Write): Unit = encoder.encodeString(value.value)
   }
   /** 발행일 */
   @Serializable(IssueSerializer::class)
   public data object Issue : B2bSearchDateType {
     override val value: String = "ISSUE"
   }
-  private object IssueSerializer : KSerializer<Issue> {
+  public object IssueSerializer : KSerializer<Issue> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Issue::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Issue = decoder.decodeString().let {
       if (it != "ISSUE") {
@@ -59,7 +59,7 @@ public sealed interface B2bSearchDateType {
         return Issue
       }
     }
-    override fun serialize(encoder: Encoder, value: Issue) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Issue): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface B2bSearchDateType {
 }
 
 
-private object B2bSearchDateTypeSerializer : KSerializer<B2bSearchDateType> {
+public object B2bSearchDateTypeSerializer : KSerializer<B2bSearchDateType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(B2bSearchDateType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): B2bSearchDateType {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object B2bSearchDateTypeSerializer : KSerializer<B2bSearchDateType> {
       else -> B2bSearchDateType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: B2bSearchDateType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: B2bSearchDateType): Unit = encoder.encodeString(value.value)
 }

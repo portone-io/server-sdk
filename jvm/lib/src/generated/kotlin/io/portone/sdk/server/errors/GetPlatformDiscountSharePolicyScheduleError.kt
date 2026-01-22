@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,13 +24,14 @@ internal sealed interface GetPlatformDiscountSharePolicyScheduleError {
 }
 
 
-private object GetPlatformDiscountSharePolicyScheduleErrorSerializer : JsonContentPolymorphicSerializer<GetPlatformDiscountSharePolicyScheduleError>(GetPlatformDiscountSharePolicyScheduleError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformDiscountSharePolicyNotFoundError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> GetPlatformDiscountSharePolicyScheduleError.Unrecognized.serializer()
-  }
+internal object GetPlatformDiscountSharePolicyScheduleErrorSerializer : JsonContentPolymorphicSerializer<GetPlatformDiscountSharePolicyScheduleError>(GetPlatformDiscountSharePolicyScheduleError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out GetPlatformDiscountSharePolicyScheduleError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformDiscountSharePolicyNotFoundError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> GetPlatformDiscountSharePolicyScheduleError.Unrecognized.serializer()
+    }
 }

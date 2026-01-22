@@ -13,6 +13,7 @@ import io.portone.sdk.server.payment.PaymentMethod
 import io.portone.sdk.server.payment.PaymentWebhook
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -101,15 +102,16 @@ public sealed interface Payment {
 }
 
 
-private object PaymentSerializer : JsonContentPolymorphicSerializer<Payment>(Payment::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
-    "CANCELLED" -> CancelledPayment.serializer()
-    "FAILED" -> FailedPayment.serializer()
-    "PAID" -> PaidPayment.serializer()
-    "PARTIAL_CANCELLED" -> PartialCancelledPayment.serializer()
-    "PAY_PENDING" -> PayPendingPayment.serializer()
-    "READY" -> ReadyPayment.serializer()
-    "VIRTUAL_ACCOUNT_ISSUED" -> VirtualAccountIssuedPayment.serializer()
-    else -> Payment.Unrecognized.serializer()
-  }
+public object PaymentSerializer : JsonContentPolymorphicSerializer<Payment>(Payment::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out Payment> =
+    when (element.jsonObject["status"]?.jsonPrimitive?.contentOrNull) {
+      "CANCELLED" -> CancelledPayment.serializer()
+      "FAILED" -> FailedPayment.serializer()
+      "PAID" -> PaidPayment.serializer()
+      "PARTIAL_CANCELLED" -> PartialCancelledPayment.serializer()
+      "PAY_PENDING" -> PayPendingPayment.serializer()
+      "READY" -> ReadyPayment.serializer()
+      "VIRTUAL_ACCOUNT_ISSUED" -> VirtualAccountIssuedPayment.serializer()
+      else -> Payment.Unrecognized.serializer()
+    }
 }

@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,22 +24,23 @@ internal sealed interface CancelPaymentError {
 }
 
 
-private object CancelPaymentErrorSerializer : JsonContentPolymorphicSerializer<CancelPaymentError>(CancelPaymentError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN" -> CancellableAmountConsistencyBrokenError.serializer()
-    "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT" -> CancelAmountExceedsCancellableAmountError.serializer()
-    "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT" -> CancelTaxAmountExceedsCancellableTaxAmountError.serializer()
-    "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT" -> CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "NEGATIVE_PROMOTION_ADJUSTED_CANCEL_AMOUNT" -> NegativePromotionAdjustedCancelAmountError.serializer()
-    "PAYMENT_ALREADY_CANCELLED" -> PaymentAlreadyCancelledError.serializer()
-    "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
-    "PAYMENT_NOT_PAID" -> PaymentNotPaidError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED" -> PromotionDiscountRetainOptionShouldNotBeChangedError.serializer()
-    "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT" -> SumOfPartsExceedsCancelAmountError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CancelPaymentError.Unrecognized.serializer()
-  }
+internal object CancelPaymentErrorSerializer : JsonContentPolymorphicSerializer<CancelPaymentError>(CancelPaymentError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CancelPaymentError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "CANCELLABLE_AMOUNT_CONSISTENCY_BROKEN" -> CancellableAmountConsistencyBrokenError.serializer()
+      "CANCEL_AMOUNT_EXCEEDS_CANCELLABLE_AMOUNT" -> CancelAmountExceedsCancellableAmountError.serializer()
+      "CANCEL_TAX_AMOUNT_EXCEEDS_CANCELLABLE_TAX_AMOUNT" -> CancelTaxAmountExceedsCancellableTaxAmountError.serializer()
+      "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT" -> CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "NEGATIVE_PROMOTION_ADJUSTED_CANCEL_AMOUNT" -> NegativePromotionAdjustedCancelAmountError.serializer()
+      "PAYMENT_ALREADY_CANCELLED" -> PaymentAlreadyCancelledError.serializer()
+      "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
+      "PAYMENT_NOT_PAID" -> PaymentNotPaidError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "PROMOTION_DISCOUNT_RETAIN_OPTION_SHOULD_NOT_BE_CHANGED" -> PromotionDiscountRetainOptionShouldNotBeChangedError.serializer()
+      "SUM_OF_PARTS_EXCEEDS_CANCEL_AMOUNT" -> SumOfPartsExceedsCancelAmountError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CancelPaymentError.Unrecognized.serializer()
+    }
 }

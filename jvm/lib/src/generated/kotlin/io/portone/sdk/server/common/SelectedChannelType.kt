@@ -18,7 +18,7 @@ public sealed interface SelectedChannelType {
   public data object Live : SelectedChannelType {
     override val value: String = "LIVE"
   }
-  private object LiveSerializer : KSerializer<Live> {
+  public object LiveSerializer : KSerializer<Live> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Live::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Live = decoder.decodeString().let {
       if (it != "LIVE") {
@@ -27,14 +27,14 @@ public sealed interface SelectedChannelType {
         return Live
       }
     }
-    override fun serialize(encoder: Encoder, value: Live) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Live): Unit = encoder.encodeString(value.value)
   }
   /** 테스트 연동 채널 */
   @Serializable(TestSerializer::class)
   public data object Test : SelectedChannelType {
     override val value: String = "TEST"
   }
-  private object TestSerializer : KSerializer<Test> {
+  public object TestSerializer : KSerializer<Test> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Test::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Test = decoder.decodeString().let {
       if (it != "TEST") {
@@ -43,7 +43,7 @@ public sealed interface SelectedChannelType {
         return Test
       }
     }
-    override fun serialize(encoder: Encoder, value: Test) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Test): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface SelectedChannelType {
 }
 
 
-private object SelectedChannelTypeSerializer : KSerializer<SelectedChannelType> {
+public object SelectedChannelTypeSerializer : KSerializer<SelectedChannelType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SelectedChannelType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): SelectedChannelType {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object SelectedChannelTypeSerializer : KSerializer<SelectedChannelType> 
       else -> SelectedChannelType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: SelectedChannelType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: SelectedChannelType): Unit = encoder.encodeString(value.value)
 }

@@ -18,7 +18,7 @@ public sealed interface SimplifiedPaymentMethodType {
   public data object Card : SimplifiedPaymentMethodType {
     override val value: String = "CARD"
   }
-  private object CardSerializer : KSerializer<Card> {
+  public object CardSerializer : KSerializer<Card> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Card::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Card = decoder.decodeString().let {
       if (it != "CARD") {
@@ -27,14 +27,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return Card
       }
     }
-    override fun serialize(encoder: Encoder, value: Card) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Card): Unit = encoder.encodeString(value.value)
   }
   /** 가상계좌 */
   @Serializable(VirtualAccountSerializer::class)
   public data object VirtualAccount : SimplifiedPaymentMethodType {
     override val value: String = "VIRTUAL_ACCOUNT"
   }
-  private object VirtualAccountSerializer : KSerializer<VirtualAccount> {
+  public object VirtualAccountSerializer : KSerializer<VirtualAccount> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccount::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccount = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT") {
@@ -43,14 +43,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return VirtualAccount
       }
     }
-    override fun serialize(encoder: Encoder, value: VirtualAccount) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VirtualAccount): Unit = encoder.encodeString(value.value)
   }
   /** 계좌이체 */
   @Serializable(TransferSerializer::class)
   public data object Transfer : SimplifiedPaymentMethodType {
     override val value: String = "TRANSFER"
   }
-  private object TransferSerializer : KSerializer<Transfer> {
+  public object TransferSerializer : KSerializer<Transfer> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Transfer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Transfer = decoder.decodeString().let {
       if (it != "TRANSFER") {
@@ -59,14 +59,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return Transfer
       }
     }
-    override fun serialize(encoder: Encoder, value: Transfer) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Transfer): Unit = encoder.encodeString(value.value)
   }
   /** 머니 */
   @Serializable(ChargeSerializer::class)
   public data object Charge : SimplifiedPaymentMethodType {
     override val value: String = "CHARGE"
   }
-  private object ChargeSerializer : KSerializer<Charge> {
+  public object ChargeSerializer : KSerializer<Charge> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Charge::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Charge = decoder.decodeString().let {
       if (it != "CHARGE") {
@@ -75,14 +75,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return Charge
       }
     }
-    override fun serialize(encoder: Encoder, value: Charge) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Charge): Unit = encoder.encodeString(value.value)
   }
   /** 모바일 */
   @Serializable(MobileSerializer::class)
   public data object Mobile : SimplifiedPaymentMethodType {
     override val value: String = "MOBILE"
   }
-  private object MobileSerializer : KSerializer<Mobile> {
+  public object MobileSerializer : KSerializer<Mobile> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobile = decoder.decodeString().let {
       if (it != "MOBILE") {
@@ -91,14 +91,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return Mobile
       }
     }
-    override fun serialize(encoder: Encoder, value: Mobile) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mobile): Unit = encoder.encodeString(value.value)
   }
   /** 포인트 */
   @Serializable(PointSerializer::class)
   public data object Point : SimplifiedPaymentMethodType {
     override val value: String = "POINT"
   }
-  private object PointSerializer : KSerializer<Point> {
+  public object PointSerializer : KSerializer<Point> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Point::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Point = decoder.decodeString().let {
       if (it != "POINT") {
@@ -107,14 +107,14 @@ public sealed interface SimplifiedPaymentMethodType {
         return Point
       }
     }
-    override fun serialize(encoder: Encoder, value: Point) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Point): Unit = encoder.encodeString(value.value)
   }
   /** 기타 */
   @Serializable(EtcSerializer::class)
   public data object Etc : SimplifiedPaymentMethodType {
     override val value: String = "ETC"
   }
-  private object EtcSerializer : KSerializer<Etc> {
+  public object EtcSerializer : KSerializer<Etc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Etc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Etc = decoder.decodeString().let {
       if (it != "ETC") {
@@ -123,7 +123,7 @@ public sealed interface SimplifiedPaymentMethodType {
         return Etc
       }
     }
-    override fun serialize(encoder: Encoder, value: Etc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Etc): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -131,7 +131,7 @@ public sealed interface SimplifiedPaymentMethodType {
 }
 
 
-private object SimplifiedPaymentMethodTypeSerializer : KSerializer<SimplifiedPaymentMethodType> {
+public object SimplifiedPaymentMethodTypeSerializer : KSerializer<SimplifiedPaymentMethodType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SimplifiedPaymentMethodType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): SimplifiedPaymentMethodType {
     val value = decoder.decodeString()
@@ -146,5 +146,5 @@ private object SimplifiedPaymentMethodTypeSerializer : KSerializer<SimplifiedPay
       else -> SimplifiedPaymentMethodType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: SimplifiedPaymentMethodType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: SimplifiedPaymentMethodType): Unit = encoder.encodeString(value.value)
 }

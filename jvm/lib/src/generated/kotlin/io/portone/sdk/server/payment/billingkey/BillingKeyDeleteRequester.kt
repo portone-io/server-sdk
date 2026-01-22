@@ -18,7 +18,7 @@ public sealed interface BillingKeyDeleteRequester {
   public data object Customer : BillingKeyDeleteRequester {
     override val value: String = "CUSTOMER"
   }
-  private object CustomerSerializer : KSerializer<Customer> {
+  public object CustomerSerializer : KSerializer<Customer> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Customer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Customer = decoder.decodeString().let {
       if (it != "CUSTOMER") {
@@ -27,14 +27,14 @@ public sealed interface BillingKeyDeleteRequester {
         return Customer
       }
     }
-    override fun serialize(encoder: Encoder, value: Customer) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Customer): Unit = encoder.encodeString(value.value)
   }
   /** 관리자 */
   @Serializable(AdminSerializer::class)
   public data object Admin : BillingKeyDeleteRequester {
     override val value: String = "ADMIN"
   }
-  private object AdminSerializer : KSerializer<Admin> {
+  public object AdminSerializer : KSerializer<Admin> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Admin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Admin = decoder.decodeString().let {
       if (it != "ADMIN") {
@@ -43,7 +43,7 @@ public sealed interface BillingKeyDeleteRequester {
         return Admin
       }
     }
-    override fun serialize(encoder: Encoder, value: Admin) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Admin): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -51,7 +51,7 @@ public sealed interface BillingKeyDeleteRequester {
 }
 
 
-private object BillingKeyDeleteRequesterSerializer : KSerializer<BillingKeyDeleteRequester> {
+public object BillingKeyDeleteRequesterSerializer : KSerializer<BillingKeyDeleteRequester> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKeyDeleteRequester::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): BillingKeyDeleteRequester {
     val value = decoder.decodeString()
@@ -61,5 +61,5 @@ private object BillingKeyDeleteRequesterSerializer : KSerializer<BillingKeyDelet
       else -> BillingKeyDeleteRequester.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: BillingKeyDeleteRequester) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: BillingKeyDeleteRequester): Unit = encoder.encodeString(value.value)
 }

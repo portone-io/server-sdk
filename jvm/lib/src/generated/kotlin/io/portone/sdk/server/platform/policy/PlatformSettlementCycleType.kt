@@ -18,7 +18,7 @@ public sealed interface PlatformSettlementCycleType {
   public data object Daily : PlatformSettlementCycleType {
     override val value: String = "DAILY"
   }
-  private object DailySerializer : KSerializer<Daily> {
+  public object DailySerializer : KSerializer<Daily> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Daily::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Daily = decoder.decodeString().let {
       if (it != "DAILY") {
@@ -27,14 +27,14 @@ public sealed interface PlatformSettlementCycleType {
         return Daily
       }
     }
-    override fun serialize(encoder: Encoder, value: Daily) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Daily): Unit = encoder.encodeString(value.value)
   }
   /** 매주 정해진 요일에 정산 */
   @Serializable(WeeklySerializer::class)
   public data object Weekly : PlatformSettlementCycleType {
     override val value: String = "WEEKLY"
   }
-  private object WeeklySerializer : KSerializer<Weekly> {
+  public object WeeklySerializer : KSerializer<Weekly> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Weekly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Weekly = decoder.decodeString().let {
       if (it != "WEEKLY") {
@@ -43,14 +43,14 @@ public sealed interface PlatformSettlementCycleType {
         return Weekly
       }
     }
-    override fun serialize(encoder: Encoder, value: Weekly) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Weekly): Unit = encoder.encodeString(value.value)
   }
   /** 매월 정해진 날(일)에 정산 */
   @Serializable(MonthlySerializer::class)
   public data object Monthly : PlatformSettlementCycleType {
     override val value: String = "MONTHLY"
   }
-  private object MonthlySerializer : KSerializer<Monthly> {
+  public object MonthlySerializer : KSerializer<Monthly> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Monthly::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Monthly = decoder.decodeString().let {
       if (it != "MONTHLY") {
@@ -59,14 +59,14 @@ public sealed interface PlatformSettlementCycleType {
         return Monthly
       }
     }
-    override fun serialize(encoder: Encoder, value: Monthly) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Monthly): Unit = encoder.encodeString(value.value)
   }
   /** 정해진 날짜(월, 일)에 정산 */
   @Serializable(ManualDatesSerializer::class)
   public data object ManualDates : PlatformSettlementCycleType {
     override val value: String = "MANUAL_DATES"
   }
-  private object ManualDatesSerializer : KSerializer<ManualDates> {
+  public object ManualDatesSerializer : KSerializer<ManualDates> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(ManualDates::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): ManualDates = decoder.decodeString().let {
       if (it != "MANUAL_DATES") {
@@ -75,7 +75,7 @@ public sealed interface PlatformSettlementCycleType {
         return ManualDates
       }
     }
-    override fun serialize(encoder: Encoder, value: ManualDates) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: ManualDates): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -83,7 +83,7 @@ public sealed interface PlatformSettlementCycleType {
 }
 
 
-private object PlatformSettlementCycleTypeSerializer : KSerializer<PlatformSettlementCycleType> {
+public object PlatformSettlementCycleTypeSerializer : KSerializer<PlatformSettlementCycleType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PlatformSettlementCycleType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PlatformSettlementCycleType {
     val value = decoder.decodeString()
@@ -95,5 +95,5 @@ private object PlatformSettlementCycleTypeSerializer : KSerializer<PlatformSettl
       else -> PlatformSettlementCycleType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PlatformSettlementCycleType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PlatformSettlementCycleType): Unit = encoder.encodeString(value.value)
 }

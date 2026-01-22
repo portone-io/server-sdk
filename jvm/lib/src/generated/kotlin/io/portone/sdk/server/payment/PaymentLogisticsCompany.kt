@@ -18,7 +18,7 @@ public sealed interface PaymentLogisticsCompany {
   public data object Lotte : PaymentLogisticsCompany {
     override val value: String = "LOTTE"
   }
-  private object LotteSerializer : KSerializer<Lotte> {
+  public object LotteSerializer : KSerializer<Lotte> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lotte::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lotte = decoder.decodeString().let {
       if (it != "LOTTE") {
@@ -27,14 +27,14 @@ public sealed interface PaymentLogisticsCompany {
         return Lotte
       }
     }
-    override fun serialize(encoder: Encoder, value: Lotte) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lotte): Unit = encoder.encodeString(value.value)
   }
   /** 로젠택배 */
   @Serializable(LogenSerializer::class)
   public data object Logen : PaymentLogisticsCompany {
     override val value: String = "LOGEN"
   }
-  private object LogenSerializer : KSerializer<Logen> {
+  public object LogenSerializer : KSerializer<Logen> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Logen::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Logen = decoder.decodeString().let {
       if (it != "LOGEN") {
@@ -43,14 +43,14 @@ public sealed interface PaymentLogisticsCompany {
         return Logen
       }
     }
-    override fun serialize(encoder: Encoder, value: Logen) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Logen): Unit = encoder.encodeString(value.value)
   }
   /** 동원로엑스 */
   @Serializable(DongwonSerializer::class)
   public data object Dongwon : PaymentLogisticsCompany {
     override val value: String = "DONGWON"
   }
-  private object DongwonSerializer : KSerializer<Dongwon> {
+  public object DongwonSerializer : KSerializer<Dongwon> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dongwon::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dongwon = decoder.decodeString().let {
       if (it != "DONGWON") {
@@ -59,14 +59,14 @@ public sealed interface PaymentLogisticsCompany {
         return Dongwon
       }
     }
-    override fun serialize(encoder: Encoder, value: Dongwon) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dongwon): Unit = encoder.encodeString(value.value)
   }
   /** 우체국택배 */
   @Serializable(PostSerializer::class)
   public data object Post : PaymentLogisticsCompany {
     override val value: String = "POST"
   }
-  private object PostSerializer : KSerializer<Post> {
+  public object PostSerializer : KSerializer<Post> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Post::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Post = decoder.decodeString().let {
       if (it != "POST") {
@@ -75,14 +75,14 @@ public sealed interface PaymentLogisticsCompany {
         return Post
       }
     }
-    override fun serialize(encoder: Encoder, value: Post) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Post): Unit = encoder.encodeString(value.value)
   }
   /** 대한통운 */
   @Serializable(CjSerializer::class)
   public data object Cj : PaymentLogisticsCompany {
     override val value: String = "CJ"
   }
-  private object CjSerializer : KSerializer<Cj> {
+  public object CjSerializer : KSerializer<Cj> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cj::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cj = decoder.decodeString().let {
       if (it != "CJ") {
@@ -91,14 +91,14 @@ public sealed interface PaymentLogisticsCompany {
         return Cj
       }
     }
-    override fun serialize(encoder: Encoder, value: Cj) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cj): Unit = encoder.encodeString(value.value)
   }
   /** 한진택배 */
   @Serializable(HanjinSerializer::class)
   public data object Hanjin : PaymentLogisticsCompany {
     override val value: String = "HANJIN"
   }
-  private object HanjinSerializer : KSerializer<Hanjin> {
+  public object HanjinSerializer : KSerializer<Hanjin> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hanjin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hanjin = decoder.decodeString().let {
       if (it != "HANJIN") {
@@ -107,14 +107,14 @@ public sealed interface PaymentLogisticsCompany {
         return Hanjin
       }
     }
-    override fun serialize(encoder: Encoder, value: Hanjin) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hanjin): Unit = encoder.encodeString(value.value)
   }
   /** 대신택배 */
   @Serializable(DaesinSerializer::class)
   public data object Daesin : PaymentLogisticsCompany {
     override val value: String = "DAESIN"
   }
-  private object DaesinSerializer : KSerializer<Daesin> {
+  public object DaesinSerializer : KSerializer<Daesin> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Daesin::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Daesin = decoder.decodeString().let {
       if (it != "DAESIN") {
@@ -123,14 +123,14 @@ public sealed interface PaymentLogisticsCompany {
         return Daesin
       }
     }
-    override fun serialize(encoder: Encoder, value: Daesin) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Daesin): Unit = encoder.encodeString(value.value)
   }
   /** 일양로지스 */
   @Serializable(IlyangSerializer::class)
   public data object Ilyang : PaymentLogisticsCompany {
     override val value: String = "ILYANG"
   }
-  private object IlyangSerializer : KSerializer<Ilyang> {
+  public object IlyangSerializer : KSerializer<Ilyang> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ilyang::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ilyang = decoder.decodeString().let {
       if (it != "ILYANG") {
@@ -139,14 +139,14 @@ public sealed interface PaymentLogisticsCompany {
         return Ilyang
       }
     }
-    override fun serialize(encoder: Encoder, value: Ilyang) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ilyang): Unit = encoder.encodeString(value.value)
   }
   /** 경동택배 */
   @Serializable(KyungdongSerializer::class)
   public data object Kyungdong : PaymentLogisticsCompany {
     override val value: String = "KYUNGDONG"
   }
-  private object KyungdongSerializer : KSerializer<Kyungdong> {
+  public object KyungdongSerializer : KSerializer<Kyungdong> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kyungdong::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kyungdong = decoder.decodeString().let {
       if (it != "KYUNGDONG") {
@@ -155,14 +155,14 @@ public sealed interface PaymentLogisticsCompany {
         return Kyungdong
       }
     }
-    override fun serialize(encoder: Encoder, value: Kyungdong) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kyungdong): Unit = encoder.encodeString(value.value)
   }
   /** 천일택배 */
   @Serializable(ChunilSerializer::class)
   public data object Chunil : PaymentLogisticsCompany {
     override val value: String = "CHUNIL"
   }
-  private object ChunilSerializer : KSerializer<Chunil> {
+  public object ChunilSerializer : KSerializer<Chunil> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Chunil::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Chunil = decoder.decodeString().let {
       if (it != "CHUNIL") {
@@ -171,14 +171,14 @@ public sealed interface PaymentLogisticsCompany {
         return Chunil
       }
     }
-    override fun serialize(encoder: Encoder, value: Chunil) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Chunil): Unit = encoder.encodeString(value.value)
   }
   /** 등기우편 */
   @Serializable(PostRegisteredSerializer::class)
   public data object PostRegistered : PaymentLogisticsCompany {
     override val value: String = "POST_REGISTERED"
   }
-  private object PostRegisteredSerializer : KSerializer<PostRegistered> {
+  public object PostRegisteredSerializer : KSerializer<PostRegistered> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PostRegistered::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PostRegistered = decoder.decodeString().let {
       if (it != "POST_REGISTERED") {
@@ -187,14 +187,14 @@ public sealed interface PaymentLogisticsCompany {
         return PostRegistered
       }
     }
-    override fun serialize(encoder: Encoder, value: PostRegistered) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PostRegistered): Unit = encoder.encodeString(value.value)
   }
   /** GS네트웍스 */
   @Serializable(GsSerializer::class)
   public data object Gs : PaymentLogisticsCompany {
     override val value: String = "GS"
   }
-  private object GsSerializer : KSerializer<Gs> {
+  public object GsSerializer : KSerializer<Gs> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Gs::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Gs = decoder.decodeString().let {
       if (it != "GS") {
@@ -203,14 +203,14 @@ public sealed interface PaymentLogisticsCompany {
         return Gs
       }
     }
-    override fun serialize(encoder: Encoder, value: Gs) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Gs): Unit = encoder.encodeString(value.value)
   }
   /** 우리택배 */
   @Serializable(WooriSerializer::class)
   public data object Woori : PaymentLogisticsCompany {
     override val value: String = "WOORI"
   }
-  private object WooriSerializer : KSerializer<Woori> {
+  public object WooriSerializer : KSerializer<Woori> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Woori::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Woori = decoder.decodeString().let {
       if (it != "WOORI") {
@@ -219,14 +219,14 @@ public sealed interface PaymentLogisticsCompany {
         return Woori
       }
     }
-    override fun serialize(encoder: Encoder, value: Woori) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Woori): Unit = encoder.encodeString(value.value)
   }
   /** 합동택배 */
   @Serializable(HapdongSerializer::class)
   public data object Hapdong : PaymentLogisticsCompany {
     override val value: String = "HAPDONG"
   }
-  private object HapdongSerializer : KSerializer<Hapdong> {
+  public object HapdongSerializer : KSerializer<Hapdong> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Hapdong::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Hapdong = decoder.decodeString().let {
       if (it != "HAPDONG") {
@@ -235,14 +235,14 @@ public sealed interface PaymentLogisticsCompany {
         return Hapdong
       }
     }
-    override fun serialize(encoder: Encoder, value: Hapdong) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Hapdong): Unit = encoder.encodeString(value.value)
   }
   /** FedEx */
   @Serializable(FedexSerializer::class)
   public data object Fedex : PaymentLogisticsCompany {
     override val value: String = "FEDEX"
   }
-  private object FedexSerializer : KSerializer<Fedex> {
+  public object FedexSerializer : KSerializer<Fedex> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fedex::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fedex = decoder.decodeString().let {
       if (it != "FEDEX") {
@@ -251,14 +251,14 @@ public sealed interface PaymentLogisticsCompany {
         return Fedex
       }
     }
-    override fun serialize(encoder: Encoder, value: Fedex) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fedex): Unit = encoder.encodeString(value.value)
   }
   /** UPS */
   @Serializable(UpsSerializer::class)
   public data object Ups : PaymentLogisticsCompany {
     override val value: String = "UPS"
   }
-  private object UpsSerializer : KSerializer<Ups> {
+  public object UpsSerializer : KSerializer<Ups> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ups::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ups = decoder.decodeString().let {
       if (it != "UPS") {
@@ -267,14 +267,14 @@ public sealed interface PaymentLogisticsCompany {
         return Ups
       }
     }
-    override fun serialize(encoder: Encoder, value: Ups) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ups): Unit = encoder.encodeString(value.value)
   }
   /** GSM NtoN */
   @Serializable(GsmNtonSerializer::class)
   public data object GsmNton : PaymentLogisticsCompany {
     override val value: String = "GSM_NTON"
   }
-  private object GsmNtonSerializer : KSerializer<GsmNton> {
+  public object GsmNtonSerializer : KSerializer<GsmNton> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(GsmNton::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): GsmNton = decoder.decodeString().let {
       if (it != "GSM_NTON") {
@@ -283,14 +283,14 @@ public sealed interface PaymentLogisticsCompany {
         return GsmNton
       }
     }
-    override fun serialize(encoder: Encoder, value: GsmNton) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: GsmNton): Unit = encoder.encodeString(value.value)
   }
   /** 성원글로벌카고 */
   @Serializable(SungwonSerializer::class)
   public data object Sungwon : PaymentLogisticsCompany {
     override val value: String = "SUNGWON"
   }
-  private object SungwonSerializer : KSerializer<Sungwon> {
+  public object SungwonSerializer : KSerializer<Sungwon> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sungwon::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sungwon = decoder.decodeString().let {
       if (it != "SUNGWON") {
@@ -299,14 +299,14 @@ public sealed interface PaymentLogisticsCompany {
         return Sungwon
       }
     }
-    override fun serialize(encoder: Encoder, value: Sungwon) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sungwon): Unit = encoder.encodeString(value.value)
   }
   /** LX판토스 */
   @Serializable(LxPantosSerializer::class)
   public data object LxPantos : PaymentLogisticsCompany {
     override val value: String = "LX_PANTOS"
   }
-  private object LxPantosSerializer : KSerializer<LxPantos> {
+  public object LxPantosSerializer : KSerializer<LxPantos> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(LxPantos::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): LxPantos = decoder.decodeString().let {
       if (it != "LX_PANTOS") {
@@ -315,14 +315,14 @@ public sealed interface PaymentLogisticsCompany {
         return LxPantos
       }
     }
-    override fun serialize(encoder: Encoder, value: LxPantos) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: LxPantos): Unit = encoder.encodeString(value.value)
   }
   /** ACI */
   @Serializable(AciSerializer::class)
   public data object Aci : PaymentLogisticsCompany {
     override val value: String = "ACI"
   }
-  private object AciSerializer : KSerializer<Aci> {
+  public object AciSerializer : KSerializer<Aci> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Aci::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Aci = decoder.decodeString().let {
       if (it != "ACI") {
@@ -331,14 +331,14 @@ public sealed interface PaymentLogisticsCompany {
         return Aci
       }
     }
-    override fun serialize(encoder: Encoder, value: Aci) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Aci): Unit = encoder.encodeString(value.value)
   }
   /** CJ대한통운 국제특송 */
   @Serializable(CjIntlSerializer::class)
   public data object CjIntl : PaymentLogisticsCompany {
     override val value: String = "CJ_INTL"
   }
-  private object CjIntlSerializer : KSerializer<CjIntl> {
+  public object CjIntlSerializer : KSerializer<CjIntl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CjIntl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): CjIntl = decoder.decodeString().let {
       if (it != "CJ_INTL") {
@@ -347,14 +347,14 @@ public sealed interface PaymentLogisticsCompany {
         return CjIntl
       }
     }
-    override fun serialize(encoder: Encoder, value: CjIntl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: CjIntl): Unit = encoder.encodeString(value.value)
   }
   /** USPS */
   @Serializable(UspsSerializer::class)
   public data object Usps : PaymentLogisticsCompany {
     override val value: String = "USPS"
   }
-  private object UspsSerializer : KSerializer<Usps> {
+  public object UspsSerializer : KSerializer<Usps> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Usps::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Usps = decoder.decodeString().let {
       if (it != "USPS") {
@@ -363,14 +363,14 @@ public sealed interface PaymentLogisticsCompany {
         return Usps
       }
     }
-    override fun serialize(encoder: Encoder, value: Usps) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Usps): Unit = encoder.encodeString(value.value)
   }
   /** EMS */
   @Serializable(EmsSerializer::class)
   public data object Ems : PaymentLogisticsCompany {
     override val value: String = "EMS"
   }
-  private object EmsSerializer : KSerializer<Ems> {
+  public object EmsSerializer : KSerializer<Ems> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ems::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ems = decoder.decodeString().let {
       if (it != "EMS") {
@@ -379,14 +379,14 @@ public sealed interface PaymentLogisticsCompany {
         return Ems
       }
     }
-    override fun serialize(encoder: Encoder, value: Ems) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ems): Unit = encoder.encodeString(value.value)
   }
   /** DHL */
   @Serializable(DhlSerializer::class)
   public data object Dhl : PaymentLogisticsCompany {
     override val value: String = "DHL"
   }
-  private object DhlSerializer : KSerializer<Dhl> {
+  public object DhlSerializer : KSerializer<Dhl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Dhl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Dhl = decoder.decodeString().let {
       if (it != "DHL") {
@@ -395,14 +395,14 @@ public sealed interface PaymentLogisticsCompany {
         return Dhl
       }
     }
-    override fun serialize(encoder: Encoder, value: Dhl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Dhl): Unit = encoder.encodeString(value.value)
   }
   /** KGL네트웍스 */
   @Serializable(KglSerializer::class)
   public data object Kgl : PaymentLogisticsCompany {
     override val value: String = "KGL"
   }
-  private object KglSerializer : KSerializer<Kgl> {
+  public object KglSerializer : KSerializer<Kgl> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kgl::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kgl = decoder.decodeString().let {
       if (it != "KGL") {
@@ -411,14 +411,14 @@ public sealed interface PaymentLogisticsCompany {
         return Kgl
       }
     }
-    override fun serialize(encoder: Encoder, value: Kgl) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kgl): Unit = encoder.encodeString(value.value)
   }
   /** 굿투럭 */
   @Serializable(GoodstoluckSerializer::class)
   public data object Goodstoluck : PaymentLogisticsCompany {
     override val value: String = "GOODSTOLUCK"
   }
-  private object GoodstoluckSerializer : KSerializer<Goodstoluck> {
+  public object GoodstoluckSerializer : KSerializer<Goodstoluck> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Goodstoluck::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Goodstoluck = decoder.decodeString().let {
       if (it != "GOODSTOLUCK") {
@@ -427,14 +427,14 @@ public sealed interface PaymentLogisticsCompany {
         return Goodstoluck
       }
     }
-    override fun serialize(encoder: Encoder, value: Goodstoluck) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Goodstoluck): Unit = encoder.encodeString(value.value)
   }
   /** 건영택배 */
   @Serializable(KunyoungSerializer::class)
   public data object Kunyoung : PaymentLogisticsCompany {
     override val value: String = "KUNYOUNG"
   }
-  private object KunyoungSerializer : KSerializer<Kunyoung> {
+  public object KunyoungSerializer : KSerializer<Kunyoung> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kunyoung::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kunyoung = decoder.decodeString().let {
       if (it != "KUNYOUNG") {
@@ -443,14 +443,14 @@ public sealed interface PaymentLogisticsCompany {
         return Kunyoung
       }
     }
-    override fun serialize(encoder: Encoder, value: Kunyoung) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kunyoung): Unit = encoder.encodeString(value.value)
   }
   /** SLX */
   @Serializable(SlxSerializer::class)
   public data object Slx : PaymentLogisticsCompany {
     override val value: String = "SLX"
   }
-  private object SlxSerializer : KSerializer<Slx> {
+  public object SlxSerializer : KSerializer<Slx> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Slx::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Slx = decoder.decodeString().let {
       if (it != "SLX") {
@@ -459,14 +459,14 @@ public sealed interface PaymentLogisticsCompany {
         return Slx
       }
     }
-    override fun serialize(encoder: Encoder, value: Slx) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Slx): Unit = encoder.encodeString(value.value)
   }
   /** SF Express */
   @Serializable(SfSerializer::class)
   public data object Sf : PaymentLogisticsCompany {
     override val value: String = "SF"
   }
-  private object SfSerializer : KSerializer<Sf> {
+  public object SfSerializer : KSerializer<Sf> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Sf::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Sf = decoder.decodeString().let {
       if (it != "SF") {
@@ -475,14 +475,14 @@ public sealed interface PaymentLogisticsCompany {
         return Sf
       }
     }
-    override fun serialize(encoder: Encoder, value: Sf) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Sf): Unit = encoder.encodeString(value.value)
   }
   /** 기타 */
   @Serializable(EtcSerializer::class)
   public data object Etc : PaymentLogisticsCompany {
     override val value: String = "ETC"
   }
-  private object EtcSerializer : KSerializer<Etc> {
+  public object EtcSerializer : KSerializer<Etc> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Etc::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Etc = decoder.decodeString().let {
       if (it != "ETC") {
@@ -491,7 +491,7 @@ public sealed interface PaymentLogisticsCompany {
         return Etc
       }
     }
-    override fun serialize(encoder: Encoder, value: Etc) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Etc): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -499,7 +499,7 @@ public sealed interface PaymentLogisticsCompany {
 }
 
 
-private object PaymentLogisticsCompanySerializer : KSerializer<PaymentLogisticsCompany> {
+public object PaymentLogisticsCompanySerializer : KSerializer<PaymentLogisticsCompany> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentLogisticsCompany::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentLogisticsCompany {
     val value = decoder.decodeString()
@@ -537,5 +537,5 @@ private object PaymentLogisticsCompanySerializer : KSerializer<PaymentLogisticsC
       else -> PaymentLogisticsCompany.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentLogisticsCompany) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentLogisticsCompany): Unit = encoder.encodeString(value.value)
 }

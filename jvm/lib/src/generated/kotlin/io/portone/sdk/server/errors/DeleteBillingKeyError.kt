@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,17 +24,18 @@ internal sealed interface DeleteBillingKeyError {
 }
 
 
-private object DeleteBillingKeyErrorSerializer : JsonContentPolymorphicSerializer<DeleteBillingKeyError>(DeleteBillingKeyError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
-    "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
-    "BILLING_KEY_NOT_ISSUED" -> BillingKeyNotIssuedError.serializer()
-    "CHANNEL_SPECIFIC" -> ChannelSpecificError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PAYMENT_SCHEDULE_ALREADY_EXISTS" -> PaymentScheduleAlreadyExistsError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> DeleteBillingKeyError.Unrecognized.serializer()
-  }
+internal object DeleteBillingKeyErrorSerializer : JsonContentPolymorphicSerializer<DeleteBillingKeyError>(DeleteBillingKeyError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out DeleteBillingKeyError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "BILLING_KEY_ALREADY_DELETED" -> BillingKeyAlreadyDeletedError.serializer()
+      "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
+      "BILLING_KEY_NOT_ISSUED" -> BillingKeyNotIssuedError.serializer()
+      "CHANNEL_SPECIFIC" -> ChannelSpecificError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PAYMENT_SCHEDULE_ALREADY_EXISTS" -> PaymentScheduleAlreadyExistsError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> DeleteBillingKeyError.Unrecognized.serializer()
+    }
 }

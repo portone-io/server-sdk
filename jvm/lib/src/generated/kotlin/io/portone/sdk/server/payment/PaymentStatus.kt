@@ -17,7 +17,7 @@ public sealed interface PaymentStatus {
   public data object Ready : PaymentStatus {
     override val value: String = "READY"
   }
-  private object ReadySerializer : KSerializer<Ready> {
+  public object ReadySerializer : KSerializer<Ready> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Ready::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Ready = decoder.decodeString().let {
       if (it != "READY") {
@@ -26,13 +26,13 @@ public sealed interface PaymentStatus {
         return Ready
       }
     }
-    override fun serialize(encoder: Encoder, value: Ready) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Ready): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PendingSerializer::class)
   public data object Pending : PaymentStatus {
     override val value: String = "PENDING"
   }
-  private object PendingSerializer : KSerializer<Pending> {
+  public object PendingSerializer : KSerializer<Pending> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Pending::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Pending = decoder.decodeString().let {
       if (it != "PENDING") {
@@ -41,13 +41,13 @@ public sealed interface PaymentStatus {
         return Pending
       }
     }
-    override fun serialize(encoder: Encoder, value: Pending) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Pending): Unit = encoder.encodeString(value.value)
   }
   @Serializable(VirtualAccountIssuedSerializer::class)
   public data object VirtualAccountIssued : PaymentStatus {
     override val value: String = "VIRTUAL_ACCOUNT_ISSUED"
   }
-  private object VirtualAccountIssuedSerializer : KSerializer<VirtualAccountIssued> {
+  public object VirtualAccountIssuedSerializer : KSerializer<VirtualAccountIssued> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(VirtualAccountIssued::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): VirtualAccountIssued = decoder.decodeString().let {
       if (it != "VIRTUAL_ACCOUNT_ISSUED") {
@@ -56,13 +56,13 @@ public sealed interface PaymentStatus {
         return VirtualAccountIssued
       }
     }
-    override fun serialize(encoder: Encoder, value: VirtualAccountIssued) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: VirtualAccountIssued): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PaidSerializer::class)
   public data object Paid : PaymentStatus {
     override val value: String = "PAID"
   }
-  private object PaidSerializer : KSerializer<Paid> {
+  public object PaidSerializer : KSerializer<Paid> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paid::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Paid = decoder.decodeString().let {
       if (it != "PAID") {
@@ -71,13 +71,13 @@ public sealed interface PaymentStatus {
         return Paid
       }
     }
-    override fun serialize(encoder: Encoder, value: Paid) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Paid): Unit = encoder.encodeString(value.value)
   }
   @Serializable(FailedSerializer::class)
   public data object Failed : PaymentStatus {
     override val value: String = "FAILED"
   }
-  private object FailedSerializer : KSerializer<Failed> {
+  public object FailedSerializer : KSerializer<Failed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Failed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Failed = decoder.decodeString().let {
       if (it != "FAILED") {
@@ -86,13 +86,13 @@ public sealed interface PaymentStatus {
         return Failed
       }
     }
-    override fun serialize(encoder: Encoder, value: Failed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Failed): Unit = encoder.encodeString(value.value)
   }
   @Serializable(PartialCancelledSerializer::class)
   public data object PartialCancelled : PaymentStatus {
     override val value: String = "PARTIAL_CANCELLED"
   }
-  private object PartialCancelledSerializer : KSerializer<PartialCancelled> {
+  public object PartialCancelledSerializer : KSerializer<PartialCancelled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartialCancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartialCancelled = decoder.decodeString().let {
       if (it != "PARTIAL_CANCELLED") {
@@ -101,13 +101,13 @@ public sealed interface PaymentStatus {
         return PartialCancelled
       }
     }
-    override fun serialize(encoder: Encoder, value: PartialCancelled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PartialCancelled): Unit = encoder.encodeString(value.value)
   }
   @Serializable(CancelledSerializer::class)
   public data object Cancelled : PaymentStatus {
     override val value: String = "CANCELLED"
   }
-  private object CancelledSerializer : KSerializer<Cancelled> {
+  public object CancelledSerializer : KSerializer<Cancelled> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Cancelled::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Cancelled = decoder.decodeString().let {
       if (it != "CANCELLED") {
@@ -116,7 +116,7 @@ public sealed interface PaymentStatus {
         return Cancelled
       }
     }
-    override fun serialize(encoder: Encoder, value: Cancelled) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Cancelled): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -124,7 +124,7 @@ public sealed interface PaymentStatus {
 }
 
 
-private object PaymentStatusSerializer : KSerializer<PaymentStatus> {
+public object PaymentStatusSerializer : KSerializer<PaymentStatus> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PaymentStatus::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): PaymentStatus {
     val value = decoder.decodeString()
@@ -139,5 +139,5 @@ private object PaymentStatusSerializer : KSerializer<PaymentStatus> {
       else -> PaymentStatus.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: PaymentStatus) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: PaymentStatus): Unit = encoder.encodeString(value.value)
 }

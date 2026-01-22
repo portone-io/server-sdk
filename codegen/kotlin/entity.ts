@@ -15,14 +15,13 @@ export function generateEntity(
   const crossRef = new Set<string>()
   const writer = KotlinWriter()
   const serializerWriter = KotlinWriter()
-  writeDescription(
-    writer,
-    definition.description,
-  )
+  writeDescription(writer, definition.description)
   const extension = childrenMap.get(definition.name)
   const extendList = extension
     ? ` : ${
-      [...extension.parents].toSorted().map((parent) => `${parent}.Recognized`)
+      [...extension.parents]
+        .toSorted()
+        .map((parent) => `${parent}.Recognized`)
         .join(", ")
     }`
     : ""
@@ -38,14 +37,16 @@ export function generateEntity(
         crossRef.add("kotlinx.serialization.json.JsonTransformingSerializer")
         crossRef.add("kotlinx.serialization.json.jsonObject")
         serializerWriter.writeLine(
-          `private class ${definition.name}Serializer : JsonTransformingSerializer<${definition.name}>(${definition.name}.generatedSerializer()) {`,
+          `${visibility} class ${definition.name}Serializer : JsonTransformingSerializer<${definition.name}>(${definition.name}.generatedSerializer()) {`,
         )
         serializerWriter.indent()
-        serializerWriter.writeLine("companion object {")
+        serializerWriter.writeLine("private companion object {")
         serializerWriter.indent()
         serializerWriter.writeLine(
           `private val KNOWN_KEYS = setOf<String>(${
-            properties.map(({ name }) => `"${name}"`).join(", ")
+            properties
+              .map(({ name }) => `"${name}"`)
+              .join(", ")
           })`,
         )
         serializerWriter.outdent()
@@ -104,8 +105,8 @@ export function generateEntity(
         writer.writeLine("@ConsistentCopyVisibility")
         crossRef.add("kotlin.ConsistentCopyVisibility")
       }
-      const nonDiscriminant = properties.filter(({ type }) =>
-        type !== "discriminant"
+      const nonDiscriminant = properties.filter(
+        ({ type }) => type !== "discriminant",
       )
       const isObject = nonDiscriminant.length === 0 &&
         definition.additionalProperties === null
@@ -123,12 +124,14 @@ export function generateEntity(
       )
       writer.indent()
       for (const property of nonDiscriminant) {
-        const description = ([] as string[]).concat(property.title ?? [])
+        const description = ([] as string[])
+          .concat(property.title ?? [])
           .concat(
             property.description
               ? annotateDescription(property.description, property)
               : [],
-          ).join("\n\n")
+          )
+          .join("\n\n")
         const name = filterName(property.name)
         const overrides = extension?.properties?.has(property.name)
           ? "override "
@@ -144,7 +147,9 @@ export function generateEntity(
             if (property.format === "date-time") {
               writer.writeLine(
                 `${val}: @Serializable(InstantSerializer::class) ${
-                  wrapOptional("Instant")
+                  wrapOptional(
+                    "Instant",
+                  )
                 },`,
               )
               crossRef.add(
@@ -183,7 +188,9 @@ export function generateEntity(
             }
             crossRef.add(
               `io.portone.sdk.server.${
-                toPackageCase(category)
+                toPackageCase(
+                  category,
+                )
               }.${property.value}`,
             )
             break
@@ -230,7 +237,9 @@ export function generateEntity(
                 }
                 crossRef.add(
                   `io.portone.sdk.server.${
-                    toPackageCase(category)
+                    toPackageCase(
+                      category,
+                    )
                   }.${property.item.value}`,
                 )
                 break
@@ -279,7 +288,9 @@ export function generateEntity(
                 writer.writeLine(`val additionalProperties: Map<String, Int>,`)
                 break
               case "int64":
-                writer.writeLine(`val additionalProperties: Map<String, Long>,`)
+                writer.writeLine(
+                  `val additionalProperties: Map<String, Long>,`,
+                )
                 break
               default:
                 throw new Error("unsupported additionalProperties format", {
@@ -306,14 +317,19 @@ export function generateEntity(
     }
     case "oneOf": {
       serializerWriter.writeLine(
-        `private object ${definition.name}Serializer : JsonContentPolymorphicSerializer<${definition.name}>(${definition.name}::class) {`,
+        `${visibility} object ${definition.name}Serializer : JsonContentPolymorphicSerializer<${definition.name}>(${definition.name}::class) {`,
       )
       crossRef.add(
         "kotlinx.serialization.json.JsonContentPolymorphicSerializer",
       )
       serializerWriter.indent()
+      crossRef.add("kotlinx.serialization.KSerializer")
       serializerWriter.writeLine(
-        `override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["${definition.property}"]?.jsonPrimitive?.contentOrNull) {`,
+        `override fun selectDeserializer(element: JsonElement): KSerializer<out ${definition.name}> =`,
+      )
+      serializerWriter.indent()
+      serializerWriter.writeLine(
+        `when (element.jsonObject["${definition.property}"]?.jsonPrimitive?.contentOrNull) {`,
       )
       crossRef.add("kotlinx.serialization.json.JsonElement")
       crossRef.add("kotlinx.serialization.json.contentOrNull")
@@ -329,15 +345,14 @@ export function generateEntity(
       serializerWriter.outdent()
       serializerWriter.writeLine("}")
       serializerWriter.outdent()
+      serializerWriter.outdent()
       serializerWriter.writeLine("}")
       writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
       crossRef.add("kotlinx.serialization.Serializable")
       writer.writeLine(`${visibility} sealed interface ${definition.name} {`)
       writer.indent()
       writer.writeLine("@Serializable")
-      writer.writeLine(
-        `@JsonClassDiscriminator("${definition.property}")`,
-      )
+      writer.writeLine(`@JsonClassDiscriminator("${definition.property}")`)
       crossRef.add("kotlinx.serialization.json.JsonClassDiscriminator")
       writer.writeLine(
         "/** 현재 SDK 버전에서 처리 가능한 응답을 나타냅니다. */",
@@ -348,8 +363,10 @@ export function generateEntity(
       writer.indent()
       const recognized = parentsMap.get(definition.name) ?? []
       for (const property of recognized) {
-        const description = ([] as string[]).concat(property.title ?? [])
-          .concat(property.description ?? []).join("\n\n")
+        const description = ([] as string[])
+          .concat(property.title ?? [])
+          .concat(property.description ?? [])
+          .join("\n\n")
         const name = filterName(property.name)
         const optional = property.required ? "" : "?"
         switch (property.type) {
@@ -383,7 +400,9 @@ export function generateEntity(
             break
           case "ref": {
             writeDescription(writer, description)
-            writer.writeLine(`public val ${name}: ${property.value}${optional}`)
+            writer.writeLine(
+              `public val ${name}: ${property.value}${optional}`,
+            )
             const category = categoryMap.get(property.value)
             if (!category) {
               throw new Error("unrecognized cross reference", {
@@ -392,7 +411,9 @@ export function generateEntity(
             }
             crossRef.add(
               `io.portone.sdk.server.${
-                toPackageCase(category)
+                toPackageCase(
+                  category,
+                )
               }.${property.value}`,
             )
             break
@@ -452,7 +473,9 @@ export function generateEntity(
                 }
                 crossRef.add(
                   `io.portone.sdk.server.${
-                    toPackageCase(category)
+                    toPackageCase(
+                      category,
+                    )
                   }.${property.item.value}`,
                 )
                 break
@@ -484,7 +507,9 @@ export function generateEntity(
       }
       writer.outdent()
       writer.writeLine("}")
-      writer.writeLine("/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */")
+      writer.writeLine(
+        "/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */",
+      )
       writer.writeLine("@Serializable")
       writer.writeLine(`public data object Unrecognized : ${definition.name}`)
       writer.outdent()
@@ -494,7 +519,7 @@ export function generateEntity(
     case "enum":
       writer.writeLine(`@Serializable(${definition.name}Serializer::class)`)
       serializerWriter.writeLine(
-        `private object ${definition.name}Serializer : KSerializer<${definition.name}> {`,
+        `${visibility} object ${definition.name}Serializer : KSerializer<${definition.name}> {`,
       )
       crossRef.add("kotlinx.serialization.KSerializer")
       serializerWriter.indent()
@@ -527,47 +552,55 @@ export function generateEntity(
       serializerWriter.outdent()
       serializerWriter.writeLine("}")
       serializerWriter.writeLine(
-        `override fun serialize(encoder: Encoder, value: ${definition.name}) = encoder.encodeString(value.value)`,
+        `override fun serialize(encoder: Encoder, value: ${definition.name}): Unit = encoder.encodeString(value.value)`,
       )
       crossRef.add("kotlinx.serialization.encoding.Encoder")
       serializerWriter.outdent()
       serializerWriter.writeLine("}")
       crossRef.add("kotlinx.serialization.Serializable")
-      writer.writeLine(
-        `public sealed interface ${definition.name} {`,
-      )
+      writer.writeLine(`public sealed interface ${definition.name} {`)
       writer.indent()
       writer.writeLine("public val value: String")
       for (const { value, title, description } of definition.variants) {
-        const mergedDescription = [title ?? []].concat([description ?? []])
-          .flat().join("\n\n")
+        const mergedDescription = [title ?? []]
+          .concat([description ?? []])
+          .flat()
+          .join("\n\n")
         writeDescription(writer, mergedDescription)
         writer.writeLine(
           `@Serializable(${toPascalCase(value)}Serializer::class)`,
         )
         writer.writeLine(
-          `public data object ${toPascalCase(value)} : ${definition.name} {`,
+          `${visibility} data object ${
+            toPascalCase(value)
+          } : ${definition.name} {`,
         )
         writer.indent()
-        writer.writeLine(
-          `override val value: String = "${value}"`,
-        )
+        writer.writeLine(`override val value: String = "${value}"`)
         writer.outdent()
         writer.writeLine("}")
         writer.writeLine(
-          `private object ${toPascalCase(value)}Serializer : KSerializer<${
+          `${visibility} object ${
             toPascalCase(value)
+          }Serializer : KSerializer<${
+            toPascalCase(
+              value,
+            )
           }> {`,
         )
         writer.indent()
         writer.writeLine(
           `override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(${
-            toPascalCase(value)
+            toPascalCase(
+              value,
+            )
           }::class.java.name, PrimitiveKind.STRING)`,
         )
         writer.writeLine(
           `override fun deserialize(decoder: Decoder): ${
-            toPascalCase(value)
+            toPascalCase(
+              value,
+            )
           } = decoder.decodeString().let {`,
         )
         writer.indent()
@@ -585,13 +618,17 @@ export function generateEntity(
         writer.writeLine("}")
         writer.writeLine(
           `override fun serialize(encoder: Encoder, value: ${
-            toPascalCase(value)
-          }) = encoder.encodeString(value.value)`,
+            toPascalCase(
+              value,
+            )
+          }): Unit = encoder.encodeString(value.value)`,
         )
         writer.outdent()
         writer.writeLine("}")
       }
-      writer.writeLine("/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */")
+      writer.writeLine(
+        "/** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */",
+      )
       writer.writeLine("@ConsistentCopyVisibility")
       writer.writeLine(
         `public data class Unrecognized internal constructor(override val value: String) : ${definition.name}`,
@@ -607,16 +644,19 @@ export function generateEntity(
     case "ref":
       throw new Error("unsupported entity type", { cause: { definition } })
     default:
-      throw new Error("unrecognized definition type", { cause: { definition } })
+      throw new Error("unrecognized definition type", {
+        cause: { definition },
+      })
   }
   const sortedRef = [...crossRef]
   sortedRef.sort()
   const imports = sortedRef.map((ref) => {
     return `import ${ref}`
   })
-  const content = [`package ${toPackageCase(hierarchy)}`].concat(
-    imports.length > 0 ? imports.join("\n") : [],
-  )
-    .concat(writer.content).concat(serializerWriter.content).join("\n\n")
+  const content = [`package ${toPackageCase(hierarchy)}`]
+    .concat(imports.length > 0 ? imports.join("\n") : [])
+    .concat(writer.content)
+    .concat(serializerWriter.content)
+    .join("\n\n")
   return content
 }

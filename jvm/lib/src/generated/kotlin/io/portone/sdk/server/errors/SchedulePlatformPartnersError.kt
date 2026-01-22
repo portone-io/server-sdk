@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,17 +24,18 @@ internal sealed interface SchedulePlatformPartnersError {
 }
 
 
-private object SchedulePlatformPartnersErrorSerializer : JsonContentPolymorphicSerializer<SchedulePlatformPartnersError>(SchedulePlatformPartnersError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED" -> PlatformArchivedPartnersCannotBeScheduledError.serializer()
-    "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
-    "PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNERS_CANNOT_BE_SCHEDULED" -> PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.serializer()
-    "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
-    "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST" -> PlatformPartnerSchedulesAlreadyExistError.serializer()
-    "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> SchedulePlatformPartnersError.Unrecognized.serializer()
-  }
+internal object SchedulePlatformPartnersErrorSerializer : JsonContentPolymorphicSerializer<SchedulePlatformPartnersError>(SchedulePlatformPartnersError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out SchedulePlatformPartnersError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PLATFORM_ARCHIVED_PARTNERS_CANNOT_BE_SCHEDULED" -> PlatformArchivedPartnersCannotBeScheduledError.serializer()
+      "PLATFORM_CONTRACT_NOT_FOUND" -> PlatformContractNotFoundError.serializer()
+      "PLATFORM_MEMBER_COMPANY_CONNECTED_PARTNERS_CANNOT_BE_SCHEDULED" -> PlatformMemberCompanyConnectedPartnersCannotBeScheduledError.serializer()
+      "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
+      "PLATFORM_PARTNER_SCHEDULES_ALREADY_EXIST" -> PlatformPartnerSchedulesAlreadyExistError.serializer()
+      "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> SchedulePlatformPartnersError.Unrecognized.serializer()
+    }
 }

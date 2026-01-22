@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,12 +24,13 @@ internal sealed interface PreRegisterPaymentError {
 }
 
 
-private object PreRegisterPaymentErrorSerializer : JsonContentPolymorphicSerializer<PreRegisterPaymentError>(PreRegisterPaymentError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "ALREADY_PAID" -> AlreadyPaidError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> PreRegisterPaymentError.Unrecognized.serializer()
-  }
+internal object PreRegisterPaymentErrorSerializer : JsonContentPolymorphicSerializer<PreRegisterPaymentError>(PreRegisterPaymentError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PreRegisterPaymentError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "ALREADY_PAID" -> AlreadyPaidError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> PreRegisterPaymentError.Unrecognized.serializer()
+    }
 }

@@ -14,8 +14,8 @@ public data class Map_Stat(
 )
 
 
-private class Map_StatSerializer : JsonTransformingSerializer<Map_Stat>(Map_Stat.generatedSerializer()) {
-  companion object {
+public class Map_StatSerializer : JsonTransformingSerializer<Map_Stat>(Map_Stat.generatedSerializer()) {
+  private companion object {
     private val KNOWN_KEYS = setOf<String>()
   }
   override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)

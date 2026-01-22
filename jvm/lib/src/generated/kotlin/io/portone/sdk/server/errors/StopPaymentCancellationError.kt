@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,15 +24,16 @@ internal sealed interface StopPaymentCancellationError {
 }
 
 
-private object StopPaymentCancellationErrorSerializer : JsonContentPolymorphicSerializer<StopPaymentCancellationError>(StopPaymentCancellationError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PAYMENT_CANCELLATION_NOT_FOUND" -> PaymentCancellationNotFoundError.serializer()
-    "PAYMENT_CANCELLATION_NOT_PENDING" -> PaymentCancellationNotPendingError.serializer()
-    "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> StopPaymentCancellationError.Unrecognized.serializer()
-  }
+internal object StopPaymentCancellationErrorSerializer : JsonContentPolymorphicSerializer<StopPaymentCancellationError>(StopPaymentCancellationError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out StopPaymentCancellationError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PAYMENT_CANCELLATION_NOT_FOUND" -> PaymentCancellationNotFoundError.serializer()
+      "PAYMENT_CANCELLATION_NOT_PENDING" -> PaymentCancellationNotPendingError.serializer()
+      "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> StopPaymentCancellationError.Unrecognized.serializer()
+    }
 }

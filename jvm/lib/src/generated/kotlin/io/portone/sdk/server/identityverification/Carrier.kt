@@ -18,7 +18,7 @@ public sealed interface Carrier {
   public data object Skt : Carrier {
     override val value: String = "SKT"
   }
-  private object SktSerializer : KSerializer<Skt> {
+  public object SktSerializer : KSerializer<Skt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Skt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Skt = decoder.decodeString().let {
       if (it != "SKT") {
@@ -27,14 +27,14 @@ public sealed interface Carrier {
         return Skt
       }
     }
-    override fun serialize(encoder: Encoder, value: Skt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Skt): Unit = encoder.encodeString(value.value)
   }
   /** KT */
   @Serializable(KtSerializer::class)
   public data object Kt : Carrier {
     override val value: String = "KT"
   }
-  private object KtSerializer : KSerializer<Kt> {
+  public object KtSerializer : KSerializer<Kt> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kt::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Kt = decoder.decodeString().let {
       if (it != "KT") {
@@ -43,14 +43,14 @@ public sealed interface Carrier {
         return Kt
       }
     }
-    override fun serialize(encoder: Encoder, value: Kt) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Kt): Unit = encoder.encodeString(value.value)
   }
   /** LG 유플러스 */
   @Serializable(LguSerializer::class)
   public data object Lgu : Carrier {
     override val value: String = "LGU"
   }
-  private object LguSerializer : KSerializer<Lgu> {
+  public object LguSerializer : KSerializer<Lgu> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Lgu::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Lgu = decoder.decodeString().let {
       if (it != "LGU") {
@@ -59,14 +59,14 @@ public sealed interface Carrier {
         return Lgu
       }
     }
-    override fun serialize(encoder: Encoder, value: Lgu) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Lgu): Unit = encoder.encodeString(value.value)
   }
   /** SKT 알뜰폰 */
   @Serializable(SktMvnoSerializer::class)
   public data object SktMvno : Carrier {
     override val value: String = "SKT_MVNO"
   }
-  private object SktMvnoSerializer : KSerializer<SktMvno> {
+  public object SktMvnoSerializer : KSerializer<SktMvno> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SktMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): SktMvno = decoder.decodeString().let {
       if (it != "SKT_MVNO") {
@@ -75,14 +75,14 @@ public sealed interface Carrier {
         return SktMvno
       }
     }
-    override fun serialize(encoder: Encoder, value: SktMvno) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SktMvno): Unit = encoder.encodeString(value.value)
   }
   /** KT 알뜰폰 */
   @Serializable(KtMvnoSerializer::class)
   public data object KtMvno : Carrier {
     override val value: String = "KT_MVNO"
   }
-  private object KtMvnoSerializer : KSerializer<KtMvno> {
+  public object KtMvnoSerializer : KSerializer<KtMvno> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KtMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): KtMvno = decoder.decodeString().let {
       if (it != "KT_MVNO") {
@@ -91,14 +91,14 @@ public sealed interface Carrier {
         return KtMvno
       }
     }
-    override fun serialize(encoder: Encoder, value: KtMvno) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: KtMvno): Unit = encoder.encodeString(value.value)
   }
   /** LGU 알뜰폰 */
   @Serializable(LguMvnoSerializer::class)
   public data object LguMvno : Carrier {
     override val value: String = "LGU_MVNO"
   }
-  private object LguMvnoSerializer : KSerializer<LguMvno> {
+  public object LguMvnoSerializer : KSerializer<LguMvno> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(LguMvno::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): LguMvno = decoder.decodeString().let {
       if (it != "LGU_MVNO") {
@@ -107,7 +107,7 @@ public sealed interface Carrier {
         return LguMvno
       }
     }
-    override fun serialize(encoder: Encoder, value: LguMvno) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: LguMvno): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -115,7 +115,7 @@ public sealed interface Carrier {
 }
 
 
-private object CarrierSerializer : KSerializer<Carrier> {
+public object CarrierSerializer : KSerializer<Carrier> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Carrier::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): Carrier {
     val value = decoder.decodeString()
@@ -129,5 +129,5 @@ private object CarrierSerializer : KSerializer<Carrier> {
       else -> Carrier.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: Carrier) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: Carrier): Unit = encoder.encodeString(value.value)
 }

@@ -14,8 +14,8 @@ public data class TransferParameters(
 )
 
 
-private class TransferParametersSerializer : JsonTransformingSerializer<TransferParameters>(TransferParameters.generatedSerializer()) {
-  companion object {
+public class TransferParametersSerializer : JsonTransformingSerializer<TransferParameters>(TransferParameters.generatedSerializer()) {
+  private companion object {
     private val KNOWN_KEYS = setOf<String>()
   }
   override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)

@@ -14,6 +14,7 @@ import io.portone.sdk.server.payment.PaymentMethod
 import io.portone.sdk.server.payment.PaymentWebhook
 import java.time.Instant
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -104,11 +105,12 @@ public sealed interface PaymentEvent {
 }
 
 
-private object PaymentEventSerializer : JsonContentPolymorphicSerializer<PaymentEvent>(PaymentEvent::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "CANCELLED" -> CancelledPaymentEvent.serializer()
-    "PAID" -> PaidPaymentEvent.serializer()
-    "PARTIAL_CANCELLED" -> PartialCancelledPaymentEvent.serializer()
-    else -> PaymentEvent.Unrecognized.serializer()
-  }
+public object PaymentEventSerializer : JsonContentPolymorphicSerializer<PaymentEvent>(PaymentEvent::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out PaymentEvent> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "CANCELLED" -> CancelledPaymentEvent.serializer()
+      "PAID" -> PaidPaymentEvent.serializer()
+      "PARTIAL_CANCELLED" -> PartialCancelledPaymentEvent.serializer()
+      else -> PaymentEvent.Unrecognized.serializer()
+    }
 }

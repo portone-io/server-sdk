@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,15 +24,16 @@ internal sealed interface ConfirmBillingKeyIssueAndPayError {
 }
 
 
-private object ConfirmBillingKeyIssueAndPayErrorSerializer : JsonContentPolymorphicSerializer<ConfirmBillingKeyIssueAndPayError>(ConfirmBillingKeyIssueAndPayError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "BILLING_KEY_ALREADY_ISSUED" -> BillingKeyAlreadyIssuedError.serializer()
-    "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INFORMATION_MISMATCH" -> InformationMismatchError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> ConfirmBillingKeyIssueAndPayError.Unrecognized.serializer()
-  }
+internal object ConfirmBillingKeyIssueAndPayErrorSerializer : JsonContentPolymorphicSerializer<ConfirmBillingKeyIssueAndPayError>(ConfirmBillingKeyIssueAndPayError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out ConfirmBillingKeyIssueAndPayError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "BILLING_KEY_ALREADY_ISSUED" -> BillingKeyAlreadyIssuedError.serializer()
+      "BILLING_KEY_NOT_FOUND" -> BillingKeyNotFoundError.serializer()
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INFORMATION_MISMATCH" -> InformationMismatchError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> ConfirmBillingKeyIssueAndPayError.Unrecognized.serializer()
+    }
 }

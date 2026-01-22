@@ -1,6 +1,7 @@
 package io.portone.sdk.server.errors
 
 import kotlin.String
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
@@ -23,14 +24,15 @@ internal sealed interface CloseVirtualAccountError {
 }
 
 
-private object CloseVirtualAccountErrorSerializer : JsonContentPolymorphicSerializer<CloseVirtualAccountError>(CloseVirtualAccountError::class) {
-  override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-    "FORBIDDEN" -> ForbiddenError.serializer()
-    "INVALID_REQUEST" -> InvalidRequestError.serializer()
-    "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
-    "PAYMENT_NOT_WAITING_FOR_DEPOSIT" -> PaymentNotWaitingForDepositError.serializer()
-    "PG_PROVIDER" -> PgProviderError.serializer()
-    "UNAUTHORIZED" -> UnauthorizedError.serializer()
-    else -> CloseVirtualAccountError.Unrecognized.serializer()
-  }
+internal object CloseVirtualAccountErrorSerializer : JsonContentPolymorphicSerializer<CloseVirtualAccountError>(CloseVirtualAccountError::class) {
+  override fun selectDeserializer(element: JsonElement): KSerializer<out CloseVirtualAccountError> =
+    when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+      "FORBIDDEN" -> ForbiddenError.serializer()
+      "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()
+      "PAYMENT_NOT_WAITING_FOR_DEPOSIT" -> PaymentNotWaitingForDepositError.serializer()
+      "PG_PROVIDER" -> PgProviderError.serializer()
+      "UNAUTHORIZED" -> UnauthorizedError.serializer()
+      else -> CloseVirtualAccountError.Unrecognized.serializer()
+    }
 }

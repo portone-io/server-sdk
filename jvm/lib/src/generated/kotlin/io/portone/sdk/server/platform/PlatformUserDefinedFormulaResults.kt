@@ -14,8 +14,8 @@ public data class PlatformUserDefinedFormulaResults(
 )
 
 
-private class PlatformUserDefinedFormulaResultsSerializer : JsonTransformingSerializer<PlatformUserDefinedFormulaResults>(PlatformUserDefinedFormulaResults.generatedSerializer()) {
-  companion object {
+public class PlatformUserDefinedFormulaResultsSerializer : JsonTransformingSerializer<PlatformUserDefinedFormulaResults>(PlatformUserDefinedFormulaResults.generatedSerializer()) {
+  private companion object {
     private val KNOWN_KEYS = setOf<String>()
   }
   override fun transformSerialize(element: JsonElement): JsonElement = if (element is JsonObject)

@@ -18,7 +18,7 @@ public sealed interface BillingKeyPaymentMethodType {
   public data object Card : BillingKeyPaymentMethodType {
     override val value: String = "CARD"
   }
-  private object CardSerializer : KSerializer<Card> {
+  public object CardSerializer : KSerializer<Card> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Card::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Card = decoder.decodeString().let {
       if (it != "CARD") {
@@ -27,14 +27,14 @@ public sealed interface BillingKeyPaymentMethodType {
         return Card
       }
     }
-    override fun serialize(encoder: Encoder, value: Card) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Card): Unit = encoder.encodeString(value.value)
   }
   /** 모바일 */
   @Serializable(MobileSerializer::class)
   public data object Mobile : BillingKeyPaymentMethodType {
     override val value: String = "MOBILE"
   }
-  private object MobileSerializer : KSerializer<Mobile> {
+  public object MobileSerializer : KSerializer<Mobile> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Mobile::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Mobile = decoder.decodeString().let {
       if (it != "MOBILE") {
@@ -43,14 +43,14 @@ public sealed interface BillingKeyPaymentMethodType {
         return Mobile
       }
     }
-    override fun serialize(encoder: Encoder, value: Mobile) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Mobile): Unit = encoder.encodeString(value.value)
   }
   /** 간편 결제 */
   @Serializable(EasyPaySerializer::class)
   public data object EasyPay : BillingKeyPaymentMethodType {
     override val value: String = "EASY_PAY"
   }
-  private object EasyPaySerializer : KSerializer<EasyPay> {
+  public object EasyPaySerializer : KSerializer<EasyPay> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(EasyPay::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): EasyPay = decoder.decodeString().let {
       if (it != "EASY_PAY") {
@@ -59,14 +59,14 @@ public sealed interface BillingKeyPaymentMethodType {
         return EasyPay
       }
     }
-    override fun serialize(encoder: Encoder, value: EasyPay) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: EasyPay): Unit = encoder.encodeString(value.value)
   }
   /** 계좌 이체 */
   @Serializable(TransferSerializer::class)
   public data object Transfer : BillingKeyPaymentMethodType {
     override val value: String = "TRANSFER"
   }
-  private object TransferSerializer : KSerializer<Transfer> {
+  public object TransferSerializer : KSerializer<Transfer> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Transfer::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Transfer = decoder.decodeString().let {
       if (it != "TRANSFER") {
@@ -75,7 +75,7 @@ public sealed interface BillingKeyPaymentMethodType {
         return Transfer
       }
     }
-    override fun serialize(encoder: Encoder, value: Transfer) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Transfer): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -83,7 +83,7 @@ public sealed interface BillingKeyPaymentMethodType {
 }
 
 
-private object BillingKeyPaymentMethodTypeSerializer : KSerializer<BillingKeyPaymentMethodType> {
+public object BillingKeyPaymentMethodTypeSerializer : KSerializer<BillingKeyPaymentMethodType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(BillingKeyPaymentMethodType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): BillingKeyPaymentMethodType {
     val value = decoder.decodeString()
@@ -95,5 +95,5 @@ private object BillingKeyPaymentMethodTypeSerializer : KSerializer<BillingKeyPay
       else -> BillingKeyPaymentMethodType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: BillingKeyPaymentMethodType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: BillingKeyPaymentMethodType): Unit = encoder.encodeString(value.value)
 }

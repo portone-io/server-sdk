@@ -22,7 +22,7 @@ public sealed interface InstantPaymentMethodInputVirtualAccountOptionType {
   public data object Normal : InstantPaymentMethodInputVirtualAccountOptionType {
     override val value: String = "NORMAL"
   }
-  private object NormalSerializer : KSerializer<Normal> {
+  public object NormalSerializer : KSerializer<Normal> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Normal::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Normal = decoder.decodeString().let {
       if (it != "NORMAL") {
@@ -31,14 +31,14 @@ public sealed interface InstantPaymentMethodInputVirtualAccountOptionType {
         return Normal
       }
     }
-    override fun serialize(encoder: Encoder, value: Normal) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Normal): Unit = encoder.encodeString(value.value)
   }
   /** 고정식 가상계좌 */
   @Serializable(FixedSerializer::class)
   public data object Fixed : InstantPaymentMethodInputVirtualAccountOptionType {
     override val value: String = "FIXED"
   }
-  private object FixedSerializer : KSerializer<Fixed> {
+  public object FixedSerializer : KSerializer<Fixed> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Fixed::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Fixed = decoder.decodeString().let {
       if (it != "FIXED") {
@@ -47,7 +47,7 @@ public sealed interface InstantPaymentMethodInputVirtualAccountOptionType {
         return Fixed
       }
     }
-    override fun serialize(encoder: Encoder, value: Fixed) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Fixed): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -55,7 +55,7 @@ public sealed interface InstantPaymentMethodInputVirtualAccountOptionType {
 }
 
 
-private object InstantPaymentMethodInputVirtualAccountOptionTypeSerializer : KSerializer<InstantPaymentMethodInputVirtualAccountOptionType> {
+public object InstantPaymentMethodInputVirtualAccountOptionTypeSerializer : KSerializer<InstantPaymentMethodInputVirtualAccountOptionType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(InstantPaymentMethodInputVirtualAccountOptionType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): InstantPaymentMethodInputVirtualAccountOptionType {
     val value = decoder.decodeString()
@@ -65,5 +65,5 @@ private object InstantPaymentMethodInputVirtualAccountOptionTypeSerializer : KSe
       else -> InstantPaymentMethodInputVirtualAccountOptionType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: InstantPaymentMethodInputVirtualAccountOptionType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: InstantPaymentMethodInputVirtualAccountOptionType): Unit = encoder.encodeString(value.value)
 }

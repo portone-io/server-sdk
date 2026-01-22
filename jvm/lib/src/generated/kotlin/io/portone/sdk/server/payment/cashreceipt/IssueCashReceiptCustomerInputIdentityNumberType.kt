@@ -18,7 +18,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
   public data object Phone : IssueCashReceiptCustomerInputIdentityNumberType {
     override val value: String = "PHONE"
   }
-  private object PhoneSerializer : KSerializer<Phone> {
+  public object PhoneSerializer : KSerializer<Phone> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Phone::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Phone = decoder.decodeString().let {
       if (it != "PHONE") {
@@ -27,14 +27,14 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
         return Phone
       }
     }
-    override fun serialize(encoder: Encoder, value: Phone) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Phone): Unit = encoder.encodeString(value.value)
   }
   /** 카드번호 */
   @Serializable(CardSerializer::class)
   public data object Card : IssueCashReceiptCustomerInputIdentityNumberType {
     override val value: String = "CARD"
   }
-  private object CardSerializer : KSerializer<Card> {
+  public object CardSerializer : KSerializer<Card> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Card::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Card = decoder.decodeString().let {
       if (it != "CARD") {
@@ -43,14 +43,14 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
         return Card
       }
     }
-    override fun serialize(encoder: Encoder, value: Card) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Card): Unit = encoder.encodeString(value.value)
   }
   /** 사업자등록번호 */
   @Serializable(BusinessSerializer::class)
   public data object Business : IssueCashReceiptCustomerInputIdentityNumberType {
     override val value: String = "BUSINESS"
   }
-  private object BusinessSerializer : KSerializer<Business> {
+  public object BusinessSerializer : KSerializer<Business> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Business::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Business = decoder.decodeString().let {
       if (it != "BUSINESS") {
@@ -59,7 +59,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
         return Business
       }
     }
-    override fun serialize(encoder: Encoder, value: Business) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Business): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -67,7 +67,7 @@ public sealed interface IssueCashReceiptCustomerInputIdentityNumberType {
 }
 
 
-private object IssueCashReceiptCustomerInputIdentityNumberTypeSerializer : KSerializer<IssueCashReceiptCustomerInputIdentityNumberType> {
+public object IssueCashReceiptCustomerInputIdentityNumberTypeSerializer : KSerializer<IssueCashReceiptCustomerInputIdentityNumberType> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssueCashReceiptCustomerInputIdentityNumberType::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): IssueCashReceiptCustomerInputIdentityNumberType {
     val value = decoder.decodeString()
@@ -78,5 +78,5 @@ private object IssueCashReceiptCustomerInputIdentityNumberTypeSerializer : KSeri
       else -> IssueCashReceiptCustomerInputIdentityNumberType.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: IssueCashReceiptCustomerInputIdentityNumberType) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: IssueCashReceiptCustomerInputIdentityNumberType): Unit = encoder.encodeString(value.value)
 }

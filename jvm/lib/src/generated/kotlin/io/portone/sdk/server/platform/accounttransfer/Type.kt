@@ -16,7 +16,7 @@ public sealed interface Type {
   public data object PartnerPayout : Type {
     override val value: String = "PARTNER_PAYOUT"
   }
-  private object PartnerPayoutSerializer : KSerializer<PartnerPayout> {
+  public object PartnerPayoutSerializer : KSerializer<PartnerPayout> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerPayout::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): PartnerPayout = decoder.decodeString().let {
       if (it != "PARTNER_PAYOUT") {
@@ -25,13 +25,13 @@ public sealed interface Type {
         return PartnerPayout
       }
     }
-    override fun serialize(encoder: Encoder, value: PartnerPayout) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: PartnerPayout): Unit = encoder.encodeString(value.value)
   }
   @Serializable(RemitSerializer::class)
   public data object Remit : Type {
     override val value: String = "REMIT"
   }
-  private object RemitSerializer : KSerializer<Remit> {
+  public object RemitSerializer : KSerializer<Remit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Remit::class.java.name, PrimitiveKind.STRING)
     override fun deserialize(decoder: Decoder): Remit = decoder.decodeString().let {
       if (it != "REMIT") {
@@ -40,7 +40,7 @@ public sealed interface Type {
         return Remit
       }
     }
-    override fun serialize(encoder: Encoder, value: Remit) = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: Remit): Unit = encoder.encodeString(value.value)
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
@@ -48,7 +48,7 @@ public sealed interface Type {
 }
 
 
-private object TypeSerializer : KSerializer<Type> {
+public object TypeSerializer : KSerializer<Type> {
   override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Type::class.java.name, PrimitiveKind.STRING)
   override fun deserialize(decoder: Decoder): Type {
     val value = decoder.decodeString()
@@ -58,5 +58,5 @@ private object TypeSerializer : KSerializer<Type> {
       else -> Type.Unrecognized(value)
     }
   }
-  override fun serialize(encoder: Encoder, value: Type) = encoder.encodeString(value.value)
+  override fun serialize(encoder: Encoder, value: Type): Unit = encoder.encodeString(value.value)
 }
