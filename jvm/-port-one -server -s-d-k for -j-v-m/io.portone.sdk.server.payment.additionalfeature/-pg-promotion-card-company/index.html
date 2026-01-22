@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PgPromotionCardCompany</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    PortOne Server SDK for JVM
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+0.22.0-8-g44225d0e9d        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    PortOne Server SDK for JVM
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.payment.additionalfeature/PgPromotionCardCompany///PointingToDeclaration//-1895836109">
+  <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.payment.additionalfeature</a><span class="delimiter">/</span><span class="current">PgPromotionCardCompany</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Pg</span><wbr></wbr><span>Promotion</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Company</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../-pg-promotion-card-company-serializer/index.html">PgPromotionCardCompanySerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PgPromotionCardCompany</a></div><p class="paragraph">PG 프로모션 카드사</p><p class="paragraph">PG사 프로모션 조회 시 필터링할 수 있는 카드사 목록입니다.</p><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-korea-development-bank/index.html">KoreaDevelopmentBank</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kfcc/index.html">Kfcc</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-shinhyup/index.html">Shinhyup</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-epost/index.html">Epost</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-savings-bank-korea/index.html">SavingsBankKorea</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kakao-bank/index.html">KakaoBank</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-woori-card/index.html">WooriCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-bc-card/index.html">BcCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-gwangju-card/index.html">GwangjuCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-samsung-card/index.html">SamsungCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-shinhan-card/index.html">ShinhanCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hyundai-card/index.html">HyundaiCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-lotte-card/index.html">LotteCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-suhyup-card/index.html">SuhyupCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-citi-card/index.html">CitiCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-nh-card/index.html">NhCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-jeonbuk-card/index.html">JeonbukCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-jeju-card/index.html">JejuCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-hana-card/index.html">HanaCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-kookmin-card/index.html">KookminCard</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-k-bank/index.html">KBank</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-toss-bank/index.html">TossBank</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-mirae-asset-securities/index.html">MiraeAssetSecurities</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1508922977%2FClasslikes%2F-1895836109" anchor-label="BcCard" id="1508922977%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bc-card/index.html"><span>Bc</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1508922977%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-bc-card-serializer/index.html">PgPromotionCardCompany.BcCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-bc-card/index.html">BcCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">BC카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="724399343%2FClasslikes%2F-1895836109" anchor-label="BcCardSerializer" id="724399343%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bc-card-serializer/index.html"><span>Bc</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="724399343%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-bc-card-serializer/index.html">BcCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-bc-card/index.html">PgPromotionCardCompany.BcCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-63055033%2FClasslikes%2F-1895836109" anchor-label="CitiCard" id="-63055033%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-citi-card/index.html"><span>Citi</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-63055033%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-citi-card-serializer/index.html">PgPromotionCardCompany.CitiCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-citi-card/index.html">CitiCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">씨티카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1025600939%2FClasslikes%2F-1895836109" anchor-label="CitiCardSerializer" id="-1025600939%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-citi-card-serializer/index.html"><span>Citi</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1025600939%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-citi-card-serializer/index.html">CitiCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-citi-card/index.html">PgPromotionCardCompany.CitiCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1972711723%2FClasslikes%2F-1895836109" anchor-label="Epost" id="1972711723%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-epost/index.html"><span><span>Epost</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1972711723%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-epost-serializer/index.html">PgPromotionCardCompany.EpostSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-epost/index.html">Epost</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">우체국</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1182718777%2FClasslikes%2F-1895836109" anchor-label="EpostSerializer" id="1182718777%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-epost-serializer/index.html"><span>Epost</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1182718777%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-epost-serializer/index.html">EpostSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-epost/index.html">PgPromotionCardCompany.Epost</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1949533685%2FClasslikes%2F-1895836109" anchor-label="GwangjuCard" id="-1949533685%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-gwangju-card/index.html"><span>Gwangju</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1949533685%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-gwangju-card-serializer/index.html">PgPromotionCardCompany.GwangjuCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-gwangju-card/index.html">GwangjuCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">광주카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-564622311%2FClasslikes%2F-1895836109" anchor-label="GwangjuCardSerializer" id="-564622311%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-gwangju-card-serializer/index.html"><span>Gwangju</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-564622311%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-gwangju-card-serializer/index.html">GwangjuCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-gwangju-card/index.html">PgPromotionCardCompany.GwangjuCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1390904874%2FClasslikes%2F-1895836109" anchor-label="HanaCard" id="-1390904874%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hana-card/index.html"><span>Hana</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1390904874%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-hana-card-serializer/index.html">PgPromotionCardCompany.HanaCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hana-card/index.html">HanaCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">하나카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-45381084%2FClasslikes%2F-1895836109" anchor-label="HanaCardSerializer" id="-45381084%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hana-card-serializer/index.html"><span>Hana</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-45381084%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-hana-card-serializer/index.html">HanaCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-hana-card/index.html">PgPromotionCardCompany.HanaCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="929083134%2FClasslikes%2F-1895836109" anchor-label="HyundaiCard" id="929083134%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hyundai-card/index.html"><span>Hyundai</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="929083134%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-hyundai-card-serializer/index.html">PgPromotionCardCompany.HyundaiCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-hyundai-card/index.html">HyundaiCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">현대카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-363762356%2FClasslikes%2F-1895836109" anchor-label="HyundaiCardSerializer" id="-363762356%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hyundai-card-serializer/index.html"><span>Hyundai</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-363762356%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-hyundai-card-serializer/index.html">HyundaiCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-hyundai-card/index.html">PgPromotionCardCompany.HyundaiCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2090649412%2FClasslikes%2F-1895836109" anchor-label="JejuCard" id="-2090649412%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-jeju-card/index.html"><span>Jeju</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2090649412%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-jeju-card-serializer/index.html">PgPromotionCardCompany.JejuCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-jeju-card/index.html">JejuCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">제주카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2126945910%2FClasslikes%2F-1895836109" anchor-label="JejuCardSerializer" id="-2126945910%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-jeju-card-serializer/index.html"><span>Jeju</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2126945910%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-jeju-card-serializer/index.html">JejuCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-jeju-card/index.html">PgPromotionCardCompany.JejuCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="995756162%2FClasslikes%2F-1895836109" anchor-label="JeonbukCard" id="995756162%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-jeonbuk-card/index.html"><span>Jeonbuk</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="995756162%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-jeonbuk-card-serializer/index.html">PgPromotionCardCompany.JeonbukCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-jeonbuk-card/index.html">JeonbukCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">전북카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1394323920%2FClasslikes%2F-1895836109" anchor-label="JeonbukCardSerializer" id="1394323920%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-jeonbuk-card-serializer/index.html"><span>Jeonbuk</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1394323920%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-jeonbuk-card-serializer/index.html">JeonbukCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-jeonbuk-card/index.html">PgPromotionCardCompany.JeonbukCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1567551441%2FClasslikes%2F-1895836109" anchor-label="KakaoBank" id="1567551441%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kakao-bank/index.html"><span>Kakao</span><wbr></wbr><span><span>Bank</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1567551441%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-kakao-bank-serializer/index.html">PgPromotionCardCompany.KakaoBankSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kakao-bank/index.html">KakaoBank</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">카카오뱅크</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1007616607%2FClasslikes%2F-1895836109" anchor-label="KakaoBankSerializer" id="1007616607%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kakao-bank-serializer/index.html"><span>Kakao</span><wbr></wbr><span>Bank</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1007616607%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-kakao-bank-serializer/index.html">KakaoBankSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-kakao-bank/index.html">PgPromotionCardCompany.KakaoBank</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1298235223%2FClasslikes%2F-1895836109" anchor-label="KBank" id="-1298235223%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-bank/index.html"><span><span>KBank</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298235223%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-k-bank-serializer/index.html">PgPromotionCardCompany.KBankSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-k-bank/index.html">KBank</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">케이뱅크</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1744921911%2FClasslikes%2F-1895836109" anchor-label="KBankSerializer" id="1744921911%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-bank-serializer/index.html"><span>KBank</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1744921911%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-k-bank-serializer/index.html">KBankSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-k-bank/index.html">PgPromotionCardCompany.KBank</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="415983063%2FClasslikes%2F-1895836109" anchor-label="Kfcc" id="415983063%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kfcc/index.html"><span><span>Kfcc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="415983063%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-kfcc-serializer/index.html">PgPromotionCardCompany.KfccSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kfcc/index.html">Kfcc</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">새마을금고</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1546397925%2FClasslikes%2F-1895836109" anchor-label="KfccSerializer" id="1546397925%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kfcc-serializer/index.html"><span>Kfcc</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1546397925%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-kfcc-serializer/index.html">KfccSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-kfcc/index.html">PgPromotionCardCompany.Kfcc</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="465103054%2FClasslikes%2F-1895836109" anchor-label="KookminCard" id="465103054%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kookmin-card/index.html"><span>Kookmin</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="465103054%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-kookmin-card-serializer/index.html">PgPromotionCardCompany.KookminCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-kookmin-card/index.html">KookminCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">국민카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="642229020%2FClasslikes%2F-1895836109" anchor-label="KookminCardSerializer" id="642229020%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kookmin-card-serializer/index.html"><span>Kookmin</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="642229020%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-kookmin-card-serializer/index.html">KookminCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-kookmin-card/index.html">PgPromotionCardCompany.KookminCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1868552965%2FClasslikes%2F-1895836109" anchor-label="KoreaDevelopmentBank" id="1868552965%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-korea-development-bank/index.html"><span>Korea</span><wbr></wbr><span>Development</span><wbr></wbr><span><span>Bank</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1868552965%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-korea-development-bank-serializer/index.html">PgPromotionCardCompany.KoreaDevelopmentBankSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-korea-development-bank/index.html">KoreaDevelopmentBank</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">KDB산업은행</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-796230509%2FClasslikes%2F-1895836109" anchor-label="KoreaDevelopmentBankSerializer" id="-796230509%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-korea-development-bank-serializer/index.html"><span>Korea</span><wbr></wbr><span>Development</span><wbr></wbr><span>Bank</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-796230509%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-korea-development-bank-serializer/index.html">KoreaDevelopmentBankSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-korea-development-bank/index.html">PgPromotionCardCompany.KoreaDevelopmentBank</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-835173090%2FClasslikes%2F-1895836109" anchor-label="LotteCard" id="-835173090%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-lotte-card/index.html"><span>Lotte</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-835173090%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-lotte-card-serializer/index.html">PgPromotionCardCompany.LotteCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-lotte-card/index.html">LotteCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">롯데카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1111762068%2FClasslikes%2F-1895836109" anchor-label="LotteCardSerializer" id="-1111762068%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-lotte-card-serializer/index.html"><span>Lotte</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1111762068%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-lotte-card-serializer/index.html">LotteCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-lotte-card/index.html">PgPromotionCardCompany.LotteCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1183333982%2FClasslikes%2F-1895836109" anchor-label="MiraeAssetSecurities" id="1183333982%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-mirae-asset-securities/index.html"><span>Mirae</span><wbr></wbr><span>Asset</span><wbr></wbr><span><span>Securities</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1183333982%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-mirae-asset-securities-serializer/index.html">PgPromotionCardCompany.MiraeAssetSecuritiesSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-mirae-asset-securities/index.html">MiraeAssetSecurities</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">미래에셋증권</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="173360300%2FClasslikes%2F-1895836109" anchor-label="MiraeAssetSecuritiesSerializer" id="173360300%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-mirae-asset-securities-serializer/index.html"><span>Mirae</span><wbr></wbr><span>Asset</span><wbr></wbr><span>Securities</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="173360300%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-mirae-asset-securities-serializer/index.html">MiraeAssetSecuritiesSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-mirae-asset-securities/index.html">PgPromotionCardCompany.MiraeAssetSecurities</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1480135560%2FClasslikes%2F-1895836109" anchor-label="NhCard" id="1480135560%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-nh-card/index.html"><span>Nh</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1480135560%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-nh-card-serializer/index.html">PgPromotionCardCompany.NhCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-nh-card/index.html">NhCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">NH카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1984245078%2FClasslikes%2F-1895836109" anchor-label="NhCardSerializer" id="1984245078%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-nh-card-serializer/index.html"><span>Nh</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1984245078%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-nh-card-serializer/index.html">NhCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-nh-card/index.html">PgPromotionCardCompany.NhCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="934002150%2FClasslikes%2F-1895836109" anchor-label="SamsungCard" id="934002150%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-samsung-card/index.html"><span>Samsung</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="934002150%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-samsung-card-serializer/index.html">PgPromotionCardCompany.SamsungCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-samsung-card/index.html">SamsungCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">삼성카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1176176076%2FClasslikes%2F-1895836109" anchor-label="SamsungCardSerializer" id="-1176176076%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-samsung-card-serializer/index.html"><span>Samsung</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1176176076%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-samsung-card-serializer/index.html">SamsungCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-samsung-card/index.html">PgPromotionCardCompany.SamsungCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-778753667%2FClasslikes%2F-1895836109" anchor-label="SavingsBankKorea" id="-778753667%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-savings-bank-korea/index.html"><span>Savings</span><wbr></wbr><span>Bank</span><wbr></wbr><span><span>Korea</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-778753667%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-savings-bank-korea-serializer/index.html">PgPromotionCardCompany.SavingsBankKoreaSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-savings-bank-korea/index.html">SavingsBankKorea</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">저축은행</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="774509835%2FClasslikes%2F-1895836109" anchor-label="SavingsBankKoreaSerializer" id="774509835%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-savings-bank-korea-serializer/index.html"><span>Savings</span><wbr></wbr><span>Bank</span><wbr></wbr><span>Korea</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="774509835%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-savings-bank-korea-serializer/index.html">SavingsBankKoreaSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-savings-bank-korea/index.html">PgPromotionCardCompany.SavingsBankKorea</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1470724251%2FClasslikes%2F-1895836109" anchor-label="ShinhanCard" id="-1470724251%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-shinhan-card/index.html"><span>Shinhan</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1470724251%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-shinhan-card-serializer/index.html">PgPromotionCardCompany.ShinhanCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-shinhan-card/index.html">ShinhanCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">신한카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1272787187%2FClasslikes%2F-1895836109" anchor-label="ShinhanCardSerializer" id="1272787187%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-shinhan-card-serializer/index.html"><span>Shinhan</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1272787187%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-shinhan-card-serializer/index.html">ShinhanCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-shinhan-card/index.html">PgPromotionCardCompany.ShinhanCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1120933364%2FClasslikes%2F-1895836109" anchor-label="Shinhyup" id="-1120933364%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-shinhyup/index.html"><span><span>Shinhyup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1120933364%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-shinhyup-serializer/index.html">PgPromotionCardCompany.ShinhyupSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-shinhyup/index.html">Shinhyup</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">신협</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1827361062%2FClasslikes%2F-1895836109" anchor-label="ShinhyupSerializer" id="-1827361062%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-shinhyup-serializer/index.html"><span>Shinhyup</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1827361062%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-shinhyup-serializer/index.html">ShinhyupSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-shinhyup/index.html">PgPromotionCardCompany.Shinhyup</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1814669196%2FClasslikes%2F-1895836109" anchor-label="SuhyupCard" id="-1814669196%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-suhyup-card/index.html"><span>Suhyup</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1814669196%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-suhyup-card-serializer/index.html">PgPromotionCardCompany.SuhyupCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-suhyup-card/index.html">SuhyupCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">수협카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1812841662%2FClasslikes%2F-1895836109" anchor-label="SuhyupCardSerializer" id="-1812841662%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-suhyup-card-serializer/index.html"><span>Suhyup</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1812841662%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-suhyup-card-serializer/index.html">SuhyupCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-suhyup-card/index.html">PgPromotionCardCompany.SuhyupCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2028331227%2FClasslikes%2F-1895836109" anchor-label="TossBank" id="2028331227%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-toss-bank/index.html"><span>Toss</span><wbr></wbr><span><span>Bank</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2028331227%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-toss-bank-serializer/index.html">PgPromotionCardCompany.TossBankSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-toss-bank/index.html">TossBank</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">토스뱅크</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="423341801%2FClasslikes%2F-1895836109" anchor-label="TossBankSerializer" id="423341801%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-toss-bank-serializer/index.html"><span>Toss</span><wbr></wbr><span>Bank</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="423341801%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-toss-bank-serializer/index.html">TossBankSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-toss-bank/index.html">PgPromotionCardCompany.TossBank</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="748499299%2FClasslikes%2F-1895836109" anchor-label="Unrecognized" id="748499299%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unrecognized/index.html"><span><span>Unrecognized</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="748499299%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-unrecognized/index.html">Unrecognized</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">현재 SDK 버전에서 알 수 없는 응답을 나타냅니다.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1635413742%2FClasslikes%2F-1895836109" anchor-label="WooriCard" id="-1635413742%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-woori-card/index.html"><span>Woori</span><wbr></wbr><span><span>Card</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1635413742%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-woori-card-serializer/index.html">PgPromotionCardCompany.WooriCardSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-woori-card/index.html">WooriCard</a> : <a href="index.html">PgPromotionCardCompany</a></div><div class="brief "><p class="paragraph">우리카드</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1008846432%2FClasslikes%2F-1895836109" anchor-label="WooriCardSerializer" id="1008846432%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-woori-card-serializer/index.html"><span>Woori</span><wbr></wbr><span>Card</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1008846432%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-woori-card-serializer/index.html">WooriCardSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-woori-card/index.html">PgPromotionCardCompany.WooriCard</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-197334676%2FProperties%2F-1895836109" anchor-label="value" id="-197334676%2FProperties%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value.html"><span><span>value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-197334676%2FProperties%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -44,7 +44,7 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-0.22.0-1-g459aa80bbd        </div>
+0.22.0-8-g44225d0e9d        </div>
         <div class="navigation-controls">
         <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
                 <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
@@ -108,7 +108,7 @@
   <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.payment</a><span class="delimiter">/</span><span class="current">PaymentWebhookStatus</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Payment</span><wbr></wbr><span>Webhook</span><wbr></wbr><span><span>Status</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentWebhookStatusSerializer///PointingToDeclaration/">PaymentWebhookStatusSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PaymentWebhookStatus</a></div><p class="paragraph">웹훅 전송 상태</p><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-succeeded/index.html">Succeeded</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-failed-not-ok-response/index.html">FailedNotOkResponse</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-failed-unexpected-error/index.html">FailedUnexpectedError</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../-payment-webhook-status-serializer/index.html">PaymentWebhookStatusSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">PaymentWebhookStatus</a></div><p class="paragraph">웹훅 전송 상태</p><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-succeeded/index.html">Succeeded</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-failed-not-ok-response/index.html">FailedNotOkResponse</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-failed-unexpected-error/index.html">FailedUnexpectedError</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-unrecognized/index.html">Unrecognized</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -125,7 +125,22 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentWebhookStatus.FailedNotOkResponseSerializer///PointingToDeclaration/">PaymentWebhookStatus.FailedNotOkResponseSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-failed-not-ok-response/index.html">FailedNotOkResponse</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-failed-not-ok-response-serializer/index.html">PaymentWebhookStatus.FailedNotOkResponseSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-failed-not-ok-response/index.html">FailedNotOkResponse</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739836888%2FClasslikes%2F-1895836109" anchor-label="FailedNotOkResponseSerializer" id="-739836888%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-failed-not-ok-response-serializer/index.html"><span>Failed</span><wbr></wbr><span>Not</span><wbr></wbr><span>Ok</span><wbr></wbr><span>Response</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739836888%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-failed-not-ok-response-serializer/index.html">FailedNotOkResponseSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-failed-not-ok-response/index.html">PaymentWebhookStatus.FailedNotOkResponse</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
@@ -140,7 +155,22 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentWebhookStatus.FailedUnexpectedErrorSerializer///PointingToDeclaration/">PaymentWebhookStatus.FailedUnexpectedErrorSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-failed-unexpected-error/index.html">FailedUnexpectedError</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-failed-unexpected-error-serializer/index.html">PaymentWebhookStatus.FailedUnexpectedErrorSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-failed-unexpected-error/index.html">FailedUnexpectedError</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-195083839%2FClasslikes%2F-1895836109" anchor-label="FailedUnexpectedErrorSerializer" id="-195083839%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-failed-unexpected-error-serializer/index.html"><span>Failed</span><wbr></wbr><span>Unexpected</span><wbr></wbr><span>Error</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-195083839%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-failed-unexpected-error-serializer/index.html">FailedUnexpectedErrorSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-failed-unexpected-error/index.html">PaymentWebhookStatus.FailedUnexpectedError</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
@@ -155,7 +185,22 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><span data-unresolved-link="io.portone.sdk.server.payment/PaymentWebhookStatus.SucceededSerializer///PointingToDeclaration/">PaymentWebhookStatus.SucceededSerializer::class</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-succeeded/index.html">Succeeded</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-succeeded-serializer/index.html">PaymentWebhookStatus.SucceededSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">object </span><a href="-succeeded/index.html">Succeeded</a> : <a href="index.html">PaymentWebhookStatus</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1610665414%2FClasslikes%2F-1895836109" anchor-label="SucceededSerializer" id="-1610665414%2FClasslikes%2F-1895836109" data-filterable-set=":lib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-succeeded-serializer/index.html"><span>Succeeded</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1610665414%2FClasslikes%2F-1895836109"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-succeeded-serializer/index.html">SucceededSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-succeeded/index.html">PaymentWebhookStatus.Succeeded</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
