@@ -778,6 +778,36 @@ public sealed interface PgProvider {
     }
     override fun serialize(encoder: Encoder, value: PayletterGlobal) = encoder.encodeString(value.value)
   }
+  @Serializable(MobiliansV2Serializer::class)
+  public data object MobiliansV2 : PgProvider {
+    override val value: String = "MOBILIANS_V2"
+  }
+  private object MobiliansV2Serializer : KSerializer<MobiliansV2> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(MobiliansV2::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): MobiliansV2 = decoder.decodeString().let {
+      if (it != "MOBILIANS_V2") {
+        throw SerializationException(it)
+      } else {
+        return MobiliansV2
+      }
+    }
+    override fun serialize(encoder: Encoder, value: MobiliansV2) = encoder.encodeString(value.value)
+  }
+  @Serializable(TripleASerializer::class)
+  public data object TripleA : PgProvider {
+    override val value: String = "TRIPLE_A"
+  }
+  private object TripleASerializer : KSerializer<TripleA> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TripleA::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): TripleA = decoder.decodeString().let {
+      if (it != "TRIPLE_A") {
+        throw SerializationException(it)
+      } else {
+        return TripleA
+      }
+    }
+    override fun serialize(encoder: Encoder, value: TripleA) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgProvider
@@ -840,6 +870,8 @@ private object PgProviderSerializer : KSerializer<PgProvider> {
       "EXIMBAY_V2" -> PgProvider.EximbayV2
       "INICIS_JP" -> PgProvider.InicisJp
       "PAYLETTER_GLOBAL" -> PgProvider.PayletterGlobal
+      "MOBILIANS_V2" -> PgProvider.MobiliansV2
+      "TRIPLE_A" -> PgProvider.TripleA
       else -> PgProvider.Unrecognized(value)
     }
   }

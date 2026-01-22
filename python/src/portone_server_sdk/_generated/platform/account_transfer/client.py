@@ -46,6 +46,10 @@ class AccountTransferClient:
 
         여러 이체 내역을 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             test (bool, optional):
                 테스트 모드 여부
@@ -124,6 +128,10 @@ class AccountTransferClient:
         """이체 내역 다건 조회
 
         여러 이체 내역을 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             test (bool, optional):

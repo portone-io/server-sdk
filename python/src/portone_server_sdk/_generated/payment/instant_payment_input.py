@@ -86,6 +86,9 @@ class InstantPaymentInput:
     promotion_id: Optional[str] = field(default=None)
     """해당 결제에 적용할 프로모션 아이디
     """
+    bypass: Optional[dict] = field(default=None)
+    """PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+    """
 
 
 def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
@@ -124,6 +127,8 @@ def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
         entity["shippingAddress"] = _serialize_separated_address_input(obj.shipping_address)
     if obj.promotion_id is not None:
         entity["promotionId"] = obj.promotion_id
+    if obj.bypass is not None:
+        entity["bypass"] = obj.bypass
     return entity
 
 
@@ -233,4 +238,10 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
             raise ValueError(f"{repr(promotion_id)} is not str")
     else:
         promotion_id = None
-    return InstantPaymentInput(method, order_name, amount, currency, store_id, channel_key, channel_group_id, is_cultural_expense, is_escrow, customer, custom_data, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id)
+    if "bypass" in obj:
+        bypass = obj["bypass"]
+        if not isinstance(bypass, dict):
+            raise ValueError(f"{repr(bypass)} is not dict")
+    else:
+        bypass = None
+    return InstantPaymentInput(method, order_name, amount, currency, store_id, channel_key, channel_group_id, is_cultural_expense, is_escrow, customer, custom_data, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, bypass)

@@ -8,6 +8,7 @@ from ..common.currency import Currency, _deserialize_currency, _serialize_curren
 from ..common.customer import Customer, _deserialize_customer, _serialize_customer
 from ..payment.dispute import Dispute, _deserialize_dispute, _serialize_dispute
 from ..payment.payment_amount import PaymentAmount, _deserialize_payment_amount, _serialize_payment_amount
+from ..payment.payment_cancellation import PaymentCancellation, _deserialize_payment_cancellation, _serialize_payment_cancellation
 from ..payment.payment_cash_receipt import PaymentCashReceipt, _deserialize_payment_cash_receipt, _serialize_payment_cash_receipt
 from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
 from ..payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
@@ -128,6 +129,9 @@ class PaidPayment:
     receipt_url: Optional[str] = field(default=None)
     """거래 영수증 URL
     """
+    cancellations: Optional[list[PaymentCancellation]] = field(default=None)
+    """결제 취소 요청 내역
+    """
 
 
 def _serialize_paid_payment(obj: PaidPayment) -> Any:
@@ -182,6 +186,8 @@ def _serialize_paid_payment(obj: PaidPayment) -> Any:
         entity["cashReceipt"] = _serialize_payment_cash_receipt(obj.cash_receipt)
     if obj.receipt_url is not None:
         entity["receiptUrl"] = obj.receipt_url
+    if obj.cancellations is not None:
+        entity["cancellations"] = list(map(_serialize_payment_cancellation, obj.cancellations))
     return entity
 
 
@@ -363,4 +369,13 @@ def _deserialize_paid_payment(obj: Any) -> PaidPayment:
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return PaidPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, paid_at, disputes, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id, pg_response, cash_receipt, receipt_url)
+    if "cancellations" in obj:
+        cancellations = obj["cancellations"]
+        if not isinstance(cancellations, list):
+            raise ValueError(f"{repr(cancellations)} is not list")
+        for i, item in enumerate(cancellations):
+            item = _deserialize_payment_cancellation(item)
+            cancellations[i] = item
+    else:
+        cancellations = None
+    return PaidPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, paid_at, disputes, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id, pg_response, cash_receipt, receipt_url, cancellations)

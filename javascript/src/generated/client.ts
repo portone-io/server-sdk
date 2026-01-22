@@ -5,6 +5,7 @@ import { PaymentClient } from "./payment/client"
 import { IdentityVerificationClient } from "./identityVerification/client"
 import { PgSpecificClient } from "./pgSpecific/client"
 import { AuthClient } from "./auth/client"
+import { ReconciliationClient } from "./reconciliation/client"
 /**
  * 포트원 API 클라이언트를 생성합니다.
  */
@@ -16,6 +17,7 @@ export function PortOneClient(init: PortOneClientInit): PortOneClient {
 		identityVerification: IdentityVerificationClient(init),
 		pgSpecific: PgSpecificClient(init),
 		auth: AuthClient(init),
+		reconciliation: ReconciliationClient(init),
 	}
 }
 export type PortOneClient = {
@@ -25,4 +27,5 @@ export type PortOneClient = {
 	identityVerification: IdentityVerificationClient
 	pgSpecific: PgSpecificClient
 	auth: AuthClient
+	reconciliation: ReconciliationClient
 }

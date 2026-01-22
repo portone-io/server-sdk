@@ -1,5 +1,5 @@
 import type { Currency } from "./../../common/Currency"
-import type { DateRange } from "./../../platform/DateRange"
+import type { DateRange } from "./../../common/DateRange"
 import type { PlatformContract } from "./../../platform/PlatformContract"
 import type { PlatformOrderSettlementAmount } from "./../../platform/PlatformOrderSettlementAmount"
 import type { PlatformPartner } from "./../../platform/PlatformPartner"

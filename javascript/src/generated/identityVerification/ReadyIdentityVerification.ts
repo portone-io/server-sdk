@@ -30,4 +30,6 @@ export type ReadyIdentityVerification = {
 	statusChangedAt: string
 	/** 포트원 버전 */
 	version: PortOneVersion
+	/** 본인인증 내역 PG사 아이디 */
+	pgTxId?: string
 }

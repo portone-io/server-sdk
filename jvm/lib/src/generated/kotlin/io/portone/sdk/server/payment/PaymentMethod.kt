@@ -26,6 +26,7 @@ private object PaymentMethodSerializer : JsonContentPolymorphicSerializer<Paymen
   override fun selectDeserializer(element: JsonElement) = when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
     "PaymentMethodCard" -> PaymentMethodCard.serializer()
     "PaymentMethodConvenienceStore" -> PaymentMethodConvenienceStore.serializer()
+    "PaymentMethodCrypto" -> PaymentMethodCrypto.serializer()
     "PaymentMethodEasyPay" -> PaymentMethodEasyPay.serializer()
     "PaymentMethodGiftCertificate" -> PaymentMethodGiftCertificate.serializer()
     "PaymentMethodMobile" -> PaymentMethodMobile.serializer()

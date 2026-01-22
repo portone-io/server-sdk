@@ -1,3 +1,4 @@
+import type { B2bTaxInvoiceSortInput } from "./../../b2b/taxInvoice/B2bTaxInvoiceSortInput"
 import type { GetB2bTaxInvoicesBodyFilter } from "./../../b2b/taxInvoice/GetB2bTaxInvoicesBodyFilter"
 /** 세금 계산서 다건 조회를 위한 입력 정보 */
 export type GetB2bTaxInvoicesBody = {
@@ -23,4 +24,10 @@ export type GetB2bTaxInvoicesBody = {
 	pageSize?: number
 	/** 필터 */
 	filter?: GetB2bTaxInvoicesBodyFilter
+	/**
+	 * 정렬 조건
+	 *
+	 * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+	 */
+	sort?: B2bTaxInvoiceSortInput
 }

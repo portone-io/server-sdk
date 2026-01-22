@@ -19,7 +19,7 @@ internal data class GetAllPaymentEventsByCursorBody(
    *
    * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
    */
-  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
+  val from: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 이벤트 생성시점 범위 조건의 끝
    *

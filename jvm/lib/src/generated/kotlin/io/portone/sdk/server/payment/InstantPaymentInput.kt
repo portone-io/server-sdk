@@ -11,6 +11,7 @@ import io.portone.sdk.server.payment.InstantPaymentMethodInput
 import kotlin.Array
 import kotlin.String
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonObject
 
 /** 수기 결제 요청 정보 */
 @Serializable
@@ -81,6 +82,7 @@ internal data class InstantPaymentInput(
   val shippingAddress: SeparatedAddressInput? = null,
   /** 해당 결제에 적용할 프로모션 아이디 */
   val promotionId: String? = null,
+  val bypass: JsonObject? = null,
 )
 
 

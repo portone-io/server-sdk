@@ -3,7 +3,7 @@ from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
-from ...platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
+from ...common.date_range import DateRange, _deserialize_date_range, _serialize_date_range
 from ...platform.platform_contract import PlatformContract, _deserialize_platform_contract, _serialize_platform_contract
 from ...platform.platform_order_settlement_amount import PlatformOrderSettlementAmount, _deserialize_platform_order_settlement_amount, _serialize_platform_order_settlement_amount
 from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner

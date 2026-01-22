@@ -1,7 +1,7 @@
 package io.portone.sdk.server.platform.transfer
 
+import io.portone.sdk.server.common.DateRange
 import io.portone.sdk.server.common.PaymentMethodType
-import io.portone.sdk.server.platform.DateRange
 import io.portone.sdk.server.platform.transfer.PlatformTransferFilterInputKeyword
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformTransferType

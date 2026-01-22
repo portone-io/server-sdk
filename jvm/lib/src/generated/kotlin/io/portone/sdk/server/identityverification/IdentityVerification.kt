@@ -33,6 +33,8 @@ public sealed interface IdentityVerification {
     public val statusChangedAt: Instant
     /** 포트원 버전 */
     public val version: PortOneVersion
+    /** 본인인증 내역 PG사 아이디 */
+    public val pgTxId: String?
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

@@ -3,6 +3,7 @@ import type { Unrecognized } from "./../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../client"
 import { BillingKeyClient } from "./billingKey/client"
 import { CashReceiptClient } from "./cashReceipt/client"
+import { AdditionalFeatureClient } from "./additionalFeature/client"
 import { PaymentScheduleClient } from "./paymentSchedule/client"
 import { PromotionClient } from "./promotion/client"
 import type { AlreadyPaidError } from "../../generated/payment/AlreadyPaidError"
@@ -46,6 +47,8 @@ import type { PayWithBillingKeyResponse } from "../../generated/payment/PayWithB
 import type { Payment } from "../../generated/payment/Payment"
 import type { PaymentAlreadyCancelledError } from "../../generated/payment/PaymentAlreadyCancelledError"
 import type { PaymentAmountInput } from "../../generated/common/PaymentAmountInput"
+import type { PaymentCancellationNotFoundError } from "../../generated/payment/PaymentCancellationNotFoundError"
+import type { PaymentCancellationNotPendingError } from "../../generated/payment/PaymentCancellationNotPendingError"
 import type { PaymentEscrowReceiverInput } from "../../generated/payment/PaymentEscrowReceiverInput"
 import type { PaymentEscrowSenderInput } from "../../generated/payment/PaymentEscrowSenderInput"
 import type { PaymentFilterInput } from "../../generated/payment/PaymentFilterInput"
@@ -65,6 +68,7 @@ import type { RegisterStoreReceiptBodyItem } from "../../generated/payment/Regis
 import type { RegisterStoreReceiptResponse } from "../../generated/payment/RegisterStoreReceiptResponse"
 import type { ResendWebhookResponse } from "../../generated/payment/ResendWebhookResponse"
 import type { SeparatedAddressInput } from "../../generated/common/SeparatedAddressInput"
+import type { StopPaymentCancellationResponse } from "../../generated/payment/StopPaymentCancellationResponse"
 import type { SumOfPartsExceedsCancelAmountError } from "../../generated/payment/SumOfPartsExceedsCancelAmountError"
 import type { SumOfPartsExceedsTotalAmountError } from "../../generated/common/SumOfPartsExceedsTotalAmountError"
 import type { UnauthorizedError } from "../../generated/common/UnauthorizedError"
@@ -259,6 +263,8 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionDiscountRetainOption?: PromotionDiscountRetainOption,
 				currentCancellableAmount?: number,
 				refundAccount?: CancelPaymentBodyRefundAccount,
+				refundEmail?: string,
+				skipWebhook?: boolean,
 			}
 		): Promise<CancelPaymentResponse> => {
 			const {
@@ -272,6 +278,8 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
+				refundEmail,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -283,6 +291,8 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionDiscountRetainOption,
 				currentCancellableAmount,
 				refundAccount,
+				refundEmail,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/cancel`, baseUrl),
@@ -297,6 +307,37 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 			)
 			if (!response.ok) {
 				throw new CancelPaymentError(await response.json())
+			}
+			return response.json()
+		},
+		stopPaymentCancellation: async (
+			options: {
+				paymentId: string,
+				cancellationId: string,
+				storeId?: string,
+			}
+		): Promise<StopPaymentCancellationResponse> => {
+			const {
+				paymentId,
+				cancellationId,
+				storeId,
+			} = options
+			const requestBody = JSON.stringify({
+				storeId: storeId ?? init.storeId,
+			})
+			const response = await fetch(
+				new URL(`/payments/${encodeURIComponent(paymentId)}/cancellations/${encodeURIComponent(cancellationId)}/stop`, baseUrl),
+				{
+					method: "POST",
+					headers: {
+						Authorization: `PortOne ${secret}`,
+						"User-Agent": USER_AGENT,
+					},
+					body: requestBody,
+				},
+			)
+			if (!response.ok) {
+				throw new StopPaymentCancellationError(await response.json())
 			}
 			return response.json()
 		},
@@ -517,6 +558,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				productType?: PaymentProductType,
 				shippingAddress?: SeparatedAddressInput,
 				promotionId?: string,
+				bypass?: object,
 			}
 		): Promise<PayInstantlyResponse> => {
 			const {
@@ -539,6 +581,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				productType,
 				shippingAddress,
 				promotionId,
+				bypass,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -559,6 +602,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				productType,
 				shippingAddress,
 				promotionId,
+				bypass,
 			})
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/instant`, baseUrl),
@@ -802,6 +846,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 		},
 		billingKey: BillingKeyClient(init),
 		cashReceipt: CashReceiptClient(init),
+		additionalFeature: AdditionalFeatureClient(init),
 		paymentSchedule: PaymentScheduleClient(init),
 		promotion: PromotionClient(init),
 	}
@@ -813,6 +858,8 @@ export type PaymentClient = {
 	 * 기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
 	 *
 	 * @throws {@link GetAllPaymentEventsError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getAllPaymentEventsByCursor: (
 		options?: {
@@ -857,6 +904,8 @@ export type PaymentClient = {
 	 * 기간 내 모든 결제 건을 커서 기반으로 조회합니다. 결제 건의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 건이 조회됩니다.
 	 *
 	 * @throws {@link GetAllPaymentsError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getAllPaymentsByCursor: (
 		options?: {
@@ -1050,8 +1099,42 @@ export type PaymentClient = {
 			 * 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
 			 */
 			refundAccount?: CancelPaymentBodyRefundAccount,
+			/**
+			 * 환불 이메일
+			 *
+			 * Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+			 */
+			refundEmail?: string,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<CancelPaymentResponse>
+	/**
+	 * 결제 취소 요청 취소
+	 *
+	 * 비동기적으로 수행되는 결제 취소 요청을 취소합니다.
+	 * Triple-A에서만 사용됩니다.
+	 *
+	 * @throws {@link StopPaymentCancellationError}
+	 */
+	stopPaymentCancellation: (
+		options: {
+			/** 결제 건 아이디 */
+			paymentId: string,
+			/** 취소 요청 아이디 */
+			cancellationId: string,
+			/**
+			 * 상점 아이디
+			 *
+			 * 접근 권한이 있는 상점 아이디만 입력 가능하며, 미입력시 인증 정보의 상점 아이디를 사용합니다.
+			 */
+			storeId?: string,
+		}
+	) => Promise<StopPaymentCancellationResponse>
 	/**
 	 * 수동 매입
 	 *
@@ -1300,6 +1383,8 @@ export type PaymentClient = {
 			shippingAddress?: SeparatedAddressInput,
 			/** 해당 결제에 적용할 프로모션 아이디 */
 			promotionId?: string,
+			/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
+			bypass?: object,
 		}
 	) => Promise<PayInstantlyResponse>
 	/**
@@ -1383,6 +1468,8 @@ export type PaymentClient = {
 	 * 주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
 	 *
 	 * @throws {@link GetPaymentTransactionsError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPaymentTransactions: (
 		options: {
@@ -1455,6 +1542,7 @@ export type PaymentClient = {
 	) => Promise<GetPaymentsResponse>
 	billingKey: BillingKeyClient
 	cashReceipt: CashReceiptClient
+	additionalFeature: AdditionalFeatureClient
 	paymentSchedule: PaymentScheduleClient
 	promotion: PromotionClient
 }
@@ -1492,6 +1580,15 @@ export class CancelPaymentError extends PaymentError {
 		super(data)
 		Object.setPrototypeOf(this, CancelPaymentError.prototype)
 		this.name = "CancelPaymentError"
+	}
+}
+export class StopPaymentCancellationError extends PaymentError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PaymentCancellationNotFoundError | PaymentCancellationNotPendingError | PaymentNotFoundError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }
+	/** @ignore */
+	constructor(data: ForbiddenError | InvalidRequestError | PaymentCancellationNotFoundError | PaymentCancellationNotPendingError | PaymentNotFoundError | PgProviderError | UnauthorizedError | { readonly type: Unrecognized }) {
+		super(data)
+		Object.setPrototypeOf(this, StopPaymentCancellationError.prototype)
+		this.name = "StopPaymentCancellationError"
 	}
 }
 export class CapturePaymentError extends PaymentError {

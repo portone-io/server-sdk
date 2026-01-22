@@ -30,6 +30,7 @@
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
     "./payment": "./src/generated/payment/index.ts",
+    "./payment/additionalFeature": "./src/generated/payment/additionalFeature/index.ts",
     "./payment/billingKey": "./src/generated/payment/billingKey/index.ts",
     "./payment/cashReceipt": "./src/generated/payment/cashReceipt/index.ts",
     "./payment/paymentSchedule": "./src/generated/payment/paymentSchedule/index.ts",
@@ -45,7 +46,8 @@
     "./platform/partnerSettlement": "./src/generated/platform/partnerSettlement/index.ts",
     "./platform/payout": "./src/generated/platform/payout/index.ts",
     "./platform/policy": "./src/generated/platform/policy/index.ts",
-    "./platform/transfer": "./src/generated/platform/transfer/index.ts"
+    "./platform/transfer": "./src/generated/platform/transfer/index.ts",
+    "./reconciliation": "./src/generated/reconciliation/index.ts"
   },
   "publishConfig": {
     "exports": {
@@ -88,6 +90,11 @@
         "types": "./dist/generated/payment/index.d.ts",
         "require": "./dist/generated/payment/index.cjs",
         "import": "./dist/generated/payment/index.mjs"
+      },
+      "./payment/additionalFeature": {
+        "types": "./dist/generated/payment/additionalFeature/index.d.ts",
+        "require": "./dist/generated/payment/additionalFeature/index.cjs",
+        "import": "./dist/generated/payment/additionalFeature/index.mjs"
       },
       "./payment/billingKey": {
         "types": "./dist/generated/payment/billingKey/index.d.ts",
@@ -168,6 +175,11 @@
         "types": "./dist/generated/platform/transfer/index.d.ts",
         "require": "./dist/generated/platform/transfer/index.cjs",
         "import": "./dist/generated/platform/transfer/index.mjs"
+      },
+      "./reconciliation": {
+        "types": "./dist/generated/reconciliation/index.d.ts",
+        "require": "./dist/generated/reconciliation/index.cjs",
+        "import": "./dist/generated/reconciliation/index.mjs"
       }
     }
   },
@@ -180,13 +192,13 @@
     "publish": "jsr publish --allow-dirty"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.5",
-    "@changesets/cli": "^2.29.7",
+    "@biomejs/biome": "^2.3.11",
+    "@changesets/cli": "^2.29.8",
     "@expo/spawn-async": "^1.7.2",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.9",
     "@vitest/ui": "^3.1.4",
     "jsr": "^0.13.5",
-    "typedoc": "^0.28.14",
+    "typedoc": "^0.28.16",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
     "vitest": "^3.1.4"

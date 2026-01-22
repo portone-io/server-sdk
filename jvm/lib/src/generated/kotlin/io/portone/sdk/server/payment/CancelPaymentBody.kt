@@ -62,6 +62,18 @@ internal data class CancelPaymentBody(
    * 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
    */
   val refundAccount: CancelPaymentBodyRefundAccount? = null,
+  /**
+   * 환불 이메일
+   *
+   * Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+   */
+  val refundEmail: String? = null,
+  /**
+   * 웹훅 생략 여부
+   *
+   * 취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+   */
+  val skipWebhook: Boolean? = null,
 )
 
 

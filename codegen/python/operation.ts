@@ -9,6 +9,15 @@ import type { Operation } from "../parser/operation.ts"
 import { annotateDescription } from "../python/description.ts"
 import { filterName, intoInlineTypeName, PythonWriter } from "./common.ts"
 import { writeDescription } from "./description.ts"
+import { UNSTABLE_DESCRIPTION } from "../common/description.ts"
+
+const unstableDocstring = (() => {
+  const writer = PythonWriter()
+  writer.writeLine("Warning:")
+  writer.indent()
+  writer.writeLine(UNSTABLE_DESCRIPTION)
+  return writer.content
+})()
 
 export function writeOperation(
   writer: Writer,
@@ -21,9 +30,10 @@ export function writeOperation(
 ) {
   const errors = fetchErrors(operation, entityMap)
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
-  const params = operation.params.path.concat(operation.params.query).concat(
-    requestBody,
-  ).filter(({ name }) => name !== "storeId")
+  const params = operation.params.path
+    .concat(operation.params.query)
+    .concat(requestBody)
+    .filter(({ name }) => name !== "storeId")
   if (async) {
     writer.writeLine(`async def ${toSnakeCase(operation.id)}_async(`)
   } else {
@@ -39,9 +49,7 @@ export function writeOperation(
   switch (operation.response?.type) {
     case "application/json":
       crossRef.add(operation.response.schema)
-      writer.writeLine(
-        `) -> ${operation.response.schema}:`,
-      )
+      writer.writeLine(`) -> ${operation.response.schema}:`)
       break
     case "text/csv":
       writer.writeLine(") -> str:")
@@ -60,15 +68,21 @@ export function writeOperation(
     paramWriter.writeLine("Args:")
     paramWriter.indent()
     for (const param of params) {
-      const lines = ([] as string[]).concat(param.title ?? []).concat(
-        param.description === null
-          ? []
-          : annotateDescription(param.description, param),
-      ).join("\n\n").split("\n")
+      const lines = ([] as string[])
+        .concat(param.title ?? [])
+        .concat(
+          param.description === null
+            ? []
+            : annotateDescription(param.description, param),
+        )
+        .join("\n\n")
+        .split("\n")
       const optionalMark = param.required ? "" : ", optional"
       paramWriter.writeLine(
         `${filterName(param.name)} (${
-          intoInlineTypeName(param)
+          intoInlineTypeName(
+            param,
+          )
         }${optionalMark}):`,
       )
       paramWriter.indent()
@@ -86,13 +100,12 @@ export function writeOperation(
   errorWriter.writeLine(
     "ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우",
   )
-  const description = ([] as string[]).concat(
-    operation.description?.trimEnd() ?? [],
-  ).concat(
-    paramWriter.content.length > 0 ? paramWriter.content : [],
-  ).concat(
-    errorWriter.content,
-  ).join("\n\n")
+  const description = ([] as string[])
+    .concat(operation.description?.trimEnd() ?? [])
+    .concat(operation.unstable ? unstableDocstring : [])
+    .concat(paramWriter.content.length > 0 ? paramWriter.content : [])
+    .concat(errorWriter.content)
+    .join("\n\n")
   writeDescription(writer, description)
   writeRequestBody(writer, requestBody)
   switch (operation.method) {
@@ -110,7 +123,9 @@ export function writeOperation(
       writeQuery(writer, operation.params.query, false)
       break
     default:
-      throw new Error("unrecognized operation method", { cause: { operation } })
+      throw new Error("unrecognized operation method", {
+        cause: { operation },
+      })
   }
   if (async) {
     writer.writeLine("response = await self._async_client.request(")
@@ -145,9 +160,7 @@ export function writeOperation(
   writer.writeLine(")")
   writer.writeLine("if response.status_code != 200:")
   writer.indent()
-  writer.writeLine(
-    "error_response = response.json()",
-  )
+  writer.writeLine("error_response = response.json()")
   writer.writeLine("error = None")
   for (const variant of errors) {
     writer.writeLine("try:")
@@ -173,7 +186,9 @@ export function writeOperation(
     case "application/json":
       writer.writeLine(
         `return _deserialize_${
-          toSnakeCase(operation.response.schema)
+          toSnakeCase(
+            operation.response.schema,
+          )
         }(response.json())`,
       )
       break
@@ -253,13 +268,17 @@ function writeRequestBody(writer: Writer, body: Property[]) {
     if (property.type === "ref") {
       writer.writeLine(
         `request_body["${property.name}"] = _serialize_${
-          toSnakeCase(property.value)
+          toSnakeCase(
+            property.value,
+          )
         }(${name})`,
       )
     } else if (property.type === "array" && property.item.type === "ref") {
       writer.writeLine(
         `request_body["${property.name}"] = [_serialize_${
-          toSnakeCase(property.item.value)
+          toSnakeCase(
+            property.item.value,
+          )
         }(item) for item in ${name}]`,
       )
     } else {
@@ -330,9 +349,7 @@ function writePropertyList(
         break
       case "ref":
         crossRef.add(property.value)
-        writer.writeLine(
-          `${name}: ${toOptional(property.value)},`,
-        )
+        writer.writeLine(`${name}: ${toOptional(property.value)},`)
         break
       case "array":
         switch (property.item.type) {

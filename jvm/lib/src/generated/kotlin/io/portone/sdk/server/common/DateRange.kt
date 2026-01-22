@@ -1,4 +1,4 @@
-package io.portone.sdk.server.platform
+package io.portone.sdk.server.common
 
 import kotlin.String
 import kotlinx.serialization.Serializable
@@ -9,7 +9,7 @@ public data class DateRange(
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
    * (yyyy-MM-dd)
    */
-  val `from`: String,
+  val from: String,
   /**
    * 날짜를 나타내는 문자열로, `yyyy-MM-dd` 형식을 따릅니다.
    * (yyyy-MM-dd)

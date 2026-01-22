@@ -478,6 +478,21 @@ public sealed interface PgCompany {
     }
     override fun serialize(encoder: Encoder, value: Payletter) = encoder.encodeString(value.value)
   }
+  @Serializable(TripleASerializer::class)
+  public data object TripleA : PgCompany {
+    override val value: String = "TRIPLE_A"
+  }
+  private object TripleASerializer : KSerializer<TripleA> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(TripleA::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): TripleA = decoder.decodeString().let {
+      if (it != "TRIPLE_A") {
+        throw SerializationException(it)
+      } else {
+        return TripleA
+      }
+    }
+    override fun serialize(encoder: Encoder, value: TripleA) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgCompany
@@ -520,6 +535,7 @@ private object PgCompanySerializer : KSerializer<PgCompany> {
       "KPN" -> PgCompany.Kpn
       "HYPHEN" -> PgCompany.Hyphen
       "PAYLETTER" -> PgCompany.Payletter
+      "TRIPLE_A" -> PgCompany.TripleA
       else -> PgCompany.Unrecognized(value)
     }
   }

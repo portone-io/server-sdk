@@ -41,6 +41,9 @@ from ..._generated.payment.cash_receipt.issue_cash_receipt_body import (
 from ..._generated.payment.cash_receipt.issue_cash_receipt_customer_input import (
     IssueCashReceiptCustomerInput,
 )
+from ..._generated.payment.cash_receipt.issue_cash_receipt_customer_input_identity_number_type import (
+    IssueCashReceiptCustomerInputIdentityNumberType,
+)
 from ..._generated.payment.cash_receipt.issue_cash_receipt_payment_method_type import (
     IssueCashReceiptPaymentMethodType,
 )
@@ -71,6 +74,7 @@ __all__ = [
     "GetCashReceiptsResponse",
     "IssueCashReceiptBody",
     "IssueCashReceiptCustomerInput",
+    "IssueCashReceiptCustomerInputIdentityNumberType",
     "IssueCashReceiptPaymentMethodType",
     "IssueCashReceiptResponse",
     "IssueFailedCashReceipt",

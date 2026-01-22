@@ -16,6 +16,7 @@ from .._generated.common.customer import Customer
 from .._generated.common.customer_input import CustomerInput
 from .._generated.common.customer_name_input import CustomerNameInput
 from .._generated.common.customer_separated_name import CustomerSeparatedName
+from .._generated.common.date_range import DateRange
 from .._generated.common.date_time_range import DateTimeRange
 from .._generated.common.easy_pay_provider import EasyPayProvider
 from .._generated.common.gender import Gender
@@ -56,6 +57,7 @@ __all__ = [
     "CustomerInput",
     "CustomerNameInput",
     "CustomerSeparatedName",
+    "DateRange",
     "DateTimeRange",
     "EasyPayProvider",
     "Gender",

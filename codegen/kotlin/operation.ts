@@ -86,6 +86,11 @@ export function writeOperation(
   writeDescription(writer, description)
   const futureWriter = KotlinWriter()
   writeDescription(futureWriter, "@suppress")
+  if (operation.unstable) {
+    crossRef.add("io.portone.sdk.server.annotations.PortOneUnstable")
+    writer.writeLine("@PortOneUnstable")
+    futureWriter.writeLine("@PortOneUnstable")
+  }
   writer.writeLine(`@JvmName("${operation.id}Suspend")`)
   futureWriter.writeLine(`@JvmName("${operation.id}")`)
   writer.writeLine(`public suspend fun ${operation.id}(`)

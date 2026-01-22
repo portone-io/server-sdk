@@ -6,6 +6,7 @@ from .payment.client import PaymentClient
 from .identity_verification.client import IdentityVerificationClient
 from .pg_specific.client import PgSpecificClient
 from .auth.client import AuthClient
+from .reconciliation.client import ReconciliationClient
 
 class PortOneClient:
     b2b: B2bClient
@@ -14,6 +15,7 @@ class PortOneClient:
     identity_verification: IdentityVerificationClient
     pg_specific: PgSpecificClient
     auth: AuthClient
+    reconciliation: ReconciliationClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None) -> None:
         """
@@ -31,3 +33,4 @@ class PortOneClient:
         self.identity_verification = IdentityVerificationClient(secret=secret, base_url=base_url, store_id=store_id)
         self.pg_specific = PgSpecificClient(secret=secret, base_url=base_url, store_id=store_id)
         self.auth = AuthClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.reconciliation = ReconciliationClient(secret=secret, base_url=base_url, store_id=store_id)

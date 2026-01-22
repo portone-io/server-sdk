@@ -814,6 +814,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 	 *
 	 * @throws {@link GetPlatformAdditionalFeePolicyScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformAdditionalFeePolicySchedule: (
 		options: {
@@ -827,7 +829,11 @@ export type PlatformClient = {
 			test?: boolean,
 		}
 	) => Promise<PlatformAdditionalFeePolicy>
-	/** @throws {@link RescheduleAdditionalFeePolicyError} */
+	/**
+	 * @throws {@link RescheduleAdditionalFeePolicyError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+	 */
 	rescheduleAdditionalFeePolicy: (
 		options: {
 			/** 추가 수수료 정책 아이디 */
@@ -851,6 +857,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
 	 *
 	 * @throws {@link ScheduleAdditionalFeePolicyError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	scheduleAdditionalFeePolicy: (
 		options: {
@@ -875,6 +883,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
 	 *
 	 * @throws {@link CancelPlatformAdditionalFeePolicyScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	cancelPlatformAdditionalFeePolicySchedule: (
 		options: {
@@ -892,6 +902,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 	 *
 	 * @throws {@link GetPlatformContractScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformContractSchedule: (
 		options: {
@@ -909,6 +921,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
 	 *
 	 * @throws {@link RescheduleContractError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	rescheduleContract: (
 		options: {
@@ -933,6 +947,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
 	 *
 	 * @throws {@link ScheduleContractError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	scheduleContract: (
 		options: {
@@ -957,6 +973,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
 	 *
 	 * @throws {@link CancelPlatformContractScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	cancelPlatformContractSchedule: (
 		options: {
@@ -974,6 +992,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
 	 *
 	 * @throws {@link GetPlatformDiscountSharePolicyScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformDiscountSharePolicySchedule: (
 		options: {
@@ -991,6 +1011,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
 	 *
 	 * @throws {@link RescheduleDiscountSharePolicyError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	rescheduleDiscountSharePolicy: (
 		options: {
@@ -1015,6 +1037,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
 	 *
 	 * @throws {@link ScheduleDiscountSharePolicyError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	scheduleDiscountSharePolicy: (
 		options: {
@@ -1039,6 +1063,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
 	 *
 	 * @throws {@link CancelPlatformDiscountSharePolicyScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	cancelPlatformDiscountSharePolicySchedule: (
 		options: {
@@ -1056,6 +1082,8 @@ export type PlatformClient = {
 	 * 할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 	 *
 	 * @throws {@link GetPlatformDiscountSharePolicyFilterOptionsError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformDiscountSharePolicyFilterOptions: (
 		options?: {
@@ -1077,6 +1105,8 @@ export type PlatformClient = {
 	 * 파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
 	 *
 	 * @throws {@link GetPlatformPartnerFilterOptionsError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformPartnerFilterOptions: (
 		options?: {
@@ -1094,7 +1124,11 @@ export type PlatformClient = {
 			isArchived?: boolean,
 		}
 	) => Promise<PlatformPartnerFilterOptions>
-	/** @throws {@link SchedulePlatformPartnersError} */
+	/**
+	 * @throws {@link SchedulePlatformPartnersError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+	 */
 	schedulePlatformPartners: (
 		options: {
 			/**
@@ -1113,6 +1147,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
 	 *
 	 * @throws {@link GetPlatformPartnerScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	getPlatformPartnerSchedule: (
 		options: {
@@ -1130,6 +1166,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
 	 *
 	 * @throws {@link ReschedulePartnerError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	reschedulePartner: (
 		options: {
@@ -1154,6 +1192,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
 	 *
 	 * @throws {@link SchedulePartnerError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	schedulePartner: (
 		options: {
@@ -1178,6 +1218,8 @@ export type PlatformClient = {
 	 * 주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
 	 *
 	 * @throws {@link CancelPlatformPartnerScheduleError}
+	 *
+	 * @unstable 실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
 	 */
 	cancelPlatformPartnerSchedule: (
 		options: {

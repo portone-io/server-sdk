@@ -51,4 +51,6 @@ export type PgProvider =
 	| "EXIMBAY_V2"
 	| "INICIS_JP"
 	| "PAYLETTER_GLOBAL"
+	| "MOBILIANS_V2"
+	| "TRIPLE_A"
 	| string & {}

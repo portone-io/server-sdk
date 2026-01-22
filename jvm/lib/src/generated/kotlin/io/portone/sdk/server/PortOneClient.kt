@@ -9,6 +9,7 @@ import io.portone.sdk.server.identityverification.IdentityVerificationClient
 import io.portone.sdk.server.payment.PaymentClient
 import io.portone.sdk.server.pgspecific.PgSpecificClient
 import io.portone.sdk.server.platform.PlatformClient
+import io.portone.sdk.server.reconciliation.ReconciliationClient
 import java.io.Closeable
 import kotlinx.serialization.json.Json
 
@@ -41,6 +42,7 @@ public class PortOneClient(
   public val identityVerification: IdentityVerificationClient = IdentityVerificationClient(apiSecret, apiBase, storeId)
   public val pgSpecific: PgSpecificClient = PgSpecificClient(apiSecret, apiBase, storeId)
   public val auth: AuthClient = AuthClient(apiSecret, apiBase, storeId)
+  public val reconciliation: ReconciliationClient = ReconciliationClient(apiSecret, apiBase, storeId)
   override fun close() {
     b2b.close()
     platform.close()
@@ -48,6 +50,7 @@ public class PortOneClient(
     identityVerification.close()
     pgSpecific.close()
     auth.close()
+    reconciliation.close()
     client.close()
   }
 }

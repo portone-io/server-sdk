@@ -1,7 +1,7 @@
 package io.portone.sdk.server.platform.partnersettlement
 
 import io.portone.sdk.server.common.Currency
-import io.portone.sdk.server.platform.DateRange
+import io.portone.sdk.server.common.DateRange
 import io.portone.sdk.server.platform.PlatformContract
 import io.portone.sdk.server.platform.PlatformOrderSettlementAmount
 import io.portone.sdk.server.platform.PlatformPartner

@@ -39,6 +39,9 @@ class ReadyIdentityVerification:
     custom_data: Optional[str] = field(default=None)
     """사용자 지정 데이터
     """
+    pg_tx_id: Optional[str] = field(default=None)
+    """본인인증 내역 PG사 아이디
+    """
 
 
 def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> Any:
@@ -56,6 +59,8 @@ def _serialize_ready_identity_verification(obj: ReadyIdentityVerification) -> An
         entity["channel"] = _serialize_selected_channel(obj.channel)
     if obj.custom_data is not None:
         entity["customData"] = obj.custom_data
+    if obj.pg_tx_id is not None:
+        entity["pgTxId"] = obj.pg_tx_id
     return entity
 
 
@@ -106,4 +111,10 @@ def _deserialize_ready_identity_verification(obj: Any) -> ReadyIdentityVerificat
             raise ValueError(f"{repr(custom_data)} is not str")
     else:
         custom_data = None
-    return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, version, channel, custom_data)
+    if "pgTxId" in obj:
+        pg_tx_id = obj["pgTxId"]
+        if not isinstance(pg_tx_id, str):
+            raise ValueError(f"{repr(pg_tx_id)} is not str")
+    else:
+        pg_tx_id = None
+    return ReadyIdentityVerification(id, requested_customer, requested_at, updated_at, status_changed_at, version, channel, custom_data, pg_tx_id)

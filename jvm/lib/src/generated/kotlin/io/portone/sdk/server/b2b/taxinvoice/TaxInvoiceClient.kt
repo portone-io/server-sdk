@@ -23,6 +23,7 @@ import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoice
 import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoiceInput
 import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoiceKeyType
 import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoiceModificationCreateBody
+import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoiceSortInput
 import io.portone.sdk.server.b2b.taxinvoice.CancelB2bTaxInvoiceIssuanceBody
 import io.portone.sdk.server.b2b.taxinvoice.CancelB2bTaxInvoiceIssuanceResponse
 import io.portone.sdk.server.b2b.taxinvoice.CancelB2bTaxInvoiceRequestBody
@@ -1895,6 +1896,10 @@ public class TaxInvoiceClient(
    * 각 페이지 당 포함할 객체 수. 기본 값은 500이며 최대 1000까지 요청가능합니다.
    * @param filter
    * 필터
+   * @param sort
+   * 정렬 조건
+   *
+   * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
    *
    * @throws GetB2bTaxInvoicesException
    */
@@ -1904,12 +1909,14 @@ public class TaxInvoiceClient(
     pageNumber: Int? = null,
     pageSize: Int? = null,
     filter: GetB2bTaxInvoicesBodyFilter? = null,
+    sort: B2bTaxInvoiceSortInput? = null,
   ): GetB2bTaxInvoicesResponse {
     val requestBody = GetB2bTaxInvoicesBody(
       test = test,
       pageNumber = pageNumber,
       pageSize = pageSize,
       filter = filter,
+      sort = sort,
     )
     val httpResponse = client.get(apiBase) {
       url {
@@ -1955,7 +1962,8 @@ public class TaxInvoiceClient(
     pageNumber: Int? = null,
     pageSize: Int? = null,
     filter: GetB2bTaxInvoicesBodyFilter? = null,
-  ): CompletableFuture<GetB2bTaxInvoicesResponse> = GlobalScope.future { getB2bTaxInvoices(test, pageNumber, pageSize, filter) }
+    sort: B2bTaxInvoiceSortInput? = null,
+  ): CompletableFuture<GetB2bTaxInvoicesResponse> = GlobalScope.future { getB2bTaxInvoices(test, pageNumber, pageSize, filter, sort) }
 
   override fun close() {
     client.close()

@@ -117,6 +117,21 @@ public sealed interface PaymentMethodType {
     }
     override fun serialize(encoder: Encoder, value: ConvenienceStore) = encoder.encodeString(value.value)
   }
+  @Serializable(CryptoSerializer::class)
+  public data object Crypto : PaymentMethodType {
+    override val value: String = "CRYPTO"
+  }
+  private object CryptoSerializer : KSerializer<Crypto> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Crypto::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Crypto = decoder.decodeString().let {
+      if (it != "CRYPTO") {
+        throw SerializationException(it)
+      } else {
+        return Crypto
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Crypto) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentMethodType
@@ -135,6 +150,7 @@ private object PaymentMethodTypeSerializer : KSerializer<PaymentMethodType> {
       "MOBILE" -> PaymentMethodType.Mobile
       "EASY_PAY" -> PaymentMethodType.EasyPay
       "CONVENIENCE_STORE" -> PaymentMethodType.ConvenienceStore
+      "CRYPTO" -> PaymentMethodType.Crypto
       else -> PaymentMethodType.Unrecognized(value)
     }
   }

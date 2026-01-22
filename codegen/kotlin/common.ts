@@ -5,14 +5,17 @@ export function KotlinWriter() {
 }
 
 export function toPackageCase(name: string) {
-  return name.split(".").map((s) => s.toLowerCase()).join(".")
+  return name
+    .split(".")
+    .map((s) => s.toLowerCase())
+    .join(".")
 }
 
 export function toException(error: string) {
   return error.replace(/Error$/, "Exception")
 }
 
-const keywords = new Set(["operator", "in", "from"])
+const keywords = new Set(["operator", "in"])
 export function filterName(name: string) {
   if (keywords.has(name)) {
     return `\`${name}\``

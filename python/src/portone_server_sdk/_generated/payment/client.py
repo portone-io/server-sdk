@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
+from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentCancellationNotFoundError, PaymentCancellationNotPendingError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
 from ..payment.already_paid_error import _deserialize_already_paid_error
 from ..common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
 from ..common.billing_key_not_found_error import _deserialize_billing_key_not_found_error
@@ -22,6 +22,8 @@ from ..common.max_transaction_count_reached_error import _deserialize_max_transa
 from ..payment.max_webhook_retry_count_reached_error import _deserialize_max_webhook_retry_count_reached_error
 from ..payment.negative_promotion_adjusted_cancel_amount_error import _deserialize_negative_promotion_adjusted_cancel_amount_error
 from ..payment.payment_already_cancelled_error import _deserialize_payment_already_cancelled_error
+from ..payment.payment_cancellation_not_found_error import _deserialize_payment_cancellation_not_found_error
+from ..payment.payment_cancellation_not_pending_error import _deserialize_payment_cancellation_not_pending_error
 from ..payment.payment_not_found_error import _deserialize_payment_not_found_error
 from ..payment.payment_not_paid_error import _deserialize_payment_not_paid_error
 from ..payment.payment_not_waiting_for_deposit_error import _deserialize_payment_not_waiting_for_deposit_error
@@ -69,9 +71,11 @@ from ..payment.register_store_receipt_body_item import RegisterStoreReceiptBodyI
 from ..payment.register_store_receipt_response import RegisterStoreReceiptResponse, _deserialize_register_store_receipt_response, _serialize_register_store_receipt_response
 from ..payment.resend_webhook_response import ResendWebhookResponse, _deserialize_resend_webhook_response, _serialize_resend_webhook_response
 from ..common.separated_address_input import SeparatedAddressInput, _deserialize_separated_address_input, _serialize_separated_address_input
+from ..payment.stop_payment_cancellation_response import StopPaymentCancellationResponse, _deserialize_stop_payment_cancellation_response, _serialize_stop_payment_cancellation_response
 from urllib.parse import quote
 from .billing_key.client import BillingKeyClient
 from .cash_receipt.client import CashReceiptClient
+from .additional_feature.client import AdditionalFeatureClient
 from .payment_schedule.client import PaymentScheduleClient
 from .promotion.client import PromotionClient
 class PaymentClient:
@@ -82,6 +86,7 @@ class PaymentClient:
     _sync_client: SyncClient
     billing_key: BillingKeyClient
     cash_receipt: CashReceiptClient
+    additional_feature: AdditionalFeatureClient
     payment_schedule: PaymentScheduleClient
     promotion: PromotionClient
 
@@ -101,6 +106,7 @@ class PaymentClient:
         self._sync_client = SyncClient(timeout=60.0)
         self.billing_key = BillingKeyClient(secret=secret, base_url=base_url, store_id=store_id)
         self.cash_receipt = CashReceiptClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.additional_feature = AdditionalFeatureClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment_schedule = PaymentScheduleClient(secret=secret, base_url=base_url, store_id=store_id)
         self.promotion = PromotionClient(secret=secret, base_url=base_url, store_id=store_id)
     def get_all_payment_events_by_cursor(
@@ -114,6 +120,10 @@ class PaymentClient:
         """결제 이벤트 대용량 다건 조회(커서 기반)
 
         기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             from_ (str, optional):
@@ -198,6 +208,10 @@ class PaymentClient:
 
         기간 내 모든 결제 이벤트를 커서 기반으로 조회합니다. 결제 이벤트의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 이벤트가 조회됩니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             from_ (str, optional):
                 결제 이벤트 생성시점 범위 조건의 시작
@@ -281,6 +295,10 @@ class PaymentClient:
 
         기간 내 모든 결제 건을 커서 기반으로 조회합니다. 결제 건의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 건이 조회됩니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             from_ (str, optional):
                 결제 건 생성시점 범위 조건의 시작
@@ -363,6 +381,10 @@ class PaymentClient:
         """결제 대용량 다건 조회(커서 기반)
 
         기간 내 모든 결제 건을 커서 기반으로 조회합니다. 결제 건의 생성일시를 기준으로 주어진 기간 내 존재하는 모든 결제 건이 조회됩니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             from_ (str, optional):
@@ -893,6 +915,8 @@ class PaymentClient:
         promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
+        refund_email: Optional[str] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> CancelPaymentResponse:
         """결제 취소
 
@@ -938,6 +962,14 @@ class PaymentClient:
                 환불 계좌
 
                 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
+            refund_email (str, optional):
+                환불 이메일
+
+                Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -962,6 +994,10 @@ class PaymentClient:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
             request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account)
+        if refund_email is not None:
+            request_body["refundEmail"] = refund_email
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -1074,6 +1110,8 @@ class PaymentClient:
         promotion_discount_retain_option: Optional[PromotionDiscountRetainOption] = None,
         current_cancellable_amount: Optional[int] = None,
         refund_account: Optional[CancelPaymentBodyRefundAccount] = None,
+        refund_email: Optional[str] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> CancelPaymentResponse:
         """결제 취소
 
@@ -1119,6 +1157,14 @@ class PaymentClient:
                 환불 계좌
 
                 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
+            refund_email (str, optional):
+                환불 이메일
+
+                Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -1143,6 +1189,10 @@ class PaymentClient:
             request_body["currentCancellableAmount"] = current_cancellable_amount
         if refund_account is not None:
             request_body["refundAccount"] = _serialize_cancel_payment_body_refund_account(refund_account)
+        if refund_email is not None:
+            request_body["refundEmail"] = refund_email
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -1243,6 +1293,172 @@ class PaymentClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_cancel_payment_response(response.json())
+    def stop_payment_cancellation(
+        self,
+        *,
+        payment_id: str,
+        cancellation_id: str,
+    ) -> StopPaymentCancellationResponse:
+        """결제 취소 요청 취소
+
+        비동기적으로 수행되는 결제 취소 요청을 취소합니다.
+        Triple-A에서만 사용됩니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+            cancellation_id (str):
+                취소 요청 아이디
+
+
+        Raises:
+            StopPaymentCancellationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        query = []
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancellations/{quote(cancellation_id, safe='')}/stop",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_cancellation_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentCancellationNotFoundError(error)
+            try:
+                error = _deserialize_payment_cancellation_not_pending_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentCancellationNotPendingError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_stop_payment_cancellation_response(response.json())
+    async def stop_payment_cancellation_async(
+        self,
+        *,
+        payment_id: str,
+        cancellation_id: str,
+    ) -> StopPaymentCancellationResponse:
+        """결제 취소 요청 취소
+
+        비동기적으로 수행되는 결제 취소 요청을 취소합니다.
+        Triple-A에서만 사용됩니다.
+
+        Args:
+            payment_id (str):
+                결제 건 아이디
+            cancellation_id (str):
+                취소 요청 아이디
+
+
+        Raises:
+            StopPaymentCancellationError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        if self._store_id is not None:
+            request_body["storeId"] = self._store_id
+        query = []
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/payments/{quote(payment_id, safe='')}/cancellations/{quote(cancellation_id, safe='')}/stop",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_payment_cancellation_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentCancellationNotFoundError(error)
+            try:
+                error = _deserialize_payment_cancellation_not_pending_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentCancellationNotPendingError(error)
+            try:
+                error = _deserialize_payment_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PaymentNotFoundError(error)
+            try:
+                error = _deserialize_pg_provider_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PgProviderError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_stop_payment_cancellation_response(response.json())
     def capture_payment(
         self,
         *,
@@ -2224,6 +2440,7 @@ class PaymentClient:
         product_type: Optional[PaymentProductType] = None,
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
+        bypass: Optional[dict] = None,
     ) -> PayInstantlyResponse:
         """수기 결제
 
@@ -2280,6 +2497,8 @@ class PaymentClient:
                 배송지 주소
             promotion_id (str, optional):
                 해당 결제에 적용할 프로모션 아이디
+            bypass (dict, optional):
+                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
 
 
         Raises:
@@ -2319,6 +2538,8 @@ class PaymentClient:
             request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
             request_body["promotionId"] = promotion_id
+        if bypass is not None:
+            request_body["bypass"] = bypass
         query = []
         response = self._sync_client.request(
             "POST",
@@ -2422,6 +2643,7 @@ class PaymentClient:
         product_type: Optional[PaymentProductType] = None,
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
+        bypass: Optional[dict] = None,
     ) -> PayInstantlyResponse:
         """수기 결제
 
@@ -2478,6 +2700,8 @@ class PaymentClient:
                 배송지 주소
             promotion_id (str, optional):
                 해당 결제에 적용할 프로모션 아이디
+            bypass (dict, optional):
+                PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
 
 
         Raises:
@@ -2517,6 +2741,8 @@ class PaymentClient:
             request_body["shippingAddress"] = _serialize_separated_address_input(shipping_address)
         if promotion_id is not None:
             request_body["promotionId"] = promotion_id
+        if bypass is not None:
+            request_body["bypass"] = bypass
         query = []
         response = await self._async_client.request(
             "POST",
@@ -3078,6 +3304,10 @@ class PaymentClient:
 
         주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             payment_id (str):
                 조회할 결제 아이디
@@ -3136,6 +3366,10 @@ class PaymentClient:
         """결제 시도 내역 조회
 
         주어진 아이디에 대응되는 결제 건의 결제 시도 내역을 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             payment_id (str):

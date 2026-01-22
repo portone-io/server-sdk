@@ -107,6 +107,21 @@ public sealed interface PaymentWebhookTrigger {
     }
     override fun serialize(encoder: Encoder, value: AsyncPayFailed) = encoder.encodeString(value.value)
   }
+  @Serializable(AsyncPayPendingSerializer::class)
+  public data object AsyncPayPending : PaymentWebhookTrigger {
+    override val value: String = "ASYNC_PAY_PENDING"
+  }
+  private object AsyncPayPendingSerializer : KSerializer<AsyncPayPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(AsyncPayPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): AsyncPayPending = decoder.decodeString().let {
+      if (it != "ASYNC_PAY_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return AsyncPayPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: AsyncPayPending) = encoder.encodeString(value.value)
+  }
   @Serializable(DisputeCreatedSerializer::class)
   public data object DisputeCreated : PaymentWebhookTrigger {
     override val value: String = "DISPUTE_CREATED"
@@ -154,6 +169,7 @@ private object PaymentWebhookTriggerSerializer : KSerializer<PaymentWebhookTrigg
       "ASYNC_CANCEL_FAILED" -> PaymentWebhookTrigger.AsyncCancelFailed
       "ASYNC_PAY_APPROVED" -> PaymentWebhookTrigger.AsyncPayApproved
       "ASYNC_PAY_FAILED" -> PaymentWebhookTrigger.AsyncPayFailed
+      "ASYNC_PAY_PENDING" -> PaymentWebhookTrigger.AsyncPayPending
       "DISPUTE_CREATED" -> PaymentWebhookTrigger.DisputeCreated
       "DISPUTE_RESOLVED" -> PaymentWebhookTrigger.DisputeResolved
       else -> PaymentWebhookTrigger.Unrecognized(value)

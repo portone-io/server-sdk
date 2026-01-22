@@ -1,4 +1,4 @@
-import type { DateRange } from "./../../platform/DateRange"
+import type { DateRange } from "./../../common/DateRange"
 import type { PaymentMethodType } from "./../../common/PaymentMethodType"
 import type { PlatformTransferFilterInputKeyword } from "./../../platform/transfer/PlatformTransferFilterInputKeyword"
 import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"

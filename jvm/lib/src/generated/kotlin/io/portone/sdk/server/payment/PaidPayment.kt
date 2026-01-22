@@ -9,6 +9,7 @@ import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.payment.Dispute
 import io.portone.sdk.server.payment.PaymentAmount
+import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.payment.PaymentCashReceipt
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
@@ -101,6 +102,8 @@ public data class PaidPayment(
   val receiptUrl: String? = null,
   /** 분쟁 목록 */
   val disputes: List<Dispute>,
+  /** 결제 취소 요청 내역 */
+  val cancellations: List<PaymentCancellation>? = null,
 ) : Payment.Recognized
 
 

@@ -31,7 +31,7 @@ public data class CashReceiptFilterInput(
    *
    * 값을 입력하지 않으면 end의 90일 전으로 설정됩니다.
    */
-  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
+  val from: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 조회 기준 시점 범위의 끝
    *

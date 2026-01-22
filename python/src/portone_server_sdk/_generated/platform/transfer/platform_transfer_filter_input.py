@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
-from ...platform.date_range import DateRange, _deserialize_date_range, _serialize_date_range
+from ...common.date_range import DateRange, _deserialize_date_range, _serialize_date_range
 from ...common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
 from ...platform.transfer.platform_transfer_filter_input_keyword import PlatformTransferFilterInputKeyword, _deserialize_platform_transfer_filter_input_keyword, _serialize_platform_transfer_filter_input_keyword
 from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status

@@ -111,6 +111,10 @@ from ..._generated.b2b.tax_invoice.b2b_tax_invoice_modification_type import (
 from ..._generated.b2b.tax_invoice.b2b_tax_invoice_purpose_type import (
     B2bTaxInvoicePurposeType,
 )
+from ..._generated.b2b.tax_invoice.b2b_tax_invoice_sort_by import B2bTaxInvoiceSortBy
+from ..._generated.b2b.tax_invoice.b2b_tax_invoice_sort_input import (
+    B2bTaxInvoiceSortInput,
+)
 from ..._generated.b2b.tax_invoice.b2b_tax_invoice_status import B2bTaxInvoiceStatus
 from ..._generated.b2b.tax_invoice.b2b_tax_invoice_summary import B2bTaxInvoiceSummary
 from ..._generated.b2b.tax_invoice.b2b_tax_invoice_taxation_type import (
@@ -259,6 +263,8 @@ __all__ = [
     "B2bTaxInvoiceModificationCreateBody",
     "B2bTaxInvoiceModificationType",
     "B2bTaxInvoicePurposeType",
+    "B2bTaxInvoiceSortBy",
+    "B2bTaxInvoiceSortInput",
     "B2bTaxInvoiceStatus",
     "B2bTaxInvoiceSummary",
     "B2bTaxInvoiceTaxationType",

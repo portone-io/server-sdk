@@ -12,6 +12,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.appendPathSegments
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.annotations.PortOneUnstable
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
@@ -75,6 +76,7 @@ public class AccountTransferClient(
    *
    * @throws GetPlatformAccountTransfersException
    */
+  @PortOneUnstable
   @JvmName("getPlatformAccountTransfersSuspend")
   public suspend fun getPlatformAccountTransfers(
     test: Boolean? = null,
@@ -124,6 +126,7 @@ public class AccountTransferClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformAccountTransfers")
   public fun getPlatformAccountTransfersFuture(
     test: Boolean? = null,

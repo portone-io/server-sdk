@@ -30,7 +30,7 @@ public data class VerifiedIdentityVerification(
   /** 본인인증 완료 시점 */
   val verifiedAt: @Serializable(InstantSerializer::class) Instant,
   /** 본인인증 내역 PG사 아이디 */
-  val pgTxId: String,
+  override val pgTxId: String,
   /** PG사 응답 데이터 */
   val pgRawResponse: String,
   /** 포트원 버전 */

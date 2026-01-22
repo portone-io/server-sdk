@@ -33,4 +33,5 @@ export type EasyPayProvider =
 	| "DBARAI"
 	| "AUPAY"
 	| "MERPAY"
+	| "MONEYTREE"
 	| string & {}

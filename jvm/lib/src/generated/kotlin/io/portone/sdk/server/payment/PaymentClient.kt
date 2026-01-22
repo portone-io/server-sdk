@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.annotations.PortOneUnstable
 import io.portone.sdk.server.common.BillingKeyPaymentInput
 import io.portone.sdk.server.common.CashReceiptInput
 import io.portone.sdk.server.common.Country
@@ -89,6 +90,10 @@ import io.portone.sdk.server.errors.PayWithBillingKeyError
 import io.portone.sdk.server.errors.PayWithBillingKeyException
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledError
 import io.portone.sdk.server.errors.PaymentAlreadyCancelledException
+import io.portone.sdk.server.errors.PaymentCancellationNotFoundError
+import io.portone.sdk.server.errors.PaymentCancellationNotFoundException
+import io.portone.sdk.server.errors.PaymentCancellationNotPendingError
+import io.portone.sdk.server.errors.PaymentCancellationNotPendingException
 import io.portone.sdk.server.errors.PaymentNotFoundError
 import io.portone.sdk.server.errors.PaymentNotFoundException
 import io.portone.sdk.server.errors.PaymentNotPaidError
@@ -109,6 +114,8 @@ import io.portone.sdk.server.errors.RegisterStoreReceiptError
 import io.portone.sdk.server.errors.RegisterStoreReceiptException
 import io.portone.sdk.server.errors.ResendWebhookError
 import io.portone.sdk.server.errors.ResendWebhookException
+import io.portone.sdk.server.errors.StopPaymentCancellationError
+import io.portone.sdk.server.errors.StopPaymentCancellationException
 import io.portone.sdk.server.errors.SumOfPartsExceedsCancelAmountError
 import io.portone.sdk.server.errors.SumOfPartsExceedsCancelAmountException
 import io.portone.sdk.server.errors.SumOfPartsExceedsTotalAmountError
@@ -157,6 +164,9 @@ import io.portone.sdk.server.payment.RegisterStoreReceiptBodyItem
 import io.portone.sdk.server.payment.RegisterStoreReceiptResponse
 import io.portone.sdk.server.payment.ResendWebhookBody
 import io.portone.sdk.server.payment.ResendWebhookResponse
+import io.portone.sdk.server.payment.StopPaymentCancellationBody
+import io.portone.sdk.server.payment.StopPaymentCancellationResponse
+import io.portone.sdk.server.payment.additionalfeature.AdditionalFeatureClient
 import io.portone.sdk.server.payment.billingkey.BillingKeyClient
 import io.portone.sdk.server.payment.cashreceipt.CashReceiptClient
 import io.portone.sdk.server.payment.paymentschedule.PaymentScheduleClient
@@ -218,9 +228,10 @@ public class PaymentClient(
    *
    * @throws GetAllPaymentEventsException
    */
+  @PortOneUnstable
   @JvmName("getAllPaymentEventsByCursorSuspend")
   public suspend fun getAllPaymentEventsByCursor(
-    `from`: Instant? = null,
+    from: Instant? = null,
     until: Instant? = null,
     cursor: String? = null,
     size: Int? = null,
@@ -267,9 +278,10 @@ public class PaymentClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getAllPaymentEventsByCursor")
   public fun getAllPaymentEventsByCursorFuture(
-    `from`: Instant? = null,
+    from: Instant? = null,
     until: Instant? = null,
     cursor: String? = null,
     size: Int? = null,
@@ -300,9 +312,10 @@ public class PaymentClient(
    *
    * @throws GetAllPaymentsException
    */
+  @PortOneUnstable
   @JvmName("getAllPaymentsByCursorSuspend")
   public suspend fun getAllPaymentsByCursor(
-    `from`: Instant? = null,
+    from: Instant? = null,
     until: Instant? = null,
     cursor: String? = null,
     size: Int? = null,
@@ -349,9 +362,10 @@ public class PaymentClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getAllPaymentsByCursor")
   public fun getAllPaymentsByCursorFuture(
-    `from`: Instant? = null,
+    from: Instant? = null,
     until: Instant? = null,
     cursor: String? = null,
     size: Int? = null,
@@ -579,6 +593,14 @@ public class PaymentClient(
    * 환불 계좌
    *
    * 계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
+   * @param refundEmail
+   * 환불 이메일
+   *
+   * Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
    *
    * @throws CancelPaymentException
    */
@@ -593,6 +615,8 @@ public class PaymentClient(
     promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
+    refundEmail: String? = null,
+    skipWebhook: Boolean? = null,
   ): CancelPaymentResponse {
     val requestBody = CancelPaymentBody(
       storeId = storeId,
@@ -604,6 +628,8 @@ public class PaymentClient(
       promotionDiscountRetainOption = promotionDiscountRetainOption,
       currentCancellableAmount = currentCancellableAmount,
       refundAccount = refundAccount,
+      refundEmail = refundEmail,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -663,7 +689,77 @@ public class PaymentClient(
     promotionDiscountRetainOption: PromotionDiscountRetainOption? = null,
     currentCancellableAmount: Long? = null,
     refundAccount: CancelPaymentBodyRefundAccount? = null,
-  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, promotionDiscountRetainOption, currentCancellableAmount, refundAccount) }
+    refundEmail: String? = null,
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<CancelPaymentResponse> = GlobalScope.future { cancelPayment(paymentId, amount, taxFreeAmount, vatAmount, reason, requester, promotionDiscountRetainOption, currentCancellableAmount, refundAccount, refundEmail, skipWebhook) }
+
+
+  /**
+   * 결제 취소 요청 취소
+   *
+   * 비동기적으로 수행되는 결제 취소 요청을 취소합니다.
+   * Triple-A에서만 사용됩니다.
+   *
+   * @param paymentId
+   * 결제 건 아이디
+   * @param cancellationId
+   * 취소 요청 아이디
+   *
+   * @throws StopPaymentCancellationException
+   */
+  @JvmName("stopPaymentCancellationSuspend")
+  public suspend fun stopPaymentCancellation(
+    paymentId: String,
+    cancellationId: String,
+  ): StopPaymentCancellationResponse {
+    val requestBody = StopPaymentCancellationBody(
+      storeId = storeId,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("payments", paymentId.toString(), "cancellations", cancellationId.toString(), "stop")
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<StopPaymentCancellationError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PaymentCancellationNotFoundError -> throw PaymentCancellationNotFoundException(httpBodyDecoded)
+        is PaymentCancellationNotPendingError -> throw PaymentCancellationNotPendingException(httpBodyDecoded)
+        is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
+        is PgProviderError -> throw PgProviderException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<StopPaymentCancellationResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @JvmName("stopPaymentCancellation")
+  public fun stopPaymentCancellationFuture(
+    paymentId: String,
+    cancellationId: String,
+  ): CompletableFuture<StopPaymentCancellationResponse> = GlobalScope.future { stopPaymentCancellation(paymentId, cancellationId) }
 
 
   /**
@@ -1137,6 +1233,8 @@ public class PaymentClient(
    * 배송지 주소
    * @param promotionId
    * 해당 결제에 적용할 프로모션 아이디
+   * @param bypass
+   * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
    *
    * @throws PayInstantlyException
    */
@@ -1160,6 +1258,7 @@ public class PaymentClient(
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
     promotionId: String? = null,
+    bypass: JsonObject? = null,
   ): PayInstantlyResponse {
     val requestBody = InstantPaymentInput(
       storeId = storeId,
@@ -1180,6 +1279,7 @@ public class PaymentClient(
       productType = productType,
       shippingAddress = shippingAddress,
       promotionId = promotionId,
+      bypass = bypass,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -1245,7 +1345,8 @@ public class PaymentClient(
     productType: PaymentProductType? = null,
     shippingAddress: SeparatedAddressInput? = null,
     promotionId: String? = null,
-  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId) }
+    bypass: JsonObject? = null,
+  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, bypass) }
 
 
   /**
@@ -1471,6 +1572,7 @@ public class PaymentClient(
    *
    * @throws GetPaymentTransactionsException
    */
+  @PortOneUnstable
   @JvmName("getPaymentTransactionsSuspend")
   public suspend fun getPaymentTransactions(
     paymentId: String,
@@ -1511,6 +1613,7 @@ public class PaymentClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPaymentTransactions")
   public fun getPaymentTransactionsFuture(
     paymentId: String,
@@ -1699,11 +1802,13 @@ public class PaymentClient(
 
   public val billingKey: BillingKeyClient = BillingKeyClient(apiSecret, apiBase, storeId)
   public val cashReceipt: CashReceiptClient = CashReceiptClient(apiSecret, apiBase, storeId)
+  public val additionalFeature: AdditionalFeatureClient = AdditionalFeatureClient(apiSecret, apiBase, storeId)
   public val paymentSchedule: PaymentScheduleClient = PaymentScheduleClient(apiSecret, apiBase, storeId)
   public val promotion: PromotionClient = PromotionClient(apiSecret, apiBase, storeId)
   override fun close() {
     billingKey.close()
     cashReceipt.close()
+    additionalFeature.close()
     paymentSchedule.close()
     promotion.close()
     client.close()

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ...payment.cash_receipt.issue_cash_receipt_customer_input_identity_number_type import IssueCashReceiptCustomerInputIdentityNumberType, _deserialize_issue_cash_receipt_customer_input_identity_number_type, _serialize_issue_cash_receipt_customer_input_identity_number_type
 
 @dataclass
 class IssueCashReceiptCustomerInput:
@@ -9,6 +10,11 @@ class IssueCashReceiptCustomerInput:
     """
     identity_number: str
     """고객 식별값
+    """
+    identity_number_type: Optional[IssueCashReceiptCustomerInputIdentityNumberType] = field(default=None)
+    """고객 식별값 유형
+
+    갤럭시아머니트리의 경우 필요합니다
     """
     name: Optional[str] = field(default=None)
     """이름
@@ -26,6 +32,8 @@ def _serialize_issue_cash_receipt_customer_input(obj: IssueCashReceiptCustomerIn
         return obj
     entity = {}
     entity["identityNumber"] = obj.identity_number
+    if obj.identity_number_type is not None:
+        entity["identityNumberType"] = _serialize_issue_cash_receipt_customer_input_identity_number_type(obj.identity_number_type)
     if obj.name is not None:
         entity["name"] = obj.name
     if obj.email is not None:
@@ -43,6 +51,11 @@ def _deserialize_issue_cash_receipt_customer_input(obj: Any) -> IssueCashReceipt
     identity_number = obj["identityNumber"]
     if not isinstance(identity_number, str):
         raise ValueError(f"{repr(identity_number)} is not str")
+    if "identityNumberType" in obj:
+        identity_number_type = obj["identityNumberType"]
+        identity_number_type = _deserialize_issue_cash_receipt_customer_input_identity_number_type(identity_number_type)
+    else:
+        identity_number_type = None
     if "name" in obj:
         name = obj["name"]
         if not isinstance(name, str):
@@ -61,4 +74,4 @@ def _deserialize_issue_cash_receipt_customer_input(obj: Any) -> IssueCashReceipt
             raise ValueError(f"{repr(phone_number)} is not str")
     else:
         phone_number = None
-    return IssueCashReceiptCustomerInput(identity_number, name, email, phone_number)
+    return IssueCashReceiptCustomerInput(identity_number, identity_number_type, name, email, phone_number)

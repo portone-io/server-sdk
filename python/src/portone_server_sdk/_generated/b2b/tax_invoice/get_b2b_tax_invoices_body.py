@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ...b2b.tax_invoice.b2b_tax_invoice_sort_input import B2bTaxInvoiceSortInput, _deserialize_b2b_tax_invoice_sort_input, _serialize_b2b_tax_invoice_sort_input
 from ...b2b.tax_invoice.get_b2b_tax_invoices_body_filter import GetB2bTaxInvoicesBodyFilter, _deserialize_get_b2b_tax_invoices_body_filter, _serialize_get_b2b_tax_invoices_body_filter
 
 @dataclass
@@ -28,6 +29,11 @@ class GetB2bTaxInvoicesBody:
     filter: Optional[GetB2bTaxInvoicesBodyFilter] = field(default=None)
     """필터
     """
+    sort: Optional[B2bTaxInvoiceSortInput] = field(default=None)
+    """정렬 조건
+
+    미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+    """
 
 
 def _serialize_get_b2b_tax_invoices_body(obj: GetB2bTaxInvoicesBody) -> Any:
@@ -42,6 +48,8 @@ def _serialize_get_b2b_tax_invoices_body(obj: GetB2bTaxInvoicesBody) -> Any:
         entity["pageSize"] = obj.page_size
     if obj.filter is not None:
         entity["filter"] = _serialize_get_b2b_tax_invoices_body_filter(obj.filter)
+    if obj.sort is not None:
+        entity["sort"] = _serialize_b2b_tax_invoice_sort_input(obj.sort)
     return entity
 
 
@@ -71,4 +79,9 @@ def _deserialize_get_b2b_tax_invoices_body(obj: Any) -> GetB2bTaxInvoicesBody:
         filter = _deserialize_get_b2b_tax_invoices_body_filter(filter)
     else:
         filter = None
-    return GetB2bTaxInvoicesBody(test, page_number, page_size, filter)
+    if "sort" in obj:
+        sort = obj["sort"]
+        sort = _deserialize_b2b_tax_invoice_sort_input(sort)
+    else:
+        sort = None
+    return GetB2bTaxInvoicesBody(test, page_number, page_size, filter, sort)

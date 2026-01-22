@@ -28,6 +28,7 @@ import type { B2bTaxInvoiceNotFoundError } from "../../../generated/b2b/taxInvoi
 import type { B2bTaxInvoiceNotIssuedStatusError } from "../../../generated/b2b/taxInvoice/B2bTaxInvoiceNotIssuedStatusError"
 import type { B2bTaxInvoiceNotRequestedStatusError } from "../../../generated/b2b/taxInvoice/B2bTaxInvoiceNotRequestedStatusError"
 import type { B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError } from "../../../generated/b2b/taxInvoice/B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError"
+import type { B2bTaxInvoiceSortInput } from "../../../generated/b2b/taxInvoice/B2bTaxInvoiceSortInput"
 import type { B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError } from "../../../generated/b2b/taxInvoice/B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError"
 import type { CancelB2bTaxInvoiceIssuanceResponse } from "../../../generated/b2b/taxInvoice/CancelB2bTaxInvoiceIssuanceResponse"
 import type { CancelB2bTaxInvoiceRequestResponse } from "../../../generated/b2b/taxInvoice/CancelB2bTaxInvoiceRequestResponse"
@@ -869,17 +870,20 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				pageNumber?: number,
 				pageSize?: number,
 				filter?: GetB2bTaxInvoicesBodyFilter,
+				sort?: B2bTaxInvoiceSortInput,
 			}
 		): Promise<GetB2bTaxInvoicesResponse> => {
 			const test = options?.test
 			const pageNumber = options?.pageNumber
 			const pageSize = options?.pageSize
 			const filter = options?.filter
+			const sort = options?.sort
 			const requestBody = JSON.stringify({
 				test,
 				pageNumber,
 				pageSize,
 				filter,
+				sort,
 			})
 			const query = [
 				["requestBody", requestBody],
@@ -1490,6 +1494,12 @@ export type TaxInvoiceClient = {
 			pageSize?: number,
 			/** 필터 */
 			filter?: GetB2bTaxInvoicesBodyFilter,
+			/**
+			 * 정렬 조건
+			 *
+			 * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+			 */
+			sort?: B2bTaxInvoiceSortInput,
 		}
 	) => Promise<GetB2bTaxInvoicesResponse>
 }

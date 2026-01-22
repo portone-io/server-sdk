@@ -77,7 +77,6 @@ from .._generated.platform.cancel_platform_discount_share_policy_schedule_respon
 from .._generated.platform.cancel_platform_partner_schedule_response import (
     CancelPlatformPartnerScheduleResponse,
 )
-from .._generated.platform.date_range import DateRange
 from .._generated.platform.day_of_week import DayOfWeek
 from .._generated.platform.month_day import MonthDay
 from .._generated.platform.platform_account import PlatformAccount
@@ -331,7 +330,6 @@ __all__ = [
     "CancelPlatformContractScheduleResponse",
     "CancelPlatformDiscountSharePolicyScheduleResponse",
     "CancelPlatformPartnerScheduleResponse",
-    "DateRange",
     "DayOfWeek",
     "MonthDay",
     "PlatformAccount",

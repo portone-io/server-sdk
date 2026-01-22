@@ -36,6 +36,7 @@ from ...b2b.tax_invoice.b2b_tax_invoice import B2bTaxInvoice, _deserialize_b2b_t
 from ...b2b.tax_invoice.b2b_tax_invoice_input import B2bTaxInvoiceInput, _deserialize_b2b_tax_invoice_input, _serialize_b2b_tax_invoice_input
 from ...b2b.tax_invoice.b2b_tax_invoice_key_type import B2bTaxInvoiceKeyType, _deserialize_b2b_tax_invoice_key_type, _serialize_b2b_tax_invoice_key_type
 from ...b2b.tax_invoice.b2b_tax_invoice_modification_create_body import B2bTaxInvoiceModificationCreateBody, _deserialize_b2b_tax_invoice_modification_create_body, _serialize_b2b_tax_invoice_modification_create_body
+from ...b2b.tax_invoice.b2b_tax_invoice_sort_input import B2bTaxInvoiceSortInput, _deserialize_b2b_tax_invoice_sort_input, _serialize_b2b_tax_invoice_sort_input
 from ...b2b.tax_invoice.cancel_b2b_tax_invoice_issuance_response import CancelB2bTaxInvoiceIssuanceResponse, _deserialize_cancel_b2b_tax_invoice_issuance_response, _serialize_cancel_b2b_tax_invoice_issuance_response
 from ...b2b.tax_invoice.cancel_b2b_tax_invoice_request_response import CancelB2bTaxInvoiceRequestResponse, _deserialize_cancel_b2b_tax_invoice_request_response, _serialize_cancel_b2b_tax_invoice_request_response
 from ...b2b.tax_invoice.create_b2b_file_upload_url_payload import CreateB2bFileUploadUrlPayload, _deserialize_create_b2b_file_upload_url_payload, _serialize_create_b2b_file_upload_url_payload
@@ -4564,6 +4565,7 @@ class TaxInvoiceClient:
         page_number: Optional[int] = None,
         page_size: Optional[int] = None,
         filter: Optional[GetB2bTaxInvoicesBodyFilter] = None,
+        sort: Optional[B2bTaxInvoiceSortInput] = None,
     ) -> GetB2bTaxInvoicesResponse:
         """세금 계산서 다건조회
 
@@ -4586,6 +4588,10 @@ class TaxInvoiceClient:
                 (int32)
             filter (GetB2bTaxInvoicesBodyFilter, optional):
                 필터
+            sort (B2bTaxInvoiceSortInput, optional):
+                정렬 조건
+
+                미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
 
 
         Raises:
@@ -4601,6 +4607,8 @@ class TaxInvoiceClient:
             request_body["pageSize"] = page_size
         if filter is not None:
             request_body["filter"] = _serialize_get_b2b_tax_invoices_body_filter(filter)
+        if sort is not None:
+            request_body["sort"] = _serialize_b2b_tax_invoice_sort_input(sort)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
@@ -4660,6 +4668,7 @@ class TaxInvoiceClient:
         page_number: Optional[int] = None,
         page_size: Optional[int] = None,
         filter: Optional[GetB2bTaxInvoicesBodyFilter] = None,
+        sort: Optional[B2bTaxInvoiceSortInput] = None,
     ) -> GetB2bTaxInvoicesResponse:
         """세금 계산서 다건조회
 
@@ -4682,6 +4691,10 @@ class TaxInvoiceClient:
                 (int32)
             filter (GetB2bTaxInvoicesBodyFilter, optional):
                 필터
+            sort (B2bTaxInvoiceSortInput, optional):
+                정렬 조건
+
+                미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
 
 
         Raises:
@@ -4697,6 +4710,8 @@ class TaxInvoiceClient:
             request_body["pageSize"] = page_size
         if filter is not None:
             request_body["filter"] = _serialize_get_b2b_tax_invoices_body_filter(filter)
+        if sort is not None:
+            request_body["sort"] = _serialize_b2b_tax_invoice_sort_input(sort)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(

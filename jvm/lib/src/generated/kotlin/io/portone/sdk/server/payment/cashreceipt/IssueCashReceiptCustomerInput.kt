@@ -1,5 +1,6 @@
 package io.portone.sdk.server.payment.cashreceipt
 
+import io.portone.sdk.server.payment.cashreceipt.IssueCashReceiptCustomerInputIdentityNumberType
 import kotlin.String
 import kotlinx.serialization.Serializable
 
@@ -8,6 +9,12 @@ import kotlinx.serialization.Serializable
 public data class IssueCashReceiptCustomerInput(
   /** 고객 식별값 */
   val identityNumber: String,
+  /**
+   * 고객 식별값 유형
+   *
+   * 갤럭시아머니트리의 경우 필요합니다
+   */
+  val identityNumberType: IssueCashReceiptCustomerInputIdentityNumberType? = null,
   /** 이름 */
   val name: String? = null,
   /** 이메일 */

@@ -14,11 +14,13 @@ from portone_server_sdk.platform.transfer import TransferClient
 from portone_server_sdk.payment import PaymentClient
 from portone_server_sdk.payment.billing_key import BillingKeyClient
 from portone_server_sdk.payment.cash_receipt import CashReceiptClient
+from portone_server_sdk.payment.additional_feature import AdditionalFeatureClient
 from portone_server_sdk.payment.payment_schedule import PaymentScheduleClient
 from portone_server_sdk.payment.promotion import PromotionClient
 from portone_server_sdk.identity_verification import IdentityVerificationClient
 from portone_server_sdk.pg_specific import PgSpecificClient
 from portone_server_sdk.auth import AuthClient
+from portone_server_sdk.reconciliation import ReconciliationClient
 
 from . import (
     auth,
@@ -29,6 +31,7 @@ from . import (
     payment,
     pg_specific,
     platform,
+    reconciliation,
     webhook,
 )
 
@@ -37,6 +40,7 @@ from ._generated.client import PortOneClient
 __all__ = [
     "AccountClient",
     "AccountTransferClient",
+    "AdditionalFeatureClient",
     "AuthClient",
     "B2bClient",
     "BillingKeyClient",
@@ -55,6 +59,7 @@ __all__ = [
     "PolicyClient",
     "PortOneClient",
     "PromotionClient",
+    "ReconciliationClient",
     "TaxInvoiceClient",
     "TransferClient",
     "auth",
@@ -65,5 +70,6 @@ __all__ = [
     "payment",
     "pg_specific",
     "platform",
+    "reconciliation",
     "webhook",
 ]

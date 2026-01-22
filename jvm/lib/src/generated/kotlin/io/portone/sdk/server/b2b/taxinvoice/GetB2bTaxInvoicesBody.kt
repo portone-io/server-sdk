@@ -1,5 +1,6 @@
 package io.portone.sdk.server.b2b.taxinvoice
 
+import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoiceSortInput
 import io.portone.sdk.server.b2b.taxinvoice.GetB2bTaxInvoicesBodyFilter
 import kotlinx.serialization.Serializable
 
@@ -26,6 +27,12 @@ internal data class GetB2bTaxInvoicesBody(
   val pageSize: Int? = null,
   /** 필터 */
   val filter: GetB2bTaxInvoicesBodyFilter? = null,
+  /**
+   * 정렬 조건
+   *
+   * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+   */
+  val sort: B2bTaxInvoiceSortInput? = null,
 )
 
 

@@ -31,8 +31,12 @@ from .._generated.payment.errors.register_store_receipt_error import (
     RegisterStoreReceiptError,
 )
 from .._generated.payment.errors.resend_webhook_error import ResendWebhookError
+from .._generated.payment.errors.stop_payment_cancellation_error import (
+    StopPaymentCancellationError,
+)
 from . import billing_key
 from . import cash_receipt
+from . import additional_feature
 from . import payment_schedule
 from . import promotion
 from .._generated.payment.apply_escrow_logistics_response import (
@@ -161,6 +165,7 @@ from .._generated.payment.payment_method_card import PaymentMethodCard
 from .._generated.payment.payment_method_convenience_store import (
     PaymentMethodConvenienceStore,
 )
+from .._generated.payment.payment_method_crypto import PaymentMethodCrypto
 from .._generated.payment.payment_method_easy_pay import PaymentMethodEasyPay
 from .._generated.payment.payment_method_easy_pay_method import (
     PaymentMethodEasyPayMethod,
@@ -229,6 +234,12 @@ from .._generated.payment.requested_payment_cancellation import (
 )
 from .._generated.payment.resend_webhook_body import ResendWebhookBody
 from .._generated.payment.resend_webhook_response import ResendWebhookResponse
+from .._generated.payment.stop_payment_cancellation_body import (
+    StopPaymentCancellationBody,
+)
+from .._generated.payment.stop_payment_cancellation_response import (
+    StopPaymentCancellationResponse,
+)
 from .._generated.payment.succeeded_payment_cancellation import (
     SucceededPaymentCancellation,
 )
@@ -259,8 +270,10 @@ __all__ = [
     "PreRegisterPaymentError",
     "RegisterStoreReceiptError",
     "ResendWebhookError",
+    "StopPaymentCancellationError",
     "billing_key",
     "cash_receipt",
+    "additional_feature",
     "payment_schedule",
     "promotion",
     "ApplyEscrowLogisticsResponse",
@@ -339,6 +352,7 @@ __all__ = [
     "PaymentMethod",
     "PaymentMethodCard",
     "PaymentMethodConvenienceStore",
+    "PaymentMethodCrypto",
     "PaymentMethodEasyPay",
     "PaymentMethodEasyPayMethod",
     "PaymentMethodEasyPayMethodCharge",
@@ -377,6 +391,8 @@ __all__ = [
     "RequestedPaymentCancellation",
     "ResendWebhookBody",
     "ResendWebhookResponse",
+    "StopPaymentCancellationBody",
+    "StopPaymentCancellationResponse",
     "SucceededPaymentCancellation",
     "Trigger",
     "VirtualAccountIssuedPayment",

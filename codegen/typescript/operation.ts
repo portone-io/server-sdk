@@ -2,6 +2,7 @@ import type { Writer } from "../common/writer.ts"
 import type { Definition, Property } from "../parser/definition.ts"
 import type { Operation } from "../parser/operation.ts"
 import { annotateDescription, writeDescription } from "./description.ts"
+import { UNSTABLE_DESCRIPTION } from "../common/description.ts"
 
 export function writeOperation(
   implWriter: Writer,
@@ -19,10 +20,12 @@ export function writeOperation(
     })
   }
   const variants = `${
-    errorType.variants.map(({ name }) => {
-      crossRef.add(name)
-      return name
-    }).join(" | ")
+    errorType.variants
+      .map(({ name }) => {
+        crossRef.add(name)
+        return name
+      })
+      .join(" | ")
   } | { readonly type: Unrecognized }`
   errorWriter.writeLine(
     `export class ${operation.errors} extends ${baseError} {`,
@@ -42,16 +45,16 @@ export function writeOperation(
   errorWriter.outdent()
   errorWriter.writeLine("}")
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
-  const params = operation.params.path.concat(operation.params.query).concat(
-    requestBody,
-  )
+  const params = operation.params.path
+    .concat(operation.params.query)
+    .concat(requestBody)
   const isStructureOptional = params.every(({ required }) => !required)
   const errorDescription = `@throws {@link ${operation.errors}}`
-  const description = ([] as string[]).concat(
-    operation.description?.trimEnd() ?? [],
-  ).concat(
-    errorDescription,
-  ).join("\n\n")
+  const description = ([] as string[])
+    .concat(operation.description?.trimEnd() ?? [])
+    .concat(errorDescription)
+    .concat(operation.unstable ? `@unstable ${UNSTABLE_DESCRIPTION}` : [])
+    .join("\n\n")
   writeDescription(typeWriter, description)
   typeWriter.writeLine(`${operation.id}: (`)
   implWriter.writeLine(`${operation.id}: async (`)
@@ -76,12 +79,8 @@ export function writeOperation(
   switch (operation.response?.type) {
     case "application/json":
       crossRef.add(operation.response.schema)
-      implWriter.writeLine(
-        `): Promise<${operation.response.schema}> => {`,
-      )
-      typeWriter.writeLine(
-        `) => Promise<${operation.response.schema}>`,
-      )
+      implWriter.writeLine(`): Promise<${operation.response.schema}> => {`)
+      typeWriter.writeLine(`) => Promise<${operation.response.schema}>`)
       break
     case "text/csv":
       implWriter.writeLine("): Promise<string> => {")
@@ -126,7 +125,9 @@ export function writeOperation(
       hasQuery = writeQuery(implWriter, operation.params.query)
       break
     default:
-      throw new Error("unrecognized operation method", { cause: { operation } })
+      throw new Error("unrecognized operation method", {
+        cause: { operation },
+      })
   }
   implWriter.writeLine("const response = await fetch(")
   implWriter.indent()
@@ -274,9 +275,10 @@ function writePropertyList(
 ) {
   for (const property of properties) {
     if (withComment) {
-      const description = ([] as string[]).concat(property.title ?? []).concat(
-        property.description ?? [],
-      ).join("\n\n")
+      const description = ([] as string[])
+        .concat(property.title ?? [])
+        .concat(property.description ?? [])
+        .join("\n\n")
       writeDescription(writer, annotateDescription(description, property))
     }
     const name = property.required ? property.name : `${property.name}?`
@@ -291,9 +293,7 @@ function writePropertyList(
         break
       case "ref":
         crossRef.add(property.value)
-        writer.writeLine(
-          `${name}: ${property.value},`,
-        )
+        writer.writeLine(`${name}: ${property.value},`)
         break
       case "array":
         switch (property.item.type) {
@@ -307,9 +307,7 @@ function writePropertyList(
             break
           case "ref":
             crossRef.add(property.item.value)
-            writer.writeLine(
-              `${name}: ${property.item.value}[], `,
-            )
+            writer.writeLine(`${name}: ${property.item.value}[], `)
             break
           case "object":
           case "oneOf":

@@ -77,4 +77,6 @@ export type InstantPaymentInput = {
 	shippingAddress?: SeparatedAddressInput
 	/** 해당 결제에 적용할 프로모션 아이디 */
 	promotionId?: string
+	/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
+	bypass?: object
 }

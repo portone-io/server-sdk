@@ -22,7 +22,7 @@ public data class PaymentScheduleFilterInput(
    *
    * 값을 입력하지 않으면 파라미터 end의 90일 전으로 설정됩니다.
    */
-  val `from`: @Serializable(InstantSerializer::class) Instant? = null,
+  val from: @Serializable(InstantSerializer::class) Instant? = null,
   /**
    * 결제 예정 시점 조건 범위의 끝
    *

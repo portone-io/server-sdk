@@ -60,6 +60,16 @@ class CancelPaymentBody:
 
     계좌 환불일 경우 입력합니다. 계좌 환불이 필요한 경우는 가상계좌 환불, 휴대폰 익월 환불 등이 있습니다.
     """
+    refund_email: Optional[str] = field(default=None)
+    """환불 이메일
+
+    Triple-A 결제 환불에 필요합니다. 해당 이메일로 환불 안내가 발송됩니다.
+    """
+    skip_webhook: Optional[bool] = field(default=None)
+    """웹훅 생략 여부
+
+    취소가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+    """
 
 
 def _serialize_cancel_payment_body(obj: CancelPaymentBody) -> Any:
@@ -83,6 +93,10 @@ def _serialize_cancel_payment_body(obj: CancelPaymentBody) -> Any:
         entity["currentCancellableAmount"] = obj.current_cancellable_amount
     if obj.refund_account is not None:
         entity["refundAccount"] = _serialize_cancel_payment_body_refund_account(obj.refund_account)
+    if obj.refund_email is not None:
+        entity["refundEmail"] = obj.refund_email
+    if obj.skip_webhook is not None:
+        entity["skipWebhook"] = obj.skip_webhook
     return entity
 
 
@@ -139,4 +153,16 @@ def _deserialize_cancel_payment_body(obj: Any) -> CancelPaymentBody:
         refund_account = _deserialize_cancel_payment_body_refund_account(refund_account)
     else:
         refund_account = None
-    return CancelPaymentBody(reason, store_id, amount, tax_free_amount, vat_amount, requester, promotion_discount_retain_option, current_cancellable_amount, refund_account)
+    if "refundEmail" in obj:
+        refund_email = obj["refundEmail"]
+        if not isinstance(refund_email, str):
+            raise ValueError(f"{repr(refund_email)} is not str")
+    else:
+        refund_email = None
+    if "skipWebhook" in obj:
+        skip_webhook = obj["skipWebhook"]
+        if not isinstance(skip_webhook, bool):
+            raise ValueError(f"{repr(skip_webhook)} is not bool")
+    else:
+        skip_webhook = None
+    return CancelPaymentBody(reason, store_id, amount, tax_free_amount, vat_amount, requester, promotion_discount_retain_option, current_cancellable_amount, refund_account, refund_email, skip_webhook)

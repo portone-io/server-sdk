@@ -508,6 +508,21 @@ public sealed interface EasyPayProvider {
     }
     override fun serialize(encoder: Encoder, value: Merpay) = encoder.encodeString(value.value)
   }
+  @Serializable(MoneytreeSerializer::class)
+  public data object Moneytree : EasyPayProvider {
+    override val value: String = "MONEYTREE"
+  }
+  private object MoneytreeSerializer : KSerializer<Moneytree> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Moneytree::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Moneytree = decoder.decodeString().let {
+      if (it != "MONEYTREE") {
+        throw SerializationException(it)
+      } else {
+        return Moneytree
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Moneytree) = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : EasyPayProvider
@@ -552,6 +567,7 @@ private object EasyPayProviderSerializer : KSerializer<EasyPayProvider> {
       "DBARAI" -> EasyPayProvider.Dbarai
       "AUPAY" -> EasyPayProvider.Aupay
       "MERPAY" -> EasyPayProvider.Merpay
+      "MONEYTREE" -> EasyPayProvider.Moneytree
       else -> EasyPayProvider.Unrecognized(value)
     }
   }

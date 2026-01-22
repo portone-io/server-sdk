@@ -18,6 +18,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.annotations.PortOneUnstable
 import io.portone.sdk.server.errors.CancelPlatformAdditionalFeePolicyScheduleError
 import io.portone.sdk.server.errors.CancelPlatformAdditionalFeePolicyScheduleException
 import io.portone.sdk.server.errors.CancelPlatformContractScheduleError
@@ -208,6 +209,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformAdditionalFeePolicyScheduleException
    */
+  @PortOneUnstable
   @JvmName("getPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun getPlatformAdditionalFeePolicySchedule(
     id: String,
@@ -250,6 +252,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformAdditionalFeePolicySchedule")
   public fun getPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
@@ -271,6 +274,7 @@ public class PlatformClient(
    *
    * @throws RescheduleAdditionalFeePolicyException
    */
+  @PortOneUnstable
   @JvmName("rescheduleAdditionalFeePolicySuspend")
   public suspend fun rescheduleAdditionalFeePolicy(
     id: String,
@@ -321,6 +325,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("rescheduleAdditionalFeePolicy")
   public fun rescheduleAdditionalFeePolicyFuture(
     id: String,
@@ -346,6 +351,7 @@ public class PlatformClient(
    *
    * @throws ScheduleAdditionalFeePolicyException
    */
+  @PortOneUnstable
   @JvmName("scheduleAdditionalFeePolicySuspend")
   public suspend fun scheduleAdditionalFeePolicy(
     id: String,
@@ -398,6 +404,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("scheduleAdditionalFeePolicy")
   public fun scheduleAdditionalFeePolicyFuture(
     id: String,
@@ -419,6 +426,7 @@ public class PlatformClient(
    *
    * @throws CancelPlatformAdditionalFeePolicyScheduleException
    */
+  @PortOneUnstable
   @JvmName("cancelPlatformAdditionalFeePolicyScheduleSuspend")
   public suspend fun cancelPlatformAdditionalFeePolicySchedule(
     id: String,
@@ -461,6 +469,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("cancelPlatformAdditionalFeePolicySchedule")
   public fun cancelPlatformAdditionalFeePolicyScheduleFuture(
     id: String,
@@ -480,6 +489,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformContractScheduleException
    */
+  @PortOneUnstable
   @JvmName("getPlatformContractScheduleSuspend")
   public suspend fun getPlatformContractSchedule(
     id: String,
@@ -522,6 +532,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformContractSchedule")
   public fun getPlatformContractScheduleFuture(
     id: String,
@@ -545,6 +556,7 @@ public class PlatformClient(
    *
    * @throws RescheduleContractException
    */
+  @PortOneUnstable
   @JvmName("rescheduleContractSuspend")
   public suspend fun rescheduleContract(
     id: String,
@@ -595,6 +607,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("rescheduleContract")
   public fun rescheduleContractFuture(
     id: String,
@@ -620,6 +633,7 @@ public class PlatformClient(
    *
    * @throws ScheduleContractException
    */
+  @PortOneUnstable
   @JvmName("scheduleContractSuspend")
   public suspend fun scheduleContract(
     id: String,
@@ -672,6 +686,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("scheduleContract")
   public fun scheduleContractFuture(
     id: String,
@@ -693,6 +708,7 @@ public class PlatformClient(
    *
    * @throws CancelPlatformContractScheduleException
    */
+  @PortOneUnstable
   @JvmName("cancelPlatformContractScheduleSuspend")
   public suspend fun cancelPlatformContractSchedule(
     id: String,
@@ -735,6 +751,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("cancelPlatformContractSchedule")
   public fun cancelPlatformContractScheduleFuture(
     id: String,
@@ -754,6 +771,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformDiscountSharePolicyScheduleException
    */
+  @PortOneUnstable
   @JvmName("getPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun getPlatformDiscountSharePolicySchedule(
     id: String,
@@ -796,6 +814,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformDiscountSharePolicySchedule")
   public fun getPlatformDiscountSharePolicyScheduleFuture(
     id: String,
@@ -819,6 +838,7 @@ public class PlatformClient(
    *
    * @throws RescheduleDiscountSharePolicyException
    */
+  @PortOneUnstable
   @JvmName("rescheduleDiscountSharePolicySuspend")
   public suspend fun rescheduleDiscountSharePolicy(
     id: String,
@@ -869,6 +889,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("rescheduleDiscountSharePolicy")
   public fun rescheduleDiscountSharePolicyFuture(
     id: String,
@@ -894,6 +915,7 @@ public class PlatformClient(
    *
    * @throws ScheduleDiscountSharePolicyException
    */
+  @PortOneUnstable
   @JvmName("scheduleDiscountSharePolicySuspend")
   public suspend fun scheduleDiscountSharePolicy(
     id: String,
@@ -946,6 +968,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("scheduleDiscountSharePolicy")
   public fun scheduleDiscountSharePolicyFuture(
     id: String,
@@ -967,6 +990,7 @@ public class PlatformClient(
    *
    * @throws CancelPlatformDiscountSharePolicyScheduleException
    */
+  @PortOneUnstable
   @JvmName("cancelPlatformDiscountSharePolicyScheduleSuspend")
   public suspend fun cancelPlatformDiscountSharePolicySchedule(
     id: String,
@@ -1009,6 +1033,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("cancelPlatformDiscountSharePolicySchedule")
   public fun cancelPlatformDiscountSharePolicyScheduleFuture(
     id: String,
@@ -1030,6 +1055,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformDiscountSharePolicyFilterOptionsException
    */
+  @PortOneUnstable
   @JvmName("getPlatformDiscountSharePolicyFilterOptionsSuspend")
   public suspend fun getPlatformDiscountSharePolicyFilterOptions(
     test: Boolean? = null,
@@ -1072,6 +1098,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformDiscountSharePolicyFilterOptions")
   public fun getPlatformDiscountSharePolicyFilterOptionsFuture(
     test: Boolean? = null,
@@ -1093,6 +1120,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformPartnerFilterOptionsException
    */
+  @PortOneUnstable
   @JvmName("getPlatformPartnerFilterOptionsSuspend")
   public suspend fun getPlatformPartnerFilterOptions(
     test: Boolean? = null,
@@ -1135,6 +1163,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformPartnerFilterOptions")
   public fun getPlatformPartnerFilterOptionsFuture(
     test: Boolean? = null,
@@ -1156,6 +1185,7 @@ public class PlatformClient(
    *
    * @throws SchedulePlatformPartnersException
    */
+  @PortOneUnstable
   @JvmName("schedulePlatformPartnersSuspend")
   public suspend fun schedulePlatformPartners(
     test: Boolean? = null,
@@ -1211,6 +1241,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("schedulePlatformPartners")
   public fun schedulePlatformPartnersFuture(
     test: Boolean? = null,
@@ -1232,6 +1263,7 @@ public class PlatformClient(
    *
    * @throws GetPlatformPartnerScheduleException
    */
+  @PortOneUnstable
   @JvmName("getPlatformPartnerScheduleSuspend")
   public suspend fun getPlatformPartnerSchedule(
     id: String,
@@ -1274,6 +1306,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("getPlatformPartnerSchedule")
   public fun getPlatformPartnerScheduleFuture(
     id: String,
@@ -1297,6 +1330,7 @@ public class PlatformClient(
    *
    * @throws ReschedulePartnerException
    */
+  @PortOneUnstable
   @JvmName("reschedulePartnerSuspend")
   public suspend fun reschedulePartner(
     id: String,
@@ -1349,6 +1383,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("reschedulePartner")
   public fun reschedulePartnerFuture(
     id: String,
@@ -1374,6 +1409,7 @@ public class PlatformClient(
    *
    * @throws SchedulePartnerException
    */
+  @PortOneUnstable
   @JvmName("schedulePartnerSuspend")
   public suspend fun schedulePartner(
     id: String,
@@ -1436,6 +1472,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("schedulePartner")
   public fun schedulePartnerFuture(
     id: String,
@@ -1457,6 +1494,7 @@ public class PlatformClient(
    *
    * @throws CancelPlatformPartnerScheduleException
    */
+  @PortOneUnstable
   @JvmName("cancelPlatformPartnerScheduleSuspend")
   public suspend fun cancelPlatformPartnerSchedule(
     id: String,
@@ -1499,6 +1537,7 @@ public class PlatformClient(
   }
 
   /** @suppress */
+  @PortOneUnstable
   @JvmName("cancelPlatformPartnerSchedule")
   public fun cancelPlatformPartnerScheduleFuture(
     id: String,

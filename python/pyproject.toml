@@ -32,7 +32,7 @@ packages = ["src/portone_server_sdk"]
 
 [dependency-groups]
 dev = [
-    "pyright>=1.1.407",
+    "pyright>=1.1.408",
     "ruff>=0.8.3",
     "sphinx>=7.4.7",
     "sphinx-book-theme>=1.1.3",

@@ -121,6 +121,10 @@ class PlatformClient:
     ) -> PlatformAdditionalFeePolicy:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 추가 수수료 정책 아이디
@@ -188,6 +192,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> PlatformAdditionalFeePolicy:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -257,7 +265,11 @@ class PlatformClient:
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformAdditionalFeePolicyResponse:
-        """Args:
+        """Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
             id (str):
                 추가 수수료 정책 아이디
             test (bool, optional):
@@ -333,7 +345,11 @@ class PlatformClient:
         update: UpdatePlatformAdditionalFeePolicyBody,
         applied_at: str,
     ) -> ReschedulePlatformAdditionalFeePolicyResponse:
-        """Args:
+        """Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
             id (str):
                 추가 수수료 정책 아이디
             test (bool, optional):
@@ -410,6 +426,10 @@ class PlatformClient:
         applied_at: str,
     ) -> SchedulePlatformAdditionalFeePolicyResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -501,6 +521,10 @@ class PlatformClient:
     ) -> SchedulePlatformAdditionalFeePolicyResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 추가 수수료 정책 아이디
@@ -589,6 +613,10 @@ class PlatformClient:
     ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 추가 수수료 정책 아이디
@@ -656,6 +684,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> CancelPlatformAdditionalFeePolicyScheduleResponse:
         """주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -725,6 +757,10 @@ class PlatformClient:
     ) -> PlatformContract:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 계약 아이디
@@ -792,6 +828,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> PlatformContract:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -862,6 +902,10 @@ class PlatformClient:
         applied_at: str,
     ) -> ReschedulePlatformContractResponse:
         """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -941,6 +985,10 @@ class PlatformClient:
     ) -> ReschedulePlatformContractResponse:
         """주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 계약 아이디
@@ -1018,6 +1066,10 @@ class PlatformClient:
         applied_at: str,
     ) -> SchedulePlatformContractResponse:
         """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1109,6 +1161,10 @@ class PlatformClient:
     ) -> SchedulePlatformContractResponse:
         """주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 계약 아이디
@@ -1197,6 +1253,10 @@ class PlatformClient:
     ) -> CancelPlatformContractScheduleResponse:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 계약 아이디
@@ -1264,6 +1324,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> CancelPlatformContractScheduleResponse:
         """주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1333,6 +1397,10 @@ class PlatformClient:
     ) -> PlatformDiscountSharePolicy:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 할인 분담 정책 아이디
@@ -1400,6 +1468,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicy:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1470,6 +1542,10 @@ class PlatformClient:
         applied_at: str,
     ) -> ReschedulePlatformDiscountSharePolicyResponse:
         """주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1549,6 +1625,10 @@ class PlatformClient:
     ) -> ReschedulePlatformDiscountSharePolicyResponse:
         """주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 할인 분담 정책 아이디
@@ -1626,6 +1706,10 @@ class PlatformClient:
         applied_at: str,
     ) -> SchedulePlatformDiscountSharePolicyResponse:
         """주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1717,6 +1801,10 @@ class PlatformClient:
     ) -> SchedulePlatformDiscountSharePolicyResponse:
         """주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 할인 분담 정책 아이디
@@ -1805,6 +1893,10 @@ class PlatformClient:
     ) -> CancelPlatformDiscountSharePolicyScheduleResponse:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 할인 분담 정책 아이디
@@ -1872,6 +1964,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> CancelPlatformDiscountSharePolicyScheduleResponse:
         """주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -1941,6 +2037,10 @@ class PlatformClient:
     ) -> PlatformDiscountSharePolicyFilterOptions:
         """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             test (bool, optional):
                 테스트 모드 여부
@@ -2006,6 +2106,10 @@ class PlatformClient:
         is_archived: Optional[bool] = None,
     ) -> PlatformDiscountSharePolicyFilterOptions:
         """할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             test (bool, optional):
@@ -2073,6 +2177,10 @@ class PlatformClient:
     ) -> PlatformPartnerFilterOptions:
         """파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             test (bool, optional):
                 테스트 모드 여부
@@ -2138,6 +2246,10 @@ class PlatformClient:
         is_archived: Optional[bool] = None,
     ) -> PlatformPartnerFilterOptions:
         """파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             test (bool, optional):
@@ -2205,7 +2317,11 @@ class PlatformClient:
         update: SchedulePlatformPartnersBodyUpdate,
         applied_at: str,
     ) -> SchedulePlatformPartnersResponse:
-        """Args:
+        """Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
             test (bool, optional):
                 테스트 모드 여부
 
@@ -2307,7 +2423,11 @@ class PlatformClient:
         update: SchedulePlatformPartnersBodyUpdate,
         applied_at: str,
     ) -> SchedulePlatformPartnersResponse:
-        """Args:
+        """Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
             test (bool, optional):
                 테스트 모드 여부
 
@@ -2409,6 +2529,10 @@ class PlatformClient:
     ) -> PlatformPartner:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 파트너 아이디
@@ -2476,6 +2600,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> PlatformPartner:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -2546,6 +2674,10 @@ class PlatformClient:
         applied_at: str,
     ) -> ReschedulePlatformPartnerResponse:
         """주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -2637,6 +2769,10 @@ class PlatformClient:
     ) -> ReschedulePlatformPartnerResponse:
         """주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 파트너 아이디
@@ -2726,6 +2862,10 @@ class PlatformClient:
         applied_at: str,
     ) -> SchedulePlatformPartnerResponse:
         """주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):
@@ -2877,6 +3017,10 @@ class PlatformClient:
     ) -> SchedulePlatformPartnerResponse:
         """주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 파트너 아이디
@@ -3025,6 +3169,10 @@ class PlatformClient:
     ) -> CancelPlatformPartnerScheduleResponse:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
 
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
         Args:
             id (str):
                 파트너 아이디
@@ -3092,6 +3240,10 @@ class PlatformClient:
         test: Optional[bool] = None,
     ) -> CancelPlatformPartnerScheduleResponse:
         """주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
 
         Args:
             id (str):

@@ -4,6 +4,7 @@ import type { Currency } from "./../common/Currency"
 import type { Customer } from "./../common/Customer"
 import type { Dispute } from "./../payment/Dispute"
 import type { PaymentAmount } from "./../payment/PaymentAmount"
+import type { PaymentCancellation } from "./../payment/PaymentCancellation"
 import type { PaymentCashReceipt } from "./../payment/PaymentCashReceipt"
 import type { PaymentEscrow } from "./../payment/PaymentEscrow"
 import type { PaymentMethod } from "./../payment/PaymentMethod"
@@ -108,4 +109,6 @@ export type PaidPayment = {
 	receiptUrl?: string
 	/** 분쟁 목록 */
 	disputes: Dispute[]
+	/** 결제 취소 요청 내역 */
+	cancellations?: PaymentCancellation[]
 }

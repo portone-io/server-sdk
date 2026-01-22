@@ -32,6 +32,8 @@ public data class FailedIdentityVerification(
   val failure: IdentityVerificationFailure,
   /** 포트원 버전 */
   override val version: PortOneVersion,
+  /** 본인인증 내역 PG사 아이디 */
+  override val pgTxId: String? = null,
 ) : IdentityVerification.Recognized
 
 

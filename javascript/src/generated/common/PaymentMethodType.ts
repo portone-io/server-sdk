@@ -6,4 +6,5 @@ export type PaymentMethodType =
 	| "MOBILE"
 	| "EASY_PAY"
 	| "CONVENIENCE_STORE"
+	| "CRYPTO"
 	| string & {}
