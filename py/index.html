@@ -150,6 +150,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="_toctree/portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.additional_feature.html">portone_server_sdk.payment.additional_feature</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
 </ul>
@@ -168,6 +169,7 @@
 <li class="toctree-l2"><a class="reference internal" href="_toctree/portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.reconciliation.html">portone_server_sdk.reconciliation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
@@ -185,11 +187,13 @@
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.AdditionalFeatureClient.html">portone_server_sdk.AdditionalFeatureClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.ReconciliationClient.html">portone_server_sdk.ReconciliationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_toctree/portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
 </ul>
 
@@ -361,55 +365,61 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.platform.html#module-portone_server_sdk.platform" title="portone_server_sdk.platform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">platform</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.webhook.html#module-portone_server_sdk.webhook" title="portone_server_sdk.webhook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">webhook</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.reconciliation.html#module-portone_server_sdk.reconciliation" title="portone_server_sdk.reconciliation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconciliation</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.B2bClient.html#portone_server_sdk.B2bClient" title="portone_server_sdk.B2bClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.webhook.html#module-portone_server_sdk.webhook" title="portone_server_sdk.webhook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">webhook</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.TaxInvoiceClient.html#portone_server_sdk.TaxInvoiceClient" title="portone_server_sdk.TaxInvoiceClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaxInvoiceClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.B2bClient.html#portone_server_sdk.B2bClient" title="portone_server_sdk.B2bClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B2bClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient" title="portone_server_sdk.PlatformClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.TaxInvoiceClient.html#portone_server_sdk.TaxInvoiceClient" title="portone_server_sdk.TaxInvoiceClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaxInvoiceClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient" title="portone_server_sdk.CompanyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompanyClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PlatformClient.html#portone_server_sdk.PlatformClient" title="portone_server_sdk.PlatformClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AccountTransferClient.html#portone_server_sdk.AccountTransferClient" title="portone_server_sdk.AccountTransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccountTransferClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.CompanyClient.html#portone_server_sdk.CompanyClient" title="portone_server_sdk.CompanyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompanyClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PolicyClient.html#portone_server_sdk.PolicyClient" title="portone_server_sdk.PolicyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolicyClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AccountTransferClient.html#portone_server_sdk.AccountTransferClient" title="portone_server_sdk.AccountTransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccountTransferClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AccountClient.html#portone_server_sdk.AccountClient" title="portone_server_sdk.AccountClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccountClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PolicyClient.html#portone_server_sdk.PolicyClient" title="portone_server_sdk.PolicyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolicyClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BulkAccountTransferClient.html#portone_server_sdk.BulkAccountTransferClient" title="portone_server_sdk.BulkAccountTransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AccountClient.html#portone_server_sdk.AccountClient" title="portone_server_sdk.AccountClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccountClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BulkPayoutClient.html#portone_server_sdk.BulkPayoutClient" title="portone_server_sdk.BulkPayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkPayoutClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BulkAccountTransferClient.html#portone_server_sdk.BulkAccountTransferClient" title="portone_server_sdk.BulkAccountTransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkAccountTransferClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PartnerSettlementClient.html#portone_server_sdk.PartnerSettlementClient" title="portone_server_sdk.PartnerSettlementClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartnerSettlementClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BulkPayoutClient.html#portone_server_sdk.BulkPayoutClient" title="portone_server_sdk.BulkPayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkPayoutClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PartnerClient.html#portone_server_sdk.PartnerClient" title="portone_server_sdk.PartnerClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartnerClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PartnerSettlementClient.html#portone_server_sdk.PartnerSettlementClient" title="portone_server_sdk.PartnerSettlementClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartnerSettlementClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PayoutClient.html#portone_server_sdk.PayoutClient" title="portone_server_sdk.PayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PayoutClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PartnerClient.html#portone_server_sdk.PartnerClient" title="portone_server_sdk.PartnerClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartnerClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.TransferClient.html#portone_server_sdk.TransferClient" title="portone_server_sdk.TransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransferClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PayoutClient.html#portone_server_sdk.PayoutClient" title="portone_server_sdk.PayoutClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PayoutClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient" title="portone_server_sdk.PaymentClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.TransferClient.html#portone_server_sdk.TransferClient" title="portone_server_sdk.TransferClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransferClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BillingKeyClient.html#portone_server_sdk.BillingKeyClient" title="portone_server_sdk.BillingKeyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingKeyClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PaymentClient.html#portone_server_sdk.PaymentClient" title="portone_server_sdk.PaymentClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.CashReceiptClient.html#portone_server_sdk.CashReceiptClient" title="portone_server_sdk.CashReceiptClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CashReceiptClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.BillingKeyClient.html#portone_server_sdk.BillingKeyClient" title="portone_server_sdk.BillingKeyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingKeyClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.CashReceiptClient.html#portone_server_sdk.CashReceiptClient" title="portone_server_sdk.CashReceiptClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CashReceiptClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AdditionalFeatureClient.html#portone_server_sdk.AdditionalFeatureClient" title="portone_server_sdk.AdditionalFeatureClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdditionalFeatureClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PaymentScheduleClient.html#portone_server_sdk.PaymentScheduleClient" title="portone_server_sdk.PaymentScheduleClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentScheduleClient</span></code></a></p></td>
@@ -427,7 +437,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.AuthClient.html#portone_server_sdk.AuthClient" title="portone_server_sdk.AuthClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PortOneClient.html#portone_server_sdk.PortOneClient" title="portone_server_sdk.PortOneClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PortOneClient</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.ReconciliationClient.html#portone_server_sdk.ReconciliationClient" title="portone_server_sdk.ReconciliationClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconciliationClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_toctree/portone_server_sdk.PortOneClient.html#portone_server_sdk.PortOneClient" title="portone_server_sdk.PortOneClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PortOneClient</span></code></a>(*, secret[, base_url, store_id])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

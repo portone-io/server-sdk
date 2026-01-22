@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>portone_server_sdk.CompanyClient &#8212; portone-server-sdk  documentation</title>
+    <title>portone_server_sdk.AdditionalFeatureClient &#8212; portone-server-sdk  documentation</title>
   
   
   
@@ -43,11 +43,11 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.CompanyClient';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.AdditionalFeatureClient';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.AccountTransferClient" href="portone_server_sdk.AccountTransferClient.html" />
-    <link rel="prev" title="portone_server_sdk.PlatformClient" href="portone_server_sdk.PlatformClient.html" />
+    <link rel="next" title="portone_server_sdk.PaymentScheduleClient" href="portone_server_sdk.PaymentScheduleClient.html" />
+    <link rel="prev" title="portone_server_sdk.CashReceiptClient" href="portone_server_sdk.CashReceiptClient.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -173,7 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
@@ -186,7 +186,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AdditionalFeatureClient.html">portone_server_sdk.AdditionalFeatureClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.AdditionalFeatureClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
@@ -248,7 +248,7 @@
       
       
       
-      <li><a href="../_sources/_toctree/portone_server_sdk.CompanyClient.rst" target="_blank"
+      <li><a href="../_sources/_toctree/portone_server_sdk.AdditionalFeatureClient.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -324,7 +324,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>portone_server_sdk.CompanyClient</h1>
+    <h1>portone_server_sdk.AdditionalFeatureClient</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,12 +334,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient"><code class="docutils literal notranslate"><span class="pre">CompanyClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.__init__"><code class="docutils literal notranslate"><span class="pre">CompanyClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_b2b_business_infos()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_b2b_business_infos_async()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.__init__"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.get_pg_card_promotions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.get_pg_card_promotions_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -353,15 +351,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="portone-server-sdk-companyclient">
-<h1>portone_server_sdk.CompanyClient<a class="headerlink" href="#portone-server-sdk-companyclient" title="Link to this heading">#</a></h1>
+  <section id="portone-server-sdk-additionalfeatureclient">
+<h1>portone_server_sdk.AdditionalFeatureClient<a class="headerlink" href="#portone-server-sdk-additionalfeatureclient" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">CompanyClient</span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.AdditionalFeatureClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.</span></span><span class="sig-name descname"><span class="pre">AdditionalFeatureClient</span></span><a class="headerlink" href="#portone_server_sdk.AdditionalFeatureClient" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.CompanyClient.__init__" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="portone_server_sdk.AdditionalFeatureClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://api.portone.io'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.AdditionalFeatureClient.__init__" title="Link to this definition">#</a></dt>
 <dd><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -377,79 +375,42 @@
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.__init__" title="portone_server_sdk.CompanyClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.AdditionalFeatureClient.__init__" title="portone_server_sdk.AdditionalFeatureClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
 <td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos" title="portone_server_sdk.CompanyClient.get_b2b_business_infos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_b2b_business_infos</span></code></a>(*, brn_list)</p></td>
-<td><p>사업자등록 정보조회</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions" title="portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pg_card_promotions</span></code></a>(*, channel_key, amount)</p></td>
+<td><p>PG사 카드 프로모션 조회 API</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos_async" title="portone_server_sdk.CompanyClient.get_b2b_business_infos_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_b2b_business_infos_async</span></code></a>(*, brn_list)</p></td>
-<td><p>사업자등록 정보조회</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_platform_company_state" title="portone_server_sdk.CompanyClient.get_platform_company_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_company_state</span></code></a>(*, ...[, test])</p></td>
-<td><p>사업자 조회</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async" title="portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_company_state_async</span></code></a>(*, ...[, test])</p></td>
-<td><p>사업자 조회</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async" title="portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pg_card_promotions_async</span></code></a>(*, channel_key, ...)</p></td>
+<td><p>PG사 카드 프로모션 조회 API</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_b2b_business_infos">
-<span class="sig-name descname"><span class="pre">get_b2b_business_infos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos" title="Link to this definition">#</a></dt>
-<dd><p>사업자등록 정보조회</p>
-<p>요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
-해당 API 사용을 위해서는 별도 문의가 필요합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetB2bBusinessInfosError" title="portone_server_sdk.platform.company.GetB2bBusinessInfosError"><strong>GetB2bBusinessInfosError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_b2b_business_infos_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_b2b_business_infos_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos_async" title="Link to this definition">#</a></dt>
-<dd><p>사업자등록 정보조회</p>
-<p>요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
-해당 API 사용을 위해서는 별도 문의가 필요합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetB2bBusinessInfosError" title="portone_server_sdk.platform.company.GetB2bBusinessInfosError"><strong>GetB2bBusinessInfosError</strong></a> – API 호출이 실패한 경우</p></li>
-<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_platform_company_state">
-<span class="sig-name descname"><span class="pre">get_platform_company_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">business_registration_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload" title="portone_server_sdk._generated.platform.company.get_platform_company_state_payload.GetPlatformCompanyStatePayload"><span class="pre">GetPlatformCompanyStatePayload</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_platform_company_state" title="Link to this definition">#</a></dt>
-<dd><p>사업자 조회</p>
-<p>사업자 정보를 조회합니다. 포트원 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions">
+<span class="sig-name descname"><span class="pre">get_pg_card_promotions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">card_company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'KOREA_DEVELOPMENT_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KFCC'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SHINHYUP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'EPOST'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SAVINGS_BANK_KOREA'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KAKAO_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WOORI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'BC_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'GWANGJU_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SAMSUNG_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SHINHAN_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HYUNDAI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'LOTTE_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUHYUP_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CITI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NH_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'JEONBUK_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'JEJU_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HANA_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KOOKMIN_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'K_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSS_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MIRAE_ASSET_SECURITIES'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html#portone_server_sdk.payment.additional_feature.GetPgCardPromotionsResponse" title="portone_server_sdk._generated.payment.additional_feature.get_pg_card_promotions_response.GetPgCardPromotionsResponse"><span class="pre">GetPgCardPromotionsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions" title="Link to this definition">#</a></dt>
+<dd><p>PG사 카드 프로모션 조회 API</p>
+<p>주어진 채널에 대해 PG사에서 제공하는 카드 프로모션 목록을 조회합니다.
+해당 API는 현재 특정 PG사(KCP_V2)에 대해서만 지원되며, 지원 여부는 포트원 기술지원팀에 문의 부탁드립니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>business_registration_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 사업자등록번호</p></li>
-<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
-<p>테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p>
+<li><p><strong>channel_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>채널 키</p>
+<p>조회하고자 하는 채널의 키</p>
+</p></li>
+<li><p><strong>amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – <p>결제 금액</p>
+<p>결제 금액입니다. 해당 결제 금액 기준 이용 가능한 프로모션 목록이 조회됩니다.
+(int64)</p>
+</p></li>
+<li><p><strong>card_company</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PgPromotionCardCompany,</span> <span class="pre">optional</span></code>) – <p>카드사 필터</p>
+<p>조회할 카드사입니다. 값을 입력하지 않으면 카드사 필터링이 적용되지 않습니다.</p>
 </p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError" title="portone_server_sdk.platform.company.GetPlatformCompanyStateError"><strong>GetPlatformCompanyStateError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html#portone_server_sdk.payment.additional_feature.GetPgCardPromotionsError" title="portone_server_sdk.payment.additional_feature.GetPgCardPromotionsError"><strong>GetPgCardPromotionsError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -457,22 +418,29 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="portone_server_sdk.CompanyClient.get_platform_company_state_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_company_state_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">business_registration_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStatePayload" title="portone_server_sdk._generated.platform.company.get_platform_company_state_payload.GetPlatformCompanyStatePayload"><span class="pre">GetPlatformCompanyStatePayload</span></a></span></span><a class="headerlink" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async" title="Link to this definition">#</a></dt>
-<dd><p>사업자 조회</p>
-<p>사업자 정보를 조회합니다. 포트원 서비스에 연동 및 등록되지 않은 사업자도 조회 가능합니다.</p>
+<dt class="sig sig-object py" id="portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pg_card_promotions_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">card_company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'KOREA_DEVELOPMENT_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KFCC'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SHINHYUP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'EPOST'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SAVINGS_BANK_KOREA'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KAKAO_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WOORI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'BC_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'GWANGJU_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SAMSUNG_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SHINHAN_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HYUNDAI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'LOTTE_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SUHYUP_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CITI_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NH_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'JEONBUK_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'JEJU_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HANA_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KOOKMIN_CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'K_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSS_BANK'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MIRAE_ASSET_SECURITIES'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html#portone_server_sdk.payment.additional_feature.GetPgCardPromotionsResponse" title="portone_server_sdk._generated.payment.additional_feature.get_pg_card_promotions_response.GetPgCardPromotionsResponse"><span class="pre">GetPgCardPromotionsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async" title="Link to this definition">#</a></dt>
+<dd><p>PG사 카드 프로모션 조회 API</p>
+<p>주어진 채널에 대해 PG사에서 제공하는 카드 프로모션 목록을 조회합니다.
+해당 API는 현재 특정 PG사(KCP_V2)에 대해서만 지원되며, 지원 여부는 포트원 기술지원팀에 문의 부탁드립니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>business_registration_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 사업자등록번호</p></li>
-<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
-<p>테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p>
+<li><p><strong>channel_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>채널 키</p>
+<p>조회하고자 하는 채널의 키</p>
+</p></li>
+<li><p><strong>amount</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – <p>결제 금액</p>
+<p>결제 금액입니다. 해당 결제 금액 기준 이용 가능한 프로모션 목록이 조회됩니다.
+(int64)</p>
+</p></li>
+<li><p><strong>card_company</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PgPromotionCardCompany,</span> <span class="pre">optional</span></code>) – <p>카드사 필터</p>
+<p>조회할 카드사입니다. 값을 입력하지 않으면 카드사 필터링이 적용되지 않습니다.</p>
 </p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="portone_server_sdk.platform.company.html#portone_server_sdk.platform.company.GetPlatformCompanyStateError" title="portone_server_sdk.platform.company.GetPlatformCompanyStateError"><strong>GetPlatformCompanyStateError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html#portone_server_sdk.payment.additional_feature.GetPgCardPromotionsError" title="portone_server_sdk.payment.additional_feature.GetPgCardPromotionsError"><strong>GetPgCardPromotionsError</strong></a> – API 호출이 실패한 경우</p></li>
 <li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
 </ul>
 </dd>
@@ -495,20 +463,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.PlatformClient.html"
+       href="portone_server_sdk.CashReceiptClient.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.PlatformClient</p>
+        <p class="prev-next-title">portone_server_sdk.CashReceiptClient</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.AccountTransferClient.html"
+       href="portone_server_sdk.PaymentScheduleClient.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.AccountTransferClient</p>
+        <p class="prev-next-title">portone_server_sdk.PaymentScheduleClient</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -529,12 +497,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient"><code class="docutils literal notranslate"><span class="pre">CompanyClient</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.__init__"><code class="docutils literal notranslate"><span class="pre">CompanyClient.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_b2b_business_infos()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_b2b_business_infos_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_b2b_business_infos_async()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.CompanyClient.get_platform_company_state_async"><code class="docutils literal notranslate"><span class="pre">CompanyClient.get_platform_company_state_async()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.__init__"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.get_pg_card_promotions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.AdditionalFeatureClient.get_pg_card_promotions_async"><code class="docutils literal notranslate"><span class="pre">AdditionalFeatureClient.get_pg_card_promotions_async()</span></code></a></li>
 </ul>
 </li>
 </ul>

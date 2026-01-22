@@ -71,6 +71,7 @@
       PaymentLogistics
       PaymentMethodCard
       PaymentMethodConvenienceStore
+      PaymentMethodCrypto
       PaymentMethodEasyPay
       PaymentMethodEasyPayMethodCharge
       PaymentMethodGiftCertificate
@@ -96,6 +97,8 @@
       RequestedPaymentCancellation
       ResendWebhookBody
       ResendWebhookResponse
+      StopPaymentCancellationBody
+      StopPaymentCancellationResponse
       SucceededPaymentCancellation
       VirtualAccountIssuedPayment
       VirtualAccountIssuedPaymentTransaction
@@ -122,6 +125,7 @@
       PreRegisterPaymentError
       RegisterStoreReceiptError
       ResendWebhookError
+      StopPaymentCancellationError
    
 .. rubric:: Modules
 
@@ -131,5 +135,6 @@
 
    billing_key
    cash_receipt
+   additional_feature
    payment_schedule
    promotion

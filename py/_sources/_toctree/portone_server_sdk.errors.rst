@@ -60,6 +60,8 @@
       MaxWebhookRetryCountReachedError
       NegativePromotionAdjustedCancelAmountError
       PaymentAlreadyCancelledError
+      PaymentCancellationNotFoundError
+      PaymentCancellationNotPendingError
       PaymentNotFoundError
       PaymentNotPaidError
       PaymentNotWaitingForDepositError

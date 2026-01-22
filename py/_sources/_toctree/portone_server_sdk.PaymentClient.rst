@@ -48,6 +48,8 @@
       ~PaymentClient.register_store_receipt_async
       ~PaymentClient.resend_webhook
       ~PaymentClient.resend_webhook_async
+      ~PaymentClient.stop_payment_cancellation
+      ~PaymentClient.stop_payment_cancellation_async
    
    
 
@@ -59,6 +61,7 @@
    
       ~PaymentClient.billing_key
       ~PaymentClient.cash_receipt
+      ~PaymentClient.additional_feature
       ~PaymentClient.payment_schedule
       ~PaymentClient.promotion
    

@@ -15,6 +15,7 @@ portone_server_sdk
    payment
    pg_specific
    platform
+   reconciliation
    webhook
    B2bClient
    TaxInvoiceClient
@@ -32,9 +33,11 @@ portone_server_sdk
    PaymentClient
    BillingKeyClient
    CashReceiptClient
+   AdditionalFeatureClient
    PaymentScheduleClient
    PromotionClient
    IdentityVerificationClient
    PgSpecificClient
    AuthClient
+   ReconciliationClient
    PortOneClient

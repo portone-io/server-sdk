@@ -17,6 +17,7 @@
       CustomerInput
       CustomerNameInput
       CustomerSeparatedName
+      DateRange
       DateTimeRange
       OneLineAddress
       PageInfo

@@ -149,6 +149,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html">portone_server_sdk.payment.additional_feature</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
 </ul>
@@ -167,6 +168,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.reconciliation.html">portone_server_sdk.reconciliation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
@@ -184,11 +186,13 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AdditionalFeatureClient.html">portone_server_sdk.AdditionalFeatureClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.ReconciliationClient.html">portone_server_sdk.ReconciliationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
 </ul>
 
@@ -460,11 +464,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformContractScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformContractScheduleResponse</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformDiscountSharePolicyScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformDiscountSharePolicyScheduleResponse</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformPartnerScheduleResponse</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange"><code class="docutils literal notranslate"><span class="pre">DateRange</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange.from_"><code class="docutils literal notranslate"><span class="pre">DateRange.from_</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange.until"><code class="docutils literal notranslate"><span class="pre">DateRange.until</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay"><code class="docutils literal notranslate"><span class="pre">MonthDay</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay.month"><code class="docutils literal notranslate"><span class="pre">MonthDay.month</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay.day"><code class="docutils literal notranslate"><span class="pre">MonthDay.day</span></code></a></li>
@@ -1019,229 +1018,226 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse" title="portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancelPlatformPartnerScheduleResponse</span></code></a></p></td>
 <td><p>파트너 예약 업데이트 취소 성공 응답</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.DateRange" title="portone_server_sdk.platform.DateRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateRange</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.MonthDay" title="portone_server_sdk.platform.MonthDay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MonthDay</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.MonthDay" title="portone_server_sdk.platform.MonthDay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MonthDay</span></code></a></p></td>
 <td><p>월 및 일자 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAccount" title="portone_server_sdk.platform.PlatformAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAccount</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAccount" title="portone_server_sdk.platform.PlatformAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAccount</span></code></a></p></td>
 <td><p>플랫폼 정산 계좌</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAccountTransferStatusStats" title="portone_server_sdk.platform.PlatformAccountTransferStatusStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAccountTransferStatusStats</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAccountTransferStatusStats" title="portone_server_sdk.platform.PlatformAccountTransferStatusStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAccountTransferStatusStats</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk.platform.PlatformAdditionalFeePolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAdditionalFeePolicy</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk.platform.PlatformAdditionalFeePolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformAdditionalFeePolicy</span></code></a></p></td>
 <td><p>추가 수수료 정책</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformContact" title="portone_server_sdk.platform.PlatformContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformContact</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformContact" title="portone_server_sdk.platform.PlatformContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformContact</span></code></a></p></td>
 <td><p>플랫폼 파트너 담당자 연락 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk.platform.PlatformContract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformContract</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk.platform.PlatformContract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformContract</span></code></a></p></td>
 <td><p>계약</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk.platform.PlatformDiscountSharePolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicy</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk.platform.PlatformDiscountSharePolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicy</span></code></a></p></td>
 <td><p>할인 분담 정책</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions" title="portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicyFilterOptions</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions" title="portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformDiscountSharePolicyFilterOptions</span></code></a></p></td>
 <td><p>할인 분담 정책 필터 옵션 조회 성공 응답 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk.platform.PlatformFeeInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFeeInput" title="portone_server_sdk.platform.PlatformFeeInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFeeInput</span></code></a></p></td>
 <td><p>수수료 계산 방식을 특정하기 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFixedAmountFee" title="portone_server_sdk.platform.PlatformFixedAmountFee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFixedAmountFee</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFixedAmountFee" title="portone_server_sdk.platform.PlatformFixedAmountFee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFixedAmountFee</span></code></a></p></td>
 <td><p>정액 수수료</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFixedRateFee" title="portone_server_sdk.platform.PlatformFixedRateFee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFixedRateFee</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformFixedRateFee" title="portone_server_sdk.platform.PlatformFixedRateFee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformFixedRateFee</span></code></a></p></td>
 <td><p>정률 수수료</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformOrderSettlementAmount" title="portone_server_sdk.platform.PlatformOrderSettlementAmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformOrderSettlementAmount</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformOrderSettlementAmount" title="portone_server_sdk.platform.PlatformOrderSettlementAmount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformOrderSettlementAmount</span></code></a></p></td>
 <td><p>정산 금액 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk.platform.PlatformPartner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartner</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk.platform.PlatformPartner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartner</span></code></a></p></td>
 <td><p>파트너</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerContractSummary" title="portone_server_sdk.platform.PlatformPartnerContractSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerContractSummary</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerContractSummary" title="portone_server_sdk.platform.PlatformPartnerContractSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerContractSummary</span></code></a></p></td>
 <td><p>파트너 계약 요약 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk.platform.PlatformPartnerFilterInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk.platform.PlatformPartnerFilterInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterInput</span></code></a></p></td>
 <td><p>파트너 필터 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInputKeyword" title="portone_server_sdk.platform.PlatformPartnerFilterInputKeyword"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterInputKeyword</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInputKeyword" title="portone_server_sdk.platform.PlatformPartnerFilterInputKeyword"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterInputKeyword</span></code></a></p></td>
 <td><p>파트너 검색 키워드 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterOptions" title="portone_server_sdk.platform.PlatformPartnerFilterOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterOptions</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterOptions" title="portone_server_sdk.platform.PlatformPartnerFilterOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerFilterOptions</span></code></a></p></td>
 <td><p>파트너 필터 옵션 조회 성공 응답 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeBusiness" title="portone_server_sdk.platform.PlatformPartnerTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeBusiness</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeBusiness" title="portone_server_sdk.platform.PlatformPartnerTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeBusiness</span></code></a></p></td>
 <td><p>사업자 파트너 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeNonWhtPayer" title="portone_server_sdk.platform.PlatformPartnerTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeNonWhtPayer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeNonWhtPayer" title="portone_server_sdk.platform.PlatformPartnerTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeNonWhtPayer</span></code></a></p></td>
 <td><p>원천징수 비대상자 파트너 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeWhtPayer" title="portone_server_sdk.platform.PlatformPartnerTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeWhtPayer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerTypeWhtPayer" title="portone_server_sdk.platform.PlatformPartnerTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPartnerTypeWhtPayer</span></code></a></p></td>
 <td><p>원천징수 대상자 파트너 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPayoutStatusStats" title="portone_server_sdk.platform.PlatformPayoutStatusStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPayoutStatusStats</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformPayoutStatusStats" title="portone_server_sdk.platform.PlatformPayoutStatusStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformPayoutStatusStats</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk.platform.PlatformProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformProperties</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformProperties" title="portone_server_sdk.platform.PlatformProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformProperties</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSetting" title="portone_server_sdk.platform.PlatformSetting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSetting</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSetting" title="portone_server_sdk.platform.PlatformSetting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSetting</span></code></a></p></td>
 <td><p>플랫폼 설정</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycle" title="portone_server_sdk.platform.PlatformSettlementCycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycle</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycle" title="portone_server_sdk.platform.PlatformSettlementCycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycle</span></code></a></p></td>
 <td><p>정산 주기</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk.platform.PlatformSettlementCycleInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleInput" title="portone_server_sdk.platform.PlatformSettlementCycleInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleInput</span></code></a></p></td>
 <td><p>플랫폼 정산 주기 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodDaily" title="portone_server_sdk.platform.PlatformSettlementCycleMethodDaily"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodDaily</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodDaily" title="portone_server_sdk.platform.PlatformSettlementCycleMethodDaily"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodDaily</span></code></a></p></td>
 <td><p>매일 정산</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodDailyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodDailyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodDailyInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodDailyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodDailyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodDailyInput</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodInput</span></code></a></p></td>
 <td><p>플랫폼 정산 주기 계산 방식 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodManualDates" title="portone_server_sdk.platform.PlatformSettlementCycleMethodManualDates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodManualDates</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodManualDates" title="portone_server_sdk.platform.PlatformSettlementCycleMethodManualDates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodManualDates</span></code></a></p></td>
 <td><p>정해진 날짜(월, 일)에 정산</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodManualDatesInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodManualDatesInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodManualDatesInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodManualDatesInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodManualDatesInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodManualDatesInput</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodMonthly" title="portone_server_sdk.platform.PlatformSettlementCycleMethodMonthly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodMonthly</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodMonthly" title="portone_server_sdk.platform.PlatformSettlementCycleMethodMonthly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodMonthly</span></code></a></p></td>
 <td><p>매월 정해진 날(일)에 정산</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodMonthlyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodMonthlyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodMonthlyInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodMonthlyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodMonthlyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodMonthlyInput</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodWeekly" title="portone_server_sdk.platform.PlatformSettlementCycleMethodWeekly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodWeekly</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodWeekly" title="portone_server_sdk.platform.PlatformSettlementCycleMethodWeekly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodWeekly</span></code></a></p></td>
 <td><p>매주 정해진 요일에 정산</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodWeeklyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodWeeklyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodWeeklyInput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformSettlementCycleMethodWeeklyInput" title="portone_server_sdk.platform.PlatformSettlementCycleMethodWeeklyInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformSettlementCycleMethodWeeklyInput</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformUserDefinedFormulaResults" title="portone_server_sdk.platform.PlatformUserDefinedFormulaResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformUserDefinedFormulaResults</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformUserDefinedFormulaResults" title="portone_server_sdk.platform.PlatformUserDefinedFormulaResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformUserDefinedFormulaResults</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformUserDefinedPropertyValue" title="portone_server_sdk.platform.PlatformUserDefinedPropertyValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformUserDefinedPropertyValue</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformUserDefinedPropertyValue" title="portone_server_sdk.platform.PlatformUserDefinedPropertyValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformUserDefinedPropertyValue</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformAdditionalFeePolicyBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformAdditionalFeePolicyBody</span></code></a></p></td>
 <td><p>추가 수수료 정책 예약 업데이트 재설정을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformAdditionalFeePolicyResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformAdditionalFeePolicyResponse</span></code></a></p></td>
 <td><p>추가 수수료 정책 예약 업데이트 재설정 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractBody" title="portone_server_sdk.platform.ReschedulePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformContractBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractBody" title="portone_server_sdk.platform.ReschedulePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformContractBody</span></code></a></p></td>
 <td><p>계약 예약 업데이트 재설정을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractResponse" title="portone_server_sdk.platform.ReschedulePlatformContractResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformContractResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractResponse" title="portone_server_sdk.platform.ReschedulePlatformContractResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformContractResponse</span></code></a></p></td>
 <td><p>계약 예약 업데이트 재설정 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformDiscountSharePolicyBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformDiscountSharePolicyBody</span></code></a></p></td>
 <td><p>할인 분담 정책 예약 업데이트 재설정을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformDiscountSharePolicyResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformDiscountSharePolicyResponse</span></code></a></p></td>
 <td><p>할인 분담 정책 예약 업데이트 재설정 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerBody" title="portone_server_sdk.platform.ReschedulePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformPartnerBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerBody" title="portone_server_sdk.platform.ReschedulePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformPartnerBody</span></code></a></p></td>
 <td><p>파트너 예약 업데이트 재설정을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerResponse" title="portone_server_sdk.platform.ReschedulePlatformPartnerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformPartnerResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerResponse" title="portone_server_sdk.platform.ReschedulePlatformPartnerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReschedulePlatformPartnerResponse</span></code></a></p></td>
 <td><p>파트너 예약 업데이트 재설정 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformAdditionalFeePolicyBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformAdditionalFeePolicyBody</span></code></a></p></td>
 <td><p>추가 수수료 정책 업데이트 예약을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformAdditionalFeePolicyResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformAdditionalFeePolicyResponse</span></code></a></p></td>
 <td><p>추가 수수료 정책 업데이트 예약 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractBody" title="portone_server_sdk.platform.SchedulePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformContractBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractBody" title="portone_server_sdk.platform.SchedulePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformContractBody</span></code></a></p></td>
 <td><p>계약 업데이트 예약을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractResponse" title="portone_server_sdk.platform.SchedulePlatformContractResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformContractResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractResponse" title="portone_server_sdk.platform.SchedulePlatformContractResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformContractResponse</span></code></a></p></td>
 <td><p>계약 업데이트 예약 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformDiscountSharePolicyBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformDiscountSharePolicyBody</span></code></a></p></td>
 <td><p>할인 분담 정책 업데이트 예약을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformDiscountSharePolicyResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformDiscountSharePolicyResponse</span></code></a></p></td>
 <td><p>할인 분담 정책 업데이트 예약 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerBody" title="portone_server_sdk.platform.SchedulePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnerBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerBody" title="portone_server_sdk.platform.SchedulePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnerBody</span></code></a></p></td>
 <td><p>파트너 업데이트 예약을 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerResponse" title="portone_server_sdk.platform.SchedulePlatformPartnerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnerResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerResponse" title="portone_server_sdk.platform.SchedulePlatformPartnerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnerResponse</span></code></a></p></td>
 <td><p>파트너 업데이트 예약 성공 응답</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBody" title="portone_server_sdk.platform.SchedulePlatformPartnersBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBody" title="portone_server_sdk.platform.SchedulePlatformPartnersBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBody</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdate</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdate</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateAccount" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateAccount</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateAccount" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateAccount</span></code></a></p></td>
 <td><p>파트너 계좌 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateContact" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateContact</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateContact" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateContact</span></code></a></p></td>
 <td><p>파트너 업데이트를 위한 유형별 추가 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateType</span></code></a></p></td>
 <td><p>파트너 유형별 정보 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeBusiness</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeBusiness</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeNonWhtPayer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeWhtPayer" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeWhtPayer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeWhtPayer" title="portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdateTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersBodyUpdateTypeWhtPayer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersResponse" title="portone_server_sdk.platform.SchedulePlatformPartnersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersResponse" title="portone_server_sdk.platform.SchedulePlatformPartnersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SchedulePlatformPartnersResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></code></a></p></td>
 <td><p>추가 수수료 정책 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk.platform.UpdatePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformContractBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk.platform.UpdatePlatformContractBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformContractBody</span></code></a></p></td>
 <td><p>계약 업데이트를 위한 입력 정보.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></code></a></p></td>
 <td><p>할인 분담 정책 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk.platform.UpdatePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBody</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk.platform.UpdatePlatformPartnerBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBody</span></code></a></p></td>
 <td><p>파트너 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyAccount</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyAccount</span></code></a></p></td>
 <td><p>파트너 계좌 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyContact" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyContact</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyContact" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyContact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyContact</span></code></a></p></td>
 <td><p>파트너 담당자 업데이트를 위한 정보</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyType" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyType" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyType</span></code></a></p></td>
 <td><p>파트너 업데이트를 위한 유형별 추가 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeBusiness</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeBusiness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeBusiness</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeNonWhtPayer" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeNonWhtPayer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeNonWhtPayer" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeNonWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeNonWhtPayer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeWhtPayer" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeWhtPayer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeWhtPayer" title="portone_server_sdk.platform.UpdatePlatformPartnerBodyTypeWhtPayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformPartnerBodyTypeWhtPayer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformSettingBody" title="portone_server_sdk.platform.UpdatePlatformSettingBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformSettingBody</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformSettingBody" title="portone_server_sdk.platform.UpdatePlatformSettingBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformSettingBody</span></code></a></p></td>
 <td><p>플랫폼 설정 업데이트를 위한 입력 정보</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformSettingResponse" title="portone_server_sdk.platform.UpdatePlatformSettingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformSettingResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformSettingResponse" title="portone_server_sdk.platform.UpdatePlatformSettingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdatePlatformSettingResponse</span></code></a></p></td>
 <td><p>플랫폼 설정 업데이트 결과</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformClient" title="portone_server_sdk.platform.PlatformClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformClient</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.platform.PlatformClient" title="portone_server_sdk.platform.PlatformClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlatformClient</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -1825,26 +1821,6 @@ set self.__traceback__ to tb and return self.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.</span></span><span class="sig-name descname"><span class="pre">CancelPlatformPartnerScheduleResponse</span></span><a class="headerlink" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>파트너 예약 업데이트 취소 성공 응답</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.DateRange">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.platform.</span></span><span class="sig-name descname"><span class="pre">DateRange</span></span><a class="headerlink" href="#portone_server_sdk.platform.DateRange" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.DateRange.from_">
-<span class="sig-name descname"><span class="pre">from_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.DateRange.from_" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
-(yyyy-MM-dd)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.DateRange.until">
-<span class="sig-name descname"><span class="pre">until</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.platform.DateRange.until" title="Link to this definition">#</a></dt>
-<dd><p>날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
-(yyyy-MM-dd)</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -4014,6 +3990,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule">
 <span class="sig-name descname"><span class="pre">get_platform_additional_fee_policy_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk._generated.platform.platform_additional_fee_policy.PlatformAdditionalFeePolicy"><span class="pre">PlatformAdditionalFeePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4036,6 +4016,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_additional_fee_policy_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformAdditionalFeePolicy" title="portone_server_sdk._generated.platform.platform_additional_fee_policy.PlatformAdditionalFeePolicy"><span class="pre">PlatformAdditionalFeePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4057,7 +4041,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_additional_fee_policy">
 <span class="sig-name descname"><span class="pre">reschedule_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk._generated.platform.update_platform_additional_fee_policy_body.UpdatePlatformAdditionalFeePolicyBody"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.reschedule_platform_additional_fee_policy_response.ReschedulePlatformAdditionalFeePolicyResponse"><span class="pre">ReschedulePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_additional_fee_policy" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p></li>
@@ -4080,7 +4068,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_additional_fee_policy_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reschedule_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk._generated.platform.update_platform_additional_fee_policy_body.UpdatePlatformAdditionalFeePolicyBody"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.reschedule_platform_additional_fee_policy_response.ReschedulePlatformAdditionalFeePolicyResponse"><span class="pre">ReschedulePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_additional_fee_policy_async" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 추가 수수료 정책 아이디</p></li>
@@ -4104,6 +4096,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_additional_fee_policy">
 <span class="sig-name descname"><span class="pre">schedule_additional_fee_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk._generated.platform.update_platform_additional_fee_policy_body.UpdatePlatformAdditionalFeePolicyBody"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.schedule_platform_additional_fee_policy_response.SchedulePlatformAdditionalFeePolicyResponse"><span class="pre">SchedulePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_additional_fee_policy" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4128,6 +4124,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_additional_fee_policy_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">schedule_additional_fee_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformAdditionalFeePolicyBody" title="portone_server_sdk._generated.platform.update_platform_additional_fee_policy_body.UpdatePlatformAdditionalFeePolicyBody"><span class="pre">UpdatePlatformAdditionalFeePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformAdditionalFeePolicyResponse" title="portone_server_sdk._generated.platform.schedule_platform_additional_fee_policy_response.SchedulePlatformAdditionalFeePolicyResponse"><span class="pre">SchedulePlatformAdditionalFeePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_additional_fee_policy_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4152,6 +4152,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_additional_fee_policy_schedule">
 <span class="sig-name descname"><span class="pre">cancel_platform_additional_fee_policy_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformAdditionalFeePolicyScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_additional_fee_policy_schedule_response.CancelPlatformAdditionalFeePolicyScheduleResponse"><span class="pre">CancelPlatformAdditionalFeePolicyScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_additional_fee_policy_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4174,6 +4178,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_additional_fee_policy_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_platform_additional_fee_policy_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformAdditionalFeePolicyScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_additional_fee_policy_schedule_response.CancelPlatformAdditionalFeePolicyScheduleResponse"><span class="pre">CancelPlatformAdditionalFeePolicyScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_additional_fee_policy_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 추가 수수료 정책의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4196,6 +4204,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_contract_schedule">
 <span class="sig-name descname"><span class="pre">get_platform_contract_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_contract_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4218,6 +4230,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_contract_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_contract_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformContract" title="portone_server_sdk._generated.platform.platform_contract.PlatformContract"><span class="pre">PlatformContract</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_contract_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4240,6 +4256,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_contract">
 <span class="sig-name descname"><span class="pre">reschedule_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk._generated.platform.update_platform_contract_body.UpdatePlatformContractBody"><span class="pre">UpdatePlatformContractBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractResponse" title="portone_server_sdk._generated.platform.reschedule_platform_contract_response.ReschedulePlatformContractResponse"><span class="pre">ReschedulePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_contract" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4264,6 +4284,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_contract_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reschedule_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk._generated.platform.update_platform_contract_body.UpdatePlatformContractBody"><span class="pre">UpdatePlatformContractBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformContractResponse" title="portone_server_sdk._generated.platform.reschedule_platform_contract_response.ReschedulePlatformContractResponse"><span class="pre">ReschedulePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_contract_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4288,6 +4312,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_contract">
 <span class="sig-name descname"><span class="pre">schedule_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk._generated.platform.update_platform_contract_body.UpdatePlatformContractBody"><span class="pre">UpdatePlatformContractBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractResponse" title="portone_server_sdk._generated.platform.schedule_platform_contract_response.SchedulePlatformContractResponse"><span class="pre">SchedulePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_contract" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4312,6 +4340,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_contract_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">schedule_contract_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformContractBody" title="portone_server_sdk._generated.platform.update_platform_contract_body.UpdatePlatformContractBody"><span class="pre">UpdatePlatformContractBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformContractResponse" title="portone_server_sdk._generated.platform.schedule_platform_contract_response.SchedulePlatformContractResponse"><span class="pre">SchedulePlatformContractResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_contract_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4336,6 +4368,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_contract_schedule">
 <span class="sig-name descname"><span class="pre">cancel_platform_contract_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformContractScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_contract_schedule_response.CancelPlatformContractScheduleResponse"><span class="pre">CancelPlatformContractScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_contract_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4358,6 +4394,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_contract_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_platform_contract_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformContractScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_contract_schedule_response.CancelPlatformContractScheduleResponse"><span class="pre">CancelPlatformContractScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_contract_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 계약의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4380,6 +4420,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_schedule">
 <span class="sig-name descname"><span class="pre">get_platform_discount_share_policy_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk._generated.platform.platform_discount_share_policy.PlatformDiscountSharePolicy"><span class="pre">PlatformDiscountSharePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4402,6 +4446,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_discount_share_policy_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicy" title="portone_server_sdk._generated.platform.platform_discount_share_policy.PlatformDiscountSharePolicy"><span class="pre">PlatformDiscountSharePolicy</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4424,6 +4472,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_discount_share_policy">
 <span class="sig-name descname"><span class="pre">reschedule_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk._generated.platform.update_platform_discount_share_policy_body.UpdatePlatformDiscountSharePolicyBody"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.reschedule_platform_discount_share_policy_response.ReschedulePlatformDiscountSharePolicyResponse"><span class="pre">ReschedulePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_discount_share_policy" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4448,6 +4500,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_discount_share_policy_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reschedule_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk._generated.platform.update_platform_discount_share_policy_body.UpdatePlatformDiscountSharePolicyBody"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.reschedule_platform_discount_share_policy_response.ReschedulePlatformDiscountSharePolicyResponse"><span class="pre">ReschedulePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_discount_share_policy_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4472,6 +4528,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_discount_share_policy">
 <span class="sig-name descname"><span class="pre">schedule_discount_share_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk._generated.platform.update_platform_discount_share_policy_body.UpdatePlatformDiscountSharePolicyBody"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.schedule_platform_discount_share_policy_response.SchedulePlatformDiscountSharePolicyResponse"><span class="pre">SchedulePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_discount_share_policy" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4496,6 +4556,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_discount_share_policy_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">schedule_discount_share_policy_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformDiscountSharePolicyBody" title="portone_server_sdk._generated.platform.update_platform_discount_share_policy_body.UpdatePlatformDiscountSharePolicyBody"><span class="pre">UpdatePlatformDiscountSharePolicyBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformDiscountSharePolicyResponse" title="portone_server_sdk._generated.platform.schedule_platform_discount_share_policy_response.SchedulePlatformDiscountSharePolicyResponse"><span class="pre">SchedulePlatformDiscountSharePolicyResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_discount_share_policy_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4520,6 +4584,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_discount_share_policy_schedule">
 <span class="sig-name descname"><span class="pre">cancel_platform_discount_share_policy_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformDiscountSharePolicyScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_discount_share_policy_schedule_response.CancelPlatformDiscountSharePolicyScheduleResponse"><span class="pre">CancelPlatformDiscountSharePolicyScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_discount_share_policy_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4542,6 +4610,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_discount_share_policy_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_platform_discount_share_policy_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformDiscountSharePolicyScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_discount_share_policy_schedule_response.CancelPlatformDiscountSharePolicyScheduleResponse"><span class="pre">CancelPlatformDiscountSharePolicyScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_discount_share_policy_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 할인 분담의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4564,6 +4636,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_filter_options">
 <span class="sig-name descname"><span class="pre">get_platform_discount_share_policy_filter_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_archived</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions" title="portone_server_sdk._generated.platform.platform_discount_share_policy_filter_options.PlatformDiscountSharePolicyFilterOptions"><span class="pre">PlatformDiscountSharePolicyFilterOptions</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_filter_options" title="Link to this definition">#</a></dt>
 <dd><p>할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4588,6 +4664,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_filter_options_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_discount_share_policy_filter_options_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_archived</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformDiscountSharePolicyFilterOptions" title="portone_server_sdk._generated.platform.platform_discount_share_policy_filter_options.PlatformDiscountSharePolicyFilterOptions"><span class="pre">PlatformDiscountSharePolicyFilterOptions</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_discount_share_policy_filter_options_async" title="Link to this definition">#</a></dt>
 <dd><p>할인 분담 정책 다건 조회 시 필요한 필터 옵션을 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4612,6 +4692,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_partner_filter_options">
 <span class="sig-name descname"><span class="pre">get_platform_partner_filter_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_archived</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterOptions" title="portone_server_sdk._generated.platform.platform_partner_filter_options.PlatformPartnerFilterOptions"><span class="pre">PlatformPartnerFilterOptions</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_partner_filter_options" title="Link to this definition">#</a></dt>
 <dd><p>파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4636,6 +4720,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_partner_filter_options_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_partner_filter_options_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_archived</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterOptions" title="portone_server_sdk._generated.platform.platform_partner_filter_options.PlatformPartnerFilterOptions"><span class="pre">PlatformPartnerFilterOptions</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_partner_filter_options_async" title="Link to this definition">#</a></dt>
 <dd><p>파트너 다건 조회 시 필요한 필터 옵션을 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4659,7 +4747,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_platform_partners">
 <span class="sig-name descname"><span class="pre">schedule_platform_partners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate" title="portone_server_sdk._generated.platform.schedule_platform_partners_body_update.SchedulePlatformPartnersBodyUpdate"><span class="pre">SchedulePlatformPartnersBodyUpdate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersResponse" title="portone_server_sdk._generated.platform.schedule_platform_partners_response.SchedulePlatformPartnersResponse"><span class="pre">SchedulePlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_platform_partners" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
@@ -4682,7 +4774,11 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_platform_partners_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">schedule_platform_partners_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartnerFilterInput" title="portone_server_sdk._generated.platform.platform_partner_filter_input.PlatformPartnerFilterInput"><span class="pre">PlatformPartnerFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersBodyUpdate" title="portone_server_sdk._generated.platform.schedule_platform_partners_body_update.SchedulePlatformPartnersBodyUpdate"><span class="pre">SchedulePlatformPartnersBodyUpdate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnersResponse" title="portone_server_sdk._generated.platform.schedule_platform_partners_response.SchedulePlatformPartnersResponse"><span class="pre">SchedulePlatformPartnersResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_platform_partners_async" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
@@ -4706,6 +4802,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_partner_schedule">
 <span class="sig-name descname"><span class="pre">get_platform_partner_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_partner_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4728,6 +4828,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.get_platform_partner_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_platform_partner_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.PlatformPartner" title="portone_server_sdk._generated.platform.platform_partner.PlatformPartner"><span class="pre">PlatformPartner</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.get_platform_partner_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너의 예약 업데이트를 조회합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4750,6 +4854,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_partner">
 <span class="sig-name descname"><span class="pre">reschedule_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk._generated.platform.update_platform_partner_body.UpdatePlatformPartnerBody"><span class="pre">UpdatePlatformPartnerBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerResponse" title="portone_server_sdk._generated.platform.reschedule_platform_partner_response.ReschedulePlatformPartnerResponse"><span class="pre">ReschedulePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_partner" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4774,6 +4882,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.reschedule_partner_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reschedule_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk._generated.platform.update_platform_partner_body.UpdatePlatformPartnerBody"><span class="pre">UpdatePlatformPartnerBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.ReschedulePlatformPartnerResponse" title="portone_server_sdk._generated.platform.reschedule_platform_partner_response.ReschedulePlatformPartnerResponse"><span class="pre">ReschedulePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.reschedule_partner_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너에 예약 업데이트를 재설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4798,6 +4910,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_partner">
 <span class="sig-name descname"><span class="pre">schedule_partner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk._generated.platform.update_platform_partner_body.UpdatePlatformPartnerBody"><span class="pre">UpdatePlatformPartnerBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerResponse" title="portone_server_sdk._generated.platform.schedule_platform_partner_response.SchedulePlatformPartnerResponse"><span class="pre">SchedulePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_partner" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4822,6 +4938,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.schedule_partner_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">schedule_partner_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.platform.UpdatePlatformPartnerBody" title="portone_server_sdk._generated.platform.update_platform_partner_body.UpdatePlatformPartnerBody"><span class="pre">UpdatePlatformPartnerBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">applied_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.SchedulePlatformPartnerResponse" title="portone_server_sdk._generated.platform.schedule_platform_partner_response.SchedulePlatformPartnerResponse"><span class="pre">SchedulePlatformPartnerResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.schedule_partner_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너에 업데이트를 예약합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4846,6 +4966,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_partner_schedule">
 <span class="sig-name descname"><span class="pre">cancel_platform_partner_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_partner_schedule_response.CancelPlatformPartnerScheduleResponse"><span class="pre">CancelPlatformPartnerScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_partner_schedule" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4868,6 +4992,10 @@ set self.__traceback__ to tb and return self.</p>
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.cancel_platform_partner_schedule_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_platform_partner_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse" title="portone_server_sdk._generated.platform.cancel_platform_partner_schedule_response.CancelPlatformPartnerScheduleResponse"><span class="pre">CancelPlatformPartnerScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.cancel_platform_partner_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>주어진 아이디에 대응되는 파트너의 예약 업데이트를 취소합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -5198,11 +5326,6 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformContractScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformContractScheduleResponse</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformDiscountSharePolicyScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformDiscountSharePolicyScheduleResponse</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.CancelPlatformPartnerScheduleResponse"><code class="docutils literal notranslate"><span class="pre">CancelPlatformPartnerScheduleResponse</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange"><code class="docutils literal notranslate"><span class="pre">DateRange</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange.from_"><code class="docutils literal notranslate"><span class="pre">DateRange.from_</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.DateRange.until"><code class="docutils literal notranslate"><span class="pre">DateRange.until</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay"><code class="docutils literal notranslate"><span class="pre">MonthDay</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay.month"><code class="docutils literal notranslate"><span class="pre">MonthDay.month</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.MonthDay.day"><code class="docutils literal notranslate"><span class="pre">MonthDay.day</span></code></a></li>

@@ -29,5 +29,6 @@
       ~PortOneClient.identity_verification
       ~PortOneClient.pg_specific
       ~PortOneClient.auth
+      ~PortOneClient.reconciliation
    
    

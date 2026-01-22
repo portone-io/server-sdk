@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>portone_server_sdk.reconciliation &#8212; portone-server-sdk  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.reconciliation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="portone_server_sdk.webhook" href="portone_server_sdk.webhook.html" />
+    <link rel="prev" title="portone_server_sdk.platform.transfer" href="portone_server_sdk.platform.transfer.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">portone-server-sdk  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.errors.html">portone_server_sdk.errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.identity_verification.html">portone_server_sdk.identity_verification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html">portone_server_sdk.payment.additional_feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.pg_specific.html">portone_server_sdk.pg_specific</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.platform.html">portone_server_sdk.platform</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.company.html">portone_server_sdk.platform.company</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account_transfer.html">portone_server_sdk.platform.account_transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.policy.html">portone_server_sdk.platform.policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.reconciliation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PolicyClient.html">portone_server_sdk.PolicyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AdditionalFeatureClient.html">portone_server_sdk.AdditionalFeatureClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.ReconciliationClient.html">portone_server_sdk.ReconciliationClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PortOneClient.html">portone_server_sdk.PortOneClient</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_toctree/portone_server_sdk.reconciliation.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>portone_server_sdk.reconciliation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.args"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.message"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.args"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.message"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.date_range"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody.date_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.summary"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.summary</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.date_range"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody.date_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.summary"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.summary</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.store_ids"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput.store_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.store_ids"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.store_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.payment_method"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.payment_method</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.supply_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.supply_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.vat_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.vat_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.tax_free_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.tax_free_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.total_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.total_amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_supply_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_supply_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_vat_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_vat_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_tax_free_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_tax_free_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_merchant_id"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier.pg_merchant_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_provider"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier.pg_provider</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_settlement_vat_report()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_transaction_vat_report()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-portone_server_sdk.reconciliation">
+<span id="portone-server-sdk-reconciliation"></span><h1>portone_server_sdk.reconciliation<a class="headerlink" href="#module-portone_server_sdk.reconciliation" title="Link to this heading">#</a></h1>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody" title="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse" title="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody" title="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse" title="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput" title="portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></code></a></p></td>
+<td><p>거래대사 정산 요약 내역 필터</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput" title="portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></code></a></p></td>
+<td><p>거래대사 거래내역 필터</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem" title="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary" title="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="portone_server_sdk.reconciliation.ReconciliationPgSpecifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier</span></code></a></p></td>
+<td><p>대사용 PG사 가맹점 식별자</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationClient" title="portone_server_sdk.reconciliation.ReconciliationClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconciliationClient</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Exceptions</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationSettlementVatReportError</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError" title="portone_server_sdk._portone_error.PortOneError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PortOneError</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationTransactionVatReportError</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="portone_server_sdk.errors.html#portone_server_sdk.errors.PortOneError" title="portone_server_sdk._portone_error.PortOneError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PortOneError</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.message" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationSettlementVatReportBody</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.date_range">
+<span class="sig-name descname"><span class="pre">date_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.date_range" title="Link to this definition">#</a></dt>
+<dd><p>정산일 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_settlement_summary_filter_input.PaymentReconciliationSettlementSummaryFilterInput"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.filter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_vat_report_summary.PaymentReconciliationVatReportSummary"><span class="pre">PaymentReconciliationVatReportSummary</span></a></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.summary" title="Link to this definition">#</a></dt>
+<dd><p>부가세 내역 요약</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.items">
+<span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_vat_report_item.PaymentReconciliationVatReportItem"><span class="pre">PaymentReconciliationVatReportItem</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.items" title="Link to this definition">#</a></dt>
+<dd><p>부가세 내역 항목 리스트</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers">
+<span class="sig-name descname"><span class="pre">pg_specifiers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="portone_server_sdk._generated.reconciliation.reconciliation_pg_specifier.ReconciliationPgSpecifier"><span class="pre">ReconciliationPgSpecifier</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers" title="Link to this definition">#</a></dt>
+<dd><p>PG사 식별자 리스트</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationTransactionVatReportBody</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.date_range">
+<span class="sig-name descname"><span class="pre">date_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.date_range" title="Link to this definition">#</a></dt>
+<dd><p>거래일 범위</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_transaction_summary_filter_input.PaymentReconciliationTransactionSummaryFilterInput"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.filter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_vat_report_summary.PaymentReconciliationVatReportSummary"><span class="pre">PaymentReconciliationVatReportSummary</span></a></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.summary" title="Link to this definition">#</a></dt>
+<dd><p>부가세 내역 요약</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.items">
+<span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_vat_report_item.PaymentReconciliationVatReportItem"><span class="pre">PaymentReconciliationVatReportItem</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.items" title="Link to this definition">#</a></dt>
+<dd><p>부가세 내역 항목 리스트</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers">
+<span class="sig-name descname"><span class="pre">pg_specifiers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="portone_server_sdk._generated.reconciliation.reconciliation_pg_specifier.ReconciliationPgSpecifier"><span class="pre">ReconciliationPgSpecifier</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers" title="Link to this definition">#</a></dt>
+<dd><p>PG사 식별자 리스트</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>거래대사 정산 요약 내역 필터</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers">
+<span class="sig-name descname"><span class="pre">pg_specifiers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="portone_server_sdk._generated.reconciliation.reconciliation_pg_specifier.ReconciliationPgSpecifier"><span class="pre">ReconciliationPgSpecifier</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers" title="Link to this definition">#</a></dt>
+<dd><p>PG사 가맹점 식별자 필터</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.store_ids">
+<span class="sig-name descname"><span class="pre">store_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.store_ids" title="Link to this definition">#</a></dt>
+<dd><p>하위 상점 아이디 필터</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>거래대사 거래내역 필터</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses">
+<span class="sig-name descname"><span class="pre">reconciliation_statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'MATCHED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NOT_MATCHED'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INCOMPARABLE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NOT_COLLECTED'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses" title="Link to this definition">#</a></dt>
+<dd><p>대사 상태 필터</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers">
+<span class="sig-name descname"><span class="pre">pg_specifiers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="portone_server_sdk._generated.reconciliation.reconciliation_pg_specifier.ReconciliationPgSpecifier"><span class="pre">ReconciliationPgSpecifier</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers" title="Link to this definition">#</a></dt>
+<dd><p>대사용 PG사 가맹점 식별자 필터</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.store_ids">
+<span class="sig-name descname"><span class="pre">store_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.store_ids" title="Link to this definition">#</a></dt>
+<dd><p>하위 상점 아이디 필터</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">PaymentReconciliationVatReportItem</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.payment_method">
+<span class="sig-name descname"><span class="pre">payment_method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CARD'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'VIRTUAL_ACCOUNT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TRANSFER'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'CHARGE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MOBILE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'POINT'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ETC'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.payment_method" title="Link to this definition">#</a></dt>
+<dd><p>결제수단</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.supply_amount">
+<span class="sig-name descname"><span class="pre">supply_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.supply_amount" title="Link to this definition">#</a></dt>
+<dd><p>공급가액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.vat_amount">
+<span class="sig-name descname"><span class="pre">vat_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.vat_amount" title="Link to this definition">#</a></dt>
+<dd><p>부가세 금액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.tax_free_amount">
+<span class="sig-name descname"><span class="pre">tax_free_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.tax_free_amount" title="Link to this definition">#</a></dt>
+<dd><p>면세 금액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.total_amount">
+<span class="sig-name descname"><span class="pre">total_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.total_amount" title="Link to this definition">#</a></dt>
+<dd><p>총 금액
+(int64)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">PaymentReconciliationVatReportSummary</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_supply_amount">
+<span class="sig-name descname"><span class="pre">total_supply_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_supply_amount" title="Link to this definition">#</a></dt>
+<dd><p>총 공급가액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_vat_amount">
+<span class="sig-name descname"><span class="pre">total_vat_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_vat_amount" title="Link to this definition">#</a></dt>
+<dd><p>총 부가세 금액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_tax_free_amount">
+<span class="sig-name descname"><span class="pre">total_tax_free_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_tax_free_amount" title="Link to this definition">#</a></dt>
+<dd><p>총 면세 금액
+(int64)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_amount">
+<span class="sig-name descname"><span class="pre">total_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_amount" title="Link to this definition">#</a></dt>
+<dd><p>총 금액
+(int64)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationPgSpecifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">ReconciliationPgSpecifier</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>대사용 PG사 가맹점 식별자</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_merchant_id">
+<span class="sig-name descname"><span class="pre">pg_merchant_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_merchant_id" title="Link to this definition">#</a></dt>
+<dd><p>PG사 가맹점 식별 아이디</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_provider">
+<span class="sig-name descname"><span class="pre">pg_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'KAKAOPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NICEPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'NAVERPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'UPLUS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSSPAYMENTS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'TOSSPAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYCO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KCP'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DANAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'EXIMBAY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INICIS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HECTO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KSNET'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'KPN'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HYPHEN'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYPAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'HECTO_EASY'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'MOBILIANS'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'PAYLETTER_GLOBAL'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_provider" title="Link to this definition">#</a></dt>
+<dd><p>PG사</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">portone_server_sdk.reconciliation.</span></span><span class="sig-name descname"><span class="pre">ReconciliationClient</span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report">
+<span class="sig-name descname"><span class="pre">get_payment_reconciliation_settlement_vat_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_settlement_summary_filter_input.PaymentReconciliationSettlementSummaryFilterInput"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse" title="portone_server_sdk._generated.reconciliation.get_payment_reconciliation_settlement_vat_report_response.GetPaymentReconciliationSettlementVatReportResponse"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report" title="Link to this definition">#</a></dt>
+<dd><p>정산일 기준 부가세 내역 조회</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date_range</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code>) – 정산일 범위</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError"><strong>GetPaymentReconciliationSettlementVatReportError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_payment_reconciliation_settlement_vat_report_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_settlement_summary_filter_input.PaymentReconciliationSettlementSummaryFilterInput"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse" title="portone_server_sdk._generated.reconciliation.get_payment_reconciliation_settlement_vat_report_response.GetPaymentReconciliationSettlementVatReportResponse"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async" title="Link to this definition">#</a></dt>
+<dd><p>정산일 기준 부가세 내역 조회</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date_range</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code>) – 정산일 범위</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError"><strong>GetPaymentReconciliationSettlementVatReportError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report">
+<span class="sig-name descname"><span class="pre">get_payment_reconciliation_transaction_vat_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_transaction_summary_filter_input.PaymentReconciliationTransactionSummaryFilterInput"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse" title="portone_server_sdk._generated.reconciliation.get_payment_reconciliation_transaction_vat_report_response.GetPaymentReconciliationTransactionVatReportResponse"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report" title="Link to this definition">#</a></dt>
+<dd><p>거래일 기준 부가세 내역 조회</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date_range</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code>) – 거래일 범위</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError"><strong>GetPaymentReconciliationTransactionVatReportError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_payment_reconciliation_transaction_vat_report_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.DateRange" title="portone_server_sdk._generated.common.date_range.DateRange"><span class="pre">DateRange</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput" title="portone_server_sdk._generated.reconciliation.payment_reconciliation_transaction_summary_filter_input.PaymentReconciliationTransactionSummaryFilterInput"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse" title="portone_server_sdk._generated.reconciliation.get_payment_reconciliation_transaction_vat_report_response.GetPaymentReconciliationTransactionVatReportResponse"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async" title="Link to this definition">#</a></dt>
+<dd><p>거래일 기준 부가세 내역 조회</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date_range</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code>) – 거래일 범위</p></li>
+<li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput,</span> <span class="pre">optional</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError" title="portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError"><strong>GetPaymentReconciliationTransactionVatReportError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portone_server_sdk.platform.transfer.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">portone_server_sdk.platform.transfer</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="portone_server_sdk.webhook.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">portone_server_sdk.webhook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.args"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportError.message"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.args"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.with_traceback()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportError.message"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportError.message</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.date_range"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody.date_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.summary"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.summary</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationSettlementVatReportResponse.pg_specifiers</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.date_range"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody.date_range</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportBody.filter"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportBody.filter</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.summary"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.summary</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.items"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.items</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">GetPaymentReconciliationTransactionVatReportResponse.pg_specifiers</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput.pg_specifiers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationSettlementSummaryFilterInput.store_ids"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationSettlementSummaryFilterInput.store_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.reconciliation_statuses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.pg_specifiers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationTransactionSummaryFilterInput.store_ids"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationTransactionSummaryFilterInput.store_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.payment_method"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.payment_method</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.supply_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.supply_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.vat_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.vat_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.tax_free_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.tax_free_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportItem.total_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportItem.total_amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_supply_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_supply_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_vat_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_vat_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_tax_free_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_tax_free_amount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.PaymentReconciliationVatReportSummary.total_amount"><code class="docutils literal notranslate"><span class="pre">PaymentReconciliationVatReportSummary.total_amount</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_merchant_id"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier.pg_merchant_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationPgSpecifier.pg_provider"><code class="docutils literal notranslate"><span class="pre">ReconciliationPgSpecifier.pg_provider</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_settlement_vat_report()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_settlement_vat_report_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_transaction_vat_report()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.reconciliation.ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async"><code class="docutils literal notranslate"><span class="pre">ReconciliationClient.get_payment_reconciliation_transaction_vat_report_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By portone <tech.support@portone.io>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, PortOne.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

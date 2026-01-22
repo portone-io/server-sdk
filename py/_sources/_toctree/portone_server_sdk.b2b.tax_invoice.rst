@@ -20,6 +20,7 @@ portone\_server\_sdk.b2b.tax\_invoice
       B2bTaxInvoiceItem
       B2bTaxInvoiceModification
       B2bTaxInvoiceModificationCreateBody
+      B2bTaxInvoiceSortInput
       B2bTaxInvoiceSummary
       CancelB2bTaxInvoiceIssuanceBody
       CancelB2bTaxInvoiceIssuanceResponse

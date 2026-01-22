@@ -46,7 +46,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.PortOneClient';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="portone_server_sdk.AuthClient" href="portone_server_sdk.AuthClient.html" />
+    <link rel="prev" title="portone_server_sdk.ReconciliationClient" href="portone_server_sdk.ReconciliationClient.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -148,6 +148,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.payment.html">portone_server_sdk.payment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.billing_key.html">portone_server_sdk.payment.billing_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.cash_receipt.html">portone_server_sdk.payment.cash_receipt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.additional_feature.html">portone_server_sdk.payment.additional_feature</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html">portone_server_sdk.payment.payment_schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.payment.promotion.html">portone_server_sdk.payment.promotion</a></li>
 </ul>
@@ -166,6 +167,7 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.reconciliation.html">portone_server_sdk.reconciliation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
@@ -183,11 +185,13 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CashReceiptClient.html">portone_server_sdk.CashReceiptClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AdditionalFeatureClient.html">portone_server_sdk.AdditionalFeatureClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentScheduleClient.html">portone_server_sdk.PaymentScheduleClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PromotionClient.html">portone_server_sdk.PromotionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.IdentityVerificationClient.html">portone_server_sdk.IdentityVerificationClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PgSpecificClient.html">portone_server_sdk.PgSpecificClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AuthClient.html">portone_server_sdk.AuthClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.ReconciliationClient.html">portone_server_sdk.ReconciliationClient</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PortOneClient</a></li>
 </ul>
 
@@ -337,6 +341,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.identity_verification"><code class="docutils literal notranslate"><span class="pre">PortOneClient.identity_verification</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.pg_specific"><code class="docutils literal notranslate"><span class="pre">PortOneClient.pg_specific</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.auth"><code class="docutils literal notranslate"><span class="pre">PortOneClient.auth</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.reconciliation"><code class="docutils literal notranslate"><span class="pre">PortOneClient.reconciliation</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -401,6 +406,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.auth" title="portone_server_sdk.PortOneClient.auth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auth</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PortOneClient.reconciliation" title="portone_server_sdk.PortOneClient.reconciliation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reconciliation</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -434,6 +442,11 @@
 <span class="sig-name descname"><span class="pre">auth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.auth.html#portone_server_sdk.auth.AuthClient" title="portone_server_sdk._generated.auth.client.AuthClient"><span class="pre">AuthClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PortOneClient.auth" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.PortOneClient.reconciliation">
+<span class="sig-name descname"><span class="pre">reconciliation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.reconciliation.html#portone_server_sdk.reconciliation.ReconciliationClient" title="portone_server_sdk._generated.reconciliation.client.ReconciliationClient"><span class="pre">ReconciliationClient</span></a></em><a class="headerlink" href="#portone_server_sdk.PortOneClient.reconciliation" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -450,12 +463,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.AuthClient.html"
+       href="portone_server_sdk.ReconciliationClient.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.AuthClient</p>
+        <p class="prev-next-title">portone_server_sdk.ReconciliationClient</p>
       </div>
     </a>
 </div>
@@ -483,6 +496,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.identity_verification"><code class="docutils literal notranslate"><span class="pre">PortOneClient.identity_verification</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.pg_specific"><code class="docutils literal notranslate"><span class="pre">PortOneClient.pg_specific</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.auth"><code class="docutils literal notranslate"><span class="pre">PortOneClient.auth</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PortOneClient.reconciliation"><code class="docutils literal notranslate"><span class="pre">PortOneClient.reconciliation</span></code></a></li>
 </ul>
 </li>
 </ul>

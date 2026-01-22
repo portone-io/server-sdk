@@ -12,7 +12,6 @@
       CancelPlatformContractScheduleResponse
       CancelPlatformDiscountSharePolicyScheduleResponse
       CancelPlatformPartnerScheduleResponse
-      DateRange
       MonthDay
       PlatformAccount
       PlatformAccountTransferStatusStats
