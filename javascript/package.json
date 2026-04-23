@@ -26,6 +26,7 @@
     "./webhook": "./src/webhook.ts",
     "./auth": "./src/generated/auth/index.ts",
     "./b2b": "./src/generated/b2b/index.ts",
+    "./b2b/counterparty": "./src/generated/b2b/counterparty/index.ts",
     "./b2b/taxInvoice": "./src/generated/b2b/taxInvoice/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
@@ -70,6 +71,11 @@
         "types": "./dist/generated/b2b/index.d.ts",
         "require": "./dist/generated/b2b/index.cjs",
         "import": "./dist/generated/b2b/index.mjs"
+      },
+      "./b2b/counterparty": {
+        "types": "./dist/generated/b2b/counterparty/index.d.ts",
+        "require": "./dist/generated/b2b/counterparty/index.cjs",
+        "import": "./dist/generated/b2b/counterparty/index.mjs"
       },
       "./b2b/taxInvoice": {
         "types": "./dist/generated/b2b/taxInvoice/index.d.ts",

@@ -1,5 +1,6 @@
 export { PaymentScheduleError } from "./PaymentScheduleError"
 export * from "./AlreadyPaidOrWaitingError"
+export * from "./BillingKeyPaymentScheduleInput"
 export * from "./CreatePaymentScheduleBody"
 export * from "./CreatePaymentScheduleResponse"
 export * from "./FailedPaymentSchedule"

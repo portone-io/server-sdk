@@ -19,6 +19,12 @@ from ..._generated.platform.account_transfer.platform_account_transfer_status im
 from ..._generated.platform.account_transfer.platform_account_transfer_type import (
     PlatformAccountTransferType,
 )
+from ..._generated.platform.account_transfer.platform_bank_account_detail import (
+    PlatformBankAccountDetail,
+)
+from ..._generated.platform.account_transfer.platform_bank_account_provider import (
+    PlatformBankAccountProvider,
+)
 from ..._generated.platform.account_transfer.platform_deposit_account_transfer import (
     PlatformDepositAccountTransfer,
 )
@@ -36,6 +42,8 @@ __all__ = [
     "PlatformAccountTransferFilter",
     "PlatformAccountTransferStatus",
     "PlatformAccountTransferType",
+    "PlatformBankAccountDetail",
+    "PlatformBankAccountProvider",
     "PlatformDepositAccountTransfer",
     "PlatformWithdrawalAccountTransfer",
     "Type",

@@ -24,7 +24,7 @@ from ..payment.negative_promotion_adjusted_cancel_amount_error import _deseriali
 from ..payment.payment_already_cancelled_error import _deserialize_payment_already_cancelled_error
 from ..payment.payment_cancellation_not_found_error import _deserialize_payment_cancellation_not_found_error
 from ..payment.payment_cancellation_not_pending_error import _deserialize_payment_cancellation_not_pending_error
-from ..payment.payment_not_found_error import _deserialize_payment_not_found_error
+from ..common.payment_not_found_error import _deserialize_payment_not_found_error
 from ..payment.payment_not_paid_error import _deserialize_payment_not_paid_error
 from ..payment.payment_not_waiting_for_deposit_error import _deserialize_payment_not_waiting_for_deposit_error
 from ..common.payment_schedule_already_exists_error import _deserialize_payment_schedule_already_exists_error
@@ -481,6 +481,7 @@ class PaymentClient:
         promotion_id: Optional[str] = None,
         locale: Optional[Locale] = None,
         bypass: Optional[dict] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> PayWithBillingKeyResponse:
         """빌링키 결제
 
@@ -541,6 +542,10 @@ class PaymentClient:
                 엑심베이의 경우 필수 입력입니다.
             bypass (dict, optional):
                 PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -586,6 +591,8 @@ class PaymentClient:
             request_body["locale"] = _serialize_locale(locale)
         if bypass is not None:
             request_body["bypass"] = bypass
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -704,6 +711,7 @@ class PaymentClient:
         promotion_id: Optional[str] = None,
         locale: Optional[Locale] = None,
         bypass: Optional[dict] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> PayWithBillingKeyResponse:
         """빌링키 결제
 
@@ -764,6 +772,10 @@ class PaymentClient:
                 엑심베이의 경우 필수 입력입니다.
             bypass (dict, optional):
                 PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -809,6 +821,8 @@ class PaymentClient:
             request_body["locale"] = _serialize_locale(locale)
         if bypass is not None:
             request_body["bypass"] = bypass
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -1615,6 +1629,7 @@ class PaymentClient:
         total_amount: Optional[int] = None,
         tax_free_amount: Optional[int] = None,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedPaymentSummary:
         """인증 결제 수동 승인
 
@@ -1649,6 +1664,10 @@ class PaymentClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -1669,6 +1688,8 @@ class PaymentClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -1743,6 +1764,7 @@ class PaymentClient:
         total_amount: Optional[int] = None,
         tax_free_amount: Optional[int] = None,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedPaymentSummary:
         """인증 결제 수동 승인
 
@@ -1777,6 +1799,10 @@ class PaymentClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -1797,6 +1823,8 @@ class PaymentClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -2441,6 +2469,7 @@ class PaymentClient:
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
         bypass: Optional[dict] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> PayInstantlyResponse:
         """수기 결제
 
@@ -2499,6 +2528,10 @@ class PaymentClient:
                 해당 결제에 적용할 프로모션 아이디
             bypass (dict, optional):
                 PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -2540,6 +2573,8 @@ class PaymentClient:
             request_body["promotionId"] = promotion_id
         if bypass is not None:
             request_body["bypass"] = bypass
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -2644,6 +2679,7 @@ class PaymentClient:
         shipping_address: Optional[SeparatedAddressInput] = None,
         promotion_id: Optional[str] = None,
         bypass: Optional[dict] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> PayInstantlyResponse:
         """수기 결제
 
@@ -2702,6 +2738,10 @@ class PaymentClient:
                 해당 결제에 적용할 프로모션 아이디
             bypass (dict, optional):
                 PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -2743,6 +2783,8 @@ class PaymentClient:
             request_body["promotionId"] = promotion_id
         if bypass is not None:
             request_body["bypass"] = bypass
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",

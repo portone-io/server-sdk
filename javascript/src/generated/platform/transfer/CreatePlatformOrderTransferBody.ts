@@ -62,4 +62,10 @@ export type CreatePlatformOrderTransferBody = {
 	parameters?: TransferParameters
 	/** 사용자 정의 속성 */
 	userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[]
+	/**
+	 * 생성할 정산건 아이디
+	 *
+	 * 명시하지 않으면 id 가 임의로 생성됩니다.
+	 */
+	id?: string
 }

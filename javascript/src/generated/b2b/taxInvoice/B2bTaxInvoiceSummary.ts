@@ -46,6 +46,8 @@ export type B2bTaxInvoiceSummary = {
 	supplierRepresentativeName: string
 	/** 공급자 문서번호 */
 	supplierDocumentKey?: string
+	/** 공급자 거래처 아이디 */
+	supplierCounterpartyId?: string
 	/** 공급받는자 사업자등록번호 */
 	recipientBrn: string
 	/** 공급받는자 상호 */
@@ -54,6 +56,8 @@ export type B2bTaxInvoiceSummary = {
 	recipientRepresentativeName: string
 	/** 공급받는자 문서번호 */
 	recipientDocumentKey?: string
+	/** 공급받는자 거래처 아이디 */
+	recipientCounterpartyId?: string
 	/** 공급받는자 영업 상태 */
 	recipientBusinessStatus?: B2bCompanyStateBusinessStatus
 	/**

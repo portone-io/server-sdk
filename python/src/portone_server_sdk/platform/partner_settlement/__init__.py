@@ -1,5 +1,14 @@
+from ..._generated.platform.partner_settlement.errors.delete_platform_partner_settlements_error import (
+    DeletePlatformPartnerSettlementsError,
+)
 from ..._generated.platform.partner_settlement.errors.get_platform_partner_settlements_error import (
     GetPlatformPartnerSettlementsError,
+)
+from ..._generated.platform.partner_settlement.delete_platform_partner_settlements_body import (
+    DeletePlatformPartnerSettlementsBody,
+)
+from ..._generated.platform.partner_settlement.delete_platform_partner_settlements_response import (
+    DeletePlatformPartnerSettlementsResponse,
 )
 from ..._generated.platform.partner_settlement.get_platform_partner_settlements_body import (
     GetPlatformPartnerSettlementsBody,
@@ -37,7 +46,10 @@ from ..._generated.platform.partner_settlement.platform_partner_settlement_type 
 from ..._generated.platform.partner_settlement.client import PartnerSettlementClient
 
 __all__ = [
+    "DeletePlatformPartnerSettlementsError",
     "GetPlatformPartnerSettlementsError",
+    "DeletePlatformPartnerSettlementsBody",
+    "DeletePlatformPartnerSettlementsResponse",
     "GetPlatformPartnerSettlementsBody",
     "GetPlatformPartnerSettlementsResponse",
     "PlatformPartnerManualSettlement",

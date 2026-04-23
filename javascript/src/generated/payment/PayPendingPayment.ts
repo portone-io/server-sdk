@@ -5,6 +5,7 @@ import type { Customer } from "./../common/Customer"
 import type { PaymentAmount } from "./../payment/PaymentAmount"
 import type { PaymentEscrow } from "./../payment/PaymentEscrow"
 import type { PaymentMethod } from "./../payment/PaymentMethod"
+import type { PaymentOrigin } from "./../payment/PaymentOrigin"
 import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
@@ -70,6 +71,8 @@ export type PayPendingPayment = {
 	currency: Currency
 	/** 구매자 정보 */
 	customer: Customer
+	/** 결제 출처 정보 */
+	origin: PaymentOrigin
 	/** 프로모션 아이디 */
 	promotionId?: string
 	/** 문화비 지출 여부 */

@@ -19,18 +19,18 @@ import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ArchivePlatformPartnerError
 import io.portone.sdk.server.errors.ArchivePlatformPartnerException
-import io.portone.sdk.server.errors.ConnectBulkPartnerMemberCompanyError
-import io.portone.sdk.server.errors.ConnectBulkPartnerMemberCompanyException
-import io.portone.sdk.server.errors.ConnectPartnerMemberCompanyError
-import io.portone.sdk.server.errors.ConnectPartnerMemberCompanyException
+import io.portone.sdk.server.errors.ConnectBulkPartnerCounterpartyError
+import io.portone.sdk.server.errors.ConnectBulkPartnerCounterpartyException
+import io.portone.sdk.server.errors.ConnectPartnerCounterpartyError
+import io.portone.sdk.server.errors.ConnectPartnerCounterpartyException
 import io.portone.sdk.server.errors.CreatePlatformPartnerError
 import io.portone.sdk.server.errors.CreatePlatformPartnerException
 import io.portone.sdk.server.errors.CreatePlatformPartnersError
 import io.portone.sdk.server.errors.CreatePlatformPartnersException
-import io.portone.sdk.server.errors.DisconnectBulkPartnerMemberCompanyError
-import io.portone.sdk.server.errors.DisconnectBulkPartnerMemberCompanyException
-import io.portone.sdk.server.errors.DisconnectPartnerMemberCompanyError
-import io.portone.sdk.server.errors.DisconnectPartnerMemberCompanyException
+import io.portone.sdk.server.errors.DisconnectBulkPartnerCounterpartyError
+import io.portone.sdk.server.errors.DisconnectBulkPartnerCounterpartyException
+import io.portone.sdk.server.errors.DisconnectPartnerCounterpartyError
+import io.portone.sdk.server.errors.DisconnectPartnerCounterpartyException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPlatformPartnerError
@@ -47,6 +47,8 @@ import io.portone.sdk.server.errors.PlatformAccountVerificationNotFoundError
 import io.portone.sdk.server.errors.PlatformAccountVerificationNotFoundException
 import io.portone.sdk.server.errors.PlatformArchivedPartnerError
 import io.portone.sdk.server.errors.PlatformArchivedPartnerException
+import io.portone.sdk.server.errors.PlatformArchivedPartnerNtsNotAllowedError
+import io.portone.sdk.server.errors.PlatformArchivedPartnerNtsNotAllowedException
 import io.portone.sdk.server.errors.PlatformBtxNotEnabledError
 import io.portone.sdk.server.errors.PlatformBtxNotEnabledException
 import io.portone.sdk.server.errors.PlatformCannotArchiveScheduledPartnerError
@@ -57,6 +59,12 @@ import io.portone.sdk.server.errors.PlatformContractNotFoundError
 import io.portone.sdk.server.errors.PlatformContractNotFoundException
 import io.portone.sdk.server.errors.PlatformContractsNotFoundError
 import io.portone.sdk.server.errors.PlatformContractsNotFoundException
+import io.portone.sdk.server.errors.PlatformCounterpartyNotConnectableStatusError
+import io.portone.sdk.server.errors.PlatformCounterpartyNotConnectableStatusException
+import io.portone.sdk.server.errors.PlatformCounterpartyNotConnectedError
+import io.portone.sdk.server.errors.PlatformCounterpartyNotConnectedException
+import io.portone.sdk.server.errors.PlatformCounterpartyOngoingTaxInvoiceExistsError
+import io.portone.sdk.server.errors.PlatformCounterpartyOngoingTaxInvoiceExistsException
 import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedError
 import io.portone.sdk.server.errors.PlatformCurrencyNotSupportedException
 import io.portone.sdk.server.errors.PlatformExternalApiFailedError
@@ -67,10 +75,6 @@ import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnch
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerBrnUnchangeableException
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
 import io.portone.sdk.server.errors.PlatformMemberCompanyConnectedPartnerTypeUnchangeableException
-import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectableStatusError
-import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectableStatusException
-import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectedError
-import io.portone.sdk.server.errors.PlatformMemberCompanyNotConnectedException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.PlatformOngoingTaxInvoiceExistsError
@@ -83,6 +87,8 @@ import io.portone.sdk.server.errors.PlatformPartnerIdsDuplicatedError
 import io.portone.sdk.server.errors.PlatformPartnerIdsDuplicatedException
 import io.portone.sdk.server.errors.PlatformPartnerNotFoundError
 import io.portone.sdk.server.errors.PlatformPartnerNotFoundException
+import io.portone.sdk.server.errors.PlatformPartnerPendingNtsOperationError
+import io.portone.sdk.server.errors.PlatformPartnerPendingNtsOperationException
 import io.portone.sdk.server.errors.PlatformPartnerScheduleExistsError
 import io.portone.sdk.server.errors.PlatformPartnerScheduleExistsException
 import io.portone.sdk.server.errors.PlatformPartnerTaxationTypeIsSimpleError
@@ -108,9 +114,9 @@ import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyAccount
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyContact
 import io.portone.sdk.server.platform.UpdatePlatformPartnerBodyType
 import io.portone.sdk.server.platform.partner.ArchivePlatformPartnerResponse
-import io.portone.sdk.server.platform.partner.ConnectBulkPartnerMemberCompanyBody
-import io.portone.sdk.server.platform.partner.ConnectBulkPartnerMemberCompanyResponse
-import io.portone.sdk.server.platform.partner.ConnectPartnerMemberCompanyResponse
+import io.portone.sdk.server.platform.partner.ConnectBulkPartnerCounterpartyBody
+import io.portone.sdk.server.platform.partner.ConnectBulkPartnerCounterpartyResponse
+import io.portone.sdk.server.platform.partner.ConnectPartnerCounterpartyResponse
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBody
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyAccount
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyContact
@@ -118,9 +124,9 @@ import io.portone.sdk.server.platform.partner.CreatePlatformPartnerBodyType
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnerResponse
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnersBody
 import io.portone.sdk.server.platform.partner.CreatePlatformPartnersResponse
-import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerMemberCompanyBody
-import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerMemberCompanyResponse
-import io.portone.sdk.server.platform.partner.DisconnectPartnerMemberCompanyResponse
+import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerCounterpartyBody
+import io.portone.sdk.server.platform.partner.DisconnectBulkPartnerCounterpartyResponse
+import io.portone.sdk.server.platform.partner.DisconnectPartnerCounterpartyResponse
 import io.portone.sdk.server.platform.partner.GetPlatformPartnersBody
 import io.portone.sdk.server.platform.partner.GetPlatformPartnersResponse
 import io.portone.sdk.server.platform.partner.RecoverPlatformPartnerResponse
@@ -229,9 +235,9 @@ public class PartnerClient(
 
 
   /**
-   * 파트너 국세청 연동
+   * 파트너 거래처 연동
    *
-   * 파트너를 국세청 연동합니다.
+   * 파트너를 거래처에 연동합니다.
    *
    * @param id
    * 파트너 아이디
@@ -240,16 +246,16 @@ public class PartnerClient(
    *
    * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
-   * @throws ConnectPartnerMemberCompanyException
+   * @throws ConnectPartnerCounterpartyException
    */
-  @JvmName("connectPartnerMemberCompanySuspend")
-  public suspend fun connectPartnerMemberCompany(
+  @JvmName("connectPartnerCounterpartySuspend")
+  public suspend fun connectPartnerCounterparty(
     id: String,
     test: Boolean? = null,
-  ): ConnectPartnerMemberCompanyResponse {
+  ): ConnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "member-company-connect", id.toString())
+        this.appendPathSegments("platform", "partners", "counterparty-connect", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -261,7 +267,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConnectPartnerMemberCompanyError.Recognized>(httpBody)
+        json.decodeFromString<ConnectPartnerCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -269,9 +275,11 @@ public class PartnerClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedPartnerError -> throw PlatformArchivedPartnerException(httpBodyDecoded)
+        is PlatformArchivedPartnerNtsNotAllowedError -> throw PlatformArchivedPartnerNtsNotAllowedException(httpBodyDecoded)
         is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformCounterpartyNotConnectableStatusError -> throw PlatformCounterpartyNotConnectableStatusException(httpBodyDecoded)
         is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformMemberCompanyNotConnectableStatusError -> throw PlatformMemberCompanyNotConnectableStatusException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformPartnerScheduleExistsError -> throw PlatformPartnerScheduleExistsException(httpBodyDecoded)
@@ -282,7 +290,7 @@ public class PartnerClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<ConnectPartnerMemberCompanyResponse>(httpBody)
+      json.decodeFromString<ConnectPartnerCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -290,38 +298,38 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("connectPartnerMemberCompany")
-  public fun connectPartnerMemberCompanyFuture(
+  @JvmName("connectPartnerCounterparty")
+  public fun connectPartnerCounterpartyFuture(
     id: String,
     test: Boolean? = null,
-  ): CompletableFuture<ConnectPartnerMemberCompanyResponse> = GlobalScope.future { connectPartnerMemberCompany(id, test) }
+  ): CompletableFuture<ConnectPartnerCounterpartyResponse> = GlobalScope.future { connectPartnerCounterparty(id, test) }
 
 
   /**
-   * 파트너 일괄 국세청 연동
+   * 파트너 일괄 거래처 연동
    *
-   * 파트너들을 일괄 국세청 연동합니다.
+   * 파트너들을 일괄 거래처 연동합니다.
    *
    * @param test
    * 테스트 모드 여부
    *
    * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param filter
-   * 일괄 국세청 연동할 파트너 조건 필터
+   * 일괄 거래처 연동할 파트너 조건 필터
    *
-   * @throws ConnectBulkPartnerMemberCompanyException
+   * @throws ConnectBulkPartnerCounterpartyException
    */
-  @JvmName("connectBulkPartnerMemberCompanySuspend")
-  public suspend fun connectBulkPartnerMemberCompany(
+  @JvmName("connectBulkPartnerCounterpartySuspend")
+  public suspend fun connectBulkPartnerCounterparty(
     test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): ConnectBulkPartnerMemberCompanyResponse {
-    val requestBody = ConnectBulkPartnerMemberCompanyBody(
+  ): ConnectBulkPartnerCounterpartyResponse {
+    val requestBody = ConnectBulkPartnerCounterpartyBody(
       filter = filter,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "member-company-connect")
+        this.appendPathSegments("platform", "partners", "counterparty-connect")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -335,7 +343,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<ConnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+        json.decodeFromString<ConnectBulkPartnerCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -353,7 +361,7 @@ public class PartnerClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<ConnectBulkPartnerMemberCompanyResponse>(httpBody)
+      json.decodeFromString<ConnectBulkPartnerCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -361,17 +369,17 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("connectBulkPartnerMemberCompany")
-  public fun connectBulkPartnerMemberCompanyFuture(
+  @JvmName("connectBulkPartnerCounterparty")
+  public fun connectBulkPartnerCounterpartyFuture(
     test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<ConnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { connectBulkPartnerMemberCompany(test, filter) }
+  ): CompletableFuture<ConnectBulkPartnerCounterpartyResponse> = GlobalScope.future { connectBulkPartnerCounterparty(test, filter) }
 
 
   /**
-   * 파트너 국세청 연동 해제
+   * 파트너 거래처 연동 해제
    *
-   * 파트너를 국세청 연동 해제합니다.
+   * 파트너를 거래처 연동 해제합니다.
    *
    * @param id
    * 파트너 아이디
@@ -380,16 +388,16 @@ public class PartnerClient(
    *
    * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    *
-   * @throws DisconnectPartnerMemberCompanyException
+   * @throws DisconnectPartnerCounterpartyException
    */
-  @JvmName("disconnectPartnerMemberCompanySuspend")
-  public suspend fun disconnectPartnerMemberCompany(
+  @JvmName("disconnectPartnerCounterpartySuspend")
+  public suspend fun disconnectPartnerCounterparty(
     id: String,
     test: Boolean? = null,
-  ): DisconnectPartnerMemberCompanyResponse {
+  ): DisconnectPartnerCounterpartyResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "member-company-disconnect", id.toString())
+        this.appendPathSegments("platform", "partners", "counterparty-disconnect", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -401,7 +409,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<DisconnectPartnerMemberCompanyError.Recognized>(httpBody)
+        json.decodeFromString<DisconnectPartnerCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -409,9 +417,10 @@ public class PartnerClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformArchivedPartnerNtsNotAllowedError -> throw PlatformArchivedPartnerNtsNotAllowedException(httpBodyDecoded)
         is PlatformBtxNotEnabledError -> throw PlatformBtxNotEnabledException(httpBodyDecoded)
+        is PlatformCounterpartyNotConnectedError -> throw PlatformCounterpartyNotConnectedException(httpBodyDecoded)
         is PlatformExternalApiFailedError -> throw PlatformExternalApiFailedException(httpBodyDecoded)
-        is PlatformMemberCompanyNotConnectedError -> throw PlatformMemberCompanyNotConnectedException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformOngoingTaxInvoiceExistsError -> throw PlatformOngoingTaxInvoiceExistsException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
@@ -422,7 +431,7 @@ public class PartnerClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<DisconnectPartnerMemberCompanyResponse>(httpBody)
+      json.decodeFromString<DisconnectPartnerCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -430,38 +439,38 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("disconnectPartnerMemberCompany")
-  public fun disconnectPartnerMemberCompanyFuture(
+  @JvmName("disconnectPartnerCounterparty")
+  public fun disconnectPartnerCounterpartyFuture(
     id: String,
     test: Boolean? = null,
-  ): CompletableFuture<DisconnectPartnerMemberCompanyResponse> = GlobalScope.future { disconnectPartnerMemberCompany(id, test) }
+  ): CompletableFuture<DisconnectPartnerCounterpartyResponse> = GlobalScope.future { disconnectPartnerCounterparty(id, test) }
 
 
   /**
-   * 파트너 일괄 국세청 연동 해제
+   * 파트너 일괄 거래처 연동 해제
    *
-   * 파트너들을 일괄 국세청 연동 해제합니다.
+   * 파트너들을 일괄 거래처 연동 해제합니다.
    *
    * @param test
    * 테스트 모드 여부
    *
    * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param filter
-   * 일괄 국세청 연동 해제할 파트너 조건 필터
+   * 일괄 거래처 연동 해제할 파트너 조건 필터
    *
-   * @throws DisconnectBulkPartnerMemberCompanyException
+   * @throws DisconnectBulkPartnerCounterpartyException
    */
-  @JvmName("disconnectBulkPartnerMemberCompanySuspend")
-  public suspend fun disconnectBulkPartnerMemberCompany(
+  @JvmName("disconnectBulkPartnerCounterpartySuspend")
+  public suspend fun disconnectBulkPartnerCounterparty(
     test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): DisconnectBulkPartnerMemberCompanyResponse {
-    val requestBody = DisconnectBulkPartnerMemberCompanyBody(
+  ): DisconnectBulkPartnerCounterpartyResponse {
+    val requestBody = DisconnectBulkPartnerCounterpartyBody(
       filter = filter,
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partners", "member-company-disconnect")
+        this.appendPathSegments("platform", "partners", "counterparty-disconnect")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -475,7 +484,7 @@ public class PartnerClient(
     if (httpResponse.status.value !in 200..299) {
       val httpBody = httpResponse.body<String>()
       val httpBodyDecoded = try {
-        json.decodeFromString<DisconnectBulkPartnerMemberCompanyError.Recognized>(httpBody)
+        json.decodeFromString<DisconnectBulkPartnerCounterpartyError.Recognized>(httpBody)
       }
       catch (_: Exception) {
         throw UnknownException("Unknown API error: $httpBody")
@@ -493,7 +502,7 @@ public class PartnerClient(
     }
     val httpBody = httpResponse.body<String>()
     return try {
-      json.decodeFromString<DisconnectBulkPartnerMemberCompanyResponse>(httpBody)
+      json.decodeFromString<DisconnectBulkPartnerCounterpartyResponse>(httpBody)
     }
     catch (_: Exception) {
       throw UnknownException("Unknown API response: $httpBody")
@@ -501,11 +510,11 @@ public class PartnerClient(
   }
 
   /** @suppress */
-  @JvmName("disconnectBulkPartnerMemberCompany")
-  public fun disconnectBulkPartnerMemberCompanyFuture(
+  @JvmName("disconnectBulkPartnerCounterparty")
+  public fun disconnectBulkPartnerCounterpartyFuture(
     test: Boolean? = null,
     filter: PlatformPartnerFilterInput? = null,
-  ): CompletableFuture<DisconnectBulkPartnerMemberCompanyResponse> = GlobalScope.future { disconnectBulkPartnerMemberCompany(test, filter) }
+  ): CompletableFuture<DisconnectBulkPartnerCounterpartyResponse> = GlobalScope.future { disconnectBulkPartnerCounterparty(test, filter) }
 
 
   /**
@@ -550,8 +559,10 @@ public class PartnerClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformCannotArchiveScheduledPartnerError -> throw PlatformCannotArchiveScheduledPartnerException(httpBodyDecoded)
+        is PlatformCounterpartyOngoingTaxInvoiceExistsError -> throw PlatformCounterpartyOngoingTaxInvoiceExistsException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerPendingNtsOperationError -> throw PlatformPartnerPendingNtsOperationException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }
@@ -615,6 +626,7 @@ public class PartnerClient(
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformPartnerPendingNtsOperationError -> throw PlatformPartnerPendingNtsOperationException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
     }

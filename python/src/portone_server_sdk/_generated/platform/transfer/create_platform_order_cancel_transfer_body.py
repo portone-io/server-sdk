@@ -14,6 +14,7 @@ class CreatePlatformOrderCancelTransferBody:
     하나의 payment에 하나의 정산 건만 존재하는 경우에는 (partnerId, paymentId)로 취소 정산을 등록하실 수 있습니다.
     하나의 payment에 여러 개의 정산 건이 존재하는 경우에는 transferId를 필수로 입력해야 합니다.
     transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
+    id를 입력한 경우 생성될 취소 정산건 아이디로 사용됩니다.
     """
     cancellation_id: str
     """취소 내역 아이디
@@ -68,6 +69,11 @@ class CreatePlatformOrderCancelTransferBody:
     user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
+    id: Optional[str] = field(default=None)
+    """생성할 취소 정산건 아이디
+
+    명시하지 않으면 id 가 임의로 생성됩니다.
+    """
 
 
 def _serialize_create_platform_order_cancel_transfer_body(obj: CreatePlatformOrderCancelTransferBody) -> Any:
@@ -98,6 +104,8 @@ def _serialize_create_platform_order_cancel_transfer_body(obj: CreatePlatformOrd
         entity["isForTest"] = obj.is_for_test
     if obj.user_defined_properties is not None:
         entity["userDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.user_defined_properties))
+    if obj.id is not None:
+        entity["id"] = obj.id
     return entity
 
 
@@ -184,4 +192,10 @@ def _deserialize_create_platform_order_cancel_transfer_body(obj: Any) -> CreateP
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformOrderCancelTransferBody(cancellation_id, discounts, partner_id, payment_id, transfer_id, memo, order_detail, tax_free_amount, settlement_start_date, settlement_date, external_cancellation_detail, is_for_test, user_defined_properties)
+    if "id" in obj:
+        id = obj["id"]
+        if not isinstance(id, str):
+            raise ValueError(f"{repr(id)} is not str")
+    else:
+        id = None
+    return CreatePlatformOrderCancelTransferBody(cancellation_id, discounts, partner_id, payment_id, transfer_id, memo, order_detail, tax_free_amount, settlement_start_date, settlement_date, external_cancellation_detail, is_for_test, user_defined_properties, id)

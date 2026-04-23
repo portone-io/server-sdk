@@ -83,6 +83,12 @@ internal data class InstantPaymentInput(
   /** 해당 결제에 적용할 프로모션 아이디 */
   val promotionId: String? = null,
   val bypass: JsonObject? = null,
+  /**
+   * 웹훅 생략 여부
+   *
+   * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+   */
+  val skipWebhook: Boolean? = null,
 )
 
 

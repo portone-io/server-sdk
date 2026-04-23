@@ -42,6 +42,10 @@ class PlatformPartnerOrderCancelSettlement:
     is_for_test: bool
     """테스트 모드 여부
     """
+    status_updated_at: Optional[str] = field(default=None)
+    """상태 업데이트 일시
+    (RFC 3339 date-time)
+    """
     memo: Optional[str] = field(default=None)
     """메모
     """
@@ -62,6 +66,8 @@ def _serialize_platform_partner_order_cancel_settlement(obj: PlatformPartnerOrde
     entity["settlementStartDateRange"] = _serialize_date_range(obj.settlement_start_date_range)
     entity["amount"] = _serialize_platform_order_settlement_amount(obj.amount)
     entity["isForTest"] = obj.is_for_test
+    if obj.status_updated_at is not None:
+        entity["statusUpdatedAt"] = obj.status_updated_at
     if obj.memo is not None:
         entity["memo"] = obj.memo
     return entity
@@ -119,10 +125,16 @@ def _deserialize_platform_partner_order_cancel_settlement(obj: Any) -> PlatformP
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
         raise ValueError(f"{repr(is_for_test)} is not bool")
+    if "statusUpdatedAt" in obj:
+        status_updated_at = obj["statusUpdatedAt"]
+        if not isinstance(status_updated_at, str):
+            raise ValueError(f"{repr(status_updated_at)} is not str")
+    else:
+        status_updated_at = None
     if "memo" in obj:
         memo = obj["memo"]
         if not isinstance(memo, str):
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return PlatformPartnerOrderCancelSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, contract, settlement_start_date_range, amount, is_for_test, memo)
+    return PlatformPartnerOrderCancelSettlement(id, graphql_id, partner, settlement_date, settlement_currency, status, contract, settlement_start_date_range, amount, is_for_test, status_updated_at, memo)

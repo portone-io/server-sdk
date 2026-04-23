@@ -46,6 +46,16 @@ class GetB2bTaxInvoicesBodyFilter:
     purpose_types: Optional[list[B2bTaxInvoicePurposeType]] = field(default=None)
     """영수/청구
     """
+    counterparty_id: Optional[str] = field(default=None)
+    """거래처 ID
+
+    거래처 ID로 필터링합니다. 공급자 또는 공급받는자 거래처 ID에 대해 조회합니다.
+    """
+    include_brn_match: Optional[bool] = field(default=None)
+    """거래처 사업자등록번호 매칭 포함 여부
+
+    counterpartyId 조건과 함께 거래처의 사업자등록번호 매칭 조건을 추가할지 여부입니다.
+    """
 
 
 def _serialize_get_b2b_tax_invoices_body_filter(obj: GetB2bTaxInvoicesBodyFilter) -> Any:
@@ -70,6 +80,10 @@ def _serialize_get_b2b_tax_invoices_body_filter(obj: GetB2bTaxInvoicesBodyFilter
         entity["issuanceTypes"] = list(map(_serialize_b2b_tax_invoice_issuance_type, obj.issuance_types))
     if obj.purpose_types is not None:
         entity["purposeTypes"] = list(map(_serialize_b2b_tax_invoice_purpose_type, obj.purpose_types))
+    if obj.counterparty_id is not None:
+        entity["counterpartyId"] = obj.counterparty_id
+    if obj.include_brn_match is not None:
+        entity["includeBrnMatch"] = obj.include_brn_match
     return entity
 
 
@@ -144,4 +158,16 @@ def _deserialize_get_b2b_tax_invoices_body_filter(obj: Any) -> GetB2bTaxInvoices
             purpose_types[i] = item
     else:
         purpose_types = None
-    return GetB2bTaxInvoicesBodyFilter(primary_filter, supplier_brn, partner_brn, statuses, taxation_types, document_modification_types, is_delayed, issuance_types, purpose_types)
+    if "counterpartyId" in obj:
+        counterparty_id = obj["counterpartyId"]
+        if not isinstance(counterparty_id, str):
+            raise ValueError(f"{repr(counterparty_id)} is not str")
+    else:
+        counterparty_id = None
+    if "includeBrnMatch" in obj:
+        include_brn_match = obj["includeBrnMatch"]
+        if not isinstance(include_brn_match, bool):
+            raise ValueError(f"{repr(include_brn_match)} is not bool")
+    else:
+        include_brn_match = None
+    return GetB2bTaxInvoicesBodyFilter(primary_filter, supplier_brn, partner_brn, statuses, taxation_types, document_modification_types, is_delayed, issuance_types, purpose_types, counterparty_id, include_brn_match)

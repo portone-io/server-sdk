@@ -2,16 +2,16 @@ import { PartnerError } from "./PartnerError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
 import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformPartnerResponse } from "../../../generated/platform/partner/ArchivePlatformPartnerResponse"
-import type { ConnectBulkPartnerMemberCompanyResponse } from "../../../generated/platform/partner/ConnectBulkPartnerMemberCompanyResponse"
-import type { ConnectPartnerMemberCompanyResponse } from "../../../generated/platform/partner/ConnectPartnerMemberCompanyResponse"
+import type { ConnectBulkPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectBulkPartnerCounterpartyResponse"
+import type { ConnectPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectPartnerCounterpartyResponse"
 import type { CreatePlatformPartnerBody } from "../../../generated/platform/partner/CreatePlatformPartnerBody"
 import type { CreatePlatformPartnerBodyAccount } from "../../../generated/platform/partner/CreatePlatformPartnerBodyAccount"
 import type { CreatePlatformPartnerBodyContact } from "../../../generated/platform/partner/CreatePlatformPartnerBodyContact"
 import type { CreatePlatformPartnerBodyType } from "../../../generated/platform/partner/CreatePlatformPartnerBodyType"
 import type { CreatePlatformPartnerResponse } from "../../../generated/platform/partner/CreatePlatformPartnerResponse"
 import type { CreatePlatformPartnersResponse } from "../../../generated/platform/partner/CreatePlatformPartnersResponse"
-import type { DisconnectBulkPartnerMemberCompanyResponse } from "../../../generated/platform/partner/DisconnectBulkPartnerMemberCompanyResponse"
-import type { DisconnectPartnerMemberCompanyResponse } from "../../../generated/platform/partner/DisconnectPartnerMemberCompanyResponse"
+import type { DisconnectBulkPartnerCounterpartyResponse } from "../../../generated/platform/partner/DisconnectBulkPartnerCounterpartyResponse"
+import type { DisconnectPartnerCounterpartyResponse } from "../../../generated/platform/partner/DisconnectPartnerCounterpartyResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformPartnersResponse } from "../../../generated/platform/partner/GetPlatformPartnersResponse"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -20,18 +20,20 @@ import type { PlatformAccountVerificationAlreadyUsedError } from "../../../gener
 import type { PlatformAccountVerificationFailedError } from "../../../generated/platform/PlatformAccountVerificationFailedError"
 import type { PlatformAccountVerificationNotFoundError } from "../../../generated/platform/PlatformAccountVerificationNotFoundError"
 import type { PlatformArchivedPartnerError } from "../../../generated/platform/PlatformArchivedPartnerError"
+import type { PlatformArchivedPartnerNtsNotAllowedError } from "../../../generated/platform/partner/PlatformArchivedPartnerNtsNotAllowedError"
 import type { PlatformBtxNotEnabledError } from "../../../generated/platform/partner/PlatformBtxNotEnabledError"
 import type { PlatformCannotArchiveScheduledPartnerError } from "../../../generated/platform/partner/PlatformCannotArchiveScheduledPartnerError"
 import type { PlatformCompanyVerificationAlreadyUsedError } from "../../../generated/platform/PlatformCompanyVerificationAlreadyUsedError"
 import type { PlatformContractNotFoundError } from "../../../generated/platform/PlatformContractNotFoundError"
 import type { PlatformContractsNotFoundError } from "../../../generated/platform/partner/PlatformContractsNotFoundError"
+import type { PlatformCounterpartyNotConnectableStatusError } from "../../../generated/platform/partner/PlatformCounterpartyNotConnectableStatusError"
+import type { PlatformCounterpartyNotConnectedError } from "../../../generated/platform/partner/PlatformCounterpartyNotConnectedError"
+import type { PlatformCounterpartyOngoingTaxInvoiceExistsError } from "../../../generated/platform/partner/PlatformCounterpartyOngoingTaxInvoiceExistsError"
 import type { PlatformCurrencyNotSupportedError } from "../../../generated/platform/PlatformCurrencyNotSupportedError"
 import type { PlatformExternalApiFailedError } from "../../../generated/platform/PlatformExternalApiFailedError"
 import type { PlatformInsufficientDataToChangePartnerTypeError } from "../../../generated/platform/PlatformInsufficientDataToChangePartnerTypeError"
 import type { PlatformMemberCompanyConnectedPartnerBrnUnchangeableError } from "../../../generated/platform/PlatformMemberCompanyConnectedPartnerBrnUnchangeableError"
 import type { PlatformMemberCompanyConnectedPartnerTypeUnchangeableError } from "../../../generated/platform/PlatformMemberCompanyConnectedPartnerTypeUnchangeableError"
-import type { PlatformMemberCompanyNotConnectableStatusError } from "../../../generated/platform/partner/PlatformMemberCompanyNotConnectableStatusError"
-import type { PlatformMemberCompanyNotConnectedError } from "../../../generated/platform/partner/PlatformMemberCompanyNotConnectedError"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformOngoingTaxInvoiceExistsError } from "../../../generated/platform/partner/PlatformOngoingTaxInvoiceExistsError"
 import type { PlatformPartner } from "../../../generated/platform/PlatformPartner"
@@ -40,6 +42,7 @@ import type { PlatformPartnerIdAlreadyExistsError } from "../../../generated/pla
 import type { PlatformPartnerIdsAlreadyExistError } from "../../../generated/platform/partner/PlatformPartnerIdsAlreadyExistError"
 import type { PlatformPartnerIdsDuplicatedError } from "../../../generated/platform/partner/PlatformPartnerIdsDuplicatedError"
 import type { PlatformPartnerNotFoundError } from "../../../generated/platform/PlatformPartnerNotFoundError"
+import type { PlatformPartnerPendingNtsOperationError } from "../../../generated/platform/partner/PlatformPartnerPendingNtsOperationError"
 import type { PlatformPartnerScheduleExistsError } from "../../../generated/platform/partner/PlatformPartnerScheduleExistsError"
 import type { PlatformPartnerTaxationTypeIsSimpleError } from "../../../generated/platform/partner/PlatformPartnerTaxationTypeIsSimpleError"
 import type { PlatformPartnerTypeIsNotBusinessError } from "../../../generated/platform/partner/PlatformPartnerTypeIsNotBusinessError"
@@ -93,12 +96,12 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 			}
 			return response.json()
 		},
-		connectPartnerMemberCompany: async (
+		connectPartnerCounterparty: async (
 			options: {
 				id: string,
 				test?: boolean,
 			}
-		): Promise<ConnectPartnerMemberCompanyResponse> => {
+		): Promise<ConnectPartnerCounterpartyResponse> => {
 			const {
 				id,
 				test,
@@ -109,7 +112,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/member-company-connect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-connect/${encodeURIComponent(id)}?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -119,16 +122,16 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConnectPartnerMemberCompanyError(await response.json())
+				throw new ConnectPartnerCounterpartyError(await response.json())
 			}
 			return response.json()
 		},
-		connectBulkPartnerMemberCompany: async (
+		connectBulkPartnerCounterparty: async (
 			options?: {
 				test?: boolean,
 				filter?: PlatformPartnerFilterInput,
 			}
-		): Promise<ConnectBulkPartnerMemberCompanyResponse> => {
+		): Promise<ConnectBulkPartnerCounterpartyResponse> => {
 			const test = options?.test
 			const filter = options?.filter
 			const requestBody = JSON.stringify({
@@ -140,7 +143,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/member-company-connect?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-connect?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -151,16 +154,16 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new ConnectBulkPartnerMemberCompanyError(await response.json())
+				throw new ConnectBulkPartnerCounterpartyError(await response.json())
 			}
 			return response.json()
 		},
-		disconnectPartnerMemberCompany: async (
+		disconnectPartnerCounterparty: async (
 			options: {
 				id: string,
 				test?: boolean,
 			}
-		): Promise<DisconnectPartnerMemberCompanyResponse> => {
+		): Promise<DisconnectPartnerCounterpartyResponse> => {
 			const {
 				id,
 				test,
@@ -171,7 +174,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/member-company-disconnect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-disconnect/${encodeURIComponent(id)}?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -181,16 +184,16 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DisconnectPartnerMemberCompanyError(await response.json())
+				throw new DisconnectPartnerCounterpartyError(await response.json())
 			}
 			return response.json()
 		},
-		disconnectBulkPartnerMemberCompany: async (
+		disconnectBulkPartnerCounterparty: async (
 			options?: {
 				test?: boolean,
 				filter?: PlatformPartnerFilterInput,
 			}
-		): Promise<DisconnectBulkPartnerMemberCompanyResponse> => {
+		): Promise<DisconnectBulkPartnerCounterpartyResponse> => {
 			const test = options?.test
 			const filter = options?.filter
 			const requestBody = JSON.stringify({
@@ -202,7 +205,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/member-company-disconnect?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-disconnect?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -213,7 +216,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				},
 			)
 			if (!response.ok) {
-				throw new DisconnectBulkPartnerMemberCompanyError(await response.json())
+				throw new DisconnectBulkPartnerCounterpartyError(await response.json())
 			}
 			return response.json()
 		},
@@ -480,13 +483,13 @@ export type PartnerClient = {
 		}
 	) => Promise<CreatePlatformPartnersResponse>
 	/**
-	 * 파트너 국세청 연동
+	 * 파트너 거래처 연동
 	 *
-	 * 파트너를 국세청 연동합니다.
+	 * 파트너를 거래처에 연동합니다.
 	 *
-	 * @throws {@link ConnectPartnerMemberCompanyError}
+	 * @throws {@link ConnectPartnerCounterpartyError}
 	 */
-	connectPartnerMemberCompany: (
+	connectPartnerCounterparty: (
 		options: {
 			/** 파트너 아이디 */
 			id: string,
@@ -497,15 +500,15 @@ export type PartnerClient = {
 			 */
 			test?: boolean,
 		}
-	) => Promise<ConnectPartnerMemberCompanyResponse>
+	) => Promise<ConnectPartnerCounterpartyResponse>
 	/**
-	 * 파트너 일괄 국세청 연동
+	 * 파트너 일괄 거래처 연동
 	 *
-	 * 파트너들을 일괄 국세청 연동합니다.
+	 * 파트너들을 일괄 거래처 연동합니다.
 	 *
-	 * @throws {@link ConnectBulkPartnerMemberCompanyError}
+	 * @throws {@link ConnectBulkPartnerCounterpartyError}
 	 */
-	connectBulkPartnerMemberCompany: (
+	connectBulkPartnerCounterparty: (
 		options?: {
 			/**
 			 * 테스트 모드 여부
@@ -513,18 +516,18 @@ export type PartnerClient = {
 			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 			 */
 			test?: boolean,
-			/** 일괄 국세청 연동할 파트너 조건 필터 */
+			/** 일괄 거래처 연동할 파트너 조건 필터 */
 			filter?: PlatformPartnerFilterInput,
 		}
-	) => Promise<ConnectBulkPartnerMemberCompanyResponse>
+	) => Promise<ConnectBulkPartnerCounterpartyResponse>
 	/**
-	 * 파트너 국세청 연동 해제
+	 * 파트너 거래처 연동 해제
 	 *
-	 * 파트너를 국세청 연동 해제합니다.
+	 * 파트너를 거래처 연동 해제합니다.
 	 *
-	 * @throws {@link DisconnectPartnerMemberCompanyError}
+	 * @throws {@link DisconnectPartnerCounterpartyError}
 	 */
-	disconnectPartnerMemberCompany: (
+	disconnectPartnerCounterparty: (
 		options: {
 			/** 파트너 아이디 */
 			id: string,
@@ -535,15 +538,15 @@ export type PartnerClient = {
 			 */
 			test?: boolean,
 		}
-	) => Promise<DisconnectPartnerMemberCompanyResponse>
+	) => Promise<DisconnectPartnerCounterpartyResponse>
 	/**
-	 * 파트너 일괄 국세청 연동 해제
+	 * 파트너 일괄 거래처 연동 해제
 	 *
-	 * 파트너들을 일괄 국세청 연동 해제합니다.
+	 * 파트너들을 일괄 거래처 연동 해제합니다.
 	 *
-	 * @throws {@link DisconnectBulkPartnerMemberCompanyError}
+	 * @throws {@link DisconnectBulkPartnerCounterpartyError}
 	 */
-	disconnectBulkPartnerMemberCompany: (
+	disconnectBulkPartnerCounterparty: (
 		options?: {
 			/**
 			 * 테스트 모드 여부
@@ -551,10 +554,10 @@ export type PartnerClient = {
 			 * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
 			 */
 			test?: boolean,
-			/** 일괄 국세청 연동 해제할 파트너 조건 필터 */
+			/** 일괄 거래처 연동 해제할 파트너 조건 필터 */
 			filter?: PlatformPartnerFilterInput,
 		}
-	) => Promise<DisconnectBulkPartnerMemberCompanyResponse>
+	) => Promise<DisconnectBulkPartnerCounterpartyResponse>
 	/**
 	 * 파트너 보관
 	 *
@@ -737,55 +740,55 @@ export class CreatePlatformPartnersError extends PartnerError {
 		this.name = "CreatePlatformPartnersError"
 	}
 }
-export class ConnectPartnerMemberCompanyError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformMemberCompanyNotConnectableStatusError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleExistsError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }
+export class ConnectPartnerCounterpartyError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnerError | PlatformArchivedPartnerNtsNotAllowedError | PlatformBtxNotEnabledError | PlatformCounterpartyNotConnectableStatusError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleExistsError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformMemberCompanyNotConnectableStatusError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleExistsError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnerError | PlatformArchivedPartnerNtsNotAllowedError | PlatformBtxNotEnabledError | PlatformCounterpartyNotConnectableStatusError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerScheduleExistsError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, ConnectPartnerMemberCompanyError.prototype)
-		this.name = "ConnectPartnerMemberCompanyError"
+		Object.setPrototypeOf(this, ConnectPartnerCounterpartyError.prototype)
+		this.name = "ConnectPartnerCounterpartyError"
 	}
 }
-export class ConnectBulkPartnerMemberCompanyError extends PartnerError {
+export class ConnectBulkPartnerCounterpartyError extends PartnerError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
 	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, ConnectBulkPartnerMemberCompanyError.prototype)
-		this.name = "ConnectBulkPartnerMemberCompanyError"
+		Object.setPrototypeOf(this, ConnectBulkPartnerCounterpartyError.prototype)
+		this.name = "ConnectBulkPartnerCounterpartyError"
 	}
 }
-export class DisconnectPartnerMemberCompanyError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformMemberCompanyNotConnectedError | PlatformNotEnabledError | PlatformOngoingTaxInvoiceExistsError | PlatformPartnerNotFoundError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }
+export class DisconnectPartnerCounterpartyError extends PartnerError {
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnerNtsNotAllowedError | PlatformBtxNotEnabledError | PlatformCounterpartyNotConnectedError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformOngoingTaxInvoiceExistsError | PlatformPartnerNotFoundError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformMemberCompanyNotConnectedError | PlatformNotEnabledError | PlatformOngoingTaxInvoiceExistsError | PlatformPartnerNotFoundError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformArchivedPartnerNtsNotAllowedError | PlatformBtxNotEnabledError | PlatformCounterpartyNotConnectedError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformOngoingTaxInvoiceExistsError | PlatformPartnerNotFoundError | PlatformPartnerTaxationTypeIsSimpleError | PlatformPartnerTypeIsNotBusinessError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, DisconnectPartnerMemberCompanyError.prototype)
-		this.name = "DisconnectPartnerMemberCompanyError"
+		Object.setPrototypeOf(this, DisconnectPartnerCounterpartyError.prototype)
+		this.name = "DisconnectPartnerCounterpartyError"
 	}
 }
-export class DisconnectBulkPartnerMemberCompanyError extends PartnerError {
+export class DisconnectBulkPartnerCounterpartyError extends PartnerError {
 	declare readonly data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
 	constructor(data: ForbiddenError | InvalidRequestError | PlatformBtxNotEnabledError | PlatformExternalApiFailedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTargetPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
-		Object.setPrototypeOf(this, DisconnectBulkPartnerMemberCompanyError.prototype)
-		this.name = "DisconnectBulkPartnerMemberCompanyError"
+		Object.setPrototypeOf(this, DisconnectBulkPartnerCounterpartyError.prototype)
+		this.name = "DisconnectBulkPartnerCounterpartyError"
 	}
 }
 export class ArchivePlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformCounterpartyOngoingTaxInvoiceExistsError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerPendingNtsOperationError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCannotArchiveScheduledPartnerError | PlatformCounterpartyOngoingTaxInvoiceExistsError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerPendingNtsOperationError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, ArchivePlatformPartnerError.prototype)
 		this.name = "ArchivePlatformPartnerError"
 	}
 }
 export class RecoverPlatformPartnerError extends PartnerError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerPendingNtsOperationError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPartnerPendingNtsOperationError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, RecoverPlatformPartnerError.prototype)
 		this.name = "RecoverPlatformPartnerError"

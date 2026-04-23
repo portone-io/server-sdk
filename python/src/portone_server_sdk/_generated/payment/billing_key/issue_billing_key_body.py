@@ -43,6 +43,11 @@ class IssueBillingKeyBody:
     상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
     입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
     """
+    skip_webhook: Optional[bool] = field(default=None)
+    """웹훅 생략 여부
+
+    빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+    """
 
 
 def _serialize_issue_billing_key_body(obj: IssueBillingKeyBody) -> Any:
@@ -64,6 +69,8 @@ def _serialize_issue_billing_key_body(obj: IssueBillingKeyBody) -> Any:
         entity["bypass"] = obj.bypass
     if obj.notice_urls is not None:
         entity["noticeUrls"] = obj.notice_urls
+    if obj.skip_webhook is not None:
+        entity["skipWebhook"] = obj.skip_webhook
     return entity
 
 
@@ -118,4 +125,10 @@ def _deserialize_issue_billing_key_body(obj: Any) -> IssueBillingKeyBody:
                 raise ValueError(f"{repr(item)} is not str")
     else:
         notice_urls = None
-    return IssueBillingKeyBody(method, store_id, channel_key, channel_group_id, customer, custom_data, bypass, notice_urls)
+    if "skipWebhook" in obj:
+        skip_webhook = obj["skipWebhook"]
+        if not isinstance(skip_webhook, bool):
+            raise ValueError(f"{repr(skip_webhook)} is not bool")
+    else:
+        skip_webhook = None
+    return IssueBillingKeyBody(method, store_id, channel_key, channel_group_id, customer, custom_data, bypass, notice_urls, skip_webhook)

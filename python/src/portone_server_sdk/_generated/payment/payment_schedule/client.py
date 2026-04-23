@@ -16,7 +16,7 @@ from ...payment.payment_schedule.payment_schedule_already_revoked_error import _
 from ...payment.payment_schedule.payment_schedule_not_found_error import _deserialize_payment_schedule_not_found_error
 from ...common.sum_of_parts_exceeds_total_amount_error import _deserialize_sum_of_parts_exceeds_total_amount_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
-from ...common.billing_key_payment_input import BillingKeyPaymentInput, _deserialize_billing_key_payment_input, _serialize_billing_key_payment_input
+from ...payment.payment_schedule.billing_key_payment_schedule_input import BillingKeyPaymentScheduleInput, _deserialize_billing_key_payment_schedule_input, _serialize_billing_key_payment_schedule_input
 from ...payment.payment_schedule.create_payment_schedule_response import CreatePaymentScheduleResponse, _deserialize_create_payment_schedule_response, _serialize_create_payment_schedule_response
 from ...payment.payment_schedule.get_payment_schedules_response import GetPaymentSchedulesResponse, _deserialize_get_payment_schedules_response, _serialize_get_payment_schedules_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
@@ -502,7 +502,7 @@ class PaymentScheduleClient:
         self,
         *,
         payment_id: str,
-        payment: BillingKeyPaymentInput,
+        payment: BillingKeyPaymentScheduleInput,
         time_to_pay: str,
     ) -> CreatePaymentScheduleResponse:
         """결제 예약
@@ -512,7 +512,7 @@ class PaymentScheduleClient:
         Args:
             payment_id (str):
                 결제 건 아이디
-            payment (BillingKeyPaymentInput):
+            payment (BillingKeyPaymentScheduleInput):
                 빌링키 결제 입력 정보
             time_to_pay (str):
                 결제 예정 시점
@@ -523,7 +523,7 @@ class PaymentScheduleClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["payment"] = _serialize_billing_key_payment_input(payment)
+        request_body["payment"] = _serialize_billing_key_payment_schedule_input(payment)
         request_body["timeToPay"] = time_to_pay
         query = []
         response = self._sync_client.request(
@@ -593,7 +593,7 @@ class PaymentScheduleClient:
         self,
         *,
         payment_id: str,
-        payment: BillingKeyPaymentInput,
+        payment: BillingKeyPaymentScheduleInput,
         time_to_pay: str,
     ) -> CreatePaymentScheduleResponse:
         """결제 예약
@@ -603,7 +603,7 @@ class PaymentScheduleClient:
         Args:
             payment_id (str):
                 결제 건 아이디
-            payment (BillingKeyPaymentInput):
+            payment (BillingKeyPaymentScheduleInput):
                 빌링키 결제 입력 정보
             time_to_pay (str):
                 결제 예정 시점
@@ -614,7 +614,7 @@ class PaymentScheduleClient:
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
-        request_body["payment"] = _serialize_billing_key_payment_input(payment)
+        request_body["payment"] = _serialize_billing_key_payment_schedule_input(payment)
         request_body["timeToPay"] = time_to_pay
         query = []
         response = await self._async_client.request(

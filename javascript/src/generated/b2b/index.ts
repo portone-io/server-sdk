@@ -1,3 +1,5 @@
 import * as TaxInvoice from "./taxInvoice"
+import * as Counterparty from "./counterparty"
 export { B2bError } from "./B2bError"
 export * as TaxInvoice from "./taxInvoice"
+export * as Counterparty from "./counterparty"

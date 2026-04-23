@@ -204,6 +204,7 @@ class BillingKeyClient:
         custom_data: Optional[str] = None,
         bypass: Optional[dict] = None,
         notice_urls: Optional[list[str]] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> IssueBillingKeyResponse:
         """빌링키 발급
 
@@ -232,6 +233,10 @@ class BillingKeyClient:
                 빌링키 발급 시 요청을 받을 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
                 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -254,6 +259,8 @@ class BillingKeyClient:
             request_body["bypass"] = bypass
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -316,6 +323,7 @@ class BillingKeyClient:
         custom_data: Optional[str] = None,
         bypass: Optional[dict] = None,
         notice_urls: Optional[list[str]] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> IssueBillingKeyResponse:
         """빌링키 발급
 
@@ -344,6 +352,10 @@ class BillingKeyClient:
                 빌링키 발급 시 요청을 받을 웹훅 주소입니다.
                 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
                 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -366,6 +378,8 @@ class BillingKeyClient:
             request_body["bypass"] = bypass
         if notice_urls is not None:
             request_body["noticeUrls"] = notice_urls
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -423,6 +437,7 @@ class BillingKeyClient:
         *,
         billing_issue_token: str,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedBillingKeySummary:
         """빌링키 발급 수동 승인
 
@@ -437,6 +452,10 @@ class BillingKeyClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -449,6 +468,8 @@ class BillingKeyClient:
         request_body["billingIssueToken"] = billing_issue_token
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -512,6 +533,7 @@ class BillingKeyClient:
         *,
         billing_issue_token: str,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedBillingKeySummary:
         """빌링키 발급 수동 승인
 
@@ -526,6 +548,10 @@ class BillingKeyClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -538,6 +564,8 @@ class BillingKeyClient:
         request_body["billingIssueToken"] = billing_issue_token
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -605,6 +633,7 @@ class BillingKeyClient:
         total_amount: Optional[int] = None,
         tax_free_amount: Optional[int] = None,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedBillingKeyIssueAndPaySummary:
         """빌링키 발급 및 초회 결제 수동 승인
 
@@ -637,6 +666,10 @@ class BillingKeyClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급 및 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -657,6 +690,8 @@ class BillingKeyClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = self._sync_client.request(
             "POST",
@@ -724,6 +759,7 @@ class BillingKeyClient:
         total_amount: Optional[int] = None,
         tax_free_amount: Optional[int] = None,
         is_test: Optional[bool] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> ConfirmedBillingKeyIssueAndPaySummary:
         """빌링키 발급 및 초회 결제 수동 승인
 
@@ -756,6 +792,10 @@ class BillingKeyClient:
                 테스트 결제 여부
 
                 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 발급 및 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
 
 
         Raises:
@@ -776,6 +816,8 @@ class BillingKeyClient:
             request_body["taxFreeAmount"] = tax_free_amount
         if is_test is not None:
             request_body["isTest"] = is_test
+        if skip_webhook is not None:
+            request_body["skipWebhook"] = skip_webhook
         query = []
         response = await self._async_client.request(
             "POST",
@@ -958,6 +1000,7 @@ class BillingKeyClient:
         billing_key: str,
         reason: Optional[str] = None,
         requester: Optional[BillingKeyDeleteRequester] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -974,6 +1017,10 @@ class BillingKeyClient:
                 요청 주체
 
                 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 삭제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -987,6 +1034,8 @@ class BillingKeyClient:
             query.append(("reason", reason))
         if requester is not None:
             query.append(("requester", requester))
+        if skip_webhook is not None:
+            query.append(("skipWebhook", skip_webhook))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",
@@ -1061,6 +1110,7 @@ class BillingKeyClient:
         billing_key: str,
         reason: Optional[str] = None,
         requester: Optional[BillingKeyDeleteRequester] = None,
+        skip_webhook: Optional[bool] = None,
     ) -> DeleteBillingKeyResponse:
         """빌링키 삭제
 
@@ -1077,6 +1127,10 @@ class BillingKeyClient:
                 요청 주체
 
                 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
+            skip_webhook (bool, optional):
+                웹훅 생략 여부
+
+                빌링키 삭제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
 
 
         Raises:
@@ -1090,6 +1144,8 @@ class BillingKeyClient:
             query.append(("reason", reason))
         if requester is not None:
             query.append(("requester", requester))
+        if skip_webhook is not None:
+            query.append(("skipWebhook", skip_webhook))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/billing-keys/{quote(billing_key, safe='')}",

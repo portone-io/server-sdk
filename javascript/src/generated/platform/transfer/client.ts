@@ -11,6 +11,7 @@ import type { CreatePlatformOrderTransferBodyAdditionalFee } from "../../../gene
 import type { CreatePlatformOrderTransferBodyDiscount } from "../../../generated/platform/transfer/CreatePlatformOrderTransferBodyDiscount"
 import type { CreatePlatformOrderTransferBodyExternalPaymentDetail } from "../../../generated/platform/transfer/CreatePlatformOrderTransferBodyExternalPaymentDetail"
 import type { CreatePlatformOrderTransferBodyOrderDetail } from "../../../generated/platform/transfer/CreatePlatformOrderTransferBodyOrderDetail"
+import type { Currency } from "../../../generated/common/Currency"
 import type { DeletePlatformTransferResponse } from "../../../generated/platform/transfer/DeletePlatformTransferResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPlatformTransferSummariesResponse } from "../../../generated/platform/transfer/GetPlatformTransferSummariesResponse"
@@ -49,6 +50,7 @@ import type { PlatformTransfer } from "../../../generated/platform/transfer/Plat
 import type { PlatformTransferAlreadyExistsError } from "../../../generated/platform/transfer/PlatformTransferAlreadyExistsError"
 import type { PlatformTransferDiscountSharePolicyNotFoundError } from "../../../generated/platform/transfer/PlatformTransferDiscountSharePolicyNotFoundError"
 import type { PlatformTransferFilterInput } from "../../../generated/platform/transfer/PlatformTransferFilterInput"
+import type { PlatformTransferIdAlreadyUsedError } from "../../../generated/platform/transfer/PlatformTransferIdAlreadyUsedError"
 import type { PlatformTransferNonDeletableStatusError } from "../../../generated/platform/transfer/PlatformTransferNonDeletableStatusError"
 import type { PlatformTransferNotFoundError } from "../../../generated/platform/transfer/PlatformTransferNotFoundError"
 import type { PlatformUserDefinedPropertyKeyValue } from "../../../generated/platform/transfer/PlatformUserDefinedPropertyKeyValue"
@@ -142,6 +144,8 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				settlementDate: string,
 				isForTest?: boolean,
 				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+				id?: string,
+				settlementCurrency?: Currency,
 			}
 		): Promise<CreateManualTransferResponse> => {
 			const {
@@ -153,6 +157,8 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				settlementDate,
 				isForTest,
 				userDefinedProperties,
+				id,
+				settlementCurrency,
 			} = options
 			const requestBody = JSON.stringify({
 				partnerId,
@@ -162,6 +168,8 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				settlementDate,
 				isForTest,
 				userDefinedProperties,
+				id,
+				settlementCurrency,
 			})
 			const query = [
 				["test", test],
@@ -200,6 +208,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				externalCancellationDetail?: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail,
 				isForTest?: boolean,
 				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+				id?: string,
 			}
 		): Promise<CreateOrderCancelTransferResponse> => {
 			const {
@@ -217,6 +226,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				externalCancellationDetail,
 				isForTest,
 				userDefinedProperties,
+				id,
 			} = options
 			const requestBody = JSON.stringify({
 				partnerId,
@@ -232,6 +242,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				externalCancellationDetail,
 				isForTest,
 				userDefinedProperties,
+				id,
 			})
 			const query = [
 				["test", test],
@@ -271,6 +282,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				isForTest?: boolean,
 				parameters?: TransferParameters,
 				userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+				id?: string,
 			}
 		): Promise<CreateOrderTransferResponse> => {
 			const {
@@ -289,6 +301,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				isForTest,
 				parameters,
 				userDefinedProperties,
+				id,
 			} = options
 			const requestBody = JSON.stringify({
 				partnerId,
@@ -305,6 +318,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				isForTest,
 				parameters,
 				userDefinedProperties,
+				id,
 			})
 			const query = [
 				["test", test],
@@ -511,6 +525,14 @@ export type TransferClient = {
 			isForTest?: boolean,
 			/** 사용자 정의 속성 */
 			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			/**
+			 * 생성할 정산건 아이디
+			 *
+			 * 명시하지 않으면 id 가 임의로 생성됩니다.
+			 */
+			id?: string,
+			/** 정산 통화 */
+			settlementCurrency?: Currency,
 		}
 	) => Promise<CreateManualTransferResponse>
 	/**
@@ -578,6 +600,12 @@ export type TransferClient = {
 			isForTest?: boolean,
 			/** 사용자 정의 속성 */
 			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			/**
+			 * 생성할 취소 정산건 아이디
+			 *
+			 * 명시하지 않으면 id 가 임의로 생성됩니다.
+			 */
+			id?: string,
 		}
 	) => Promise<CreateOrderCancelTransferResponse>
 	/**
@@ -651,6 +679,12 @@ export type TransferClient = {
 			parameters?: TransferParameters,
 			/** 사용자 정의 속성 */
 			userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[],
+			/**
+			 * 생성할 정산건 아이디
+			 *
+			 * 명시하지 않으면 id 가 임의로 생성됩니다.
+			 */
+			id?: string,
 		}
 	) => Promise<CreateOrderTransferResponse>
 	/**
@@ -711,27 +745,27 @@ export class GetPlatformTransferSummariesError extends TransferError {
 	}
 }
 export class CreatePlatformManualTransferError extends TransferError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformManualTransferError.prototype)
 		this.name = "CreatePlatformManualTransferError"
 	}
 }
 export class CreatePlatformOrderCancelTransferError extends TransferError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCancellableAmountExceededError | PlatformCancellableDiscountAmountExceededError | PlatformCancellableDiscountTaxFreeAmountExceededError | PlatformCancellableProductQuantityExceededError | PlatformCancellationAndPaymentTypeMismatchedError | PlatformCancellationNotFoundError | PlatformCannotSpecifyTransferError | PlatformDiscountSharePolicyIdDuplicatedError | PlatformNotEnabledError | PlatformOrderDetailMismatchedError | PlatformOrderTransferAlreadyCancelledError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformProductIdNotFoundError | PlatformSettlementAmountExceededError | PlatformSettlementCancelAmountExceededPortOneCancelError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformTransferAlreadyExistsError | PlatformTransferDiscountSharePolicyNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformTransferNotFoundError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformOrderCancelTransferError.prototype)
 		this.name = "CreatePlatformOrderCancelTransferError"
 	}
 }
 export class CreatePlatformOrderTransferError extends TransferError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformAdditionalFeePoliciesNotFoundError | PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformContractNotFoundError | PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError | PlatformCurrencyNotSupportedError | PlatformDiscountSharePoliciesNotFoundError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformPaymentNotFoundError | PlatformProductIdDuplicatedError | PlatformSettlementAmountExceededError | PlatformSettlementDateEarlierThanSettlementStartDateError | PlatformSettlementParameterNotFoundError | PlatformSettlementPaymentAmountExceededPortOnePaymentError | PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError | PlatformSettlementTaxFreeAmountExceededPortOnePaymentError | PlatformTransferAlreadyExistsError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformOrderTransferError.prototype)
 		this.name = "CreatePlatformOrderTransferError"

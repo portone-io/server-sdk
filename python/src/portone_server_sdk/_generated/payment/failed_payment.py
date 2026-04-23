@@ -10,6 +10,7 @@ from ..payment.payment_amount import PaymentAmount, _deserialize_payment_amount,
 from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
 from ..payment.payment_failure import PaymentFailure, _deserialize_payment_failure, _serialize_payment_failure
 from ..payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
+from ..payment.payment_origin import PaymentOrigin, _deserialize_payment_origin, _serialize_payment_origin
 from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from ..payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
 from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
@@ -61,6 +62,9 @@ class FailedPayment:
     """
     customer: Customer
     """구매자 정보
+    """
+    origin: PaymentOrigin
+    """결제 출처 정보
     """
     failed_at: str
     """결제 실패 시점
@@ -134,6 +138,7 @@ def _serialize_failed_payment(obj: FailedPayment) -> Any:
     entity["amount"] = _serialize_payment_amount(obj.amount)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["customer"] = _serialize_customer(obj.customer)
+    entity["origin"] = _serialize_payment_origin(obj.origin)
     entity["failedAt"] = obj.failed_at
     entity["failure"] = _serialize_payment_failure(obj.failure)
     if obj.method is not None:
@@ -229,6 +234,10 @@ def _deserialize_failed_payment(obj: Any) -> FailedPayment:
         raise KeyError(f"'customer' is not in {obj}")
     customer = obj["customer"]
     customer = _deserialize_customer(customer)
+    if "origin" not in obj:
+        raise KeyError(f"'origin' is not in {obj}")
+    origin = obj["origin"]
+    origin = _deserialize_payment_origin(origin)
     if "failedAt" not in obj:
         raise KeyError(f"'failedAt' is not in {obj}")
     failed_at = obj["failedAt"]
@@ -317,4 +326,4 @@ def _deserialize_failed_payment(obj: Any) -> FailedPayment:
         country = _deserialize_country(country)
     else:
         country = None
-    return FailedPayment(id, transaction_id, merchant_id, store_id, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, failed_at, failure, method, channel, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country)
+    return FailedPayment(id, transaction_id, merchant_id, store_id, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, origin, failed_at, failure, method, channel, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country)

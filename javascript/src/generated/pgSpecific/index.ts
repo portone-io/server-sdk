@@ -1,3 +1,7 @@
 export { PgSpecificError } from "./PgSpecificError"
+export * from "./ConfirmPaymentwallDeliveryBody"
+export * from "./ConfirmPaymentwallDeliveryResponse"
 export * from "./GetKakaopayPaymentOrderResponse"
+export * from "./PaymentwallDeliveryStatus"
+export * from "./PaymentwallDeliveryType"
 export * from "./client"

@@ -43,6 +43,12 @@ internal data class IssueBillingKeyBody(
    * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
    */
   val noticeUrls: List<String>? = null,
+  /**
+   * 웹훅 생략 여부
+   *
+   * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+   */
+  val skipWebhook: Boolean? = null,
 )
 
 

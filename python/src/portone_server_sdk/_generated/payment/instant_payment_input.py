@@ -89,6 +89,11 @@ class InstantPaymentInput:
     bypass: Optional[dict] = field(default=None)
     """PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
     """
+    skip_webhook: Optional[bool] = field(default=None)
+    """웹훅 생략 여부
+
+    결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+    """
 
 
 def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
@@ -129,6 +134,8 @@ def _serialize_instant_payment_input(obj: InstantPaymentInput) -> Any:
         entity["promotionId"] = obj.promotion_id
     if obj.bypass is not None:
         entity["bypass"] = obj.bypass
+    if obj.skip_webhook is not None:
+        entity["skipWebhook"] = obj.skip_webhook
     return entity
 
 
@@ -244,4 +251,10 @@ def _deserialize_instant_payment_input(obj: Any) -> InstantPaymentInput:
             raise ValueError(f"{repr(bypass)} is not dict")
     else:
         bypass = None
-    return InstantPaymentInput(method, order_name, amount, currency, store_id, channel_key, channel_group_id, is_cultural_expense, is_escrow, customer, custom_data, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, bypass)
+    if "skipWebhook" in obj:
+        skip_webhook = obj["skipWebhook"]
+        if not isinstance(skip_webhook, bool):
+            raise ValueError(f"{repr(skip_webhook)} is not bool")
+    else:
+        skip_webhook = None
+    return InstantPaymentInput(method, order_name, amount, currency, store_id, channel_key, channel_group_id, is_cultural_expense, is_escrow, customer, custom_data, country, notice_urls, products, product_count, product_type, shipping_address, promotion_id, bypass, skip_webhook)

@@ -1,5 +1,6 @@
 import type { Currency } from "./../../common/Currency"
 import type { PlatformAccountTransferStatus } from "./../../platform/accountTransfer/PlatformAccountTransferStatus"
+import type { PlatformBankAccountDetail } from "./../../platform/accountTransfer/PlatformBankAccountDetail"
 export type PlatformDepositAccountTransfer = {
 	/** 계좌 이체 유형 */
 	type: "DEPOSIT"
@@ -8,6 +9,8 @@ export type PlatformDepositAccountTransfer = {
 	/** 입금 계좌 아이디 */
 	bankAccountId: string
 	bankAccountGraphqlId: string
+	/** 입금 계좌 정보 */
+	bankAccount: PlatformBankAccountDetail
 	/** 통화 */
 	currency: Currency
 	/**

@@ -1,0 +1,28 @@
+from __future__ import annotations
+from typing import Any, Optional
+from dataclasses import dataclass, field
+from ...platform.partner.platform_bulk_task import PlatformBulkTask, _deserialize_platform_bulk_task, _serialize_platform_bulk_task
+
+@dataclass
+class ConnectBulkPartnerCounterpartyResponse:
+    """파트너 일괄 거래처 연동 응답
+    """
+    bulk_task: PlatformBulkTask
+
+
+def _serialize_connect_bulk_partner_counterparty_response(obj: ConnectBulkPartnerCounterpartyResponse) -> Any:
+    if isinstance(obj, dict):
+        return obj
+    entity = {}
+    entity["bulkTask"] = _serialize_platform_bulk_task(obj.bulk_task)
+    return entity
+
+
+def _deserialize_connect_bulk_partner_counterparty_response(obj: Any) -> ConnectBulkPartnerCounterpartyResponse:
+    if not isinstance(obj, dict):
+        raise ValueError(f"{repr(obj)} is not dict")
+    if "bulkTask" not in obj:
+        raise KeyError(f"'bulkTask' is not in {obj}")
+    bulk_task = obj["bulkTask"]
+    bulk_task = _deserialize_platform_bulk_task(bulk_task)
+    return ConnectBulkPartnerCounterpartyResponse(bulk_task)

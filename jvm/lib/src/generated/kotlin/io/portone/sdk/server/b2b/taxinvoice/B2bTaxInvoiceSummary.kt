@@ -45,6 +45,8 @@ public data class B2bTaxInvoiceSummary(
   val supplierRepresentativeName: String,
   /** 공급자 문서번호 */
   val supplierDocumentKey: String? = null,
+  /** 공급자 거래처 아이디 */
+  val supplierCounterpartyId: String? = null,
   /** 공급받는자 사업자등록번호 */
   val recipientBrn: String,
   /** 공급받는자 상호 */
@@ -53,6 +55,8 @@ public data class B2bTaxInvoiceSummary(
   val recipientRepresentativeName: String,
   /** 공급받는자 문서번호 */
   val recipientDocumentKey: String? = null,
+  /** 공급받는자 거래처 아이디 */
+  val recipientCounterpartyId: String? = null,
   /** 공급받는자 영업 상태 */
   val recipientBusinessStatus: B2bCompanyStateBusinessStatus? = null,
   /**

@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformAdditionalFeePoliciesNotFoundError, PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCancelOrderTransfersExistsError, PlatformCancellableAmountExceededError, PlatformCancellableDiscountAmountExceededError, PlatformCancellableDiscountTaxFreeAmountExceededError, PlatformCancellableProductQuantityExceededError, PlatformCancellationAndPaymentTypeMismatchedError, PlatformCancellationNotFoundError, PlatformCannotSpecifyTransferError, PlatformContractNotFoundError, PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCurrencyNotSupportedError, PlatformDiscountSharePoliciesNotFoundError, PlatformDiscountSharePolicyIdDuplicatedError, PlatformNotEnabledError, PlatformOrderDetailMismatchedError, PlatformOrderTransferAlreadyCancelledError, PlatformPartnerNotFoundError, PlatformPaymentNotFoundError, PlatformProductIdDuplicatedError, PlatformProductIdNotFoundError, PlatformSettlementAmountExceededError, PlatformSettlementCancelAmountExceededPortOneCancelError, PlatformSettlementDateEarlierThanSettlementStartDateError, PlatformSettlementParameterNotFoundError, PlatformSettlementPaymentAmountExceededPortOnePaymentError, PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError, PlatformSettlementTaxFreeAmountExceededPortOnePaymentError, PlatformTransferAlreadyExistsError, PlatformTransferDiscountSharePolicyNotFoundError, PlatformTransferNonDeletableStatusError, PlatformTransferNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformAdditionalFeePoliciesNotFoundError, PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCancelOrderTransfersExistsError, PlatformCancellableAmountExceededError, PlatformCancellableDiscountAmountExceededError, PlatformCancellableDiscountTaxFreeAmountExceededError, PlatformCancellableProductQuantityExceededError, PlatformCancellationAndPaymentTypeMismatchedError, PlatformCancellationNotFoundError, PlatformCannotSpecifyTransferError, PlatformContractNotFoundError, PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCurrencyNotSupportedError, PlatformDiscountSharePoliciesNotFoundError, PlatformDiscountSharePolicyIdDuplicatedError, PlatformNotEnabledError, PlatformOrderDetailMismatchedError, PlatformOrderTransferAlreadyCancelledError, PlatformPartnerNotFoundError, PlatformPaymentNotFoundError, PlatformProductIdDuplicatedError, PlatformProductIdNotFoundError, PlatformSettlementAmountExceededError, PlatformSettlementCancelAmountExceededPortOneCancelError, PlatformSettlementDateEarlierThanSettlementStartDateError, PlatformSettlementParameterNotFoundError, PlatformSettlementPaymentAmountExceededPortOnePaymentError, PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError, PlatformSettlementTaxFreeAmountExceededPortOnePaymentError, PlatformTransferAlreadyExistsError, PlatformTransferDiscountSharePolicyNotFoundError, PlatformTransferIdAlreadyUsedError, PlatformTransferNonDeletableStatusError, PlatformTransferNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.transfer.platform_additional_fee_policies_not_found_error import _deserialize_platform_additional_fee_policies_not_found_error
@@ -38,6 +38,7 @@ from ...platform.transfer.platform_settlement_supply_with_vat_amount_exceeded_po
 from ...platform.transfer.platform_settlement_tax_free_amount_exceeded_port_one_payment_error import _deserialize_platform_settlement_tax_free_amount_exceeded_port_one_payment_error
 from ...platform.transfer.platform_transfer_already_exists_error import _deserialize_platform_transfer_already_exists_error
 from ...platform.transfer.platform_transfer_discount_share_policy_not_found_error import _deserialize_platform_transfer_discount_share_policy_not_found_error
+from ...platform.transfer.platform_transfer_id_already_used_error import _deserialize_platform_transfer_id_already_used_error
 from ...platform.transfer.platform_transfer_non_deletable_status_error import _deserialize_platform_transfer_non_deletable_status_error
 from ...platform.transfer.platform_transfer_not_found_error import _deserialize_platform_transfer_not_found_error
 from ...platform.platform_user_defined_property_not_found_error import _deserialize_platform_user_defined_property_not_found_error
@@ -52,6 +53,7 @@ from ...platform.transfer.create_platform_order_transfer_body_additional_fee imp
 from ...platform.transfer.create_platform_order_transfer_body_discount import CreatePlatformOrderTransferBodyDiscount, _deserialize_create_platform_order_transfer_body_discount, _serialize_create_platform_order_transfer_body_discount
 from ...platform.transfer.create_platform_order_transfer_body_external_payment_detail import CreatePlatformOrderTransferBodyExternalPaymentDetail, _deserialize_create_platform_order_transfer_body_external_payment_detail, _serialize_create_platform_order_transfer_body_external_payment_detail
 from ...platform.transfer.create_platform_order_transfer_body_order_detail import CreatePlatformOrderTransferBodyOrderDetail, _deserialize_create_platform_order_transfer_body_order_detail, _serialize_create_platform_order_transfer_body_order_detail
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...platform.transfer.delete_platform_transfer_response import DeletePlatformTransferResponse, _deserialize_delete_platform_transfer_response, _serialize_delete_platform_transfer_response
 from ...platform.transfer.get_platform_transfer_summaries_response import GetPlatformTransferSummariesResponse, _deserialize_get_platform_transfer_summaries_response, _serialize_get_platform_transfer_summaries_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
@@ -426,6 +428,8 @@ class TransferClient:
         settlement_date: str,
         is_for_test: Optional[bool] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
+        settlement_currency: Optional[Currency] = None,
     ) -> CreateManualTransferResponse:
         """수기 정산건 생성
 
@@ -456,6 +460,12 @@ class TransferClient:
                 Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
+            settlement_currency (Currency, optional):
+                정산 통화
 
 
         Raises:
@@ -474,6 +484,10 @@ class TransferClient:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
+        if settlement_currency is not None:
+            request_body["settlementCurrency"] = _serialize_currency(settlement_currency)
         query = []
         if test is not None:
             query.append(("test", test))
@@ -503,6 +517,12 @@ class TransferClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCurrencyNotSupportedError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -514,6 +534,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_user_defined_property_not_found_error(error_response)
             except Exception:
@@ -539,6 +565,8 @@ class TransferClient:
         settlement_date: str,
         is_for_test: Optional[bool] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
+        settlement_currency: Optional[Currency] = None,
     ) -> CreateManualTransferResponse:
         """수기 정산건 생성
 
@@ -569,6 +597,12 @@ class TransferClient:
                 Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
+            settlement_currency (Currency, optional):
+                정산 통화
 
 
         Raises:
@@ -587,6 +621,10 @@ class TransferClient:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
+        if settlement_currency is not None:
+            request_body["settlementCurrency"] = _serialize_currency(settlement_currency)
         query = []
         if test is not None:
             query.append(("test", test))
@@ -616,6 +654,12 @@ class TransferClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_currency_not_supported_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCurrencyNotSupportedError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -627,6 +671,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_user_defined_property_not_found_error(error_response)
             except Exception:
@@ -658,6 +708,7 @@ class TransferClient:
         external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail] = None,
         is_for_test: Optional[bool] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
     ) -> CreateOrderCancelTransferResponse:
         """주문 취소 정산건 생성
 
@@ -708,6 +759,10 @@ class TransferClient:
                 Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 취소 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
 
 
         Raises:
@@ -739,6 +794,8 @@ class TransferClient:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
         query = []
         if test is not None:
             query.append(("test", test))
@@ -881,6 +938,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformTransferDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_transfer_not_found_error(error_response)
             except Exception:
@@ -918,6 +981,7 @@ class TransferClient:
         external_cancellation_detail: Optional[CreatePlatformOrderCancelTransferBodyExternalCancellationDetail] = None,
         is_for_test: Optional[bool] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
     ) -> CreateOrderCancelTransferResponse:
         """주문 취소 정산건 생성
 
@@ -968,6 +1032,10 @@ class TransferClient:
                 Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 취소 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
 
 
         Raises:
@@ -999,6 +1067,8 @@ class TransferClient:
             request_body["isForTest"] = is_for_test
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1141,6 +1211,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformTransferDiscountSharePolicyNotFoundError(error)
+            try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_transfer_not_found_error(error_response)
             except Exception:
@@ -1179,6 +1255,7 @@ class TransferClient:
         is_for_test: Optional[bool] = None,
         parameters: Optional[TransferParameters] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
     ) -> CreateOrderTransferResponse:
         """주문 정산건 생성
 
@@ -1233,6 +1310,10 @@ class TransferClient:
                 정산 파라미터 (실험기능)
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
 
 
         Raises:
@@ -1263,6 +1344,8 @@ class TransferClient:
             request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1394,6 +1477,12 @@ class TransferClient:
             if error is not None:
                 raise PlatformTransferAlreadyExistsError(error)
             try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
+            try:
                 error = _deserialize_platform_user_defined_property_not_found_error(error_response)
             except Exception:
                 pass
@@ -1425,6 +1514,7 @@ class TransferClient:
         is_for_test: Optional[bool] = None,
         parameters: Optional[TransferParameters] = None,
         user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = None,
+        id: Optional[str] = None,
     ) -> CreateOrderTransferResponse:
         """주문 정산건 생성
 
@@ -1479,6 +1569,10 @@ class TransferClient:
                 정산 파라미터 (실험기능)
             user_defined_properties (list[PlatformUserDefinedPropertyKeyValue], optional):
                 사용자 정의 속성
+            id (str, optional):
+                생성할 정산건 아이디
+
+                명시하지 않으면 id 가 임의로 생성됩니다.
 
 
         Raises:
@@ -1509,6 +1603,8 @@ class TransferClient:
             request_body["parameters"] = _serialize_transfer_parameters(parameters)
         if user_defined_properties is not None:
             request_body["userDefinedProperties"] = [_serialize_platform_user_defined_property_key_value(item) for item in user_defined_properties]
+        if id is not None:
+            request_body["id"] = id
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1639,6 +1735,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformTransferAlreadyExistsError(error)
+            try:
+                error = _deserialize_platform_transfer_id_already_used_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformTransferIdAlreadyUsedError(error)
             try:
                 error = _deserialize_platform_user_defined_property_not_found_error(error_response)
             except Exception:

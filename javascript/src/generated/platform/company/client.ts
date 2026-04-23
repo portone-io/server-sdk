@@ -20,17 +20,24 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 	return {
 		getB2bBusinessInfos: async (
 			options: {
+				test?: boolean,
 				brnList: string[],
 			}
 		): Promise<GetB2bBusinessInfosResponse> => {
 			const {
+				test,
 				brnList,
 			} = options
 			const requestBody = JSON.stringify({
 				brnList,
 			})
+			const query = [
+				["test", test],
+			]
+				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
+				.join("&")
 			const response = await fetch(
-				new URL("/b2b/companies/business-info", baseUrl),
+				new URL(`/b2b/companies/business-info?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -79,7 +86,7 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 }
 export type CompanyClient = {
 	/**
-	 * 사업자등록 정보조회
+	 * 사업자등록 정보 조회
 	 *
 	 * 요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
 	 * 해당 API 사용을 위해서는 별도 문의가 필요합니다.
@@ -88,6 +95,12 @@ export type CompanyClient = {
 	 */
 	getB2bBusinessInfos: (
 		options: {
+			/**
+			 * 테스트 모드 여부
+			 *
+			 * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
+			 */
+			test?: boolean,
 			/** 조회할 사업자등록번호 리스트 */
 			brnList: string[],
 		}

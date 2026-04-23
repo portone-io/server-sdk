@@ -1,5 +1,6 @@
 from portone_server_sdk.b2b import B2bClient
 from portone_server_sdk.b2b.tax_invoice import TaxInvoiceClient
+from portone_server_sdk.b2b.counterparty import CounterpartyClient
 from portone_server_sdk.platform import PlatformClient
 from portone_server_sdk.platform.company import CompanyClient
 from portone_server_sdk.platform.account_transfer import AccountTransferClient
@@ -7,9 +8,9 @@ from portone_server_sdk.platform.policy import PolicyClient
 from portone_server_sdk.platform.account import AccountClient
 from portone_server_sdk.platform.bulk_account_transfer import BulkAccountTransferClient
 from portone_server_sdk.platform.bulk_payout import BulkPayoutClient
+from portone_server_sdk.platform.payout import PayoutClient
 from portone_server_sdk.platform.partner_settlement import PartnerSettlementClient
 from portone_server_sdk.platform.partner import PartnerClient
-from portone_server_sdk.platform.payout import PayoutClient
 from portone_server_sdk.platform.transfer import TransferClient
 from portone_server_sdk.payment import PaymentClient
 from portone_server_sdk.payment.billing_key import BillingKeyClient
@@ -48,6 +49,7 @@ __all__ = [
     "BulkPayoutClient",
     "CashReceiptClient",
     "CompanyClient",
+    "CounterpartyClient",
     "IdentityVerificationClient",
     "PartnerClient",
     "PartnerSettlementClient",

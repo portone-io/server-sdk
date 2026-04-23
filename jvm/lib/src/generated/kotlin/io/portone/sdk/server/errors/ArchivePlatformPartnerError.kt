@@ -30,8 +30,10 @@ internal object ArchivePlatformPartnerErrorSerializer : JsonContentPolymorphicSe
       "FORBIDDEN" -> ForbiddenError.serializer()
       "INVALID_REQUEST" -> InvalidRequestError.serializer()
       "PLATFORM_CANNOT_ARCHIVE_SCHEDULED_PARTNER" -> PlatformCannotArchiveScheduledPartnerError.serializer()
+      "PLATFORM_COUNTERPARTY_ONGOING_TAX_INVOICE_EXISTS" -> PlatformCounterpartyOngoingTaxInvoiceExistsError.serializer()
       "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
       "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
+      "PLATFORM_PARTNER_PENDING_NTS_OPERATION" -> PlatformPartnerPendingNtsOperationError.serializer()
       "UNAUTHORIZED" -> UnauthorizedError.serializer()
       else -> ArchivePlatformPartnerError.Unrecognized.serializer()
     }

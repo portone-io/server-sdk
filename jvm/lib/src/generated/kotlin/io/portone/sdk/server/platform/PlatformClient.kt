@@ -1700,9 +1700,9 @@ public class PlatformClient(
   public val account: AccountClient = AccountClient(apiSecret, apiBase, storeId)
   public val bulkAccountTransfer: BulkAccountTransferClient = BulkAccountTransferClient(apiSecret, apiBase, storeId)
   public val bulkPayout: BulkPayoutClient = BulkPayoutClient(apiSecret, apiBase, storeId)
+  public val payout: PayoutClient = PayoutClient(apiSecret, apiBase, storeId)
   public val partnerSettlement: PartnerSettlementClient = PartnerSettlementClient(apiSecret, apiBase, storeId)
   public val partner: PartnerClient = PartnerClient(apiSecret, apiBase, storeId)
-  public val payout: PayoutClient = PayoutClient(apiSecret, apiBase, storeId)
   public val transfer: TransferClient = TransferClient(apiSecret, apiBase, storeId)
   override fun close() {
     company.close()
@@ -1711,9 +1711,9 @@ public class PlatformClient(
     account.close()
     bulkAccountTransfer.close()
     bulkPayout.close()
+    payout.close()
     partnerSettlement.close()
     partner.close()
-    payout.close()
     transfer.close()
     client.close()
   }

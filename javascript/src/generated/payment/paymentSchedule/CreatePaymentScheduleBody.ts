@@ -1,8 +1,8 @@
-import type { BillingKeyPaymentInput } from "./../../common/BillingKeyPaymentInput"
+import type { BillingKeyPaymentScheduleInput } from "./../../payment/paymentSchedule/BillingKeyPaymentScheduleInput"
 /** 결제 예약 요청 입력 정보 */
 export type CreatePaymentScheduleBody = {
 	/** 빌링키 결제 입력 정보 */
-	payment: BillingKeyPaymentInput
+	payment: BillingKeyPaymentScheduleInput
 	/**
 	 * 결제 예정 시점
 	 * (RFC 3339 date-time)

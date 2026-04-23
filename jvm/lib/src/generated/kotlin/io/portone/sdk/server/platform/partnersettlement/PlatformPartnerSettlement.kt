@@ -3,6 +3,7 @@ package io.portone.sdk.server.platform.partnersettlement
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementStatus
+import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -34,6 +35,8 @@ public sealed interface PlatformPartnerSettlement {
     public val settlementCurrency: Currency
     /** 정산 상태 */
     public val status: PlatformPartnerSettlementStatus
+    /** 상태 업데이트 일시 */
+    public val statusUpdatedAt: Instant?
     /** 메모 */
     public val memo: String?
     /** 테스트 모드 여부 */

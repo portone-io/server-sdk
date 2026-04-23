@@ -48,6 +48,7 @@ internal object CreatePlatformOrderCancelTransferErrorSerializer : JsonContentPo
       "PLATFORM_SETTLEMENT_DATE_EARLIER_THAN_SETTLEMENT_START_DATE" -> PlatformSettlementDateEarlierThanSettlementStartDateError.serializer()
       "PLATFORM_TRANSFER_ALREADY_EXISTS" -> PlatformTransferAlreadyExistsError.serializer()
       "PLATFORM_TRANSFER_DISCOUNT_SHARE_POLICY_NOT_FOUND" -> PlatformTransferDiscountSharePolicyNotFoundError.serializer()
+      "PLATFORM_TRANSFER_ID_ALREADY_USED" -> PlatformTransferIdAlreadyUsedError.serializer()
       "PLATFORM_TRANSFER_NOT_FOUND" -> PlatformTransferNotFoundError.serializer()
       "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
       "UNAUTHORIZED" -> UnauthorizedError.serializer()

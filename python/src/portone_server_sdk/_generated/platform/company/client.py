@@ -40,14 +40,19 @@ class CompanyClient:
     def get_b2b_business_infos(
         self,
         *,
+        test: Optional[bool] = None,
         brn_list: list[str],
     ) -> GetB2bBusinessInfosResponse:
-        """사업자등록 정보조회
+        """사업자등록 정보 조회
 
         요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
         해당 API 사용을 위해서는 별도 문의가 필요합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
             brn_list (list[str]):
                 조회할 사업자등록번호 리스트
 
@@ -59,6 +64,8 @@ class CompanyClient:
         request_body = {}
         request_body["brnList"] = brn_list
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = self._sync_client.request(
             "POST",
             f"{self._base_url}/b2b/companies/business-info",
@@ -107,14 +114,19 @@ class CompanyClient:
     async def get_b2b_business_infos_async(
         self,
         *,
+        test: Optional[bool] = None,
         brn_list: list[str],
     ) -> GetB2bBusinessInfosResponse:
-        """사업자등록 정보조회
+        """사업자등록 정보 조회
 
         요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
         해당 API 사용을 위해서는 별도 문의가 필요합니다.
 
         Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
             brn_list (list[str]):
                 조회할 사업자등록번호 리스트
 
@@ -126,6 +138,8 @@ class CompanyClient:
         request_body = {}
         request_body["brnList"] = brn_list
         query = []
+        if test is not None:
+            query.append(("test", test))
         response = await self._async_client.request(
             "POST",
             f"{self._base_url}/b2b/companies/business-info",

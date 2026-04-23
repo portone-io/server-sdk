@@ -11,7 +11,9 @@ public data class B2bTaxInvoiceCompany(
    *
    * `-`를 제외한 10자리
    */
-  val brn: String,
+  val brn: String? = null,
+  /** 거래처 ID */
+  val counterpartyId: String? = null,
   /**
    * 종사업자 식별 번호
    *
@@ -23,13 +25,13 @@ public data class B2bTaxInvoiceCompany(
    *
    * 최대 200자
    */
-  val name: String,
+  val name: String? = null,
   /**
    * 대표자 성명
    *
    * 최대 100자
    */
-  val representativeName: String,
+  val representativeName: String? = null,
   /**
    * 주소
    *
@@ -49,7 +51,7 @@ public data class B2bTaxInvoiceCompany(
    */
   val businessClass: String? = null,
   /** 담당자 */
-  val contact: B2bTaxInvoiceContact,
+  val contact: B2bTaxInvoiceContact? = null,
 )
 
 

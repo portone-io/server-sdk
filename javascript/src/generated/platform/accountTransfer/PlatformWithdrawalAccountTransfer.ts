@@ -1,6 +1,7 @@
 import type { Bank } from "./../../common/Bank"
 import type { Currency } from "./../../common/Currency"
 import type { PlatformAccountTransferStatus } from "./../../platform/accountTransfer/PlatformAccountTransferStatus"
+import type { PlatformBankAccountDetail } from "./../../platform/accountTransfer/PlatformBankAccountDetail"
 import type { Type } from "./../../platform/accountTransfer/Type"
 export type PlatformWithdrawalAccountTransfer = {
 	/** 계좌 이체 유형 */
@@ -10,6 +11,8 @@ export type PlatformWithdrawalAccountTransfer = {
 	/** 출금 계좌 아이디 */
 	bankAccountId: string
 	bankAccountGraphqlId: string
+	/** 출금 계좌 정보 */
+	bankAccount: PlatformBankAccountDetail
 	/**
 	 * 거래 일련번호
 	 * (int32)

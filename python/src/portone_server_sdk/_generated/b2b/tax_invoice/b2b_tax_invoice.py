@@ -77,7 +77,7 @@ class B2bTaxInvoice:
     additional_contacts: list[B2bTaxInvoiceAdditionalContact]
     """추가 담당자
 
-    최대 3개
+    최대 5명
     """
     is_delayed: Optional[bool] = field(default=None)
     """지연 발행 여부

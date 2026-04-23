@@ -157,37 +157,53 @@ public sealed interface TaxInvoicesSheetField {
     }
     override fun serialize(encoder: Encoder, value: PurposeType): Unit = encoder.encodeString(value.value)
   }
-  /** 거래처 회사명 */
-  @Serializable(PartnerNameSerializer::class)
-  public data object PartnerName : TaxInvoicesSheetField {
-    override val value: String = "PARTNER_NAME"
+  /** 공급자 상호 */
+  @Serializable(SupplierCompanyNameSerializer::class)
+  public data object SupplierCompanyName : TaxInvoicesSheetField {
+    override val value: String = "SUPPLIER_COMPANY_NAME"
   }
-  public object PartnerNameSerializer : KSerializer<PartnerName> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerName::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): PartnerName = decoder.decodeString().let {
-      if (it != "PARTNER_NAME") {
+  public object SupplierCompanyNameSerializer : KSerializer<SupplierCompanyName> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierCompanyName::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SupplierCompanyName = decoder.decodeString().let {
+      if (it != "SUPPLIER_COMPANY_NAME") {
         throw SerializationException(it)
       } else {
-        return PartnerName
+        return SupplierCompanyName
       }
     }
-    override fun serialize(encoder: Encoder, value: PartnerName): Unit = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SupplierCompanyName): Unit = encoder.encodeString(value.value)
   }
-  /** 거래처 사업자등록번호 */
-  @Serializable(PartnerBrnSerializer::class)
-  public data object PartnerBrn : TaxInvoicesSheetField {
-    override val value: String = "PARTNER_BRN"
+  /** 공급자 사업자등록번호 */
+  @Serializable(SupplierBrnSerializer::class)
+  public data object SupplierBrn : TaxInvoicesSheetField {
+    override val value: String = "SUPPLIER_BRN"
   }
-  public object PartnerBrnSerializer : KSerializer<PartnerBrn> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PartnerBrn::class.java.name, PrimitiveKind.STRING)
-    override fun deserialize(decoder: Decoder): PartnerBrn = decoder.decodeString().let {
-      if (it != "PARTNER_BRN") {
+  public object SupplierBrnSerializer : KSerializer<SupplierBrn> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierBrn::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SupplierBrn = decoder.decodeString().let {
+      if (it != "SUPPLIER_BRN") {
         throw SerializationException(it)
       } else {
-        return PartnerBrn
+        return SupplierBrn
       }
     }
-    override fun serialize(encoder: Encoder, value: PartnerBrn): Unit = encoder.encodeString(value.value)
+    override fun serialize(encoder: Encoder, value: SupplierBrn): Unit = encoder.encodeString(value.value)
+  }
+  /** 공급자 대표자명 */
+  @Serializable(SupplierRepresentativeNameSerializer::class)
+  public data object SupplierRepresentativeName : TaxInvoicesSheetField {
+    override val value: String = "SUPPLIER_REPRESENTATIVE_NAME"
+  }
+  public object SupplierRepresentativeNameSerializer : KSerializer<SupplierRepresentativeName> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierRepresentativeName::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SupplierRepresentativeName = decoder.decodeString().let {
+      if (it != "SUPPLIER_REPRESENTATIVE_NAME") {
+        throw SerializationException(it)
+      } else {
+        return SupplierRepresentativeName
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SupplierRepresentativeName): Unit = encoder.encodeString(value.value)
   }
   /** 합계금액 */
   @Serializable(TotalAmountSerializer::class)
@@ -381,6 +397,86 @@ public sealed interface TaxInvoicesSheetField {
     }
     override fun serialize(encoder: Encoder, value: RecipientDocumentKey): Unit = encoder.encodeString(value.value)
   }
+  /** 공급받는자 상호 */
+  @Serializable(RecipientCompanyNameSerializer::class)
+  public data object RecipientCompanyName : TaxInvoicesSheetField {
+    override val value: String = "RECIPIENT_COMPANY_NAME"
+  }
+  public object RecipientCompanyNameSerializer : KSerializer<RecipientCompanyName> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientCompanyName::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): RecipientCompanyName = decoder.decodeString().let {
+      if (it != "RECIPIENT_COMPANY_NAME") {
+        throw SerializationException(it)
+      } else {
+        return RecipientCompanyName
+      }
+    }
+    override fun serialize(encoder: Encoder, value: RecipientCompanyName): Unit = encoder.encodeString(value.value)
+  }
+  /** 공급받는자 사업자등록번호 */
+  @Serializable(RecipientBrnSerializer::class)
+  public data object RecipientBrn : TaxInvoicesSheetField {
+    override val value: String = "RECIPIENT_BRN"
+  }
+  public object RecipientBrnSerializer : KSerializer<RecipientBrn> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientBrn::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): RecipientBrn = decoder.decodeString().let {
+      if (it != "RECIPIENT_BRN") {
+        throw SerializationException(it)
+      } else {
+        return RecipientBrn
+      }
+    }
+    override fun serialize(encoder: Encoder, value: RecipientBrn): Unit = encoder.encodeString(value.value)
+  }
+  /** 공급받는자 대표자명 */
+  @Serializable(RecipientRepresentativeNameSerializer::class)
+  public data object RecipientRepresentativeName : TaxInvoicesSheetField {
+    override val value: String = "RECIPIENT_REPRESENTATIVE_NAME"
+  }
+  public object RecipientRepresentativeNameSerializer : KSerializer<RecipientRepresentativeName> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientRepresentativeName::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): RecipientRepresentativeName = decoder.decodeString().let {
+      if (it != "RECIPIENT_REPRESENTATIVE_NAME") {
+        throw SerializationException(it)
+      } else {
+        return RecipientRepresentativeName
+      }
+    }
+    override fun serialize(encoder: Encoder, value: RecipientRepresentativeName): Unit = encoder.encodeString(value.value)
+  }
+  /** 공급자 거래처 아이디 */
+  @Serializable(SupplierCounterpartyIdSerializer::class)
+  public data object SupplierCounterpartyId : TaxInvoicesSheetField {
+    override val value: String = "SUPPLIER_COUNTERPARTY_ID"
+  }
+  public object SupplierCounterpartyIdSerializer : KSerializer<SupplierCounterpartyId> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SupplierCounterpartyId::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SupplierCounterpartyId = decoder.decodeString().let {
+      if (it != "SUPPLIER_COUNTERPARTY_ID") {
+        throw SerializationException(it)
+      } else {
+        return SupplierCounterpartyId
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SupplierCounterpartyId): Unit = encoder.encodeString(value.value)
+  }
+  /** 공급받는자 거래처 아이디 */
+  @Serializable(RecipientCounterpartyIdSerializer::class)
+  public data object RecipientCounterpartyId : TaxInvoicesSheetField {
+    override val value: String = "RECIPIENT_COUNTERPARTY_ID"
+  }
+  public object RecipientCounterpartyIdSerializer : KSerializer<RecipientCounterpartyId> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(RecipientCounterpartyId::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): RecipientCounterpartyId = decoder.decodeString().let {
+      if (it != "RECIPIENT_COUNTERPARTY_ID") {
+        throw SerializationException(it)
+      } else {
+        return RecipientCounterpartyId
+      }
+    }
+    override fun serialize(encoder: Encoder, value: RecipientCounterpartyId): Unit = encoder.encodeString(value.value)
+  }
   /** 지급 아이디 */
   @Serializable(PayoutIdSerializer::class)
   public data object PayoutId : TaxInvoicesSheetField {
@@ -433,8 +529,9 @@ public object TaxInvoicesSheetFieldSerializer : KSerializer<TaxInvoicesSheetFiel
       "ISSUANCE_DUE_DATE" -> TaxInvoicesSheetField.IssuanceDueDate
       "TAXATION_TYPE" -> TaxInvoicesSheetField.TaxationType
       "PURPOSE_TYPE" -> TaxInvoicesSheetField.PurposeType
-      "PARTNER_NAME" -> TaxInvoicesSheetField.PartnerName
-      "PARTNER_BRN" -> TaxInvoicesSheetField.PartnerBrn
+      "SUPPLIER_COMPANY_NAME" -> TaxInvoicesSheetField.SupplierCompanyName
+      "SUPPLIER_BRN" -> TaxInvoicesSheetField.SupplierBrn
+      "SUPPLIER_REPRESENTATIVE_NAME" -> TaxInvoicesSheetField.SupplierRepresentativeName
       "TOTAL_AMOUNT" -> TaxInvoicesSheetField.TotalAmount
       "TOTAL_SUPPLY_AMOUNT" -> TaxInvoicesSheetField.TotalSupplyAmount
       "TOTAL_TAX_AMOUNT" -> TaxInvoicesSheetField.TotalTaxAmount
@@ -447,6 +544,11 @@ public object TaxInvoicesSheetFieldSerializer : KSerializer<TaxInvoicesSheetFiel
       "PLAIN_ID" -> TaxInvoicesSheetField.PlainId
       "SUPPLIER_DOCUMENT_KEY" -> TaxInvoicesSheetField.SupplierDocumentKey
       "RECIPIENT_DOCUMENT_KEY" -> TaxInvoicesSheetField.RecipientDocumentKey
+      "RECIPIENT_COMPANY_NAME" -> TaxInvoicesSheetField.RecipientCompanyName
+      "RECIPIENT_BRN" -> TaxInvoicesSheetField.RecipientBrn
+      "RECIPIENT_REPRESENTATIVE_NAME" -> TaxInvoicesSheetField.RecipientRepresentativeName
+      "SUPPLIER_COUNTERPARTY_ID" -> TaxInvoicesSheetField.SupplierCounterpartyId
+      "RECIPIENT_COUNTERPARTY_ID" -> TaxInvoicesSheetField.RecipientCounterpartyId
       "PAYOUT_ID" -> TaxInvoicesSheetField.PayoutId
       "ITEMS" -> TaxInvoicesSheetField.Items
       else -> TaxInvoicesSheetField.Unrecognized(value)

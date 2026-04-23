@@ -8,4 +8,10 @@ export type IssueB2bTaxInvoiceImmediatelyBody = {
 	memo?: string
 	/** 수정 세금계산서 입력 정보 */
 	modification?: B2bTaxInvoiceModificationCreateBody
+	/**
+	 * 공급받는자 거래처 생성 여부
+	 *
+	 * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+	 */
+	createRecipientCounterparty?: boolean
 }

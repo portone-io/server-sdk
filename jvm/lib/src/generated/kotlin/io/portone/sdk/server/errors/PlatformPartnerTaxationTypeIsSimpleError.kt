@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_PARTNER_TAXATION_TYPE_IS_SIMPLE")
 internal data class PlatformPartnerTaxationTypeIsSimpleError(
   override val message: String? = null,
-) : ConnectPartnerMemberCompanyError.Recognized, DisconnectPartnerMemberCompanyError.Recognized
+) : ConnectPartnerCounterpartyError.Recognized, DisconnectPartnerCounterpartyError.Recognized
 
 

@@ -12,6 +12,7 @@ import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.payment.PaymentCashReceipt
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
+import io.portone.sdk.server.payment.PaymentOrigin
 import io.portone.sdk.server.payment.PaymentWebhook
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -93,6 +94,8 @@ public data class PartialCancelledPaymentEvent(
    * 해당 이벤트에서 처리된 금액으로, 취소 이벤트인 경우 음수로 표기됩니다.
    */
   override val eventAmount: Long,
+  /** 결제 출처 정보 */
+  override val origin: PaymentOrigin,
 ) : PaymentEvent.Recognized
 
 

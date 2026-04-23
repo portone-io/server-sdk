@@ -10,6 +10,9 @@ from ..._generated.payment.payment_schedule.errors.get_payment_schedules_error i
 from ..._generated.payment.payment_schedule.errors.revoke_payment_schedules_error import (
     RevokePaymentSchedulesError,
 )
+from ..._generated.payment.payment_schedule.billing_key_payment_schedule_input import (
+    BillingKeyPaymentScheduleInput,
+)
 from ..._generated.payment.payment_schedule.create_payment_schedule_body import (
     CreatePaymentScheduleBody,
 )
@@ -69,6 +72,7 @@ __all__ = [
     "GetPaymentScheduleError",
     "GetPaymentSchedulesError",
     "RevokePaymentSchedulesError",
+    "BillingKeyPaymentScheduleInput",
     "CreatePaymentScheduleBody",
     "CreatePaymentScheduleResponse",
     "FailedPaymentSchedule",

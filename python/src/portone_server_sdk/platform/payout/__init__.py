@@ -1,5 +1,14 @@
+from ..._generated.platform.payout.errors.complete_platform_payout_by_partner_settlement_ids_error import (
+    CompletePlatformPayoutByPartnerSettlementIdsError,
+)
 from ..._generated.platform.payout.errors.get_platform_payouts_error import (
     GetPlatformPayoutsError,
+)
+from ..._generated.platform.payout.complete_platform_payout_by_partner_settlement_ids_body import (
+    CompletePlatformPayoutByPartnerSettlementIdsBody,
+)
+from ..._generated.platform.payout.complete_platform_payout_by_partner_settlement_ids_response import (
+    CompletePlatformPayoutByPartnerSettlementIdsResponse,
 )
 from ..._generated.platform.payout.get_platform_payouts_body import (
     GetPlatformPayoutsBody,
@@ -28,7 +37,10 @@ from ..._generated.platform.payout.platform_payout_tax_invoice_status import (
 from ..._generated.platform.payout.client import PayoutClient
 
 __all__ = [
+    "CompletePlatformPayoutByPartnerSettlementIdsError",
     "GetPlatformPayoutsError",
+    "CompletePlatformPayoutByPartnerSettlementIdsBody",
+    "CompletePlatformPayoutByPartnerSettlementIdsResponse",
     "GetPlatformPayoutsBody",
     "GetPlatformPayoutsResponse",
     "PlatformPayout",

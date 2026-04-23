@@ -26,7 +26,7 @@ import type { NegativePromotionAdjustedCancelAmountError } from "../payment/Nega
 import type { PaymentAlreadyCancelledError } from "../payment/PaymentAlreadyCancelledError"
 import type { PaymentCancellationNotFoundError } from "../payment/PaymentCancellationNotFoundError"
 import type { PaymentCancellationNotPendingError } from "../payment/PaymentCancellationNotPendingError"
-import type { PaymentNotFoundError } from "../payment/PaymentNotFoundError"
+import type { PaymentNotFoundError } from "../common/PaymentNotFoundError"
 import type { PaymentNotPaidError } from "../payment/PaymentNotPaidError"
 import type { PaymentNotWaitingForDepositError } from "../payment/PaymentNotWaitingForDepositError"
 import type { PaymentScheduleAlreadyExistsError } from "../common/PaymentScheduleAlreadyExistsError"

@@ -5,6 +5,8 @@ import type { B2BCannotChangeTaxTypeError } from "../../../generated/b2b/taxInvo
 import type { B2BTaxInvoiceStatusNotSendingCompletedError } from "../../../generated/b2b/taxInvoice/B2BTaxInvoiceStatusNotSendingCompletedError"
 import type { B2bBulkTaxInvoice } from "../../../generated/b2b/taxInvoice/B2bBulkTaxInvoice"
 import type { B2bBulkTaxInvoiceNotFoundError } from "../../../generated/b2b/taxInvoice/B2bBulkTaxInvoiceNotFoundError"
+import type { B2bCounterpartyNotFoundError } from "../../../generated/common/B2bCounterpartyNotFoundError"
+import type { B2bCounterpartyNtsNotConnectedError } from "../../../generated/common/B2bCounterpartyNtsNotConnectedError"
 import type { B2bDocumentKeyCannotBeChangedError } from "../../../generated/b2b/taxInvoice/B2bDocumentKeyCannotBeChangedError"
 import type { B2bExternalServiceError } from "../../../generated/common/B2bExternalServiceError"
 import type { B2bFileNotFoundError } from "../../../generated/b2b/taxInvoice/B2bFileNotFoundError"
@@ -128,15 +130,18 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				filter?: GetB2bTaxInvoicesBodyFilter,
 				fields?: TaxInvoicesSheetField[],
 				test?: boolean,
+				sort?: B2bTaxInvoiceSortInput,
 			}
 		): Promise<string> => {
 			const filter = options?.filter
 			const fields = options?.fields
 			const test = options?.test
+			const sort = options?.sort
 			const requestBody = JSON.stringify({
 				filter,
 				fields,
 				test,
+				sort,
 			})
 			const query = [
 				["requestBody", requestBody],
@@ -210,6 +215,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				taxInvoice: B2bTaxInvoiceInput,
 				modification?: B2bTaxInvoiceModificationCreateBody,
 				memo?: string,
+				createRecipientCounterparty?: boolean,
 			}
 		): Promise<DraftB2bTaxInvoiceResponse> => {
 			const {
@@ -217,11 +223,13 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				taxInvoice,
 				modification,
 				memo,
+				createRecipientCounterparty,
 			} = options
 			const requestBody = JSON.stringify({
 				taxInvoice,
 				modification,
 				memo,
+				createRecipientCounterparty,
 			})
 			const query = [
 				["test", test],
@@ -250,6 +258,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				taxInvoice: B2bTaxInvoiceInput,
 				memo?: string,
 				modification?: B2bTaxInvoiceModificationCreateBody,
+				createRecipientCounterparty?: boolean,
 			}
 		): Promise<IssueB2bTaxInvoiceImmediatelyResponse> => {
 			const {
@@ -257,11 +266,13 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				taxInvoice,
 				memo,
 				modification,
+				createRecipientCounterparty,
 			} = options
 			const requestBody = JSON.stringify({
 				taxInvoice,
 				memo,
 				modification,
+				createRecipientCounterparty,
 			})
 			const query = [
 				["test", test],
@@ -959,6 +970,12 @@ export type TaxInvoiceClient = {
 			/** 다운로드 할 시트 컬럼 */
 			fields?: TaxInvoicesSheetField[],
 			test?: boolean,
+			/**
+			 * 정렬 조건
+			 *
+			 * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+			 */
+			sort?: B2bTaxInvoiceSortInput,
 		}
 	) => Promise<string>
 	/**
@@ -1017,6 +1034,12 @@ export type TaxInvoiceClient = {
 			modification?: B2bTaxInvoiceModificationCreateBody,
 			/** 메모 */
 			memo?: string,
+			/**
+			 * 공급받는자 거래처 생성 여부
+			 *
+			 * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+			 */
+			createRecipientCounterparty?: boolean,
 		}
 	) => Promise<DraftB2bTaxInvoiceResponse>
 	/**
@@ -1040,6 +1063,12 @@ export type TaxInvoiceClient = {
 			memo?: string,
 			/** 수정 세금계산서 입력 정보 */
 			modification?: B2bTaxInvoiceModificationCreateBody,
+			/**
+			 * 공급받는자 거래처 생성 여부
+			 *
+			 * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+			 */
+			createRecipientCounterparty?: boolean,
 		}
 	) => Promise<IssueB2bTaxInvoiceImmediatelyResponse>
 	/**
@@ -1531,36 +1560,36 @@ export class DownloadB2bTaxInvoicesSheetError extends TaxInvoiceError {
 	}
 }
 export class UpdateB2bTaxInvoiceDraftError extends TaxInvoiceError {
-	declare readonly data: B2BCannotChangeTaxTypeError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: B2BCannotChangeTaxTypeError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, UpdateB2bTaxInvoiceDraftError.prototype)
 		this.name = "UpdateB2bTaxInvoiceDraftError"
 	}
 }
 export class DraftB2bTaxInvoiceError extends TaxInvoiceError {
-	declare readonly data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, DraftB2bTaxInvoiceError.prototype)
 		this.name = "DraftB2bTaxInvoiceError"
 	}
 }
 export class IssueB2bTaxInvoiceImmediatelyError extends TaxInvoiceError {
-	declare readonly data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, IssueB2bTaxInvoiceImmediatelyError.prototype)
 		this.name = "IssueB2bTaxInvoiceImmediatelyError"
 	}
 }
 export class RequestB2bTaxInvoiceReverseIssuanceError extends TaxInvoiceError {
-	declare readonly data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: B2BCannotChangeTaxTypeError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: B2BCannotChangeTaxTypeError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bExternalServiceError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, RequestB2bTaxInvoiceReverseIssuanceError.prototype)
 		this.name = "RequestB2bTaxInvoiceReverseIssuanceError"

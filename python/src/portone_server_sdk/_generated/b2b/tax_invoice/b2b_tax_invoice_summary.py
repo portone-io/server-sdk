@@ -95,8 +95,14 @@ class B2bTaxInvoiceSummary:
     supplier_document_key: Optional[str] = field(default=None)
     """공급자 문서번호
     """
+    supplier_counterparty_id: Optional[str] = field(default=None)
+    """공급자 거래처 아이디
+    """
     recipient_document_key: Optional[str] = field(default=None)
     """공급받는자 문서번호
+    """
+    recipient_counterparty_id: Optional[str] = field(default=None)
+    """공급받는자 거래처 아이디
     """
     recipient_business_status: Optional[B2bCompanyStateBusinessStatus] = field(default=None)
     """공급받는자 영업 상태
@@ -180,8 +186,12 @@ def _serialize_b2b_tax_invoice_summary(obj: B2bTaxInvoiceSummary) -> Any:
         entity["payoutId"] = obj.payout_id
     if obj.supplier_document_key is not None:
         entity["supplierDocumentKey"] = obj.supplier_document_key
+    if obj.supplier_counterparty_id is not None:
+        entity["supplierCounterpartyId"] = obj.supplier_counterparty_id
     if obj.recipient_document_key is not None:
         entity["recipientDocumentKey"] = obj.recipient_document_key
+    if obj.recipient_counterparty_id is not None:
+        entity["recipientCounterpartyId"] = obj.recipient_counterparty_id
     if obj.recipient_business_status is not None:
         entity["recipientBusinessStatus"] = _serialize_b2b_company_state_business_status(obj.recipient_business_status)
     if obj.recipient_closed_suspended_date is not None:
@@ -329,12 +339,24 @@ def _deserialize_b2b_tax_invoice_summary(obj: Any) -> B2bTaxInvoiceSummary:
             raise ValueError(f"{repr(supplier_document_key)} is not str")
     else:
         supplier_document_key = None
+    if "supplierCounterpartyId" in obj:
+        supplier_counterparty_id = obj["supplierCounterpartyId"]
+        if not isinstance(supplier_counterparty_id, str):
+            raise ValueError(f"{repr(supplier_counterparty_id)} is not str")
+    else:
+        supplier_counterparty_id = None
     if "recipientDocumentKey" in obj:
         recipient_document_key = obj["recipientDocumentKey"]
         if not isinstance(recipient_document_key, str):
             raise ValueError(f"{repr(recipient_document_key)} is not str")
     else:
         recipient_document_key = None
+    if "recipientCounterpartyId" in obj:
+        recipient_counterparty_id = obj["recipientCounterpartyId"]
+        if not isinstance(recipient_counterparty_id, str):
+            raise ValueError(f"{repr(recipient_counterparty_id)} is not str")
+    else:
+        recipient_counterparty_id = None
     if "recipientBusinessStatus" in obj:
         recipient_business_status = obj["recipientBusinessStatus"]
         recipient_business_status = _deserialize_b2b_company_state_business_status(recipient_business_status)
@@ -406,4 +428,4 @@ def _deserialize_b2b_tax_invoice_summary(obj: Any) -> B2bTaxInvoiceSummary:
             raise ValueError(f"{repr(memo)} is not str")
     else:
         memo = None
-    return B2bTaxInvoiceSummary(id, taxation_type, document_modification_type, issuance_type, total_supply_amount, total_tax_amount, total_amount, purpose_type, supplier_brn, supplier_name, supplier_representative_name, recipient_brn, recipient_name, recipient_representative_name, write_date, issuance_due_date, status, status_updated_at, items, is_delayed, bulk_tax_invoice_id, payout_id, supplier_document_key, recipient_document_key, recipient_business_status, recipient_closed_suspended_date, drafted_at, requested_at, issued_at, opened_at, nts_sent_at, nts_approval_number, nts_result, nts_result_received_at, nts_result_code, memo)
+    return B2bTaxInvoiceSummary(id, taxation_type, document_modification_type, issuance_type, total_supply_amount, total_tax_amount, total_amount, purpose_type, supplier_brn, supplier_name, supplier_representative_name, recipient_brn, recipient_name, recipient_representative_name, write_date, issuance_due_date, status, status_updated_at, items, is_delayed, bulk_tax_invoice_id, payout_id, supplier_document_key, supplier_counterparty_id, recipient_document_key, recipient_counterparty_id, recipient_business_status, recipient_closed_suspended_date, drafted_at, requested_at, issued_at, opened_at, nts_sent_at, nts_approval_number, nts_result, nts_result_received_at, nts_result_code, memo)

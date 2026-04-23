@@ -30,6 +30,7 @@ public data class PlatformManualTransfer(
   override val settlementDate: String,
   /** 정산 통화 */
   override val settlementCurrency: Currency,
+  /** 더 이상 사용되지 않는 값입니다. */
   override val payoutId: String? = null,
   override val payoutGraphqlId: String? = null,
   /** 테스트 모드 여부 */

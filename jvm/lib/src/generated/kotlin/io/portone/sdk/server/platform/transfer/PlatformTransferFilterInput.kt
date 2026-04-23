@@ -3,6 +3,7 @@ package io.portone.sdk.server.platform.transfer
 import io.portone.sdk.server.common.DateRange
 import io.portone.sdk.server.common.PaymentMethodType
 import io.portone.sdk.server.platform.transfer.PlatformTransferFilterInputKeyword
+import io.portone.sdk.server.platform.transfer.PlatformTransferPropertyExactMatchInput
 import io.portone.sdk.server.platform.transfer.PlatformTransferStatus
 import io.portone.sdk.server.platform.transfer.PlatformTransferType
 import kotlin.Array
@@ -68,6 +69,12 @@ public data class PlatformTransferFilterInput(
    * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 상태인 정산건만 조회합니다.
    */
   val statuses: List<PlatformTransferStatus>? = null,
+  /**
+   * 사용자 정의 속성 exact match
+   *
+   * 사용자 정의 속성의 key와 value가 정확히 일치하는 정산건만 조회합니다.
+   */
+  val userDefinedProperty: PlatformTransferPropertyExactMatchInput? = null,
   /** 검색 키워드 */
   val keyword: PlatformTransferFilterInputKeyword? = null,
   /**

@@ -83,7 +83,7 @@ export type B2bTaxInvoiceInput = {
 	 */
 	supplierDocumentKey?: string
 	/** 공급자 */
-	supplier: B2bTaxInvoiceCompany
+	supplier?: B2bTaxInvoiceCompany
 	/**
 	 * 공급받는자 문서번호
 	 *
@@ -107,7 +107,13 @@ export type B2bTaxInvoiceInput = {
 	/**
 	 * 추가 담당자
 	 *
-	 * 최대 3개
+	 * 최대 5명
 	 */
 	additionalContacts?: B2bTaxInvoiceAdditionalContact[]
+	/**
+	 * 거래처 추가 담당자 사용 여부
+	 *
+	 * true인 경우 거래처의 추가 담당자를 세금계산서 추가 담당자로 사용합니다. additional_contacts가 직접 지정된 경우 무시됩니다.
+	 */
+	useCounterpartyAdditionalContacts?: boolean
 }

@@ -37,9 +37,6 @@ class B2bTaxInvoiceInput:
     """합계 금액
     (int64)
     """
-    supplier: B2bTaxInvoiceCompany
-    """공급자
-    """
     recipient: B2bTaxInvoiceCompany
     """공급받는자
     """
@@ -85,6 +82,9 @@ class B2bTaxInvoiceInput:
 
     영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
     """
+    supplier: Optional[B2bTaxInvoiceCompany] = field(default=None)
+    """공급자
+    """
     recipient_document_key: Optional[str] = field(default=None)
     """공급받는자 문서번호
 
@@ -103,7 +103,12 @@ class B2bTaxInvoiceInput:
     additional_contacts: Optional[list[B2bTaxInvoiceAdditionalContact]] = field(default=None)
     """추가 담당자
 
-    최대 3개
+    최대 5명
+    """
+    use_counterparty_additional_contacts: Optional[bool] = field(default=None)
+    """거래처 추가 담당자 사용 여부
+
+    true인 경우 거래처의 추가 담당자를 세금계산서 추가 담당자로 사용합니다. additional_contacts가 직접 지정된 경우 무시됩니다.
     """
 
 
@@ -117,7 +122,6 @@ def _serialize_b2b_tax_invoice_input(obj: B2bTaxInvoiceInput) -> Any:
     entity["totalSupplyAmount"] = obj.total_supply_amount
     entity["totalTaxAmount"] = obj.total_tax_amount
     entity["totalAmount"] = obj.total_amount
-    entity["supplier"] = _serialize_b2b_tax_invoice_company(obj.supplier)
     entity["recipient"] = _serialize_b2b_tax_invoice_company(obj.recipient)
     if obj.issuance_type is not None:
         entity["issuanceType"] = _serialize_b2b_tax_invoice_issuance_type(obj.issuance_type)
@@ -139,6 +143,8 @@ def _serialize_b2b_tax_invoice_input(obj: B2bTaxInvoiceInput) -> Any:
         entity["remarks"] = obj.remarks
     if obj.supplier_document_key is not None:
         entity["supplierDocumentKey"] = obj.supplier_document_key
+    if obj.supplier is not None:
+        entity["supplier"] = _serialize_b2b_tax_invoice_company(obj.supplier)
     if obj.recipient_document_key is not None:
         entity["recipientDocumentKey"] = obj.recipient_document_key
     if obj.send_sms is not None:
@@ -147,6 +153,8 @@ def _serialize_b2b_tax_invoice_input(obj: B2bTaxInvoiceInput) -> Any:
         entity["items"] = list(map(_serialize_b2b_tax_invoice_item, obj.items))
     if obj.additional_contacts is not None:
         entity["additionalContacts"] = list(map(_serialize_b2b_tax_invoice_additional_contact, obj.additional_contacts))
+    if obj.use_counterparty_additional_contacts is not None:
+        entity["useCounterpartyAdditionalContacts"] = obj.use_counterparty_additional_contacts
     return entity
 
 
@@ -181,10 +189,6 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
     total_amount = obj["totalAmount"]
     if not isinstance(total_amount, int):
         raise ValueError(f"{repr(total_amount)} is not int")
-    if "supplier" not in obj:
-        raise KeyError(f"'supplier' is not in {obj}")
-    supplier = obj["supplier"]
-    supplier = _deserialize_b2b_tax_invoice_company(supplier)
     if "recipient" not in obj:
         raise KeyError(f"'recipient' is not in {obj}")
     recipient = obj["recipient"]
@@ -251,6 +255,11 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
             raise ValueError(f"{repr(supplier_document_key)} is not str")
     else:
         supplier_document_key = None
+    if "supplier" in obj:
+        supplier = obj["supplier"]
+        supplier = _deserialize_b2b_tax_invoice_company(supplier)
+    else:
+        supplier = None
     if "recipientDocumentKey" in obj:
         recipient_document_key = obj["recipientDocumentKey"]
         if not isinstance(recipient_document_key, str):
@@ -281,4 +290,10 @@ def _deserialize_b2b_tax_invoice_input(obj: Any) -> B2bTaxInvoiceInput:
             additional_contacts[i] = item
     else:
         additional_contacts = None
-    return B2bTaxInvoiceInput(taxation_type, write_date, purpose_type, total_supply_amount, total_tax_amount, total_amount, supplier, recipient, issuance_type, serial_number, book_volume, book_issue, cash_amount, check_amount, credit_amount, note_amount, remarks, supplier_document_key, recipient_document_key, send_sms, items, additional_contacts)
+    if "useCounterpartyAdditionalContacts" in obj:
+        use_counterparty_additional_contacts = obj["useCounterpartyAdditionalContacts"]
+        if not isinstance(use_counterparty_additional_contacts, bool):
+            raise ValueError(f"{repr(use_counterparty_additional_contacts)} is not bool")
+    else:
+        use_counterparty_additional_contacts = None
+    return B2bTaxInvoiceInput(taxation_type, write_date, purpose_type, total_supply_amount, total_tax_amount, total_amount, recipient, issuance_type, serial_number, book_volume, book_issue, cash_amount, check_amount, credit_amount, note_amount, remarks, supplier_document_key, supplier, recipient_document_key, send_sms, items, additional_contacts, use_counterparty_additional_contacts)

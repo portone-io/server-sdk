@@ -2,6 +2,7 @@ package io.portone.sdk.server.platform.accounttransfer
 
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferStatus
+import io.portone.sdk.server.platform.accounttransfer.PlatformBankAccountDetail
 import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.KSerializer
@@ -29,6 +30,8 @@ public sealed interface PlatformAccountTransfer {
     /** 출금 계좌 아이디 */
     public val bankAccountId: String
     public val bankAccountGraphqlId: String
+    /** 출금 계좌 정보 */
+    public val bankAccount: PlatformBankAccountDetail
     /** 통화 */
     public val currency: Currency
     /** 금액 */

@@ -297,6 +297,36 @@ public sealed interface ReconciliationPgProvider {
     }
     override fun serialize(encoder: Encoder, value: PayletterGlobal): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(KiwoompaySerializer::class)
+  public data object Kiwoompay : ReconciliationPgProvider {
+    override val value: String = "KIWOOMPAY"
+  }
+  public object KiwoompaySerializer : KSerializer<Kiwoompay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Kiwoompay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Kiwoompay = decoder.decodeString().let {
+      if (it != "KIWOOMPAY") {
+        throw SerializationException(it)
+      } else {
+        return Kiwoompay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Kiwoompay): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(PaymentwallSerializer::class)
+  public data object Paymentwall : ReconciliationPgProvider {
+    override val value: String = "PAYMENTWALL"
+  }
+  public object PaymentwallSerializer : KSerializer<Paymentwall> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Paymentwall::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Paymentwall = decoder.decodeString().let {
+      if (it != "PAYMENTWALL") {
+        throw SerializationException(it)
+      } else {
+        return Paymentwall
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Paymentwall): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : ReconciliationPgProvider
@@ -327,6 +357,8 @@ public object ReconciliationPgProviderSerializer : KSerializer<ReconciliationPgP
       "HECTO_EASY" -> ReconciliationPgProvider.HectoEasy
       "MOBILIANS" -> ReconciliationPgProvider.Mobilians
       "PAYLETTER_GLOBAL" -> ReconciliationPgProvider.PayletterGlobal
+      "KIWOOMPAY" -> ReconciliationPgProvider.Kiwoompay
+      "PAYMENTWALL" -> ReconciliationPgProvider.Paymentwall
       else -> ReconciliationPgProvider.Unrecognized(value)
     }
   }

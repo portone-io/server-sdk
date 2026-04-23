@@ -9,6 +9,7 @@ from ..common.customer import Customer, _deserialize_customer, _serialize_custom
 from ..payment.payment_amount import PaymentAmount, _deserialize_payment_amount, _serialize_payment_amount
 from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
 from ..payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
+from ..payment.payment_origin import PaymentOrigin, _deserialize_payment_origin, _serialize_payment_origin
 from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from ..payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
 from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
@@ -63,6 +64,9 @@ class PayPendingPayment:
     """
     customer: Customer
     """구매자 정보
+    """
+    origin: PaymentOrigin
+    """결제 출처 정보
     """
     method: Optional[PaymentMethod] = field(default=None)
     """결제수단 정보
@@ -130,6 +134,7 @@ def _serialize_pay_pending_payment(obj: PayPendingPayment) -> Any:
     entity["amount"] = _serialize_payment_amount(obj.amount)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["customer"] = _serialize_customer(obj.customer)
+    entity["origin"] = _serialize_payment_origin(obj.origin)
     if obj.method is not None:
         entity["method"] = _serialize_payment_method(obj.method)
     if obj.channel_group is not None:
@@ -227,6 +232,10 @@ def _deserialize_pay_pending_payment(obj: Any) -> PayPendingPayment:
         raise KeyError(f"'customer' is not in {obj}")
     customer = obj["customer"]
     customer = _deserialize_customer(customer)
+    if "origin" not in obj:
+        raise KeyError(f"'origin' is not in {obj}")
+    origin = obj["origin"]
+    origin = _deserialize_payment_origin(origin)
     if "method" in obj:
         method = obj["method"]
         method = _deserialize_payment_method(method)
@@ -307,4 +316,4 @@ def _deserialize_pay_pending_payment(obj: Any) -> PayPendingPayment:
             raise ValueError(f"{repr(pg_tx_id)} is not str")
     else:
         pg_tx_id = None
-    return PayPendingPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id)
+    return PayPendingPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, origin, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, pg_tx_id)

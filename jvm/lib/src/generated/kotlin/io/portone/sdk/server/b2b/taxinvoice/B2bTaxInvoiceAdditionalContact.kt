@@ -14,6 +14,8 @@ public data class B2bTaxInvoiceAdditionalContact(
   val name: String? = null,
   /** 이메일 */
   val email: String,
+  /** 전화번호 */
+  val phoneNumber: String? = null,
 )
 
 

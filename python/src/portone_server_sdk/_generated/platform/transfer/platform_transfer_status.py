@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformTransferStatus = Union[Literal["SCHEDULED", "IN_PROCESS", "SETTLED", "IN_PAYOUT", "PAID_OUT"], str]
+PlatformTransferStatus = Union[Literal["SCHEDULED", "IN_PROCESS", "SETTLED", "IN_PAYOUT", "PAID_OUT", "PAYOUT_CONFIRMED"], str]
 """정산 상태
 """
 

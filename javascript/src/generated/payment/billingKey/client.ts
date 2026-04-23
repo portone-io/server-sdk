@@ -78,6 +78,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				customData?: string,
 				bypass?: object,
 				noticeUrls?: string[],
+				skipWebhook?: boolean,
 			}
 		): Promise<IssueBillingKeyResponse> => {
 			const {
@@ -89,6 +90,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				customData,
 				bypass,
 				noticeUrls,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -99,6 +101,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				customData,
 				bypass,
 				noticeUrls,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL("/billing-keys", baseUrl),
@@ -121,17 +124,20 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				storeId?: string,
 				billingIssueToken: string,
 				isTest?: boolean,
+				skipWebhook?: boolean,
 			}
 		): Promise<ConfirmedBillingKeySummary> => {
 			const {
 				storeId,
 				billingIssueToken,
 				isTest,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
 				billingIssueToken,
 				isTest,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL("/billing-keys/confirm", baseUrl),
@@ -158,6 +164,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				totalAmount?: number,
 				taxFreeAmount?: number,
 				isTest?: boolean,
+				skipWebhook?: boolean,
 			}
 		): Promise<ConfirmedBillingKeyIssueAndPaySummary> => {
 			const {
@@ -168,6 +175,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				totalAmount,
 				taxFreeAmount,
 				isTest,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -177,6 +185,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				totalAmount,
 				taxFreeAmount,
 				isTest,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL("/billing-keys/confirm-issue-and-pay", baseUrl),
@@ -230,6 +239,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				storeId?: string,
 				reason?: string,
 				requester?: BillingKeyDeleteRequester,
+				skipWebhook?: boolean,
 			}
 		): Promise<DeleteBillingKeyResponse> => {
 			const {
@@ -237,11 +247,13 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				storeId,
 				reason,
 				requester,
+				skipWebhook,
 			} = options
 			const query = [
 				["storeId", storeId],
 				["reason", reason],
 				["requester", requester],
+				["skipWebhook", skipWebhook],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
@@ -335,6 +347,12 @@ export type BillingKeyClient = {
 			 * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
 			 */
 			noticeUrls?: string[],
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<IssueBillingKeyResponse>
 	/**
@@ -364,6 +382,12 @@ export type BillingKeyClient = {
 			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
 			 */
 			isTest?: boolean,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<ConfirmedBillingKeySummary>
 	/**
@@ -419,6 +443,12 @@ export type BillingKeyClient = {
 			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
 			 */
 			isTest?: boolean,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 빌링키 발급 및 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<ConfirmedBillingKeyIssueAndPaySummary>
 	/**
@@ -469,6 +499,12 @@ export type BillingKeyClient = {
 			 * 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
 			 */
 			requester?: BillingKeyDeleteRequester,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 빌링키 삭제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<DeleteBillingKeyResponse>
 }

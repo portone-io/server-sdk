@@ -43,6 +43,7 @@ public sealed interface PlatformTransfer {
     public val settlementDate: String
     /** 정산 통화 */
     public val settlementCurrency: Currency
+    /** 더 이상 사용되지 않는 값입니다. */
     public val payoutId: String?
     public val payoutGraphqlId: String?
     /** 테스트 모드 여부 */

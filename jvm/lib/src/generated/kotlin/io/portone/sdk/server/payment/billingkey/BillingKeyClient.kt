@@ -203,6 +203,10 @@ public class BillingKeyClient(
    * 빌링키 발급 시 요청을 받을 웹훅 주소입니다.
    * 상점에 설정되어 있는 값보다 우선적으로 적용됩니다.
    * 입력된 값이 없을 경우에는 빈 배열로 해석됩니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
    *
    * @throws IssueBillingKeyException
    */
@@ -215,6 +219,7 @@ public class BillingKeyClient(
     customData: String? = null,
     bypass: JsonObject? = null,
     noticeUrls: List<String>? = null,
+    skipWebhook: Boolean? = null,
   ): IssueBillingKeyResponse {
     val requestBody = IssueBillingKeyBody(
       storeId = storeId,
@@ -225,6 +230,7 @@ public class BillingKeyClient(
       customData = customData,
       bypass = bypass,
       noticeUrls = noticeUrls,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -274,7 +280,8 @@ public class BillingKeyClient(
     customData: String? = null,
     bypass: JsonObject? = null,
     noticeUrls: List<String>? = null,
-  ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<IssueBillingKeyResponse> = GlobalScope.future { issueBillingKey(method, channelKey, channelGroupId, customer, customData, bypass, noticeUrls, skipWebhook) }
 
 
   /**
@@ -290,6 +297,10 @@ public class BillingKeyClient(
    * 테스트 결제 여부
    *
    * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
    *
    * @throws ConfirmBillingKeyException
    */
@@ -297,11 +308,13 @@ public class BillingKeyClient(
   public suspend fun confirmBillingKey(
     billingIssueToken: String,
     isTest: Boolean? = null,
+    skipWebhook: Boolean? = null,
   ): ConfirmedBillingKeySummary {
     val requestBody = ConfirmBillingKeyBody(
       storeId = storeId,
       billingIssueToken = billingIssueToken,
       isTest = isTest,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -347,7 +360,8 @@ public class BillingKeyClient(
   public fun confirmBillingKeyFuture(
     billingIssueToken: String,
     isTest: Boolean? = null,
-  ): CompletableFuture<ConfirmedBillingKeySummary> = GlobalScope.future { confirmBillingKey(billingIssueToken, isTest) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<ConfirmedBillingKeySummary> = GlobalScope.future { confirmBillingKey(billingIssueToken, isTest, skipWebhook) }
 
 
   /**
@@ -379,6 +393,10 @@ public class BillingKeyClient(
    * 테스트 결제 여부
    *
    * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 빌링키 발급 및 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
    *
    * @throws ConfirmBillingKeyIssueAndPayException
    */
@@ -390,6 +408,7 @@ public class BillingKeyClient(
     totalAmount: Long? = null,
     taxFreeAmount: Long? = null,
     isTest: Boolean? = null,
+    skipWebhook: Boolean? = null,
   ): ConfirmedBillingKeyIssueAndPaySummary {
     val requestBody = ConfirmBillingKeyIssueAndPayBody(
       storeId = storeId,
@@ -399,6 +418,7 @@ public class BillingKeyClient(
       totalAmount = totalAmount,
       taxFreeAmount = taxFreeAmount,
       isTest = isTest,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -448,7 +468,8 @@ public class BillingKeyClient(
     totalAmount: Long? = null,
     taxFreeAmount: Long? = null,
     isTest: Boolean? = null,
-  ): CompletableFuture<ConfirmedBillingKeyIssueAndPaySummary> = GlobalScope.future { confirmBillingKeyIssueAndPay(billingIssueToken, paymentId, currency, totalAmount, taxFreeAmount, isTest) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<ConfirmedBillingKeyIssueAndPaySummary> = GlobalScope.future { confirmBillingKeyIssueAndPay(billingIssueToken, paymentId, currency, totalAmount, taxFreeAmount, isTest, skipWebhook) }
 
 
   /**
@@ -522,6 +543,10 @@ public class BillingKeyClient(
    * 요청 주체
    *
    * 네이버페이: 자동결제 해지 요청 주체입니다. 명시가 필요합니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 빌링키 삭제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
    *
    * @throws DeleteBillingKeyException
    */
@@ -530,6 +555,7 @@ public class BillingKeyClient(
     billingKey: String,
     reason: String? = null,
     requester: BillingKeyDeleteRequester? = null,
+    skipWebhook: Boolean? = null,
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
@@ -537,6 +563,7 @@ public class BillingKeyClient(
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
         if (reason != null) this.parameters.append("reason", reason.toString())
         if (requester != null) this.parameters.append("requester", requester.toString())
+        if (skipWebhook != null) this.parameters.append("skipWebhook", skipWebhook.toString())
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -579,7 +606,8 @@ public class BillingKeyClient(
     billingKey: String,
     reason: String? = null,
     requester: BillingKeyDeleteRequester? = null,
-  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason, requester) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<DeleteBillingKeyResponse> = GlobalScope.future { deleteBillingKey(billingKey, reason, requester, skipWebhook) }
 
   override fun close() {
     client.close()

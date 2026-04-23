@@ -61,6 +61,22 @@ public sealed interface PlatformPartnerSettlementStatus {
     }
     override fun serialize(encoder: Encoder, value: PayoutWithheld): Unit = encoder.encodeString(value.value)
   }
+  /** 지급 제외 */
+  @Serializable(PayoutExcludedSerializer::class)
+  public data object PayoutExcluded : PlatformPartnerSettlementStatus {
+    override val value: String = "PAYOUT_EXCLUDED"
+  }
+  public object PayoutExcludedSerializer : KSerializer<PayoutExcluded> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutExcluded::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): PayoutExcluded = decoder.decodeString().let {
+      if (it != "PAYOUT_EXCLUDED") {
+        throw SerializationException(it)
+      } else {
+        return PayoutExcluded
+      }
+    }
+    override fun serialize(encoder: Encoder, value: PayoutExcluded): Unit = encoder.encodeString(value.value)
+  }
   /** 지급 실패 */
   @Serializable(PayoutFailedSerializer::class)
   public data object PayoutFailed : PlatformPartnerSettlementStatus {
@@ -155,6 +171,7 @@ public object PlatformPartnerSettlementStatusSerializer : KSerializer<PlatformPa
       "PAYOUT_SCHEDULED" -> PlatformPartnerSettlementStatus.PayoutScheduled
       "PAYOUT_PREPARED" -> PlatformPartnerSettlementStatus.PayoutPrepared
       "PAYOUT_WITHHELD" -> PlatformPartnerSettlementStatus.PayoutWithheld
+      "PAYOUT_EXCLUDED" -> PlatformPartnerSettlementStatus.PayoutExcluded
       "PAYOUT_FAILED" -> PlatformPartnerSettlementStatus.PayoutFailed
       "IN_PAYOUT" -> PlatformPartnerSettlementStatus.InPayout
       "PAID_OUT" -> PlatformPartnerSettlementStatus.PaidOut

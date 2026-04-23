@@ -4,6 +4,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...platform.account_transfer.platform_account_transfer_status import PlatformAccountTransferStatus, _deserialize_platform_account_transfer_status, _serialize_platform_account_transfer_status
+from ...platform.account_transfer.platform_bank_account_detail import PlatformBankAccountDetail, _deserialize_platform_bank_account_detail, _serialize_platform_bank_account_detail
 
 @dataclass
 class PlatformDepositAccountTransfer:
@@ -16,6 +17,9 @@ class PlatformDepositAccountTransfer:
     """입금 계좌 아이디
     """
     bank_account_graphql_id: str
+    bank_account: PlatformBankAccountDetail
+    """입금 계좌 정보
+    """
     currency: Currency
     """통화
     """
@@ -61,6 +65,7 @@ def _serialize_platform_deposit_account_transfer(obj: PlatformDepositAccountTran
     entity["id"] = obj.id
     entity["bankAccountId"] = obj.bank_account_id
     entity["bankAccountGraphqlId"] = obj.bank_account_graphql_id
+    entity["bankAccount"] = _serialize_platform_bank_account_detail(obj.bank_account)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["amount"] = obj.amount
     entity["createdAt"] = obj.created_at
@@ -99,6 +104,10 @@ def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositA
     bank_account_graphql_id = obj["bankAccountGraphqlId"]
     if not isinstance(bank_account_graphql_id, str):
         raise ValueError(f"{repr(bank_account_graphql_id)} is not str")
+    if "bankAccount" not in obj:
+        raise KeyError(f"'bankAccount' is not in {obj}")
+    bank_account = obj["bankAccount"]
+    bank_account = _deserialize_platform_bank_account_detail(bank_account)
     if "currency" not in obj:
         raise KeyError(f"'currency' is not in {obj}")
     currency = obj["currency"]
@@ -149,4 +158,4 @@ def _deserialize_platform_deposit_account_transfer(obj: Any) -> PlatformDepositA
             raise ValueError(f"{repr(traded_at)} is not str")
     else:
         traded_at = None
-    return PlatformDepositAccountTransfer(id, bank_account_id, bank_account_graphql_id, currency, amount, created_at, updated_at, depositor_name, is_for_test, status_updated_at, status, deposit_memo, traded_at)
+    return PlatformDepositAccountTransfer(id, bank_account_id, bank_account_graphql_id, bank_account, currency, amount, created_at, updated_at, depositor_name, is_for_test, status_updated_at, status, deposit_memo, traded_at)

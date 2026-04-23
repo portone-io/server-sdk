@@ -13,6 +13,7 @@ import kotlinx.serialization.Serializable
  * 하나의 payment에 하나의 정산 건만 존재하는 경우에는 (partnerId, paymentId)로 취소 정산을 등록하실 수 있습니다.
  * 하나의 payment에 여러 개의 정산 건이 존재하는 경우에는 transferId를 필수로 입력해야 합니다.
  * transferId를 입력한 경우 (partnerId, paymentId)는 생략 가능합니다.
+ * id를 입력한 경우 생성될 취소 정산건 아이디로 사용됩니다.
  */
 @Serializable
 internal data class CreatePlatformOrderCancelTransferBody(
@@ -65,6 +66,12 @@ internal data class CreatePlatformOrderCancelTransferBody(
   val isForTest: Boolean? = null,
   /** 사용자 정의 속성 */
   val userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+  /**
+   * 생성할 취소 정산건 아이디
+   *
+   * 명시하지 않으면 id 가 임의로 생성됩니다.
+   */
+  val id: String? = null,
 )
 
 

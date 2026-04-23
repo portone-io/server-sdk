@@ -78,6 +78,8 @@ class PlatformOrderCancelTransfer:
     """메모
     """
     payout_id: Optional[str] = field(default=None)
+    """더 이상 사용되지 않는 값입니다.
+    """
     payout_graphql_id: Optional[str] = field(default=None)
 
 

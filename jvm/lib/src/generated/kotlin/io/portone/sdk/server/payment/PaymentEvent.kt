@@ -11,6 +11,7 @@ import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentCashReceipt
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
+import io.portone.sdk.server.payment.PaymentOrigin
 import io.portone.sdk.server.payment.PaymentWebhook
 import java.time.Instant
 import kotlin.String
@@ -98,6 +99,8 @@ public sealed interface PaymentEvent {
      * 해당 이벤트에서 처리된 금액으로, 취소 이벤트인 경우 음수로 표기됩니다.
      */
     public val eventAmount: Long
+    /** 결제 출처 정보 */
+    public val origin: PaymentOrigin
   }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @Serializable

@@ -8,4 +8,10 @@ export type DraftB2bTaxInvoiceBody = {
 	modification?: B2bTaxInvoiceModificationCreateBody
 	/** 메모 */
 	memo?: string
+	/**
+	 * 공급받는자 거래처 생성 여부
+	 *
+	 * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+	 */
+	createRecipientCounterparty?: boolean
 }

@@ -42,6 +42,18 @@ public data class GetB2bTaxInvoicesBodyFilter(
   val issuanceTypes: List<B2bTaxInvoiceIssuanceType>? = null,
   /** 영수/청구 */
   val purposeTypes: List<B2bTaxInvoicePurposeType>? = null,
+  /**
+   * 거래처 ID
+   *
+   * 거래처 ID로 필터링합니다. 공급자 또는 공급받는자 거래처 ID에 대해 조회합니다.
+   */
+  val counterpartyId: String? = null,
+  /**
+   * 거래처 사업자등록번호 매칭 포함 여부
+   *
+   * counterpartyId 조건과 함께 거래처의 사업자등록번호 매칭 조건을 추가할지 여부입니다.
+   */
+  val includeBrnMatch: Boolean? = null,
 )
 
 

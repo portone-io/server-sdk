@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_ONGOING_TAX_INVOICE_EXISTS")
 internal data class PlatformOngoingTaxInvoiceExistsError(
   override val message: String? = null,
-) : DisconnectPartnerMemberCompanyError.Recognized
+) : DisconnectPartnerCounterpartyError.Recognized
 
 

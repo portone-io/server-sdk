@@ -63,7 +63,7 @@ public data class B2bTaxInvoiceInput(
    */
   val supplierDocumentKey: String? = null,
   /** 공급자 */
-  val supplier: B2bTaxInvoiceCompany,
+  val supplier: B2bTaxInvoiceCompany? = null,
   /**
    * 공급받는자 문서번호
    *
@@ -87,9 +87,15 @@ public data class B2bTaxInvoiceInput(
   /**
    * 추가 담당자
    *
-   * 최대 3개
+   * 최대 5명
    */
   val additionalContacts: List<B2bTaxInvoiceAdditionalContact>? = null,
+  /**
+   * 거래처 추가 담당자 사용 여부
+   *
+   * true인 경우 거래처의 추가 담당자를 세금계산서 추가 담당자로 사용합니다. additional_contacts가 직접 지정된 경우 무시됩니다.
+   */
+  val useCounterpartyAdditionalContacts: Boolean? = null,
 )
 
 

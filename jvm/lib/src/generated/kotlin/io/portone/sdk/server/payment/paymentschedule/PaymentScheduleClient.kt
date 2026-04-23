@@ -16,7 +16,6 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
-import io.portone.sdk.server.common.BillingKeyPaymentInput
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingError
 import io.portone.sdk.server.errors.AlreadyPaidOrWaitingException
@@ -49,6 +48,7 @@ import io.portone.sdk.server.errors.SumOfPartsExceedsTotalAmountException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
+import io.portone.sdk.server.payment.paymentschedule.BillingKeyPaymentScheduleInput
 import io.portone.sdk.server.payment.paymentschedule.CreatePaymentScheduleBody
 import io.portone.sdk.server.payment.paymentschedule.CreatePaymentScheduleResponse
 import io.portone.sdk.server.payment.paymentschedule.GetPaymentSchedulesBody
@@ -310,7 +310,7 @@ public class PaymentScheduleClient(
   @JvmName("createPaymentScheduleSuspend")
   public suspend fun createPaymentSchedule(
     paymentId: String,
-    payment: BillingKeyPaymentInput,
+    payment: BillingKeyPaymentScheduleInput,
     timeToPay: Instant,
   ): CreatePaymentScheduleResponse {
     val requestBody = CreatePaymentScheduleBody(
@@ -361,7 +361,7 @@ public class PaymentScheduleClient(
   @JvmName("createPaymentSchedule")
   public fun createPaymentScheduleFuture(
     paymentId: String,
-    payment: BillingKeyPaymentInput,
+    payment: BillingKeyPaymentScheduleInput,
     timeToPay: Instant,
   ): CompletableFuture<CreatePaymentScheduleResponse> = GlobalScope.future { createPaymentSchedule(paymentId, payment, timeToPay) }
 

@@ -14,6 +14,12 @@ internal data class DraftB2bTaxInvoiceBody(
   val modification: B2bTaxInvoiceModificationCreateBody? = null,
   /** 메모 */
   val memo: String? = null,
+  /**
+   * 공급받는자 거래처 생성 여부
+   *
+   * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+   */
+  val createRecipientCounterparty: Boolean? = null,
 )
 
 

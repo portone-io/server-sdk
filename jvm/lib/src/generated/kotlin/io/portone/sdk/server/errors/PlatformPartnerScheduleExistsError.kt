@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_PARTNER_SCHEDULE_EXISTS")
 internal data class PlatformPartnerScheduleExistsError(
   override val message: String? = null,
-) : ConnectPartnerMemberCompanyError.Recognized
+) : ConnectPartnerCounterpartyError.Recognized
 
 

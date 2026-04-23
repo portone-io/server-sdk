@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from ...common.bank import Bank, _deserialize_bank, _serialize_bank
 from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...platform.account_transfer.platform_account_transfer_status import PlatformAccountTransferStatus, _deserialize_platform_account_transfer_status, _serialize_platform_account_transfer_status
+from ...platform.account_transfer.platform_bank_account_detail import PlatformBankAccountDetail, _deserialize_platform_bank_account_detail, _serialize_platform_bank_account_detail
 from ...platform.account_transfer.type import Type, _deserialize_type, _serialize_type
 
 @dataclass
@@ -18,6 +19,9 @@ class PlatformWithdrawalAccountTransfer:
     """출금 계좌 아이디
     """
     bank_account_graphql_id: str
+    bank_account: PlatformBankAccountDetail
+    """출금 계좌 정보
+    """
     currency: Currency
     """통화
     """
@@ -107,6 +111,7 @@ def _serialize_platform_withdrawal_account_transfer(obj: PlatformWithdrawalAccou
     entity["id"] = obj.id
     entity["bankAccountId"] = obj.bank_account_id
     entity["bankAccountGraphqlId"] = obj.bank_account_graphql_id
+    entity["bankAccount"] = _serialize_platform_bank_account_detail(obj.bank_account)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["depositBank"] = _serialize_bank(obj.deposit_bank)
     entity["depositAccountNumber"] = obj.deposit_account_number
@@ -176,6 +181,10 @@ def _deserialize_platform_withdrawal_account_transfer(obj: Any) -> PlatformWithd
     bank_account_graphql_id = obj["bankAccountGraphqlId"]
     if not isinstance(bank_account_graphql_id, str):
         raise ValueError(f"{repr(bank_account_graphql_id)} is not str")
+    if "bankAccount" not in obj:
+        raise KeyError(f"'bankAccount' is not in {obj}")
+    bank_account = obj["bankAccount"]
+    bank_account = _deserialize_platform_bank_account_detail(bank_account)
     if "currency" not in obj:
         raise KeyError(f"'currency' is not in {obj}")
     currency = obj["currency"]
@@ -323,4 +332,4 @@ def _deserialize_platform_withdrawal_account_transfer(obj: Any) -> PlatformWithd
             raise ValueError(f"{repr(scheduled_at)} is not str")
     else:
         scheduled_at = None
-    return PlatformWithdrawalAccountTransfer(id, bank_account_id, bank_account_graphql_id, currency, deposit_bank, deposit_account_number, deposit_account_holder, amount, created_at, updated_at, is_for_test, withdrawal_type, status_updated_at, status, sequence_number, withdrawal_memo, deposit_memo, balance, fail_reason, traded_at, partner_id, partner_graphql_id, bulk_payout_id, bulk_payout_graphql_id, payout_id, payout_graphql_id, bulk_account_transfer_id, bulk_account_transfer_graphql_id, document_id, scheduled_at)
+    return PlatformWithdrawalAccountTransfer(id, bank_account_id, bank_account_graphql_id, bank_account, currency, deposit_bank, deposit_account_number, deposit_account_holder, amount, created_at, updated_at, is_for_test, withdrawal_type, status_updated_at, status, sequence_number, withdrawal_memo, deposit_memo, balance, fail_reason, traded_at, partner_id, partner_graphql_id, bulk_payout_id, bulk_payout_graphql_id, payout_id, payout_graphql_id, bulk_account_transfer_id, bulk_account_transfer_graphql_id, document_id, scheduled_at)

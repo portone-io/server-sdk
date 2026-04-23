@@ -12,6 +12,7 @@ import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.payment.PaymentCashReceipt
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
+import io.portone.sdk.server.payment.PaymentOrigin
 import io.portone.sdk.server.payment.PaymentWebhook
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -71,6 +72,8 @@ public data class PartialCancelledPayment(
   override val currency: Currency,
   /** 구매자 정보 */
   override val customer: Customer,
+  /** 결제 출처 정보 */
+  override val origin: PaymentOrigin,
   /** 프로모션 아이디 */
   override val promotionId: String? = null,
   /** 문화비 지출 여부 */

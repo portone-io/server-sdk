@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_BTX_NOT_ENABLED")
 internal data class PlatformBtxNotEnabledError(
   override val message: String? = null,
-) : ConnectBulkPartnerMemberCompanyError.Recognized, ConnectPartnerMemberCompanyError.Recognized, DisconnectBulkPartnerMemberCompanyError.Recognized, DisconnectPartnerMemberCompanyError.Recognized
+) : ConnectBulkPartnerCounterpartyError.Recognized, ConnectPartnerCounterpartyError.Recognized, DisconnectBulkPartnerCounterpartyError.Recognized, DisconnectPartnerCounterpartyError.Recognized
 
 

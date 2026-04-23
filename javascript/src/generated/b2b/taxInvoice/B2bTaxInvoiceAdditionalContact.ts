@@ -8,4 +8,6 @@ export type B2bTaxInvoiceAdditionalContact = {
 	name?: string
 	/** 이메일 */
 	email: string
+	/** 전화번호 */
+	phoneNumber?: string
 }

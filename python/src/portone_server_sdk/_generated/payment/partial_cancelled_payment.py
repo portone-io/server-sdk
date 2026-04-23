@@ -11,6 +11,7 @@ from ..payment.payment_cancellation import PaymentCancellation, _deserialize_pay
 from ..payment.payment_cash_receipt import PaymentCashReceipt, _deserialize_payment_cash_receipt, _serialize_payment_cash_receipt
 from ..payment.payment_escrow import PaymentEscrow, _deserialize_payment_escrow, _serialize_payment_escrow
 from ..payment.payment_method import PaymentMethod, _deserialize_payment_method, _serialize_payment_method
+from ..payment.payment_origin import PaymentOrigin, _deserialize_payment_origin, _serialize_payment_origin
 from ..common.payment_product import PaymentProduct, _deserialize_payment_product, _serialize_payment_product
 from ..payment.payment_webhook import PaymentWebhook, _deserialize_payment_webhook, _serialize_payment_webhook
 from ..common.port_one_version import PortOneVersion, _deserialize_port_one_version, _serialize_port_one_version
@@ -65,6 +66,9 @@ class PartialCancelledPayment:
     """
     customer: Customer
     """구매자 정보
+    """
+    origin: PaymentOrigin
+    """결제 출처 정보
     """
     cancellations: list[PaymentCancellation]
     """결제 취소 내역
@@ -149,6 +153,7 @@ def _serialize_partial_cancelled_payment(obj: PartialCancelledPayment) -> Any:
     entity["amount"] = _serialize_payment_amount(obj.amount)
     entity["currency"] = _serialize_currency(obj.currency)
     entity["customer"] = _serialize_customer(obj.customer)
+    entity["origin"] = _serialize_payment_origin(obj.origin)
     entity["cancellations"] = list(map(_serialize_payment_cancellation, obj.cancellations))
     entity["cancelledAt"] = obj.cancelled_at
     if obj.method is not None:
@@ -254,6 +259,10 @@ def _deserialize_partial_cancelled_payment(obj: Any) -> PartialCancelledPayment:
         raise KeyError(f"'customer' is not in {obj}")
     customer = obj["customer"]
     customer = _deserialize_customer(customer)
+    if "origin" not in obj:
+        raise KeyError(f"'origin' is not in {obj}")
+    origin = obj["origin"]
+    origin = _deserialize_payment_origin(origin)
     if "cancellations" not in obj:
         raise KeyError(f"'cancellations' is not in {obj}")
     cancellations = obj["cancellations"]
@@ -364,4 +373,4 @@ def _deserialize_partial_cancelled_payment(obj: Any) -> PartialCancelledPayment:
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return PartialCancelledPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, cancellations, cancelled_at, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, paid_at, pg_tx_id, cash_receipt, receipt_url)
+    return PartialCancelledPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, origin, cancellations, cancelled_at, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, paid_at, pg_tx_id, cash_receipt, receipt_url)

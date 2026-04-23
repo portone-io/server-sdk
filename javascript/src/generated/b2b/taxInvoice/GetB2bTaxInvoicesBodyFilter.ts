@@ -36,4 +36,16 @@ export type GetB2bTaxInvoicesBodyFilter = {
 	issuanceTypes?: B2bTaxInvoiceIssuanceType[]
 	/** 영수/청구 */
 	purposeTypes?: B2bTaxInvoicePurposeType[]
+	/**
+	 * 거래처 ID
+	 *
+	 * 거래처 ID로 필터링합니다. 공급자 또는 공급받는자 거래처 ID에 대해 조회합니다.
+	 */
+	counterpartyId?: string
+	/**
+	 * 거래처 사업자등록번호 매칭 포함 여부
+	 *
+	 * counterpartyId 조건과 함께 거래처의 사업자등록번호 매칭 조건을 추가할지 여부입니다.
+	 */
+	includeBrnMatch?: boolean
 }

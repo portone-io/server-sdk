@@ -17,6 +17,7 @@ export { BulkAccountTransferClient } from "./platform/bulkAccountTransfer/client
 export { BulkPayoutClient } from "./platform/bulkPayout/client"
 export { CashReceiptClient } from "./payment/cashReceipt/client"
 export { CompanyClient } from "./platform/company/client"
+export { CounterpartyClient } from "./b2b/counterparty/client"
 export { IdentityVerificationClient } from "./identityVerification/client"
 export { PartnerClient } from "./platform/partner/client"
 export { PartnerSettlementClient } from "./platform/partnerSettlement/client"

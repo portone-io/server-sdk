@@ -71,6 +71,11 @@ class CreatePlatformOrderTransferBody:
     user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
+    id: Optional[str] = field(default=None)
+    """생성할 정산건 아이디
+
+    명시하지 않으면 id 가 임의로 생성됩니다.
+    """
 
 
 def _serialize_create_platform_order_transfer_body(obj: CreatePlatformOrderTransferBody) -> Any:
@@ -100,6 +105,8 @@ def _serialize_create_platform_order_transfer_body(obj: CreatePlatformOrderTrans
         entity["parameters"] = _serialize_transfer_parameters(obj.parameters)
     if obj.user_defined_properties is not None:
         entity["userDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.user_defined_properties))
+    if obj.id is not None:
+        entity["id"] = obj.id
     return entity
 
 
@@ -191,4 +198,10 @@ def _deserialize_create_platform_order_transfer_body(obj: Any) -> CreatePlatform
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformOrderTransferBody(partner_id, payment_id, order_detail, discounts, additional_fees, contract_id, memo, tax_free_amount, settlement_start_date, settlement_date, external_payment_detail, is_for_test, parameters, user_defined_properties)
+    if "id" in obj:
+        id = obj["id"]
+        if not isinstance(id, str):
+            raise ValueError(f"{repr(id)} is not str")
+    else:
+        id = None
+    return CreatePlatformOrderTransferBody(partner_id, payment_id, order_detail, discounts, additional_fees, contract_id, memo, tax_free_amount, settlement_start_date, settlement_date, external_payment_detail, is_for_test, parameters, user_defined_properties, id)

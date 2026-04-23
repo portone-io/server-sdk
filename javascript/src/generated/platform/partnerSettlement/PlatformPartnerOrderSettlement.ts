@@ -22,6 +22,11 @@ export type PlatformPartnerOrderSettlement = {
 	settlementCurrency: Currency
 	/** 정산 상태 */
 	status: PlatformPartnerSettlementStatus
+	/**
+	 * 상태 업데이트 일시
+	 * (RFC 3339 date-time)
+	 */
+	statusUpdatedAt?: string
 	/** 메모 */
 	memo?: string
 	/** 계약 */

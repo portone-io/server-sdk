@@ -9,6 +9,12 @@ public data class PaymentInstallment(
   val month: Int,
   /** 무이자할부 여부 */
   val isInterestFree: Boolean,
+  /**
+   * 상점 부담 무이자할부 여부
+   *
+   * 정보 필요시 포트원과 협의해 주세요.
+   */
+  val isInterestFreeFromMerchant: Boolean? = null,
 )
 
 

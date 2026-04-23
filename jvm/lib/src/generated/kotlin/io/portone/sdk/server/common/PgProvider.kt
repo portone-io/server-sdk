@@ -808,6 +808,21 @@ public sealed interface PgProvider {
     }
     override fun serialize(encoder: Encoder, value: TripleA): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(KiccV2Serializer::class)
+  public data object KiccV2 : PgProvider {
+    override val value: String = "KICC_V2"
+  }
+  public object KiccV2Serializer : KSerializer<KiccV2> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(KiccV2::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): KiccV2 = decoder.decodeString().let {
+      if (it != "KICC_V2") {
+        throw SerializationException(it)
+      } else {
+        return KiccV2
+      }
+    }
+    override fun serialize(encoder: Encoder, value: KiccV2): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgProvider
@@ -872,6 +887,7 @@ public object PgProviderSerializer : KSerializer<PgProvider> {
       "PAYLETTER_GLOBAL" -> PgProvider.PayletterGlobal
       "MOBILIANS_V2" -> PgProvider.MobiliansV2
       "TRIPLE_A" -> PgProvider.TripleA
+      "KICC_V2" -> PgProvider.KiccV2
       else -> PgProvider.Unrecognized(value)
     }
   }

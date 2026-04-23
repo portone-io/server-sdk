@@ -284,6 +284,38 @@ public sealed interface B2bTaxInvoiceStatus {
     }
     override fun serialize(encoder: Encoder, value: IssuanceCancelled): Unit = encoder.encodeString(value.value)
   }
+  /** 발행취소 대기 */
+  @Serializable(CancelPendingSerializer::class)
+  public data object CancelPending : B2bTaxInvoiceStatus {
+    override val value: String = "CANCEL_PENDING"
+  }
+  public object CancelPendingSerializer : KSerializer<CancelPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): CancelPending = decoder.decodeString().let {
+      if (it != "CANCEL_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return CancelPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: CancelPending): Unit = encoder.encodeString(value.value)
+  }
+  /** 국세청 전송 대기 */
+  @Serializable(SendingPendingSerializer::class)
+  public data object SendingPending : B2bTaxInvoiceStatus {
+    override val value: String = "SENDING_PENDING"
+  }
+  public object SendingPendingSerializer : KSerializer<SendingPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendingPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SendingPending = decoder.decodeString().let {
+      if (it != "SENDING_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return SendingPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SendingPending): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : B2bTaxInvoiceStatus
@@ -312,6 +344,8 @@ public object B2bTaxInvoiceStatusSerializer : KSerializer<B2bTaxInvoiceStatus> {
       "SENDING_FAILED" -> B2bTaxInvoiceStatus.SendingFailed
       "REQUEST_REFUSED" -> B2bTaxInvoiceStatus.RequestRefused
       "ISSUANCE_CANCELLED" -> B2bTaxInvoiceStatus.IssuanceCancelled
+      "CANCEL_PENDING" -> B2bTaxInvoiceStatus.CancelPending
+      "SENDING_PENDING" -> B2bTaxInvoiceStatus.SendingPending
       else -> B2bTaxInvoiceStatus.Unrecognized(value)
     }
   }

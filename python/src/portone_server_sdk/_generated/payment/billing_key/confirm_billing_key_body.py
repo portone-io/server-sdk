@@ -22,6 +22,11 @@ class ConfirmBillingKeyBody:
 
     검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
     """
+    skip_webhook: Optional[bool] = field(default=None)
+    """웹훅 생략 여부
+
+    빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+    """
 
 
 def _serialize_confirm_billing_key_body(obj: ConfirmBillingKeyBody) -> Any:
@@ -33,6 +38,8 @@ def _serialize_confirm_billing_key_body(obj: ConfirmBillingKeyBody) -> Any:
         entity["storeId"] = obj.store_id
     if obj.is_test is not None:
         entity["isTest"] = obj.is_test
+    if obj.skip_webhook is not None:
+        entity["skipWebhook"] = obj.skip_webhook
     return entity
 
 
@@ -56,4 +63,10 @@ def _deserialize_confirm_billing_key_body(obj: Any) -> ConfirmBillingKeyBody:
             raise ValueError(f"{repr(is_test)} is not bool")
     else:
         is_test = None
-    return ConfirmBillingKeyBody(billing_issue_token, store_id, is_test)
+    if "skipWebhook" in obj:
+        skip_webhook = obj["skipWebhook"]
+        if not isinstance(skip_webhook, bool):
+            raise ValueError(f"{repr(skip_webhook)} is not bool")
+    else:
+        skip_webhook = None
+    return ConfirmBillingKeyBody(billing_issue_token, store_id, is_test, skip_webhook)

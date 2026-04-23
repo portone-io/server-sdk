@@ -3,6 +3,7 @@ package io.portone.sdk.server.platform.accounttransfer
 import io.portone.sdk.server.common.Bank
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.accounttransfer.PlatformAccountTransferStatus
+import io.portone.sdk.server.platform.accounttransfer.PlatformBankAccountDetail
 import io.portone.sdk.server.platform.accounttransfer.Type
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
@@ -18,6 +19,8 @@ public data class PlatformWithdrawalAccountTransfer(
   /** 출금 계좌 아이디 */
   override val bankAccountId: String,
   override val bankAccountGraphqlId: String,
+  /** 출금 계좌 정보 */
+  override val bankAccount: PlatformBankAccountDetail,
   /** 거래 일련번호 */
   val sequenceNumber: Int? = null,
   /** 통화 */

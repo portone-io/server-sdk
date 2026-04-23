@@ -46,6 +46,7 @@ internal object CreatePlatformOrderTransferErrorSerializer : JsonContentPolymorp
       "PLATFORM_SETTLEMENT_SUPPLY_WITH_VAT_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT" -> PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError.serializer()
       "PLATFORM_SETTLEMENT_TAX_FREE_AMOUNT_EXCEEDED_PORT_ONE_PAYMENT" -> PlatformSettlementTaxFreeAmountExceededPortOnePaymentError.serializer()
       "PLATFORM_TRANSFER_ALREADY_EXISTS" -> PlatformTransferAlreadyExistsError.serializer()
+      "PLATFORM_TRANSFER_ID_ALREADY_USED" -> PlatformTransferIdAlreadyUsedError.serializer()
       "PLATFORM_USER_DEFINED_PROPERTY_NOT_FOUND" -> PlatformUserDefinedPropertyNotFoundError.serializer()
       "UNAUTHORIZED" -> UnauthorizedError.serializer()
       else -> CreatePlatformOrderTransferError.Unrecognized.serializer()

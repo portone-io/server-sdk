@@ -4,10 +4,12 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import B2BCannotChangeTaxTypeError, B2BTaxInvoiceStatusNotSendingCompletedError, B2bBulkTaxInvoiceNotFoundError, B2bDocumentKeyCannotBeChangedError, B2bExternalServiceError, B2bFileNotFoundError, B2bIdAlreadyExistsError, B2bIssuanceTypeMismatchError, B2bModificationNotProvidedError, B2bNotEnabledError, B2bOriginalTaxInvoiceNotFoundError, B2bRecipientNotFoundError, B2bSupplierNotFoundError, B2bTaxInvoiceAttachmentNotFoundError, B2bTaxInvoiceNoRecipientDocumentKeyError, B2bTaxInvoiceNoSupplierDocumentKeyError, B2bTaxInvoiceNonDeletableStatusError, B2bTaxInvoiceNotDraftedStatusError, B2bTaxInvoiceNotFoundError, B2bTaxInvoiceNotIssuedStatusError, B2bTaxInvoiceNotRequestedStatusError, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError, ForbiddenError, InvalidRequestError, UnauthorizedError, UnknownError
+from ...errors import B2BCannotChangeTaxTypeError, B2BTaxInvoiceStatusNotSendingCompletedError, B2bBulkTaxInvoiceNotFoundError, B2bCounterpartyNotFoundError, B2bCounterpartyNtsNotConnectedError, B2bDocumentKeyCannotBeChangedError, B2bExternalServiceError, B2bFileNotFoundError, B2bIdAlreadyExistsError, B2bIssuanceTypeMismatchError, B2bModificationNotProvidedError, B2bNotEnabledError, B2bOriginalTaxInvoiceNotFoundError, B2bRecipientNotFoundError, B2bSupplierNotFoundError, B2bTaxInvoiceAttachmentNotFoundError, B2bTaxInvoiceNoRecipientDocumentKeyError, B2bTaxInvoiceNoSupplierDocumentKeyError, B2bTaxInvoiceNonDeletableStatusError, B2bTaxInvoiceNotDraftedStatusError, B2bTaxInvoiceNotFoundError, B2bTaxInvoiceNotIssuedStatusError, B2bTaxInvoiceNotRequestedStatusError, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError, ForbiddenError, InvalidRequestError, UnauthorizedError, UnknownError
 from ...b2b.tax_invoice.b2b_cannot_change_tax_type_error import _deserialize_b2b_cannot_change_tax_type_error
 from ...b2b.tax_invoice.b2b_tax_invoice_status_not_sending_completed_error import _deserialize_b2b_tax_invoice_status_not_sending_completed_error
 from ...b2b.tax_invoice.b2b_bulk_tax_invoice_not_found_error import _deserialize_b2b_bulk_tax_invoice_not_found_error
+from ...common.b2b_counterparty_not_found_error import _deserialize_b2b_counterparty_not_found_error
+from ...common.b2b_counterparty_nts_not_connected_error import _deserialize_b2b_counterparty_nts_not_connected_error
 from ...b2b.tax_invoice.b2b_document_key_cannot_be_changed_error import _deserialize_b2b_document_key_cannot_be_changed_error
 from ...common.b2b_external_service_error import _deserialize_b2b_external_service_error
 from ...b2b.tax_invoice.b2b_file_not_found_error import _deserialize_b2b_file_not_found_error
@@ -382,6 +384,7 @@ class TaxInvoiceClient:
         filter: Optional[GetB2bTaxInvoicesBodyFilter] = None,
         fields: Optional[list[TaxInvoicesSheetField]] = None,
         test: Optional[bool] = None,
+        sort: Optional[B2bTaxInvoiceSortInput] = None,
     ) -> str:
         """세금계산서 엑셀 파일(csv) 다운로드
 
@@ -394,6 +397,10 @@ class TaxInvoiceClient:
                 다운로드 할 시트 컬럼
             test (bool, optional):
 
+            sort (B2bTaxInvoiceSortInput, optional):
+                정렬 조건
+
+                미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
 
 
         Raises:
@@ -407,6 +414,8 @@ class TaxInvoiceClient:
             request_body["fields"] = [_serialize_tax_invoices_sheet_field(item) for item in fields]
         if test is not None:
             request_body["test"] = test
+        if sort is not None:
+            request_body["sort"] = _serialize_b2b_tax_invoice_sort_input(sort)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
@@ -441,6 +450,7 @@ class TaxInvoiceClient:
         filter: Optional[GetB2bTaxInvoicesBodyFilter] = None,
         fields: Optional[list[TaxInvoicesSheetField]] = None,
         test: Optional[bool] = None,
+        sort: Optional[B2bTaxInvoiceSortInput] = None,
     ) -> str:
         """세금계산서 엑셀 파일(csv) 다운로드
 
@@ -453,6 +463,10 @@ class TaxInvoiceClient:
                 다운로드 할 시트 컬럼
             test (bool, optional):
 
+            sort (B2bTaxInvoiceSortInput, optional):
+                정렬 조건
+
+                미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
 
 
         Raises:
@@ -466,6 +480,8 @@ class TaxInvoiceClient:
             request_body["fields"] = [_serialize_tax_invoices_sheet_field(item) for item in fields]
         if test is not None:
             request_body["test"] = test
+        if sort is not None:
+            request_body["sort"] = _serialize_b2b_tax_invoice_sort_input(sort)
         query = []
         query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
@@ -564,6 +580,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_document_key_cannot_be_changed_error(error_response)
             except Exception:
@@ -739,6 +767,18 @@ class TaxInvoiceClient:
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
             try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
+            try:
                 error = _deserialize_b2b_document_key_cannot_be_changed_error(error_response)
             except Exception:
                 pass
@@ -849,6 +889,7 @@ class TaxInvoiceClient:
         tax_invoice: B2bTaxInvoiceInput,
         modification: Optional[B2bTaxInvoiceModificationCreateBody] = None,
         memo: Optional[str] = None,
+        create_recipient_counterparty: Optional[bool] = None,
     ) -> DraftB2bTaxInvoiceResponse:
         """세금계산서 임시 저장
 
@@ -865,6 +906,10 @@ class TaxInvoiceClient:
                 수정 세금계산서 입력 정보
             memo (str, optional):
                 메모
+            create_recipient_counterparty (bool, optional):
+                공급받는자 거래처 생성 여부
+
+                true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
 
 
         Raises:
@@ -877,6 +922,8 @@ class TaxInvoiceClient:
             request_body["modification"] = _serialize_b2b_tax_invoice_modification_create_body(modification)
         if memo is not None:
             request_body["memo"] = memo
+        if create_recipient_counterparty is not None:
+            request_body["createRecipientCounterparty"] = create_recipient_counterparty
         query = []
         if test is not None:
             query.append(("test", test))
@@ -899,6 +946,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:
@@ -998,6 +1057,7 @@ class TaxInvoiceClient:
         tax_invoice: B2bTaxInvoiceInput,
         modification: Optional[B2bTaxInvoiceModificationCreateBody] = None,
         memo: Optional[str] = None,
+        create_recipient_counterparty: Optional[bool] = None,
     ) -> DraftB2bTaxInvoiceResponse:
         """세금계산서 임시 저장
 
@@ -1014,6 +1074,10 @@ class TaxInvoiceClient:
                 수정 세금계산서 입력 정보
             memo (str, optional):
                 메모
+            create_recipient_counterparty (bool, optional):
+                공급받는자 거래처 생성 여부
+
+                true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
 
 
         Raises:
@@ -1026,6 +1090,8 @@ class TaxInvoiceClient:
             request_body["modification"] = _serialize_b2b_tax_invoice_modification_create_body(modification)
         if memo is not None:
             request_body["memo"] = memo
+        if create_recipient_counterparty is not None:
+            request_body["createRecipientCounterparty"] = create_recipient_counterparty
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1048,6 +1114,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:
@@ -1147,6 +1225,7 @@ class TaxInvoiceClient:
         tax_invoice: B2bTaxInvoiceInput,
         memo: Optional[str] = None,
         modification: Optional[B2bTaxInvoiceModificationCreateBody] = None,
+        create_recipient_counterparty: Optional[bool] = None,
     ) -> IssueB2bTaxInvoiceImmediatelyResponse:
         """세금계산서 즉시 정발행
 
@@ -1163,6 +1242,10 @@ class TaxInvoiceClient:
                 메모
             modification (B2bTaxInvoiceModificationCreateBody, optional):
                 수정 세금계산서 입력 정보
+            create_recipient_counterparty (bool, optional):
+                공급받는자 거래처 생성 여부
+
+                true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
 
 
         Raises:
@@ -1175,6 +1258,8 @@ class TaxInvoiceClient:
             request_body["memo"] = memo
         if modification is not None:
             request_body["modification"] = _serialize_b2b_tax_invoice_modification_create_body(modification)
+        if create_recipient_counterparty is not None:
+            request_body["createRecipientCounterparty"] = create_recipient_counterparty
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1197,6 +1282,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:
@@ -1296,6 +1393,7 @@ class TaxInvoiceClient:
         tax_invoice: B2bTaxInvoiceInput,
         memo: Optional[str] = None,
         modification: Optional[B2bTaxInvoiceModificationCreateBody] = None,
+        create_recipient_counterparty: Optional[bool] = None,
     ) -> IssueB2bTaxInvoiceImmediatelyResponse:
         """세금계산서 즉시 정발행
 
@@ -1312,6 +1410,10 @@ class TaxInvoiceClient:
                 메모
             modification (B2bTaxInvoiceModificationCreateBody, optional):
                 수정 세금계산서 입력 정보
+            create_recipient_counterparty (bool, optional):
+                공급받는자 거래처 생성 여부
+
+                true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
 
 
         Raises:
@@ -1324,6 +1426,8 @@ class TaxInvoiceClient:
             request_body["memo"] = memo
         if modification is not None:
             request_body["modification"] = _serialize_b2b_tax_invoice_modification_create_body(modification)
+        if create_recipient_counterparty is not None:
+            request_body["createRecipientCounterparty"] = create_recipient_counterparty
         query = []
         if test is not None:
             query.append(("test", test))
@@ -1346,6 +1450,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:
@@ -1496,6 +1612,18 @@ class TaxInvoiceClient:
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
             try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
+            try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:
                 pass
@@ -1644,6 +1772,18 @@ class TaxInvoiceClient:
                 pass
             if error is not None:
                 raise B2BCannotChangeTaxTypeError(error)
+            try:
+                error = _deserialize_b2b_counterparty_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNotFoundError(error)
+            try:
+                error = _deserialize_b2b_counterparty_nts_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise B2bCounterpartyNtsNotConnectedError(error)
             try:
                 error = _deserialize_b2b_external_service_error(error_response)
             except Exception:

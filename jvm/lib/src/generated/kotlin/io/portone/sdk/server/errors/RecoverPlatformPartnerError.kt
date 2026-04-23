@@ -31,6 +31,7 @@ internal object RecoverPlatformPartnerErrorSerializer : JsonContentPolymorphicSe
       "INVALID_REQUEST" -> InvalidRequestError.serializer()
       "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
       "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
+      "PLATFORM_PARTNER_PENDING_NTS_OPERATION" -> PlatformPartnerPendingNtsOperationError.serializer()
       "UNAUTHORIZED" -> UnauthorizedError.serializer()
       else -> RecoverPlatformPartnerError.Unrecognized.serializer()
     }

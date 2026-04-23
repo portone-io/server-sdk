@@ -5,7 +5,9 @@ export type B2bTaxInvoiceCompany = {
 	 *
 	 * `-`를 제외한 10자리
 	 */
-	brn: string
+	brn?: string
+	/** 거래처 ID */
+	counterpartyId?: string
 	/**
 	 * 종사업자 식별 번호
 	 *
@@ -17,13 +19,13 @@ export type B2bTaxInvoiceCompany = {
 	 *
 	 * 최대 200자
 	 */
-	name: string
+	name?: string
 	/**
 	 * 대표자 성명
 	 *
 	 * 최대 100자
 	 */
-	representativeName: string
+	representativeName?: string
 	/**
 	 * 주소
 	 *
@@ -43,5 +45,5 @@ export type B2bTaxInvoiceCompany = {
 	 */
 	businessClass?: string
 	/** 담당자 */
-	contact: B2bTaxInvoiceContact
+	contact?: B2bTaxInvoiceContact
 }

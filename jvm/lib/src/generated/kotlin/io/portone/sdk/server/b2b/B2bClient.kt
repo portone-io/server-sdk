@@ -3,6 +3,7 @@ package io.portone.sdk.server.b2b
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
+import io.portone.sdk.server.b2b.counterparty.CounterpartyClient
 import io.portone.sdk.server.b2b.taxinvoice.TaxInvoiceClient
 import java.io.Closeable
 import kotlinx.serialization.json.Json
@@ -29,8 +30,10 @@ public class B2bClient(
 
   private val json: Json = Json { ignoreUnknownKeys = true }
   public val taxInvoice: TaxInvoiceClient = TaxInvoiceClient(apiSecret, apiBase, storeId)
+  public val counterparty: CounterpartyClient = CounterpartyClient(apiSecret, apiBase, storeId)
   override fun close() {
     taxInvoice.close()
+    counterparty.close()
     client.close()
   }
 }

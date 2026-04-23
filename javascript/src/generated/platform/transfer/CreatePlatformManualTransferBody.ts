@@ -1,3 +1,4 @@
+import type { Currency } from "./../../common/Currency"
 import type { PlatformUserDefinedPropertyKeyValue } from "./../../platform/transfer/PlatformUserDefinedPropertyKeyValue"
 /** 수기 정산건 생성을 위한 입력 정보 */
 export type CreatePlatformManualTransferBody = {
@@ -31,4 +32,12 @@ export type CreatePlatformManualTransferBody = {
 	isForTest?: boolean
 	/** 사용자 정의 속성 */
 	userDefinedProperties?: PlatformUserDefinedPropertyKeyValue[]
+	/**
+	 * 생성할 정산건 아이디
+	 *
+	 * 명시하지 않으면 id 가 임의로 생성됩니다.
+	 */
+	id?: string
+	/** 정산 통화 */
+	settlementCurrency?: Currency
 }

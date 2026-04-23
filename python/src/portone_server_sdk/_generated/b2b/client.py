@@ -6,6 +6,7 @@ from ..._user_agent import USER_AGENT
 from typing import Optional
 from urllib.parse import quote
 from .tax_invoice.client import TaxInvoiceClient
+from .counterparty.client import CounterpartyClient
 class B2bClient:
     _secret: str
     _base_url: str
@@ -13,6 +14,7 @@ class B2bClient:
     _async_client: AsyncClient
     _sync_client: SyncClient
     tax_invoice: TaxInvoiceClient
+    counterparty: CounterpartyClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
         """
@@ -29,3 +31,4 @@ class B2bClient:
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
         self.tax_invoice = TaxInvoiceClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.counterparty = CounterpartyClient(secret=secret, base_url=base_url, store_id=store_id)

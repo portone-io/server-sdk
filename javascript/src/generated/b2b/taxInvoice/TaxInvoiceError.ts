@@ -3,6 +3,8 @@ import { B2bError } from "../B2bError"
 import type { B2BCannotChangeTaxTypeError } from "../../b2b/taxInvoice/B2BCannotChangeTaxTypeError"
 import type { B2BTaxInvoiceStatusNotSendingCompletedError } from "../../b2b/taxInvoice/B2BTaxInvoiceStatusNotSendingCompletedError"
 import type { B2bBulkTaxInvoiceNotFoundError } from "../../b2b/taxInvoice/B2bBulkTaxInvoiceNotFoundError"
+import type { B2bCounterpartyNotFoundError } from "../../common/B2bCounterpartyNotFoundError"
+import type { B2bCounterpartyNtsNotConnectedError } from "../../common/B2bCounterpartyNtsNotConnectedError"
 import type { B2bDocumentKeyCannotBeChangedError } from "../../b2b/taxInvoice/B2bDocumentKeyCannotBeChangedError"
 import type { B2bExternalServiceError } from "../../common/B2bExternalServiceError"
 import type { B2bFileNotFoundError } from "../../b2b/taxInvoice/B2bFileNotFoundError"
@@ -27,5 +29,5 @@ import type { ForbiddenError } from "../../common/ForbiddenError"
 import type { InvalidRequestError } from "../../common/InvalidRequestError"
 import type { UnauthorizedError } from "../../common/UnauthorizedError"
 export abstract class TaxInvoiceError extends B2bError {
-	declare readonly data: B2BCannotChangeTaxTypeError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bBulkTaxInvoiceNotFoundError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bFileNotFoundError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceAttachmentNotFoundError | B2bTaxInvoiceNoRecipientDocumentKeyError | B2bTaxInvoiceNoSupplierDocumentKeyError | B2bTaxInvoiceNonDeletableStatusError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceNotIssuedStatusError | B2bTaxInvoiceNotRequestedStatusError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: B2BCannotChangeTaxTypeError | B2BTaxInvoiceStatusNotSendingCompletedError | B2bBulkTaxInvoiceNotFoundError | B2bCounterpartyNotFoundError | B2bCounterpartyNtsNotConnectedError | B2bDocumentKeyCannotBeChangedError | B2bExternalServiceError | B2bFileNotFoundError | B2bIdAlreadyExistsError | B2bIssuanceTypeMismatchError | B2bModificationNotProvidedError | B2bNotEnabledError | B2bOriginalTaxInvoiceNotFoundError | B2bRecipientNotFoundError | B2bSupplierNotFoundError | B2bTaxInvoiceAttachmentNotFoundError | B2bTaxInvoiceNoRecipientDocumentKeyError | B2bTaxInvoiceNoSupplierDocumentKeyError | B2bTaxInvoiceNonDeletableStatusError | B2bTaxInvoiceNotDraftedStatusError | B2bTaxInvoiceNotFoundError | B2bTaxInvoiceNotIssuedStatusError | B2bTaxInvoiceNotRequestedStatusError | B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError | B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError | ForbiddenError | InvalidRequestError | UnauthorizedError | { readonly type: Unrecognized }
 }

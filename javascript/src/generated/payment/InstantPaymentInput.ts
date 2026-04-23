@@ -79,4 +79,10 @@ export type InstantPaymentInput = {
 	promotionId?: string
 	/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
 	bypass?: object
+	/**
+	 * 웹훅 생략 여부
+	 *
+	 * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+	 */
+	skipWebhook?: boolean
 }

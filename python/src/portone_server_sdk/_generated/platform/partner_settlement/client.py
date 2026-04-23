@@ -4,11 +4,15 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformNotEnabledError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformNonDeletablePartnerSettlementsError, PlatformNotEnabledError, PlatformPartnerSettlementsNotFoundError, PlatformReferencedCancelOrderTransfersExistError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
+from ...platform.partner_settlement.platform_non_deletable_partner_settlements_error import _deserialize_platform_non_deletable_partner_settlements_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
+from ...platform.platform_partner_settlements_not_found_error import _deserialize_platform_partner_settlements_not_found_error
+from ...platform.partner_settlement.platform_referenced_cancel_order_transfers_exist_error import _deserialize_platform_referenced_cancel_order_transfers_exist_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
+from ...platform.partner_settlement.delete_platform_partner_settlements_response import DeletePlatformPartnerSettlementsResponse, _deserialize_delete_platform_partner_settlements_response, _serialize_delete_platform_partner_settlements_response
 from ...platform.partner_settlement.get_platform_partner_settlements_response import GetPlatformPartnerSettlementsResponse, _deserialize_get_platform_partner_settlements_response, _serialize_get_platform_partner_settlements_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.partner_settlement.platform_partner_settlement_filter_input import PlatformPartnerSettlementFilterInput, _deserialize_platform_partner_settlement_filter_input, _serialize_platform_partner_settlement_filter_input
@@ -34,6 +38,196 @@ class PartnerSettlementClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
+    def delete_platform_partner_settlements(
+        self,
+        *,
+        test: Optional[bool] = None,
+        partner_settlement_ids: list[str],
+        is_for_test: Optional[bool] = None,
+    ) -> DeletePlatformPartnerSettlementsResponse:
+        """정산내역 삭제
+
+        선택한 정산내역들을 삭제합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            partner_settlement_ids (list[str]):
+
+            is_for_test (bool, optional):
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            DeletePlatformPartnerSettlementsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["partnerSettlementIds"] = partner_settlement_ids
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = self._sync_client.request(
+            "POST",
+            f"{self._base_url}/platform/partner-settlements/delete",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_non_deletable_partner_settlements_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNonDeletablePartnerSettlementsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_settlements_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerSettlementsNotFoundError(error)
+            try:
+                error = _deserialize_platform_referenced_cancel_order_transfers_exist_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformReferencedCancelOrderTransfersExistError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_delete_platform_partner_settlements_response(response.json())
+    async def delete_platform_partner_settlements_async(
+        self,
+        *,
+        test: Optional[bool] = None,
+        partner_settlement_ids: list[str],
+        is_for_test: Optional[bool] = None,
+    ) -> DeletePlatformPartnerSettlementsResponse:
+        """정산내역 삭제
+
+        선택한 정산내역들을 삭제합니다.
+
+        Warning:
+            실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.
+
+
+        Args:
+            test (bool, optional):
+                테스트 모드 여부
+
+                테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+            partner_settlement_ids (list[str]):
+
+            is_for_test (bool, optional):
+                Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+                Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+
+
+        Raises:
+            DeletePlatformPartnerSettlementsError: API 호출이 실패한 경우
+            ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
+        """
+        request_body = {}
+        request_body["partnerSettlementIds"] = partner_settlement_ids
+        if is_for_test is not None:
+            request_body["isForTest"] = is_for_test
+        query = []
+        if test is not None:
+            query.append(("test", test))
+        response = await self._async_client.request(
+            "POST",
+            f"{self._base_url}/platform/partner-settlements/delete",
+            params=query,
+            headers={
+                "Authorization": f"PortOne {self._secret}",
+                "User-Agent": USER_AGENT,
+            },
+            json=request_body,
+        )
+        if response.status_code != 200:
+            error_response = response.json()
+            error = None
+            try:
+                error = _deserialize_forbidden_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise ForbiddenError(error)
+            try:
+                error = _deserialize_invalid_request_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise InvalidRequestError(error)
+            try:
+                error = _deserialize_platform_non_deletable_partner_settlements_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNonDeletablePartnerSettlementsError(error)
+            try:
+                error = _deserialize_platform_not_enabled_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNotEnabledError(error)
+            try:
+                error = _deserialize_platform_partner_settlements_not_found_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerSettlementsNotFoundError(error)
+            try:
+                error = _deserialize_platform_referenced_cancel_order_transfers_exist_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformReferencedCancelOrderTransfersExistError(error)
+            try:
+                error = _deserialize_unauthorized_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise UnauthorizedError(error)
+            raise UnknownError(error_response)
+        return _deserialize_delete_platform_partner_settlements_response(response.json())
     def get_platform_partner_settlements(
         self,
         *,

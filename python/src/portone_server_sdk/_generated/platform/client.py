@@ -68,9 +68,9 @@ from .policy.client import PolicyClient
 from .account.client import AccountClient
 from .bulk_account_transfer.client import BulkAccountTransferClient
 from .bulk_payout.client import BulkPayoutClient
+from .payout.client import PayoutClient
 from .partner_settlement.client import PartnerSettlementClient
 from .partner.client import PartnerClient
-from .payout.client import PayoutClient
 from .transfer.client import TransferClient
 class PlatformClient:
     _secret: str
@@ -84,9 +84,9 @@ class PlatformClient:
     account: AccountClient
     bulk_account_transfer: BulkAccountTransferClient
     bulk_payout: BulkPayoutClient
+    payout: PayoutClient
     partner_settlement: PartnerSettlementClient
     partner: PartnerClient
-    payout: PayoutClient
     transfer: TransferClient
 
     def __init__(self, *, secret: str, base_url: str = "https://api.portone.io", store_id: Optional[str] = None):
@@ -109,9 +109,9 @@ class PlatformClient:
         self.account = AccountClient(secret=secret, base_url=base_url, store_id=store_id)
         self.bulk_account_transfer = BulkAccountTransferClient(secret=secret, base_url=base_url, store_id=store_id)
         self.bulk_payout = BulkPayoutClient(secret=secret, base_url=base_url, store_id=store_id)
+        self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.partner_settlement = PartnerSettlementClient(secret=secret, base_url=base_url, store_id=store_id)
         self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)
-        self.payout = PayoutClient(secret=secret, base_url=base_url, store_id=store_id)
         self.transfer = TransferClient(secret=secret, base_url=base_url, store_id=store_id)
     def get_platform_additional_fee_policy_schedule(
         self,

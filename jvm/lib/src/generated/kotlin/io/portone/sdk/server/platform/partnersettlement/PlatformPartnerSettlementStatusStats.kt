@@ -7,6 +7,7 @@ public data class PlatformPartnerSettlementStatusStats(
   val payoutScheduled: Long,
   val payoutPrepared: Long,
   val payoutWithheld: Long,
+  val payoutExcluded: Long,
   val payoutFailed: Long,
   val payoutCancelled: Long,
   val payoutConfirmed: Long,

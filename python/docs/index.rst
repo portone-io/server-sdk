@@ -19,6 +19,7 @@ portone_server_sdk
    webhook
    B2bClient
    TaxInvoiceClient
+   CounterpartyClient
    PlatformClient
    CompanyClient
    AccountTransferClient
@@ -26,9 +27,9 @@ portone_server_sdk
    AccountClient
    BulkAccountTransferClient
    BulkPayoutClient
+   PayoutClient
    PartnerSettlementClient
    PartnerClient
-   PayoutClient
    TransferClient
    PaymentClient
    BillingKeyClient

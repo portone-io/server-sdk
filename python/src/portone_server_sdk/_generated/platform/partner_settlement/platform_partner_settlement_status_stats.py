@@ -13,6 +13,9 @@ class PlatformPartnerSettlementStatusStats:
     payout_withheld: int
     """(int64)
     """
+    payout_excluded: int
+    """(int64)
+    """
     payout_failed: int
     """(int64)
     """
@@ -37,6 +40,7 @@ def _serialize_platform_partner_settlement_status_stats(obj: PlatformPartnerSett
     entity["payoutScheduled"] = obj.payout_scheduled
     entity["payoutPrepared"] = obj.payout_prepared
     entity["payoutWithheld"] = obj.payout_withheld
+    entity["payoutExcluded"] = obj.payout_excluded
     entity["payoutFailed"] = obj.payout_failed
     entity["payoutCancelled"] = obj.payout_cancelled
     entity["payoutConfirmed"] = obj.payout_confirmed
@@ -63,6 +67,11 @@ def _deserialize_platform_partner_settlement_status_stats(obj: Any) -> PlatformP
     payout_withheld = obj["payoutWithheld"]
     if not isinstance(payout_withheld, int):
         raise ValueError(f"{repr(payout_withheld)} is not int")
+    if "payoutExcluded" not in obj:
+        raise KeyError(f"'payoutExcluded' is not in {obj}")
+    payout_excluded = obj["payoutExcluded"]
+    if not isinstance(payout_excluded, int):
+        raise ValueError(f"{repr(payout_excluded)} is not int")
     if "payoutFailed" not in obj:
         raise KeyError(f"'payoutFailed' is not in {obj}")
     payout_failed = obj["payoutFailed"]
@@ -88,4 +97,4 @@ def _deserialize_platform_partner_settlement_status_stats(obj: Any) -> PlatformP
     paid_out = obj["paidOut"]
     if not isinstance(paid_out, int):
         raise ValueError(f"{repr(paid_out)} is not int")
-    return PlatformPartnerSettlementStatusStats(payout_scheduled, payout_prepared, payout_withheld, payout_failed, payout_cancelled, payout_confirmed, in_payout, paid_out)
+    return PlatformPartnerSettlementStatusStats(payout_scheduled, payout_prepared, payout_withheld, payout_excluded, payout_failed, payout_cancelled, payout_confirmed, in_payout, paid_out)

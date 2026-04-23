@@ -4,7 +4,7 @@ import { USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { AlreadyPaidOrWaitingError } from "../../../generated/payment/paymentSchedule/AlreadyPaidOrWaitingError"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyNotFoundError } from "../../../generated/common/BillingKeyNotFoundError"
-import type { BillingKeyPaymentInput } from "../../../generated/common/BillingKeyPaymentInput"
+import type { BillingKeyPaymentScheduleInput } from "../../../generated/payment/paymentSchedule/BillingKeyPaymentScheduleInput"
 import type { CreatePaymentScheduleResponse } from "../../../generated/payment/paymentSchedule/CreatePaymentScheduleResponse"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { GetPaymentSchedulesResponse } from "../../../generated/payment/paymentSchedule/GetPaymentSchedulesResponse"
@@ -130,7 +130,7 @@ export function PaymentScheduleClient(init: PortOneClientInit): PaymentScheduleC
 		createPaymentSchedule: async (
 			options: {
 				paymentId: string,
-				payment: BillingKeyPaymentInput,
+				payment: BillingKeyPaymentScheduleInput,
 				timeToPay: string,
 			}
 		): Promise<CreatePaymentScheduleResponse> => {
@@ -245,7 +245,7 @@ export type PaymentScheduleClient = {
 			/** 결제 건 아이디 */
 			paymentId: string,
 			/** 빌링키 결제 입력 정보 */
-			payment: BillingKeyPaymentInput,
+			payment: BillingKeyPaymentScheduleInput,
 			/**
 			 * 결제 예정 시점
 			 * (RFC 3339 date-time)

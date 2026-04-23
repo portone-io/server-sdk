@@ -9,6 +9,8 @@ import kotlinx.serialization.Serializable
 @SerialName("B2B_SUPPLIER_NOT_FOUND")
 internal data class B2bSupplierNotFoundError(
   override val message: String? = null,
+  val brn: String? = null,
+  val counterpartyId: String? = null,
 ) : DraftB2bTaxInvoiceError.Recognized, IssueB2bTaxInvoiceImmediatelyError.Recognized, RequestB2bTaxInvoiceReverseIssuanceError.Recognized, UpdateB2bTaxInvoiceDraftError.Recognized
 
 

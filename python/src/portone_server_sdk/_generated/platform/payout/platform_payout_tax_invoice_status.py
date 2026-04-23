@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PlatformPayoutTaxInvoiceStatus = Union[Literal["NONE", "DRAFTED", "DRAFT_PENDING", "DRAFT_FAILED", "REQUESTED", "REQUEST_PENDING", "REQUEST_FAILED", "REQUEST_CANCELLED", "REQUEST_REFUSED", "ISSUED", "ISSUANCE_CANCELLED", "BEFORE_SENDING", "WAITING_SENDING", "SENDING", "SENDING_COMPLETED", "SENDING_FAILED"], str]
+PlatformPayoutTaxInvoiceStatus = Union[Literal["NONE", "DRAFTED", "DRAFT_PENDING", "DRAFT_FAILED", "REQUESTED", "REQUEST_PENDING", "REQUEST_FAILED", "REQUEST_CANCELLED", "REQUEST_REFUSED", "ISSUED", "ISSUE_PENDING", "ISSUE_FAILED", "ISSUANCE_CANCELLED", "CANCEL_PENDING", "BEFORE_SENDING", "WAITING_SENDING", "SENDING", "SENDING_PENDING", "SENDING_COMPLETED", "SENDING_FAILED"], str]
 
 
 def _serialize_platform_payout_tax_invoice_status(obj: PlatformPayoutTaxInvoiceStatus) -> Any:

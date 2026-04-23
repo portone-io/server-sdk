@@ -61,9 +61,9 @@ from . import policy
 from . import account
 from . import bulk_account_transfer
 from . import bulk_payout
+from . import payout
 from . import partner_settlement
 from . import partner
-from . import payout
 from . import transfer
 from .._generated.platform.cancel_platform_additional_fee_policy_schedule_response import (
     CancelPlatformAdditionalFeePolicyScheduleResponse,
@@ -322,9 +322,9 @@ __all__ = [
     "account",
     "bulk_account_transfer",
     "bulk_payout",
+    "payout",
     "partner_settlement",
     "partner",
-    "payout",
     "transfer",
     "CancelPlatformAdditionalFeePolicyScheduleResponse",
     "CancelPlatformContractScheduleResponse",

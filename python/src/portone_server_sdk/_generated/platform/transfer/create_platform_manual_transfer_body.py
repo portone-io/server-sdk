@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ...common.currency import Currency, _deserialize_currency, _serialize_currency
 from ...platform.transfer.platform_user_defined_property_key_value import PlatformUserDefinedPropertyKeyValue, _deserialize_platform_user_defined_property_key_value, _serialize_platform_user_defined_property_key_value
 
 @dataclass
@@ -37,6 +38,14 @@ class CreatePlatformManualTransferBody:
     user_defined_properties: Optional[list[PlatformUserDefinedPropertyKeyValue]] = field(default=None)
     """사용자 정의 속성
     """
+    id: Optional[str] = field(default=None)
+    """생성할 정산건 아이디
+
+    명시하지 않으면 id 가 임의로 생성됩니다.
+    """
+    settlement_currency: Optional[Currency] = field(default=None)
+    """정산 통화
+    """
 
 
 def _serialize_create_platform_manual_transfer_body(obj: CreatePlatformManualTransferBody) -> Any:
@@ -54,6 +63,10 @@ def _serialize_create_platform_manual_transfer_body(obj: CreatePlatformManualTra
         entity["isForTest"] = obj.is_for_test
     if obj.user_defined_properties is not None:
         entity["userDefinedProperties"] = list(map(_serialize_platform_user_defined_property_key_value, obj.user_defined_properties))
+    if obj.id is not None:
+        entity["id"] = obj.id
+    if obj.settlement_currency is not None:
+        entity["settlementCurrency"] = _serialize_currency(obj.settlement_currency)
     return entity
 
 
@@ -102,4 +115,15 @@ def _deserialize_create_platform_manual_transfer_body(obj: Any) -> CreatePlatfor
             user_defined_properties[i] = item
     else:
         user_defined_properties = None
-    return CreatePlatformManualTransferBody(partner_id, settlement_amount, settlement_date, memo, settlement_tax_free_amount, is_for_test, user_defined_properties)
+    if "id" in obj:
+        id = obj["id"]
+        if not isinstance(id, str):
+            raise ValueError(f"{repr(id)} is not str")
+    else:
+        id = None
+    if "settlementCurrency" in obj:
+        settlement_currency = obj["settlementCurrency"]
+        settlement_currency = _deserialize_currency(settlement_currency)
+    else:
+        settlement_currency = None
+    return CreatePlatformManualTransferBody(partner_id, settlement_amount, settlement_date, memo, settlement_tax_free_amount, is_for_test, user_defined_properties, id, settlement_currency)

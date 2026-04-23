@@ -7,6 +7,7 @@ import type { PaymentAmount } from "./../payment/PaymentAmount"
 import type { PaymentCashReceipt } from "./../payment/PaymentCashReceipt"
 import type { PaymentEscrow } from "./../payment/PaymentEscrow"
 import type { PaymentMethod } from "./../payment/PaymentMethod"
+import type { PaymentOrigin } from "./../payment/PaymentOrigin"
 import type { PaymentProduct } from "./../common/PaymentProduct"
 import type { PaymentWebhook } from "./../payment/PaymentWebhook"
 import type { PortOneVersion } from "./../common/PortOneVersion"
@@ -97,4 +98,6 @@ export type PaidPaymentEvent = {
 	 * (int64)
 	 */
 	eventAmount: number
+	/** 결제 출처 정보 */
+	origin: PaymentOrigin
 }

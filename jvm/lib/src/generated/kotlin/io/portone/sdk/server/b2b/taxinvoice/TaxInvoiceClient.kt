@@ -62,6 +62,10 @@ import io.portone.sdk.server.errors.B2BTaxInvoiceStatusNotSendingCompletedError
 import io.portone.sdk.server.errors.B2BTaxInvoiceStatusNotSendingCompletedException
 import io.portone.sdk.server.errors.B2bBulkTaxInvoiceNotFoundError
 import io.portone.sdk.server.errors.B2bBulkTaxInvoiceNotFoundException
+import io.portone.sdk.server.errors.B2bCounterpartyNotFoundError
+import io.portone.sdk.server.errors.B2bCounterpartyNotFoundException
+import io.portone.sdk.server.errors.B2bCounterpartyNtsNotConnectedError
+import io.portone.sdk.server.errors.B2bCounterpartyNtsNotConnectedException
 import io.portone.sdk.server.errors.B2bDocumentKeyCannotBeChangedError
 import io.portone.sdk.server.errors.B2bDocumentKeyCannotBeChangedException
 import io.portone.sdk.server.errors.B2bExternalServiceError
@@ -324,6 +328,10 @@ public class TaxInvoiceClient(
    * 다운로드 할 시트 컬럼
    * @param test
    *
+   * @param sort
+   * 정렬 조건
+   *
+   * 미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
    *
    * @throws DownloadB2bTaxInvoicesSheetException
    */
@@ -332,11 +340,13 @@ public class TaxInvoiceClient(
     filter: GetB2bTaxInvoicesBodyFilter? = null,
     fields: List<TaxInvoicesSheetField>? = null,
     test: Boolean? = null,
+    sort: B2bTaxInvoiceSortInput? = null,
   ): String {
     val requestBody = DownloadB2bTaxInvoicesSheetBody(
       filter = filter,
       fields = fields,
       test = test,
+      sort = sort,
     )
     val httpResponse = client.get(apiBase) {
       url {
@@ -371,7 +381,8 @@ public class TaxInvoiceClient(
     filter: GetB2bTaxInvoicesBodyFilter? = null,
     fields: List<TaxInvoicesSheetField>? = null,
     test: Boolean? = null,
-  ): CompletableFuture<String> = GlobalScope.future { downloadB2bTaxInvoicesSheet(filter, fields, test) }
+    sort: B2bTaxInvoiceSortInput? = null,
+  ): CompletableFuture<String> = GlobalScope.future { downloadB2bTaxInvoicesSheet(filter, fields, test, sort) }
 
 
   /**
@@ -439,6 +450,8 @@ public class TaxInvoiceClient(
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
+        is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
+        is B2bCounterpartyNtsNotConnectedError -> throw B2bCounterpartyNtsNotConnectedException(httpBodyDecoded)
         is B2bDocumentKeyCannotBeChangedError -> throw B2bDocumentKeyCannotBeChangedException(httpBodyDecoded)
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
         is B2bIdAlreadyExistsError -> throw B2bIdAlreadyExistsException(httpBodyDecoded)
@@ -494,6 +507,10 @@ public class TaxInvoiceClient(
    * 수정 세금계산서 입력 정보
    * @param memo
    * 메모
+   * @param createRecipientCounterparty
+   * 공급받는자 거래처 생성 여부
+   *
+   * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
    *
    * @throws DraftB2bTaxInvoiceException
    */
@@ -503,11 +520,13 @@ public class TaxInvoiceClient(
     taxInvoice: B2bTaxInvoiceInput,
     modification: B2bTaxInvoiceModificationCreateBody? = null,
     memo: String? = null,
+    createRecipientCounterparty: Boolean? = null,
   ): DraftB2bTaxInvoiceResponse {
     val requestBody = DraftB2bTaxInvoiceBody(
       taxInvoice = taxInvoice,
       modification = modification,
       memo = memo,
+      createRecipientCounterparty = createRecipientCounterparty,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -532,6 +551,8 @@ public class TaxInvoiceClient(
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
+        is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
+        is B2bCounterpartyNtsNotConnectedError -> throw B2bCounterpartyNtsNotConnectedException(httpBodyDecoded)
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
         is B2bIdAlreadyExistsError -> throw B2bIdAlreadyExistsException(httpBodyDecoded)
         is B2bIssuanceTypeMismatchError -> throw B2bIssuanceTypeMismatchException(httpBodyDecoded)
@@ -565,7 +586,8 @@ public class TaxInvoiceClient(
     taxInvoice: B2bTaxInvoiceInput,
     modification: B2bTaxInvoiceModificationCreateBody? = null,
     memo: String? = null,
-  ): CompletableFuture<DraftB2bTaxInvoiceResponse> = GlobalScope.future { draftB2bTaxInvoice(test, taxInvoice, modification, memo) }
+    createRecipientCounterparty: Boolean? = null,
+  ): CompletableFuture<DraftB2bTaxInvoiceResponse> = GlobalScope.future { draftB2bTaxInvoice(test, taxInvoice, modification, memo, createRecipientCounterparty) }
 
 
   /**
@@ -583,6 +605,10 @@ public class TaxInvoiceClient(
    * 메모
    * @param modification
    * 수정 세금계산서 입력 정보
+   * @param createRecipientCounterparty
+   * 공급받는자 거래처 생성 여부
+   *
+   * true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
    *
    * @throws IssueB2bTaxInvoiceImmediatelyException
    */
@@ -592,11 +618,13 @@ public class TaxInvoiceClient(
     taxInvoice: B2bTaxInvoiceInput,
     memo: String? = null,
     modification: B2bTaxInvoiceModificationCreateBody? = null,
+    createRecipientCounterparty: Boolean? = null,
   ): IssueB2bTaxInvoiceImmediatelyResponse {
     val requestBody = IssueB2bTaxInvoiceImmediatelyBody(
       taxInvoice = taxInvoice,
       memo = memo,
       modification = modification,
+      createRecipientCounterparty = createRecipientCounterparty,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -621,6 +649,8 @@ public class TaxInvoiceClient(
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
+        is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
+        is B2bCounterpartyNtsNotConnectedError -> throw B2bCounterpartyNtsNotConnectedException(httpBodyDecoded)
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
         is B2bIdAlreadyExistsError -> throw B2bIdAlreadyExistsException(httpBodyDecoded)
         is B2bIssuanceTypeMismatchError -> throw B2bIssuanceTypeMismatchException(httpBodyDecoded)
@@ -654,7 +684,8 @@ public class TaxInvoiceClient(
     taxInvoice: B2bTaxInvoiceInput,
     memo: String? = null,
     modification: B2bTaxInvoiceModificationCreateBody? = null,
-  ): CompletableFuture<IssueB2bTaxInvoiceImmediatelyResponse> = GlobalScope.future { issueB2bTaxInvoiceImmediately(test, taxInvoice, memo, modification) }
+    createRecipientCounterparty: Boolean? = null,
+  ): CompletableFuture<IssueB2bTaxInvoiceImmediatelyResponse> = GlobalScope.future { issueB2bTaxInvoiceImmediately(test, taxInvoice, memo, modification, createRecipientCounterparty) }
 
 
   /**
@@ -710,6 +741,8 @@ public class TaxInvoiceClient(
       }
       when (httpBodyDecoded) {
         is B2BCannotChangeTaxTypeError -> throw B2BCannotChangeTaxTypeException(httpBodyDecoded)
+        is B2bCounterpartyNotFoundError -> throw B2bCounterpartyNotFoundException(httpBodyDecoded)
+        is B2bCounterpartyNtsNotConnectedError -> throw B2bCounterpartyNtsNotConnectedException(httpBodyDecoded)
         is B2bExternalServiceError -> throw B2bExternalServiceException(httpBodyDecoded)
         is B2bIdAlreadyExistsError -> throw B2bIdAlreadyExistsException(httpBodyDecoded)
         is B2bIssuanceTypeMismatchError -> throw B2bIssuanceTypeMismatchException(httpBodyDecoded)

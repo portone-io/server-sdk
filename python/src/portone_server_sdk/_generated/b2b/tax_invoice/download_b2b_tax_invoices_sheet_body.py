@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ...b2b.tax_invoice.b2b_tax_invoice_sort_input import B2bTaxInvoiceSortInput, _deserialize_b2b_tax_invoice_sort_input, _serialize_b2b_tax_invoice_sort_input
 from ...b2b.tax_invoice.get_b2b_tax_invoices_body_filter import GetB2bTaxInvoicesBodyFilter, _deserialize_get_b2b_tax_invoices_body_filter, _serialize_get_b2b_tax_invoices_body_filter
 from ...b2b.tax_invoice.tax_invoices_sheet_field import TaxInvoicesSheetField, _deserialize_tax_invoices_sheet_field, _serialize_tax_invoices_sheet_field
 
@@ -12,6 +13,11 @@ class DownloadB2bTaxInvoicesSheetBody:
     """다운로드 할 시트 컬럼
     """
     test: Optional[bool] = field(default=None)
+    sort: Optional[B2bTaxInvoiceSortInput] = field(default=None)
+    """정렬 조건
+
+    미입력 시 상태 업데이트 일시 내림차순 정렬됩니다.
+    """
 
 
 def _serialize_download_b2b_tax_invoices_sheet_body(obj: DownloadB2bTaxInvoicesSheetBody) -> Any:
@@ -24,6 +30,8 @@ def _serialize_download_b2b_tax_invoices_sheet_body(obj: DownloadB2bTaxInvoicesS
         entity["fields"] = list(map(_serialize_tax_invoices_sheet_field, obj.fields))
     if obj.test is not None:
         entity["test"] = obj.test
+    if obj.sort is not None:
+        entity["sort"] = _serialize_b2b_tax_invoice_sort_input(obj.sort)
     return entity
 
 
@@ -50,4 +58,9 @@ def _deserialize_download_b2b_tax_invoices_sheet_body(obj: Any) -> DownloadB2bTa
             raise ValueError(f"{repr(test)} is not bool")
     else:
         test = None
-    return DownloadB2bTaxInvoicesSheetBody(filter, fields, test)
+    if "sort" in obj:
+        sort = obj["sort"]
+        sort = _deserialize_b2b_tax_invoice_sort_input(sort)
+    else:
+        sort = None
+    return DownloadB2bTaxInvoicesSheetBody(filter, fields, test, sort)

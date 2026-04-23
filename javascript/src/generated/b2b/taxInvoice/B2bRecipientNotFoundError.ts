@@ -2,4 +2,6 @@
 export type B2bRecipientNotFoundError = {
 	type: "B2B_RECIPIENT_NOT_FOUND"
 	message?: string
+	brn?: string
+	counterpartyId?: string
 }

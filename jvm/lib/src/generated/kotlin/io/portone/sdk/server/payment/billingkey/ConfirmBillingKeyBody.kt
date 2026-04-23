@@ -24,6 +24,12 @@ internal data class ConfirmBillingKeyBody(
    * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
    */
   val isTest: Boolean? = null,
+  /**
+   * 웹훅 생략 여부
+   *
+   * 빌링키 발급이 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다.
+   */
+  val skipWebhook: Boolean? = null,
 )
 
 

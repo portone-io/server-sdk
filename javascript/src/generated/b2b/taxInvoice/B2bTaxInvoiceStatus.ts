@@ -33,4 +33,8 @@ export type B2bTaxInvoiceStatus =
 	| "REQUEST_REFUSED"
 	/** 공급자에 의한 발행 취소 */
 	| "ISSUANCE_CANCELLED"
+	/** 발행취소 대기 */
+	| "CANCEL_PENDING"
+	/** 국세청 전송 대기 */
+	| "SENDING_PENDING"
 	| string & {}

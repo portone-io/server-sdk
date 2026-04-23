@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from ...common.date_range import DateRange, _deserialize_date_range, _serialize_date_range
 from ...common.payment_method_type import PaymentMethodType, _deserialize_payment_method_type, _serialize_payment_method_type
 from ...platform.transfer.platform_transfer_filter_input_keyword import PlatformTransferFilterInputKeyword, _deserialize_platform_transfer_filter_input_keyword, _serialize_platform_transfer_filter_input_keyword
+from ...platform.transfer.platform_transfer_property_exact_match_input import PlatformTransferPropertyExactMatchInput, _deserialize_platform_transfer_property_exact_match_input, _serialize_platform_transfer_property_exact_match_input
 from ...platform.transfer.platform_transfer_status import PlatformTransferStatus, _deserialize_platform_transfer_status, _serialize_platform_transfer_status
 from ...platform.transfer.platform_transfer_type import PlatformTransferType, _deserialize_platform_transfer_type, _serialize_platform_transfer_type
 
@@ -60,6 +61,11 @@ class PlatformTransferFilterInput:
 
     하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 상태인 정산건만 조회합니다.
     """
+    user_defined_property: Optional[PlatformTransferPropertyExactMatchInput] = field(default=None)
+    """사용자 정의 속성 exact match
+
+    사용자 정의 속성의 key와 value가 정확히 일치하는 정산건만 조회합니다.
+    """
     keyword: Optional[PlatformTransferFilterInputKeyword] = field(default=None)
     """검색 키워드
     """
@@ -95,6 +101,8 @@ def _serialize_platform_transfer_filter_input(obj: PlatformTransferFilterInput) 
         entity["types"] = list(map(_serialize_platform_transfer_type, obj.types))
     if obj.statuses is not None:
         entity["statuses"] = list(map(_serialize_platform_transfer_status, obj.statuses))
+    if obj.user_defined_property is not None:
+        entity["userDefinedProperty"] = _serialize_platform_transfer_property_exact_match_input(obj.user_defined_property)
     if obj.keyword is not None:
         entity["keyword"] = _serialize_platform_transfer_filter_input_keyword(obj.keyword)
     if obj.is_for_test is not None:
@@ -187,6 +195,11 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
             statuses[i] = item
     else:
         statuses = None
+    if "userDefinedProperty" in obj:
+        user_defined_property = obj["userDefinedProperty"]
+        user_defined_property = _deserialize_platform_transfer_property_exact_match_input(user_defined_property)
+    else:
+        user_defined_property = None
     if "keyword" in obj:
         keyword = obj["keyword"]
         keyword = _deserialize_platform_transfer_filter_input_keyword(keyword)
@@ -198,4 +211,4 @@ def _deserialize_platform_transfer_filter_input(obj: Any) -> PlatformTransferFil
             raise ValueError(f"{repr(is_for_test)} is not bool")
     else:
         is_for_test = None
-    return PlatformTransferFilterInput(settlement_start_date_range, settlement_date_range, partner_tags, contract_ids, discount_share_policy_ids, additional_fee_policy_ids, payment_method_types, channel_keys, types, statuses, keyword, is_for_test)
+    return PlatformTransferFilterInput(settlement_start_date_range, settlement_date_range, partner_tags, contract_ids, discount_share_policy_ids, additional_fee_policy_ids, payment_method_types, channel_keys, types, statuses, user_defined_property, keyword, is_for_test)

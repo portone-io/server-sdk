@@ -30,6 +30,7 @@ export type PlatformOrderTransfer = {
 	settlementDate: string
 	/** 정산 통화 */
 	settlementCurrency: Currency
+	/** 더 이상 사용되지 않는 값입니다. */
 	payoutId?: string
 	payoutGraphqlId?: string
 	/** 테스트 모드 여부 */

@@ -45,6 +45,7 @@ from .._generated.payment.apply_escrow_logistics_response import (
 from .._generated.payment.before_registered_payment_escrow import (
     BeforeRegisteredPaymentEscrow,
 )
+from .._generated.payment.billing_key_payment_input import BillingKeyPaymentInput
 from .._generated.payment.billing_key_payment_summary import BillingKeyPaymentSummary
 from .._generated.payment.cancel_payment_body import CancelPaymentBody
 from .._generated.payment.cancel_payment_body_refund_account import (
@@ -190,6 +191,8 @@ from .._generated.payment.payment_method_virtual_account_refund_status import (
 from .._generated.payment.payment_method_virtual_account_type import (
     PaymentMethodVirtualAccountType,
 )
+from .._generated.payment.payment_origin import PaymentOrigin
+from .._generated.payment.payment_origin_platform_type import PaymentOriginPlatformType
 from .._generated.payment.payment_sort_by import PaymentSortBy
 from .._generated.payment.payment_status import PaymentStatus
 from .._generated.payment.payment_text_search import PaymentTextSearch
@@ -278,6 +281,7 @@ __all__ = [
     "promotion",
     "ApplyEscrowLogisticsResponse",
     "BeforeRegisteredPaymentEscrow",
+    "BillingKeyPaymentInput",
     "BillingKeyPaymentSummary",
     "CancelPaymentBody",
     "CancelPaymentBodyRefundAccount",
@@ -363,6 +367,8 @@ __all__ = [
     "PaymentMethodVirtualAccount",
     "PaymentMethodVirtualAccountRefundStatus",
     "PaymentMethodVirtualAccountType",
+    "PaymentOrigin",
+    "PaymentOriginPlatformType",
     "PaymentSortBy",
     "PaymentStatus",
     "PaymentTextSearch",

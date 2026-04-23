@@ -7,28 +7,44 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.request.`get`
 import io.ktor.client.request.accept
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.appendPathSegments
+import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.annotations.PortOneUnstable
 import io.portone.sdk.server.common.PageInput
+import io.portone.sdk.server.errors.DeletePlatformPartnerSettlementsError
+import io.portone.sdk.server.errors.DeletePlatformPartnerSettlementsException
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPlatformPartnerSettlementsError
 import io.portone.sdk.server.errors.GetPlatformPartnerSettlementsException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
+import io.portone.sdk.server.errors.PlatformNonDeletablePartnerSettlementsError
+import io.portone.sdk.server.errors.PlatformNonDeletablePartnerSettlementsException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
+import io.portone.sdk.server.errors.PlatformPartnerSettlementsNotFoundError
+import io.portone.sdk.server.errors.PlatformPartnerSettlementsNotFoundException
+import io.portone.sdk.server.errors.PlatformReferencedCancelOrderTransfersExistError
+import io.portone.sdk.server.errors.PlatformReferencedCancelOrderTransfersExistException
 import io.portone.sdk.server.errors.UnauthorizedError
 import io.portone.sdk.server.errors.UnauthorizedException
 import io.portone.sdk.server.errors.UnknownException
+import io.portone.sdk.server.platform.partnersettlement.DeletePlatformPartnerSettlementsBody
+import io.portone.sdk.server.platform.partnersettlement.DeletePlatformPartnerSettlementsResponse
 import io.portone.sdk.server.platform.partnersettlement.GetPlatformPartnerSettlementsBody
 import io.portone.sdk.server.platform.partnersettlement.GetPlatformPartnerSettlementsResponse
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementFilterInput
 import java.io.Closeable
 import java.util.concurrent.CompletableFuture
+import kotlin.Array
+import kotlin.String
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import kotlinx.serialization.encodeToString
@@ -55,6 +71,84 @@ public class PartnerSettlementClient(
   }
 
   private val json: Json = Json { ignoreUnknownKeys = true }
+
+  /**
+   * 정산내역 삭제
+   *
+   * 선택한 정산내역들을 삭제합니다.
+   *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   * @param partnerSettlementIds
+   *
+   * @param isForTest
+   * Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+   * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
+   *
+   * @throws DeletePlatformPartnerSettlementsException
+   */
+  @PortOneUnstable
+  @JvmName("deletePlatformPartnerSettlementsSuspend")
+  public suspend fun deletePlatformPartnerSettlements(
+    test: Boolean? = null,
+    partnerSettlementIds: List<String>,
+    isForTest: Boolean? = null,
+  ): DeletePlatformPartnerSettlementsResponse {
+    val requestBody = DeletePlatformPartnerSettlementsBody(
+      partnerSettlementIds = partnerSettlementIds,
+      isForTest = isForTest,
+    )
+    val httpResponse = client.post(apiBase) {
+      url {
+        this.appendPathSegments("platform", "partner-settlements", "delete")
+        if (test != null) this.parameters.append("test", test.toString())
+      }
+      headers {
+        this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
+      }
+      this.contentType(ContentType.Application.Json)
+      this.accept(ContentType.Application.Json)
+      this.userAgent(USER_AGENT)
+      this.setBody(json.encodeToString(requestBody))
+    }
+    if (httpResponse.status.value !in 200..299) {
+      val httpBody = httpResponse.body<String>()
+      val httpBodyDecoded = try {
+        json.decodeFromString<DeletePlatformPartnerSettlementsError.Recognized>(httpBody)
+      }
+      catch (_: Exception) {
+        throw UnknownException("Unknown API error: $httpBody")
+      }
+      when (httpBodyDecoded) {
+        is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
+        is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformNonDeletablePartnerSettlementsError -> throw PlatformNonDeletablePartnerSettlementsException(httpBodyDecoded)
+        is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
+        is PlatformPartnerSettlementsNotFoundError -> throw PlatformPartnerSettlementsNotFoundException(httpBodyDecoded)
+        is PlatformReferencedCancelOrderTransfersExistError -> throw PlatformReferencedCancelOrderTransfersExistException(httpBodyDecoded)
+        is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
+      }
+    }
+    val httpBody = httpResponse.body<String>()
+    return try {
+      json.decodeFromString<DeletePlatformPartnerSettlementsResponse>(httpBody)
+    }
+    catch (_: Exception) {
+      throw UnknownException("Unknown API response: $httpBody")
+    }
+  }
+
+  /** @suppress */
+  @PortOneUnstable
+  @JvmName("deletePlatformPartnerSettlements")
+  public fun deletePlatformPartnerSettlementsFuture(
+    test: Boolean? = null,
+    partnerSettlementIds: List<String>,
+    isForTest: Boolean? = null,
+  ): CompletableFuture<DeletePlatformPartnerSettlementsResponse> = GlobalScope.future { deletePlatformPartnerSettlements(test, partnerSettlementIds, isForTest) }
+
 
   /**
    * 정산 내역 다건 조회

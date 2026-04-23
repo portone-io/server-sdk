@@ -162,6 +162,36 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
     }
     override fun serialize(encoder: Encoder, value: Issued): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(IssuePendingSerializer::class)
+  public data object IssuePending : PlatformPayoutTaxInvoiceStatus {
+    override val value: String = "ISSUE_PENDING"
+  }
+  public object IssuePendingSerializer : KSerializer<IssuePending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssuePending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): IssuePending = decoder.decodeString().let {
+      if (it != "ISSUE_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return IssuePending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: IssuePending): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(IssueFailedSerializer::class)
+  public data object IssueFailed : PlatformPayoutTaxInvoiceStatus {
+    override val value: String = "ISSUE_FAILED"
+  }
+  public object IssueFailedSerializer : KSerializer<IssueFailed> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(IssueFailed::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): IssueFailed = decoder.decodeString().let {
+      if (it != "ISSUE_FAILED") {
+        throw SerializationException(it)
+      } else {
+        return IssueFailed
+      }
+    }
+    override fun serialize(encoder: Encoder, value: IssueFailed): Unit = encoder.encodeString(value.value)
+  }
   @Serializable(IssuanceCancelledSerializer::class)
   public data object IssuanceCancelled : PlatformPayoutTaxInvoiceStatus {
     override val value: String = "ISSUANCE_CANCELLED"
@@ -176,6 +206,21 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: IssuanceCancelled): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(CancelPendingSerializer::class)
+  public data object CancelPending : PlatformPayoutTaxInvoiceStatus {
+    override val value: String = "CANCEL_PENDING"
+  }
+  public object CancelPendingSerializer : KSerializer<CancelPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(CancelPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): CancelPending = decoder.decodeString().let {
+      if (it != "CANCEL_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return CancelPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: CancelPending): Unit = encoder.encodeString(value.value)
   }
   @Serializable(BeforeSendingSerializer::class)
   public data object BeforeSending : PlatformPayoutTaxInvoiceStatus {
@@ -221,6 +266,21 @@ public sealed interface PlatformPayoutTaxInvoiceStatus {
       }
     }
     override fun serialize(encoder: Encoder, value: Sending): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(SendingPendingSerializer::class)
+  public data object SendingPending : PlatformPayoutTaxInvoiceStatus {
+    override val value: String = "SENDING_PENDING"
+  }
+  public object SendingPendingSerializer : KSerializer<SendingPending> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(SendingPending::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): SendingPending = decoder.decodeString().let {
+      if (it != "SENDING_PENDING") {
+        throw SerializationException(it)
+      } else {
+        return SendingPending
+      }
+    }
+    override fun serialize(encoder: Encoder, value: SendingPending): Unit = encoder.encodeString(value.value)
   }
   @Serializable(SendingCompletedSerializer::class)
   public data object SendingCompleted : PlatformPayoutTaxInvoiceStatus {
@@ -273,10 +333,14 @@ public object PlatformPayoutTaxInvoiceStatusSerializer : KSerializer<PlatformPay
       "REQUEST_CANCELLED" -> PlatformPayoutTaxInvoiceStatus.RequestCancelled
       "REQUEST_REFUSED" -> PlatformPayoutTaxInvoiceStatus.RequestRefused
       "ISSUED" -> PlatformPayoutTaxInvoiceStatus.Issued
+      "ISSUE_PENDING" -> PlatformPayoutTaxInvoiceStatus.IssuePending
+      "ISSUE_FAILED" -> PlatformPayoutTaxInvoiceStatus.IssueFailed
       "ISSUANCE_CANCELLED" -> PlatformPayoutTaxInvoiceStatus.IssuanceCancelled
+      "CANCEL_PENDING" -> PlatformPayoutTaxInvoiceStatus.CancelPending
       "BEFORE_SENDING" -> PlatformPayoutTaxInvoiceStatus.BeforeSending
       "WAITING_SENDING" -> PlatformPayoutTaxInvoiceStatus.WaitingSending
       "SENDING" -> PlatformPayoutTaxInvoiceStatus.Sending
+      "SENDING_PENDING" -> PlatformPayoutTaxInvoiceStatus.SendingPending
       "SENDING_COMPLETED" -> PlatformPayoutTaxInvoiceStatus.SendingCompleted
       "SENDING_FAILED" -> PlatformPayoutTaxInvoiceStatus.SendingFailed
       else -> PlatformPayoutTaxInvoiceStatus.Unrecognized(value)

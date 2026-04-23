@@ -7,9 +7,9 @@ import { PolicyClient } from "./policy/client"
 import { AccountClient } from "./account/client"
 import { BulkAccountTransferClient } from "./bulkAccountTransfer/client"
 import { BulkPayoutClient } from "./bulkPayout/client"
+import { PayoutClient } from "./payout/client"
 import { PartnerSettlementClient } from "./partnerSettlement/client"
 import { PartnerClient } from "./partner/client"
-import { PayoutClient } from "./payout/client"
 import { TransferClient } from "./transfer/client"
 import type { CancelPlatformAdditionalFeePolicyScheduleResponse } from "../../generated/platform/CancelPlatformAdditionalFeePolicyScheduleResponse"
 import type { CancelPlatformContractScheduleResponse } from "../../generated/platform/CancelPlatformContractScheduleResponse"
@@ -803,9 +803,9 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 		account: AccountClient(init),
 		bulkAccountTransfer: BulkAccountTransferClient(init),
 		bulkPayout: BulkPayoutClient(init),
+		payout: PayoutClient(init),
 		partnerSettlement: PartnerSettlementClient(init),
 		partner: PartnerClient(init),
-		payout: PayoutClient(init),
 		transfer: TransferClient(init),
 	}
 }
@@ -1285,9 +1285,9 @@ export type PlatformClient = {
 	account: AccountClient
 	bulkAccountTransfer: BulkAccountTransferClient
 	bulkPayout: BulkPayoutClient
+	payout: PayoutClient
 	partnerSettlement: PartnerSettlementClient
 	partner: PartnerClient
-	payout: PayoutClient
 	transfer: TransferClient
 }
 export class GetPlatformAdditionalFeePolicyScheduleError extends PlatformError {

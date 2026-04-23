@@ -28,6 +28,8 @@ internal object DraftB2bTaxInvoiceErrorSerializer : JsonContentPolymorphicSerial
   override fun selectDeserializer(element: JsonElement): KSerializer<out DraftB2bTaxInvoiceError> =
     when (element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
       "B2B_CANNOT_CHANGE_TAX_TYPE" -> B2BCannotChangeTaxTypeError.serializer()
+      "B2B_COUNTERPARTY_NOT_FOUND" -> B2bCounterpartyNotFoundError.serializer()
+      "B2B_COUNTERPARTY_NTS_NOT_CONNECTED" -> B2bCounterpartyNtsNotConnectedError.serializer()
       "B2B_EXTERNAL_SERVICE" -> B2bExternalServiceError.serializer()
       "B2B_ID_ALREADY_EXISTS" -> B2bIdAlreadyExistsError.serializer()
       "B2B_ISSUANCE_TYPE_MISMATCH" -> B2bIssuanceTypeMismatchError.serializer()

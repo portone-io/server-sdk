@@ -10,6 +10,7 @@ import io.portone.sdk.server.common.SelectedChannel
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentEscrow
 import io.portone.sdk.server.payment.PaymentMethod
+import io.portone.sdk.server.payment.PaymentOrigin
 import io.portone.sdk.server.payment.PaymentWebhook
 import java.time.Instant
 import kotlin.String
@@ -77,6 +78,8 @@ public sealed interface Payment {
     public val currency: Currency
     /** 구매자 정보 */
     public val customer: Customer
+    /** 결제 출처 정보 */
+    public val origin: PaymentOrigin
     /** 프로모션 아이디 */
     public val promotionId: String?
     /** 문화비 지출 여부 */

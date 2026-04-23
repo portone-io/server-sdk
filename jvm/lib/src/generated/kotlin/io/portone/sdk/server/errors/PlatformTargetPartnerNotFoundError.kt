@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_TARGET_PARTNER_NOT_FOUND")
 internal data class PlatformTargetPartnerNotFoundError(
   override val message: String? = null,
-) : ConnectBulkPartnerMemberCompanyError.Recognized, DisconnectBulkPartnerMemberCompanyError.Recognized
+) : ConnectBulkPartnerCounterpartyError.Recognized, DisconnectBulkPartnerCounterpartyError.Recognized
 
 

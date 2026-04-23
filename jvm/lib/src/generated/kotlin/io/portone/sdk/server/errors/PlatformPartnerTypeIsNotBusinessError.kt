@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 @SerialName("PLATFORM_PARTNER_TYPE_IS_NOT_BUSINESS")
 internal data class PlatformPartnerTypeIsNotBusinessError(
   override val message: String? = null,
-) : ConnectPartnerMemberCompanyError.Recognized, DisconnectPartnerMemberCompanyError.Recognized
+) : ConnectPartnerCounterpartyError.Recognized, DisconnectPartnerCounterpartyError.Recognized
 
 

@@ -2,6 +2,8 @@ from __future__ import annotations
 from typing import Any, Optional, Union
 from ...b2b.tax_invoice.b2b_cannot_change_tax_type_error import B2BCannotChangeTaxTypeError, _deserialize_b2b_cannot_change_tax_type_error, _serialize_b2b_cannot_change_tax_type_error
 from ...b2b.tax_invoice.b2b_tax_invoice_status_not_sending_completed_error import B2BTaxInvoiceStatusNotSendingCompletedError, _deserialize_b2b_tax_invoice_status_not_sending_completed_error, _serialize_b2b_tax_invoice_status_not_sending_completed_error
+from ...common.b2b_counterparty_not_found_error import B2bCounterpartyNotFoundError, _deserialize_b2b_counterparty_not_found_error, _serialize_b2b_counterparty_not_found_error
+from ...common.b2b_counterparty_nts_not_connected_error import B2bCounterpartyNtsNotConnectedError, _deserialize_b2b_counterparty_nts_not_connected_error, _serialize_b2b_counterparty_nts_not_connected_error
 from ...b2b.tax_invoice.b2b_document_key_cannot_be_changed_error import B2bDocumentKeyCannotBeChangedError, _deserialize_b2b_document_key_cannot_be_changed_error, _serialize_b2b_document_key_cannot_be_changed_error
 from ...common.b2b_external_service_error import B2bExternalServiceError, _deserialize_b2b_external_service_error, _serialize_b2b_external_service_error
 from ...b2b.tax_invoice.b2b_id_already_exists_error import B2bIdAlreadyExistsError, _deserialize_b2b_id_already_exists_error, _serialize_b2b_id_already_exists_error
@@ -19,7 +21,7 @@ from ...common.forbidden_error import ForbiddenError, _deserialize_forbidden_err
 from ...common.invalid_request_error import InvalidRequestError, _deserialize_invalid_request_error, _serialize_invalid_request_error
 from ...common.unauthorized_error import UnauthorizedError, _deserialize_unauthorized_error, _serialize_unauthorized_error
 
-UpdateB2bTaxInvoiceDraftError = Union[B2BCannotChangeTaxTypeError, B2bDocumentKeyCannotBeChangedError, B2bExternalServiceError, B2bIdAlreadyExistsError, B2bIssuanceTypeMismatchError, B2bModificationNotProvidedError, B2bNotEnabledError, B2bOriginalTaxInvoiceNotFoundError, B2bRecipientNotFoundError, B2bSupplierNotFoundError, B2bTaxInvoiceNotDraftedStatusError, B2bTaxInvoiceNotFoundError, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError, B2BTaxInvoiceStatusNotSendingCompletedError, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError, ForbiddenError, InvalidRequestError, UnauthorizedError, dict]
+UpdateB2bTaxInvoiceDraftError = Union[B2BCannotChangeTaxTypeError, B2bCounterpartyNotFoundError, B2bCounterpartyNtsNotConnectedError, B2bDocumentKeyCannotBeChangedError, B2bExternalServiceError, B2bIdAlreadyExistsError, B2bIssuanceTypeMismatchError, B2bModificationNotProvidedError, B2bNotEnabledError, B2bOriginalTaxInvoiceNotFoundError, B2bRecipientNotFoundError, B2bSupplierNotFoundError, B2bTaxInvoiceNotDraftedStatusError, B2bTaxInvoiceNotFoundError, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError, B2BTaxInvoiceStatusNotSendingCompletedError, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError, ForbiddenError, InvalidRequestError, UnauthorizedError, dict]
 
 
 def _serialize_update_b2b_tax_invoice_draft_error(obj: UpdateB2bTaxInvoiceDraftError) -> Any:
@@ -27,6 +29,10 @@ def _serialize_update_b2b_tax_invoice_draft_error(obj: UpdateB2bTaxInvoiceDraftE
         return obj
     if isinstance(obj, B2BCannotChangeTaxTypeError):
         return _serialize_b2b_cannot_change_tax_type_error(obj)
+    if isinstance(obj, B2bCounterpartyNotFoundError):
+        return _serialize_b2b_counterparty_not_found_error(obj)
+    if isinstance(obj, B2bCounterpartyNtsNotConnectedError):
+        return _serialize_b2b_counterparty_nts_not_connected_error(obj)
     if isinstance(obj, B2bDocumentKeyCannotBeChangedError):
         return _serialize_b2b_document_key_cannot_be_changed_error(obj)
     if isinstance(obj, B2bExternalServiceError):
@@ -66,6 +72,14 @@ def _serialize_update_b2b_tax_invoice_draft_error(obj: UpdateB2bTaxInvoiceDraftE
 def _deserialize_update_b2b_tax_invoice_draft_error(obj: Any) -> UpdateB2bTaxInvoiceDraftError:
     try:
         return _deserialize_b2b_cannot_change_tax_type_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_b2b_counterparty_not_found_error(obj)
+    except Exception:
+        pass
+    try:
+        return _deserialize_b2b_counterparty_nts_not_connected_error(obj)
     except Exception:
         pass
     try:

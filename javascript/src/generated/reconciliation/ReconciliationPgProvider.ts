@@ -18,4 +18,6 @@ export type ReconciliationPgProvider =
 	| "HECTO_EASY"
 	| "MOBILIANS"
 	| "PAYLETTER_GLOBAL"
+	| "KIWOOMPAY"
+	| "PAYMENTWALL"
 	| string & {}

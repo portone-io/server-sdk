@@ -53,4 +53,5 @@ export type PgProvider =
 	| "PAYLETTER_GLOBAL"
 	| "MOBILIANS_V2"
 	| "TRIPLE_A"
+	| "KICC_V2"
 	| string & {}

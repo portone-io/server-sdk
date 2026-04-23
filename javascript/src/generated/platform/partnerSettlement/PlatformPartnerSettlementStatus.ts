@@ -6,6 +6,8 @@ export type PlatformPartnerSettlementStatus =
 	| "PAYOUT_PREPARED"
 	/** 지급 보류 */
 	| "PAYOUT_WITHHELD"
+	/** 지급 제외 */
+	| "PAYOUT_EXCLUDED"
 	/** 지급 실패 */
 	| "PAYOUT_FAILED"
 	/** 지급 중 */

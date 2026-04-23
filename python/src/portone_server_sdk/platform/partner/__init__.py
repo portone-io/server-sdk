@@ -1,11 +1,11 @@
 from ..._generated.platform.partner.errors.archive_platform_partner_error import (
     ArchivePlatformPartnerError,
 )
-from ..._generated.platform.partner.errors.connect_bulk_partner_member_company_error import (
-    ConnectBulkPartnerMemberCompanyError,
+from ..._generated.platform.partner.errors.connect_bulk_partner_counterparty_error import (
+    ConnectBulkPartnerCounterpartyError,
 )
-from ..._generated.platform.partner.errors.connect_partner_member_company_error import (
-    ConnectPartnerMemberCompanyError,
+from ..._generated.platform.partner.errors.connect_partner_counterparty_error import (
+    ConnectPartnerCounterpartyError,
 )
 from ..._generated.platform.partner.errors.create_platform_partner_error import (
     CreatePlatformPartnerError,
@@ -13,11 +13,11 @@ from ..._generated.platform.partner.errors.create_platform_partner_error import 
 from ..._generated.platform.partner.errors.create_platform_partners_error import (
     CreatePlatformPartnersError,
 )
-from ..._generated.platform.partner.errors.disconnect_bulk_partner_member_company_error import (
-    DisconnectBulkPartnerMemberCompanyError,
+from ..._generated.platform.partner.errors.disconnect_bulk_partner_counterparty_error import (
+    DisconnectBulkPartnerCounterpartyError,
 )
-from ..._generated.platform.partner.errors.disconnect_partner_member_company_error import (
-    DisconnectPartnerMemberCompanyError,
+from ..._generated.platform.partner.errors.disconnect_partner_counterparty_error import (
+    DisconnectPartnerCounterpartyError,
 )
 from ..._generated.platform.partner.errors.get_platform_partner_error import (
     GetPlatformPartnerError,
@@ -34,14 +34,14 @@ from ..._generated.platform.partner.errors.update_platform_partner_error import 
 from ..._generated.platform.partner.archive_platform_partner_response import (
     ArchivePlatformPartnerResponse,
 )
-from ..._generated.platform.partner.connect_bulk_partner_member_company_body import (
-    ConnectBulkPartnerMemberCompanyBody,
+from ..._generated.platform.partner.connect_bulk_partner_counterparty_body import (
+    ConnectBulkPartnerCounterpartyBody,
 )
-from ..._generated.platform.partner.connect_bulk_partner_member_company_response import (
-    ConnectBulkPartnerMemberCompanyResponse,
+from ..._generated.platform.partner.connect_bulk_partner_counterparty_response import (
+    ConnectBulkPartnerCounterpartyResponse,
 )
-from ..._generated.platform.partner.connect_partner_member_company_response import (
-    ConnectPartnerMemberCompanyResponse,
+from ..._generated.platform.partner.connect_partner_counterparty_response import (
+    ConnectPartnerCounterpartyResponse,
 )
 from ..._generated.platform.partner.create_platform_partner_body import (
     CreatePlatformPartnerBody,
@@ -73,14 +73,14 @@ from ..._generated.platform.partner.create_platform_partners_body import (
 from ..._generated.platform.partner.create_platform_partners_response import (
     CreatePlatformPartnersResponse,
 )
-from ..._generated.platform.partner.disconnect_bulk_partner_member_company_body import (
-    DisconnectBulkPartnerMemberCompanyBody,
+from ..._generated.platform.partner.disconnect_bulk_partner_counterparty_body import (
+    DisconnectBulkPartnerCounterpartyBody,
 )
-from ..._generated.platform.partner.disconnect_bulk_partner_member_company_response import (
-    DisconnectBulkPartnerMemberCompanyResponse,
+from ..._generated.platform.partner.disconnect_bulk_partner_counterparty_response import (
+    DisconnectBulkPartnerCounterpartyResponse,
 )
-from ..._generated.platform.partner.disconnect_partner_member_company_response import (
-    DisconnectPartnerMemberCompanyResponse,
+from ..._generated.platform.partner.disconnect_partner_counterparty_response import (
+    DisconnectPartnerCounterpartyResponse,
 )
 from ..._generated.platform.partner.get_platform_partners_body import (
     GetPlatformPartnersBody,
@@ -106,20 +106,20 @@ from ..._generated.platform.partner.client import PartnerClient
 
 __all__ = [
     "ArchivePlatformPartnerError",
-    "ConnectBulkPartnerMemberCompanyError",
-    "ConnectPartnerMemberCompanyError",
+    "ConnectBulkPartnerCounterpartyError",
+    "ConnectPartnerCounterpartyError",
     "CreatePlatformPartnerError",
     "CreatePlatformPartnersError",
-    "DisconnectBulkPartnerMemberCompanyError",
-    "DisconnectPartnerMemberCompanyError",
+    "DisconnectBulkPartnerCounterpartyError",
+    "DisconnectPartnerCounterpartyError",
     "GetPlatformPartnerError",
     "GetPlatformPartnersError",
     "RecoverPlatformPartnerError",
     "UpdatePlatformPartnerError",
     "ArchivePlatformPartnerResponse",
-    "ConnectBulkPartnerMemberCompanyBody",
-    "ConnectBulkPartnerMemberCompanyResponse",
-    "ConnectPartnerMemberCompanyResponse",
+    "ConnectBulkPartnerCounterpartyBody",
+    "ConnectBulkPartnerCounterpartyResponse",
+    "ConnectPartnerCounterpartyResponse",
     "CreatePlatformPartnerBody",
     "CreatePlatformPartnerBodyAccount",
     "CreatePlatformPartnerBodyContact",
@@ -130,9 +130,9 @@ __all__ = [
     "CreatePlatformPartnerResponse",
     "CreatePlatformPartnersBody",
     "CreatePlatformPartnersResponse",
-    "DisconnectBulkPartnerMemberCompanyBody",
-    "DisconnectBulkPartnerMemberCompanyResponse",
-    "DisconnectPartnerMemberCompanyResponse",
+    "DisconnectBulkPartnerCounterpartyBody",
+    "DisconnectBulkPartnerCounterpartyResponse",
+    "DisconnectPartnerCounterpartyResponse",
     "GetPlatformPartnersBody",
     "GetPlatformPartnersResponse",
     "PlatformBulkTask",

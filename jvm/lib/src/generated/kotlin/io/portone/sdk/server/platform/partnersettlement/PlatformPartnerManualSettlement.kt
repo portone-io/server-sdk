@@ -3,6 +3,8 @@ package io.portone.sdk.server.platform.partnersettlement
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.platform.PlatformPartner
 import io.portone.sdk.server.platform.partnersettlement.PlatformPartnerSettlementStatus
+import io.portone.sdk.server.serializers.InstantSerializer
+import java.time.Instant
 import kotlin.String
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -26,6 +28,8 @@ public data class PlatformPartnerManualSettlement(
   override val settlementCurrency: Currency,
   /** 정산 상태 */
   override val status: PlatformPartnerSettlementStatus,
+  /** 상태 업데이트 일시 */
+  override val statusUpdatedAt: @Serializable(InstantSerializer::class) Instant? = null,
   /** 메모 */
   override val memo: String? = null,
   /** 정산 금액 */

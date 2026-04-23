@@ -93,6 +93,22 @@ public sealed interface PlatformTransferStatus {
     }
     override fun serialize(encoder: Encoder, value: PaidOut): Unit = encoder.encodeString(value.value)
   }
+  /** 지급 확정 */
+  @Serializable(PayoutConfirmedSerializer::class)
+  public data object PayoutConfirmed : PlatformTransferStatus {
+    override val value: String = "PAYOUT_CONFIRMED"
+  }
+  public object PayoutConfirmedSerializer : KSerializer<PayoutConfirmed> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(PayoutConfirmed::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): PayoutConfirmed = decoder.decodeString().let {
+      if (it != "PAYOUT_CONFIRMED") {
+        throw SerializationException(it)
+      } else {
+        return PayoutConfirmed
+      }
+    }
+    override fun serialize(encoder: Encoder, value: PayoutConfirmed): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PlatformTransferStatus
@@ -109,6 +125,7 @@ public object PlatformTransferStatusSerializer : KSerializer<PlatformTransferSta
       "SETTLED" -> PlatformTransferStatus.Settled
       "IN_PAYOUT" -> PlatformTransferStatus.InPayout
       "PAID_OUT" -> PlatformTransferStatus.PaidOut
+      "PAYOUT_CONFIRMED" -> PlatformTransferStatus.PayoutConfirmed
       else -> PlatformTransferStatus.Unrecognized(value)
     }
   }

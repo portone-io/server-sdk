@@ -17,6 +17,11 @@ class B2bBusinessInfoResult:
     error: Optional[str] = field(default=None)
     """조회 실패 시 에러 메시지
     """
+    verification_id: Optional[str] = field(default=None)
+    """조회 결과 ID
+
+    거래처 생성/수정 시 사업자 정보 조회 결과를 재사용하기 위한 ID입니다. 조회 성공 시에만 설정됩니다.
+    """
 
 
 def _serialize_b2b_business_info_result(obj: B2bBusinessInfoResult) -> Any:
@@ -28,6 +33,8 @@ def _serialize_b2b_business_info_result(obj: B2bBusinessInfoResult) -> Any:
         entity["businessInfo"] = _serialize_b2b_business_info(obj.business_info)
     if obj.error is not None:
         entity["error"] = obj.error
+    if obj.verification_id is not None:
+        entity["verificationId"] = obj.verification_id
     return entity
 
 
@@ -50,4 +57,10 @@ def _deserialize_b2b_business_info_result(obj: Any) -> B2bBusinessInfoResult:
             raise ValueError(f"{repr(error)} is not str")
     else:
         error = None
-    return B2bBusinessInfoResult(brn, business_info, error)
+    if "verificationId" in obj:
+        verification_id = obj["verificationId"]
+        if not isinstance(verification_id, str):
+            raise ValueError(f"{repr(verification_id)} is not str")
+    else:
+        verification_id = None
+    return B2bBusinessInfoResult(brn, business_info, error, verification_id)

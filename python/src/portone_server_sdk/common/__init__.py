@@ -1,6 +1,5 @@
 from .._generated.common.address import Address
 from .._generated.common.bank import Bank
-from .._generated.common.billing_key_payment_input import BillingKeyPaymentInput
 from .._generated.common.card import Card
 from .._generated.common.card_brand import CardBrand
 from .._generated.common.card_credential import CardCredential
@@ -41,7 +40,6 @@ from .._generated.common.sort_order import SortOrder
 __all__ = [
     "Address",
     "Bank",
-    "BillingKeyPaymentInput",
     "Card",
     "CardBrand",
     "CardCredential",

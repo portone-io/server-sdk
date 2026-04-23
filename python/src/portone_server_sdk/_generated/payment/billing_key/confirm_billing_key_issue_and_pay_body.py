@@ -45,6 +45,11 @@ class ConfirmBillingKeyIssueAndPayBody:
 
     검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다.
     """
+    skip_webhook: Optional[bool] = field(default=None)
+    """웹훅 생략 여부
+
+    빌링키 발급 및 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+    """
 
 
 def _serialize_confirm_billing_key_issue_and_pay_body(obj: ConfirmBillingKeyIssueAndPayBody) -> Any:
@@ -64,6 +69,8 @@ def _serialize_confirm_billing_key_issue_and_pay_body(obj: ConfirmBillingKeyIssu
         entity["taxFreeAmount"] = obj.tax_free_amount
     if obj.is_test is not None:
         entity["isTest"] = obj.is_test
+    if obj.skip_webhook is not None:
+        entity["skipWebhook"] = obj.skip_webhook
     return entity
 
 
@@ -110,4 +117,10 @@ def _deserialize_confirm_billing_key_issue_and_pay_body(obj: Any) -> ConfirmBill
             raise ValueError(f"{repr(is_test)} is not bool")
     else:
         is_test = None
-    return ConfirmBillingKeyIssueAndPayBody(billing_issue_token, store_id, payment_id, currency, total_amount, tax_free_amount, is_test)
+    if "skipWebhook" in obj:
+        skip_webhook = obj["skipWebhook"]
+        if not isinstance(skip_webhook, bool):
+            raise ValueError(f"{repr(skip_webhook)} is not bool")
+    else:
+        skip_webhook = None
+    return ConfirmBillingKeyIssueAndPayBody(billing_issue_token, store_id, payment_id, currency, total_amount, tax_free_amount, is_test, skip_webhook)

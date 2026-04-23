@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.CreatePlatformManualTransferError
 import io.portone.sdk.server.errors.CreatePlatformManualTransferException
@@ -97,6 +98,8 @@ import io.portone.sdk.server.errors.PlatformTransferAlreadyExistsError
 import io.portone.sdk.server.errors.PlatformTransferAlreadyExistsException
 import io.portone.sdk.server.errors.PlatformTransferDiscountSharePolicyNotFoundError
 import io.portone.sdk.server.errors.PlatformTransferDiscountSharePolicyNotFoundException
+import io.portone.sdk.server.errors.PlatformTransferIdAlreadyUsedError
+import io.portone.sdk.server.errors.PlatformTransferIdAlreadyUsedException
 import io.portone.sdk.server.errors.PlatformTransferNonDeletableStatusError
 import io.portone.sdk.server.errors.PlatformTransferNonDeletableStatusException
 import io.portone.sdk.server.errors.PlatformTransferNotFoundError
@@ -354,6 +357,12 @@ public class TransferClient(
    * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param userDefinedProperties
    * 사용자 정의 속성
+   * @param id
+   * 생성할 정산건 아이디
+   *
+   * 명시하지 않으면 id 가 임의로 생성됩니다.
+   * @param settlementCurrency
+   * 정산 통화
    *
    * @throws CreatePlatformManualTransferException
    */
@@ -367,6 +376,8 @@ public class TransferClient(
     settlementDate: String,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+    id: String? = null,
+    settlementCurrency: Currency? = null,
   ): CreateManualTransferResponse {
     val requestBody = CreatePlatformManualTransferBody(
       partnerId = partnerId,
@@ -376,6 +387,8 @@ public class TransferClient(
       settlementDate = settlementDate,
       isForTest = isForTest,
       userDefinedProperties = userDefinedProperties,
+      id = id,
+      settlementCurrency = settlementCurrency,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -401,8 +414,10 @@ public class TransferClient(
       when (httpBodyDecoded) {
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
+        is PlatformTransferIdAlreadyUsedError -> throw PlatformTransferIdAlreadyUsedException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
@@ -427,7 +442,9 @@ public class TransferClient(
     settlementDate: String,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateManualTransferResponse> = GlobalScope.future { createPlatformManualTransfer(test, partnerId, memo, settlementAmount, settlementTaxFreeAmount, settlementDate, isForTest, userDefinedProperties) }
+    id: String? = null,
+    settlementCurrency: Currency? = null,
+  ): CompletableFuture<CreateManualTransferResponse> = GlobalScope.future { createPlatformManualTransfer(test, partnerId, memo, settlementAmount, settlementTaxFreeAmount, settlementDate, isForTest, userDefinedProperties, id, settlementCurrency) }
 
 
   /**
@@ -478,6 +495,10 @@ public class TransferClient(
    * Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
    * @param userDefinedProperties
    * 사용자 정의 속성
+   * @param id
+   * 생성할 취소 정산건 아이디
+   *
+   * 명시하지 않으면 id 가 임의로 생성됩니다.
    *
    * @throws CreatePlatformOrderCancelTransferException
    */
@@ -497,6 +518,7 @@ public class TransferClient(
     externalCancellationDetail: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail? = null,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+    id: String? = null,
   ): CreateOrderCancelTransferResponse {
     val requestBody = CreatePlatformOrderCancelTransferBody(
       partnerId = partnerId,
@@ -512,6 +534,7 @@ public class TransferClient(
       externalCancellationDetail = externalCancellationDetail,
       isForTest = isForTest,
       userDefinedProperties = userDefinedProperties,
+      id = id,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -556,6 +579,7 @@ public class TransferClient(
         is PlatformSettlementDateEarlierThanSettlementStartDateError -> throw PlatformSettlementDateEarlierThanSettlementStartDateException(httpBodyDecoded)
         is PlatformTransferAlreadyExistsError -> throw PlatformTransferAlreadyExistsException(httpBodyDecoded)
         is PlatformTransferDiscountSharePolicyNotFoundError -> throw PlatformTransferDiscountSharePolicyNotFoundException(httpBodyDecoded)
+        is PlatformTransferIdAlreadyUsedError -> throw PlatformTransferIdAlreadyUsedException(httpBodyDecoded)
         is PlatformTransferNotFoundError -> throw PlatformTransferNotFoundException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
@@ -587,7 +611,8 @@ public class TransferClient(
     externalCancellationDetail: CreatePlatformOrderCancelTransferBodyExternalCancellationDetail? = null,
     isForTest: Boolean? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateOrderCancelTransferResponse> = GlobalScope.future { createPlatformOrderCancelTransfer(test, partnerId, paymentId, transferId, cancellationId, memo, orderDetail, taxFreeAmount, discounts, settlementStartDate, settlementDate, externalCancellationDetail, isForTest, userDefinedProperties) }
+    id: String? = null,
+  ): CompletableFuture<CreateOrderCancelTransferResponse> = GlobalScope.future { createPlatformOrderCancelTransfer(test, partnerId, paymentId, transferId, cancellationId, memo, orderDetail, taxFreeAmount, discounts, settlementStartDate, settlementDate, externalCancellationDetail, isForTest, userDefinedProperties, id) }
 
 
   /**
@@ -642,6 +667,10 @@ public class TransferClient(
    * 정산 파라미터 (실험기능)
    * @param userDefinedProperties
    * 사용자 정의 속성
+   * @param id
+   * 생성할 정산건 아이디
+   *
+   * 명시하지 않으면 id 가 임의로 생성됩니다.
    *
    * @throws CreatePlatformOrderTransferException
    */
@@ -662,6 +691,7 @@ public class TransferClient(
     isForTest: Boolean? = null,
     parameters: TransferParameters? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
+    id: String? = null,
   ): CreateOrderTransferResponse {
     val requestBody = CreatePlatformOrderTransferBody(
       partnerId = partnerId,
@@ -678,6 +708,7 @@ public class TransferClient(
       isForTest = isForTest,
       parameters = parameters,
       userDefinedProperties = userDefinedProperties,
+      id = id,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -720,6 +751,7 @@ public class TransferClient(
         is PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError -> throw PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentException(httpBodyDecoded)
         is PlatformSettlementTaxFreeAmountExceededPortOnePaymentError -> throw PlatformSettlementTaxFreeAmountExceededPortOnePaymentException(httpBodyDecoded)
         is PlatformTransferAlreadyExistsError -> throw PlatformTransferAlreadyExistsException(httpBodyDecoded)
+        is PlatformTransferIdAlreadyUsedError -> throw PlatformTransferIdAlreadyUsedException(httpBodyDecoded)
         is PlatformUserDefinedPropertyNotFoundError -> throw PlatformUserDefinedPropertyNotFoundException(httpBodyDecoded)
         is UnauthorizedError -> throw UnauthorizedException(httpBodyDecoded)
       }
@@ -751,7 +783,8 @@ public class TransferClient(
     isForTest: Boolean? = null,
     parameters: TransferParameters? = null,
     userDefinedProperties: List<PlatformUserDefinedPropertyKeyValue>? = null,
-  ): CompletableFuture<CreateOrderTransferResponse> = GlobalScope.future { createPlatformOrderTransfer(test, partnerId, contractId, memo, paymentId, orderDetail, taxFreeAmount, settlementStartDate, settlementDate, discounts, additionalFees, externalPaymentDetail, isForTest, parameters, userDefinedProperties) }
+    id: String? = null,
+  ): CompletableFuture<CreateOrderTransferResponse> = GlobalScope.future { createPlatformOrderTransfer(test, partnerId, contractId, memo, paymentId, orderDetail, taxFreeAmount, settlementStartDate, settlementDate, discounts, additionalFees, externalPaymentDetail, isForTest, parameters, userDefinedProperties, id) }
 
 
   /**

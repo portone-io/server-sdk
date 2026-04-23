@@ -103,7 +103,7 @@ public data class B2bTaxInvoice(
   /**
    * 추가 담당자
    *
-   * 최대 3개
+   * 최대 5명
    */
   val additionalContacts: List<B2bTaxInvoiceAdditionalContact>,
   /** 메모 */

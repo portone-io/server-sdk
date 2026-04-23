@@ -1,6 +1,7 @@
 import type { DateRange } from "./../../common/DateRange"
 import type { PaymentMethodType } from "./../../common/PaymentMethodType"
 import type { PlatformTransferFilterInputKeyword } from "./../../platform/transfer/PlatformTransferFilterInputKeyword"
+import type { PlatformTransferPropertyExactMatchInput } from "./../../platform/transfer/PlatformTransferPropertyExactMatchInput"
 import type { PlatformTransferStatus } from "./../../platform/transfer/PlatformTransferStatus"
 import type { PlatformTransferType } from "./../../platform/transfer/PlatformTransferType"
 /**
@@ -61,6 +62,12 @@ export type PlatformTransferFilterInput = {
 	 * 하나 이상의 값이 존재하는 경우 해당 리스트에 포함되는 정산 상태인 정산건만 조회합니다.
 	 */
 	statuses?: PlatformTransferStatus[]
+	/**
+	 * 사용자 정의 속성 exact match
+	 *
+	 * 사용자 정의 속성의 key와 value가 정확히 일치하는 정산건만 조회합니다.
+	 */
+	userDefinedProperty?: PlatformTransferPropertyExactMatchInput
 	/** 검색 키워드 */
 	keyword?: PlatformTransferFilterInputKeyword
 	/**

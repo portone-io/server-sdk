@@ -18,6 +18,11 @@ class IssueB2bTaxInvoiceImmediatelyBody:
     modification: Optional[B2bTaxInvoiceModificationCreateBody] = field(default=None)
     """수정 세금계산서 입력 정보
     """
+    create_recipient_counterparty: Optional[bool] = field(default=None)
+    """공급받는자 거래처 생성 여부
+
+    true인 경우 공급받는자 정보로 거래처를 자동 생성합니다.
+    """
 
 
 def _serialize_issue_b2b_tax_invoice_immediately_body(obj: IssueB2bTaxInvoiceImmediatelyBody) -> Any:
@@ -29,6 +34,8 @@ def _serialize_issue_b2b_tax_invoice_immediately_body(obj: IssueB2bTaxInvoiceImm
         entity["memo"] = obj.memo
     if obj.modification is not None:
         entity["modification"] = _serialize_b2b_tax_invoice_modification_create_body(obj.modification)
+    if obj.create_recipient_counterparty is not None:
+        entity["createRecipientCounterparty"] = obj.create_recipient_counterparty
     return entity
 
 
@@ -50,4 +57,10 @@ def _deserialize_issue_b2b_tax_invoice_immediately_body(obj: Any) -> IssueB2bTax
         modification = _deserialize_b2b_tax_invoice_modification_create_body(modification)
     else:
         modification = None
-    return IssueB2bTaxInvoiceImmediatelyBody(tax_invoice, memo, modification)
+    if "createRecipientCounterparty" in obj:
+        create_recipient_counterparty = obj["createRecipientCounterparty"]
+        if not isinstance(create_recipient_counterparty, bool):
+            raise ValueError(f"{repr(create_recipient_counterparty)} is not bool")
+    else:
+        create_recipient_counterparty = None
+    return IssueB2bTaxInvoiceImmediatelyBody(tax_invoice, memo, modification, create_recipient_counterparty)

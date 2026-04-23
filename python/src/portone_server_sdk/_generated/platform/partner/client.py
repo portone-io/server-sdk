@@ -4,31 +4,34 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformBtxNotEnabledError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCurrencyNotSupportedError, PlatformExternalApiFailedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyNotConnectableStatusError, PlatformMemberCompanyNotConnectedError, PlatformNotEnabledError, PlatformOngoingTaxInvoiceExistsError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformPartnerScheduleExistsError, PlatformPartnerTaxationTypeIsSimpleError, PlatformPartnerTypeIsNotBusinessError, PlatformTargetPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformArchivedPartnerError, PlatformArchivedPartnerNtsNotAllowedError, PlatformBtxNotEnabledError, PlatformCannotArchiveScheduledPartnerError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractsNotFoundError, PlatformCounterpartyNotConnectableStatusError, PlatformCounterpartyNotConnectedError, PlatformCounterpartyOngoingTaxInvoiceExistsError, PlatformCurrencyNotSupportedError, PlatformExternalApiFailedError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformNotEnabledError, PlatformOngoingTaxInvoiceExistsError, PlatformPartnerIdAlreadyExistsError, PlatformPartnerIdsAlreadyExistError, PlatformPartnerIdsDuplicatedError, PlatformPartnerNotFoundError, PlatformPartnerPendingNtsOperationError, PlatformPartnerScheduleExistsError, PlatformPartnerTaxationTypeIsSimpleError, PlatformPartnerTypeIsNotBusinessError, PlatformTargetPartnerNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.platform_account_verification_already_used_error import _deserialize_platform_account_verification_already_used_error
 from ...platform.platform_account_verification_failed_error import _deserialize_platform_account_verification_failed_error
 from ...platform.platform_account_verification_not_found_error import _deserialize_platform_account_verification_not_found_error
 from ...platform.platform_archived_partner_error import _deserialize_platform_archived_partner_error
+from ...platform.partner.platform_archived_partner_nts_not_allowed_error import _deserialize_platform_archived_partner_nts_not_allowed_error
 from ...platform.partner.platform_btx_not_enabled_error import _deserialize_platform_btx_not_enabled_error
 from ...platform.partner.platform_cannot_archive_scheduled_partner_error import _deserialize_platform_cannot_archive_scheduled_partner_error
 from ...platform.platform_company_verification_already_used_error import _deserialize_platform_company_verification_already_used_error
 from ...platform.platform_contract_not_found_error import _deserialize_platform_contract_not_found_error
 from ...platform.partner.platform_contracts_not_found_error import _deserialize_platform_contracts_not_found_error
+from ...platform.partner.platform_counterparty_not_connectable_status_error import _deserialize_platform_counterparty_not_connectable_status_error
+from ...platform.partner.platform_counterparty_not_connected_error import _deserialize_platform_counterparty_not_connected_error
+from ...platform.partner.platform_counterparty_ongoing_tax_invoice_exists_error import _deserialize_platform_counterparty_ongoing_tax_invoice_exists_error
 from ...platform.platform_currency_not_supported_error import _deserialize_platform_currency_not_supported_error
 from ...platform.platform_external_api_failed_error import _deserialize_platform_external_api_failed_error
 from ...platform.platform_insufficient_data_to_change_partner_type_error import _deserialize_platform_insufficient_data_to_change_partner_type_error
 from ...platform.platform_member_company_connected_partner_brn_unchangeable_error import _deserialize_platform_member_company_connected_partner_brn_unchangeable_error
 from ...platform.platform_member_company_connected_partner_type_unchangeable_error import _deserialize_platform_member_company_connected_partner_type_unchangeable_error
-from ...platform.partner.platform_member_company_not_connectable_status_error import _deserialize_platform_member_company_not_connectable_status_error
-from ...platform.partner.platform_member_company_not_connected_error import _deserialize_platform_member_company_not_connected_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
 from ...platform.partner.platform_ongoing_tax_invoice_exists_error import _deserialize_platform_ongoing_tax_invoice_exists_error
 from ...platform.partner.platform_partner_id_already_exists_error import _deserialize_platform_partner_id_already_exists_error
 from ...platform.partner.platform_partner_ids_already_exist_error import _deserialize_platform_partner_ids_already_exist_error
 from ...platform.partner.platform_partner_ids_duplicated_error import _deserialize_platform_partner_ids_duplicated_error
 from ...platform.platform_partner_not_found_error import _deserialize_platform_partner_not_found_error
+from ...platform.partner.platform_partner_pending_nts_operation_error import _deserialize_platform_partner_pending_nts_operation_error
 from ...platform.partner.platform_partner_schedule_exists_error import _deserialize_platform_partner_schedule_exists_error
 from ...platform.partner.platform_partner_taxation_type_is_simple_error import _deserialize_platform_partner_taxation_type_is_simple_error
 from ...platform.partner.platform_partner_type_is_not_business_error import _deserialize_platform_partner_type_is_not_business_error
@@ -36,16 +39,16 @@ from ...platform.partner.platform_target_partner_not_found_error import _deseria
 from ...platform.platform_user_defined_property_not_found_error import _deserialize_platform_user_defined_property_not_found_error
 from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...platform.partner.archive_platform_partner_response import ArchivePlatformPartnerResponse, _deserialize_archive_platform_partner_response, _serialize_archive_platform_partner_response
-from ...platform.partner.connect_bulk_partner_member_company_response import ConnectBulkPartnerMemberCompanyResponse, _deserialize_connect_bulk_partner_member_company_response, _serialize_connect_bulk_partner_member_company_response
-from ...platform.partner.connect_partner_member_company_response import ConnectPartnerMemberCompanyResponse, _deserialize_connect_partner_member_company_response, _serialize_connect_partner_member_company_response
+from ...platform.partner.connect_bulk_partner_counterparty_response import ConnectBulkPartnerCounterpartyResponse, _deserialize_connect_bulk_partner_counterparty_response, _serialize_connect_bulk_partner_counterparty_response
+from ...platform.partner.connect_partner_counterparty_response import ConnectPartnerCounterpartyResponse, _deserialize_connect_partner_counterparty_response, _serialize_connect_partner_counterparty_response
 from ...platform.partner.create_platform_partner_body import CreatePlatformPartnerBody, _deserialize_create_platform_partner_body, _serialize_create_platform_partner_body
 from ...platform.partner.create_platform_partner_body_account import CreatePlatformPartnerBodyAccount, _deserialize_create_platform_partner_body_account, _serialize_create_platform_partner_body_account
 from ...platform.partner.create_platform_partner_body_contact import CreatePlatformPartnerBodyContact, _deserialize_create_platform_partner_body_contact, _serialize_create_platform_partner_body_contact
 from ...platform.partner.create_platform_partner_body_type import CreatePlatformPartnerBodyType, _deserialize_create_platform_partner_body_type, _serialize_create_platform_partner_body_type
 from ...platform.partner.create_platform_partner_response import CreatePlatformPartnerResponse, _deserialize_create_platform_partner_response, _serialize_create_platform_partner_response
 from ...platform.partner.create_platform_partners_response import CreatePlatformPartnersResponse, _deserialize_create_platform_partners_response, _serialize_create_platform_partners_response
-from ...platform.partner.disconnect_bulk_partner_member_company_response import DisconnectBulkPartnerMemberCompanyResponse, _deserialize_disconnect_bulk_partner_member_company_response, _serialize_disconnect_bulk_partner_member_company_response
-from ...platform.partner.disconnect_partner_member_company_response import DisconnectPartnerMemberCompanyResponse, _deserialize_disconnect_partner_member_company_response, _serialize_disconnect_partner_member_company_response
+from ...platform.partner.disconnect_bulk_partner_counterparty_response import DisconnectBulkPartnerCounterpartyResponse, _deserialize_disconnect_bulk_partner_counterparty_response, _serialize_disconnect_bulk_partner_counterparty_response
+from ...platform.partner.disconnect_partner_counterparty_response import DisconnectPartnerCounterpartyResponse, _deserialize_disconnect_partner_counterparty_response, _serialize_disconnect_partner_counterparty_response
 from ...platform.partner.get_platform_partners_response import GetPlatformPartnersResponse, _deserialize_get_platform_partners_response, _serialize_get_platform_partners_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.platform_partner import PlatformPartner, _deserialize_platform_partner, _serialize_platform_partner
@@ -272,15 +275,15 @@ class PartnerClient:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
         return _deserialize_create_platform_partners_response(response.json())
-    def connect_partner_member_company(
+    def connect_partner_counterparty(
         self,
         *,
         id: str,
         test: Optional[bool] = None,
-    ) -> ConnectPartnerMemberCompanyResponse:
-        """파트너 국세청 연동
+    ) -> ConnectPartnerCounterpartyResponse:
+        """파트너 거래처 연동
 
-        파트너를 국세청 연동합니다.
+        파트너를 거래처에 연동합니다.
 
         Args:
             id (str):
@@ -292,7 +295,7 @@ class PartnerClient:
 
 
         Raises:
-            ConnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ConnectPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
@@ -300,7 +303,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-connect/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -323,23 +326,35 @@ class PartnerClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_archived_partner_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerError(error)
+            try:
+                error = _deserialize_platform_archived_partner_nts_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerNtsNotAllowedError(error)
+            try:
                 error = _deserialize_platform_btx_not_enabled_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformBtxNotEnabledError(error)
             try:
+                error = _deserialize_platform_counterparty_not_connectable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyNotConnectableStatusError(error)
+            try:
                 error = _deserialize_platform_external_api_failed_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformExternalApiFailedError(error)
-            try:
-                error = _deserialize_platform_member_company_not_connectable_status_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyNotConnectableStatusError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -377,16 +392,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_connect_partner_member_company_response(response.json())
-    async def connect_partner_member_company_async(
+        return _deserialize_connect_partner_counterparty_response(response.json())
+    async def connect_partner_counterparty_async(
         self,
         *,
         id: str,
         test: Optional[bool] = None,
-    ) -> ConnectPartnerMemberCompanyResponse:
-        """파트너 국세청 연동
+    ) -> ConnectPartnerCounterpartyResponse:
+        """파트너 거래처 연동
 
-        파트너를 국세청 연동합니다.
+        파트너를 거래처에 연동합니다.
 
         Args:
             id (str):
@@ -398,7 +413,7 @@ class PartnerClient:
 
 
         Raises:
-            ConnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            ConnectPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
@@ -406,7 +421,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-connect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-connect/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -429,23 +444,35 @@ class PartnerClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_archived_partner_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerError(error)
+            try:
+                error = _deserialize_platform_archived_partner_nts_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerNtsNotAllowedError(error)
+            try:
                 error = _deserialize_platform_btx_not_enabled_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformBtxNotEnabledError(error)
             try:
+                error = _deserialize_platform_counterparty_not_connectable_status_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyNotConnectableStatusError(error)
+            try:
                 error = _deserialize_platform_external_api_failed_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformExternalApiFailedError(error)
-            try:
-                error = _deserialize_platform_member_company_not_connectable_status_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyNotConnectableStatusError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -483,16 +510,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_connect_partner_member_company_response(response.json())
-    def connect_bulk_partner_member_company(
+        return _deserialize_connect_partner_counterparty_response(response.json())
+    def connect_bulk_partner_counterparty(
         self,
         *,
         test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
-    ) -> ConnectBulkPartnerMemberCompanyResponse:
-        """파트너 일괄 국세청 연동
+    ) -> ConnectBulkPartnerCounterpartyResponse:
+        """파트너 일괄 거래처 연동
 
-        파트너들을 일괄 국세청 연동합니다.
+        파트너들을 일괄 거래처 연동합니다.
 
         Args:
             test (bool, optional):
@@ -500,11 +527,11 @@ class PartnerClient:
 
                 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
-                일괄 국세청 연동할 파트너 조건 필터
+                일괄 거래처 연동할 파트너 조건 필터
 
 
         Raises:
-            ConnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ConnectBulkPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
@@ -515,7 +542,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-connect",
+            f"{self._base_url}/platform/partners/counterparty-connect",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -575,16 +602,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_connect_bulk_partner_member_company_response(response.json())
-    async def connect_bulk_partner_member_company_async(
+        return _deserialize_connect_bulk_partner_counterparty_response(response.json())
+    async def connect_bulk_partner_counterparty_async(
         self,
         *,
         test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
-    ) -> ConnectBulkPartnerMemberCompanyResponse:
-        """파트너 일괄 국세청 연동
+    ) -> ConnectBulkPartnerCounterpartyResponse:
+        """파트너 일괄 거래처 연동
 
-        파트너들을 일괄 국세청 연동합니다.
+        파트너들을 일괄 거래처 연동합니다.
 
         Args:
             test (bool, optional):
@@ -592,11 +619,11 @@ class PartnerClient:
 
                 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
-                일괄 국세청 연동할 파트너 조건 필터
+                일괄 거래처 연동할 파트너 조건 필터
 
 
         Raises:
-            ConnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            ConnectBulkPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
@@ -607,7 +634,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-connect",
+            f"{self._base_url}/platform/partners/counterparty-connect",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -667,16 +694,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_connect_bulk_partner_member_company_response(response.json())
-    def disconnect_partner_member_company(
+        return _deserialize_connect_bulk_partner_counterparty_response(response.json())
+    def disconnect_partner_counterparty(
         self,
         *,
         id: str,
         test: Optional[bool] = None,
-    ) -> DisconnectPartnerMemberCompanyResponse:
-        """파트너 국세청 연동 해제
+    ) -> DisconnectPartnerCounterpartyResponse:
+        """파트너 거래처 연동 해제
 
-        파트너를 국세청 연동 해제합니다.
+        파트너를 거래처 연동 해제합니다.
 
         Args:
             id (str):
@@ -688,7 +715,7 @@ class PartnerClient:
 
 
         Raises:
-            DisconnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            DisconnectPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
@@ -696,7 +723,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-disconnect/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -719,23 +746,29 @@ class PartnerClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_archived_partner_nts_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerNtsNotAllowedError(error)
+            try:
                 error = _deserialize_platform_btx_not_enabled_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformBtxNotEnabledError(error)
             try:
+                error = _deserialize_platform_counterparty_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyNotConnectedError(error)
+            try:
                 error = _deserialize_platform_external_api_failed_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformExternalApiFailedError(error)
-            try:
-                error = _deserialize_platform_member_company_not_connected_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyNotConnectedError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -773,16 +806,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_disconnect_partner_member_company_response(response.json())
-    async def disconnect_partner_member_company_async(
+        return _deserialize_disconnect_partner_counterparty_response(response.json())
+    async def disconnect_partner_counterparty_async(
         self,
         *,
         id: str,
         test: Optional[bool] = None,
-    ) -> DisconnectPartnerMemberCompanyResponse:
-        """파트너 국세청 연동 해제
+    ) -> DisconnectPartnerCounterpartyResponse:
+        """파트너 거래처 연동 해제
 
-        파트너를 국세청 연동 해제합니다.
+        파트너를 거래처 연동 해제합니다.
 
         Args:
             id (str):
@@ -794,7 +827,7 @@ class PartnerClient:
 
 
         Raises:
-            DisconnectPartnerMemberCompanyError: API 호출이 실패한 경우
+            DisconnectPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         query = []
@@ -802,7 +835,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-disconnect/{quote(id, safe='')}",
+            f"{self._base_url}/platform/partners/counterparty-disconnect/{quote(id, safe='')}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -825,23 +858,29 @@ class PartnerClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_platform_archived_partner_nts_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformArchivedPartnerNtsNotAllowedError(error)
+            try:
                 error = _deserialize_platform_btx_not_enabled_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformBtxNotEnabledError(error)
             try:
+                error = _deserialize_platform_counterparty_not_connected_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyNotConnectedError(error)
+            try:
                 error = _deserialize_platform_external_api_failed_error(error_response)
             except Exception:
                 pass
             if error is not None:
                 raise PlatformExternalApiFailedError(error)
-            try:
-                error = _deserialize_platform_member_company_not_connected_error(error_response)
-            except Exception:
-                pass
-            if error is not None:
-                raise PlatformMemberCompanyNotConnectedError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
@@ -879,16 +918,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_disconnect_partner_member_company_response(response.json())
-    def disconnect_bulk_partner_member_company(
+        return _deserialize_disconnect_partner_counterparty_response(response.json())
+    def disconnect_bulk_partner_counterparty(
         self,
         *,
         test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
-    ) -> DisconnectBulkPartnerMemberCompanyResponse:
-        """파트너 일괄 국세청 연동 해제
+    ) -> DisconnectBulkPartnerCounterpartyResponse:
+        """파트너 일괄 거래처 연동 해제
 
-        파트너들을 일괄 국세청 연동 해제합니다.
+        파트너들을 일괄 거래처 연동 해제합니다.
 
         Args:
             test (bool, optional):
@@ -896,11 +935,11 @@ class PartnerClient:
 
                 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
-                일괄 국세청 연동 해제할 파트너 조건 필터
+                일괄 거래처 연동 해제할 파트너 조건 필터
 
 
         Raises:
-            DisconnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            DisconnectBulkPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
@@ -911,7 +950,7 @@ class PartnerClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-disconnect",
+            f"{self._base_url}/platform/partners/counterparty-disconnect",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -971,16 +1010,16 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_disconnect_bulk_partner_member_company_response(response.json())
-    async def disconnect_bulk_partner_member_company_async(
+        return _deserialize_disconnect_bulk_partner_counterparty_response(response.json())
+    async def disconnect_bulk_partner_counterparty_async(
         self,
         *,
         test: Optional[bool] = None,
         filter: Optional[PlatformPartnerFilterInput] = None,
-    ) -> DisconnectBulkPartnerMemberCompanyResponse:
-        """파트너 일괄 국세청 연동 해제
+    ) -> DisconnectBulkPartnerCounterpartyResponse:
+        """파트너 일괄 거래처 연동 해제
 
-        파트너들을 일괄 국세청 연동 해제합니다.
+        파트너들을 일괄 거래처 연동 해제합니다.
 
         Args:
             test (bool, optional):
@@ -988,11 +1027,11 @@ class PartnerClient:
 
                 테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.
             filter (PlatformPartnerFilterInput, optional):
-                일괄 국세청 연동 해제할 파트너 조건 필터
+                일괄 거래처 연동 해제할 파트너 조건 필터
 
 
         Raises:
-            DisconnectBulkPartnerMemberCompanyError: API 호출이 실패한 경우
+            DisconnectBulkPartnerCounterpartyError: API 호출이 실패한 경우
             ValueError: 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우
         """
         request_body = {}
@@ -1003,7 +1042,7 @@ class PartnerClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/platform/partners/member-company-disconnect",
+            f"{self._base_url}/platform/partners/counterparty-disconnect",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1063,7 +1102,7 @@ class PartnerClient:
             if error is not None:
                 raise UnauthorizedError(error)
             raise UnknownError(error_response)
-        return _deserialize_disconnect_bulk_partner_member_company_response(response.json())
+        return _deserialize_disconnect_bulk_partner_counterparty_response(response.json())
     def archive_platform_partner(
         self,
         *,
@@ -1121,6 +1160,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformCannotArchiveScheduledPartnerError(error)
             try:
+                error = _deserialize_platform_counterparty_ongoing_tax_invoice_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyOngoingTaxInvoiceExistsError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -1132,6 +1177,12 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_pending_nts_operation_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerPendingNtsOperationError(error)
             try:
                 error = _deserialize_unauthorized_error(error_response)
             except Exception:
@@ -1197,6 +1248,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformCannotArchiveScheduledPartnerError(error)
             try:
+                error = _deserialize_platform_counterparty_ongoing_tax_invoice_exists_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformCounterpartyOngoingTaxInvoiceExistsError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -1208,6 +1265,12 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_pending_nts_operation_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerPendingNtsOperationError(error)
             try:
                 error = _deserialize_unauthorized_error(error_response)
             except Exception:
@@ -1279,6 +1342,12 @@ class PartnerClient:
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
             try:
+                error = _deserialize_platform_partner_pending_nts_operation_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerPendingNtsOperationError(error)
+            try:
                 error = _deserialize_unauthorized_error(error_response)
             except Exception:
                 pass
@@ -1348,6 +1417,12 @@ class PartnerClient:
                 pass
             if error is not None:
                 raise PlatformPartnerNotFoundError(error)
+            try:
+                error = _deserialize_platform_partner_pending_nts_operation_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformPartnerPendingNtsOperationError(error)
             try:
                 error = _deserialize_unauthorized_error(error_response)
             except Exception:

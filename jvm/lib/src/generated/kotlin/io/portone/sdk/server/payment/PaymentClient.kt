@@ -17,7 +17,6 @@ import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
 import io.portone.sdk.server.annotations.PortOneUnstable
-import io.portone.sdk.server.common.BillingKeyPaymentInput
 import io.portone.sdk.server.common.CashReceiptInput
 import io.portone.sdk.server.common.Country
 import io.portone.sdk.server.common.Currency
@@ -126,6 +125,7 @@ import io.portone.sdk.server.errors.UnknownException
 import io.portone.sdk.server.errors.WebhookNotFoundError
 import io.portone.sdk.server.errors.WebhookNotFoundException
 import io.portone.sdk.server.payment.ApplyEscrowLogisticsResponse
+import io.portone.sdk.server.payment.BillingKeyPaymentInput
 import io.portone.sdk.server.payment.CancelPaymentBody
 import io.portone.sdk.server.payment.CancelPaymentBodyRefundAccount
 import io.portone.sdk.server.payment.CancelPaymentResponse
@@ -431,6 +431,10 @@ public class PaymentClient(
    * 엑심베이의 경우 필수 입력입니다.
    * @param bypass
    * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
    *
    * @throws PayWithBillingKeyException
    */
@@ -457,6 +461,7 @@ public class PaymentClient(
     promotionId: String? = null,
     locale: Locale? = null,
     bypass: JsonObject? = null,
+    skipWebhook: Boolean? = null,
   ): PayWithBillingKeyResponse {
     val requestBody = BillingKeyPaymentInput(
       storeId = storeId,
@@ -480,6 +485,7 @@ public class PaymentClient(
       promotionId = promotionId,
       locale = locale,
       bypass = bypass,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -550,7 +556,8 @@ public class PaymentClient(
     promotionId: String? = null,
     locale: Locale? = null,
     bypass: JsonObject? = null,
-  ): CompletableFuture<PayWithBillingKeyResponse> = GlobalScope.future { payWithBillingKey(paymentId, billingKey, channelKey, orderName, customer, customData, amount, currency, installmentMonth, useFreeInterestFromMerchant, useCardPoint, cashReceipt, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, locale, bypass) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<PayWithBillingKeyResponse> = GlobalScope.future { payWithBillingKey(paymentId, billingKey, channelKey, orderName, customer, customData, amount, currency, installmentMonth, useFreeInterestFromMerchant, useCardPoint, cashReceipt, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, locale, bypass, skipWebhook) }
 
 
   /**
@@ -855,6 +862,10 @@ public class PaymentClient(
    * 테스트 결제 여부
    *
    * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
    *
    * @throws ConfirmPaymentException
    */
@@ -867,6 +878,7 @@ public class PaymentClient(
     totalAmount: Long? = null,
     taxFreeAmount: Long? = null,
     isTest: Boolean? = null,
+    skipWebhook: Boolean? = null,
   ): ConfirmedPaymentSummary {
     val requestBody = ConfirmPaymentBody(
       storeId = storeId,
@@ -876,6 +888,7 @@ public class PaymentClient(
       totalAmount = totalAmount,
       taxFreeAmount = taxFreeAmount,
       isTest = isTest,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -927,7 +940,8 @@ public class PaymentClient(
     totalAmount: Long? = null,
     taxFreeAmount: Long? = null,
     isTest: Boolean? = null,
-  ): CompletableFuture<ConfirmedPaymentSummary> = GlobalScope.future { confirmPayment(paymentId, paymentToken, txId, currency, totalAmount, taxFreeAmount, isTest) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<ConfirmedPaymentSummary> = GlobalScope.future { confirmPayment(paymentId, paymentToken, txId, currency, totalAmount, taxFreeAmount, isTest, skipWebhook) }
 
 
   /**
@@ -1235,6 +1249,10 @@ public class PaymentClient(
    * 해당 결제에 적용할 프로모션 아이디
    * @param bypass
    * PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고)
+   * @param skipWebhook
+   * 웹훅 생략 여부
+   *
+   * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
    *
    * @throws PayInstantlyException
    */
@@ -1259,6 +1277,7 @@ public class PaymentClient(
     shippingAddress: SeparatedAddressInput? = null,
     promotionId: String? = null,
     bypass: JsonObject? = null,
+    skipWebhook: Boolean? = null,
   ): PayInstantlyResponse {
     val requestBody = InstantPaymentInput(
       storeId = storeId,
@@ -1280,6 +1299,7 @@ public class PaymentClient(
       shippingAddress = shippingAddress,
       promotionId = promotionId,
       bypass = bypass,
+      skipWebhook = skipWebhook,
     )
     val httpResponse = client.post(apiBase) {
       url {
@@ -1346,7 +1366,8 @@ public class PaymentClient(
     shippingAddress: SeparatedAddressInput? = null,
     promotionId: String? = null,
     bypass: JsonObject? = null,
-  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, bypass) }
+    skipWebhook: Boolean? = null,
+  ): CompletableFuture<PayInstantlyResponse> = GlobalScope.future { payInstantly(paymentId, channelKey, channelGroupId, method, orderName, isCulturalExpense, isEscrow, customer, customData, amount, currency, country, noticeUrls, products, productCount, productType, shippingAddress, promotionId, bypass, skipWebhook) }
 
 
   /**

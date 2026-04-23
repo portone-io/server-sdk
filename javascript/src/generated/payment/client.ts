@@ -53,7 +53,7 @@ import type { PaymentEscrowReceiverInput } from "../../generated/payment/Payment
 import type { PaymentEscrowSenderInput } from "../../generated/payment/PaymentEscrowSenderInput"
 import type { PaymentFilterInput } from "../../generated/payment/PaymentFilterInput"
 import type { PaymentLogistics } from "../../generated/payment/PaymentLogistics"
-import type { PaymentNotFoundError } from "../../generated/payment/PaymentNotFoundError"
+import type { PaymentNotFoundError } from "../../generated/common/PaymentNotFoundError"
 import type { PaymentNotPaidError } from "../../generated/payment/PaymentNotPaidError"
 import type { PaymentNotWaitingForDepositError } from "../../generated/payment/PaymentNotWaitingForDepositError"
 import type { PaymentProduct } from "../../generated/common/PaymentProduct"
@@ -186,6 +186,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionId?: string,
 				locale?: Locale,
 				bypass?: object,
+				skipWebhook?: boolean,
 			}
 		): Promise<PayWithBillingKeyResponse> => {
 			const {
@@ -211,6 +212,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionId,
 				locale,
 				bypass,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -234,6 +236,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				promotionId,
 				locale,
 				bypass,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/billing-key`, baseUrl),
@@ -380,6 +383,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				totalAmount?: number,
 				taxFreeAmount?: number,
 				isTest?: boolean,
+				skipWebhook?: boolean,
 			}
 		): Promise<ConfirmedPaymentSummary> => {
 			const {
@@ -391,6 +395,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				totalAmount,
 				taxFreeAmount,
 				isTest,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -400,6 +405,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				totalAmount,
 				taxFreeAmount,
 				isTest,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/confirm`, baseUrl),
@@ -559,6 +565,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				shippingAddress?: SeparatedAddressInput,
 				promotionId?: string,
 				bypass?: object,
+				skipWebhook?: boolean,
 			}
 		): Promise<PayInstantlyResponse> => {
 			const {
@@ -582,6 +589,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				shippingAddress,
 				promotionId,
 				bypass,
+				skipWebhook,
 			} = options
 			const requestBody = JSON.stringify({
 				storeId: storeId ?? init.storeId,
@@ -603,6 +611,7 @@ export function PaymentClient(init: PortOneClientInit): PaymentClient {
 				shippingAddress,
 				promotionId,
 				bypass,
+				skipWebhook,
 			})
 			const response = await fetch(
 				new URL(`/payments/${encodeURIComponent(paymentId)}/instant`, baseUrl),
@@ -1029,6 +1038,12 @@ export type PaymentClient = {
 			locale?: Locale,
 			/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
 			bypass?: object,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<PayWithBillingKeyResponse>
 	/**
@@ -1209,6 +1224,12 @@ export type PaymentClient = {
 			 * 검증용 파라미터로, 결제 건 테스트 여부와 일치하지 않을 경우 오류가 반환됩니다. 값 전달을 권장합니다.
 			 */
 			isTest?: boolean,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<ConfirmedPaymentSummary>
 	/**
@@ -1385,6 +1406,12 @@ export type PaymentClient = {
 			promotionId?: string,
 			/** PG사별 추가 파라미터 ("PG사별 연동 가이드" 참고) */
 			bypass?: object,
+			/**
+			 * 웹훅 생략 여부
+			 *
+			 * 결제가 성공했을 때 웹훅을 전송하지 않으려면 true로 설정합니다. 가상계좌 입금 완료 등 외부 이벤트로 결제가 완료되는 경우 발생하는 웹훅은 스킵되지 않습니다.
+			 */
+			skipWebhook?: boolean,
 		}
 	) => Promise<PayInstantlyResponse>
 	/**

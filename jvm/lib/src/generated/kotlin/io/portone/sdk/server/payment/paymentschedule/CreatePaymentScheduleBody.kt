@@ -1,6 +1,6 @@
 package io.portone.sdk.server.payment.paymentschedule
 
-import io.portone.sdk.server.common.BillingKeyPaymentInput
+import io.portone.sdk.server.payment.paymentschedule.BillingKeyPaymentScheduleInput
 import io.portone.sdk.server.serializers.InstantSerializer
 import java.time.Instant
 import kotlinx.serialization.Serializable
@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class CreatePaymentScheduleBody(
   /** 빌링키 결제 입력 정보 */
-  val payment: BillingKeyPaymentInput,
+  val payment: BillingKeyPaymentScheduleInput,
   /** 결제 예정 시점 */
   val timeToPay: @Serializable(InstantSerializer::class) Instant,
 )

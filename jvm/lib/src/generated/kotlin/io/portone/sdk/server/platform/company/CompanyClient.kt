@@ -71,11 +71,15 @@ public class CompanyClient(
   private val json: Json = Json { ignoreUnknownKeys = true }
 
   /**
-   * 사업자등록 정보조회
+   * 사업자등록 정보 조회
    *
    * 요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
    * 해당 API 사용을 위해서는 별도 문의가 필요합니다.
    *
+   * @param test
+   * 테스트 모드 여부
+   *
+   * true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.
    * @param brnList
    * 조회할 사업자등록번호 리스트
    *
@@ -83,6 +87,7 @@ public class CompanyClient(
    */
   @JvmName("getB2bBusinessInfosSuspend")
   public suspend fun getB2bBusinessInfos(
+    test: Boolean? = null,
     brnList: List<String>,
   ): GetB2bBusinessInfosResponse {
     val requestBody = GetB2bBusinessInfosBody(
@@ -91,6 +96,7 @@ public class CompanyClient(
     val httpResponse = client.post(apiBase) {
       url {
         this.appendPathSegments("b2b", "companies", "business-info")
+        if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -128,8 +134,9 @@ public class CompanyClient(
   /** @suppress */
   @JvmName("getB2bBusinessInfos")
   public fun getB2bBusinessInfosFuture(
+    test: Boolean? = null,
     brnList: List<String>,
-  ): CompletableFuture<GetB2bBusinessInfosResponse> = GlobalScope.future { getB2bBusinessInfos(brnList) }
+  ): CompletableFuture<GetB2bBusinessInfosResponse> = GlobalScope.future { getB2bBusinessInfos(test, brnList) }
 
 
   /**
