@@ -196,7 +196,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 			return response.json()
 		},
 		updateB2bCounterparty: async (
-			options: {
+			options_: {
 				counterpartyId: string,
 				test?: boolean,
 				counterparty: B2bCounterpartyInput,
@@ -208,7 +208,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				test,
 				counterparty,
 				options,
-			} = options
+			} = options_
 			const requestBody = JSON.stringify({
 				counterparty,
 				options,
@@ -270,7 +270,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 			return response.json()
 		},
 		createB2bCounterparty: async (
-			options: {
+			options_: {
 				test?: boolean,
 				counterpartyId?: string,
 				counterparty: B2bCounterpartyInput,
@@ -282,7 +282,7 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 				counterpartyId,
 				counterparty,
 				options,
-			} = options
+			} = options_
 			const requestBody = JSON.stringify({
 				counterpartyId,
 				counterparty,

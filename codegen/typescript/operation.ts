@@ -60,12 +60,14 @@ export function writeOperation(
   implWriter.writeLine(`${operation.id}: async (`)
   typeWriter.indent()
   implWriter.indent()
+  const hasOptionsField = params.some((p) => p.name === "options")
   writeStructuredParameters(
     typeWriter,
     params,
     isStructureOptional,
     true,
     crossRef,
+    false,
   )
   writeStructuredParameters(
     implWriter,
@@ -73,6 +75,7 @@ export function writeOperation(
     isStructureOptional,
     false,
     crossRef,
+    hasOptionsField,
   )
   typeWriter.outdent()
   implWriter.outdent()
@@ -96,9 +99,10 @@ export function writeOperation(
       })
   }
   implWriter.indent()
+  const optionsSource = hasOptionsField ? "options_" : "options"
   if (isStructureOptional) {
     for (const param of params) {
-      implWriter.writeLine(`const ${param.name} = options?.${param.name}`)
+      implWriter.writeLine(`const ${param.name} = ${optionsSource}?.${param.name}`)
     }
   } else {
     implWriter.writeLine("const {")
@@ -107,7 +111,7 @@ export function writeOperation(
       implWriter.writeLine(`${param.name},`)
     }
     implWriter.outdent()
-    implWriter.writeLine("} = options")
+    implWriter.writeLine(`} = ${optionsSource}`)
   }
   let hasQuery = false
   writeRequestBody(implWriter, requestBody)
@@ -258,8 +262,10 @@ function writeStructuredParameters(
   optional: boolean,
   withComment: boolean,
   crossRef: Set<string>,
+  renameOptions: boolean,
 ) {
-  const name = optional ? "options?" : "options"
+  const paramName = renameOptions ? "options_" : "options"
+  const name = optional ? `${paramName}?` : paramName
   writer.writeLine(`${name}: {`)
   writer.indent()
   writePropertyList(writer, params, withComment, crossRef)
