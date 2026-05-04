@@ -130,7 +130,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1.5.2
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf
         with:
           cwd: ${{ github.workspace }}/javascript
           publish: pnpm publish
