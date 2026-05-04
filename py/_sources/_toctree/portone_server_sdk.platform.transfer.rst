@@ -58,6 +58,7 @@ portone\_server\_sdk.platform.transfer
       PlatformSettlementParameterValue
       PlatformTransferFilterInput
       PlatformTransferFilterInputKeyword
+      PlatformTransferPropertyExactMatchInput
       PlatformTransferSummaryExternalPayment
       PlatformTransferSummaryPartner
       PlatformTransferSummaryPortOnePayment

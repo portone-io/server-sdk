@@ -152,6 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html">portone_server_sdk.b2b.counterparty</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
@@ -173,9 +174,9 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
@@ -183,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CounterpartyClient.html">portone_server_sdk.CounterpartyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
@@ -190,9 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
@@ -574,14 +576,14 @@ billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 �
 
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.PaymentScheduleClient.create_payment_schedule">
-<span class="sig-name descname"><span class="pre">create_payment_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.BillingKeyPaymentInput" title="portone_server_sdk._generated.common.billing_key_payment_input.BillingKeyPaymentInput"><span class="pre">BillingKeyPaymentInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_to_pay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.CreatePaymentScheduleResponse" title="portone_server_sdk._generated.payment.payment_schedule.create_payment_schedule_response.CreatePaymentScheduleResponse"><span class="pre">CreatePaymentScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentScheduleClient.create_payment_schedule" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">create_payment_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.BillingKeyPaymentScheduleInput" title="portone_server_sdk._generated.payment.payment_schedule.billing_key_payment_schedule_input.BillingKeyPaymentScheduleInput"><span class="pre">BillingKeyPaymentScheduleInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_to_pay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.CreatePaymentScheduleResponse" title="portone_server_sdk._generated.payment.payment_schedule.create_payment_schedule_response.CreatePaymentScheduleResponse"><span class="pre">CreatePaymentScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentScheduleClient.create_payment_schedule" title="Link to this definition">#</a></dt>
 <dd><p>결제 예약</p>
 <p>결제를 예약합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p></li>
-<li><p><strong>payment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code>) – 빌링키 결제 입력 정보</p></li>
+<li><p><strong>payment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">BillingKeyPaymentScheduleInput</span></code>) – 빌링키 결제 입력 정보</p></li>
 <li><p><strong>time_to_pay</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 예정 시점</p></li>
 </ul>
 </dd>
@@ -596,14 +598,14 @@ billingKey, scheduleIds 모두 입력된 경우 -&gt; 입력된 결제 예약 �
 
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.PaymentScheduleClient.create_payment_schedule_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_payment_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.BillingKeyPaymentInput" title="portone_server_sdk._generated.common.billing_key_payment_input.BillingKeyPaymentInput"><span class="pre">BillingKeyPaymentInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_to_pay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.CreatePaymentScheduleResponse" title="portone_server_sdk._generated.payment.payment_schedule.create_payment_schedule_response.CreatePaymentScheduleResponse"><span class="pre">CreatePaymentScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentScheduleClient.create_payment_schedule_async" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_payment_schedule_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.BillingKeyPaymentScheduleInput" title="portone_server_sdk._generated.payment.payment_schedule.billing_key_payment_schedule_input.BillingKeyPaymentScheduleInput"><span class="pre">BillingKeyPaymentScheduleInput</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_to_pay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.payment.payment_schedule.html#portone_server_sdk.payment.payment_schedule.CreatePaymentScheduleResponse" title="portone_server_sdk._generated.payment.payment_schedule.create_payment_schedule_response.CreatePaymentScheduleResponse"><span class="pre">CreatePaymentScheduleResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PaymentScheduleClient.create_payment_schedule_async" title="Link to this definition">#</a></dt>
 <dd><p>결제 예약</p>
 <p>결제를 예약합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>payment_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 건 아이디</p></li>
-<li><p><strong>payment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">BillingKeyPaymentInput</span></code>) – 빌링키 결제 입력 정보</p></li>
+<li><p><strong>payment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">BillingKeyPaymentScheduleInput</span></code>) – 빌링키 결제 입력 정보</p></li>
 <li><p><strong>time_to_pay</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – 결제 예정 시점</p></li>
 </ul>
 </dd>

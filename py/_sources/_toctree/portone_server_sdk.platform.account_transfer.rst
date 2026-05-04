@@ -11,6 +11,7 @@ portone\_server\_sdk.platform.account\_transfer
       GetAccountTransfersBody1
       GetPlatformAccountTransfersResponse
       PlatformAccountTransferFilter
+      PlatformBankAccountDetail
       PlatformDepositAccountTransfer
       PlatformWithdrawalAccountTransfer
       AccountTransferClient

@@ -14,6 +14,8 @@
    .. autosummary::
    
       ~PartnerSettlementClient.__init__
+      ~PartnerSettlementClient.delete_platform_partner_settlements
+      ~PartnerSettlementClient.delete_platform_partner_settlements_async
       ~PartnerSettlementClient.get_platform_partner_settlements
       ~PartnerSettlementClient.get_platform_partner_settlements_async
    

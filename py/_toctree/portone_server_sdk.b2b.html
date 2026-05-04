@@ -152,6 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">portone_server_sdk.b2b</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html">portone_server_sdk.b2b.counterparty</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
@@ -173,9 +174,9 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
@@ -183,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CounterpartyClient.html">portone_server_sdk.CounterpartyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
@@ -190,9 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
@@ -355,6 +357,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient"><code class="docutils literal notranslate"><span class="pre">B2bClient</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient.tax_invoice"><code class="docutils literal notranslate"><span class="pre">B2bClient.tax_invoice</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient.counterparty"><code class="docutils literal notranslate"><span class="pre">B2bClient.counterparty</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -388,12 +391,20 @@ document.write(`
 <span class="sig-name descname"><span class="pre">tax_invoice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html#portone_server_sdk.b2b.tax_invoice.TaxInvoiceClient" title="portone_server_sdk._generated.b2b.tax_invoice.client.TaxInvoiceClient"><span class="pre">TaxInvoiceClient</span></a></em><a class="headerlink" href="#portone_server_sdk.b2b.B2bClient.tax_invoice" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.b2b.B2bClient.counterparty">
+<span class="sig-name descname"><span class="pre">counterparty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html#portone_server_sdk.b2b.counterparty.CounterpartyClient" title="portone_server_sdk._generated.b2b.counterparty.client.CounterpartyClient"><span class="pre">CounterpartyClient</span></a></em><a class="headerlink" href="#portone_server_sdk.b2b.B2bClient.counterparty" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <p class="rubric">Modules</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html#module-portone_server_sdk.b2b.tax_invoice" title="portone_server_sdk.b2b.tax_invoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tax_invoice</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html#module-portone_server_sdk.b2b.counterparty" title="portone_server_sdk.b2b.counterparty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">counterparty</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -448,6 +459,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient"><code class="docutils literal notranslate"><span class="pre">B2bClient</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient.tax_invoice"><code class="docutils literal notranslate"><span class="pre">B2bClient.tax_invoice</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.b2b.B2bClient.counterparty"><code class="docutils literal notranslate"><span class="pre">B2bClient.counterparty</span></code></a></li>
 </ul>
 </li>
 </ul>

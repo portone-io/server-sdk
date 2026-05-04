@@ -125,7 +125,7 @@
    account
    bulk_account_transfer
    bulk_payout
+   payout
    partner_settlement
    partner
-   payout
    transfer

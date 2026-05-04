@@ -43,8 +43,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_toctree/portone_server_sdk.PayoutClient';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="portone_server_sdk.TransferClient" href="portone_server_sdk.TransferClient.html" />
-    <link rel="prev" title="portone_server_sdk.PartnerClient" href="portone_server_sdk.PartnerClient.html" />
+    <link rel="next" title="portone_server_sdk.PartnerSettlementClient" href="portone_server_sdk.PartnerSettlementClient.html" />
+    <link rel="prev" title="portone_server_sdk.BulkPayoutClient" href="portone_server_sdk.BulkPayoutClient.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,6 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html">portone_server_sdk.b2b.counterparty</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
@@ -173,9 +174,9 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
@@ -183,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CounterpartyClient.html">portone_server_sdk.CounterpartyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
@@ -190,9 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
@@ -355,6 +357,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">PayoutClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids"><code class="docutils literal notranslate"><span class="pre">PayoutClient.complete_platform_payout_by_partner_settlement_ids()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.complete_platform_payout_by_partner_settlement_ids_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts_async()</span></code></a></li>
 </ul>
@@ -397,6 +401,12 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.__init__" title="portone_server_sdk.PayoutClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, secret[, base_url, store_id])</p></td>
 <td><p>API Secret을 사용해 포트원 API 클라이언트를 생성합니다.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids" title="portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">complete_platform_payout_by_partner_settlement_ids</span></code></a>(*)</p></td>
+<td><p>일괄 지급 완료 처리</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async" title="portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">complete_platform_payout_by_partner_settlement_ids_async</span></code></a>(*)</p></td>
+<td><p>일괄 지급 완료 처리</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#portone_server_sdk.PayoutClient.get_platform_payouts" title="portone_server_sdk.PayoutClient.get_platform_payouts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_platform_payouts</span></code></a>(*[, test, is_for_test, ...])</p></td>
 <td><p>지급 내역 다건 조회</p></td>
 </tr>
@@ -406,6 +416,72 @@ document.write(`
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids">
+<span class="sig-name descname"><span class="pre">complete_platform_payout_by_partner_settlement_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bulk_payout_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_settlement_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completed_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsResponse" title="portone_server_sdk._generated.platform.payout.complete_platform_payout_by_partner_settlement_ids_response.CompletePlatformPayoutByPartnerSettlementIdsResponse"><span class="pre">CompletePlatformPayoutByPartnerSettlementIdsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids" title="Link to this definition">#</a></dt>
+<dd><p>일괄 지급 완료 처리</p>
+<p>선택한 정산내역 아이디들로 일괄 지급을 완료 처리 합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p>
+</p></li>
+<li><p><strong>bulk_payout_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>)</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>partner_settlement_ids</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>)</p></li>
+<li><p><strong>completed_at</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p></li>
+<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsError" title="portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsError"><strong>CompletePlatformPayoutByPartnerSettlementIdsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">complete_platform_payout_by_partner_settlement_ids_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bulk_payout_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partner_settlement_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completed_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsResponse" title="portone_server_sdk._generated.platform.payout.complete_platform_payout_by_partner_settlement_ids_response.CompletePlatformPayoutByPartnerSettlementIdsResponse"><span class="pre">CompletePlatformPayoutByPartnerSettlementIdsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async" title="Link to this definition">#</a></dt>
+<dd><p>일괄 지급 완료 처리</p>
+<p>선택한 정산내역 아이디들로 일괄 지급을 완료 처리 합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>실험적 API입니다. 하위호환성 정책과 무관하게 변경 및 지원 종료될 수 있으니 이용에 유의하세요.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>테스트 모드 여부를 결정합니다. true 이면 테스트 모드로 실행됩니다. Request Body에도 isForTest가 있을 수 있으나, 둘 다 제공되면 Query Parameter의 test 값을 사용하고, Request Body의 isForTest는 무시됩니다. Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p>
+</p></li>
+<li><p><strong>bulk_payout_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>)</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>)</p></li>
+<li><p><strong>partner_settlement_ids</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>)</p></li>
+<li><p><strong>completed_at</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str,</span> <span class="pre">optional</span></code>) – 날짜를 나타내는 문자열로, <cite>yyyy-MM-dd</cite> 형식을 따릅니다.
+(yyyy-MM-dd)</p></li>
+<li><p><strong>is_for_test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – Query Parameter의 test에 값이 제공된 경우 Query Parameter의 test를 사용하고 해당 값은 무시됩니다.
+Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되지 않으면 기본값인 false로 적용됩니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsError" title="portone_server_sdk.platform.payout.CompletePlatformPayoutByPartnerSettlementIdsError"><strong>CompletePlatformPayoutByPartnerSettlementIdsError</strong></a> – API 호출이 실패한 경우</p></li>
+<li><p><strong>ValueError</strong> – 현재 SDK 버전에서 지원하지 않는 API 응답을 받은 경우</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.PayoutClient.get_platform_payouts">
 <span class="sig-name descname"><span class="pre">get_platform_payouts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_for_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.common.html#portone_server_sdk.common.PageInput" title="portone_server_sdk._generated.common.page_input.PageInput"><span class="pre">PageInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PlatformPayoutFilterInput" title="portone_server_sdk._generated.platform.payout.platform_payout_filter_input.PlatformPayoutFilterInput"><span class="pre">PlatformPayoutFilterInput</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.GetPlatformPayoutsResponse" title="portone_server_sdk._generated.platform.payout.get_platform_payouts_response.GetPlatformPayoutsResponse"><span class="pre">GetPlatformPayoutsResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.PayoutClient.get_platform_payouts" title="Link to this definition">#</a></dt>
@@ -474,20 +550,20 @@ Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되�
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="portone_server_sdk.PartnerClient.html"
+       href="portone_server_sdk.BulkPayoutClient.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">portone_server_sdk.PartnerClient</p>
+        <p class="prev-next-title">portone_server_sdk.BulkPayoutClient</p>
       </div>
     </a>
     <a class="right-next"
-       href="portone_server_sdk.TransferClient.html"
+       href="portone_server_sdk.PartnerSettlementClient.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">portone_server_sdk.TransferClient</p>
+        <p class="prev-next-title">portone_server_sdk.PartnerSettlementClient</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -509,6 +585,8 @@ Query Parameter의 test와 Request Body의 isForTest에 모두 값이 제공되�
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient"><code class="docutils literal notranslate"><span class="pre">PayoutClient</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.__init__"><code class="docutils literal notranslate"><span class="pre">PayoutClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids"><code class="docutils literal notranslate"><span class="pre">PayoutClient.complete_platform_payout_by_partner_settlement_ids()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.complete_platform_payout_by_partner_settlement_ids_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.complete_platform_payout_by_partner_settlement_ids_async()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.PayoutClient.get_platform_payouts_async"><code class="docutils literal notranslate"><span class="pre">PayoutClient.get_platform_payouts_async()</span></code></a></li>
 </ul>

@@ -152,6 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html">portone_server_sdk.b2b.counterparty</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
@@ -173,9 +174,9 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
@@ -183,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CounterpartyClient.html">portone_server_sdk.CounterpartyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
@@ -190,9 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
@@ -961,9 +963,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.account"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.bulk_account_transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_account_transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.bulk_payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_payout</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.partner_settlement"><code class="docutils literal notranslate"><span class="pre">PlatformClient.partner_settlement</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.partner"><code class="docutils literal notranslate"><span class="pre">PlatformClient.partner</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_additional_fee_policy_schedule()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_additional_fee_policy_schedule_async()</span></code></a></li>
@@ -3986,6 +3988,11 @@ set self.__traceback__ to tb and return self.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.payout">
+<span class="sig-name descname"><span class="pre">payout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PayoutClient" title="portone_server_sdk._generated.platform.payout.client.PayoutClient"><span class="pre">PayoutClient</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.payout" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.partner_settlement">
 <span class="sig-name descname"><span class="pre">partner_settlement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html#portone_server_sdk.platform.partner_settlement.PartnerSettlementClient" title="portone_server_sdk._generated.platform.partner_settlement.client.PartnerSettlementClient"><span class="pre">PartnerSettlementClient</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.partner_settlement" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -3993,11 +4000,6 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.partner">
 <span class="sig-name descname"><span class="pre">partner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.partner.html#portone_server_sdk.platform.partner.PartnerClient" title="portone_server_sdk._generated.platform.partner.client.PartnerClient"><span class="pre">PartnerClient</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.partner" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="portone_server_sdk.platform.PlatformClient.payout">
-<span class="sig-name descname"><span class="pre">payout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="portone_server_sdk.platform.payout.html#portone_server_sdk.platform.payout.PayoutClient" title="portone_server_sdk._generated.platform.payout.client.PayoutClient"><span class="pre">PayoutClient</span></a></em><a class="headerlink" href="#portone_server_sdk.platform.PlatformClient.payout" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -5152,13 +5154,13 @@ set self.__traceback__ to tb and return self.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html#module-portone_server_sdk.platform.bulk_payout" title="portone_server_sdk.platform.bulk_payout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bulk_payout</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html#module-portone_server_sdk.platform.partner_settlement" title="portone_server_sdk.platform.partner_settlement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partner_settlement</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#module-portone_server_sdk.platform.partner" title="portone_server_sdk.platform.partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partner</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="portone_server_sdk.platform.payout.html#module-portone_server_sdk.platform.payout" title="portone_server_sdk.platform.payout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payout</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html#module-portone_server_sdk.platform.partner_settlement" title="portone_server_sdk.platform.partner_settlement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partner_settlement</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="portone_server_sdk.platform.partner.html#module-portone_server_sdk.platform.partner" title="portone_server_sdk.platform.partner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partner</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="portone_server_sdk.platform.transfer.html#module-portone_server_sdk.platform.transfer" title="portone_server_sdk.platform.transfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transfer</span></code></a></p></td>
@@ -5822,9 +5824,9 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.account"><code class="docutils literal notranslate"><span class="pre">PlatformClient.account</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.bulk_account_transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_account_transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.bulk_payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.bulk_payout</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.partner_settlement"><code class="docutils literal notranslate"><span class="pre">PlatformClient.partner_settlement</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.partner"><code class="docutils literal notranslate"><span class="pre">PlatformClient.partner</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.payout"><code class="docutils literal notranslate"><span class="pre">PlatformClient.payout</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.transfer"><code class="docutils literal notranslate"><span class="pre">PlatformClient.transfer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_additional_fee_policy_schedule()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.PlatformClient.get_platform_additional_fee_policy_schedule_async"><code class="docutils literal notranslate"><span class="pre">PlatformClient.get_platform_additional_fee_policy_schedule_async()</span></code></a></li>

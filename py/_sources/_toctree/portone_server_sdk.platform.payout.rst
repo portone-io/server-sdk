@@ -8,6 +8,8 @@ portone\_server\_sdk.platform.payout
 
    .. autosummary::
    
+      CompletePlatformPayoutByPartnerSettlementIdsBody
+      CompletePlatformPayoutByPartnerSettlementIdsResponse
       GetPlatformPayoutsBody
       GetPlatformPayoutsResponse
       PlatformPayout
@@ -21,5 +23,6 @@ portone\_server\_sdk.platform.payout
 
    .. autosummary::
    
+      CompletePlatformPayoutByPartnerSettlementIdsError
       GetPlatformPayoutsError
    

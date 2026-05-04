@@ -8,7 +8,6 @@
 
    .. autosummary::
    
-      BillingKeyPaymentInput
       Card
       CardCredential
       CashReceiptInput

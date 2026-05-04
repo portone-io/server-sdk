@@ -8,6 +8,8 @@ portone\_server\_sdk.platform.partner\_settlement
 
    .. autosummary::
    
+      DeletePlatformPartnerSettlementsBody
+      DeletePlatformPartnerSettlementsResponse
       GetPlatformPartnerSettlementsBody
       GetPlatformPartnerSettlementsResponse
       PlatformPartnerManualSettlement
@@ -22,5 +24,6 @@ portone\_server\_sdk.platform.partner\_settlement
 
    .. autosummary::
    
+      DeletePlatformPartnerSettlementsError
       GetPlatformPartnerSettlementsError
    

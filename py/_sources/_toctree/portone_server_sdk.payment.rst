@@ -10,6 +10,7 @@
    
       ApplyEscrowLogisticsResponse
       BeforeRegisteredPaymentEscrow
+      BillingKeyPaymentInput
       BillingKeyPaymentSummary
       CancelPaymentBody
       CancelPaymentBodyRefundAccount
@@ -78,6 +79,7 @@
       PaymentMethodMobile
       PaymentMethodTransfer
       PaymentMethodVirtualAccount
+      PaymentOrigin
       PaymentTextSearch
       PaymentWebhook
       PaymentWebhookRequest

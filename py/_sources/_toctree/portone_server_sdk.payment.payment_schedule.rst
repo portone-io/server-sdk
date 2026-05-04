@@ -8,6 +8,7 @@ portone\_server\_sdk.payment.payment\_schedule
 
    .. autosummary::
    
+      BillingKeyPaymentScheduleInput
       CreatePaymentScheduleBody
       CreatePaymentScheduleResponse
       FailedPaymentSchedule

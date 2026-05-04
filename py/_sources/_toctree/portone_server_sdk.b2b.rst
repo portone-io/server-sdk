@@ -17,3 +17,4 @@
    :recursive:
 
    tax_invoice
+   counterparty

@@ -14,6 +14,25 @@
       B2BCannotChangeTaxTypeError
       B2BTaxInvoiceStatusNotSendingCompletedError
       B2bBulkTaxInvoiceNotFoundError
+      B2bCertificateUnregisteredError
+      B2bCounterpartyBrnInvalidError
+      B2bCounterpartyBrnModificationNotAllowedError
+      B2bCounterpartyIdAlreadyExistsByPartnerError
+      B2bCounterpartyIdAlreadyExistsError
+      B2bCounterpartyMissingRequiredFieldsError
+      B2bCounterpartyNotFoundError
+      B2bCounterpartyNtsConnectionFailedError
+      B2bCounterpartyNtsNotConnectedError
+      B2bCounterpartyOngoingTaxInvoiceExistsError
+      B2bCounterpartyPartnerNotConnectableError
+      B2bCounterpartyPartnerNotDeletableError
+      B2bCounterpartyPartnerNotUpdatableError
+      B2bCounterpartySelfOriginBrnMismatchError
+      B2bCounterpartyTooManyAdditionalContactsError
+      B2bCounterpartyVerificationBrnMismatchError
+      B2bCounterpartyVerificationInvalidError
+      B2bCounterpartyVerificationNotFoundError
+      B2bCounterpartyVerificationTypeMismatchError
       B2bDocumentKeyCannotBeChangedError
       B2bExternalServiceError
       B2bFileNotFoundError
@@ -82,8 +101,10 @@
       PlatformArchivedContractError
       PlatformArchivedDiscountSharePolicyError
       PlatformArchivedPartnerError
+      PlatformArchivedPartnerNtsNotAllowedError
       PlatformArchivedPartnersCannotBeScheduledError
       PlatformBtxNotEnabledError
+      PlatformBulkPayoutIdAlreadyExistsError
       PlatformCancelOrderTransfersExistsError
       PlatformCancellableAmountExceededError
       PlatformCancellableDiscountAmountExceededError
@@ -103,12 +124,16 @@
       PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError
       PlatformContractScheduleAlreadyExistsError
       PlatformContractsNotFoundError
+      PlatformCounterpartyNotConnectableStatusError
+      PlatformCounterpartyNotConnectedError
+      PlatformCounterpartyOngoingTaxInvoiceExistsError
       PlatformCurrencyNotSupportedError
       PlatformDiscountSharePoliciesNotFoundError
       PlatformDiscountSharePolicyAlreadyExistsError
       PlatformDiscountSharePolicyIdDuplicatedError
       PlatformDiscountSharePolicyNotFoundError
       PlatformDiscountSharePolicyScheduleAlreadyExistsError
+      PlatformDuplicatedPartnerSettlementIdsError
       PlatformExternalApiFailedError
       PlatformExternalApiTemporarilyFailedError
       PlatformInsufficientDataToChangePartnerTypeError
@@ -116,8 +141,10 @@
       PlatformMemberCompanyConnectedPartnerCannotBeScheduledError
       PlatformMemberCompanyConnectedPartnerTypeUnchangeableError
       PlatformMemberCompanyConnectedPartnersCannotBeScheduledError
-      PlatformMemberCompanyNotConnectableStatusError
-      PlatformMemberCompanyNotConnectedError
+      PlatformNegativePayoutAmountPartnersError
+      PlatformNoSelectedPartnerSettlementsError
+      PlatformNonDeletablePartnerSettlementsError
+      PlatformNonPayablePartnerSettlementsError
       PlatformNotEnabledError
       PlatformNotSupportedBankError
       PlatformOngoingTaxInvoiceExistsError
@@ -127,14 +154,17 @@
       PlatformPartnerIdsAlreadyExistError
       PlatformPartnerIdsDuplicatedError
       PlatformPartnerNotFoundError
+      PlatformPartnerPendingNtsOperationError
       PlatformPartnerScheduleAlreadyExistsError
       PlatformPartnerScheduleExistsError
       PlatformPartnerSchedulesAlreadyExistError
+      PlatformPartnerSettlementsNotFoundError
       PlatformPartnerTaxationTypeIsSimpleError
       PlatformPartnerTypeIsNotBusinessError
       PlatformPaymentNotFoundError
       PlatformProductIdDuplicatedError
       PlatformProductIdNotFoundError
+      PlatformReferencedCancelOrderTransfersExistError
       PlatformSettlementAmountExceededError
       PlatformSettlementCancelAmountExceededPortOneCancelError
       PlatformSettlementDateEarlierThanSettlementStartDateError
@@ -145,6 +175,7 @@
       PlatformTargetPartnerNotFoundError
       PlatformTransferAlreadyExistsError
       PlatformTransferDiscountSharePolicyNotFoundError
+      PlatformTransferIdAlreadyUsedError
       PlatformTransferNonDeletableStatusError
       PlatformTransferNotFoundError
       PlatformUserDefinedPropertyNotFoundError

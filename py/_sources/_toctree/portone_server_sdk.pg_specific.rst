@@ -8,6 +8,8 @@
 
    .. autosummary::
    
+      ConfirmPaymentwallDeliveryBody
+      ConfirmPaymentwallDeliveryResponse
       GetKakaopayPaymentOrderResponse
       PgSpecificClient
    
@@ -15,5 +17,6 @@
 
    .. autosummary::
    
+      ConfirmPaymentwallDeliveryError
       GetKakaopayPaymentOrderError
    

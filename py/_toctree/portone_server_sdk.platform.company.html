@@ -152,6 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.auth.html">portone_server_sdk.auth</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="portone_server_sdk.b2b.html">portone_server_sdk.b2b</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.tax_invoice.html">portone_server_sdk.b2b.tax_invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.b2b.counterparty.html">portone_server_sdk.b2b.counterparty</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.common.html">portone_server_sdk.common</a></li>
@@ -173,9 +174,9 @@
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.account.html">portone_server_sdk.platform.account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_account_transfer.html">portone_server_sdk.platform.bulk_account_transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.bulk_payout.html">portone_server_sdk.platform.bulk_payout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner_settlement.html">portone_server_sdk.platform.partner_settlement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.partner.html">portone_server_sdk.platform.partner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.payout.html">portone_server_sdk.platform.payout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="portone_server_sdk.platform.transfer.html">portone_server_sdk.platform.transfer</a></li>
 </ul>
 </details></li>
@@ -183,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.webhook.html">portone_server_sdk.webhook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.B2bClient.html">portone_server_sdk.B2bClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TaxInvoiceClient.html">portone_server_sdk.TaxInvoiceClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CounterpartyClient.html">portone_server_sdk.CounterpartyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PlatformClient.html">portone_server_sdk.PlatformClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.CompanyClient.html">portone_server_sdk.CompanyClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountTransferClient.html">portone_server_sdk.AccountTransferClient</a></li>
@@ -190,9 +192,9 @@
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.AccountClient.html">portone_server_sdk.AccountClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkAccountTransferClient.html">portone_server_sdk.BulkAccountTransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BulkPayoutClient.html">portone_server_sdk.BulkPayoutClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerSettlementClient.html">portone_server_sdk.PartnerSettlementClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PartnerClient.html">portone_server_sdk.PartnerClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PayoutClient.html">portone_server_sdk.PayoutClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.TransferClient.html">portone_server_sdk.TransferClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.PaymentClient.html">portone_server_sdk.PaymentClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="portone_server_sdk.BillingKeyClient.html">portone_server_sdk.BillingKeyClient</a></li>
@@ -390,6 +392,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.brn"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.brn</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.business_info"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.business_info</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.error"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.error</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.verification_id"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.verification_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosBody"><code class="docutils literal notranslate"><span class="pre">GetB2bBusinessInfosBody</span></code></a><ul class="nav section-nav flex-column">
@@ -655,6 +658,13 @@ set self.__traceback__ to tb and return self.</p>
 <dd><p>조회 실패 시 에러 메시지</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="portone_server_sdk.platform.company.B2bBusinessInfoResult.verification_id">
+<span class="sig-name descname"><span class="pre">verification_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.verification_id" title="Link to this definition">#</a></dt>
+<dd><p>조회 결과 ID</p>
+<p>거래처 생성/수정 시 사업자 정보 조회 결과를 재사용하기 위한 ID입니다. 조회 성공 시에만 설정됩니다.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -738,13 +748,18 @@ set self.__traceback__ to tb and return self.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos">
-<span class="sig-name descname"><span class="pre">get_b2b_business_infos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos" title="Link to this definition">#</a></dt>
-<dd><p>사업자등록 정보조회</p>
+<span class="sig-name descname"><span class="pre">get_b2b_business_infos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos" title="Link to this definition">#</a></dt>
+<dd><p>사업자등록 정보 조회</p>
 <p>요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
 해당 API 사용을 위해서는 별도 문의가 필요합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+<li><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -757,13 +772,18 @@ set self.__traceback__ to tb and return self.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos_async">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_b2b_business_infos_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos_async" title="Link to this definition">#</a></dt>
-<dd><p>사업자등록 정보조회</p>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_b2b_business_infos_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brn_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosResponse" title="portone_server_sdk._generated.platform.company.get_b2b_business_infos_response.GetB2bBusinessInfosResponse"><span class="pre">GetB2bBusinessInfosResponse</span></a></span></span><a class="headerlink" href="#portone_server_sdk.platform.company.CompanyClient.get_b2b_business_infos_async" title="Link to this definition">#</a></dt>
+<dd><p>사업자등록 정보 조회</p>
 <p>요청된 사업자등록번호 리스트에 해당하는 사업자등록 정보를 조회합니다.
 해당 API 사용을 위해서는 별도 문의가 필요합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool,</span> <span class="pre">optional</span></code>) – <p>테스트 모드 여부</p>
+<p>true 이면 테스트 모드로 실행되며, false 이거나 주어지지 않은 경우 테스트 모드를 사용하지 않습니다.</p>
+</p></li>
+<li><p><strong>brn_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – 조회할 사업자등록번호 리스트</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -906,6 +926,7 @@ set self.__traceback__ to tb and return self.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.brn"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.brn</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.business_info"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.business_info</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.error"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.error</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.B2bBusinessInfoResult.verification_id"><code class="docutils literal notranslate"><span class="pre">B2bBusinessInfoResult.verification_id</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portone_server_sdk.platform.company.GetB2bBusinessInfosBody"><code class="docutils literal notranslate"><span class="pre">GetB2bBusinessInfosBody</span></code></a><ul class="nav section-nav flex-column">

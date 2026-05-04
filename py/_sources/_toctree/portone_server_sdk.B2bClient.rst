@@ -24,5 +24,6 @@
    .. autosummary::
    
       ~B2bClient.tax_invoice
+      ~B2bClient.counterparty
    
    
