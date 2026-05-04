@@ -1,5 +1,15 @@
 # @portone/server-sdk
 
+## 0.20.0
+
+### Minor Changes
+
+- 4d5ea19: 결제건 조회 시 origin 필드 추가
+- 4d5ea19: 웹훅을 발송하는 API에 skipWebhook 파라미터 추가
+- 4d5ea19: PaymentNotfoundError, BillinbgKeyPaymentInput 정의부 위치 수정
+- 4d5ea19: 해외 간편결제 수단 코드 추가
+- 4d5ea19: 페이먼트월 배송 정보 등록 API 추가
+
 ## 0.19.0
 
 ### Minor Changes
