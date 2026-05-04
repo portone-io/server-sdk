@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>confirmPaymentwallDelivery</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    PortOne Server SDK for JVM
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+0.24.0        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":lib/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":lib/main"
+                                       data-filter=":lib/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    PortOne Server SDK for JVM
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="PortOne Server SDK for JVM::io.portone.sdk.server.pgspecific/PgSpecificClient/confirmPaymentwallDelivery/#kotlin.String#io.portone.sdk.server.pgspecific.PaymentwallDeliveryType#io.portone.sdk.server.pgspecific.PaymentwallDeliveryStatus#java.time.Instant#java.time.Instant#kotlin.String?#kotlin.Boolean#kotlin.String#kotlin.String#kotlin.String?#kotlin.String?#io.portone.sdk.server.common.Country?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?/PointingToDeclaration//-1895836109">
+  <div class="breadcrumbs"><a href="../../../index.html">PortOne Server SDK for JVM</a><span class="delimiter">/</span><a href="../index.html">io.portone.sdk.server.pgspecific</a><span class="delimiter">/</span><a href="index.html">PgSpecificClient</a><span class="delimiter">/</span><span class="current">confirmPaymentwallDelivery</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>confirm</span><wbr></wbr><span>Paymentwall</span><wbr></wbr><span><span>Delivery</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;confirmPaymentwallDeliverySuspend&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="confirm-paymentwall-delivery.html"><span class="token function">confirmPaymentwallDelivery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">transactionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">deliveryType<span class="token operator">: </span><a href="../-paymentwall-delivery-type/index.html">PaymentwallDeliveryType</a><span class="token punctuation">, </span></span><span class="parameter ">deliveryStatus<span class="token operator">: </span><a href="../-paymentwall-delivery-status/index.html">PaymentwallDeliveryStatus</a><span class="token punctuation">, </span></span><span class="parameter ">estimatedDeliveryDatetime<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter ">estimatedUpdateDatetime<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/Instant.html">Instant</a><span class="token punctuation">, </span></span><span class="parameter ">reason<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">refundable<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">details<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">shippingAddressEmail<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">carrierTrackingId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">carrierType<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressCountry<span class="token operator">: </span><a href="../../io.portone.sdk.server.common/-country/index.html">Country</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressCity<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressZip<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressState<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressStreet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressPhone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressFirstname<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">shippingAddressLastname<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">attachments<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-confirm-paymentwall-delivery-response/index.html">ConfirmPaymentwallDeliveryResponse</a></div><p class="paragraph">페이먼트월 배송 정보 등록</p><p class="paragraph">배송 정보를 페이먼트월에 등록합니다. 등록된 배송 정보는 차지백 발생 시 고객사의 상품 배송 완료 증빙 자료로 활용되므로, 반드시 연동해야 합니다.</p><h4 class="tableheader">Parameters</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>transaction</span><wbr></wbr><span><span>Id</span></span></u></div></span></div><div><div class="title"><p class="paragraph">결제 건 포트원 채번 아이디</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>delivery</span><wbr></wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><p class="paragraph">배송 유형</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>delivery</span><wbr></wbr><span><span>Status</span></span></u></div></span></div><div><div class="title"><p class="paragraph">배송 상태</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>estimated</span><wbr></wbr><span>Delivery</span><wbr></wbr><span><span>Datetime</span></span></u></div></span></div><div><div class="title"><p class="paragraph">배송 완료 예상 일시</p><p class="paragraph">배송 유형이 DIGITAL인 경우 현재 시각을 입력해도 무방합니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>estimated</span><wbr></wbr><span>Update</span><wbr></wbr><span><span>Datetime</span></span></u></div></span></div><div><div class="title"><p class="paragraph">배송 상태 업데이트 예정 일시</p><p class="paragraph">배송 유형이 DIGITAL인 경우 현재 시각을 입력해도 무방합니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>reason</span></span></u></div></span></div><div><div class="title"><p class="paragraph">상태 변경 사유</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>refundable</span></span></u></div></span></div><div><div class="title"><p class="paragraph">환불 가능 여부</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>details</span></span></u></div></span></div><div><div class="title"><p class="paragraph">상세 설명</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Email</span></span></u></div></span></div><div><div class="title"><p class="paragraph">고객 이메일 주소</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>carrier</span><wbr></wbr><span>Tracking</span><wbr></wbr><span><span>Id</span></span></u></div></span></div><div><div class="title"><p class="paragraph">운송장 번호</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>carrier</span><wbr></wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><p class="paragraph">운송사 이름</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Country</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 국가</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>City</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 도시</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Zip</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 우편번호</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>State</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 주</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Street</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 도로명 주소</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Phone</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 전화번호</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Firstname</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 이름</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>shipping</span><wbr></wbr><span>Address</span><wbr></wbr><span><span>Lastname</span></span></u></div></span></div><div><div class="title"><p class="paragraph">수신자 성</p><p class="paragraph">배송 유형이 PHYSICAL인 경우 필수입니다.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>attachments</span></span></u></div></span></div><div><div class="title"><p class="paragraph">배송 증빙 첨부 파일 URL 목록</p><p class="paragraph">배송 증빙 자료의 URL(이미지 등)을 입력합니다. 증빙 자료를 제공하기 어려운 경우 생략할 수 있습니다.</p></div></div></div></div></div><h4 class="tableheader">Throws</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":lib/main" data-filterable-set=":lib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../io.portone.sdk.server.errors/-confirm-paymentwall-delivery-exception/index.html"><span>Confirm</span><wbr></wbr><span>Paymentwall</span><wbr></wbr><span>Delivery</span><wbr></wbr><span><span>Exception</span></span></a></div></span></div><div></div></div></div></div></div></div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2025 PortOne Korea Corp. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
