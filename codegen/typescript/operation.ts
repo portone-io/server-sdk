@@ -45,6 +45,7 @@ export function writeOperation(
   errorWriter.outdent()
   errorWriter.writeLine("}")
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
+  if (requestBody.length === 0) operation.params.body = null
   const params = operation.params.path
     .concat(operation.params.query)
     .concat(requestBody)
@@ -102,7 +103,9 @@ export function writeOperation(
   const optionsSource = hasOptionsField ? "options_" : "options"
   if (isStructureOptional) {
     for (const param of params) {
-      implWriter.writeLine(`const ${param.name} = ${optionsSource}?.${param.name}`)
+      implWriter.writeLine(
+        `const ${param.name} = ${optionsSource}?.${param.name}`,
+      )
     }
   } else {
     implWriter.writeLine("const {")

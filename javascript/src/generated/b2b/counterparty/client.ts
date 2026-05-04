@@ -176,7 +176,6 @@ export function CounterpartyClient(init: PortOneClientInit): CounterpartyClient 
 			} = options
 			const query = [
 				["test", test],
-				["requestBody", requestBody],
 			]
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")

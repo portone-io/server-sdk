@@ -24,7 +24,6 @@ import io.portone.sdk.server.b2b.counterparty.B2bCounterpartyFilter
 import io.portone.sdk.server.b2b.counterparty.B2bCounterpartyInput
 import io.portone.sdk.server.b2b.counterparty.CreateB2bCounterpartyBody
 import io.portone.sdk.server.b2b.counterparty.CreateB2bCounterpartyResponse
-import io.portone.sdk.server.b2b.counterparty.DeleteB2bCounterpartyBody
 import io.portone.sdk.server.b2b.counterparty.DeleteB2bCounterpartyResponse
 import io.portone.sdk.server.b2b.counterparty.GetB2bCounterpartiesBody
 import io.portone.sdk.server.b2b.counterparty.GetB2bCounterpartiesResponse
@@ -408,13 +407,10 @@ public class CounterpartyClient(
     counterpartyId: String,
     test: Boolean? = null,
   ): DeleteB2bCounterpartyResponse {
-    val requestBody = DeleteB2bCounterpartyBody(
-    )
     val httpResponse = client.delete(apiBase) {
       url {
         this.appendPathSegments("b2b", "counterparties", counterpartyId.toString())
         if (test != null) this.parameters.append("test", test.toString())
-        this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

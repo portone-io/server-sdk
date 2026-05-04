@@ -60,6 +60,7 @@ export function writeOperation(
     crossRef.add(`io.portone.sdk.server.errors.${exception}`)
   }
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
+  if (requestBody.length === 0) operation.params.body = null
   const params = operation.params.path
     .concat(operation.params.query)
     .concat(requestBody)

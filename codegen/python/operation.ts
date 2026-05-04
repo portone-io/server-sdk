@@ -30,6 +30,7 @@ export function writeOperation(
 ) {
   const errors = fetchErrors(operation, entityMap)
   const requestBody = fetchBodyProperties(operation.params.body, entityMap)
+  if (requestBody.length === 0) operation.params.body = null
   const params = operation.params.path
     .concat(operation.params.query)
     .concat(requestBody)
