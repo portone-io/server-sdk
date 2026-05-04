@@ -22,13 +22,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v5
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
         with:
           package_json_file: ./javascript/package.json
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 25
           cache: pnpm
           cache-dependency-path: ./javascript/pnpm-lock.yaml
       - name: Install Dependencies
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v5
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js 20.x
@@ -78,13 +78,13 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
         with:
           package_json_file: ./javascript/package.json
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 25
           cache: pnpm
           cache-dependency-path: ./javascript/pnpm-lock.yaml
       - name: Install Dependencies
@@ -113,15 +113,15 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
         with:
           package_json_file: ./javascript/package.json
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           # provenance requires node>=24
-          node-version: 24
+          node-version: 25
           cache: pnpm
           cache-dependency-path: ./javascript/pnpm-lock.yaml
 
