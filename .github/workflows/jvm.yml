@@ -17,9 +17,10 @@ jobs:
         working-directory: ./jvm
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Build
         run: ./gradlew build
         env:
@@ -34,13 +35,14 @@ jobs:
         working-directory: ./jvm
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Run dokka
         run: ./gradlew dokkaGenerateHtml
       - name: Deploy on GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./jvm/lib/build/dokka/html
@@ -58,7 +60,9 @@ jobs:
       url: https://central.sonatype.com/artifact/io.portone/server-sdk
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
       - name: Publish package
         run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
         env:
@@ -69,7 +73,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYPASSWORD }}
       - name: Send a Slack notification if a publish happens
         run: |
-          export VERSION=$(cut -c '16-' <<< '${{ github.ref }}')
+          export VERSION=$(cut -c '16-' <<< '${GITHUB_REF}')
           curl -X POST -H 'Content-type: application/json'\
             --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Maven Central에 `io.portone:server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"Maven 페이지 보기"},"value":"show_maven_page","url":"https://central.sonatype.com/artifact/io.portone/server-sdk/'"$VERSION"'","action_id":"show_maven_page"}]}]}'\
             ${{ secrets.SLACK_WEBHOOK_URL }}
