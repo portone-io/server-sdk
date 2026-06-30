@@ -179,14 +179,14 @@ class InvalidInputError(PortOneError):
 
 
 def verify(
-    secret: Union[str, bytes, bytearray], payload: str, headers: Mapping[str, str]
+    secret: Union[str, bytes, bytearray], payload: str, headers: Mapping[str, object]
 ) -> Webhook:
     """웹훅 페이로드를 검증합니다.
 
     Args:
         secret (str | bytes | bytearray): 웹훅 시크릿
         payload (str): 웹훅 페이로드
-        headers (Mapping[str, str]): 웹훅 요청 시 포함된 헤더
+        headers (Mapping[str, object]): 웹훅 요청 시 포함된 헤더
 
     Raises:
         InvalidInputError: 입력받은 시크릿이 유효하지 않을 때 발생합니다.
@@ -195,18 +195,20 @@ def verify(
     Returns:
         검증된 웹훅 페이로드. 웹훅 형식이 올바르지 않을 경우 `None` 입니다.
     """
+    header_values: dict[str, str] = {}
     for header_name in _required_headers:
-        header_value = headers.get(header_name)
-        if not isinstance(header_value, _required_headers[header_name]):
+        header_value = _find_header_value(headers, header_name)
+        if header_value is None:
             raise WebhookVerificationError("MISSING_REQUIRED_HEADERS")
+        header_values[header_name] = header_value
 
-    msg_timestamp = headers["webhook-timestamp"]
+    msg_timestamp = header_values["webhook-timestamp"]
     _verify_timestamp(msg_timestamp)
 
-    msg_id = headers["webhook-id"]
+    msg_id = header_values["webhook-id"]
     expected_signature = _sign(secret, msg_id, msg_timestamp, payload)
 
-    msg_signature = headers["webhook-signature"]
+    msg_signature = header_values["webhook-signature"]
     for versioned_signagure in msg_signature.split(" "):
         split = versioned_signagure.split(",", 3)
         if len(split) < 2:
@@ -222,6 +224,24 @@ def verify(
         if hmac.compare_digest(signature_decoded, expected_signature):
             return _deserialize_webhook(json.loads(payload))
     raise WebhookVerificationError("NO_MATCHING_SIGNATURE")
+
+
+def _find_header_value(headers: Mapping[str, object], name: str) -> Optional[str]:
+    name_lowercase = name.lower()
+    found: Optional[str] = None
+    for key, value in headers.items():
+        if key.lower() != name_lowercase:
+            continue
+        values = value if isinstance(value, list) else [value]
+        for item in values:
+            if item is None:
+                continue
+            if not isinstance(item, str):
+                return None
+            if found is not None:
+                return None
+            found = item
+    return found
 
 
 WEBHOOK_TOLERANCE_IN_SECONDS = 5 * 60  # 5분
