@@ -162,6 +162,7 @@ function generateCategoryIndex(
   if (hasClient) {
     importWriter.writeLine("import httpx")
     importWriter.writeLine("import json")
+    importWriter.writeLine("from types import TracebackType")
     importWriter.writeLine(
       "from httpx import AsyncClient, Client as SyncClient",
     )
@@ -169,6 +170,7 @@ function generateCategoryIndex(
       `from ${toRoot}._user_agent import USER_AGENT`,
     )
     typing.add("Optional")
+    typing.add("Type")
   }
   const errors = pack.operations.map(({ errors }) => errors).toSorted()
   const sortedTyping = [...typing].toSorted()
@@ -361,6 +363,15 @@ function writeClientObject(
     )
   }
   implWriter.outdent()
+  writeClientLifecycleMethods(
+    implWriter,
+    `${toPascalCase(pack.category)}Client`,
+    subpackages,
+    true,
+  )
+  if (pack.operations.length > 0) {
+    implWriter.writeLine("")
+  }
   for (const operation of pack.operations) {
     writeOperation(
       implWriter,
@@ -382,6 +393,73 @@ function writeClientObject(
     )
   }
   implWriter.outdent()
+}
+
+function writeClientLifecycleMethods(
+  writer: Writer,
+  clientName: string,
+  subpackages: Package[],
+  hasHttpClients: boolean,
+) {
+  writer.writeLine("")
+  writer.writeLine("def close(self) -> None:")
+  writer.indent()
+  writer.writeLine(`"""Close the underlying synchronous HTTP client."""`)
+  if (hasHttpClients) {
+    writer.writeLine("self._sync_client.close()")
+  }
+  for (const subpackage of subpackages) {
+    writer.writeLine(`self.${toSnakeCase(subpackage.category)}.close()`)
+  }
+  writer.outdent()
+  writer.writeLine("")
+  writer.writeLine("async def aclose(self) -> None:")
+  writer.indent()
+  writer.writeLine(
+    `"""Close the underlying synchronous and asynchronous HTTP clients."""`,
+  )
+  if (hasHttpClients) {
+    writer.writeLine("self._sync_client.close()")
+    writer.writeLine("await self._async_client.aclose()")
+  }
+  for (const subpackage of subpackages) {
+    writer.writeLine(`await self.${toSnakeCase(subpackage.category)}.aclose()`)
+  }
+  writer.outdent()
+  writer.writeLine("")
+  writer.writeLine(`def __enter__(self) -> "${clientName}":`)
+  writer.indent()
+  writer.writeLine("return self")
+  writer.outdent()
+  writer.writeLine("")
+  writer.writeLine("def __exit__(")
+  writer.indent()
+  writer.writeLine("self,")
+  writer.writeLine("exc_type: Optional[Type[BaseException]],")
+  writer.writeLine("exc_value: Optional[BaseException],")
+  writer.writeLine("traceback: Optional[TracebackType],")
+  writer.outdent()
+  writer.writeLine(") -> None:")
+  writer.indent()
+  writer.writeLine("self.close()")
+  writer.outdent()
+  writer.writeLine("")
+  writer.writeLine(`async def __aenter__(self) -> "${clientName}":`)
+  writer.indent()
+  writer.writeLine("return self")
+  writer.outdent()
+  writer.writeLine("")
+  writer.writeLine("async def __aexit__(")
+  writer.indent()
+  writer.writeLine("self,")
+  writer.writeLine("exc_type: Optional[Type[BaseException]],")
+  writer.writeLine("exc_value: Optional[BaseException],")
+  writer.writeLine("traceback: Optional[TracebackType],")
+  writer.outdent()
+  writer.writeLine(") -> None:")
+  writer.indent()
+  writer.writeLine("await self.aclose()")
+  writer.outdent()
 }
 
 function collectErrors(
@@ -627,7 +705,8 @@ function generateClient(
 ) {
   const writer = PythonWriter()
   writer.writeLine("from __future__ import annotations")
-  writer.writeLine("from typing import Optional")
+  writer.writeLine("from types import TracebackType")
+  writer.writeLine("from typing import Optional, Type")
   for (const subpackage of pack.subpackages) {
     if (isClientPackage(subpackage)) {
       writer.writeLine(
@@ -681,6 +760,7 @@ function writeRootClientObject(
     )
   }
   writer.outdent()
+  writeClientLifecycleMethods(writer, "PortOneClient", subpackages, false)
   writer.outdent()
 }
 

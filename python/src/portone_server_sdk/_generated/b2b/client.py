@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from urllib.parse import quote
 from .tax_invoice.client import TaxInvoiceClient
 from .counterparty.client import CounterpartyClient
@@ -32,3 +33,38 @@ class B2bClient:
         self._sync_client = SyncClient(timeout=60.0)
         self.tax_invoice = TaxInvoiceClient(secret=secret, base_url=base_url, store_id=store_id)
         self.counterparty = CounterpartyClient(secret=secret, base_url=base_url, store_id=store_id)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+        self.tax_invoice.close()
+        self.counterparty.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+        await self.tax_invoice.aclose()
+        await self.counterparty.aclose()
+
+    def __enter__(self) -> "B2bClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "B2bClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()

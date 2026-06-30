@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Optional
+from types import TracebackType
+from typing import Optional, Type
 from .b2b.client import B2bClient
 from .platform.client import PlatformClient
 from .payment.client import PaymentClient
@@ -34,3 +35,45 @@ class PortOneClient:
         self.pg_specific = PgSpecificClient(secret=secret, base_url=base_url, store_id=store_id)
         self.auth = AuthClient(secret=secret, base_url=base_url, store_id=store_id)
         self.reconciliation = ReconciliationClient(secret=secret, base_url=base_url, store_id=store_id)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self.b2b.close()
+        self.platform.close()
+        self.payment.close()
+        self.identity_verification.close()
+        self.pg_specific.close()
+        self.auth.close()
+        self.reconciliation.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        await self.b2b.aclose()
+        await self.platform.aclose()
+        await self.payment.aclose()
+        await self.identity_verification.aclose()
+        await self.pg_specific.aclose()
+        await self.auth.aclose()
+        await self.reconciliation.aclose()
+
+    def __enter__(self) -> "PortOneClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "PortOneClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
