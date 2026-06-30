@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ...errors import AlreadyPaidOrWaitingError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, ForbiddenError, InvalidRequestError, PaymentScheduleAlreadyExistsError, PaymentScheduleAlreadyProcessedError, PaymentScheduleAlreadyRevokedError, PaymentScheduleNotFoundError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError
 from ...payment.payment_schedule.already_paid_or_waiting_error import _deserialize_already_paid_or_waiting_error
 from ...common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
@@ -46,6 +47,38 @@ class PaymentScheduleClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+
+    def __enter__(self) -> "PaymentScheduleClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "PaymentScheduleClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_payment_schedule(
         self,
         *,

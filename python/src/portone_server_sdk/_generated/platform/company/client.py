@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ...errors import B2bExternalServiceError, B2bNotEnabledError, ForbiddenError, InvalidRequestError, PlatformCompanyNotFoundError, PlatformExternalApiFailedError, PlatformNotEnabledError, UnauthorizedError, UnknownError
 from ...common.b2b_external_service_error import _deserialize_b2b_external_service_error
 from ...common.b2b_not_enabled_error import _deserialize_b2b_not_enabled_error
@@ -37,6 +38,38 @@ class CompanyClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+
+    def __enter__(self) -> "CompanyClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "CompanyClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_b2b_business_infos(
         self,
         *,

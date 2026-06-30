@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentCancellationNotFoundError, PaymentCancellationNotPendingError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
 from ..payment.already_paid_error import _deserialize_already_paid_error
 from ..common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
@@ -109,6 +110,48 @@ class PaymentClient:
         self.additional_feature = AdditionalFeatureClient(secret=secret, base_url=base_url, store_id=store_id)
         self.payment_schedule = PaymentScheduleClient(secret=secret, base_url=base_url, store_id=store_id)
         self.promotion = PromotionClient(secret=secret, base_url=base_url, store_id=store_id)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+        self.billing_key.close()
+        self.cash_receipt.close()
+        self.additional_feature.close()
+        self.payment_schedule.close()
+        self.promotion.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+        await self.billing_key.aclose()
+        await self.cash_receipt.aclose()
+        await self.additional_feature.aclose()
+        await self.payment_schedule.aclose()
+        await self.promotion.aclose()
+
+    def __enter__(self) -> "PaymentClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "PaymentClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_all_payment_events_by_cursor(
         self,
         *,

@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ...errors import B2bCertificateUnregisteredError, B2bCounterpartyBrnInvalidError, B2bCounterpartyBrnModificationNotAllowedError, B2bCounterpartyIdAlreadyExistsByPartnerError, B2bCounterpartyIdAlreadyExistsError, B2bCounterpartyMissingRequiredFieldsError, B2bCounterpartyNotFoundError, B2bCounterpartyNtsConnectionFailedError, B2bCounterpartyNtsNotConnectedError, B2bCounterpartyOngoingTaxInvoiceExistsError, B2bCounterpartyPartnerNotConnectableError, B2bCounterpartyPartnerNotDeletableError, B2bCounterpartyPartnerNotUpdatableError, B2bCounterpartySelfOriginBrnMismatchError, B2bCounterpartyTooManyAdditionalContactsError, B2bCounterpartyVerificationBrnMismatchError, B2bCounterpartyVerificationInvalidError, B2bCounterpartyVerificationNotFoundError, B2bCounterpartyVerificationTypeMismatchError, B2bExternalServiceError, B2bNotEnabledError, ForbiddenError, InvalidRequestError, UnauthorizedError, UnknownError
 from ...b2b.counterparty.b2b_certificate_unregistered_error import _deserialize_b2b_certificate_unregistered_error
 from ...b2b.counterparty.b2b_counterparty_brn_invalid_error import _deserialize_b2b_counterparty_brn_invalid_error
@@ -63,6 +64,38 @@ class CounterpartyClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+
+    def __enter__(self) -> "CounterpartyClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "CounterpartyClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_b2b_counterparty_certificate_registration_url(
         self,
         *,
@@ -757,7 +790,6 @@ class CounterpartyClient:
         query = []
         if test is not None:
             query.append(("test", test))
-        query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
@@ -846,7 +878,6 @@ class CounterpartyClient:
         query = []
         if test is not None:
             query.append(("test", test))
-        query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",

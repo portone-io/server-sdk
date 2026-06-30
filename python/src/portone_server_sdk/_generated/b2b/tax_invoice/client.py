@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ...errors import B2BCannotChangeTaxTypeError, B2BTaxInvoiceStatusNotSendingCompletedError, B2bBulkTaxInvoiceNotFoundError, B2bCounterpartyNotFoundError, B2bCounterpartyNtsNotConnectedError, B2bDocumentKeyCannotBeChangedError, B2bExternalServiceError, B2bFileNotFoundError, B2bIdAlreadyExistsError, B2bIssuanceTypeMismatchError, B2bModificationNotProvidedError, B2bNotEnabledError, B2bOriginalTaxInvoiceNotFoundError, B2bRecipientNotFoundError, B2bSupplierNotFoundError, B2bTaxInvoiceAttachmentNotFoundError, B2bTaxInvoiceNoRecipientDocumentKeyError, B2bTaxInvoiceNoSupplierDocumentKeyError, B2bTaxInvoiceNonDeletableStatusError, B2bTaxInvoiceNotDraftedStatusError, B2bTaxInvoiceNotFoundError, B2bTaxInvoiceNotIssuedStatusError, B2bTaxInvoiceNotRequestedStatusError, B2bTaxInvoiceRecipientDocumentKeyAlreadyUsedError, B2bTaxInvoiceSupplierDocumentKeyAlreadyUsedError, ForbiddenError, InvalidRequestError, UnauthorizedError, UnknownError
 from ...b2b.tax_invoice.b2b_cannot_change_tax_type_error import _deserialize_b2b_cannot_change_tax_type_error
 from ...b2b.tax_invoice.b2b_tax_invoice_status_not_sending_completed_error import _deserialize_b2b_tax_invoice_status_not_sending_completed_error
@@ -80,6 +81,38 @@ class TaxInvoiceClient:
         self._store_id = store_id
         self._async_client = AsyncClient(timeout=60.0)
         self._sync_client = SyncClient(timeout=60.0)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+
+    def __enter__(self) -> "TaxInvoiceClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "TaxInvoiceClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_b2b_bulk_tax_invoice(
         self,
         *,

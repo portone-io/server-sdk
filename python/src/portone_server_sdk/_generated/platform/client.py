@@ -1,9 +1,10 @@
 from __future__ import annotations
 import httpx
 import json
+from types import TracebackType
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
-from typing import Optional
+from typing import Optional, Type
 from ..errors import ForbiddenError, InvalidRequestError, PlatformAccountVerificationAlreadyUsedError, PlatformAccountVerificationFailedError, PlatformAccountVerificationNotFoundError, PlatformAdditionalFeePolicyNotFoundError, PlatformAdditionalFeePolicyScheduleAlreadyExistsError, PlatformArchivedAdditionalFeePolicyError, PlatformArchivedContractError, PlatformArchivedDiscountSharePolicyError, PlatformArchivedPartnerError, PlatformArchivedPartnersCannotBeScheduledError, PlatformCompanyVerificationAlreadyUsedError, PlatformContractNotFoundError, PlatformContractScheduleAlreadyExistsError, PlatformDiscountSharePolicyNotFoundError, PlatformDiscountSharePolicyScheduleAlreadyExistsError, PlatformInsufficientDataToChangePartnerTypeError, PlatformMemberCompanyConnectedPartnerBrnUnchangeableError, PlatformMemberCompanyConnectedPartnerCannotBeScheduledError, PlatformMemberCompanyConnectedPartnerTypeUnchangeableError, PlatformMemberCompanyConnectedPartnersCannotBeScheduledError, PlatformNotEnabledError, PlatformPartnerNotFoundError, PlatformPartnerScheduleAlreadyExistsError, PlatformPartnerSchedulesAlreadyExistError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ..common.forbidden_error import _deserialize_forbidden_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
@@ -113,6 +114,58 @@ class PlatformClient:
         self.partner_settlement = PartnerSettlementClient(secret=secret, base_url=base_url, store_id=store_id)
         self.partner = PartnerClient(secret=secret, base_url=base_url, store_id=store_id)
         self.transfer = TransferClient(secret=secret, base_url=base_url, store_id=store_id)
+
+    def close(self) -> None:
+        """Close the underlying synchronous HTTP client."""
+        self._sync_client.close()
+        self.company.close()
+        self.account_transfer.close()
+        self.policy.close()
+        self.account.close()
+        self.bulk_account_transfer.close()
+        self.bulk_payout.close()
+        self.payout.close()
+        self.partner_settlement.close()
+        self.partner.close()
+        self.transfer.close()
+
+    async def aclose(self) -> None:
+        """Close the underlying synchronous and asynchronous HTTP clients."""
+        self._sync_client.close()
+        await self._async_client.aclose()
+        await self.company.aclose()
+        await self.account_transfer.aclose()
+        await self.policy.aclose()
+        await self.account.aclose()
+        await self.bulk_account_transfer.aclose()
+        await self.bulk_payout.aclose()
+        await self.payout.aclose()
+        await self.partner_settlement.aclose()
+        await self.partner.aclose()
+        await self.transfer.aclose()
+
+    def __enter__(self) -> "PlatformClient":
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        self.close()
+
+    async def __aenter__(self) -> "PlatformClient":
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        await self.aclose()
+
     def get_platform_additional_fee_policy_schedule(
         self,
         *,
