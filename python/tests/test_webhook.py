@@ -5,6 +5,8 @@ import time
 from dataclasses import dataclass
 from typing import Optional
 
+import pytest
+
 import portone_server_sdk as portone
 
 secret = codecs.decode(b"pzQGE83cSIRKM4/WH5QY+g==", "base64")
@@ -63,6 +65,28 @@ def test_verify_valid_signature_recognized():
     test_webhook = make_webhook(test_object_recognized)
     webhook = portone.webhook.verify(secret, test_webhook.payload, test_webhook.headers)
     assert isinstance(webhook, portone.webhook.WebhookTransactionCancelledCancelled)
+
+
+def test_verify_valid_signature_with_case_insensitive_headers():
+    test_webhook = make_webhook(test_object_unrecognized)
+    headers = {
+        "Webhook-Id": test_webhook.headers["webhook-id"],
+        "Webhook-Signature": test_webhook.headers["webhook-signature"],
+        "Webhook-Timestamp": test_webhook.headers["webhook-timestamp"],
+    }
+    webhook = portone.webhook.verify(secret, test_webhook.payload, headers)
+    assert webhook == test_object_unrecognized
+
+
+def test_verify_rejects_duplicate_header_names():
+    test_webhook = make_webhook(test_object_unrecognized)
+    headers = {
+        **test_webhook.headers,
+        "Webhook-Id": test_webhook.headers["webhook-id"],
+    }
+    with pytest.raises(portone.webhook.WebhookVerificationError) as e:
+        portone.webhook.verify(secret, test_webhook.payload, headers)
+    assert e.value.reason == "MISSING_REQUIRED_HEADERS"
 
 
 def test_verify_multiple_signatures():
