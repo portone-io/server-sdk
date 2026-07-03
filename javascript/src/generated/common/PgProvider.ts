@@ -54,4 +54,6 @@ export type PgProvider =
 	| "MOBILIANS_V2"
 	| "TRIPLE_A"
 	| "KICC_V2"
+	| "INNOPAY"
+	| "HECTO_GLOBAL"
 	| string & {}

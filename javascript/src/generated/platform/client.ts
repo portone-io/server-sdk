@@ -759,6 +759,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				adjustSettlementDateAfterHolidayIfEarlier?: boolean,
 				deductWht?: boolean,
 				settlementAmountType?: SettlementAmountType,
+				manualSettlementPerTransfer?: boolean,
 			}
 		): Promise<UpdatePlatformSettingResponse> => {
 			const test = options?.test
@@ -768,6 +769,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 			const adjustSettlementDateAfterHolidayIfEarlier = options?.adjustSettlementDateAfterHolidayIfEarlier
 			const deductWht = options?.deductWht
 			const settlementAmountType = options?.settlementAmountType
+			const manualSettlementPerTransfer = options?.manualSettlementPerTransfer
 			const requestBody = JSON.stringify({
 				defaultWithdrawalMemo,
 				defaultDepositMemo,
@@ -775,6 +777,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				adjustSettlementDateAfterHolidayIfEarlier,
 				deductWht,
 				settlementAmountType,
+				manualSettlementPerTransfer,
 			})
 			const query = [
 				["test", test],
@@ -1277,6 +1280,8 @@ export type PlatformClient = {
 			deductWht?: boolean,
 			/** 정산 금액 취급 기준 */
 			settlementAmountType?: SettlementAmountType,
+			/** 수기정산을 정산 건별로 정산내역/지급내역으로 생성 */
+			manualSettlementPerTransfer?: boolean,
 		}
 	) => Promise<UpdatePlatformSettingResponse>
 	company: CompanyClient

@@ -20,4 +20,6 @@ export type ReconciliationPgProvider =
 	| "PAYLETTER_GLOBAL"
 	| "KIWOOMPAY"
 	| "PAYMENTWALL"
+	| "INNOPAY"
+	| "GALAXIA"
 	| string & {}

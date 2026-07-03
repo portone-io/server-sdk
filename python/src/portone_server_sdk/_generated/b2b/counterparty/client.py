@@ -757,7 +757,6 @@ class CounterpartyClient:
         query = []
         if test is not None:
             query.append(("test", test))
-        query.append(("requestBody", json.dumps(request_body)))
         response = self._sync_client.request(
             "DELETE",
             f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
@@ -846,7 +845,6 @@ class CounterpartyClient:
         query = []
         if test is not None:
             query.append(("test", test))
-        query.append(("requestBody", json.dumps(request_body)))
         response = await self._async_client.request(
             "DELETE",
             f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",

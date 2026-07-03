@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Optional, Union
 
-PaymentScheduleSortBy = Union[Literal["CREATED_AT", "TIME_TO_PAY", "COMPLETED_AT"], str]
+PaymentScheduleSortBy = Union[Literal["CREATED_AT", "TIME_TO_PAY", "COMPLETED_AT", "STATUS_TIMESTAMP"], str]
 """결제 예약 건 정렬 기준
 """
 

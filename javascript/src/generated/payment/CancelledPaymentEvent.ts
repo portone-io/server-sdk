@@ -1,3 +1,4 @@
+import type { CashReceiptIssuanceStatus } from "./../payment/CashReceiptIssuanceStatus"
 import type { ChannelGroupSummary } from "./../common/ChannelGroupSummary"
 import type { Country } from "./../common/Country"
 import type { Currency } from "./../common/Currency"
@@ -83,6 +84,13 @@ export type CancelledPaymentEvent = {
 	pgTxId?: string
 	/** 현금영수증 */
 	cashReceipt?: PaymentCashReceipt
+	/**
+	 * 현금영수증 발행여부
+	 *
+	 * 승인 시점에 확인된 발행여부입니다.
+	 * 발행번호 없이 발행여부만 제공 가능한 경우, ISSUED이면서 cashReceipt가 존재하지 않을 수 있습니다.
+	 */
+	cashReceiptIssuanceStatus?: CashReceiptIssuanceStatus
 	/** 거래 영수증 URL */
 	receiptUrl?: string
 	/** 결제 취소 정보 */

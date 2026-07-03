@@ -66,6 +66,8 @@ import io.portone.sdk.server.errors.PlatformDiscountSharePoliciesNotFoundError
 import io.portone.sdk.server.errors.PlatformDiscountSharePoliciesNotFoundException
 import io.portone.sdk.server.errors.PlatformDiscountSharePolicyIdDuplicatedError
 import io.portone.sdk.server.errors.PlatformDiscountSharePolicyIdDuplicatedException
+import io.portone.sdk.server.errors.PlatformNegativeAmountNotAllowedError
+import io.portone.sdk.server.errors.PlatformNegativeAmountNotAllowedException
 import io.portone.sdk.server.errors.PlatformNotEnabledError
 import io.portone.sdk.server.errors.PlatformNotEnabledException
 import io.portone.sdk.server.errors.PlatformOrderDetailMismatchedError
@@ -415,6 +417,7 @@ public class TransferClient(
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
         is PlatformCurrencyNotSupportedError -> throw PlatformCurrencyNotSupportedException(httpBodyDecoded)
+        is PlatformNegativeAmountNotAllowedError -> throw PlatformNegativeAmountNotAllowedException(httpBodyDecoded)
         is PlatformNotEnabledError -> throw PlatformNotEnabledException(httpBodyDecoded)
         is PlatformPartnerNotFoundError -> throw PlatformPartnerNotFoundException(httpBodyDecoded)
         is PlatformTransferIdAlreadyUsedError -> throw PlatformTransferIdAlreadyUsedException(httpBodyDecoded)

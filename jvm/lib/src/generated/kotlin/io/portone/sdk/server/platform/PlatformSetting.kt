@@ -20,6 +20,8 @@ public data class PlatformSetting(
   /** 정산 금액 취급 기준 */
   val settlementAmountType: SettlementAmountType,
   val isForTest: Boolean,
+  /** 수기정산을 정산 건별로 정산내역/지급내역으로 생성 */
+  val manualSettlementPerTransfer: Boolean,
 )
 
 

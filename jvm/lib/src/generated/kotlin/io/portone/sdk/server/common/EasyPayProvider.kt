@@ -838,6 +838,21 @@ public sealed interface EasyPayProvider {
     }
     override fun serialize(encoder: Encoder, value: ThaiQr): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(GooglePaySerializer::class)
+  public data object GooglePay : EasyPayProvider {
+    override val value: String = "GOOGLE_PAY"
+  }
+  public object GooglePaySerializer : KSerializer<GooglePay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(GooglePay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): GooglePay = decoder.decodeString().let {
+      if (it != "GOOGLE_PAY") {
+        throw SerializationException(it)
+      } else {
+        return GooglePay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: GooglePay): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : EasyPayProvider
@@ -904,6 +919,7 @@ public object EasyPayProviderSerializer : KSerializer<EasyPayProvider> {
       "MAYA" -> EasyPayProvider.Maya
       "QRIS" -> EasyPayProvider.Qris
       "THAI_QR" -> EasyPayProvider.ThaiQr
+      "GOOGLE_PAY" -> EasyPayProvider.GooglePay
       else -> EasyPayProvider.Unrecognized(value)
     }
   }

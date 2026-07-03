@@ -32,4 +32,5 @@ export type PgCompany =
 	| "HYPHEN"
 	| "PAYLETTER"
 	| "TRIPLE_A"
+	| "INNOPAY"
 	| string & {}
