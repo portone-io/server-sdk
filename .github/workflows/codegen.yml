@@ -14,8 +14,10 @@ jobs:
       run:
         working-directory: ./codegen
     steps:
-      - uses: actions/checkout@v5
-      - uses: denoland/setup-deno@v1
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: denoland/setup-deno@11b63cf76cfcafb4e43f97b6cad24d8e8438f62d # v1.5.2
         with:
           deno-version: v1.x
       - run: deno fmt --check
