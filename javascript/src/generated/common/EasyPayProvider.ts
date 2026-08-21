@@ -55,4 +55,5 @@ export type EasyPayProvider =
 	| "MAYA"
 	| "QRIS"
 	| "THAI_QR"
+	| "GOOGLE_PAY"
 	| string & {}

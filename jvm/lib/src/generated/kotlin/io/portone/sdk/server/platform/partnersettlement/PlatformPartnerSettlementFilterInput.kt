@@ -13,7 +13,7 @@ public data class PlatformPartnerSettlementFilterInput(
   val settlementDates: List<String>? = null,
   val contractIds: List<String>? = null,
   val partnerTags: List<String>? = null,
-  /** 통화 단위 */
+  /** 통화 */
   val settlementCurrencies: List<Currency>? = null,
   /** 정산 상태 */
   val statuses: List<PlatformPartnerSettlementStatus>? = null,

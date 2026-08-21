@@ -32,6 +32,7 @@ import type { PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrenc
 import type { PlatformCurrencyNotSupportedError } from "../../../generated/platform/PlatformCurrencyNotSupportedError"
 import type { PlatformDiscountSharePoliciesNotFoundError } from "../../../generated/platform/transfer/PlatformDiscountSharePoliciesNotFoundError"
 import type { PlatformDiscountSharePolicyIdDuplicatedError } from "../../../generated/platform/transfer/PlatformDiscountSharePolicyIdDuplicatedError"
+import type { PlatformNegativeAmountNotAllowedError } from "../../../generated/platform/transfer/PlatformNegativeAmountNotAllowedError"
 import type { PlatformNotEnabledError } from "../../../generated/platform/PlatformNotEnabledError"
 import type { PlatformOrderDetailMismatchedError } from "../../../generated/platform/transfer/PlatformOrderDetailMismatchedError"
 import type { PlatformOrderTransferAlreadyCancelledError } from "../../../generated/platform/transfer/PlatformOrderTransferAlreadyCancelledError"
@@ -745,9 +746,9 @@ export class GetPlatformTransferSummariesError extends TransferError {
 	}
 }
 export class CreatePlatformManualTransferError extends TransferError {
-	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNegativeAmountNotAllowedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: ForbiddenError | InvalidRequestError | PlatformCurrencyNotSupportedError | PlatformNegativeAmountNotAllowedError | PlatformNotEnabledError | PlatformPartnerNotFoundError | PlatformTransferIdAlreadyUsedError | PlatformUserDefinedPropertyNotFoundError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CreatePlatformManualTransferError.prototype)
 		this.name = "CreatePlatformManualTransferError"

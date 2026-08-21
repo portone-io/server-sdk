@@ -6,7 +6,7 @@ export type PlatformPartnerSettlementFilterInput = {
 	settlementDates?: string[]
 	contractIds?: string[]
 	partnerTags?: string[]
-	/** 통화 단위 */
+	/** 통화 */
 	settlementCurrencies?: Currency[]
 	/** 정산 상태 */
 	statuses?: PlatformPartnerSettlementStatus[]

@@ -7,6 +7,7 @@ import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
+import io.portone.sdk.server.payment.CashReceiptIssuanceStatus
 import io.portone.sdk.server.payment.Dispute
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentCancellation
@@ -101,6 +102,13 @@ public data class PaidPayment(
   val pgResponse: String? = null,
   /** 현금영수증 */
   val cashReceipt: PaymentCashReceipt? = null,
+  /**
+   * 현금영수증 발행여부
+   *
+   * 승인 시점에 확인된 발행여부입니다.
+   * 발행번호 없이 발행여부만 제공 가능한 경우, ISSUED이면서 cashReceipt가 존재하지 않을 수 있습니다.
+   */
+  val cashReceiptIssuanceStatus: CashReceiptIssuanceStatus? = null,
   /** 거래 영수증 URL */
   val receiptUrl: String? = null,
   /** 분쟁 목록 */

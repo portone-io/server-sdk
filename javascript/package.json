@@ -28,6 +28,7 @@
     "./b2b": "./src/generated/b2b/index.ts",
     "./b2b/counterparty": "./src/generated/b2b/counterparty/index.ts",
     "./b2b/taxInvoice": "./src/generated/b2b/taxInvoice/index.ts",
+    "./checkoutProfile": "./src/generated/checkoutProfile/index.ts",
     "./common": "./src/generated/common/index.ts",
     "./identityVerification": "./src/generated/identityVerification/index.ts",
     "./payment": "./src/generated/payment/index.ts",
@@ -36,6 +37,7 @@
     "./payment/cashReceipt": "./src/generated/payment/cashReceipt/index.ts",
     "./payment/paymentSchedule": "./src/generated/payment/paymentSchedule/index.ts",
     "./payment/promotion": "./src/generated/payment/promotion/index.ts",
+    "./paymentSession": "./src/generated/paymentSession/index.ts",
     "./pgSpecific": "./src/generated/pgSpecific/index.ts",
     "./platform": "./src/generated/platform/index.ts",
     "./platform/account": "./src/generated/platform/account/index.ts",
@@ -82,6 +84,11 @@
         "require": "./dist/generated/b2b/taxInvoice/index.cjs",
         "import": "./dist/generated/b2b/taxInvoice/index.mjs"
       },
+      "./checkoutProfile": {
+        "types": "./dist/generated/checkoutProfile/index.d.ts",
+        "require": "./dist/generated/checkoutProfile/index.cjs",
+        "import": "./dist/generated/checkoutProfile/index.mjs"
+      },
       "./common": {
         "types": "./dist/generated/common/index.d.ts",
         "require": "./dist/generated/common/index.cjs",
@@ -121,6 +128,11 @@
         "types": "./dist/generated/payment/promotion/index.d.ts",
         "require": "./dist/generated/payment/promotion/index.cjs",
         "import": "./dist/generated/payment/promotion/index.mjs"
+      },
+      "./paymentSession": {
+        "types": "./dist/generated/paymentSession/index.d.ts",
+        "require": "./dist/generated/paymentSession/index.cjs",
+        "import": "./dist/generated/paymentSession/index.mjs"
       },
       "./pgSpecific": {
         "types": "./dist/generated/pgSpecific/index.d.ts",

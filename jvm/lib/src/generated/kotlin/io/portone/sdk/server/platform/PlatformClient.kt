@@ -1624,6 +1624,8 @@ public class PlatformClient(
    * 지급 금액에서 원천징수세 차감 여부
    * @param settlementAmountType
    * 정산 금액 취급 기준
+   * @param manualSettlementPerTransfer
+   * 수기정산을 정산 건별로 정산내역/지급내역으로 생성
    *
    * @throws UpdatePlatformSettingException
    */
@@ -1636,6 +1638,7 @@ public class PlatformClient(
     adjustSettlementDateAfterHolidayIfEarlier: Boolean? = null,
     deductWht: Boolean? = null,
     settlementAmountType: SettlementAmountType? = null,
+    manualSettlementPerTransfer: Boolean? = null,
   ): UpdatePlatformSettingResponse {
     val requestBody = UpdatePlatformSettingBody(
       defaultWithdrawalMemo = defaultWithdrawalMemo,
@@ -1644,6 +1647,7 @@ public class PlatformClient(
       adjustSettlementDateAfterHolidayIfEarlier = adjustSettlementDateAfterHolidayIfEarlier,
       deductWht = deductWht,
       settlementAmountType = settlementAmountType,
+      manualSettlementPerTransfer = manualSettlementPerTransfer,
     )
     val httpResponse = client.patch(apiBase) {
       url {
@@ -1692,7 +1696,8 @@ public class PlatformClient(
     adjustSettlementDateAfterHolidayIfEarlier: Boolean? = null,
     deductWht: Boolean? = null,
     settlementAmountType: SettlementAmountType? = null,
-  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(test, defaultWithdrawalMemo, defaultDepositMemo, supportsMultipleOrderTransfersPerPartner, adjustSettlementDateAfterHolidayIfEarlier, deductWht, settlementAmountType) }
+    manualSettlementPerTransfer: Boolean? = null,
+  ): CompletableFuture<UpdatePlatformSettingResponse> = GlobalScope.future { updatePlatformSetting(test, defaultWithdrawalMemo, defaultDepositMemo, supportsMultipleOrderTransfersPerPartner, adjustSettlementDateAfterHolidayIfEarlier, deductWht, settlementAmountType, manualSettlementPerTransfer) }
 
   public val company: CompanyClient = CompanyClient(apiSecret, apiBase, storeId)
   public val accountTransfer: AccountTransferClient = AccountTransferClient(apiSecret, apiBase, storeId)

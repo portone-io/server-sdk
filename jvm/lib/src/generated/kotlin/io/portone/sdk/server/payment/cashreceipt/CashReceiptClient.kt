@@ -174,7 +174,7 @@ public class CashReceiptClient(
    * @param orderName
    * 주문명
    * @param currency
-   * 화폐
+   * 통화
    * @param amount
    * 금액 세부 입력 정보
    * @param productType

@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ...._user_agent import USER_AGENT
 from typing import Optional
-from ...errors import ForbiddenError, InvalidRequestError, PlatformAdditionalFeePoliciesNotFoundError, PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCancelOrderTransfersExistsError, PlatformCancellableAmountExceededError, PlatformCancellableDiscountAmountExceededError, PlatformCancellableDiscountTaxFreeAmountExceededError, PlatformCancellableProductQuantityExceededError, PlatformCancellationAndPaymentTypeMismatchedError, PlatformCancellationNotFoundError, PlatformCannotSpecifyTransferError, PlatformContractNotFoundError, PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCurrencyNotSupportedError, PlatformDiscountSharePoliciesNotFoundError, PlatformDiscountSharePolicyIdDuplicatedError, PlatformNotEnabledError, PlatformOrderDetailMismatchedError, PlatformOrderTransferAlreadyCancelledError, PlatformPartnerNotFoundError, PlatformPaymentNotFoundError, PlatformProductIdDuplicatedError, PlatformProductIdNotFoundError, PlatformSettlementAmountExceededError, PlatformSettlementCancelAmountExceededPortOneCancelError, PlatformSettlementDateEarlierThanSettlementStartDateError, PlatformSettlementParameterNotFoundError, PlatformSettlementPaymentAmountExceededPortOnePaymentError, PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError, PlatformSettlementTaxFreeAmountExceededPortOnePaymentError, PlatformTransferAlreadyExistsError, PlatformTransferDiscountSharePolicyNotFoundError, PlatformTransferIdAlreadyUsedError, PlatformTransferNonDeletableStatusError, PlatformTransferNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
+from ...errors import ForbiddenError, InvalidRequestError, PlatformAdditionalFeePoliciesNotFoundError, PlatformAdditionalFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCancelOrderTransfersExistsError, PlatformCancellableAmountExceededError, PlatformCancellableDiscountAmountExceededError, PlatformCancellableDiscountTaxFreeAmountExceededError, PlatformCancellableProductQuantityExceededError, PlatformCancellationAndPaymentTypeMismatchedError, PlatformCancellationNotFoundError, PlatformCannotSpecifyTransferError, PlatformContractNotFoundError, PlatformContractPlatformFixedAmountFeeCurrencyAndSettlementCurrencyMismatchedError, PlatformCurrencyNotSupportedError, PlatformDiscountSharePoliciesNotFoundError, PlatformDiscountSharePolicyIdDuplicatedError, PlatformNegativeAmountNotAllowedError, PlatformNotEnabledError, PlatformOrderDetailMismatchedError, PlatformOrderTransferAlreadyCancelledError, PlatformPartnerNotFoundError, PlatformPaymentNotFoundError, PlatformProductIdDuplicatedError, PlatformProductIdNotFoundError, PlatformSettlementAmountExceededError, PlatformSettlementCancelAmountExceededPortOneCancelError, PlatformSettlementDateEarlierThanSettlementStartDateError, PlatformSettlementParameterNotFoundError, PlatformSettlementPaymentAmountExceededPortOnePaymentError, PlatformSettlementSupplyWithVatAmountExceededPortOnePaymentError, PlatformSettlementTaxFreeAmountExceededPortOnePaymentError, PlatformTransferAlreadyExistsError, PlatformTransferDiscountSharePolicyNotFoundError, PlatformTransferIdAlreadyUsedError, PlatformTransferNonDeletableStatusError, PlatformTransferNotFoundError, PlatformUserDefinedPropertyNotFoundError, UnauthorizedError, UnknownError
 from ...common.forbidden_error import _deserialize_forbidden_error
 from ...common.invalid_request_error import _deserialize_invalid_request_error
 from ...platform.transfer.platform_additional_fee_policies_not_found_error import _deserialize_platform_additional_fee_policies_not_found_error
@@ -22,6 +22,7 @@ from ...platform.transfer.platform_contract_platform_fixed_amount_fee_currency_a
 from ...platform.platform_currency_not_supported_error import _deserialize_platform_currency_not_supported_error
 from ...platform.transfer.platform_discount_share_policies_not_found_error import _deserialize_platform_discount_share_policies_not_found_error
 from ...platform.transfer.platform_discount_share_policy_id_duplicated_error import _deserialize_platform_discount_share_policy_id_duplicated_error
+from ...platform.transfer.platform_negative_amount_not_allowed_error import _deserialize_platform_negative_amount_not_allowed_error
 from ...platform.platform_not_enabled_error import _deserialize_platform_not_enabled_error
 from ...platform.transfer.platform_order_detail_mismatched_error import _deserialize_platform_order_detail_mismatched_error
 from ...platform.transfer.platform_order_transfer_already_cancelled_error import _deserialize_platform_order_transfer_already_cancelled_error
@@ -523,6 +524,12 @@ class TransferClient:
             if error is not None:
                 raise PlatformCurrencyNotSupportedError(error)
             try:
+                error = _deserialize_platform_negative_amount_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNegativeAmountNotAllowedError(error)
+            try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:
                 pass
@@ -659,6 +666,12 @@ class TransferClient:
                 pass
             if error is not None:
                 raise PlatformCurrencyNotSupportedError(error)
+            try:
+                error = _deserialize_platform_negative_amount_not_allowed_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise PlatformNegativeAmountNotAllowedError(error)
             try:
                 error = _deserialize_platform_not_enabled_error(error_response)
             except Exception:

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import Any, Optional
 from dataclasses import dataclass, field
+from ..payment.cash_receipt_issuance_status import CashReceiptIssuanceStatus, _deserialize_cash_receipt_issuance_status, _serialize_cash_receipt_issuance_status
 from ..common.channel_group_summary import ChannelGroupSummary, _deserialize_channel_group_summary, _serialize_channel_group_summary
 from ..common.country import Country, _deserialize_country, _serialize_country
 from ..common.currency import Currency, _deserialize_currency, _serialize_currency
@@ -130,6 +131,12 @@ class CancelledPayment:
     cash_receipt: Optional[PaymentCashReceipt] = field(default=None)
     """현금영수증
     """
+    cash_receipt_issuance_status: Optional[CashReceiptIssuanceStatus] = field(default=None)
+    """현금영수증 발행여부
+
+    승인 시점에 확인된 발행여부입니다.
+    발행번호 없이 발행여부만 제공 가능한 경우, ISSUED이면서 cashReceipt가 존재하지 않을 수 있습니다.
+    """
     receipt_url: Optional[str] = field(default=None)
     """거래 영수증 URL
     """
@@ -186,6 +193,8 @@ def _serialize_cancelled_payment(obj: CancelledPayment) -> Any:
         entity["pgTxId"] = obj.pg_tx_id
     if obj.cash_receipt is not None:
         entity["cashReceipt"] = _serialize_payment_cash_receipt(obj.cash_receipt)
+    if obj.cash_receipt_issuance_status is not None:
+        entity["cashReceiptIssuanceStatus"] = _serialize_cash_receipt_issuance_status(obj.cash_receipt_issuance_status)
     if obj.receipt_url is not None:
         entity["receiptUrl"] = obj.receipt_url
     return entity
@@ -367,10 +376,15 @@ def _deserialize_cancelled_payment(obj: Any) -> CancelledPayment:
         cash_receipt = _deserialize_payment_cash_receipt(cash_receipt)
     else:
         cash_receipt = None
+    if "cashReceiptIssuanceStatus" in obj:
+        cash_receipt_issuance_status = obj["cashReceiptIssuanceStatus"]
+        cash_receipt_issuance_status = _deserialize_cash_receipt_issuance_status(cash_receipt_issuance_status)
+    else:
+        cash_receipt_issuance_status = None
     if "receiptUrl" in obj:
         receipt_url = obj["receiptUrl"]
         if not isinstance(receipt_url, str):
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
-    return CancelledPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, origin, cancellations, cancelled_at, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, paid_at, pg_tx_id, cash_receipt, receipt_url)
+    return CancelledPayment(id, transaction_id, merchant_id, store_id, channel, version, requested_at, updated_at, status_changed_at, order_name, amount, currency, customer, origin, cancellations, cancelled_at, method, channel_group, schedule_id, billing_key, webhooks, promotion_id, is_cultural_expense, escrow, products, product_count, custom_data, country, paid_at, pg_tx_id, cash_receipt, cash_receipt_issuance_status, receipt_url)
