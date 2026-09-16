@@ -14,4 +14,6 @@ export type PlatformSetting = {
 	/** 정산 금액 취급 기준 */
 	settlementAmountType: SettlementAmountType
 	isForTest: boolean
+	/** 수기정산을 정산 건별로 정산내역/지급내역으로 생성 */
+	manualSettlementPerTransfer: boolean
 }

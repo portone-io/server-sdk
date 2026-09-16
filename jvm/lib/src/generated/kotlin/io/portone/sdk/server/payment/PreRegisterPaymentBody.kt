@@ -17,7 +17,7 @@ internal data class PreRegisterPaymentBody(
   val totalAmount: Long? = null,
   /** 결제 면세 금액 */
   val taxFreeAmount: Long? = null,
-  /** 통화 단위 */
+  /** 통화 */
   val currency: Currency? = null,
 )
 

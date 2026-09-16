@@ -9,7 +9,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/** 통화 단위 */
+/** 통화 */
 @Serializable(CurrencySerializer::class)
 public sealed interface Currency {
   public val value: String

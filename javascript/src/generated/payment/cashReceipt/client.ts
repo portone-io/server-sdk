@@ -239,7 +239,7 @@ export type CashReceiptClient = {
 			type: CashReceiptType,
 			/** 주문명 */
 			orderName: string,
-			/** 화폐 */
+			/** 통화 */
 			currency: Currency,
 			/** 금액 세부 입력 정보 */
 			amount: PaymentAmountInput,

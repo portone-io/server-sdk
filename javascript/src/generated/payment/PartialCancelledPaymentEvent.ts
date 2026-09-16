@@ -1,3 +1,4 @@
+import type { CashReceiptIssuanceStatus } from "./../payment/CashReceiptIssuanceStatus"
 import type { ChannelGroupSummary } from "./../common/ChannelGroupSummary"
 import type { Country } from "./../common/Country"
 import type { Currency } from "./../common/Currency"
@@ -83,8 +84,21 @@ export type PartialCancelledPaymentEvent = {
 	pgTxId?: string
 	/** 현금영수증 */
 	cashReceipt?: PaymentCashReceipt
+	/**
+	 * 현금영수증 발행여부
+	 *
+	 * 승인 시점에 확인된 발행여부입니다.
+	 * 발행번호 없이 발행여부만 제공 가능한 경우, ISSUED이면서 cashReceipt가 존재하지 않을 수 있습니다.
+	 */
+	cashReceiptIssuanceStatus?: CashReceiptIssuanceStatus
 	/** 거래 영수증 URL */
 	receiptUrl?: string
+	/**
+	 * 본인인증 없이 열람 가능한 거래 영수증 URL
+	 *
+	 * 나이스정보통신에서 제공합니다. 이용시 사전 협의가 필요합니다.
+	 */
+	receiptUrlWithoutAuthentication?: string
 	/** 결제 취소 정보 */
 	cancellation?: PaymentCancellation
 	/** 프로모션 아이디 */

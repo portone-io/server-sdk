@@ -33,6 +33,7 @@ internal object CancelPaymentErrorSerializer : JsonContentPolymorphicSerializer<
       "CANCEL_TAX_FREE_AMOUNT_EXCEEDS_CANCELLABLE_TAX_FREE_AMOUNT" -> CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError.serializer()
       "FORBIDDEN" -> ForbiddenError.serializer()
       "INVALID_REQUEST" -> InvalidRequestError.serializer()
+      "MAX_CANCEL_COUNT_REACHED" -> MaxCancelCountReachedError.serializer()
       "NEGATIVE_PROMOTION_ADJUSTED_CANCEL_AMOUNT" -> NegativePromotionAdjustedCancelAmountError.serializer()
       "PAYMENT_ALREADY_CANCELLED" -> PaymentAlreadyCancelledError.serializer()
       "PAYMENT_NOT_FOUND" -> PaymentNotFoundError.serializer()

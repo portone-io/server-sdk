@@ -37,6 +37,7 @@ import type { InstantPaymentMethodInput } from "../../generated/payment/InstantP
 import type { InvalidPaymentTokenError } from "../../generated/payment/InvalidPaymentTokenError"
 import type { InvalidRequestError } from "../../generated/common/InvalidRequestError"
 import type { Locale } from "../../generated/common/Locale"
+import type { MaxCancelCountReachedError } from "../../generated/payment/MaxCancelCountReachedError"
 import type { MaxTransactionCountReachedError } from "../../generated/common/MaxTransactionCountReachedError"
 import type { MaxWebhookRetryCountReachedError } from "../../generated/payment/MaxWebhookRetryCountReachedError"
 import type { ModifyEscrowLogisticsResponse } from "../../generated/payment/ModifyEscrowLogisticsResponse"
@@ -1441,7 +1442,7 @@ export type PaymentClient = {
 			 * (int64)
 			 */
 			taxFreeAmount?: number,
-			/** 통화 단위 */
+			/** 통화 */
 			currency?: Currency,
 		}
 	) => Promise<PreRegisterPaymentResponse>
@@ -1556,7 +1557,7 @@ export type PaymentClient = {
 			/**
 			 * 요청할 페이지 정보
 			 *
-			 * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+			 * 미 입력 시 number = 0, size = 10 으로 기본값이 적용됩니다. (number + 1) * size가 60,000을 초과할 수 없습니다.
 			 */
 			page?: PageInput,
 			/**
@@ -1601,9 +1602,9 @@ export class PayWithBillingKeyError extends PaymentError {
 	}
 }
 export class CancelPaymentError extends PaymentError {
-	declare readonly data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }
+	declare readonly data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | MaxCancelCountReachedError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }
 	/** @ignore */
-	constructor(data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
+	constructor(data: CancellableAmountConsistencyBrokenError | CancelAmountExceedsCancellableAmountError | CancelTaxAmountExceedsCancellableTaxAmountError | CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError | ForbiddenError | InvalidRequestError | MaxCancelCountReachedError | NegativePromotionAdjustedCancelAmountError | PaymentAlreadyCancelledError | PaymentNotFoundError | PaymentNotPaidError | PgProviderError | PromotionDiscountRetainOptionShouldNotBeChangedError | SumOfPartsExceedsCancelAmountError | UnauthorizedError | { readonly type: Unrecognized }) {
 		super(data)
 		Object.setPrototypeOf(this, CancelPaymentError.prototype)
 		this.name = "CancelPaymentError"

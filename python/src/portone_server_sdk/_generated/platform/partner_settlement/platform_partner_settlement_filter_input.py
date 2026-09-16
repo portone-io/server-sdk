@@ -13,7 +13,7 @@ class PlatformPartnerSettlementFilterInput:
     contract_ids: Optional[list[str]] = field(default=None)
     partner_tags: Optional[list[str]] = field(default=None)
     settlement_currencies: Optional[list[Currency]] = field(default=None)
-    """통화 단위
+    """통화
     """
     statuses: Optional[list[PlatformPartnerSettlementStatus]] = field(default=None)
     """정산 상태

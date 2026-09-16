@@ -327,6 +327,96 @@ public sealed interface ReconciliationPgProvider {
     }
     override fun serialize(encoder: Encoder, value: Paymentwall): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(InnopaySerializer::class)
+  public data object Innopay : ReconciliationPgProvider {
+    override val value: String = "INNOPAY"
+  }
+  public object InnopaySerializer : KSerializer<Innopay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Innopay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Innopay = decoder.decodeString().let {
+      if (it != "INNOPAY") {
+        throw SerializationException(it)
+      } else {
+        return Innopay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Innopay): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(GalaxiaSerializer::class)
+  public data object Galaxia : ReconciliationPgProvider {
+    override val value: String = "GALAXIA"
+  }
+  public object GalaxiaSerializer : KSerializer<Galaxia> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Galaxia::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Galaxia = decoder.decodeString().let {
+      if (it != "GALAXIA") {
+        throw SerializationException(it)
+      } else {
+        return Galaxia
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Galaxia): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(KomojuSerializer::class)
+  public data object Komoju : ReconciliationPgProvider {
+    override val value: String = "KOMOJU"
+  }
+  public object KomojuSerializer : KSerializer<Komoju> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Komoju::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Komoju = decoder.decodeString().let {
+      if (it != "KOMOJU") {
+        throw SerializationException(it)
+      } else {
+        return Komoju
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Komoju): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(GrabSerializer::class)
+  public data object Grab : ReconciliationPgProvider {
+    override val value: String = "GRAB"
+  }
+  public object GrabSerializer : KSerializer<Grab> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Grab::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Grab = decoder.decodeString().let {
+      if (it != "GRAB") {
+        throw SerializationException(it)
+      } else {
+        return Grab
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Grab): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(AtomeSerializer::class)
+  public data object Atome : ReconciliationPgProvider {
+    override val value: String = "ATOME"
+  }
+  public object AtomeSerializer : KSerializer<Atome> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Atome::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Atome = decoder.decodeString().let {
+      if (it != "ATOME") {
+        throw SerializationException(it)
+      } else {
+        return Atome
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Atome): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(PaymeSerializer::class)
+  public data object Payme : ReconciliationPgProvider {
+    override val value: String = "PAYME"
+  }
+  public object PaymeSerializer : KSerializer<Payme> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Payme::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Payme = decoder.decodeString().let {
+      if (it != "PAYME") {
+        throw SerializationException(it)
+      } else {
+        return Payme
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Payme): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : ReconciliationPgProvider
@@ -359,6 +449,12 @@ public object ReconciliationPgProviderSerializer : KSerializer<ReconciliationPgP
       "PAYLETTER_GLOBAL" -> ReconciliationPgProvider.PayletterGlobal
       "KIWOOMPAY" -> ReconciliationPgProvider.Kiwoompay
       "PAYMENTWALL" -> ReconciliationPgProvider.Paymentwall
+      "INNOPAY" -> ReconciliationPgProvider.Innopay
+      "GALAXIA" -> ReconciliationPgProvider.Galaxia
+      "KOMOJU" -> ReconciliationPgProvider.Komoju
+      "GRAB" -> ReconciliationPgProvider.Grab
+      "ATOME" -> ReconciliationPgProvider.Atome
+      "PAYME" -> ReconciliationPgProvider.Payme
       else -> ReconciliationPgProvider.Unrecognized(value)
     }
   }

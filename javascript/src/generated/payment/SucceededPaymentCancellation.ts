@@ -41,6 +41,12 @@ export type SucceededPaymentCancellation = {
 	requestedAt: string
 	/** 취소 영수증 URL */
 	receiptUrl?: string
+	/**
+	 * 본인인증 없이 열람 가능한 취소 영수증 URL
+	 *
+	 * 나이스정보통신에서 제공합니다. 이용시 사전 협의가 필요합니다.
+	 */
+	receiptUrlWithoutAuthentication?: string
 	/** 취소 요청 경로 */
 	trigger?: Trigger
 }

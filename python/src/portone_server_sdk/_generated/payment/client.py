@@ -4,7 +4,7 @@ import json
 from httpx import AsyncClient, Client as SyncClient
 from ..._user_agent import USER_AGENT
 from typing import Optional
-from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentCancellationNotFoundError, PaymentCancellationNotPendingError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
+from ..errors import AlreadyPaidError, BillingKeyAlreadyDeletedError, BillingKeyNotFoundError, CancelAmountExceedsCancellableAmountError, CancelTaxAmountExceedsCancellableTaxAmountError, CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError, CancellableAmountConsistencyBrokenError, ChannelNotFoundError, DiscountAmountExceedsTotalAmountError, ForbiddenError, InformationMismatchError, InvalidPaymentTokenError, InvalidRequestError, MaxCancelCountReachedError, MaxTransactionCountReachedError, MaxWebhookRetryCountReachedError, NegativePromotionAdjustedCancelAmountError, PaymentAlreadyCancelledError, PaymentCancellationNotFoundError, PaymentCancellationNotPendingError, PaymentNotFoundError, PaymentNotPaidError, PaymentNotWaitingForDepositError, PaymentScheduleAlreadyExistsError, PgProviderError, PromotionDiscountRetainOptionShouldNotBeChangedError, PromotionPayMethodDoesNotMatchError, SumOfPartsExceedsCancelAmountError, SumOfPartsExceedsTotalAmountError, UnauthorizedError, UnknownError, WebhookNotFoundError
 from ..payment.already_paid_error import _deserialize_already_paid_error
 from ..common.billing_key_already_deleted_error import _deserialize_billing_key_already_deleted_error
 from ..common.billing_key_not_found_error import _deserialize_billing_key_not_found_error
@@ -18,6 +18,7 @@ from ..common.forbidden_error import _deserialize_forbidden_error
 from ..common.information_mismatch_error import _deserialize_information_mismatch_error
 from ..payment.invalid_payment_token_error import _deserialize_invalid_payment_token_error
 from ..common.invalid_request_error import _deserialize_invalid_request_error
+from ..payment.max_cancel_count_reached_error import _deserialize_max_cancel_count_reached_error
 from ..common.max_transaction_count_reached_error import _deserialize_max_transaction_count_reached_error
 from ..payment.max_webhook_retry_count_reached_error import _deserialize_max_webhook_retry_count_reached_error
 from ..payment.negative_promotion_adjusted_cancel_amount_error import _deserialize_negative_promotion_adjusted_cancel_amount_error
@@ -1063,6 +1064,12 @@ class PaymentClient:
             if error is not None:
                 raise InvalidRequestError(error)
             try:
+                error = _deserialize_max_cancel_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise MaxCancelCountReachedError(error)
+            try:
                 error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
             except Exception:
                 pass
@@ -1257,6 +1264,12 @@ class PaymentClient:
                 pass
             if error is not None:
                 raise InvalidRequestError(error)
+            try:
+                error = _deserialize_max_cancel_count_reached_error(error_response)
+            except Exception:
+                pass
+            if error is not None:
+                raise MaxCancelCountReachedError(error)
             try:
                 error = _deserialize_negative_promotion_adjusted_cancel_amount_error(error_response)
             except Exception:
@@ -2887,7 +2900,7 @@ class PaymentClient:
             tax_free_amount (int, optional):
                 결제 면세 금액
             currency (Currency, optional):
-                통화 단위
+                통화
 
 
         Raises:
@@ -2963,7 +2976,7 @@ class PaymentClient:
             tax_free_amount (int, optional):
                 결제 면세 금액
             currency (Currency, optional):
-                통화 단위
+                통화
 
 
         Raises:
@@ -3737,7 +3750,7 @@ class PaymentClient:
             page (PageInput, optional):
                 요청할 페이지 정보
 
-                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+                미 입력 시 number = 0, size = 10 으로 기본값이 적용됩니다. (number + 1) * size가 60,000을 초과할 수 없습니다.
             filter (PaymentFilterInput, optional):
                 조회할 결제 건 조건 필터
 
@@ -3801,7 +3814,7 @@ class PaymentClient:
             page (PageInput, optional):
                 요청할 페이지 정보
 
-                미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+                미 입력 시 number = 0, size = 10 으로 기본값이 적용됩니다. (number + 1) * size가 60,000을 초과할 수 없습니다.
             filter (PaymentFilterInput, optional):
                 조회할 결제 건 조건 필터
 

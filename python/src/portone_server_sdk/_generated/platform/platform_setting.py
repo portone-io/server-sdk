@@ -21,6 +21,9 @@ class PlatformSetting:
     """정산 금액 취급 기준
     """
     is_for_test: bool
+    manual_settlement_per_transfer: bool
+    """수기정산을 정산 건별로 정산내역/지급내역으로 생성
+    """
     default_withdrawal_memo: Optional[str] = field(default=None)
     """기본 보내는 이 통장 메모
     """
@@ -38,6 +41,7 @@ def _serialize_platform_setting(obj: PlatformSetting) -> Any:
     entity["deductWht"] = obj.deduct_wht
     entity["settlementAmountType"] = _serialize_settlement_amount_type(obj.settlement_amount_type)
     entity["isForTest"] = obj.is_for_test
+    entity["manualSettlementPerTransfer"] = obj.manual_settlement_per_transfer
     if obj.default_withdrawal_memo is not None:
         entity["defaultWithdrawalMemo"] = obj.default_withdrawal_memo
     if obj.default_deposit_memo is not None:
@@ -72,6 +76,11 @@ def _deserialize_platform_setting(obj: Any) -> PlatformSetting:
     is_for_test = obj["isForTest"]
     if not isinstance(is_for_test, bool):
         raise ValueError(f"{repr(is_for_test)} is not bool")
+    if "manualSettlementPerTransfer" not in obj:
+        raise KeyError(f"'manualSettlementPerTransfer' is not in {obj}")
+    manual_settlement_per_transfer = obj["manualSettlementPerTransfer"]
+    if not isinstance(manual_settlement_per_transfer, bool):
+        raise ValueError(f"{repr(manual_settlement_per_transfer)} is not bool")
     if "defaultWithdrawalMemo" in obj:
         default_withdrawal_memo = obj["defaultWithdrawalMemo"]
         if not isinstance(default_withdrawal_memo, str):
@@ -84,4 +93,4 @@ def _deserialize_platform_setting(obj: Any) -> PlatformSetting:
             raise ValueError(f"{repr(default_deposit_memo)} is not str")
     else:
         default_deposit_memo = None
-    return PlatformSetting(supports_multiple_order_transfers_per_partner, adjust_settlement_date_after_holiday_if_earlier, deduct_wht, settlement_amount_type, is_for_test, default_withdrawal_memo, default_deposit_memo)
+    return PlatformSetting(supports_multiple_order_transfers_per_partner, adjust_settlement_date_after_holiday_if_earlier, deduct_wht, settlement_amount_type, is_for_test, manual_settlement_per_transfer, default_withdrawal_memo, default_deposit_memo)

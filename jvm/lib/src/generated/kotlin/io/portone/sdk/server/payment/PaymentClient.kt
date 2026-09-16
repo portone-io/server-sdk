@@ -75,6 +75,8 @@ import io.portone.sdk.server.errors.InvalidPaymentTokenError
 import io.portone.sdk.server.errors.InvalidPaymentTokenException
 import io.portone.sdk.server.errors.InvalidRequestError
 import io.portone.sdk.server.errors.InvalidRequestException
+import io.portone.sdk.server.errors.MaxCancelCountReachedError
+import io.portone.sdk.server.errors.MaxCancelCountReachedException
 import io.portone.sdk.server.errors.MaxTransactionCountReachedError
 import io.portone.sdk.server.errors.MaxTransactionCountReachedException
 import io.portone.sdk.server.errors.MaxWebhookRetryCountReachedError
@@ -665,6 +667,7 @@ public class PaymentClient(
         is CancelTaxFreeAmountExceedsCancellableTaxFreeAmountError -> throw CancelTaxFreeAmountExceedsCancellableTaxFreeAmountException(httpBodyDecoded)
         is ForbiddenError -> throw ForbiddenException(httpBodyDecoded)
         is InvalidRequestError -> throw InvalidRequestException(httpBodyDecoded)
+        is MaxCancelCountReachedError -> throw MaxCancelCountReachedException(httpBodyDecoded)
         is NegativePromotionAdjustedCancelAmountError -> throw NegativePromotionAdjustedCancelAmountException(httpBodyDecoded)
         is PaymentAlreadyCancelledError -> throw PaymentAlreadyCancelledException(httpBodyDecoded)
         is PaymentNotFoundError -> throw PaymentNotFoundException(httpBodyDecoded)
@@ -1382,7 +1385,7 @@ public class PaymentClient(
    * @param taxFreeAmount
    * 결제 면세 금액
    * @param currency
-   * 통화 단위
+   * 통화
    *
    * @throws PreRegisterPaymentException
    */
@@ -1763,7 +1766,7 @@ public class PaymentClient(
    * @param page
    * 요청할 페이지 정보
    *
-   * 미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+   * 미 입력 시 number = 0, size = 10 으로 기본값이 적용됩니다. (number + 1) * size가 60,000을 초과할 수 없습니다.
    * @param filter
    * 조회할 결제 건 조건 필터
    *

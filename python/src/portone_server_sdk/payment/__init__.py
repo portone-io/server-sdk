@@ -64,6 +64,7 @@ from .._generated.payment.cancelled_payment_transaction import (
 )
 from .._generated.payment.capture_payment_body import CapturePaymentBody
 from .._generated.payment.capture_payment_response import CapturePaymentResponse
+from .._generated.payment.cash_receipt_issuance_status import CashReceiptIssuanceStatus
 from .._generated.payment.close_virtual_account_response import (
     CloseVirtualAccountResponse,
 )
@@ -294,6 +295,7 @@ __all__ = [
     "CancelledPaymentTransaction",
     "CapturePaymentBody",
     "CapturePaymentResponse",
+    "CashReceiptIssuanceStatus",
     "CloseVirtualAccountResponse",
     "ConfirmEscrowBody",
     "ConfirmEscrowResponse",

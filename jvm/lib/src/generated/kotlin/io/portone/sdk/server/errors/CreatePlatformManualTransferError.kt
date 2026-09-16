@@ -30,6 +30,7 @@ internal object CreatePlatformManualTransferErrorSerializer : JsonContentPolymor
       "FORBIDDEN" -> ForbiddenError.serializer()
       "INVALID_REQUEST" -> InvalidRequestError.serializer()
       "PLATFORM_CURRENCY_NOT_SUPPORTED" -> PlatformCurrencyNotSupportedError.serializer()
+      "PLATFORM_NEGATIVE_AMOUNT_NOT_ALLOWED" -> PlatformNegativeAmountNotAllowedError.serializer()
       "PLATFORM_NOT_ENABLED" -> PlatformNotEnabledError.serializer()
       "PLATFORM_PARTNER_NOT_FOUND" -> PlatformPartnerNotFoundError.serializer()
       "PLATFORM_TRANSFER_ID_ALREADY_USED" -> PlatformTransferIdAlreadyUsedError.serializer()
