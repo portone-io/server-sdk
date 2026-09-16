@@ -5,8 +5,10 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
 import io.portone.sdk.server.auth.AuthClient
 import io.portone.sdk.server.b2b.B2bClient
+import io.portone.sdk.server.checkoutprofile.CheckoutProfileClient
 import io.portone.sdk.server.identityverification.IdentityVerificationClient
 import io.portone.sdk.server.payment.PaymentClient
+import io.portone.sdk.server.paymentsession.PaymentSessionClient
 import io.portone.sdk.server.pgspecific.PgSpecificClient
 import io.portone.sdk.server.platform.PlatformClient
 import io.portone.sdk.server.reconciliation.ReconciliationClient
@@ -39,18 +41,22 @@ public class PortOneClient(
   public val b2b: B2bClient = B2bClient(apiSecret, apiBase, storeId)
   public val platform: PlatformClient = PlatformClient(apiSecret, apiBase, storeId)
   public val payment: PaymentClient = PaymentClient(apiSecret, apiBase, storeId)
+  public val checkoutProfile: CheckoutProfileClient = CheckoutProfileClient(apiSecret, apiBase, storeId)
   public val identityVerification: IdentityVerificationClient = IdentityVerificationClient(apiSecret, apiBase, storeId)
   public val pgSpecific: PgSpecificClient = PgSpecificClient(apiSecret, apiBase, storeId)
   public val auth: AuthClient = AuthClient(apiSecret, apiBase, storeId)
   public val reconciliation: ReconciliationClient = ReconciliationClient(apiSecret, apiBase, storeId)
+  public val paymentSession: PaymentSessionClient = PaymentSessionClient(apiSecret, apiBase, storeId)
   override fun close() {
     b2b.close()
     platform.close()
     payment.close()
+    checkoutProfile.close()
     identityVerification.close()
     pgSpecific.close()
     auth.close()
     reconciliation.close()
+    paymentSession.close()
     client.close()
   }
 }

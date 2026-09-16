@@ -823,6 +823,36 @@ public sealed interface PgProvider {
     }
     override fun serialize(encoder: Encoder, value: KiccV2): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(InnopaySerializer::class)
+  public data object Innopay : PgProvider {
+    override val value: String = "INNOPAY"
+  }
+  public object InnopaySerializer : KSerializer<Innopay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Innopay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Innopay = decoder.decodeString().let {
+      if (it != "INNOPAY") {
+        throw SerializationException(it)
+      } else {
+        return Innopay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Innopay): Unit = encoder.encodeString(value.value)
+  }
+  @Serializable(HectoGlobalSerializer::class)
+  public data object HectoGlobal : PgProvider {
+    override val value: String = "HECTO_GLOBAL"
+  }
+  public object HectoGlobalSerializer : KSerializer<HectoGlobal> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(HectoGlobal::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): HectoGlobal = decoder.decodeString().let {
+      if (it != "HECTO_GLOBAL") {
+        throw SerializationException(it)
+      } else {
+        return HectoGlobal
+      }
+    }
+    override fun serialize(encoder: Encoder, value: HectoGlobal): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgProvider
@@ -888,6 +918,8 @@ public object PgProviderSerializer : KSerializer<PgProvider> {
       "MOBILIANS_V2" -> PgProvider.MobiliansV2
       "TRIPLE_A" -> PgProvider.TripleA
       "KICC_V2" -> PgProvider.KiccV2
+      "INNOPAY" -> PgProvider.Innopay
+      "HECTO_GLOBAL" -> PgProvider.HectoGlobal
       else -> PgProvider.Unrecognized(value)
     }
   }

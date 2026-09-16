@@ -217,7 +217,7 @@ class CashReceiptClient:
             order_name (str):
                 주문명
             currency (Currency):
-                화폐
+                통화
             amount (PaymentAmountInput):
                 금액 세부 입력 정보
             product_type (PaymentProductType, optional):
@@ -341,7 +341,7 @@ class CashReceiptClient:
             order_name (str):
                 주문명
             currency (Currency):
-                화폐
+                통화
             amount (PaymentAmountInput):
                 금액 세부 입력 정보
             product_type (PaymentProductType, optional):
