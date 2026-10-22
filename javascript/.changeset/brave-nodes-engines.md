@@ -1,5 +1,5 @@
 ---
-"@portone/server-sdk": minor
+"@portone/server-sdk": patch
 ---
 
-Node.js 최소 버전을 CVE-2026-111497(Brotli 디코더 RCE)이 수정된 22.23.4 / 24.22.1 / 26.12.1 이상으로 명시합니다. (`engines` 추가)
+`engines` 필드로 지원 Node.js 버전(v20 이상)을 명시합니다. 지원 범위 변경은 없습니다.
