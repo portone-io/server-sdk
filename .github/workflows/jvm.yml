@@ -7,11 +7,19 @@ on:
       - ".github/workflows/jvm.yml"
       - "codegen/openapi.json"
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/') }}
+
 jobs:
   build:
     name: Build
     if: ${{ startsWith(github.ref, 'refs/heads') || startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./jvm
@@ -35,6 +43,8 @@ jobs:
     needs: [build]
     if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./jvm
@@ -62,6 +72,8 @@ jobs:
     needs: [build]
     if: ${{ startsWith(github.ref, 'refs/tags/jvm-v') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./jvm
@@ -87,8 +99,10 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYPASSWORD }}
       - name: Send a Slack notification if a publish happens
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          export VERSION=$(cut -c '16-' <<< '${GITHUB_REF}')
+          export VERSION=$(cut -c '16-' <<< "${GITHUB_REF}")
           curl -X POST -H 'Content-type: application/json'\
             --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Maven Central에 `io.portone:server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"Maven 페이지 보기"},"value":"show_maven_page","url":"https://central.sonatype.com/artifact/io.portone/server-sdk/'"$VERSION"'","action_id":"show_maven_page"}]}]}'\
-            ${{ secrets.SLACK_WEBHOOK_URL }}
+            "$SLACK_WEBHOOK_URL"

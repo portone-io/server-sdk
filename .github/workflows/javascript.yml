@@ -7,7 +7,11 @@ on:
       - ".github/workflows/javascript.yml"
       - "codegen/openapi.json"
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   docs:
@@ -15,6 +19,8 @@ jobs:
     needs: [check, test]
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./javascript
@@ -24,7 +30,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -47,6 +53,8 @@ jobs:
     name: Check
     if: ${{ startsWith(github.ref, 'refs/heads') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./javascript
@@ -56,7 +64,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -73,6 +81,8 @@ jobs:
     name: Test
     if: ${{ startsWith(github.ref, 'refs/heads') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./javascript
@@ -83,7 +93,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -110,9 +120,9 @@ jobs:
       run:
         working-directory: ./javascript
     permissions:
-      pull-requests: write
-      contents: write
-      id-token: write
+      pull-requests: write # changesets/action opens and updates the release PR.
+      contents: write # changesets/action pushes the version branch; stage-npm.sh pushes the js-v tag.
+      id-token: write # npm trusted publishing (staging) and provenance.
     steps:
       - name: Checkout Repo
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
@@ -120,7 +130,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
 
@@ -135,19 +145,27 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+      - name: Create Release Pull Request or stage to npm
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           cwd: ${{ github.workspace }}/javascript
-          publish: pnpm publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          publish-script: pnpm stage publish --recursive --access public --provenance --report-summary
 
-      - name: Send a Slack notification if a publish happens
-        if: ${{ steps.changesets.outputs.hasChangesets == 'false' }}
+      - name: Notify Slack after successful npm staging
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          export VERSION=$(jq -r '.version' package.json)
-          curl -X POST -H 'Content-type: application/json'\
-            --data '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"npm과 jsr에 `@portone/server-sdk` 버전 *v'"$VERSION"'* 가 배포되었습니다 :rocket:"}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"npm 페이지 보기"},"value":"show_npm_page","url":"https://www.npmjs.com/package/@portone/server-sdk/v/'"$VERSION"'","action_id":"show_npm_page"},{"type":"button","text":{"type":"plain_text","text":"jsr 페이지 보기"},"value":"show_jsr_page","url":"https://jsr.io/@portone/server-sdk@'"$VERSION"'","action_id":"show_jsr_page"},{"type":"button","text":{"type":"plain_text","text":"체인지로그 보기"},"value":"show_changelog","url":"https://github.com/portone-io/server-sdk/blob/main/javascript/CHANGELOG.md","action_id":"show_changelog"}]}]}'\
-            ${{ secrets.SLACK_WEBHOOK_URL }}
+          [[ -f pnpm-publish-summary.json ]] || exit 0
+          VERSION=$(jq -r '.publishedPackages[] | select(.name == "@portone/server-sdk") | .version' pnpm-publish-summary.json)
+          [[ -n "$VERSION" ]] || exit 0
+          jq -n --arg version "$VERSION" '
+            {
+              blocks: [
+                {type: "section", text: {type: "mrkdwn", text: ("npm에 `@portone/server-sdk` 버전 *v" + $version + "* 가 스테이징되었습니다. 메인테이너의 승인(2FA) 후 배포됩니다. :hourglass_flowing_sand:\n승인: npmjs.com 패키지 페이지의 *Staged Packages* 탭 또는 `npm stage list @portone/server-sdk` → `npm stage approve <stage-id>`")}},
+                {type: "actions", elements: [
+                  {type: "button", text: {type: "plain_text", text: "npm 페이지 보기"}, url: "https://www.npmjs.com/package/@portone/server-sdk"},
+                  {type: "button", text: {type: "plain_text", text: "체인지로그 보기"}, url: "https://github.com/portone-io/server-sdk/blob/main/javascript/CHANGELOG.md"}
+                ]}
+              ]
+            }' |
+            curl --fail-with-body -sS -X POST -H 'Content-Type: application/json' --data-binary @- "$SLACK_WEBHOOK_URL"
