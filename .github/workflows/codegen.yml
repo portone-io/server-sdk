@@ -6,10 +6,18 @@ on:
       - "codegen/**"
       - ".github/workflows/codegen.yml"
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
   check:
     name: Deno check
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
     defaults:
       run:
         working-directory: ./codegen
