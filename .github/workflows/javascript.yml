@@ -149,18 +149,17 @@ jobs:
         uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
           cwd: ${{ github.workspace }}/javascript
-          publish: bash scripts/stage-npm.sh
+          publish: pnpm stage publish --recursive --access public --provenance --report-summary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_BEFORE_SHA: ${{ github.event.before }}
 
       - name: Notify Slack after successful npm staging
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          RECEIPT="$RUNNER_TEMP/server-sdk-npm-stage.json"
-          [[ -s "$RECEIPT" ]] || exit 0
-          VERSION=$(jq -er '.version' "$RECEIPT")
+          [[ -f pnpm-publish-summary.json ]] || exit 0
+          VERSION=$(jq -r '.publishedPackages[] | select(.name == "@portone/server-sdk") | .version' pnpm-publish-summary.json)
+          [[ -n "$VERSION" ]] || exit 0
           jq -n --arg version "$VERSION" '
             {
               blocks: [

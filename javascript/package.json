@@ -193,7 +193,9 @@
     "format": "biome format --write .",
     "build": "unbuild",
     "test:dev": "vitest --ui --typecheck",
-    "test": "vitest run --typecheck"
+    "test": "vitest run --typecheck",
+    "prepublishOnly": "git tag js-v$npm_package_version && pnpm build && sed -i \"s/VERSION_PLACEHOLDER/$npm_package_version/\" jsr.json",
+    "postpublish": "jsr publish --allow-dirty && git push origin js-v$npm_package_version"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
