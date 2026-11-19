@@ -30,7 +30,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a # v6.0.4
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -64,7 +64,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a # v6.0.4
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -93,7 +93,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a # v6.0.4
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
       - name: Setup Node.js
@@ -130,7 +130,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a # v6.0.4
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
           package_json_file: ./javascript/package.json
 
