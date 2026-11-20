@@ -1,0 +1,143 @@
+name: API Reference
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "python/**"
+      - "javascript/**"
+      - "jvm/**"
+      - "codegen/openapi.json"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  python:
+    name: Build Python API reference
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
+    defaults:
+      run:
+        working-directory: ./python
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@caf0cab7a618c569241d31dcd442f54681755d39 # v3.2.4
+        with:
+          version: "latest"
+          enable-cache: true
+      - name: Install Dependencies
+        run: uv sync
+      - name: Run sphinx
+        run: uv run make html
+        working-directory: ./python/docs
+      - name: Upload documentation
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: docs-py
+          path: ./python/docs/_build/html
+  javascript:
+    name: Build JavaScript API reference
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
+    defaults:
+      run:
+        working-directory: ./javascript
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          package_json_file: ./javascript/package.json
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: javascript/.node-version
+          cache: pnpm
+          cache-dependency-path: ./javascript/pnpm-lock.yaml
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run typedoc
+        run: pnpm typedoc
+      - name: Upload documentation
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: docs-js
+          path: ./javascript/docs
+  jvm:
+    name: Build JVM API reference
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Check out the repository.
+    defaults:
+      run:
+        working-directory: ./jvm
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup JDK
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Run dokka
+        run: ./gradlew dokkaGenerateHtml
+      - name: Upload documentation
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: docs-jvm
+          path: ./jvm/lib/build/dokka/html
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [python, javascript, jvm]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write # Deploy to GitHub Pages.
+      id-token: write # Authenticate the deployment with OIDC.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download Python documentation
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: docs-py
+          path: site/py
+      - name: Download JavaScript documentation
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: docs-js
+          path: site/js
+      - name: Download JVM documentation
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: docs-jvm
+          path: site/jvm
+      - name: Disable Jekyll
+        run: touch site/.nojekyll
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
