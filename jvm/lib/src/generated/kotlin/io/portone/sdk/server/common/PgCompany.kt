@@ -493,6 +493,21 @@ public sealed interface PgCompany {
     }
     override fun serialize(encoder: Encoder, value: TripleA): Unit = encoder.encodeString(value.value)
   }
+  @Serializable(InnopaySerializer::class)
+  public data object Innopay : PgCompany {
+    override val value: String = "INNOPAY"
+  }
+  public object InnopaySerializer : KSerializer<Innopay> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Innopay::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): Innopay = decoder.decodeString().let {
+      if (it != "INNOPAY") {
+        throw SerializationException(it)
+      } else {
+        return Innopay
+      }
+    }
+    override fun serialize(encoder: Encoder, value: Innopay): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PgCompany
@@ -536,6 +551,7 @@ public object PgCompanySerializer : KSerializer<PgCompany> {
       "HYPHEN" -> PgCompany.Hyphen
       "PAYLETTER" -> PgCompany.Payletter
       "TRIPLE_A" -> PgCompany.TripleA
+      "INNOPAY" -> PgCompany.Innopay
       else -> PgCompany.Unrecognized(value)
     }
   }

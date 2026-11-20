@@ -28,7 +28,7 @@ class IssueCashReceiptBody:
     """주문명
     """
     currency: Currency
-    """화폐
+    """통화
     """
     amount: PaymentAmountInput
     """금액 세부 입력 정보

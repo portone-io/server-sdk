@@ -61,6 +61,22 @@ public sealed interface PaymentScheduleSortBy {
     }
     override fun serialize(encoder: Encoder, value: CompletedAt): Unit = encoder.encodeString(value.value)
   }
+  /** 결제 시도 또는 예정 시각. 해지 건은 해지 시각. */
+  @Serializable(StatusTimestampSerializer::class)
+  public data object StatusTimestamp : PaymentScheduleSortBy {
+    override val value: String = "STATUS_TIMESTAMP"
+  }
+  public object StatusTimestampSerializer : KSerializer<StatusTimestamp> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(StatusTimestamp::class.java.name, PrimitiveKind.STRING)
+    override fun deserialize(decoder: Decoder): StatusTimestamp = decoder.decodeString().let {
+      if (it != "STATUS_TIMESTAMP") {
+        throw SerializationException(it)
+      } else {
+        return StatusTimestamp
+      }
+    }
+    override fun serialize(encoder: Encoder, value: StatusTimestamp): Unit = encoder.encodeString(value.value)
+  }
   /** 현재 SDK 버전에서 알 수 없는 응답을 나타냅니다. */
   @ConsistentCopyVisibility
   public data class Unrecognized internal constructor(override val value: String) : PaymentScheduleSortBy
@@ -75,6 +91,7 @@ public object PaymentScheduleSortBySerializer : KSerializer<PaymentScheduleSortB
       "CREATED_AT" -> PaymentScheduleSortBy.CreatedAt
       "TIME_TO_PAY" -> PaymentScheduleSortBy.TimeToPay
       "COMPLETED_AT" -> PaymentScheduleSortBy.CompletedAt
+      "STATUS_TIMESTAMP" -> PaymentScheduleSortBy.StatusTimestamp
       else -> PaymentScheduleSortBy.Unrecognized(value)
     }
   }

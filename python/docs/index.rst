@@ -9,10 +9,12 @@ portone_server_sdk
 
    auth
    b2b
+   checkout_profile
    common
    errors
    identity_verification
    payment
+   payment_session
    pg_specific
    platform
    reconciliation
@@ -37,8 +39,10 @@ portone_server_sdk
    AdditionalFeatureClient
    PaymentScheduleClient
    PromotionClient
+   CheckoutProfileClient
    IdentityVerificationClient
    PgSpecificClient
    AuthClient
    ReconciliationClient
+   PaymentSessionClient
    PortOneClient

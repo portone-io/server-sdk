@@ -3437,6 +3437,7 @@ class PlatformClient:
         adjust_settlement_date_after_holiday_if_earlier: Optional[bool] = None,
         deduct_wht: Optional[bool] = None,
         settlement_amount_type: Optional[SettlementAmountType] = None,
+        manual_settlement_per_transfer: Optional[bool] = None,
     ) -> UpdatePlatformSettingResponse:
         """플랫폼 설정 업데이트
 
@@ -3459,6 +3460,8 @@ class PlatformClient:
                 지급 금액에서 원천징수세 차감 여부
             settlement_amount_type (SettlementAmountType, optional):
                 정산 금액 취급 기준
+            manual_settlement_per_transfer (bool, optional):
+                수기정산을 정산 건별로 정산내역/지급내역으로 생성
 
 
         Raises:
@@ -3478,6 +3481,8 @@ class PlatformClient:
             request_body["deductWht"] = deduct_wht
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
+        if manual_settlement_per_transfer is not None:
+            request_body["manualSettlementPerTransfer"] = manual_settlement_per_transfer
         query = []
         if test is not None:
             query.append(("test", test))
@@ -3530,6 +3535,7 @@ class PlatformClient:
         adjust_settlement_date_after_holiday_if_earlier: Optional[bool] = None,
         deduct_wht: Optional[bool] = None,
         settlement_amount_type: Optional[SettlementAmountType] = None,
+        manual_settlement_per_transfer: Optional[bool] = None,
     ) -> UpdatePlatformSettingResponse:
         """플랫폼 설정 업데이트
 
@@ -3552,6 +3558,8 @@ class PlatformClient:
                 지급 금액에서 원천징수세 차감 여부
             settlement_amount_type (SettlementAmountType, optional):
                 정산 금액 취급 기준
+            manual_settlement_per_transfer (bool, optional):
+                수기정산을 정산 건별로 정산내역/지급내역으로 생성
 
 
         Raises:
@@ -3571,6 +3579,8 @@ class PlatformClient:
             request_body["deductWht"] = deduct_wht
         if settlement_amount_type is not None:
             request_body["settlementAmountType"] = _serialize_settlement_amount_type(settlement_amount_type)
+        if manual_settlement_per_transfer is not None:
+            request_body["manualSettlementPerTransfer"] = manual_settlement_per_transfer
         query = []
         if test is not None:
             query.append(("test", test))

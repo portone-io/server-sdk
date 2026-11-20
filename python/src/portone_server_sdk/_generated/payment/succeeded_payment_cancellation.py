@@ -46,6 +46,11 @@ class SucceededPaymentCancellation:
     receipt_url: Optional[str] = field(default=None)
     """취소 영수증 URL
     """
+    receipt_url_without_authentication: Optional[str] = field(default=None)
+    """본인인증 없이 열람 가능한 취소 영수증 URL
+
+    나이스정보통신에서 제공합니다. 이용시 사전 협의가 필요합니다.
+    """
     trigger: Optional[Trigger] = field(default=None)
     """취소 요청 경로
     """
@@ -70,6 +75,8 @@ def _serialize_succeeded_payment_cancellation(obj: SucceededPaymentCancellation)
         entity["cancelledAt"] = obj.cancelled_at
     if obj.receipt_url is not None:
         entity["receiptUrl"] = obj.receipt_url
+    if obj.receipt_url_without_authentication is not None:
+        entity["receiptUrlWithoutAuthentication"] = obj.receipt_url_without_authentication
     if obj.trigger is not None:
         entity["trigger"] = _serialize_trigger(obj.trigger)
     return entity
@@ -137,9 +144,15 @@ def _deserialize_succeeded_payment_cancellation(obj: Any) -> SucceededPaymentCan
             raise ValueError(f"{repr(receipt_url)} is not str")
     else:
         receipt_url = None
+    if "receiptUrlWithoutAuthentication" in obj:
+        receipt_url_without_authentication = obj["receiptUrlWithoutAuthentication"]
+        if not isinstance(receipt_url_without_authentication, str):
+            raise ValueError(f"{repr(receipt_url_without_authentication)} is not str")
+    else:
+        receipt_url_without_authentication = None
     if "trigger" in obj:
         trigger = obj["trigger"]
         trigger = _deserialize_trigger(trigger)
     else:
         trigger = None
-    return SucceededPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url, trigger)
+    return SucceededPaymentCancellation(id, total_amount, tax_free_amount, vat_amount, reason, requested_at, pg_cancellation_id, easy_pay_discount_amount, cancelled_at, receipt_url, receipt_url_without_authentication, trigger)

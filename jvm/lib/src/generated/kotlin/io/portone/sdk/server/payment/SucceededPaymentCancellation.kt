@@ -31,6 +31,12 @@ public data class SucceededPaymentCancellation(
   override val requestedAt: @Serializable(InstantSerializer::class) Instant,
   /** 취소 영수증 URL */
   val receiptUrl: String? = null,
+  /**
+   * 본인인증 없이 열람 가능한 취소 영수증 URL
+   *
+   * 나이스정보통신에서 제공합니다. 이용시 사전 협의가 필요합니다.
+   */
+  val receiptUrlWithoutAuthentication: String? = null,
   /** 취소 요청 경로 */
   override val trigger: Trigger? = null,
 ) : PaymentCancellation.Recognized

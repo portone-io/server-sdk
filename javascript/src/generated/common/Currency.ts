@@ -1,4 +1,4 @@
-/** 통화 단위 */
+/** 통화 */
 export type Currency =
 	/** 대한민국 원화 */
 	| "KRW"

@@ -18,18 +18,22 @@ from portone_server_sdk.payment.cash_receipt import CashReceiptClient
 from portone_server_sdk.payment.additional_feature import AdditionalFeatureClient
 from portone_server_sdk.payment.payment_schedule import PaymentScheduleClient
 from portone_server_sdk.payment.promotion import PromotionClient
+from portone_server_sdk.checkout_profile import CheckoutProfileClient
 from portone_server_sdk.identity_verification import IdentityVerificationClient
 from portone_server_sdk.pg_specific import PgSpecificClient
 from portone_server_sdk.auth import AuthClient
 from portone_server_sdk.reconciliation import ReconciliationClient
+from portone_server_sdk.payment_session import PaymentSessionClient
 
 from . import (
     auth,
     b2b,
+    checkout_profile,
     common,
     errors,
     identity_verification,
     payment,
+    payment_session,
     pg_specific,
     platform,
     reconciliation,
@@ -48,6 +52,7 @@ __all__ = [
     "BulkAccountTransferClient",
     "BulkPayoutClient",
     "CashReceiptClient",
+    "CheckoutProfileClient",
     "CompanyClient",
     "CounterpartyClient",
     "IdentityVerificationClient",
@@ -55,6 +60,7 @@ __all__ = [
     "PartnerSettlementClient",
     "PaymentClient",
     "PaymentScheduleClient",
+    "PaymentSessionClient",
     "PayoutClient",
     "PgSpecificClient",
     "PlatformClient",
@@ -66,10 +72,12 @@ __all__ = [
     "TransferClient",
     "auth",
     "b2b",
+    "checkout_profile",
     "common",
     "errors",
     "identity_verification",
     "payment",
+    "payment_session",
     "pg_specific",
     "platform",
     "reconciliation",

@@ -32,7 +32,7 @@ internal data class IssueCashReceiptBody(
   val type: CashReceiptType,
   /** 주문명 */
   val orderName: String,
-  /** 화폐 */
+  /** 통화 */
   val currency: Currency,
   /** 금액 세부 입력 정보 */
   val amount: PaymentAmountInput,
