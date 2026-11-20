@@ -1,5 +1,11 @@
 # @portone/server-sdk
 
+## 0.21.0
+
+### Minor Changes
+
+- 1f5a95c: 지원 Node.js 최소 버전을 v22 이상으로 올립니다. (`engines` 추가)
+
 ## 0.20.0
 
 ### Minor Changes
