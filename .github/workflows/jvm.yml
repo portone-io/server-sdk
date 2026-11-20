@@ -36,8 +36,6 @@ jobs:
           java-version: 21
       - name: Build
         run: ./gradlew build
-        env:
-          PORTONE_API_SECRET: ${{ secrets.PORTONE_API_SECRET }}
   docs:
     name: Publish API reference
     needs: [build]

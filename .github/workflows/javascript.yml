@@ -106,8 +106,6 @@ jobs:
         run: pnpm install
       - name: Run tests
         run: pnpm test --silent
-        env:
-          PORTONE_API_SECRET: ${{ secrets.PORTONE_API_SECRET }}
   release:
     name: Release
     needs: [check, test]
