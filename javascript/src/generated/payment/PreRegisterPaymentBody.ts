@@ -17,6 +17,6 @@ export type PreRegisterPaymentBody = {
 	 * (int64)
 	 */
 	taxFreeAmount?: number
-	/** 통화 단위 */
+	/** 통화 */
 	currency?: Currency
 }

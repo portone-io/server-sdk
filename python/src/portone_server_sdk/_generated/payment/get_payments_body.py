@@ -12,7 +12,7 @@ class GetPaymentsBody:
     page: Optional[PageInput] = field(default=None)
     """요청할 페이지 정보
 
-    미 입력 시 number: 0, size: 10 으로 기본값이 적용됩니다.
+    미 입력 시 number = 0, size = 10 으로 기본값이 적용됩니다. (number + 1) * size가 60,000을 초과할 수 없습니다.
     """
     filter: Optional[PaymentFilterInput] = field(default=None)
     """조회할 결제 건 조건 필터

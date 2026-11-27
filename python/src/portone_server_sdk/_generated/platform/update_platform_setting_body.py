@@ -26,6 +26,9 @@ class UpdatePlatformSettingBody:
     settlement_amount_type: Optional[SettlementAmountType] = field(default=None)
     """정산 금액 취급 기준
     """
+    manual_settlement_per_transfer: Optional[bool] = field(default=None)
+    """수기정산을 정산 건별로 정산내역/지급내역으로 생성
+    """
 
 
 def _serialize_update_platform_setting_body(obj: UpdatePlatformSettingBody) -> Any:
@@ -44,6 +47,8 @@ def _serialize_update_platform_setting_body(obj: UpdatePlatformSettingBody) -> A
         entity["deductWht"] = obj.deduct_wht
     if obj.settlement_amount_type is not None:
         entity["settlementAmountType"] = _serialize_settlement_amount_type(obj.settlement_amount_type)
+    if obj.manual_settlement_per_transfer is not None:
+        entity["manualSettlementPerTransfer"] = obj.manual_settlement_per_transfer
     return entity
 
 
@@ -85,4 +90,10 @@ def _deserialize_update_platform_setting_body(obj: Any) -> UpdatePlatformSetting
         settlement_amount_type = _deserialize_settlement_amount_type(settlement_amount_type)
     else:
         settlement_amount_type = None
-    return UpdatePlatformSettingBody(default_withdrawal_memo, default_deposit_memo, supports_multiple_order_transfers_per_partner, adjust_settlement_date_after_holiday_if_earlier, deduct_wht, settlement_amount_type)
+    if "manualSettlementPerTransfer" in obj:
+        manual_settlement_per_transfer = obj["manualSettlementPerTransfer"]
+        if not isinstance(manual_settlement_per_transfer, bool):
+            raise ValueError(f"{repr(manual_settlement_per_transfer)} is not bool")
+    else:
+        manual_settlement_per_transfer = None
+    return UpdatePlatformSettingBody(default_withdrawal_memo, default_deposit_memo, supports_multiple_order_transfers_per_partner, adjust_settlement_date_after_holiday_if_earlier, deduct_wht, settlement_amount_type, manual_settlement_per_transfer)

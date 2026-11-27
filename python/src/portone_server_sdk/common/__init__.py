@@ -9,6 +9,7 @@ from .._generated.common.cash_receipt_input import CashReceiptInput
 from .._generated.common.cash_receipt_input_type import CashReceiptInputType
 from .._generated.common.cash_receipt_type import CashReceiptType
 from .._generated.common.channel_group_summary import ChannelGroupSummary
+from .._generated.common.checkout_payment_method import CheckoutPaymentMethod
 from .._generated.common.country import Country
 from .._generated.common.currency import Currency
 from .._generated.common.customer import Customer
@@ -49,6 +50,7 @@ __all__ = [
     "CashReceiptInputType",
     "CashReceiptType",
     "ChannelGroupSummary",
+    "CheckoutPaymentMethod",
     "Country",
     "Currency",
     "Customer",

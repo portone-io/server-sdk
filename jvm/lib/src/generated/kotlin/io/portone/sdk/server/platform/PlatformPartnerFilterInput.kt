@@ -30,7 +30,7 @@ public data class PlatformPartnerFilterInput(
    */
   val banks: List<Bank>? = null,
   /**
-   * 통화 단위
+   * 통화
    *
    * 하나 이상의 값이 존재하는 경우,  해당 리스트에 포함되는 계좌 통화를 가진 파트너만 조회합니다.
    */

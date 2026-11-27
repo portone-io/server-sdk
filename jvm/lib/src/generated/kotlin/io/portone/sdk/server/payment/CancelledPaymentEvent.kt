@@ -7,6 +7,7 @@ import io.portone.sdk.server.common.Customer
 import io.portone.sdk.server.common.PaymentProduct
 import io.portone.sdk.server.common.PortOneVersion
 import io.portone.sdk.server.common.SelectedChannel
+import io.portone.sdk.server.payment.CashReceiptIssuanceStatus
 import io.portone.sdk.server.payment.PaymentAmount
 import io.portone.sdk.server.payment.PaymentCancellation
 import io.portone.sdk.server.payment.PaymentCashReceipt
@@ -82,8 +83,21 @@ public data class CancelledPaymentEvent(
   override val pgTxId: String? = null,
   /** 현금영수증 */
   override val cashReceipt: PaymentCashReceipt? = null,
+  /**
+   * 현금영수증 발행여부
+   *
+   * 승인 시점에 확인된 발행여부입니다.
+   * 발행번호 없이 발행여부만 제공 가능한 경우, ISSUED이면서 cashReceipt가 존재하지 않을 수 있습니다.
+   */
+  override val cashReceiptIssuanceStatus: CashReceiptIssuanceStatus? = null,
   /** 거래 영수증 URL */
   override val receiptUrl: String? = null,
+  /**
+   * 본인인증 없이 열람 가능한 거래 영수증 URL
+   *
+   * 나이스정보통신에서 제공합니다. 이용시 사전 협의가 필요합니다.
+   */
+  override val receiptUrlWithoutAuthentication: String? = null,
   /** 결제 취소 정보 */
   val cancellation: PaymentCancellation? = null,
   /** 프로모션 아이디 */

@@ -22,7 +22,7 @@ class PreRegisterPaymentBody:
     (int64)
     """
     currency: Optional[Currency] = field(default=None)
-    """통화 단위
+    """통화
     """
 
 
