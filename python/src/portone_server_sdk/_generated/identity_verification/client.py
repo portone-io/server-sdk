@@ -26,7 +26,7 @@ from ..common.page_input import PageInput, _deserialize_page_input, _serialize_p
 from ..identity_verification.resend_identity_verification_response import ResendIdentityVerificationResponse, _deserialize_resend_identity_verification_response, _serialize_resend_identity_verification_response
 from ..identity_verification.send_identity_verification_body_customer import SendIdentityVerificationBodyCustomer, _deserialize_send_identity_verification_body_customer, _serialize_send_identity_verification_body_customer
 from ..identity_verification.send_identity_verification_response import SendIdentityVerificationResponse, _deserialize_send_identity_verification_response, _serialize_send_identity_verification_response
-from urllib.parse import quote
+from ..._api_path import encode_path_parameter
 class IdentityVerificationClient:
     _secret: str
     _base_url: str
@@ -79,7 +79,7 @@ class IdentityVerificationClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/confirm",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -165,7 +165,7 @@ class IdentityVerificationClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/confirm",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/confirm",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -243,7 +243,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/resend",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/resend",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -320,7 +320,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/resend",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/resend",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -424,7 +424,7 @@ class IdentityVerificationClient:
         query = []
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/send",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -541,7 +541,7 @@ class IdentityVerificationClient:
         query = []
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}/send",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}/send",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -631,7 +631,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -690,7 +690,7 @@ class IdentityVerificationClient:
             query.append(("storeId", self._store_id))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/identity-verifications/{quote(identity_verification_id, safe='')}",
+            f"{self._base_url}/identity-verifications/{encode_path_parameter(identity_verification_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

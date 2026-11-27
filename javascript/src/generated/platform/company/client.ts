@@ -1,6 +1,6 @@
 import { CompanyError } from "./CompanyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2bExternalServiceError } from "../../../generated/common/B2bExternalServiceError"
 import type { B2bNotEnabledError } from "../../../generated/common/B2bNotEnabledError"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
@@ -68,7 +68,7 @@ export function CompanyClient(init: PortOneClientInit): CompanyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/companies/${encodeURIComponent(businessRegistrationNumber)}/state?${query}`, baseUrl),
+				new URL(`/platform/companies/${encodePathParameter(businessRegistrationNumber)}/state?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

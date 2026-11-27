@@ -18,3 +18,11 @@ export type PortOneClientInit = {
 };
 
 export const USER_AGENT = "__USER_AGENT__";
+
+export function encodePathParameter(value: string): string {
+	const segment = String(value);
+	if (/^(?:\.|%2[eE]){1,2}$/.test(segment)) {
+		throw new TypeError("Path parameters cannot be dot segments.");
+	}
+	return encodeURIComponent(segment);
+}

@@ -15,6 +15,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.ChannelNotFoundError
 import io.portone.sdk.server.errors.ChannelNotFoundException
@@ -116,7 +117,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "confirm", encodeSlash = true)
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "confirm")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -177,7 +178,7 @@ public class IdentityVerificationClient(
   ): ResendIdentityVerificationResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "resend", encodeSlash = true)
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "resend")
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -263,7 +264,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), "send", encodeSlash = true)
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString(), "send")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -331,7 +332,7 @@ public class IdentityVerificationClient(
   ): IdentityVerification {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", identityVerificationId.toString(), encodeSlash = true)
+        this.appendApiPathSegments("identity-verifications", identityVerificationId.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -402,7 +403,7 @@ public class IdentityVerificationClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("identity-verifications", encodeSlash = true)
+        this.appendPathSegments("identity-verifications")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {

@@ -1,6 +1,6 @@
 import { TransferError } from "./TransferError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { CreateManualTransferResponse } from "../../../generated/platform/transfer/CreateManualTransferResponse"
 import type { CreateOrderCancelTransferResponse } from "../../../generated/platform/transfer/CreateOrderCancelTransferResponse"
 import type { CreateOrderTransferResponse } from "../../../generated/platform/transfer/CreateOrderTransferResponse"
@@ -357,7 +357,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/transfers/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/transfers/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -387,7 +387,7 @@ export function TransferClient(init: PortOneClientInit): TransferClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/transfers/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/transfers/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {

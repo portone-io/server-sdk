@@ -41,7 +41,7 @@ from ...b2b.counterparty.get_b2b_counterparty_certificate_registration_url_respo
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...b2b.counterparty.update_b2b_counterparty_response import UpdateB2bCounterpartyResponse, _deserialize_update_b2b_counterparty_response, _serialize_update_b2b_counterparty_response
 from ...b2b.counterparty.validate_b2b_counterparty_certificate_response import ValidateB2bCounterpartyCertificateResponse, _deserialize_validate_b2b_counterparty_certificate_response, _serialize_validate_b2b_counterparty_certificate_response
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class CounterpartyClient:
     _secret: str
     _base_url: str
@@ -91,7 +91,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate/registration-url",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate/registration-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -173,7 +173,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate/registration-url",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate/registration-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -255,7 +255,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate/validate",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate/validate",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -343,7 +343,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate/validate",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate/validate",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -431,7 +431,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -519,7 +519,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(brn, safe='')}/certificate",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(brn)}/certificate",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -607,7 +607,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -683,7 +683,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -759,7 +759,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -847,7 +847,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -947,7 +947,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "PATCH",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1084,7 +1084,7 @@ class CounterpartyClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "PATCH",
-            f"{self._base_url}/b2b/counterparties/{quote(counterparty_id, safe='')}",
+            f"{self._base_url}/b2b/counterparties/{encode_path_parameter(counterparty_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

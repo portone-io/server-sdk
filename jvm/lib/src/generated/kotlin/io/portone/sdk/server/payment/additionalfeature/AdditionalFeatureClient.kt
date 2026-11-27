@@ -83,7 +83,7 @@ public class AdditionalFeatureClient(
   ): GetPgCardPromotionsResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-gateways", "card-promotion", encodeSlash = true)
+        this.appendPathSegments("payment-gateways", "card-promotion")
         this.parameters.append("channelKey", channelKey.toString())
         this.parameters.append("amount", amount.toString())
         if (cardCompany != null) this.parameters.append("cardCompany", cardCompany.toString())

@@ -102,7 +102,7 @@ public class PartnerSettlementClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partner-settlements", "delete", encodeSlash = true)
+        this.appendPathSegments("platform", "partner-settlements", "delete")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -185,7 +185,7 @@ public class PartnerSettlementClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "partner-settlements", encodeSlash = true)
+        this.appendPathSegments("platform", "partner-settlements")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }

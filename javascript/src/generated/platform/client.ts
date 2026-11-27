@@ -1,6 +1,6 @@
 import { PlatformError } from "./PlatformError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
 import { CompanyClient } from "./company/client"
 import { AccountTransferClient } from "./accountTransfer/client"
 import { PolicyClient } from "./policy/client"
@@ -90,7 +90,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -128,7 +128,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "PUT",
 					headers: {
@@ -167,7 +167,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -198,7 +198,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/additional-fee-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/additional-fee-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -228,7 +228,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -266,7 +266,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "PUT",
 					headers: {
@@ -305,7 +305,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -336,7 +336,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/contracts/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/contracts/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -366,7 +366,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -404,7 +404,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "PUT",
 					headers: {
@@ -443,7 +443,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -474,7 +474,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/discount-share-policies/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/discount-share-policies/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -602,7 +602,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -640,7 +640,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "PUT",
 					headers: {
@@ -679,7 +679,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -710,7 +710,7 @@ export function PlatformClient(init: PortOneClientInit): PlatformClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/schedule?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/schedule?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {

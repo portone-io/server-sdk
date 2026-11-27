@@ -121,7 +121,7 @@ public class PayoutClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "partner-settlements", "complete-payout", encodeSlash = true)
+        this.appendPathSegments("platform", "partner-settlements", "complete-payout")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -208,7 +208,7 @@ public class PayoutClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "payouts", encodeSlash = true)
+        this.appendPathSegments("platform", "payouts")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }

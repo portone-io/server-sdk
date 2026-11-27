@@ -91,7 +91,7 @@ public class AccountTransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "account-transfers", encodeSlash = true)
+        this.appendPathSegments("platform", "account-transfers")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }

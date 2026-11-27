@@ -1,6 +1,6 @@
 import { TaxInvoiceError } from "./TaxInvoiceError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { B2BCannotChangeTaxTypeError } from "../../../generated/b2b/taxInvoice/B2BCannotChangeTaxTypeError"
 import type { B2BTaxInvoiceStatusNotSendingCompletedError } from "../../../generated/b2b/taxInvoice/B2BTaxInvoiceStatusNotSendingCompletedError"
 import type { B2bBulkTaxInvoice } from "../../../generated/b2b/taxInvoice/B2bBulkTaxInvoice"
@@ -77,7 +77,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/bulk-tax-invoices/${encodeURIComponent(bulkTaxInvoiceId)}?${query}`, baseUrl),
+				new URL(`/b2b/bulk-tax-invoices/${encodePathParameter(bulkTaxInvoiceId)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -362,7 +362,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/attach-file?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/attach-file?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -400,7 +400,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/attachments/${encodeURIComponent(attachmentId)}?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/attachments/${encodePathParameter(attachmentId)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {
@@ -435,7 +435,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/attachments?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/attachments?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -476,7 +476,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/cancel-issuance?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/cancel-issuance?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -518,7 +518,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/cancel-request?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/cancel-request?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -563,7 +563,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/issue?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/issue?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -600,7 +600,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/pdf-download-url?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/pdf-download-url?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -639,7 +639,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/popup-url?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/popup-url?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -675,7 +675,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/print-url?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/print-url?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -716,7 +716,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/refuse-request?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/refuse-request?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -753,7 +753,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/request?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/request?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -789,7 +789,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}/send-to-nts?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}/send-to-nts?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -825,7 +825,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -861,7 +861,7 @@ export function TaxInvoiceClient(init: PortOneClientInit): TaxInvoiceClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/b2b/tax-invoices/${encodeURIComponent(taxInvoiceKey)}?${query}`, baseUrl),
+				new URL(`/b2b/tax-invoices/${encodePathParameter(taxInvoiceKey)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {

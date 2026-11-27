@@ -209,7 +209,11 @@ function generateCategoryIndex(
     )
   }
   if (hasClient) {
-    importWriter.writeLine("from urllib.parse import quote")
+    if (pack.operations.some((op) => op.params.path.length > 0)) {
+      importWriter.writeLine(
+        `from ${toRoot}._api_path import encode_path_parameter`,
+      )
+    }
     for (const subpackage of pack.subpackages) {
       if (
         isClientPackage(subpackage)

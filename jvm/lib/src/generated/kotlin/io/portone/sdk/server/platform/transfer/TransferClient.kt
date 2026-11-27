@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.PageInput
 import io.portone.sdk.server.errors.CreatePlatformManualTransferError
@@ -222,7 +223,7 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfer-summaries", "sheet-file", encodeSlash = true)
+        this.appendPathSegments("platform", "transfer-summaries", "sheet-file")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -285,7 +286,7 @@ public class TransferClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfer-summaries", encodeSlash = true)
+        this.appendPathSegments("platform", "transfer-summaries")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
@@ -392,7 +393,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "manual", encodeSlash = true)
+        this.appendPathSegments("platform", "transfers", "manual")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -538,7 +539,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "order-cancel", encodeSlash = true)
+        this.appendPathSegments("platform", "transfers", "order-cancel")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -712,7 +713,7 @@ public class TransferClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", "order", encodeSlash = true)
+        this.appendPathSegments("platform", "transfers", "order")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -808,7 +809,7 @@ public class TransferClient(
   ): PlatformTransfer {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString(), encodeSlash = true)
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -871,7 +872,7 @@ public class TransferClient(
   ): DeletePlatformTransferResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("platform", "transfers", id.toString(), encodeSlash = true)
+        this.appendApiPathSegments("platform", "transfers", id.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {

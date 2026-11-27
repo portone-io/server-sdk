@@ -1,4 +1,6 @@
+import asyncio
 import json
+from unittest.mock import AsyncMock
 
 import httpx
 import pytest
@@ -113,14 +115,39 @@ def test_get_payment_with_params(mock_client):
     assert payment.cancellations[0].reason == "test"
 
 
-def test_get_payment_with_invalid_payment_id(mock_client):
+def test_get_payment_rejects_dot_segments_before_sending(mock_client, monkeypatch):
+    make_client, requests, _ = mock_client
+    client = make_client()
+    async_request = AsyncMock()
+    monkeypatch.setattr(client._async_client, "request", async_request)
+    dots = (".", "%2e", "%2E")
+    for first in dots:
+        for second in ("", *dots):
+            payment_id = first + second
+            with pytest.raises(ValueError, match="dot segments"):
+                client.get_payment(payment_id=payment_id)
+            with pytest.raises(ValueError, match="dot segments"):
+                asyncio.run(client.get_payment_async(payment_id=payment_id))
+    assert requests == []
+    async_request.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("payment_id", "path"),
+    [
+        (" ", b"/payments/%20"),
+        ("order.v2/part", b"/payments/order.v2%2Fpart"),
+        ("...", b"/payments/..."),
+    ],
+)
+def test_get_payment_preserves_path_parameter(mock_client, payment_id, path):
     make_client, requests, response = mock_client
     response.update(
         status=404, json={"type": "PAYMENT_NOT_FOUND", "message": "not found"}
     )
     with pytest.raises(PaymentNotFoundError):
-        make_client().get_payment(payment_id=" ")
-    assert_request(requests[0], "GET", b"/payments/%20")
+        make_client().get_payment(payment_id=payment_id)
+    assert_request(requests[0], "GET", path)
 
 
 def test_get_cancel_payment_with_already_cancelled_payment_id(mock_client):

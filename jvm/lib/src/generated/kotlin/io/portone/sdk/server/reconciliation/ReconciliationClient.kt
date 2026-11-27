@@ -82,7 +82,7 @@ public class ReconciliationClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-reconciliations", "settlements", "vat-report", encodeSlash = true)
+        this.appendPathSegments("payment-reconciliations", "settlements", "vat-report")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -145,7 +145,7 @@ public class ReconciliationClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("payment-reconciliations", "transactions", "vat-report", encodeSlash = true)
+        this.appendPathSegments("payment-reconciliations", "transactions", "vat-report")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {

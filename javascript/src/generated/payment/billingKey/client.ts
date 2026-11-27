@@ -1,6 +1,6 @@
 import { BillingKeyError } from "./BillingKeyError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { BillingKeyAlreadyDeletedError } from "../../../generated/common/BillingKeyAlreadyDeletedError"
 import type { BillingKeyAlreadyIssuedError } from "../../../generated/payment/billingKey/BillingKeyAlreadyIssuedError"
 import type { BillingKeyDeleteRequester } from "../../../generated/payment/billingKey/BillingKeyDeleteRequester"
@@ -219,7 +219,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
+				new URL(`/billing-keys/${encodePathParameter(billingKey)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -258,7 +258,7 @@ export function BillingKeyClient(init: PortOneClientInit): BillingKeyClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/billing-keys/${encodeURIComponent(billingKey)}?${query}`, baseUrl),
+				new URL(`/billing-keys/${encodePathParameter(billingKey)}?${query}`, baseUrl),
 				{
 					method: "DELETE",
 					headers: {

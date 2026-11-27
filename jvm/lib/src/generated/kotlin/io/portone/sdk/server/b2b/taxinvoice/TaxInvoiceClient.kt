@@ -17,6 +17,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.b2b.taxinvoice.AttachB2bTaxInvoiceFileBody
 import io.portone.sdk.server.b2b.taxinvoice.B2bBulkTaxInvoice
 import io.portone.sdk.server.b2b.taxinvoice.B2bTaxInvoice
@@ -206,7 +207,7 @@ public class TaxInvoiceClient(
   ): B2bBulkTaxInvoice {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "bulk-tax-invoices", bulkTaxInvoiceId.toString(), encodeSlash = true)
+        this.appendApiPathSegments("b2b", "bulk-tax-invoices", bulkTaxInvoiceId.toString())
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -273,7 +274,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "file-upload-url", encodeSlash = true)
+        this.appendPathSegments("b2b", "file-upload-url")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -350,7 +351,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices-sheet", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices-sheet")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -429,7 +430,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.put(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", "draft", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices", "draft")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -530,7 +531,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", "draft", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices", "draft")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -628,7 +629,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", "issue-immediately", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices", "issue-immediately")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -720,7 +721,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", "request-reverse-issuance", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices", "request-reverse-issuance")
         if (test != null) this.parameters.append("test", test.toString())
       }
       headers {
@@ -814,7 +815,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attach-file", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attach-file")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -890,7 +891,7 @@ public class TaxInvoiceClient(
   ) {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments", attachmentId.toString(), encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments", attachmentId.toString())
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -961,7 +962,7 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoiceAttachmentsResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "attachments")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1043,7 +1044,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-issuance", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-issuance")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1129,7 +1130,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-request", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "cancel-request")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1220,7 +1221,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "issue", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "issue")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1303,7 +1304,7 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePdfDownloadUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "pdf-download-url", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "pdf-download-url")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1384,7 +1385,7 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePopupUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "popup-url", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "popup-url")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (includeMenu != null) this.parameters.append("includeMenu", includeMenu.toString())
@@ -1462,7 +1463,7 @@ public class TaxInvoiceClient(
   ): GetB2bTaxInvoicePrintUrlResponse {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "print-url", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "print-url")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1544,7 +1545,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "refuse-request", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "refuse-request")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1625,7 +1626,7 @@ public class TaxInvoiceClient(
   ): RequestB2bTaxInvoiceResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "request", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "request")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1708,7 +1709,7 @@ public class TaxInvoiceClient(
   ): SendToNtsB2bTaxInvoiceResponse {
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "send-to-nts", encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), "send-to-nts")
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1785,7 +1786,7 @@ public class TaxInvoiceClient(
   ): B2bTaxInvoice {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1861,7 +1862,7 @@ public class TaxInvoiceClient(
   ): DeleteB2bTaxInvoiceResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString(), encodeSlash = true)
+        this.appendApiPathSegments("b2b", "tax-invoices", taxInvoiceKey.toString())
         if (brn != null) this.parameters.append("brn", brn.toString())
         if (taxInvoiceKeyType != null) this.parameters.append("taxInvoiceKeyType", taxInvoiceKeyType.toString())
         if (test != null) this.parameters.append("test", test.toString())
@@ -1953,7 +1954,7 @@ public class TaxInvoiceClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("b2b", "tax-invoices", encodeSlash = true)
+        this.appendPathSegments("b2b", "tax-invoices")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {

@@ -89,7 +89,7 @@ public class BulkPayoutClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("platform", "bulk-payouts", encodeSlash = true)
+        this.appendPathSegments("platform", "bulk-payouts")
         if (test != null) this.parameters.append("test", test.toString())
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }

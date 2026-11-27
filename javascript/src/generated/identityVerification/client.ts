@@ -1,6 +1,6 @@
 import { IdentityVerificationError } from "./IdentityVerificationError"
 import type { Unrecognized } from "./../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../client"
 import type { ChannelNotFoundError } from "../../generated/common/ChannelNotFoundError"
 import type { ConfirmIdentityVerificationResponse } from "../../generated/identityVerification/ConfirmIdentityVerificationResponse"
 import type { ForbiddenError } from "../../generated/common/ForbiddenError"
@@ -46,7 +46,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				otp,
 			})
 			const response = await fetch(
-				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/confirm`, baseUrl),
+				new URL(`/identity-verifications/${encodePathParameter(identityVerificationId)}/confirm`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -77,7 +77,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/resend?${query}`, baseUrl),
+				new URL(`/identity-verifications/${encodePathParameter(identityVerificationId)}/resend?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -123,7 +123,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				method,
 			})
 			const response = await fetch(
-				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}/send`, baseUrl),
+				new URL(`/identity-verifications/${encodePathParameter(identityVerificationId)}/send`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -154,7 +154,7 @@ export function IdentityVerificationClient(init: PortOneClientInit): IdentityVer
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/identity-verifications/${encodeURIComponent(identityVerificationId)}?${query}`, baseUrl),
+				new URL(`/identity-verifications/${encodePathParameter(identityVerificationId)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

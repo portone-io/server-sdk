@@ -9,9 +9,9 @@ import io.ktor.client.request.accept
 import io.ktor.client.request.headers
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
-import io.ktor.http.appendPathSegments
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.errors.ForbiddenError
 import io.portone.sdk.server.errors.ForbiddenException
 import io.portone.sdk.server.errors.GetPromotionError
@@ -69,7 +69,7 @@ public class PromotionClient(
   ): Promotion {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("promotions", promotionId.toString(), encodeSlash = true)
+        this.appendApiPathSegments("promotions", promotionId.toString())
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")

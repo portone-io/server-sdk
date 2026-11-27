@@ -1,6 +1,6 @@
 import { PartnerError } from "./PartnerError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { ArchivePlatformPartnerResponse } from "../../../generated/platform/partner/ArchivePlatformPartnerResponse"
 import type { ConnectBulkPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectBulkPartnerCounterpartyResponse"
 import type { ConnectPartnerCounterpartyResponse } from "../../../generated/platform/partner/ConnectPartnerCounterpartyResponse"
@@ -112,7 +112,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/counterparty-connect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-connect/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -174,7 +174,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/counterparty-disconnect/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/counterparty-disconnect/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -236,7 +236,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/archive?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/archive?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -266,7 +266,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}/recover?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}/recover?${query}`, baseUrl),
 				{
 					method: "POST",
 					headers: {
@@ -296,7 +296,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {
@@ -352,7 +352,7 @@ export function PartnerClient(init: PortOneClientInit): PartnerClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/partners/${encodeURIComponent(id)}?${query}`, baseUrl),
+				new URL(`/platform/partners/${encodePathParameter(id)}?${query}`, baseUrl),
 				{
 					method: "PATCH",
 					headers: {

@@ -1,6 +1,6 @@
 import { AccountError } from "./AccountError"
 import type { Unrecognized } from "./../../../utils/unrecognized"
-import { USER_AGENT, type PortOneClientInit } from "../../../client"
+import { encodePathParameter, USER_AGENT, type PortOneClientInit } from "../../../client"
 import type { Bank } from "../../../generated/common/Bank"
 import type { ForbiddenError } from "../../../generated/common/ForbiddenError"
 import type { InvalidRequestError } from "../../../generated/common/InvalidRequestError"
@@ -41,7 +41,7 @@ export function AccountClient(init: PortOneClientInit): AccountClient {
 				.flatMap(([key, value]) => value == null ? [] : `${key}=${encodeURIComponent(value)}`)
 				.join("&")
 			const response = await fetch(
-				new URL(`/platform/bank-accounts/${encodeURIComponent(bank)}/${encodeURIComponent(accountNumber)}/holder?${query}`, baseUrl),
+				new URL(`/platform/bank-accounts/${encodePathParameter(bank)}/${encodePathParameter(accountNumber)}/holder?${query}`, baseUrl),
 				{
 					method: "GET",
 					headers: {

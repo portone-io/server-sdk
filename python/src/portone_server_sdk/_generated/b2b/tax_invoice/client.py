@@ -58,7 +58,7 @@ from ...b2b.tax_invoice.request_b2b_tax_invoice_reverse_issuance_response import
 from ...b2b.tax_invoice.send_to_nts_b2b_tax_invoice_response import SendToNtsB2bTaxInvoiceResponse, _deserialize_send_to_nts_b2b_tax_invoice_response, _serialize_send_to_nts_b2b_tax_invoice_response
 from ...b2b.tax_invoice.tax_invoices_sheet_field import TaxInvoicesSheetField, _deserialize_tax_invoices_sheet_field, _serialize_tax_invoices_sheet_field
 from ...b2b.tax_invoice.update_b2b_tax_invoice_draft_response import UpdateB2bTaxInvoiceDraftResponse, _deserialize_update_b2b_tax_invoice_draft_response, _serialize_update_b2b_tax_invoice_draft_response
-from urllib.parse import quote
+from ...._api_path import encode_path_parameter
 class TaxInvoiceClient:
     _secret: str
     _base_url: str
@@ -108,7 +108,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/bulk-tax-invoices/{quote(bulk_tax_invoice_id, safe='')}",
+            f"{self._base_url}/b2b/bulk-tax-invoices/{encode_path_parameter(bulk_tax_invoice_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -184,7 +184,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/bulk-tax-invoices/{quote(bulk_tax_invoice_id, safe='')}",
+            f"{self._base_url}/b2b/bulk-tax-invoices/{encode_path_parameter(bulk_tax_invoice_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -1921,7 +1921,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attach-file",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attach-file",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2026,7 +2026,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attach-file",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attach-file",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2129,7 +2129,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attachments/{quote(attachment_id, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attachments/{encode_path_parameter(attachment_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2231,7 +2231,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attachments/{quote(attachment_id, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attachments/{encode_path_parameter(attachment_id)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2330,7 +2330,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attachments",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attachments",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2418,7 +2418,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/attachments",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/attachments",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2512,7 +2512,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/cancel-issuance",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/cancel-issuance",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2613,7 +2613,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/cancel-issuance",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/cancel-issuance",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2714,7 +2714,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/cancel-request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/cancel-request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2821,7 +2821,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/cancel-request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/cancel-request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -2933,7 +2933,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/issue",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/issue",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3051,7 +3051,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/issue",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/issue",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3158,7 +3158,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/pdf-download-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/pdf-download-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3246,7 +3246,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/pdf-download-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/pdf-download-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3341,7 +3341,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/popup-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/popup-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3436,7 +3436,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/popup-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/popup-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3524,7 +3524,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/print-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/print-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3612,7 +3612,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/print-url",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/print-url",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3706,7 +3706,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/refuse-request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/refuse-request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3813,7 +3813,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/refuse-request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/refuse-request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -3914,7 +3914,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4044,7 +4044,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/request",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/request",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4174,7 +4174,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/send-to-nts",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/send-to-nts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4268,7 +4268,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "POST",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}/send-to-nts",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}/send-to-nts",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4362,7 +4362,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4450,7 +4450,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "GET",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4538,7 +4538,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = self._sync_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",
@@ -4638,7 +4638,7 @@ class TaxInvoiceClient:
             query.append(("test", test))
         response = await self._async_client.request(
             "DELETE",
-            f"{self._base_url}/b2b/tax-invoices/{quote(tax_invoice_key, safe='')}",
+            f"{self._base_url}/b2b/tax-invoices/{encode_path_parameter(tax_invoice_key)}",
             params=query,
             headers={
                 "Authorization": f"PortOne {self._secret}",

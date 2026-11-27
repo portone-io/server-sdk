@@ -12,7 +12,6 @@ from ...common.unauthorized_error import _deserialize_unauthorized_error
 from ...platform.bulk_payout.get_platform_bulk_payouts_response import GetPlatformBulkPayoutsResponse, _deserialize_get_platform_bulk_payouts_response, _serialize_get_platform_bulk_payouts_response
 from ...common.page_input import PageInput, _deserialize_page_input, _serialize_page_input
 from ...platform.bulk_payout.platform_bulk_payout_filter_input import PlatformBulkPayoutFilterInput, _deserialize_platform_bulk_payout_filter_input, _serialize_platform_bulk_payout_filter_input
-from urllib.parse import quote
 class BulkPayoutClient:
     _secret: str
     _base_url: str

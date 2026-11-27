@@ -16,6 +16,7 @@ import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.portone.sdk.server.USER_AGENT
+import io.portone.sdk.server.appendApiPathSegments
 import io.portone.sdk.server.common.Currency
 import io.portone.sdk.server.common.CustomerInput
 import io.portone.sdk.server.common.PageInput
@@ -135,7 +136,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", encodeSlash = true)
+        this.appendPathSegments("billing-keys")
         this.parameters.append("requestBody", json.encodeToString(requestBody))
       }
       headers {
@@ -234,7 +235,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", encodeSlash = true)
+        this.appendPathSegments("billing-keys")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -318,7 +319,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", "confirm", encodeSlash = true)
+        this.appendPathSegments("billing-keys", "confirm")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -422,7 +423,7 @@ public class BillingKeyClient(
     )
     val httpResponse = client.post(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", "confirm-issue-and-pay", encodeSlash = true)
+        this.appendPathSegments("billing-keys", "confirm-issue-and-pay")
       }
       headers {
         this.append(HttpHeaders.Authorization, "PortOne $apiSecret")
@@ -488,7 +489,7 @@ public class BillingKeyClient(
   ): BillingKeyInfo {
     val httpResponse = client.get(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString(), encodeSlash = true)
+        this.appendApiPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
       }
       headers {
@@ -559,7 +560,7 @@ public class BillingKeyClient(
   ): DeleteBillingKeyResponse {
     val httpResponse = client.delete(apiBase) {
       url {
-        this.appendPathSegments("billing-keys", billingKey.toString(), encodeSlash = true)
+        this.appendApiPathSegments("billing-keys", billingKey.toString())
         if (storeId != null) this.parameters.append("storeId", storeId.toString())
         if (reason != null) this.parameters.append("reason", reason.toString())
         if (requester != null) this.parameters.append("requester", requester.toString())
